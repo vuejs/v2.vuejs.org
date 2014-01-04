@@ -1,0 +1,5 @@
+<% if (page.type) { %>
+    <%- partial('partials/nav', { type: page.type }) %>
+<% } %>
+<h1><%- page.title %></h1>
+<%- page.content %>

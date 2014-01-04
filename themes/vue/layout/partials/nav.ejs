@@ -1,0 +1,3 @@
+<% site.pages.find({type: type}).sort('order').each(function (page) { %>
+    <a href="/<%- page.path %>"><%- page.title %></a>
+<% }) %>
