@@ -5,11 +5,11 @@
     position fixed
     top 91px
     left 0
-    font-size 15px
+    font-size .95em
     padding 40px 60px
     width 25%
     h2
-        margin-top 8px
+        margin-top .25em
     ul
         list-style-type none
         margin 0
@@ -22,9 +22,20 @@
             color $green
 
 .content
-    padding 40px 0
+    padding 2.4em 0
     max-width 720px
     h1
-        margin 0 0 35px
+        margin 0 0 1em
     &.with-sidebar
         margin-left 25%
+
+@media screen and (max-width: 720px)
+    .sidebar
+        position relative
+        top 0
+        padding 2em 0 0
+        width auto
+        text-align center
+    .content
+        &.with-sidebar
+            margin-left 0

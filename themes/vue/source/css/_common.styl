@@ -16,7 +16,7 @@ h1, h2, h3, h4
 
 code, pre
     font-family $code-font
-    font-size 14px
+    font-size $code-font-size
 
 $header-height = 40px
 
@@ -30,27 +30,28 @@ $header-height = 40px
     //border-bottom 1px solid $border
     box-shadow 0 0 4px rgba(0,0,0,.25)
     padding 25px 60px
+
+#nav
+    display inline-block
+    list-style-type none
+    margin 0
+    padding 0
+    float right
     height $header-height
-    ul 
-        list-style-type none
-        margin 0
-        padding 0
-        float right
-        height $header-height
-        line-height $header-height
-        li
-            display inline-block
-            margin-left 20px
-    .nav-link
-        padding-bottom 3px
-        &:hover, &.current
-            border-bottom 3px solid $green
+    line-height $header-height
+    li
+        display inline-block
+        margin-left 1.2em
+        &:first-child
+            margin-left 0 !important
+.nav-link
+    padding-bottom 3px
+    &:hover, &.current
+        border-bottom 3px solid $green
 
 #logo
     display inline-block
-    float left
-    font-family $header-font
-    font-size 30px
+    font-size 1.85em
     line-height $header-height
     color $dark
     img
@@ -63,3 +64,18 @@ $header-height = 40px
     position relative
     z-index 1
     margin 91px 60px 30px
+
+@media screen and (max-width: 720px)
+    body
+        font-size 14px
+    #header
+        position relative
+        text-align center
+        padding 18px 0
+    #nav
+        margin-top .4em
+        float none
+    #logo
+        display block
+    #main
+        margin 0 20px 18px
