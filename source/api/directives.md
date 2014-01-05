@@ -1,4 +1,4 @@
 title: Directives
-type: docs
-order: 5
+type: api
+order: 6
 ---

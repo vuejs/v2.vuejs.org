@@ -1,2 +1,63 @@
 body
     font-family $body-font
+    color $medium
+    margin 0
+
+a
+    text-decoration none
+    color $medium
+
+img
+    border none
+
+ul
+    list-style-type none
+    margin 0
+    padding 0
+
+h1, h2, h3, h4
+    font-weight 600
+    color $dark
+
+$header-height = 40px
+
+#header
+    position fixed
+    z-index 999
+    top 0
+    left 0
+    right 0
+    background-color #fff
+    //border-bottom 1px solid $border
+    box-shadow 0 0 4px rgba(0,0,0,.25)
+    padding 25px 60px
+    height $header-height
+    ul 
+        float right
+        height $header-height
+        line-height $header-height
+        li
+            display inline-block
+            margin-left 20px
+    .nav-link
+        padding-bottom 3px
+        &:hover, &.current
+            border-bottom 3px solid $green
+
+#logo
+    display inline-block
+    float left
+    font-family $header-font
+    font-size 30px
+    line-height $header-height
+    color $dark
+    img
+        vertical-align middle
+        margin-right 6px
+        width $header-height
+        height $header-height
+
+#main
+    position relative
+    z-index 1
+    margin 91px 60px 30px

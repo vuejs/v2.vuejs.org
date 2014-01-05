@@ -1,4 +1,4 @@
-title: Concepts Overview
+title: Overview
 type: guide
 order: 1
 ---

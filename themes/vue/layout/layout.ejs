@@ -3,11 +3,14 @@
     <head>
         <title><%- page.title ? page.title + ' - ' : '' %>Vue.js</title>
         <meta charset="utf-8">
-        <%- partial('partials/ga') %>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro' rel='stylesheet' type='text/css'>
         <%- css(is_home() ? 'css/index' : 'css/page') %>
+        <%- partial('partials/ga') %>
     </head>
     <body>
         <%- partial('partials/header') %>
-        <%- body %>
+        <div id="main">
+            <%- body %>
+        </div>
     </body>
 </html>

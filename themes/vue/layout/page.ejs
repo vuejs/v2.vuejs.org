@@ -1,7 +1,7 @@
 <% if (page.type) { %>
-    <%- partial('partials/nav', { type: page.type }) %>
+    <%- partial('partials/sidebar', { type: page.type, index: page.index }) %>
 <% } %>
-<div class="content">
+<div class="content<%- page.type ? ' with-sidebar' : '' %>">
     <h1><%- page.title %></h1>
     <%- page.content %>
 </div>

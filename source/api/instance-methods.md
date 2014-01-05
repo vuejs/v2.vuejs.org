@@ -1,4 +1,4 @@
 title: Instance Methods
-type: docs
+type: api
 order: 4
 ---

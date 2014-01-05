@@ -1,4 +1,4 @@
 title: Instance Properties
-type: docs
+type: api
 order: 3
 ---
