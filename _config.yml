@@ -97,4 +97,4 @@ markdown:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: github
-  repository: https://github.com/vuejs/vuejs.org.git
+  repository: git@github.com:vuejs/vuejs.org.git
