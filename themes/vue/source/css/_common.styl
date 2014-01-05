@@ -10,14 +10,13 @@ a
 img
     border none
 
-ul
-    list-style-type none
-    margin 0
-    padding 0
-
 h1, h2, h3, h4
     font-weight 600
     color $dark
+
+code, pre
+    font-family $code-font
+    font-size 14px
 
 $header-height = 40px
 
@@ -33,6 +32,9 @@ $header-height = 40px
     padding 25px 60px
     height $header-height
     ul 
+        list-style-type none
+        margin 0
+        padding 0
         float right
         height $header-height
         line-height $header-height
