@@ -96,8 +96,5 @@ markdown:
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
-  type: rsync
-  host: 192.241.244.62
-  port: 1987
-  root: /srv/static/vuejs.org/
-  user: evan
+  type: github
+  repository: https://github.com/vuejs/vuejs.org.git

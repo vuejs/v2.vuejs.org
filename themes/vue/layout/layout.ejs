@@ -3,6 +3,8 @@
     <head>
         <title><%- page.title ? page.title + ' - ' : '' %>Vue.js</title>
         <meta charset="utf-8">
+        <%- partial('partials/ga') %>
+        <%- css(is_home() ? 'css/index' : 'css/page') %>
     </head>
     <body>
         <%- partial('partials/header') %>
