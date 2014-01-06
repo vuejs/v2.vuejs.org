@@ -3,7 +3,13 @@ type: guide
 order: 1
 ---
 
-VueJS shares a number of concepts with AngularJS. If you have used Angular before, you will find VueJS very easy to pick up.
+Vue.js is a library that aims to simplify the development of interactive interfaces.
+
+Technically, it provides the **[ViewModel](#ViewModel)** layer of the MVVM pattern, which connects the **[View](#View)** and the **[Model](#Model)** via two way **[Data Bindings](#Data_Binding)**.
+
+Philosophically, the goal is to allow the developer to embrace an extremely minimal mental model when dealing with interfaces - there's only one type of object you need to worry about: the ViewModel. It is where all the view logic happens, and manipulating the ViewModel will automatically keep the View and the Model in sync. Actuall DOM manipulations and output formatting are abstracted away into **[Directives](#Directive)** and **[Filters](#Filter)**.
+
+Vue.js shares a number of concepts with AngularJS, but is overall much simpler. If you have used Angular before, you will find vue.js very easy to pick up.
 
 ## View
 
@@ -11,7 +17,7 @@ The actual HTML that the user sees.
 
 ## Template
 
-The HTML with additional markup.
+HTML with additional markup.
 
 ## Model
 
@@ -19,7 +25,11 @@ A slightly modified plain JavaScript object.
 
 ## ViewModel
 
-An object that syncs the Model and the View.
+An object that syncs the Model and the View. In vue.js, ViewModels are instantiated with the `Vue` constructor or its sub-classes. This is also the primary object that you will be interacting with as a developer when using vue.js.
+
+## Data Binding
+
+Establish a connection between the user interface and the actual data, so that when the state of one side changes, the other side changes accordingly. This saves the developer the trouble of manually keeping things in sync.
 
 ## Directive
 

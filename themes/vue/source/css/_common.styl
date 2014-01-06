@@ -55,22 +55,17 @@ em
 $header-height = 40px
 
 #header
-    position fixed
-    z-index 999
-    top 0
-    left 0
-    right 0
     background-color #fff
-    //border-bottom 1px solid $border
     box-shadow 0 0 4px rgba(0,0,0,.25)
     padding 25px 60px
 
 #nav
-    display inline-block
     list-style-type none
     margin 0
     padding 0
-    float right
+    position absolute
+    right 60px
+    top 25px
     height $header-height
     line-height $header-height
     li
@@ -97,19 +92,18 @@ $header-height = 40px
 #main
     position relative
     z-index 1
-    margin 94px 60px 30px
+    padding 0 60px 30px
 
 @media screen and (max-width: 720px)
     body
         font-size 14px
     #header
-        position relative
         text-align center
         padding 18px 0
     #nav
+        position static
         margin-top .4em
-        float none
     #logo
         display block
     #main
-        margin 0 1.4em
+        padding 0 1.4em

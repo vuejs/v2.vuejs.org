@@ -1,11 +1,12 @@
 @import "_common"
 
 .sidebar
-    position fixed
-    top 94px
-    left 0
-    padding 2.2em 0  0 60px
+    position absolute
+    top 0
+    left 60px
+    padding 2.2em 0 0 0
     width 260px
+    margin-right 20px
     h2
         margin-top .2em
     ul
@@ -22,6 +23,7 @@
 .content
     padding 2.2em 0
     max-width 720px
+    margin-left 280px
     h1
         margin 0 0 1em
     h2
@@ -45,16 +47,18 @@
         margin 0
         p
             margin-left 0
-    &.with-sidebar
-        margin-left 280px
+
+@media screen and (min-width: 720px)
+    #main.fix-sidebar
+        .sidebar
+            position fixed
 
 @media screen and (max-width: 720px)
     .sidebar
-        position relative
-        top 0
-        padding 2em 0 0
+        position static
         width auto
-        text-align center
+        margin-right 0
+        padding-bottom 2em
+        border-bottom 1px solid $border
     .content
-        &.with-sidebar
-            margin-left 0
+        margin-left 0

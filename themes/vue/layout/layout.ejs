@@ -14,5 +14,18 @@
         <div id="main">
             <%- body %>
         </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
     </body>
 </html>
