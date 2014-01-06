@@ -33,12 +33,12 @@ Methods to be copied to the ViewModel. All methods will have their `this` contex
 
 ```js
 var vm = new Vue({
-data: { a: 1 },
-methods: {
-    plus: function () {
-        this.a++
+    data: { a: 1 },
+    methods: {
+        plus: function () {
+            this.a++
+        }
     }
-}
 })
 vm.plus()
 vm.a // 2
