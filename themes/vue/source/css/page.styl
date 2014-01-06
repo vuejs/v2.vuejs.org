@@ -1,15 +1,13 @@
-@import "_settings"
 @import "_common"
 
 .sidebar
     position fixed
-    top 91px
+    top 94px
     left 0
-    font-size .95em
-    padding 40px 60px
-    width 25%
+    padding 2.2em 0  0 60px
+    width 260px
     h2
-        margin-top .25em
+        margin-top .2em
     ul
         list-style-type none
         margin 0
@@ -22,12 +20,27 @@
             color $green
 
 .content
-    padding 2.4em 0
+    padding 2.2em 0
     max-width 720px
     h1
         margin 0 0 1em
+    h2
+        margin 2em 0 .8em
+        padding-bottom .7em
+        border-bottom 1px solid $border
+    h3
+        color $green
+        margin 2em 0 .8em
+    figure, p, ul
+        margin .8em 0
+    p, ul
+        line-height 1.6em
+    ul
+        font-size .9em
+        padding-left 1.25em
+        color $dark
     &.with-sidebar
-        margin-left 25%
+        margin-left 280px
 
 @media screen and (max-width: 720px)
     .sidebar

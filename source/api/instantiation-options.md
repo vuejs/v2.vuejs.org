@@ -3,166 +3,162 @@ type: api
 order: 2
 ---
 
-### Data & Logic
+## Data & Logic
 
-- #### data
+### data
 
-    Type: `Object`
+- **Type:** `Object`
 
-    The data object for the ViewModel. The ViewModel will proxy access to all its properties. The object it self can be accessed as `vm.$data`.
-    
-    ```js
-    var data = { a: 1 }
-    var vm = new Vue({
-        data: data
-    })
-    vm.a // 1
-    vm.a = 2
-    data.a // 2
-    data.a = 3
-    vm.a // 3
-    vm.$data === data // true
-    ```
+The data object for the ViewModel. The ViewModel will proxy access to all its properties. The object it self can be accessed as `vm.$data`.
 
-- #### methods
+```js
+var data = { a: 1 }
+var vm = new Vue({
+    data: data
+})
+vm.a // 1
+vm.a = 2
+data.a // 2
+data.a = 3
+vm.a // 3
+vm.$data === data // true
+var a = "fesfsef"
+```
 
-    Type: `Object`
+### methods
 
-    Methods to be copied to the ViewModel. All methods will have their `this` context automatically bound to the ViewModel.
-    
-    ```js
-    var vm = new Vue({
-        data: { a: 1 },
-        methods: {
-            plus: function () {
-                this.a++
-            }
-        }
-    })
-    vm.plus()
-    vm.a // 2
-    ```
+- **Type:** `Object`
 
-### DOM Element
+Methods to be copied to the ViewModel. All methods will have their `this` context automatically bound to the ViewModel.
 
-- #### el
+```js
+var vm = new Vue({
+data: { a: 1 },
+methods: {
+    plus: function () {
+        this.a++
+    }
+}
+})
+vm.plus()
+vm.a // 2
+```
 
-    Type: `String` or `HTMLElement`
-    
-    Provide the ViewModel with an existing DOM node. It can be either a `querySelector()` selector or an actual node. The element will be accessible as `vm.$el`.
-    
-    If this option is omitted, a detached node will be automatically created.
-    
-    Restriction: only respected as an instantiation option, i.e. not in `Vue.extend()`
+## DOM Element
 
-- #### template
+### el
 
-    Type: `String`
-    
-    A raw template string which will be converted into a DOM fragment and cloned into `vm.$el`. It will overwrite `vm.$el`'s existing inner content.
+- **Type:** `String` or `HTMLElement`
+- **Restriction:** only respected as an instantiation option, i.e. not in `Vue.extend()`
 
-- #### replace
+Provide the ViewModel with an existing DOM node. It can be either a `querySelector()` selector or an actual node. The element will be accessible as `vm.$el`. If this option is omitted, a detached node will be automatically created.
 
-    Type: `Boolean`  
-    Default: `false`
-    
-    Whether to replace `vm.$el` with the template's top level element.
-    
-    Restriction: only respected if the **template** option is present and the template contains exactly 1 top level element.
+### template
 
-- #### tagName
+- **Type:** `String`
 
-    Type: `String`  
-    Default: `'div'`
-    
-    The tag name to be used when creating `vm.$el`.
-    
-    Restriction: only respected when the **el** option is omitted and the **replace** option is `false`.
+A raw template string which will be converted into a DOM fragment and cloned into `vm.$el`. It will overwrite `vm.$el`'s existing inner content.
 
-- #### id
+### replace
 
-    Type: `String`
-    
-    Set as `vm.$el.id`.
+- **Type:** `Boolean`  
+- **Default:** `false`
+- **Restriction:** only respected if the **template** option is present and the template contains exactly 1 top level element.
 
-- #### className
+Whether to replace `vm.$el` with the template's top level element.
 
-    Type: `String`
-    
-    Set as `vm.$el.className`.
+### tagName
 
-- #### attributes
+- **Type:** `String`  
+- **Default:** `'div'`
+- **Restriction:** only respected when the **el** option is omitted and the **replace** option is `false`.
 
-    Type: `Object`
-    
-    A hash of HTML attributes to be set on `vm.$el`.
+The tag name to be used when creating `vm.$el`.
 
-### Lifecycle Hooks
+### id
+
+- **Type:** `String`
+
+Set as `vm.$el.id`.
+
+### className
+
+- **Type:** `String`
+
+Set as `vm.$el.className`.
+
+### attributes
+
+- **Type:** `Object`
+
+A hash of HTML attributes to be set on `vm.$el`.
+
+## Lifecycle Hooks
 
 All lifecycle hooks have their `this` context bound to the ViewModel they belong to.
 
-- #### beforeCompile
+### beforeCompile
+  
+- **Type:** `Function`
+- Alias: `created`
 
-    Alias: `created`  
-    Type: `Function`
-    
-    Called before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.
+Called before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.
 
-- #### afterCompile
+### afterCompile
 
-    Alias: `ready`  
-    Type: `Function`
-    
-    Called after the compilation has ended and the ViewModel is ready.
+- **Type:** `Function`
+- Alias: `ready`
 
-- #### enteredView
+Called after the compilation has ended and the ViewModel is ready.
 
-    Type: `Function`
-    
-    Called when `vm.$el` is attached to DOM by a VueJS directive. Direct manipulation of `vm.$el` will **not** trigger this hook.
-    
-- #### leftView
+### enteredView
 
-    Type: `Function`
-    
-    Called when `vm.$el` is removed from the DOM by a VueJS directive. Direct manipulation of `vm.$el` will **not** trigger this hook.
-    
-- #### beforeDestroy
+- **Type:** `Function`
 
-    Type: `Function`
-    
-    Called before a ViewModel is destroyed.
-    
-- #### afterDestroy
+Called when `vm.$el` is attached to DOM by a VueJS directive. Direct manipulation of `vm.$el` will **not** trigger this hook.
 
-    Type: `Function`
-    
-    Called after a ViewModel has been destroyed.
+### leftView
 
-### Private Assets
+- **Type:** `Function`
+
+Called when `vm.$el` is removed from the DOM by a VueJS directive. Direct manipulation of `vm.$el` will **not** trigger this hook.
+
+### beforeDestroy
+
+- **Type:** `Function`
+
+Called before a ViewModel is destroyed.
+
+### afterDestroy
+
+- **Type:** `Function`
+
+Called after a ViewModel has been destroyed.
+
+## Private Assets
 
 These are private assets that will be available only to this ViewModel and its children during compilation.
 
-- #### directives
+### directives
 
-    Type: `Object`
+- **Type:** `Object`
 
-- #### filters
+### filters
 
-    Type: `Object`
+- **Type:** `Object`
 
-- #### components
+### components
 
-    Type: `Object`
+- **Type:** `Object`
 
-- #### partials
+### partials
 
-    Type: `Object`
+- **Type:** `Object`
 
-### Misc
+## Misc
 
-- #### lazy
+### lazy
 
-    Type: `Boolean`
-    
-    Whether to trigger `v-model` updates only on `change` event (hit enter or lose focus) or on every `input` event (on every keystroke).
+- **Type:** `Boolean`
+
+Whether to trigger `v-model` updates only on `change` event (hit enter or lose focus) or on every `input` event (on every keystroke).

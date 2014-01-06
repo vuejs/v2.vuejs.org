@@ -1,3 +1,6 @@
+@import "_settings"
+@import "_syntax"
+
 body
     font-family $body-font
     color $medium
@@ -10,13 +13,40 @@ a
 img
     border none
 
-h1, h2, h3, h4
+h1, h2, h3, h4, strong
     font-weight 600
     color $dark
 
 code, pre
     font-family $code-font
     font-size $code-font-size
+    background-color #f6f6f6
+
+code
+    color $light
+    padding 2px 6px
+    margin 0 2px
+    border 1px solid #e6e6e6
+
+.highlight
+    margin 0
+    table, tr, td
+        width 100%
+        border-collapse collapse
+        padding 0
+        margin 0
+    pre
+        padding 1.2em 1.5em
+    .gutter
+        width 1.5em
+        pre
+            border-top-left-radius 2px
+            border-bottom-left-radius 2px
+    .code
+        pre
+            padding-left .5em
+            border-top-right-radius 2px
+            border-bottom-right-radius 2px
 
 $header-height = 40px
 
@@ -63,7 +93,7 @@ $header-height = 40px
 #main
     position relative
     z-index 1
-    margin 91px 60px 30px
+    margin 94px 60px 30px
 
 @media screen and (max-width: 720px)
     body
@@ -78,4 +108,4 @@ $header-height = 40px
     #logo
         display block
     #main
-        margin 0 20px 18px
+        margin 0 1.6em 1.6em
