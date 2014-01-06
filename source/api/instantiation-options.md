@@ -143,17 +143,25 @@ These are private assets that will be available only to this ViewModel and its c
 
 - **Type:** `Object`
 
+An hash of directives to be made available to the ViewModel. For details on how to write a custom directive, see [Writing Custom Directives](/guide/custom-directive.html).
+
 ### filters
 
 - **Type:** `Object`
+
+A hash of filters to be made available to the ViewModel. For details on how to write a custom filter, see [Writing Custom Filters](/guide/custom-filter.html).
 
 ### components
 
 - **Type:** `Object`
 
+A hash of components to be made available to the ViewModel. For details on how to extend and compose ViewModels, see [Composing ViewModels](/guide/composition.html).
+
 ### partials
 
 - **Type:** `Object`
+
+A hash of partials to be made available to the ViewModel. Also see [v-partial](/api/directives.html#v-partial).
 
 ## Misc
 
