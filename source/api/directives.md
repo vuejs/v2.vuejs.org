@@ -5,11 +5,9 @@ order: 6
 
 ### v-text
 ### v-html
-### v-visible
 ### v-show
 ### v-class
 ### v-attr
-### v-style
 ### v-on
 ### v-if
 ### v-repeat
