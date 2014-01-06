@@ -7,7 +7,7 @@ Vue.js is a library that aims to simplify the development of interactive interfa
 
 Technically, it provides the **[ViewModel](#ViewModel)** layer of the MVVM pattern, which connects the **[View](#View)** and the **[Model](#Model)** via two way **[Data Bindings](#Data_Binding)**.
 
-Philosophically, the goal is to allow the developer to embrace an extremely minimal mental model when dealing with interfaces - there's only one type of object you need to worry about: the ViewModel. It is where all the view logic happens, and manipulating the ViewModel will automatically keep the View and the Model in sync. Actuall DOM manipulations and output formatting are abstracted away into **[Directives](#Directive)** and **[Filters](#Filter)**.
+Philosophically, the goal is to allow the developer to embrace an extremely simple mental model when dealing with interfaces - there's only one type of object you need to worry about: the ViewModel. It is where all the view logic happens, and manipulating the ViewModel will automatically keep the View and the Model in sync. You can roughly think of them as composable components. Actuall DOM manipulations and output formatting are abstracted away into **[Directives](#Directive)** and **[Filters](#Filter)**.
 
 Vue.js shares a number of concepts with AngularJS, but is overall much simpler. If you have used Angular before, you will find vue.js very easy to pick up.
 
