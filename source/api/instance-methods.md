@@ -23,23 +23,37 @@ Stop watching the given keypath. If a callback is given only that callback gets 
 
 > Each vm is also an event emitter. When you have multiple nested ViewModels, you can use the event system to communicate between them.
 
-### vm.$emit( event, [args...] )
+### vm.$dispatch( event, [args...] )
 
-Emit an event from the current vm that propagates all the way up to its `$root`.
+Dispatch an event from the current vm that propagates all the way up to its `$root`.
 
 - **event** `String`
-- **args...** *optional* additional arguments that will be passed to the callback.
+- **args...** *optional*
 
 ### vm.$broadcast( event, [args...] )
 
 Emit an event to all children vms of the current vm, which gets further broadcasted to their children all the way down.
 
 - **event** `String`
-- **args...** *optional* additional arguments that will be passed to the callback.
+- **args...** *optional*
+
+### vm.$emit( event, [args...] )
+
+Trigger an event on this vm only.
+
+- **event** `String`
+- **args...** *optional*
 
 ### vm.$on( event, callback )
 
 Listen for an event on the current vm.
+
+- **event** `String`
+- **callback** `Function`
+
+### vm.$once( event, callback )
+
+Attach a one-time only listener for an event.
 
 - **event** `String`
 - **callback** `Function`
