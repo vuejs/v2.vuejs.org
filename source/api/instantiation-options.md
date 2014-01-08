@@ -9,27 +9,37 @@ order: 2
 
 - **Type:** `Object`
 
-The data object for the ViewModel. The ViewModel will proxy access to all its properties. The object it self can be accessed as `vm.$data`.
+The data object for the ViewModel. It can be accessed as `vm.$data`:
 
 ```js
 var data = { a: 1 }
 var vm = new Vue({
     data: data
 })
+vm.$data === data // true
+```
+
+The ViewModel will proxy access to all its properties, therefore you can manipulate the properties on the ViewModel and the changes get synced back to the actual data object:
+
+```js
 vm.a // 1
+
 vm.a = 2
 data.a // 2
+
 data.a = 3
 vm.a // 3
-vm.$data === data // true
-var a = "fesfsef"
 ```
+
+The object must be JSON-compliant (no circular references). You can use it just like an ordinary object, and it will look exactly the same when serialized with `JSON.stringify`. Under the hood though, vue.js attaches an hidden property `__observer__` and recursively converts the object's non-function properties into getters and setters, except for those with a key that starts with `$` or `_`.
 
 ### methods
 
 - **Type:** `Object`
 
 Methods to be copied to the ViewModel. All methods will have their `this` context automatically bound to the ViewModel.
+
+**Example:**
 
 ```js
 var vm = new Vue({
@@ -57,7 +67,13 @@ Provide the ViewModel with an existing DOM node. It can be either a `querySelect
 
 - **Type:** `String`
 
-A raw template string which will be converted into a DOM fragment and cloned into `vm.$el`. It will overwrite `vm.$el`'s existing inner content.
+A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$el` will be overwriiten. If the **replace** option is `true`, the template will replace `vm.$el` entirely.
+
+If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+
+**Notes:**
+
+Vue.js uses DOM-based templating. The compiler walks through DOM nodes and looks for directives and creates data bindings. This means all vue.js templates are parsable HTML that can be converted into actual DOM nodes by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more ViewModel instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.
 
 ### replace
 
