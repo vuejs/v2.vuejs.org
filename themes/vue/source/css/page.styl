@@ -23,7 +23,9 @@
 .content
     padding 2.2em 0
     max-width 720px
-    margin-left 280px
+    margin 0 auto
+    &.with-sidebar
+        margin 0 0 0 280px
     h1
         margin 0 0 1em
     h2
@@ -62,6 +64,7 @@
         padding-bottom 2em
         border-bottom 1px solid $border
     .content
-        margin-left 0
+        &.with-sidebar
+            margin-left 0
         figure, p, ul
             margin-left 0
