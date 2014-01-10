@@ -5,15 +5,17 @@ order: 1
 
 # {{title}}
 
+**COMPATIBILITY NOTE**
+
+Vue.js does not support IE8 and below. For IE9, the [classList polyfill](https://github.com/remy/polyfills/blob/master/classList.js) is needed.
+
 ## Standalone
 
-Simply download and include with a script tag:
+Simply download and include with a script tag. `Vue` will be registered as a global variable.
 
-- <a style="font-size:1.25em" href="https://raw2.github.com/yyx990803/vue/master/dist/vue.js" download>Development Version</a> <br> - 88.88kb, plenty of comments
+- <a style="font-size:1.25em" href="https://raw2.github.com/yyx990803/vue/master/dist/vue.js" download>Development Version</a> <br> - 88.90kb, plenty of comments
 
-- <a style="font-size:1.25em" href="https://raw2.github.com/yyx990803/vue/master/dist/vue.min.js" download>Production Version</a> <br> - 31.43kb minified / 10.70kb minified + gzipped
-
-`Vue` will be registered as a global variable.
+- <a style="font-size:1.25em" href="https://raw2.github.com/yyx990803/vue/master/dist/vue.min.js" download>Production Version</a> <br> - 31.36kb minified / 10.71kb minified + gzipped
 
 ## Component
 
