@@ -3,7 +3,7 @@ title: Performance Comparisons
 
 ## TodoMVC Benchmark
 
-This is a benchmark found in the [webkit performance tests](https://github.com/WebKit/webkit/tree/master/PerformanceTests/DoYouEvenBench) based on the [TodoMVC](http://todomvc.com/) project. For each framework implementation, add 100 todos, toggle them one by one, then delete them one by one.
+This is a benchmark found in the [webkit performance tests](https://github.com/WebKit/webkit/tree/master/PerformanceTests/DoYouEvenBench) based on the [TodoMVC](http://todomvc.com/) project. For each framework implementation, add 100 todos, toggle them one by one, then delete them one by one. In addition to the most popular MV* libraries, I also included [Om](https://github.com/swannodette/om) (a ClojureScript interface on top of React which boasts of performance) and [Ractive](http://www.ractivejs.org/) (very similar in terms of use case and API).
 
 ### Compared libraries
 
@@ -14,6 +14,7 @@ This is a benchmark found in the [webkit performance tests](https://github.com/W
 - Angular (v1.2.7)
 - React (v0.8.0)
 - Om (version unknown) + React (v0.8.0)
+- Ractive (v0.3.8)
 
 ### Results
 
@@ -23,7 +24,7 @@ This is a benchmark found in the [webkit performance tests](https://github.com/W
 
 Please note these numbers only reflect one very specific use case and the outcome could be drastically different depending on implementation and interactions measured. However, this could at least provide some perspective in terms of general performance.
 
-[Run the Benchmark Yourself](/perf/todomvc-benchmark/)
+You can run these benchmarks in your browser [here](/perf/todomvc-benchmark/).
 
 <script src="/js/benchmark.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/benchmark.css">
