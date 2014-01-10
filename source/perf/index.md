@@ -17,7 +17,7 @@ This is a benchmark found in the [webkit performance tests](https://github.com/W
 
 ### Results
 
-10 runs average, faster is better. Data collected on an early-2011 Macbook Pro with a Core i7-2635QM Processor (quad-core, 2 GHz) under OS X Mavericks 10.9.1.
+10 runs average, faster is better. Data collected on an <span id="_machine"></span> with a <span id="_cpu"></span> Processor under <span id="_os"></span>.
 
 <ul id="benchmark-results"></ul>
 

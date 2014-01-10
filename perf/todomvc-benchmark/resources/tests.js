@@ -64,6 +64,36 @@ Suites.push({
 });
 
 Suites.push({
+    name: 'Knockout',
+    url: 'todomvc/architecture-examples/knockoutjs/index.html',
+    prepare: function (runner, contentWindow, contentDocument) {
+        return runner.waitForElement('#new-todo').then(function (element) {
+            element.focus();
+            return element;
+        });
+    },
+    tests: [
+        new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', function (newTodo, contentWindow, contentDocument) {
+            var viewModel = contentWindow.viewModel;
+            for (var i = 0; i < numberOfItemsToAdd; i++) {
+                viewModel.current('Something to do ' + i);
+                viewModel.add()
+            }
+        }),
+        new BenchmarkTestStep('CompletingAllItems', function (newTodo, contentWindow, contentDocument) {
+            var checkboxes = contentDocument.querySelectorAll('.toggle');
+            for (var i = 0; i < checkboxes.length; i++)
+                checkboxes[i].click();
+        }),
+        new BenchmarkTestStep('DeletingAllItems', function (newTodo, contentWindow, contentDocument) {
+            var deleteButtons = contentDocument.querySelectorAll('.destroy');
+            for (var i = 0; i < deleteButtons.length; i++)
+                deleteButtons[i].click();
+        }),
+    ]
+});
+
+Suites.push({
     name: 'Ember',
     url: 'todomvc/architecture-examples/emberjs/index.html',
     prepare: function (runner, contentWindow, contentDocument) {
@@ -192,36 +222,6 @@ Suites.push({
                 keydownEvent.initEvent('keydown', true, true);
                 keydownEvent.which = 13; // VK_ENTER
                 newTodo.dispatchEvent(keydownEvent);
-            }
-        }),
-        new BenchmarkTestStep('CompletingAllItems', function (newTodo, contentWindow, contentDocument) {
-            var checkboxes = contentDocument.querySelectorAll('.toggle');
-            for (var i = 0; i < checkboxes.length; i++)
-                checkboxes[i].click();
-        }),
-        new BenchmarkTestStep('DeletingAllItems', function (newTodo, contentWindow, contentDocument) {
-            var deleteButtons = contentDocument.querySelectorAll('.destroy');
-            for (var i = 0; i < deleteButtons.length; i++)
-                deleteButtons[i].click();
-        }),
-    ]
-});
-
-Suites.push({
-    name: 'Knockout',
-    url: 'todomvc/architecture-examples/Knockoutjs/index.html',
-    prepare: function (runner, contentWindow, contentDocument) {
-        return runner.waitForElement('#new-todo').then(function (element) {
-            element.focus();
-            return element;
-        });
-    },
-    tests: [
-        new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', function (newTodo, contentWindow, contentDocument) {
-            var viewModel = contentWindow.viewModel;
-            for (var i = 0; i < numberOfItemsToAdd; i++) {
-                viewModel.current('Something to do ' + i);
-                viewModel.add()
             }
         }),
         new BenchmarkTestStep('CompletingAllItems', function (newTodo, contentWindow, contentDocument) {

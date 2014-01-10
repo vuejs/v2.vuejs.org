@@ -76,6 +76,10 @@ function createUIForSuites(suites, onstep, onrun) {
 }
 
 function startTest() {
+
+    var match = window.location.search.match(/[\?&]r=(\d+)/),
+        timesToRun = match ? +(match[1]) : 1
+
     var runner = new BenchmarkRunner(Suites, {
         willRunTest: function (suite, test) {
             test.anchor.classList.add('running');
@@ -100,7 +104,7 @@ function startTest() {
                 results += suiteName + ' : ' + suiteResults.total + ' ms\n';
                 total += suiteResults.total;
             }
-            results += 'Total : ' + total + ' ms\n';
+            results += 'Run ' + (runs.length + 1) +'/' + timesToRun + ' - Total : ' + total + ' ms\n';
 
             if (!results)
                 return;
@@ -110,7 +114,7 @@ function startTest() {
             pre.textContent = results;
 
             runs.push(measuredValues)
-            if (runs.length >= 10) {
+            if (runs.length >= timesToRun) {
                 reportAverage()
             } else {
                 setTimeout(function () {
@@ -143,8 +147,7 @@ function startTest() {
             }
         })
         for (var key in results) {
-            results[key] /= 10
-            console.log('- ' + key + ': ' + results[key].toFixed(2) + 'ms')
+            results[key] /= timesToRun
         }
         console.log(JSON.stringify(results, null, 4))
     }
