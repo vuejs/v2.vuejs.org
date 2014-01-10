@@ -39,4 +39,4 @@ var app = new Vue({
 })
 ```
 
-[Learn More](/guide/)
+<p id="learn-more"><a class="button" href="/guide/getting-started.html">Learn More</a></p>

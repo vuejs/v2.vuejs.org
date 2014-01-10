@@ -5,7 +5,13 @@ order: 1
 
 ## Standalone
 
-Simply [download](https://github.com/yyx990803/vue/tree/master/dist) a built version and include it with a `<script>` tag.
+Simply download and include with a script tag:
+
+- <a style="font-size:1.25em" href="https://raw2.github.com/yyx990803/vue/master/dist/vue.js" download>Development Version</a> <br> - 88.88kb, plenty of comments
+
+- <a style="font-size:1.25em" href="https://raw2.github.com/yyx990803/vue/master/dist/vue.min.js" download>Production Version</a> <br> - 31.43kb minified / 10.70kb minified + gzipped
+
+`Vue` will be registered as a global variable.
 
 ## Component
 
@@ -35,12 +41,10 @@ $ bower install vue
 <script src="bower_components/vue/dist/vue.js">
 ```
 
-`Vue` will be registered as a global variable.
-
 ## Module Loaders
 
 e.g. RequireJS, SeaJS: Built versions in `/dist` or installed via Bower is wrapped with UMD so it can be used directly as a CommonJS or AMD module.
 
 ## Ready?
 
-[Let's Get Started](/guide/getting-started.html).
+[Let's Get Started](/guide/getting-started.html#page-h1).

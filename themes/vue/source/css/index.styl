@@ -1,39 +1,63 @@
 @import "_common"
 
 #hero
-    margin 5em 0
+    margin 5em 2em
     text-align center
 
 h1
     font-size 3em
 
+a.button
+    display inline-block
+    margin .5em
+    font-size 1.5em
+    color #fff !important
+    font-weight 400 !important
+    background-color $green
+    padding .5em 1.5em
+    border-radius 4px
+    text-shadow 0 1px 1px rgba(0,0,0,.2)
+    border-bottom 1px solid darken($green, 15%)
+    transition background-color .2s ease-out
+    &:hover
+        background-color lighten($green, 10%)
+
 #features
+    width 80%
+    margin 0 auto
     text-align center
     .feat
         box-sizing border-box
         -moz-box-sizing border-box
         display inline-block
         vertical-align top
-        width 20%
-        margin 0 4%
+        width 23%
+        margin 0 3%
 
 #main
     max-width 720px
-    margin 5em auto
+    width 80%
+    margin 5em auto 3em
 
 #features, #main
     a
         color $green
         font-weight 600
 
+#learn-more
+    text-align center
+    margin-top 3em
+    a.button
+        font-size 1.2em
+
 @media screen and (max-width: 1200px)
     #features
         .feat
-            width 40%
+            width 38%
+            margin 0 5%
 
 @media screen and (max-width: 600px)
     #features
         .feat
-            margin 0
-            padding 1em 3em
-            width 100%
+            margin 0 auto
+            width 84%
