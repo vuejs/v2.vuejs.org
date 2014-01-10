@@ -17,13 +17,13 @@ a.button
     padding .5em 1.5em
     border-radius 4px
     text-shadow 0 1px 1px rgba(0,0,0,.2)
-    border-bottom 1px solid darken($green, 15%)
+    border-bottom 2px solid darken($green, 12%)
     transition background-color .2s ease-out
     &:hover
         background-color lighten($green, 10%)
 
 #features
-    width 80%
+    width 800px
     margin 0 auto
     text-align center
     .feat
@@ -31,8 +31,10 @@ a.button
         -moz-box-sizing border-box
         display inline-block
         vertical-align top
-        width 23%
-        margin 0 3%
+        width 200px
+        margin 15px 30px
+        p
+            color $light
 
 #main
     max-width 720px
@@ -50,14 +52,21 @@ a.button
     a.button
         font-size 1.2em
 
-@media screen and (max-width: 1200px)
-    #features
-        .feat
-            width 38%
-            margin 0 5%
+.icon
+    display inline-block
+    width 80px
+    height 80px
+    background url(../images/icons.png)
+    background-size 400px 80px
+    &.fast
+        background-position -80px 0
+    &.compact
+        background-position -160px 0
+    &.powerful
+        background-position -240px 0
+    &.composable
+        background-position -320px 0
 
-@media screen and (max-width: 600px)
+@media screen and (max-width: 860px)
     #features
-        .feat
-            margin 0 auto
-            width 84%
+        width auto
