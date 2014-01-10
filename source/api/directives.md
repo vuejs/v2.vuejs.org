@@ -3,6 +3,8 @@ type: api
 order: 6
 ---
 
+# {{title}}
+
 ### v-text
 ### v-html
 ### v-show

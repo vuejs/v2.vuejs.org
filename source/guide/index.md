@@ -3,6 +3,8 @@ type: guide
 order: 1
 ---
 
+# {{title}}
+
 ## Standalone
 
 Simply download and include with a script tag:
@@ -47,4 +49,4 @@ e.g. RequireJS, SeaJS: Built versions in `/dist` or installed via Bower is wrapp
 
 ## Ready?
 
-[Let's Get Started](/guide/getting-started.html#page-h1).
+[Let's Get Started](/guide/getting-started.html).

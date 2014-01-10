@@ -3,6 +3,8 @@ type: guide
 order: 2
 ---
 
+# {{title}}
+
 ## Introduction
 
 Vue.js is a library that aims to simplify the development of interactive interfaces.

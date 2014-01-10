@@ -1,6 +1,8 @@
 title: Examples
 ---
 
+# {{title}}
+
 - **[TodoMVC Implementation](todomvc/)**
     A fully specification-compliant TodoMVC implementation in ~110 SLOC. [\[Source\]][1]
 
