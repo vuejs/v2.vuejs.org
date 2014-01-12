@@ -12,8 +12,9 @@ order: 6
 ### v-attr
 ### v-on
 ### v-if
-### v-repeat
 ### v-model
+### v-repeat
+### v-with
 ### v-component
 ### v-component-id
 ### v-transition

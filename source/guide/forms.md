@@ -1,4 +1,4 @@
-title: Form Validation
+title: Froms
 type: guide
 order: 7
 ---
