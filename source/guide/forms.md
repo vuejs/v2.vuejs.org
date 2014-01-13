@@ -1,4 +1,4 @@
-title: Froms
+title: Forms
 type: guide
 order: 7
 ---

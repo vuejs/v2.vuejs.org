@@ -63,7 +63,7 @@ You can also use mustache-style bindings:
 <div id="person-&#123;&#123;id&#125;&#125;">Hello &#123;&#123;name&#125;&#125;!</div>
 ```
 
-Directives can encapsulate arbitrary DOM manipulations. Check out the full list of [built-in directives](/api/directives.html). You can also [write your custom directives](/guide/custom-directive.html).
+Directives can encapsulate arbitrary DOM manipulations. Check out the full list of [built-in directives](/api/directives.html#List_of_Built-in_Directives). You can also [write your custom directives](/guide/directives.html#Writing_a_Custom_Directive).
 
 ### Filters
 
@@ -73,7 +73,7 @@ Functions that are used to process the raw values before updating the View. They
 <div>&#123;&#123;message | capitalize&#125;&#125;</div>
 ```
 
-Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. You can chain multiple filters together. Check out the full list of [built-in filters](/api/filters.html) and how to [write custom filters](/guide/custom-filter.html).
+Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. You can chain multiple filters together. Check out the full list of [built-in filters](/api/filters.html) and how to [write custom filters](/guide/filters.html#Writing_a_Custom_Filter).
 
 ## A Quick Example
 
@@ -96,19 +96,13 @@ var demo = new Vue({
 })
 ```
 
-## Registering Handlers
-
-## Using Templates / Partials
-
 ## Computed Properties
-
-## Expressions
 
 ## Repeated Items
 
-## Two-way Bindings
+## Registering Handlers
 
-## Extending the ViewModel
+## Using Templates / Partials
 
 [AngularJS]: http://angularjs.org
 [Ractive.js]: http://ractivejs.org

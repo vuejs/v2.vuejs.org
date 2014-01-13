@@ -9,13 +9,31 @@ order: 5
 
 - **options** `Object`
 
-Create a subclass of the Vue class. Most [instantiation options](/api/instantiation-options.html) can be used here, with the exception of the `el` option because you can't create multiple ViewModel instances on the same element. For more details see [Extending and Composing ViewModels](/guide/composition.html).
+Create a subclass of the Vue class. Most [instantiation options](/api/instantiation-options.html) can be used here, with the exception of the `el` option because you can't create multiple ViewModel instances on the same element. Also see [Composing ViewModels](/guide/composition.html).
 
 **Example**
 
 ``` js
-var Avatar = Vue.extend(options)
-var avatar = new Avatar() // you can pass more options here
+var Profile = Vue.extend({
+    tagName: 'P',
+    template: '&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125; aka &#123;&#123;alias&#125;&#125;'
+})
+
+var profile = new Profile({
+    data: {
+        firstName : 'Walter',
+        lastName  : 'White',
+        alias     : 'Heisenberg'
+    }  
+})
+
+profile.$appendTo('body')
+```
+
+Will result in:
+
+``` html
+<p>Walter White aka Heisenberg</p>
 ```
 
 ### Vue.config( options | key, [value] )
@@ -62,21 +80,21 @@ Here are the options with their default values:
 - **id** `String`
 - **definition** `Function` or `Object` *optional*
 
-Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/custom-directive.html).
+Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/directives.html#Writing_a_Custom_Directive).
 
 ### Vue.filter( id, definition )
 
 - **id** `String`
 - **definition** `Function` *optional*
 
-Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/custom-filter.html).
+Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/filters.html#Writing_a_Custom_Filter).
 
 ### Vue.component( id, definition )
 
 - **id** `String`
 - **definition** `Function Constructor` or `Object` *optional*
 
-Register or retrieve a global component. For more details see [Extending and Composing ViewModels](/guide/composition.md).
+Register or retrieve a global component. For more details see [Composing ViewModels](/guide/composition.html).
 
 ### Vue.transition( id, definition )
 
@@ -94,14 +112,31 @@ Register or retrieve a global partial. The definition can be a template string, 
 
 **Example**
 
-JavaScript
-
-``` js
-Vue.partial('avatar', '&lt;div class="avatar"&gt;&lt;/div&gt;')
-```
-
 HTML
 
 ``` html
-<div>&#123;&#123;> avatar&#125;&#125;</div>
+<div id="demo">
+    &#123;&#123;> avatar&#125;&#125;
+</div>
+```
+
+JavaScript
+
+``` js
+Vue.partial('avatar', '&lt;img v-attr="src:avatarURL"&gt;')
+
+new Vue({
+    el: '#demo',
+    data: {
+        avatarURL: '/images/avatar.jpg'
+    }    
+})
+```
+
+Will result in:
+
+``` html
+<div id="demo">
+    <img src="/images/avatar.jpg">
+</div>
 ```

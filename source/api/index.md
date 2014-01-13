@@ -18,12 +18,3 @@ Each ViewModel instance has an associated DOM node `$el`, which is essentially t
 Each ViewModel instance also has a number of [Instance Methods](/api/instance-methods.html) which covers data observation, event communication and dom manipulation.
 
 `Vue` also holds several [Global Methods](/api/global-methods.html), which allow you to extend the `Vue` class, configure global settings and register global custom assets such as components, directives, filters and more.
-
-You can subclass `Vue` with its `extend()` method:
-
-``` js
-var Avatar = Vue.extend(options)
-var avatar = new Avatar() // you can pass more options here
-```
-
-You can read more about [Extending and Composing ViewModels](/guide/composition.html).
