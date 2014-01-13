@@ -7,7 +7,9 @@ order: 6
 
 ### v-text
 
-Updates the element's `textContent`. &#123;&#123; Mustache &#125;&#125; style interpolations are also compiled as a `v-text` direcitve on a textNode.
+Updates the element's `textContent`.
+
+Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled as a `v-text` direcitve on a textNode.
 
 ### v-html
 
@@ -25,15 +27,27 @@ Set the element's display to `none` or its original value, depending on the trut
 
 If no argument is provided, it will add the binding's value to the element's classList, and update the class as the value changes.
 
-If a directive argument is provided, the argument will be the class to be toggled depending on the binding value's truthy-ness.
+If a directive argument is provided, the argument will be the class to be toggled depending on the binding value's truthy-ness. Combined with multiple clauses this can be pretty useful:
+
+``` html
+<span v-class="
+    red    : hasError,
+    bold   : isImportant,
+    hidden : isHidden
+"></span>
+```
 
 ### v-attr
 
-- This directive requires an argument.
+- This directive requires exactly one argument.
+
+Updates the element's given attribute (indicated by the argument).
+
+Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives. One special case you might want to use this instead of interpolation is when setting the `src` attribute on `<img>` nodes. If you use interpolation for `src` and the node is inserted into the DOM before being compiled, the browser will make a failed http request trying to fetch the image.
 
 ### v-on
 
-- This directive requires an argument.
+- This directive requires exactly one argument.
 
 ### v-if
 
