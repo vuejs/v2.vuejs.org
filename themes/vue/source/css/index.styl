@@ -42,6 +42,8 @@ a.button
     max-width 720px
     width 80%
     margin 5em auto 3em
+    p
+        line-height 1.5em
 
 #features, #main
     a
@@ -68,6 +70,22 @@ a.button
         background-position -240px 0
     &.composable
         background-position -320px 0
+
+#demo
+    border 1px solid #eee
+    box-shadow 0 2px 6px rgba(0,0,0,.1)
+    border-radius $radius
+    padding 20px 30px
+    margin-bottom 40px
+    h1
+        margin 0 0 .5em
+        font-size 2em
+    ul
+        padding-left 1.5em
+        font-size 1.2em
+        line-height 1.5em
+        li.done
+            text-decoration line-through
 
 @media screen and (max-width: 420px)
     #hero
