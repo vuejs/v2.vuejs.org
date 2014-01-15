@@ -76,7 +76,7 @@ Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes 
 
 ### v-transition
 
-- This directive takes a registered asset id.
+- This directive takes an optional registered asset id.
 
 ### v-partial
 

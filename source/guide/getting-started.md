@@ -25,7 +25,7 @@ An object that syncs the Model and the View. In vue.js, ViewModels are instantia
 var vm = new Vue(options)
 ```
 
-This is the primary object that you will be interacting with as a developer when using vue.js. See [Class: Vue](/api/) for more details.
+This is the primary object that you will be interacting with as a developer when using vue.js. For more details see [Class: Vue](/api/).
 
 ### View
 
@@ -35,7 +35,7 @@ The actual HTML/DOM that the user sees.
 vm.$el // The View
 ```
 
-When using vue.js, you rarely have to touch the View yourself except in custom directives (explained later). View updates will be automatically triggered when the data changes.
+When using vue.js, you rarely have to touch the View yourself except in custom directives (explained later). View updates will be automatically triggered when the data changes. These view updates are highly granular with the precision down to a textNode. They are also batched and executed asynchronously for greater performance.
 
 ### Model
 
@@ -45,7 +45,7 @@ A slightly modified plain JavaScript object.
 vm.$data // The Model
 ```
 
-In vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and ViewModels that are observing them will be notified of the changes. For technical details see [Instantiation Options: data](/api/instantiation-options.html#data).
+In vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and ViewModels that are observing them will be notified of the changes. Vue.js converts the properties on data objects into ES5 getter/setters, which allows direct manipulation without the need for dirty checking. For technical details see [Instantiation Options: data](/api/instantiation-options.html#data).
 
 ### Directives
 
@@ -57,13 +57,13 @@ Prefixed HTML attributes that tell vue.js to do something about a DOM node.
 
 Here the div element has a `v-text` directive with the value `message`. What it does is telling vue.js to keep the div's textContent in sync with the ViewModel's `message` property.
 
-You can also use mustache-style bindings:
+Directives can encapsulate arbitrary DOM manipulations. For example `v-attr` manipulates an element's attributes, `v-repeat` clones an element based on an Array, `v-on` attaches event listeners... For more details, see [Direcitves in Depth](/guide/directives.html).
+
+You can also use mustache-style bindings, both in text and in attributes. They are translated into `v-text` and `v-attr` directives under the hood. For example:
 
 ```html
 <div id="person-&#123;&#123;id&#125;&#125;">Hello &#123;&#123;name&#125;&#125;!</div>
 ```
-
-Directives can encapsulate arbitrary DOM manipulations. Check out the full list of [built-in directives](/api/directives.html#List_of_Built-in_Directives). You can also [write your custom directives](/guide/directives.html#Writing_a_Custom_Directive).
 
 ### Filters
 
@@ -73,7 +73,7 @@ Functions that are used to process the raw values before updating the View. They
 <div>&#123;&#123;message | capitalize&#125;&#125;</div>
 ```
 
-Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. You can chain multiple filters together. Check out the full list of [built-in filters](/api/filters.html) and how to [write custom filters](/guide/filters.html#Writing_a_Custom_Filter).
+Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. For more details see [Filters in Depth](/guide/filters.html).
 
 ## A Quick Example
 
@@ -96,13 +96,9 @@ var demo = new Vue({
 })
 ```
 
-## Computed Properties
+## Displaying a List
 
-## Repeated Items
-
-## Registering Handlers
-
-## Using Templates / Partials
+## Listening for Events
 
 [AngularJS]: http://angularjs.org
 [Ractive.js]: http://ractivejs.org

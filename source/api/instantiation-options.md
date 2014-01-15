@@ -33,7 +33,7 @@ data.a = 3
 vm.a // 3
 ```
 
-The object must be JSON-compliant (no circular references). You can use it just like an ordinary object, and it will look exactly the same when serialized with `JSON.stringify`. Under the hood though, vue.js attaches an hidden property `__observer__` and recursively converts the object's non-function properties into getters and setters, except for those with a key that starts with `$` or `_`.
+The object must be JSON-compliant (no circular references). You can use it just like an ordinary object, and it will look exactly the same when serialized with `JSON.stringify`. Under the hood though, vue.js attaches an hidden property `__observer__` and recursively converts the object's non-function properties into getters and setters that trigger events when called. Properties with keys that starts with `$` or `_` are skipped.
 
 ### methods
 
