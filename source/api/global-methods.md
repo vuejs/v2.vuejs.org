@@ -140,3 +140,9 @@ Will result in:
     <img src="/images/avatar.jpg">
 </div>
 ```
+
+### Vue.nextTick( callback )
+
+- **callback** `Function`
+
+Vue.js batches view updates and execute them all asynchronously. It uses `requestAnimationFrame` if available and fallsback to `setTimeout(fn, 0)`. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.

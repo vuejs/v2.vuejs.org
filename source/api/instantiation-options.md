@@ -181,6 +181,12 @@ A hash of components to be made available to the ViewModel. For details on how t
 
 A hash of partials to be made available to the ViewModel. Also see [v-partial](/api/directives.html#v-partial).
 
+### transitions
+
+- **Type:** `Object`
+
+A hash of transitions to be made available to the ViewModel. For details see [Using Transition Effects](/guide/transitions.html).
+
 ## Misc
 
 ### lazy
