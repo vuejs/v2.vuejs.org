@@ -1,6 +1,6 @@
 title: Filters in Depth
 type: guide
-order: 4
+order: 6
 ---
 
 # {{title}}

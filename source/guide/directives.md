@@ -1,6 +1,6 @@
 title: Directives In Depth
 type: guide
-order: 3
+order: 5
 ---
 
 # {{title}}

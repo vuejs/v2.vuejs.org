@@ -49,7 +49,7 @@ In vue.js, models are simply plain JavaScript objects, or **data objects**. You 
 
 ### Directives
 
-Prefixed HTML attributes that tell vue.js to do something about a DOM node.
+Prefixed HTML attributes that tell vue.js to do something about a DOM element.
 
 ```html
 <div v-text="message"></div>
@@ -95,10 +95,6 @@ var demo = new Vue({
     }
 })
 ```
-
-## Displaying a List
-
-## Listening for Events
 
 [AngularJS]: http://angularjs.org
 [Ractive.js]: http://ractivejs.org

@@ -63,7 +63,7 @@ vm.a // 2
 - **Type:** `String` or `HTMLElement`
 - **Restriction:** only respected as an instantiation option, i.e. not in `Vue.extend()`
 
-Provide the ViewModel with an existing DOM node. It can be either a `querySelector()` selector or an actual node. The element will be accessible as `vm.$el`. If this option is omitted, a detached node will be automatically created.
+Provide the ViewModel with an existing DOM element. It can be either a `querySelector()` selector or an actual node. The element will be accessible as `vm.$el`. If this option is omitted, a detached node will be automatically created.
 
 ### template
 
@@ -75,7 +75,7 @@ If it starts with `#` it will be used as a querySelector and use the selected el
 
 **Notes:**
 
-Vue.js uses DOM-based templating. The compiler walks through DOM nodes and looks for directives and creates data bindings. This means all vue.js templates are parsable HTML that can be converted into actual DOM nodes by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more ViewModel instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.
+Vue.js uses DOM-based templating. The compiler walks through DOM elements and looks for directives and creates data bindings. This means all vue.js templates are parsable HTML that can be converted into actual DOM elements by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more ViewModel instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.
 
 ### replace
 

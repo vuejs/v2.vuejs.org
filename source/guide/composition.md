@@ -1,6 +1,6 @@
 title: Composing ViewModels
 type: guide
-order: 8
+order: 10
 ---
 
 # {{title}}

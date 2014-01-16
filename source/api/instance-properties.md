@@ -10,7 +10,7 @@ order: 3
 - **Type:** `HTMLElement`
 - **Read only**
 
-The DOM node that the ViewModel is managing.
+The DOM element that the ViewModel is managing.
 
 ### vm.$data
 
