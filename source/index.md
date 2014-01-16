@@ -1,8 +1,6 @@
 index: true
 ---
 
-## Quick Example
-
 **HTML**
 
 ``` html

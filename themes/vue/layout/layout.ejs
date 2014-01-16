@@ -10,9 +10,10 @@
         <%- partial('partials/ga') %>
     </head>
     <body>
-        <%- partial('partials/header') %>
         <% if (page.index) { %>
             <%- partial('partials/landing') %>
+        <% } else { %>
+            <%- partial('partials/header') %>
         <% } %>
         <div id="main">
             <%- body %>

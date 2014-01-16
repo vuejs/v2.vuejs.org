@@ -1,11 +1,20 @@
 <div id="hero">
-    <h1>Simple, Fast and Composable MVVM</h1>
-    <p>Vue.js is still under development so the API might change.</p>
+    <ul id="nav">
+        <li><a href="/guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guide</a></li>
+        <li><a href="/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API Reference</a></li>
+        <li><a href="/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Examples</a></li>
+        <li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+    <img id="logo" src="/images/logo-large.png">
+    <h1>Vue.js</h1>
+    <p class="sub">Simple, Fast and Composable MVVM</p>
     <p>
         <a href="/guide/#Installation" class="button">Get Vue.js v0.7.5</a>
         <a href="https://github.com/yyx990803/vue" target="_blank" class="button">Source on GitHub</a>
     </p>
+    <p>Vue.js is still under development so the API might change.</p>
 </div>
+<p class="divider"><span>What's Cool</span></p>
 <div id="features">
     <div class="feat">
         <h2>Simple</h2>
@@ -38,3 +47,4 @@
         <p>Component, Browserify or Bower - leverage your favorite eco system!</p>
     </div>
 </div>
+<p class="divider"><span>A Quick Example</span></p>

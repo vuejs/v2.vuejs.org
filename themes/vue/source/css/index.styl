@@ -1,8 +1,30 @@
 @import "_common"
 
-#hero
-    margin 5em 2em
+#nav
+    list-style-type none
     text-align center
+    margin 5em 0
+    padding 0
+    li
+        display inline-block
+
+.nav-link
+    color $light
+    padding-bottom 3px
+    margin 0 1em
+    &:hover, &.current
+        border-bottom 3px solid $green
+
+#logo
+    display block
+    margin 0 auto
+
+#hero
+    margin 5em 0 8em
+    text-align center
+    .sub
+        color $light
+        font-size 1.5em
     a.button
         width 180px
 
@@ -12,7 +34,7 @@ h1
 a.button
     display inline-block
     margin .5em
-    font-size 1.5em
+    font-size 1.25em
     color #fff !important
     font-weight 400 !important
     background-color $green
@@ -34,7 +56,7 @@ a.button
         display inline-block
         vertical-align top
         width 200px
-        margin 15px 30px
+        margin .5em 2em
         p
             color $light
 
@@ -71,6 +93,20 @@ a.button
     &.composable
         background-position -320px 0
 
+.divider
+    font-size 1.5em
+    font-weight bold
+    max-width 800px
+    margin 2.5em auto
+    text-align center
+    border-top 1px solid $border
+    span
+        display inline-block
+        padding 0 1em
+        position relative
+        background-color #fff
+        top -.65em
+
 #demo
     border 1px solid #eee
     box-shadow 0 2px 6px rgba(0,0,0,.1)
@@ -89,13 +125,28 @@ a.button
             text-decoration line-through
 
 @media screen and (max-width: 420px)
+    body
+        font-size 14px
+    #nav
+        margin 2em 0
+    #logo
+        width 100px
+    .nav-link
+        font-size .85em
+        margin 0 .5em
+    .divider
+        font-size 1.2em
+        margin 2.5em 1em
     #hero
-        margin 3em 0 1em
+        margin 2em 1em 5em
         h1
             font-size 2em
         a.button
-            font-size 1.2em
+            font-size 1em
             margin .5em 0
+    #main
+        margin 0 auto
+        padding 0 1.4em
 
 @media screen and (max-width: 860px)
     #features, #hero
