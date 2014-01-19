@@ -1,5 +1,5 @@
 /*
- VueJS v0.7.3
+ VueJS v0.7.6
  (c) 2014 Evan You
  License: MIT
 */
@@ -563,6 +563,7 @@ var prefix = 'v',
         'text',
         'repeat',
         'partial',
+        'with',
         'component',
         'component-id',
         'transition'
@@ -602,13 +603,10 @@ var config    = require('./config'),
     console   = window.console,
     ViewModel // late def
 
-// PhantomJS doesn't support rAF, yet it has the global
-// variable exposed. Use setTimeout so tests can work.
-var defer = navigator.userAgent.indexOf('PhantomJS') > -1
-    ? window.setTimeout
-    : (window.webkitRequestAnimationFrame ||
-        window.requestAnimationFrame ||
-        window.setTimeout)
+var defer =
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.setTimeout
 
 /**
  *  Create a prototype-less object
@@ -1027,9 +1025,11 @@ CompilerProto.compile = function (node, root) {
 
         // special attributes to check
         var repeatExp,
-            componentExp,
+            withKey,
             partialId,
-            directive
+            directive,
+            componentId = utils.attr(node, 'component') || tagName.toLowerCase(),
+            componentCtor = compiler.getOption('components', componentId)
 
         // It is important that we access these attributes
         // procedurally because the order matters.
@@ -1045,21 +1045,16 @@ CompilerProto.compile = function (node, root) {
             // repeat block cannot have v-id at the same time.
             directive = Directive.parse('repeat', repeatExp, compiler, node)
             if (directive) {
+                directive.Ctor = componentCtor
                 compiler.bindDirective(directive)
             }
 
-        // v-component has 2nd highest priority
-        } else if (!root && (componentExp = utils.attr(node, 'component'))) {
+        // v-with has 2nd highest priority
+        } else if (!root && ((withKey = utils.attr(node, 'with')) || componentCtor)) {
 
-            directive = Directive.parse('component', componentExp, compiler, node)
+            directive = Directive.parse('with', withKey || '', compiler, node)
             if (directive) {
-                // component directive is a bit different from the others.
-                // when it has no argument, it should be treated as a
-                // simple directive with its key as the argument.
-                if (componentExp.indexOf(':') === -1) {
-                    directive.isSimple = true
-                    directive.arg = directive.key
-                }
+                directive.Ctor = componentCtor
                 compiler.bindDirective(directive)
             }
 
@@ -1147,20 +1142,24 @@ CompilerProto.compileNode = function (node) {
  *  Compile a text node
  */
 CompilerProto.compileTextNode = function (node) {
+
     var tokens = TextParser.parse(node.nodeValue)
     if (!tokens) return
-    var el, token, directive
+    var el, token, directive, partial, partialId, partialNodes
+
     for (var i = 0, l = tokens.length; i < l; i++) {
         token = tokens[i]
         if (token.key) { // a binding
             if (token.key.charAt(0) === '>') { // a partial
-                var partialId = token.key.slice(1).trim(),
-                    partial = this.getOption('partials', partialId)
+                partialId = token.key.slice(1).trim()
+                partial = this.getOption('partials', partialId)
                 if (partial) {
                     el = partial.cloneNode(true)
-                    this.compileNode(el)
+                    // save an Array reference of the partial's nodes
+                    // so we can compile them AFTER appending the fragment
+                    partialNodes = slice.call(el.childNodes)
                 }
-            } else { // a binding
+            } else { // a real binding
                 el = document.createTextNode('')
                 directive = Directive.parse('text', token.key, this, el)
                 if (directive) {
@@ -1170,7 +1169,20 @@ CompilerProto.compileTextNode = function (node) {
         } else { // a plain string
             el = document.createTextNode(token)
         }
+
+        // insert node
         node.parentNode.insertBefore(el, node)
+
+        // compile partial after appending, because its children's parentNode
+        // will change from the fragment to the correct parentNode.
+        // This could affect directives that need access to its element's parentNode.
+        if (partialNodes) {
+            for (var j = 0, k = partialNodes.length; j < k; j++) {
+                this.compile(partialNodes[j])
+            }
+            partialNodes = null
+        }
+
     }
     node.parentNode.removeChild(node)
 }
@@ -1334,9 +1346,7 @@ CompilerProto.markComputed = function (binding) {
         vm    = this.vm
     binding.isComputed = true
     // bind the accessors to the vm
-    if (binding.isFn) {
-        binding.value = utils.bind(value, vm)
-    } else {
+    if (!binding.isFn) {
         value.$get = utils.bind(value.$get, vm)
         if (value.$set) {
             value.$set = utils.bind(value.$set, vm)
@@ -2265,7 +2275,9 @@ module.exports = Directive
 });
 require.register("vue/src/exp-parser.js", function(exports, require, module){
 var utils = require('./utils'),
-    hasOwn = Object.prototype.hasOwnProperty
+    hasOwn = Object.prototype.hasOwnProperty,
+    stringSaveRE = /"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/g,
+    stringRestoreRE = /"(\d+)"/g
 
 // Variable extraction scooped from https://github.com/RubyLouvre/avalon
 
@@ -2388,6 +2400,8 @@ module.exports = {
         }
         vars = utils.unique(vars)
         var accessors = '',
+            has       = utils.hash(),
+            strings   = [],
             // construct a regex to extract all valid variable paths
             // ones that begin with "$" are particularly tricky
             // because we can't use \b for them
@@ -2396,16 +2410,35 @@ module.exports = {
                 vars.map(escapeDollar).join('|') +
                 ")[$\\w\\.]*\\b", 'g'
             ),
-            body = ('return ' + exp).replace(pathRE, function (path) {
-                // keep track of the first char
-                var c = path.charAt(0)
-                path = path.slice(1)
-                var val = 'this.' + getRel(path, compiler) + path
-                accessors += val + ';'
-                // don't forget to put that first char back
-                return c + val
-            })
+            body = ('return ' + exp)
+                .replace(stringSaveRE, saveStrings)
+                .replace(pathRE, replacePath)
+                .replace(stringRestoreRE, restoreStrings)
         body = accessors + body
+
+        function saveStrings (str) {
+            var i = strings.length
+            strings[i] = str
+            return '"' + i + '"'
+        }
+
+        function replacePath (path) {
+            // keep track of the first char
+            var c = path.charAt(0)
+            path = path.slice(1)
+            var val = 'this.' + getRel(path, compiler) + path
+            if (!has[path]) {
+                accessors += val + ';'
+                has[path] = 1
+            }
+            // don't forget to put that first char back
+            return c + val
+        }
+
+        function restoreStrings (str, i) {
+            return strings[i]
+        }
+
         return makeGetter(body, exp)
     }
 }
@@ -2794,7 +2827,7 @@ module.exports = {
     repeat    : require('./repeat'),
     model     : require('./model'),
     'if'      : require('./if'),
-    component : require('./component'),
+    'with'    : require('./with'),
 
     attr: function (value) {
         this.el.setAttribute(this.arg, value)
@@ -2806,10 +2839,6 @@ module.exports = {
 
     html: function (value) {
         this.el.innerHTML = utils.toText(value)
-    },
-
-    visible: function (value) {
-        this.el.style.visibility = value ? '' : 'hidden'
     },
 
     show: function (value) {
@@ -2833,27 +2862,8 @@ module.exports = {
                 this.lastVal = value
             }
         }
-    },
-
-    style: {
-        bind: function () {
-            this.arg = convertCSSProperty(this.arg)
-        },
-        update: function (value) {
-            this.el.style[this.arg] = value
-        }
     }
-}
 
-/**
- *  convert hyphen style CSS property to Camel style
- */
-var CONVERT_RE = /-(.)/g
-function convertCSSProperty (prop) {
-    if (prop.charAt(0) === '-') prop = prop.slice(1)
-    return prop.replace(CONVERT_RE, function (m, char) {
-        return char.toUpperCase()
-    })
 }
 });
 require.register("vue/src/directives/if.js", function(exports, require, module){
@@ -3008,9 +3018,8 @@ module.exports = {
             ctn  = self.container = el.parentNode
 
         // extract child VM information, if any
-        ViewModel       = ViewModel || require('../viewmodel')
-        var componentId = utils.attr(el, 'component')
-        self.ChildVM    = self.compiler.getOption('components', componentId) || ViewModel
+        ViewModel = ViewModel || require('../viewmodel')
+        self.Ctor = self.Ctor || ViewModel
 
         // extract transition information
         self.hasTrans   = el.hasAttribute(config.attrs.transition)
@@ -3087,7 +3096,7 @@ module.exports = {
             }, this.compiler)
         }
 
-        item = new this.ChildVM({
+        item = new this.Ctor({
             el: node,
             data: data,
             compilerOptions: {
@@ -3167,6 +3176,7 @@ module.exports = {
 
         var compiler = this.compiler,
             event    = this.arg,
+            isExp    = this.binding.isExp,
             ownerVM  = this.binding.compiler.vm
 
         if (compiler.repeat &&
@@ -3189,7 +3199,7 @@ module.exports = {
                 if (target) {
                     e.el = target
                     e.targetVM = target.vue_viewmodel
-                    handler.call(ownerVM, e)
+                    handler.call(isExp ? e.targetVM : ownerVM, e)
                 }
             }
             dHandler.event = event
@@ -3350,8 +3360,8 @@ module.exports = {
     }
 }
 });
-require.register("vue/src/directives/component.js", function(exports, require, module){
-var utils = require('../utils')
+require.register("vue/src/directives/with.js", function(exports, require, module){
+var ViewModel
 
 module.exports = {
 
@@ -3370,16 +3380,15 @@ module.exports = {
     },
 
     build: function (value) {
-        var Ctor = this.compiler.getOption('components', this.arg)
-        if (!Ctor) utils.warn('unknown component: ' + this.arg)
-        var options = {
+        ViewModel = ViewModel || require('../viewmodel')
+        var Ctor = this.Ctor || ViewModel
+        this.component = new Ctor({
             el: this.el,
             data: value,
             compilerOptions: {
                 parentCompiler: this.compiler
             }
-        }
-        this.component = new Ctor(options)
+        })
     },
 
     unbind: function () {
