@@ -13,7 +13,7 @@ Technically, it provides the [ViewModel](#ViewModel) layer of the MVVM pattern, 
 
 Philosophically, the primary goal is to allow the developer to embrace an extremely simple mental model when dealing with interfaces - there's only one type of object you need to worry about: the ViewModel. It is where all the view logic happens, and manipulating the ViewModel will automatically keep the View and the Model in sync. You can roughly think of them as composable components. Actuall DOM manipulations and output formatting are abstracted away into [Directives](#Directives) and [Filters](#Filters).
 
-API-wise vue.js is heavily influenced by [AngularJS], [Ractive.js] and [Rivets.js]. If you have used any of these before, you will find vue.js very easy to pick up. If you are unfamiliar with some of the terms mentioned above, read on for a brief overview of what they mean. Otherwise, you can jump right to [the quick example](#A_Quick_Example).
+API-wise vue.js is heavily influenced by [AngularJS], [Ractive.js] and [Rivets.js]. If you have used any of these before, you will find vue.js very easy to pick up. To some extend you can think of it as the data-binding part of Angular with a simpler, less intrusive API. If you are unfamiliar with some of the terms mentioned above, read on for a brief overview of what they mean. Otherwise, you can jump right to [the quick example](#A_Quick_Example).
 
 ## Concepts Overview
 
