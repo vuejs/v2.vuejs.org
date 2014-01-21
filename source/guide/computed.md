@@ -1,6 +1,6 @@
 title: Computed Properties
 type: guide
-order: 7
+order: 6
 ---
 
 # {{title}}

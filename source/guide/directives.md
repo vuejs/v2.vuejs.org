@@ -1,11 +1,13 @@
 title: Directives In Depth
 type: guide
-order: 5
+order: 7
 ---
 
 # {{title}}
 
 ## Synopsis
+
+A Vue.js directive is an HTML attribute that takes the following format:
 
 ``` js
 prefix-directiveId="[arg:] ( keypath | expression ) [filters...]"

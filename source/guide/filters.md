@@ -1,31 +1,33 @@
 title: Filters in Depth
 type: guide
-order: 6
+order: 8
 ---
 
 # {{title}}
 
 ## Synopsis
 
-```
-filterId [args...]
+A Vue.js filter is denoted by a single pipe (`|`) and can be followed by one or more arguments:
+
+``` js
+| filterId [args...]
 ```
 
 ## Examples
 
-Filters can be appended to directive keypath or expressions. They are denoted by a single pipe (`|`) as in shell scripts:
+Filters must be placed at the end of a directive's value:
 
 ``` html
 <span v-text="message | capitalize"></span>
 ```
 
-You can also use them inside interpolations:
+You can also use them inside mustache-style bindings:
 
 ``` html
 <span>&#123;&#123;message | uppercase&#125;&#125;</span>
 ```
 
-You can chain muliple filters together:
+Muliple filters can be chained together:
 
 ``` html
 <span>&#123;&#123;message | lowercase | reverse&#125;&#125;</span>

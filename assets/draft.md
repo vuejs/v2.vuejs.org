@@ -1,5 +1,7 @@
 - So Simple It'll Make You Smile
     JSON + HTML + Vue.js = Awesomeness
+    Familiar syntax
+    Plain objects
 
 - Blazing Fast
     Event based observation + Async batched DOM updates. One of the fastest in the TodoMVC benchmarks.
