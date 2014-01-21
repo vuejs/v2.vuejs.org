@@ -4,7 +4,7 @@ title: Examples
 # {{title}}
 
 - **[TodoMVC Implementation](todomvc/)**
-    A fully specification-compliant TodoMVC implementation in ~110 SLOC. [\[Source\]][1]
+    A fully specs-compliant TodoMVC implementation in <100 sans-comments SLOC. [\[Source\]][1]
 
 - **[Firebase Example](firebase/)**
     A no-backend, multi-user realtime list with form validation. [\[Source\]][2]
