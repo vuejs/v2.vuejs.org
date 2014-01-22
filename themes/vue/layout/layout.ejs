@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script src="/js/classList.js"></script>
         <%- css(page.index ? 'css/index' : 'css/page') %>
         <%- partial('partials/ga') %>
     </head>
@@ -21,15 +22,21 @@
         <script>
             var main = document.getElementById('main'),
                 doc = document.documentElement,
-                body = document.body
-            if (document.querySelector('.sidebar')) {
+                body = document.body,
+                header = document.getElementById('header'),
+                menu = document.querySelector('.sidebar'),
+                menuToggle = document.querySelector('.sidebar .toggle')
+            if (menu) {
                 window.addEventListener('scroll', function () {
                     var top = doc && doc.scrollTop || body.scrollTop
-                    if (top > 94) {
+                    if (top > header.offsetHeight) {
                         main.className = 'fix-sidebar'
                     } else {
                         main.className = ''
                     }
+                })
+                menuToggle.addEventListener('click', function () {
+                    menu.classList.toggle('open')
                 })
             }
         </script>

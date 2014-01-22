@@ -1,8 +1,11 @@
 <div class="sidebar">
-    <h2><%- type.charAt(0).toUpperCase() + type.slice(1) %></h2>
-    <ul>
-    <% site.pages.find({type: type}).sort('order').each(function (p) { %>
-        <li><a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %>"><%- p.title %></a></li>
-    <% }) %>
-    </ul>
+    <div class="toggle">···</div>
+    <div class="list">
+        <h2><%- type.charAt(0).toUpperCase() + type.slice(1) %></h2>
+        <ul>
+        <% site.pages.find({type: type}).sort('order').each(function (p) { %>
+            <li><a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %>"><%- p.title %></a></li>
+        <% }) %>
+        </ul>
+    </div>
 </div>

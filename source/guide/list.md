@@ -68,6 +68,7 @@ In addition, Vue.js also augments data-bound Arrays with two custom mutating met
 When the argument is an index or an object in the Array, `replace()` takes an additional argument which is the object to be swappd in. In this case both methods return the removed/replaced object:
 
 ``` js
+// replace a random item with a new one
 var i = Math.floor(Math.random() * demo.items.length)
 demo.items.replace(i, { childMsg: 'Replaced!'})
 ```
@@ -76,6 +77,7 @@ demo.items.replace(i, { childMsg: 'Replaced!'})
 When the argument is a function, for `remove()` an object will be removed if the function returns true; for `replace()` an object will be replaced by the return value if the value is not undefined. Both methods return an Array of all removed/replaced objects:
 
 ``` js
+// remove all replaced items
 demo.items.remove(function (item) {
     return item.childMsg === 'Replaced!'
 })

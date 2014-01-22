@@ -44,6 +44,11 @@ $header-height = 40px
     padding 2.2em 0 0 0
     width 260px
     margin-right 20px
+    .toggle
+        font-size 1.5em
+        cursor pointer
+        display none
+        color $light
     h2
         margin-top .2em
     ul
@@ -114,15 +119,32 @@ $header-height = 40px
         span
             display none
     #main
-        padding 0 1.4em
+        padding 2em 1.4em 0
     .highlight pre
         padding 1.2em 1em
     .sidebar
-        position static
-        width auto
+        position absolute
+        background-color #fff
+        z-index 10
+        width 100%
+        top 0
+        left 0
+        text-align center
         margin-right 0
-        padding-bottom 2em
-        border-bottom 1px solid $border
+        padding 0
+        border-top 1px solid #eee
+        box-shadow 0 2px 2px rgba(0,0,0,.1)
+        .toggle
+            display block
+        .list
+            display none
+        &.open
+            padding-bottom 1em
+            .list
+                display block
+    #main.fix-sidebar
+        .sidebar
+            position fixed
     .content
         &.with-sidebar
             margin-left 0

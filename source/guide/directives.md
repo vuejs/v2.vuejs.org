@@ -9,7 +9,7 @@ order: 3
 
 A Vue.js directive is an HTML attribute that takes the following format:
 
-``` js
+``` java
 prefix-directiveId="[arg:] ( keypath | expression ) [filters...]"
 ```
 
@@ -67,3 +67,110 @@ Some direcitves don't create data bindings - they simply do something to the ele
 ```
 
 ## Writing a Custom Directive
+
+You can register a global custom directive with the `Vue.directive()` method, passing in a **directiveId** followed by a **definition object**. A definition object can provide several hook functions (all optional):
+
+- **bind**: called only once, when the directive is first bound to the element.
+- **update**: called when the binding value changes. The new value is provided as the argument.
+- **unbind**: called only once, when the directive is unbound from the element.
+
+**Example**
+
+``` js
+Vue.directive('my-directive', {
+    bind: function () {
+        // do preparation work
+        // e.g. add event listeners or expensive stuff
+        // that needs to be run only once
+    },
+    update: function (value) {
+        // do something based on the updated value
+        // this will also be called for the initial value
+    },
+    unbind: function () {
+        // do clean up work
+        // e.g. remove event listeners added in bind()
+    }
+})
+```
+
+Once registered, you can use it in Vue.js templates like this (you need to add the Vue.js prefix to it):
+
+``` html
+<div v-my-directive="someValue"></div>
+```
+
+When you only need the `update` function, you can pass in a single function instead of the definition object:
+
+``` js
+Vue.directive('my-directive', function (value) {
+    // this function will be used as update()
+})
+```
+
+### The Directive Object
+
+All the hook functions will be copied into the actual **directive object**, which you can access inside these functions as their `this` context. A directive object exposes some useful properties:
+
+- **el**: the element the directive is bound to.
+- **key**: the keypath of the binding, excluding arguments and filters.
+- **arg**: the argument, if present.
+- **vm**: the ViewModel that owns this directive.
+- **value**: the current binding value.
+
+You should treat all these properties as read-only and refrain from changing them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.
+
+An example of a custom directive using some of these properties:
+
+``` html
+<div id="demo" v-demo="LightSlateGray : msg"></div>
+```
+
+``` js
+Vue.directive('demo', {
+    bind: function () {
+        this.el.style.color = '#fff'
+        this.el.style.backgroundColor = this.arg
+    },
+    update: function (value) {
+        this.el.innerHTML =
+            'argument - ' + this.arg + '<br>' +
+            'key - ' + this.key + '<br>' +
+            'value - ' + value
+    }
+})
+var demo = new Vue({
+    el: '#demo',
+    data: {
+        msg: 'hello!'
+    }
+})
+```
+
+**Result**
+
+<div id="demo" v-demo="LightSlateGray : msg"></div>
+<script src="/js/vue.min.js"></script>
+<script>
+Vue.directive('demo', {
+    bind: function () {
+        this.el.style.color = '#fff'
+        this.el.style.backgroundColor = this.arg
+    },
+    update: function (value) {
+        this.el.innerHTML =
+            'argument - ' + this.arg + '<br>' +
+            'key - ' + this.key + '<br>' +
+            'value - ' + value
+    }
+})
+var demo = new Vue({
+    el: '#demo',
+    data: {
+        msg: 'hello!'
+    }
+})
+</script>
+
+For more complicated examples, checkout `src/directives/` in the source code.
+Next: [Filters in Depth](/guide/filters.html).
