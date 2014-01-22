@@ -1,11 +1,11 @@
 title: Listening for Events
 type: guide
-order: 4
+order: 6
 ---
 
 # {{title}}
 
-You can bind `v-on` to either a handler function (without the invocation parentheses) or an expression:
+You can use the `v-on` directive to bind event listeners to DOM events. It can be bound to either an event handler function (without the invocation parentheses) or an inline expression. If a handler function is provided, it will get the original DOM event as the argument. The event also comes with an extra property: `targetVM`, pointing to the particular ViewModel the event was triggered on:
 
 ``` html
 <div id="demo">
@@ -22,13 +22,16 @@ new Vue({
     },
     methods: {
         onClick: function (e) {
+            console.log(e.target.tagName) // "A"
             console.log(e.targetVM === this) // true
         }
     }
 })
 ```
 
-As shown in the example above, if a handler function is provided, it will get the original DOM event as the argument. The event also comes with an extra property: `targetVM`, pointing to the particular ViewModel the event was triggered on. This could be useful when `v-on` is used with `v-repeat`, since the latter creates a lot of child ViewModels. However, it is often more convenient to use an invocation expression passing in `this`, which equals the current context ViewModel:
+## Invoke Handler with Expression
+
+`targetVM` could be useful when `v-on` is used with `v-repeat`, since the latter creates a lot of child ViewModels. However, it is often more convenient to use an invocation expression passing in `this`, which equals the current context ViewModel:
 
 ``` html
 <ul id="list">
@@ -52,6 +55,8 @@ new Vue({
     }
 })
 ```
+
+## Why Listeners in HTML?
 
 You might be concerned about this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintainance difficulty. In fact, there are several benefits in using `v-on`:
 

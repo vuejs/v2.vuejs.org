@@ -138,7 +138,7 @@ var demo = new Vue({
 
 You can click on a todo to toggle it, or you can open your Browser's console and play with the `demo` object - for example, change `demo.title`, push a new object into `demo.todos`, or toggle a todo's `done` state.
 
-You probably have a few questions in mind now - don't worry, we'll cover them soon. Next up: [Displaying a List](/guide/list.html).
+You probably have a few questions in mind now - don't worry, we'll cover them soon. Next up: [Directives in Depth](/guide/directives.html).
 
 [AngularJS]: http://angularjs.org
 [Ractive.js]: http://ractivejs.org

@@ -1,6 +1,6 @@
 title: Directives In Depth
 type: guide
-order: 7
+order: 3
 ---
 
 # {{title}}
@@ -21,13 +21,15 @@ prefix-directiveId="[arg:] ( keypath | expression ) [filters...]"
 
 Here the prefix is `v` which is the default. The directive ID is `text` and the the keypath is `message`. This directive instructs Vue.js to update the div's `textContent` whenever the `message` property on the ViewModel changes.
 
-## Expressions
+## Inline Expressions
 
 ``` html
 <div v-text="'hello ' + user.firstName + ' ' + user.lastName"></div>
 ```
 
-Here we are using a computed expression instead of a single property key.  Vue.js automatically tracks the properties an expression depends on and refreshes the directive whenever a dependency changes. Thanks to async batch updates, even when multiple dependencies change, an expression will only be updated once every event loop. Note that inside expressions you can only access properties and methods present on the current ViewModel for security reasons.
+Here we are using a computed expression instead of a single property key. Vue.js automatically tracks the properties an expression depends on and refreshes the directive whenever a dependency changes. Thanks to async batch updates, even when multiple dependencies change, an expression will only be updated once every event loop. Note that inside expressions you can only access properties and methods present on the current ViewModel for security reasons.
+
+You should use expressions wisely and avoid putting too much logic in your templates, especially statements that modifies the data. For bindings that require more complicated operations, use [Computed Properties](/guide/computed.html) instead.
 
 ## Argument
 
