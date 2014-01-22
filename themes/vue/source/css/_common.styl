@@ -1,5 +1,6 @@
 @import "_settings"
 @import "_syntax"
+@import "_demo"
 
 body
     font-family $body-font
@@ -27,6 +28,7 @@ code
     padding 2px 6px
     margin 0 2px
     border 1px solid #e6e6e6
+    white-space nowrap
 
 em
     color $light
@@ -35,15 +37,17 @@ p
     word-spacing 0.05em
 
 .highlight
-    margin 0
     overflow-x auto
+    position relative
+    padding-top 20px
     table, tr, td
         width 100%
         border-collapse collapse
         padding 0
         margin 0
     pre
-        padding 1.2em 1.5em
+        padding 1.2em 1.5em 
+        margin 0
     .gutter
         width 1.5em
         pre
@@ -54,6 +58,26 @@ p
             padding-left .5em
             border-top-right-radius $radius
             border-bottom-right-radius $radius
+    &.lang-html, &.lang-js, &.lang-bash
+        .code:after
+            position absolute
+            top 0
+            right 0
+            color $light
+            background-color #f6f6f6
+            text-align center
+            font-size .75em
+            padding 0 10px
+            line-height 20px
+            height 20px
+            border-top-right-radius $radius
+            border-top-left-radius $radius
+    &.lang-html .code:after
+        content 'HTML'
+    &.lang-js .code:after
+        content 'JS'
+    &.lang-bash .code:after
+        content 'Shell'
 
 #main
     position relative

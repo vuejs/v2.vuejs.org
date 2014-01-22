@@ -78,11 +78,11 @@ $header-height = 40px
         border-left 5px solid $green
         margin 2em 0 .8em
         padding-left .5em
-    figure, p, ul
+    figure, p, ul, ol
         margin .8em 0 .8em .8em
-    p, ul
+    p, ul, ol
         line-height 1.6em
-    ul
+    ul, ol
         padding-left 1em
     a
         color $green
@@ -91,6 +91,9 @@ $header-height = 40px
         margin 0
         p
             margin-left 0
+    ol
+        li
+            margin 1em 0
 
 @media screen and (min-width: 720px)
     #main.fix-sidebar

@@ -79,8 +79,6 @@ Now before the div's textContent is updated, the `message` value will first be p
 
 ## A Quick Example
 
-**HTML**
-
 ``` html
 <div id="demo">
     <h1>&#123;&#123;title | uppercase&#125;&#125;</h1>
@@ -95,8 +93,6 @@ Now before the div's textContent is updated, the `message` value will first be p
     </ul>
 </div>
 ```
-
-**JavaScript**
 
 ``` js
 var demo = new Vue({
@@ -121,7 +117,6 @@ var demo = new Vue({
 
 <div id="demo"><h1>&#123;&#123;title | uppercase&#125;&#125;</h1><ul><li v-repeat="todos" v-on="click: done = !done" class="&#123;&#123;done ? 'done' : ''&#125;&#125;">&#123;&#123;content&#125;&#125;</li></ul></div>
 <script src="/js/vue.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/demo.css">
 <script>
 var demo = new Vue({
     el: '#demo',

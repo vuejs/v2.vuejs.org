@@ -5,20 +5,34 @@ order: 4
 
 # {{title}}
 
-You can bind `v-on` to either a function on the ViewModel or an expression:
+You can bind `v-on` to either a handler function (without the invocation parentheses) or an expression:
 
 ``` html
-<a v-on="click: addOne">Add one</a>
-<a v-on="click: n++">Also add one</a>
+<div id="demo">
+    <a v-on="click: onClick">Trigger a handler</a>
+    <a v-on="click: n++">Trigger an expression</a>
+</div>
 ```
 
-The event listener is automatically delegated when you use `v-on` together with `v-repeat`. The handler function will get the original DOM event as the argument. Since `v-repeat` creates a child ViewModel for every item in the list, the handler's event argument comes with two extra properties: `el` and `targetVM`, pointing to those of the particular list item the event was triggered on. This could be useful when you are using a handler function on the parent ViewModel but need to manipulate the data of list items.
+``` js
+new Vue({
+    el: '#demo',
+    data: {
+        n: 0
+    },
+    methods: {
+        onClick: function (e) {
+            console.log(e.targetVM === this) // true
+        }
+    }
+})
+```
 
-**Example:**
+As shown in the example above, if a handler function is provided, it will get the original DOM event as the argument. The event also comes with an extra property: `targetVM`, pointing to the particular ViewModel the event was triggered on. This could be useful when `v-on` is used with `v-repeat`, since the latter creates a lot of child ViewModels. However, it is often more convenient to use an invocation expression passing in `this`, which equals the current context ViewModel:
 
 ``` html
 <ul id="list">
-    <li v-repeat="items" v-on="click: toggle">{{text}}</li>
+    <li v-repeat="items" v-on="click: toggle(this)">{{text}}</li>
 </ul>
 ```
 
@@ -32,9 +46,18 @@ new Vue({
         ]
     },
     methods: {
-        toggle: function (e) {
-            e.targetVM.done = !e.targetVM.done
+        toggle: function (item) {
+            item.done = !item.done
         }
     }
 })
 ```
+
+You might be concerned about this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintainance difficulty. In fact, there are several benefits in using `v-on`:
+
+1. It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
+2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
+3. When a ViewModel is destroyed, all event listeners are automatically removed.
+4. When `v-on` is used in conjunction with `v-repeat`, Vue.js will automatically use event delegation instead of attaching a listner on every repeated instance.
+
+Next up: [Handling Forms](/guide/forms.html).
