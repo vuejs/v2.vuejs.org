@@ -80,13 +80,32 @@ Conditionally insert / remove the element based on the truthy-ness of the bindin
 
 - This directive takes a registered asset id.
 
-Compile this element as a child ViewModel with a registered component constructor. For more details see [Composing ViewModels](/guide/composition.html).
+Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Composing ViewModels](/guide/composition.html).
 
 ### v-with
 
 - This directive requires the value to be an Object or falsy.
 
-Compile this element as a child ViewModel, using the binding value as the `data` option. This can be used in combination with `v-component`.
+Compile this element as a child ViewModel, using the binding value as the `data` option. Inside the template you can directly access properties on the binding value. This can be used in combination with `v-component`.
+
+Suppose our data looks like this:
+
+``` js
+{
+    user: {
+        name: 'Foo Bar',
+        email: 'foo@bar.com'
+    }
+}
+```
+
+You can simplify the template like this:
+
+``` html
+<div v-with="user">
+    {&#123;name&#125;} {&#123;email&#125;}
+</div>
+```
 
 ### v-component-id
 
