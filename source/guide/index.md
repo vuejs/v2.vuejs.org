@@ -11,7 +11,7 @@ Vue.js is a library that aims to simplify the development of interactive interfa
 
 Technically, it provides the [ViewModel](#ViewModel) layer of the MVVM pattern, which connects the [View](#View) and the [Model](#Model) via two way data bindings. Actuall DOM manipulations and output formatting are abstracted away into [Directives](#Directives) and [Filters](#Filters).
 
-Philosophically, the primary goal is to provide the benefits of MVVM data binding with an API that is as simple as possible. Modularity and composability are also important design considerations.
+Philosophically, the goal is to provide the benefits of MVVM data binding with an API that is as simple as possible. Modularity and composability are also important design considerations. It is not a full-blown framework - it is designed to be simple and flexible. You can use it alone for rapid prototyping, or mix and match with other libraries for a custom front-end stack. It's also a natural fit for no-backend services such as Firebase.
 
 Vue.js' API is heavily influenced by [AngularJS], [Ractive.js] and [Rivets.js]. To some extent you can think of Vue.js as the data-binding part of AngularJS with a simpler, less intrusive API, or as Rivets.js plus expressions, automatic dependency tracking and composability.
 
