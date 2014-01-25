@@ -13,7 +13,7 @@ Technically, it provides the [ViewModel](#ViewModel) layer of the MVVM pattern, 
 
 Philosophically, the goal is to provide the benefits of MVVM data binding with an API that is as simple as possible. Modularity and composability are also important design considerations. It is not a full-blown framework - it is designed to be simple and flexible. You can use it alone for rapid prototyping, or mix and match with other libraries for a custom front-end stack. It's also a natural fit for no-backend services such as Firebase.
 
-Vue.js' API is heavily influenced by [AngularJS], [Ractive.js] and [Rivets.js]. To some extent you can think of Vue.js as the data-binding part of AngularJS with a simpler, less intrusive API, or as Rivets.js plus expressions, automatic dependency tracking and composability.
+Vue.js' API is heavily influenced by [AngularJS], [KnockoutJS], [Ractive.js] and [Rivets.js]. Despite the similarities, I believe Vue.js offers a valuable alternative to these existing libraries by finding a sweetspot between simplicity and functionality.
 
 If you are confused by some of the terms mentioned above, read on for a brief overview of what they mean. Otherwise, you can jump right to [the quick example](#A_Quick_Example).
 
@@ -141,5 +141,6 @@ You can click on a todo to toggle it, or you can open your Browser's console and
 You probably have a few questions in mind now - don't worry, we'll cover them soon. Next up: [Directives in Depth](/guide/directives.html).
 
 [AngularJS]: http://angularjs.org
+[KnockoutJS]: http://knockoutjs.com
 [Ractive.js]: http://ractivejs.org
 [Rivets.js]: http://www.rivetsjs.com
