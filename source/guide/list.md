@@ -49,7 +49,7 @@ var demo = new Vue({
 
 ## Mutation Methods
 
-Under the hood, Vue.js intercepts the Array's mutating methods (`push()`, `pop()`, `shift()`, `unshift()`, `splice()`, `sort()` and `reverse()`) so they will also trigger View updates. You should avoid directly manipulating a data-bound Array with indices, as those changes will not be picked up by Vue.js.
+Under the hood, Vue.js intercepts an observed Array's mutating methods (`push()`, `pop()`, `shift()`, `unshift()`, `splice()`, `sort()` and `reverse()`) so they will also trigger View updates. You should avoid directly manipulating a data-bound Array with indices, as those changes will not be picked up by Vue.js.
 
 ``` js
 demo.items.push({ childMsg: 'Baz' })

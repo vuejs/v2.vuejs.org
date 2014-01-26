@@ -70,7 +70,7 @@ Some direcitves don't create data bindings - they simply do something to the ele
 
 ## Writing a Custom Directive
 
-You can register a global custom directive with the `Vue.directive()` method, passing in a **directiveId** followed by a **definition object**. A definition object can provide several hook functions (all optional):
+You can register a global custom directive with the `Vue.directive()` method, passing in a **directiveID** followed by a **definition object**. A definition object can provide several hook functions (all optional):
 
 - **bind**: called only once, when the directive is first bound to the element.
 - **update**: called when the binding value changes. The new value is provided as the argument.
