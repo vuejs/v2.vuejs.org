@@ -29,7 +29,9 @@ var app = new Vue({
         validation: {
             name: false,
             email: false
-        },
+        }
+    },
+    computed: {
         isValid: {
             $get: function () {
                 var valid = true

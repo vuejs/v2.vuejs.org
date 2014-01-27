@@ -39,7 +39,7 @@ The object must be JSON-compliant (no circular references). You can use it just 
 
 - **Type:** `Object`
 
-Methods to be copied to the ViewModel. All methods will have their `this` context automatically bound to the ViewModel.
+Methods to be mixed into the ViewModel. All methods will have their `this` context automatically bound to the ViewModel instance.
 
 **Example:**
 
@@ -53,6 +53,33 @@ var vm = new Vue({
     }
 })
 vm.plus()
+vm.a // 2
+```
+
+### computed
+
+- **Type:** `Object`
+
+Computed properties to be mixed into the ViewModel. All getters and setters have their `this` context automatically bound to the ViewModel instance.
+
+**Example:**
+
+```js
+var vm = new Vue({
+    data: { a: 1 },
+    computed: {
+        aplus: {
+            $get: function () {
+                return this.a + 1
+            },
+            $set: function (v) {
+                this.a = v - 1
+            }
+        }
+    }
+})
+vm.aplus // 2
+vm.aplus = 3
 vm.a // 2
 ```
 
@@ -115,17 +142,17 @@ A hash of HTML attributes to be set on `vm.$el`.
 
 All lifecycle hooks have their `this` context bound to the ViewModel they belong to.
 
-### beforeCompile
+### created
   
 - **Type:** `Function`
-- Alias: `created`
+- Alias: `beforeCompile`
 
 Called before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.
 
-### afterCompile
+### ready
 
 - **Type:** `Function`
-- Alias: `ready`
+- Alias: `afterCompile`
 
 Called after the compilation has ended and the ViewModel is ready.
 

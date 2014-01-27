@@ -11,9 +11,9 @@ order: 1
 
 Simply download and include with a script tag. `Vue` will be registered as a global variable.
 
-- <a style="font-size:1.25em" href="https://raw.github.com/yyx990803/vue/v0.7.6/dist/vue.js" download>Development Version</a> <br> - 89.04kb, plenty of comments
+- <a style="font-size:1.25em" href="https://raw.github.com/yyx990803/vue/v0.8.0/dist/vue.js" download>Development Version</a> <br> - 87.75kb, plenty of comments
 
-- <a style="font-size:1.25em" href="https://raw.github.com/yyx990803/vue/v0.7.6/dist/vue.min.js" download>Production Version</a> <br> - 31.26kb minified / 10.71kb minified + gzipped
+- <a style="font-size:1.25em" href="https://raw.github.com/yyx990803/vue/v0.8.0/dist/vue.min.js" download>Production Version</a> <br> - 30.81kb minified / 10.57kb minified + gzipped
 
 ## Component
 
