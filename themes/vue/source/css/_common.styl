@@ -57,7 +57,7 @@ p
             padding-left .5em
             border-top-right-radius $radius
             border-bottom-right-radius $radius
-    &.lang-html, &.lang-js, &.lang-bash
+    &[class*="lang-"]
         .code:after
             position absolute
             top 0
@@ -78,6 +78,8 @@ p
         content 'JS'
     &.lang-bash .code:after
         content 'Shell'
+    &.lang-css .code:after
+        content 'CSS'
 
 #main
     position relative

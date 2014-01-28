@@ -5,7 +5,7 @@ order: 1
 
 # {{title}}
 
-**Compatibility Note:** Vue.js does not support IE8 and below. For IE9, the [classList polyfill](https://github.com/remy/polyfills/blob/master/classList.js) is needed.
+> **Compatibility Note:** Vue.js does not support IE8 and below. For IE9, the [classList polyfill](https://github.com/remy/polyfills/blob/master/classList.js) is needed.
 
 ## Standalone
 

@@ -29,9 +29,9 @@ Here the prefix is `v` which is the default. The directive ID is `text` and the 
 
 Here we are using a computed expression instead of a single property key. Vue.js automatically tracks the properties an expression depends on and refreshes the directive whenever a dependency changes. Thanks to async batch updates, even when multiple dependencies change, an expression will only be updated once every event loop.
 
-You should use expressions wisely and avoid putting too much logic in your templates, especially statements that modifies the data. For bindings that require more complicated operations, use [Computed Properties](/guide/computed.html) instead.
+You should use expressions wisely and avoid putting too much logic in your templates, especially statements with side effects (with the exception of event listener expressions). For bindings that require more complicated operations, use [Computed Properties](/guide/computed.html) instead.
 
-Note that for security reasons, within expressions you can only access properties and methods present on the current ViewModel and its ancestors.
+<p class="tip">For security reasons, in inline expressions you can only access properties and methods present on the current context ViewModel and its parents.</p>
 
 ## Argument
 
@@ -117,10 +117,10 @@ All the hook functions will be copied into the actual **directive object**, whic
 - **el**: the element the directive is bound to.
 - **key**: the keypath of the binding, excluding arguments and filters.
 - **arg**: the argument, if present.
-- **vm**: the ViewModel that owns this directive.
+- **vm**: the context ViewModel that owns this directive.
 - **value**: the current binding value.
 
-You should treat all these properties as read-only and refrain from changing them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.
+<p class="tip">You should treat all these properties as read-only and refrain from changing them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.</p>
 
 An example of a custom directive using some of these properties:
 

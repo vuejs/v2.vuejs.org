@@ -69,6 +69,7 @@ $header-height = 40px
     margin 0 auto
     &.with-sidebar
         margin 0 0 0 280px
+    &.api
         ul
             font-size .9em
             padding-left 1.25em
@@ -97,9 +98,27 @@ $header-height = 40px
         margin 0
         p
             margin-left 0
-    ol
-        li
-            margin 1em 0
+    p.tip
+        padding 12px 24px 12px 30px
+        margin 2em 0 2em .8em
+        border-left 4px solid $green
+        background-color #f6f6f6
+        position relative
+        &:before
+            position absolute
+            top 50%
+            margin-top -17px
+            left -17px
+            background-color $green
+            color #fff
+            content "i"
+            width 30px
+            height 30px
+            border-radius 100%
+            text-align center
+            line-height 30px
+            font-weight bold
+            font-family Georgia
 
 @media screen and (min-width: 720px)
     #main.fix-sidebar
@@ -150,5 +169,5 @@ $header-height = 40px
     .content
         &.with-sidebar
             margin-left 0
-        figure, p, ul
+        figure, p, ul, p.tip
             margin-left 0
