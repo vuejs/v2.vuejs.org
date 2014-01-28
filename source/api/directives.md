@@ -156,4 +156,4 @@ Replace the element's innerHTML with a registered partial. You can also use this
 
 - This directive is an empty direcitve (it doesn't need a keypath or expression)
 
-Skip compilation for this element and all its children.
+Skip compilation for this element and all its children. Skipping large amount of nodes with no directives on them can speed up compilation.
