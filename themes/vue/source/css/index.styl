@@ -3,7 +3,7 @@
 #nav
     list-style-type none
     text-align center
-    margin 5em 0
+    margin 3em 0
     padding 0
     li
         display inline-block
@@ -21,18 +21,19 @@
     width 200px
 
 #hero
-    margin 5em 0 8em
+    margin 4em 0 2.5em
     text-align center
+    h1
+        font-size 3em
+        margin .5em 0 0
     .sub
         color $light
-        font-size 1.5em
+        font-size 1.2em
+        margin-bottom 2em
     .warning
         color $light
     a.button
         width 180px
-
-h1
-    font-size 3em
 
 a.button
     display inline-block
@@ -63,21 +64,14 @@ a.button
         p
             color $light
 
-#main
-    max-width 720px
-    width 80%
-    margin 5em auto 3em
-    p
-        line-height 1.5em
-
-#features, #main
+#features
     a
         color $green
         font-weight 600
 
 #learn-more
     text-align center
-    margin-top 3em
+    margin 3em 0
     a.button
         font-size 1.2em
 
@@ -100,7 +94,7 @@ a.button
     font-size 1.5em
     font-weight bold
     max-width 800px
-    margin 2.5em auto
+    margin 4em auto 1.5em
     text-align center
     border-top 1px solid $border
     span
@@ -109,6 +103,16 @@ a.button
         position relative
         background-color #fff
         top -.75em
+
+.desc
+    max-width 800px
+    padding 0 40px
+    text-align center
+    margin 2em auto
+    color $light
+
+#main
+    display none
 
 @media screen and (max-width: 420px)
     body
@@ -134,9 +138,6 @@ a.button
             font-size 1em
         .warning
             font-size .8em
-    #main
-        margin 0 auto
-        padding 0 1.4em
 
 @media screen and (max-width: 860px)
     #features, #hero

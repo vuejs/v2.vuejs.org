@@ -131,4 +131,4 @@ var parent = new Vue({
     })
 </script>
 
-Next: [App Architecture](/guide/architecture.html).
+Next: [Building Larger Apps](/guide/application.html).
