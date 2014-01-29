@@ -62,8 +62,6 @@ Here are the options with their default values:
 {
     // prefix for directives
     prefix: 'v',
-    // batch DOM updates and render async
-    async: true,
     // log debug info
     debug: false,
     // supress warnings
