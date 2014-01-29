@@ -9,9 +9,11 @@ Vue.js is designed to be as flexible as possible - it's just an interface librar
 
 ## Build with Component
 
+<img src="http://component.io/boot/images/logo.png">
+
 Vue.js is built with [Component](https://github.com/component/component), a front-end package manager and build tool. With Component you can write your browser code in the format of CommonJS modules (the same format Node.js uses), and publish packages simply by pushing them to public GitHub repositories. This helps greatly with both code modularization and reusability. For a boilerplate of using Vue.js with Component, see the [vue-component-example](https://github.com/vuejs/vue-component-example).
 
-There are already [a great number of components](https://github.com/component/component/wiki/Components) available that deal with common problems in front-end applications. For a larger scale application, you can use Vue.js as the interface layer and fill in the missing pieces with other components.
+There are already [a great number of public components](https://github.com/component/component/wiki/Components) available that deal with common problems in front-end applications. For a larger scale application, you can use Vue.js as the interface layer and fill in the missing pieces with other components.
 
 ## Modularization
 
@@ -26,3 +28,9 @@ It is also possible to implement something more robust with the help of routing 
 ## Communication with Server
 
 All Vue.js ViewModels and their raw `$data` can be serialized with `JSON.stringify()` with no additional effort. You can use any Ajax component you like, for example [superagent](https://github.com/visionmedia/superagent). It also plays nicely with no-backend services such as Firebase. In addition there is plan to provide a vue-resource component that resembles Angular's `$resource`, to make interfacing with a REST API easier.
+
+## Unit Testing
+
+By using Component, Vue.js entities (ViewModel constructors, directives, filters) within a large project can be split into separate CommonJS modules. When a Component-based project is built without the `standalone` flag, it will expose its `require()` method, granting access to all these internal modules. This makes it quite easy to write browser unit tests - just include the test build and require the module you want to test.
+
+<p class="tip">Since Vue.js bindings update asynchronously, you should use `Vue.nextTick()` when asserting DOM updates after changing the data.</p>
