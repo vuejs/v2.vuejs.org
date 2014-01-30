@@ -1,9 +1,12 @@
 @import "_common"
 
+html, body
+    height 100%
+
 #nav
     list-style-type none
     text-align center
-    margin 3em 0
+    margin-bottom 3em
     padding 0
     li
         display inline-block
@@ -21,19 +24,39 @@
     width 200px
 
 #hero
-    margin 4em 0 2.5em
     text-align center
+    height 100%
+    min-height 800px
+    position relative
+    .inner
+        height 640px
+        width 100%
+        position absolute
+        top 50%
+        margin-top -360px
+        left 0
     h1
         font-size 3em
         margin .5em 0 0
     .sub
         color $light
         font-size 1.2em
-        margin-bottom 2em
     .warning
         color $light
     a.button
         width 180px
+    .desc
+        max-width 800px
+        padding 0 20px
+        text-align center
+        margin 1.5em auto
+        color $light
+    .down
+        position absolute
+        bottom 30px
+        width 20px
+        left 50%
+        margin-left -10px
 
 a.button
     display inline-block
@@ -50,9 +73,27 @@ a.button
     &:hover
         background-color lighten($green, 10%)
 
+#social
+    text-align center
+    list-style-type none
+    margin 0
+    padding 0
+    padding-left 14px
+    margin-top 2em
+    li
+        display inline-block
+        margin 0 5px
+        iframe
+            width 94px !important
+
+.cool
+    text-align center
+    margin-top 5em
+    color $light
+
 #features
     width 800px
-    margin 0 auto
+    margin 3em auto 5em
     text-align center
     .feat
         box-sizing border-box
@@ -71,7 +112,7 @@ a.button
 
 #learn-more
     text-align center
-    margin 3em 0
+    margin 3em 0 8em
     a.button
         font-size 1.2em
 
@@ -90,27 +131,6 @@ a.button
     &.composable
         background-position -320px 0
 
-.divider
-    font-size 1.5em
-    font-weight bold
-    max-width 800px
-    margin 4em auto 1.5em
-    text-align center
-    border-top 1px solid $border
-    span
-        display inline-block
-        padding 0 1em
-        position relative
-        background-color #fff
-        top -.75em
-
-.desc
-    max-width 800px
-    padding 0 40px
-    text-align center
-    margin 2em auto
-    color $light
-
 #main
     display none
 
@@ -121,6 +141,9 @@ a.button
         margin 2em 0
     #logo
         width 100px
+    p.desc
+        br
+            display none
     .nav-link
         font-size .85em
         margin 0 .5em
@@ -128,7 +151,10 @@ a.button
         font-size 1.2em
         margin 2.5em 1em
     #hero
-        margin 2em 1em 5em
+        min-height 600px
+        .inner
+            height 600px
+            margin-top -300px
         h1
             font-size 2em
         a.button
@@ -136,8 +162,14 @@ a.button
             margin .5em 0
         .sub
             font-size 1em
-        .warning
+        .warning, .desc
             font-size .8em
+        .down
+            display none
+    #social
+        margin-top 1.5em
+    .cool
+        margin-top 0
 
 @media screen and (max-width: 860px)
     #features, #hero

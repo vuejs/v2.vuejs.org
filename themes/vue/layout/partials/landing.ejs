@@ -1,20 +1,29 @@
 <div id="hero">
-    <ul id="nav">
-        <li><a href="/guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guide</a></li>
-        <li><a href="/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API Reference</a></li>
-        <li><a href="/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Examples</a></li>
-        <li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
-    </ul>
-    <img id="logo" src="/images/logo.png">
-    <h1>Vue.js</h1>
-    <p class="sub">MVVM Made Simple.</p>
-    <p>
-        <a href="/guide/installation.html" class="button">Get Vue.js v0.8.0</a>
-        <a href="https://github.com/yyx990803/vue" target="_blank" class="button">Source on GitHub</a>
-    </p>
+    <div class="inner">
+        <ul id="nav">
+            <li><a href="/guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guide</a></li>
+            <li><a href="/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API Reference</a></li>
+            <li><a href="/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Examples</a></li>
+            <li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+        </ul>
+        <img id="logo" src="/images/logo.png">
+        <h1>Vue.js</h1>
+        <p class="sub">MVVM Made Simple</p>
+        <p class="desc">Vue.js is a library for building interactive web interfaces. <br>It provides efficient MVVM data bindings with a simple and flexible API.</p>
+        <p class="buttons">
+            <a href="/guide/installation.html" class="button">Get Vue.js v0.8.0</a>
+            <a href="https://github.com/yyx990803/vue" target="_blank" class="button">Source on GitHub</a>
+        </p>
+        <ul id="social">
+            <li><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://vuejs.org" data-text="Vue.js - MVVM made simple">Tweet</a></li>
+            <li><iframe src="http://ghbtns.com/github-btn.html?user=yyx990803&repo=vue&type=watch&count=true"
+        allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe></li>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </ul>
+    </div>
+    <img class="down" src="/images/down.png">
 </div>
-<p class="desc">Vue.js is a library for building interactive web interfaces.<br>It provides efficient MVVM data bindings with a simple and flexible API.</p>
-<p class="divider"><span>What's Cool</span></p>
+<h2 class="cool">Vue.js is ...</h2>
 <div id="features">
     <div class="feat">
         <h2>Simple</h2>
