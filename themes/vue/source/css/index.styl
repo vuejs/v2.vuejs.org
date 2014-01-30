@@ -56,22 +56,21 @@ html, body
         bottom 30px
         width 20px
         left 50%
-        margin-left -10px
-
-a.button
-    display inline-block
-    margin .5em
-    font-size 1.25em
-    color #fff !important
-    font-weight 400 !important
-    background-color $green
-    padding .5em 1.5em
-    border-radius 4px
-    text-shadow 0 1px 1px rgba(0,0,0,.2)
-    border-bottom 1px solid darken($green, 12%)
-    transition background-color .2s ease-out
-    &:hover
-        background-color lighten($green, 10%)
+        margin-left -10px    
+    a.button
+        display inline-block
+        margin .5em
+        font-size 1.25em
+        color #fff !important
+        font-weight 400 !important
+        background-color $green
+        padding .5em 1.5em
+        border-radius 4px
+        text-shadow 0 1px 1px rgba(0,0,0,.2)
+        border-bottom 1px solid darken($green, 12%)
+        transition background-color .2s ease-out
+        &:hover
+            background-color lighten($green, 10%)
 
 #social
     text-align center
@@ -86,48 +85,86 @@ a.button
         iframe
             width 94px !important
 
-.cool
-    text-align center
-    margin-top 5em
-    color $light
-
 #features
-    width 800px
-    margin 3em auto
+    padding 4em 0
     text-align center
+    background-color #f3f3f3
+    .cool
+        font-size 1.8em
+        text-align center
+        margin-top 1em
+        color $light
+    .feats
+        max-width 1200px
+        margin 0 auto
     .feat
         box-sizing border-box
         -moz-box-sizing border-box
         display inline-block
+        text-align left
         vertical-align top
-        width 200px
-        margin .5em 2em
+        width 280px
+        margin 40px
+        h2
+            color $medium
+            line-height 40px
+            margin-bottom 0
         p
             color $light
+            padding-left 52px
+            margin .4em 0
         a
             color $green
             font-weight 600
+    .icon
+        display inline-block
+        vertical-align middle
+        position relative
+        top -3px
+        width 40px
+        height 40px
+        margin-right 12px
+        background url(../images/icons.png)
+        background-size 240px 40px
+        &.fast
+            background-position -40px 0
+        &.compact
+            background-position -80px 0
+        &.powerful
+            background-position -120px 0
+        &.composable
+            background-position -160px 0
+        &.module
+            background-position -200px 0
 
-#learn-more
+#footer
     text-align center
-    padding-bottom 5em
-    a.button
-        font-size 1.2em
-
-.icon
-    display inline-block
-    width 80px
-    height 80px
-    background url(../images/icons.png)
-    background-size 400px 80px
-    &.fast
-        background-position -80px 0
-    &.compact
-        background-position -160px 0
-    &.powerful
-        background-position -240px 0
-    &.composable
-        background-position -320px 0
+    color #fff
+    padding 4em 0
+    background-color #7f8c8d
+    .avatar
+        width 100px
+        border-radius 100%
+        margin 2.5em 0 1em
+    a
+        color #fff
+        text-decoration underline
+        &.start
+            font-size 1.2em
+            text-decoration none
+            text-transform uppercase
+            letter-spacing 1px
+            border 2px solid #fff
+            display inline-block
+            padding 8px 16px
+            border-radius 4px
+            transition all .15s ease
+            margin-bottom 2em
+            &:hover
+                background-color #fff
+                color $medium
+    p
+        margin .3em 0
 
 #main
     display none
@@ -139,9 +176,6 @@ a.button
         margin 2em 0
     #logo
         width 100px
-    p.desc
-        br
-            display none
     .nav-link
         font-size .85em
         margin 0 .5em
@@ -161,15 +195,20 @@ a.button
         .sub
             font-size 1em
         .warning, .desc
-            font-size .8em
+            font-size .9em
+            br
+                display none
         .down
             display none
     #social
         margin-top 1.5em
     .cool
         margin-top 0
+    #features .feat
+        font-size 14px
+        margin .8em 0
+        width 250px
 
 @media screen and (max-width: 860px)
     #features, #hero
         font-size 16px
-        width auto
