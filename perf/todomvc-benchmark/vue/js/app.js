@@ -28,6 +28,9 @@ var app = new Vue({
 
     data: {
         todos: todoStorage.fetch(),
+    },
+
+    computed: {
         allDone: {
             $get: function () {
                 return this.remaining === 0
