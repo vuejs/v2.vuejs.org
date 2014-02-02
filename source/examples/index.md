@@ -1,16 +1,10 @@
-title: Examples
+title: GitHub Commits
+type: examples
+order: 1
 ---
 
-# {{title}}
+# GitHub Commits Example
 
-- **[TodoMVC Implementation](todomvc/)**
-    A fully specs-compliant TodoMVC implementation in <100 sans-comments SLOC. [\[Source\]][1]
+> This example fetches latest Vue.js commits data from GitHub's API and displays them as a list. You can switch between the master and dev branches.
 
-- **[Firebase Example](firebase/)**
-    A no-backend, multi-user realtime list with form validation. [\[Source\]][2]
-
-- **[Vue + Component Example](https://github.com/vuejs/vue-component-example)**
-    An example of a highly-modular app architecture using Component as the build system.
-
-[1]: https://github.com/yyx990803/vue/tree/master/examples/todomvc
-[2]: https://github.com/yyx990803/vue/tree/master/examples/firebase
+<iframe width="100%" height="500" src="http://jsfiddle.net/yyx990803/KupQL/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

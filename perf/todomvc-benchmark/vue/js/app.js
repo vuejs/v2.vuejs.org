@@ -1,7 +1,12 @@
+'use strict'
+
 var app = new Vue({
 
+    // the root element that will be compiled
     el: '#todoapp',
 
+    // a custom directive to wait for the DOM to be updated
+    // before focusing on the input field.
     directives: {
         'todo-focus': function (value) {
             if (value) {
@@ -11,7 +16,10 @@ var app = new Vue({
         }
     },
 
+    // the `created` lifecycle hook, which will be called
+    // when the ViewModel instance is created but not yet compiled.
     created: function () {
+        // setup filters
         this.filters = {
             all: function (todo) { todo.completed; return true },
             active: function (todo) { return !todo.completed },
@@ -21,15 +29,18 @@ var app = new Vue({
         window.addEventListener('hashchange', function () {
             app.updateFilter()
         })
-        this.remaining = this.todos.filter(function (todo) {
-            return !todo.completed
-        }).length
+        // initialize some state
+        this.newTodo = ''
+        this.editedTodo = null
+        this.remaining = this.todos.filter(this.filters.active).length
     },
 
+    // data
     data: {
         todos: todoStorage.fetch(),
     },
 
+    // computed property
     computed: {
         allDone: {
             $get: function () {
@@ -45,6 +56,8 @@ var app = new Vue({
         }
     },
 
+    // methods that implement data logic.
+    // note there's no DOM manipulation here at all!
     methods: {
 
         updateFilter: function () {

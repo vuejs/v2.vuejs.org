@@ -110,9 +110,7 @@ Vue.directive('my-directive', function (value) {
 })
 ```
 
-### The Directive Object
-
-All the hook functions will be copied into the actual **directive object**, which you can access inside these functions as their `this` context. A directive object exposes some useful properties:
+All the hook functions will be copied into the actual **directive object**, which you can access inside these functions as their `this` context. The directive object exposes some useful properties:
 
 - **el**: the element the directive is bound to.
 - **key**: the keypath of the binding, excluding arguments and filters.
