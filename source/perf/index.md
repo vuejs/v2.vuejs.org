@@ -33,6 +33,6 @@ You can run these benchmarks in your browser [here](/perf/todomvc-benchmark/).
 
 ## Animating 100 Instances
 
-You might have seen [this performance comparison](http://jsfiddle.net/jashkenas/CGSd5/) made by Jeremy Ashkenas long time ago between Backbone.js and Ember.js. Here is a [new version](http://jsfiddle.net/yyx990803/h7rjy/4/) which compares latest Backbone.js and Vue.js instead with an FPS meter. On my machine in Chrome, Backbone runs at ~30fps while Vue at ~50fps.
+You might have seen [this performance comparison](http://jsfiddle.net/jashkenas/CGSd5/) made by Jeremy Ashkenas long time ago between Backbone.js and Ember.js. Here is a new version which compares the same implementation with latest Backbone.js, Ember + HTMLBars, React.js and Vue.js:
 
-In addition, here's [another version](http://jsfiddle.net/yyx990803/h7rjy/5/) of the same comparison, but using a single, centralized Model for all the Views/ViewModels. The performance difference is more obvious with Backbone at ~40fps and Vue reaching ~80fps (due to `_.defer` firing faster than `requestAnimationFrame`).
+<iframe width="100%" height="500" src="http://jsfiddle.net/yyx990803/uv4Jn/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
