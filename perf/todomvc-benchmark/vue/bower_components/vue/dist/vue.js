@@ -1,5 +1,5 @@
 /*
- VueJS v0.8.0
+ VueJS v0.8.1
  (c) 2014 Evan You
  License: MIT
 */
@@ -843,6 +843,7 @@ function Compiler (vm, options) {
     compiler.vm  = vm
     compiler.bindings = makeHash()
     compiler.dirs = []
+    compiler.deferred = []
     compiler.exps = []
     compiler.computed = []
     compiler.childCompilers = []
@@ -915,10 +916,13 @@ function Compiler (vm, options) {
     // and bind the parsed directives
     compiler.compile(el, true)
 
-    // extract dependencies for computed properties
-    if (compiler.computed.length) {
-        DepsParser.parse(compiler.computed)
+    // bind deferred directives (child components)
+    for (var i = 0, l = compiler.deferred.length; i < l; i++) {
+        compiler.bindDirective(compiler.deferred[i])
     }
+
+    // extract dependencies for computed properties
+    compiler.parseDeps()
 
     // done!
     compiler.init = false
@@ -1045,7 +1049,10 @@ CompilerProto.compile = function (node, root) {
             directive = Directive.parse('repeat', repeatExp, compiler, node)
             if (directive) {
                 directive.Ctor = componentCtor
-                compiler.bindDirective(directive)
+                // defer child component compilation
+                // so by the time they are compiled, the parent
+                // would have collected all bindings
+                compiler.deferred.push(directive)
             }
 
         // v-with has 2nd highest priority
@@ -1054,7 +1061,7 @@ CompilerProto.compile = function (node, root) {
             directive = Directive.parse('with', withKey || '', compiler, node)
             if (directive) {
                 directive.Ctor = componentCtor
-                compiler.bindDirective(directive)
+                compiler.deferred.push(directive)
             }
 
         } else {
@@ -1315,10 +1322,7 @@ CompilerProto.defineProp = function (key, binding) {
 CompilerProto.defineExp = function (key, binding) {
     var getter = ExpParser.parse(key, this)
     if (getter) {
-        var value = binding.isFn
-            ? getter
-            : { $get: getter }
-        this.markComputed(binding, value)
+        this.markComputed(binding, getter)
         this.exps.push(binding)
     }
 }
@@ -1329,10 +1333,8 @@ CompilerProto.defineExp = function (key, binding) {
 CompilerProto.defineComputed = function (key, binding, value) {
     this.markComputed(binding, value)
     var def = {
-        get: binding.value.$get
-    }
-    if (binding.value.$set) {
-        def.set = binding.value.$set
+        get: binding.value.$get,
+        set: binding.value.$set
     }
     Object.defineProperty(this.vm, key, def)
 }
@@ -1342,15 +1344,19 @@ CompilerProto.defineComputed = function (key, binding, value) {
  *  so its getter/setter are bound to proper context
  */
 CompilerProto.markComputed = function (binding, value) {
-    binding.value = value
     binding.isComputed = true
     // bind the accessors to the vm
-    if (!binding.isFn) {
-        binding.value = {
-            $get: utils.bind(value.$get, this.vm)
+    if (binding.isFn) {
+        binding.value = value
+    } else {
+        if (typeof value === 'function') {
+            value = { $get: value }
         }
-        if (value.$set) {
-            binding.value.$set = utils.bind(value.$set, this.vm)
+        binding.value = {
+            $get: utils.bind(value.$get, this.vm),
+            $set: value.$set
+                ? utils.bind(value.$set, this.vm)
+                : undefined
         }
     }
     // keep track for dep parsing later
@@ -1388,6 +1394,15 @@ CompilerProto.hasKey = function (key) {
     var baseKey = key.split('.')[0]
     return hasOwn.call(this.data, baseKey) ||
         hasOwn.call(this.vm, baseKey)
+}
+
+/**
+ *  Collect dependencies for computed properties
+ */
+CompilerProto.parseDeps = function () {
+    if (this.computed.length) {
+        DepsParser.parse(this.computed)
+    }
 }
 
 /**
@@ -2477,6 +2492,7 @@ function catchDeps (binding) {
     if (binding.isFn) return
     utils.log('\n- ' + binding.key)
     var got = utils.hash()
+    binding.deps = []
     catcher.on('get', function (dep) {
         var has = got[dep.key]
         if (has && has.compiler === dep.compiler) return
@@ -2502,7 +2518,8 @@ module.exports = {
     parse: function (bindings) {
         utils.log('\nparsing dependencies...')
         Observer.shouldGet = true
-        bindings.forEach(catchDeps)
+        var i = bindings.length
+        while (i--) { catchDeps(bindings[i]) }
         Observer.shouldGet = false
         utils.log('\ndone.')
     }
@@ -3010,11 +3027,15 @@ module.exports = {
             if (method !== 'push' && method !== 'pop') {
                 self.updateIndexes()
             }
+            if (method !== 'sort' && method !== 'reverse') {
+                // re-calculate dependencies
+                self.compiler.parseDeps()
+            }
         }
 
     },
 
-    update: function (collection) {
+    update: function (collection, init) {
 
         this.unbind(true)
         // attach an object to container to hold handlers
@@ -3038,6 +3059,10 @@ module.exports = {
         if (collection.length) {
             for (var i = 0, l = collection.length; i < l; i++) {
                 this.buildItem(collection[i], i)
+            }
+            if (!init) {
+                // re-calculate dependencies
+                this.compiler.parseDeps()
             }
         }
     },

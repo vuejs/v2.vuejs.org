@@ -145,14 +145,14 @@ All lifecycle hooks have their `this` context bound to the ViewModel they belong
 ### created
   
 - **Type:** `Function`
-- Alias: `beforeCompile`
+- **Alias:** `beforeCompile`
 
 Called before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.
 
 ### ready
 
 - **Type:** `Function`
-- Alias: `afterCompile`
+- **Alias:** `afterCompile`
 
 Called after the compilation has ended and the ViewModel is ready.
 
@@ -219,5 +219,6 @@ A hash of transitions to be made available to the ViewModel. For details see [Us
 ### lazy
 
 - **Type:** `Boolean`
+- **Default:** `false`
 
 Whether to trigger `v-model` updates only on `change` event (hit enter or lose focus) or on every `input` event (on every keystroke).
