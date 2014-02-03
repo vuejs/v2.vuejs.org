@@ -8,5 +8,7 @@ deploy:	all
 	hexo deploy
 
 update:
-	cd ../vue && git checkout dev && git pull && grunt build
+	cd ../vue && git checkout master && git pull && grunt build
 	cp ../vue/dist/vue.min.js themes/vue/source/js/vue.min.js
+	cp ../vue/dist/vue.min.js perf/todomvc-benchmark/vue/bower_components/vue/dist/vue.min.js
+	node update.js

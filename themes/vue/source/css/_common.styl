@@ -35,6 +35,20 @@ em
 p
     word-spacing 0.05em
 
+a.button
+    display inline-block
+    font-size 1.25em
+    color #fff !important
+    font-weight 400 !important
+    background-color $green
+    padding .5em 1.5em
+    border-radius 4px
+    text-shadow 0 1px 1px rgba(0,0,0,.2)
+    border-bottom 1px solid darken($green, 12%)
+    transition all .2s ease-out
+    &:hover
+        background-color lighten($green, 10%)
+
 .highlight
     overflow-x auto
     position relative

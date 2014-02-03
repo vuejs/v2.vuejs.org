@@ -1,6 +1,10 @@
 title: Installation
 type: guide
 order: 1
+vue_version: 0.8.2
+dev_size: 88.93
+min_size: 31.12
+gz_size: 10.71
 ---
 
 # {{title}}
@@ -11,9 +15,9 @@ order: 1
 
 Simply download and include with a script tag. `Vue` will be registered as a global variable.
 
-- <a style="font-size:1.25em" href="https://raw.github.com/yyx990803/vue/master/dist/vue.js" download>Development Version</a> <br> - 87.74kb, plenty of comments
+<a class="button" href="https://raw.github.com/yyx990803/vue/v{{vue_version}}/dist/vue.js" download>Development Version</a><br><span class="light">{{dev_size}}kb, plenty of comments</span>
 
-- <a style="font-size:1.25em" href="https://raw.github.com/yyx990803/vue/master/dist/vue.min.js" download>Production Version</a> <br> - 30.80kb minified / 10.56kb minified + gzipped
+<a class="button" href="https://raw.github.com/yyx990803/vue/v{{vue_version}}/dist/vue.min.js" download>Production Version</a><br><span class="light">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
 
 ## Component
 
