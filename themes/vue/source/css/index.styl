@@ -43,6 +43,7 @@ html, body
         margin-top -360px
         left 0
     h1
+        font-family $logo-font
         font-size 3em
         margin .5em 0 0
     .sub
@@ -133,6 +134,28 @@ html, body
         &.module
             background-position -200px 0
 
+#why
+    padding 4em 0
+    background-color $green
+    color #fff
+    h2
+        margin-top 0
+        color #fff
+        font-size 1.5em
+        text-align center
+    ul
+        line-height 1.8em
+        font-size 1.15em
+        width 280px
+        margin 0 auto
+        padding 0
+        list-style-type none
+        li:before
+            content "✓"
+            font-weight bold
+            margin-right .75em
+            font-size 1.2em
+
 #footer
     text-align center
     color #fff
@@ -206,6 +229,11 @@ html, body
         font-size 14px
         margin .8em 0
         width 250px
+    #why
+        ul
+            width 250px
+        h2
+            font-size 1.35em
 
 @media screen and (max-width: 860px)
     #features, #hero
