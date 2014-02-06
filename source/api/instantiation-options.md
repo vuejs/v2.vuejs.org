@@ -212,7 +212,7 @@ A hash of partials to be made available to the ViewModel. Also see [v-partial](/
 
 - **Type:** `Object`
 
-A hash of transitions to be made available to the ViewModel. For details see [Using Transition Effects](/guide/transitions.html).
+A hash of transitions to be made available to the ViewModel. For details see [Adding Transition Effects](/guide/transitions.html).
 
 ## Misc
 

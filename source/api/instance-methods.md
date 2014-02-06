@@ -69,7 +69,7 @@ If no arguments are given, stop listening for all events; If only the event is g
 
 ## DOM Manipulation
 
-> All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger vue.js transitions if there are any declared on vm's `$el`. For more details on transitions see [Using Transition Effects](/guide/transitions.html).
+> All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger vue.js transitions if there are any declared on vm's `$el`. For more details on transitions see [Adding Transition Effects](/guide/transitions.html).
 
 ### vm.$appendTo( element | selector )
 

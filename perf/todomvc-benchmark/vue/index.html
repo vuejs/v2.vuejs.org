@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-framework="vue">
     <head>
         <title>Todo</title>
         <meta charset="utf-8">
@@ -9,52 +9,18 @@
         <section id="todoapp">
             <header id="header">
                 <h1>todos</h1>
-                <input
-                    id="new-todo"
-                    autofocus
-                    autocomplete="off"
-                    placeholder="What needs to be done?"
-                    v-model="newTodo"
-                    v-on="keyup:addTodo | key enter"
-                >
+                <input id="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo" v-on="keyup:addTodo | key enter">
             </header>
             <section id="main" v-show="todos.length">
-                <input
-                    id="toggle-all"
-                    type="checkbox"
-                    v-model="allDone"
-                >
+                <input id="toggle-all" type="checkbox" v-model="allDone">
                 <ul id="todo-list">
-                    <li
-                        class="todo"
-                        v-repeat="todos"
-                        v-if="filterTodo(this)"
-                        v-class="
-                            completed : completed,
-                            editing   : this == editedTodo
-                        "
-                    >
+                    <li class="todo" v-repeat="todos" v-if="filterTodo(this)" v-class="completed: completed, editing: this == editedTodo">
                         <div class="view">
-                            <input
-                                class="toggle"
-                                type="checkbox"
-                                v-model="completed"
-                                v-on="change: toggleTodo(this)"
-                            >
+                            <input class="toggle" type="checkbox" v-model="completed" v-on="change: toggleTodo(this)">
                             <label v-text="title" v-on="dblclick: editTodo(this)"></label>
                             <button class="destroy" v-on="click: removeTodo(this)"></button>
                         </div>
-                        <input
-                            class="edit"
-                            type="text"
-                            v-model="title"
-                            v-todo-focus="this == editedTodo"
-                            v-on="
-                                blur  : doneEdit(this),
-                                keyup : doneEdit(this) | key enter,
-                                keyup : cancelEdit(this) | key esc
-                            "
-                        >
+                        <input class="edit" type="text" v-model="title" v-todo-focus="this == editedTodo" v-on="blur: doneEdit(this), keyup: doneEdit(this) | key enter, keyup: cancelEdit(this) | key esc">
                     </li>
                 </ul>
             </section>
@@ -78,8 +44,10 @@
             <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
         </footer>
         <script src="bower_components/todomvc-common/base.js"></script>
-        <script src="bower_components/vue/dist/vue.js"></script>
+        <script src="bower_components/director/director.js"></script>
+        <script src="bower_components/vue/vue.js"></script>
         <script src="js/store.js"></script>
         <script src="js/app.js"></script>
+        <script src="js/routes.js"></script>
     </body>
 </html>

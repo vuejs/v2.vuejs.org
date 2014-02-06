@@ -1,4 +1,6 @@
-/* global Vue, todoStorage */
+/*global Vue, todoStorage */
+/*jshint unused:false */
+
 'use strict';
 
 var app = new Vue({
@@ -15,6 +17,7 @@ var app = new Vue({
 
 	// a custom directive to wait for the DOM to be updated
 	// before focusing on the input field.
+	// http://vuejs.org/guide/directives.html#Writing_a_Custom_Directive
 	directives: {
 		'todo-focus': function (value) {
 			if (!value) {
@@ -27,14 +30,15 @@ var app = new Vue({
 		}
 	},
 
-	// the `created` lifecycle hook, which will be called
-	// when the ViewModel instance is created but not yet compiled.
+	// the `created` lifecycle hook.
+	// this is where we do the initialization work.
+	// http://vuejs.org/api/instantiation-options.html#created
 	created: function () {
 		// setup filters
 		this.filters = {
 			all: function (todo) {
 				// collect dependency.
-				// see http://vuejs.org/guide/computed.html#Dependency_Collection_Gotcha
+				// http://vuejs.org/guide/computed.html#Dependency_Collection_Gotcha
 				/* jshint expr:true */
 				todo.completed;
 				return true;
@@ -46,15 +50,14 @@ var app = new Vue({
 				return todo.completed;
 			}
 		};
-		this.updateFilter();
-		window.addEventListener('hashchange', function () {
-			app.updateFilter();
-		});
 		// init remaining count
 		this.remaining = this.todos.filter(this.filters.active).length;
+		// default filter
+		this.setFilter('all');
 	},
 
 	// computed property
+	// http://vuejs.org/guide/computed.html
 	computed: {
 		allDone: {
 			$get: function () {
@@ -74,10 +77,9 @@ var app = new Vue({
 	// note there's no DOM manipulation here at all.
 	methods: {
 
-		updateFilter: function () {
-			var filter = location.hash.slice(2);
-			this.filter = (filter in this.filters) ? filter : 'all';
-			this.filterTodo = this.filters[this.filter];
+		setFilter: function (filter) {
+			this.filter = filter;
+			this.filterTodo = this.filters[filter];
 		},
 
 		addTodo: function () {

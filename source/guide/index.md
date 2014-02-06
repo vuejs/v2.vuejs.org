@@ -61,11 +61,15 @@ Here the div element has a `v-text` directive with the value `message`. What it 
 
 Directives can encapsulate arbitrary DOM manipulations. For example `v-attr` manipulates an element's attributes, `v-repeat` clones an element based on an Array, `v-on` attaches event listeners... we will cover them later.
 
+### Mustache Bindings
+
 You can also use mustache-style bindings, both in text and in attributes. They are translated into `v-text` and `v-attr` directives under the hood. For example:
 
 ```html
 <div id="person-&#123;&#123;id&#125;&#125;">Hello &#123;&#123;name&#125;&#125;!</div>
 ```
+
+In addition, you can use triple mustaches for unescaped HTML, which translate  to `v-html` internally. However, since this can open up window for potential XSS attacks, it is suggested that you only use triple mustaches when you are certain about the security of the data source.
 
 ### Filters
 

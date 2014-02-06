@@ -1,15 +1,15 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 0.8.2
-dev_size: 88.93
-min_size: 31.12
-gz_size: 10.71
+vue_version: 0.8.3
+dev_size: 91.37
+min_size: 32.20
+gz_size: 11.00
 ---
 
 # {{title}}
 
-> **Compatibility Note:** Vue.js does not support IE8 and below. For IE9, the [classList polyfill](https://github.com/remy/polyfills/blob/master/classList.js) is needed.
+> **Compatibility Note:** Vue.js does not support IE8 and below.
 
 ## Standalone
 

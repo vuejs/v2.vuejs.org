@@ -78,4 +78,4 @@ status: function () {
 
 <p class="tip">You don't need to worry about this in inline expressions because Vue.js' expression parser takes care of it for you.</p>
 
-Next: [Using Transition Effects](/guide/transitions.html)
+Next: [Adding Transition Effects](/guide/transitions.html)

@@ -1,6 +1,8 @@
-window.todoStorage = (function () {
+/*jshint unused:false */
 
-	'use strict';
+'use strict';
+
+var todoStorage = (function () {
 
 	var STORAGE_KEY = 'todos-vuejs',
 		todos = null;

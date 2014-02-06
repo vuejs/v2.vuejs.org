@@ -1,4 +1,4 @@
-title: Using Transition Effects
+title: Adding Transition Effects
 type: guide
 order: 9
 ---

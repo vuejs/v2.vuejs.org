@@ -99,7 +99,7 @@ Register or retrieve a global component. For more details see [Composing ViewMod
 - **id** `String`
 - **definition** `Object` *optional*
 
-Register or retrieve a global transition definition. For more details see [Using Transition Effects](/guide/transitions.html).
+Register or retrieve a global transition definition. For more details see [Adding Transition Effects](/guide/transitions.html).
 
 ### Vue.partial( id, definition )
 

@@ -111,24 +111,7 @@ You can simplify the template like this:
 
 - This directive takes a registered asset id.
 
-Only respected when used in combination with `v-component` or `v-with`. The ViewModel will be registered in its parent's `$` property.
-
-**Example:**
-
-``` html
-<div id="parent">
-    <div v-component="Box" v-component-id="box"></div>
-</div>
-```
-
-``` js
-// register the Box component
-Vue.component('Box', ...)
-// compile parent
-var parent = new Vue({ el: '#parent' })
-// access the child component
-var child = parent.$.box
-```
+Only respected when used in combination with `v-component`, `v-with` or `v-repeat`. The ViewModel will be accessible in its parent's `$` object, e.g. `parent.$[id]`. When used with `v-repeat`, the value will be an Array containing the child ViewModel instances corresponding to the Array they are bound to. For examples see [Accessing Child Components](/guide/composition.html#Accessing_Child_Components).
 
 ### v-transition
 
@@ -140,7 +123,7 @@ When an id is provided, Vue.js will execute the registered enter / leave functio
 
 Transitions are applied when certain transition-triggering directives modifies the element, or when the ViewModel's DOM manipulation methods are called.
 
-For details, see [Using Transition Effects](/guide/transitions.html).
+For details, see [Adding Transition Effects](/guide/transitions.html).
 
 ### v-partial
 
