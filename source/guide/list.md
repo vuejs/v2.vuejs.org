@@ -33,7 +33,6 @@ var demo = new Vue({
 Result:
 
 <ul id="demo"><li v-repeat="items" class="item-{&#123;$index&#125;}">{&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}</li></ul>
-<script src="/js/vue.min.js"></script>
 <script>
 var demo = new Vue({
     el: '#demo',

@@ -96,7 +96,6 @@ var parent = new Vue({
 
 **Result:**
 
-<script src="/js/vue.min.js"></script>
 <div id="demo-1" class="demo"><p v-component="user-profile" v-with="user"></p></div>
 <script>
     Vue.component('user-profile', {

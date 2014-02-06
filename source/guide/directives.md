@@ -150,7 +150,6 @@ var demo = new Vue({
 **Result**
 
 <div id="demo" v-demo="LightSlateGray : msg"></div>
-<script src="/js/vue.min.js"></script>
 <script>
 Vue.directive('demo', {
     bind: function () {

@@ -120,7 +120,6 @@ var demo = new Vue({
 **Result**
 
 <div id="demo"><h1>&#123;&#123;title | uppercase&#125;&#125;</h1><ul><li v-repeat="todos" v-on="click: done = !done" class="&#123;&#123;done ? 'done' : ''&#125;&#125;">&#123;&#123;content&#125;&#125;</li></ul></div>
-<script src="/js/vue.min.js"></script>
 <script>
 var demo = new Vue({
     el: '#demo',

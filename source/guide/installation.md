@@ -20,7 +20,7 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 <a class="button" href="https://raw.github.com/yyx990803/vue/v{{vue_version}}/dist/vue.min.js" download>Production Version</a><br><span class="light">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
 
 Also available on [cdnjs](http://cdnjs.com) (takes 4 hours to sync so might not work for latest version):
-```
+``` html
 <script src="//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js"></script>
 ```
 

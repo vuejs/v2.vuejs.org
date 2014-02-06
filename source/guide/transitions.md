@@ -50,7 +50,6 @@ You will also need to provide CSS rules for `v-enter` and `v-leave` classes (the
 }
 </style>
 
-<script src="/js/vue.min.js"></script>
 <script>
     var demo = new Vue({
         el: '#demo',

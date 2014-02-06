@@ -3,8 +3,6 @@ type: guide
 order: 7
 ---
 
-<script src="/js/vue.min.js"></script>
-
 # {{title}}
 
 You can use the `v-model` directive to create two-way data bindings on form input elements and elements with `contenteditable` attribute. It automatically picks the correct way to update the element based on the input type.

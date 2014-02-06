@@ -81,10 +81,48 @@ html, body
         margin 0 5px
         width 95px
 
-#features
-    padding 4em 0
+#example
+    //background-color #f3f3f3
     text-align center
-    background-color #f3f3f3
+    padding 20px
+    code, pre
+        background-color transparent
+    figure.highlight
+        margin 0
+        box-shadow none
+        background-color transparent
+    .sign
+        display inline-block
+        height 9em
+        line-height 9em
+        padding 0 .5em
+        font-weight 600
+        color $light
+    .block
+        text-align left
+        display inline-block
+        width 28%
+        height 9em
+        vertical-align top
+        background-color #f9f9f9
+        border-radius 2px
+        box-shadow 0 1px 2px rgba(0,0,0,.125)
+    #demo
+        padding 0 20px
+        input
+            font-size .75em
+            border 1px solid #ccc
+            padding 4px 8px
+            border-radius 2px
+            font-family $body-font
+            &:focus
+                outline none
+                border-color $green
+
+#features
+    padding 2em 0 4em
+    text-align center
+    //background-color #f3f3f3
     .cool
         font-size 1.8em
         text-align center
@@ -239,3 +277,15 @@ html, body
 @media screen and (max-width: 860px)
     #features, #hero
         font-size 16px
+    #example
+        .block
+            display block
+            width auto
+            height auto
+        #demo
+            padding 5px 20px 20px
+        .sign
+            display block
+            height 1em
+            line-height 1em
+            padding .5em 0
