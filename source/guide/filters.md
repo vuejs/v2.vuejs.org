@@ -7,10 +7,10 @@ order: 4
 
 ## Synopsis
 
-A Vue.js filter is denoted by a single pipe (`|`) and can be followed by one or more arguments:
+A Vue.js filter is essentially a function that takes a value, processes it, and then returns the processed value. In the markup it is denoted by a single pipe (`|`) and can be followed by one or more arguments:
 
-``` js
-| filterId [args...]
+``` html
+<element directive="expression | filterId [args...]"></element>
 ```
 
 ## Examples

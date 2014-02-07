@@ -56,6 +56,24 @@ new Vue({
 })
 ```
 
+## The Special `key` Filter
+
+When listening for keyboard events, we often need to check for common key codes. Vue.js provides a special `key` filter that can only be used with `v-on` directives. It takes a single argument that denotes the key code to check for:
+
+```
+<!-- only call vm.submit() when the keyCode is 13 -->
+<input v-on="keyup:submit | key 13">
+```
+
+It also has a few presets for commonly used keys:
+
+```
+<!-- same as above -->
+<input v-on="keyup:submit | key enter">
+```
+
+Check the API reference for a [full list of key filter presets](/api/filters.html#key).
+
 ## Why Listeners in HTML?
 
 You might be concerned about this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintainance difficulty. In fact, there are several benefits in using `v-on`:
