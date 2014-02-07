@@ -140,21 +140,19 @@ A hash of HTML attributes to be set on `vm.$el`.
 
 ## Lifecycle Hooks
 
-All lifecycle hooks have their `this` context bound to the ViewModel they belong to.
+All lifecycle hooks have their `this` context bound to the ViewModel instance they belong to. For `'enteredView'`, `'leftView'`, `'beforeDestroy'`, `'afterDestroy'`, the ViewModel instance will also emit events in the form of `'hook:eventName'`.
 
 ### created
   
 - **Type:** `Function`
-- **Alias:** `beforeCompile`
 
-Called before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.
+Called synchronously before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.
 
 ### ready
 
 - **Type:** `Function`
-- **Alias:** `afterCompile`
 
-Called after the compilation has ended and the ViewModel is ready.
+Called synchronously after the compilation has ended and the ViewModel instance is ready.
 
 ### enteredView
 
