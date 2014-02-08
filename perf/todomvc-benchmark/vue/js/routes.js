@@ -1,13 +1,17 @@
 /*global app, Router */
 
-'use strict';
+(function (app, Router) {
 
-var router = new Router();
+	'use strict';
 
-Object.keys(app.filters).forEach(function (filter) {
-	router.on(filter, function () {
-		app.setFilter(filter);
+	var router = new Router();
+
+	Object.keys(app.filters).forEach(function (filter) {
+		router.on(filter, function () {
+			app.setFilter(filter);
+		});
 	});
-});
 
-router.init();
+	router.init();
+	
+})(app, Router);

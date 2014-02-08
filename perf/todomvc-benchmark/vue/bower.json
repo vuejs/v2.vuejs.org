@@ -1,8 +1,7 @@
 {
   "name": "todomvc-vue",
-  "version": "0.0.0",
   "dependencies": {
-    "vue": "~0.8.2",
+    "vue": "~0.8.3",
     "todomvc-common": "~0.1.9"
   }
 }
