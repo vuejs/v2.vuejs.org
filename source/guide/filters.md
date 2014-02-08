@@ -3,8 +3,6 @@ type: guide
 order: 4
 ---
 
-# {{title}}
-
 ## Synopsis
 
 A Vue.js filter is essentially a function that takes a value, processes it, and then returns the processed value. In the markup it is denoted by a single pipe (`|`) and can be followed by one or more arguments:

@@ -3,7 +3,9 @@ type: api
 order: 6
 ---
 
-# {{title}}
+## Data Binding Directives
+
+> These directives can bind themselves to a property on the ViewModel, or to an expression which is evaluated in the context of the ViewModel. When the value of the underlying property or expression changes, the `update()` function of these directives will be called asynchronously on next tick.
 
 ### v-text
 
@@ -61,8 +63,9 @@ Create a child ViewModel for every item in the binding Array. These child ViewMo
 ### v-on
 
 - This directive requires exactly one argument.
+- This directive requires the value to be a Function or an expression.
 
-Attaches an event listener to the element. The event type is denoted by the argument. For more details see [Listening for Events](/guide/events.html).
+Attaches an event listener to the element. The event type is denoted by the argument. It is also the only directive that can be used with the `key` filter. For more details see [Listening for Events](/guide/events.html).
 
 ### v-model
 
@@ -76,15 +79,10 @@ Create a two-way binding on a form or editable element. Data is synced on every 
 
 Conditionally insert / remove the element based on the truthy-ness of the binding value.
 
-### v-component
-
-- This directive takes a registered asset id.
-
-Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Composing ViewModels](/guide/composition.html).
-
 ### v-with
 
 - This directive requires the value to be an Object or falsy.
+- You cannot use expressions with this directive.
 
 Compile this element as a child ViewModel, using the binding value as the `data` option. Inside the template you can directly access properties on the binding value. This can be used in combination with `v-component`.
 
@@ -106,6 +104,16 @@ You can simplify the template like this:
     {&#123;name&#125;} {&#123;email&#125;}
 </div>
 ```
+
+## Literal Directives
+
+> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once.
+
+### v-component
+
+- This directive takes a registered asset id.
+
+Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Composing ViewModels](/guide/composition.html).
 
 ### v-component-id
 

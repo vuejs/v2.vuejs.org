@@ -3,8 +3,6 @@ type: api
 order: 7
 ---
 
-# {{title}}
-
 ### capitalize
 
 *'abc' => 'Abc'*

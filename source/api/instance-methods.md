@@ -3,8 +3,6 @@ type: api
 order: 4
 ---
 
-# {{title}}
-
 ## Data Changes
 
 ### vm.$watch( keypath, callback )

@@ -3,8 +3,6 @@ type: guide
 order: 11
 ---
 
-# {{title}}
-
 Vue.js is designed to be as flexible as possible - it's just an interface library that doesn't enforce any architectural decisions. While this can be very useful for rapid prototyping, it could be a challenge for those with less experience to build larger scale applications with it. The following is an opinionated perspective on how to organize larger projects when using Vue.js.
 
 ## Build with Component

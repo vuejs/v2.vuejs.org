@@ -3,8 +3,6 @@ type: guide
 order: 10
 ---
 
-# {{title}}
-
 ## Registering a Component
 
 Vue.js allows you to treat registered ViewModel constructors as reusable components. To register a component, use the global `Vue.component()` method:

@@ -3,8 +3,6 @@ type: api
 order: 5
 ---
 
-# {{title}}
-
 ### Vue.extend( options )
 
 - **options** `Object`

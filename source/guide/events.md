@@ -3,8 +3,6 @@ type: guide
 order: 6
 ---
 
-# {{title}}
-
 You can use the `v-on` directive to bind event listeners to DOM events. It can be bound to either an event handler function (without the invocation parentheses) or an inline expression. If a handler function is provided, it will get the original DOM event as the argument. The event also comes with an extra property: `targetVM`, pointing to the particular ViewModel the event was triggered on:
 
 ``` html

@@ -3,8 +3,6 @@ type: api
 order: 3
 ---
 
-# {{title}}
-
 ### vm.$el
 
 - **Type:** `HTMLElement`

@@ -21,7 +21,11 @@
             <%- partial('partials/header') %>
         <% } %>
         <div id="main">
+        <% if (page.blog_index) { %>
+            <%- partial('partials/blog') %>
+        <% } else { %>
             <%- body %>
+        <% } %>
         </div>
         <script src="/js/common.js"></script>
     </body>

@@ -1,0 +1,7 @@
+<% site.posts.sort('date', -1).each(function (post) { %>
+    <div class="content">
+        <h4><%- post.date.format('MMM D[,] YYYY') %></h3>
+        <h1><a href="/<%- post.path %>"><%- post.title %></a></h2>
+        <div><%- post.content %></div>
+    </div>
+<% }) %>

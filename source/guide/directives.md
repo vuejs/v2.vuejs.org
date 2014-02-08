@@ -3,8 +3,6 @@ type: guide
 order: 3
 ---
 
-# {{title}}
-
 ## Synopsis
 
 If you have not used AngularJS before, you probably don't know what a directive is. Essentially, a directive is some special token in the markup that tells the library to do something to a DOM element. In Vue.js, the concept of directive is drastically simpler than that in Angular. A Vue.js directive can only appear in the form of a prefixed HTML attribute that takes the following format:

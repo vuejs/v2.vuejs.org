@@ -4,6 +4,7 @@
  License: MIT
 */
 ;(function(){
+'use strict';
 
 /**
  * Require the given path.
@@ -818,9 +819,12 @@ var utils = module.exports = {
         if (hasClassList) {
             el.classList.remove(cls)
         } else {
-            el.className = (' ' + el.className + ' ')
-                .replace(' ' + cls + ' ', '')
-                .trim()
+            var cur = ' ' + el.className + ' ',
+                tar = ' ' + cls + ' '
+            while (cur.indexOf(tar) >= 0) {
+                cur = cur.replace(tar, ' ')
+            }
+            el.className = cur.trim()
         }
     }
 }
@@ -3493,10 +3497,10 @@ require.alias("component-emitter/index.js", "vue/deps/emitter/index.js");
 require.alias("component-emitter/index.js", "emitter/index.js");
 
 require.alias("vue/src/main.js", "vue/index.js");
-if (typeof exports == "object") {
-  module.exports = require("vue");
-} else if (typeof define == "function" && define.amd) {
-  define(function(){ return require("vue"); });
+if (typeof exports == 'object') {
+  module.exports = require('vue');
+} else if (typeof define == 'function' && define.amd) {
+  define(function(){ return require('vue'); });
 } else {
-  this["Vue"] = require("vue");
+  window['Vue'] = require('vue');
 }})();

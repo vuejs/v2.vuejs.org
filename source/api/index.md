@@ -3,8 +3,6 @@ type: api
 order: 1
 ---
 
-# {{title}}
-
 The `Vue` Class is the core of vue.js. It is a constructor that allows you to create ViewModel instances. Creating a ViewModel instance is straightforward:
 
 ``` js

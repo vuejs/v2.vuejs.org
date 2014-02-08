@@ -3,8 +3,6 @@ type: guide
 order: 9
 ---
 
-# {{title}}
-
 You can add transition effects when elements are inserted into or removed from the DOM using the `v-transition` directive. There are two types of transitions: CSS-based and JavaScript-based. All Vue.js transitions are triggered only if the DOM manipulation was applied by Vue.js, either through built-in directives, e.g. `v-if`, or through ViewModel instance methods, e.g. `vm.$appendTo()`.
 
 ## CSS Transitions

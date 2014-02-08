@@ -3,8 +3,6 @@ type: api
 order: 2
 ---
 
-# {{title}}
-
 ## Data & Logic
 
 ### data

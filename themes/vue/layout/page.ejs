@@ -2,5 +2,6 @@
     <%- partial('partials/sidebar', { type: page.type, index: page.index }) %>
 <% } %>
 <div class="content <%- page.type ? page.type + ' with-sidebar' : '' %>">
+    <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
     <%- page.content %>
 </div>

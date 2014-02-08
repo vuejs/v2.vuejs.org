@@ -3,8 +3,6 @@ type: guide
 order: 2
 ---
 
-# {{title}}
-
 ## Introduction
 
 Vue.js is a library for building interactive web interfaces.
@@ -69,7 +67,7 @@ You can also use mustache-style bindings, both in text and in attributes. They a
 <div id="person-&#123;&#123;id&#125;&#125;">Hello &#123;&#123;name&#125;&#125;!</div>
 ```
 
-In addition, you can use triple mustaches for unescaped HTML, which translate  to `v-html` internally. However, since this can open up window for potential XSS attacks, it is suggested that you only use triple mustaches when you are certain about the security of the data source.
+<p class="tip">You can also use triple mustaches for unescaped HTML, which translate  to `v-html` internally. However, since this can open up window for potential XSS attacks, it is suggested that you only use triple mustaches when you are certain about the security of the data source.</p>
 
 ### Filters
 
