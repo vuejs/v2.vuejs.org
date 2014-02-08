@@ -46,7 +46,7 @@
                 i = bars.length
             while (i--) {
                 var bar = bars[i],
-                    t = bar.dataset.time,
+                    t = bar.getAttribute('data-time'),
                     pct = ~~(t / max * 100)
                 if (t == min) bar.className = 'bar min'
                 bar.querySelector('.inner').style.width = pct + '%'
