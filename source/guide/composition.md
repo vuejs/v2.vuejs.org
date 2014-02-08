@@ -82,7 +82,7 @@ Vue.component('user-profile', {
 // the `user` object will be passed to the child
 // component as its $data
 var parent = new Vue({
-    el: '#demo',
+    el: '#demo-1',
     data: {
         user: {
             name: 'Foo Bar',
