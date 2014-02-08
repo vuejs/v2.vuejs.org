@@ -67,6 +67,8 @@ You can also use mustache-style bindings, both in text and in attributes. They a
 <div id="person-&#123;&#123;id&#125;&#125;">Hello &#123;&#123;name&#125;&#125;!</div>
 ```
 
+<p class="tip">It is not recommended to use mustache bindings inside the `style` attribute because Internet Explorer, regardless of version, will remove invalid inline styles when parsing the HTML.</p>
+
 <p class="tip">You can also use triple mustaches for unescaped HTML, which translate  to `v-html` internally. However, since this can open up window for potential XSS attacks, it is suggested that you only use triple mustaches when you are certain about the security of the data source.</p>
 
 ### Filters

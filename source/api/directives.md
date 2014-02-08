@@ -53,6 +53,30 @@ Updates the element's given attribute (indicated by the argument).
 
 Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives. One special case you might want to use this instead of interpolation is when setting the `src` attribute on `<img>` elements. If you use interpolation for `src` and the element is inserted into the DOM before being compiled, the browser will make a failed http request trying to fetch the image.
 
+### v-style
+
+- This directive requires exactly one argument.
+
+Apply inline CSS styles to the element. The argument is the CSS property to apply.
+
+**Example:**
+
+``` html
+<div v-style="
+    top: top + 'px',
+    left: left + 'px',
+    background-color: 'rgb(0,0,' + bg + ')'
+"></div>
+```
+
+When the argument is prefixed with `$`, Vue.js will automatically apply prefixed version of the CSS rule too, so you don't have to manually write all the prefixes inline. In the following example Vue.js will apply `transform`, `webkitTransform`, `mozTransform` and `msTransform`:
+
+``` html
+<div v-style="$transform: 'scale(' + scale + ')'"></div>
+```
+
+<p class="tip">It is recommended to use `v-style` instead of mustache bindings inside `style` attribute because Internet Explorer, regardless of version, will remove invalid inline styles when parsing the HTML.</p>
+
 ### v-repeat
 
 - This directive requires the value to be Array or falsy.
