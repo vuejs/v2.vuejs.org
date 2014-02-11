@@ -4,6 +4,7 @@ var Suites = [];
 Suites.push({
     name: 'Vue',
     url: 'vue/index.html',
+    version: '0.8.5',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
             element.focus();
@@ -34,6 +35,7 @@ Suites.push({
 Suites.push({
     name: 'Backbone',
     url: 'todomvc/architecture-examples/backbone/index.html',
+    version: '1.1.0',
     prepare: function (runner, contentWindow, contentDocument) {
     contentWindow.Backbone.sync = function () {}
         return runner.waitForElement('#new-todo').then(function (element) {
@@ -66,6 +68,7 @@ Suites.push({
 Suites.push({
     name: 'Knockout',
     url: 'todomvc/architecture-examples/knockoutjs/index.html',
+    version: '3.0.0',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
             element.focus();
@@ -96,6 +99,7 @@ Suites.push({
 Suites.push({
     name: 'Ember',
     url: 'todomvc/architecture-examples/emberjs/index.html',
+    version: '1.3.1 + Handlebars 1.3.0',
     prepare: function (runner, contentWindow, contentDocument) {
         contentWindow.Todos.Store = contentWindow.DS.Store.extend({
             revision: 12,
@@ -136,6 +140,7 @@ Suites.push({
 Suites.push({
     name: 'Angular',
     url: 'todomvc/architecture-examples/angularjs-perf/index.html',
+    version: '1.2.9',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
             element.focus();
@@ -171,6 +176,7 @@ Suites.push({
 Suites.push({
     name: 'React',
     url: 'todomvc/labs/architecture-examples/react/index.html',
+    version: '0.8.0',
     prepare: function (runner, contentWindow, contentDocument) {
         contentWindow.Utils.store = function () {}
         return runner.waitForElement('#new-todo').then(function (element) {
@@ -206,6 +212,7 @@ Suites.push({
 Suites.push({
     name: 'Om',
     url: 'todomvc/labs/architecture-examples/om/index.html',
+    version: '? + React 0.8.0',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
             element.focus();
@@ -240,6 +247,7 @@ Suites.push({
 Suites.push({
     name: 'Ractive',
     url: 'todomvc/labs/architecture-examples/ractive/index.html',
+    version: '0.3.8',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
             element.focus();

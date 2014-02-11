@@ -40,7 +40,7 @@ function createUIForSuites(suites, onstep, onrun) {
 
         li.appendChild(checkbox);
         var label = document.createElement('label');
-        label.appendChild(document.createTextNode(formatTestName(suite.name)));
+        label.appendChild(document.createTextNode(formatTestName(suite.name) + ' ' + suite.version));
         li.appendChild(label);
         label.htmlFor = checkbox.id;
 
