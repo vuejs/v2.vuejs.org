@@ -2,7 +2,6 @@
 <html lang="en" data-framework="emberjs">
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>ember.js • TodoMVC</title>
 		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
 	</head>
@@ -31,7 +30,7 @@
 						{{input type="checkbox" id="toggle-all" checked=allAreDone}}
 					</section>
 					<footer id="footer">
-						<span id="todo-count">{{{remainingFormatted}}}</span>
+						<span id="todo-count"><strong>{{remaining.length}}</strong> {{pluralize 'item' remaining.length}} left</span>
 						<ul id="filters">
 							<li>
 								{{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
@@ -43,9 +42,9 @@
 								{{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
 							</li>
 						</ul>
-						{{#if hasCompleted}}
+						{{#if completed.length}}
 							<button id="clear-completed" {{action "clearCompleted"}}>
-								Clear completed ({{completed}})
+								Clear completed ({{completed.length}})
 							</button>
 						{{/if}}
 					</footer>
@@ -73,5 +72,7 @@
 		<script src="js/controllers/todos_controller.js"></script>
 		<script src="js/controllers/todo_controller.js"></script>
 		<script src="js/views/edit_todo_view.js"></script>
+		<script src="js/views/todos_view.js"></script>
+		<script src="js/helpers/pluralize.js"></script>
 	</body>
 </html>
