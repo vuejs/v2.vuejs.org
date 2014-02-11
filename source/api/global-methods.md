@@ -142,3 +142,15 @@ Will result in:
 - **callback** `Function`
 
 Vue.js batches view updates and execute them all asynchronously. It uses `requestAnimationFrame` if available and fallsback to `setTimeout(fn, 0)`. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.
+
+### Vue.require( module )
+
+- **module** `String`
+
+Get access to Vue.js' internal modules. This is intended for plugin authors only.
+
+### Vue.use( plguin )
+
+- **plugin** `Object` or `Function`
+
+Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](/guide/plugin.html).
