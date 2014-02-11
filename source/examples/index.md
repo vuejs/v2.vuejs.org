@@ -1,8 +1,8 @@
-title: GitHub Commits
+title: Markdown Editor
 type: examples
-order: 1
+order: 0
 ---
 
-> This example fetches latest Vue.js commits data from GitHub's API and displays them as a list. You can switch between the master and dev branches.
+> Dead simple Markdown editor.
 
-<iframe width="100%" height="500" src="http://jsfiddle.net/yyx990803/KupQL/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="500" src="http://jsfiddle.net/yyx990803/u6UbY/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
