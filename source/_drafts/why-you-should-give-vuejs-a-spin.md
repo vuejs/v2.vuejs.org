@@ -2,15 +2,19 @@ title: Why You Should Give Vue.js a Spin
 date: 2014-02-07 22:34:12
 ---
 
-## Simplicity
+## It's Simple
 
-## Expressiveness
+## It's Expressive
 
-## Composability
+## It's Composable
 
-## Flexibility
+## It's Flexible
 
-## Performance
+## It's Fast
+
+## It's not for everyone, I know
+
+The Right Level of Abstraction... does not exist. Or it is different for different use cases. If we think of the level of abstraction as a spectrum, on one end we have full-blown convention-over-configuration frameworks like Ember; on the other end we have some Component heavy users who would publish a package for a 3-line function and have an application made up of hundreds of tiny modules. These are all valid choices and there is not an absolutely best way to do this. But the fact is, my preference falls somewhere in between, and I believe there are others who feel the same.
 
 ## Comparison with Other Libraries
 
@@ -39,10 +43,4 @@ Take note these are my personal opinions and I'm most likely biased, but you are
 
 ### Ractive
 
-Very very similar. But Vue.js allows you to easily extend the vocabulary with custom directives and filters, a feature which Ractive doesn't seem to offer. Since both libraries 
-
-## Other Stats
-
-### Performance
-
-### Size
+Very very similar. But Vue.js allows you to easily extend the vocabulary with custom directives and filters, a feature which Ractive doesn't seem to offer. Since both libraries

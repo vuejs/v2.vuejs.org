@@ -13,7 +13,7 @@ Philosophically, the goal is to provide the benefits of MVVM data binding with a
 
 Vue.js' API is heavily influenced by [AngularJS], [KnockoutJS], [Ractive.js] and [Rivets.js]. Despite the similarities, I believe Vue.js offers a valuable alternative to these existing libraries by finding a sweetspot between simplicity and functionality.
 
-If you are confused by some of the terms mentioned above, read on for a brief overview of what they mean. Otherwise, you can jump right to [the quick example](#A_Quick_Example).
+Even if you are already familiar with some of these terms, it is recommended that you go through the following concepts overview because your notion of these terms might be different from what they mean in the Vue.js context.
 
 ## Concepts Overview
 
@@ -67,9 +67,13 @@ You can also use mustache-style bindings, both in text and in attributes. They a
 <div id="person-&#123;&#123;id&#125;&#125;">Hello &#123;&#123;name&#125;&#125;!</div>
 ```
 
-<p class="tip">It is not recommended to use mustache bindings inside the `style` attribute because Internet Explorer, regardless of version, will remove invalid inline styles when parsing the HTML.</p>
+Although it is convenient, there are a few things you need to be aware of:
 
-<p class="tip">You can also use triple mustaches for unescaped HTML, which translate  to `v-html` internally. However, since this can open up window for potential XSS attacks, it is suggested that you only use triple mustaches when you are certain about the security of the data source.</p>
+<p class="tip">The `src` attribute on an `<image>` element makes an HTTP requests when a value is set, so when the template is first parsed it will result in a 404. In this case `v-attr` is preferred.</p>
+
+<p class="tip">Internet Explorer will remove invalid inline `style` attributes when parsing HTML, so always use `v-style` when binding inline CSS if you want to support IE.</p>
+
+<p class="tip">You can use triple mustaches &#123;&#123;&#123; like this &#125;&#125;&#125; for unescaped HTML, which translates to `v-html` internally. However, this can open up windows for potential XSS attacks, therefore it is suggested that you only use triple mustaches when you are absolutely sure that the data source is secure.</p>
 
 ### Filters
 
