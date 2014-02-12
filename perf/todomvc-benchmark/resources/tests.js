@@ -96,46 +96,49 @@ Suites.push({
     ]
 });
 
-Suites.push({
-    name: 'Ember',
-    url: 'todomvc/architecture-examples/emberjs/index.html',
-    version: '1.3.1 + Handlebars 1.3.0',
-    prepare: function (runner, contentWindow, contentDocument) {
-        contentWindow.Todos.Store = contentWindow.DS.Store.extend({
-            revision: 12,
-            adapter: 'Todos.LSAdapter',
-            commit: function () { }
-        });
 
+Suites.push({
+    name: 'EmberJS-TodoMVC',
+    url: 'todomvc/architecture-examples/emberjs/index.html',
+    prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
             element.focus();
             return {
                 views: contentWindow.Ember.View.views,
                 emberRun: contentWindow.Ember.run,
-            }
+            };
         });
     },
     tests: [
         new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', function (params) {
-            for (var i = 0; i < numberOfItemsToAdd; i++) {
-                params.emberRun(function () { params.views["new-todo"].set('value', 'Something to do' + i); });
-                params.emberRun(function () { params.views["new-todo"].insertNewline(document.createEvent('Event')); });
-            }
+            params.emberRun(function () {
+                for (var i = 0; i < numberOfItemsToAdd; i++) {
+                    params.views["new-todo"].set('value', 'Something to do' + i);
+                    params.emberRun.sync(); // force binding propogation
+                    params.views["new-todo"].triggerAction("createTodo");
+                }
+            });
         }),
         new BenchmarkTestStep('CompletingAllItems', function (params, contentWindow, contentDocument) {
             var checkboxes = contentDocument.querySelectorAll('.ember-checkbox');
-            for (var i = 0; i < checkboxes.length; i++) {
-                var view = params.views[checkboxes[i].id];
-                params.emberRun(function () { view.set('checked', true); });
-            }
+            params.emberRun(function () { 
+                for (var i = 0; i < checkboxes.length; i++) {
+                    var view = params.views[checkboxes[i].id];
+                    view.set('checked', true);
+                }
+            });
         }),
         new BenchmarkTestStep('DeletingItems', function (params, contentWindow, contentDocument) {
             var deleteButtons = contentDocument.querySelectorAll('.destroy');
-            for (var i = 0; i < deleteButtons.length; i++)
-                params.emberRun(function () { deleteButtons[i].click(); });
+            params.emberRun(function () { 
+                for (var i = 0; i < deleteButtons.length; i++)
+                  deleteButtons[i].click();
+            });
         }),
     ]
 });
+
+
 
 Suites.push({
     name: 'Angular',
