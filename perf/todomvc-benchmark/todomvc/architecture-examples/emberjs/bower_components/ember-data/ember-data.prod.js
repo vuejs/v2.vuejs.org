@@ -10618,3 +10618,9 @@ Ember.onLoad('Ember.Application', function(Application) {
 
 
 })();
+
+
+if (typeof location !== 'undefined' && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+  Ember.Logger.warn("You are running a production build of Ember on localhost and won't receive detailed error messages. "+
+               "If you want full error messages please use the non-minified build provided on the Ember website.");
+}

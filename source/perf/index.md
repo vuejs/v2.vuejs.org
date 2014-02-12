@@ -12,7 +12,7 @@ title: Performance Comparisons
 - Vue (v0.8.5)
 - Backbone (v1.1.0) + jQuery (v2.0.3)
 - Knockout (v3.0.0)
-- Ember (v1.3.1) + Handlebars (v1.3.0) + jQuery (v2.1.0)
+- Ember (v1.3.1 production) + Handlebars (v1.3.0) + jQuery (v2.1.0)
 - Angular (v1.2.9)
 - React (v0.8.0)
 - Om (version unknown) + React (v0.8.0)

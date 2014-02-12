@@ -3,7 +3,7 @@ type: guide
 order: 12
 ---
 
-*This is a very early preview for the plugin API and this may change in furture versions. You might want to wait for a few official plugins as reference before writing your own.*
+> *This is a very early preview for the plugin API and this may change in furture versions. You might want to wait for a few official plugins as reference before writing your own.*
 
 ## Using a Plugin
 
