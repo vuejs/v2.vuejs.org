@@ -1,6 +1,6 @@
-title: Vue + Component
+title: Project Boilerplate
 type: examples
-order: 4
+order: 5
 ---
 
 <img style="width:100%;max-width:737px" src="/images/component-example.png">

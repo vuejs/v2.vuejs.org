@@ -1,6 +1,6 @@
 title: TodoMVC
 type: examples
-order: 3
+order: 4
 ---
 
 <iframe width="100%" height="500" src="/perf/todomvc-benchmark/vue/index.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
