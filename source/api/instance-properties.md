@@ -21,7 +21,7 @@ The data object that the ViewModel is observing. You can swap it with a new obje
 - **Type:** `Object`
 - **Read only**
 
-An object that holds child ViewModels that has `v-component-id` registered. For more details see [v-component-id](/api/directives.html#v-component-id).
+An object that holds child ViewModels that has `v-ref` registered. For more details see [v-ref](/api/directives.html#v-ref).
 
 ### vm.$index
 

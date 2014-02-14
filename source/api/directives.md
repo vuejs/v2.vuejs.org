@@ -135,19 +135,13 @@ You can simplify the template like this:
 
 ### v-component
 
-- This directive takes a registered asset id.
-
 Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Composing ViewModels](/guide/composition.html).
 
-### v-component-id
-
-- This directive takes a registered asset id.
+### v-ref
 
 Only respected when used in combination with `v-component`, `v-with` or `v-repeat`. The ViewModel will be accessible in its parent's `$` object, e.g. `parent.$[id]`. When used with `v-repeat`, the value will be an Array containing the child ViewModel instances corresponding to the Array they are bound to. For examples see [Accessing Child Components](/guide/composition.html#Accessing_Child_Components).
 
 ### v-transition
-
-- This directive takes an optional registered asset id.
 
 When no value is provided, Vue.js will apply CSS transition classes to this element when adding / removing this element to / from the DOM.
 
@@ -159,8 +153,6 @@ For details, see [Adding Transition Effects](/guide/transitions.html).
 
 ### v-partial
 
-- This directive takes a registered asset id.
-
 Replace the element's innerHTML with a registered partial. You can also use this syntax:
 
 ``` html
@@ -169,7 +161,7 @@ Replace the element's innerHTML with a registered partial. You can also use this
 
 ## Empty Directives
 
-Empty directives ignore their attribute value.
+> Empty directives do not require and will ignore their attribute value.
 
 ### v-pre
 

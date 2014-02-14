@@ -162,11 +162,11 @@ var parent2 = new Vue({
 
 ## Accessing Child Components
 
-Sometimes you might need to access nested child components in JavaScript. To enable that you have to assign a child component an ID using `v-component-id`. For example:
+Sometimes you might need to access nested child components in JavaScript. To enable that you have to assign a reference ID to the child component using `v-ref`. For example:
 
 ``` html
 <div id="parent">
-    <div v-component="user-profile" v-component-id="profile"></div>
+    <div v-component="user-profile" v-ref="profile"></div>
 </div>
 ```
 
@@ -176,7 +176,7 @@ var parent = new Vue({ el: '#parent' })
 var child = parent.$.profile
 ```
 
-When `v-component-id` is used together with `v-repeat`, the value you get will be an Array containing the child components mirroring the data Array.
+When `v-ref` is used together with `v-repeat`, the value you get will be an Array containing the child components mirroring the data Array.
 
 ## Event Communication Between Nested Components
 

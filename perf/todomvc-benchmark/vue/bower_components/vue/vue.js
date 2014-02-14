@@ -580,12 +580,12 @@ require.register("vue/src/config.js", function(exports, require, module){
 var prefix = 'v',
     specialAttributes = [
         'pre',
+        'ref',
+        'with',
         'text',
         'repeat',
         'partial',
-        'with',
         'component',
-        'component-id',
         'transition'
     ],
     config = module.exports = {
@@ -923,7 +923,7 @@ function Compiler (vm, options) {
     // set parent VM
     // and register child id on parent
     var parent = compiler.parentCompiler,
-        childId = utils.attr(el, 'component-id')
+        childId = utils.attr(el, 'ref')
     if (parent) {
         parent.childCompilers.push(compiler)
         def(vm, '$parent', parent.vm)
@@ -3184,7 +3184,7 @@ module.exports = {
         // extract transition information
         this.hasTrans = el.hasAttribute(config.attrs.transition)
         // extract child Id, if any
-        this.childId = utils.attr(el, 'component-id')
+        this.childId = utils.attr(el, 'ref')
 
         // create a comment node as a reference node for DOM insertions
         this.ref = document.createComment(config.prefix + '-repeat-' + this.key)
