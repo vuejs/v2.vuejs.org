@@ -4,7 +4,7 @@ var Suites = [];
 Suites.push({
     name: 'Vue',
     url: 'vue/index.html',
-    version: '0.8.5',
+    version: '0.8.6',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
             element.focus();
