@@ -152,13 +152,13 @@ Called synchronously before the compilation starts. Can be used to attach additi
 
 Called synchronously after the compilation has ended and the ViewModel instance is ready.
 
-### enteredView
+### attached
 
 - **Type:** `Function`
 
 Called when `vm.$el` is attached to DOM by a VueJS directive. Direct manipulation of `vm.$el` will **not** trigger this hook.
 
-### leftView
+### detached
 
 - **Type:** `Function`
 

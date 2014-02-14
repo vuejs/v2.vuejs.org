@@ -167,8 +167,14 @@ Replace the element's innerHTML with a registered partial. You can also use this
 <div>&#123;&#123;> my-partial&#125;&#125;</div>
 ```
 
+## Empty Directives
+
+Empty directives ignore their attribute value.
+
 ### v-pre
 
-- This directive is an empty direcitve (it doesn't need a keypath or expression)
-
 Skip compilation for this element and all its children. Skipping large amount of nodes with no directives on them can speed up compilation.
+
+### v-cloak
+
+This property remains on the element until the associated ViewModel finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the ViewModel is ready.

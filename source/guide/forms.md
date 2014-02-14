@@ -23,6 +23,7 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
         </select>
         {&#123;selected&#125;}
     </p>
+    <p>data: {&#123;$data&#125;}</p>
 </form>
 ```
 
@@ -40,7 +41,7 @@ new Vue({
 
 **Result**
 
-<form id="demo"><p><input type="text" v-model="msg"> {&#123;msg&#125;}</p><p><input type="checkbox" v-model="checked"> {&#123;checked ? &quot;yes&quot; : &quot;no&quot;&#125;}</p><p><input type="radio" v-model="picked" name="picked" value="one"><input type="radio" v-model="picked" name="picked" value="two"> {&#123;picked&#125;}</p><p><select v-model="selected"><option>one</option><option>two</option></select> {&#123;selected&#125;}</p><p>data: {&#123;serialized&#125;}</p></form>
+<form id="demo"><p><input type="text" v-model="msg"> {&#123;msg&#125;}</p><p><input type="checkbox" v-model="checked"> {&#123;checked ? &quot;yes&quot; : &quot;no&quot;&#125;}</p><p><input type="radio" v-model="picked" name="picked" value="one"><input type="radio" v-model="picked" name="picked" value="two"> {&#123;picked&#125;}</p><p><select v-model="selected"><option>one</option><option>two</option></select> {&#123;selected&#125;}</p><p>data: {&#123;$data&#125;}</p></form>
 <script>
     new Vue({
         el: '#demo',
@@ -49,11 +50,6 @@ new Vue({
             checked: true,
             picked: 'one',
             selected: 'two'
-        },
-        computed: {
-            serialized: {$get: function () {
-                return JSON.stringify(this.$data)
-            }}
         }
     })
 </script>
