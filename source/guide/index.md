@@ -85,6 +85,10 @@ Functions that are used to process the raw values before updating the View. They
 
 Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. For more details see [Filters in Depth](/guide/filters.html).
 
+### Components
+
+In Vue.js, a component is simply a ViewModel constructor registered with an ID using `Vue.component(ID, constructor)`. By having an associated ID, they can be declaratively reused in other ViewModel's templates with the `v-component` directive. By breaking an application into smaller components, the result is a highly decoupled and composable codebase. For more details, see [Composing ViewModels](/guide/composition.html).
+
 ## A Quick Example
 
 ``` html
