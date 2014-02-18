@@ -15,7 +15,9 @@ Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled 
 
 ### v-html
 
-Updates the element's `innerHTML`. Use with caution and avoid binding this to a user-supplied value.
+Updates the element's `innerHTML`.
+
+<p class="tip">Using `v-html` with user-supplied data can be dangerous. It is suggested that you only use `v-html` when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.</p>
 
 ### v-show
 
@@ -51,7 +53,9 @@ Updates the element's given attribute (indicated by the argument).
 <canvas v-attr="width:w, height:h"></canvas>
 ```
 
-Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives. One special case you might want to use this instead of interpolation is when setting the `src` attribute on `<img>` elements. If you use interpolation for `src` and the element is inserted into the DOM before being compiled, the browser will make a failed http request trying to fetch the image.
+Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives.
+
+<p class="tip">You should use `v-attr` instead of mustache binding when setting the `src` attribute on `<img>` elements. Your templates are parsed by the browser before being compiled by Vue.js, so the mustache binding will cause a 404 when the browser tries to fetch it as the image's URL.</p>
 
 ### v-style
 

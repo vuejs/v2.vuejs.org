@@ -73,7 +73,7 @@ Although it is convenient, there are a few things you need to be aware of:
 
 <p class="tip">Internet Explorer will remove invalid inline `style` attributes when parsing HTML, so always use `v-style` when binding inline CSS if you want to support IE.</p>
 
-<p class="tip">You can use triple mustaches &#123;&#123;&#123; like this &#125;&#125;&#125; for unescaped HTML, which translates to `v-html` internally. However, this can open up windows for potential XSS attacks, therefore it is suggested that you only use triple mustaches when you are absolutely sure that the data source is secure.</p>
+<p class="tip">You can use triple mustaches &#123;&#123;&#123; like this &#125;&#125;&#125; for unescaped HTML, which translates to `v-html` internally. However, this can open up windows for potential XSS attacks, therefore it is suggested that you only use triple mustaches when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.</p>
 
 ### Filters
 
