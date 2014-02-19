@@ -17,11 +17,11 @@ $header-height = 40px
     top 25px
     height $header-height
     line-height $header-height
+    .break
+        display none
     li
         display inline-block
-        margin-left 1.2em
-        &:first-child
-            margin-left 0 !important
+        margin 0 .6em
 .nav-link
     padding-bottom 3px
     &:hover, &.current
@@ -148,8 +148,18 @@ $header-height = 40px
     #nav
         position static
         margin-top .4em
+        height 55px
+        line-height 2.2em
+        .break
+            display inline-block
+    .nav-link
+        padding-bottom 1px
+        &:hover, &.current
+            border-bottom 2px solid $green
     #logo
         display block
+        img
+            margin-right 0
         span
             display none
     #main
