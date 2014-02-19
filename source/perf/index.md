@@ -7,6 +7,8 @@ title: Performance Comparisons
 
 > This is a benchmark found in the [webkit performance tests](https://github.com/WebKit/webkit/tree/master/PerformanceTests/DoYouEvenBench) based on the [TodoMVC](http://todomvc.com/) project. For each framework implementation, add 100 todos, toggle them one by one, then delete them one by one. In addition to the most popular MV* libraries, I also included [Om](https://github.com/swannodette/om) (a ClojureScript interface on top of React which boasts of performance) and [Ractive](http://www.ractivejs.org/) (very similar in terms of use case and API).
 
+> It is important to note that the original benchmark was written to compare the performance of different browsers, rather than that of the frameworks. The results of this benchmark only speak for this specific scenario and in no way reflect the user experience in a real product. You should take these numbers with a grain of salt.
+
 ### Compared libraries
 
 - Vue (v0.8.5)
@@ -23,8 +25,6 @@ title: Performance Comparisons
 10 runs average, faster is better. Data collected on an <span id="_machine"></span> with a <span id="_cpu"></span> Processor under <span id="_os"></span>.
 
 <ul id="benchmark-results"></ul>
-
-Please note these numbers only reflect one very specific use case and the outcome could be drastically different depending on implementation and interactions measured. However, this could at least provide some perspective in terms of general performance.
 
 You can run these benchmarks in your browser [here](/perf/todomvc-benchmark/).
 
