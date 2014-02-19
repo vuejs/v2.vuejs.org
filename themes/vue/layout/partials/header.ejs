@@ -8,5 +8,13 @@
         <li><a href="/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API Reference</a></li>
         <li><a href="/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Examples</a></li>
         <li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+        <li>
+        <div class="search">
+            <form action="//google.com/search" method="get" accept-charset="utf-8">
+                <input type="text" name="q" results="0" class="search-input" placeholder="Search...">
+                <input type="hidden" name="q" value="site:<%- config.url.replace(/^https?:\/\//, '') %>">
+            </form>
+        </div>
+        </li>
     </ul>
 </div>
