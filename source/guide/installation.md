@@ -51,6 +51,10 @@ $ bower install vue
 
 e.g. RequireJS, SeaJS: Built versions in `/dist` or installed via Bower is wrapped with UMD so it can be used directly as a CommonJS or AMD module.
 
+## Playground
+
+ Alternatively, if you prefer working with an online code editor [jsfiddle](http://jsfiddle.net/filipelinhares/2eAqE/).
+
 ## Ready?
 
 [Let's Get Started](/guide/).
