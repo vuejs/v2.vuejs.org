@@ -8,7 +8,7 @@
         <li><a href="/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API Reference</a></li>
         <br class="break" />
         <li><a href="/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Examples</a></li>
-        <li><a href="/blog/" class="nav-link<%- page.path.match(/blog/) ? ' current' : '' %>">Blog</a></li>
+        <li><a href="/blog/" class="nav-link<%- (page.path.match(/blog/) || is_post()) ? ' current' : '' %>">Blog</a></li>
         <li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
     </ul>
 </div>
