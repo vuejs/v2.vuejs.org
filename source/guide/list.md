@@ -46,11 +46,11 @@ var demo = new Vue({
 
 ## Arrays of Primitive Values
 
-For Arrays containing primitive values, you can access the value simply as `value`:
+For Arrays containing primitive values, you can access the value simply as `$value`:
 
 ``` html
 <ul id="tags">
-    <li v-repeat="tags">{&#123;value&#125;}</li>
+    <li v-repeat="tags">{&#123;$value&#125;}</li>
 </ul>
 ```
 
@@ -64,7 +64,7 @@ new Vue({
 ```
 
 **Result:**
-<ul id="tags" class="demo"><li v-repeat="tags">{&#123;value&#125;}</li></ul>
+<ul id="tags" class="demo"><li v-repeat="tags">{&#123;$value&#125;}</li></ul>
 <script>
 new Vue({
     el: '#tags',
