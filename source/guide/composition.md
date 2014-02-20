@@ -34,6 +34,29 @@ If you prefer, all registered components can also be used in the form of a custo
 <my-component></my-component>
 ```
 
+## Partials and {&#123;>yield&#125;}
+
+You can use partials in templates with {&#123;>partial-id&#125;}, but there is a special reserved partial ID: `yield`. Basically, the `yield` partial inside a template serves as a placeholder for the original, pre-compile content inside the element. This syntax allows components to be easily nested and composed while maintaining their custom markup. For example:
+
+Top level markup:
+
+``` html
+<div id="test" v-component="my-component">
+    <p>original content</p>
+</div>
+```
+
+Template for `my-component`:
+
+``` html
+<div class="wrapper">
+    <h1>This is my component!</h1>
+    {&#123;> yield&#125;}
+</div>
+```
+
+`#test`'s content will be replaced with the component's template, but the original content will be preserved and inserted into the `yield` position. It no `yield` outlet is found in the template, the original content will be wiped away.
+
 ## Encapsulating Private Assets
 
 Sometimes a component needs to use assets such as directives, filters and its own child components, but might want to keep these assets encapsulated so the component itself can be reused elsewhere. You can do that using the private assets instantiation options. Private assets will only be accessible by the instances of the owner component and its child components.
@@ -60,6 +83,16 @@ var MyComponent = Vue.extend({
         // ...
     }
 })
+```
+
+Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registeration methods:
+
+``` js
+MyComponent
+    .directive('...', {})
+    .filter('...', function () {})
+    .component('...', {})
+    // ...
 ```
 
 ## Data Inheritance

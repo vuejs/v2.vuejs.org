@@ -59,9 +59,13 @@ Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes 
 
 ### v-style
 
-- This directive requires exactly one argument.
+- This directive requires one optional argument.
 
-Apply inline CSS styles to the element. The argument is the CSS property to apply.
+Apply inline CSS styles to the element.
+
+When there is no argument, Vue.js will use the value to set `el.style.cssText`.
+
+When there is an argument, it will be used as the CSS property to apply. Combined with multiple clause you can set multiple properties together:
 
 **Example:**
 
@@ -162,6 +166,20 @@ Replace the element's innerHTML with a registered partial. You can also use this
 ``` html
 <div>&#123;&#123;> my-partial&#125;&#125;</div>
 ```
+
+### v-data
+
+Attach inline data to a child Component's `$data`. For example:
+
+``` html
+<component v-data="msg:hello, width:100, height:60"></component>
+```
+
+`msg`, `width` and `height` will be mixed into `vm.$data` during compilation. This is a literal directive and is intended for simple inline data only, similar to `data-` attributes. It does not accpet nested paths or expressions.
+
+All values will be treated as strings, except all-digit values will be converted to numbers. Because values are not wrapped in quotes, you'll have to escape commas, e.g. `\,`.
+
+For data with a nested structure, you should pass an object with `v-with` from the parent VM.
 
 ## Empty Directives
 

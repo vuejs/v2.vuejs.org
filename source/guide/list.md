@@ -147,6 +147,82 @@ demo.items.remove(function (item) {
 ```
 <p><a href="#demo" onclick="demoRemove()">Execute this</a></p>
 
+## Iterating Through An Object
+
+Starting in Vue.js v0.8.8, you can also use `v-repeat` to iterate through the properties of an Object. Each repeated instance will have a special property `$key`. For primitive values, you also get `$value` which is similar to primitive values in Arrays.
+
+``` html
+<ul id="repeat-object">
+    <li v-repeat="primitiveValues">{&#123;$key&#125;} : {&#123;$value&#125;}</li>
+    <li>===</li>
+    <li v-repeat="objectValues">{&#123;$key&#125;} : {&#123;msg&#125;}</li>
+</ul>
+```
+
+``` js
+new Vue({
+    el: '#repeat-object',
+    data: {
+        primitiveValues: {
+            FirstName: 'John',
+            LastName: 'Doe',
+            Age: 30
+        },
+        objectValues: {
+            one: {
+                msg: 'Hello'
+            },
+            two: {
+                msg: 'Bye'
+            }
+        }
+    }
+})
+```
+
+**Result:**
+<ul id="repeat-object" class="demo"><li v-repeat="primitiveValues">{&#123;$key&#125;} : {&#123;$value&#125;}</li><li>===</li><li v-repeat="objectValues">{&#123;$key&#125;} : {&#123;msg&#125;}</li></ul>
+<script>
+new Vue({
+    el: '#repeat-object',
+    data: {
+        primitiveValues: {
+            FirstName: 'John',
+            LastName: 'Doe',
+            Age: 30
+        },
+        objectValues: {
+            one: {
+                msg: 'Hello'
+            },
+            two: {
+                msg: 'Bye'
+            }
+        }
+    }
+})
+</script>
+
+### The `$repeater` Array
+
+Under the hood, Vue.js creates an Array representing the iterated Object. This Array can be accessed as `object.$repeater`. It is defined as a hidden property so it won't show up during serialization or `for (... in ...)` loops. Due to ES5's limitations, we cannot detect when new properties are added to an Object. So in order to add properties to an Object being iterated by `v-repeat`, you can push a new object into its `$repeater`:
+
+``` js
+// push a primitive value - a string
+object.$repeater.push({
+    $key: 'newPrimitiveProperty',
+    $value: 'a primitive value'
+})
+
+// push a normal object - make sure it contains `$key`
+object.$repeater.push({
+    $key: 'newObject',
+    msg: 'hi!'
+})
+```
+
+`newProp` will be added back to the Object with the provided value. Similarly, other mutating operations on the `$repeater` will sync back to the original Object. For example, executing `$repeater.pop()` will delete the popped element's `$key` in the original Object.
+
 Next up: [Listening for Events](/guide/events.html).
 
 <script>
