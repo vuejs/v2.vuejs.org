@@ -22,10 +22,17 @@ Vue.use(vueTouch)
 Vue.use('vue-touch')
 ```
 
+### Optional arguments
+
+```js
+// every additional argument will be passed to the plugin
+Vue.use('vue-touch', { moveTolerance: 12 })
+```
+
 ## Plugin Implementation
 
 ``` js
-exports.install = function (Vue) {
+exports.install = function (Vue, options) {
     // use Vue.require to access internal modules
     var utils = Vue.require('utils')
 }
