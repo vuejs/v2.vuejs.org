@@ -149,8 +149,9 @@ Vue.js batches view updates and execute them all asynchronously. It uses `reques
 
 Get access to Vue.js' internal modules. This is intended for plugin authors only.
 
-### Vue.use( plguin )
+### Vue.use( plugin, [args...] )
 
 - **plugin** `Object` or `Function`
+- **args...** *optional*
 
 Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](/guide/plugin.html).
