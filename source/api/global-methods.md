@@ -76,14 +76,14 @@ Here are the options with their default values:
 - **id** `String`
 - **definition** `Function` or `Object` *optional*
 
-Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/directives.html#Writing_a_Custom_Directive).
+Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/directives.html#writing-a-custom-directive).
 
 ### Vue.filter( id, definition )
 
 - **id** `String`
 - **definition** `Function` *optional*
 
-Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/filters.html#Writing_a_Custom_Filter).
+Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/filters.html#writing-a-custom-filter).
 
 ### Vue.component( id, definition )
 
