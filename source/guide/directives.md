@@ -56,15 +56,27 @@ You can create multiple bindings of the same directive in a single attribute, se
 </div>
 ```
 
-## Empty Directive
+## Literal Directives
 
-Some direcitves don't create data bindings - they simply do something to the element once and do not require a keypath or expression at all, for example the `v-pre` directive:
+Some direcitves don't create data bindings - they simply take the attribute value as a literal string. For example the `v-component` directive:
+
+``` html
+<div v-component="my-component"></div>
+```
+
+Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor. A full list of literal directives can be found in the [API reference](/api/directives.html#literal-directives).
+
+## Empty Directives
+
+Some direcitves don't even expect an attribute value - they simply do something to the element once and only once. For example the `v-pre` directive:
 
 ``` html
 <div v-pre>
     <!-- markup in here will not be compiled -->
 </div>
 ```
+
+A full list of empty directives can be found in the [API reference](/api/directives.html#empty-directives).
 
 ## Writing a Custom Directive
 
@@ -113,6 +125,7 @@ All the hook functions will be copied into the actual **directive object**, whic
 - **el**: the element the directive is bound to.
 - **key**: the keypath of the binding, excluding arguments and filters.
 - **arg**: the argument, if present.
+- **expression**: the raw, unparsed expression.
 - **vm**: the context ViewModel that owns this directive.
 - **value**: the current binding value.
 
@@ -169,5 +182,31 @@ var demo = new Vue({
 })
 </script>
 
-For more complicated examples, checkout `src/directives/` in the source code.
+### Creating Literal &amp; Empty Directives
+
+Since literal and empty directives do not create data bindings, they have no use for an `update()` function. So if you don't provide an `update()` function when you define a custom directive, it will be considered literal/empty and all data binding work will be skipped. The attribute value will still be parsed if present, so you can access `this.key`, `this.arg` or `this.expression` as needed.
+
+### Creating a Function Directive
+
+Vue.js encourages the developer to separate data from behavior, so instance methods are expected to be contained in the `methods` option and not inside data objects. As a result, functions inside data objects are ignored and normal directives will not be able to bind to them.
+
+To gain access to functions inside `methods` in your custom directive, you need to pass in the `isFn` option:
+
+``` js
+Vue.directive('my-handler', {
+    isFn: true, // important!
+    bind: function () {
+        // ...
+    },
+    update: function (handler) {
+        // the passed in value is a function
+    },
+    unbind: function () {
+        // ...
+    }
+})
+```
+
+Passing in `isFn:true` also enables your custom directive to accept inline expressions like `v-on` does. For more comprehensive examples, checkout `src/directives/` in the source code.
+
 Next: [Filters in Depth](/guide/filters.html).

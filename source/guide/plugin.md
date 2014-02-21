@@ -22,6 +22,8 @@ Vue.use(vueTouch)
 Vue.use('vue-touch')
 ```
 
+<p class="tip">The shorthand only works in Component, not in Browserify! Browserify uses static parsing to extract dependencies and cannot handle dynamic `require()`.</p>
+
 ### Optional arguments
 
 ```js
