@@ -12,7 +12,13 @@ order: 12
 ``` js
 // assuming using a CommonJS build system
 var vueTouch = require('vue-touch')
+// use the plugin globally
 Vue.use(vueTouch)
+
+// Extended components can use plugins too!
+var awesomePlugin = require('vue-awesome'),
+    MyComponent = Vue.extend({})
+MyComponent.use(awesomePlugin)
 ```
 
 ### Shorthand equivalent
@@ -32,6 +38,8 @@ Vue.use('vue-touch', { moveTolerance: 12 })
 ```
 
 ## Plugin Implementation
+
+Note that the passed in `Vue` constructor could be an extended Component constructor. Assume that only `Vue.require()` and asset registration methods are available. Do not use `Vue.config()` inside plugins.
 
 ``` js
 exports.install = function (Vue, options) {

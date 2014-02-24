@@ -36,7 +36,7 @@ If you prefer, all registered components can also be used in the form of a custo
 
 ## Partials and {&#123;>yield&#125;}
 
-You can use partials in templates with {&#123;>partial-id&#125;}, but there is a special reserved partial ID: `yield`. Basically, the `yield` partial inside a template serves as a insertion point for the original, pre-compile content inside the element. This syntax allows components to be easily nested and composed while maintaining their custom markup. For example:
+You can use partials in templates with {&#123;>partial-id&#125;}, which inserts the partial registered via `Vue.partial('partial-id', '...')`. But there is a special reserved partial ID: `yield`. Basically, the `yield` partial inside a template serves as a insertion point for the original, pre-compile content inside the element. This syntax allows components to be easily nested and composed while maintaining their custom markup. For example:
 
 Top level markup:
 

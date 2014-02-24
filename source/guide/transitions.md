@@ -3,7 +3,9 @@ type: guide
 order: 9
 ---
 
-You can add transition effects when elements are inserted into or removed from the DOM using the `v-transition` directive. There are two types of transitions: CSS-based and JavaScript-based. All Vue.js transitions are triggered only if the DOM manipulation was applied by Vue.js, either through built-in directives, e.g. `v-if`, or through ViewModel instance methods, e.g. `vm.$appendTo()`.
+With Vue.js' transition hooks you can apply automatic transition effects when elements are inserted into or removed from the DOM. There are three options to implement transitions with Vue.js: CSS transitions, CSS animations, and JavaScript functions.
+
+<p class="tip">All Vue.js transitions are triggered only if the DOM manipulation was applied by Vue.js, either through built-in directives, e.g. `v-if`, or through ViewModel instance methods, e.g. `vm.$appendTo()`.</p>
 
 ## CSS Transitions
 
@@ -49,10 +51,10 @@ You will also need to provide CSS rules for `v-enter` and `v-leave` classes (the
 </style>
 
 <script>
-    var demo = new Vue({
-        el: '#demo',
-        data: { show: true }
-    })
+new Vue({
+    el: '#demo',
+    data: { show: true }
+})
 </script>
 
 Now when the `show` property changes, Vue.js will insert or remove the `<p>` element accordingly, and apply transition classes as specified below:
@@ -70,25 +72,142 @@ Now when the `show` property changes, Vue.js will insert or remove the `<p>` ele
 
 <p class="tip">It is important to ensure that the target element's CSS transition rules are properly set and it will fire a `transitionend` event. Otherwise Vue.js will not be able to determine when the transition is finished.</p>
 
-## JavaScript Transitions
+## CSS Animations
 
-Vue.js provides a way to call arbitrary JavaScript functions during element insertion/removal. To do that you first need to register your transition functions:
+CSS animations are applied in a similar fashion with transitions, but using the `v-animation` directive. The difference is that `v-enter` is not removed immediately after the element is inserted, but on an `animationend` callback.
+
+**Example:** (omitting prefixed CSS rules here)
+
+``` html
+<p class="animated" v-if="show" v-animation>Look at me!</p>
+```
+
+``` css
+.animated {
+    display: inline-block;
+}
+
+.animated.v-enter {
+    animation: fadein .5s;
+}
+
+.animated.v-leave {
+    animation: fadeout .5s;
+}
+
+@keyframes fadein {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+```
+
+<div id="anim" class="demo"><span class="animated" v-if="show" v-animation>Look at me!</span><br><button v-on="click: show = !show">Toggle</button></div>
+
+<style>
+    .animated {
+        display: inline-block;
+    }
+    .animated.v-enter {
+        -webkit-animation: fadein .5s;
+        animation: fadein .5s;
+    }
+    .animated.v-leave {
+        -webkit-animation: fadeout .5s;
+        animation: fadeout .5s;
+    }
+    @keyframes fadein {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    @keyframes fadeout {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(0);
+        }
+    }
+    @-webkit-keyframes fadein {
+        0% {
+            -webkit-transform: scale(0);
+        }
+        50% {
+            -webkit-transform: scale(1.5);
+        }
+        100% {
+            -webkit-transform: scale(1);
+        }
+    }
+    @-webkit-keyframes fadeout {
+        0% {
+            -webkit-transform: scale(1);
+        }
+        50% {
+            -webkit-transform: scale(1.5);
+        }
+        100% {
+            -webkit-transform: scale(0);
+        }
+    }
+</style>
+
+<script>
+new Vue({
+    el: '#anim',
+    data: { show: true }
+})
+</script>
+
+## JavaScript Functions
+
+Vue.js provides a way to call arbitrary JavaScript functions during element insertion/removal. To do that you first need to register your effect functions:
 
 ``` js
-Vue.transition('my-transition', {
-    enter: function (el, insert) {
+Vue.effect('my-effect', {
+    enter: function (el, insert, timeout) {
         // insert() will actually insert the element
     },
-    leave: function (el, remove) {
+    leave: function (el, remove, timeout) {
         // remove() will actually remove the element
     }
 })
 ```
 
-Then you can use it by providing the transition id to `v-transition`:
+The third argument, `timeout`, is a wrapped version of `setTimeout`. You should use it in place of `setTimeout` so that when an effect is cancelled, its associated timers can be cleared.
+
+Then you can use it by providing the effect id to `v-effect`:
 
 ``` html
-<p v-transition="my-transition"></p>
+<p v-effect="my-effect"></p>
 ```
 
 Next: [Composing ViewModels](/guide/composition.html).

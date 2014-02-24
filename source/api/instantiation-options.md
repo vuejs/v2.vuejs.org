@@ -83,6 +83,29 @@ vm.aplus = 3
 vm.a // 2
 ```
 
+### paramAttributes
+
+- **Type:** `Array`
+
+An array of attribute names to be set on the VM as initial data.
+
+**Example:**
+
+``` html
+<div id="test" size="100" message="hello!"></div>
+```
+
+``` js
+new Vue({
+    el: '#test',
+    paramAttributes: ['size', 'message'],
+    created: function () {
+        console.log(this.size) // 100
+        console.log(this.message) // 'hello!'
+    }
+})
+```
+
 ## DOM Element
 
 ### el

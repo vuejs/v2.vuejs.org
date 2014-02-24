@@ -92,12 +92,12 @@ Register or retrieve a global custom filter. For more details see [Writing Custo
 
 Register or retrieve a global component. For more details see [Composing ViewModels](/guide/composition.html).
 
-### Vue.transition( id, definition )
+### Vue.effect( id, definition )
 
 - **id** `String`
 - **definition** `Object` *optional*
 
-Register or retrieve a global transition definition. For more details see [Adding Transition Effects](/guide/transitions.html).
+Register or retrieve a global JavaScript transition effect definition. For more details see [Adding Transition Effects](/guide/transitions.html#javascript-functions).
 
 ### Vue.partial( id, definition )
 
@@ -147,7 +147,12 @@ Vue.js batches view updates and execute them all asynchronously. It uses `reques
 
 - **module** `String`
 
-Get access to Vue.js' internal modules. This is intended for plugin authors only.
+Get access to Vue.js' internal modules. This is intended for plugin authors and only the following modules are exposed:
+
+- `utils`
+- `config`
+- `transition`
+- `observer`.
 
 ### Vue.use( plugin, [args...] )
 

@@ -149,41 +149,35 @@ Compile this element as a child ViewModel with a registered component constructo
 
 Only respected when used in combination with `v-component`, `v-with` or `v-repeat`. The ViewModel will be accessible in its parent's `$` object, e.g. `parent.$[id]`. When used with `v-repeat`, the value will be an Array containing the child ViewModel instances corresponding to the Array they are bound to. For examples see [Accessing Child Components](/guide/composition.html#accessing-child-components).
 
-### v-transition
-
-When no value is provided, Vue.js will apply CSS transition classes to this element when adding / removing this element to / from the DOM.
-
-When an id is provided, Vue.js will execute the registered enter / leave functions before the DOM operations take place.
-
-Transitions are applied when certain transition-triggering directives modifies the element, or when the ViewModel's DOM manipulation methods are called.
-
-For details, see [Adding Transition Effects](/guide/transitions.html).
-
 ### v-partial
 
-Replace the element's innerHTML with a registered partial. You can also use this syntax:
+Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option. You can also use this syntax:
 
 ``` html
 <div>&#123;&#123;> my-partial&#125;&#125;</div>
 ```
 
-### v-data
+### v-effect
 
-Attach inline data to a child Component's `$data`. For example:
+Apply a registered JavaScript effect to the element. JavaScript effects can be registered with `Vue.effect()` or passed inside the `effects` option.
 
-``` html
-<component v-data="msg:hello, width:100, height:60"></component>
-```
-
-`msg`, `width` and `height` will be mixed into `vm.$data` during compilation. This is a literal directive and is intended for simple inline data only, similar to `data-` attributes. It does not accpet nested paths or expressions.
-
-All values will be treated as strings, except all-digit values will be converted to numbers. Because values are not wrapped in quotes, you'll have to escape commas, e.g. `\,`.
-
-For data with a nested structure, you should pass an object with `v-with` from the parent VM.
+For details, see [the guide](/guide/transitions.html#javascript-functions).
 
 ## Empty Directives
 
 > Empty directives do not require and will ignore their attribute value.
+
+### v-transition
+
+Notify Vue.js to apply transition CSS classes to this element. The transition classes are applied when certain transition-triggering directives modifies the element, or when the ViewModel's DOM manipulation methods are called.
+
+For details, see [the guide](/guide/transitions.html#css-transitions).
+
+## v-animation
+
+Notify Vue.js to apply animation CSS classes to this element. The order of CSS class application is different from `v-transition`.
+
+For details, see [the guide](/guide/transitions.html#css-animations).
 
 ### v-pre
 

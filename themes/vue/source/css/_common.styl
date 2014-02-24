@@ -76,7 +76,7 @@ a.button
             padding-left .5em
             border-top-right-radius $radius
             border-bottom-right-radius $radius
-    &[class*="lang-"]
+    &.html, &.js, &.bash, &.css
         .code:after
             position absolute
             top 0
@@ -90,13 +90,13 @@ a.button
             border-top-right-radius $radius
             border-top-left-radius $radius
             font-weight 600
-    &.lang-html .code:after
+    &.html .code:after
         content 'HTML'
-    &.lang-js .code:after
+    &.js .code:after
         content 'JS'
-    &.lang-bash .code:after
+    &.bash .code:after
         content 'Shell'
-    &.lang-css .code:after
+    &.css .code:after
         content 'CSS'
 
 #main
