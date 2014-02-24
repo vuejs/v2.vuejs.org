@@ -55,7 +55,7 @@ Template for `my-component`:
 </div>
 ```
 
-When the component element is compiled, its content will be replaced with the component's template, but the original content will be preserved and inserted into the `yield` position. It no `yield` outlet is found in the template, the original content will be wiped away.
+When the component element is compiled, its content will be replaced with the component's template, but the original content will be preserved and inserted into the `yield` position. If no `yield` outlet is found in the template, the original content will be wiped away.
 
 ## Encapsulating Private Assets
 
