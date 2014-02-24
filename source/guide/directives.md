@@ -58,7 +58,7 @@ You can create multiple bindings of the same directive in a single attribute, se
 
 ## Literal Directives
 
-Some direcitves don't create data bindings - they simply take the attribute value as a literal string. For example the `v-component` directive:
+Some directives don't create data bindings - they simply take the attribute value as a literal string. For example the `v-component` directive:
 
 ``` html
 <div v-component="my-component"></div>
@@ -68,7 +68,7 @@ Here `"my-component"` is not a data property - it's a string ID that Vue.js uses
 
 ## Empty Directives
 
-Some direcitves don't even expect an attribute value - they simply do something to the element once and only once. For example the `v-pre` directive:
+Some directives don't even expect an attribute value - they simply do something to the element once and only once. For example the `v-pre` directive:
 
 ``` html
 <div v-pre>
