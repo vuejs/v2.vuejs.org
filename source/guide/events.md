@@ -79,6 +79,6 @@ You might be concerned about this whole event listening approach violates the go
 1. It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
 2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
 3. When a ViewModel is destroyed, all event listeners are automatically removed.
-4. When `v-on` is used in conjunction with `v-repeat`, Vue.js will automatically use event delegation instead of attaching a listner on every repeated instance.
+4. Vue.js automatically uses event delegation on each VM's root element instead of attaching a listner on every Node. Listeners on `v-repeat` instances are delegated together on their parent ViewModel.
 
 Next up: [Handling Forms](/guide/forms.html).
