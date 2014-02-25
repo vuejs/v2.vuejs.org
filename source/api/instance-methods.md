@@ -5,6 +5,8 @@ order: 4
 
 ## Data Changes
 
+> You can observe data changes on a ViewModel. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.
+
 ### vm.$watch( keypath, callback )
 
 - **keypath** `String`
