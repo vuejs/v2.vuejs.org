@@ -173,7 +173,7 @@ Notify Vue.js to apply transition CSS classes to this element. The transition cl
 
 For details, see [the guide](/guide/transitions.html#css-transitions).
 
-## v-animation
+### v-animation
 
 Notify Vue.js to apply animation CSS classes to this element. The order of CSS class application is different from `v-transition`.
 
