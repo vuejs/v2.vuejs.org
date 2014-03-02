@@ -233,7 +233,20 @@ A hash of partials to be made available to the ViewModel. Also see [v-partial](/
 
 A hash of transitions to be made available to the ViewModel. For details see [Adding Transition Effects](/guide/transitions.html).
 
-## Misc
+## Others
+
+### parent
+
+- **Type:** `ViewModel`
+
+A parent ViewModel instance. Passing in this option establishes a parent-child relationship between the newly created instance and the parent instance. This enables the same benefits with `v-component` style composition:
+
+1. The child can bind to data from the parent's scope in its template;
+2. The child can access the parent as `this.$parent`;
+3. The parent and child can communicate using the [Event Communication Methods](/api/instance-methods.html#cross-viewmodel-events).
+4. When the parent is destroyed, the child will be destroyed too.
+
+This option is useful when you need to manually manage the lifecycle of nested ViewModels for better memory control.
 
 ### lazy
 

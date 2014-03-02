@@ -90,10 +90,11 @@ You can register a global custom directive with the `Vue.directive()` method, pa
 
 ``` js
 Vue.directive('my-directive', {
-    bind: function () {
+    bind: function (value) {
         // do preparation work
         // e.g. add event listeners or expensive stuff
         // that needs to be run only once
+        // `value` is the initial value
     },
     update: function (value) {
         // do something based on the updated value
@@ -184,7 +185,22 @@ var demo = new Vue({
 
 ### Creating Literal &amp; Empty Directives
 
-Since literal and empty directives do not create data bindings, they have no use for an `update()` function. So if you don't provide an `update()` function when you define a custom directive, it will be considered literal/empty and all data binding work will be skipped. The attribute value will still be parsed if present, so you can access `this.key`, `this.arg` or `this.expression` as needed.
+If you pass in `isLiteral: true` or `isEmpty: true` when creating a custom directive, all data-binding work will be skipped for that directive, and only `bind()` and `unbind()` will be called. In literal directives the expression will still be parsed, so you can still access information such as `this.expression`, `this.key` and `this.arg`. For empty directives, Vue.js will never parse the expression even if it exists.
+
+Example:
+
+``` html
+<div v-literal-dir="foo"></div>
+```
+
+``` js
+Vue.directive('literal-dir', {
+    isLiteral: true,
+    bind: function () {
+        console.log(this.expression) // 'foo'
+    }
+})
+```
 
 ### Creating a Function Directive
 

@@ -57,6 +57,8 @@ Template for `my-component`:
 
 When the component element is compiled, its content will be replaced with the component's template, but the original content will be preserved and inserted into the `yield` position. If no `yield` outlet is found in the template, the original content will be wiped away.
 
+<p class="tip">If needed, you can get access to the original content DocumentFragment in the component's `created` hook as a `this.$compiler.rawContent`.</p>
+
 ## Encapsulating Private Assets
 
 Sometimes a component needs to use assets such as directives, filters and its own child components, but might want to keep these assets encapsulated so the component itself can be reused elsewhere. You can do that using the private assets instantiation options. Private assets will only be accessible by the instances of the owner component and its child components.
@@ -97,9 +99,9 @@ MyComponent
 
 ## Data Inheritance
 
-### Inheriting Objects with `v-with`
+### Inheriting Objects from Parent as `$data`
 
-A child component can inherit Objects in its parent's data by combining `v-component` with `v-with`:
+A child component can inherit data from its parent's data by combining `v-component` with `v-with`. When given a single keypath without an argument, the child Component will use that value as its `$data` (hence that value must be an Object):
 
 ``` html
 <div id="demo-1">
@@ -142,6 +144,52 @@ var parent = new Vue({
         }
     })
 </script>
+
+### Inheriting Properties from Parent
+
+When `v-with` is given an argument, it will create a property on the child Component's `$data` using the argument as the key. That property will be kept in sync with the bound value on the parent:
+
+``` html
+<div id="parent">
+    <p>{&#123;parentMsg&#125;}</p>
+    <p v-component="child" v-with="childMsg : parentMsg">
+        <!-- essentially means "bind `parentMsg` on me as `childMsg`" -->
+    </p>
+</div>
+```
+
+``` js
+new Vue({
+    el: '#parent',
+    data: {
+        parentMsg: 'Shared message'
+    },
+    components: {
+        child: {
+            template: '<input v-model="childMsg">'
+        }
+    }
+})
+```
+
+**Result:**
+
+<div id="parent" class="demo"><p>{&#123;parentMsg&#125;}</p><p v-component="child" v-with="childMsg : parentMsg"></p></div>
+<script>
+new Vue({
+    el: '#parent',
+    data: {
+        parentMsg: 'Shared message'
+    },
+    components: {
+        child: {
+            template: '<input v-model="childMsg">'
+        }
+    }
+})
+</script>
+
+<p class="tip">Using `v-with` alone will also create a child ViewModel instance using the default `Vue` constructor.</p>
 
 ### Inheriting Array Elements with `v-repeat`
 

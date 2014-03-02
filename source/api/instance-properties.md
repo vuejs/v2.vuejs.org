@@ -16,6 +16,21 @@ The DOM element that the ViewModel is managing.
 
 The data object that the ViewModel is observing. You can swap it with a new object. The ViewModel proxies access to the properties on its data object.
 
+### vm.$options
+
+- **Type:** `Object`
+
+The instantiation options used for the current ViewModel. This is useful when you want to include custom properties in the options:
+
+``` js
+new Vue({
+    customOption: 'foo',
+    created: function () {
+        console.log(this.$options.customOption) // 'foo'
+    }
+})
+```
+
 ### vm.$
 
 - **Type:** `Object`

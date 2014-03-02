@@ -54,20 +54,27 @@ Vue.config({
 }) 
 ```
 
-Here are the options with their default values:
+Here are all the options with their default values:
 
 ```js
 {
     // prefix for directives
     prefix: 'v',
+
     // log debug info
     debug: false,
-    // supress warnings
+
+    // suppress warnings
     silent: false,
-    // CSS class attached when entering view
+
+    // CSS class attached for entering transition
     enterClass: 'v-enter',
-    // CSS class attached when leaving view
-    leaveClass: 'v-leave'
+
+    // CSS class attached for leaving transition
+    leaveClass: 'v-leave',
+
+    // Interpolate mustache bindings
+    interpolate: true
 }
 ```
 
