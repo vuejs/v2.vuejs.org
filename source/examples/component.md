@@ -1,6 +1,6 @@
 title: Project Boilerplate
 type: examples
-order: 5
+order: 6
 ---
 
 <img style="width:100%;max-width:737px" src="/images/component-example.png">
