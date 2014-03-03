@@ -113,14 +113,14 @@ Conditionally insert / remove the element based on the truthy-ness of the bindin
 
 ### v-with
 
-- This directive requires the value to be an Object or falsy.
-- You cannot use expressions with this directive.
+- This directive accepts only keypaths, no expressions.
 
-Compile this element as a child ViewModel, using the binding value as the `data` option. Inside the template you can directly access properties on the binding value. This can be used in combination with `v-component`.
+Compile this element as a child ViewModel, inheriting data from the parent. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive can be used in combination with `v-component`.
 
-Suppose our data looks like this:
+Example inheriting an object:
 
 ``` js
+// parent data looks like this
 {
     user: {
         name: 'Foo Bar',
@@ -129,11 +129,19 @@ Suppose our data looks like this:
 }
 ```
 
-You can simplify the template like this:
-
 ``` html
 <div v-with="user">
+    <!-- you can access properties without `user.` -->
     {&#123;name&#125;} {&#123;email&#125;}
+</div>
+```
+
+Example inehriting individual properties (using the same data):
+
+``` 
+<div v-with="myName : user.name, myEmail: user.email">
+    <!-- you can access properties with the new keys -->
+    {&#123;myName&#125;} {&#123;myEmail&#125;}
 </div>
 ```
 
