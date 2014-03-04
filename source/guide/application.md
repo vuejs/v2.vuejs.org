@@ -35,4 +35,53 @@ All Vue.js ViewModels and their raw `$data` can be serialized with `JSON.stringi
 
 By using Component, Vue.js entities (ViewModel constructors, directives, filters) within a large project can be split into separate CommonJS modules. When a Component-based project is built without the `standalone` flag, it will expose its `require()` method, granting access to all these internal modules. This makes it quite easy to write browser unit tests - just include the test build and require the module you want to test.
 
+The best practice is to export raw options / functions inside modules. Consider this example:
+
+``` js
+// my-component.js
+module.exports = {
+    created: function () {
+        this.message = 'hello!'
+    }
+}
+```
+
+You can use that file in your entry module like this:
+
+``` js
+// main.js
+var Vue = require('vue')
+
+var app = new Vue({
+    el: '#app',
+    data: { /* ... */ },
+    components: {
+        'my-component': require('./my-component')
+    }
+})
+```
+
+And you can test that module like this:
+
+``` js
+// Some Mocha tests
+// using a non-standalone build of the project
+describe('my-component', function () {
+    
+    // require exposed internal module
+    var myComponent = require('my-project/src/my-component')
+
+    it('should have a created hook', function () {
+        assert.equal(typeof myComponent.created, 'function')
+    })
+
+    it('should set message in the created hook', function () {
+        var mock = {}
+        myComponent.created.call(mock)
+        assert.equal(mock.message, 'hello!')
+    })
+
+})
+```
+
 <p class="tip">Since Vue.js bindings update asynchronously, you should use `Vue.nextTick()` when asserting DOM updates after changing the data.</p>
