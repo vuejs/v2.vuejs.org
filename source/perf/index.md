@@ -3,11 +3,11 @@ title: Performance Comparisons
 
 ## TodoMVC Benchmark
 
-> *Last Updated: 2014-03-02*
+> *Last Updated: 2014-03-04*
 
 > This is a benchmark found in the [webkit performance tests](https://github.com/WebKit/webkit/tree/master/PerformanceTests/DoYouEvenBench) based on the [TodoMVC](http://todomvc.com/) project. For each framework implementation, add 100 todos, toggle them one by one, then delete them one by one. In addition to the most popular MV* libraries, I also included [Om](https://github.com/swannodette/om) (a ClojureScript interface on top of React which boasts of performance) and [Ractive](http://www.ractivejs.org/) (very similar in terms of use case and API).
 
-> It is important to note that the original benchmark was written to compare the performance of different browsers, rather than that of the frameworks. The results of this benchmark only speak for this specific scenario and in no way reflect the user experience in a real product. You should take these numbers with a grain of salt.
+> **Disclaimer**: the original benchmark was written to compare the performance of different browsers rather than that of the frameworks. The results here are merely for technical reference and do not reflect the user experience in real products.
 
 ### Compared libraries
 
@@ -26,7 +26,7 @@ title: Performance Comparisons
 
 <ul id="benchmark-results"></ul>
 
-You can run these benchmarks in your browser [here](/perf/todomvc-benchmark/).
+You can run these benchmarks in your browser [here](/perf/todomvc-benchmark/). You can also check out the source [here](https://github.com/vuejs/vuejs.org/tree/master/perf/todomvc-benchmark).
 
 <script src="/js/benchmark.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/benchmark.css">
