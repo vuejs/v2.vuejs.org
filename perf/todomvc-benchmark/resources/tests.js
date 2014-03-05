@@ -73,7 +73,7 @@ Suites.push({
 Suites.push({
     name: 'Knockout',
     url: 'todomvc/architecture-examples/knockoutjs/index.html',
-    version: '3.0.0',
+    version: '3.1.0',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
             element.focus();
@@ -107,7 +107,7 @@ Suites.push({
 Suites.push({
     name: 'Ember',
     url: 'todomvc/architecture-examples/emberjs/index.html',
-    version: '1.4.0 prod + Handlebars 1.3.0',
+    version: '1.4.0 + Handlebars 1.3.0',
     prepare: function (runner, contentWindow, contentDocument) {
         contentWindow.Todos.Store = contentWindow.DS.Store.extend({
             revision: 12,

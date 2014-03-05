@@ -17,6 +17,7 @@ nav { position: absolute; right: 10px; }
 <script>
 
 var runs = [],
+    res = document.getElementById('results'),
     runButton
 
 function formatTestName(suiteName, testName) {
@@ -109,9 +110,7 @@ function startTest() {
             if (!results)
                 return;
 
-            var pre = document.createElement('pre');
-            document.body.appendChild(pre);
-            pre.textContent = results;
+            console.log(results)
 
             runs.push(measuredValues)
             if (runs.length >= timesToRun) {
@@ -149,7 +148,11 @@ function startTest() {
         for (var key in results) {
             results[key] /= timesToRun
         }
-        console.log(JSON.stringify(results, null, 4))
+        var res = JSON.stringify(results, null, 4),
+            pre = document.createElement('pre')
+        pre.textContent = runs.length + ' runs average:\n' + res + '\n'
+            + 'See console output for more details.'
+        document.body.appendChild(pre)
     }
 }
 
