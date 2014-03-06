@@ -6,7 +6,7 @@ order: 1
 The `Vue` Class is the core of vue.js. It is a constructor that allows you to create ViewModel instances. Creating a ViewModel instance is straightforward:
 
 ``` js
-var vm = new Vue(options)
+var vm = new Vue({ /* options */ })
 ```
 
 When you instantiate a ViewModel instance, it compiles the DOM element it is assigned to and creates data bindings that keep the DOM and the data in sync. It takes an option object that can include options about the DOM element, data object, mixin methods, lifecycle hooks and more. See the full list of [Instantitation Options](/api/instantiation-options.html).

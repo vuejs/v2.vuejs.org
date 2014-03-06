@@ -22,7 +22,7 @@ Even if you are already familiar with some of these terms, it is recommended tha
 An object that syncs the Model and the View. In Vue.js, ViewModels are instantiated with the `Vue` constructor or its sub-classes:
 
 ```js
-var vm = new Vue(options)
+var vm = new Vue({ /* options */ })
 ```
 
 This is the primary object that you will be interacting with as a developer when using Vue.js. For more details see [Class: Vue](/api/).
