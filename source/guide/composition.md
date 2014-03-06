@@ -1,11 +1,11 @@
-title: Composing ViewModels
+title: Composing Components
 type: guide
 order: 10
 ---
 
 ## Registering a Component
 
-Vue.js allows you to treat registered ViewModel constructors as reusable components. To register a component, use the global `Vue.component()` method:
+Vue.js allows you to treat registered ViewModel constructors as reusable components that is conceptually similar to [Web Components](http://www.w3.org/TR/components-intro/), without requiring any polyfills. To register a component, use the global `Vue.component()` method:
 
 ``` js
 var MyComponent = Vue.extend({
@@ -28,11 +28,13 @@ Then you can use it in a parent ViewModel's template:
 <div v-component="my-component"></div>
 ```
 
-If you prefer, all registered components can also be used in the form of a custom element tag:
+If you prefer, components can also be used in the form of a custom element tag:
 
 ``` html
 <my-component></my-component>
 ```
+
+<p class="tip">To avoid naming collisions with native elements and stay consistent with the W3C Custom Elements specification, the component's ID **must** contain a hyphen `-` to be usable as a custom tag.</p>
 
 ## Partials and {&#123;>yield&#125;}
 

@@ -147,7 +147,7 @@ Example inehriting individual properties (using the same data):
 
 ## Literal Directives
 
-> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once.
+> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaludated only once on first compile and do not react to data changes.
 
 ### v-component
 
@@ -159,7 +159,7 @@ Only respected when used in combination with `v-component`, `v-with` or `v-repea
 
 ### v-partial
 
-Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option. You can also use this syntax:
+Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option. You can also use this syntax (which doesn't support expressions):
 
 ``` html
 <div>&#123;&#123;> my-partial&#125;&#125;</div>

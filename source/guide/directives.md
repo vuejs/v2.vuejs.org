@@ -64,7 +64,17 @@ Some directives don't create data bindings - they simply take the attribute valu
 <div v-component="my-component"></div>
 ```
 
-Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor. A full list of literal directives can be found in the [API reference](/api/directives.html#literal-directives).
+Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor.
+
+Since Vue.js 0.9.4, you can also use mustache expressions inside literal directives. This allows you to dynamically resolve the type of component you want to use:
+
+``` html
+<div v-component="{&#123; isOwner ? 'owner-panel' : 'guest-panel' &#125;}"></div>
+```
+
+<p class="tip">Mustache expressions inside literal directives are evaluated only once. After the directive has been compiled, it will no longer react to value changes.</p>
+
+A full list of literal directives can be found in the [API reference](/api/directives.html#literal-directives).
 
 ## Empty Directives
 

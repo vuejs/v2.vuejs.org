@@ -3,7 +3,7 @@ type: api
 order: 4
 ---
 
-## Data Changes
+## Data
 
 > You can observe data changes on a ViewModel. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.
 
@@ -20,6 +20,19 @@ Watch a keypath on the vm's data object for changes and call the callback with t
 - **callback** `Function` *optional*
 
 Stop watching the given keypath. If a callback is given only that callback gets unwatched.
+
+### vm.$get( keypath )
+
+- **keypath** `String`
+
+Retrieve a data value from the vm given a keypath. Non-existent paths always return `undefined`.
+
+### vm.$set( keypath, value )
+
+- **keypath** `String`
+- **value** `*`
+
+Set a data value on the vm given a keypath. If the path doesn't exist it will be created.
 
 ## Cross-ViewModel Events
 
