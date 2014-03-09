@@ -36,6 +36,10 @@ If you prefer, components can also be used in the form of a custom element tag:
 
 <p class="tip">To avoid naming collisions with native elements and stay consistent with the W3C Custom Elements specification, the component's ID **must** contain a hyphen `-` to be usable as a custom tag.</p>
 
+It is important to understand the difference between `Vue.extend()` and `Vue.component()`. Since `Vue` itself is a constructor, `Vue.extend()` is a **class inheritance method**. Its task is to create a sub-class of `Vue` and return the constructor. `Vue.component()`, on the other hand, is an **asset registration method** similar to `Vue.directive()` and `Vue.filter()`. Its task is to associate a given constructor with a string ID so Vue.js can pick it up in templates. When directly passing in options to `Vue.component()`, it calls `Vue.extend()` under the hood.
+
+Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Both are useful in its own right and Vue.js tries to provide both for maximum flexibility.
+
 ## Partials and {&#123;>yield&#125;}
 
 You can use partials in templates with {&#123;>partial-id&#125;}, which inserts the partial registered via `Vue.partial('partial-id', '...')`. But there is a special reserved partial ID: `yield`. Basically, the `yield` partial inside a template serves as a insertion point for the original, pre-compile content inside the element. This syntax allows components to be easily nested and composed while maintaining their custom markup. For example:
@@ -80,10 +84,10 @@ var MyComponent = Vue.extend({
     components: {
         // ...
     },
-    transitions: {
+    partials: {
         // ...
     },
-    partials: {
+    effects: {
         // ...
     }
 })

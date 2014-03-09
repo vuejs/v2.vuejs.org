@@ -23,9 +23,31 @@ Similar modularization can be achieved in Browserify too, with transform plugins
 
 ## Routing
 
-You can implement some rudimentary routing logic by manually updating a state object on hashchange. An example can be found [here](https://github.com/yyx990803/vue/blob/master/test/functional/fixtures/routing.html).
+You can implement some rudimentary routing logic by manually listening on hashchange and utilizing the `v-view` direcitve. The `v-view` directive is essentially a dynamic component loader: it binds to a string value and creates a new VM instance using that string as the Component ID (and destroys the old VM if it exists). Example:
 
-It is also possible to implement something more robust with the help of routing components such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director). There is plan to provide a vue-router component that integrates with Vue.js for easier routing and deep linking.
+``` html
+<div id="app">
+    <div v-view="currentView"></div>
+</div>
+```
+
+``` js
+Vue.component('home', { /* ... */ })
+Vue.component('page1', { /* ... */ })
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        currentView: 'home'
+    }
+})
+```
+
+The `home` component will be rendered in place of `v-view`. When `currentView`'s value changes to `page1`, the existing `home` component will be destroyed and replaced by the new `page1` component. The full, more detailed example can be found [here](https://github.com/yyx990803/vue/blob/master/test/functional/fixtures/routing.html).
+
+<p class="tip">`v-view` will replace the element it's bound to with the new instantiated VM's element, so avoid using it on your root element.</p>
+
+With `v-view` it's very easy to leverage standalone routing libraries such as [Page.js](https://github.com/visionmedia/page.js) and [Director](https://github.com/flatiron/director). There is plan to provide a vue-router component that integrates with Vue.js for easier routing and deep linking.
 
 ## Communication with Server
 

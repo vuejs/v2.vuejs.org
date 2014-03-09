@@ -85,13 +85,6 @@ When the argument is prefixed with `$`, Vue.js will automatically apply prefixed
 
 <p class="tip">It is recommended to use `v-style` instead of mustache bindings inside `style` attribute because Internet Explorer, regardless of version, will remove invalid inline styles when parsing the HTML.</p>
 
-### v-repeat
-
-- This directive requires the value to be Array or falsy.
-- This directive can trigger transitions.
-
-Create a child ViewModel for every item in the binding Array. These child ViewModels will be automatically created / destroyed when mutating methods, e.g. `push()`, are called on the Array. For more details see [Displaying a List](/guide/list.html).
-
 ### v-on
 
 - This directive requires exactly one argument.
@@ -111,8 +104,17 @@ Create a two-way binding on a form or editable element. Data is synced on every 
 
 Conditionally insert / remove the element based on the truthy-ness of the binding value.
 
+### v-repeat
+
+- This directive requires the value to be Array or falsy.
+- This directive creates child ViewModels.
+- This directive can trigger transitions.
+
+Create a child ViewModel for every item in the binding Array. These child ViewModels will be automatically created / destroyed when mutating methods, e.g. `push()`, are called on the Array. For more details see [Displaying a List](/guide/list.html).
+
 ### v-with
 
+- This directive creates child ViewModels.
 - This directive accepts only keypaths, no expressions.
 
 Compile this element as a child ViewModel, inheriting data from the parent. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive can be used in combination with `v-component`.
@@ -144,6 +146,13 @@ Example inehriting individual properties (using the same data):
     {&#123;myName&#125;} {&#123;myEmail&#125;}
 </div>
 ```
+
+### v-view
+
+- This directive creates child ViewModels.
+- This directive can trigger transitions.
+
+Conditionally instantiate ViewModels, using the bound value as the Component ID to look up constructors with. When the bound value changes, existing ViewModel will be destroyed and a new ViewModel will be created. When a ViewModel is created, the original element will be replaced, but all attributes will be copied to the new element. For more details, see [Routing](/guide/application.html#routing).
 
 ## Literal Directives
 
