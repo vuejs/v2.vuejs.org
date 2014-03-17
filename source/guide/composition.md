@@ -151,7 +151,7 @@ var parent = new Vue({
     })
 </script>
 
-### Inheriting Properties from Parent
+### Inheriting Properties with `v-with`
 
 When `v-with` is given an argument, it will create a property on the child Component's `$data` using the argument as the key. That property will be kept in sync with the bound value on the parent:
 
@@ -195,9 +195,7 @@ new Vue({
 })
 </script>
 
-<p class="tip">Using `v-with` alone will also create a child ViewModel instance using the default `Vue` constructor.</p>
-
-### Inheriting Array Elements with `v-repeat`
+### Using `v-component` with `v-repeat`
 
 For an Array of Objects, you can combine `v-component` with `v-repeat`. In this case, for each Object in the Array, a child ViewModel will be created using that Object as data, and the specified component as the constructor.
 

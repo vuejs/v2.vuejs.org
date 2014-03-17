@@ -62,11 +62,11 @@ Vue.filter('reverse', function (value) {
 <span v-text="message | reverse"></span>
 ```
 
-The filter function also takes a second argument, which is an Array of optional arguments.
+The filter function also receives any inline arguments:
 
 ``` js
-Vue.filter('wrap', function (value, args) {
-    return args[0] + value + args[1]
+Vue.filter('wrap', function (value, begin, end) {
+    return begin + value + end
 })
 ```
 
@@ -76,5 +76,13 @@ Vue.filter('wrap', function (value, args) {
 -->
 <span v-text="message | wrap before after"></span>
 ```
+
+## Computed Filters
+
+When a filter is invoked, its `this` context are set to the ViewModel instance that is invoking it. This allows it to output dynamic results based on the state of the owner ViewModel. In such case, we need to track these accessed properties so that when they change, directives that are using this filter will be re-evaluated.
+
+Filters that relies on the state of the ViewModel that is calling it are referred to as **computed filters**. For example, the built-in `filterBy` and `orderBy` filters are both computed filters. For custom filters, Vue.js checks for computed filters by looking for references to `this` in a filter's function body. Any directive that uses a computed filter will be automatically compiled as an expression so its filters are included in the dependency collection process.
+
+If you find the concept of computed filters confusing at the moment, don't worry. It is handled automatically by Vue.js and you don't really need to know how it works to leverage it. As you get familiar with more related concepts, it will all make sense.
 
 Now that you know everything about directives and filters, let's talk about how to [display a list of items](/guide/list.html).

@@ -27,6 +27,8 @@ new Vue({
 })
 ```
 
+One thing to note is that internally, Vue.js uses event delegation for all `v-on` handlers. Vue.js ensures that `event.stopPropagation()` and `event.preventDefault()` will work like normal listeners, but `event.currentTarget` will always point to the ViewModel's root element. In cases where `event.target` is a childNode of the actual element that the `v-on` directive is bound to, the element with `v-on` will be available as `event.delegationTarget`.
+
 ## Invoke Handler with Expression
 
 `targetVM` could be useful when `v-on` is used with `v-repeat`, since the latter creates a lot of child ViewModels. However, it is often more convenient to use an invocation expression passing in `this`, which equals the current context ViewModel:
@@ -52,6 +54,24 @@ new Vue({
         }
     }
 })
+```
+
+When you want to access the original DOM event in an expression handler, you can pass it in as `$event`:
+
+``` html
+<button v-on="click: submit('hello!', $event)">Submit</button>
+```
+
+``` js
+/* ... */
+{
+    methods: {
+        submit: function (msg, e) {
+            e.stopPropagation()
+        }
+    }
+}
+/* ... */
 ```
 
 ## The Special `key` Filter

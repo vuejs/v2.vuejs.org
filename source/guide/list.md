@@ -80,72 +80,46 @@ new Vue({
 Under the hood, Vue.js intercepts an observed Array's mutating methods (`push()`, `pop()`, `shift()`, `unshift()`, `splice()`, `sort()` and `reverse()`) so they will also trigger View updates.
 
 ``` js
-demo.items.push({ childMsg: 'Baz' })
-```
-<p><a href="#demo" onclick="demoPush()">Execute this</a></p>
-
-``` js
+// the DOM will be updated accordingly
+demo.items.unshift({ childMsg: 'Baz' })
 demo.items.pop()
 ```
-<p><a href="#demo" onclick="demo.items.pop()">Execute this</a></p>
 
-<p class="tip">You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the agumented `set()` method.</p>
+You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the agumented `$set()` method. Vue.js augments observed Arrays with two convenience methods: `$set()` and `$remove()`:
 
-## Augmentations: set(), remove() and replace()
-
-In addition, Vue.js also augments data-bound Arrays with three custom mutating methods: `set()`, `remove()` and `replace()`.
-
-Their signatures:
-
-- `set(index | value | function [, value])`
-- `remove(index | value | function)`
-- `replace` is simply an alias of `set`.
-
-### set()
+### $set( index, value )
 
 Setting a value in the Array is self-explanatory:
 
 ``` js
-// set a random element to a new value
-var i = Math.floor(Math.random() * demo.items.length)
-// .set() also returns the original value
-var replaced = demo.items.set(i, { childMsg: 'Changed!'})
+// same as `demo.items[0] = ...` but triggers view update
+demo.items.$set(0, { childMsg: 'Changed!'})
 ```
-<p><a href="#demo" onclick="demoSet()">Execute this</a></p>
 
-### replace()
+### $remove( index | value )
 
-When the first argument is not a number, `set()` and `replace()` searches for that value in the Array and replaces it with the new value:
+`$remove()` is just syntax sugar for `splice()`. will remove the element at the given index. When the argument is not a number, `$remove()` will search for that value in the array and remove the first occurrence.
 
 ``` js
-demo.items.replace(demo.items[0], { childMsg: 'Replaced!' })
+// remove the item at index 0
+demo.items.$remove(0)
 ```
-<p><a href="#demo" onclick="demoReplace()">Execute this</a></p>
 
-You can also replace with a function. Returning undefined will skip that item, returning any other value will cause the item interated upon to be replaced with the return value. Also note that when using `replace()` with a function, it will replace **ALL** items that gets a valid return value.
+## Setting a new Array
+
+When you are using non-mutating methods, e.g. `filter()`, `concat()` or `slice()`, the returned Array will be a different instance. In that case, you can just set the value to the new Array:
 
 ``` js
-demo.items.replace(function (item) {
-    if (item.childMsg === 'Replaced!') {
-        return { childMsg: 'Replaced again!' }
-    }
+demo.items = demo.items.filter(function (item) {
+    return item.childMsg.match(/Hello/)
 })
 ```
-<p><a href="#demo" onclick="demoReplace2()">Execute this</a></p>
 
-### remove()
+You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js uses some smart algorithms internally that reuses existing ViewModels and DOM nodes, and incurrs the least amount of DOM manipulations possible. Also, because of update batching, multiple changes to an Array in the same event loop will only trigger one comparison.
 
-`remove()` also can take either an index, a target value or a function as the argument. It will also remove **ALL** items that return `true`.
+## Array Filters
 
-``` js
-// remove all replaced items
-demo.items.remove(function (item) {
-    return item.childMsg === 'Changed!'
-        || item.childMsg === 'Replaced!'
-        || item.childMsg === 'Replaced again!'
-})
-```
-<p><a href="#demo" onclick="demoRemove()">Execute this</a></p>
+Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: `filterBy` and `orderBy`. Check out their [documentations](/api/filters.html#filterby) for more details.
 
 ## Iterating Through An Object
 
@@ -203,55 +177,8 @@ new Vue({
 })
 </script>
 
-### The `$repeater` Array
+## $add() and $delete()
 
-Under the hood, Vue.js creates an Array representing the iterated Object. This Array can be accessed as `object.$repeater`. It is defined as a hidden property so it won't show up during serialization or `for (... in ...)` loops. Due to ES5's limitations, we cannot detect when new properties are added to an Object. So in order to add properties to an Object being iterated by `v-repeat`, you can push a new object into its `$repeater`:
-
-``` js
-// push a primitive value - a string
-object.$repeater.push({
-    $key: 'newPrimitiveProperty',
-    $value: 'a primitive value'
-})
-
-// push a normal object - make sure it contains `$key`
-object.$repeater.push({
-    $key: 'newObject',
-    msg: 'hi!'
-})
-```
-
-`newProp` will be added back to the Object with the provided value. Similarly, other mutating operations on the `$repeater` will sync back to the original Object. For example, executing `$repeater.pop()` will delete the popped element's `$key` in the original Object.
+In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To counter for that, observed objects will be augmented with two methods: `$add(key, value)` and `$delete(key)`. These methods can be used to add / delete properties from observed objects while triggering the desired View updates.
 
 Next up: [Listening for Events](/guide/events.html).
-
-<script>
-function demoPush () {
-    demo.items.push({ childMsg: 'Baz' })
-}
-
-function demoRemove () {
-    demo.items.remove(function (item) {
-        return item.childMsg === 'Changed!'
-            || item.childMsg === 'Replaced!'
-            || item.childMsg === 'Replaced again!'
-    })
-}
-
-function demoSet () {
-    var i = Math.floor(Math.random() * demo.items.length)
-    demo.items.set(i, { childMsg: 'Changed!'})
-}
-
-function demoReplace () {
-    demo.items.replace(demo.items[0], { childMsg: 'Replaced!' })
-}
-
-function demoReplace2 () {
-    demo.items.replace(function (item) {
-        if (item.childMsg === 'Replaced!') {
-            return { childMsg: 'Replaced again!'}
-        }
-    })
-}
-</script>

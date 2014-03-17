@@ -74,7 +74,11 @@ Here are all the options with their default values:
     leaveClass: 'v-leave',
 
     // Interpolate mustache bindings
-    interpolate: true
+    interpolate: true,
+
+    // Interpolation delimiters
+    // default value translates to {&#123; &#125;} and {&#123;{ }&#125;}
+    delimiters: ['{', '}']
 }
 ```
 
