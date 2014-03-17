@@ -1,5 +1,5 @@
 /*
- Vue.js v0.9.3
+ Vue.js v0.10.0
  (c) 2014 Evan You
  License: MIT
 */

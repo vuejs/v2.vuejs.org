@@ -3,7 +3,7 @@ title: Performance Comparisons
 
 ## TodoMVC Benchmark
 
-> *Last Updated: 2014-03-04*
+> *Last Updated: 2014-03-17*
 
 > This is a benchmark found in the [webkit performance tests](https://github.com/WebKit/webkit/tree/master/PerformanceTests/DoYouEvenBench) based on the [TodoMVC](http://todomvc.com/) project. For each framework implementation, add 100 todos, toggle them one by one, then delete them one by one. In addition to the most popular MV* libraries, I also included [Om](https://github.com/swannodette/om) (a ClojureScript interface on top of React which boasts of performance) and [Ractive](http://www.ractivejs.org/) (very similar in terms of use case and API).
 
@@ -11,7 +11,7 @@ title: Performance Comparisons
 
 ### Compared libraries
 
-- Vue (v0.9.3)
+- Vue (v0.10.0)
 - Backbone (v1.1.2) + jQuery (v2.1.0)
 - Knockout (v3.1.0)
 - Ember (v1.4.0) + Handlebars (v1.3.0) + jQuery (v2.1.0)
