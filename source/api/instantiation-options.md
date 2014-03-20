@@ -106,6 +106,8 @@ new Vue({
 })
 ```
 
+Param attributes can also contain interpolation tags, but they will only be evaluated once, and changes inside the component will not affect the source data.
+
 ## DOM Element
 
 ### el

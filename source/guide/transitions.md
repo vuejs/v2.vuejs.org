@@ -137,23 +137,29 @@ CSS animations are applied in a similar fashion with transitions, but using the 
     @keyframes fadein {
         0% {
             transform: scale(0);
+            -webkit-transform: scale(0);
         }
         50% {
             transform: scale(1.5);
+            -webkit-transform: scale(1.5);
         }
         100% {
             transform: scale(1);
+            -webkit-transform: scale(1);
         }
     }
     @keyframes fadeout {
         0% {
             transform: scale(1);
+            -webkit-transform: scale(1);
         }
         50% {
             transform: scale(1.5);
+            -webkit-transform: scale(1.5);
         }
         100% {
             transform: scale(0);
+            -webkit-transform: scale(0);
         }
     }
     @-webkit-keyframes fadein {
