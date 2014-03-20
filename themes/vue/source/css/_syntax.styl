@@ -1,15 +1,16 @@
 .gutter pre
-  color #bbb
+  color #999
 
 pre
-  color: $medium
+  color: #525252
   .function .keyword,
-  .constant
-    color: #27ae60
+  .constant,
+  .keyword,
+  .attribute
+    color: #e96900
   .number,
   .literal
     color: #AE81FF
-  .keyword,
   .tag,
   .tag .title,
   .change,
@@ -19,11 +20,9 @@ pre
   .clojure .built_in,
   .nginx .title,
   .tex .special
-    color: #F95555
+    color: #2973b7
   .class .title
     color: white
-  .attribute
-    color: $green
   .symbol,
   .symbol .string,
   .value,
@@ -55,7 +54,7 @@ pre
   .apache .cbracket,
   .tex .command,
   .prompt
-    color: #f39c12
+    color: #00b22f
   .comment,
   .java .annotation,
   .python .decorator,
@@ -66,7 +65,7 @@ pre
   .shebang,
   .apache .sqbracket,
   .tex .formula
-    color: #bbb
+    color: #999
   .coffeescript .javascript,
   .javascript .xml,
   .tex .formula,
