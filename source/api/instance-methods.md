@@ -25,7 +25,7 @@ Stop watching the given keypath. If a callback is given only that callback gets 
 
 - **keypath** `String`
 
-Retrieve a data value from the vm given a keypath. Non-existent paths always return `undefined`.
+Retrieve a data value from the vm given a keypath. If the first segment of the path is not found on the current vm, it will recursively go upwards the parent chain until it reaches the root, so this can be useful for accessing a property that exist on the parent chain but with unknown distance. Non-existent paths always return `undefined`.
 
 ### vm.$set( keypath, value )
 
