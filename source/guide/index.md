@@ -45,7 +45,11 @@ A slightly modified plain JavaScript object.
 vm.$data // The Model
 ```
 
-In Vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and ViewModels that are observing them will be notified of the changes. Vue.js converts the properties on data objects into ES5 getter/setters, which allows direct manipulation without the need for dirty checking. For technical details see [Instantiation Options: data](/api/instantiation-options.html#data).
+In Vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and ViewModels that are observing them will be notified of the changes. Vue.js converts the properties on data objects into ES5 getter/setters, which allows direct manipulation without the need for dirty checking.
+
+The data objects are mutated in place, so modifying it by reference has the same effects as modifying `vm.$data`. This also makes it easy for multiple ViewModel instances to observe the same piece of data.
+
+For technical details see [Instantiation Options: data](/api/instantiation-options.html#data).
 
 ### Directives
 
