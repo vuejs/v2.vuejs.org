@@ -51,7 +51,7 @@ With `v-view` it's very easy to leverage standalone routing libraries such as [P
 
 ## Communication with Server
 
-All Vue.js ViewModels and their raw `$data` can be serialized with `JSON.stringify()` with no additional effort. You can use any Ajax component you like, for example [SuperAgent](https://github.com/visionmedia/superagent). It also plays nicely with no-backend services such as Firebase. In addition there is plan to provide a vue-resource component that resembles Angular's `$resource`, to make interfacing with a REST API easier.
+All Vue.js ViewModels can have their raw `$data` directly serialized with `JSON.stringify()` with no additional effort. You can use any Ajax component you like, for example [SuperAgent](https://github.com/visionmedia/superagent). It also plays nicely with no-backend services such as Firebase. In addition there is plan to provide a vue-resource component that resembles Angular's `$resource`, to make interfacing with a REST API easier.
 
 ## Unit Testing
 
