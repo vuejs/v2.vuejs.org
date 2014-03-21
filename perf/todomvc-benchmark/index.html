@@ -18,6 +18,7 @@ nav { position: absolute; right: 10px; }
 
 var runs = [],
     res = document.getElementById('results'),
+    timesRan = 0,
     runButton
 
 function formatTestName(suiteName, testName) {
@@ -113,7 +114,9 @@ function startTest() {
             console.log(results)
 
             runs.push(measuredValues)
-            if (runs.length >= timesToRun) {
+            timesRan++
+            if (timesRan >= timesToRun) {
+                timesRan = 0
                 reportAverage()
             } else {
                 setTimeout(function () {
@@ -135,7 +138,9 @@ function startTest() {
     // Don't call step while step is already executing.
     document.body.appendChild(createUIForSuites(Suites,
         function () { runner.step(currentState).then(function (state) { currentState = state; }); },
-        function () { callNextStep(currentState); }));
+        function () {
+            callNextStep(currentState);
+        }));
 
     function reportAverage () {
         var results = {}
@@ -146,7 +151,7 @@ function startTest() {
             }
         })
         for (var key in results) {
-            results[key] /= timesToRun
+            results[key] /= runs.length
         }
         var res = JSON.stringify(results, null, 4),
             pre = document.createElement('pre')
