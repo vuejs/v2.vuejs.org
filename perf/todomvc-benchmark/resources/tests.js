@@ -3,7 +3,7 @@ var Suites = [];
 
 Suites.push({
     name: 'Vue',
-    url: 'vue/index.html',
+    url: 'todomvc/vue/index.html',
     version: '0.10.0',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
@@ -37,7 +37,7 @@ Suites.push({
 
 Suites.push({
     name: 'Backbone',
-    url: 'todomvc/architecture-examples/backbone/index.html',
+    url: 'todomvc/backbone/index.html',
     version: '1.1.2',
     prepare: function (runner, contentWindow, contentDocument) {
     contentWindow.Backbone.sync = function () {}
@@ -66,13 +66,13 @@ Suites.push({
             var deleteButtons = contentDocument.querySelectorAll('.destroy');
             for (var i = 0; i < deleteButtons.length; i++)
                 deleteButtons[i].click();
-        }),
+        })
     ]
 });
 
 Suites.push({
     name: 'Knockout',
-    url: 'todomvc/architecture-examples/knockoutjs/index.html',
+    url: 'todomvc/knockoutjs/index.html',
     version: '3.1.0',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
@@ -100,13 +100,13 @@ Suites.push({
             var deleteButtons = contentDocument.querySelectorAll('.destroy');
             for (var i = 0; i < deleteButtons.length; i++)
                 deleteButtons[i].click();
-        }),
+        })
     ]
 });
 
 Suites.push({
     name: 'Ember',
-    url: 'todomvc/architecture-examples/emberjs/index.html',
+    url: 'todomvc/emberjs/index.html',
     version: '1.4.0 + Handlebars 1.3.0',
     prepare: function (runner, contentWindow, contentDocument) {
         contentWindow.Todos.Store = contentWindow.DS.Store.extend({
@@ -147,13 +147,13 @@ Suites.push({
             var deleteButtons = contentDocument.querySelectorAll('.destroy');
             for (var i = 0; i < deleteButtons.length; i++)
                 params.emberRun(function () { deleteButtons[i].click(); });
-        }),
+        })
     ]
 });
 
 Suites.push({
     name: 'Angular',
-    url: 'todomvc/architecture-examples/angularjs-perf/index.html',
+    url: 'todomvc/angularjs-perf/index.html',
     version: '1.2.14',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
@@ -182,13 +182,13 @@ Suites.push({
             var deleteButtons = contentDocument.querySelectorAll('.destroy');
             for (var i = 0; i < deleteButtons.length; i++)
                 deleteButtons[i].click();
-        }),
+        })
     ]
 });
 
 Suites.push({
     name: 'React',
-    url: 'todomvc/labs/architecture-examples/react/index.html',
+    url: 'todomvc/react/index.html',
     version: '0.9.0',
     prepare: function (runner, contentWindow, contentDocument) {
         contentWindow.Utils.store = function () {}
@@ -216,13 +216,13 @@ Suites.push({
             var deleteButtons = contentDocument.querySelectorAll('.destroy');
             for (var i = 0; i < deleteButtons.length; i++)
                 deleteButtons[i].click();
-        }),
+        })
     ]
 });
 
 Suites.push({
     name: 'Om',
-    url: 'todomvc/labs/architecture-examples/om/index.html',
+    url: 'todomvc/om/index.html',
     version: '? + React 0.8.0',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
@@ -250,13 +250,13 @@ Suites.push({
             var deleteButtons = contentDocument.querySelectorAll('.destroy');
             for (var i = 0; i < deleteButtons.length; i++)
                 deleteButtons[i].click();
-        }),
+        })
     ]
 });
 
 Suites.push({
     name: 'Ractive',
-    url: 'todomvc/labs/architecture-examples/ractive/index.html',
+    url: 'todomvc/ractive/index.html',
     version: '0.3.9',
     prepare: function (runner, contentWindow, contentDocument) {
         return runner.waitForElement('#new-todo').then(function (element) {
@@ -283,6 +283,6 @@ Suites.push({
             var deleteButtons = contentDocument.querySelectorAll('.destroy');
             for (var i = 0; i < deleteButtons.length; i++)
                 deleteButtons[i].click();
-        }),
+        })
     ]
 });
