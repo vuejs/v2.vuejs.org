@@ -22,7 +22,9 @@ h1, h2, h3, h4, strong
 code, pre
     font-family $code-font
     font-size $code-font-size
-    background-color #f9f9f9
+    background-color $codebg
+    -webkit-font-smoothing initial
+    -moz-osx-font-smoothing initial
 
 code
     color #525252
@@ -55,10 +57,10 @@ a.button
     overflow-x auto
     position relative
     padding 0
-    background-color #f9f9f9
+    background-color $codebg
     padding .8em .8em .4em
-    border-radius 2px
     box-shadow 0 1px 1px rgba(0,0,0,0.125)
+    line-height 1.1em
     table, tr, td
         width 100%
         border-collapse collapse
@@ -69,14 +71,9 @@ a.button
         margin 0
     .gutter
         width 1.5em
-        pre
-            border-top-left-radius $radius
-            border-bottom-left-radius $radius
     .code
         pre
             padding-left .5em
-            border-top-right-radius $radius
-            border-bottom-right-radius $radius
     &.html, &.js, &.bash, &.css
         .code:after
             position absolute
@@ -88,8 +85,6 @@ a.button
             padding 5px 10px 0
             line-height 15px
             height 15px
-            border-top-right-radius $radius
-            border-top-left-radius $radius
             font-weight 600
     &.html .code:after
         content 'HTML'

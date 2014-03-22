@@ -5,24 +5,30 @@ order: 10
 
 ## Registering a Component
 
-Vue.js allows you to treat registered ViewModel constructors as reusable components that is conceptually similar to [Web Components](http://www.w3.org/TR/components-intro/), without requiring any polyfills. To register a component, use the global `Vue.component()` method:
+Vue.js allows you to treat registered ViewModel constructors as reusable components that is conceptually similar to [Web Components](http://www.w3.org/TR/components-intro/), without requiring any polyfills. To register a component, first create a subclass constructor of Vue using `Vue.extend()`, then use the global `Vue.component()` method to register that constructor:
 
 ``` js
+// Extend Vue to get a reusable constructor
 var MyComponent = Vue.extend({
     template: 'A custom component!'
 })
+// Register the constructor with id: my-component
 Vue.component('my-component', MyComponent)
 ```
 
 To make things easier, you can also directly pass in the option object instead of an actual constructor:
 
 ``` js
+// Implicitly call Vue.extend, then register the returned constructor.
+// Use this syntax when you don't need to programatically
+// instantiate your component.
+// Note: this method returns Vue, not the registered constructor.
 Vue.component('my-component', {
     template: 'A custom component!'
 })
 ```
 
-Then you can use it in a parent ViewModel's template:
+Then you can use it in a parent ViewModel's template (make sure the component is registered **before** you instantiate your top-level ViewModel):
 
 ``` html
 <div v-component="my-component"></div>
