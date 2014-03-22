@@ -163,7 +163,7 @@ A hash of HTML attributes to be set on `vm.$el`.
 
 ## Lifecycle Hooks
 
-All lifecycle hooks have their `this` context bound to the ViewModel instance they belong to. For `'enteredView'`, `'leftView'`, `'beforeDestroy'`, `'afterDestroy'`, the ViewModel instance will also emit events in the form of `'hook:eventName'`.
+All lifecycle hooks have their `this` context bound to the ViewModel instance they belong to. For `'attached'`, `'detached'`, `'beforeDestroy'`, `'afterDestroy'`, the ViewModel instance will also emit events in the form of `'hook:eventName'`.
 
 ### created
   
@@ -199,7 +199,7 @@ Called before a ViewModel is destroyed.
 
 - **Type:** `Function`
 
-Called after a ViewModel has been destroyed.
+Called after a ViewModel has been destroyed. When this hook is called, all bindings and directives of the ViewModel have been unbound and all child ViewModels have also been destroyed.
 
 ## Private Assets
 
