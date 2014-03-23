@@ -111,8 +111,10 @@ BenchmarkRunner.prototype._runTest = function(suite, testFunction, prepareReturn
 
     var startTime = now();
     setTimeout(function () {
-        var endTime = now();
-        callback(syncTime, endTime - startTime);
+        setTimeout(function () {
+            var endTime = now();
+            callback(syncTime, endTime - startTime);
+        }, 0)
     }, 0);
 }
 
