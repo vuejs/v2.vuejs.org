@@ -46,69 +46,6 @@ It is important to understand the difference between `Vue.extend()` and `Vue.com
 
 Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Both are useful in its own right and Vue.js tries to provide both for maximum flexibility.
 
-## Partials and {&#123;>yield&#125;}
-
-You can use partials in templates with {&#123;>partial-id&#125;}, which inserts the partial registered via `Vue.partial('partial-id', '...')`. But there is a special reserved partial ID: `yield`. Basically, the `yield` partial inside a template serves as a insertion point for the original, pre-compile content inside the element. This syntax allows components to be easily nested and composed while maintaining their custom markup. For example:
-
-Top level markup:
-
-``` html
-<div v-component="my-component">
-    <p>original content</p>
-</div>
-```
-
-Template for `my-component`:
-
-``` html
-<div class="wrapper">
-    <h1>This is my component!</h1>
-    {&#123;> yield&#125;}
-</div>
-```
-
-When the component element is compiled, its content will be replaced with the component's template, but the original content will be preserved and inserted into the `yield` position. If no `yield` outlet is found in the template, the original content will be wiped away.
-
-<p class="tip">If needed, you can get access to the original content DocumentFragment in the component's `created` hook as a `this.$compiler.rawContent`.</p>
-
-## Encapsulating Private Assets
-
-Sometimes a component needs to use assets such as directives, filters and its own child components, but might want to keep these assets encapsulated so the component itself can be reused elsewhere. You can do that using the private assets instantiation options. Private assets will only be accessible by the instances of the owner component and its child components.
-
-``` js
-// All 5 types of assets
-var MyComponent = Vue.extend({
-    directives: {
-        // id : definition pairs same with the global methods
-        'private-directive': function () {
-            // ...
-        }
-    },
-    filters: {
-        // ...
-    },
-    components: {
-        // ...
-    },
-    partials: {
-        // ...
-    },
-    effects: {
-        // ...
-    }
-})
-```
-
-Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registeration methods:
-
-``` js
-MyComponent
-    .directive('...', {})
-    .filter('...', function () {})
-    .component('...', {})
-    // ...
-```
-
 ## Data Inheritance
 
 ### Inheriting Objects from Parent as `$data`
@@ -157,7 +94,7 @@ var parent = new Vue({
     })
 </script>
 
-### Inheriting Properties with `v-with`
+### Inheriting Individual Properties with `v-with`
 
 When `v-with` is given an argument, it will create a property on the child Component's `$data` using the argument as the key. That property will be kept in sync with the bound value on the parent:
 
@@ -314,5 +251,109 @@ var parent = new Vue({
     }
 })
 </script>
+
+## Encapsulating Private Assets
+
+Sometimes a component needs to use assets such as directives, filters and its own child components, but might want to keep these assets encapsulated so the component itself can be reused elsewhere. You can do that using the private assets instantiation options. Private assets will only be accessible by the instances of the owner component and its child components.
+
+``` js
+// All 5 types of assets
+var MyComponent = Vue.extend({
+    directives: {
+        // id : definition pairs same with the global methods
+        'private-directive': function () {
+            // ...
+        }
+    },
+    filters: {
+        // ...
+    },
+    components: {
+        // ...
+    },
+    partials: {
+        // ...
+    },
+    effects: {
+        // ...
+    }
+})
+```
+
+Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registeration methods:
+
+``` js
+MyComponent
+    .directive('...', {})
+    .filter('...', function () {})
+    .component('...', {})
+    // ...
+```
+
+## Content Insertion Points
+
+### Single insertion point
+
+When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component. Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content. When there is only one `<content>` tag with no attributes, the entire original content will be inserted at its position in the DOM and replaces it. Anything originally inside the `<content>` tags are considered **fallback content**. Fallback content will only be displayed if the hosting element is empty and has no content to be inserted. For example:
+
+Template for `my-component`:
+
+``` html
+<h1>This is my component!</h1>
+<content>This will only be displayed if no content is inserted</content>
+```
+
+Parent markup that uses the component:
+
+``` html
+<div v-component="my-component">
+    <p>This is some original content</p>
+    <p>This is some more original content</p>
+</div>
+```
+
+The rendered result will be:
+
+``` html
+<div>
+    <h1>This is my component!</h1>
+    <p>This is some original content</p>
+    <p>This is some more original content</p>
+</div>
+```
+
+### Multiple insertion points and the `select` attribute
+
+`<content>` elements have a special attribute, `select`, which expects a CSS selector. You can have multiple `<content>` insertion points with different `select` attributes, and each of them will be replaced by the elements matching that selector from the original content.
+
+Template for `multi-insertion-component`:
+
+``` html
+<content select="p:nth-child(3)"></content>
+<content select="p:nth-child(2)"></content>
+<content select="p:nth-child(1)"></content>
+```
+
+Parent markup:
+
+``` html
+<div v-component="multi-insertion-component">
+    <p>One</p>
+    <p>Two</p>
+    <p>Three</p>
+</div>
+```
+
+The rendered result will be:
+
+``` html
+<div>
+    <p>Three</p>
+    <p>Two</p>
+    <p>One</p>
+</div>
+```
+
+The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
 
 Next: [Building Larger Apps](/guide/application.html).
