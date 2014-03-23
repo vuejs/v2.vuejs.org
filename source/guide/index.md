@@ -102,8 +102,7 @@ In Vue.js, a component is simply a ViewModel constructor registered with an ID u
         <li
             v-repeat="todos"
             v-on="click: done = !done"
-            class="&#123;&#123;done ? 'done' : ''&#125;&#125;"
-        >
+            class="&#123;&#123;done ? 'done' : ''&#125;&#125;">
             &#123;&#123;content&#125;&#125;
         </li>
     </ul>

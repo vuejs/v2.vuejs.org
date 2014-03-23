@@ -28,6 +28,12 @@ $ component install yyx990803/vue
 var Vue = require('vue')
 ```
 
+For edge version (unstable branch, use at your own risk!):
+
+``` bash
+$ component install yyx990803/vue@dev
+```
+
 ## Browserify
 
 ``` bash
@@ -36,6 +42,14 @@ $ npm install vue
 ```js
 var Vue = require('vue')
 ```
+
+For edge version:
+
+``` bash
+$ npm install yyx990803/vue#dev
+```
+
+<p class="tip">The built version in `dist/` doesn't work with Browserify because it assumes it's loaded in global scope and comes with its own `require` mechanism. Always directly use source version when using Vue with Browserify.</p>
 
 ## Bower
 
@@ -47,9 +61,9 @@ $ bower install vue
 <script src="bower_components/vue/dist/vue.js">
 ```
 
-## Module Loaders
+## AMD Module Loaders
 
-e.g. RequireJS, SeaJS: Built versions in `/dist` or installed via Bower is wrapped with UMD so it can be used directly as a CommonJS or AMD module.
+e.g. RequireJS, SeaJS: Built versions in `/dist` or installed via Bower is wrapped with UMD so it can be used directly as an AMD module.
 
 ## Ready?
 

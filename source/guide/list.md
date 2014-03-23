@@ -50,7 +50,9 @@ For Arrays containing primitive values, you can access the value simply as `$val
 
 ``` html
 <ul id="tags">
-    <li v-repeat="tags">{&#123;$value&#125;}</li>
+    <li v-repeat="tags">
+        {&#123;$value&#125;}
+    </li>
 </ul>
 ```
 
@@ -74,6 +76,18 @@ new Vue({
 })
 </script>
 
+## Using an identifier
+
+Sometimes we might want to have more explicit variable access instead of implicitly falling back to parent scope. You can do that by providing an argument to the `v-repeat` directive and use it as the identifier for the item being iterated:
+
+``` html
+<ul id="users">
+    <!-- think of this as "for each user in users" -->
+    <li v-repeat="user: users">
+        {&#123;user.name&#125;} {&#123;user.email&#125;}
+    </li>
+</ul>
+```
 
 ## Mutation Methods
 
