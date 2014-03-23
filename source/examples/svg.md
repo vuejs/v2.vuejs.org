@@ -1,6 +1,6 @@
-title: SVG
+title: SVG Graph
 type: examples
-order: 4
+order: 5
 ---
 
 > This example showcases a combination of custom component, computed property, two-way binding and SVG support.
