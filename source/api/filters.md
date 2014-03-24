@@ -77,7 +77,7 @@ Wrap the handler so it only gets called when the keyCode matches the argument. Y
 - this filter only works in `v-repeat`
 - this is a computed filter
 
-Make `v-repeat` only displayed a filtered version of the source Array. The `searchKey` argument is a property key on the context ViewModel. The value of that property will be used as the string to search for:
+Make `v-repeat` only display a filtered version of the source Array. The `searchKey` argument is a property key on the context ViewModel. The value of that property will be used as the string to search for:
 
 ``` html
 <input v-model="searchText">
@@ -114,7 +114,7 @@ Finally, you can use quotes to indicate literal arguments:
 - this filter only works in `v-repeat`
 - this is a computed filter
 
-Sort `v-repeat`'s display result. The `sorKey` argument is a property key on the context ViewModel. The value of that property will be used as the key to sort the Array items with. The optional `reverseKey` argument is also a property key on the context ViewModel, but the value's truthiness will determine whether the result should be reversed.
+Sort `v-repeat`'s displayed result. The `sorKey` argument is a property key on the context ViewModel. The value of that property will be used as the key to sort the Array items with. The optional `reverseKey` argument is also a property key on the context ViewModel, but the value's truthiness will determine whether the result should be reversed.
 
 ``` html
 <ul>
