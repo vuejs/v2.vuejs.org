@@ -110,4 +110,4 @@ Remove the vm's `$el` from the DOM.
 
 ### vm.$destroy()
 
-Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and remove its `$el` from the DOM.
+Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and remove its `$el` from the DOM. Also, all `$on` and `$watch` listeners will be automatically removed.

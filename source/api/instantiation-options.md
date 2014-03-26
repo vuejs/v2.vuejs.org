@@ -166,34 +166,36 @@ A hash of HTML attributes to be set on `vm.$el`.
 All lifecycle hooks have their `this` context bound to the ViewModel instance they belong to. For `'attached'`, `'detached'`, `'beforeDestroy'`, `'afterDestroy'`, the ViewModel instance will also emit events in the form of `'hook:eventName'`.
 
 ### created
-  
+
 - **Type:** `Function`
 
-Called synchronously before the compilation starts. Can be used to attach additional data to be observed on the ViewModel.
+Called synchronously before the compilation starts. At this stage, instance properties like `$el`, `$data` are available, but the DOM is in a pre-compile state, and the data has not been observed yet. Usually the created hook is used to attach additional initial states to the ViewModel. Any non-function properties attached to the ViewModel in the created hook will be copied to the data object and observed later.
+
+If you use `$watch` in the created hook, the callback will also be called when the data is freshly observed. If you want to watch for changes only, attach the watcher in the ready hook.
 
 ### ready
 
 - **Type:** `Function`
 
-Called synchronously after the compilation has ended and the ViewModel instance is ready.
+Called synchronously after the compilation has ended and the ViewModel instance is ready. At this stage, the DOM is fully compiled and the data has been observed, so changing existing data properties will trigger View updates. Additional properties attached to the ViewModel or the data object in the ready hook will **not** be observed.
 
 ### attached
 
 - **Type:** `Function`
 
-Called when `vm.$el` is attached to DOM by a VueJS directive. Direct manipulation of `vm.$el` will **not** trigger this hook.
+Called when `vm.$el` is attached to DOM by a directive or a VM instance method such as `$appendTo()`. Direct manipulation of `vm.$el` will **not** trigger this hook.
 
 ### detached
 
 - **Type:** `Function`
 
-Called when `vm.$el` is removed from the DOM by a VueJS directive. Direct manipulation of `vm.$el` will **not** trigger this hook.
+Called when `vm.$el` is removed from the DOM by a directive or a VM instance method. Direct manipulation of `vm.$el` will **not** trigger this hook.
 
 ### beforeDestroy
 
 - **Type:** `Function`
 
-Called before a ViewModel is destroyed.
+Called before a ViewModel is destroyed. At this stage, the data is still observed, and all bindings and directive instances are still in effect. All child VMs of the current instance are also still active. This hook is mostly used internally but you can use it to clean up things you set up in the created or ready hook. There's no need to turn off `$on` and `$watch` listeners in here because all of them will be automatically turned off during `$destroy`.
 
 ### afterDestroy
 
