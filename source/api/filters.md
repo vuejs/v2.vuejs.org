@@ -118,7 +118,7 @@ Sort `v-repeat`'s displayed result. The `sorKey` argument is a property key on t
 
 ``` html
 <ul>
-    <li v-repeat="users | sortBy field reverse">{&#123;name&#125;}</li>
+    <li v-repeat="users | orderBy field reverse">{&#123;name&#125;}</li>
 </ul>
 ```
 
@@ -136,6 +136,6 @@ You can also use quotes for literal sort key. To indicate a literal reverse, use
 
 ``` html
 <ul>
-    <li v-repeat="users | sortBy 'name' -1">{&#123;name&#125;}</li>
+    <li v-repeat="users | orderBy 'name' -1">{&#123;name&#125;}</li>
 </ul>
 ```
