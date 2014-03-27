@@ -33,7 +33,7 @@ vm.a // 3
 
 The object must be JSON-compliant (no circular references). You can use it just like an ordinary object, and it will look exactly the same when serialized with `JSON.stringify`. You can also share it between multiple ViewModels.
 
-<p class="tip">Under the hood, vue.js attaches an hidden property `__observer__` and recursively converts the object's non-function properties into getters and setters that trigger events when called. Properties with keys that starts with `$` or `_` are skipped.</p>
+<p class="tip">Under the hood, vue.js attaches a hidden property `__emitter__` and recursively converts the object's non-function properties into getters and setters that trigger events when called. Properties with keys that starts with `$` or `_` are skipped.</p>
 
 ### methods
 
@@ -68,7 +68,12 @@ Computed properties to be mixed into the ViewModel. All getters and setters have
 var vm = new Vue({
     data: { a: 1 },
     computed: {
-        aplus: {
+        // get only, just need a function
+        aDouble: function () {
+            return this.a * 2
+        },
+        // both get and set
+        aPlus: {
             $get: function () {
                 return this.a + 1
             },
@@ -78,9 +83,10 @@ var vm = new Vue({
         }
     }
 })
-vm.aplus // 2
-vm.aplus = 3
+vm.aPlus // 2
+vm.aPlus = 3
 vm.a // 2
+vm.aDouble // 4
 ```
 
 ### paramAttributes
