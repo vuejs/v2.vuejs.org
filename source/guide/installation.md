@@ -3,8 +3,8 @@ type: guide
 order: 1
 vue_version: 0.10.3
 dev_size: 119.38
-min_size: 39.90
-gz_size: 13.59
+min_size: 39.89
+gz_size: 13.58
 ---
 
 > **Compatibility Note:** Vue.js does not support IE8 and below.
