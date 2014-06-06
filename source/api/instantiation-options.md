@@ -264,3 +264,5 @@ This option is useful when you need to manually manage the lifecycle of nested V
 - **Default:** `false`
 
 Whether to trigger `v-model` updates only on `change` event (hit enter or lose focus) or on every `input` event (on every keystroke).
+
+**Note:** since 0.10.5 child ViewModels will inherit their parents' `lazy` option if they don't have the option set on themselves.

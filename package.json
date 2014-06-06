@@ -1,6 +1,5 @@
 {
   "name": "hexo",
-  "version": "2.5.3",
-  "private": true,
-  "dependencies": {}
+  "version": "2.5.7",
+  "private": true
 }

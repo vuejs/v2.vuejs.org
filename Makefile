@@ -1,5 +1,5 @@
 all: update
-	rm db.json
+	rm -f db.json
 	hexo generate
 	cp -R perf public
 	cp -R ../vue/test public
