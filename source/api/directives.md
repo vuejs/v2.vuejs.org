@@ -143,7 +143,7 @@ For detailed examples, see [Displaying a List](/guide/list.html).
 - This directive creates child ViewModels.
 - This directive can trigger transitions.
 
-Conditionally instantiate ViewModels, using the bound value as the Component ID to look up constructors with. When the bound value changes, existing ViewModel will be destroyed and a new ViewModel will be created. When a ViewModel is created, the original element will be replaced, but all attributes will be copied to the new element. For more details, see [Routing](/guide/application.html#routing).
+Conditionally instantiate ViewModels, using the bound value as the Component ID to look up constructors with. When the bound value changes, existing ViewModel will be destroyed and a new ViewModel will be created. When a ViewModel is created, the original element will be replaced, but all attributes will be copied to the new element. For more details, see [Routing](/guide/application.html#Routing).
 
 ### v-with
 
@@ -190,7 +190,7 @@ Compile this element as a child ViewModel with a registered component constructo
 
 ### v-ref
 
-Only respected when used in combination with `v-component`, `v-with` or `v-repeat`. The ViewModel will be accessible in its parent's `$` object, e.g. `parent.$[id]`. When used with `v-repeat`, the value will be an Array containing the child ViewModel instances corresponding to the Array they are bound to. For examples see [Accessing Child Components](/guide/composition.html#accessing-child-components).
+Only respected when used in combination with `v-component`, `v-with` or `v-repeat`. The ViewModel will be accessible in its parent's `$` object, e.g. `parent.$[id]`. When used with `v-repeat`, the value will be an Array containing the child ViewModel instances corresponding to the Array they are bound to. For examples see [Accessing Child Components](/guide/composition.html#Accessing_Child_Components).
 
 ### v-partial
 
@@ -204,7 +204,7 @@ Replace the element's innerHTML with a registered partial. Partials can be regis
 
 Apply a registered JavaScript effect to the element. JavaScript effects can be registered with `Vue.effect()` or passed inside the `effects` option.
 
-For details, see [the guide](/guide/transitions.html#javascript-functions).
+For details, see [the guide](/guide/transitions.html#JavaScript_Functions).
 
 ## Empty Directives
 
@@ -214,13 +214,13 @@ For details, see [the guide](/guide/transitions.html#javascript-functions).
 
 Notify Vue.js to apply transition CSS classes to this element. The transition classes are applied when certain transition-triggering directives modifies the element, or when the ViewModel's DOM manipulation methods are called.
 
-For details, see [the guide](/guide/transitions.html#css-transitions).
+For details, see [the guide](/guide/transitions.html#Css_Transitions).
 
 ### v-animation
 
 Notify Vue.js to apply animation CSS classes to this element. The order of CSS class application is different from `v-transition`.
 
-For details, see [the guide](/guide/transitions.html#css-animations).
+For details, see [the guide](/guide/transitions.html#Css_Animations).
 
 ### v-pre
 

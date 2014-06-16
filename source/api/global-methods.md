@@ -87,14 +87,14 @@ Here are all the options with their default values:
 - **id** `String`
 - **definition** `Function` or `Object` *optional*
 
-Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/directives.html#writing-a-custom-directive).
+Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/directives.html#Writing_a_Custom_Directive).
 
 ### Vue.filter( id, definition )
 
 - **id** `String`
 - **definition** `Function` *optional*
 
-Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/filters.html#writing-a-custom-filter).
+Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/filters.html#Writing_a_Custom_Filter).
 
 ### Vue.component( id, definition )
 
@@ -108,7 +108,7 @@ Register or retrieve a global component. For more details see [Composing ViewMod
 - **id** `String`
 - **definition** `Object` *optional*
 
-Register or retrieve a global JavaScript transition effect definition. For more details see [Adding Transition Effects](/guide/transitions.html#javascript-functions).
+Register or retrieve a global JavaScript transition effect definition. For more details see [Adding Transition Effects](/guide/transitions.html#JavaScript_Functions).
 
 ### Vue.partial( id, definition )
 

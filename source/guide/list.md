@@ -133,7 +133,7 @@ You might think this will blow away the existing DOM and re-build everything. Bu
 
 ## Array Filters
 
-Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: `filterBy` and `orderBy`. Check out their [documentations](/api/filters.html#filterby) for more details.
+Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: `filterBy` and `orderBy`. Check out their [documentations](/api/filters.html#filterBy) for more details.
 
 ## Iterating Through An Object
 

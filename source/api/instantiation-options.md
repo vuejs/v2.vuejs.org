@@ -217,13 +217,13 @@ These are private assets that will be available only to this ViewModel and its c
 
 - **Type:** `Object`
 
-An hash of directives to be made available to the ViewModel. For details on how to write a custom directive, see [Writing Custom Directives](/guide/directives.html#writing-a-custom-directive).
+An hash of directives to be made available to the ViewModel. For details on how to write a custom directive, see [Writing Custom Directives](/guide/directives.html#Writing_a_Custom_Directive).
 
 ### filters
 
 - **Type:** `Object`
 
-A hash of filters to be made available to the ViewModel. For details on how to write a custom filter, see [Writing Custom Filters](/guide/filters.html#writing-a-custom-filter).
+A hash of filters to be made available to the ViewModel. For details on how to write a custom filter, see [Writing Custom Filters](/guide/filters.html#Writing_a_Custom_Filter).
 
 ### components
 
@@ -253,7 +253,7 @@ A parent ViewModel instance. Passing in this option establishes a parent-child r
 
 1. The child can bind to data from the parent's scope in its template;
 2. The child can access the parent as `this.$parent`;
-3. The parent and child can communicate using the [Event Communication Methods](/api/instance-methods.html#cross-viewmodel-events).
+3. The parent and child can communicate using the [Event Communication Methods](/api/instance-methods.html#Cross-ViewModel_Events).
 4. When the parent is destroyed, the child will be destroyed too.
 
 This option is useful when you need to manually manage the lifecycle of nested ViewModels for better memory control.

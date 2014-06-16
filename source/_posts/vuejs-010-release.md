@@ -12,18 +12,18 @@ See the [Installation](/guide/installation.html) page for the latest builds.
 
 ### New
 
-- Literal directives can now contain interpolation tags. These tags will be evaluated only once at compile time. An example usage is conditionally decide which component to instantiate with `v-component="{{type}}"`. [Doc](/guide/directives.html#literal-directives).
+- Literal directives can now contain interpolation tags. These tags will be evaluated only once at compile time. An example usage is conditionally decide which component to instantiate with `v-component="{{type}}"`. [Doc](/guide/directives.html#Literal_Directives).
 - Attributes listed in the `paramAttributes` option now accept mustache interpolations too. They will also only be evaluated once.
-- `v-repeat` now accepts an argument which will be used as the identifier for the wrapped object. This allows more explicit property access in repeaters. [Doc](/guide/list.html#using-an-identifier).
+- `v-repeat` now accepts an argument which will be used as the identifier for the wrapped object. This allows more explicit property access in repeaters. [Doc](/guide/list.html#Using_an_Identifier).
 - Added `v-view` directive which binds to a string value and dynamically instantiate different components using that string as the component ID. [Doc](/api/directives.html#v-view).
-- Added `filterBy` and `orderBy` filters for `v-repeat`. [Doc](/api/filters.html#filterby).
-- Custom filters that access properties on its `this` context will be considered **computed filters**. [Doc](/guide/filters.html#computed-filters).
+- Added `filterBy` and `orderBy` filters for `v-repeat`. [Doc](/api/filters.html#filterBy).
+- Custom filters that access properties on its `this` context will be considered **computed filters**. [Doc](/guide/filters.html#Computed_Filters).
 - You can now access the event in `v-on` handler expressions as `$event`. Example: `<a v-on="click:handle('hello', $event)">Hello</a>`
 - Interpolation delimiters can now be customized via the `delimiters` global config option. Example: `Vue.config({ delimiters: ["[", "]"] })` will change the matched interpolation tags to `[[ ]]` for text bindings and `[[[ ]]]` for html bindings.
 
 ### Changed
 
-- `{{yield}}` syntax has been deprecated. A Web Components spec compatible content insertion mechanism using `<content>` elements has been introduced. [Doc](/guide/composition.html#content-insertion-points).
+- `{{yield}}` syntax has been deprecated. A Web Components spec compatible content insertion mechanism using `<content>` elements has been introduced. [Doc](/guide/composition.html#Content_Insertion_Points).
 - To use a component as a custom element, the component ID must now contain a hyphen (`-`). This is consistent with the current custom element spec draft.
 - `v-repeat` Arrays' augmented methods have been renamed from `set` to `$set(index, value)` and `remove` to `$remove(index | value)`. The prefix better differentiates them from native methods. The `replace` method has been removed.
 - When iterating over an Object with `v-repeat`, the object no longer gets a `$repeater` array. Instead, the object is now augmented with two methods: `$add(key, value)` and `$delete(key)`, which will trigger corresponding view updates.

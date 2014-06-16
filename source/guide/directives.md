@@ -74,7 +74,7 @@ Since Vue.js 0.10, you can also use mustache expressions inside literal directiv
 
 However, note that mustache expressions inside literal directives are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes. To dynamically instantiate different components at run time, use the [v-view](/api/directives.html#v-view) directive.
 
-A full list of literal directives can be found in the [API reference](/api/directives.html#literal-directives).
+A full list of literal directives can be found in the [API reference](/api/directives.html#Literal_Directives).
 
 ## Empty Directives
 
@@ -86,7 +86,7 @@ Some directives don't even expect an attribute value - they simply do something 
 </div>
 ```
 
-A full list of empty directives can be found in the [API reference](/api/directives.html#empty-directives).
+A full list of empty directives can be found in the [API reference](/api/directives.html#Empty_Directives).
 
 ## Writing a Custom Directive
 
