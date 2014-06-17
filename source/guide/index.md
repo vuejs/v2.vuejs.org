@@ -91,7 +91,7 @@ Now before the div's textContent is updated, the `message` value will first be p
 
 ### Components
 
-In Vue.js, a component is simply a ViewModel constructor registered with an ID using `Vue.component(ID, constructor)`. By having an associated ID, they can be nested in other ViewModel's templates with the `v-component` directive. This simple mechanism enables declarative reuse and composition of ViewModels in a fashion similar to [Web Components](http://www.w3.org/TR/components-intro/), without the need for latest browsers or heavy polyfills. By breaking an application into smaller components, the result is a highly decoupled and maintainable codebase. For more details, see [Composing ViewModels](/guide/composition.html).
+In Vue.js, a component is simply a ViewModel constructor registered with an ID using `Vue.component(ID, constructor)`. By having an associated ID, they can be nested in other ViewModels' templates with the `v-component` directive. This simple mechanism enables declarative reuse and composition of ViewModels in a fashion similar to [Web Components](http://www.w3.org/TR/components-intro/), without the need for latest browsers or heavy polyfills. By breaking an application into smaller components, the result is a highly decoupled and maintainable codebase. For more details, see [Composing ViewModels](/guide/composition.html).
 
 ## A Quick Example
 
@@ -121,7 +121,7 @@ var demo = new Vue({
             },
             {
                 done: false,
-                content: 'Learn vue.js'
+                content: 'Learn Vue.js'
             }
         ]
     }
@@ -143,7 +143,7 @@ var demo = new Vue({
             },
             {
                 done: false,
-                content: 'Learn vue.js'
+                content: 'Learn Vue.js'
             }
         ]
     }

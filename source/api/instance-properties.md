@@ -36,7 +36,7 @@ new Vue({
 - **Type:** `Object`
 - **Read only**
 
-An object that holds child ViewModels that has `v-ref` registered. For more details see [v-ref](/api/directives.html#v-ref).
+An object that holds child ViewModels that have `v-ref` registered. For more details see [v-ref](/api/directives.html#v-ref).
 
 ### vm.$index
 
@@ -56,7 +56,7 @@ The parent ViewModel, if the current ViewModel has one.
 - **Type:** `Object ViewModel`
 - **Read only**
 
-The root ViewModel. It the current ViewModel has no parents this value will be itself.
+The root ViewModel. If the current ViewModel has no parents this value will be itself.
 
 ### vm.$compiler
 

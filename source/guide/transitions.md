@@ -68,7 +68,7 @@ Now when the `show` property changes, Vue.js will insert or remove the `<p>` ele
     1. Apply `v-enter` class to the element;
     2. Insert it into the DOM;
     3. Force a CSS layout so `v-enter` is actually applied;
-    4. Remove the `v-enter` class to trigger a transition back to the elements original state.
+    4. Remove the `v-enter` class to trigger a transition back to the element's original state.
 
 <p class="tip">It is important to ensure that the target element's CSS transition rules are properly set and it will fire a `transitionend` event. Otherwise Vue.js will not be able to determine when the transition is finished.</p>
 

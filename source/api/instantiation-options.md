@@ -33,7 +33,7 @@ vm.a // 3
 
 The object must be JSON-compliant (no circular references). You can use it just like an ordinary object, and it will look exactly the same when serialized with `JSON.stringify`. You can also share it between multiple ViewModels.
 
-<p class="tip">Under the hood, vue.js attaches a hidden property `__emitter__` and recursively converts the object's non-function properties into getters and setters that trigger events when called. Properties with keys that starts with `$` or `_` are skipped.</p>
+<p class="tip">Under the hood, Vue.js attaches a hidden property `__emitter__` and recursively converts the object's non-function properties into getters and setters that trigger events when called. Properties with keys that starts with `$` or `_` are skipped.</p>
 
 ### methods
 
@@ -131,7 +131,7 @@ A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$
 
 If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
-<p class="tip">Vue.js uses DOM-based templating. The compiler walks through DOM elements and looks for directives and creates data bindings. This means all vue.js templates are parsable HTML that can be converted into actual DOM elements by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more ViewModel instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.</p>
+<p class="tip">Vue.js uses DOM-based templating. The compiler walks through DOM elements and looks for directives and creates data bindings. This means all Vue.js templates are parsable HTML that can be converted into actual DOM elements by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more ViewModel instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.</p>
 
 ### replace
 
@@ -217,7 +217,7 @@ These are private assets that will be available only to this ViewModel and its c
 
 - **Type:** `Object`
 
-An hash of directives to be made available to the ViewModel. For details on how to write a custom directive, see [Writing Custom Directives](/guide/directives.html#Writing_a_Custom_Directive).
+A hash of directives to be made available to the ViewModel. For details on how to write a custom directive, see [Writing Custom Directives](/guide/directives.html#Writing_a_Custom_Directive).
 
 ### filters
 
@@ -263,6 +263,6 @@ This option is useful when you need to manually manage the lifecycle of nested V
 - **Type:** `Boolean`
 - **Default:** `false`
 
-Whether to trigger `v-model` updates only on `change` event (hit enter or lose focus) or on every `input` event (on every keystroke).
+Whether to trigger `v-model` updates only on `change` events (hit enter or lose focus) or on every `input` event (on every keystroke).
 
 **Note:** since 0.10.5 child ViewModels will inherit their parents' `lazy` option if they don't have the option set on themselves.
