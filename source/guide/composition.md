@@ -5,7 +5,7 @@ order: 10
 
 ## Registering a Component
 
-Vue.js allows you to treat registered ViewModel constructors as reusable components that is conceptually similar to [Web Components](http://www.w3.org/TR/components-intro/), without requiring any polyfills. To register a component, first create a subclass constructor of Vue using `Vue.extend()`, then use the global `Vue.component()` method to register that constructor:
+Vue.js allows you to treat registered ViewModel constructors as reusable components that are conceptually similar to [Web Components](http://www.w3.org/TR/components-intro/), without requiring any polyfills. To register a component, first create a subclass constructor of Vue using `Vue.extend()`, then use the global `Vue.component()` method to register that constructor:
 
 ``` js
 // Extend Vue to get a reusable constructor
@@ -44,7 +44,7 @@ If you prefer, components can also be used in the form of a custom element tag:
 
 It is important to understand the difference between `Vue.extend()` and `Vue.component()`. Since `Vue` itself is a constructor, `Vue.extend()` is a **class inheritance method**. Its task is to create a sub-class of `Vue` and return the constructor. `Vue.component()`, on the other hand, is an **asset registration method** similar to `Vue.directive()` and `Vue.filter()`. Its task is to associate a given constructor with a string ID so Vue.js can pick it up in templates. When directly passing in options to `Vue.component()`, it calls `Vue.extend()` under the hood.
 
-Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Both are useful in its own right and Vue.js tries to provide both for maximum flexibility.
+Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js tries to provide both for maximum flexibility.
 
 ## Data Inheritance
 
@@ -280,7 +280,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registeration methods:
+Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registration methods:
 
 ``` js
 MyComponent
@@ -294,7 +294,7 @@ MyComponent
 
 ### Single insertion point
 
-When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component. Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content. When there is only one `<content>` tag with no attributes, the entire original content will be inserted at its position in the DOM and replaces it. Anything originally inside the `<content>` tags are considered **fallback content**. Fallback content will only be displayed if the hosting element is empty and has no content to be inserted. For example:
+When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component. Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content. When there is only one `<content>` tag with no attributes, the entire original content will be inserted at its position in the DOM and replaces it. Anything originally inside the `<content>` tags is considered **fallback content**. Fallback content will only be displayed if the hosting element is empty and has no content to be inserted. For example:
 
 Template for `my-component`:
 

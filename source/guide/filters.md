@@ -25,7 +25,7 @@ You can also use them inside mustache-style bindings:
 <span>&#123;&#123;message | uppercase&#125;&#125;</span>
 ```
 
-Muliple filters can be chained together:
+Multiple filters can be chained together:
 
 ``` html
 <span>&#123;&#123;message | lowercase | reverse&#125;&#125;</span>
@@ -47,7 +47,7 @@ For their specific use of the above examples see the [full list of built-in filt
 
 ## Writing a Custom Filter
 
-You can register a custom filter with the global `Vue.filter()` method, passing in a **filterID** and a **filter function**. The filter function takes a value as the argument and return the transformed value:
+You can register a custom filter with the global `Vue.filter()` method, passing in a **filterID** and a **filter function**. The filter function takes a value as the argument and returns the transformed value:
 
 ``` js
 Vue.filter('reverse', function (value) {
@@ -79,7 +79,7 @@ Vue.filter('wrap', function (value, begin, end) {
 
 ## Computed Filters
 
-When a filter is invoked, its `this` context are set to the ViewModel instance that is invoking it. This allows it to output dynamic results based on the state of the owner ViewModel. In such case, we need to track these accessed properties so that when they change, directives that are using this filter will be re-evaluated.
+When a filter is invoked, its `this` context is set to the ViewModel instance that is invoking it. This allows it to output dynamic results based on the state of the owner ViewModel. In such case, we need to track these accessed properties so that when they change, directives that are using this filter will be re-evaluated.
 
 For example:
 
@@ -96,7 +96,7 @@ Vue.filter('concat', function (value, key) {
 
 Filters that relies on the state of the ViewModel that is calling it are referred to as **computed filters**. For this simple example above, you can achieve the same result with just an expression, but for more complicated procedures that need more than one statements, you need to put them either in a computed property or a computed filter.
 
-For example, the built-in `filterBy` and `orderBy` filters are both computed filters that performs non-trivial work on the Array being passed in. For custom filters, Vue.js checks for computed filters by looking for references to `this` in a filter's function body. Any directive that uses a computed filter will be automatically compiled as an expression so its filters are included in the dependency collection process.
+For example, the built-in `filterBy` and `orderBy` filters are both computed filters that perform non-trivial work on the Array being passed in. For custom filters, Vue.js checks for computed filters by looking for references to `this` in a filter's function body. Any directive that uses a computed filter will be automatically compiled as an expression so its filters are included in the dependency collection process.
 
 If you find the concept of computed filters confusing at the moment, don't worry. It is handled automatically by Vue.js and you don't really need to know how it works to leverage it. As you get familiar with more related concepts, it will all make sense.
 

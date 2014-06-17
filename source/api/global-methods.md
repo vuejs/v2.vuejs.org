@@ -152,7 +152,7 @@ Will result in:
 
 - **callback** `Function`
 
-Vue.js batches view updates and execute them all asynchronously. It uses `requestAnimationFrame` if available and fallsback to `setTimeout(fn, 0)`. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.
+Vue.js batches view updates and executes them all asynchronously. It uses `requestAnimationFrame` if available and falls back to `setTimeout(fn, 0)`. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.
 
 ### Vue.require( module )
 

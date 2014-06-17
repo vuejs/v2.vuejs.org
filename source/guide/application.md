@@ -17,7 +17,7 @@ Alternatively, [Browserify](http://browserify.org/) is another excellent CommonJ
 
 ## Modularization
 
-Component as a built tool not only deals with JavaScript; it can also build CSS, templates and other assets. With builder hooks it can also pre-process files written in non-native formats, e.g. CoffeeScript, SASS and Stylus. Therefore it is possible to deliver highly self-contained components that encapsulates template structure, JavaScript logic and CSS presentation at the same time. A simple example can be found [here](https://github.com/vuejs/vue-component-example/tree/master/src/components/a).
+Component as a build tool not only deals with JavaScript; it can also build CSS, templates and other assets. With builder hooks it can also pre-process files written in non-native formats, e.g. CoffeeScript, SASS and Stylus. Therefore it is possible to deliver highly self-contained components that encapsulate template structure, JavaScript logic and CSS presentation at the same time. A simple example can be found [here](https://github.com/vuejs/vue-component-example/tree/master/src/components/a).
 
 Similar modularization can be achieved in Browserify too, with transform plugins such as [partialify](https://github.com/bclinkinbeard/partialify). A simple setup example can be found [here](https://github.com/vuejs/vue-browserify-example).
 
@@ -47,11 +47,11 @@ The `home` component will be rendered in place of `v-view`. When `currentView`'s
 
 <p class="tip">`v-view` will replace the element it's bound to with the new instantiated VM's element, so avoid using it on your root element.</p>
 
-With `v-view` it's very easy to leverage standalone routing libraries such as [Page.js](https://github.com/visionmedia/page.js) and [Director](https://github.com/flatiron/director). There is plan to provide a vue-router component that integrates with Vue.js for easier routing and deep linking.
+With `v-view` it's very easy to leverage standalone routing libraries such as [Page.js](https://github.com/visionmedia/page.js) and [Director](https://github.com/flatiron/director). There is a plan to provide a vue-router component that integrates with Vue.js for easier routing and deep linking.
 
 ## Communication with Server
 
-All Vue.js ViewModels can have their raw `$data` directly serialized with `JSON.stringify()` with no additional effort. You can use any Ajax component you like, for example [SuperAgent](https://github.com/visionmedia/superagent). It also plays nicely with no-backend services such as Firebase. In addition there is plan to provide a vue-resource component that resembles Angular's `$resource`, to make interfacing with a REST API easier.
+All Vue.js ViewModels can have their raw `$data` directly serialized with `JSON.stringify()` with no additional effort. You can use any Ajax component you like, for example [SuperAgent](https://github.com/visionmedia/superagent). It also plays nicely with no-backend services such as Firebase. In addition there is a plan to provide a vue-resource component that resembles Angular's `$resource`, to make interfacing with a REST API easier.
 
 ## Unit Testing
 

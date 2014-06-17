@@ -78,11 +78,11 @@ Attach a one-time only listener for an event.
 - **event** `String` *optional*
 - **callback** `Function` *optional*
 
-If no arguments are given, stop listening for all events; If only the event is given, remove all callbacks for that event; If both event and callback are given, remove that specific callback only.
+If no arguments are given, stop listening for all events; if only the event is given, remove all callbacks for that event; if both event and callback are given, remove that specific callback only.
 
 ## DOM Manipulation
 
-> All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger vue.js transitions if there are any declared on vm's `$el`. For more details on transitions see [Adding Transition Effects](/guide/transitions.html).
+> All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger Vue.js transitions if there are any declared on vm's `$el`. For more details on transitions see [Adding Transition Effects](/guide/transitions.html).
 
 ### vm.$appendTo( element | selector )
 

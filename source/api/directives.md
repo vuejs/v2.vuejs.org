@@ -65,7 +65,7 @@ Apply inline CSS styles to the element.
 
 When there is no argument, Vue.js will use the value to set `el.style.cssText`.
 
-When there is an argument, it will be used as the CSS property to apply. Combined with multiple clause you can set multiple properties together:
+When there is an argument, it will be used as the CSS property to apply. Combined with multiple clauses you can set multiple properties together:
 
 **Example:**
 
@@ -108,7 +108,7 @@ Conditionally insert / remove the element based on the truthy-ness of the bindin
 ### v-repeat
 
 - This directive creates child ViewModels.
-- This directive requires the value to be an Array.
+- This directive requires the value to be an Array or Object.
 - This directive can trigger transitions.
 - This directive accepts an optional argument.
 
@@ -171,7 +171,7 @@ Example inheriting an object:
 </div>
 ```
 
-Example inehriting individual properties (using the same data):
+Example inheriting individual properties (using the same data):
 
 ``` 
 <div v-with="myName : user.name, myEmail: user.email">
@@ -182,7 +182,7 @@ Example inehriting individual properties (using the same data):
 
 ## Literal Directives
 
-> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaludated only once on first compile and do not react to data changes.
+> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaluated only once on first compile and do not react to data changes.
 
 ### v-component
 
@@ -212,7 +212,7 @@ For details, see [the guide](/guide/transitions.html#JavaScript_Functions).
 
 ### v-transition
 
-Notify Vue.js to apply transition CSS classes to this element. The transition classes are applied when certain transition-triggering directives modifies the element, or when the ViewModel's DOM manipulation methods are called.
+Notify Vue.js to apply transition CSS classes to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the ViewModel's DOM manipulation methods are called.
 
 For details, see [the guide](/guide/transitions.html#Css_Transitions).
 
@@ -224,7 +224,7 @@ For details, see [the guide](/guide/transitions.html#Css_Animations).
 
 ### v-pre
 
-Skip compilation for this element and all its children. Skipping large amount of nodes with no directives on them can speed up compilation.
+Skip compilation for this element and all its children. Skipping large numbers of nodes with no directives on them can speed up compilation.
 
 ### v-cloak
 

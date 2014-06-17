@@ -114,7 +114,7 @@ Finally, you can use quotes to indicate literal arguments:
 - this filter only works in `v-repeat`
 - this is a computed filter
 
-Sort `v-repeat`'s displayed result. The `sorKey` argument is a property key on the context ViewModel. The value of that property will be used as the key to sort the Array items with. The optional `reverseKey` argument is also a property key on the context ViewModel, but the value's truthiness will determine whether the result should be reversed.
+Sort `v-repeat`'s displayed result. The `sortKey` argument is a property key on the context ViewModel. The value of that property will be used as the key to sort the Array items with. The optional `reverseKey` argument is also a property key on the context ViewModel, but the value's truthiness will determine whether the result should be reversed.
 
 ``` html
 <ul>

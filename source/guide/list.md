@@ -112,7 +112,7 @@ demo.items.$set(0, { childMsg: 'Changed!'})
 
 ### $remove( index | value )
 
-`$remove()` is just syntax sugar for `splice()`. will remove the element at the given index. When the argument is not a number, `$remove()` will search for that value in the array and remove the first occurrence.
+`$remove()` is just syntax sugar for `splice()`. It will remove the element at the given index. When the argument is not a number, `$remove()` will search for that value in the array and remove the first occurrence.
 
 ``` js
 // remove the item at index 0
@@ -129,7 +129,7 @@ demo.items = demo.items.filter(function (item) {
 })
 ```
 
-You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js uses some smart algorithms internally that reuses existing ViewModels and DOM nodes, and incurrs the least amount of DOM manipulations possible. Also, because of update batching, multiple changes to an Array in the same event loop will only trigger one comparison.
+You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js uses some smart algorithms internally that reuse existing ViewModels and DOM nodes, and incurs the least number of DOM manipulations possible. Also, because of update batching, multiple changes to an Array in the same event loop will only trigger one comparison.
 
 ## Array Filters
 
