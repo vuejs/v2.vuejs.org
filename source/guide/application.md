@@ -47,7 +47,7 @@ The `home` component will be rendered in place of `v-view`. When `currentView`'s
 
 <p class="tip">`v-view` will replace the element it's bound to with the new instantiated VM's element, so avoid using it on your root element.</p>
 
-With `v-view` it's very easy to leverage standalone routing libraries such as [Page.js](https://github.com/visionmedia/page.js) and [Director](https://github.com/flatiron/director). There is a plan to provide a vue-router component that integrates with Vue.js for easier routing and deep linking.
+With `v-view` it's very easy to leverage standalone routing libraries such as [Page.js](https://github.com/visionmedia/page.js) and [Director](https://github.com/flatiron/director). See [basic example with Page.js](https://github.com/collinglass/page-vue-example). There is a plan to provide a vue-router component that integrates with Vue.js for easier routing and deep linking.
 
 ## Communication with Server
 
