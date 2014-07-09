@@ -91,7 +91,7 @@ And you can test that module like this:
 describe('my-component', function () {
     
     // require exposed internal module
-    var myComponent = require('my-project/src/my-component')
+    var myComponent = new (require('my-project/src/my-component'))
 
     it('should have a created hook', function () {
         assert.equal(typeof myComponent.created, 'function')
