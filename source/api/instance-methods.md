@@ -10,9 +10,23 @@ order: 4
 ### vm.$watch( keypath, callback )
 
 - **keypath** `String`
-- **callback( newValue )** `Function`
+- **callback( newValue, [mutation])** `Function`
 
-Watch a keypath on the vm's data object for changes and call the callback with the new value.
+Watch a keypath on the vm's data object (or the `$data` object itself) for changes and call the callback with the new value.
+
+A second `mutation` object is also available and is useful when watching arrarys:
+
+```javascript
+this.$watch('list', function (value, mutation) {
+    if (mutation) {
+        mutation.method // e.g. 'push'
+        mutation.args // raw arguments to the mutation method
+        mutation.result // return value
+        mutation.inserted // new, inserted elements
+        mutation.removed // removed elements
+    }
+})
+```
 
 ### vm.$unwatch( keypath, [callback] )
 
