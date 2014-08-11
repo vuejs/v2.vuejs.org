@@ -35,7 +35,7 @@ When there is exactly one arg, plural forms simply add an "s" at the end. When t
 **Example:**
 
 ``` html
-<span v-text="date | st nd rd th"></span>
+<span v-text="date | pluralize st nd rd th"></span>
 ```
 
 Will result in:
