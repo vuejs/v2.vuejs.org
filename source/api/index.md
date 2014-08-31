@@ -9,7 +9,7 @@ The `Vue` Class is the core of Vue.js. It is a constructor that allows you to cr
 var vm = new Vue({ /* options */ })
 ```
 
-When you instantiate a ViewModel instance, it compiles the DOM element it is assigned to and creates data bindings that keep the DOM and the data in sync. It takes an option object that can include options about the DOM element, data object, mixin methods, lifecycle callbacks and more. See the full list of [Instantitation Options](/api/instantiation-options.html).
+When you instantiate a ViewModel instance, it compiles the DOM element it is assigned to and creates data bindings that keep the DOM and the data in sync. It takes an option object that can include options about the DOM element, data object, mixin methods, lifecycle callbacks and more. See the full list of [Instantiation Options](/api/instantiation-options.html).
 
 During the compilation phase, Vue.js walks through the DOM and compiles the directives it runs into. Once compiled, these DOM nodes are now said to be managed by the ViewModel. A DOM node can only be managed by one ViewModel, and once compiled, it should not be compiled again because the original binding information would have been lost. For templates, Vue.js caches them as un-compiled DocumentFragments and simply does `cloneNode(true)` when reusing them, which is highly efficient.
 
