@@ -149,6 +149,27 @@ $header-height = 40px
         .sidebar
             position fixed
 
+@media screen and (max-width: 1200px)
+    #ad
+        z-index 9
+        position relative
+        width auto
+        height 100px
+        padding 0
+        bottom 0
+        right 0
+        margin 30px 0 35px
+        .carbon-wrap, .carbon-img, .carbon-text, .carbon-poweredby
+            display inline-block
+            vertical-align top
+        .carbon-text
+            width 130px
+            margin-left 15px
+        .carbon-poweredby
+            position absolute
+            bottom 0
+            left 145px
+
 @media screen and (max-width: 720px)
     body
         -webkit-text-size-adjust none
@@ -210,21 +231,3 @@ $header-height = 40px
     .footer
         margin-left 0
         text-align center
-    #ad
-        position relative
-        width auto
-        height 100px
-        padding 0
-        bottom 0
-        right 0
-        margin 30px 0 35px
-        .carbon-wrap, .carbon-img, .carbon-text, .carbon-poweredby
-            display inline-block
-            vertical-align top
-        .carbon-text
-            width 130px
-            margin-left 15px
-        .carbon-poweredby
-            position absolute
-            bottom 0
-            left 145px
