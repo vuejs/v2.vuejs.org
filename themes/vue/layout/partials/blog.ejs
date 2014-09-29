@@ -1,3 +1,8 @@
+<div class="sidebar">
+  <ul class="main-menu">
+      <%- partial('partials/main_menu') %>
+  </ul>
+</div>
 <div class="content blog">
 <h1 style="text-align: center; margin-bottom:.5em">The Vue.js Blog</h1>
 <% site.posts.sort('date', -1).each(function (post) { %>

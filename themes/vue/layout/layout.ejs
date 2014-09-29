@@ -15,19 +15,29 @@
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
+        <div id="mobile-bar">
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        
         <% if (page.index) { %>
             <%- partial('partials/index') %>
         <% } else { %>
             <%- partial('partials/header') %>
         <% } %>
+
         <div id="main">
-        <% if (page.blog_index) { %>
-            <%- partial('partials/blog') %>
-        <% } else { %>
-            <%- body %>
-        <% } %>
+            <% if (page.blog_index) { %>
+                <%- partial('partials/blog') %>
+            <% } else { %>
+                <%- body %>
+            <% } %>
         </div>
-        <script src="/js/smooth-scroll.min.js"></script>
-        <script src="/js/common.js"></script>
+
+        <% if (!page.index) { %>
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        <% } %>
+
     </body>
 </html>

@@ -1,11 +1,13 @@
 <div class="sidebar blog">
-    <div class="toggle">···</div>
+    <ul class="main-menu">
+        <%- partial('partials/main_menu') %>
+    </ul>
     <div class="list">
         <h2>Recent Posts</h2>
         <ul>
         <% site.posts.sort('date', -1).limit(10).each(function (post) { %>
             <li>
-                <a href="/<%- post.path %>" class="sidebar-link"><%- post.title %></a>
+                <a href="/<%- post.path %>" class="sidebar-link<%- page.title === post.title ? ' current' : '' %>"><%- post.title %></a>
             </li>
         <% }) %>
         <li style="margin:10px 0 3px">
