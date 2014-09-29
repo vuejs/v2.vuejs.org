@@ -10,9 +10,9 @@
         <script>
             window.PAGE_TYPE = "<%- page.type %>"
         </script>
-        <script src="/js/vue.min.js"></script>
         <%- css(page.index ? 'css/index' : 'css/page') %>
         <%- partial('partials/ga') %>
+        <script src="/js/vue.min.js"></script>
     </head>
     <body>
         <% if (page.index) { %>
@@ -27,6 +27,7 @@
             <%- body %>
         <% } %>
         </div>
+        <script src="/js/smooth-scroll.min.js"></script>
         <script src="/js/common.js"></script>
     </body>
 </html>
