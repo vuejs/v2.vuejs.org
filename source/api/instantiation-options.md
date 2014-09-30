@@ -129,7 +129,7 @@ Provide the ViewModel with an existing DOM element. It can be either a `querySel
 
 A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$el` will be overwriiten. If the **replace** option is `true`, the template will replace `vm.$el` entirely.
 
-If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
 <p class="tip">Vue.js uses DOM-based templating. The compiler walks through DOM elements and looks for directives and creates data bindings. This means all Vue.js templates are parsable HTML that can be converted into actual DOM elements by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more ViewModel instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.</p>
 
