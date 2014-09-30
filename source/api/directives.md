@@ -143,7 +143,7 @@ For detailed examples, see [Displaying a List](/guide/list.html).
 - This directive creates child ViewModels.
 - This directive can trigger transitions.
 
-Conditionally instantiate ViewModels, using the bound value as the Component ID to look up constructors with. When the bound value changes, existing ViewModel will be destroyed and a new ViewModel will be created. When a ViewModel is created, the original element will be replaced, but all attributes will be copied to the new element. For more details, see [Routing](/guide/application.html#Routing).
+Conditionally instantiate ViewModels, using the bound value as the Component ID to look up constructors with. When the bound value changes, existing ViewModel will be destroyed and a new ViewModel will be created. When a ViewModel is created, the original element will be replaced, but all attributes will be copied to the new element. Note that this dyamic instantiaion differs from `v-component`, which instantiates a fixed ViewModel based on the attribute value. For more details, see [Routing](/guide/application.html#Routing)
 
 ### v-with
 
@@ -186,7 +186,17 @@ Example inheriting individual properties (using the same data):
 
 ### v-component
 
-Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Composing ViewModels](/guide/composition.html).
+Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. Note that using `v-component` is the declarative equivalent of instantiating a component, meaning that the following two code snippets are equivalent:
+``` html
+<div id="my_div" v-component="Profile"></div>
+```
+
+``` js
+new Profile({
+    el = "#my_div"
+})
+```
+For more details see [Composing ViewModels](/guide/composition.html).
 
 ### v-ref
 
