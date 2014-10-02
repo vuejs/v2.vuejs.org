@@ -1,4 +1,4 @@
-title: Class: Vue
+title: "Class: Vue"
 type: api
 order: 1
 ---
