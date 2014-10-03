@@ -7,6 +7,7 @@ This site is built with [hexo](http://zespia.tw/hexo/). Site content is written 
 Start a dev server at `localhost:4000`:
 
 ```
-& npm install -g hexo
-& hexo server
+$ npm install -g hexo
+$ npm install
+$ hexo server
 ```
