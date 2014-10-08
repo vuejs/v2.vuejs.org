@@ -121,12 +121,21 @@ $header-height = 40px
             padding-left 1.25em
             color $light
     a.button
-        font-size 1.2em
+        font-size 1.1em
         margin .2em 0
         width 180px
         text-align center
+        padding 10px 24px
+        display inline-block
+        vertical-align middle
     span.light
         color $light
+    span.info
+        font-size .85em
+        display inline-block
+        vertical-align middle
+        width 280px
+        margin-left 20px
     h1
         margin 0 0 1em
     h2
@@ -211,6 +220,14 @@ $header-height = 40px
             position absolute
             bottom 0
             left 145px
+
+@media screen and (max-width: 560px)
+    #downloads
+        text-align center
+        margin-bottom 25px
+        .info
+            margin-top 5px
+            margin-left 0
 
 @media screen and (max-width: 720px)
     body

@@ -196,10 +196,15 @@ html, body
         padding 0
         list-style-type none
         li:before
-            content "✓"
-            font-weight bold
-            margin-right .75em
-            font-size 1.2em
+            content ""
+            display inline-block
+            width 24px
+            height 24px
+            background url(../images/check.png) center center no-repeat
+            background-size 24px 24px
+            margin-right 10px
+            position relative
+            top 4px
 
 #footer
     text-align center
@@ -218,10 +223,10 @@ html, body
             text-decoration none
             text-transform uppercase
             letter-spacing 1px
-            border 2px solid #fff
+            border 1px solid #fff
             display inline-block
-            padding 8px 16px
-            border-radius 4px
+            padding 12px 20px
+            border-radius 25px
             transition all .15s ease
             margin-bottom 2em
             &:hover
@@ -278,10 +283,10 @@ html, body
         width 250px
     #why
         ul
-            width 250px
+            width 280px
             font-size 1.1em
         h2
-            font-size 1.35em
+            font-size 1.4em
     #ad
         position static
         .carbon-img, .carbon-text, .carbon-poweredby
