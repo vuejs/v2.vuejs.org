@@ -186,7 +186,7 @@
 	var todos = ko.utils.parseJson(localStorage.getItem('todos-knockoutjs'));
 
 	// bind a new instance of our view model to the page
-	var viewModel = new ViewModel(todos || []);
+	var viewModel = window.viewModel = new ViewModel(todos || []);
 	ko.applyBindings(viewModel);
 
 	// set up filter routing
