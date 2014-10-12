@@ -1,14 +1,12 @@
 all: update
 	rm -f db.json
 	hexo generate
-	cp -R perf public
-	cp -R ../vue/test public
+	cp -R ../vue/test/unit public
 
 deploy:	all
 	hexo deploy
 
 update:
-	cd ../vue && git checkout master && grunt build && grunt instrument
+	cd ../vue && git checkout master && grunt build && grunt build-test
 	cp ../vue/dist/vue.min.js themes/vue/source/js/vue.min.js
-	cp ../vue/dist/vue.min.js perf/todomvc-benchmark/todomvc/vue/bower_components/vue/vue.min.js
 	node update.js
