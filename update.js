@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    version = require('../vue/component.json').version,
+    version = require('../vue-0.10/component.json').version,
     themeconfPath = 'themes/vue/_config.yml',
     installPath = 'source/guide/installation.md',
     themeconfig = fs.readFileSync(themeconfPath, 'utf-8'),
@@ -17,7 +17,7 @@ var sizes = {
 }
 
 for (var file in sizes) {
-    var filesize = fs.statSync('../vue/dist/' + sizes[file], 'utf-8').size
+    var filesize = fs.statSync('../vue-0.10/dist/' + sizes[file], 'utf-8').size
     sizes[file] = (filesize / 1024).toFixed(2)
 }
 
