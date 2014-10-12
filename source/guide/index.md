@@ -19,7 +19,7 @@ Even if you are already familiar with some of these terms, it is recommended tha
 
 ### ViewModel
 
-An object that syncs the Model and the View. In Vue.js, ViewModels are instantiated with the `Vue` constructor or its sub-classes:
+An object that syncs the Model and the View. In Vue.js, every Vue instance is a ViewModel. They are instantiated with the `Vue` constructor or its sub-classes:
 
 ```js
 var vm = new Vue({ /* options */ })
@@ -45,9 +45,11 @@ A slightly modified plain JavaScript object.
 vm.$data // The Model
 ```
 
-In Vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and ViewModels that are observing them will be notified of the changes. Vue.js converts the properties on data objects into ES5 getter/setters, which allows direct manipulation without the need for dirty checking.
+In Vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and Vue instances that are observing them will be notified of the changes. Vue.js converts the properties on data objects into ES5 getter/setters, which allows direct manipulation without the need for dirty checking.
 
-The data objects are mutated in place, so modifying it by reference has the same effects as modifying `vm.$data`. This also makes it easy for multiple ViewModel instances to observe the same piece of data.
+The data objects are mutated in place, so modifying it by reference has the same effects as modifying `vm.$data`. This also makes it easy for multiple Vue instances to observe the same piece of data, or to externalize data manipulation into a more discrete Model/Persistence layer.
+
+One caveat here is that once the observation has been initiated, Vue.js will not be able detect newly added or deleted properties. To get around that, observed objects are augmented with `$add` and `$delete` methods.
 
 For technical details see [Instantiation Options: data](/api/instantiation-options.html#data).
 
@@ -59,7 +61,7 @@ Prefixed HTML attributes that tell Vue.js to do something about a DOM element.
 <div v-text="message"></div>
 ```
 
-Here the div element has a `v-text` directive with the value `message`. What it does is telling Vue.js to keep the div's textContent in sync with the ViewModel's `message` property.
+Here the div element has a `v-text` directive with the value `message`. What it does is telling Vue.js to keep the div's textContent in sync with the Vue instance's `message` property.
 
 Directives can encapsulate arbitrary DOM manipulations. For example `v-attr` manipulates an element's attributes, `v-repeat` clones an element based on an Array, `v-on` attaches event listeners... we will cover them later.
 
@@ -77,11 +79,17 @@ Although it is convenient, there are a few things you need to be aware of:
 
 <p class="tip">Internet Explorer will remove invalid inline `style` attributes when parsing HTML, so always use `v-style` when binding inline CSS if you want to support IE.</p>
 
-<p class="tip">You can use triple mustaches &#123;&#123;&#123; like this &#125;&#125;&#125; for unescaped HTML, which translates to `v-html` internally. However, this can open up windows for potential XSS attacks, therefore it is suggested that you only use triple mustaches when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.</p>
+You can use triple mustaches for unescaped HTML, which translates to `v-html` internally:
+
+``` html
+{&#123;&#123; safeHTMLString &#125;&#125;}
+```
+
+However, this can open up windows for potential XSS attacks, therefore it is suggested that you only use triple mustaches when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.
 
 ### Filters
 
-Functions that are used to process the raw values before updating the View. They are denoted by a "pipe" inside directives or bindings:
+Filters are functions used to process the raw values before updating the View. They are denoted by a "pipe" inside directives or bindings:
 
 ```html
 <div>&#123;&#123;message | capitalize&#125;&#125;</div>
@@ -91,40 +99,48 @@ Now before the div's textContent is updated, the `message` value will first be p
 
 ### Components
 
-In Vue.js, a component is simply a ViewModel constructor registered with an ID using `Vue.component(ID, constructor)`. By having an associated ID, they can be nested in other ViewModels' templates with the `v-component` directive. This simple mechanism enables declarative reuse and composition of ViewModels in a fashion similar to [Web Components](http://www.w3.org/TR/components-intro/), without the need for latest browsers or heavy polyfills. By breaking an application into smaller components, the result is a highly decoupled and maintainable codebase. For more details, see [Composing ViewModels](/guide/composition.html).
+In Vue.js, every component is simply a Vue instance. Components form a nested tree-like hierarchy that represents your application interface. They can be instantiated by a custom constructor returned from `Vue.extend`, but a more declarative approach is registering them with `Vue.component(id, constructor)`. Once registered, they can be declaratively nested in other Vue instance's templates with the `v-component` directive:
+
+``` html
+<div v-component="my-component">
+  <!-- internals handled by my-component -->
+</div>
+```
+
+This simple mechanism enables declarative reuse and composition of Vue instances in a fashion similar to [Web Components](http://www.w3.org/TR/components-intro/), without the need for latest browsers or heavy polyfills. By breaking an application into smaller components, the result is a highly decoupled and maintainable codebase. For more details, see [Composing Vue Instances](/guide/composition.html).
 
 ## A Quick Example
 
 ``` html
 <div id="demo">
-    <h1>&#123;&#123;title | uppercase&#125;&#125;</h1>
-    <ul>
-        <li
-            v-repeat="todos"
-            v-on="click: done = !done"
-            class="&#123;&#123;done ? 'done' : ''&#125;&#125;">
-            &#123;&#123;content&#125;&#125;
-        </li>
-    </ul>
+  <h1>&#123;&#123;title | uppercase&#125;&#125;</h1>
+  <ul>
+    <li
+      v-repeat="todos"
+      v-on="click: done = !done"
+      class="&#123;&#123;done ? 'done' : ''&#125;&#125;">
+      &#123;&#123;content&#125;&#125;
+    </li>
+  </ul>
 </div>
 ```
 
 ``` js
 var demo = new Vue({
-    el: '#demo',
-    data: {
-        title: 'todos',
-        todos: [
-            {
-                done: true,
-                content: 'Learn JavaScript'
-            },
-            {
-                done: false,
-                content: 'Learn Vue.js'
-            }
-        ]
-    }
+  el: '#demo',
+  data: {
+    title: 'todos',
+    todos: [
+      {
+        done: true,
+        content: 'Learn JavaScript'
+      },
+      {
+        done: false,
+        content: 'Learn Vue.js'
+      }
+    ]
+  }
 })
 ```
 
@@ -133,20 +149,20 @@ var demo = new Vue({
 <div id="demo"><h1>&#123;&#123;title | uppercase&#125;&#125;</h1><ul><li v-repeat="todos" v-on="click: done = !done" class="&#123;&#123;done ? 'done' : ''&#125;&#125;">&#123;&#123;content&#125;&#125;</li></ul></div>
 <script>
 var demo = new Vue({
-    el: '#demo',
-    data: {
-        title: 'todos',
-        todos: [
-            {
-                done: true,
-                content: 'Learn JavaScript'
-            },
-            {
-                done: false,
-                content: 'Learn Vue.js'
-            }
-        ]
-    }
+  el: '#demo',
+  data: {
+    title: 'todos',
+    todos: [
+      {
+        done: true,
+        content: 'Learn JavaScript'
+      },
+      {
+        done: false,
+        content: 'Learn Vue.js'
+      }
+    ]
+  }
 })
 </script>
 
