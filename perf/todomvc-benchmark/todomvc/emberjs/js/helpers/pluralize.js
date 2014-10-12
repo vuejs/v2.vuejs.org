@@ -1,9 +1,11 @@
-/*global Todos, Ember */
-'use strict';
+/*global Ember */
+(function () {
+	'use strict';
 
-Ember.Handlebars.helper('pluralize', function (singular, count) {
-	/* From Ember-Data */
-	var inflector = new Ember.Inflector(Ember.Inflector.defaultRules);
+	Ember.Handlebars.helper('pluralize', function (singular, count) {
+		/* From Ember-Data */
+		var inflector = Ember.Inflector.inflector;
 
-	return count === 1 ? singular : inflector.pluralize(singular);
-});
+		return count === 1 ? singular : inflector.pluralize(singular);
+	});
+})();

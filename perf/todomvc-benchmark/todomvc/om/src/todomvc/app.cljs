@@ -27,7 +27,7 @@
 
 (def history (History.))
 
-(events/listen history EventType/NAVIGATE
+(events/listen history EventType.NAVIGATE
   (fn [e] (secretary/dispatch! (.-token e))))
 
 (.setEnabled history true)
@@ -43,20 +43,20 @@
     :active (not (:completed todo))
     :completed (:completed todo)))
 
-(defn main [{:keys [showing todos] :as app} owner opts]
-  (om/component
-    (dom/section #js {:id "main" :style (hidden (empty? todos))}
-      (dom/input
-        #js {:id "toggle-all" :type "checkbox"
-             :onChange #(toggle-all % app)
-             :checked (every? :completed todos)})
-      (dom/ul #js {:id "todo-list"}
-        (om/build-all item/todo-item todos
-          {:opts opts :key :id
-           :fn (fn [todo]
-                 (cond-> todo
-                   (= (:id todo) (:editing opts)) (assoc :editing true)
-                   (not (visible? todo showing)) (assoc :hidden true)))})))))
+(defn main [{:keys [todos showing editing] :as app} comm]
+  (dom/section #js {:id "main" :style (hidden (empty? todos))}
+    (dom/input
+      #js {:id "toggle-all" :type "checkbox"
+           :onChange #(toggle-all % app)
+           :checked (every? :completed todos)})
+    (apply dom/ul #js {:id "todo-list"}
+      (om/build-all item/todo-item todos
+        {:init-state {:comm comm}
+         :key :id
+         :fn (fn [todo]
+               (cond-> todo
+                 (= (:id todo) editing) (assoc :editing true)
+                 (not (visible? todo showing)) (assoc :hidden true)))}))))
 
 (defn make-clear-button [completed comm]
   (when (pos? completed)
@@ -65,21 +65,19 @@
            :onClick #(put! comm [:clear (now)])}
       (str "Clear completed (" completed ")"))))
 
-(defn footer [app owner opts]
-  (let [{:keys [count completed comm]} opts
-        clear-button (make-clear-button completed comm)
+(defn footer [app count completed comm]
+  (let [clear-button (make-clear-button completed comm)
         sel (-> (zipmap [:all :active :completed] (repeat ""))
                 (assoc (:showing app) "selected"))]
-    (om/component
-      (dom/footer #js {:id "footer" :style (hidden (empty? (:todos app)))}
-        (dom/span #js {:id "todo-count"}
-          (dom/strong nil count)
-          (str " " (pluralize count "item") " left"))
-        (dom/ul #js {:id "filters"}
-          (dom/li nil (dom/a #js {:href "#/" :className (sel :all)} "All"))
-          (dom/li nil (dom/a #js {:href "#/active" :className (sel :active)} "Active"))
-          (dom/li nil (dom/a #js {:href "#/completed" :className (sel :completed)} "Completed")))
-        clear-button))))
+    (dom/footer #js {:id "footer" :style (hidden (empty? (:todos app)))}
+      (dom/span #js {:id "todo-count"}
+        (dom/strong nil count)
+        (str " " (pluralize count "item") " left"))
+      (dom/ul #js {:id "filters"}
+        (dom/li nil (dom/a #js {:href "#/" :className (sel :all)} "All"))
+        (dom/li nil (dom/a #js {:href "#/active" :className (sel :active)} "Active"))
+        (dom/li nil (dom/a #js {:href "#/completed" :className (sel :completed)} "Completed")))
+      clear-button)))
 
 ;; =============================================================================
 ;; Todos
@@ -87,28 +85,31 @@
 (defn toggle-all [e app]
   (let [checked (.. e -target -checked)]
     (om/transact! app :todos
-      (fn [todos] (into [] (map #(assoc % :completed checked) todos))))))
+      (fn [todos] (vec (map #(assoc % :completed checked) todos))))))
 
 (defn handle-new-todo-keydown [e app owner]
   (when (== (.-which e) ENTER_KEY)
     (let [new-field (om/get-node owner "newField")]
       (when-not (string/blank? (.. new-field -value trim))
-        (om/transact! app :todos conj
-          {:id (guid)
-           :title (.-value new-field)
-           :completed false})
+        (let [new-todo {:id (guid)
+                        :title (.-value new-field)
+                        :completed false}]
+          (om/transact! app :todos
+            #(conj % new-todo)
+            [:create new-todo]))
         (set! (.-value new-field) "")))
     false))
 
 (defn destroy-todo [app {:keys [id]}]
   (om/transact! app :todos
-    (fn [todos] (into [] (remove #(= (:id %) id) todos)))))
+    (fn [todos] (into [] (remove #(= (:id %) id) todos)))
+    [:delete id]))
 
-(defn edit-todo [app {:keys [id]}] (om/update! app assoc :editing id))
+(defn edit-todo [app {:keys [id]}] (om/update! app :editing id))
 
-(defn save-todos [app] (om/update! app dissoc :editing))
+(defn save-todos [app] (om/update! app :editing nil))
 
-(defn cancel-action [app] (om/update! app dissoc :editing))
+(defn cancel-action [app] (om/update! app :editing nil))
 
 (defn clear-completed [app]
   (om/transact! app :todos
@@ -133,23 +134,18 @@
         (om/set-state! owner :comm comm)
         (go (while true
               (let [[type value] (<! comm)]
-                (if (#{:destroy :edit} type) 
-                  (om/read value
-                    (fn [todo]
-                      (handle-event type app todo)))
-                  (handle-event type app value)))))))
+                (handle-event type app value))))))
     om/IWillUpdate
     (will-update [_ _ _] (set! render-start (now)))
     om/IDidUpdate
-    (did-update [_ _ _ _]
+    (did-update [_ _ _]
       (store "todos" todos)
       (let [ms (- (.valueOf (now)) (.valueOf render-start))]
         (set! (.-innerHTML (js/document.getElementById "message")) (str ms "ms"))))
-    om/IRender
-    (render [_]
+    om/IRenderState
+    (render-state [_ {:keys [comm]}]
       (let [active    (count (remove :completed todos))
-            completed (- (count todos) active)
-            comm      (om/get-state owner :comm)]
+            completed (- (count todos) active)]
         (dom/div nil
           (dom/header #js {:id "header"}
             (dom/h1 nil "todos")
@@ -157,10 +153,11 @@
               #js {:ref "newField" :id "new-todo"
                    :placeholder "What needs to be done?"
                    :onKeyDown #(handle-new-todo-keydown % app owner)})
-            (om/build main app {:opts {:comm comm :editing (:editing app)}})
-            (om/build footer app {:opts {:count active :completed completed :comm comm}})))))))
+            (main app comm)
+            (footer app active completed comm)))))))
 
-(om/root app-state todo-app (.getElementById js/document "todoapp"))
+(om/root todo-app app-state
+  {:target (.getElementById js/document "todoapp")})
 
 (dom/render
   (dom/div nil

@@ -23,7 +23,7 @@
           (reader/read-string s)
           [])))))
 
-(defn hidden [^boolean is-hidden]
+(defn hidden [is-hidden]
   (if is-hidden
     #js {:display "none"}
     #js {}))
