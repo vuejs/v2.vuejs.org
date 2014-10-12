@@ -47,6 +47,8 @@ vm.$data // The Model
 
 In Vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and Vue instances that are observing them will be notified of the changes. Vue.js converts the properties on data objects into ES5 getter/setters, which allows direct manipulation without the need for dirty checking.
 
+Vue instances proxy all properties on data objects they observe. So once an object `{ a: 1 }` has been observed, both `vm.$data.a` and `vm.a` will return the same value, and setting `vm.a = 2` will modify `vm.$data`.
+
 The data objects are mutated in place, so modifying it by reference has the same effects as modifying `vm.$data`. This also makes it easy for multiple Vue instances to observe the same piece of data, or to externalize data manipulation into a more discrete Model/Persistence layer.
 
 One caveat here is that once the observation has been initiated, Vue.js will not be able detect newly added or deleted properties. To get around that, observed objects are augmented with `$add` and `$delete` methods.

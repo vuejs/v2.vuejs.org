@@ -8,7 +8,9 @@ order: 3
 If you have not used AngularJS before, you probably don't know what a directive is. Essentially, a directive is some special token in the markup that tells the library to do something to a DOM element. In Vue.js, the concept of directive is drastically simpler than that in Angular. A Vue.js directive can only appear in the form of a prefixed HTML attribute that takes the following format:
 
 ``` html
-<element prefix-directiveId="[arg:] ( keypath | expression ) [filters...]"></element>
+<element
+  prefix-directiveId="[argument:] expression [| filters...]">
+</element>
 ```
 
 ## A Simple Example
@@ -17,7 +19,7 @@ If you have not used AngularJS before, you probably don't know what a directive 
 <div v-text="message"></div>
 ```
 
-Here the prefix is `v` which is the default. The directive ID is `text` and the the keypath is `message`. This directive instructs Vue.js to update the div's `textContent` whenever the `message` property on the ViewModel changes.
+Here the prefix is `v` which is the default. The directive ID is `text` and the the expression is `message`. This directive instructs Vue.js to update the div's `textContent` whenever the `message` property on the Vue instance changes.
 
 ## Inline Expressions
 
@@ -29,7 +31,7 @@ Here we are using a computed expression instead of a single property key. Vue.js
 
 You should use expressions wisely and avoid putting too much logic in your templates, especially statements with side effects (with the exception of event listener expressions). To discourage the overuse of logic inside templates, Vue.js inline expressions are limited to **one statement only**. For bindings that require more complicated operations, use [Computed Properties](/guide/computed.html) instead.
 
-<p class="tip">For security reasons, in inline expressions you can only access properties and methods present on the current context ViewModel and its parents.</p>
+<p class="tip">For security reasons, in inline expressions you can only access properties and methods present on the current context Vue instance and its parents.</p>
 
 ## Argument
 
@@ -49,9 +51,9 @@ You can create multiple bindings of the same directive in a single attribute, se
 
 ``` html
 <div v-on="
-    click   : onClick,
-    keyup   : onKeyup,
-    keydown : onKeydown
+  click   : onClick,
+  keyup   : onKeyup,
+  keydown : onKeydown
 ">
 </div>
 ```
@@ -66,13 +68,15 @@ Some directives don't create data bindings - they simply take the attribute valu
 
 Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor.
 
-Since Vue.js 0.10, you can also use mustache expressions inside literal directives. This allows you to dynamically resolve the type of component you want to use:
+In some cases, you can also use mustache expressions inside literal directives. This allows you to dynamically resolve the type of component you want to use:
 
 ``` html
 <div v-component="{&#123; isOwner ? 'owner-panel' : 'guest-panel' &#125;}"></div>
 ```
 
-However, note that mustache expressions inside literal directives are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes. To dynamically instantiate different components at run time, use the [v-view](/api/directives.html#v-view) directive.
+When the expression inside the mustaches change, the rendered component will also change accordingly!
+
+However, note that `v-component` is the only literal directive that has this reactive behavior. Mustache expressions in other literal directives are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
 
 A full list of literal directives can be found in the [API reference](/api/directives.html#Literal_Directives).
 
@@ -82,7 +86,7 @@ Some directives don't even expect an attribute value - they simply do something 
 
 ``` html
 <div v-pre>
-    <!-- markup in here will not be compiled -->
+  <!-- markup in here will not be compiled -->
 </div>
 ```
 
@@ -100,20 +104,20 @@ You can register a global custom directive with the `Vue.directive()` method, pa
 
 ``` js
 Vue.directive('my-directive', {
-    bind: function (value) {
-        // do preparation work
-        // e.g. add event listeners or expensive stuff
-        // that needs to be run only once
-        // `value` is the initial value
-    },
-    update: function (value) {
-        // do something based on the updated value
-        // this will also be called for the initial value
-    },
-    unbind: function () {
-        // do clean up work
-        // e.g. remove event listeners added in bind()
-    }
+  bind: function (value) {
+    // do preparation work
+    // e.g. add event listeners or expensive stuff
+    // that needs to be run only once
+    // `value` is the initial value
+  },
+  update: function (value) {
+    // do something based on the updated value
+    // this will also be called for the initial value
+  },
+  unbind: function () {
+    // do clean up work
+    // e.g. remove event listeners added in bind()
+  }
 })
 ```
 
@@ -127,18 +131,18 @@ When you only need the `update` function, you can pass in a single function inst
 
 ``` js
 Vue.directive('my-directive', function (value) {
-    // this function will be used as update()
+  // this function will be used as update()
 })
 ```
 
 All the hook functions will be copied into the actual **directive object**, which you can access inside these functions as their `this` context. The directive object exposes some useful properties:
 
 - **el**: the element the directive is bound to.
-- **key**: the keypath of the binding, excluding arguments and filters.
-- **arg**: the argument, if present.
-- **expression**: the raw, unparsed expression.
 - **vm**: the context ViewModel that owns this directive.
-- **value**: the current binding value.
+- **expression**: the expression of the binding, excluding arguments and filters.
+- **arg**: the argument, if present.
+- **raw**: the raw, unparsed expression.
+- **name**: the name of the directive, without the prefix.
 
 <p class="tip">You should treat all these properties as read-only and refrain from changing them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.</p>
 
@@ -150,22 +154,24 @@ An example of a custom directive using some of these properties:
 
 ``` js
 Vue.directive('demo', {
-    bind: function () {
-        this.el.style.color = '#fff'
-        this.el.style.backgroundColor = this.arg
-    },
-    update: function (value) {
-        this.el.innerHTML =
-            'argument - ' + this.arg + '<br>' +
-            'key - ' + this.key + '<br>' +
-            'value - ' + value
-    }
+  bind: function () {
+    this.el.style.color = '#fff'
+    this.el.style.backgroundColor = this.arg
+  },
+  update: function (value) {
+    this.el.innerHTML =
+      'name - '       + this.name + '<br>' +
+      'raw - '        + this.raw + '<br>' +
+      'expression - ' + this.expression + '<br>' +
+      'argument - '   + this.arg + '<br>' +
+      'value - '      + value
+  }
 })
 var demo = new Vue({
-    el: '#demo',
-    data: {
-        msg: 'hello!'
-    }
+  el: '#demo',
+  data: {
+    msg: 'hello!'
+  }
 })
 ```
 
@@ -174,28 +180,30 @@ var demo = new Vue({
 <div id="demo" v-demo="LightSlateGray : msg"></div>
 <script>
 Vue.directive('demo', {
-    bind: function () {
-        this.el.style.color = '#fff'
-        this.el.style.backgroundColor = this.arg
-    },
-    update: function (value) {
-        this.el.innerHTML =
-            'argument - ' + this.arg + '<br>' +
-            'key - ' + this.key + '<br>' +
-            'value - ' + value
-    }
+  bind: function () {
+    this.el.style.color = '#fff'
+    this.el.style.backgroundColor = this.arg
+  },
+  update: function (value) {
+    this.el.innerHTML =
+      'name - ' + this.name + '<br>' +
+      'raw - ' + this.raw + '<br>' +
+      'expression - ' + this.expression + '<br>' +
+      'argument - ' + this.arg + '<br>' +
+      'value - ' + value
+  }
 })
 var demo = new Vue({
-    el: '#demo',
-    data: {
-        msg: 'hello!'
-    }
+  el: '#demo',
+  data: {
+    msg: 'hello!'
+  }
 })
 </script>
 
-### Creating Literal &amp; Empty Directives
+### Creating Literal Directives
 
-If you pass in `isLiteral: true` or `isEmpty: true` when creating a custom directive, all data-binding work will be skipped for that directive, and only `bind()` and `unbind()` will be called. In literal directives the expression will still be parsed, so you can still access information such as `this.expression`, `this.key` and `this.arg`. For empty directives, Vue.js will never parse the expression even if it exists.
+If you pass in `isLiteral: true` when creating a custom directive, the attribute value will be taken as a literal string and assigned as that directive's `expression`. The directive will not attempt to setup data observation.
 
 Example:
 
@@ -205,12 +213,18 @@ Example:
 
 ``` js
 Vue.directive('literal-dir', {
-    isLiteral: true,
-    bind: function () {
-        console.log(this.expression) // 'foo'
-    }
+  isLiteral: true,
+  bind: function () {
+    console.log(this.expression) // 'foo'
+  }
 })
 ```
+
+However, in the case that the literal directive contains mustache tags, the directive will:
+
+- If no `update` function is provided, the mustache expression will be evaluated only once and assigned to `this.expression`. No data observation happens.
+
+- If an `update` function is provided, the directive **will** setup data observation for that expression and call `update` when the evaluated result changes.
 
 ### Creating a Function Directive
 
@@ -220,19 +234,43 @@ To gain access to functions inside `methods` in your custom directive, you need 
 
 ``` js
 Vue.directive('my-handler', {
-    isFn: true, // important!
-    bind: function () {
-        // ...
-    },
-    update: function (handler) {
-        // the passed in value is a function
-    },
-    unbind: function () {
-        // ...
-    }
+  isFn: true, // important!
+  bind: function () {
+    // ...
+  },
+  update: function (handler) {
+    // the passed in value is a function
+  },
+  unbind: function () {
+    // ...
+  }
 })
 ```
 
 Passing in `isFn:true` also enables your custom directive to accept inline expressions like `v-on` does. For more comprehensive examples, check out `src/directives/` in the source code.
 
 Next: [Filters in Depth](/guide/filters.html).
+
+### Two-way binding directives
+
+If your directive expects to write data back to the Vue instance, you need to pass in `twoWay: true`. This option allows the use of `this.set(value)` inside the directive:
+
+``` js
+Vue.directive('example', {
+  twoWay: true,
+  bind: function () {
+    var self = this
+    this.handler = function () {
+      // set data back to the vm.
+      // If the directive is bound as v-example="a.b.c",
+      // this will attempt to set `vm.a.b.c` with the
+      // given value.
+      self.set(self.el.value)
+    }
+    this.el.addEventListener('input', this.handler)
+  },
+  unbind: function () {
+    this.el.removeEventListener('input', this.handler)
+  }
+})
+```
