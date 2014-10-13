@@ -47,7 +47,7 @@ Filters can be appended to directive keypaths or expressions to further process 
 
 ## Multiple Clauses
 
-You can create multiple bindings of the same directive in a single attribute, separated by commas:
+You can create multiple bindings of the same directive in a single attribute, separated by commas. Under the hood they are bound as multiple directive instances.
 
 ``` html
 <div v-on="
@@ -68,7 +68,7 @@ Some directives don't create data bindings - they simply take the attribute valu
 
 Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor.
 
-In some cases, you can also use mustache expressions inside literal directives. This allows you to dynamically resolve the type of component you want to use:
+You can also use mustache expressions inside literal directives. For example, the following code allows you to dynamically resolve the type of component you want to use:
 
 ``` html
 <div v-component="{&#123; isOwner ? 'owner-panel' : 'guest-panel' &#125;}"></div>
@@ -201,7 +201,7 @@ var demo = new Vue({
 })
 </script>
 
-### Creating Literal Directives
+### Literal Directives
 
 If you pass in `isLiteral: true` when creating a custom directive, the attribute value will be taken as a literal string and assigned as that directive's `expression`. The directive will not attempt to setup data observation.
 
@@ -226,7 +226,7 @@ However, in the case that the literal directive contains mustache tags, the dire
 
 - If an `update` function is provided, the directive **will** setup data observation for that expression and call `update` when the evaluated result changes.
 
-### Creating a Function Directive
+### Function Directives
 
 Vue.js encourages the developer to separate data from behavior, so instance methods are expected to be contained in the `methods` option and not inside data objects. As a result, functions inside data objects are ignored and normal directives will not be able to bind to them.
 
@@ -251,7 +251,7 @@ Passing in `isFn:true` also enables your custom directive to accept inline expre
 
 Next: [Filters in Depth](/guide/filters.html).
 
-### Two-way binding directives
+### Two-way Directives
 
 If your directive expects to write data back to the Vue instance, you need to pass in `twoWay: true`. This option allows the use of `this.set(value)` inside the directive:
 
@@ -259,14 +259,13 @@ If your directive expects to write data back to the Vue instance, you need to pa
 Vue.directive('example', {
   twoWay: true,
   bind: function () {
-    var self = this
     this.handler = function () {
       // set data back to the vm.
       // If the directive is bound as v-example="a.b.c",
       // this will attempt to set `vm.a.b.c` with the
       // given value.
-      self.set(self.el.value)
-    }
+      this.set(this.el.value)
+    }.bind(this)
     this.el.addEventListener('input', this.handler)
   },
   unbind: function () {
