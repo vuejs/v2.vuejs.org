@@ -7,23 +7,23 @@ You can use the `v-on` directive to bind event listeners to DOM events. It can b
 
 ``` html
 <div id="demo">
-    <a v-on="click: onClick">Trigger a handler</a>
-    <a v-on="click: n++">Trigger an expression</a>
+  <a v-on="click: onClick">Trigger a handler</a>
+  <a v-on="click: n++">Trigger an expression</a>
 </div>
 ```
 
 ``` js
 new Vue({
-    el: '#demo',
-    data: {
-        n: 0
-    },
-    methods: {
-        onClick: function (e) {
-            console.log(e.target.tagName) // "A"
-            console.log(e.targetVM === this) // true
-        }
+  el: '#demo',
+  data: {
+    n: 0
+  },
+  methods: {
+    onClick: function (e) {
+      console.log(e.target.tagName) // "A"
+      console.log(e.targetVM === this) // true
     }
+  }
 })
 ```
 
@@ -33,24 +33,24 @@ new Vue({
 
 ``` html
 <ul id="list">
-    <li v-repeat="items" v-on="click: toggle(this)">{{text}}</li>
+  <li v-repeat="items" v-on="click: toggle(this)">{{text}}</li>
 </ul>
 ```
 
 ``` js
 new Vue({
-    el: '#list',
-    data: {
-        items: [
-            { text: 'one', done: true },
-            { text: 'two', done: false }
-        ]
-    },
-    methods: {
-        toggle: function (item) {
-            item.done = !item.done
-        }
+  el: '#list',
+  data: {
+    items: [
+      { text: 'one', done: true },
+      { text: 'two', done: false }
+    ]
+  },
+  methods: {
+    toggle: function (item) {
+      item.done = !item.done
     }
+  }
 })
 ```
 
@@ -63,11 +63,11 @@ When you want to access the original DOM event in an expression handler, you can
 ``` js
 /* ... */
 {
-    methods: {
-        submit: function (msg, e) {
-            e.stopPropagation()
-        }
+  methods: {
+    submit: function (msg, e) {
+      e.stopPropagation()
     }
+  }
 }
 /* ... */
 ```
