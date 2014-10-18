@@ -1,6 +1,6 @@
 title: Composing Components
 type: guide
-order: 10
+order: 11
 ---
 
 ## Registering a Component

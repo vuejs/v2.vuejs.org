@@ -1,6 +1,6 @@
 title: Plugins
 type: guide
-order: 12
+order: 14
 ---
 
 > *This is a very early preview for the plugin API and this may change in future versions. You might want to wait for a few official plugins as reference before writing your own.*

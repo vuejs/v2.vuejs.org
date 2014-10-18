@@ -1,6 +1,6 @@
 title: Adding Transition Effects
 type: guide
-order: 9
+order: 12
 ---
 
 With Vue.js' transition hooks you can apply automatic transition effects when elements are inserted into or removed from the DOM. There are three options to implement transitions with Vue.js: CSS transitions, CSS animations, and JavaScript functions.
