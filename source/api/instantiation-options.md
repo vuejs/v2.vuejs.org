@@ -217,13 +217,13 @@ These are private assets that will be available only to this ViewModel and its c
 
 - **Type:** `Object`
 
-A hash of directives to be made available to the ViewModel. For details on how to write a custom directive, see [Writing Custom Directives](/guide/directives.html#Writing_a_Custom_Directive).
+A hash of directives to be made available to the ViewModel. For details on how to write a custom directive, see [Writing Custom Directives](/guide/custom-directive.html).
 
 ### filters
 
 - **Type:** `Object`
 
-A hash of filters to be made available to the ViewModel. For details on how to write a custom filter, see [Writing Custom Filters](/guide/filters.html#Writing_a_Custom_Filter).
+A hash of filters to be made available to the ViewModel. For details on how to write a custom filter, see [Writing Custom Filters](/guide/custom-filter.html).
 
 ### components
 

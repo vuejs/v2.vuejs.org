@@ -17,7 +17,7 @@ See the [Installation](/guide/installation.html) page for the latest builds.
 - `v-repeat` now accepts an argument which will be used as the identifier for the wrapped object. This allows more explicit property access in repeaters. [Doc](/guide/list.html#Using_an_Identifier).
 - Added `v-view` directive which binds to a string value and dynamically instantiate different components using that string as the component ID. [Doc](/api/directives.html#v-view).
 - Added `filterBy` and `orderBy` filters for `v-repeat`. [Doc](/api/filters.html#filterBy).
-- Custom filters that access properties on its `this` context will be considered **computed filters**. [Doc](/guide/filters.html#Computed_Filters).
+- Custom filters that access properties on its `this` context will be considered **computed filters**. [Doc](/guide/custom-filter.html#Filter_Context).
 - You can now access the event in `v-on` handler expressions as `$event`. Example: `<a v-on="click:handle('hello', $event)">Hello</a>`
 - Interpolation delimiters can now be customized via the `delimiters` global config option. Example: `Vue.config({ delimiters: ["[", "]"] })` will change the matched interpolation tags to `[[ ]]` for text bindings and `[[[ ]]]` for html bindings.
 

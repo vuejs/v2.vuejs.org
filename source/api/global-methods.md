@@ -87,7 +87,7 @@ Here are all the options with their default values:
 - **id** `String`
 - **definition** `Function` or `Object` *optional*
 
-Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/directives.html#Writing_a_Custom_Directive).
+Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/custom-directive.html).
 
 ### Vue.filter( id, definition )
 
