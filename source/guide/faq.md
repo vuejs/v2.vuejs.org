@@ -25,7 +25,7 @@ order: 15
 
 - **Is Vue.js free to use?**
 
-  Vue.js is a personal project and fully open sourced under the MIT License.
+  Vue.js is free and fully open sourced under the MIT License.
 
 - **What is the difference between Vue.js and AngularJS?**
 

@@ -17,7 +17,7 @@ With the directive `v-transition="my-transition"` applied, Vue will:
 
 ## CSS Transitions
 
-The simplist form of a CSS transition looks like this:
+A typical CSS transition looks like this:
 
 ``` html
 <p class="msg" v-if="show" v-transition="expand">Hello!</p>
