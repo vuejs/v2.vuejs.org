@@ -214,13 +214,13 @@ For details, see [the guide](/guide/transitions.html#JavaScript_Functions).
 
 Notify Vue.js to apply transition CSS classes to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the ViewModel's DOM manipulation methods are called.
 
-For details, see [the guide](/guide/transitions.html#Css_Transitions).
+For details, see [the guide](/guide/transitions.html#CSS_Transitions).
 
 ### v-animation
 
 Notify Vue.js to apply animation CSS classes to this element. The order of CSS class application is different from `v-transition`.
 
-For details, see [the guide](/guide/transitions.html#Css_Animations).
+For details, see [the guide](/guide/transitions.html#CSS_Animations).
 
 ### v-pre
 
