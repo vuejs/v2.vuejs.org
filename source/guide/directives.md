@@ -76,7 +76,7 @@ You can also use mustache expressions inside literal directives. For example, th
 
 When the expression inside the mustaches change, the rendered component will also change accordingly!
 
-However, note that `v-component` is the only literal directive that has this reactive behavior. Mustache expressions in other literal directives are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
+However, note that `v-component` and `v-partial` are the only literal directives that have this kind of reactive behavior. Mustache expressions in other literal directives, e.g. `v-ref`, are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
 
 A full list of literal directives can be found in the [API reference](/api/directives.html#Literal_Directives).
 

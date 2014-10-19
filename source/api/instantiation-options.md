@@ -229,7 +229,7 @@ A hash of filters to be made available to the ViewModel. For details on how to w
 
 - **Type:** `Object`
 
-A hash of components to be made available to the ViewModel. For details on how to extend and compose ViewModels, see [Composing ViewModels](/guide/composition.html).
+A hash of components to be made available to the ViewModel. For details on how to extend and compose ViewModels, see [Component System](/guide/components.html).
 
 ### partials
 

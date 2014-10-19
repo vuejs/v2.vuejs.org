@@ -23,7 +23,7 @@ See the [Installation](/guide/installation.html) page for the latest builds.
 
 ### Changed
 
-- `{{yield}}` syntax has been deprecated. A Web Components spec compatible content insertion mechanism using `<content>` elements has been introduced. [Doc](/guide/composition.html#Content_Insertion_Points).
+- `{{yield}}` syntax has been deprecated. A Web Components spec compatible content insertion mechanism using `<content>` elements has been introduced. [Doc](/guide/components.html#Content_Insertion).
 - To use a component as a custom element, the component ID must now contain a hyphen (`-`). This is consistent with the current custom element spec draft.
 - `v-repeat` Arrays' augmented methods have been renamed from `set` to `$set(index, value)` and `remove` to `$remove(index | value)`. The prefix better differentiates them from native methods. The `replace` method has been removed.
 - When iterating over an Object with `v-repeat`, the object no longer gets a `$repeater` array. Instead, the object is now augmented with two methods: `$add(key, value)` and `$delete(key)`, which will trigger corresponding view updates.

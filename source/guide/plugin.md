@@ -37,7 +37,7 @@ Vue.use('vue-touch')
 Vue.use('vue-touch', { moveTolerance: 12 })
 ```
 
-## Plugin Implementation
+## Writing a Plugin
 
 Note that the passed in `Vue` constructor could be an extended Component constructor. Assume that only `Vue.require()` and asset registration methods are available. Do not use `Vue.config()` inside plugins.
 

@@ -1,4 +1,4 @@
-title: Adding Transition Effects
+title: Transitions
 type: guide
 order: 12
 ---
@@ -216,4 +216,4 @@ Then you can use it by providing the effect id to `v-effect`:
 <p v-effect="my-effect"></p>
 ```
 
-Next: [Composing ViewModels](/guide/composition.html).
+Next: [Component System](/guide/components.html).

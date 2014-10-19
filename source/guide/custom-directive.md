@@ -131,36 +131,15 @@ Vue.directive('literal-dir', {
 })
 ```
 
-However, in the case that the literal directive contains mustache tags, the directive will:
+### Dynamic Literal
+
+However, in the case that the literal directive contains mustache tags, the behavior is as follows:
+
+- The directive instance will have a flag `this._isDynamicLiteral` set to `true`;
 
 - If no `update` function is provided, the mustache expression will be evaluated only once and assigned to `this.expression`. No data observation happens.
 
 - If an `update` function is provided, the directive **will** setup data observation for that expression and call `update` when the evaluated result changes.
-
-## Function Directives
-
-Vue.js encourages the developer to separate data from behavior, so instance methods are expected to be contained in the `methods` option and not inside data objects. As a result, functions inside data objects are ignored and normal directives will not be able to bind to them.
-
-To gain access to functions inside `methods` in your custom directive, you need to pass in the `isFn` option:
-
-``` js
-Vue.directive('my-handler', {
-  isFn: true, // important!
-  bind: function () {
-    // ...
-  },
-  update: function (handler) {
-    // the passed in value is a function
-  },
-  unbind: function () {
-    // ...
-  }
-})
-```
-
-Passing in `isFn:true` also enables your custom directive to accept inline expressions like `v-on` does. For more comprehensive examples, check out `src/directives/` in the source code.
-
-Next: [Filters in Depth](/guide/filters.html).
 
 ## Two-way Directives
 
@@ -184,5 +163,26 @@ Vue.directive('example', {
   }
 })
 ```
+
+## Inline Statements
+
+Passing in `acceptStatement:true` enables your custom directive to accept inline statements like `v-on` does:
+
+``` html
+<div v-my-directive="a++"></div>
+```
+
+``` js
+Vue.directive('my-directive', {
+  acceptStatement: true,
+  update: function (fn) {
+    // the passed in value is a function which when called,
+    // will execute the "a++" statement in the owner vm's
+    // scope.
+  }
+})
+```
+
+Use this wisely though, because in general you want to avoid side-effects in your templates.
 
 Next, we'll see how to [write a custom filter](/guide/custom-filter.html).
