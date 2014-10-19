@@ -423,4 +423,4 @@ The rendered result will be:
 
 The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
 
-Next: [Building Larger Apps](/guide/application.html).
+Next: [Applying Transition Effects](/guide/transitions.html).
