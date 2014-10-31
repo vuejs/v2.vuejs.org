@@ -60,14 +60,6 @@ var vueTouch = require('vue-touch')
 Vue.use(vueTouch)
 ```
 
-Extended components can use plugins too:
-
-``` js
-var awesomePlugin = require('vue-awesome')
-var MyComponent = Vue.extend({})
-MyComponent.use(awesomePlugin)
-```
-
 You can also pass in additional options to the plugin:
 
 ```js
