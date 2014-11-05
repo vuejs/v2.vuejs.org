@@ -2,9 +2,9 @@ title: Installation
 type: guide
 order: 1
 vue_version: 0.11.0
-dev_size: 160.39
-min_size: 50.49
-gz_size: 16.47
+dev_size: 167.46
+min_size: 52.94
+gz_size: 17.20
 ---
 
 > **Compatibility Note:** Vue.js does not support IE8 and below.
@@ -25,41 +25,36 @@ Also available on [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/v
 
 ``` bash
 $ npm install vue
-```
-
-For edge version:
-
-``` bash
+# for edge version:
 $ npm install yyx990803/vue#dev
 ```
 
 ## Bower
 
 ``` bash
+# only stable version is available through Bower
 $ bower install vue
-```
-
-## Component
-
-``` bash
-$ component install yyx990803/vue
-```
-
-For edge version:
-
-``` bash
-$ component install yyx990803/vue@dev
 ```
 
 ## Duo
 
 ```js
 var Vue = require('yyx990803/vue')
+// for edge version:
+var Vue = require('yyx990803/vue@dev')
+```
+
+## Component
+
+``` bash
+$ component install yyx990803/vue
+# for edge version:
+$ component install yyx990803/vue@dev
 ```
 
 ## AMD Module Loaders
 
-e.g. RequireJS, SeaJS: Built versions in `/dist` or installed via Bower is wrapped with UMD so it can be used directly as an AMD module.
+The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
 
 ## Ready?
 
