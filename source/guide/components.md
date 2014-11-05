@@ -74,7 +74,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Check out the API reference for a [full list of lifecycle hooks](/api/instantiation-options.html#Lifecycle_Hooks) that are availble.
+Check out the API reference for a [full list of lifecycle hooks](/api/options.html#Lifecycle_Hooks) that are availble.
 
 ## Data Inheritance
 

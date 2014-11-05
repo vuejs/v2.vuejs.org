@@ -1,4 +1,4 @@
-title: Instantiation Options
+title: Options
 type: api
 order: 2
 ---

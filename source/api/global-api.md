@@ -1,4 +1,4 @@
-title: Global Methods
+title: Global API
 type: api
 order: 5
 ---
@@ -7,7 +7,7 @@ order: 5
 
 - **options** `Object`
 
-Create a subclass of the Vue class. Most [instantiation options](/api/instantiation-options.html) can be used here, with the exception of the `el` option because you can't create multiple ViewModel instances on the same element. Also see [Component System](/guide/components.html).
+Create a subclass of the Vue class. Most [instantiation options](/api/options.html) can be used here, with the exception of the `el` option because you can't create multiple ViewModel instances on the same element. Also see [Component System](/guide/components.html).
 
 **Example**
 
@@ -103,7 +103,7 @@ Register or retrieve a global custom filter. For more details see [Writing Custo
 
 Register or retrieve a global component. For more details see [Component System](/guide/components.html).
 
-### Vue.effect( id, definition )
+### Vue.transition( id, definition )
 
 - **id** `String`
 - **definition** `Object` *optional*
@@ -153,17 +153,6 @@ Will result in:
 - **callback** `Function`
 
 Vue.js batches view updates and executes them all asynchronously. It uses `requestAnimationFrame` if available and falls back to `setTimeout(fn, 0)`. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.
-
-### Vue.require( module )
-
-- **module** `String`
-
-Get access to Vue.js' internal modules. This is intended for plugin authors and only the following modules are exposed:
-
-- `utils`
-- `config`
-- `transition`
-- `observer`.
 
 ### Vue.use( plugin, [args...] )
 

@@ -9,7 +9,7 @@ The `Vue` constructor is the core of Vue.js. It is a constructor function that a
 var vm = new Vue({ /* options */ })
 ```
 
-When you instantiate a Vue instance, you need to pass in an option object which can include information about the DOM element, data object, mixin methods, lifecycle callbacks and more. See the full list of [Instantiation Options](/api/instantiation-options.html).
+When you instantiate a Vue instance, you need to pass in an option object which can include information about the DOM element, data object, mixin methods, lifecycle callbacks and more. See the full list of [Instantiation Options](/api/options.html).
 
 Each Vue instance is essentially a ViewModel (hence the variable name `vm` you will see throughout the docs). It has an associated DOM element `$el`, which is roughly the V in MVVM. It also has an associated JavaScript object `$data`, which corresponds to the M in MVVM. Changing the M results in updates in the V. For two-way bindings, user inputs triggered in the V results in changes in the M. For more details check out [Instance Properties](/api/instance-properties.html).
 
@@ -21,4 +21,4 @@ It's also worth noting that data objects do not necessarily belong to a single V
 
 Each Vue instance also has a number of [Instance Methods](/api/instance-methods.html) which cover data observation, event communication and DOM manipulation.
 
-Finally, the `Vue` constructor itself also holds several [Global Methods](/api/global-methods.html), which allow you to extend the `Vue` class, configure global settings and register global custom assets such as components, directives, filters and more.
+Finally, the `Vue` constructor itself also exposes the [Global API](/api/global-api.html), which allow you to extend the `Vue` class, configure global settings and register global custom assets such as components, directives, filters and more.
