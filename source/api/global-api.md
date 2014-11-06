@@ -3,28 +3,61 @@ type: api
 order: 5
 ---
 
+### Vue.config
+
+`Vue.config` is an object containing Vue's global settings. You can modify them directly, for example:
+
+``` js
+Vue.config.debug = true // turn on debugging mode
+```
+
+Here are the list of all the avaiable settings with their default values:
+
+``` js
+{
+  // print stack trace for warnings?
+  debug: true,
+  // attribute prefix for directives
+  prefix: 'v-',
+  // interpolation delimiters
+  // for HTML interpolations, add
+  // 1 extra outer-most character.
+  delimiters: ['{&#123;', '&#125;}'],
+  // suppress warnings?
+  silent: false,
+  // interpolate mustache bindings?
+  interpolate: true,
+  // use async rendering?
+  async: true,
+  // allow altering observed Array's prototype chain?
+  proto: true
+}
+```
+
 ### Vue.extend( options )
 
 - **options** `Object`
 
-Create a subclass of the Vue class. Most [instantiation options](/api/options.html) can be used here, with the exception of the `el` option because you can't create multiple ViewModel instances on the same element. Also see [Component System](/guide/components.html).
+Create a "subclass" of the base Vue constructor. All [instantiation options](/api/options.html) can be used here. The special cases to note here are `el` and `data`, which must be functions in this case.
+
+Internally, `Vue.extend()` is called on all component options before instantiating the components. For more details regarding components, see [Component System](/guide/components.html).
 
 **Example**
 
 ``` js
 var Profile = Vue.extend({
-    tagName: 'P',
-    template: '&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125; aka &#123;&#123;alias&#125;&#125;'
+  el: function () {
+    return document.createElement('p')
+  },
+  template: '&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125; aka &#123;&#123;alias&#125;&#125;'
 })
-
 var profile = new Profile({
-    data: {
-        firstName : 'Walter',
-        lastName  : 'White',
-        alias     : 'Heisenberg'
-    }  
+  data: {
+    firstName : 'Walter',
+    lastName  : 'White',
+    alias     : 'Heisenberg'
+  }  
 })
-
 profile.$appendTo('body')
 ```
 
@@ -32,54 +65,6 @@ Will result in:
 
 ``` html
 <p>Walter White aka Heisenberg</p>
-```
-
-### Vue.config( options | key, [value] )
-
-- **options** `Object`
-- **key** `String`
-- **value** `*` *optional*
-
-Configure global settings. This function is overloaded:
-
-```js
-// get the `debug` value
-Vue.config('debug') // false
-// set the `debug` value
-Vue.config('debug', true)
-// set multiple options
-Vue.config({
-    debug: true,
-    prefix: 'my'
-}) 
-```
-
-Here are all the options with their default values:
-
-```js
-{
-    // prefix for directives
-    prefix: 'v',
-
-    // log debug info
-    debug: false,
-
-    // suppress warnings
-    silent: false,
-
-    // CSS class attached for entering transition
-    enterClass: 'v-enter',
-
-    // CSS class attached for leaving transition
-    leaveClass: 'v-leave',
-
-    // Interpolate mustache bindings
-    interpolate: true,
-
-    // Interpolation delimiters
-    // default value translates to {&#123; &#125;} and {&#123;{ }&#125;}
-    delimiters: ['{', '}']
-}
 ```
 
 ### Vue.directive( id, [definition] )
@@ -94,7 +79,7 @@ Register or retrieve a global custom directive. For more details see [Writing Cu
 - **id** `String`
 - **definition** `Function` *optional*
 
-Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/filters.html#Writing_a_Custom_Filter).
+Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/custom-filter.html).
 
 ### Vue.component( id, definition )
 
@@ -108,14 +93,14 @@ Register or retrieve a global component. For more details see [Component System]
 - **id** `String`
 - **definition** `Object` *optional*
 
-Register or retrieve a global JavaScript transition effect definition. For more details see [Adding Transition Effects](/guide/transitions.html#JavaScript_Functions).
+Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Functions).
 
 ### Vue.partial( id, definition )
 
 - **id** `String`
-- **definition** `String` or `HTMLElement` *optional*
+- **definition** `String | Node` *optional*
 
-Register or retrieve a global partial. The definition can be a template string, a querySelector that starts with `#`, or a DOM element (whose innerHTML will be used as the template string.)
+Register or retrieve a global partial. The definition can be a template string, a querySelector that starts with `#`, a DOM element (whose innerHTML will be used as the template string), or a DocumentFragment.
 
 **Example**
 
@@ -123,7 +108,7 @@ HTML
 
 ``` html
 <div id="demo">
-    &#123;&#123;> avatar&#125;&#125;
+  &#123;&#123;> avatar&#125;&#125;
 </div>
 ```
 
@@ -133,10 +118,10 @@ JavaScript
 Vue.partial('avatar', '&lt;img v-attr="src:avatarURL"&gt;')
 
 new Vue({
-    el: '#demo',
-    data: {
-        avatarURL: '/images/avatar.jpg'
-    }    
+  el: '#demo',
+  data: {
+    avatarURL: '/images/avatar.jpg'
+  }    
 })
 ```
 
@@ -144,7 +129,7 @@ Will result in:
 
 ``` html
 <div id="demo">
-    <img src="/images/avatar.jpg">
+  <img src="/images/avatar.jpg">
 </div>
 ```
 
@@ -159,4 +144,8 @@ Vue.js batches view updates and executes them all asynchronously. It uses `reque
 - **plugin** `Object` or `Function`
 - **args...** *optional*
 
-Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](/guide/plugin.html).
+Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](/guide/extending.html#Extend_with_Plugins).
+
+### Vue.util
+
+Exposes the internal `util` module, which contains a number of utility methods. This is intended for advanced plugin/directive authoring, so you will need to look at the source code to see what's available.
