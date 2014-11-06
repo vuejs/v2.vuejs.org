@@ -5,13 +5,7 @@ order: 5
 
 ### Vue.config
 
-`Vue.config` is an object containing Vue's global settings. You can modify them directly, for example:
-
-``` js
-Vue.config.debug = true // turn on debugging mode
-```
-
-Here are the list of all the avaiable settings with their default values:
+`Vue.config` is an object containing Vue's global settings. Here are the list of all the avaiable settings with their default values:
 
 ``` js
 {
@@ -32,6 +26,20 @@ Here are the list of all the avaiable settings with their default values:
   // allow altering observed Array's prototype chain?
   proto: true
 }
+```
+
+You can modify them directly, for example:
+
+``` js
+Vue.config.debug = true // turn on debugging mode
+```
+
+Example for changing interpolation delimiters:
+
+``` js
+Vue.config.delimiters = ['(%', '%)']
+// tags now are (% %) for text
+// and ((% %)) for HTML
 ```
 
 ### Vue.extend( options )
@@ -74,28 +82,28 @@ Will result in:
 
 Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/custom-directive.html).
 
-### Vue.filter( id, definition )
+### Vue.filter( id, [definition] )
 
 - **id** `String`
 - **definition** `Function` *optional*
 
 Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/custom-filter.html).
 
-### Vue.component( id, definition )
+### Vue.component( id, [definition] )
 
 - **id** `String`
 - **definition** `Function Constructor` or `Object` *optional*
 
 Register or retrieve a global component. For more details see [Component System](/guide/components.html).
 
-### Vue.transition( id, definition )
+### Vue.transition( id, [definition] )
 
 - **id** `String`
 - **definition** `Object` *optional*
 
 Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Functions).
 
-### Vue.partial( id, definition )
+### Vue.partial( id, [definition] )
 
 - **id** `String`
 - **definition** `String | Node` *optional*
