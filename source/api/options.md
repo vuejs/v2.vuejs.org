@@ -107,7 +107,7 @@ vm.aDouble // -> 4
 
 - **Type:** `Array`
 
-An array of attribute names to be set on the VM as initial data. Useful when passing inline data to a component.
+An array of attribute names to be set on the Vue instance as initial data. Useful when passing data to a component.
 
 **Example:**
 
@@ -138,10 +138,6 @@ There are some special cases when using `paramAttributes` with attributes that c
 2. If the attribute still contains dashes, it will be camelized. This is because it's inconvenient to access top level properties containing dashes in templates: the expression `my-param` will be parsed as a minus expression unless you use the awkward `this['my-param']` syntax.
 
 This means a param attribute `data-hello` will be set on the vm as `vm.hello`; And `my-param` will be set as `vm.myParam`.
-
-### watch
-
-### events
 
 ## DOM Element
 
@@ -188,15 +184,19 @@ Called synchronously after the instance is created. At this stage, the instance 
 
 - **Type:** `Function`
 
+Called right before the compilation starts.
+
 ### compiled
 
 - **Type:** `Function`
+
+Called after the compilation is finished. At this stage all directives have been linked so data changes will trigger DOM updates. However, `$el` is not guaranteed to have been inserted into the document yet.
 
 ### ready
 
 - **Type:** `Function`
 
-Called synchronously after the compilation has ended and the Vue instance is ready. At this stage, the DOM is fully compiled and the data has been observed, so changing existing data properties will trigger View updates. Additional properties attached to the Vue instance or the data object in the ready hook will **not** be observed.
+Called after compilation **and** the `$el` is inserted into the document for the first time.
 
 ### attached
 
@@ -214,13 +214,15 @@ Called when `vm.$el` is removed from the DOM by a directive or a VM instance met
 
 - **Type:** `Function`
 
-Called before a Vue instance is destroyed. At this stage, the data is still observed, and all bindings and directive instances are still in effect. All child VMs of the current instance are also still active. This hook is mostly used internally but you can use it to clean up things you set up in the created or ready hook. There's no need to turn off `$on` and `$watch` listeners in here because all of them will be automatically turned off during `$destroy`.
+Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
 
 ### destroyed
 
 - **Type:** `Function`
 
 Called after a Vue instance has been destroyed. When this hook is called, all bindings and directives of the Vue instance have been unbound and all child Vue instances have also been destroyed.
+
+Note if there is a leaving transition, the `destroyed` hook is called **after** the transition has finished.
 
 ## Assets
 
@@ -254,12 +256,123 @@ A hash of partials to be made available to the Vue instance. Also see [v-partial
 
 - **Type:** `Object`
 
-A hash of transitions to be made available to the Vue instance. For details see [Adding Transition Effects](/guide/transitions.html).
+A hash of transitions to be made available to the Vue instance. For details see the guide on [Transitions](/guide/transitions.html).
 
 ## Others
 
 ### inherit
 
+- **Type:** `Boolean`
+- **Default:** `false`
+
+Whether to inherit parent scope data. Set it to `true` if you want to create a component that inherits parent scope. When `inherit` is set to `true`, you can:
+
+1. Bind to parent scope properties in the component template;
+2. Directly access parent properties on the component instance itself, via prototypal inheritance.
+
+One important thing to know when using `inherit: true` is that **the child can also set parent properties**, because all Vue instance data properties are getter/setters.
+
+**Example:**
+
+``` js
+var parent = new Vue({
+  data: { a: 1 }
+})
+var child = parent.$addChild({
+  inherit: true,
+  data: { b: 2 }
+})
+child.a  // -> 1
+child.b  // -> 2
+// the following line modifies parent.a
+// instead of creating a new property on child:
+child.a = 2
+parent.a // -> 2
+```
+
+### events
+
+An object where keys are events to listen for and values are the corresponding callbacks. The value can also be a string of a method name. The Vue instance will call `$on()` for each entry in the object at instantiation.
+
+**Example:**
+
+``` js
+var vm = new Vue({
+  events: {
+    'hook:created': function () {
+      console.log('created!')
+    },
+    greeting: function (msg) {
+      console.log(msg)
+    },
+    // can also use a string for methods
+    bye: 'sayGoodbye'
+  },
+  methods: {
+    sayGoodbye: function () {
+      console.log('goodbye!')
+    }
+  }
+}) // -> created!
+vm.$emit('greeting', 'hi!') // -> hi!
+vm.$emit('bye')             // -> goodbye!
+```
+
+### watch
+
+- **Type**: `Object`
+
+An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+
+**Example:**
+
+``` js
+var vm = new Vue({
+  data: {
+    a: 1
+  },
+  watch: {
+    'a': function (val, oldVal) {
+      console.log('new: %s, old: %s', val, oldVal)
+    }
+  }
+})
+vm.a = 2 // -> new: 2, old: 1
+```
+
 ### mixins
 
+- **Type**: `Array`
+
+The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+
+**Example:**
+
+``` js
+var mixin = {
+  created: function () { console.log(2) }
+}
+var vm = new Vue({
+  created: function () { console.log(1) },
+  mixins: [mixin]
+})
+// -> 1
+// -> 2
+```
+
 ### name
+
+- **Type**: `String`
+- **Restrctions:** only respected when used in `Vue.extend()`.
+
+When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
+
+**Example:**
+
+``` js
+var Ctor = Vue.extend({
+  name: 'cool-stuff'
+})
+var vm = new Ctor()
+console.log(vm) // -> CoolStuff {$el: null, ...}
+```
