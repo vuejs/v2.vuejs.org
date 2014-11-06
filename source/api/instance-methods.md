@@ -5,48 +5,68 @@ order: 4
 
 ## Data
 
-> You can observe data changes on a ViewModel. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.
+> You can observe data changes on a Vue instance. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.
 
-### vm.$watch( keypath, callback )
+### vm.$watch( expression, callback, [deep, immediate] )
 
-- **keypath** `String`
-- **callback( newValue, [mutation])** `Function`
+- **expression** `String`
+- **callback( newValue, oldValue )** `Function`
+- **deep** `Boolean` *optional*
+- **immdediate** `Boolean` *optional*
 
-Watch a keypath on the vm's data object (or the `$data` object itself) for changes and call the callback with the new value.
+Watch an expression on the Vue instance for changes. The expression can be a single keypath or actual expressions:
 
-A second `mutation` object is also available and is useful when watching arrarys:
-
-```javascript
-this.$watch('list', function (value, mutation) {
-    if (mutation) {
-        mutation.method // e.g. 'push'
-        mutation.args // raw arguments to the mutation method
-        mutation.result // return value
-        mutation.inserted // new, inserted elements
-        mutation.removed // removed elements
-    }
+``` js
+vm.$watch('a + b', function (newVal, oldVal) {
+  // do something
 })
 ```
 
-### vm.$unwatch( keypath, [callback] )
+To also detect nested value changes inside Objects, you need to pass in `true` for the third `deep` argument. Note that you don't need to do so to listen for Array mutations.
 
-- **keypath** `String`
-- **callback** `Function` *optional*
+``` js
+vm.$watch('someObject', callback, true)
+vm.someObject.nestedValue = 123
+// callback is fired
+```
 
-Stop watching the given keypath. If a callback is given only that callback gets unwatched.
+Passing in `true` for the fourth `immediate` argument will trigger the callback immediately with the current value of the expression:
 
-### vm.$get( keypath )
+``` js
+vm.$watch('a', callback, false, true)
+// callback is fired immediately with current value of `a`
+```
 
-- **keypath** `String`
+Finally, `vm.$watch` returns an unwatch function that stops firing the callback:
 
-Retrieve a data value from the vm given a keypath. If the first segment of the path is not found on the current vm, it will recursively go upwards the parent chain until it reaches the root, so this can be useful for accessing a property that exist on the parent chain but with unknown distance. Non-existent paths always return `undefined`.
+``` js
+var unwatch = vm.$watch('a', cb)
+// later, teardown the watcher
+unwatch()
+```
+
+### vm.$get( expression )
+
+- **expression** `String`
+
+Retrieve a value from the Vue instance given an expression. Expressions that throw errors will be suppressed and return `undefined`.
 
 ### vm.$set( keypath, value )
 
 - **keypath** `String`
 - **value** `*`
 
-Set a data value on the vm given a keypath. If the path doesn't exist it will be created.
+Set a data value on the Vue instance given a valid keypath. If the path doesn't exist it will be created.
+
+### vm.$add( keypath, value )
+
+### vm.$delete( keypath )
+
+### vm.$eval( directiveText )
+
+### vm.$interpolate( templateString )
+
+### vm.$log( [keypath] )
 
 ## Cross-ViewModel Events
 
@@ -98,30 +118,45 @@ If no arguments are given, stop listening for all events; if only the event is g
 
 > All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger Vue.js transitions if there are any declared on vm's `$el`. For more details on transitions see [Adding Transition Effects](/guide/transitions.html).
 
-### vm.$appendTo( element | selector )
+### vm.$appendTo( element|selector, [callback] )
 
 - **element** `HTMLElement` | **selector** `String`
+- **callback** `Function` *optional*
 
 Append the vm's `$el` to target element. The argument can be either an element or a querySelector string.
 
-### vm.$before( element | selector )
+### vm.$before( element|selector, [callback] )
 
 - **element** `HTMLElement` | **selector** `String`
+- **callback** `Function` *optional*
 
 Insert the vm's `$el` before target element.
 
-### vm.$after( element | selector )
+### vm.$after( element|selector, [callback] )
 
 - **element** `HTMLElement` | **selector** `String`
+- **callback** `Function` *optional*
 
 Insert the vm's `$el` after target element.
 
-### vm.$remove()
+### vm.$remove( [callback] )
+
+- **callback** `Function` *optional*
 
 Remove the vm's `$el` from the DOM.
 
-## Misc
+## Lifecycle
 
-### vm.$destroy()
+### vm.$mount( [element|selector] )
+
+- **element** `HTMLElement` | **selector** `String` *optional*
+
+### vm.$destroy( [remove] )
+
+- **remove** `Boolean` *optional*
 
 Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and remove its `$el` from the DOM. Also, all `$on` and `$watch` listeners will be automatically removed.
+
+### vm.$compile( element )
+
+- **element** `HTMLElement`
