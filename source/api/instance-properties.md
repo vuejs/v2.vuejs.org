@@ -8,59 +8,57 @@ order: 3
 - **Type:** `HTMLElement`
 - **Read only**
 
-The DOM element that the ViewModel is managing.
+The DOM element that the Vue instance is managing.
 
 ### vm.$data
 
 - **Type:** `Object`
 
-The data object that the ViewModel is observing. You can swap it with a new object. The ViewModel proxies access to the properties on its data object.
+The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
 
 ### vm.$options
 
 - **Type:** `Object`
 
-The instantiation options used for the current ViewModel. This is useful when you want to include custom properties in the options:
+The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
 
 ``` js
 new Vue({
-    customOption: 'foo',
-    created: function () {
-        console.log(this.$options.customOption) // 'foo'
-    }
+  customOption: 'foo',
+  created: function () {
+    console.log(this.$options.customOption) // -> 'foo'
+  }
 })
 ```
+
+### vm.$parent
+
+- **Type:** `Vue`
+- **Read only**
+
+The parent instance, if the current instance has one.
+
+### vm.$root
+
+- **Type:** `Vue`
+- **Read only**
+
+The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
 
 ### vm.$
 
 - **Type:** `Object`
 - **Read only**
 
-An object that holds child ViewModels that have `v-ref` registered. For more details see [v-ref](/api/directives.html#v-ref).
+An object that holds child components that have `v-ref` registered. For more details see [v-ref](/api/directives.html#v-ref).
 
-### vm.$index
+### vm.$$
 
-- **Type:** `Number`
-
-The Array index of a child ViewModel created by `v-repeat`. For more details see [v-repeat](/api/directives.html#v-repeat).
-
-### vm.$parent
-
-- **Type:** `Object ViewModel`
+- **Type:** `Object`
 - **Read only**
 
-The parent ViewModel, if the current ViewModel has one.
+An object that holds DOM elements that have `v-el` registered. For more details see [v-el](/api/directives.html#v-el).
 
-### vm.$root
+### Meta Properties
 
-- **Type:** `Object ViewModel`
-- **Read only**
-
-The root ViewModel. If the current ViewModel has no parents this value will be itself.
-
-### vm.$compiler
-
-- **Type:** `Object Compiler`
-- **Read only**
-
-The Compiler instance of the ViewModel. This object maintains some internal state of the ViewModel such as data bindings and in most cases you should avoid touching it.
+Instances created by `v-repeat` will also have some meta properties, e.g. `vm.$index`, `vm.$key` and `vm.$value`. For more details, see [the guide on using `v-repeat`](http://localhost:4000/guide/list.html).
