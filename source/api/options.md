@@ -3,7 +3,7 @@ type: api
 order: 2
 ---
 
-## Data & Logic
+## Data
 
 ### data
 
@@ -139,7 +139,7 @@ There are some special cases when using `paramAttributes` with attributes that c
 
 This means a param attribute `data-hello` will be set on the vm as `vm.hello`; And `my-param` will be set as `vm.myParam`.
 
-## DOM Element
+## DOM
 
 ### el
 
@@ -170,7 +170,7 @@ If it starts with `#` it will be used as a querySelector and use the selected el
 
 Whether to replace the original `vm.$el` with the template's content instead of appending to it.
 
-## Lifecycle Hooks
+## Lifecycle
 
 All lifecycle hooks have their `this` context bound to the Vue instance they belong to. The Vue instance will also fire corresponding events for each hook in the form of `"hook:<hookName>"`. e.g. for `created`, a `"hook:created"` event will be fired.
 
@@ -196,7 +196,7 @@ Called after the compilation is finished. At this stage all directives have been
 
 - **Type:** `Function`
 
-Called after compilation **and** the `$el` is inserted into the document for the first time.
+Called after compilation **and** the `$el` is **inserted into the document for the first time**. Note this insertion must be executed via Vue (with methods like `vm.$appendTo()` or as a result of a directive update) to trigger the `ready` hook.
 
 ### attached
 

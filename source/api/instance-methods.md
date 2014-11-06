@@ -60,15 +60,51 @@ Set a data value on the Vue instance given a valid keypath. If the path doesn't 
 
 ### vm.$add( keypath, value )
 
+- **keypath** `String`
+- **value** `*`
+
+Add a root level property to the Vue instance (and also its `$data`). Due to the limitations of ES5, Vue cannot detect properties directly added to or deleted from an Object, so use this method and `vm.$delete` when you need to do so. Additionally, all observed objects are augmented with these two methods too.
+
 ### vm.$delete( keypath )
 
-### vm.$eval( directiveText )
+- **keypath** `String`
+
+Delete a root level property on the Vue instance (and also its `$data`).
+
+### vm.$eval( expression )
+
+- **expression** `String`
+
+Evaluate an expression that can also contain filters.
+
+``` js
+// assuming vm.msg = 'hello'
+vm.$eval('msg | uppercase') // -> 'HELLO'
+```
 
 ### vm.$interpolate( templateString )
 
+- **templateString** `String`
+
+Evaluate a piece of template string containing mustache interpolations. Note that this method simply performs string interpolation; attribute directives are not compiled.
+
+``` js
+// assuming vm.msg = 'hello'
+vm.$interpolate('{&#123;msg&#125;} world!') // -> 'hello world!'
+```
+
 ### vm.$log( [keypath] )
 
-## Cross-ViewModel Events
+- **keypath** `String` *optional*
+
+Log the current instance data as a plain object, which is more console-inspectable than a bunch of getter/setters. Also accepts an optional key.
+
+``` js
+vm.$log() // logs entire ViewModel data
+vm.$log('item') // logs vm.item
+```
+
+## Events
 
 > Each vm is also an event emitter. When you have multiple nested ViewModels, you can use the event system to communicate between them.
 
@@ -77,14 +113,14 @@ Set a data value on the Vue instance given a valid keypath. If the path doesn't 
 - **event** `String`
 - **args...** *optional*
 
-Dispatch an event from the current vm that propagates all the way up to its `$root`.
+Dispatch an event from the current vm that propagates all the way up to its `$root`. If a callback returns `false`, it will stop the propagation at its owner instance.
 
 ### vm.$broadcast( event, [args...] )
 
 - **event** `String`
 - **args...** *optional*
 
-Emit an event to all children vms of the current vm, which gets further broadcasted to their children all the way down.
+Emit an event to all children vms of the current vm, which gets further broadcasted to their children all the way down. If a callback returns `false`, its owner instance will not broadcast the event any further.
 
 ### vm.$emit( event, [args...] )
 
@@ -114,7 +150,7 @@ Attach a one-time only listener for an event.
 
 If no arguments are given, stop listening for all events; if only the event is given, remove all callbacks for that event; if both event and callback are given, remove that specific callback only.
 
-## DOM Manipulation
+## DOM
 
 > All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger Vue.js transitions if there are any declared on vm's `$el`. For more details on transitions see [Adding Transition Effects](/guide/transitions.html).
 
@@ -151,6 +187,8 @@ Remove the vm's `$el` from the DOM.
 
 - **element** `HTMLElement` | **selector** `String` *optional*
 
+If the Vue instance didn't get an `el` option at instantiation, you can manually call `$mount()` to assign an element to it and start the compilation. If no argument is provided, an empty `<div>` will be automatically created. Calling `$mount()` on an already mounted instance will have no effect. The method returns the instance itself so you can chain other instance methods after it.
+
 ### vm.$destroy( [remove] )
 
 - **remove** `Boolean` *optional*
@@ -160,3 +198,5 @@ Completely destroy a vm. Clean up its connections with other existing vms, unbin
 ### vm.$compile( element )
 
 - **element** `HTMLElement`
+
+Partially compile a piece of DOM (Element or DocumentFragment). The method returns a `decompile` function that tearsdown the directives created during the process. Note the decompile function does not remove the DOM. This method is exposed primarily for writing advanced custom directives.

@@ -89,6 +89,12 @@ You can use triple mustaches for unescaped HTML, which translates to `v-html` in
 
 However, this can open up windows for potential XSS attacks, therefore it is suggested that you only use triple mustaches when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.
 
+Finally, you can add `*` to your mustache bindings to indicate a one-time only interpolation, which does not react to data changes:
+
+``` html
+{&#123;* onlyOnce &#125;}
+```
+
 ### Filters
 
 Filters are functions used to process the raw values before updating the View. They are denoted by a "pipe" inside directives or bindings:
