@@ -27,24 +27,28 @@ You can pass an optional argument which will be used as the currency symbol (def
 
 - this filter takes at least one argument
 
-*1 => '1 item'*  
-*2 => '2 items'*
-
-When there is exactly one arg, plural forms simply add an "s" at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple ... forms of the word to be pluralized. When the number to be pluralized exceeds the length of the args, it will use the last entry in the array.
+Pluralizes the argument based on the filtered value. When there is exactly one arg, plural forms simply add an "s" at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple ... forms of the word to be pluralized. When the number to be pluralized exceeds the length of the args, it will use the last entry in the array.
 
 **Example:**
 
 ``` html
-<span v-text="date | pluralize st nd rd th"></span>
+{&#123;count&#125;} {&#123;count | pluralize item&#125;}
+```
+
+*1 => '1 item'*  
+*2 => '2 items'*
+
+``` html
+{&#123;date&#125;}{&#123;date | pluralize st nd rd th&#125;}
 ```
 
 Will result in:
 
-*1 => '1 st'*  
-*2 => '2 nd'*
-*3 => '3 rd'*
-*4 => '4 th'*
-*5 => '5 th'*
+*1 => '1st'*  
+*2 => '2nd'*
+*3 => '3rd'*
+*4 => '4th'*
+*5 => '5th'*
 
 ### key
 
@@ -82,7 +86,7 @@ Make `v-repeat` only display a filtered version of the source Array. The `search
 ``` html
 <input v-model="searchText">
 <ul>
-    <li v-repeat="users | filterBy searchText">{&#123;name&#125;}</li>
+  <li v-repeat="users | filterBy searchText">{&#123;name&#125;}</li>
 </ul>
 ```
 
@@ -93,7 +97,7 @@ Optionally, you can narrow down which specific property to search in with the op
 ``` html
 <input v-model="searchText">
 <ul>
-    <li v-repeat="users | filterBy searchText in name">{&#123;name&#125;}</li>
+  <li v-repeat="users | filterBy searchText in name">{&#123;name&#125;}</li>
 </ul>
 ```
 
@@ -103,7 +107,7 @@ Finally, you can use quotes to indicate literal arguments:
 
 ``` html
 <ul>
-    <li v-repeat="users | filterBy '555' in 'phone'">{&#123;name&#125;}</li>
+  <li v-repeat="users | filterBy '555' in 'phone'">{&#123;name&#125;}</li>
 </ul>
 ```
 
@@ -118,17 +122,17 @@ Sort `v-repeat`'s displayed result. The `sortKey` argument is a property key on 
 
 ``` html
 <ul>
-    <li v-repeat="users | orderBy field reverse">{&#123;name&#125;}</li>
+  <li v-repeat="users | orderBy field reverse">{&#123;name&#125;}</li>
 </ul>
 ```
 
 ``` js
 new Vue({
-    /* ... */
-    data: {
-        field: 'name',
-        reverse: false
-    }
+  /* ... */
+  data: {
+    field: 'name',
+    reverse: false
+  }
 })
 ```
 
@@ -136,6 +140,6 @@ You can also use quotes for literal sort key. To indicate a literal reverse, use
 
 ``` html
 <ul>
-    <li v-repeat="users | orderBy 'name' -1">{&#123;name&#125;}</li>
+  <li v-repeat="users | orderBy 'name' -1">{&#123;name&#125;}</li>
 </ul>
 ```
