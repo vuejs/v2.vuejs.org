@@ -292,7 +292,7 @@ parent.a // -> 2
 
 ### events
 
-An object where keys are events to listen for and values are the corresponding callbacks. The value can also be a string of a method name. The Vue instance will call `$on()` for each entry in the object at instantiation.
+An object where keys are events to listen for and values are the corresponding callbacks. Note these are Vue events rather than DOM events. The value can also be a string of a method name. The Vue instance will call `$on()` for each entry in the object at instantiation.
 
 **Example:**
 

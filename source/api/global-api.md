@@ -27,7 +27,7 @@ Here are the list of all the avaiable settings with their default values:
   silent: false,
   // interpolate mustache bindings?
   interpolate: true,
-  // use async rendering?
+  // use async updates (for directives & watchers)?
   async: true,
   // allow altering observed Array's prototype chain?
   proto: true

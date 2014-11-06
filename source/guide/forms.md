@@ -77,6 +77,23 @@ new Vue({
 })
 </script>
 
+## Lazy Updates
+
+By default, `v-model` syncs the input with the data after each `input` event. You can add a `lazy` attribute to change the behavior to sync after `change` events:
+
+``` html
+<!-- synced after "change" instead of "input" -->
+<input v-model="msg" lazy>
+```
+
+## Casting Value as Number
+
+If you want user input to be automatically persisted as numbers, you can add a `number` attribute to your `v-model` managed inputs:
+
+``` html
+<input v-model="age" number>
+```
+
 ## Dynamic Select Options
 
 When you need to dynamically render a list of options for a `<select>` element, it's recommended to use an `options` attribute together with `v-model`:
@@ -127,14 +144,6 @@ Will render:
     <option value="d">d</option>
   </optgroup>
 </select>
-```
-
-## Casting Value as Number
-
-If you want user input to be automatically persisted as numbers, you can add a `number` attribute to your `v-model` managed inputs:
-
-``` html
-<input v-model="age" number>
 ```
 
 Next: [Computed Properties](/guide/computed.html).

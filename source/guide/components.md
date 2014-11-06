@@ -62,6 +62,38 @@ It is important to understand the difference between `Vue.extend()` and `Vue.com
 
 Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
 
+## Dynamic Components
+
+You can dynamically switch between components by using Mustache tags inside the `v-component` direcitve, which can be used together with routers to achieve "page switching":
+
+``` js
+new Vue({
+  el: 'body',
+  data: {
+    currentView: 'home'
+  },
+  components: {
+    home: { /* ... */ },
+    posts: { /* ... */ },
+    archive: { /* ... */ }
+  }
+})
+```
+
+``` html
+<div v-component="{&#123;currentView&#125;}">
+  <!-- content changes when vm.currentview changes! -->
+</div>
+```
+
+If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
+
+``` html
+<div v-component="{&#123;currentView&#125;}" keep-alive>
+  <!-- inactive components will be cached! -->
+</div>
+```
+
 ## Component Lifecycle
 
 Every component, or Vue instance, has its own lifecycle: it will be created, compiled, inserted or detached, and finally destroyed. At each of these key moments the instance will emit corresponding events, and when creating an instance or defining a component, we can pass in lifecycle hook functions to react to these events. For example:

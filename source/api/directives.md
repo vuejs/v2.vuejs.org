@@ -3,9 +3,9 @@ type: api
 order: 6
 ---
 
-## Data Binding Directives
+## Reactive Directives
 
-> These directives can bind themselves to a property on the ViewModel, or to an expression which is evaluated in the context of the ViewModel. When the value of the underlying property or expression changes, the `update()` function of these directives will be called asynchronously on next tick.
+> These directives can bind themselves to a property on the Vue instance, or to an expression which is evaluated in the context of the instance. When the value of the underlying property or expression changes, the `update()` function of these directives will be called asynchronously on next tick.
 
 ### v-text
 
@@ -35,9 +35,9 @@ If a directive argument is provided, the argument will be the class to be toggle
 
 ``` html
 <span v-class="
-    red    : hasError,
-    bold   : isImportant,
-    hidden : isHidden
+  red    : hasError,
+  bold   : isImportant,
+  hidden : isHidden
 "></span>
 ```
 
@@ -71,9 +71,9 @@ When there is an argument, it will be used as the CSS property to apply. Combine
 
 ``` html
 <div v-style="
-    top: top + 'px',
-    left: left + 'px',
-    background-color: 'rgb(0,0,' + bg + ')'
+  top: top + 'px',
+  left: left + 'px',
+  background-color: 'rgb(0,0,' + bg + ')'
 "></div>
 ```
 
@@ -88,29 +88,48 @@ When the argument is prefixed with `$`, Vue.js will automatically apply prefixed
 ### v-on
 
 - This directive requires an argument.
-- This directive requires the value to be a Function or an expression.
+- This directive requires the value to be a Function or a statement.
 
 Attaches an event listener to the element. The event type is denoted by the argument. It is also the only directive that can be used with the `key` filter. For more details see [Listening for Events](/guide/events.html).
 
 ### v-model
 
-- This directive can only be used on INPUT, SELECT, TEXTAREA and elements with `contenteditable` attribute.
+- This directive can only be used on `<input>`, `<select>` or `<textarea>` elements.
+- Directive params: `lazy`, `number`, `options`
 
-Create a two-way binding on a form or editable element. Data is synced on every `input` event by default. When the ViewModel has the `lazy` option set to true, data will be synced only on `change` events. For more details see [Handling Forms](/guide/forms.html).
+Create a two-way binding on a form input element. Data is synced on every `input` event by default. For detailed examples see [Handling Forms](/guide/forms.html).
 
 ### v-if
 
-- This directive creates child ViewModels.
 - This directive can trigger transitions.
 
-Conditionally insert / remove the element based on the truthy-ness of the binding value. A child ViewModel will be created on the bound element. It is instantiated when the value is truthy, and destroyed when the value becomes falsy. If the binding starts with a falsy value, the ViewModel will not be instantiated until the value actually becomes truthy.
+Conditionally insert / remove the element based on the truthy-ness of the binding value. If the element is a `<template>` element, its content will be extracted as the conditional block.
+
+**Example:**
+
+``` html
+<template v-if="test">
+  <p>hello</p>
+  <p>world</p>
+</template>
+```
+
+Will render:
+
+``` html
+<!--v-if-start-->
+<p>hello</p>
+<p>world</p>
+<!--v-if-end-->
+```
 
 ### v-repeat
 
-- This directive creates child ViewModels.
+- This directive creates child Vue instances.
 - This directive requires the value to be an Array or Object.
 - This directive can trigger transitions.
 - This directive accepts an optional argument.
+- Directive params: `trackby`
 
 Create a child ViewModel for every item in the binding Array. These child ViewModels will be automatically created / destroyed when mutating methods, e.g. `push()`, are called on the Array.
 
@@ -120,9 +139,9 @@ When no argument is provided, the child ViewModel will directly use the assigned
 
 ``` html
 <ul>
-    <li v-repeat="users">
-        {&#123;name&#125;} {&#123;email&#125;}
-    </li>
+  <li v-repeat="users">
+    {&#123;name&#125;} {&#123;email&#125;}
+  </li>
 </ul>
 ```
 
@@ -130,54 +149,49 @@ If an argument is provided, a wrapper data object will always be created, using 
 
 ``` html
 <ul>
-    <li v-repeat="user : users">
-        {&#123;user.name&#125;} {&#123;user.email&#125;}
-    </li>
+  <li v-repeat="user : users">
+    {&#123;user.name&#125;} {&#123;user.email&#125;}
+  </li>
 </ul>
 ```
 
 For detailed examples, see [Displaying a List](/guide/list.html).
 
-### v-view
-
-- This directive creates child ViewModels.
-- This directive can trigger transitions.
-
-Conditionally instantiate ViewModels, using the bound value as the Component ID to look up constructors with. When the bound value changes, existing ViewModel will be destroyed and a new ViewModel will be created. When a ViewModel is created, the original element will be replaced, but all attributes will be copied to the new element. For more details, see [Routing](/guide/application.html#Routing).
-
 ### v-with
 
-- This directive must be used with another directive that creates child ViewModels.
+- This directive can only be used with `v-component`.
 - This directive accepts only keypaths, no expressions.
 
-Allows a child ViewModel to inherit data from the parents. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive must be used in combination with another directive that creates a child ViewModel, e.g. `v-component` or `v-view`.
+Allows a child ViewModel to inherit data from the parents. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive must be used in combination with `v-component`.
+
+The data inheritance is one-way: when parent property changes, the child will be notified of the change and update accordingly; however if the child sets the property to something else, it will not affect the parent, and the modified property will be overwritten the next time parent property changes.
 
 Example inheriting an object:
 
 ``` js
 // parent data looks like this
 {
-    user: {
-        name: 'Foo Bar',
-        email: 'foo@bar.com'
-    }
+  user: {
+    name: 'Foo Bar',
+    email: 'foo@bar.com'
+  }
 }
 ```
 
 ``` html
-<div v-with="user">
-    <!-- you can access properties without `user.` -->
-    {&#123;name&#125;} {&#123;email&#125;}
-</div>
+<my-component v-with="user">
+  <!-- you can access properties without `user.` -->
+  {&#123;name&#125;} {&#123;email&#125;}
+</my-component>
 ```
 
 Example inheriting individual properties (using the same data):
 
 ``` 
-<div v-with="myName : user.name, myEmail: user.email">
-    <!-- you can access properties with the new keys -->
-    {&#123;myName&#125;} {&#123;myEmail&#125;}
-</div>
+<my-component v-with="myName: user.name, myEmail: user.email">
+  <!-- you can access properties with the new keys -->
+  {&#123;myName&#125;} {&#123;myEmail&#125;}
+</my-component>
 ```
 
 ## Literal Directives
@@ -186,41 +200,46 @@ Example inheriting individual properties (using the same data):
 
 ### v-component
 
+- Directive params: `keep-alive`
+
 Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
 
 ### v-ref
 
-Only respected when used in combination with directives that create child components: `v-component`, `v-view`, `v-if` or `v-repeat`. The ViewModel will be accessible in its parent's `$` object, e.g. `parent.$[id]`. When used with `v-repeat`, the value will be an Array containing the child ViewModel instances corresponding to the Array they are bound to. For examples see [Accessing Child Components](/guide/components.html#Accessing_Child_Components).
+Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
+
+When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
+
+### v-el
+
+Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
 
 ### v-partial
 
-Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option. You can also use this syntax (which doesn't support expressions):
+Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option.
+
+Using the mustache tag inside `v-partial` makes it reactive:
+
+``` html
+<!-- content will change based on vm.partialId -->
+<div v-partial="{&#123;partialId&#125;}"></div>
+```
+
+You can also use this syntax (which doesn't support reactivity):
 
 ``` html
 <div>&#123;&#123;> my-partial&#125;&#125;</div>
 ```
 
-### v-effect
+### v-transition
 
-Apply a registered JavaScript effect to the element. JavaScript effects can be registered with `Vue.effect()` or passed inside the `effects` option.
+Notify Vue.js to apply transitions to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the Vue instance's DOM manipulation methods are called.
 
-For details, see [the guide](/guide/transitions.html#JavaScript_Functions).
+For details, see [the guide on transitions](/guide/transitions.html).
 
 ## Empty Directives
 
 > Empty directives do not require and will ignore their attribute value.
-
-### v-transition
-
-Notify Vue.js to apply transition CSS classes to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the ViewModel's DOM manipulation methods are called.
-
-For details, see [the guide](/guide/transitions.html#CSS_Transitions).
-
-### v-animation
-
-Notify Vue.js to apply animation CSS classes to this element. The order of CSS class application is different from `v-transition`.
-
-For details, see [the guide](/guide/transitions.html#CSS_Animations).
 
 ### v-pre
 
