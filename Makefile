@@ -2,6 +2,7 @@ all: update
 	rm -f db.json
 	hexo generate
 	cp -R ../vue/test/unit public
+	cp -R ./todomvc public/examples
 
 deploy:	all
 	hexo deploy
