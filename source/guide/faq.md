@@ -39,11 +39,7 @@ order: 15
 
   4. Vue.js has a clearer separation between directives and components. Directives are meant to encapsulate DOM manipulations only, while Components stand for a self-contained unit that has its own view and data logic. In Angular there's a lot of confusion between the two.
 
-  But also note:
-
-  1. Vue.js is a relatively young project and is not fully stable yet, while Angular is battle-proven and has a larger community. So if you want something for a large, serious production app you might want to pick Angular.
-
-  2. Vue.js only supports IE9 and above while Angular supports IE8. (Angular 2.0 is dropping IE8 as well)
+  But also note that Vue.js is a relatively young project, while Angular is battle-proven, Google-sponsored, and has a larger community.
 
 - **What makes Vue.js different from KnockoutJS?**
 
