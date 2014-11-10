@@ -61,4 +61,4 @@ An object that holds DOM elements that have `v-el` registered. For more details 
 
 ### Meta Properties
 
-Instances created by `v-repeat` will also have some meta properties, e.g. `vm.$index`, `vm.$key` and `vm.$value`. For more details, see [the guide on using `v-repeat`](http://localhost:4000/guide/list.html).
+Instances created by `v-repeat` will also have some meta properties, e.g. `vm.$index`, `vm.$key` and `vm.$value`. For more details, see [the guide on using `v-repeat`](/guide/list.html).
