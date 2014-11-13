@@ -50,6 +50,16 @@ Will result in:
 *4 => '4th'*
 *5 => '5th'*
 
+### json
+
+- this filter takes one optional argument
+
+JSON.stringify() incoming value rather than outputting the string representation (i.e. `[object Object]`). It also takes one optional argument which is the indent level (defaults to 2):
+
+``` html
+<pre>{&#123;$data | json 4&#125;}</pre>
+```
+
 ### key
 
 - this filter only works in `v-on`
@@ -142,12 +152,4 @@ You can also use quotes for literal sort key. To indicate a literal reverse, use
 <ul>
   <li v-repeat="users | orderBy 'name' -1">{&#123;name&#125;}</li>
 </ul>
-```
-
-### json
-
-JSON.stringify() incoming value rather than outputting the string representation (i.e. `[object Object]`).
-
-``` html
-<pre>{{$data | json}}</pre>
 ```
