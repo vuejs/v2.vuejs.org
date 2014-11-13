@@ -25,7 +25,7 @@ An object that syncs the Model and the View. In Vue.js, every Vue instance is a 
 var vm = new Vue({ /* options */ })
 ```
 
-This is the primary object that you will be interacting with as a developer when using Vue.js. For more details see [Class: Vue](/api/).
+This is the primary object that you will be interacting with as a developer when using Vue.js. For more details see [The Vue Constructor](/api/).
 
 ### View
 
