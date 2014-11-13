@@ -143,3 +143,11 @@ You can also use quotes for literal sort key. To indicate a literal reverse, use
   <li v-repeat="users | orderBy 'name' -1">{&#123;name&#125;}</li>
 </ul>
 ```
+
+### json
+
+JSON.stringify() incoming value rather than outputting the string representation (i.e. `[object Object]`).
+
+``` html
+<pre>{{$data | json}}</pre>
+```
