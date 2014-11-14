@@ -236,6 +236,31 @@ new Vue({
 
 <p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with two methods: `$add(key, value)` and `$delete(key)`. These methods can be used to add / delete properties from observed objects while triggering the desired View updates.</p>
 
+## Iterating Through An Object
+
+`v-repeat` can also take a whole Number. In this case it will repeat the template that many times.
+
+``` html
+<div id="range">
+    <div v-repeat="val">Hi!</div>
+</div>
+```
+
+``` js
+new Vue({
+    el: '#range',
+    data: {val:3}
+});
+```
+**Result:**
+<ul id="range" class="demo"><div v-repeat="val">Hi!</div></ul>
+<script>
+new Vue({
+    el: '#app',
+    data: {val:3}
+});
+</script>
+
 ## Array Filters
 
 Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: `filterBy` and `orderBy`. Check out their [documentations](/api/filters.html#filterBy) for more details.
