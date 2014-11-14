@@ -253,11 +253,34 @@ new Vue({
 });
 ```
 **Result:**
-<ul id="range" class="demo"><div v-repeat="val">Hi!</div></ul>
+<ul id="range" class="demo"><li v-repeat="val">Hi!</li></ul>
 <script>
 new Vue({
-    el: '#app',
-    data: {val:13}
+    el: '#range',
+    data: {val:3}
+});
+</script>
+
+The Number is converted into an Array with values starting from 0.
+
+``` html
+<div id="range">
+    <div v-repeat="val">{{$value}}</div>
+</div>
+```
+
+``` js
+new Vue({
+    el: '#range',
+    data: {val:3}
+});
+```
+**Result:**
+<ul id="range" class="demo"><li v-repeat="val">{{$value}}</li></ul>
+<script>
+new Vue({
+    el: '#range',
+    data: {val:3}
 });
 </script>
 
