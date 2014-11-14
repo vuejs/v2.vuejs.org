@@ -257,7 +257,7 @@ new Vue({
 <script>
 new Vue({
     el: '#app',
-    data: {val:3}
+    data: {val:13}
 });
 </script>
 
