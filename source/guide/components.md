@@ -14,7 +14,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Most of the options that can be passed into the Vue constructor can be used in `Vue.extend()`, however, there are two special cases, `data` and `el`. Since each Vue instance should have its own `$data` and `$el`, we obviously don't want the value we passed into `Vue.extend()` to be shared across all instances created from that constrcutor. So when you want to define how a component should initalize its default data or element, you should pass in a function instead:
+Most of the options that can be passed into the Vue constructor can be used in `Vue.extend()`, however, there are two special cases, `data` and `el`. Since each Vue instance should have its own `$data` and `$el`, we obviously don't want the value we passed into `Vue.extend()` to be shared across all instances created from that constructor. So when you want to define how a component should initalize its default data or element, you should pass in a function instead:
 
 ``` js
 var ComponentWithDefaultData = Vue.extend({
