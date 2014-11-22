@@ -200,3 +200,16 @@ Completely destroy a vm. Clean up its connections with other existing vms, unbin
 - **element** `HTMLElement`
 
 Partially compile a piece of DOM (Element or DocumentFragment). The method returns a `decompile` function that tearsdown the directives created during the process. Note the decompile function does not remove the DOM. This method is exposed primarily for writing advanced custom directives.
+
+### vm.$addChild( [options, constructor] )
+
+- **options** `Object` *optional*
+- **constructor** `Function` *optional*
+
+Adds a child instance to the current instance. The options object is the same in manually instantiating an instance. Optionally you can pass in a constructor created from `Vue.extend()`.
+
+There are three implications of a parent-child relationship between instances:
+
+1. The parent and child can communicate via [the event system](#Events).
+2. The child has access to all parent assets (e.g. custom directives).
+3. The child, if inheriting parent scope, has access to parent scope data properties.
