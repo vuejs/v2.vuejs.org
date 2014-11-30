@@ -62,89 +62,15 @@ It is important to understand the difference between `Vue.extend()` and `Vue.com
 
 Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
 
-## Dynamic Components
-
-You can dynamically switch between components by using Mustache tags inside the `v-component` direcitve, which can be used together with routers to achieve "page switching":
-
-``` js
-new Vue({
-  el: 'body',
-  data: {
-    currentView: 'home'
-  },
-  components: {
-    home: { /* ... */ },
-    posts: { /* ... */ },
-    archive: { /* ... */ }
-  }
-})
-```
-
-``` html
-<div v-component="{&#123;currentView&#125;}">
-  <!-- content changes when vm.currentview changes! -->
-</div>
-```
-
-If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
-
-``` html
-<div v-component="{&#123;currentView&#125;}" keep-alive>
-  <!-- inactive components will be cached! -->
-</div>
-```
-
-## Component Lifecycle
-
-Every component, or Vue instance, has its own lifecycle: it will be created, compiled, inserted or detached, and finally destroyed. At each of these key moments the instance will emit corresponding events, and when creating an instance or defining a component, we can pass in lifecycle hook functions to react to these events. For example:
-
-``` js
-var MyComponent = Vue.extend({
-  created: function () {
-    console.log('An instance of MyComponent has been created!')
-  }
-})
-```
-
-Check out the API reference for a [full list of lifecycle hooks](/api/options.html#Lifecycle) that are availble.
-
 ## Data Inheritance
-
-### Scope Inheritance
-
-By default, components have **isolated scope**. This means you cannot reference parent data in a child component's template. If you want though, you can use the `inherit: true` option for your child component to make it prototypally inherit parent properties:
-
-``` js
-var parent = new Vue({
-  data: {
-    a: 1
-  }
-})
-// $addChild() is an instance method that allows you to
-// programatically create a child instance.
-var child = parent.$addChild({
-  inherit: true,
-  data: {
-    b: 2
-  }
-})
-console.log(child.a) // -> 1
-console.log(child.b) // -> 2
-parent.a = 3
-console.log(child.a) // -> 3
-```
-
-Note this comes with a caveat: because data properties on Vue instances are getter/setters, setting `child.a = 2` will change `parent.a` instead of creating a new property on the child shadowing the parent one:
-
-``` js
-child.a = 4
-console.log(parent.a) // -> 4
-console.log(child.hasOwnProperty('a')) // -> false
-```
 
 ### Explicit Data Passing
 
-To explicitly pass data to child components with isolated scope, we can use the `v-with` directive. When given a single keypath without an argument, the corresponding value on the parent will be passed down to the child as its `$data`. This means the passed-down value must be an object, and it will overwrite the default `$data` object the child component might have.
+By default, components have **isolated scope**. This means you cannot reference parent data in a child component's template. To explicitly pass data to child components with isolated scope, we can use the `v-with` directive.
+
+#### Passing Down Child `$data`
+
+When given a single keypath without an argument, the corresponding value on the parent will be passed down to the child as its `$data`. This means the passed-down value must be an object, and it will overwrite the default `$data` object the child component might have.
 
 **Example:**
 
@@ -190,12 +116,14 @@ var parent = new Vue({
   })
 </script>
 
+#### Passing Down Individual Properties
+
 `v-with` can also be used with an argument in the form of `v-with="childProp: parentProp"`. This means passing down `parent[parentProp]` to the child as `child[childProp]`. Note this data inheritance is one-way: when `parentProp` changes, `childProp` will be updated accordingly, however not the other way around.
 
 **Example:**
 
 ``` html
-<div id="parent">
+<div id="demo-2">
   <input v-model="parentMsg">
   <p v-component="child" v-with="childMsg : parentMsg">
     <!-- essentially means "bind `parentMsg` on me as `childMsg`" -->
@@ -205,13 +133,13 @@ var parent = new Vue({
 
 ``` js
 new Vue({
-  el: '#parent',
+  el: '#demo-2',
   data: {
     parentMsg: 'Inherited message'
   },
   components: {
     child: {
-      template: '<span v-text="childMsg"></span>'
+      template: '<span>{&#123;childMsg&#125;}</span>'
     }
   }
 })
@@ -219,10 +147,10 @@ new Vue({
 
 **Result:**
 
-<div id="parent" class="demo"><input v-model="parentMsg"><p v-component="child" v-with="childMsg:parentMsg"></p></div>
+<div id="demo-2" class="demo"><input v-model="parentMsg"><p v-component="child" v-with="childMsg:parentMsg"></p></div>
 <script>
 new Vue({
-  el: '#parent',
+  el: '#demo-2',
   data: {
     parentMsg: 'Inherited message'
   },
@@ -234,7 +162,126 @@ new Vue({
 })
 </script>
 
-## Components and `v-repeat`
+#### Using `paramAttributes`
+
+It is also possible to use the [`paramAttributes`](/api/options.html#paramAttributes) option, which compiles into `v-with`, to expose an interface that looks more like custom elements:
+
+``` html
+<div id="demo-3">
+  <input v-model="parentMsg">
+  <child-component child-msg="parentMsg"></p>
+</div>
+```
+
+``` js
+new Vue({
+  el: '#demo-3',
+  data: {
+    parentMsg: 'Inherited message'
+  },
+  components: {
+    'child-component': {
+      paramAttributes: ['child-msg'],
+      // dashed attributes are camelized,
+      // so 'child-msg' becomes 'this.childMsg'
+      template: '<span>{&#123;childMsg&#125;}</span>'
+    }
+  }
+})
+```
+
+### Scope Inheritance
+
+If you want, you can also use the `inherit: true` option for your child component to make it prototypally inherit all parent properties:
+
+``` js
+var parent = new Vue({
+  data: {
+    a: 1
+  }
+})
+// $addChild() is an instance method that allows you to
+// programatically create a child instance.
+var child = parent.$addChild({
+  inherit: true,
+  data: {
+    b: 2
+  }
+})
+console.log(child.a) // -> 1
+console.log(child.b) // -> 2
+parent.a = 3
+console.log(child.a) // -> 3
+```
+
+Note this comes with a caveat: because data properties on Vue instances are getter/setters, setting `child.a = 2` will change `parent.a` instead of creating a new property on the child shadowing the parent one:
+
+``` js
+child.a = 4
+console.log(parent.a) // -> 4
+console.log(child.hasOwnProperty('a')) // -> false
+```
+
+### A Note on Scope
+
+When a component is used in a parent template, e.g.:
+
+``` html
+<!-- parent template -->
+<div v-component v-show="active" v-on="click:onClick"></div>
+```
+
+The directives here (`v-show` and `v-on`) will be compiled in the parent's scope, so the value of `active` and `onClick` will be resolved against the parent. Any directives/interpolations inside the child's template will be compiled in the child's scope. This ensures a cleaner separation between parent and child components.
+
+This rule also applies to [content insertion](#Content_Insertion), as explained later in this guide.
+
+## Component Lifecycle
+
+Every component, or Vue instance, has its own lifecycle: it will be created, compiled, inserted or detached, and finally destroyed. At each of these key moments the instance will emit corresponding events, and when creating an instance or defining a component, we can pass in lifecycle hook functions to react to these events. For example:
+
+``` js
+var MyComponent = Vue.extend({
+  created: function () {
+    console.log('An instance of MyComponent has been created!')
+  }
+})
+```
+
+Check out the API reference for a [full list of lifecycle hooks](/api/options.html#Lifecycle) that are availble.
+
+## Dynamic Components
+
+You can dynamically switch between components by using Mustache tags inside the `v-component` direcitve, which can be used together with routers to achieve "page switching":
+
+``` js
+new Vue({
+  el: 'body',
+  data: {
+    currentView: 'home'
+  },
+  components: {
+    home: { /* ... */ },
+    posts: { /* ... */ },
+    archive: { /* ... */ }
+  }
+})
+```
+
+``` html
+<div v-component="{&#123;currentView&#125;}">
+  <!-- content changes when vm.currentview changes! -->
+</div>
+```
+
+If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
+
+``` html
+<div v-component="{&#123;currentView&#125;}" keep-alive>
+  <!-- inactive components will be cached! -->
+</div>
+```
+
+## List and Components
 
 For an Array of Objects, you can combine `v-component` with `v-repeat`. In this case, for each Object in the Array, a child ViewModel will be created using that Object as data, and the specified component as the constructor.
 
@@ -390,6 +437,8 @@ MyComponent
 ## Content Insertion
 
 When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component (similar to the Angular concept of "transclusion".) Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content.
+
+<p class="tip">Note: "transcluded" contents are compiled in the parent component's scope.</p>
 
 ### Single Insertion Point
 
