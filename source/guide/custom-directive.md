@@ -185,6 +185,24 @@ Vue.directive('my-directive', {
 
 Use this wisely though, because in general you want to avoid side-effects in your templates.
 
+## Deep Observation
+
+If your custom directive is expected to be used on an Object, and it needs to trigger `update` when a nested property inside the object changes, you need to pass in `deep: true` in your directive definition.
+
+``` html
+<div v-my-directive="obj"></div>
+```
+
+``` js
+Vue.directive('my-directive', {
+  deep: true,
+  update: function (obj) {
+    // will be called when nested properties in `obj`
+    // changes.
+  }
+})
+```
+
 ## Directive Priority
 
 You can optionally provide a priority number for your directive (defaults to 0). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
