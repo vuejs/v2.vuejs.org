@@ -200,7 +200,7 @@ Example inheriting individual properties (using the same data):
 
 ### v-component
 
-- Directive params: `keep-alive`
+- Directive params: `keep-alive`, `wait-for`, `transition-mode`
 
 Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
 

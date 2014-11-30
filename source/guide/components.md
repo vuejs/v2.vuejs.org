@@ -281,6 +281,54 @@ If you want to keep the switched-out components alive so that you can preserve i
 </div>
 ```
 
+### Transition Control
+
+There are two additional attribute parameters that allows advanced control of how dynamic components should transition from one to another.
+
+#### `wait-for`
+
+An event name to wait for on the incoming child component before switching it with the current component. This allows you to wait for asynchronous data to be loaded before triggering the transition to avoid unwanted flash of emptiness in between.
+
+**Example:**
+
+``` html
+<div v-component="{{view}}" wait-for="data-loaded"></div>
+```
+``` js
+// component definition
+{
+  // fetch data and fire the event asynchronously in the
+  // compiled hook. Using jQuery just for example.
+  compiled: function () {
+    var self = this
+    $.ajax({
+      // ...
+      success: function (data) {
+        self.$data = data
+        self.emit('data-loaded')
+      }
+    })
+  }
+}
+```
+
+#### `transition-mode`
+
+By default, the transitions for incoming and outgoing components happen simultaneously. This param allows you to configure two other modes:
+
+- `in-out`: New component transitions in first, current component transitions out after incoming transition has finished.
+- `out-in`: Current component transitions out first, new componnent transitions in after outgoing transition has finished.
+
+**Example**
+
+``` html
+<!-- fade out first, then fade in -->
+<div v-component="{{view}}"
+  v-transition="fade"
+  transition-mode="out-in">
+</div>
+```
+
 ## List and Components
 
 For an Array of Objects, you can combine `v-component` with `v-repeat`. In this case, for each Object in the Array, a child ViewModel will be created using that Object as data, and the specified component as the constructor.
