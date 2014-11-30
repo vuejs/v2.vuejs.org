@@ -155,9 +155,9 @@ demo.items = demo.items.filter(function (item) {
 
 You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js recognizes array elements that already have an associated Vue instance and will reuse those instances whenever possible.
 
-## Using `trackby`
+## Using `track-by`
 
-In some cases, you might need to replace the Array with completely new objects - e.g. ones returned from an API call. If your data objects have a unique id property, then you can use a `trackby` attribute to give Vue.js a hint so that it can reuse an existing instance with data that has the same id.
+In some cases, you might need to replace the Array with completely new objects - e.g. ones returned from an API call. If your data objects have a unique id property, then you can use a `track-by` attribute to give Vue.js a hint so that it can reuse an existing instance with data that has the same id.
 
 For example, if your data looks like this:
 
@@ -173,7 +173,7 @@ For example, if your data looks like this:
 Then you can give the hint like this:
 
 ``` html
-<div v-repeat="items" trackby="_uid">
+<div v-repeat="items" track-by="_uid">
   <!-- content -->
 </div>
 ```
