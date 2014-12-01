@@ -63,7 +63,26 @@ Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes 
 
 Apply inline CSS styles to the element.
 
-When there is no argument, Vue.js will use the value to set `el.style.cssText`.
+When there is no argument, the bound value can either be a String or an Object.
+
+- If it's a String, it will be set as the element's `style.cssText`.
+- If it's an Object, each key/value pair will be set on the element's `style` object.
+
+**Example:**
+
+``` html
+<div v-style="myStyles"></div>
+```
+
+``` js
+// myStyles can either be a String:
+"color:red; font-weight:bold;"
+// or an Object:
+{
+  color: 'red',
+  fontWeight: 'bold'
+}
+```
 
 When there is an argument, it will be used as the CSS property to apply. Combined with multiple clauses you can set multiple properties together:
 
