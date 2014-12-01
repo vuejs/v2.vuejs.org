@@ -334,7 +334,7 @@ By default, the transitions for incoming and outgoing components happen simultan
 For an Array of Objects, you can combine `v-component` with `v-repeat`. In this case, for each Object in the Array, a child ViewModel will be created using that Object as data, and the specified component as the constructor.
 
 ``` html
-<ul id="demo-2">
+<ul id="demo-3">
   <!-- reusing the user-profile component we registered before -->
   <li v-repeat="users" v-component="user-profile"></li>
 </ul>
@@ -342,7 +342,7 @@ For an Array of Objects, you can combine `v-component` with `v-repeat`. In this 
 
 ``` js
 var parent2 = new Vue({
-  el: '#demo-2',
+  el: '#demo-3',
   data: {
     users: [
       {
@@ -360,10 +360,10 @@ var parent2 = new Vue({
 
 **Result:**
 
-<ul id="demo-2" class="demo"><li v-repeat="users" v-component="user-profile"></li></ul>
+<ul id="demo-3" class="demo"><li v-repeat="users" v-component="user-profile"></li></ul>
 <script>
 var parent2 = new Vue({
-  el: '#demo-2',
+  el: '#demo-3',
   data: {
     users: [
       {
