@@ -305,7 +305,7 @@ An event name to wait for on the incoming child component before switching it wi
       // ...
       success: function (data) {
         self.$data = data
-        self.emit('data-loaded')
+        self.$emit('data-loaded')
       }
     })
   }
