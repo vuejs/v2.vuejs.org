@@ -104,7 +104,7 @@ describe('my-component', function () {
 })
 ```
 
-<p class="tip">Since Vue.js bindings update asynchronously, you should use `Vue.nextTick()` when asserting DOM updates after changing the data.</p>
+<p class="tip">Since Vue.js directives react to data updates asynchronously, when you are asserting DOM state after changing the data, you will have to do so in a `Vue.nextTick` callback. Alternatively you can set `Vue.config.async = false` during tests, so you can assert the DOM state synchronously right after the data change.</p>
 
 ## An Example
 
