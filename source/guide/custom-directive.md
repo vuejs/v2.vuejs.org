@@ -8,20 +8,19 @@ order: 9
 Vue.js allows you to register custom directives, essentially enabling you to teach Vue new tricks on how to map data changes to DOM behavior. You can register a global custom directive with the `Vue.directive(id, definition)` method, passing in a **directive id** followed by a **definition object**. A definition object can provide several hook functions (all optional):
 
 - **bind**: called only once, when the directive is first bound to the element.
-- **update**: called when the binding value changes. The new value is provided as the argument.
+- **update**: called for the first time immediately after `bind` with the initial value, then again whenever the binding value changes. The new value and the previous value are provided as the argument.
 - **unbind**: called only once, when the directive is unbound from the element.
 
 **Example**
 
 ``` js
 Vue.directive('my-directive', {
-  bind: function (value) {
+  bind: function () {
     // do preparation work
     // e.g. add event listeners or expensive stuff
     // that needs to be run only once
-    // `value` is the initial value
   },
-  update: function (value) {
+  update: function (newValue, oldValue) {
     // do something based on the updated value
     // this will also be called for the initial value
   },
