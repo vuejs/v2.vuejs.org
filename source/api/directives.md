@@ -80,7 +80,9 @@ When there is no argument, the bound value can either be a String or an Object.
 // or an Object:
 {
   color: 'red',
-  fontWeight: 'bold'
+  // both camelCase and dash-case works
+  fontWeight: 'bold',
+  'font-size': '2em'
 }
 ```
 
@@ -96,10 +98,11 @@ When there is an argument, it will be used as the CSS property to apply. Combine
 "></div>
 ```
 
-When the argument is prefixed with `$`, Vue.js will automatically apply prefixed version of the CSS rule too, so you don't have to manually write all the prefixes inline. In the following example Vue.js will apply `transform`, `webkitTransform`, `mozTransform` and `msTransform`:
+`v-style` is also smart to detect any required browser vendor prefixes, so you can just use the un-prefixed version:
 
 ``` html
-<div v-style="$transform: 'scale(' + scale + ')'"></div>
+<!-- will use -webkit-transform if needed, for example -->
+<div v-style="transform: 'scale(' + scale + ')'"></div>
 ```
 
 <p class="tip">It is recommended to use `v-style` instead of mustache bindings inside `style` attribute because Internet Explorer, regardless of version, will remove invalid inline styles when parsing the HTML.</p>
