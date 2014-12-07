@@ -213,6 +213,22 @@ Example inheriting individual properties (using the same data):
 </my-component>
 ```
 
+### v-events
+
+- This directive can only be used with `v-component`.
+- This directive accepts only keypaths, no expressions.
+
+Allows a parent instance to listen to events on a child instance. The difference from `v-on` is that `v-events` listens to Vue's component system events created via `vm.$emit()` rather than DOM events. This directive allows more decoupled parent-child communication without having to hard-code event listeners into the parent component. Note that it can only be used together with `v-component`, i.e. on the root element of a child component.
+
+**Example:**
+
+``` html
+<!-- inside parent template -->
+<div v-component="child" v-events="change: onChildChange"></div>
+```
+
+When the child component calls `this.$emit('change', ...)`, the parent's `onChildChange` method will be invoked with additional arguments passed to `$emit()`.
+
 ## Literal Directives
 
 > Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaluated only once on first compile and do not react to data changes.
