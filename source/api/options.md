@@ -131,7 +131,9 @@ Param attributes can also contain interpolation tags. The interpolation will be 
 <param-demo message="{&#123;parentMessage&#125;}"></param-demo>
 ```
 
-There are some special cases when using `paramAttributes` with attributes that contains hyphens:
+#### Notes on hyphened attributes
+
+HTML attribute names ignore upper and lower case differences, so we usually use hyphened attributes instead of camel case. There are some special cases when using `paramAttributes` with attributes that contains hyphens:
 
 1. If the attribute is a data attribute, the `data-` prefix will be auto stripped;
 
