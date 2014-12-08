@@ -5,6 +5,8 @@ tags:
 
 The release of 0.11 introduced [many changes](https://github.com/yyx990803/vue/blob/master/changes.md), but the most important one is how the new component scope works. Previously in 0.10.x, components have inherited scope by default. That means in a child component template you can reference parent scope properties. This often leads to tightly-coupled components, where a child component assumes knowledge of what properties are present in the parent scope. It is also possible to accidentally refer to a parent scope property in a child component.
 
+<!-- more -->
+
 ### Isolated Scope and Data Passing
 
 Starting in 0.11, all child components have isolated scope by default, and the recommended way to control component data access is via [Explicit Data Passing](/guide/components.html#Explicit_Data_Passing) using [`v-with`](/api/directives.html#v-with) or [`paramAttributes`](/api/options.html#paramAttributes).
