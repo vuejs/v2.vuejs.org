@@ -77,7 +77,7 @@ You can also use mustache-style bindings, both in text and in attributes. They a
 
 Although it is convenient, there are a few things you need to be aware of:
 
-<p class="tip">The `src` attribute on an `<image>` element makes an HTTP requests when a value is set, so when the template is first parsed it will result in a 404. In this case `v-attr` is preferred.</p>
+<p class="tip">The `src` attribute on an `<image>` element makes an HTTP request when a value is set, so when the template is first parsed it will result in a 404. In this case `v-attr` is preferred.</p>
 
 <p class="tip">Internet Explorer will remove invalid inline `style` attributes when parsing HTML, so always use `v-style` when binding inline CSS if you want to support IE.</p>
 
