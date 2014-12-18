@@ -237,7 +237,7 @@ This rule also applies to [content insertion](#Content_Insertion), as explained 
 
 ## Component Lifecycle
 
-Every component, or Vue instance, has its own lifecycle: it will be created, compiled, inserted or detached, and finally destroyed. At each of these key moments the instance will emit corresponding events, and when creating an instance or defining a component, we can pass in lifecycle hook functions to react to these events. For example:
+Every component, or Vue instance, has its own lifecycle: it will be created, compiled, attached or detached, and finally destroyed. At each of these key moments the instance will emit corresponding events, and when creating an instance or defining a component, we can pass in lifecycle hook functions to react to these events. For example:
 
 ``` js
 var MyComponent = Vue.extend({
