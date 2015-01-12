@@ -19,7 +19,7 @@ If you have not used AngularJS before, you probably don't know what a directive 
 <div v-text="message"></div>
 ```
 
-Here the prefix is `v` which is the default. The directive ID is `text` and the the expression is `message`. This directive instructs Vue.js to update the div's `textContent` whenever the `message` property on the Vue instance changes.
+Here the prefix is `v` which is the default. The directive ID is `text` and the expression is `message`. This directive instructs Vue.js to update the div's `textContent` whenever the `message` property on the Vue instance changes.
 
 ## Inline Expressions
 
