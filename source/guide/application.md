@@ -59,7 +59,7 @@ All Vue instances can have their raw `$data` directly serialized with `JSON.stri
 
 ## Unit Testing
 
-Anything compatible with a CommonJS-based build system works. A recommendation is using the [Karma](http://karma-runner.github.io/0.12/index.html) test runner together with its [CommonJS pre-processor](https://github.com/karma-runner/karma-commonjs) to test your code modually.
+Anything compatible with a CommonJS-based build system works. A recommendation is using the [Karma](http://karma-runner.github.io/0.12/index.html) test runner together with its [CommonJS pre-processor](https://github.com/karma-runner/karma-commonjs) to test your code modularly.
 
 The best practice is to export raw options / functions inside modules. Consider this example:
 
