@@ -1,4 +1,4 @@
-title: Installation
+title: 安装
 type: guide
 order: 1
 vue_version: 0.11.4
@@ -7,32 +7,36 @@ min_size: 55.18
 gz_size: 18.11
 ---
 
-> **Compatibility Note:** Vue.js does not support IE8 and below.
+> **兼容性提示：**Vue.js 不支持 IE8 及其以下版本。
 
-## Standalone
+## 直接下载
 
+<!--
 Simply download and include with a script tag. `Vue` will be registered as a global variable.
+-->直接下载并写入一个 script 标签中，`Vue` 就会被注册为一个全局变量。
 
 <div id="downloads">
-<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.js" download>Development Version</a><span class="light info">{{dev_size}}kb, plenty of comments and debug/warning messages.</span>
+<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.js" download>开发者版本</a><span class="light info">{{dev_size}}kb, plenty of comments and debug/warning messages.</span>
 
-<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Production Version</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
+<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>生产版本</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
 </div>
 
+<!--
 Also available on [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
+-->也可以在 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) 使用 (版本更新会略滞后)。
 
 ## NPM
 
 ``` bash
 $ npm install vue
-# for edge version:
+# 获得尖端版本：
 $ npm install yyx990803/vue#dev
 ```
 
 ## Bower
 
 ``` bash
-# only stable version is available through Bower
+# Bower 只能够获得稳定版本
 $ bower install vue
 ```
 
@@ -40,7 +44,7 @@ $ bower install vue
 
 ```js
 var Vue = require('yyx990803/vue')
-// for edge version:
+// 获得尖端版本：
 var Vue = require('yyx990803/vue@dev')
 ```
 
@@ -48,14 +52,16 @@ var Vue = require('yyx990803/vue@dev')
 
 ``` bash
 $ component install yyx990803/vue
-# for edge version:
+# 获得尖端版本：
 $ component install yyx990803/vue@dev
 ```
 
-## AMD Module Loaders
+## AMD 模块加载器
 
+<!--
 The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
+-->直接下载或通过 Bower 安装的版本可以用 UMD 包裹起来直接作为 AMD 模块使用。
 
-## Ready?
+## 准备好了吗？
 
-[Let's Get Started](/guide/).
+[走起！](/guide/)
