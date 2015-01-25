@@ -10,17 +10,17 @@
 <div id="hero">
     <div class="inner">
         <ul id="nav">
-            <li><a href="/guide/" class="nav-link">入门</a></li>
-            <li><a href="/api/" class="nav-link">API 索引</a></li>
-            <li><a href="/examples/" class="nav-link">示例</a></li>
-            <li><a href="/blog/" class="nav-link">Blog</a></li>
+            <li><a href="<%- config.root %>guide/" class="nav-link">入门</a></li>
+            <li><a href="<%- config.root %>api/" class="nav-link">API 索引</a></li>
+            <li><a href="<%- config.root %>examples/" class="nav-link">示例</a></li>
+            <li><a href="<%- config.root %>blog/" class="nav-link">Blog</a></li>
         </ul>
-        <img id="logo" src="/images/logo.png">
+        <img id="logo" src="<%- config.root %>images/logo.png">
         <h1>Vue.js</h1>
         <p class="sub">精简的 MVVM</p>
         <p class="desc">Vue.js 是一个用于创建 web 交互界面的库。<br>它具有简单而灵活的 API，创建出来的组件可以实时反映数据的变化。</p>
         <p class="buttons">
-            <a href="/guide/installation.html" class="button">获取 Vue.js v<%- theme.vue_version %></a>
+            <a href="<%- config.root %>guide/installation.html" class="button">获取 Vue.js v<%- theme.vue_version %></a>
             <a href="https://github.com/yyx990803/vue" target="_blank" class="button">源代码在 GitHub 上</a>
         </p>
         <ul id="social">
@@ -30,7 +30,7 @@
             <li><g:plusone href="http://vuejs.org" size="medium"></g:plusone></li>
         </ul>
     </div>
-    <div class="down"><img src="/images/down.png"></div>
+    <div class="down"><img src="<%- config.root %>images/down.png"></div>
 </div>
 
 <div id="example">
