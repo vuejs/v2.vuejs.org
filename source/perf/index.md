@@ -1,14 +1,14 @@
-title: Performance Comparisons
+title: 性能对比
 ---
 
-## TodoMVC Benchmark
+## TodoMVC 跑分
 
 > *Last Updated: 2014-10-12*
 
-Looking for the TodoMVC Benchmark? It's been removed because after discussion with some other framework authors we have agreed that:
+找不到 TodoMVC 跑分了？因为我们已经把它去掉了。在跟一些框架的作者交流之后，我们达成了以下几点共识：
 
-1. The original intention of these benchmarks were for comparing Browser performance rather than that of frameworks. The "synchrorously trigger an action xxx times" test routine doesn't reflect meaningful real world user actions.
+1. 这些跑分的初衷是比较浏览器们的性能，而不是比较框架们的性能。“同时触发一个动作多少次”的测试惯例并不能反映用户真实的使用场景。
 
-2. Due to internal implementation differences, frameworks that uses async rendering (e.g. Vue, Om, Mercury) gains the advantage by skipping part of the calculations that happened in the same event loop. The real world user experience doesn't demonstrate such dramatic difference.
+2. 由于内部实现的不同，(诸如 Vue、Om、Mercury 等) 采用异步方式渲染的框架由于跳过了同一个时间循环 (event loop) 的计算而在跑分中获益。而真实的用户体验并不会因此而变得不同。
 
-3. Overall this benchmark suite gave rise to more controversy than constructive insights, so it's been removed and I'd be happy to replace it with a more meaningful way to measure front-end performance.
+3. 总体上，跑分程序带来的争议多于它带来的建设性意见，所以我们把它删除了，同时我们也乐于将其改换为更有意义的测量前端性能的方式。
