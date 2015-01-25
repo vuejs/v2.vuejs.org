@@ -1,4 +1,4 @@
-title: Custom Directives
+title: 自定义指令
 type: guide
 order: 9
 ---

@@ -1,4 +1,4 @@
-title: Component System
+title: 组件系统
 type: guide
 order: 11
 ---

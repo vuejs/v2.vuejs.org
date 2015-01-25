@@ -1,4 +1,4 @@
-title: Computed Properties
+title: 可推导的属性
 type: guide
 order: 8
 ---

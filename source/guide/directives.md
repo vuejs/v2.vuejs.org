@@ -1,11 +1,13 @@
-title: Directives
+title: 指令
 type: guide
 order: 3
 ---
 
-## Synopsis
+## 摘要
 
+<!--
 If you have not used AngularJS before, you probably don't know what a directive is. Essentially, a directive is some special token in the markup that tells the library to do something to a DOM element. In Vue.js, the concept of directive is drastically simpler than that in Angular. A Vue.js directive can only appear in the form of a prefixed HTML attribute that takes the following format:
+-->如果你还没有使用过 AngularJS，你可能不太清楚指令 (directive) 是什么。一个指令的本质是一个特殊的标记符号，使得该库对一个 DOM 元素进行一些处理。在 Vue.js 中，指令的概念和 Angular 是完全一样的。Vue.js 中的指令就是带有特殊前缀的 HTML 特性，它会以下面的格式出现：
 
 ``` html
 <element
@@ -13,41 +15,54 @@ If you have not used AngularJS before, you probably don't know what a directive 
 </element>
 ```
 
-## A Simple Example
+## 一个简单的例子
 
 ``` html
 <div v-text="message"></div>
 ```
 
+<!--
 Here the prefix is `v` which is the default. The directive ID is `text` and the the expression is `message`. This directive instructs Vue.js to update the div's `textContent` whenever the `message` property on the Vue instance changes.
+-->这里默认的前缀是 `v`。指令 ID 是 `text`，表达式是 `message`。该指令会在该 Vue 实例的 `message` 属性发生变化时更新这个 div 的 `textContent`。
 
-## Inline Expressions
+## 内联表达式
 
 ``` html
 <div v-text="'hello ' + user.firstName + ' ' + user.lastName"></div>
 ```
 
+<!--
 Here we are using a computed expression instead of a single property key. Vue.js automatically tracks the properties an expression depends on and refreshes the directive whenever a dependency changes. Thanks to async batch updates, even when multiple dependencies change, an expression will only be updated once every event loop.
+-->这里我们用一个可推导的表达式 (computed expression) 提到了简单的属性名。Vue.js 会自动跟踪表达式中依赖的属性并在这些依赖发生变化的时候更新指令。而且因为有异步批处理更新机制，哪怕多个依赖同时变化时，表达式也只会在时间循环里触发一次。
 
+<!--
 You should use expressions wisely and avoid putting too much logic in your templates, especially statements with side effects (with the exception of event listener expressions). To discourage the overuse of logic inside templates, Vue.js inline expressions are limited to **one statement only**. For bindings that require more complicated operations, use [Computed Properties](/guide/computed.html) instead.
+-->你应该灵活的使用表达式，以避免在你的模板里放入过多的逻辑，尤其是有边界效应的语句 (事件监听表达式除外)。为了在模板内防止逻辑被滥用，Vue.js 把内联表达式限制为**只能是一条语句**。如果需要绑定更复杂的操作，请使用[可推导的属性](/guide/computed.html)。
 
-<p class="tip">For security reasons, in inline expressions you can only access properties and methods present on the current context Vue instance and its parents.</p>
+<!--p class="tip">For security reasons, in inline expressions you can only access properties and methods present on the current context Vue instance and its parents.</p-->
+<p class="tip">由于安全方面的原因，在内联表达式中你只能访问当前上下文中 Vue 实例及其祖先的属性和方法。</p>
 
-## Argument
+## 参数
 
 ``` html
 <div v-on="click : clickHandler"></div>
 ```
 
+<!--
 Some directives require an argument before the keypath or expression. In this example the `click` argument indicates we want the `v-on` directive to listen for a click event and then call the `clickHandler` method of the ViewModel instance.
+-->有些指令需要在路径或表达式前加一个参数。在这个例子中 `click` 参数代表了我们希望 `v-on` 指令监听到点击事件之后调用该 ViewModel 实例的 `clickHandler` 方法。
 
-## Filters
+## 过滤器
 
+<!--
 Filters can be appended to directive keypaths or expressions to further process the value before updating the DOM. Filters are denoted by a single pipe (`|`) as in shell scripts. For more details see [Filters in Depth](/guide/filters.html).
+-->过滤器可以紧跟在指令的路径或表达式之后，在更新 DOM 之前对值进行进一步处理。过滤器会被像 shell 脚本一样表示在一个竖线 (`|`) 之后。更多内容请移步至[深入了解过滤器](/guide/filters.html)。
 
-## Multiple Clauses
+## 多重语句指令
 
+<!--
 You can create multiple bindings of the same directive in a single attribute, separated by commas. Under the hood they are bound as multiple directive instances.
+-->你可以在同一个特性的同一个指令里创建多个绑定。这些绑定是用逗号分隔开的。它们在底层被分解为多个指令实例进行绑定。
 
 ``` html
 <div v-on="
@@ -58,31 +73,45 @@ You can create multiple bindings of the same directive in a single attribute, se
 </div>
 ```
 
-## Literal Directives
+## 字面量指令
 
+<!--
 Some directives don't create data bindings - they simply take the attribute value as a literal string. For example the `v-component` directive:
+-->有些指令不会创建数据绑定——它们的值只是一个字符串字面量。比如 `v-component` 指令：
 
 ``` html
 <div v-component="my-component"></div>
 ```
 
+<!--
 Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor.
+-->这里的 `"my-component"` 并不是一个数据属性——它是一个字符串 ID，用来让 Vue.js 查找对应的组件构造函数。
 
+<!--
 You can also use mustache expressions inside literal directives. For example, the following code allows you to dynamically resolve the type of component you want to use:
+-->你也可以在字面量指令中使用 mustache 表达式。比如，下面的代码允许你动态的解析你想要的组件类型：
 
 ``` html
 <div v-component="{&#123; isOwner ? 'owner-panel' : 'guest-panel' &#125;}"></div>
 ```
 
+<!--
 When the expression inside the mustaches change, the rendered component will also change accordingly!
+-->当花括号内部的表达式改变时，渲染出来的组件也会随之改变哦！
 
+<!--
 However, note that `v-component` and `v-partial` are the only literal directives that have this kind of reactive behavior. Mustache expressions in other literal directives, e.g. `v-ref`, are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
+-->尽管如此，值得注意的是只有 `v-component` 和 `v-partial` 这两个字面量指令有这种可响应的行为。Mustache 表达式在别的字面量指令，如 `v-ref` 中，是**只运行一次**的。在指令被编译之后，就不再响应值的变化了。
 
+<!--
 A full list of literal directives can be found in the [API reference](/api/directives.html#Literal_Directives).
+-->完整的字面量指令列表可以在 [API 索引](/api/directives.html#Literal_Directives) 中找到。
 
-## Empty Directives
+## 空指令
 
+<!--
 Some directives don't even expect an attribute value - they simply do something to the element once and only once. For example the `v-pre` directive:
+-->有些指令并不需要判断特性的值——这些操作对某个元素处理且仅处理一次。比如 `v-pre` 指令：
 
 ``` html
 <div v-pre>
@@ -90,6 +119,10 @@ Some directives don't even expect an attribute value - they simply do something 
 </div>
 ```
 
+<!--
 A full list of empty directives can be found in the [API reference](/api/directives.html#Empty_Directives).
+-->完整的空指令列表可以在 [API 索引](/api/directives.html#Empty_Directives) 中找到。
 
+<!--
 Next, let's talk about [Filters](/guide/filters.html).
+-->接下来，我们来看一看[过滤器](/guide/filters.html)。

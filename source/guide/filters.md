@@ -1,39 +1,49 @@
-title: Filters
+title: 过滤器
 type: guide
 order: 4
 ---
 
-## Synopsis
+## 摘要
 
+<!--
 A Vue.js filter is essentially a function that takes a value, processes it, and then returns the processed value. In the markup it is denoted by a single pipe (`|`) and can be followed by one or more arguments:
+-->一个 Vue.js 的过滤器本质上是一个函数，这个函数会接收一个值，将其处理并返回。它被标记在一个竖线 (`|`) 之后，并可以跟随一个或多个参数：
 
 ``` html
 <element directive="expression | filterId [args...]"></element>
 ```
 
-## Examples
+## 示例
 
+<!--
 Filters must be placed at the end of a directive's value:
+-->过滤器必须放置在一个指令的值的最后：
 
 ``` html
 <span v-text="message | capitalize"></span>
 ```
 
+<!--
 You can also use them inside mustache-style bindings:
+-->你也可以用在 mustache 风格的绑定的内部：
 
 ``` html
 <span>&#123;&#123;message | uppercase&#125;&#125;</span>
 ```
 
+<!--
 Multiple filters can be chained together:
+-->可以把多个过滤器链在一起：
 
 ``` html
 <span>&#123;&#123;message | lowercase | reverse&#125;&#125;</span>
 ```
 
-## Arguments
+## 参数
 
+<!--
 Some filters can take optional arguments. Simply add arguments separated by spaces:
+-->一些过滤器是可以附带参数的。只需用空格分隔开：
 
 ``` html
 <span>&#123;&#123;order | pluralize st nd rd th&#125;&#125;</span>
@@ -43,6 +53,10 @@ Some filters can take optional arguments. Simply add arguments separated by spac
 <input v-on="keyup: submitForm | key enter">
 ```
 
+<!--
 For their specific use of the above examples see the [full list of built-in filters](/api/filters.html).
+-->上述示例的具体用法参见[完整的内建过滤器列表](/api/filters.html)。
 
+<!--
 Now that you know what directives and filters are, let's get our hands dirty and try to [display a list of items](/guide/list.html).
+-->现在你已经了解了指令和过滤器，接下来我们趁热打铁[展示一个列表](/guide/list.html)吧。

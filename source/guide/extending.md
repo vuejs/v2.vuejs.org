@@ -1,4 +1,4 @@
-title: Extending Vue
+title: 扩展 Vue
 type: guide
 order: 14
 ---

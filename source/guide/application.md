@@ -1,4 +1,4 @@
-title: Building Larger Apps
+title: 创建大型应用
 type: guide
 order: 13
 ---

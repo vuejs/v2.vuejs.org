@@ -1,4 +1,4 @@
-title: Listening for Events
+title: 事件监听
 type: guide
 order: 6
 ---

@@ -1,4 +1,4 @@
-title: Transitions
+title: 过渡效果
 type: guide
 order: 12
 ---
