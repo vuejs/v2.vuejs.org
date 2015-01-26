@@ -63,7 +63,7 @@ Prefixed HTML attributes that tell Vue.js to do something about a DOM element.
 <div v-text="message"></div>
 ```
 
-Here the div element has a `v-text` directive with the value `message`. What it does is telling Vue.js to keep the div's textContent in sync with the Vue instance's `message` property.
+Here the div element has a `v-text` directive with the value `message`. This tells Vue.js to keep the div's textContent in sync with the Vue instance's `message` property.
 
 Directives can encapsulate arbitrary DOM manipulations. For example `v-attr` manipulates an element's attributes, `v-repeat` clones an element based on an Array, `v-on` attaches event listeners... we will cover them later.
 
