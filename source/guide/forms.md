@@ -3,11 +3,11 @@ type: guide
 order: 7
 ---
 
-## The Basics
+## 基本用法
 
-You can use the `v-model` directive to create two-way data bindings on form input elements. It automatically picks the correct way to update the element based on the input type.
+你可以在表单的 input 元素上使用 `v-model` 指令来创建双向数据绑定。它会根据 input type 自动选取正确的方式更新元素。
 
-**Example**
+**示例**
 
 ``` html
 <form id="demo">
@@ -61,7 +61,7 @@ new Vue({
 })
 ```
 
-**Result**
+**效果**
 
 <form id="demo"><p><input type="text" v-model="msg"> {&#123;msg&#125;}</p><p><input type="checkbox" v-model="checked"> {&#123;checked ? &quot;yes&quot; : &quot;no&quot;&#125;}</p><p><input type="radio" v-model="picked" name="picked" value="one"><input type="radio" v-model="picked" name="picked" value="two"> {&#123;picked&#125;}</p><p><select v-model="selected"><option>one</option><option>two</option></select> {&#123;selected&#125;}</p><p><select v-model="multiSelect" multiple><option>one</option><option>two</option><option>three</option></select>{&#123;multiSelect&#125;}</p><p>data:<pre style="font-size:13px;background:transparent;line-height:1.5em">{&#123;$data | json 2&#125;}</pre></p></form>
 <script>
@@ -77,34 +77,34 @@ new Vue({
 })
 </script>
 
-## Lazy Updates
+## 懒更新
 
-By default, `v-model` syncs the input with the data after each `input` event. You can add a `lazy` attribute to change the behavior to sync after `change` events:
+默认情况下，`v-model` 会在每个 `input` 事件之后同步输入的数据。你可以添加一个 `lazy` 特性，将其改变为在每个 `change` 事件之后才完成同步。
 
 ``` html
 <!-- synced after "change" instead of "input" -->
 <input v-model="msg" lazy>
 ```
 
-## Casting Value as Number
+## 当做数来处理
 
-If you want user input to be automatically persisted as numbers, you can add a `number` attribute to your `v-model` managed inputs:
+如果你希望用户的输入自动处理为一个数，你可以在 `v-model` 所在的 input 上添加一个 `number` 特性。
 
 ``` html
 <input v-model="age" number>
 ```
 
-## Dynamic Select Options
+## 动态 select 选项
 
-When you need to dynamically render a list of options for a `<select>` element, it's recommended to use an `options` attribute together with `v-model`:
+当你需要为一个 `<select>` 元素动态渲染列表选项时，我们推荐 `options` 和 `v-model` 特性配合使用：
 
 ``` html
 <select v-model="selected" options="myOptions"></select>
 ```
 
-In your data, `myOptions` should be an keypath/expression that points to an Array to use as its options. The Array can contain plain strings, or contain objects.
+在你的数据里，`myOptions` 应该是一个代表选项数组的路径/表达式。该数组可以包含普通字符串或对象。
 
-The object can be in the format of `{text:'', value:''}`. This allows you to have the option text displayed differently from its underlying value:
+该数组里对象的格式可以是 `{text:'', value:''}`。这允许你把展示的文字和其背后对应的值区分开来。
 
 ``` js
 [
@@ -113,7 +113,7 @@ The object can be in the format of `{text:'', value:''}`. This allows you to hav
 ]
 ```
 
-Will render:
+会渲染成：
 
 ``` html
 <select>
@@ -122,7 +122,8 @@ Will render:
 </select>
 ```
 
-Alternatively, the object can be in the format of `{ label:'', options:[...] }`. In this case it will be rendered as an `<optgroup>`:
+<!-- Alternatively, the object can be in the format of `{ label:'', options:[...] }`. In this case it will be rendered as an `<optgroup>`:
+-->另外，该数组里对象的格式也可以是 `{label:'', options:[...]}`。这样的数据会被渲染成为一个 `<optgroup>`：
 
 ``` js
 [
@@ -131,7 +132,7 @@ Alternatively, the object can be in the format of `{ label:'', options:[...] }`.
 ]
 ```
 
-Will render:
+会渲染成：
 
 ``` html
 <select>
@@ -146,4 +147,4 @@ Will render:
 </select>
 ```
 
-Next: [Computed Properties](../guide/computed.html).
+接下来：[可推导的属性](../guide/computed.html).
