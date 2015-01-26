@@ -11,9 +11,7 @@ gz_size: 18.11
 
 ## 直接下载
 
-<!--
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
--->直接下载并写入一个 script 标签中，`Vue` 就会被注册为一个全局变量。
+直接下载并写入一个 script 标签中，`Vue` 就会被注册为一个全局变量。
 
 <div id="downloads">
 <a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.js" download>开发者版本</a><span class="light info">{{dev_size}}kb, plenty of comments and debug/warning messages.</span>
@@ -21,9 +19,7 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 <a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>生产版本</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
 </div>
 
-<!--
-Also available on [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
--->也可以在 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) 使用 (版本更新会略滞后)。
+也可以在 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) 使用 (版本更新会略滞后)。
 
 ## NPM
 
@@ -58,9 +54,7 @@ $ component install yyx990803/vue@dev
 
 ## AMD 模块加载器
 
-<!--
-The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
--->直接下载或通过 Bower 安装的版本可以用 UMD 包裹起来直接作为 AMD 模块使用。
+直接下载或通过 Bower 安装的版本可以用 UMD 包裹起来直接作为 AMD 模块使用。
 
 ## 准备好了吗？
 
