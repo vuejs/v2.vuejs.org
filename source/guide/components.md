@@ -164,7 +164,7 @@ new Vue({
 
 #### Using `paramAttributes`
 
-It is also possible to use the [`paramAttributes`](/api/options.html#paramAttributes) option, which compiles into `v-with`, to expose an interface that looks more like custom elements:
+It is also possible to use the [`paramAttributes`](../api/options.html#paramAttributes) option, which compiles into `v-with`, to expose an interface that looks more like custom elements:
 
 ``` html
 <div id="demo-3">
@@ -247,7 +247,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Check out the API reference for a [full list of lifecycle hooks](/api/options.html#Lifecycle) that are availble.
+Check out the API reference for a [full list of lifecycle hooks](../api/options.html#Lifecycle) that are availble.
 
 ## Dynamic Components
 
@@ -399,7 +399,7 @@ When `v-ref` is used together with `v-repeat`, the value you get will be an Arra
 
 ## Event System
 
-Although you can directly access a ViewModels children and parent, it is more convenient to use the built-in event system for cross-component communication. It also makes your code less coupled and easier to maintain. Once a parent-child relationship is established, you can dispatch and trigger events using each ViewModel's [event instance methods](/api/instance-methods.html#Events).
+Although you can directly access a ViewModels children and parent, it is more convenient to use the built-in event system for cross-component communication. It also makes your code less coupled and easier to maintain. Once a parent-child relationship is established, you can dispatch and trigger events using each ViewModel's [event instance methods](../api/instance-methods.html#Events).
 
 ``` js
 var Child = Vue.extend({
@@ -552,4 +552,4 @@ The rendered result will be:
 
 The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
 
-Next: [Applying Transition Effects](/guide/transitions.html).
+Next: [Applying Transition Effects](../guide/transitions.html).

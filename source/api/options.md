@@ -125,7 +125,7 @@ Vue.component('param-demo', {
 <param-demo size="100" message="hello!"></param-demo>
 ```
 
-Param attributes can also contain interpolation tags. The interpolation will be evaluated against the parent, and under the hood they will be compiled as [`v-with`](/api/directives.html#v-with), which means when the value of the interpolated expression changes, the component's corresponding property will also be updated:
+Param attributes can also contain interpolation tags. The interpolation will be evaluated against the parent, and under the hood they will be compiled as [`v-with`](../api/directives.html#v-with), which means when the value of the interpolated expression changes, the component's corresponding property will also be updated:
 
 ``` html
 <param-demo message="{&#123;parentMessage&#125;}"></param-demo>
@@ -158,7 +158,7 @@ If the option is available at instantiation, the instance will immediately enter
 
 - **Type:** `String`
 
-A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$el` will be overwritten, unless [content insertion points](/guide/components.html#Content_Insertion) are present in the template. If the **replace** option is `true`, the template will replace `vm.$el` entirely.
+A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$el` will be overwritten, unless [content insertion points](../guide/components.html#Content_Insertion) are present in the template. If the **replace** option is `true`, the template will replace `vm.$el` entirely.
 
 If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
@@ -234,31 +234,31 @@ These are private assets that will be available only to this Vue instance and it
 
 - **Type:** `Object`
 
-A hash of directives to be made available to the Vue instance. For details on how to write a custom directive, see [Writing Custom Directives](/guide/custom-directive.html).
+A hash of directives to be made available to the Vue instance. For details on how to write a custom directive, see [Writing Custom Directives](../guide/custom-directive.html).
 
 ### filters
 
 - **Type:** `Object`
 
-A hash of filters to be made available to the Vue instance. For details on how to write a custom filter, see [Writing Custom Filters](/guide/custom-filter.html).
+A hash of filters to be made available to the Vue instance. For details on how to write a custom filter, see [Writing Custom Filters](../guide/custom-filter.html).
 
 ### components
 
 - **Type:** `Object`
 
-A hash of components to be made available to the Vue instance. For details on how to extend and compose Vue instances, see [Component System](/guide/components.html).
+A hash of components to be made available to the Vue instance. For details on how to extend and compose Vue instances, see [Component System](../guide/components.html).
 
 ### partials
 
 - **Type:** `Object`
 
-A hash of partials to be made available to the Vue instance. Also see [v-partial](/api/directives.html#v-partial).
+A hash of partials to be made available to the Vue instance. Also see [v-partial](../api/directives.html#v-partial).
 
 ### transitions
 
 - **Type:** `Object`
 
-A hash of transitions to be made available to the Vue instance. For details see the guide on [Transitions](/guide/transitions.html).
+A hash of transitions to be made available to the Vue instance. For details see the guide on [Transitions](../guide/transitions.html).
 
 ## Others
 

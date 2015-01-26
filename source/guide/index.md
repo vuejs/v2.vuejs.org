@@ -25,7 +25,7 @@ Vue.js 的 API 设计深受 [AngularJS]、[KnockoutJS]、[Ractive.js] 和 [Rivet
 var vm = new Vue({ /* options */ })
 ```
 
-这是您作为一个开发者在使用 Vue.js 时主要打交道的对象。更多的细节请移步至[Vue 构造函数](/api/)。
+这是您作为一个开发者在使用 Vue.js 时主要打交道的对象。更多的细节请移步至[Vue 构造函数](../api/)。
 
 ### 视图 (View)
 
@@ -104,7 +104,7 @@ Directives 可以封装任何 DOM 操作。比如 `v-attr` 会操作一个元素
 <div>&#123;&#123;message | capitalize&#125;&#125;</div>
 ```
 
-这样在 div 的文本内容被更新之前，`message` 的值会先传给 `capitalizie` 函数处理。更多内容可移步至[深入了解过滤器 (Filters)](/guide/filters.html)。
+这样在 div 的文本内容被更新之前，`message` 的值会先传给 `capitalizie` 函数处理。更多内容可移步至[深入了解过滤器 (Filters)](../guide/filters.html)。
 
 ### 组件 (Components)
 
@@ -116,7 +116,7 @@ Directives 可以封装任何 DOM 操作。比如 `v-attr` 会操作一个元素
 </div>
 ```
 
-这个简单的机制使得我们可以以类似 [Web Components](http://www.w3.org/TR/components-intro/) 的声明形式对 Vue 实例进行复用和组合，无需最新版的浏览器或笨重的 polyfills。通过将一个应用程序拆分成简单的组件，代码库可以被尽可能的解耦，同时更易于维护。更多内容可移步至[组件系统](/guide/components.html)。
+这个简单的机制使得我们可以以类似 [Web Components](http://www.w3.org/TR/components-intro/) 的声明形式对 Vue 实例进行复用和组合，无需最新版的浏览器或笨重的 polyfills。通过将一个应用程序拆分成简单的组件，代码库可以被尽可能的解耦，同时更易于维护。更多内容可移步至[组件系统](../guide/components.html)。
 
 ## 一个简单的例子
 
@@ -179,7 +179,7 @@ var demo = new Vue({
 
 你可以点击一个 todo 来开关它，也可以打开你的浏览器命令行直接操作 `demo` 对象：比如改变 `demo.title`、向 `demo.todos` 里放入一个新的对象、或开关某个 todo 的 `done` 状态值。
 
-也许你脑海中还有一些问题，别担心，我们稍后都会提到的。接下来可移步至：[深入了解指令 (Directives)](/guide/directives.html)。
+也许你脑海中还有一些问题，别担心，我们稍后都会提到的。接下来可移步至：[深入了解指令 (Directives)](../guide/directives.html)。
 
 [AngularJS]: http://angularjs.org
 [KnockoutJS]: http://knockoutjs.com

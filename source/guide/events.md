@@ -88,7 +88,7 @@ It also has a few presets for commonly used keys:
 <input v-on="keyup:submit | key enter">
 ```
 
-Check the API reference for a [full list of key filter presets](/api/filters.html#key).
+Check the API reference for a [full list of key filter presets](../api/filters.html#key).
 
 ## Why Listeners in HTML?
 
@@ -98,4 +98,4 @@ You might be concerned about this whole event listening approach violates the go
 2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
 3. When a ViewModel is destroyed, all event listeners are automatically removed. You don't need to worry about cleaning it up yourself.
 
-Next up: [Handling Forms](/guide/forms.html).
+Next up: [Handling Forms](../guide/forms.html).

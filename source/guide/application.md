@@ -18,11 +18,11 @@ Here are some build setup examples on GitHub:
 
 In a typical Vue.js project we will be breaking up our code into many small components, and it would be nice to have each component encapsulate its CSS styles, template and JavaScript definition in the same place. A bonus for using the previously mentioned build tools is that they both provided mechanisms to transform the source code before bundling them together, and with a bit of pre-processing we can write our components like this:
 
-<img src="/images/vueify.png">
+![](../images/vueify.png)
 
 If you are into pre-processors, you can even do this:
 
-<img src="/images/vueify_with_pre.png">
+![](../images/vueify_with_pre.png)
 
 This is achieved via using the [Vueify](https://github.com/vuejs/vueify) transform for Browserify, or with [Vue-loader](https://github.com/vuejs/vue-loader) for Webpack.
 

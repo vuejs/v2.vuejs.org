@@ -1,5 +1,6 @@
 <li><a href="<%- config.root %>guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">入门</a></li>
 <li><a href="<%- config.root %>api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API 索引</a></li>
 <li><a href="<%- config.root %>examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">示例</a></li>
-<li><a href="<%- config.root %>blog/" class="nav-link<%- (page.path.match(/blog/) || is_post()) ? ' current' : '' %>">Blog</a></li>
+<li><a href="http://vuejs.org/blog/" target="_blank" class="nav-link<%- (page.path.match(/blog/) || is_post()) ? ' current' : '' %>">Blog (英文)</a></li>
 <li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+<li><a href="http://vuejs.org/" target="_blank" class="nav-link<%- (page.path.match(/blog/) || is_post()) ? ' current' : '' %>">English</a></li>

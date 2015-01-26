@@ -146,4 +146,4 @@ Will render:
 </select>
 ```
 
-Next: [Computed Properties](/guide/computed.html).
+Next: [Computed Properties](../guide/computed.html).

@@ -71,4 +71,4 @@ For this simple example above, you can achieve the same result with just an expr
 
 The built-in `filterBy` and `orderBy` filters are both filters that perform non-trivial work on the Array being passed in and relies on the current state of the owner Vue instance.
 
-Alright! Now it's time to learn how the [Component System](/guide/components.html) works.
+Alright! Now it's time to learn how the [Component System](../guide/components.html) works.

@@ -239,4 +239,4 @@ Then you can use it by providing the transition id to `v-transition`. Note this 
 <p v-transition="fade"></p>
 ```
 
-Next: [Building Larger Apps](/guide/application.html).
+Next: [Building Larger Apps](../guide/application.html).

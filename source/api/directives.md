@@ -112,14 +112,14 @@ When there is an argument, it will be used as the CSS property to apply. Combine
 - This directive requires an argument.
 - This directive requires the value to be a Function or a statement.
 
-Attaches an event listener to the element. The event type is denoted by the argument. It is also the only directive that can be used with the `key` filter. For more details see [Listening for Events](/guide/events.html).
+Attaches an event listener to the element. The event type is denoted by the argument. It is also the only directive that can be used with the `key` filter. For more details see [Listening for Events](../guide/events.html).
 
 ### v-model
 
 - This directive can only be used on `<input>`, `<select>` or `<textarea>` elements.
 - Directive params: `lazy`, `number`, `options`
 
-Create a two-way binding on a form input element. Data is synced on every `input` event by default. For detailed examples see [Handling Forms](/guide/forms.html).
+Create a two-way binding on a form input element. Data is synced on every `input` event by default. For detailed examples see [Handling Forms](../guide/forms.html).
 
 ### v-if
 
@@ -177,7 +177,7 @@ If an argument is provided, a wrapper data object will always be created, using 
 </ul>
 ```
 
-For detailed examples, see [Displaying a List](/guide/list.html).
+For detailed examples, see [Displaying a List](../guide/list.html).
 
 ### v-with
 
@@ -240,11 +240,11 @@ When the child component calls `this.$emit('change', ...)`, the parent's `onChil
 
 - Directive params: `keep-alive`, `wait-for`, `transition-mode`
 
-Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
+Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](../guide/components.html).
 
 ### v-ref
 
-Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
+Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](../guide/components.html#Child_Reference).
 
 When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
 
@@ -273,7 +273,7 @@ You can also use this syntax (which doesn't support reactivity):
 
 Notify Vue.js to apply transitions to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the Vue instance's DOM manipulation methods are called.
 
-For details, see [the guide on transitions](/guide/transitions.html).
+For details, see [the guide on transitions](../guide/transitions.html).
 
 ## Empty Directives
 

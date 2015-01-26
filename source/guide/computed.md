@@ -48,4 +48,4 @@ A computed property is essentially a property defined with getter/setter functio
 
 <p class="tip">Before Vue.js 0.11 there used to be a dependency collection gotcha which requires users to explicitly list dependencies when conditional statements are involved. Starting with 0.11 it is no longer necessary to do so.</p>
 
-Next, let's learn about how to [write a custom directive](/guide/custom-directive.html).
+Next, let's learn about how to [write a custom directive](../guide/custom-directive.html).

@@ -265,6 +265,6 @@ new Vue({
 
 ## Array Filters
 
-Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: `filterBy` and `orderBy`. Check out their [documentations](/api/filters.html#filterBy) for more details.
+Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: `filterBy` and `orderBy`. Check out their [documentations](../api/filters.html#filterBy) for more details.
 
-Next up: [Listening for Events](/guide/events.html).
+Next up: [Listening for Events](../guide/events.html).

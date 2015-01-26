@@ -43,6 +43,6 @@ order: 4
 <input v-on="keyup: submitForm | key enter">
 ```
 
-上述示例的具体用法参见[完整的内建过滤器列表](/api/filters.html)。
+上述示例的具体用法参见[完整的内建过滤器列表](../api/filters.html)。
 
-现在你已经了解了指令和过滤器，接下来我们趁热打铁[展示一个列表](/guide/list.html)吧。
+现在你已经了解了指令和过滤器，接下来我们趁热打铁[展示一个列表](../guide/list.html)吧。

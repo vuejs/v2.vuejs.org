@@ -54,9 +54,9 @@ Vue.config.delimiters = ['(%', '%)']
 
 - **options** `Object`
 
-Create a "subclass" of the base Vue constructor. All [instantiation options](/api/options.html) can be used here. The special cases to note here are `el` and `data`, which must be functions in this case.
+Create a "subclass" of the base Vue constructor. All [instantiation options](../api/options.html) can be used here. The special cases to note here are `el` and `data`, which must be functions in this case.
 
-Internally, `Vue.extend()` is called on all component options before instantiating the components. For more details regarding components, see [Component System](/guide/components.html).
+Internally, `Vue.extend()` is called on all component options before instantiating the components. For more details regarding components, see [Component System](../guide/components.html).
 
 **Example**
 
@@ -88,28 +88,28 @@ Will result in:
 - **id** `String`
 - **definition** `Function` or `Object` *optional*
 
-Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/custom-directive.html).
+Register or retrieve a global custom directive. For more details see [Writing Custom Directives](../guide/custom-directive.html).
 
 ### Vue.filter( id, [definition] )
 
 - **id** `String`
 - **definition** `Function` *optional*
 
-Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/custom-filter.html).
+Register or retrieve a global custom filter. For more details see [Writing Custom Filters](../guide/custom-filter.html).
 
 ### Vue.component( id, [definition] )
 
 - **id** `String`
 - **definition** `Function Constructor` or `Object` *optional*
 
-Register or retrieve a global component. For more details see [Component System](/guide/components.html).
+Register or retrieve a global component. For more details see [Component System](../guide/components.html).
 
 ### Vue.transition( id, [definition] )
 
 - **id** `String`
 - **definition** `Object` *optional*
 
-Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Functions).
+Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](../guide/transitions.html#JavaScript_Functions).
 
 ### Vue.partial( id, [definition] )
 
@@ -160,7 +160,7 @@ Vue.js batches view updates and executes them all asynchronously. It uses `reque
 - **plugin** `Object` or `Function`
 - **args...** *optional*
 
-Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](/guide/extending.html#Extend_with_Plugins).
+Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](../guide/extending.html#Extend_with_Plugins).
 
 ### Vue.util
 
