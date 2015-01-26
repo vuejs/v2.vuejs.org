@@ -3,9 +3,9 @@ type: guide
 order: 8
 ---
 
-Vue.js' inline expressions are very convenient, but the best use cases for them are simple boolean operations or string concatenations. For more complicated logic, you should use **computed properties**.
+Vue.js 的内联表达式非常方便，但它最好的用武之地其实是简单的布尔操作或字符串拼接。如果涉及更复杂的逻辑，你应该使用**可推导的属性**。
 
-In Vue.js, you define computed properties with the `computed` option:
+在 Vue.js 中，你可以通过 `computed` 选项定义可推导的属性：
 
 ``` js
 var demo = new Vue({
@@ -32,7 +32,7 @@ var demo = new Vue({
 demo.fullName // 'Foo Bar'
 ```
 
-When you only need the getter, you can provide a single function instead of an object:
+当你只需要 getter 的时候，你可以用一个简单的函数替代该对象：
 
 ``` js
 // ...
@@ -44,8 +44,8 @@ computed: {
 // ...
 ```
 
-A computed property is essentially a property defined with getter/setter functions. You can use a computed property just like a normal property, but when you access it, you get the value returned by the getter function; when you change its value, you trigger the setter function passing in the new value as its argument.
+一个可推导的属性本质上是一个被 getter/setter 函数定义了的属性。可推导的属性使用起来和一般属性一样，只是在访问它的时候，你会得到 getter 函数返回的值，改变它的时候，你会触发 setter 函数并接收新赋的值。
 
-<p class="tip">Before Vue.js 0.11 there used to be a dependency collection gotcha which requires users to explicitly list dependencies when conditional statements are involved. Starting with 0.11 it is no longer necessary to do so.</p>
+<p class="tip">在 Vue.js 0.11 之前的版本中，曾经有依赖收集机制，需要用户在条件语句中显性列出依赖关系。而在 0.11 之后你已经无需这样做了。</p>
 
-Next, let's learn about how to [write a custom directive](../guide/custom-directive.html).
+接下来，我们学一学如何[撰写一个自定义的指令](../guide/custom-directive.html).
