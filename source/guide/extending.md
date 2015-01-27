@@ -3,9 +3,9 @@ type: guide
 order: 14
 ---
 
-## Extend with Mixins
+## 使用 Mixin 进行扩展
 
-Mixins are a flexible way to distribute reusable functionalities for Vue components. You can write a mixin just like a normal Vue component option object:
+Mixin 是一种为 Vue 组件分发可复用功能的灵活的方式。你可以像写一个普通 Vue 组件的选项对象一样写出一个 mixin：
 
 ``` js
 // mixin.js
@@ -30,17 +30,17 @@ var Component = Vue.extend({
 var component = new Component() // -> "hello from mixin!"
 ```
 
-## Extend with Plugins
+## 使用插件进行扩展
 
-Plugins usually adds global-level functionality to Vue.
+通常插件会为 Vue 添加一个全局的功能。
 
-### Writing a Plugin
+### 撰写插件
 
-There are typically several types of plugins you can write:
+你可以撰写以下几种典型类型的插件：
 
-1. Add one or more global methods. e.g. [vue-element](https://github.com/vuejs/vue-element)
-2. Add one or more global assets: directives/filters/transitions etc. e.g. [vue-touch](https://github.com/vuejs/vue-touch)
-3. Add some Vue instance methods by attaching them to Vue.prototype. The convention here is Vue instance methods should be prefixed with `$`, so that they don't conflict with user data and methods.
+1. 添加一个或几个全局方法。比如 [vue-element](https://github.com/vuejs/vue-element)
+2. 添加一个或几个全局资源：指令、过滤器、过渡效果等。比如 [vue-touch](https://github.com/vuejs/vue-touch)
+3. 通过绑定到 `Vue.prototype` 的方式添加一些 Vue 实例方法。这里有个约定，就是 Vue 的实例方法应该带有 `$` 前缀，这样就不会和用户的数据和方法产生冲突了。
 
 ``` js
 exports.install = function (Vue, options) {
@@ -50,9 +50,9 @@ exports.install = function (Vue, options) {
 }
 ```
 
-### Using a Plugin
+### 使用插件
 
-Assuming using a CommonJS build system:
+假设我们使用的构建系统是 CommonJS，则：
 
 ``` js
 var vueTouch = require('vue-touch')
@@ -60,7 +60,7 @@ var vueTouch = require('vue-touch')
 Vue.use(vueTouch)
 ```
 
-You can also pass in additional options to the plugin:
+你也可以向插件里传递额外的选项：
 
 ```js
 Vue.use('my-plugin', {
@@ -68,9 +68,9 @@ Vue.use('my-plugin', {
 })
 ```
 
-## Existing Tools
+## 现有的工具
 
-- [vue-devtools](https://github.com/vuejs/vue-devtools): A Chrome devtools extension for debugging Vue.js applications.
-- [vue-touch](https://github.com/vuejs/vue-touch): Add touch-gesture directives using Hammer.js.
-- [vue-element](https://github.com/vuejs/vue-element): Register Custom Elements with Vue.js.
-- [List of User Contributed Tools](https://github.com/yyx990803/vue/wiki/User-Contributed-Components-&-Tools)
+- [vue-devtools](https://github.com/vuejs/vue-devtools)：一个用来 debug Vue.js 应用程序的 Chrome 开发者工具扩展。
+- [vue-touch](https://github.com/vuejs/vue-touch)：添加基于 Hammer.js 的触摸手势的指令。
+- [vue-element](https://github.com/vuejs/vue-element): 用 Vue.js 注册 Custom Elements。
+- [用户贡献的工具列表](https://github.com/yyx990803/vue/wiki/User-Contributed-Components-&-Tools)
