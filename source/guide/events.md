@@ -3,7 +3,7 @@ type: guide
 order: 6
 ---
 
-You can use the `v-on` directive to bind event listeners to DOM events. It can be bound to either an event handler function (without the invocation parentheses) or an inline expression. If a handler function is provided, it will get the original DOM event as the argument. The event also comes with an extra property: `targetVM`, pointing to the particular ViewModel the event was triggered on:
+你可以使用 `v-on` 指令来绑定并监听 DOM 事件。绑定的内容可以是一个事件句柄函数 (后面无需跟括号) 或一个内联表达式。如果提供的是一个句柄函数，则原来的 DOM event 对象会被作为第一个参数传入，同时这个 event 对象会附带 `targetVM` 属性，指向触发该事件的相应的 ViewModel：
 
 ``` html
 <div id="demo">
@@ -27,9 +27,9 @@ new Vue({
 })
 ```
 
-## Invoke Handler with Expression
+## 执行表达式句柄
 
-`targetVM` could be useful when `v-on` is used with `v-repeat`, since the latter creates a lot of child ViewModels. However, it is often more convenient to use an invocation expression passing in `this`, which equals the current context ViewModel:
+`targetVM` 在 `v-repeat` 里使用 `v-on` 时显得特别有用，因为 `v-repeat` 会创建大量子 ViewModel。这样的话，通过执行表达式的方式，把代表当前上下文 ViewModel 的 `this` 传进去，就显得非常方便。
 
 ``` html
 <ul id="list">
@@ -54,7 +54,7 @@ new Vue({
 })
 ```
 
-When you want to access the original DOM event in an expression handler, you can pass it in as `$event`:
+当你想要在表达式句柄中访问原来的 DOM event，你可以传递一个 `$event` 参数进去：
 
 ``` html
 <button v-on="click: submit('hello!', $event)">Submit</button>
@@ -72,30 +72,30 @@ When you want to access the original DOM event in an expression handler, you can
 /* ... */
 ```
 
-## The Special `key` Filter
+## 特殊的 `key` 过滤器
 
-When listening for keyboard events, we often need to check for common key codes. Vue.js provides a special `key` filter that can only be used with `v-on` directives. It takes a single argument that denotes the key code to check for:
+当监听键盘事件时，我们常常需要判断常用的 key code。Vue.js 提供了一个特殊的只能用在 `v-on` 指令的过滤器：`key`。它接收一个表示 key code 的参数并完成判断：
 
 ```
 <!-- only call vm.submit() when the keyCode is 13 -->
 <input v-on="keyup:submit | key 13">
 ```
 
-It also has a few presets for commonly used keys:
+它也预置了一些常用的按键名：
 
 ```
 <!-- same as above -->
 <input v-on="keyup:submit | key enter">
 ```
 
-Check the API reference for a [full list of key filter presets](../api/filters.html#key).
+API 索引中有 [key 过滤器预置的完整列表](../api/filters.html#key).
 
-## Why Listeners in HTML?
+## 为什么要在 HTML 中写监听器？
 
-You might be concerned about this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintainance difficulty. In fact, there are several benefits in using `v-on`:
+你可能会注意到整个事件监听的方式违背了“separation of concern”的传统理念。不必担心，因为所有的 Vue.js 句柄函数和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 `v-on` 还有更多好处：
 
-1. It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
-2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
-3. When a ViewModel is destroyed, all event listeners are automatically removed. You don't need to worry about cleaning it up yourself.
+1. 它便于在 HTML 模板中轻松定位 JS 代码里的句柄函数实现。
+2. 因为你无须在 JS 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑而和 DOM 无关。这会更易于测试。
+3. 当一个 ViewModel 被销毁时，所有的事件监听都会被自动移除。你无须担心如何自行清理它们。
 
-Next up: [Handling Forms](../guide/forms.html).
+接下来：[处理表单](../guide/forms.html).

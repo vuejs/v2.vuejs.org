@@ -3,9 +3,9 @@ type: guide
 order: 10
 ---
 
-## The Basics
+## 基本用法
 
-Similar to custom directives, you can register a custom filter with the global `Vue.filter()` method, passing in a **filterID** and a **filter function**. The filter function takes a value as the argument and returns the transformed value:
+和自定义指令类似，你可以用全局方法 `Vue.filter()`，传递一个**过滤器 ID**和一个**过滤器函数**，注册一个自定义过滤器。过滤器函数会接受一个参数值并返回将其转换后的值：
 
 ``` js
 Vue.filter('reverse', function (value) {
@@ -18,7 +18,7 @@ Vue.filter('reverse', function (value) {
 <span v-text="message | reverse"></span>
 ```
 
-The filter function also receives any inline arguments:
+过滤器函数也接受任何内联的参数：
 
 ``` js
 Vue.filter('wrap', function (value, begin, end) {
@@ -31,9 +31,9 @@ Vue.filter('wrap', function (value, begin, end) {
 <span v-text="message | wrap before after"></span>
 ```
 
-## Two-way Filters
+## 双向过滤器
 
-Up till now we have used filters to transform values coming from the model and before displaying them in the view. But it is also possible to define a filter that transforms the value before it is written back to the model from the view (input elements):
+现在我们已经在展示视图之前用过滤器把模型里的值进行了转换。其实我们也可以定义一个过滤器在值从视图 (input 元素) 写回模型之前进行转换：
 
 ``` js
 Vue.filter('check-email', {
@@ -50,9 +50,9 @@ Vue.filter('check-email', {
 })
 ```
 
-## Filter Context
+## 过滤器上下文
 
-When a filter is invoked, its `this` context is set to the Vue instance that is invoking it. This allows it to output dynamic results based on the state of the owner Vue instance.
+当一个过滤器被调用的时候，其 `this` 上下文会被设置为调用它的 Vue 实例。这使得我们可以根据其所属的 Vue 实例动态输出结果。
 
 For example:
 
@@ -67,8 +67,8 @@ Vue.filter('concat', function (value, key) {
 <span>{&#123;msg | concat userInput&#125;}</span>
 ```
 
-For this simple example above, you can achieve the same result with just an expression, but for more complicated procedures that need more than one statements, you need to put them either in a computed property or a custom filter.
+在上面这个例子中，你用表达式即可完成相同的结果。但是面对更复杂的处理时，如果需要不止一个语句，你就得把它们放到一个可推导的属性中或一个自定义过滤器中。
 
-The built-in `filterBy` and `orderBy` filters are both filters that perform non-trivial work on the Array being passed in and relies on the current state of the owner Vue instance.
+内建的 `filterBy` 和 `orderBy` 过滤器都是根据传入的数组以及所属 Vue 实例状态而运行的过滤器。
 
-Alright! Now it's time to learn how the [Component System](../guide/components.html) works.
+Alright！是时候了解[组件系统](../guide/components.html)的工作方式了。
