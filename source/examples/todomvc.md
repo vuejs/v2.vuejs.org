@@ -3,8 +3,8 @@ type: examples
 order: 7
 ---
 
-> This is a fully spec-compliant TodoMVC implementation in under 120 effective lines of JavaScript (excluding comments and blank lines).
+> 这是一个完整规范用法的 TodoMVC 实现，JavaScript 不超过 120 行 (不包括注释和空行)。
 
 <iframe width="100%" height="500" src="todomvc/index.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-> [[Source](https://github.com/yyx990803/vue/tree/master/examples/todomvc)]
+> [[源代码](https://github.com/yyx990803/vue/tree/master/examples/todomvc)]
