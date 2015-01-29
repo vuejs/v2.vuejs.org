@@ -6,7 +6,7 @@ order: 5
 ### Vue.config
 
 `Vue.config` is an object containing Vue's global settings. Here are the list of all the avaiable settings with their default values:
-`Vue.config` 是包含Vue全局设置的对象。下面列出了所有可设置变量及其默认值：
+`Vue.config` 是包含 Vue 全局设置的对象。下面列出了所有可设置变量及其默认值：
 
 ``` js
 {
