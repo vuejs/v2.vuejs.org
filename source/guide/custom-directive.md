@@ -161,15 +161,19 @@ Vue.directive('literal-dir', {
 ### 动态直接量
 
 However, in the case that the literal directive contains mustache tags, the behavior is as follows:
+
 然而，在直接指令含有mustache标签的情形下，指令的行为如下所示：
 
 - The directive instance will have a flag `this._isDynamicLiteral` set to `true`;
+
 - 指令实例会有一个标记，`this._isDynamicLiteral` 被设为 `true`
 
 - If no `update` function is provided, the mustache expression will be evaluated only once and assigned to `this.expression`. No data observation happens.
+
 - 如果没有提供 `update` 函数，mustache表达式只会被计算一次，并将值赋给 `this.expression` 。不会对表达式进行数据监视。
 
 - If an `update` function is provided, the directive **will** setup data observation for that expression and call `update` when the evaluated result changes.
+
 - 如果提供了 `update` 函数，指令**将**会为表达式建立一个数据监视，并且在计算结果变化的时候调用 `update` 
 
 ## Two-way Directives
@@ -202,6 +206,7 @@ Vue.directive('example', {
 ## 内联声明
 
 Passing in `acceptStatement:true` enables your custom directive to accept inline statements like `v-on` does:
+
 传入 `acceptStatement:true` 可以让自定义指令像 `v-on` 一样接受内联声明：
 
 ``` html
@@ -220,6 +225,7 @@ Vue.directive('my-directive', {
 ```
 
 Use this wisely though, because in general you want to avoid side-effects in your templates.
+
 但是要聪明地使用它，因为通常情况下你是想避免它在你的模板中产生副作用。
 
 ## Deep Observation
@@ -255,4 +261,5 @@ You can checkout the priorities for some built-in directives in the [API referen
 你可以去[API reference](../api/directives.html)看一些内置指令的优先级。另外，`v-repeat`, `v-if` 以及 `v-component` 被视为“终端指令”，它们在编译过程中始终拥有最高的优先级。
 
 Next, we'll see how to [write a custom filter](../guide/custom-filter.html).
+
 下面，我们来看怎样写一个[自定义过滤器](../guide/custom-filter.html)。
