@@ -13,3 +13,12 @@ $ [sudo] npm install -g hexo@2.5.7
 $ npm install
 $ hexo server
 ```
+
+## 贡献者名单
+
+(首字母顺序排序)
+
+* [@etanxing](https://github.com/etanxing)
+* [@Garfielt](https://github.com/Garfielt)
+* [@getive](https://github.com/getive)
+* [@XfLoops](https://github.com/XfLoops)
