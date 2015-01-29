@@ -13,7 +13,7 @@ order: 15
 
   1. 当你使用`console.log`观察对象时你将只能看到一串getter/setters. 但你可以使用`vm.$log()`来打印出一个更直观的输出。
 
-  2.你不能定义数据对象的getter/setters。这不会是问题，因为数据对象都期望从纯JSON中取得，而且vue.js提供该提取属性。
+  2. 你不能定义数据对象的getter/setters。这不会是问题，因为数据对象都期望从纯JSON中取得，而且vue.js提供该提取属性。
 
   3. Vue.js添加了一些拓展的属性或方法来观察对象: `__ob__`, `$add`以及`$delete`. 这些属性是内部的所以它们不会显示在`for ... in ...`循环中. 但是如果你覆盖了它们这可能就破坏掉了。
 
@@ -59,4 +59,4 @@ order: 15
 
 - **我要提供帮助!**
 
-    很好! 阅读 [贡献指导](https://github.com/yyx990803/vue/blob/master/CONTRIBUTING.md) 并加入IRC上的讨论 (#vuejs).
+  很好! 阅读 [贡献指导](https://github.com/yyx990803/vue/blob/master/CONTRIBUTING.md) 并加入IRC上的讨论 (#vuejs).
