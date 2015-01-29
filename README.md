@@ -20,5 +20,4 @@ $ hexo server
 
 * [@etanxing](https://github.com/etanxing)
 * [@Garfielt](https://github.com/Garfielt)
-* [@getive](https://github.com/getive)
-* [@XfLoops](https://github.com/XfLoops)
+* [@SoAanyip](https://github.com/SoAanyip)
