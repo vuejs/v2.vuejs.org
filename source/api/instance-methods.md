@@ -5,7 +5,9 @@ order: 4
 
 ## Data
 
-> You can observe data changes on a Vue instance. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.
+<!-- You can observe data changes on a Vue instance. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.-->
+
+> 你可以在Vue运行实例中监视数据的变化。你会注意到所有的watch回调都是异步发生的。而且，结果是在事件循环中被分批处理的。这就意味着一个结果假设在一次事件循环中改变多次，回调只会发生一次并直接变到最后的结果。
 
 ### vm.$watch( expression, callback, [deep, immediate] )
 
@@ -14,7 +16,9 @@ order: 4
 - **deep** `Boolean` *optional*
 - **immdediate** `Boolean` *optional*
 
-Watch an expression on the Vue instance for changes. The expression can be a single keypath or actual expressions:
+<!--Watch an expression on the Vue instance for changes. The expression can be a single keypath or actual expressions:-->
+
+监听在Vue实例中改变的一个表达式。表达式可以是一个单独的路径或者是一个实际的表达式：
 
 ``` js
 vm.$watch('a + b', function (newVal, oldVal) {
@@ -22,26 +26,33 @@ vm.$watch('a + b', function (newVal, oldVal) {
 })
 ```
 
-To also detect nested value changes inside Objects, you need to pass in `true` for the third `deep` argument. Note that you don't need to do so to listen for Array mutations.
+<!--To also detect nested value changes inside Objects, you need to pass in `true` for the third `deep` argument. Note that you don't need to do so to listen for Array mutations.-->
+
+也可以监视在对象中的属性，你需要为第三个变量 `deep` 赋一个 `true` 。
+
+请注意你不可以这么监视用来数组中元素的变化。
 
 ``` js
 vm.$watch('someObject', callback, true)
 vm.someObject.nestedValue = 123
-// callback is fired
+// 回调被触发
 ```
 
-Passing in `true` for the fourth `immediate` argument will trigger the callback immediately with the current value of the expression:
+<!--Passing in `true` for the fourth `immediate` argument will trigger the callback immediately with the current value of the expression:-->
+
+如果传递一个 `true` 到第四个变量 `immediate` , 那么回调会带着现在表达式的结果被立即触发。
 
 ``` js
 vm.$watch('a', callback, false, true)
-// callback is fired immediately with current value of `a`
+// 回调使用现在表达式的结果 `a` 被立刻触发
 ```
 
-Finally, `vm.$watch` returns an unwatch function that stops firing the callback:
+<!--Finally, `vm.$watch` returns an unwatch function that stops firing the callback:-->
+最后，还需要使用 `vm.$watch` 来返回一个停止监视的函数用来停止继续触发回调。
 
 ``` js
 var unwatch = vm.$watch('a', cb)
-// later, teardown the watcher
+// 最后，停止监制
 unwatch()
 ```
 
