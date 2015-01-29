@@ -3,60 +3,60 @@ type: guide
 order: 15
 ---
 
-- **Why doesn't Vue.js support IE8?**
+- **为什么Vue.js不支持IE8?**
 
-  Vue.js is able to deliver the plain JavaScript object syntax without resorting to dirty checking by using `Object.defineProperty`, which is an ECMAScript 5 feature. It only works on DOM elements in IE8 and there's no way to polyfill it for JavaScript objects.
+  Vue.js能够在不使用`Object.defineProperty`的情况下进行脏检查来输出纯真的JavaScript对象语法，这是ECMAScript 5的一个特性。但它只在IE8的DOM元素中起作用，目前没有办法将其适用于JavaScript对象。
 
-- **So Vue.js modifies my data?**
+- **那么Vue.js修改了我的数据喽?**
 
-  Yes and No. Vue.js only converts normal properties into getters and setters so it can get notified when the properties are accessed or changed. When serialized, your data will look exactly the same. There are, of course, some caveats:
+  是也不是。Vue.js只转换正常的属性到getters和setters，这样它才能在属性被访问或更改时得到通知。而序列化时，你的数据将是完全相同。当然，这里有一些注意事项：
 
-  1. When you `console.log` observed objects you will only see a bunch of getter/setters. However you can use `vm.$log()` to log a more inspectable output.
+  1. 当你使用`console.log`观察对象时你将只能看到一串getter/setters. 但你可以使用`vm.$log()`来打印出一个更直观的输出。
 
-  2. You cannot define your own getter/setters on data objects. This isn't much of a problem because data objects are expected to be obtained from plain JSON and Vue.js provides computed properties.
+  2.你不能定义数据对象的getter/setters。这不会是问题，因为数据对象都期望从纯JSON中取得，而且vue.js提供该提取属性。
 
-  3. Vue.js adds a few extra properties/methods to obsesrved objects: `__ob__`, `$add` and `$delete`. These properties are inenumberable so they will not show up in `for ... in ...` loops. However if you overwrite them things will likely break.
+  3. Vue.js添加了一些拓展的属性或方法来观察对象: `__ob__`, `$add`以及`$delete`. 这些属性是内部的所以它们不会显示在`for ... in ...`循环中. 但是如果你覆盖了它们这可能就破坏掉了。
 
-  That's pretty much it. Accessing properties on the object is the same as before, `JSON.stringify` and `for ... in ...` loops will work as normal. 99.9% of the time you don't even need to think about it.
+  类似的东西还有一些。基于对象访问属性和以前一样,`JSON.stringify`和`for ... in ...`循环照常运行。99.9%的情况下你甚至不需要考虑它们。
 
-- **What is the current status of Vue.js? Can I use it in production?**
+- **Vue.js目前的状态怎样? 我能把它应用在生产环节么?**
 
-  Vue.js has undergone some major rewrite for the 0.11 update, and we are now working towards the 1.0 release. Vue.js is already being used in production at companies like Optimizely.
+  Vue.js 0.11的更新已经经历了一些重大的修改，我们正在朝着1.0的发布版本迈进。Vue.js已经被像Optimizely这样的公司应用在生产环境中。
 
-- **Is Vue.js free to use?**
+- **Vue.js是免费试用的吗?**
 
-  Vue.js is free and fully open sourced under the MIT License.
+  Vue.js遵循MIT协议是免费且完全开源的.
 
-- **What is the difference between Vue.js and AngularJS?**
+- **Vue.js和AngularJS之间的区别是什么?**
 
-  There are a few reasons to use Vue over Angular, although they might not apply for everyone:
+  下面是一些使用Vue而不是Angular的原因，但它们不适用于每一个人：
 
-  1. Vue.js is a more flexible, less opinionated solution. That allows you to structure your app the way you want it to be, instead of being forced to do everything the Angular way. It's only an interface layer so you can use it as a light feature in pages instead of a full blown SPA. It gives you bigger room to mix and match with other libraries. This is probably the most important distinction.
+  1. Vue.js是一个更加灵活开放的解决方案。它允许你以希望的方式组织你的应用程序，而不是像Angular那样强迫去做。它仅仅是一个接口层，所以你可以将它作为一个页面的轻特性而不是一个全栈的SPA。在结合和匹配其他库方面它给了你更大的的空间。这可能是最为重要的区别。
 
-  2. Vue.js is much simpler than Angular in general, so you can learn almost everything about it really fast and get productive.
+  2. 总体来说Vue.js比Angular简单, 因此你可以快速地学习它的方方面面并投入生产.
 
-  3. Vue.js has better performance because it doesn't use dirty checking. Angular gets slow when there are a lot of watchers, because every time anything in the scope changes, all these watchers need to be re-evaluated again. Vue.js doesn't suffer from this because it uses an event based observing mechanism, so all changes trigger independently unless they have explicit dependency relationships.
+  3. Vue.js拥有更好的性能，因为它不使用脏检查。当观察点越来越多时Angular会变得越来越慢，因为作用域内的每一次变更所有的这些观察点都需要被重新评估。Vue.js不面临这些问题，这是因为它采用了基于事件的观察机制，所以所有的触发都是独立的，除非它们之间有明确的依赖关系。
 
-  4. Vue.js has a clearer separation between directives and components. Directives are meant to encapsulate DOM manipulations only, while Components stand for a self-contained unit that has its own view and data logic. In Angular there's a lot of confusion between the two.
+  4. Vue.js指令和组件间具有一个清晰隔离。指令只意味着封装DOM操作，而组件代表一个子独立的单元——它拥有自己的视图和数据逻辑。在Angular中它们两者间有不少混淆。
 
-  But also note that Vue.js is a relatively young project, while Angular is battle-proven, Google-sponsored, and has a larger community.
+  但是需要指出的是Vue.js还是一个相对年轻的项目，而Angular已经久经项目验证，并且是谷歌发起的且有一个更大的社区。
 
-- **What makes Vue.js different from KnockoutJS?**
+- **是什么使得Vue.js不同于KnockoutJS?**
 
-  First, Vue provides a cleaner syntax in getting and setting VM properties.
+  首先，Vue在获取和设置虚拟属性上提供了更清晰的语法。
 
-  On a higher level, Vue differs from Knockout in that Vue's component system encourages you to take a top-down, structure first, declarative design strategy, instead of imperatively build up ViewModels from bottom up. In Vue the source data are plain, logic-less objects (ones that you can directly JSON.stringify and throw into a post request), and the ViewModel simply proxies access to that data on itself. A Vue VM instance always connects raw data to a corresponding DOM element. In Knockout, the ViewModel essentially **is** the data and the line between Model and ViewModel is pretty blurry. This lack of differentiation makes Knockout more flexible, but also much more likely to result in convoluted ViewModels.
+  从更高层次来说，Vue区别于Knockout是因为Vue的组件系统鼓励你采取自上而下，结构第一，陈述性设计的策略，而不是命令式的自下向上来建立ViewModel。在Vue中源数据是纯粹的无逻辑的对象（这些对象你可以直接JSON.stringify并扔到POST请求中），而ViewModel只是代理访问数据本身。Vue的VM实例往往连接原始数据及与其对应的DOM元素。在Knockout中，ViewModel基本**是**数据，Model和ViewModel之间的连线是很模糊的。这种分化的缺乏使得Knockout更灵活，但也更可能导致复杂的ViewModels。
 
-- **What makes Vue.js different from React.js?**
+- **是什么使得Vue.js不同于React.js?**
 
-  React.js and Vue.js do have some similarity in that they both provide reactive & composable View components. However the internal implementation is fundamentally different. React is built upon a virtual DOM - an in-memory representation of what the actual DOM should look like. Data in React is largely immutable and DOM manipulations are calculated via diffing. On the contrary data in Vue.js is mutable and stateful by default, and changes are triggered through events. Instead of a virtual DOM, Vue.js uses the actual DOM as the template and keeps references to actual nodes for data bindings.
+  React.js和Vue.js确实有一些相似——它们都提供反射和组合视图组件。然而，它们的内部实现是完全不同的。React是基于虚拟DOM —— 在内存中的表述DOM看起来应该是怎样的。React中的数据大部分是不变的，而且DOM操作通过比较来计算的。与之相反Vue.js中的数据默认情况下是可变且优雅的，变更通过事件触发。相比于虚拟DOM，Vue.js使用实际的DOM作为模板，并且保持对真实节点的引用来进行数据绑定。
 
-  The virtual-DOM approach provides a functional way to describe your view at any point of time, which is really nice. Because it doesn't use observables and re-renders the entire app on every update, the view is by definition guaranteed to be in sync with the data. It also opens up possiblities to isomorphic JavaScript applications.
+  虚拟DOM的方法提供了一个功能性的方式以便在任何时候描述视图，这确实很好。因为它不使用观测值，且不需要为每个更新重新渲染整个应用，视图通过定义保证与数据保持同步。它也开辟了与JavaScript应用同构的可能性。
 
-  Overall I'm a big fan of React's design philosophy myself. But one issue with React is that your logic and your view are tightly knit together. For some developers this is a bonus, but for designer/developer hybrids like me, having a template makes it much easier to think visually about the design and CSS. JSX mixed with JavaScript logic breaks that visual model I need to map the code to the design. In contrast, Vue.js pays the cost of a lightweight DSL (directives) so that we have a visually scannable template and with logic encapsulated into directives and filters.
+  总的来说我自己就是React设计理念的忠实粉丝。但React有一个问题就是你的逻辑和视图是紧密结合在一起的。对于部分开发者来说这是件让人高兴的事，但对那些像我一样设计/开发混合进行的人来说，更希望能有一个模板，它能够更容易地在视觉上考虑设计和CSS。JSX和JavaScript逻辑的混合打破了我映射代码到设计的视觉模型。相反，Vue.js扮演了一个轻量级的DSL(指令型的) 的角色，这样我们有了一个直观的扫描模板，且能够将逻辑封装进指令和过滤器中。
 
-  Another issue with React is that because DOM updates are completely delegated to the Virtual DOM, it's a bit tricky when you actually **want** to control the DOM yourself (although theoretically you can, you'd be essentially working against the library when you do that). For applications that needs complex time-choreographed animations, this can become a pretty annoying restriction. On this front, Vue.js allows for more flexibility and there are [multiple FWA/Awwwards winning sites](https://github.com/yyx990803/vue/wiki/Projects-Using-Vue.js#interactive-experiences) built with Vue.js.
+  React的另一个问题是：由于DOM更新完全下放给虚拟DOM，当你真的**想**自己控制DOM是就有点棘手了（虽然理论上你可以，但这样做时你本质上在对抗库原本的原则）。对于需要复杂时间控制的动画应用来说这就变成了一项很讨人厌的限制。在这方面，Vue.js允许更多的灵活性并且有不少用Vue.js构建的事例[一些FWA/Awwwards获奖站点](https://github.com/yyx990803/vue/wiki/Projects-Using-Vue.js#interactive-experiences)
 
-- **I want to help!**
+- **我要提供帮助!**
 
-    Great! Read the [contribution guide](https://github.com/yyx990803/vue/blob/master/CONTRIBUTING.md) and join discussions on IRC (#vuejs).
+    很好! 阅读 [贡献指导](https://github.com/yyx990803/vue/blob/master/CONTRIBUTING.md) 并加入IRC上的讨论 (#vuejs).
