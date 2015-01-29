@@ -6,21 +6,21 @@ order: 3
 ### vm.$el
 
 - **Type:** `HTMLElement`
-- **Read only**
+- **只读**
 
-The DOM element that the Vue instance is managing.
+返回Vue实例正在管理的Dom元素。
 
 ### vm.$data
 
 - **Type:** `Object`
 
-The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
+返回Vue实例正在监视的数据对象(data object)。当然你可以用新的对象去替换它。Vue实例通过代理方法访问他们的$data对象的属性。
 
 ### vm.$options
 
 - **Type:** `Object`
 
-The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+返回当前Vue实例所使用的实例化选项。当你想要添加自定义的属性到实例化选项里面的时候，这个属性是很有用的:
 
 ``` js
 new Vue({
@@ -34,31 +34,31 @@ new Vue({
 ### vm.$parent
 
 - **Type:** `Vue`
-- **Read only**
+- **只读**
 
-The parent instance, if the current instance has one.
+如果当前Vue实例有父实例(parent instance)，将返回父实例。
 
 ### vm.$root
 
 - **Type:** `Vue`
-- **Read only**
+- **只读**
 
-The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+返回当前Vue结构树(component tree)的根Vue实例。如果当前的 `vm` 已经没有父实例的话将会返回它自己。
 
 ### vm.$
 
 - **Type:** `Object`
-- **Read only**
+- **只读**
 
-An object that holds child components that have `v-ref` registered. For more details see [v-ref](../api/directives.html#v-ref).
+返回一个对象，这个对象管理着有着 `v-ref` 指令的子组件。更多细节请查看 [v-ref](../api/directives.html#v-ref).
 
 ### vm.$$
 
 - **Type:** `Object`
 - **Read only**
 
-An object that holds DOM elements that have `v-el` registered. For more details see [v-el](../api/directives.html#v-el).
+返回一个对象，这个对象管理所有有着 `v-el` 指令的DOM元素。更多细节请查看 [v-el](../api/directives.html#v-el).
 
 ### Meta Properties
 
-Instances created by `v-repeat` will also have some meta properties, e.g. `vm.$index`, `vm.$key` and `vm.$value`. For more details, see [the guide on using `v-repeat`](../guide/list.html).
+被 `v-repeat` 创建出来的实例也会拥有一些元属性(Meta properties)。例如 `vm.$index`, `vm.$key` 和 `vm.$value` 等。更多细节请查看 [the guide on using `v-repeat`](../guide/list.html).
