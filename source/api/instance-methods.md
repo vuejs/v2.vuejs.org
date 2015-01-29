@@ -28,7 +28,7 @@ vm.$watch('a + b', function (newVal, oldVal) {
 
 <!--To also detect nested value changes inside Objects, you need to pass in `true` for the third `deep` argument. Note that you don't need to do so to listen for Array mutations.-->
 
-也可以监视在对象中的属性，你需要为第三个变量 `deep` 赋一个 `true` 。
+也可以监视在对象中的属性，你需要为 `deep` 传递一个 `true` 来使用此功能 。
 
 请注意你不可以这么监视用来数组中元素的变化。
 
@@ -48,6 +48,7 @@ vm.$watch('a', callback, false, true)
 ```
 
 <!--Finally, `vm.$watch` returns an unwatch function that stops firing the callback:-->
+
 最后，还需要使用 `vm.$watch` 来返回一个停止监视的函数用来停止继续触发回调。
 
 ``` js
