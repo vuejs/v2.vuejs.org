@@ -65,9 +65,7 @@ unwatch()
 - **keypath** `String`
 - **value** `*`
 
-<!--Add a root level property to the Vue instance (and also its `$data`). Due to the limitations of ES5, Vue cannot detect properties directly added to or deleted from an Object, so use this method and `vm.$delete` when you need to do so. Additionally, all observed objects are augmented with these two methods too.-->
-<!-- 翻译存在问题 -->
-添加一个根等级的属性到 Vue 实例（或者也可以说是它自己的 `$data`）。由于 ES5 的限制，Vue 不可以直接监视对象中属性的增加或者删除，所以当你需要做这些的时候请使用这个方法和 `vm.$delete`。另外，所以被监视的对象也都由这两个方法增大。
+添加一个根等级（root level property）的属性到 Vue 实例（或者也可以说是它自己的 `$data`）。由于 ES5 的限制，Vue 不可以直接监视对象中属性的增加或者删除，所以当你需要做这些的时候请使用这个方法和 `vm.$delete`。另外，所以被监视的对象也都由这两个方法增大。
 
 ### vm.$delete( keypath )
 
@@ -118,7 +116,6 @@ vm.$log('item') // logs vm.item
 - **event** `String`
 - **args...** *optional*
 
-Dispatch an event from the current vm that propagates all the way up to its `$root`. If a callback returns `false`, it will stop the propagation at its owner instance.
 从当前的 vm 处理一个事件，这个 vm 一直传播到它的 `$root` 。如果其中一个回调返回了 `false` ，那么在它自己的实例中停止传播。
 
 ### vm.$broadcast( event, [args...] )
@@ -126,8 +123,7 @@ Dispatch an event from the current vm that propagates all the way up to its `$ro
 - **event** `String`
 - **args...** *optional*
 
-Emit an event to all children vms of the current vm, which gets further broadcasted to their children all the way down. If a callback returns `false`, its owner instance will not broadcast the event any further.
-为当前 vm 的所有子 vm 注册该事件，这个 vm 一直传播到很远到他的子vm们。当一个回调返回 `false` 。如果一个回调返回了 `false`，那么它的所有者实例就不会广播这个事件了。
+为当前 vm 的所有子 vm 注册该事件，这个 vm 会一直传播到到他的子vm。当一个回调返回 `false` 。当一个回调返回了 `false`，那么它的所有者实例就不会广播这个事件了。
 
 ### vm.$emit( event, [args...] )
 
