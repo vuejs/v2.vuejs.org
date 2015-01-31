@@ -1,4 +1,4 @@
-title: Instance Methods
+title: 实例方法
 type: api
 order: 4
 ---

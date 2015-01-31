@@ -1,4 +1,4 @@
-title: Global API
+title: 全局 API
 type: api
 order: 5
 ---
@@ -159,7 +159,7 @@ Vue.js 批量处理视图更新并对其异步执行。如果可用的话它会�
 - **plugin** `Object` or `Function`
 - **args...** *可选的*
 
-挂载一个 Vue.js 的插件。如果该插件是一个对象，它必须有一个 `install` 的方法。如果它本身就是一个方法，它必须被作为安装方法来对待。安装方法将会被 Vue 作为一个参数来调用。更多详情请阅[插件](../guide/extending.html#Extend_with_Plugins)。
+挂载一个 Vue.js 的插件。如果该插件是一个对象，它必须有一个 `install` 的方法。如果它本身就是一个方法，它必须被作为安装方法来对待。安装方法将会被 Vue 作为一个参数来调用。更多详情请阅[插件](../guide/extending.html#使用插件进行扩展)。
 
 ### Vue.util
 

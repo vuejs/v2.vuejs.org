@@ -1,4 +1,4 @@
-title: "The Vue Constructor"
+title: "Vue 构造函数"
 type: api
 order: 1
 ---

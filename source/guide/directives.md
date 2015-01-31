@@ -78,7 +78,7 @@ order: 3
 
 尽管如此，值得注意的是只有 `v-component` 和 `v-partial` 这两个字面量指令有这种可响应的行为。Mustache 表达式在别的字面量指令，如 `v-ref` 中，是**只运行一次**的。在指令被编译之后，就不再响应值的变化了。
 
-完整的字面量指令列表可以在 [API 索引](../api/directives.html#Literal_Directives) 中找到。
+完整的字面量指令列表可以在 [API 索引](../api/directives.html#字面指令) 中找到。
 
 ## 空指令
 
@@ -90,6 +90,6 @@ order: 3
 </div>
 ```
 
-完整的空指令列表可以在 [API 索引](../api/directives.html#Empty_Directives) 中找到。
+完整的空指令列表可以在 [API 索引](../api/directives.html#空指令) 中找到。
 
 接下来，我们来看一看[过滤器](../guide/filters.html)。

@@ -1,4 +1,4 @@
-title: 指令(Directive)
+title: 指令
 type: api
 order: 6
 ---
@@ -251,7 +251,7 @@ order: 6
 
 ### v-ref
 
-为了让父级更加方便的访问子级，可以在父级注册一个子组件的引用。本指令只有与`v-component`和`v-repeat`一起才能使用。在它父级的`$`对象上可以访问组件的实例。例子在[child reference](../guide/components.html#Child_Reference).
+为了让父级更加方便的访问子级，可以在父级注册一个子组件的引用。本指令只有与`v-component`和`v-repeat`一起才能使用。在它父级的`$`对象上可以访问组件的实例。例子在[child reference](../guide/components.html#子组件引用).
 
 当该指令与`v-repeat`一起使用时，`v-ref`的值将会是一个包含了所有子 Vue 实例的数组，这个数组与子 Vue 实例绑定的数组是相对应的。
 

@@ -1,4 +1,4 @@
-title: Instance Properties
+title: 实例属性
 type: api
 order: 3
 ---
