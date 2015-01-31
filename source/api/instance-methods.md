@@ -5,7 +5,7 @@ order: 4
 
 ## Data
 
-> You can observe data changes on a Vue instance. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.
+> 你可以在Vue运行实例中监视数据的变化。你会注意到所有的watch回调都是异步发生的。而且，结果是在事件循环中被分批处理的。这就意味着一个结果假设在一次事件循环中改变多次，回调只会发生一次并直接变到最后的结果。
 
 ### vm.$watch( expression, callback, [deep, immediate] )
 
@@ -14,7 +14,7 @@ order: 4
 - **deep** `Boolean` *optional*
 - **immdediate** `Boolean` *optional*
 
-Watch an expression on the Vue instance for changes. The expression can be a single keypath or actual expressions:
+监听在Vue实例中改变的一个表达式。表达式可以是一个单独的路径或者是一个实际的表达式：
 
 ``` js
 vm.$watch('a + b', function (newVal, oldVal) {
@@ -22,26 +22,28 @@ vm.$watch('a + b', function (newVal, oldVal) {
 })
 ```
 
-To also detect nested value changes inside Objects, you need to pass in `true` for the third `deep` argument. Note that you don't need to do so to listen for Array mutations.
+也可以监视在对象中的属性，你需要为 `deep` 传递一个 `true` 来使用此功能 。
+
+请注意你不可以这么监视用来数组中元素的变化。
 
 ``` js
 vm.$watch('someObject', callback, true)
 vm.someObject.nestedValue = 123
-// callback is fired
+// 回调被触发
 ```
 
-Passing in `true` for the fourth `immediate` argument will trigger the callback immediately with the current value of the expression:
+如果传递一个 `true` 到第四个变量 `immediate` , 那么回调会带着现在表达式的结果被立即触发。
 
 ``` js
 vm.$watch('a', callback, false, true)
-// callback is fired immediately with current value of `a`
+// 回调使用现在表达式的结果 `a` 被立刻触发
 ```
 
-Finally, `vm.$watch` returns an unwatch function that stops firing the callback:
+最后，还需要使用 `vm.$watch` 来返回一个停止监视的函数用来停止继续触发回调。
 
 ``` js
 var unwatch = vm.$watch('a', cb)
-// later, teardown the watcher
+// 最后，停止监制
 unwatch()
 ```
 
@@ -49,33 +51,33 @@ unwatch()
 
 - **expression** `String`
 
-Retrieve a value from the Vue instance given an expression. Expressions that throw errors will be suppressed and return `undefined`.
+为 Vue 实例传递一个表达式来获得结果，如果这个表达式带有错误，那么错误不会被报告并且返回一个 `undefined` 。
 
 ### vm.$set( keypath, value )
 
 - **keypath** `String`
 - **value** `*`
 
-Set a data value on the Vue instance given a valid keypath. If the path doesn't exist it will be created.
+通过给 Vue 实例传递一个可用的路径来设置结果，如果路径不存在那么会被创建。 
 
 ### vm.$add( keypath, value )
 
 - **keypath** `String`
 - **value** `*`
 
-Add a root level property to the Vue instance (and also its `$data`). Due to the limitations of ES5, Vue cannot detect properties directly added to or deleted from an Object, so use this method and `vm.$delete` when you need to do so. Additionally, all observed objects are augmented with these two methods too.
+添加一个根等级（root level property）的属性到 Vue 实例（或者也可以说是它自己的 `$data`）。由于 ES5 的限制，Vue 不可以直接监视对象中属性的增加或者删除，所以当你需要做这些的时候请使用这个方法和 `vm.$delete`。另外，所以被监视的对象也都由这两个方法增大。
 
 ### vm.$delete( keypath )
 
 - **keypath** `String`
 
-Delete a root level property on the Vue instance (and also its `$data`).
+在 Vue 实例中删除一个根等级属性(或者是它的 `$data`)。
 
 ### vm.$eval( expression )
 
 - **expression** `String`
 
-Evaluate an expression that can also contain filters.
+求一个表达式的值，它可以包含数个筛选器。
 
 ``` js
 // assuming vm.msg = 'hello'
@@ -88,6 +90,7 @@ vm.$eval('msg | uppercase') // -> 'HELLO'
 
 Evaluate a piece of template string containing mustache interpolations. Note that this method simply performs string interpolation; attribute directives are not compiled.
 
+
 ``` js
 // assuming vm.msg = 'hello'
 vm.$interpolate('{&#123;msg&#125;} world!') // -> 'hello world!'
@@ -97,7 +100,7 @@ vm.$interpolate('{&#123;msg&#125;} world!') // -> 'hello world!'
 
 - **keypath** `String` *optional*
 
-Log the current instance data as a plain object, which is more console-inspectable than a bunch of getter/setters. Also accepts an optional key.
+记录当前的实例数据保存在一个空白的对象，这种是比很多取值方法/设值方法都更有可检查性(console-inspectable)。当然也可以传递一个路径(可选)进去。
 
 ``` js
 vm.$log() // logs entire ViewModel data
@@ -106,80 +109,80 @@ vm.$log('item') // logs vm.item
 
 ## Events
 
-> Each vm is also an event emitter. When you have multiple nested ViewModels, you can use the event system to communicate between them.
+> 每个 vm 都是一个事件的emitter。当你有很多的视图模型时，你可以用这种事件系统去在他们之间沟通数据。
 
 ### vm.$dispatch( event, [args...] )
 
 - **event** `String`
 - **args...** *optional*
 
-Dispatch an event from the current vm that propagates all the way up to its `$root`. If a callback returns `false`, it will stop the propagation at its owner instance.
+从当前的 vm 处理一个事件，这个 vm 一直传播到它的 `$root` 。如果其中一个回调返回了 `false` ，那么在它自己的实例中停止传播。
 
 ### vm.$broadcast( event, [args...] )
 
 - **event** `String`
 - **args...** *optional*
 
-Emit an event to all children vms of the current vm, which gets further broadcasted to their children all the way down. If a callback returns `false`, its owner instance will not broadcast the event any further.
+为当前 vm 的所有子 vm 注册该事件，这个 vm 会一直传播到到他的子vm。当一个回调返回 `false` 。当一个回调返回了 `false`，那么它的所有者实例就不会广播这个事件了。
 
 ### vm.$emit( event, [args...] )
 
 - **event** `String`
 - **args...** *optional*
 
-Trigger an event on this vm only.
+只在这个 vm 里面触发被传递的事件。 
 
 ### vm.$on( event, callback )
 
 - **event** `String`
 - **callback** `Function`
 
-Listen for an event on the current vm.
+在当前 vm 中监听事件。
 
 ### vm.$once( event, callback )
 
 - **event** `String`
 - **callback** `Function`
 
-Attach a one-time only listener for an event.
+为一个事件注册一个一次性的监听器。
 
 ### vm.$off( [event, callback] )
 
 - **event** `String` *optional*
 - **callback** `Function` *optional*
 
-If no arguments are given, stop listening for all events; if only the event is given, remove all callbacks for that event; if both event and callback are given, remove that specific callback only.
+如果没有传递变量，那么停止监视所有时间；如果传递了一个事件，那么移除该事件的所有回调；如果事件和回调都被传递，则只移除该回调。
 
 ## DOM
 
-> All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger Vue.js transitions if there are any declared on vm's `$el`. For more details on transitions see [Adding Transition Effects](../guide/transitions.html).
+> 所有 vm 的操作 DOM 的方法都是类似于jQuery中相同功能一样 - 除了被声明为 vm 的 `$el` 会触发 Vue.js 的转换。对于转化的更多细节可以看 [Adding Transition Effects](../guide/transitions.html) 。
 
 ### vm.$appendTo( element|selector, [callback] )
 
 - **element** `HTMLElement` | **selector** `String`
 - **callback** `Function` *optional*
 
-Append the vm's `$el` to target element. The argument can be either an element or a querySelector string.
+在目标元素后面添加 vm 的 `$el` ,变量可以是一个元素或者是一个被选择器选中的字符串。
 
 ### vm.$before( element|selector, [callback] )
 
 - **element** `HTMLElement` | **selector** `String`
 - **callback** `Function` *optional*
 
-Insert the vm's `$el` before target element.
+在目标元素之前插入 vm 的 `$el` 。
 
 ### vm.$after( element|selector, [callback] )
 
 - **element** `HTMLElement` | **selector** `String`
 - **callback** `Function` *optional*
 
-Insert the vm's `$el` after target element.
+在目标元素之后插入 vm 的 `$el` 。
 
 ### vm.$remove( [callback] )
 
 - **callback** `Function` *optional*
 
-Remove the vm's `$el` from the DOM.
+从 DOM 中移除 vm 的 `$el` 。
 
 ## Lifecycle
 
@@ -187,29 +190,30 @@ Remove the vm's `$el` from the DOM.
 
 - **element** `HTMLElement` | **selector** `String` *optional*
 
-If the Vue instance didn't get an `el` option at instantiation, you can manually call `$mount()` to assign an element to it and start the compilation. If no argument is provided, an empty `<div>` will be automatically created. Calling `$mount()` on an already mounted instance will have no effect. The method returns the instance itself so you can chain other instance methods after it.
+如果 Vue 实例在实例化的时候没有被传递一个 `el` 的选项,你可以自己调用 `$mount()` 赋一个元素给它并且开始编译。如果没有变量提供，就会自动生成一个空的 `<div>` 。在已经被挂在的实例上调用 `$mount()` 上是没有作用的。这个方法会返回实例本身所以如果你可以在它后面连锁一些其他的实例方法。
 
 ### vm.$destroy( [remove] )
 
 - **remove** `Boolean` *optional*
 
-Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and remove its `$el` from the DOM. Also, all `$on` and `$watch` listeners will be automatically removed.
+完全销毁一个 vm。清空它对其他存在的 vm 的连接，释放它的所有中间件并且从DOM中移除它的 `$el`。并且所有的 `$on` 和 `$watch` 监听器也都会被自动移除。
 
 ### vm.$compile( element )
 
 - **element** `HTMLElement`
 
-Partially compile a piece of DOM (Element or DocumentFragment). The method returns a `decompile` function that tearsdown the directives created during the process. Note the decompile function does not remove the DOM. This method is exposed primarily for writing advanced custom directives.
+局部编译一个 DOM (元素或者是文档的片段)。这个方法返回一个 `decompile` 函数会关闭所有过程中已经被创建的中间件。请注意 decompile 函数不会移除DOM，这个方法对于写入高级自定义中间件来说根本上就是暴露的(exposed)。
+
 
 ### vm.$addChild( [options, constructor] )
 
 - **options** `Object` *optional*
 - **constructor** `Function` *optional*
 
-Adds a child instance to the current instance. The options object is the same in manually instantiating an instance. Optionally you can pass in a constructor created from `Vue.extend()`.
+为当前的实例增加一个子实例。选项对象和手动实例化一个实例是相同的。传递一个用 `Vue.extend()` 创造的构造器进去也是可以的。
 
-There are three implications of a parent-child relationship between instances:
+对于实例间父子关系有三种含义：
 
-1. The parent and child can communicate via [the event system](#Events).
-2. The child has access to all parent assets (e.g. custom directives).
-3. The child, if inheriting parent scope, has access to parent scope data properties.
+1. 父实例和子实例可以通过[the event system](#Events)来沟通
+2. 子实例有对父实例所有资源的许可。（例子： 自定义中间件）
+3. 如果是继承了父实例作用域的子实例，那么对父实例作用域的数据属性也有许可
