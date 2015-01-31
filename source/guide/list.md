@@ -3,9 +3,9 @@ type: guide
 order: 5
 ---
 
-You can use the `v-repeat` directive to repeat a template element based on an Array of objects on the ViewModel. For every object in the Array, the directive will create a child Vue instance using that object as its `$data` object. These child instances inherit all data on the parent, so in the repeated element you have access to properties on both the repeated instance and the parent instance. In addition, you get access to the `$index` property, which will be the corresponding Array index of the rendered instance.
+你可以使用 `v-repeat` 指令基于ViewModel上的对象数组来重复显示模板元素。对于数组中的每个对象，该指令将创建一个以该对象作为其 `$data` 对象的子Vue实例。这些子实例继承父实例的所有数据，因此在重复的模板元素中你既可以访问子实例的属性，也可以访问父实例的属性。此外,你还可以访问 `$index` 属性，其表示所呈现的实例在对象数组中对应的索引。.
 
-**Example:**
+**示例:**
 
 ``` html
 <ul id="demo">
@@ -28,7 +28,7 @@ var demo = new Vue({
 })
 ```
 
-**Result:**
+**结果:**
 
 <ul id="demo"><li v-repeat="items" class="item-{&#123;$index&#125;}">{&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}</li></ul>
 <script>
@@ -44,9 +44,9 @@ var demo = new Vue({
 })
 </script>
 
-## Arrays of Primitive Values
+## 简单值数组
 
-For Arrays containing primitive values, you can access the value simply as `$value`:
+对于包含简单值的数组，你可用 `$value` 直接访问值:
 
 ``` html
 <ul id="tags">
@@ -65,7 +65,7 @@ new Vue({
 })
 ```
 
-**Result:**
+**结果:**
 <ul id="tags" class="demo"><li v-repeat="tags">{&#123;$value&#125;}</li></ul>
 <script>
 new Vue({
@@ -76,9 +76,9 @@ new Vue({
 })
 </script>
 
-## Using an identifier
+## 使用标识符
 
-Sometimes we might want to have more explicit variable access instead of implicitly falling back to parent scope. You can do that by providing an argument to the `v-repeat` directive and use it as the identifier for the item being iterated:
+有时我们可能想要更明确地访问变量而不是隐式地回退到父作用域。你可以通过提供一个参数给 `v-repeat` 指令并用它作为将被迭代项的标识符:
 
 ``` html
 <ul id="users">
@@ -101,7 +101,7 @@ new Vue({
 })
 ```
 
-**Result:**
+**结果:**
 <ul id="users" class="demo"><li v-repeat="user: users">{&#123;user.name&#125;} - {&#123;user.email&#125;}</li></ul>
 <script>
 new Vue({
@@ -115,9 +115,9 @@ new Vue({
 })
 </script>
 
-## Mutation Methods
+## 修改方法
 
-Under the hood, Vue.js intercepts an observed Array's mutating methods (`push()`, `pop()`, `shift()`, `unshift()`, `splice()`, `sort()` and `reverse()`) so they will also trigger View updates.
+在内部，Vue.js截获一个观察数组的修改方法（`unshift()`, `splice()`, `sort()` 和`reverse()`），因此它们也将触发视图更新。
 
 ``` js
 // the DOM will be updated accordingly
@@ -125,27 +125,27 @@ demo.items.unshift({ childMsg: 'Baz' })
 demo.items.pop()
 ```
 
-## Augmented Methods
+## 增加的方法
 
-Vue.js augments observed Arrays with two convenience methods: `$set()` and `$remove()`.
+Vue.js 给观察数组添加了两个便捷方法：`$set()` 和 `$remove()` 。
 
-You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the agumented `$set()` method:
+你应该避免直接通过索引来设置数据绑定数组中的元素，因为这些改变将不能被Vue.js检出，而应该使用增加的 `$set()` 方法:
 
 ``` js
 // same as `demo.items[0] = ...` but triggers view update
 demo.items.$set(0, { childMsg: 'Changed!'})
 ```
 
-`$remove()` is just syntax sugar for `splice()`. It will remove the element at the given index. When the argument is not a number, `$remove()` will search for that value in the array and remove the first occurrence.
+`$remove()` 只不过是 `splice()`方法的语法糖。它将移除给定索引处的元素。当参数不是数值时，`$remove()` 将在数组中搜索该值并删除第一个发现的数组项.
 
 ``` js
 // remove the item at index 0
 demo.items.$remove(0)
 ```
 
-## Replacing an Array
+## 替换数组
 
-When you are using non-mutating methods, e.g. `filter()`, `concat()` or `slice()`, the returned Array will be a different instance. In that case, you can just replace the old Array with the new one:
+当你使用非修改方法，比如`filter()`, `concat()` 或 `slice()`，返回的数组将是一个不同的实例。在此情况下，你可以用新数组替换旧的数组W:
 
 ``` js
 demo.items = demo.items.filter(function (item) {
@@ -153,13 +153,13 @@ demo.items = demo.items.filter(function (item) {
 })
 ```
 
-You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js recognizes array elements that already have an associated Vue instance and will reuse those instances whenever possible.
+你可能会认为这将失去已有的DOM并重建一切。但别担心，Vue.js能够识别一个数组元素是否已有关联的Vue实例， 并只要有可能就会重用那些实例。
 
-## Using `track-by`
+## 使用 `track-by`
 
-In some cases, you might need to replace the Array with completely new objects - e.g. ones returned from an API call. If your data objects have a unique id property, then you can use a `track-by` attribute to give Vue.js a hint so that it can reuse an existing instance with data that has the same id.
+在某些情况下，你可能需要以全新的对象（比如API调用所返回的对象）去替换数组。如果你的数据对象有一个值唯一的id属性，那么你可以使 `track-by` 属性给Vue.js一个提示，那样它可以重用已有的具有相同id的数据实例。
 
-For example, if your data looks like this:
+例如，如果你的数据像这样:
 
 ``` js
 {
@@ -170,7 +170,7 @@ For example, if your data looks like this:
 }
 ```
 
-Then you can give the hint like this:
+那么你可以像这样给出提示:
 
 ``` html
 <div v-repeat="items" track-by="_uid">
@@ -178,9 +178,9 @@ Then you can give the hint like this:
 </div>
 ```
 
-## Iterating Through An Object
+## 遍历对象
 
-You can also use `v-repeat` to iterate through the properties of an Object. Each repeated instance will have a special property `$key`. For primitive values, you also get `$value` which is similar to primitive values in Arrays.
+你也可以使用 `v-repeat` 遍历一个对象的所有属性。每个重复的实例会有一个特殊的属性 `$key`。对于简单值，你也可以象访问数组中的简单值那样使用 `$value` 属性。
 
 ``` html
 <ul id="repeat-object">
@@ -211,7 +211,7 @@ new Vue({
 })
 ```
 
-**Result:**
+**结果:**
 <ul id="repeat-object" class="demo"><li v-repeat="primitiveValues">{&#123;$key&#125;} : {&#123;$value&#125;}</li><li>===</li><li v-repeat="objectValues">{&#123;$key&#125;} : {&#123;msg&#125;}</li></ul>
 <script>
 new Vue({
@@ -234,11 +234,11 @@ new Vue({
 })
 </script>
 
-<p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with two methods: `$add(key, value)` and `$delete(key)`. These methods can be used to add / delete properties from observed objects while triggering the desired View updates.</p>
+<p class="tip">在ECMAScript 5中，当一个新属性添加到对象中时，或者从对象中删除一个属性时，没有办法检测到。要解决这个问题，观察对象将被添加两个方法：`$add(key, value)` 和 `$delete(key)`。这些方法可以被用于在添加、删除观察对象的属性时触发期望的视图更新。</p>
 
-## Iterating Over a Range
+## 迭代值域
 
-`v-repeat` can also take an integer Number. In this case it will repeat the template that many times.
+`v-repeat` 也可以接受一个整数。在这种情况下，它将重复显示一个模板多次.
 
 ``` html
 <div id="range">
@@ -254,7 +254,7 @@ new Vue({
   }
 });
 ```
-**Result:**
+**结果:**
 <ul id="range" class="demo"><li v-repeat="val">Hi! {&#123;$index&#125;}</li></ul>
 <script>
 new Vue({
@@ -263,8 +263,8 @@ new Vue({
 });
 </script>
 
-## Array Filters
+## 数组过滤器
 
-Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: `filterBy` and `orderBy`. Check out their [documentations](../api/filters.html#filterBy) for more details.
+有时候我们只需要显示一个数组的过滤或排序过的版本，而不需要实际改变或重置原始数据。Vue提供了两个内置的过滤器来简化此类需求： `filterBy` 和 `orderBy`。可查看[方法文档](../api/filters.html#filterBy)获得更多细节。
 
-Next up: [Listening for Events](../guide/events.html).
+接下来进入: [事件监听](../guide/events.html)部分。
