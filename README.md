@@ -20,4 +20,8 @@ $ hexo server
 
 * [@etanxing](https://github.com/etanxing)
 * [@Garfielt](https://github.com/Garfielt)
+* [@kunth](https://github.com/kunth)
+* [@luin](https://github.com/luin)
+* [@nkCoding](https://github.com/nkCoding)
 * [@SoAanyip](https://github.com/SoAanyip)
+* [@XfLoops](https://github.com/XfLoops)
