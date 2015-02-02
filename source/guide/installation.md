@@ -19,7 +19,7 @@ gz_size: 18.11
 <a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>生产版本</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
 </div>
 
-也可以在 [cdnjs](..//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) 使用 (版本更新会略滞后)。
+也可以在 [cdnjs](http://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) 使用 (版本更新会略滞后)。
 
 ## NPM
 

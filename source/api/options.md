@@ -1,4 +1,4 @@
-title: Options
+title: 选项
 type: api
 order: 2
 ---
@@ -158,7 +158,7 @@ If the option is available at instantiation, the instance will immediately enter
 
 - **Type:** `String`
 
-A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$el` will be overwritten, unless [content insertion points](../guide/components.html#Content_Insertion) are present in the template. If the **replace** option is `true`, the template will replace `vm.$el` entirely.
+A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$el` will be overwritten, unless [content insertion points](../guide/components.html#内容插入) are present in the template. If the **replace** option is `true`, the template will replace `vm.$el` entirely.
 
 If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
