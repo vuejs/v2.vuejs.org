@@ -3,27 +3,27 @@ type: guide
 order: 12
 ---
 
-With Vue.js' transition system you can apply automatic transition effects when elements are inserted into or removed from the DOM. There are two options to do so: defining CSS classes with transitions/animations, or by registering a definition object containing custom JavaScript hook functions.
+通过Vue.js的过渡系统，在节点插入/移除DOM的过程中，你可以轻松的运用自动过渡效果。这里有两个方式可以使用过渡系统：定义带有过渡效果/动画的css class，或者注册一个包含自定义JavaScript钩子函数的对象。
 
-With the directive `v-transition="my-transition"` applied, Vue will:
+通过使用`v-transition="my-transition"`指令的运用，Vue将会：
 
-1. Try to find a JavaScript transtion definition registered either through `Vue.transition(id, def)` or passed in with the `transitions` option, with the id `"my-transition"`. If it finds it, it will use that definition object to perform the custom JavaScript based transition.
+1. 试着找到一个id为`"my-transition"`,并且通过`Vue.transition(id, def)`或经过`transitions`选项处理的Javascript过渡定义。当找到时，Vue将会使用该定义对象执行自定义的JavaScript过渡。
 
-2. If no custom JavaScript transition is found, it will automatically sniff whether the target element has CSS transitions or CSS animations applied, and add/remove the CSS classes at the appropriate times.
+2. 如果没有找到自定义的Javacript过渡定义，那么Vue将会自动发现使用了CSS过渡/动画效果的目标元素，并在适当的时机添加/移除CSS class。
 
-3. If no transitions/animations are detected, the DOM manipulation is executed on next frame.
+3. 如果没有检测到过渡/动画，那么就会在下一帧直接执行DOM操作
 
-<p class="tip">All Vue.js transitions are triggered only if the DOM manipulation was applied by Vue.js, either through built-in directives, e.g. `v-if`, or through Vue instance methods, e.g. `vm.$appendTo()`.</p>
+<p class="tip">所有的Vue.js过渡效果只会在Vue.js执行DOM操作时才会被触发；或者通过内建指令集，例如`v-if`；或者通过Vue实例方法，例如`vm.$appendTo()`</p>
 
-## CSS Transitions
+## CSS 过渡效果
 
-A typical CSS transition looks like this:
+一个典型的CSS过渡效果定义如下：
 
 ``` html
 <p class="msg" v-if="show" v-transition="expand">Hello!</p>
 ```
 
-You also need to define CSS rules for `.expand-enter` and `.expand-leave` classes:
+你需要给`.expand-enter` 和 `.expand-leave`定义CSS规则：
 
 ``` css
 .msg {
@@ -65,28 +65,28 @@ new Vue({
 })
 </script>
 
-The classes being toggled are based on the value of your `v-transition` directive. In the case of `v-transition="fade"`, the classes being toggled will be `.fade-enter` and `.fade-leave`. When no value is provided they will default to `.v-enter` and `.v-leave`.
+这些class根据`v-transition`指令指定的值进行触发。在指定`v-transition="fade"`这个例子中，通过`.fade-enter`和`.fade-leave`来触发class变换。当未指定值的时候，则使用默认`.v-enter`和`.v-leave`
 
-When the `show` property changes, Vue.js will insert or remove the `<p>` element accordingly, and apply transition classes as specified below:
+当`show`属性发生变化，Vue.js依据其变化来插入/移除`<p>`元素，并使用过渡class，具体如下：
 
-- When `show` becomes false, Vue.js will:
-  1. Apply `v-leave` class to the element to trigger the transition;
-  2. Wait for the transition to finish; (listening to a `transitionend` event)
-  3. Remove the element from the DOM and remove `v-leave` class.
+- 当`show`为false时，Vue.js将会：
+  1. 将`v-leave`类应用于元素并触发过渡效果；
+  2. 等待过渡效果执行完毕； (通过监听一个`transitionend`事件)
+  3. 从DOM中移除节点并移除class `v-leave`.
 
-- When `show` becomes true, Vue.js will:
-  1. Apply `v-enter` class to the element;
-  2. Insert it into the DOM;
-  3. Force a CSS layout so `v-enter` is actually applied;
-  4. Remove the `v-enter` class to trigger a transition back to the element's original state.
+- 当`show`为true时，Vue.js将会：
+  1. 将class`v-enter`应用于节点上；
+  2. 将节点插入DOM；
+  3. 触发CSS布局变化，`v-enter`定义的效果将会被自动应用；
+  4. 移除class`v-enter`，触发节点过渡效果，回到节点默认状态。
 
-<p class="tip">When multiple elements are being transitioned together, Vue.js batches them and only applies one forced layout.</p>
+<p class="tip">当多个节点同时触发过渡效果时，Vue.js将会进行批量处理，只触发一次布局修改</p>
 
-## CSS Animations
+## CSS 动画
 
-CSS animations are applied in the same way with CSS transitions, the difference being that `v-enter` is not removed immediately after the element is inserted, but on an `animationend` callback.
+CSS 动画通过与CSS过渡效果一样的方式进行调用，区别就是动画中`v-enter`并不会在节点插入DOM后马上移除，而是在`animationend`回调中移除
 
-**Example:** (omitting prefixed CSS rules here)
+**示例：** (省略了css前缀的规则)
 
 ``` html
 <p class="animated" v-if="show" v-transition="bounce">Look at me!</p>
@@ -199,9 +199,9 @@ new Vue({
 })
 </script>
 
-## JavaScript Functions
+## Javascript 方法
 
-The following example registers a custom JavaScript transition definition using jQuery:
+以下的例子中，使用了jQuery注册一个自定义Javascript的过渡效果：
 
 ``` js
 Vue.transition('fade', {
@@ -232,11 +232,9 @@ Vue.transition('fade', {
   }
 })
 ```
-
-Then you can use it by providing the transition id to `v-transition`. Note this has higher priority than CSS transitions.
+之后你就可以通过给`v-transition`指定过渡ID来应用。注意，通过Javascript声明的过渡比CSS过渡优先级高。
 
 ``` html
 <p v-transition="fade"></p>
 ```
-
-Next: [Building Larger Apps](../guide/application.html).
+下一节：[创建大型应用](../guide/application.html).
