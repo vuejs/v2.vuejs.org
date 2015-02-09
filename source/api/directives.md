@@ -186,8 +186,6 @@ For detailed examples, see [Displaying a List](/guide/list.html).
 
 Allows a child ViewModel to inherit data from the parents. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive must be used in combination with `v-component`.
 
-The data inheritance is one-way: when parent property changes, the child will be notified of the change and update accordingly; however if the child sets the property to something else, it will not affect the parent, and the modified property will be overwritten the next time parent property changes.
-
 Example inheriting an object:
 
 ``` js

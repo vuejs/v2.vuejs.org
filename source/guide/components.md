@@ -118,7 +118,7 @@ var parent = new Vue({
 
 #### Passing Down Individual Properties
 
-`v-with` can also be used with an argument in the form of `v-with="childProp: parentProp"`. This means passing down `parent[parentProp]` to the child as `child[childProp]`. Note this data inheritance is one-way: when `parentProp` changes, `childProp` will be updated accordingly, however not the other way around.
+`v-with` can also be used with an argument in the form of `v-with="childProp: parentProp"`. This means passing down `parent[parentProp]` to the child as `child[childProp]`, creating a two-way binding (as of 0.11.5).
 
 **Example:**
 
