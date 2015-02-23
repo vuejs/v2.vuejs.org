@@ -1,10 +1,10 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 0.11.4
-dev_size: 177.28
-min_size: 55.18
-gz_size: 18.11
+vue_version: 0.11.5
+dev_size: 181.31
+min_size: 56.08
+gz_size: 18.39
 ---
 
 > **兼容性提示：**Vue.js 不支持 IE8 及其以下版本。
@@ -54,7 +54,7 @@ $ component install yyx990803/vue@dev
 
 ## AMD 模块加载器
 
-直接下载或通过 Bower 安装的版本可以用 UMD 包裹起来直接作为 AMD 模块使用。
+直接下载或通过 Bower 安装的版本已经用 UMD 接口包装过，可以直接作为 AMD 模块使用。
 
 ## 准备好了吗？
 

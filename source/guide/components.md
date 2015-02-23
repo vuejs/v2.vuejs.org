@@ -116,9 +116,9 @@ var parent = new Vue({
   })
 </script>
 
-#### 向下传递独立属性
+#### 向下传递单个属性
 
-`v-with` 也能以 `v-with="childProp: parentProp"` 的形式传入一个参数来使用。也就是把 `parent[parentProp]` 向下传递给子级，作为子级的属性 `child[childProp]`。要注意的是这种数据继承是单向的：当 `parentProp` 发生改变时，`childProp` 会相应更新，反之则不然。
+`v-with` 也能以 `v-with="childProp: parentProp"` 的形式传入一个参数来使用。也就是把 `parent[parentProp]` 向下传递给子级，作为子级的属性 `child[childProp]`。从 0.11.5 版本开始，这将会在两者之间建立一个双向的数据绑定（0.11 的更早版本此绑定是单向的）。
 
 **示例：**
 
@@ -292,7 +292,7 @@ new Vue({
 **示例：**
 
 ``` html
-<div v-component="{{view}}" wait-for="data-loaded"></div>
+<div v-component="&#123;{view}&#125;" wait-for="data-loaded"></div>
 ```
 ``` js
 // 组件定义
@@ -323,7 +323,7 @@ new Vue({
 
 ``` html
 <!-- 先淡出，之后淡入 -->
-<div v-component="{{view}}"
+<div v-component="&#123;{view}&#125;"
   v-transition="fade"
   transition-mode="out-in">
 </div>
