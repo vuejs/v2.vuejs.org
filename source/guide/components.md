@@ -292,7 +292,7 @@ An event name to wait for on the incoming child component before switching it wi
 **Example:**
 
 ``` html
-<div v-component="{{view}}" wait-for="data-loaded"></div>
+<div v-component="&#123;{view}&#125;" wait-for="data-loaded"></div>
 ```
 ``` js
 // component definition
@@ -323,7 +323,7 @@ By default, the transitions for incoming and outgoing components happen simultan
 
 ``` html
 <!-- fade out first, then fade in -->
-<div v-component="{{view}}"
+<div v-component="&#123;{view}&#125;"
   v-transition="fade"
   transition-mode="out-in">
 </div>
