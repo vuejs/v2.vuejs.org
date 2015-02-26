@@ -22,6 +22,7 @@ $ hexo server
 * [@fengliu222](https://github.com/fengliu222)
 * [@Garfielt](https://github.com/Garfielt)
 * [@getive](https://github.com/getive)
+* [@Jinjiang](https://github.com/Jinjiang)
 * [@kunth](https://github.com/kunth)
 * [@luin](https://github.com/luin)
 * [@nkCoding](https://github.com/nkCoding)
