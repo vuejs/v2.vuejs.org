@@ -5,7 +5,7 @@ order: 15
 
 - **为什么Vue.js不支持IE8?**
 
-  Vue.js能够在不使用`Object.defineProperty`的情况下进行脏检查来输出纯真的JavaScript对象语法，这是ECMAScript 5的一个特性。但它只在IE8的DOM元素中起作用，目前没有办法将其适用于JavaScript对象。
+  利用ECMASCript5的新特性：`Object.defineProperty`, Vue.js不借助脏检查就能提供纯正的Javascript对象语法。这一新特性在IE8里只在DOM元素上起作用，而且无法通过polyfill与JavaScript对象兼容。
 
 - **那么Vue.js修改了我的数据喽?**
 
