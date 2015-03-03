@@ -64,7 +64,7 @@ Vue.filter('concat', function (value, key) {
 ```
 ``` html
 <input v-model="userInput">
-<span>{&#123;msg | concat userInput&#125;}</span>
+<span>{{msg | concat userInput}}</span>
 ```
 
 For this simple example above, you can achieve the same result with just an expression, but for more complicated procedures that need more than one statements, you need to put them either in a computed property or a custom filter.

@@ -32,14 +32,14 @@ Pluralizes the argument based on the filtered value. When there is exactly one a
 **Example:**
 
 ``` html
-{&#123;count&#125;} {&#123;count | pluralize item&#125;}
+{{count}} {{count | pluralize item}}
 ```
 
 *1 => '1 item'*  
 *2 => '2 items'*
 
 ``` html
-{&#123;date&#125;}{&#123;date | pluralize st nd rd th&#125;}
+{{date}}{{date | pluralize st nd rd th}}
 ```
 
 Will result in:
@@ -57,7 +57,7 @@ Will result in:
 JSON.stringify() incoming value rather than outputting the string representation (i.e. `[object Object]`). It also takes one optional argument which is the indent level (defaults to 2):
 
 ``` html
-<pre>{&#123;$data | json 4&#125;}</pre>
+<pre>{{$data | json 4}}</pre>
 ```
 
 ### key
@@ -96,7 +96,7 @@ Make `v-repeat` only display a filtered version of the source Array. The `search
 ``` html
 <input v-model="searchText">
 <ul>
-  <li v-repeat="users | filterBy searchText">{&#123;name&#125;}</li>
+  <li v-repeat="users | filterBy searchText">{{name}}</li>
 </ul>
 ```
 
@@ -107,7 +107,7 @@ Optionally, you can narrow down which specific property to search in with the op
 ``` html
 <input v-model="searchText">
 <ul>
-  <li v-repeat="users | filterBy searchText in name">{&#123;name&#125;}</li>
+  <li v-repeat="users | filterBy searchText in name">{{name}}</li>
 </ul>
 ```
 
@@ -117,7 +117,7 @@ Finally, you can use quotes to indicate literal arguments:
 
 ``` html
 <ul>
-  <li v-repeat="users | filterBy '555' in 'phone'">{&#123;name&#125;}</li>
+  <li v-repeat="users | filterBy '555' in 'phone'">{{name}}</li>
 </ul>
 ```
 
@@ -132,7 +132,7 @@ Sort `v-repeat`'s displayed result. The `sortKey` argument is a property key on 
 
 ``` html
 <ul>
-  <li v-repeat="users | orderBy field reverse">{&#123;name&#125;}</li>
+  <li v-repeat="users | orderBy field reverse">{{name}}</li>
 </ul>
 ```
 
@@ -150,6 +150,6 @@ You can also use quotes for literal sort key. To indicate a literal reverse, use
 
 ``` html
 <ul>
-  <li v-repeat="users | orderBy 'name' -1">{&#123;name&#125;}</li>
+  <li v-repeat="users | orderBy 'name' -1">{{name}}</li>
 </ul>
 ```

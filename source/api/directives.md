@@ -162,7 +162,7 @@ When no argument is provided, the child ViewModel will directly use the assigned
 ``` html
 <ul>
   <li v-repeat="users">
-    {&#123;name&#125;} {&#123;email&#125;}
+    {{name}} {{email}}
   </li>
 </ul>
 ```
@@ -172,7 +172,7 @@ If an argument is provided, a wrapper data object will always be created, using 
 ``` html
 <ul>
   <li v-repeat="user : users">
-    {&#123;user.name&#125;} {&#123;user.email&#125;}
+    {{user.name}} {{user.email}}
   </li>
 </ul>
 ```
@@ -201,7 +201,7 @@ Example inheriting an object:
 ``` html
 <my-component v-with="user">
   <!-- you can access properties without `user.` -->
-  {&#123;name&#125;} {&#123;email&#125;}
+  {{name}} {{email}}
 </my-component>
 ```
 
@@ -210,7 +210,7 @@ Example inheriting individual properties (using the same data):
 ``` 
 <my-component v-with="myName: user.name, myEmail: user.email">
   <!-- you can access properties with the new keys -->
-  {&#123;myName&#125;} {&#123;myEmail&#125;}
+  {{myName}} {{myEmail}}
 </my-component>
 ```
 
@@ -258,13 +258,13 @@ Using the mustache tag inside `v-partial` makes it reactive:
 
 ``` html
 <!-- content will change based on vm.partialId -->
-<div v-partial="{&#123;partialId&#125;}"></div>
+<div v-partial="{{partialId}}"></div>
 ```
 
 You can also use this syntax (which doesn't support reactivity):
 
 ``` html
-<div>&#123;&#123;> my-partial&#125;&#125;</div>
+<div>{{> my-partial}}</div>
 ```
 
 ### v-transition
