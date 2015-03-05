@@ -83,7 +83,7 @@ When given a single keypath without an argument, the corresponding value on the 
 ``` js
 // registering the component first
 Vue.component('user-profile', {
-  template: '{&#123;name&#125;}<br>{&#123;email&#125;}'
+  template: '{{name}}<br>{{email}}'
 })
 // the `user` object will be passed to the child
 // component as its $data
@@ -139,7 +139,7 @@ new Vue({
   },
   components: {
     child: {
-      template: '<span>{&#123;childMsg&#125;}</span>'
+      template: '<span>{{childMsg}}</span>'
     }
   }
 })
@@ -184,7 +184,7 @@ new Vue({
       paramAttributes: ['child-msg'],
       // dashed attributes are camelized,
       // so 'child-msg' becomes 'this.childMsg'
-      template: '<span>{&#123;childMsg&#125;}</span>'
+      template: '<span>{{childMsg}}</span>'
     }
   }
 })
@@ -268,7 +268,7 @@ new Vue({
 ```
 
 ``` html
-<div v-component="{&#123;currentView&#125;}">
+<div v-component="{{currentView}}">
   <!-- content changes when vm.currentview changes! -->
 </div>
 ```
@@ -276,7 +276,7 @@ new Vue({
 If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
 
 ``` html
-<div v-component="{&#123;currentView&#125;}" keep-alive>
+<div v-component="{{currentView}}" keep-alive>
   <!-- inactive components will be cached! -->
 </div>
 ```

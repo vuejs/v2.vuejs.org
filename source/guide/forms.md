@@ -14,18 +14,18 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
   <!-- text -->
   <p>
     <input type="text" v-model="msg">
-    {&#123;msg&#125;}
+    {{msg}}
   </p>
   <!-- checkbox -->
   <p>
     <input type="checkbox" v-model="checked">
-    {&#123;checked ? &quot;yes&quot; : &quot;no&quot;&#125;}
+    {{checked ? "yes" : "no"}}
   </p>
   <!-- radio buttons -->
   <p>
     <input type="radio" name="picked" value="one" v-model="picked">
     <input type="radio" name="picked" value="two" v-model="picked">
-    {&#123;picked&#125;}
+    {{picked}}
   </p>
   <!-- select -->
   <p>
@@ -33,7 +33,7 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
       <option>one</option>
       <option>two</option>
     </select>
-    {&#123;selected&#125;}
+    {{selected}}
   </p>
   <!-- multiple select -->
   <p>
@@ -42,9 +42,9 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
       <option>two</option>
       <option>three</option>
     </select>
-    {&#123;multiSelect&#125;}
+    {{multiSelect}}
   </p>
-  <p><pre>data: {&#123;$data | json 2&#125;}</pre></p>
+  <p><pre>data: {{$data | json 2}}</pre></p>
 </form>
 ```
 

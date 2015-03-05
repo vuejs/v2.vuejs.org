@@ -128,7 +128,7 @@ Vue.component('param-demo', {
 Param attributes can also contain interpolation tags. The interpolation will be evaluated against the parent, and under the hood they will be compiled as [`v-with`](/api/directives.html#v-with), which means when the value of the interpolated expression changes, the component's corresponding property will also be updated:
 
 ``` html
-<param-demo message="{&#123;parentMessage&#125;}"></param-demo>
+<param-demo message="{{parentMessage}}"></param-demo>
 ```
 
 #### Notes on hyphened attributes

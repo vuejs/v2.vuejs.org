@@ -16,7 +16,7 @@ order: 5
   // interpolation delimiters
   // for HTML interpolations, add
   // 1 extra outer-most character.
-  delimiters: ['{&#123;', '&#125;}'],
+  delimiters: ['{{', '}}'],
   // suppress warnings?
   silent: false,
   // interpolate mustache bindings?
@@ -65,7 +65,7 @@ var Profile = Vue.extend({
   el: function () {
     return document.createElement('p')
   },
-  template: '&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125; aka &#123;&#123;alias&#125;&#125;'
+  template: '{{firstName}} {{lastName}} aka {{alias}}'
 })
 var profile = new Profile({
   data: {
@@ -124,14 +124,14 @@ HTML
 
 ``` html
 <div id="demo">
-  &#123;&#123;> avatar&#125;&#125;
+  {{> avatar}}
 </div>
 ```
 
 JavaScript
 
 ``` js
-Vue.partial('avatar', '&lt;img v-attr="src:avatarURL"&gt;')
+Vue.partial('avatar', '<img v-attr="src:avatarURL">')
 
 new Vue({
   el: '#demo',

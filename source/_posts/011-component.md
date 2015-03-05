@@ -23,7 +23,7 @@ Vue.component('my-component', {
 ```
 
 ``` html
-<my-component params="{&#123;params&#125;}"></my-component>
+<my-component params="{{params}}"></my-component>
 ```
 
 ### Where Does It Belong?

@@ -9,8 +9,8 @@ You can use the `v-repeat` directive to repeat a template element based on an Ar
 
 ``` html
 <ul id="demo">
-  <li v-repeat="items" class="item-{&#123;$index&#125;}">
-    {&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}
+  <li v-repeat="items" class="item-{{$index}}">
+    {{$index}} - {{parentMsg}} {{childMsg}}
   </li>
 </ul>
 ```
@@ -51,7 +51,7 @@ For Arrays containing primitive values, you can access the value simply as `$val
 ``` html
 <ul id="tags">
   <li v-repeat="tags">
-    {&#123;$value&#125;}
+    {{$value}}
   </li>
 </ul>
 ```
@@ -84,7 +84,7 @@ Sometimes we might want to have more explicit variable access instead of implici
 <ul id="users">
   <!-- think of this as "for each user in users" -->
   <li v-repeat="user: users">
-    {&#123;user.name&#125;} - {&#123;user.email&#125;}
+    {{user.name}} - {{user.email}}
   </li>
 </ul>
 ```
@@ -184,9 +184,9 @@ You can also use `v-repeat` to iterate through the properties of an Object. Each
 
 ``` html
 <ul id="repeat-object">
-  <li v-repeat="primitiveValues">{&#123;$key&#125;} : {&#123;$value&#125;}</li>
+  <li v-repeat="primitiveValues">{{$key}} : {{$value}}</li>
   <li>===</li>
-  <li v-repeat="objectValues">{&#123;$key&#125;} : {&#123;msg&#125;}</li>
+  <li v-repeat="objectValues">{{$key}} : {{msg}}</li>
 </ul>
 ```
 
@@ -242,7 +242,7 @@ new Vue({
 
 ``` html
 <div id="range">
-    <div v-repeat="val">Hi! {&#123;$index&#125;}</div>
+    <div v-repeat="val">Hi! {{$index}}</div>
 </div>
 ```
 

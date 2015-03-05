@@ -34,7 +34,7 @@ You can implement some rudimentary routing logic by manually listening on hashch
 
 ``` html
 <div id="app">
-  <div v-component="{&#123;currentView&#125;}"></div>
+  <div v-component="{{currentView}}"></div>
 </div>
 ```
 

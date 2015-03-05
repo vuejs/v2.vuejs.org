@@ -4,10 +4,10 @@ This site is built with [hexo](http://zespia.tw/hexo/). Site content is written 
 
 ## Developing
 
-Start a dev server at `localhost:4000`:
+Make sure you are using **hexo 3.0**. Start a dev server at `localhost:4000`:
 
 ```
-$ npm install -g hexo
+$ npm install -g hexo-cli
 $ npm install
 $ hexo server
 ```

@@ -71,7 +71,7 @@ Here `"my-component"` is not a data property - it's a string ID that Vue.js uses
 You can also use mustache expressions inside literal directives. For example, the following code allows you to dynamically resolve the type of component you want to use:
 
 ``` html
-<div v-component="{&#123; isOwner ? 'owner-panel' : 'guest-panel' &#125;}"></div>
+<div v-component="{{ isOwner ? 'owner-panel' : 'guest-panel' }}"></div>
 ```
 
 When the expression inside the mustaches change, the rendered component will also change accordingly!

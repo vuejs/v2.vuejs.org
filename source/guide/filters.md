@@ -22,13 +22,13 @@ Filters must be placed at the end of a directive's value:
 You can also use them inside mustache-style bindings:
 
 ``` html
-<span>&#123;&#123;message | uppercase&#125;&#125;</span>
+<span>{{message | uppercase}}</span>
 ```
 
 Multiple filters can be chained together:
 
 ``` html
-<span>&#123;&#123;message | lowercase | reverse&#125;&#125;</span>
+<span>{{message | lowercase | reverse}}</span>
 ```
 
 ## Arguments
@@ -36,7 +36,7 @@ Multiple filters can be chained together:
 Some filters can take optional arguments. Simply add arguments separated by spaces:
 
 ``` html
-<span>&#123;&#123;order | pluralize st nd rd th&#125;&#125;</span>
+<span>{{order | pluralize st nd rd th}}</span>
 ```
 
 ``` html
