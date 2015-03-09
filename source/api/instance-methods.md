@@ -12,7 +12,7 @@ order: 4
 - **expression** `String`
 - **callback( newValue, oldValue )** `Function`
 - **deep** `Boolean` *optional*
-- **immdediate** `Boolean` *optional*
+- **immediate** `Boolean` *optional*
 
 Watch an expression on the Vue instance for changes. The expression can be a single keypath or actual expressions:
 
