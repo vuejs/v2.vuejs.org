@@ -159,7 +159,7 @@ HTML属性名是不区分大小写的，所以我们用`-`而不是camel case。
 
 一个被插入到`vm.$el`的字符串模板。任何`vm.$el`的内容都会被覆盖，除非模板里有[内容插入点](../guide/components.html#Content_Insertion)。如果**replace**选项是`true`，模板会完全替换`vm.$el`。
 
-If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+如果它以`#`开头将会被当做(DOM)选择器处理，使用被选取元素的`innerHTM`和模板字符串。这样允许使用公共的`<script type="x-template">`方式包含模板。
 
 <p class="tip">Vue.js使用基于DOM的模板体系。编译器走遍所有DOM元素去找指令描述来绑定数据。这就意味着所有的Vue.js模板都是可以转成浏览器可以识别的DOM元素。Vue.js转化字符串模板到DOM fragments，所以他们可以被复制在创建更多Vue实例的时候。如果你想你的模板是有效的HTML，你可以设置指令表达式的前缀是`data-`。</p>
 
@@ -203,13 +203,13 @@ If it starts with `#` it will be used as a querySelector and use the selected el
 
 - **类型：** `Function`
 
-当`vm.$el`被一个指令或是VM实例方法（例如`$appendTo()`）添加到DOM里的时候调用。直接操作`vm.$el`**不会**出发这个事件。
+当`vm.$el`被一个指令或是VM实例方法（例如`$appendTo()`）添加到DOM里的时候调用。直接操作`vm.$el`**不会**触发这个事件。
 
 ### detached
 
 - **类型：** `Function`
 
-当`vm.$el`被一个指令或是VM实例方法从DOM里删除的时候调用。直接操作`vm.$el`**不会**出发这个事件。
+当`vm.$el`被一个指令或是VM实例方法从DOM里删除的时候调用。直接操作`vm.$el`**不会**触发这个事件。
 
 ### beforeDestroy
 
@@ -233,31 +233,31 @@ If it starts with `#` it will be used as a querySelector and use the selected el
 
 - **类型：** `Object`
 
-一个指令的哈希表。更多看[Writing Custom Directives](../guide/custom-directive.html).
+一个指令的哈希表。参看[Writing Custom Directives](../guide/custom-directive.html).
 
 ### filters
 
 - **类型：** `Object`
 
-一个过滤器的哈希表。更多看[Writing Custom Filters](../guide/custom-filter.html).
+一个过滤器的哈希表。参看[Writing Custom Filters](../guide/custom-filter.html).
 
 ### components
 
 - **类型：** `Object`
 
-一个组件的哈希表。更多看[Component System](../guide/components.html).
+一个组件的哈希表。参看[Component System](../guide/components.html).
 
 ### partials
 
 - **类型：** `Object`
 
-一个partial的哈希表。更多看[v-partial](../api/directives.html#v-partial)。
+一个partial的哈希表。参看[v-partial](../api/directives.html#v-partial)。
 
 ### transitions
 
 - **类型：** `Object`
 
-一个transition的哈希表。详细看[Transitions](../guide/transitions.html)。
+一个transition的哈希表。详细查看[Transitions](../guide/transitions.html)。
 
 ## Others
 
@@ -269,7 +269,7 @@ If it starts with `#` it will be used as a querySelector and use the selected el
 是否继承父组件的数据. 如果你想从父组件继承数据，就设成`true`。`inherit`是`true`的时候你可以：
 
 1. 在当先组件模板里绑定父组件的数据属性；
-2. 直接访问父组件的属相（通过prototypal继承）。
+2. 直接访问父组件的属性（通过prototypal继承）。
 
 重要的是，当用`inherit: true`，**子组件也可以改变父组件的属性值**，因为所有Vue实例的数据都是getter/setters。
 
@@ -366,7 +366,7 @@ var vm = new Vue({
 - **类型**: `String`
 - **限制:** 仅限使用 `Vue.extend()`的时候。
 
-当在console里监视一个扩展过的Vue组件的时候，缺省构造函数名是`VueComponent`，但它并不是很有用。但你可以传一个可选项`name`到`Vue.extend()`，这样你就能知道你正在看那个组件。这个字符串或被camelized并作为组件的构造函数的名字使用。
+当在console里监视一个扩展过的Vue组件的时候，缺省构造函数名是`VueComponent`，但它并不是很有用。但你可以传一个可选项`name`到`Vue.extend()`，这样你就能知道你正在看哪个组件。这个字符串或被camelized并作为组件的构造函数的名字使用。
 
 **例子：**
 
