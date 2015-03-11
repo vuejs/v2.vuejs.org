@@ -126,7 +126,7 @@ This simple mechanism enables declarative reuse and composition of Vue instances
     <li
       v-repeat="todos"
       v-on="click: done = !done"
-      class="{{done ? 'done' : ''}}">
+      v-class="done: done">
       {{content}}
     </li>
   </ul>
