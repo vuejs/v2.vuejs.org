@@ -3,7 +3,7 @@ type: examples
 order: 7
 ---
 
-> This is a fully spec-compliant TodoMVC implementation in under 120 effective lines of JavaScript (excluding comments and blank lines).
+> これは Javascript の実質 120 行を切る(コメントと空行を除く)完全に仕様に準拠する TodoMVC 実装です。
 
 <iframe width="100%" height="500" src="todomvc/index.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
