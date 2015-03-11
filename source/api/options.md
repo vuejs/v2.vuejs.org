@@ -159,7 +159,7 @@ HTML属性名是不区分大小写的，所以我们用`-`而不是camel case。
 
 一个被插入到`vm.$el`的字符串模板。任何`vm.$el`的内容都会被覆盖，除非模板里有[内容插入点](../guide/components.html#Content_Insertion)。如果**replace**选项是`true`，模板会完全替换`vm.$el`。
 
-如果它以`#`开头将会被当做(DOM)选择器处理，使用被选取元素的`innerHTM`和模板字符串。这样允许使用公共的`<script type="x-template">`方式包含模板。
+如果它以`#`开头将会被当做(DOM)选择器处理，使用被选取元素的`innerHTML`和模板字符串。这样允许使用公共的`<script type="x-template">`方式包含模板。
 
 <p class="tip">Vue.js使用基于DOM的模板体系。编译器走遍所有DOM元素去找指令描述来绑定数据。这就意味着所有的Vue.js模板都是可以转成浏览器可以识别的DOM元素。Vue.js转化字符串模板到DOM fragments，所以他们可以被复制在创建更多Vue实例的时候。如果你想你的模板是有效的HTML，你可以设置指令表达式的前缀是`data-`。</p>
 
