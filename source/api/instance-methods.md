@@ -88,7 +88,7 @@ vm.$eval('msg | uppercase') // -> 'HELLO'
 
 - **templateString** `String`
 
-Evaluate a piece of template string containing mustache interpolations. Note that this method simply performs string interpolation; attribute directives are not compiled.
+计算一段包含mustache数据的模板字符串。注意：此方法仅仅运行字符串数据；属性指令不会被编译。
 
 
 ``` js
@@ -151,7 +151,7 @@ vm.$log('item') // logs vm.item
 - **event** `String` *optional*
 - **callback** `Function` *optional*
 
-如果没有传递变量，那么停止监视所有时间；如果传递了一个事件，那么移除该事件的所有回调；如果事件和回调都被传递，则只移除该回调。
+如果没有传递变量，那么停止监视所有事件；如果传递了一个事件，那么移除该事件的所有回调；如果事件和回调都被传递，则只移除该回调。
 
 ## DOM
 
