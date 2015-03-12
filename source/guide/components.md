@@ -169,7 +169,7 @@ new Vue({
 ``` html
 <div id="demo-3">
   <input v-model="parentMsg">
-  <child-component child-msg="parentMsg"></child-component>
+  <child-component child-msg="{{parentMsg}}"></child-component>
 </div>
 ```
 
