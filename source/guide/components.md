@@ -169,7 +169,7 @@ It is also possible to use the [`paramAttributes`](/api/options.html#paramAttrib
 ``` html
 <div id="demo-3">
   <input v-model="parentMsg">
-  <child-component child-msg="parentMsg"></p>
+  <child-component child-msg="parentMsg"></child-component>
 </div>
 ```
 
