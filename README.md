@@ -1,6 +1,6 @@
 # vuejs.org
 
-このサイトは [hexo](http://zespia.tw/hexo) で構築されています。サイトコンテンツは `source の位置に markdown フォーマットで書かれています。プルリクエスト、歓迎します！
+このサイトは [hexo](http://zespia.tw/hexo) で構築されています。サイトコンテンツは `source` の位置に markdown フォーマットで書かれています。プルリクエスト、歓迎します！
 
 ## Developing
 
