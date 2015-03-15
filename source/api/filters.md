@@ -1,4 +1,4 @@
-title: Filters
+title: フィルタ
 type: api
 order: 7
 ---
@@ -17,19 +17,19 @@ order: 7
 
 ### currency
 
-- this filter takes one optional argument
+- このフィルタは1つ任意な引数を必要とします
 
 *12345 => $12,345.00*
 
-You can pass an optional argument which will be used as the currency symbol (default is $).
+あなたは通貨記号(デフォルトは`$`)として使用される任意な引数を渡すことができます。
 
 ### pluralize
 
-- this filter takes at least one argument
+- このフィルタは少なくとも1つ引数を必要とします
 
-Pluralizes the argument based on the filtered value. When there is exactly one arg, plural forms simply add an "s" at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple ... forms of the word to be pluralized. When the number to be pluralized exceeds the length of the args, it will use the last entry in the array.
+フィルタされた値に基づいた引数を複数形にします。ちょうど1つの引数が指定されているとき、単純にその引数の終わりに "s" を追加します。よりもっと多くの引数が指定されているとき、それらの引数は、1、2、3、というような、複数形化される言葉の形式に対応する文字列の配列として利用されます。複数形化される数が引数の長さを上回るとき、それは配列の最後のエントリを利用します。
 
-**Example:**
+**例:**
 
 ``` html
 {{count}} {{count | pluralize item}}
@@ -42,7 +42,7 @@ Pluralizes the argument based on the filtered value. When there is exactly one a
 {{date}}{{date | pluralize st nd rd th}}
 ```
 
-Will result in:
+以下は結果になります:
 
 *1 => '1st'*  
 *2 => '2nd'*
@@ -52,9 +52,9 @@ Will result in:
 
 ### json
 
-- this filter takes one optional argument
+- このフィルタは1つ任意な引数を必要とします
 
-JSON.stringify() incoming value rather than outputting the string representation (i.e. `[object Object]`). It also takes one optional argument which is the indent level (defaults to 2):
+文字列表現を出力するというよりむしろ入ってくる値を JSON.stringify() を実行するフィルタです。(いわゆる、`[object Object]`)。このフィルタは、インデントレベルを1つ任意な引数として必要とします(デフォルトは 2):
 
 ``` html
 <pre>{{$data | json 4}}</pre>
@@ -62,10 +62,10 @@ JSON.stringify() incoming value rather than outputting the string representation
 
 ### key
 
-- this filter only works in `v-on`
-- this filter takes exactly one argument
+- このフィルタは `v-on` でのみ動作します
+- このフィルタはちょうど1つ引数を必要とします
 
-Wrap the handler so it only gets called when the keyCode matches the argument. You can also use string aliases for a few commonly-used keys:
+キーコード(keyCode) が引数と一致するときだけ呼び出されるために、`v-on` に指定されたハンドラ(handler) を Wrap します。あなたは少数のよく使われるキーの代わりに、以下のような文字列エイリアスも利用できます。
 
 - enter
 - tab
@@ -76,22 +76,22 @@ Wrap the handler so it only gets called when the keyCode matches the argument. Y
 - left
 - right
 
-**Example:**
+**例:**
 
 ``` html
 <input v-on="keyup:doSomething | key enter">
 ```
 
-`doSomething` will only be called when the Enter key is pressed.
+`dosomething` は Enter キーが押されたときにのみ呼び出されます。
 
 ### filterBy
 
-**Syntax:** `filterBy searchKey [in dataKey]`.
+**構文:** `filterBy searchKey [in dataKey]`.
 
-- this filter only works in `v-repeat`
-- this is a computed filter
+- このフィルタは `v-repeat` でのみ動作します
+- これは computed なフィルタです
 
-Make `v-repeat` only display a filtered version of the source Array. The `searchKey` argument is a property key on the context ViewModel. The value of that property will be used as the string to search for:
+`v-repeat` でのみ、元の配列のフィルタされたバージョンを表示させます。`searchkey` 引数は ViewModel コンテキスト上のプロパティキーです。プロパティの値は文字列として検索するために利用されます:
 
 ``` html
 <input v-model="searchText">
@@ -100,9 +100,9 @@ Make `v-repeat` only display a filtered version of the source Array. The `search
 </ul>
 ```
 
-When the filter is applied, it will filter the `users` Array by recursively searching for the current value of `searchText` on each item in the Array. For example, if an item is `{ name: 'Jack', phone: '555-123-4567' }` and `searchText` has value `'555'`, the item will be considered a match.
+上記では、フィルタが適用されたとき、`users` 配列は配列の各アイテムに対して `searchText` の現在値に適した再帰的検索によってフィルタされます。例えば、もしアイテムが `{ name: 'Jack', phone: '555-123-4567' }` そして `searchText` の値が `'555'` の場合、そのアイテムは一致するとみなされます。
 
-Optionally, you can narrow down which specific property to search in with the optional `in dataKey` argument:
+その他に、あなたは、任意な `in dataKey` 引数では特定のプロパティを検索して絞ることができます:
 
 ``` html
 <input v-model="searchText">
@@ -111,9 +111,9 @@ Optionally, you can narrow down which specific property to search in with the op
 </ul>
 ```
 
-Now the item will only match if the value of `searchText` is found in its `name` property. So `searchText` with value `'555'` will no longer match this item, but `'Jack'` will.
+上記では、今まさに `searchText` の値が `name` プロパティで見つかった場合は、そのアイテムのみが一致します。なので、値 `'555'` な `searchText`は、もはやこのアイテムと一致しませんが、値 `'Jack'` なら一致します。
 
-Finally, you can use quotes to indicate literal arguments:
+最後に、あなたはリテラル引数を指定するためシングルクオートを利用できます:
 
 ``` html
 <ul>
@@ -123,12 +123,12 @@ Finally, you can use quotes to indicate literal arguments:
 
 ### orderBy
 
-**Syntax:** `orderBy sortKey [reverseKey]`.
+**構文:** `orderBy sortKey [reverseKey]`.
 
-- this filter only works in `v-repeat`
-- this is a computed filter
+- このフィルタは `v-repeat` でのみ動作します
+- これは computed なフィルタです
 
-Sort `v-repeat`'s displayed result. The `sortKey` argument is a property key on the context ViewModel. The value of that property will be used as the key to sort the Array items with. The optional `reverseKey` argument is also a property key on the context ViewModel, but the value's truthiness will determine whether the result should be reversed.
+`v-repeat` で表示された結果をソートします。`sortKey` 引数は ViewModel コンテキスト上のプロパティキーです。そのプロパティの値は配列のアイテムをソートするためのキーとして利用されます。任意な `reverseKey` 引数もまた、ViewModel コンテキスト上のプロパティキーです。しかし、真と評価されるような値は、結果が反転されるべきかどうかを決定します。
 
 ``` html
 <ul>
@@ -146,7 +146,7 @@ new Vue({
 })
 ```
 
-You can also use quotes for literal sort key. To indicate a literal reverse, use `-1`:
+あなたはリテラルな `sortKey` 引数としてシングルクオートも利用できます。ソート順の逆を意味するリテラルとして、`-1` を指定して利用できます:
 
 ``` html
 <ul>
