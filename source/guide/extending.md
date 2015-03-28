@@ -9,7 +9,7 @@ Mixins are a flexible way to distribute reusable functionalities for Vue compone
 
 ``` js
 // mixin.js
-exports.mixin = {
+module.exports = {
   created: function () {
     this.hello()
   },
