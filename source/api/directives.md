@@ -11,7 +11,7 @@ order: 6
 
 Updates the element's `textContent`.
 
-Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled as a `v-text` direcitve on a textNode.
+Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled as a `v-text` directive on a textNode.
 
 ### v-html
 
