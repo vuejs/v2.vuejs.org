@@ -1,62 +1,62 @@
-title: Custom Directives
+title: カスタムディレクティブ
 type: guide
 order: 9
 ---
 
-## The Basics
+## 基本
 
-Vue.js allows you to register custom directives, essentially enabling you to teach Vue new tricks on how to map data changes to DOM behavior. You can register a global custom directive with the `Vue.directive(id, definition)` method, passing in a **directive id** followed by a **definition object**. A definition object can provide several hook functions (all optional):
+Vue.js ではカスタムディレクティブを登録する仕組みが用意されています。カスタムディレクティブはデータの変更に伴い DOM がどのように変更されるかを定義することができる仕組みです。**directive id** とそれに続く **definition object** を`Vue.directive(id, definition)`メソッドに渡して、グローバルにカスタムディレクティブを登録することができます。この definition object はいくつかの hook 関数(全て任意)を提供します:
 
-- **bind**: called only once, when the directive is first bound to the element.
-- **update**: called for the first time immediately after `bind` with the initial value, then again whenever the binding value changes. The new value and the previous value are provided as the argument.
-- **unbind**: called only once, when the directive is unbound from the element.
+- **bind**: ディレクティブが初めて対象のエレメントに紐付いた時に一度だけ呼ばれる
+- **update**: 初めの一度は bind の直後に初期値とともに呼ばれ、以降、バインディングされている値が変更される度に呼ばれる。引数には新しい値と以前の値が渡される
+- **unbind**: ディレクティブが紐付いているエレメントから取り除かれた時に一度だけ呼ばれる
 
-**Example**
+**例**
 
 ``` js
 Vue.directive('my-directive', {
   bind: function () {
-    // do preparation work
-    // e.g. add event listeners or expensive stuff
-    // that needs to be run only once
+    // 準備のための作業をします
+    // e.g. イベントリスナーを追加したり、一回だけ実行が必要なコストのかかる処理を行う
   },
   update: function (newValue, oldValue) {
-    // do something based on the updated value
-    // this will also be called for the initial value
+    // 更新された値に何か処理をします
+    // この部分は初期値に対しても呼ばれます
   },
   unbind: function () {
-    // do clean up work
-    // e.g. remove event listeners added in bind()
+    // クリーンアップのための処理を行います
+    // e.g. bind()の中で追加されたイベントリスナーの削除
   }
 })
 ```
 
-Once registered, you can use it in Vue.js templates like this (you need to add the Vue.js prefix to it):
+一度登録された後は、以下のように Vue.js のテンプレート内で使用することができます (Vue.js の prefix が必要です):
 
 ``` html
 <div v-my-directive="someValue"></div>
 ```
 
-When you only need the `update` function, you can pass in a single function instead of the definition object:
+`update`関数のみが必要な場合は、definition object の代わりに関数を一つ渡すこともできます:
+
 
 ``` js
 Vue.directive('my-directive', function (value) {
-  // this function will be used as update()
+  // この関数は update() として使用される
 })
 ```
 
-All the hook functions will be copied into the actual **directive object**, which you can access inside these functions as their `this` context. The directive object exposes some useful properties:
+全ての hook 関数は実際の **directive object** にコピーされます。directive object は hook 関数の内側で `this` のコンテキストとしてアクセスすることができます。この directive object はいくつかの便利なプロパティを持っています:
 
-- **el**: the element the directive is bound to.
-- **vm**: the context ViewModel that owns this directive.
-- **expression**: the expression of the binding, excluding arguments and filters.
-- **arg**: the argument, if present.
-- **raw**: the raw, unparsed expression.
-- **name**: the name of the directive, without the prefix.
+- **el**: ディレクティブが紐づく要素
+- **vm**: このディレクティブを所有する ViewModel
+- **expression**: 引数とフィルタ以外のバインディングの expression
+- **arg**: 引数(もしある場合)
+- **raw**: 元のパースされる前の expression
+- **name**: prefix 無しのディレクティブの名前
 
-<p class="tip">You should treat all these properties as read-only and refrain from changing them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.</p>
+<p class="tip">これらの全てのプロパティは read-only で変更しないものとして扱わなくてはいけません。カスタムプロパティを directive object に追加することができますが、意図せずに既存のインターナルなプロパティを上書きしないように注意が必要です。</p>
 
-An example of a custom directive using some of these properties:
+いくつかのプロパティを使用したカスタムディレクティブの例:
 
 ``` html
 <div id="demo" v-demo="LightSlateGray : msg"></div>
@@ -85,7 +85,7 @@ var demo = new Vue({
 })
 ```
 
-**Result**
+**結果**
 
 <div id="demo" v-demo="LightSlateGray : msg"></div>
 <script>
@@ -111,9 +111,9 @@ var demo = new Vue({
 })
 </script>
 
-## Literal Directives
+## リテラルディレクティブ
 
-If you pass in `isLiteral: true` when creating a custom directive, the attribute value will be taken as a literal string and assigned as that directive's `expression`. The directive will not attempt to setup data observation.
+もしカスタムディレクティブを作成するときに `isLiteral: true` を渡した場合は、その属性値は文字列 string として扱われ、そのディレクティブの `expression` として割り当てられます。リテラルディレクティブはデータの監視の準備はしません。
 
 Example:
 
@@ -130,29 +130,32 @@ Vue.directive('literal-dir', {
 })
 ```
 
-### Dynamic Literal
+### 動的リテラル
 
-However, in the case that the literal directive contains mustache tags, the behavior is as follows:
+しかし、リテラルディレクティブに mustache タグを含んでいる場合は、以下のような挙動になります: 
 
-- The directive instance will have a flag `this._isDynamicLiteral` set to `true`;
 
-- If no `update` function is provided, the mustache expression will be evaluated only once and assigned to `this.expression`. No data observation happens.
+- ディレクティブインスタンスは `this._isDynamicLiteral` というフラグを `true` にセットします。
 
-- If an `update` function is provided, the directive **will** setup data observation for that expression and call `update` when the evaluated result changes.
+- もし `update` function が提供されていない場合、 mustache 表現は一度だけ評価され、 `this.expression` に割り当てられます。データ監視は行われません。
 
-## Two-way Directives
+- もし `update` function が提供される場合、ディレクティブはその expression に対するデータ監視をセットアップし、評価された結果が変更される度に `update` が呼ばれます。
 
-If your directive expects to write data back to the Vue instance, you need to pass in `twoWay: true`. This option allows the use of `this.set(value)` inside the directive:
+## 双方向ディレクティブ
+
+
+もしディレクティブが受け取ったデータを Vue インスタンスに書き戻したい場合は `twoWay: true` を渡す必要があります。このオプションはディレクティブの `this.set(value)` で使用することができます。
+
 
 ``` js
 Vue.directive('example', {
   twoWay: true,
   bind: function () {
     this.handler = function () {
-      // set data back to the vm.
-      // If the directive is bound as v-example="a.b.c",
-      // this will attempt to set `vm.a.b.c` with the
-      // given value.
+      // vm にデータをセットします
+      // もしディレクティブが v-example="a.b.c" と紐付いている場合,
+      // 与えられた値を `vm.a.b.c` に
+      // セットしようと試みます
       this.set(this.el.value)
     }.bind(this)
     this.el.addEventListener('input', this.handler)
@@ -163,9 +166,9 @@ Vue.directive('example', {
 })
 ```
 
-## Inline Statements
+## インラインステートメント
 
-Passing in `acceptStatement:true` enables your custom directive to accept inline statements like `v-on` does:
+ `acceptStatement:true` を渡すことでカスタムディレクティブが `v-on` が行っているようなインラインステートメントを使用できるようになります: 
 
 ``` html
 <div v-my-directive="a++"></div>
@@ -175,18 +178,18 @@ Passing in `acceptStatement:true` enables your custom directive to accept inline
 Vue.directive('my-directive', {
   acceptStatement: true,
   update: function (fn) {
-    // the passed in value is a function which when called,
-    // will execute the "a++" statement in the owner vm's
-    // scope.
+    // 呼び出される際に渡される値は function です
+    // function は "a++" ステートメントを
+    // 所有者の vm　のスコープで実行します
   }
 })
 ```
 
-Use this wisely though, because in general you want to avoid side-effects in your templates.
+ただし、テンプレート内のサイドエフェクトを避けるためにも、賢く使いましょう。
 
-## Deep Observation
+## ディープ監視
 
-If your custom directive is expected to be used on an Object, and it needs to trigger `update` when a nested property inside the object changes, you need to pass in `deep: true` in your directive definition.
+もしカスタムディレクティブでオブジェクトを扱いたい場合で、オブジェクトの内側のネストされたプロパティが変更された時に `update` をトリガーしたい場合は、ディレクティブの定義に `deep: true` を渡す必要があります。
 
 ``` html
 <div v-my-directive="obj"></div>
@@ -196,16 +199,16 @@ If your custom directive is expected to be used on an Object, and it needs to tr
 Vue.directive('my-directive', {
   deep: true,
   update: function (obj) {
-    // will be called when nested properties in `obj`
-    // changes.
+    // `obj` の中のネストされたプロパティが
+    // 変更された時に呼ばれる
   }
 })
 ```
 
-## Directive Priority
+## ディレクティブの優先度
 
-You can optionally provide a priority number for your directive (defaults to 0). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
+ディレクティブには任意で優先度の数値 (デフォルトは0) を与えることができます。同じ要素上で高い優先度をもつディレクティブは他のディレクティブより早く処理されます。同じ優先度をもつディレクティブは要素上の属性のリストに出現する順番で処理されますが、ブラウザが異なる場合、一貫した順番になることは保証されません。
 
-You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, `v-repeat`, `v-if` and `v-component` are considered "terminal directives" and they always have the highest priority in the compilation process.
+いくつかのビルトインディレクティブに関する優先度は [API reference](/api/directives.html) で確認できます。さらに `v-repeat` と `v-if` と `v-component` は "ターミナルディレクティブ" として扱われ、コンパイル処理の中で常に最も高い優先度を持ちます。
 
-Next, we'll see how to [write a custom filter](/guide/custom-filter.html).
+次は [カスタムフィルタ](/guide/custom-filter.html) をどのように書くか見ていきましょう。
