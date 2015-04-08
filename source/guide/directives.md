@@ -3,9 +3,9 @@ type: guide
 order: 3
 ---
 
-## Synopsis
+## 概要
 
-If you have not used AngularJS before, you probably don't know what a directive is. Essentially, a directive is some special token in the markup that tells the library to do something to a DOM element. In Vue.js, the concept of directive is drastically simpler than that in Angular. A Vue.js directive can only appear in the form of a prefixed HTML attribute that takes the following format:
+もし AngularJS を以前使ったことがないのであれば、あなたはおそらくディレクティブ( Directive )とは何であるか知らないでしょう。ディレクティブとは、 DOM 要素に対して何かを実行することをライブラリに伝達する、マークアップ中の特別なトークンです。Angular のものと比べ、 Vue.js でのディレクティブのコンセプトは徹底的にシンプルです。Vue.jsのディレクティブは、下記のフォーマットのように、接頭辞のついた HTML 属性の形でのみ表されます。
 
 ``` html
 <element
@@ -13,41 +13,41 @@ If you have not used AngularJS before, you probably don't know what a directive 
 </element>
 ```
 
-## A Simple Example
+## シンプルな例
 
 ``` html
 <div v-text="message"></div>
 ```
 
-Here the prefix is `v` which is the default. The directive ID is `text` and the expression is `message`. This directive instructs Vue.js to update the div's `textContent` whenever the `message` property on the Vue instance changes.
+このように、接頭辞はデフォルトで `v` です。このディレクティブ ID は `text` で、expression は `message` です。Vue インスタンス上の `message` プロパティが変更される時は常に、このディレクティブは Vue.js にdivの `textContent` を更新させます。
 
-## Inline Expressions
+## インライン表現
 
 ``` html
 <div v-text="'hello ' + user.firstName + ' ' + user.lastName"></div>
 ```
 
-Here we are using a computed expression instead of a single property key. Vue.js automatically tracks the properties an expression depends on and refreshes the directive whenever a dependency changes. Thanks to async batch updates, even when multiple dependencies change, an expression will only be updated once every event loop.
+このように、私達は単一のプロパティキーの代わりに、 computed expression を使用します。Vue.jsは expression が依存しているプロパティを自動的に監視し、変更があったときは常にディレクティブを更新します。非同期バッチ更新のおかげで、もし複数の依存関係に変更があったとしても、 expression はイベントループ毎に一度だけ更新されます。
 
-You should use expressions wisely and avoid putting too much logic in your templates, especially statements with side effects (with the exception of event listener expressions). To discourage the overuse of logic inside templates, Vue.js inline expressions are limited to **one statement only**. For bindings that require more complicated operations, use [Computed Properties](/guide/computed.html) instead.
+特に副作用（イベントリスナ expression を除く）のある statement の場合には、テンプレート内でロジックが過多になるのを避けるため、 expression を賢く利用してください。テンプレート内でロジックの使いすぎを防止するため、 Vue.js でのインライン expression は **１ statement のみ** に制限されています。更に複雑な操作を要するバインディングには、代わりに　[Computed Properties](/guide/computed.html) を利用してください。
 
-<p class="tip">For security reasons, in inline expressions you can only access properties and methods present on the current context Vue instance and its parents.</p>
+<p class="tip">セキュリティ上の事由のため、インライン expression では、現在のコンテキストの Vue インスタンスおよび、親のプロパティとメソッドにのみアクセスできます。</p>
 
-## Argument
+## 引数
 
 ``` html
 <div v-on="click : clickHandler"></div>
 ```
 
-Some directives require an argument before the keypath or expression. In this example the `click` argument indicates we want the `v-on` directive to listen for a click event and then call the `clickHandler` method of the ViewModel instance.
+いくつかのディレクティブでは、キーパスまたは expression の前に引数が必要です。この例での `click` 引数は、`v-on` ディレクティブによって click イベントを監視し、そして ViewModel インスタンスの `clickHandler` メソッドを呼び出すことを表します。
 
-## Filters
+## フィルタ
 
-Filters can be appended to directive keypaths or expressions to further process the value before updating the DOM. Filters are denoted by a single pipe (`|`) as in shell scripts. For more details see [Filters in Depth](/guide/filters.html).
+DOM の更新前に値をさらに加工するために、フィルタをディレクティブ・キーパスもしくは expression に追加することができます。フィルタは、シェルスクリプトに見られるような単一のパイプ(`|`)で表されます。詳しくは [Filters in Depth](/guide/filters.html) を参照してください。
 
-## Multiple Clauses
+## 複数のクラス
 
-You can create multiple bindings of the same directive in a single attribute, separated by commas. Under the hood they are bound as multiple directive instances.
+カンマで区切ることで、一つの属性内の同じディレクティブ内に、複数のバインディングを定義することができます。これらは、内部では複数のディレクティブ・インスタンスにバインドされます。
 
 ``` html
 <div v-on="
@@ -58,38 +58,38 @@ You can create multiple bindings of the same directive in a single attribute, se
 </div>
 ```
 
-## Literal Directives
+## リテラルディレクティブ
 
-Some directives don't create data bindings - they simply take the attribute value as a literal string. For example the `v-component` directive:
+いくつかのディレクティブはデータバインディングを生成せず、単に文字列リテラルを属性値として取ります。例えば、`v-component` ディレクティブでは下記のようになります。
 
 ``` html
 <div v-component="my-component"></div>
 ```
 
-Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor.
+このように、 `"my-component"` はデータプロパティではなく、対応するコンポーネントコンストラクタの検索に利用される文字列IDです。
 
-You can also use mustache expressions inside literal directives. For example, the following code allows you to dynamically resolve the type of component you want to use:
+また、リテラルディレクティブの内部では mustache expression を利用できます。例えば、以下のコードで、利用したいコンポーネントのタイプを動的に解決できます。
 
 ``` html
-<div v-component="{{ isOwner ? 'owner-panel' : 'guest-panel' }}"></div>
+<div v-component="{&#123; isOwner ? 'owner-panel' : 'guest-panel' &#125;}"></div>
 ```
 
-When the expression inside the mustaches change, the rendered component will also change accordingly!
+mustache 内部の expression が変更されるのに応じて、レンダリングされたコンポーネントもまた変更されます！
 
-However, note that `v-component` and `v-partial` are the only literal directives that have this kind of reactive behavior. Mustache expressions in other literal directives, e.g. `v-ref`, are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
+しかしながら、この種の反応的な振る舞いを持っているリテラルディレクティブは、`v-component` と `v-partial` だけであることに留意してください。他のリテラルディレクティブ（例：`v-ref`）内の Mustache expression は、 **一度だけ** 評価されます。ディレクティブのコンパイル実行後、値の変化に反応することはありません。
 
-A full list of literal directives can be found in the [API reference](/api/directives.html#Literal_Directives).
+リテラルディレクティブの全リストは [API reference](/api/directives.html#Literal_Directives) 内にあります。
 
-## Empty Directives
+## 空のディレクティブ
 
-Some directives don't even expect an attribute value - they simply do something to the element once and only once. For example the `v-pre` directive:
+いくつかのディレクティブは、属性値すら期待せず、単純にその要素に何かを一度きり行います。例えば `v-pre` ディレクティブでは下記のようになります。
 
 ``` html
 <div v-pre>
-  <!-- markup in here will not be compiled -->
+  <!-- この内部のマークアップはコンパイルされません -->
 </div>
 ```
 
-A full list of empty directives can be found in the [API reference](/api/directives.html#Empty_Directives).
+空のディレクティブの全リストは[API reference](/api/directives.html#Empty_Directives) 内にあります。
 
-Next, let's talk about [Filters](/guide/filters.html).
+では次に、[Filters](/guide/filters.html)について説明しましょう。
