@@ -114,4 +114,4 @@ describe('my-component', function () {
 
 ## 一个示例
 
-[Vue.js Hackernews Clone](https://github.com/yyx990803/vue-hackernews) 是一个应用的例子，它把 Browserify + Vueify 用来代码组织、Director.js 用来做路由、HackerNews 官方的 Firebase API 为后端。这不算什么特别大的应用，但它结合并展示了本页面讨论到的各方面概念。
+[Vue.js Hackernews Clone](https://github.com/yyx990803/vue-hackernews) 是一个应用的例子，它把 Webpack + vue-loader 用来代码组织、Director.js 用来做路由、HackerNews 官方的 Firebase API 为后端。这不算什么特别大的应用，但它结合并展示了本页面讨论到的各方面概念。
