@@ -2,7 +2,7 @@ title: Installation
 type: guide
 order: 1
 vue_version: 0.11.5
-dev_size: 181.31
+dev_size: 181.23
 min_size: 56.08
 gz_size: 18.39
 ---
