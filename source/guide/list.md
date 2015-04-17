@@ -129,7 +129,7 @@ demo.items.pop()
 
 Vue.js augments observed Arrays with two convenience methods: `$set()` and `$remove()`.
 
-You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the agumented `$set()` method:
+You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the augmented `$set()` method:
 
 ``` js
 // same as `demo.items[0] = ...` but triggers view update
