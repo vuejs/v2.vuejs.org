@@ -233,6 +233,8 @@ Vue.transition('fade', {
 })
 ```
 
+All of the above hook functions are called with their `this` contexts set to the associated Vue instances. If the element is the root node of a Vue instance, that instance will be used as the context. Otherwise, the context will be the owner instance of the transition directive.
+
 Then you can use it by providing the transition id to `v-transition`. Note this has higher priority than CSS transitions.
 
 ``` html

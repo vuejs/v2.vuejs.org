@@ -486,7 +486,7 @@ MyComponent
 
 When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component (similar to the Angular concept of "transclusion".) Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content.
 
-<p class="tip">Note: "transcluded" contents are compiled in the parent component's scope.</p>
+<p class="tip">**Important**: transcluded contents are compiled in the parent component's scope, not in the child's scope.</p>
 
 ### Single Insertion Point
 
@@ -522,6 +522,8 @@ The rendered result will be:
 
 `<content>` elements have a special attribute, `select`, which expects a CSS selector. You can have multiple `<content>` insertion points with different `select` attributes, and each of them will be replaced by the elements matching that selector from the original content.
 
+<p class="tip">Starting in 0.11.6, `<content>` selectors can only match top-level children of the host node. This keeps the behavior consistent with the Shadow DOM spec and avoids accidentally selecting unwanted nodes in nested transclusions.</p>
+
 Template for `multi-insertion-component`:
 
 ``` html
@@ -551,5 +553,16 @@ The rendered result will be:
 ```
 
 The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
+
+## Inline Template
+
+In 0.11.6, a new directive param for `v-component` is introduced: `inline-template`. When this param is present, the component will use its inner content as its template rather than transclusion content. This allows more flexible template-authoring.
+
+``` html
+<div v-component="example" inline-template>
+  <p>These are compiled as the component's own template</p>
+  <p>Not parent's transclusion content.</p>
+</div>
+```
 
 Next: [Applying Transition Effects](/guide/transitions.html).

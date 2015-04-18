@@ -117,7 +117,7 @@ Attaches an event listener to the element. The event type is denoted by the argu
 ### v-model
 
 - This directive can only be used on `<input>`, `<select>` or `<textarea>` elements.
-- Directive params: `lazy`, `number`, `options`
+- Directive params: [`lazy`](/guide/forms.html#Lazy_Updates), [`number`](/guide/forms.html#Casting_Value_as_Number), [`options`](/guide/forms.html#Dynamic_Select_Options), [`debounce`](/guide/forms.html#Input_Debounce)
 
 Create a two-way binding on a form input element. Data is synced on every `input` event by default. For detailed examples see [Handling Forms](/guide/forms.html).
 
@@ -236,7 +236,7 @@ When the child component calls `this.$emit('change', ...)`, the parent's `onChil
 
 ### v-component
 
-- Directive params: `keep-alive`, `wait-for`, `transition-mode`
+- Directive params: [`keep-alive`](/guide/components.html#Dynamic_Components), [`wait-for`](/guide/components.html#wait-for), [`transition-mode`](/guide/components.html#transition-mode), [`inline-template`](/guide/components.html#Inline_Template)
 
 Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
 

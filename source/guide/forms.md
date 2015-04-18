@@ -146,4 +146,22 @@ Will render:
 </select>
 ```
 
+## Input Debounce
+
+The `debounce` param allows you to set a minimum delay after each keystroke before an update is executed. This can be useful when you are performing expensive operations on each update, for example making an Ajax request for type-ahead autocompletion.
+
+``` html
+<input v-model="msg" debounce="500">
+```
+
+**Result**
+
+<div id="debounce-demo" class="demo">{&#123;msg&#125;}<br><input v-model="msg" debounce="500"></div>
+<script>
+new Vue({
+  el:'#debounce-demo',
+  data: { msg: 'edit me' }
+})
+</script>
+
 Next: [Computed Properties](/guide/computed.html).
