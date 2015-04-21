@@ -44,6 +44,19 @@ var demo = new Vue({
 })
 </script>
 
+## Block Repeat
+
+Sometimes you might want to repeat a block of more than one nodes - in that case, you can use a `<template>` tag to wrap the repeat block. The `<template>` tag here merely serves as a semantic wrapper. For example:
+
+``` html
+<ul>
+  <template v-repeat="list">
+    <li>{{msg}}</li>
+    <li class="divider"></li>
+  </template>
+</ul>
+```
+
 ## Arrays of Primitive Values
 
 For Arrays containing primitive values, you can access the value simply as `$value`:
