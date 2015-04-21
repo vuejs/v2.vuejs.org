@@ -1,5 +1,5 @@
 /**
- * Vue.js v0.11.6
+ * Vue.js v0.11.7
  * (c) 2015 Evan You
  * Released under the MIT License.
  */
@@ -6321,17 +6321,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	          vm.$before(ref)
 	        }
 	      } else {
+	        // make sure to insert before the comment node if
+	        // the vms are block instances
+	        var nextEl = targetNext._blockStart || targetNext.$el
 	        if (vm._reused) {
 	          // this is the vm we are actually in front of
 	          currentNext = findNextVm(vm, ref)
 	          // we only need to move if we are not in the right
 	          // place already.
 	          if (currentNext !== targetNext) {
-	            vm.$before(targetNext.$el, null, false)
+	            vm.$before(nextEl, null, false)
 	          }
 	        } else {
 	          // new instance, insert to existing next
-	          vm.$before(targetNext.$el)
+	          vm.$before(nextEl)
 	        }
 	      }
 	      vm._new = false
