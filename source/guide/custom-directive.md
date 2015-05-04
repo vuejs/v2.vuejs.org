@@ -115,7 +115,7 @@ var demo = new Vue({
 
 もしカスタムディレクティブを作成するときに `isLiteral: true` を渡した場合は、その属性値は文字列 string として扱われ、そのディレクティブの `expression` として割り当てられます。リテラルディレクティブはデータの監視の準備はしません。
 
-Example:
+例:
 
 ``` html
 <div v-literal-dir="foo"></div>
