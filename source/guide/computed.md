@@ -3,9 +3,9 @@ type: guide
 order: 8
 ---
 
-Vue.js' inline expressions are very convenient, but the best use cases for them are simple boolean operations or string concatenations. For more complicated logic, you should use **computed properties**.
+Vue.js のインラインの expression は非常に便利ですが、最良のユースケースはシンプルな boolean 演算や文字列の連結を使用したものです。より複雑なロジックに関しては、 **computed properties** を活用しましょう。
 
-In Vue.js, you define computed properties with the `computed` option:
+Vue.js では `computed` オプションを使って computed properties を定義します。
 
 ``` js
 var demo = new Vue({
@@ -15,11 +15,11 @@ var demo = new Vue({
   },
   computed: {
     fullName: {
-      // the getter should return the desired value
+      // getter で望む値を返します
       get: function () {
         return this.firstName + ' ' + this.lastName
       },
-      // the setter is optional
+      // setter は任意です
       set: function (newValue) {
         var names = newValue.split(' ')
         this.firstName = names[0]
@@ -32,7 +32,7 @@ var demo = new Vue({
 demo.fullName // 'Foo Bar'
 ```
 
-When you only need the getter, you can provide a single function instead of an object:
+getter のみしか必要がない場合は、オブジェクトの代わりに関数を一つ渡すこともできます:
 
 ``` js
 // ...
@@ -44,8 +44,8 @@ computed: {
 // ...
 ```
 
-A computed property is essentially a property defined with getter/setter functions. You can use a computed property just like a normal property, but when you access it, you get the value returned by the getter function; when you change its value, you trigger the setter function passing in the new value as its argument.
+要するに computed property は getter/setter 関数を定義したプロパティです。あたかも通常のプロパティとして使用することができますが、実際にアクセスした時は getter 関数によって値が返されます。また、値を変更した時は、その新しい値を引数として setter 関数をトリガーします。
 
-<p class="tip">Before Vue.js 0.11 there used to be a dependency collection gotcha which requires users to explicitly list dependencies when conditional statements are involved. Starting with 0.11 it is no longer necessary to do so.</p>
+<p class="tip">Vue.js 0.11 以前では、条件付きのステートメントが呼び出される際に、ユーザーが明示的に依存性を列挙する必要性がありました。0.11 以降ではその必要はありません。</p>
 
-Next, let's learn about how to [write a custom directive](/guide/custom-directive.html).
+次は、[write a custom directive](/guide/custom-directive.html)について学びましょう。
