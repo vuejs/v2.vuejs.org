@@ -217,7 +217,7 @@ Example inheriting individual properties (using the same data):
 ### v-events
 
 - This directive can only be used with `v-component`.
-- This directive accepts only keypaths, no expressions.
+- This directive accepts either a method name, or a single expression statement.
 
 Allows a parent instance to listen to events on a child instance. The difference from `v-on` is that `v-events` listens to Vue's component system events created via `vm.$emit()` rather than DOM events. This directive allows more decoupled parent-child communication without having to hard-code event listeners into the parent component. Note that it can only be used together with `v-component`, i.e. on the root element of a child component.
 
@@ -237,20 +237,13 @@ When the child component calls `this.$emit('change', ...)`, the parent's `onChil
 ### v-component
 
 - Directive params: [`keep-alive`](/guide/components.html#Dynamic_Components), [`wait-for`](/guide/components.html#wait-for), [`transition-mode`](/guide/components.html#transition-mode), [`inline-template`](/guide/components.html#Inline_Template)
+- Can be made reactive with mustaches
 
 Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
 
-### v-ref
-
-Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
-
-When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
-
-### v-el
-
-Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
-
 ### v-partial
+
+- Can be made reactive with mustaches
 
 Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option.
 
@@ -269,9 +262,21 @@ You can also use this syntax (which doesn't support reactivity):
 
 ### v-transition
 
+- Can be made reactive with mustaches
+
 Notify Vue.js to apply transitions to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the Vue instance's DOM manipulation methods are called.
 
 For details, see [the guide on transitions](/guide/transitions.html).
+
+### v-ref
+
+Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
+
+When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
+
+### v-el
+
+Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
 
 ## Empty Directives
 

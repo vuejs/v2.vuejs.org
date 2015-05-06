@@ -247,7 +247,7 @@ new Vue({
 })
 </script>
 
-<p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with two methods: `$add(key, value)` and `$delete(key)`. These methods can be used to add / delete properties from observed objects while triggering the desired View updates.</p>
+<p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with three methods: `$add(key, value)`, `$set(key, value)` and `$delete(key)`. These methods can be used to add / delete properties from observed objects while triggering the desired View updates. The difference between `$add` and `$set` is that `$add` will return early if the key already exists on the object, so just calling `obj.$add(key)` won't overwrite the existing value with `undefined`.</p>
 
 ## Iterating Over a Range
 
