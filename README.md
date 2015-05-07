@@ -1,13 +1,23 @@
 # vuejs.org
 
-This site is built with [hexo](http://zespia.tw/hexo/). Site content is written in Markdown format located in `source`. Pull requests welcome!
+このサイトは [hexo](http://zespia.tw/hexo) で構築されています。サイトコンテンツは `source` の位置に markdown フォーマットで書かれています。プルリクエスト、歓迎します！
 
-## Developing
+## 開発
 
-Make sure you are using **hexo 3.0**. Start a dev server at `localhost:4000`:
+**hexo 3.0** を使っているか確認してください。`localhost:4000` で開発サーバーを開始します。
 
 ```
 $ npm install -g hexo-cli
 $ npm install
 $ hexo server
 ```
+
+## 貢献者
+(アルファベット順)
+
+- [@hashrock](https://github.com/hashrock)
+- [@kazupon](https://github.com/kazupon)
+- [@kojimakazuto](https://github.com/kojimakazuto)
+- [@positiveflat](https://github.com/positiveflat)
+- [@tejitak](https://github.com/tejitak)
+- [@yasunobuigarashi](https://github.com/yasunobuigarashi)
