@@ -3,37 +3,37 @@ type: guide
 order: 4
 ---
 
-## Synopsis
+## 要約
 
-A Vue.js filter is essentially a function that takes a value, processes it, and then returns the processed value. In the markup it is denoted by a single pipe (`|`) and can be followed by one or more arguments:
+Vue.jsのフィルタは、本質的には「値を取り、加工し、加工した値を返す」関数です。マークアップ内ではパイプ(`|`)で表され 、一つ以上の引数を続けることができます。
 
 ``` html
 <element directive="expression | filterId [args...]"></element>
 ```
 
-## Examples
+## 例
 
-Filters must be placed at the end of a directive's value:
+フィルタは、 ディレクティブの値の最後に位置しなければなりません。
 
 ``` html
 <span v-text="message | capitalize"></span>
 ```
 
-You can also use them inside mustache-style bindings:
+mustache スタイルのバインディング内でも利用することができます。
 
 ``` html
 <span>{{message | uppercase}}</span>
 ```
 
-Multiple filters can be chained together:
+複数のフィルタはお互いに連結できます。
 
 ``` html
 <span>{{message | lowercase | reverse}}</span>
 ```
 
-## Arguments
+## 引数
 
-Some filters can take optional arguments. Simply add arguments separated by spaces:
+いくつかのフィルタはオプションの引数を取ることができます。単純に、スペース区切りの引数を追加してください。
 
 ``` html
 <span>{{order | pluralize st nd rd th}}</span>
@@ -43,6 +43,6 @@ Some filters can take optional arguments. Simply add arguments separated by spac
 <input v-on="keyup: submitForm | key enter">
 ```
 
-For their specific use of the above examples see the [full list of built-in filters](/api/filters.html).
+上記の例の明確な利用方法は、[full list of built-in filters](/api/filters.html) を参照してください。
 
-Now that you know what directives and filters are, let's get our hands dirty and try to [display a list of items](/guide/list.html).
+これで、ディレクティブとフィルタについて知ることができました。では、実際に[display a list of items](/guide/list.html)をやってみましょう。
