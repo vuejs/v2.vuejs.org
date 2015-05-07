@@ -12,6 +12,10 @@ $ npm install
 $ hexo server
 ```
 
+## チャット
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/kazupon/vuejs-jp-gitter)
+
+
 ## 貢献者
 (アルファベット順)
 
