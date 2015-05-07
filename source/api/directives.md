@@ -1,37 +1,37 @@
-title: Directives
+title: ディレクティブ
 type: api
 order: 6
 ---
 
-## Reactive Directives
+## リアクティブ・ディレクティブ
 
-> These directives can bind themselves to a property on the Vue instance, or to an expression which is evaluated in the context of the instance. When the value of the underlying property or expression changes, the `update()` function of these directives will be called asynchronously on next tick.
+> このディレクティブは、それ自身をVueインスタンスのプロパティやインスタンスの文脈の中で評価される表現にバインドすることができる。配下のプロパティや表現の値が変更されたら、それらのディレクティブの`update()`関数が非同期的に呼ばれる。
 
 ### v-text
 
-Updates the element's `textContent`.
+ある要素の`textContent`を更新する。
 
-Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled as a `v-text` direcitve on a textNode.
+内部的には、&#123;&#123; 中括弧 &#125;&#125; 表現もtextNode上の`v-text`ディレクティブとしてコンパイルされる。
 
 ### v-html
 
-Updates the element's `innerHTML`.
+ある要素の`innerHTML`を更新する。
 
-<p class="tip">Using `v-html` with user-supplied data can be dangerous. It is suggested that you only use `v-html` when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.</p>
+<p class="tip">ユーザによって与えられるデータを含む`v-html`は、危険な可能性がある。データソースのセキュリティが安全であると保証される場合は`v-html`を使うことを勧めるが、それ以外の場合はパイプ(|)を使用して、信頼できないHTMLをサニタイズするカスタムフィルタを使用することをお勧めする。</p>
 
 ### v-show
 
-- This directive can trigger transitions.
+- このディレクティブは、表示切り替えのトリガーになる。
 
-Set the element's display to `none` or its original value, depending on the truthy-ness of the binding's value.
+要素のdisplayをバインディングの値の真偽値に応じて`none`にしたり、その要素の元の値にしたりする。
 
 ### v-class
 
-- This directive accepts an optional argument.
+- このディレクティブは、オプションの引数を受け入れる。
 
-If no argument is provided, it will add the binding's value to the element's classList, and update the class as the value changes.
+もし何も属性が与えられなかった場合、このディレクティブは要素のclassListにバインディングの値を追加し、値が変更されたときにclassが更新される。
 
-If a directive argument is provided, the argument will be the class to be toggled depending on the binding value's truthy-ness. Combined with multiple clauses this can be pretty useful:
+もしディレクティブの属性が与えられたら、その属性はバインディングの値のtruthy-nessに応じてトグルするclassになる。複数項目の記法と併せると、非常に便利になる:
 
 ``` html
 <span v-class="
@@ -43,52 +43,52 @@ If a directive argument is provided, the argument will be the class to be toggle
 
 ### v-attr
 
-- This directive requires an argument.
+- このディレクティブは、ひとつの属性が必要となる。
 
-Updates the element's given attribute (indicated by the argument).
+要素の(属性によって指定された)設定値を更新する。
 
-**Example:**
+**例:**
 
 ``` html
 <canvas v-attr="width:w, height:h"></canvas>
 ```
 
-Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives.
+内部的には、&#123;&#123; 中括弧({}) &#125;&#125; 表現の中の引数をcomputed `v-attr`ディレクティブにコンパイルする。
 
-<p class="tip">You should use `v-attr` instead of mustache binding when setting the `src` attribute on `<img>` elements. Your templates are parsed by the browser before being compiled by Vue.js, so the mustache binding will cause a 404 when the browser tries to fetch it as the image's URL.</p>
+<p class="tip">`<img>`要素上の`src`要素を設定するときには、中括弧バインディングの代わりに`v-attr`を使用するべきである。テンプレートはVue.jsによってコンパイルされる前にブラウザによってパースされるので、ブラウザがイメージのURLを取得しようとしたときに、中括弧バインディングは404エラーの原因になり得る。</p>
 
 ### v-style
 
-- This directive accepts an optional argument.
+- このディレクティブは、オプションの引数を受け入れる。
 
-Apply inline CSS styles to the element.
+要素にインラインCSSスタイルを適用する。
 
-When there is no argument, the bound value can either be a String or an Object.
+引数がないときは、結び付けられた値はString型にもObject型にもなり得る。
 
-- If it's a String, it will be set as the element's `style.cssText`.
-- If it's an Object, each key/value pair will be set on the element's `style` object.
+- もしString型の場合、要素の`style.cssText`として設定される。
+- もしObject型の場合、それぞれのkey/valueペアは要素の`style`オブジェクトに設定される。
 
-**Example:**
+**例:**
 
 ``` html
 <div v-style="myStyles"></div>
 ```
 
 ``` js
-// myStyles can either be a String:
+// myStyles はStringにもなり得る
 "color:red; font-weight:bold;"
-// or an Object:
+// もしくはObject:
 {
   color: 'red',
-  // both camelCase and dash-case works
+  // camelCase でも dash-case でも動く
   fontWeight: 'bold',
   'font-size': '2em'
 }
 ```
 
-When there is an argument, it will be used as the CSS property to apply. Combined with multiple clauses you can set multiple properties together:
+引数があるときは、適用するCSSのプロパティとして使用される。複数項目の表現と併せて、複数のプロパティを同時に設定することができる:
 
-**Example:**
+**例:**
 
 ``` html
 <div v-style="
@@ -98,36 +98,38 @@ When there is an argument, it will be used as the CSS property to apply. Combine
 "></div>
 ```
 
-`v-style` is also smart to detect any required browser vendor prefixes, so you can just use the un-prefixed version:
+`v-style`も賢く、ブラウザベンダーの接頭辞を特定する。したがって、接頭辞を使わない方法が使える:
 
 ``` html
-<!-- will use -webkit-transform if needed, for example -->
+<!-- 例えば、必要であれば -webkit-transform を使用する -->
 <div v-style="transform: 'scale(' + scale + ')'"></div>
 ```
 
-<p class="tip">It is recommended to use `v-style` instead of mustache bindings inside `style` attribute because Internet Explorer, regardless of version, will remove invalid inline styles when parsing the HTML.</p>
+<p class="tip">Internet Explolerでは、バージョンに関係なく、HTMLのパージングの際に不適切なインラインスタイルを削除してしまうため、`style`要素の中に中括弧({})バインディングを指定する代わりに、`v-style`を使用することをお勧めする。</p>
 
 ### v-on
 
-- This directive requires an argument.
-- This directive requires the value to be a Function or a statement.
+- このディレクティブはひとつの要素を必要とする。
+- このディレクティブは、関数かステートメントになり得る値を必要とする。
 
-Attaches an event listener to the element. The event type is denoted by the argument. It is also the only directive that can be used with the `key` filter. For more details see [Listening for Events](/guide/events.html).
+要素にイベントリスナーを割り当てる。イベントタイプは引数によって記述される。`key`フィルターと一緒に使用することができる唯一のディレクティブである。詳しくは、[イベントの監視](/guide/events.html)を参照のこと。
 
 ### v-model
 
-- This directive can only be used on `<input>`, `<select>` or `<textarea>` elements.
-- Directive params: `lazy`, `number`, `options`
+- このディレクティブは`<input>`、`<select>`もしくは`<textarea>`要素においてのみ使用できる。
+- ディレクティブのパラメーター: `lazy`, `number`, `options`
 
-Create a two-way binding on a form input element. Data is synced on every `input` event by default. For detailed examples see [Handling Forms](/guide/forms.html).
+formのinput要素に双方向バインディングを作成する。データはデフォルトでは`input`イベント毎に同期される。
+より詳しい例は、[フォームの操作](/guide/forms.html)を参照されたい。
 
 ### v-if
 
-- This directive can trigger transitions.
+- このディレクティブは、表示切り替えのトリガーになる。
 
-Conditionally insert / remove the element based on the truthy-ness of the binding value. If the element is a `<template>` element, its content will be extracted as the conditional block.
+バインディングの値のtruthy-nessに基いて要素の挿入や削除を行う。もし要素が`<template>`要素であれば、その内容は状態ブロックとして抽出される。
 
-**Example:**
+
+**例:**
 
 ``` html
 <template v-if="test">
@@ -136,7 +138,7 @@ Conditionally insert / remove the element based on the truthy-ness of the bindin
 </template>
 ```
 
-Will render:
+は、以下を生成する:
 
 ``` html
 <!--v-if-start-->
@@ -147,17 +149,17 @@ Will render:
 
 ### v-repeat
 
-- This directive creates child Vue instances.
-- This directive requires the value to be an Array, Object or Number.
-- This directive can trigger transitions.
-- This directive accepts an optional argument.
-- Directive params: `trackby`
+- このディレクティブは、Vueの子インスタンスを作成する。
+- このディレクティブの値はArray型、Object型、もしくはNumber型である必要がある。
+- このディレクティブは表示切り替えのトリガーとなり得る。
+- このディレクティブは、オプション属性を受け入れる。
+- ディレクティブパラメータ: `trackby`
 
-Create a child ViewModel for every item in the binding Array or Object. If the value is a whole Number then that many child ViewModels are created. These child ViewModels will be automatically created / destroyed when mutating methods, e.g. `push()`, are called on the Array or Object, or the number is increased or decreased.
+ArrayもしくはObjectのバインディングのすべてのアイテムの子ViewModelを作る。もし値が絶対値であれば、その分のViewModelが作成される。それらの子ViewModelは、mutating methods、例えば`push()`などがArrayやObject上で呼ばれたときや、その数が増減したときに自動的に生成、削除される。
 
-When no argument is provided, the child ViewModel will directly use the assigned element in the Array as its `$data`. If the value is not an object, a wrapper data object will be created and the value will be set on that object using the alias key `$value`.
+引数が何も与えられなかったとき、子ViewModelは継承されたArrayの中の要素を`$data`として直接使用する。もし値がobjectでなければ、ラッパーのデータオブジェクトが作られ、エイリアスキー`$value`を使用しているオブジェクトにその値がセットされる。
 
-**Example:**
+**例:**
 
 ``` html
 <ul>
@@ -167,7 +169,7 @@ When no argument is provided, the child ViewModel will directly use the assigned
 </ul>
 ```
 
-If an argument is provided, a wrapper data object will always be created, using the argument string as the alias key. This allows for more explicit property access in templates:
+引数が与えられたときは、エイリアスキーを引数の文字列としてラッパーのデータオブジェクトが常に作られる。これにより、テンプレート内でのより明示的なプロパティへのアクセスが可能となる:
 
 ``` html
 <ul>
@@ -177,19 +179,19 @@ If an argument is provided, a wrapper data object will always be created, using 
 </ul>
 ```
 
-For detailed examples, see [Displaying a List](/guide/list.html).
+より詳しい説明は、[リストの表示](/guide/list.html)を参照されたい。
 
 ### v-with
 
-- This directive can only be used with `v-component`.
-- This directive accepts only keypaths, no expressions.
+- このディレクティブは、`v-component`とのみ使用される。
+- このディレクティブは、keypathだけを許可し、expressionはない。
 
-Allows a child ViewModel to inherit data from the parents. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive must be used in combination with `v-component`.
+子ViewModelが親からデータを受け取ることができるようにする。`data`オプションとして使用されるオブジェクトの中で渡すことも可能であるし、個々の親のプロパティを異なるキーで子供に結びつけることも可能である。このディレクティブは、`v-component`とともに使用されなければならない。
 
-Example inheriting an object:
+オブジェクトの継承の例:
 
 ``` js
-// parent data looks like this
+// 親のデータが以下の様だとする
 {
   user: {
     name: 'Foo Bar',
@@ -200,68 +202,68 @@ Example inheriting an object:
 
 ``` html
 <my-component v-with="user">
-  <!-- you can access properties without `user.` -->
+  <!-- `user`がなくてもプロパティにアクセスできる -->
   {{name}} {{email}}
 </my-component>
 ```
 
-Example inheriting individual properties (using the same data):
+個別のプロパティを継承している例（同じデータを使用）:
 
 ``` 
 <my-component v-with="myName: user.name, myEmail: user.email">
-  <!-- you can access properties with the new keys -->
+  <!-- 新しいキーで、プロパティにアクセスできる -->
   {{myName}} {{myEmail}}
 </my-component>
 ```
 
 ### v-events
 
-- This directive can only be used with `v-component`.
-- This directive accepts only keypaths, no expressions.
+- このディレクティブは、`v-component`とのみ使用される。
+- このディレクティブはkeypathのみを受けつけ、expressionはない。
 
-Allows a parent instance to listen to events on a child instance. The difference from `v-on` is that `v-events` listens to Vue's component system events created via `vm.$emit()` rather than DOM events. This directive allows more decoupled parent-child communication without having to hard-code event listeners into the parent component. Note that it can only be used together with `v-component`, i.e. on the root element of a child component.
+親インスタンスが子インスタンス上でのイベントを監視するのを可能にする。`v-on`と異なる点は、`v-events`はDOMイベントというよりはむしろ、`vm.$emit()`経由で作られたVueのコンポーネントシステムのイベントを監視すろという点である。このディレクティブは、親のコンポーネントにイベントリスナーをハードコードすることなく、親子がより分離された通信をすることを可能にする。`v-component`と共に使用する必要があることに注意してほしい。例えば、childコンポーネントのroot要素では以下のようになる。
 
-**Example:**
+**例:**
 
 ``` html
-<!-- inside parent template -->
+<!-- 親テンプレートの中身 -->
 <div v-component="child" v-events="change: onChildChange"></div>
 ```
 
-When the child component calls `this.$emit('change', ...)`, the parent's `onChildChange` method will be invoked with additional arguments passed to `$emit()`.
+子要素が`this.$emit('change', ...)`を呼ぶとき、親の`onChildChange`が`$emit()`からきたオプションの引数が渡された状態で呼び出される。
 
-## Literal Directives
+## リテラルディレクティブ
 
-> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaluated only once on first compile and do not react to data changes.
+> リテラルディレクティブはその要素の値を素の文字列として取り扱い、何ともバインドしようとしない。このディレクティブが行うのは、文字列の値を`bind()`関数に渡して実行することだけである。リテラルディレクティブはその値の中で中括弧表現を使用できるが、それらの表現は最初のコンパイルの際に一度だけ評価され、データの変更に対して反応しない。
 
 ### v-component
 
-- Directive params: `keep-alive`, `wait-for`, `transition-mode`
+- ディレクティブパラメーター: `keep-alive`, `wait-for`, `transition-mode`
 
-Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
+割り当てられたコンポーネントコンストラクタをもつ子ViewModelとして、この要素をコンパイルする。これは、親からデータを継承するために、`v-with`と共に使用することができる。より詳細な説明は、[コンポーネントシステム](/guide/components.html)を参照されたい。
 
 ### v-ref
 
-Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
+簡単にアクセス可能なように、親に子コンポーネントへの参照を登録する。`v-component`や`v-repeat`を組み合わせて動く。そのコンポーネントのインスタンスは、その親の`$`オブジェクトへアクセス可能である。例は、 [子の参照](/guide/components.html#Child_Reference)を参照。
 
-When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
+`v-repeat`と共に使用するとき、値はそれらがバインドされている配列に対応するすべての子Vueインスタンスを含むArrayになる。
 
 ### v-el
 
-Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
+簡単なアクセスを可能にするために、あるDOM要素への参照をその親のVueインスタンスに登録する。例えば、`<div v-el="hi">`は`vm.$$.hi`としてアクセス可能になる。
 
 ### v-partial
 
-Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option.
+要素のinnerHTMLを登録した部分に置き換える。その部分要素は`Vue.partial()`で登録するか、`partials`オプションの内部に渡すことができる。
 
-Using the mustache tag inside `v-partial` makes it reactive:
+`v-partial`内部の中括弧タグが、反応的にする:
 
 ``` html
-<!-- content will change based on vm.partialId -->
+<!-- 内容は、vm.partialIdに基づいて変更される -->
 <div v-partial="{{partialId}}"></div>
 ```
 
-You can also use this syntax (which doesn't support reactivity):
+このような記法も使える（リアクティビティはサポートされない）:
 
 ``` html
 <div>{{> my-partial}}</div>
@@ -269,18 +271,18 @@ You can also use this syntax (which doesn't support reactivity):
 
 ### v-transition
 
-Notify Vue.js to apply transitions to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the Vue instance's DOM manipulation methods are called.
+Vue.jsに対してこの要素が変化したことを知らせる。トランジッションクラスは、トランジッションのきっかけになるディレクティブが要素を変更した時か、VueインスタンスのDOM操作用のメソッドが呼ばれた時に適用される。
 
-For details, see [the guide on transitions](/guide/transitions.html).
+詳細は、[トランジッションのガイド](/guide/transitions.html)を参照していただきたい。
 
-## Empty Directives
+## 空のディレクティブ
 
-> Empty directives do not require and will ignore their attribute value.
+> 空のディレクティブは、属性の値を必要とせず、また無視する。
 
 ### v-pre
 
-Skip compilation for this element and all its children. Skipping large numbers of nodes with no directives on them can speed up compilation.
+この要素と、すべての子要素のコンパイルをスキップする。ディレクティブを持たない多数のノードをスキップすることで、コンパイルを高速化することができる。
 
 ### v-cloak
 
-This property remains on the element until the associated ViewModel finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the ViewModel is ready.
+このプロパティは関連付けられたViewModelのコンパイルが終了するまでの間、このプロパティが要素上に残る。`[v-cloak] { display: none }`などのCSSのルールと組み合わせることで、このディレクティブはViewModelが準備完了になるまでの間コンパイルされていない中括弧のバインディングを隠すのに使用することができる。
