@@ -1,24 +1,24 @@
-title: "The Vue Constructor"
+title: "Vueコンストラクタ"
 type: api
 order: 1
 ---
 
-The `Vue` constructor is the core of Vue.js. It is a constructor function that allows you to create Vue instances. Creating a Vue instance is straightforward:
+`Vue`コンストラクタは、Vue.jsの中核である。これは、Vueインスタンスの生成を可能にする、コンストラクタ関数である。Vueインスタンスの生成は、簡単である:
 
 ``` js
 var vm = new Vue({ /* options */ })
 ```
 
-When you instantiate a Vue instance, you need to pass in an option object which can include information about the DOM element, data object, mixin methods, lifecycle callbacks and more. See the full list of [Instantiation Options](/api/options.html).
+Vueインスタンスを生成するときは、DOM要素に関する情報やデータオブジェクト、mixinメソッド、ライフサイクルコールバックなどの情報を含むオプションオブジェクトを渡す必要がある。すべてのリストは、こちらを参照してほしい[Instantiation Options](/api/options.html)。
 
-Each Vue instance is essentially a ViewModel (hence the variable name `vm` you will see throughout the docs). It has an associated DOM element `$el`, which is roughly the V in MVVM. It also has an associated JavaScript object `$data`, which corresponds to the M in MVVM. Changing the M results in updates in the V. For two-way bindings, user inputs triggered in the V results in changes in the M. For more details check out [Instance Properties](/api/instance-properties.html).
+各Vueインスタンスは、本質的にはViewModelである（それ故に、変数名`vm`がドキュメントの各所で見られる）。各インスタンスは関連するDOM要素`$el`をもち、これはおおまかに言ってMVVMのVに該当する。また、関連するJavaScriptオブジェクト`$data`も持っており、これはMVVMのMに該当する。Mにおける変更によって、Vが更新される。双方向バインディングでは、Vにおけるユーザーの入力がMの更新を引き起こす。より詳細な説明は、こちらを参照していただきたい[インスタンスプロパティ](/api/instance-properties.html)。
 
-If you provided the `el` option at instantiation, the Vue instance will immediately enter the compilation phase. Otherwise, it will wait until `vm.$mount()` is called before it starts compilation. During the compilation phase, Vue walks through the DOM and collects the directives it runs into, and "links" the data and the DOM with these directives. Once linked, these DOM nodes are now said to be managed by the Vue instance. A DOM node can only be managed by one Vue instance, and should not be compiled more than once.
+インスタンスの生成の際に`el`オプションが与えられた場合、Vueインスタンスは直ちにコンパイルの段階に入る。さもなければ、コンパイルが開始される前に、`vm.$mount()`が呼ばれるのを待つ。コンパイルの段階の間に、VueはDOMをひと通り見て、遭遇したディレクティブを収集する。一旦ひも付けられると、それらのDOMノードはVueインスタンスによって管理されていると言える。ひとつのDOMノードはひとつのVueインスタンスによってのみ管理され、一回より多くコンパイルされるべきではない。
 
-Vue instances proxy access to their `$data` objects, so if you have `vm.$data.msg` you can also access it as `vm.msg`. This might look a bit magical, but is totally optional. You can stick to `vm.$data.msg` for more explicit data access. However it is still important to notice the difference between `vm` and `vm.$data`, since the former cannot be observed by other Vue instances as data.
+Vueインスタンスはその`$data`オブジェクトにプロキシアクセスするため、もし`vm.$data.msg`があれば、`vm.msg`としてもアクセスすることができる。これは少し不思議に見えるが、全く最適なものである。より明示的なデータアクセスのために`vm.$data.msg`とすることも可能である。しかし、他のVueインスタンスからはデータとして監視できないため、`vm`と`vm.$data`との違いに気をつけることも依然として重要である。
 
-It's also worth noting that data objects do not necessarily belong to a single Vue instance - multiple ViewModels can observe the same piece of data, whether directly as `$data` or nested under it. This is useful when multiple components need to react to a shared global state object.
+データオブジェクトはひとつのVueインスタンスのみに属する必要がないことも知っておくべきである。つまり、複数のViewModelは`$data`の直下であろうと、ネストされた下のデータであろうと、同じデータを監視することができる。これは複数のコンポーネントが共有されたグローバルなオブジェクトの状態に反応しなければならないときに便利である。
 
-Each Vue instance also has a number of [Instance Methods](/api/instance-methods.html) which cover data observation, event communication and DOM manipulation.
+それぞれのVueインスタンスは、データ監視、イベント通信やDOM操作をするいくつかの[インスタンスメソッド](/api/instance-methods.html)を持っている。
 
-Finally, the `Vue` constructor itself also exposes the [Global API](/api/global-api.html), which allow you to extend the `Vue` class, configure global settings and register global custom assets such as components, directives, filters and more.
+最後に、`Vue`コンストラクタそのものは[グローバルAPI](/api/global-api.html)を公開しており、`Vue`クラスの拡張や、グローバル設定、コンポーネントやディレクティブ、フィルターなどのグローバルなカスタムの資産を登録することを可能としている。
