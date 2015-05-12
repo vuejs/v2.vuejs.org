@@ -1,20 +1,21 @@
-title: Component System
+title: コンポーネントシステム
 type: guide
 order: 11
 ---
 
-## Using Components
+## コンポーネントの使用
 
-Vue.js allows you to treat extended Vue subclasses as reusable components that are conceptually similar to [Web Components](http://www.w3.org/TR/components-intro/), without requiring any polyfills. To create a component, just create a subclass constructor of Vue using `Vue.extend()`:
+Vue.js では [Web Components](http://www.w3.org/TR/components-intro/) と類似した概念を持つ再利用可能なコンポーネントとして、polyfill 無しで、拡張された Vue サブクラスを扱うことができます。コンポーネントを作るためには、 `Vue.extend()` を用いて Vue のサブクラスコンストラクタを生成します:
 
 ``` js
-// Extend Vue to get a reusable constructor
+// 再利用可能なコンストラクタを取得するために Vue を拡張します
 var MyComponent = Vue.extend({
   template: 'A custom component!'
 })
 ```
 
-Most of the options that can be passed into the Vue constructor can be used in `Vue.extend()`, however, there are two special cases, `data` and `el`. Since each Vue instance should have its own `$data` and `$el`, we obviously don't want the value we passed into `Vue.extend()` to be shared across all instances created from that constructor. So when you want to define how a component should initalize its default data or element, you should pass in a function instead:
+Vue のコンストラクタに渡すことができるほとんどのオプションは `Vue.extend()` で利用可能です。しかし、 `data` と `el` は例外ケースです。各 Vue インスタンスは `$data` と `$el` をそれぞれが持つべきであるため、 `Vue.extend()` に渡され、コンストラクタを通じて作られる全てのインスタンスを横断して共有されることは好ましくありません。したがって、コンポーネントを定義する際にデフォルトの data や element を初期化したい場合は、代わりに関数を渡しましょう:
+
 
 ``` js
 var ComponentWithDefaultData = Vue.extend({
@@ -26,53 +27,56 @@ var ComponentWithDefaultData = Vue.extend({
 })
 ```
 
-Then, you can **register** that constructor with `Vue.component()`:
+次に、 `Vue.component()` を使ってコンストラクタを **登録** しましょう:
 
 ``` js
-// Register the constructor with id: my-component
+// my-component という id でコンストラクタを登録する
 Vue.component('my-component', MyComponent)
 ```
 
-To make things easier, you can also directly pass in the option object instead of an actual constructor. `Vue.component()` will implicitly call `Vue.extend()` for you if it receives an object:
+より物事を簡単にするために、コンストラクタの代わりにオプションのオブジェクトを直接渡すこともできます。`Vue.component()` はオブジェクトを受け取った場合、暗黙的に `Vue.extend()` を呼び出します:
 
 ``` js
-// Note: this method returns the global Vue,
-// not the registered constructor.
+// Note: この関数はグローバルな Vue を返し、
+// 登録されたコンストラクタを返すものではありません。
 Vue.component('my-component', {
   template: 'A custom component!'
 })
 ```
 
-Then you can use the registered component in a parent instance's template (make sure the component is registered **before** you instantiate your root Vue instance):
+また、登録したコンポーネントを親インスタンスのテンプレート内で使用することもできます（ルートの Vue インスタンスを初期化する **前に** そのコンポーネントが登録されていることを確認してください）:
 
 ``` html
 <!-- inside parent template -->
 <div v-component="my-component"></div>
 ```
 
-If you prefer, components can also be used in the form of a custom element tag:
+任意で、カスタムエレメントのタグ形式でコンポーネントを使用することもできます:
 
 ``` html
 <my-component></my-component>
 ```
 
-<p class="tip">To avoid naming collisions with native elements and stay consistent with the W3C Custom Elements specification, the component's ID **must** contain a hyphen `-` to be usable as a custom tag.</p>
+<p class="tip">
+W3Cのカスタムエレメントの仕様に沿ってネイティブのエレメントと名前の衝突を避けるために、コンポーネントのIDには **必ず** ハイフン `-` を含める必要があります。</p>
 
-It is important to understand the difference between `Vue.extend()` and `Vue.component()`. Since `Vue` itself is a constructor, `Vue.extend()` is a **class inheritance method**. Its task is to create a sub-class of `Vue` and return the constructor. `Vue.component()`, on the other hand, is an **asset registration method** similar to `Vue.directive()` and `Vue.filter()`. Its task is to associate a given constructor with a string ID so Vue.js can pick it up in templates. When directly passing in options to `Vue.component()`, it calls `Vue.extend()` under the hood.
+`Vue.extend()` と `Vue.component()` の違いを理解することは重要です。`Vue` 自身はコンストラクタであるため、`Vue.extend()` は **クラス継承メソッド** です。そのタスクは `Vue` のサブクラスを生成して、そのコンストラクタを返すものです。一方、 `Vue.component()` は **アセット登録メソッド** であり、`Vue.directive()` や `Vue.filter()` と類似しています。そのタスクは与えられたコンストラクタに文字列のIDを関連付けて、 Vue.js がそれをテンプレートの中で利用できるようにするものです。直接 `Vue.component()` にオプションを渡した時は、内部的に `Vue.extend()` が呼ばれます。
 
-Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
+Vue.js は二つの異なる API パラダイムをサポートしています: クラスベースの命令的な Backbone スタイルの API とマークアップベースで宣言的な Web Components スタイルの API です。もし混同してしまう場合は、image エレメントを `new Image()` を作るか、 `<img>` タグで作るかということを考えてみてください。どちらもそれ自体で有効的であり、Vue.js は最大限の柔軟性のためにどちらの方式も提供しています。
+
 
 ## Data Inheritance
 
-### Explicit Data Passing
+### 明示的な Data の受け渡し
 
-By default, components have **isolated scope**. This means you cannot reference parent data in a child component's template. To explicitly pass data to child components with isolated scope, we can use the `v-with` directive.
+デフォルトでは、コンポーネントは **isolated scope** を持ちます。これが意味するところは、子コンポーネントのテンプレートの中で親データの参照ができないということです。データを isolated scope で明示的に子コンポーネントに渡す場合は、`v-with` ディレクティブを使用することができます。
 
-#### Passing Down Child `$data`
 
-When given a single keypath without an argument, the corresponding value on the parent will be passed down to the child as its `$data`. This means the passed-down value must be an object, and it will overwrite the default `$data` object the child component might have.
+#### 子の `$data` への伝達
 
-**Example:**
+引数なしで一つの keypath を与えた場合、親の対応する値が子の `$data` へ受け渡されます。受け渡しされる値はオブジェクトでなくてはなりません。そして、子コンポーネントが既に持っているかもしれない `$data` はそのオブジェクトによって上書きされます。
+
+**例:**
 
 ``` html
 <div id="demo-1">
@@ -81,12 +85,12 @@ When given a single keypath without an argument, the corresponding value on the 
 ```
 
 ``` js
-// registering the component first
+// 先にコンポーネントを登録します
 Vue.component('user-profile', {
   template: '{{name}}<br>{{email}}'
 })
-// the `user` object will be passed to the child
-// component as its $data
+// この `user` オブジェクトは子に渡されます
+// 子コンポーネントの $data として扱われます
 var parent = new Vue({
   el: '#demo-1',
   data: {
@@ -98,7 +102,7 @@ var parent = new Vue({
 })
 ```
 
-**Result:**
+**結果:**
 
 <div id="demo-1" class="demo"><p v-component="user-profile" v-with="user"></p></div>
 <script>
@@ -116,17 +120,17 @@ var parent = new Vue({
   })
 </script>
 
-#### Passing Down Individual Properties
+#### 個別のプロパティの受け渡し
 
-`v-with` can also be used with an argument in the form of `v-with="childProp: parentProp"`. This means passing down `parent[parentProp]` to the child as `child[childProp]`, creating a two-way binding (as of 0.11.5).
+`v-with` は `v-with="childProp: parentProp"` という形式で、一つの引数を渡して使用することもできます。これは、 `parent[parentProp]` を `child[childProp]` として、双方向バインディング (0.11.5時点) で子に渡すということです。
 
-**Example:**
+**例:**
 
 ``` html
 <div id="demo-2">
   <input v-model="parentMsg">
   <p v-component="child" v-with="childMsg : parentMsg">
-    <!-- essentially means "bind `parentMsg` on me as `childMsg`" -->
+    <!-- 基本的には "自身の `parentMsg` を `childMsg` としてバインドするということです" -->
   </p>
 </div>
 ```
@@ -145,7 +149,7 @@ new Vue({
 })
 ```
 
-**Result:**
+**結果:**
 
 <div id="demo-2" class="demo"><input v-model="parentMsg"><p v-component="child" v-with="childMsg:parentMsg"></p></div>
 <script>
@@ -162,9 +166,9 @@ new Vue({
 })
 </script>
 
-#### Using `paramAttributes`
+#### `paramAttributes` の使用
 
-It is also possible to use the [`paramAttributes`](/api/options.html#paramAttributes) option, which compiles into `v-with`, to expose an interface that looks more like custom elements:
+[`paramAttributes`](/api/options.html#paramAttributes) というオプションを使用することもできます。それは、 `v-with` にコンパイルされるもので、カスタムエレメントのようなインターフェースを外部公開するためのものです:
 
 ``` html
 <div id="demo-3">
@@ -182,17 +186,17 @@ new Vue({
   components: {
     'child-component': {
       paramAttributes: ['child-msg'],
-      // dashed attributes are camelized,
-      // so 'child-msg' becomes 'this.childMsg'
+      // ハイフンによる属性が camel 形式になったもの,
+      // したがって、 'child-msg' は 'this.childMsg' になります
       template: '<span>{{childMsg}}</span>'
     }
   }
 })
 ```
 
-### Scope Inheritance
+### スコープの継承
 
-If you want, you can also use the `inherit: true` option for your child component to make it prototypally inherit all parent properties:
+もし必要な場合は `inherit: true` オプションを使用して子コンポーネントに対して、親の全てのプロパティをプロトタイプ継承させることができます:
 
 ``` js
 var parent = new Vue({
@@ -200,8 +204,8 @@ var parent = new Vue({
     a: 1
   }
 })
-// $addChild() is an instance method that allows you to
-// programatically create a child instance.
+// $addChild() はインスタンスメソッドで
+// プログラムで子インスタンスを生成することができます
 var child = parent.$addChild({
   inherit: true,
   data: {
@@ -214,7 +218,7 @@ parent.a = 3
 console.log(child.a) // -> 3
 ```
 
-Note this comes with a caveat: because data properties on Vue instances are getter/setters, setting `child.a = 2` will change `parent.a` instead of creating a new property on the child shadowing the parent one:
+注意点: Vue インスタンスにおける各 data プロパティは getter / setter であるため、`child.a = 2` とセットすることは、親のプロパティをコピーして子に新規プロパティを作成する代わりに、 `parent.a` を変更します:
 
 ``` js
 child.a = 4
@@ -222,22 +226,22 @@ console.log(parent.a) // -> 4
 console.log(child.hasOwnProperty('a')) // -> false
 ```
 
-### A Note on Scope
+### スコープに関する注釈
 
-When a component is used in a parent template, e.g.:
+コンポーネントが親テンプレートの中で使用される時、e.g.:
 
 ``` html
-<!-- parent template -->
+<!-- 親テンプレート -->
 <div v-component v-show="active" v-on="click:onClick"></div>
 ```
 
-The directives here (`v-show` and `v-on`) will be compiled in the parent's scope, so the value of `active` and `onClick` will be resolved against the parent. Any directives/interpolations inside the child's template will be compiled in the child's scope. This ensures a cleaner separation between parent and child components.
+このディレクティブ (`v-show` と `v-on`) は親のスコープでコンパイルされます。そのため、 `active` という値と `onClick` は親で解決されます。子テンプレート内のいかなるディレクティブや挿入句は子のスコープでコンパイルされます。これによって、親と子のコンポーネント間のクリーンな住み分けが実現できます。
 
-This rule also applies to [content insertion](#Content_Insertion), as explained later in this guide.
+このルールはこのガイドで後述する [content insertion](#Content_Insertion) についても適用されます。
 
-## Component Lifecycle
+## コンポーネントライフサイクル
 
-Every component, or Vue instance, has its own lifecycle: it will be created, compiled, attached or detached, and finally destroyed. At each of these key moments the instance will emit corresponding events, and when creating an instance or defining a component, we can pass in lifecycle hook functions to react to these events. For example:
+全てのコンポーネントや Vue インスタンスは自身のライフサイクルを持ちます: created, compiled, attached, detached, と最後に destroyed です。それぞれのキーとなるタイミングでインスタンスは対応したイベントを emit します。また、インスタンスの生成やコンポーネント定義の際に、それぞれのイベントに反応するためのライフサイクル hook 関数を渡すことができます。例えば:
 
 ``` js
 var MyComponent = Vue.extend({
@@ -247,11 +251,11 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Check out the API reference for a [full list of lifecycle hooks](/api/options.html#Lifecycle) that are availble.
+[full list of lifecycle hooks](/api/options.html#Lifecycle) で利用可能な API リファレンスを確認してください。
 
-## Dynamic Components
+## 動的コンポーネント
 
-You can dynamically switch between components by using Mustache tags inside the `v-component` direcitve, which can be used together with routers to achieve "page switching":
+`v-component` ディレクティブの中にある Mustache タグを使ってコンポーネントを動的に切り替える仕組みがあります。それは "ページの切り替え" を実現するルーターと共に使用することができます:
 
 ``` js
 new Vue({
@@ -269,36 +273,36 @@ new Vue({
 
 ``` html
 <div v-component="{{currentView}}">
-  <!-- content changes when vm.currentview changes! -->
+  <!-- vm.currentview が変更されると、中身が変更されます! -->
 </div>
 ```
 
-If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
+ステートを保持したりや再レンダリングを避けたりするために、もし切り替えられたコンポーネントを活性化された状態で保持したい場合は、ディレクティブのパラメーター `keep-alive` を追加することができます:
 
 ``` html
 <div v-component="{{currentView}}" keep-alive>
-  <!-- inactive components will be cached! -->
+  <!-- 非活性になったコンポーネントをキャッシュします! -->
 </div>
 ```
 
-### Transition Control
+### トランジション操作
 
-There are two additional attribute parameters that allows advanced control of how dynamic components should transition from one to another.
+２つの追加の属性パラメーターにより、動的コンポーネントが一方からもう一方へどのようにトランジションするかの高度な操作が可能になります。
 
 #### `wait-for`
 
-An event name to wait for on the incoming child component before switching it with the current component. This allows you to wait for asynchronous data to be loaded before triggering the transition to avoid unwanted flash of emptiness in between.
+現在のコンポーネントと切り替えられる前に、挿入される子コンポーネントを待つためのイベント名です。空白による望ましくないちらつきを回避するために、トランジションの開始の前に非同期なデータのロードを待つことが可能になります。
 
-**Example:**
+**例:**
 
 ``` html
 <div v-component="{{view}}" wait-for="data-loaded"></div>
 ```
 ``` js
-// component definition
+// コンポーネントの定義
 {
-  // fetch data and fire the event asynchronously in the
-  // compiled hook. Using jQuery just for example.
+  // compiled フックの中で非同期にデータを取得してイベントを発火します。
+  // 例として jQuery を使っています。
   compiled: function () {
     var self = this
     $.ajax({
@@ -314,28 +318,29 @@ An event name to wait for on the incoming child component before switching it wi
 
 #### `transition-mode`
 
-By default, the transitions for incoming and outgoing components happen simultaneously. This param allows you to configure two other modes:
+デフォルトでは、入ってくるコンポーネントと出て行くコンポーネントのトランジションが同時に起こります。このパラメーターによって、２つの他のモードを設定することができます:
 
-- `in-out`: New component transitions in first, current component transitions out after incoming transition has finished.
-- `out-in`: Current component transitions out first, new componnent transitions in after outgoing transition has finished.
+- `in-out`: 新しいコンポーネントのトランジションが初めに起こり、そのトランジションが完了した後に現在のコンポーネントの出て行くトランジションが開始します。
+- `out-in`: 現在のコンポーネントが出て行くトランジションが初めに起こり、そのトランジションが完了した後に新しいコンポーネントのトランジションが開始します。
 
-**Example**
+**例**
 
 ``` html
-<!-- fade out first, then fade in -->
+<!-- 先にフェードアウトし, その後フェードインします -->
 <div v-component="{{view}}"
   v-transition="fade"
   transition-mode="out-in">
 </div>
 ```
 
-## List and Components
+## リストとコンポーネント
 
-For an Array of Objects, you can combine `v-component` with `v-repeat`. In this case, for each Object in the Array, a child ViewModel will be created using that Object as data, and the specified component as the constructor.
+オブジェクトの配列に対して、`v-component` と `v-repeat` を併用することができます。その場合、配列の中にあるそれぞれのオブジェクトに対して、そのオブジェクトを dataとして、また、指定されたコンポーネントをコンストラクタとして扱う子 ViewModel が生成されます。
+
 
 ``` html
 <ul id="demo-4">
-  <!-- reusing the user-profile component we registered before -->
+  <!-- 事前に登録した user-profile コンポーネントを再利用します -->
   <li v-repeat="users" v-component="user-profile"></li>
 </ul>
 ```
@@ -358,7 +363,7 @@ var parent2 = new Vue({
 })
 ```
 
-**Result:**
+**結果:**
 
 <ul id="demo-4" class="demo"><li v-repeat="users" v-component="user-profile"></li></ul>
 <script>
@@ -379,9 +384,9 @@ var parent2 = new Vue({
 })
 </script>
 
-## Child Reference
+## 子の参照
 
-Sometimes you might need to access nested child components in JavaScript. To enable that you have to assign a reference ID to the child component using `v-ref`. For example:
+時々、JavaScript でネストした子コンポーネントへのアクセスが必要になる場合があります。それを実現するためには `v-ref` を用いて子コンポーネントに対して参照 ID を割り当てる必要があります。例:
 
 ``` html
 <div id="parent">
@@ -391,15 +396,15 @@ Sometimes you might need to access nested child components in JavaScript. To ena
 
 ``` js
 var parent = new Vue({ el: '#parent' })
-// access child component
+// 子コンポーネントへのアクセス
 var child = parent.$.profile
 ```
 
-When `v-ref` is used together with `v-repeat`, the value you get will be an Array containing the child components mirroring the data Array.
+`v-ref` が `v-repeat` と共に使用された時は、得られる値はその data の配列をミラーリングした子コンポーネントが格納されている配列になります。
 
-## Event System
+## イベントシステム
 
-Although you can directly access a ViewModels children and parent, it is more convenient to use the built-in event system for cross-component communication. It also makes your code less coupled and easier to maintain. Once a parent-child relationship is established, you can dispatch and trigger events using each ViewModel's [event instance methods](/api/instance-methods.html#Events).
+ViewModel の子や親に直接アクセスすることもできますが、コンポーネント間通信のためのビルトインのイベントシステムを使用した方が便利です。また、この仕組みによってコードの依存性を減らし、メンテナンスし易くなります。一度親子の関係が確立されれば、それぞれの ViewModel の [event instance methods](/api/instance-methods.html#Events) を使ったイベントのディスパッチやトリガーが可能になります。
 
 ``` js
 var Child = Vue.extend({
@@ -444,15 +449,15 @@ var parent = new Vue({
 })
 </script>
 
-## Private Assets
+## プライベートアセット
 
-Sometimes a component needs to use assets such as directives, filters and its own child components, but might want to keep these assets encapsulated so the component itself can be reused elsewhere. You can do that using the private assets instantiation options. Private assets will only be accessible by the instances of the owner component and its child components.
+時々、ディレクティブ、フィルタ、子コンポーネントなどのアセットをコンポーネントが使う必要がでてきます。しかし、コンポーネント自体を他のところでも再利用できるように、カプセル化されたそれらのアセットを保持したいと思うかもしれません。それはインスタンス化時にプライベートアセットのオプションを使用することによって実現できます。プライベートアセットは所有者であるコンポーネントとその子コンポーネントのインスタンスからのみアクセス可能なものになります。
 
 ``` js
-// All 5 types of assets
+// 全5種類のアセット
 var MyComponent = Vue.extend({
   directives: {
-    // id : definition pairs same with the global methods
+    // id : グローバルメソッドと同じ定義のペア
     'private-directive': function () {
       // ...
     }
@@ -472,7 +477,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registration methods:
+別の方法として、グローバルなアセットの登録メソッドと類似したチェーンするAPIを使用して、プライベートアセットを既存のコンポーネントのコンストラクタに追加することもできます:
 
 ``` js
 MyComponent
@@ -484,22 +489,22 @@ MyComponent
 
 ## Content Insertion
 
-When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component (similar to the Angular concept of "transclusion".) Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content.
+再利用可能なコンポーネントを作るときに、コンポーネントの一部ではないホストしている要素 (Angular の "transclusion" の概念に類似したものです。) の中にある元のコンテンツへのアクセスや再利用がしばしば必要です。Vue.jsは現在の Web Components の仕様ドラフトと互換性のある content insertion の仕組みを実装しています。元のコンテンツに対する挿入ポイントとして機能する特別な `<content>` 要素を使用します。
 
-<p class="tip">Note: "transcluded" contents are compiled in the parent component's scope.</p>
+<p class="tip">注釈: "transcluded" されたコンテンツは親コンポーネントのスコープの中でコンパイルされます。</p>
 
 ### Single Insertion Point
 
-When there is only one `<content>` tag with no attributes, the entire original content will be inserted at its position in the DOM and replaces it. Anything originally inside the `<content>` tags is considered **fallback content**. Fallback content will only be displayed if the hosting element is empty and has no content to be inserted. For example:
+何も属性の無い一つの `<content>` タグしか存在しない時は、元のコンテンツ全体が DOM の中のその位置に挿入され、置換します。元々の `<content>` タグの内側のものは全て **fallback content** として解釈されます。Fallback content はホストしている要素が空で挿入されるべきコンテンツがない時にだけ表示されます。
 
-Template for `my-component`:
+`my-component` のテンプレート:
 
 ``` html
 <h1>This is my component!</h1>
 <content>This will only be displayed if no content is inserted</content>
 ```
 
-Parent markup that uses the component:
+このコンポーネントを使用した親のマークアップ:
 
 ``` html
 <div v-component="my-component">
@@ -508,7 +513,7 @@ Parent markup that uses the component:
 </div>
 ```
 
-The rendered result will be:
+レンダリングされる結果:
 
 ``` html
 <div>
@@ -520,9 +525,9 @@ The rendered result will be:
 
 ### Multiple Insertion Points
 
-`<content>` elements have a special attribute, `select`, which expects a CSS selector. You can have multiple `<content>` insertion points with different `select` attributes, and each of them will be replaced by the elements matching that selector from the original content.
+`<content>` 要素は CSS セレクタを期待する `select` という特殊な属性を持ちます。異なる `select` 属性を用いて複数の  `<content>` の挿入位置を指定することができます。それぞれは元のコンテンツの中でそのセレクタにマッチした要素によって置換されます。
 
-Template for `multi-insertion-component`:
+`multi-insertion-component` のテンプレート:
 
 ``` html
 <content select="p:nth-child(3)"></content>
@@ -530,7 +535,7 @@ Template for `multi-insertion-component`:
 <content select="p:nth-child(1)"></content>
 ```
 
-Parent markup:
+親のマークアップ:
 
 ``` html
 <div v-component="multi-insertion-component">
@@ -540,7 +545,7 @@ Parent markup:
 </div>
 ```
 
-The rendered result will be:
+レンダリングされる結果:
 
 ``` html
 <div>
@@ -550,6 +555,6 @@ The rendered result will be:
 </div>
 ```
 
-The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
+content insertion の仕組みは、元のコンテンツがどのように組み替えられ、表示されるべきか、という点に関して素晴らしい管理機能を提供します。これによってコンポーネントが非常に柔軟性と再利用性が高いものになります。
 
-Next: [Applying Transition Effects](/guide/transitions.html).
+次: [Applying Transition Effects](/guide/transitions.html).
