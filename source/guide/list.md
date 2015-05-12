@@ -177,8 +177,8 @@ For example, if your data looks like this:
 ``` js
 {
   items: [
-    { _uid: 88f869d, ... },
-    { _uid: 7496c10, ... }
+    { _uid: '88f869d', ... },
+    { _uid: '7496c10', ... }
   ]
 }
 ```
