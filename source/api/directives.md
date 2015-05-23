@@ -179,41 +179,6 @@ If an argument is provided, a wrapper data object will always be created, using 
 
 For detailed examples, see [Displaying a List](/guide/list.html).
 
-### v-with
-
-- This directive can only be used with `v-component`.
-- This directive accepts only keypaths, no expressions.
-
-Allows a child ViewModel to inherit data from the parents. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive must be used in combination with `v-component`.
-
-Example inheriting an object:
-
-``` js
-// parent data looks like this
-{
-  user: {
-    name: 'Foo Bar',
-    email: 'foo@bar.com'
-  }
-}
-```
-
-``` html
-<my-component v-with="user">
-  <!-- you can access properties without `user.` -->
-  {{name}} {{email}}
-</my-component>
-```
-
-Example inheriting individual properties (using the same data):
-
-``` 
-<my-component v-with="myName: user.name, myEmail: user.email">
-  <!-- you can access properties with the new keys -->
-  {{myName}} {{myEmail}}
-</my-component>
-```
-
 ### v-events
 
 - This directive can only be used with `v-component`.
@@ -233,32 +198,6 @@ When the child component calls `this.$emit('change', ...)`, the parent's `onChil
 ## Literal Directives
 
 > Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaluated only once on first compile and do not react to data changes.
-
-### v-component
-
-- Directive params: [`keep-alive`](/guide/components.html#Dynamic_Components), [`wait-for`](/guide/components.html#wait-for), [`transition-mode`](/guide/components.html#transition-mode), [`inline-template`](/guide/components.html#Inline_Template)
-- Can be made reactive with mustaches
-
-Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
-
-### v-partial
-
-- Can be made reactive with mustaches
-
-Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option.
-
-Using the mustache tag inside `v-partial` makes it reactive:
-
-``` html
-<!-- content will change based on vm.partialId -->
-<div v-partial="{{partialId}}"></div>
-```
-
-You can also use this syntax (which doesn't support reactivity):
-
-``` html
-<div>{{> my-partial}}</div>
-```
 
 ### v-transition
 
