@@ -521,4 +521,31 @@ In 0.11.6, a special param attribute for components is introduced: `inline-templ
 </my-component>
 ```
 
+## Async Components
+
+<p class="tip">Async Components are only supported in Vue ^0.12.0.</p>
+
+In large applications, we may need to divide the app into smaller chunks, and only load a component from the server when it is actually needed. To make that easier, Vue.js allows you to define your component as a factory function that asynchronously resolves your component definition. For example:
+
+``` js
+Vue.component('async-example', function (resolve) {
+  setTimeout(function () {
+    resolve({
+      template: '<div>I am async!</div>'
+    })
+  }, 1000)
+})
+```
+
+The factory function receives a single arugment, which is a callback function that should be called when you have retrived your component definition from the server. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
+
+``` js
+Vue.component('async-webpack-example', function (resolve) {
+  // this special require syntax will instruct webpack to
+  // automatically split your built code into bundles which
+  // are automatically loaded over ajax requests.
+  require(['./my-async-component'], resolve)
+})
+```
+
 Next: [Applying Transition Effects](/guide/transitions.html).
