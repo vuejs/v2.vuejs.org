@@ -90,6 +90,13 @@ Will result in:
 
 Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/custom-directive.html).
 
+### Vue.elementDirective( id, [definition] )
+
+- **id** `String`
+- **definition** `Function` or `Object` *optional*
+
+Register or retrieve a global custom element directive. For more details see [Element Directives](/guide/custom-directive.html#Element_Directives).
+
 ### Vue.filter( id, [definition] )
 
 - **id** `String`
@@ -110,44 +117,6 @@ Register or retrieve a global component. For more details see [Component System]
 - **definition** `Object` *optional*
 
 Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Functions).
-
-### Vue.partial( id, [definition] )
-
-- **id** `String`
-- **definition** `String | Node` *optional*
-
-Register or retrieve a global partial. The definition can be a template string, a querySelector that starts with `#`, a DOM element (whose innerHTML will be used as the template string), or a DocumentFragment.
-
-**Example**
-
-HTML
-
-``` html
-<div id="demo">
-  {{> avatar}}
-</div>
-```
-
-JavaScript
-
-``` js
-Vue.partial('avatar', '<img v-attr="src:avatarURL">')
-
-new Vue({
-  el: '#demo',
-  data: {
-    avatarURL: '/images/avatar.jpg'
-  }    
-})
-```
-
-Will result in:
-
-``` html
-<div id="demo">
-  <img src="/images/avatar.jpg">
-</div>
-```
 
 ### Vue.nextTick( callback )
 

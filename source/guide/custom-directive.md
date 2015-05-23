@@ -208,4 +208,33 @@ You can optionally provide a priority number for your directive (defaults to 0).
 
 You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, `v-repeat`, `v-if` and `v-component` are considered "terminal directives" and they always have the highest priority in the compilation process.
 
+## Element Directives
+
+In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained later in the guide). You can register a custom element directive like so:
+
+``` js
+Vue.elementDirective('my-directive', {
+  // same API as normal directives
+  bind: function () {
+    // manipulate this.el...
+  }
+})
+```
+
+Then, instead of:
+
+``` html
+<div v-my-directive></div>
+```
+
+We can write:
+
+``` html
+<my-directive></my-directive>
+```
+
+Element directives cannot accept arguments or expressions, but it can read the element's attributes to determine its behavior.
+
+A big difference from normals directives is that element directives are **terminal**, which means once Vue encounters an element directive, it will leave that element and all its children alone - only the element directive itself will be able to manipulate that element and its children. 
+
 Next, we'll see how to [write a custom filter](/guide/custom-filter.html).
