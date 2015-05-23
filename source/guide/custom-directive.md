@@ -206,7 +206,7 @@ Vue.directive('my-directive', {
 
 You can optionally provide a priority number for your directive (defaults to 0). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
 
-You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, `v-repeat`, `v-if` and `v-component` are considered "terminal directives" and they always have the highest priority in the compilation process.
+You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, logic control directives `v-if` and `v-repeat` are considered "terminal" and they always have the highest priority in the compilation process.
 
 ## Element Directives
 

@@ -28,13 +28,13 @@ This is achieved via using the [Vueify](https://github.com/vuejs/vueify) transfo
 
 ## Routing
 
-You can implement some rudimentary routing logic by manually listening on hashchange and utilizing a dynamic `v-component`.
+You can implement some rudimentary routing logic by manually listening on hashchange and utilizing a dynamic component:
 
 **Example:**
 
 ``` html
 <div id="app">
-  <div v-component="{{currentView}}"></div>
+  <component is="{{currentView}}"></component>
 </div>
 ```
 

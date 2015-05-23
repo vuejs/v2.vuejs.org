@@ -28,7 +28,3 @@ If you provided the `el` option at instantiation, the Vue instance will immediat
 Vue instances proxy access to their `$data` objects, so if you have `vm.$data.msg` you can also access it as `vm.msg`. This might look a bit magical, but is totally optional. You can stick to `vm.$data.msg` for more explicit data access. However it is still important to notice the difference between `vm` and `vm.$data`, since the former cannot be observed by other Vue instances as data.
 
 It's also worth noting that data objects do not necessarily belong to a single Vue instance - multiple ViewModels can observe the same piece of data, whether directly as `$data` or nested under it. This is useful when multiple components need to react to a shared global state object.
-
-## Components
-
-When building complex UI, we often need to structure our app as a tree of components. Vue.js' component system allows you to do exactly that. The Vue constructor can be extended to define components that encapsulate its own template and data logic, and Vue provides a Web Component like syntax for you to compose your components in the template. For more details, read the [Component System](/guide/components.html) section of the guide.

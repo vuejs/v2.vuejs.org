@@ -181,16 +181,16 @@ For detailed examples, see [Displaying a List](/guide/list.html).
 
 ### v-events
 
-- This directive can only be used with `v-component`.
+- This directive can only be used on components.
 - This directive accepts either a method name, or a single expression statement.
 
-Allows a parent instance to listen to events on a child instance. The difference from `v-on` is that `v-events` listens to Vue's component system events created via `vm.$emit()` rather than DOM events. This directive allows more decoupled parent-child communication without having to hard-code event listeners into the parent component. Note that it can only be used together with `v-component`, i.e. on the root element of a child component.
+Allows a parent instance to listen to events on a child instance. The difference from `v-on` is that `v-events` listens to Vue's component system events created via `vm.$emit()` rather than DOM events. This directive allows more decoupled parent-child communication without having to hard-code event listeners into the parent component. Note that it can only be used on a component root element from the parent template.
 
 **Example:**
 
 ``` html
 <!-- inside parent template -->
-<div v-component="child" v-events="change: onChildChange"></div>
+<my-component v-events="change: onChildChange"></my-component>
 ```
 
 When the child component calls `this.$emit('change', ...)`, the parent's `onChildChange` method will be invoked with additional arguments passed to `$emit()`.
@@ -209,7 +209,7 @@ For details, see [the guide on transitions](/guide/transitions.html).
 
 ### v-ref
 
-Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
+Register a reference to a child component on its parent for easier access. Only respected when used on a component or with `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
 
 When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
 

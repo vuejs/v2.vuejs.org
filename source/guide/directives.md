@@ -60,23 +60,21 @@ You can create multiple bindings of the same directive in a single attribute, se
 
 ## Literal Directives
 
-Some directives don't create data bindings - they simply take the attribute value as a literal string. For example the `v-component` directive:
+Some directives don't create data bindings - they simply take the attribute value as a literal string. For example the `v-ref` directive:
 
 ``` html
-<div v-component="my-component"></div>
+<my-component v-ref="some-string-id"></my-component>
 ```
 
-Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor.
+Here `"some-string-id"` is not a reactive expression - Vue.js will not attempt to look it up in the component's data.
 
-You can also use mustache expressions inside literal directives to make it reactive. For example, the following code allows you to dynamically resolve the type of component you want to use:
+In some cases you can also use the mustache syntax to make a literal directive reactive:
 
 ``` html
-<div v-component="{{ isOwner ? 'owner-panel' : 'guest-panel' }}"></div>
+<div v-show="showMsg" v-transition="{{dynamicTransitionId}}"></div>
 ```
 
-When the expression inside the mustaches change, the rendered component will also change accordingly!
-
-However, note that not all literal directives can have this kind of reactive behavior. Built-in directives that support this usage include `v-component`, `v-partial` and `v-transition`. Mustache expressions in other literal directives, e.g. `v-ref` and `v-el`, are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
+However, note that `v-transition` is the only directive that has this feature. Mustache expressions in other literal directives, e.g. `v-ref` and `v-el`, are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
 
 A full list of literal directives can be found in the [API reference](/api/directives.html#Literal_Directives).
 
