@@ -33,15 +33,17 @@ Multiple filters can be chained together:
 
 ## Arguments
 
-Some filters can take optional arguments. Simply add arguments separated by spaces:
+Some filters can take optional arguments. Arguments are separated by spaces:
 
 ``` html
-<span>{{order | pluralize st nd rd th}}</span>
+<span>{{order | pluralize 'st' 'nd' 'rd' 'th'}}</span>
 ```
 
 ``` html
-<input v-on="keyup: submitForm | key enter">
+<input v-on="keyup: submitForm | key 'enter'">
 ```
+
+Plain string arguments need to be enclosed in quotes. Non-quoted arguments will be evaluated dynamically against the current data scope, and we will discuss them in more details later when we talk about custom filters.
 
 For their specific use of the above examples see the [full list of built-in filters](/api/filters.html).
 
