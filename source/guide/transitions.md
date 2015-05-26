@@ -20,38 +20,37 @@ With the directive `v-transition="my-transition"` applied, Vue will:
 A typical CSS transition looks like this:
 
 ``` html
-<p class="msg" v-if="show" v-transition="expand">Hello!</p>
+<div v-if="show" v-transition="expand">Hello!</div>
 ```
 
-You also need to define CSS rules for `.expand-enter` and `.expand-leave` classes:
+You also need to define CSS rules for `.expand-transition`, `.expand-enter` and `.expand-leave` classes:
 
 ``` css
-.msg {
+.expand-transition {
   transition: all .3s ease;
   height: 30px;
   padding: 10px;
   background-color: #eee;
   overflow: hidden;
 }
-.msg.expand-enter, .msg.expand-leave {
+.expand-enter, .expand-leave {
   height: 0;
   padding: 0 10px;
   opacity: 0;
 }
 ```
 
-<div id="demo"><p class="msg" v-if="show" v-transition="expand">Hello!</p><button v-on="click: show = !show">Toggle</button></div>
+<div id="demo"><div v-if="show" v-transition="expand">Hello!</div><button v-on="click: show = !show">Toggle</button></div>
 
 <style>
-.msg {
-  transition: all .5s ease;
+.expand-transition {
+  transition: all .3s ease;
   height: 30px;
+  padding: 10px;
   background-color: #eee;
   overflow: hidden;
-  padding: 10px;
-  margin: 0 !important;
 }
-.msg.expand-enter, .msg.expand-leave {
+.expand-enter, .expand-leave {
   height: 0;
   padding: 0 10px;
   opacity: 0;
@@ -65,7 +64,7 @@ new Vue({
 })
 </script>
 
-The classes being toggled are based on the value of your `v-transition` directive. In the case of `v-transition="fade"`, the classes being toggled will be `.fade-enter` and `.fade-leave`. When no value is provided they will default to `.v-enter` and `.v-leave`.
+The classes being added and toggled are based on the value of your `v-transition` directive. In the case of `v-transition="fade"`, the class `.fade-transition` will be always present, and the classes `.fade-enter` and `.fade-leave` will be toggled automatically at the right moments. When no value is provided they will default to `.v-transition`, `.v-enter` and `.v-leave`.
 
 When the `show` property changes, Vue.js will insert or remove the `<p>` element accordingly, and apply transition classes as specified below:
 
@@ -89,17 +88,14 @@ CSS animations are applied in the same way with CSS transitions, the difference 
 **Example:** (omitting prefixed CSS rules here)
 
 ``` html
-<p class="animated" v-if="show" v-transition="bounce">Look at me!</p>
+<span v-show="show" v-transition="bounce">Look at me!</span>
 ```
 
 ``` css
-.animated {
-  display: inline-block;
-}
-.animated.bounce-enter {
+.bounce-enter {
   animation: bounce-in .5s;
 }
-.animated.bounce-leave {
+.bounce-leave {
   animation: bounce-out .5s;
 }
 @keyframes bounce-in {
@@ -126,17 +122,14 @@ CSS animations are applied in the same way with CSS transitions, the difference 
 }
 ```
 
-<div id="anim" class="demo"><span class="animated" v-if="show" v-transition="bounce">Look at me!</span><br><button v-on="click: show = !show">Toggle</button></div>
+<div id="anim" class="demo"><span v-show="show" v-transition="bounce">Look at me!</span><br><button v-on="click: show = !show">Toggle</button></div>
 
 <style>
-  .animated {
-    display: inline-block;
-  }
-  .animated.bounce-enter {
+  .bounce-enter {
     -webkit-animation: bounce-in .5s;
     animation: bounce-in .5s;
   }
-  .animated.bounce-leave {
+  .bounce-leave {
     -webkit-animation: bounce-out .5s;
     animation: bounce-out .5s;
   }
