@@ -1,12 +1,3 @@
-<script>
-    // G+ button
-    ;(function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
-</script>
-
 <div id="hero">
     <div class="inner">
         <ul id="nav">
@@ -24,10 +15,10 @@
             <a href="https://github.com/yyx990803/vue" target="_blank" class="button">Source on GitHub</a>
         </p>
         <ul id="social">
-            <li><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://vuejs.org" data-text="Vue.js - MVVM made simple" data-via="vuejs">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            <li><a href="https://twitter.com/vuejs" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @vuejs</a></li>
             <li><iframe src="http://ghbtns.com/github-btn.html?user=yyx990803&repo=vue&type=watch&count=true"
         allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe></li>
-            <li><g:plusone href="http://vuejs.org" size="medium"></g:plusone></li>
+            <li class="last"><a href="https://gitter.im/yyx990803/vue" target="_blank"><img src="https://badges.gitter.im/Join%20Chat.svg"></a></li>
         </ul>
     </div>
     <div class="down"><img src="/images/down.png"></div>
@@ -125,3 +116,6 @@
     <p>Released under the <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
     <p>Copyright (c) <%- date(Date.now(), 'YYYY') %> <a href="http://evanyou.me" target="_blank">Evan You</a></p>
 </div>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
