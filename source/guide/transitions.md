@@ -7,7 +7,7 @@ With Vue.js' transition system you can apply automatic transition effects when e
 
 With the directive `v-transition="my-transition"` applied, Vue will:
 
-1. Try to find a JavaScript transtion definition registered either through `Vue.transition(id, def)` or passed in with the `transitions` option, with the id `"my-transition"`. If it finds it, it will use that definition object to perform the custom JavaScript based transition.
+1. Try to find a JavaScript transition definition registered either through `Vue.transition(id, def)` or passed in with the `transitions` option, with the id `"my-transition"`. If it finds it, it will use that definition object to perform the custom JavaScript based transition.
 
 2. If no custom JavaScript transition is found, it will automatically sniff whether the target element has CSS transitions or CSS animations applied, and add/remove the CSS classes at the appropriate times.
 
