@@ -111,6 +111,26 @@ var demo = new Vue({
 })
 </script>
 
+### Multiple Clauses
+
+Comma separated arguments are bound as multiple directive instances. In the following example, directive methods are called twice:
+
+``` html
+<div v-demo="color: 'white', text: 'hello!'"></div>
+```
+
+You can achieve single binding with all arguments by closing value with object literal:
+
+``` html
+<div v-demo="{color: 'white', text: 'hello!'}"></div>
+```
+
+``` js
+Vue.directive('demo', function (value) {
+  console.log(value) // Object {color: 'white', text: 'hello!'}
+})
+```
+
 ## Literal Directives
 
 If you pass in `isLiteral: true` when creating a custom directive, the attribute value will be taken as a literal string and assigned as that directive's `expression`. The directive will not attempt to setup data observation.
