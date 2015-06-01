@@ -1,26 +1,26 @@
-title: Transitions
+title: Transition System
 type: guide
 order: 12
 ---
 
-With Vue.js' transition system you can apply automatic transition effects when elements are inserted into or removed from the DOM. There are two options to do so: defining CSS classes with transitions/animations, or by registering a definition object containing custom JavaScript hook functions.
+With Vue.js' transition system you can apply automatic transition effects when elements are inserted into or removed from the DOM. Vue.js will automatically add/remove CSS classes at appropriate times to trigger CSS transitions or animations for you, and you can also provide JavaScript hook functions to perform custom DOM manipulations during the transition.
 
 With the directive `v-transition="my-transition"` applied, Vue will:
 
-1. Try to find a JavaScript transition definition registered either through `Vue.transition(id, def)` or passed in with the `transitions` option, with the id `"my-transition"`. If it finds it, it will use that definition object to perform the custom JavaScript based transition.
+1. Try to find a JavaScript transition hooks object registered either through `Vue.transition(id, hooks)` or passed in with the `transitions` option, using the id `"my-transition"`. If it finds it, it will call the appropriate hooks at different stages of the transition.
 
-2. If no custom JavaScript transition is found, it will automatically sniff whether the target element has CSS transitions or CSS animations applied, and add/remove the CSS classes at the appropriate times.
+2. Automatically sniff whether the target element has CSS transitions or CSS animations applied, and add/remove the CSS classes at the appropriate times.
 
-3. If no transitions/animations are detected, the DOM manipulation is executed on next frame.
+3. If no JavaScript hooks are provided and no CSS transitions/animations are detected, the DOM operation (insertion/removal) is executed immediately on next frame.
 
-<p class="tip">All Vue.js transitions are triggered only if the DOM manipulation was applied by Vue.js, either through built-in directives, e.g. `v-if`, or through Vue instance methods, e.g. `vm.$appendTo()`.</p>
+<p class="tip">All Vue.js transitions are triggered only if the DOM manipulation was applied through Vue.js, either by a built-in directive, e.g. `v-if`, or by one of Vue's instance methods, e.g. `vm.$appendTo()`.</p>
 
 ## CSS Transitions
 
 A typical CSS transition looks like this:
 
 ``` html
-<div v-if="show" v-transition="expand">Hello!</div>
+<div v-if="show" v-transition="expand">hello</div>
 ```
 
 You also need to define CSS rules for `.expand-transition`, `.expand-enter` and `.expand-leave` classes:
@@ -40,7 +40,32 @@ You also need to define CSS rules for `.expand-transition`, `.expand-enter` and 
 }
 ```
 
-<div id="demo"><div v-if="show" v-transition="expand">Hello!</div><button v-on="click: show = !show">Toggle</button></div>
+In addition, you can provide JavaScript hooks:
+
+``` js
+Vue.transition('expand', {
+  beforeEnter: function (el) {
+    el.textContent = 'beforeEnter'
+  },
+  enter: function (el) {
+    el.textContent = 'enter'
+  },
+  afterEnter: function (el) {
+    el.textContent = 'afterEnter'
+  },
+  beforeLeave: function (el) {
+    el.textContent = 'beforeLeave'
+  },
+  leave: function (el) {
+    el.textContent = 'leave'
+  },
+  afterLeave: function (el) {
+    el.textContent = 'afterLeave'
+  }
+})
+```
+
+<div id="demo"><div v-if="show" v-transition="expand">hello</div><button v-on="click: show = !show">Toggle</button></div>
 
 <style>
 .expand-transition {
@@ -60,7 +85,32 @@ You also need to define CSS rules for `.expand-transition`, `.expand-enter` and 
 <script>
 new Vue({
   el: '#demo',
-  data: { show: true }
+  data: {
+    show: true,
+    transitionState: 'Idle'
+  },
+  transitions: {
+    expand: {
+      beforeEnter: function (el) {
+        el.textContent = 'beforeEnter'
+      },
+      enter: function (el) {
+        el.textContent = 'enter'
+      },
+      afterEnter: function (el) {
+        el.textContent = 'afterEnter'
+      },
+      beforeLeave: function (el) {
+        el.textContent = 'beforeLeave'
+      },
+      leave: function (el) {
+        el.textContent = 'leave'
+      },
+      afterLeave: function (el) {
+        el.textContent = 'afterLeave'
+      }
+    }
+  }
 })
 </script>
 
@@ -69,15 +119,41 @@ The classes being added and toggled are based on the value of your `v-transition
 When the `show` property changes, Vue.js will insert or remove the `<p>` element accordingly, and apply transition classes as specified below:
 
 - When `show` becomes false, Vue.js will:
-  1. Apply `v-leave` class to the element to trigger the transition;
-  2. Wait for the transition to finish; (listening to a `transitionend` event)
-  3. Remove the element from the DOM and remove `v-leave` class.
+  1. Call `beforeLeave` hook;
+  2. Apply `v-leave` class to the element to trigger the transition;
+  3. Call `leave` hook;
+  4. Wait for the transition to finish; (listening to a `transitionend` event)
+  5. Remove the element from the DOM and remove `v-leave` class.
+  6. Call `afterLeave` hook.
 
 - When `show` becomes true, Vue.js will:
-  1. Apply `v-enter` class to the element;
-  2. Insert it into the DOM;
-  3. Force a CSS layout so `v-enter` is actually applied;
-  4. Remove the `v-enter` class to trigger a transition back to the element's original state.
+  1. Call `beforeEnter` hook;
+  2. Apply `v-enter` class to the element;
+  3. Insert it into the DOM;
+  4. Call `enter` hook;
+  5. Force a CSS layout so `v-enter` is actually applied, then remove the `v-enter` class to trigger a transition back to the element's original state.
+  6. Wait for the transition to finish;
+  7. Call `afterEnter` hook.
+
+All of the above hook functions are called with their `this` contexts set to the associated Vue instances. If the element is the root node of a Vue instance, that instance will be used as the context. Otherwise, the context will be the owner instance of the transition directive.
+
+In addition, the `enter` and `leave` can optionally take a second callback argument. When you do so, you are indicating that you want to explicitly control when the transition should end, so instead of waiting for the CSS `transitionend` event, Vue.js will expect you to eventually call the callback to finish the transition. For example:
+
+``` js
+enter: function (el) {
+  // no second argument, transition end
+  // determined by CSS transitionend event
+}
+```
+
+vs.
+
+``` js
+enter: function (el, done) {
+  // with the second argument, the transition
+  // will only end when `done` is called.
+}
+```
 
 <p class="tip">When multiple elements are being transitioned together, Vue.js batches them and only applies one forced layout.</p>
 
@@ -192,18 +268,12 @@ new Vue({
 })
 </script>
 
-## JavaScript Functions
+## JavaScript Only Transitions
 
-The following example registers a custom JavaScript transition definition using jQuery:
+You can also use just the JavaScript hooks without defining any CSS rules. When using JavaScript only transitions, the `done` callbacks are required for the `enter` and `leave` hooks, otherwise they will be called synchronously and the transition will finish immediately. The following example registers a custom JavaScript transition using jQuery:
 
 ``` js
 Vue.transition('fade', {
-  beforeEnter: function (el) {
-    // a synchronous function called right before the
-    // element is inserted into the document.
-    // you can do some pre-styling here to avoid
-    // FOC (flash of content).
-  },
   enter: function (el, done) {
     // element is already inserted into the DOM
     // call done when animation finishes.
@@ -226,9 +296,7 @@ Vue.transition('fade', {
 })
 ```
 
-All of the above hook functions are called with their `this` contexts set to the associated Vue instances. If the element is the root node of a Vue instance, that instance will be used as the context. Otherwise, the context will be the owner instance of the transition directive.
-
-Then you can use it by providing the transition id to `v-transition`. Note this has higher priority than CSS transitions.
+Then you can use it by providing the transition id to `v-transition`, same deal:
 
 ``` html
 <p v-transition="fade"></p>
