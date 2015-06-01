@@ -181,6 +181,12 @@ Insert the vm's `$el` after target element.
 
 Remove the vm's `$el` from the DOM.
 
+### vm.$nextTick( callback )
+
+- **callback** `Function`
+
+Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+
 ## Lifecycle
 
 ### vm.$mount( [element|selector] )

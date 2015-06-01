@@ -83,6 +83,12 @@ Will result in:
 <p>Walter White aka Heisenberg</p>
 ```
 
+### Vue.nextTick( callback )
+
+- **callback** `Function`
+
+Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. For more details see [Understanding Async Updates](/guide/directives.html#Understanding_Async_Updates).
+
 ### Vue.directive( id, [definition] )
 
 - **id** `String`
@@ -117,12 +123,6 @@ Register or retrieve a global component. For more details see [Component System]
 - **definition** `Object` *optional*
 
 Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Functions).
-
-### Vue.nextTick( callback )
-
-- **callback** `Function`
-
-Vue.js batches view updates and executes them all asynchronously. It uses `MutationObserver` if available and falls back to `setTimeout(fn, 0)`. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.
 
 ### Vue.use( plugin, [args...] )
 
