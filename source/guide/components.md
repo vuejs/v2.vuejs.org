@@ -528,7 +528,7 @@ In 0.11.6, a special param attribute for components is introduced: `inline-templ
 In large applications, we may need to divide the app into smaller chunks, and only load a component from the server when it is actually needed. To make that easier, Vue.js allows you to define your component as a factory function that asynchronously resolves your component definition. For example:
 
 ``` js
-Vue.component('async-example', function (resolve) {
+Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
     resolve({
       template: '<div>I am async!</div>'
@@ -537,7 +537,7 @@ Vue.component('async-example', function (resolve) {
 })
 ```
 
-The factory function receives a single arugment, which is a callback function that should be called when you have retrived your component definition from the server. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
+The factory function receives a `resolve` callback, which should be called when you have retrived your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
