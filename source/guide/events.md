@@ -92,7 +92,7 @@ Check the API reference for a [full list of key filter presets](/api/filters.htm
 
 ## Why Listeners in HTML?
 
-You might be concerned about this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintainance difficulty. In fact, there are several benefits in using `v-on`:
+You might be concerned that this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintainance difficulty. In fact, there are several benefits in using `v-on`:
 
 1. It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
 2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
