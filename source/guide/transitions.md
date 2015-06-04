@@ -44,6 +44,7 @@ In addition, you can provide JavaScript hooks:
 
 ``` js
 Vue.transition('expand', {
+
   beforeEnter: function (el) {
     el.textContent = 'beforeEnter'
   },
@@ -53,6 +54,10 @@ Vue.transition('expand', {
   afterEnter: function (el) {
     el.textContent = 'afterEnter'
   },
+  enterCancelled: function (el) {
+    // handle cancellation
+  },
+
   beforeLeave: function (el) {
     el.textContent = 'beforeLeave'
   },
@@ -61,6 +66,9 @@ Vue.transition('expand', {
   },
   afterLeave: function (el) {
     el.textContent = 'afterLeave'
+  },
+  leaveCancelled: function (el) {
+    // handle cancellation
   }
 })
 ```
@@ -135,9 +143,11 @@ When the `show` property changes, Vue.js will insert or remove the `<p>` element
   6. Wait for the transition to finish;
   7. Call `afterEnter` hook.
 
+In addition, if you remove an element when its enter transition is in progress, the `enterCancelled` hook will be called to give you the opportunity to clean up changes or timers created in `enter`. Vice-versa for leaving transitions.
+
 All of the above hook functions are called with their `this` contexts set to the associated Vue instances. If the element is the root node of a Vue instance, that instance will be used as the context. Otherwise, the context will be the owner instance of the transition directive.
 
-In addition, the `enter` and `leave` can optionally take a second callback argument. When you do so, you are indicating that you want to explicitly control when the transition should end, so instead of waiting for the CSS `transitionend` event, Vue.js will expect you to eventually call the callback to finish the transition. For example:
+Finally, the `enter` and `leave` can optionally take a second callback argument. When you do so, you are indicating that you want to explicitly control when the transition should end, so instead of waiting for the CSS `transitionend` event, Vue.js will expect you to eventually call the callback to finish the transition. For example:
 
 ``` js
 enter: function (el) {
@@ -280,18 +290,16 @@ Vue.transition('fade', {
     $(el)
       .css('opacity', 0)
       .animate({ opacity: 1 }, 1000, done)
-    // optionally return a "cancel" function
-    // to clean up if the animation is cancelled
-    return function () {
-      $(el).stop()
-    }
+  },
+  enterCancelled: function (el) {
+    $(el).stop()
   },
   leave: function (el, done) {
     // same as enter
     $(el).animate({ opacity: 0 }, 1000, done)
-    return function () {
-      $(el).stop()
-    }
+  },
+  leaveCancelled: function (el) {
+    $(el).stop()
   }
 })
 ```
@@ -301,5 +309,29 @@ Then you can use it by providing the transition id to `v-transition`, same deal:
 ``` html
 <p v-transition="fade"></p>
 ```
+
+## Staggering Transitions
+
+It's possible to create staggering transitions when using `v-transition` with `v-repeat`. You can do this either by adding a `stagger`, `enter-stagger` or `leave-stagger` attribute to your transitioned element:
+
+``` html
+<div v-repeat="list" v-transition stagger="100"></div>
+```
+
+Or, you can provide a `stagger`, `enterStagger` or `leaveStagger` hook for finer-grained control:
+
+``` js
+Vue.transition('stagger', {
+  stagger: function (index) {
+    // increase delay by 50ms for each transitioned item,
+    // but limit max delay to 300ms
+    return Math.min(300, index * 50)
+  }
+})
+```
+
+Example:
+
+<iframe width="100%" height="200" style="margin-left:10px" src="http://jsfiddle.net/yyx990803/ujqrsu6w/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 Next: [Building Larger Apps](/guide/application.html).

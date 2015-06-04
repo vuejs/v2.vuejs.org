@@ -213,6 +213,8 @@ Register a reference to a child component on its parent for easier access. Only 
 
 When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
 
+New in 0.12: If the `v-repeat`'s source data is an Object, then `v-ref` will return an Object with instances matching each key in the Object.
+
 ### v-el
 
 Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
