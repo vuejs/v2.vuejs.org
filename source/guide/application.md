@@ -115,3 +115,5 @@ describe('my-component', function () {
 ## An Example
 
 The [Vue.js Hackernews Clone](https://github.com/yyx990803/vue-hackernews) is an example application that uses Webpack + vue-loader for code organization, Director.js for routing, and HackerNews' official Firebase API as the backend. It's by no means a big application, but it demonstrates the combined usage of the concepts discussed on this page.
+
+Next: [Extending Vue](/guide/extending.html).
