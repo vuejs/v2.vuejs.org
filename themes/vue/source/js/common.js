@@ -135,4 +135,15 @@
     }
   }
 
+  // Search
+  
+  var postfix = encodeURI(' site:vuejs.org')
+  document.getElementById('search-form').addEventListener('submit', function (e) {
+    e.preventDefault()
+    var query = document.getElementById('search-query').value.trim()
+    if (query) {
+      window.location.href = 'https://www.google.com/search?q=' + query + postfix
+    }
+  })
+
 })()
