@@ -2364,7 +2364,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	  if (component || el.hasAttributes()) {
-	    // check terminal direcitves
+	    // check terminal directives
 	    linkFn = checkTerminalDirectives(el, options)
 	    // if not terminal, build normal link function
 	    if (!linkFn) {
