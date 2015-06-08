@@ -54,6 +54,8 @@ It is important to understand the difference between `Vue.extend()` and `Vue.com
 
 Vue.js supports two API styles for using components: the imperative, constructor-based API, and the declarative, template-based API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
 
+<p class="tip">The `table` element has restrictions on what elements can appear inside it, so custom elements will be hoisted out and not render properly. In those cases you can use the component directive syntax: `<tr v-component="my-component"></tr>`. Note this syntax is only available on table elements.</p>
+
 ## Data Flow
 
 ### Passing Data with Props
@@ -281,7 +283,7 @@ By default, the transitions for incoming and outgoing components happen simultan
 
 ## List and Components
 
-For an Array of Objects, you can combine a component with `v-repeat`. In this case, for each Object in the Array, a child ViewModel will be created using that Object as its `$data`, and the specified component as the constructor.
+For an Array of Objects, you can combine a component with `v-repeat`. In this case, for each Object in the Array, a child component will be created using that Object as its `$data`, and the specified component as the constructor.
 
 ``` html
 <ul id="list-example">
@@ -340,6 +342,19 @@ var parent2 = new Vue({
 })
 </script>
 
+### Repeat Component with Identifier
+
+The identifier syntax also works when using a component, and the repeated data will be set as a property on the component using the identifier as the key:
+
+``` html
+<ul id="list-example">
+  <!-- data available inside component as `this.user` -->
+  <user-profile v-repeat="user:users"></user-profile>
+</ul>
+```
+
+<p class="tip">Note that once you use a component with `v-repeat`, the same scoping rules apply to the other directives on the component container element. As a result, you won't be able to access `$index` in the parent template; it will become only available inside the component's own template.<br><br>Alternatively, you can use a `<template>` block repeat to create an intermediate scope, but in most cases it's better to use `$index` inside the component.</p>
+
 ## Child Reference
 
 Sometimes you might need to access nested child components in JavaScript. To enable that you have to assign a reference ID to the child component using `v-ref`. For example:
@@ -360,7 +375,7 @@ When `v-ref` is used together with `v-repeat`, the value you get will be an Arra
 
 ## Event System
 
-Although you can directly access a ViewModels children and parent, it is more convenient to use the built-in event system for cross-component communication. It also makes your code less coupled and easier to maintain. Once a parent-child relationship is established, you can dispatch and trigger events using each ViewModel's [event instance methods](/api/instance-methods.html#Events).
+Although you can directly access a Vue instance's children and parent, it is more convenient to use the built-in event system for cross-component communication. It also makes your code less coupled and easier to maintain. Once a parent-child relationship is established, you can dispatch and trigger events using each component's [event instance methods](/api/instance-methods.html#Events).
 
 ``` js
 var parent = new Vue({
