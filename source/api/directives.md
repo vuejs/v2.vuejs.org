@@ -157,7 +157,7 @@ Will render:
 - This directive requires the value to be an Array, Object or Number.
 - This directive can trigger transitions.
 - This directive accepts an optional argument.
-- Directive params: [`track-by`](/guide/list.html#Using_track-by)
+- Directive params: [`track-by`](/guide/list.html#Using_track-by), [`stagger`](/guide/transitions.html#Staggering_Transitions), [`enter-stagger`](/guide/transitions.html#Staggering_Transitions), [`leave-stagger`](/guide/transitions.html#Staggering_Transitions)
 
 Create a child ViewModel for every item in the binding Array or Object. If the value is a whole Number then that many child ViewModels are created. These child ViewModels will be automatically created / destroyed when mutating methods, e.g. `push()`, are called on the Array or Object, or the number is increased or decreased.
 
