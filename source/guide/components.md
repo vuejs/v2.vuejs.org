@@ -125,6 +125,8 @@ new Vue({
 })
 </script>
 
+<p class="tip">It is also possible to expose `$data` as a prop. The passed in value must be an Object and will replace the component's default `$data`.</p>
+
 #### One-Way Props
 
 By default, all props form a two-way binding between the child property and the parent one: when the parent property updates, it will be synced down to the child, and vice-versa. However, it is also possible to enforce a one-way binding that only syncs from the parent to the child by adding `*` at the beginning of the mustache:
