@@ -93,7 +93,7 @@ new Vue({
     wordOfChild: ''
   },
 
-  // /api/options.html#events
+  // http://vuejs.org/api/options.html#events
   events: {
     'child-say': function(what) {
       return this.wordOfChild = what
@@ -107,7 +107,7 @@ new Vue({
         say: function(event, what) {
           event.preventDefault()
 
-          // /api/instance-methods.html#vm-\$dispatch\(_event\,_\[args…\]_\)
+          // http://vuejs.org/api/instance-methods.html#vm-\$dispatch\(_event\,_\[args…\]_\)
           this.$dispatch('child-say', what)
         }
       }
@@ -128,7 +128,7 @@ new Vue({
       wordOfChild: ''
     },
 
-    // /api/options.html#events
+    // http://vuejs.org/api/options.html#events
     events: {
       'child-say': function(what) {
         return this.wordOfChild = what
@@ -142,7 +142,7 @@ new Vue({
           say: function(event, what) {
             event.preventDefault()
 
-            // /api/instance-methods.html#vm-\$dispatch\(_event\,_\[args…\]_\)
+            // http://vuejs.org/api/instance-methods.html#vm-\$dispatch\(_event\,_\[args…\]_\)
             this.$dispatch('child-say', what)
           }
         }
