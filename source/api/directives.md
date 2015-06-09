@@ -185,22 +185,6 @@ If an argument is provided, a wrapper data object will always be created, using 
 
 For detailed examples, see [Displaying a List](/guide/list.html).
 
-### v-callbacks
-
-- This directive can only be used on components.
-- This directive accepts either a method name, or a single expression statement.
-
-Allows a parent instance to listen to events on a child instance. The difference from `v-on` is that `v-callbacks` listens to Vue's component system events created via `vm.$emit()` rather than DOM events. This directive allows more decoupled parent-child communication without having to hard-code event listeners into the parent component. Note that it can only be used on a component root element from the parent template.
-
-**Example:**
-
-``` html
-<!-- inside parent template -->
-<my-component v-callbacks="change: onChildChange"></my-component>
-```
-
-When the child component calls `this.$emit('change', ...)`, the parent's `onChildChange` method will be invoked with additional arguments passed to `$emit()`.
-
 ## Literal Directives
 
 > Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaluated only once on first compile and do not react to data changes.
