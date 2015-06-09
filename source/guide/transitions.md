@@ -310,6 +310,8 @@ Then you can use it by providing the transition id to `v-transition`, same deal:
 <p v-transition="fade"></p>
 ```
 
+<p class="tip">If the element with a JavaScript-only transition happens to have other CSS transitions or animations applied, it may intefere with Vue's transition detection. In such cases you can add `css: false` to your transition object to explicitly disable Vue from sniffing CSS-related transitions.</p>
+
 ## Staggering Transitions
 
 It's possible to create staggering transitions when using `v-transition` with `v-repeat`. You can do this either by adding a `stagger`, `enter-stagger` or `leave-stagger` attribute to your transitioned element:
