@@ -114,6 +114,6 @@ Vue.nextTick(function () {
 })
 ```
 
-Alternatively, you can turn off async updates by setting `Vue.config.async = false`.
+Alternatively, you can turn off async updates by setting `Vue.config.async = false`. However, note that in sync mode the order in which watchers and directives trigger may become different, so it does not guaruntee the exact same behavior.
 
 Next, let's talk about [Filters](/guide/filters.html).
