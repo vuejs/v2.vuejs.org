@@ -143,6 +143,35 @@ In addition, if a parent prop expression is not "settable", the binding will aut
 <child msg="{{a + b}}"></child>
 ```
 
+### Passing Callbacks as Props
+
+It is also possible to pass down a method or a statement as a callback to a child component. This enables declarative, decoupled parent-child communication:
+
+``` js
+Vue.component('parent', {
+  // ...
+  methods: {
+    onChildLoaded: function (msg) {
+      console.log(msg)
+    }
+  }
+})
+
+Vue.component('child', {
+  // ...
+  props: ['on-load'],
+  ready: function () {
+    // props with hyphens are camelized
+    this.onLoad('message from child!')
+  }
+})
+```
+
+``` html
+<!-- in parent's template -->
+<child on-load="{{onChildLoaded}}"></child>
+```
+
 ### Inheriting Parent Scope
 
 If you want, you can also use the `inherit: true` option for your child component to make it prototypally inherit all parent properties:
