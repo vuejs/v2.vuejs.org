@@ -50,6 +50,19 @@ Then you can use the registered component in a parent instance's template (make 
 <my-component></my-component>
 ```
 
+You don't have to register every component globally. You can limit a component's availability to another component and its descendents by passing it in with the `components` option (this encapsulation also applies to other assets such as directives and filters):
+
+``` js
+var Parent = Vue.extend({
+  components: {
+    child: {
+      // child will only be available to Parent
+      // and Parent's descendent components
+    }
+  }
+})
+```
+
 It is important to understand the difference between `Vue.extend()` and `Vue.component()`. Since `Vue` itself is a constructor, `Vue.extend()` is a **class inheritance method**. Its task is to create a sub-class of `Vue` and return the constructor. `Vue.component()`, on the other hand, is an **asset registration method** similar to `Vue.directive()` and `Vue.filter()`. Its task is to associate a given constructor with a string ID so Vue.js can pick it up in templates. When directly passing in options to `Vue.component()`, it calls `Vue.extend()` under the hood.
 
 Vue.js supports two API styles for using components: the imperative, constructor-based API, and the declarative, template-based API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
