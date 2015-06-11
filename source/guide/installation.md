@@ -44,14 +44,6 @@ var Vue = require('yyx990803/vue')
 var Vue = require('yyx990803/vue@dev')
 ```
 
-## Component
-
-``` bash
-$ component install yyx990803/vue
-# for edge version:
-$ component install yyx990803/vue@dev
-```
-
 ## AMD Module Loaders
 
 The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
