@@ -584,7 +584,7 @@ In 0.11.6, a special param attribute for components is introduced: `inline-templ
 
 <p class="tip">Async Components are only supported in Vue ^0.12.0.</p>
 
-In large applications, we may need to divide the app into smaller chunks, and only load a component from the server when it is actually needed. To make that easier, Vue.js allows you to define your component as a factory function that asynchronously resolves your component definition. For example:
+In large applications, we may need to divide the app into smaller chunks, and only load a component from the server when it is actually needed. To make that easier, Vue.js allows you to define your component as a factory function that asynchronously resolves your component definition. Vue.js will only trigger the factory function when the component actually needs to be rendered, and will cache the result for future re-renders. For example:
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
