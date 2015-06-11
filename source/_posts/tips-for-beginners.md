@@ -76,11 +76,11 @@ new Vue({
 
 ## Communication between instances
 
-In Vue.js, recommended parent-child and cross-component communication is mainly done using [Vue.js Events](/api/instance-methods.html#Events). Following snippet shows how child instance can call event, that is registered in parent scope:
+In Vue.js, parent-child communication is mainly done with `props`. Using `props` you can call parent method from child:
 
 ``` html
 <div id="demo">
-  <child-component></child-component>
+  <child-component say="{{listenToChild}}"></child-component>
   <p v-if="wordOfChild.length">Child says: {{wordOfChild}}</p>
 </div>
 ```
@@ -93,24 +93,16 @@ new Vue({
     wordOfChild: ''
   },
 
-  // http://vuejs.org/api/options.html#events
-  events: {
-    'child-say': function(what) {
+  methods: {
+    listenToChild: function(what) {
       return this.wordOfChild = what
     }
   },
 
   components: {
     'child-component': {
-      template: '<a href="" v-on="click: say($event, \'Yeah!\')">Say Yeah!</a>',
-      methods: {
-        say: function(event, what) {
-          event.preventDefault()
-
-          // http://vuejs.org/api/instance-methods.html#vm-\$dispatch\(_event\,_\[args…\]_\)
-          this.$dispatch('child-say', what)
-        }
-      }
+      props: ['say'],
+      template: '<button type="button" v-on="click: say(\'Yeah!\')">Say Yeah!</button>'
     }
   }
 })
@@ -118,7 +110,7 @@ new Vue({
 
 **Result:**
 
-<div id="demo"><child-component></child-component><p v-if="wordOfChild.length">Child says: {&#123;wordOfChild&#125;}</p></div>
+<div id="demo"><child-component say="{{listenToChild}}"></child-component><p v-if="wordOfChild.length">Child says: {&#123;wordOfChild&#125;}</p></div>
 
 <script>
   new Vue({
@@ -128,31 +120,22 @@ new Vue({
       wordOfChild: ''
     },
 
-    // http://vuejs.org/api/options.html#events
-    events: {
-      'child-say': function(what) {
+    methods: {
+      listenToChild: function(what) {
         return this.wordOfChild = what
       }
     },
 
     components: {
       'child-component': {
-        template: '<a href="" v-on="click: say($event, \'Yeah!\')">Say Yeah!</a>',
-        methods: {
-          say: function(event, what) {
-            event.preventDefault()
-
-            // http://vuejs.org/api/instance-methods.html#vm-\$dispatch\(_event\,_\[args…\]_\)
-            this.$dispatch('child-say', what)
-          }
-        }
+        props: ['say'],
+        template: '<button type="button" v-on="click: say(\'Yeah!\')">Say Yeah!</button>'
       }
     }
   })
 </script>
 
-
-In following demo, you can see how parent ViewModel instance broadcasts event to all children:
+Instances can also communicate using [Events](/api/instance-methods.html#Events), but this is mostly for more complex use cases, where `props` can't get the job done. In following demo, you can see how parent ViewModel broadcasts event to all children:
 
 <iframe width="100%" height="300" src="//jsfiddle.net/azamatsharapov/dxpvb3n3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
