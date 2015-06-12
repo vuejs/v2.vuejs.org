@@ -61,13 +61,11 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-It is up to you to decide how to load the component from the server, but the recommended usage is to pair it up with Webpack's [Code Splitting feature](http://webpack.github.io/docs/code-splitting.html):
+It is up to you to decide how to load the component from the server, e.g. `$.getScript()` or require.js; but the recommended usage is to pair it up with Webpack's [Code Splitting feature](http://webpack.github.io/docs/code-splitting.html):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve, reject) {
-  // this special require syntax will instruct webpack to
-  // automatically split your built code into bundles which
-  // are automatically loaded over ajax requests.
+  // In Webpack AMD like syntax indicates a code split point
   require(['./my-async-component'], resolve)
 })
 ```
