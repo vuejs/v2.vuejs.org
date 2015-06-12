@@ -7,33 +7,48 @@ order: 4
 
 > You can observe data changes on a Vue instance. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.
 
-### vm.$watch( expression, callback, [deep, immediate] )
+### vm.$watch( expOrFn, callback, [options] )
 
-- **expression** `String`
+- **expOrFn** `String|Function`
 - **callback( newValue, oldValue )** `Function`
-- **deep** `Boolean` *optional*
-- **immediate** `Boolean` *optional*
+- **options** `Object` *optional*
+  - **deep** `Boolean`
+  - **immediate** `Boolean`
+  - **sync** `Boolean`
 
-Watch an expression on the Vue instance for changes. The expression can be a single keypath or actual expressions:
+Watch an expression or a computed function on the Vue instance for changes. The expression can be a single keypath or actual expressions:
 
 ``` js
 vm.$watch('a + b', function (newVal, oldVal) {
   // do something
 })
+// or
+vm.$watch(
+  function () {
+    return this.a + this.b
+  },
+  function (newVal, oldVal) {
+    // do something
+  }
+)
 ```
 
-To also detect nested value changes inside Objects, you need to pass in `true` for the third `deep` argument. Note that you don't need to do so to listen for Array mutations.
+To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
 
 ``` js
-vm.$watch('someObject', callback, true)
+vm.$watch('someObject', callback, {
+  deep: true
+})
 vm.someObject.nestedValue = 123
 // callback is fired
 ```
 
-Passing in `true` for the fourth `immediate` argument will trigger the callback immediately with the current value of the expression:
+Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
 
 ``` js
-vm.$watch('a', callback, false, true)
+vm.$watch('a', callback, {
+  immediate: true
+})
 // callback is fired immediately with current value of `a`
 ```
 
