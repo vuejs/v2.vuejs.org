@@ -143,7 +143,14 @@ Instances can also communicate using [Events](/api/instance-methods.html#Events)
 
 <p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with three methods: $add(key, value), $set(key, value) and $delete(key). These methods can be used to add / delete properties from observed objects while triggering the desired View updates. The difference between $add and $set is that $add will return early if the key already exists on the object, so just calling obj.$add(key) won’t overwrite the existing value with undefined.</p>
 
-The quote above is taken from guide and is important to mention, because many beginners run into issues with it. If you need to add new or delete existing data properties, use augmented methods as mentioned above. Another important thing you should know is, when you change data-bound Array directly using indices, Vue.js will not pick your changes and so View will not be updated. Again, you can use augmented methods to notify Vue.js about those changes. Also, augmented methods can take path as a first argument, which is useful. See example below.
+The quote above is taken from guide and is important to mention, because many beginners run into issues with it. If you need to add new or delete existing data properties, use augmented methods as mentioned above. Another important thing you should know is, when you change data-bound Array directly using indices, Vue.js will not pick your changes and so View will not be updated. Again, you can use augmented methods to notify Vue.js about those changes.
+
+ViewModel instances have following augmented methods available: `$get`, `$set`, `$add` and `$delete`. Among those, `$get` and `$set` can take paths, which is useful in some cases.
+
+Observed objects (e.g. data property of ViewModel) have `$add`, `$set` and `$delete` methods. 
+
+Observed arrays have `$set` and `$remove` methods.
+ 
 
 ``` js
 new Vue({
@@ -156,18 +163,19 @@ new Vue({
 
   ready: function() {
     // adds new item and sets 'value' of it
-    this.arrayItems.$add(0, 'someValue')
-    
-    // Head Up! This will *not* change arrayItems[0], use $set() for that
-    // arrayItems[0] will still have 'someValue' as value
-    this.arrayItems.$add(0, 'newValue')
+    this.arrayItems.$set(0, 'someValue')
 
-    // using path! so objectItems becomes
-    // {a: { b: 'value' } }
-    this.objectItems.$add('a.b', 'value')
+    // removes arrayItems[0]
+    this.arrayItems.$remove(0)
+  
+    // adding key to observed object
+    this.objectItems.$add('a', {})
+
+    // using path!
+    this.$set('objectItems.a.b', 'value')
     
     // will change objectItems to {}
-    this.$delete('objectItems.a')
+    this.objectItems.$delete('a')
   }
 })
 ```
