@@ -76,14 +76,14 @@ When you want to access the original DOM event in an expression handler, you can
 
 When listening for keyboard events, we often need to check for common key codes. Vue.js provides a special `key` filter that can only be used with `v-on` directives. It takes a single argument that denotes the key code to check for:
 
-```
+``` html
 <!-- only call vm.submit() when the keyCode is 13 -->
 <input v-on="keyup:submit | key 13">
 ```
 
 It also has a few presets for commonly used keys:
 
-```
+``` html
 <!-- same as above -->
 <input v-on="keyup:submit | key 'enter'">
 ```
