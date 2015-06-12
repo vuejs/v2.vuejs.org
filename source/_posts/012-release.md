@@ -72,7 +72,7 @@ Vue.component('async-webpack-example', function (resolve, reject) {
 })
 ```
 
-Webpack will automatically split your final JavaScript into separate bundles with correct dependencies, and automatically load a bundle via Ajax when it is required. You can check out a fully functional example [here](https://github.com/vuejs/vue-webpack-example).
+That's all you need to do. You can use the component just like before, without even thinking about it being async. Webpack will automatically split your final JavaScript into separate bundles with correct dependencies, and automatically load a bundle via Ajax when it is required. You can check out a fully functional example [here](https://github.com/vuejs/vue-webpack-example).
 
 ### Improved Transition System
 
