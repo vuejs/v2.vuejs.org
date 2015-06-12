@@ -7,16 +7,13 @@ Vue.js is designed to be as flexible as possible - it's just an interface librar
 
 ## Modularization
 
-Although the standalone build of Vue.js can be used as a global, it is often better to utilize a modularized build system to better organize your code. The recommended approach of doing so is by writing your source code in CommonJS modules (the format used by Node.js, and also the format used by Vue.js source code) and bundle them using [Browserify](http://browserify.org/) or [Webpack](http://webpack.github.io/).
+Although the standalone build of Vue.js can be used as a global, it is often better to utilize a modularized build system to better organize your code. The recommended approach of doing so is by writing your source code in CommonJS modules (the format used by Node.js, and also the format used by Vue.js source code) and bundle them using [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/).
 
-Here are some build setup examples on GitHub:
-
-- [Vue + Browserify](https://github.com/vuejs/vue-browserify-example)
-- [Vue + Webpack](https://github.com/vuejs/vue-webpack-example)
+Webpack and Browserify are more than just module bundlers, though. They both provide source transform APIs that allow you to transform your source code with other pre-processors. For example, you can write your code with future ES6/7 syntax using [babel-loader](https://github.com/babel/babel-loader) or [babelify](https://github.com/babel/babelify).
 
 ## Single File Components
 
-In a typical Vue.js project we will be breaking up our code into many small components, and it would be nice to have each component encapsulate its CSS styles, template and JavaScript definition in the same place. A bonus for using the previously mentioned build tools is that they both provided mechanisms to transform the source code before bundling them together, and with a bit of pre-processing we can write our components like this:
+In a typical Vue.js project we will be breaking up our code into many small components, and it would be nice to have each component encapsulate its CSS styles, template and JavaScript definition in the same place. As mentioned above, when using Webpack or Browserify, with proper source transforms we can write our components like this:
 
 <img src="/images/vueify.png">
 
@@ -24,9 +21,16 @@ If you are into pre-processors, you can even do this:
 
 <img src="/images/vueify_with_pre.png">
 
-This is achieved via using the [Vueify](https://github.com/vuejs/vueify) transform for Browserify, or with [Vue-loader](https://github.com/vuejs/vue-loader) for Webpack.
+You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). It is recommended to use the Webpack setup because Webpack's loader API enables better file dependency tracking and caching if you are using pre-processors.
+
+You can find examples of the build setups on GitHub:
+
+- [Webpack + vue-loader](https://github.com/vuejs/vue-loader-example)
+- [Browserify + vueify](https://github.com/vuejs/vueify-example)
 
 ## Routing
+
+<p class="tip">The official `vue-router` module is in active development and will be released soon.</p>
 
 You can implement some rudimentary routing logic by manually listening on hashchange and utilizing a dynamic component:
 
