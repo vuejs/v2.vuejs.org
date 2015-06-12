@@ -54,8 +54,9 @@ html, body
         left 0
     h1
         font-family $logo-font
-        font-size 3em
-        margin .5em 0 .8em
+        font-weight 300
+        font-size 4em
+        margin .4em 0 .7em
     .sub
         color $medium
         font-size 1.2em
@@ -82,9 +83,8 @@ html, body
 #social
     text-align center
     list-style-type none
-    margin 0
+    margin 0 auto
     padding 0
-    padding-left 14px
     margin-top 2em
     li
         display inline-block
@@ -247,11 +247,11 @@ html, body
 #main
     display none
 
-@media screen and (max-width: 420px)
+@media screen and (max-width: 480px)
     body
         font-size 14px
     #nav
-        margin 2em 0
+        margin 3em 0 2em
     #logo
         width 100px
     .nav-link
@@ -267,22 +267,27 @@ html, body
             margin-top -300px
         h1
             font-size 2em
+            font-weight 400
+        .buttons
+            max-width 300px
+            margin 1em auto
         a.button
-            font-size 1em
+            font-size .8em
             margin .5em 0
         .sub
             font-size 1em
+        .desc
+            max-width 300px
         .warning, .desc
             font-size .9em
-            margin 1em 0
+            margin 1em auto
             br
                 display none
         .down
             display none
     #social
         margin-top 1.5em
-        padding-left 0
-        max-width 100%
+        max-width 340px
         li
             margin-bottom 10px
             &.last
