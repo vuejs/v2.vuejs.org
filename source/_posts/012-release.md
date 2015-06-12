@@ -45,7 +45,7 @@ Here the first argument to the `concat` filter will be the value of `this.otherM
 
 ### Asynchronous Components
 
-It is common practice to bundle all the JavaScript into one file when building large single page applications. But when the file becomes to large, we may want to defer loading parts of our application for a faster initial load. However, this does pose some constraints on how the application architecture should be designed. It could be very tricky to figure out how to properly split up your JavaScript bundles.
+It is common practice to bundle all the JavaScript into one file when building large single page applications. But when the file becomes too large, we may want to defer loading parts of our application for a faster initial load. However, this does pose some constraints on how the application architecture should be designed. It could be very tricky to figure out how to properly split up your JavaScript bundles.
 
 Well, with Vue.js we can already build our applications as decoupled components. If we can lazily load a dynamic component only when it is needed, wouldn't it be awesome? As a matter of fact, in 0.12 this would be trivially easy with the new Asynchronous Component feature.
 
