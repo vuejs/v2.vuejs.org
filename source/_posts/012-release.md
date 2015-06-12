@@ -12,9 +12,9 @@ There's a lot to cover in this release, and we will talk about a few highlights 
 
 Previously in 0.11 you have two ways to use a Vue.js component: using the `v-component` directive, or using custom elements. There are also two ways to pass data down to child components: using the `v-with` directive, or using the `paramAttributes` option. Although both custom elements and param attributes get compiled down to directives eventually, it is confusing and redundant to have two sets of syntax for the same functionality.
 
-In addition, we should note that components are a first-class concept in Vue.js, even more important than directives. The data passing between components are also critical in making the system composable and decoupled. They really deserve their own dedicated syntax to differentiate from other directives.
+In addition, it should be noted that the component system is a first-class concept in Vue.js, even more important than directives. It defines how we encapsulate our higher-level view logic and compose our application. In the meanwhile, having a clear and declarative way to pass data into child components is also very important. Components and param attributes really deserve their own dedicated syntax to differentiate from other directives.
 
-As a result, `v-component` and `v-with` have been deprecated in 0.12. `paramAttributes` has also been renamed to `props`, which is shorter and cleaner. From now on most Vue.js components will look like this:
+As a result, `v-component` and `v-with` have been deprecated in 0.12. `paramAttributes` has also been renamed to `props`, which is shorter and cleaner. From now on, most Vue.js components will look like this:
 
 ``` html
 <my-component prop="{{parentData}}"></my-component>
