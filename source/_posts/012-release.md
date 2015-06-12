@@ -4,7 +4,7 @@ date: 2015-06-11 17:37:30
 
 I'm really excited to announce that [Vue.js 0.12: Dragon Ball](https://github.com/yyx990803/vue/releases/tag/0.12.0) is finally here! Thanks to everyone who tried out the beta/rc versions and provided feedback / bug reports along the way.
 
-There's a lot to cover in this release, and we will talk about a few highlights below. However, it is still recommended to carefully go through the [release note](https://github.com/yyx990803/vue/releases/tag/0.12.0) and updated docs if you are upgrading from 0.11. You can report bugs on GitHub, send questions to [vuejs/Discussion](https://github.com/vuejs/Discussion/issues), or join us in the [Gitter chat channel](https://gitter.im/yyx990803/vue).
+There's a lot to cover in this release, and we will talk about a few highlights below. However, it is still recommended to carefully go through the [Full Release Note](https://github.com/yyx990803/vue/releases/tag/0.12.0) and updated docs if you are upgrading from 0.11. You can report bugs on GitHub, send questions to [vuejs/Discussion](https://github.com/vuejs/Discussion/issues), or join us in the [Gitter chat channel](https://gitter.im/yyx990803/vue).
 
 <!-- more -->
 
