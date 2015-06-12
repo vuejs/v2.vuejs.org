@@ -32,14 +32,14 @@ Pluralizes the argument based on the filtered value. When there is exactly one a
 **Example:**
 
 ``` html
-{{count}} {{count | pluralize item}}
+{{count}} {{count | pluralize 'item'}}
 ```
 
 *1 => '1 item'*  
 *2 => '2 items'*
 
 ``` html
-{{date}}{{date | pluralize st nd rd th}}
+{{date}}{{date | pluralize 'st' 'nd' 'rd' 'th'}}
 ```
 
 Will result in:
@@ -79,7 +79,7 @@ Wrap the handler so it only gets called when the keyCode matches the argument. Y
 **Example:**
 
 ``` html
-<input v-on="keyup:doSomething | key enter">
+<input v-on="keyup:doSomething | key 'enter'">
 ```
 
 `doSomething` will only be called when the Enter key is pressed.

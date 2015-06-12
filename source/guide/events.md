@@ -85,7 +85,7 @@ It also has a few presets for commonly used keys:
 
 ```
 <!-- same as above -->
-<input v-on="keyup:submit | key enter">
+<input v-on="keyup:submit | key 'enter'">
 ```
 
 Check the API reference for a [full list of key filter presets](/api/filters.html#key).
