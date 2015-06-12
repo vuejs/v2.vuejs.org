@@ -140,14 +140,34 @@ new Vue({
 
 <p class="tip">It is also possible to expose `$data` as a prop. The passed in value must be an Object and will replace the component's default `$data`.</p>
 
-#### One-Way Props
+### Prop Binding Types
 
-By default, all props form a two-way binding between the child property and the parent one: when the parent property updates, it will be synced down to the child, and vice-versa. However, it is also possible to enforce a one-way binding that only syncs from the parent to the child by adding `*` at the beginning of the mustache:
+By default, all props form a two-way binding between the child property and the parent one: when the parent property updates, it will be synced down to the child, and vice-versa. However, it is also possible to explicitly enforce the following binding types:
+
+- One time (only resolves once at compile time)
+- One way down (only sync parent changes to the child)
+- One way up (only sync child changes to the parent)
+
+Compare the syntax:
 
 ``` html
-<!-- explicit one-way binding -->
+<!-- default, two-way binding -->
+<child msg="{{parentMsg}}"></child>
+<!-- explicit one-time binding -->
 <child msg="{{* parentMsg}}"></child>
+<!-- explicit one-way-down binding -->
+<child msg="{{< parentMsg}}"></child>
+<!-- explicit one-way-up binding -->
+<child msg="{{> parentMsg}}"></child>
 ```
+
+Here's a tip on understanding the direction of the arrow: the arrow indicates the direction in which the data flows between the parent property and the child property. For example:
+
+``` html
+<child msg="{{< parentMsg}}"></child>
+```
+
+Here we are trying to sync any changes of `parentMsg`, which is on the parent, to `msg`, which is on the child. But we don't want changes to `msg` on the child to affect the parent.
 
 In addition, if a parent prop expression is not "settable", the binding will automatically be one-way. For example:
 
