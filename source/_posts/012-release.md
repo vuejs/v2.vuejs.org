@@ -20,7 +20,7 @@ As a result, `v-component` and `v-with` have been deprecated in 0.12. `paramAttr
 <my-component prop="{{parentData}}"></my-component>
 ```
 
-There are also additional props-related improvements such as one-way props, expression as props, methods as prop callbacks and more. You can find out more details in the 0.12 release notes linked above and the updated [Component System](/guide/components.html) section of the guide.
+There are also additional props-related improvements such as explicit one-time or one-way props, expression as props, methods as prop callbacks and more. You can find out more details in the 0.12 release notes linked above and the updated [Component System](/guide/components.html) section of the guide.
 
 ### Filter Arguments Improvements
 
