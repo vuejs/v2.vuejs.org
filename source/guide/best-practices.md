@@ -1,11 +1,7 @@
-title: Tips for beginners
-date: 2015-06-10 03:05:00
-tags: tips
+title: Best Practices for Beginners
+type: guide
+order: 15
 ---
-
-This blog posts comes with some useful tips and advices for beginners. 
-
-<!-- more -->
 
 ## Data
 
@@ -35,7 +31,7 @@ new Vue({
 
 ## Scope
 
-Every Vue.js component is a separate Vue child instance with it's own scope. It's important to understand how scopes work in Vue.js, especially when referring to ViewModel properties, methods from templates. Beginning from version 0.11, thumb of rule for scope in template is: 
+Every Vue.js component is a separate Vue child instance with it's own scope. It's important to understand [how scopes work in Vue.js](/guide/components.html#A_Note_on_Scope), especially when referring to ViewModel properties, methods from templates. Beginning from version 0.11, thumb of rule for scope in template is: 
 
 <p class="tip">if something appears in the parent template, it will be compiled in parent scope; if it appears in child template, it will be compiled in child scope.</p>
 
@@ -141,17 +137,18 @@ Instances can also communicate using [Events](/api/instance-methods.html#Events)
 
 ## Adding data properties
 
-<p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with three methods: $add(key, value), $set(key, value) and $delete(key). These methods can be used to add / delete properties from observed objects while triggering the desired View updates. The difference between $add and $set is that $add will return early if the key already exists on the object, so just calling obj.$add(key) won’t overwrite the existing value with undefined.</p>
+As it's already mentioned in [Guide](/guide/list.html#Iterating_Throught_An_Object):
 
-The quote above is taken from guide and is important to mention, because many beginners run into issues with it. If you need to add new or delete existing data properties, use augmented methods as mentioned above. Another important thing you should know is, when you change data-bound Array directly using indices, Vue.js will not pick your changes and so View will not be updated. Again, you can use augmented methods to notify Vue.js about those changes.
+"In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with three methods: $add(key, value), $set(key, value) and $delete(key). These methods can be used to add / delete properties from observed objects while triggering the desired View updates. The difference between $add and $set is that $add will return early if the key already exists on the object, so just calling obj.$add(key) won’t overwrite the existing value with undefined."
 
-ViewModel instances have following augmented methods available: `$get`, `$set`, `$add` and `$delete`. Among those, `$get` and `$set` can take paths, which is useful in some cases.
+Another important thing you should know is, when you change data-bound Array directly using indices, Vue.js will not pick your changes and so View will not be updated. Again, you can use augmented methods to notify Vue.js about those changes.
+
+ViewModel instances have following augmented methods available: `$get`, `$set`, `$add` and `$delete`. Among those, `$get` and `$set` can take paths as a first argument, which is useful in some cases.
 
 Observed objects (e.g. data property of ViewModel) have `$add`, `$set` and `$delete` methods. 
 
 Observed arrays have `$set` and `$remove` methods.
  
-
 ``` js
 new Vue({
   el: '#demo',
@@ -216,7 +213,7 @@ new Vue({
 })
 ```
 
-For more info about hook orders, see [Lifecycle of ViewModel instances](/api/options.html#Lifecycle).
+For more info about instance hook orders, see [Lifecycle of ViewModel instances](/api/options.html#Lifecycle).
 
 ## Async rendering
 
@@ -256,6 +253,3 @@ new Vue({
 There is also `vm.$nextTick()` instance method, which is especially handy when using in components, because it doesn't need global `Vue` and it's callback's `this` will be bound to the current ViewModel instance.
 
 If your application depends on DOM changes much and you don't want to use `$nextTick`, you can configure Vue.js to run in synchronous mode by default: `Vue.config.async = false`.
-
-
-We strongly recommend you reading [whole guide](/guide) if you haven't done so, because it is currently best place to learn about all possibilities of Vue.js.
