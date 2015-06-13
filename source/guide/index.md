@@ -53,7 +53,7 @@ Vue instances proxy all properties on data objects they observe. So once an obje
 
 The data objects are mutated in place, so modifying it by reference has the same effects as modifying `vm.$data`. This makes it possible for multiple Vue instances to observe the same piece of data. In larger applications it is also recommended to treat Vue instances as pure views, and externalize the data manipulation logic into a more discrete store layer.
 
-One caveat here is that once the observation has been initiated, Vue.js will not be able to detect newly added or deleted properties. To get around that, observed objects are augmented with `$add` and `$delete` methods.
+One caveat here is that once the observation has been initiated, Vue.js will not be able to detect newly added or deleted properties. To get around that, observed objects are augmented with `$add`, `$set` and `$delete` methods.
 
 ### Directives
 
@@ -107,12 +107,12 @@ Now before the div's textContent is updated, the `message` value will first be p
 
 ### Components
 
-In Vue.js, every component is simply a Vue instance. Components form a nested tree-like hierarchy that represents your application interface. They can be instantiated by a custom constructor returned from `Vue.extend`, but a more declarative approach is registering them with `Vue.component(id, constructor)`. Once registered, they can be declaratively nested in other Vue instance's templates with the `v-component` directive:
+In Vue.js, every component is simply a Vue instance. Components form a nested tree-like hierarchy that represents your application interface. They can be instantiated by a custom constructor returned from `Vue.extend`, but a more declarative approach is registering them with `Vue.component(id, constructor)`. Once registered, they can be declaratively nested in other Vue instance's templates in the form of custom elements:
 
 ``` html
-<div v-component="my-component">
+<my-component>
   <!-- internals handled by my-component -->
-</div>
+</my-component>
 ```
 
 This simple mechanism enables declarative reuse and composition of Vue instances in a fashion similar to [Web Components](http://www.w3.org/TR/components-intro/), without the need for latest browsers or heavy polyfills. By breaking an application into smaller components, the result is a highly decoupled and maintainable codebase. For more details, see [Component System](/guide/components.html).
@@ -178,7 +178,9 @@ Also available on [jsfiddle](http://jsfiddle.net/yyx990803/yMv7y/).
 
 You can click on a todo to toggle it, or you can open your Browser's console and play with the `demo` object - for example, change `demo.title`, push a new object into `demo.todos`, or toggle a todo's `done` state.
 
-You probably have a few questions in mind now - don't worry, we'll cover them soon. Next up: [Directives in Depth](/guide/directives.html).
+You probably have a few questions in mind now - don't worry, we'll cover them soon. 
+
+Next up: [Directives in Depth](/guide/directives.html).
 
 [AngularJS]: http://angularjs.org
 [KnockoutJS]: http://knockoutjs.com

@@ -1,12 +1,3 @@
-<script>
-    // G+ button
-    ;(function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
-</script>
-
 <div id="hero">
     <div class="inner">
         <ul id="nav">
@@ -14,20 +5,20 @@
             <li><a href="/api/" class="nav-link">API Reference</a></li>
             <li><a href="/examples/" class="nav-link">Examples</a></li>
             <li><a href="/blog/" class="nav-link">Blog</a></li>
+            <li><a href="http://cn.vuejs.org" class="nav-link">中文</a></li>
         </ul>
         <img id="logo" src="/images/logo.png">
         <h1>Vue.js</h1>
-        <p class="sub">MVVM Made Simple</p>
-        <p class="desc">Vue.js is a library for building interactive web interfaces. <br>It provides data-reactive components with a simple and flexible API.</p>
+        <p class="desc">Vue.js is a library for building modern web interfaces. <br>It provides data-reactive components with a simple and flexible API.</p>
         <p class="buttons">
-            <a href="/guide/installation.html" class="button">Get Vue.js v<%- theme.vue_version %></a>
+            <a href="/guide/installation.html" class="button">Install v<%- theme.vue_version %></a>
             <a href="https://github.com/yyx990803/vue" target="_blank" class="button">Source on GitHub</a>
         </p>
         <ul id="social">
-            <li><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://vuejs.org" data-text="Vue.js - MVVM made simple" data-via="vuejs">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+            <li><a href="https://twitter.com/vuejs" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @vuejs</a></li>
             <li><iframe src="http://ghbtns.com/github-btn.html?user=yyx990803&repo=vue&type=watch&count=true"
         allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe></li>
-            <li><g:plusone href="http://vuejs.org" size="medium"></g:plusone></li>
+            <li class="last"><a href="https://gitter.im/yyx990803/vue" target="_blank"><img src="https://badges.gitter.im/Join%20Chat.svg"></a></li>
         </ul>
     </div>
     <div class="down"><img src="/images/down.png"></div>
@@ -89,23 +80,23 @@
             <p>Write some HTML, grab some JSON, create a Vue instance, that's it.</p>
         </div>
         <div class="feat">
-            <h2><span class="icon fast"></span>Fast</h2>
-            <p>Precise and efficient async batch DOM updates.</p>
+            <h2><span class="icon powerful"></span>Reactive</h2>
+            <p>Expressions & computed properties with transparent dependency tracking.</p>
         </div>
         <div class="feat">
-            <h2><span class="icon composable"></span>Composable</h2>
+            <h2><span class="icon composable"></span>Components</h2>
             <p>Compose your application with decoupled, reusable components.</p>
         </div>
         <div class="feat">
             <h2><span class="icon compact"></span>Compact</h2>
-            <p>~18kb min+gzip, no dependency.</p>
+            <p>~20kb min+gzip, no dependency.</p>
         </div>
         <div class="feat">
-            <h2><span class="icon powerful"></span>Powerful</h2>
-            <p>Expressions & computed properties with transparent dependency tracking.</p>
+            <h2><span class="icon fast"></span>Fast</h2>
+            <p>Precise and efficient async batch DOM updates.</p>
         </div>
         <div class="feat">
-            <h2><span class="icon module"></span>Module Friendly</h2>
+            <h2><span class="icon module"></span>Package Ready</h2>
             <p>Install via NPM, Bower or Duo - leverage your favorite eco system!</p>
         </div>
     </div>
@@ -125,3 +116,6 @@
     <p>Released under the <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
     <p>Copyright (c) <%- date(Date.now(), 'YYYY') %> <a href="http://evanyou.me" target="_blank">Evan You</a></p>
 </div>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

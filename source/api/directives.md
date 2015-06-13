@@ -11,7 +11,7 @@ order: 6
 
 Updates the element's `textContent`.
 
-Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled as a `v-text` direcitve on a textNode.
+Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled as a `v-text` directive on a textNode.
 
 ### v-html
 
@@ -41,6 +41,8 @@ If a directive argument is provided, the argument will be the class to be toggle
 "></span>
 ```
 
+Alternatively, you can bind the directive directly to an Object. The keys of the object will the list of classes to toggle based on corresponding values.
+
 ### v-attr
 
 - This directive requires an argument.
@@ -52,6 +54,10 @@ Updates the element's given attribute (indicated by the argument).
 ``` html
 <canvas v-attr="width:w, height:h"></canvas>
 ```
+
+Falsy values except 0 will remove the attribute.
+
+Alternatively, you can bind the directive directly to an Object. The keys of the object will the list of attributes to set based on corresponding values.
 
 Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives.
 
@@ -117,7 +123,7 @@ Attaches an event listener to the element. The event type is denoted by the argu
 ### v-model
 
 - This directive can only be used on `<input>`, `<select>` or `<textarea>` elements.
-- Directive params: `lazy`, `number`, `options`
+- Directive params: [`lazy`](/guide/forms.html#Lazy_Updates), [`number`](/guide/forms.html#Casting_Value_as_Number), [`options`](/guide/forms.html#Dynamic_Select_Options), [`debounce`](/guide/forms.html#Input_Debounce)
 
 Create a two-way binding on a form input element. Data is synced on every `input` event by default. For detailed examples see [Handling Forms](/guide/forms.html).
 
@@ -151,7 +157,7 @@ Will render:
 - This directive requires the value to be an Array, Object or Number.
 - This directive can trigger transitions.
 - This directive accepts an optional argument.
-- Directive params: `trackby`
+- Directive params: [`track-by`](/guide/list.html#Using_track-by), [`stagger`](/guide/transitions.html#Staggering_Transitions), [`enter-stagger`](/guide/transitions.html#Staggering_Transitions), [`leave-stagger`](/guide/transitions.html#Staggering_Transitions)
 
 Create a child ViewModel for every item in the binding Array or Object. If the value is a whole Number then that many child ViewModels are created. These child ViewModels will be automatically created / destroyed when mutating methods, e.g. `push()`, are called on the Array or Object, or the number is increased or decreased.
 
@@ -179,99 +185,29 @@ If an argument is provided, a wrapper data object will always be created, using 
 
 For detailed examples, see [Displaying a List](/guide/list.html).
 
-### v-with
-
-- This directive can only be used with `v-component`.
-- This directive accepts only keypaths, no expressions.
-
-Allows a child ViewModel to inherit data from the parents. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive must be used in combination with `v-component`.
-
-Example inheriting an object:
-
-``` js
-// parent data looks like this
-{
-  user: {
-    name: 'Foo Bar',
-    email: 'foo@bar.com'
-  }
-}
-```
-
-``` html
-<my-component v-with="user">
-  <!-- you can access properties without `user.` -->
-  {{name}} {{email}}
-</my-component>
-```
-
-Example inheriting individual properties (using the same data):
-
-``` 
-<my-component v-with="myName: user.name, myEmail: user.email">
-  <!-- you can access properties with the new keys -->
-  {{myName}} {{myEmail}}
-</my-component>
-```
-
-### v-events
-
-- This directive can only be used with `v-component`.
-- This directive accepts only keypaths, no expressions.
-
-Allows a parent instance to listen to events on a child instance. The difference from `v-on` is that `v-events` listens to Vue's component system events created via `vm.$emit()` rather than DOM events. This directive allows more decoupled parent-child communication without having to hard-code event listeners into the parent component. Note that it can only be used together with `v-component`, i.e. on the root element of a child component.
-
-**Example:**
-
-``` html
-<!-- inside parent template -->
-<div v-component="child" v-events="change: onChildChange"></div>
-```
-
-When the child component calls `this.$emit('change', ...)`, the parent's `onChildChange` method will be invoked with additional arguments passed to `$emit()`.
-
 ## Literal Directives
 
 > Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaluated only once on first compile and do not react to data changes.
 
-### v-component
-
-- Directive params: `keep-alive`, `wait-for`, `transition-mode`
-
-Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
-
-### v-ref
-
-Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
-
-When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
-
-### v-el
-
-Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
-
-### v-partial
-
-Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option.
-
-Using the mustache tag inside `v-partial` makes it reactive:
-
-``` html
-<!-- content will change based on vm.partialId -->
-<div v-partial="{{partialId}}"></div>
-```
-
-You can also use this syntax (which doesn't support reactivity):
-
-``` html
-<div>{{> my-partial}}</div>
-```
-
 ### v-transition
+
+- Can be made reactive with mustaches
 
 Notify Vue.js to apply transitions to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the Vue instance's DOM manipulation methods are called.
 
 For details, see [the guide on transitions](/guide/transitions.html).
+
+### v-ref
+
+Register a reference to a child component on its parent for easier access. Only respected when used on a component or with `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
+
+When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
+
+New in 0.12: If the `v-repeat`'s source data is an Object, then `v-ref` will return an Object with instances matching each key in the Object.
+
+### v-el
+
+Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
 
 ## Empty Directives
 

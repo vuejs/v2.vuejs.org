@@ -3,6 +3,7 @@
 
 body
     font-family $body-font
+    font-size $body-font-size
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
     color $medium
@@ -41,22 +42,18 @@ p
 
 a.button
     display inline-block
-    font-size 1.2em
-    color $green //!important
-    font-weight 700 //!important
-    background-color #fff//$green
-    // border 1px solid $green
-    padding 12px 24px
-    border-radius 24px
-    border 2px solid $green
-    // text-shadow 0 1px 1px rgba(0,0,0,.2)
-    // border-bottom 1px solid darken($green, 12%)
+    font-family $code-font
+    font-weight 700
+    color #fff
+    background-color lighten($green, 8%)
+    border-bottom 2px solid darken($green, 12%)
+    padding 12px 14px
+    border-radius 4px
     transition all .15s ease
     &:hover
-        color #fff
-        -webkit-transform scale(1.03)
-        transform scale(1.03)
-        background-color $green
+        background-color lighten($green, 15%)
+        -webkit-transform translate(0, -2px)
+        transform translate(0, -2px)
 
 .highlight
     overflow-x auto

@@ -9,6 +9,12 @@ zoom()
 html, body
     height 100%
 
+#cn-link
+    position absolute
+    top 10px
+    right 12px
+    font-size 14px
+
 #nav
     list-style-type none
     text-align center
@@ -37,19 +43,20 @@ html, body
 #hero
     text-align center
     height 100%
-    min-height 800px
+    min-height 720px
     position relative
     .inner
         height 640px
         width 100%
         position absolute
         top 50%
-        margin-top -360px
+        margin-top -340px
         left 0
     h1
         font-family $logo-font
-        font-size 3em
-        margin .5em 0 0
+        font-weight 300
+        font-size 4em
+        margin .4em 0 .7em
     .sub
         color $medium
         font-size 1.2em
@@ -76,14 +83,15 @@ html, body
 #social
     text-align center
     list-style-type none
-    margin 0
+    margin 0 auto
     padding 0
-    padding-left 14px
     margin-top 2em
     li
         display inline-block
         margin 0 5px
-        width 95px
+        vertical-align middle
+        &.last
+            margin-left -2px
 
 #example
     //background-color #f3f3f3
@@ -239,11 +247,11 @@ html, body
 #main
     display none
 
-@media screen and (max-width: 420px)
+@media screen and (max-width: 480px)
     body
         font-size 14px
     #nav
-        margin 2em 0
+        margin 3em 0 2em
     #logo
         width 100px
     .nav-link
@@ -259,22 +267,31 @@ html, body
             margin-top -300px
         h1
             font-size 2em
+            font-weight 400
+        .buttons
+            max-width 300px
+            margin 1em auto
         a.button
-            font-size 1em
+            font-size .8em
             margin .5em 0
         .sub
             font-size 1em
+        .desc
+            max-width 300px
         .warning, .desc
             font-size .9em
-            margin 1em 0
+            margin 1em auto
             br
                 display none
         .down
             display none
     #social
         margin-top 1.5em
+        max-width 340px
         li
-            width 90px
+            margin-bottom 10px
+            &.last
+                margin 0
     .cool
         margin-top 0
     #features .feat

@@ -44,6 +44,19 @@ var demo = new Vue({
 })
 </script>
 
+## Block Repeat
+
+Sometimes you might want to repeat a block of more than one nodes - in that case, you can use a `<template>` tag to wrap the repeat block. The `<template>` tag here merely serves as a semantic wrapper. For example:
+
+``` html
+<ul>
+  <template v-repeat="list">
+    <li>{{msg}}</li>
+    <li class="divider"></li>
+  </template>
+</ul>
+```
+
 ## Arrays of Primitive Values
 
 For Arrays containing primitive values, you can access the value simply as `$value`:
@@ -115,6 +128,8 @@ new Vue({
 })
 </script>
 
+<p class="tip">Using an identifier with `v-repeat` in general results in more readable templates and slightly better performance.</p>
+
 ## Mutation Methods
 
 Under the hood, Vue.js intercepts an observed Array's mutating methods (`push()`, `pop()`, `shift()`, `unshift()`, `splice()`, `sort()` and `reverse()`) so they will also trigger View updates.
@@ -129,7 +144,7 @@ demo.items.pop()
 
 Vue.js augments observed Arrays with two convenience methods: `$set()` and `$remove()`.
 
-You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the agumented `$set()` method:
+You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the augmented `$set()` method:
 
 ``` js
 // same as `demo.items[0] = ...` but triggers view update
@@ -157,15 +172,15 @@ You might think this will blow away the existing DOM and re-build everything. Bu
 
 ## Using `track-by`
 
-In some cases, you might need to replace the Array with completely new objects - e.g. ones returned from an API call. If your data objects have a unique id property, then you can use a `track-by` attribute to give Vue.js a hint so that it can reuse an existing instance with data that has the same id.
+In some cases, you might need to replace the Array with completely new objects - e.g. ones returned from an API call. Since by default `v-repeat` determines the reusability of an existing child instance and its DOM nodes by tracking the identity of its data object, this could cause the entire list to be re-rendered. However, if each of your data objects has a unique id property, then you can use a `track-by` param to give Vue.js a hint so that it can reuse existing instances as much as possible.
 
 For example, if your data looks like this:
 
 ``` js
 {
   items: [
-    { _uid: 88f869d, ... },
-    { _uid: 7496c10, ... }
+    { _uid: '88f869d', ... },
+    { _uid: '7496c10', ... }
   ]
 }
 ```
@@ -177,6 +192,12 @@ Then you can give the hint like this:
   <!-- content -->
 </div>
 ```
+
+Later on, when you replace the `items` array and Vue.js encounters a new object with `_uid: '88f869d'`, it knows it can reuse the existing instance with the same `_uid`.
+
+If you don't have a unique key to track by, you can also use `track-by="$index"`. Make sure to use this carefully though, because when tracking by `$index`, instead of moving the child instances and DOM nodes, Vue will simply reuse them in place in the order they were first created. Avoid using `track-by="$index"` in two situations: when your repeated block contains form inputs that can cause the list to re-render; or when you are repeating a component with mutable state in addition to the repeated data being assigned to it.
+
+<p class="tip">Using `track-by` properly can greatly increase the performance when re-rendering large `v-repeat` lists using completely new data.</p>
 
 ## Iterating Through An Object
 
@@ -234,7 +255,7 @@ new Vue({
 })
 </script>
 
-<p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with two methods: `$add(key, value)` and `$delete(key)`. These methods can be used to add / delete properties from observed objects while triggering the desired View updates.</p>
+<p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with three methods: `$add(key, value)`, `$set(key, value)` and `$delete(key)`. These methods can be used to add / delete properties from observed objects while triggering the desired View updates. The difference between `$add` and `$set` is that `$add` will return early if the key already exists on the object, so just calling `obj.$add(key)` won't overwrite the existing value with `undefined`.</p>
 
 ## Iterating Over a Range
 

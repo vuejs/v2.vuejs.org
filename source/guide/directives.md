@@ -60,23 +60,21 @@ You can create multiple bindings of the same directive in a single attribute, se
 
 ## Literal Directives
 
-Some directives don't create data bindings - they simply take the attribute value as a literal string. For example the `v-component` directive:
+Some directives don't create data bindings - they simply take the attribute value as a literal string. For example the `v-ref` directive:
 
 ``` html
-<div v-component="my-component"></div>
+<my-component v-ref="some-string-id"></my-component>
 ```
 
-Here `"my-component"` is not a data property - it's a string ID that Vue.js uses to lookup the corresponding Component constructor.
+Here `"some-string-id"` is not a reactive expression - Vue.js will not attempt to look it up in the component's data.
 
-You can also use mustache expressions inside literal directives. For example, the following code allows you to dynamically resolve the type of component you want to use:
+In some cases you can also use the mustache syntax to make a literal directive reactive:
 
 ``` html
-<div v-component="{{ isOwner ? 'owner-panel' : 'guest-panel' }}"></div>
+<div v-show="showMsg" v-transition="{{dynamicTransitionId}}"></div>
 ```
 
-When the expression inside the mustaches change, the rendered component will also change accordingly!
-
-However, note that `v-component` and `v-partial` are the only literal directives that have this kind of reactive behavior. Mustache expressions in other literal directives, e.g. `v-ref`, are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
+However, note that `v-transition` is the only directive that has this feature. Mustache expressions in other literal directives, e.g. `v-ref` and `v-el`, are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
 
 A full list of literal directives can be found in the [API reference](/api/directives.html#Literal_Directives).
 
@@ -91,5 +89,31 @@ Some directives don't even expect an attribute value - they simply do something 
 ```
 
 A full list of empty directives can be found in the [API reference](/api/directives.html#Empty_Directives).
+
+## Understanding Async Updates
+
+You can think of directives as mappings of your data state to the DOM state. However, it is important to understand that in Vue.js, the directive update process is asynchronous by default. For example, when you set `vm.someData = 'new value'`, the DOM will not update immediately. Vue.js buffers all data changes happening in the same event loop, and execute any necessary DOM updates asynchronously in the next "tick". Internally it uses `MutationObserver` if available and falls back to `setTimeout(fn, 0)`. This prevents multiple changes to the same piece of data from triggering duplicate updates.
+
+This behavior can be tricky when you want to do something that depends on the updated DOM state. Although Vue.js generally encourages developers to think in a "data-driven" way and avoid touching the DOM directly, sometimes you might just want to use that handy jQuery plugin you've always been using. In order to wait until Vue.js has finished updating the DOM after a data change, you can use `Vue.nextTick(callback)` immediately after the data is changed - when the callback is called, the DOM would have been updated. For example:
+
+``` html
+<div id="example">{{msg}}</div>
+```
+
+``` js
+var vm = new Vue({
+  el: '#example',
+  data: {
+    msg: '123'
+  }
+})
+vm.msg = 'new message' // change data
+vm.$el.textContent === 'new message' // false
+Vue.nextTick(function () {
+  vm.$el.textContent === 'new message' // true
+})
+```
+
+Alternatively, you can turn off async updates by setting `Vue.config.async = false`. However, note that in sync mode the order in which watchers and directives trigger may become different, so it does not guaruntee the exact same behavior.
 
 Next, let's talk about [Filters](/guide/filters.html).

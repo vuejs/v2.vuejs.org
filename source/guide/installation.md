@@ -1,10 +1,10 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 0.11.5
-dev_size: 181.31
-min_size: 56.08
-gz_size: 18.39
+vue_version: 0.12.0
+dev_size: 209.76
+min_size: 64.47
+gz_size: 20.99
 ---
 
 > **Compatibility Note:** Vue.js does not support IE8 and below.
@@ -42,14 +42,6 @@ $ bower install vue
 var Vue = require('yyx990803/vue')
 // for edge version:
 var Vue = require('yyx990803/vue@dev')
-```
-
-## Component
-
-``` bash
-$ component install yyx990803/vue
-# for edge version:
-$ component install yyx990803/vue@dev
 ```
 
 ## AMD Module Loaders

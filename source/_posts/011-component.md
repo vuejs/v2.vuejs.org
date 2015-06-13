@@ -3,6 +3,8 @@ date: 2014-12-08 15:02:14
 tags:
 ---
 
+<p class="tip">Note: this post contains information for the outdated 0.11 version. Please refer to the [0.12 release notes](https://github.com/yyx990803/vue/releases) for the changes in the API.</p>
+
 The release of 0.11 introduced [many changes](https://github.com/yyx990803/vue/blob/master/changes.md), but the most important one is how the new component scope works. Previously in 0.10.x, components have inherited scope by default. That means in a child component template you can reference parent scope properties. This often leads to tightly-coupled components, where a child component assumes knowledge of what properties are present in the parent scope. It is also possible to accidentally refer to a parent scope property in a child component.
 
 <!-- more -->

@@ -1,4 +1,4 @@
-title: Options
+title: Component Options
 type: api
 order: 2
 ---
@@ -236,6 +236,12 @@ These are private assets that will be available only to this Vue instance and it
 
 A hash of directives to be made available to the Vue instance. For details on how to write a custom directive, see [Writing Custom Directives](/guide/custom-directive.html).
 
+### elementDirectives
+
+- **Type:** `Object`
+
+A hash of element directives to be made available to the Vue instance. For details on how to write a element directive, see [Element Directives](/guide/custom-directive.html#Element_Directives).
+
 ### filters
 
 - **Type:** `Object`
@@ -247,12 +253,6 @@ A hash of filters to be made available to the Vue instance. For details on how t
 - **Type:** `Object`
 
 A hash of components to be made available to the Vue instance. For details on how to extend and compose Vue instances, see [Component System](/guide/components.html).
-
-### partials
-
-- **Type:** `Object`
-
-A hash of partials to be made available to the Vue instance. Also see [v-partial](/api/directives.html#v-partial).
 
 ### transitions
 

@@ -31,12 +31,28 @@ $header-height = 40px
     &:hover, &.current
         border-bottom 3px solid $green
 
+#search-query
+    height 30px
+    line-height 30px
+    box-sizing border-box
+    padding 0 15px 0 30px
+    border 1px solid #e3e3e3
+    outline none
+    border-radius 15px
+    margin-right 10px
+    transition border-color .2s ease
+    background #fff url(/images/search.png) 8px 5px no-repeat
+    background-size 20px
+    &:focus
+        border-color $green
+
 #logo
     display inline-block
-    font-size 1.25em
+    font-size 1.5em
     line-height $header-height
     color $dark
     font-family $logo-font
+    font-weight 500
     img
         vertical-align middle
         margin-right 6px
@@ -121,11 +137,12 @@ $header-height = 40px
             padding-left 1.25em
             color $light
     a.button
-        font-size 1.1em
+        font-size .9em
+        color #fff
         margin .2em 0
         width 180px
         text-align center
-        padding 10px 24px
+        padding 12px 24px
         display inline-block
         vertical-align middle
     span.light
@@ -143,12 +160,18 @@ $header-height = 40px
         padding-bottom .7em
         border-bottom 1px solid $border
     h3
-        //color $green
-        border-left 5px solid $green
-        margin 2em 0 .8em
-        padding-left .5em
+        margin 3em 0 1.2em
+        position relative
+        &:before
+            content "#"
+            color $green
+            position absolute
+            left -0.7em
+            top -2px
+            font-size 1.2em
+            font-weight bold
     figure, p, ul, ol
-        margin .8em 0 .8em .8em
+        margin 1.2em 0
     p, ul, ol
         line-height 1.6em
     ul, ol
@@ -164,8 +187,8 @@ $header-height = 40px
         margin 1em 0
     p.tip
         padding 12px 24px 12px 30px
-        margin 2em 0 2em .8em
-        border-left 4px solid $green
+        margin 2em 0
+        border-left 4px solid $red
         background-color #f9f9f9
         position relative
         border-top-left-radius $radius
@@ -173,26 +196,25 @@ $header-height = 40px
         box-shadow 0 1px 1px rgba(0,0,0,0.125)
         &:before
             position absolute
-            top 50%
-            margin-top -17px
-            left -17px
-            background-color $green
+            top 14px
+            left -12px
+            background-color $red
             color #fff
-            content "i"
-            width 30px
-            height 30px
+            content "!"
+            width 20px
+            height 20px
             border-radius 100%
             text-align center
-            line-height 30px
+            line-height 20px
             font-weight bold
-            font-family Georgia
+            font-family $logo-font
+            font-size 14px
 
 .footer
     color $light
     margin-top 4em
     padding-top 2em
     border-top 1px solid #e5e5e5
-    margin-left .8em
     font-size .9em
 
 @media screen and (min-width: 720px)
@@ -228,6 +250,8 @@ $header-height = 40px
         .info
             margin-top 5px
             margin-left 0
+    iframe
+        margin: 0 !important
 
 @media screen and (max-width: 720px)
     body
@@ -241,6 +265,9 @@ $header-height = 40px
         padding-bottom 1px
         &:hover, &.current
             border-bottom 2px solid $green
+    #search-query
+        width 200px
+        margin-bottom 10px
     #mobile-bar
         display block
     #main
@@ -256,18 +283,16 @@ $header-height = 40px
         padding 60px 30px 20px
         box-shadow 0 0 10px rgba(0,0,0,.2)
         box-sizing border-box
-        transition transform .4s cubic-bezier(0.4, 0, 0, 1), -webkit-transform .4s cubic-bezier(0.4, 0, 0, 1)
-        transform translate(-110%,0)
-        -webkit-transform translate(-110%,0)
+        transition all .4s cubic-bezier(0.4, 0, 0, 1)
+        -webkit-transform translate(-280px, 0)
+        transform translate(-280px, 0)
         .main-menu
             display block
         &.open
-            transform translate(0,0)
-            -webkit-transform translate(0,0)
+            -webkit-transform translate(0, 0)
+            transform translate(0, 0)
     .content
         &.with-sidebar
-            margin-left 0
-        figure, p, ul, p.tip
             margin-left 0
     .footer
         margin-left 0

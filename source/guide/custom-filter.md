@@ -28,7 +28,7 @@ Vue.filter('wrap', function (value, begin, end) {
 
 ``` html
 <!-- 'hello' => 'before hello after' -->
-<span v-text="message | wrap before after"></span>
+<span v-text="message | wrap 'before' 'after'"></span>
 ```
 
 ## Two-way Filters
@@ -50,24 +50,23 @@ Vue.filter('check-email', {
 })
 ```
 
-## Filter Context
+## Dynamic Arguments
 
-When a filter is invoked, its `this` context is set to the Vue instance that is invoking it. This allows it to output dynamic results based on the state of the owner Vue instance.
+If a filter argument is not enclosed by quotes, it will be evaluated dynamically in the current vm's data context. In addition, the filter function is always invoked using the current vm as its `this` context. For example:
 
-For example:
-
-``` js
-Vue.filter('concat', function (value, key) {
-  // `this` points to the Vue instance invoking the filter
-  return value + this[key]
-})
-```
 ``` html
 <input v-model="userInput">
 <span>{{msg | concat userInput}}</span>
 ```
 
-For this simple example above, you can achieve the same result with just an expression, but for more complicated procedures that need more than one statements, you need to put them either in a computed property or a custom filter.
+``` js
+Vue.filter('concat', function (value, input) {
+  // here `input` === `this.userInput`
+  return value + input
+})
+```
+
+For this simple example above, you can achieve the same result with just an expression, but for more complicated procedures that need more than one statement, you need to put them either in a computed property or a custom filter.
 
 The built-in `filterBy` and `orderBy` filters are both filters that perform non-trivial work on the Array being passed in and relies on the current state of the owner Vue instance.
 

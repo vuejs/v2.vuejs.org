@@ -9,7 +9,7 @@ Mixins are a flexible way to distribute reusable functionalities for Vue compone
 
 ``` js
 // mixin.js
-exports.mixin = {
+module.exports = {
   created: function () {
     this.hello()
   },
@@ -70,7 +70,10 @@ Vue.use('my-plugin', {
 
 ## Existing Tools
 
+- [vue-resource](https://github.com/vuejs/vue-resource): A plugin that provides services for making web requests and handle responses using a XMLHttpRequest or JSONP.
 - [vue-devtools](https://github.com/vuejs/vue-devtools): A Chrome devtools extension for debugging Vue.js applications.
 - [vue-touch](https://github.com/vuejs/vue-touch): Add touch-gesture directives using Hammer.js.
 - [vue-element](https://github.com/vuejs/vue-element): Register Custom Elements with Vue.js.
 - [List of User Contributed Tools](https://github.com/yyx990803/vue/wiki/User-Contributed-Components-&-Tools)
+
+Next: [Common FAQs](/guide/faq.html).

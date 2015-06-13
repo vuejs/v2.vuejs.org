@@ -47,107 +47,82 @@ Then you can use the registered component in a parent instance's template (make 
 
 ``` html
 <!-- inside parent template -->
-<div v-component="my-component"></div>
-```
-
-If you prefer, components can also be used in the form of a custom element tag:
-
-``` html
 <my-component></my-component>
 ```
 
-<p class="tip">To avoid naming collisions with native elements and stay consistent with the W3C Custom Elements specification, the component's ID **must** contain a hyphen `-` to be usable as a custom tag.</p>
+You don't have to register every component globally. You can limit a component's availability to another component and its descendents by passing it in with the `components` option (this encapsulation also applies to other assets such as directives and filters):
+
+``` js
+var Parent = Vue.extend({
+  components: {
+    child: {
+      // child will only be available to Parent
+      // and Parent's descendent components
+    }
+  }
+})
+```
 
 It is important to understand the difference between `Vue.extend()` and `Vue.component()`. Since `Vue` itself is a constructor, `Vue.extend()` is a **class inheritance method**. Its task is to create a sub-class of `Vue` and return the constructor. `Vue.component()`, on the other hand, is an **asset registration method** similar to `Vue.directive()` and `Vue.filter()`. Its task is to associate a given constructor with a string ID so Vue.js can pick it up in templates. When directly passing in options to `Vue.component()`, it calls `Vue.extend()` under the hood.
 
-Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
+Vue.js supports two API styles for using components: the imperative, constructor-based API, and the declarative, template-based API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
 
-## Data Inheritance
+<p class="tip">The `table` element has restrictions on what elements can appear inside it, so custom elements will be hoisted out and not render properly. In those cases you can use the component directive syntax: `<tr v-component="my-component"></tr>`. Note this syntax is only available on table elements.</p>
 
-### Explicit Data Passing
+## Data Flow
 
-By default, components have **isolated scope**. This means you cannot reference parent data in a child component's template. To explicitly pass data to child components with isolated scope, we can use the `v-with` directive.
+### Passing Data with Props
 
-#### Passing Down Child `$data`
+By default, components have **isolated scope**. This means you cannot reference parent data in a child component's template. In order to pass data to child components with isolated scope, we need to use `props`.
 
-When given a single keypath without an argument, the corresponding value on the parent will be passed down to the child as its `$data`. This means the passed-down value must be an object, and it will overwrite the default `$data` object the child component might have.
-
-**Example:**
-
-``` html
-<div id="demo-1">
-  <p v-component="user-profile" v-with="user"></p>
-</div>
-```
+A "prop" is a field on a component's data that is expected to be received from its parent component. A child component needs to explicitly declare the props it expects to receive using the [`props` option](/api/options.html#props):
 
 ``` js
-// registering the component first
-Vue.component('user-profile', {
-  template: '{{name}}<br>{{email}}'
+Vue.component('child', {
+  // declare the props
+  props: ['msg'],
+  // the prop can be used inside templates, and will also
+  // be set as `this.msg`
+  template: '<span>{{msg}}</span>'
 })
-// the `user` object will be passed to the child
-// component as its $data
-var parent = new Vue({
-  el: '#demo-1',
-  data: {
-    user: {
-      name: 'Foo Bar',
-      email: 'foo@bar.com'
-    }
-  }
-})
+```
+
+Then, we can pass data to it like so:
+
+``` html
+<child msg="hello!"></child>
 ```
 
 **Result:**
 
-<div id="demo-1" class="demo"><p v-component="user-profile" v-with="user"></p></div>
+<div id="prop-example-1" class="demo"><child msg="hello!"></child></div>
 <script>
-  Vue.component('user-profile', {
-    template: '{&#123;name&#125;}<br>{&#123;email&#125;}'
-  })
-  var parent = new Vue({
-    el: '#demo-1',
-    data: {
-      user: {
-        name: 'Foo Bar',
-        email: 'foo@bar.com'
-      }
-    }
-  })
-</script>
-
-#### Passing Down Individual Properties
-
-`v-with` can also be used with an argument in the form of `v-with="childProp: parentProp"`. This means passing down `parent[parentProp]` to the child as `child[childProp]`, creating a two-way binding (as of 0.11.5).
-
-**Example:**
-
-``` html
-<div id="demo-2">
-  <input v-model="parentMsg">
-  <p v-component="child" v-with="childMsg : parentMsg">
-    <!-- essentially means "bind `parentMsg` on me as `childMsg`" -->
-  </p>
-</div>
-```
-
-``` js
 new Vue({
-  el: '#demo-2',
-  data: {
-    parentMsg: 'Inherited message'
-  },
+  el: '#prop-example-1',
   components: {
     child: {
-      template: '<span>{{childMsg}}</span>'
+      props: ['msg'],
+      template: '<span>{&#123;msg&#125;}</span>'
     }
   }
 })
+</script>
+
+#### Dynamic Props
+
+We can also pass down dynamic data from the parent. For example:
+
+``` html
+<div>
+  <input v-model="parentMsg">
+  <br>
+  <child msg="{{parentMsg}}"></child>
+</div>
 ```
 
 **Result:**
 
-<div id="demo-2" class="demo"><input v-model="parentMsg"><p v-component="child" v-with="childMsg:parentMsg"></p></div>
+<div id="demo-2" class="demo"><input v-model="parentMsg"><br><child msg="{&#123;parentMsg&#125;}"></child></div>
 <script>
 new Vue({
   el: '#demo-2',
@@ -156,41 +131,81 @@ new Vue({
   },
   components: {
     child: {
-      template: '<span v-text="childMsg"></span>'
+      props: ['msg'],
+      template: '<span>{&#123;msg&#125;}</span>'
     }
   }
 })
 </script>
 
-#### Using `paramAttributes`
+<p class="tip">It is also possible to expose `$data` as a prop. The passed in value must be an Object and will replace the component's default `$data`.</p>
 
-It is also possible to use the [`paramAttributes`](/api/options.html#paramAttributes) option, which compiles into `v-with`, to expose an interface that looks more like custom elements:
+### Prop Binding Types
+
+By default, all props form a two-way binding between the child property and the parent one: when the parent property updates, it will be synced down to the child, and vice-versa. However, it is also possible to explicitly enforce the following binding types:
+
+- One time (only resolves once at compile time)
+- One way down (only sync parent changes to the child)
+- One way up (only sync child changes to the parent)
+
+Compare the syntax:
 
 ``` html
-<div id="demo-3">
-  <input v-model="parentMsg">
-  <child-component child-msg="parentMsg"></p>
-</div>
+<!-- default, two-way binding -->
+<child msg="{{parentMsg}}"></child>
+<!-- explicit one-time binding -->
+<child msg="{{* parentMsg}}"></child>
+<!-- explicit one-way-down binding -->
+<child msg="{{< parentMsg}}"></child>
+<!-- explicit one-way-up binding -->
+<child msg="{{> parentMsg}}"></child>
 ```
 
+Here's a tip on understanding the direction of the arrow: the arrow indicates the direction in which the data flows between the parent property and the child property. For example:
+
+``` html
+<child msg="{{< parentMsg}}"></child>
+```
+
+Here we are trying to sync any changes of `parentMsg`, which is on the parent, to `msg`, which is on the child. But we don't want changes to `msg` on the child to affect the parent.
+
+In addition, if a parent prop expression is not "settable", the binding will automatically be one-way. For example:
+
+``` html
+<!-- automatic one-way binding -->
+<child msg="{{a + b}}"></child>
+```
+
+### Passing Callbacks as Props
+
+It is also possible to pass down a method or a statement as a callback to a child component. This enables declarative, decoupled parent-child communication:
+
 ``` js
-new Vue({
-  el: '#demo-3',
-  data: {
-    parentMsg: 'Inherited message'
-  },
-  components: {
-    'child-component': {
-      paramAttributes: ['child-msg'],
-      // dashed attributes are camelized,
-      // so 'child-msg' becomes 'this.childMsg'
-      template: '<span>{{childMsg}}</span>'
+Vue.component('parent', {
+  // ...
+  methods: {
+    onChildLoaded: function (msg) {
+      console.log(msg)
     }
+  }
+})
+
+Vue.component('child', {
+  // ...
+  props: ['on-load'],
+  ready: function () {
+    // props with hyphens are camelized
+    this.onLoad('message from child!')
   }
 })
 ```
 
-### Scope Inheritance
+``` html
+<!-- in parent's template -->
+<child on-load="{{onChildLoaded}}"></child>
+```
+
+### Inheriting Parent Scope
 
 If you want, you can also use the `inherit: true` option for your child component to make it prototypally inherit all parent properties:
 
@@ -228,7 +243,7 @@ When a component is used in a parent template, e.g.:
 
 ``` html
 <!-- parent template -->
-<div v-component v-show="active" v-on="click:onClick"></div>
+<my-component v-show="active" v-on="click:onClick"></my-component>
 ```
 
 The directives here (`v-show` and `v-on`) will be compiled in the parent's scope, so the value of `active` and `onClick` will be resolved against the parent. Any directives/interpolations inside the child's template will be compiled in the child's scope. This ensures a cleaner separation between parent and child components.
@@ -251,7 +266,7 @@ Check out the API reference for a [full list of lifecycle hooks](/api/options.ht
 
 ## Dynamic Components
 
-You can dynamically switch between components by using Mustache tags inside the `v-component` direcitve, which can be used together with routers to achieve "page switching":
+You can dynamically switch between components to achieve "page swapping" by using the reserved `<component>` element:
 
 ``` js
 new Vue({
@@ -268,17 +283,17 @@ new Vue({
 ```
 
 ``` html
-<div v-component="{{currentView}}">
+<component is="{{currentView}}">
   <!-- content changes when vm.currentview changes! -->
-</div>
+</component>
 ```
 
 If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
 
 ``` html
-<div v-component="{{currentView}}" keep-alive>
+<component is="{{currentView}}" keep-alive>
   <!-- inactive components will be cached! -->
-</div>
+</component>
 ```
 
 ### Transition Control
@@ -292,7 +307,7 @@ An event name to wait for on the incoming child component before switching it wi
 **Example:**
 
 ``` html
-<div v-component="{{view}}" wait-for="data-loaded"></div>
+<component is="{{view}}" wait-for="data-loaded"></component>
 ```
 ``` js
 // component definition
@@ -323,26 +338,26 @@ By default, the transitions for incoming and outgoing components happen simultan
 
 ``` html
 <!-- fade out first, then fade in -->
-<div v-component="{{view}}"
+<component
+  is="{{view}}"
   v-transition="fade"
   transition-mode="out-in">
-</div>
+</component>
 ```
 
 ## List and Components
 
-For an Array of Objects, you can combine `v-component` with `v-repeat`. In this case, for each Object in the Array, a child ViewModel will be created using that Object as data, and the specified component as the constructor.
+For an Array of Objects, you can combine a component with `v-repeat`. In this case, for each Object in the Array, a child component will be created using that Object as its `$data`, and the specified component as the constructor.
 
 ``` html
-<ul id="demo-4">
-  <!-- reusing the user-profile component we registered before -->
-  <li v-repeat="users" v-component="user-profile"></li>
+<ul id="list-example">
+  <user-profile v-repeat="users"></user-profile>
 </ul>
 ```
 
 ``` js
-var parent2 = new Vue({
-  el: '#demo-4',
+new Vue({
+  el: '#list-example',
   data: {
     users: [
       {
@@ -354,16 +369,22 @@ var parent2 = new Vue({
         email: 'bruce@lee.com'
       }
     ]
+  },
+  components: {
+    'user-profile': {
+      template: '<li>{{name}} {{email}}</li>',
+      replace: true
+    }
   }
 })
 ```
 
 **Result:**
 
-<ul id="demo-4" class="demo"><li v-repeat="users" v-component="user-profile"></li></ul>
+<ul id="list-example" class="demo"><user-profile v-repeat="users"></user-profile></ul>
 <script>
 var parent2 = new Vue({
-  el: '#demo-4',
+  el: '#list-example',
   data: {
     users: [
       {
@@ -375,9 +396,28 @@ var parent2 = new Vue({
         email: 'bruce@lee.com'
       }
     ]
+  },
+  components: {
+    'user-profile': {
+      template: '<li>{&#123;name&#125;} - {&#123;email&#125;}</li>',
+      replace: true
+    }
   }
 })
 </script>
+
+### Repeat Component with Identifier
+
+The identifier syntax also works when using a component, and the repeated data will be set as a property on the component using the identifier as the key:
+
+``` html
+<ul id="list-example">
+  <!-- data available inside component as `this.user` -->
+  <user-profile v-repeat="user:users"></user-profile>
+</ul>
+```
+
+<p class="tip">Note that once you use a component with `v-repeat`, the same scoping rules apply to the other directives on the component container element. As a result, you won't be able to access `$index` in the parent template; it will become only available inside the component's own template.<br><br>Alternatively, you can use a `<template>` block repeat to create an intermediate scope, but in most cases it's better to use `$index` inside the component.</p>
 
 ## Child Reference
 
@@ -385,7 +425,7 @@ Sometimes you might need to access nested child components in JavaScript. To ena
 
 ``` html
 <div id="parent">
-  <div v-component="user-profile" v-ref="profile"></div>
+  <user-profile v-ref="profile"></user-profile>
 </div>
 ```
 
@@ -399,47 +439,42 @@ When `v-ref` is used together with `v-repeat`, the value you get will be an Arra
 
 ## Event System
 
-Although you can directly access a ViewModels children and parent, it is more convenient to use the built-in event system for cross-component communication. It also makes your code less coupled and easier to maintain. Once a parent-child relationship is established, you can dispatch and trigger events using each ViewModel's [event instance methods](/api/instance-methods.html#Events).
+Although you can directly access a Vue instance's children and parent, it is more convenient to use the built-in event system for cross-component communication. It also makes your code less coupled and easier to maintain. Once a parent-child relationship is established, you can dispatch and trigger events using each component's [event instance methods](/api/instance-methods.html#Events).
 
 ``` js
-var Child = Vue.extend({
-  created: function () {
-    this.$dispatch('child-created', this)
-  }
-})
-
 var parent = new Vue({
-  template: '<div v-component="child"></div>',
-  components: {
-    child: Child
-  },
+  template: '<child></child>',
   created: function () {
     this.$on('child-created', function (child) {
       console.log('new child created: ')
       console.log(child)
     })
+  },
+  components: {
+    child: {
+      created: function () {
+        this.$dispatch('child-created', this)
+      }
+    }
   }
 })
 ```
 
 <script>
-var Child = Vue.extend({
-  created: function () {
-    this.$dispatch('child-created', this)
-  }
-})
-
 var parent = new Vue({
-  el: document.createElement('div'),
-  template: '<div v-component="child"></div>',
-  components: {
-    child: Child
-  },
+  template: '<child></child>',
   created: function () {
     this.$on('child-created', function (child) {
       console.log('new child created: ')
       console.log(child)
     })
+  },
+  components: {
+    child: {
+      created: function () {
+        this.$dispatch('child-created', this)
+      }
+    }
   }
 })
 </script>
@@ -486,7 +521,7 @@ MyComponent
 
 When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component (similar to the Angular concept of "transclusion".) Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content.
 
-<p class="tip">Note: "transcluded" contents are compiled in the parent component's scope.</p>
+<p class="tip">**Important**: transcluded contents are compiled in the parent component's scope, not in the child's scope.</p>
 
 ### Single Insertion Point
 
@@ -502,27 +537,29 @@ Template for `my-component`:
 Parent markup that uses the component:
 
 ``` html
-<div v-component="my-component">
+<my-component>
   <p>This is some original content</p>
   <p>This is some more original content</p>
-</div>
+</my-component>
 ```
 
 The rendered result will be:
 
 ``` html
-<div>
+<my-component>
   <h1>This is my component!</h1>
   <p>This is some original content</p>
   <p>This is some more original content</p>
-</div>
+</my-component>
 ```
 
 ### Multiple Insertion Points
 
 `<content>` elements have a special attribute, `select`, which expects a CSS selector. You can have multiple `<content>` insertion points with different `select` attributes, and each of them will be replaced by the elements matching that selector from the original content.
 
-Template for `multi-insertion-component`:
+<p class="tip">Starting in 0.11.6, `<content>` selectors can only match top-level children of the host node. This keeps the behavior consistent with the Shadow DOM spec and avoids accidentally selecting unwanted nodes in nested transclusions.</p>
+
+For example, suppose we have a `multi-insertion` component with the following template:
 
 ``` html
 <content select="p:nth-child(3)"></content>
@@ -533,23 +570,61 @@ Template for `multi-insertion-component`:
 Parent markup:
 
 ``` html
-<div v-component="multi-insertion-component">
+<multi-insertion>
   <p>One</p>
   <p>Two</p>
   <p>Three</p>
-</div>
+</multi-insertion>
 ```
 
 The rendered result will be:
 
 ``` html
-<div>
+<multi-insertion>
   <p>Three</p>
   <p>Two</p>
   <p>One</p>
-</div>
+</multi-insertion>
 ```
 
 The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
+
+## Inline Template
+
+In 0.11.6, a special param attribute for components is introduced: `inline-template`. When this param is present, the component will use its inner content as its template rather than transclusion content. This allows more flexible template-authoring.
+
+``` html
+<my-component inline-template>
+  <p>These are compiled as the component's own template</p>
+  <p>Not parent's transclusion content.</p>
+</my-component>
+```
+
+## Async Components
+
+<p class="tip">Async Components are only supported in Vue ^0.12.0.</p>
+
+In large applications, we may need to divide the app into smaller chunks, and only load a component from the server when it is actually needed. To make that easier, Vue.js allows you to define your component as a factory function that asynchronously resolves your component definition. Vue.js will only trigger the factory function when the component actually needs to be rendered, and will cache the result for future re-renders. For example:
+
+``` js
+Vue.component('async-example', function (resolve, reject) {
+  setTimeout(function () {
+    resolve({
+      template: '<div>I am async!</div>'
+    })
+  }, 1000)
+})
+```
+
+The factory function receives a `resolve` callback, which should be called when you have retrived your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
+
+``` js
+Vue.component('async-webpack-example', function (resolve) {
+  // this special require syntax will instruct webpack to
+  // automatically split your built code into bundles which
+  // are automatically loaded over ajax requests.
+  require(['./my-async-component'], resolve)
+})
+```
 
 Next: [Applying Transition Effects](/guide/transitions.html).

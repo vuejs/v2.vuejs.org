@@ -111,6 +111,26 @@ var demo = new Vue({
 })
 </script>
 
+### Multiple Clauses
+
+Comma separated arguments are bound as multiple directive instances. In the following example, directive methods are called twice:
+
+``` html
+<div v-demo="color: 'white', text: 'hello!'"></div>
+```
+
+You can achieve single binding with all arguments by closing value with object literal:
+
+``` html
+<div v-demo="{color: 'white', text: 'hello!'}"></div>
+```
+
+``` js
+Vue.directive('demo', function (value) {
+  console.log(value) // Object {color: 'white', text: 'hello!'}
+})
+```
+
 ## Literal Directives
 
 If you pass in `isLiteral: true` when creating a custom directive, the attribute value will be taken as a literal string and assigned as that directive's `expression`. The directive will not attempt to setup data observation.
@@ -206,6 +226,35 @@ Vue.directive('my-directive', {
 
 You can optionally provide a priority number for your directive (defaults to 0). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
 
-You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, `v-repeat`, `v-if` and `v-component` are considered "terminal directives" and they always have the highest priority in the compilation process.
+You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, logic control directives `v-if` and `v-repeat` are considered "terminal" and they always have the highest priority in the compilation process.
+
+## Element Directives
+
+In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained later in the guide). You can register a custom element directive like so:
+
+``` js
+Vue.elementDirective('my-directive', {
+  // same API as normal directives
+  bind: function () {
+    // manipulate this.el...
+  }
+})
+```
+
+Then, instead of:
+
+``` html
+<div v-my-directive></div>
+```
+
+We can write:
+
+``` html
+<my-directive></my-directive>
+```
+
+Element directives cannot accept arguments or expressions, but it can read the element's attributes to determine its behavior.
+
+A big difference from normals directives is that element directives are **terminal**, which means once Vue encounters an element directive, it will leave that element and all its children alone - only the element directive itself will be able to manipulate that element and its children. 
 
 Next, we'll see how to [write a custom filter](/guide/custom-filter.html).

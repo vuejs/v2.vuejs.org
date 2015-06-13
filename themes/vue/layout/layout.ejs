@@ -6,14 +6,14 @@
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato|Inconsolata' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
         <script>
             window.PAGE_TYPE = "<%- page.type %>"
         </script>
         <%- css(isIndex ? 'css/index' : 'css/page') %>
         <%- partial('partials/ga') %>
-        <script src="/js/vue.min.js"></script>
+        <script src="/js/vue.js"></script>
     </head>
     <body>
         <div id="mobile-bar">
@@ -34,5 +34,12 @@
         <% } else { %>
             <%- body %>
         <% } %>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        </script>
     </body>
 </html>

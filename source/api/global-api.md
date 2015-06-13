@@ -83,12 +83,25 @@ Will result in:
 <p>Walter White aka Heisenberg</p>
 ```
 
+### Vue.nextTick( callback )
+
+- **callback** `Function`
+
+Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. For more details see [Understanding Async Updates](/guide/directives.html#Understanding_Async_Updates).
+
 ### Vue.directive( id, [definition] )
 
 - **id** `String`
 - **definition** `Function` or `Object` *optional*
 
 Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/custom-directive.html).
+
+### Vue.elementDirective( id, [definition] )
+
+- **id** `String`
+- **definition** `Function` or `Object` *optional*
+
+Register or retrieve a global custom element directive. For more details see [Element Directives](/guide/custom-directive.html#Element_Directives).
 
 ### Vue.filter( id, [definition] )
 
@@ -110,50 +123,6 @@ Register or retrieve a global component. For more details see [Component System]
 - **definition** `Object` *optional*
 
 Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Functions).
-
-### Vue.partial( id, [definition] )
-
-- **id** `String`
-- **definition** `String | Node` *optional*
-
-Register or retrieve a global partial. The definition can be a template string, a querySelector that starts with `#`, a DOM element (whose innerHTML will be used as the template string), or a DocumentFragment.
-
-**Example**
-
-HTML
-
-``` html
-<div id="demo">
-  {{> avatar}}
-</div>
-```
-
-JavaScript
-
-``` js
-Vue.partial('avatar', '<img v-attr="src:avatarURL">')
-
-new Vue({
-  el: '#demo',
-  data: {
-    avatarURL: '/images/avatar.jpg'
-  }    
-})
-```
-
-Will result in:
-
-``` html
-<div id="demo">
-  <img src="/images/avatar.jpg">
-</div>
-```
-
-### Vue.nextTick( callback )
-
-- **callback** `Function`
-
-Vue.js batches view updates and executes them all asynchronously. It uses `requestAnimationFrame` if available and falls back to `setTimeout(fn, 0)`. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.
 
 ### Vue.use( plugin, [args...] )
 
