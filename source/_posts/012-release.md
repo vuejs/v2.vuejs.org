@@ -82,7 +82,7 @@ For full details on the new transition system, check out the [updated guide](/gu
 
 ### Performance Tuning
 
-Vue.js' precise dependency tracking makes it the one of the most efficient view layer for small hot updates, but there's always room for improvement. In 0.12, internal instance creation and compilation refactors have improved first-render performance for large lists by up to 40%. With proper `track-by` usage, [re-rendering with large, brand new dataset](http://vuejs.github.io/js-repaint-perfs/vue/) is also comparable to, or even faster other Virtual-DOM based frameworks.
+Vue.js' precise dependency tracking makes it the one of the most efficient view layer for small hot updates, but there's always room for improvement. In 0.12, internal instance creation and compilation refactors have improved first-render performance for large lists by up to 40%. With proper `track-by` usage, [re-rendering with large, brand new dataset](http://vuejs.github.io/js-repaint-perfs/vue/) is also comparable to, or even faster than other Virtual-DOM based frameworks.
 
 ### One More Thing...
 
