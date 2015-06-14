@@ -142,39 +142,22 @@ new Vue({
 
 ### Prop Binding Types
 
-By default, all props form a two-way binding between the child property and the parent one: when the parent property updates, it will be synced down to the child, and vice-versa. However, it is also possible to explicitly enforce the following binding types:
-
-- One time (only resolves once at compile time)
-- One way down (only sync parent changes to the child)
-- One way up (only sync child changes to the parent)
+By default, all props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will be synced down to the child, but not the other way around. This default is meant to prevent child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about. However, it is also possible to explicitly enforce a two-way or a one-time binding:
 
 Compare the syntax:
 
 ``` html
-<!-- default, two-way binding -->
+<!-- default, one-way-down binding -->
 <child msg="{{parentMsg}}"></child>
+<!-- explicit two-way binding -->
+<child msg="{{@ parentMsg}}"></child>
 <!-- explicit one-time binding -->
 <child msg="{{* parentMsg}}"></child>
-<!-- explicit one-way-down binding -->
-<child msg="{{< parentMsg}}"></child>
-<!-- explicit one-way-up binding -->
-<child msg="{{> parentMsg}}"></child>
 ```
 
-Here's a tip on understanding the direction of the arrow: the arrow indicates the direction in which the data flows between the parent property and the child property. For example:
+The two-way binding will sync the change of child's `msg` property back to the parent's `parentMsg` property. The one-time binding, once set up, will not sync future changes between the the parent and the child.
 
-``` html
-<child msg="{{< parentMsg}}"></child>
-```
-
-Here we are trying to sync any changes of `parentMsg`, which is on the parent, to `msg`, which is on the child. But we don't want changes to `msg` on the child to affect the parent.
-
-In addition, if a parent prop expression is not "settable", the binding will automatically be one-way. For example:
-
-``` html
-<!-- automatic one-way binding -->
-<child msg="{{a + b}}"></child>
-```
+<p class="tip">Note that if the prop being passed down is an Object or an Array, it is passed by reference. Mutating the Object or Array itself inside the child will affect parent state, regardless of the binding type you are using.</p>
 
 ### Passing Callbacks as Props
 
