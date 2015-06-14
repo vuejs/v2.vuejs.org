@@ -183,7 +183,7 @@ As you are probably already aware, Vue.js allows [passing data to child](/guide/
 
 ``` html
 <div id="demo">
-  <child parent-msg="msg"></child>
+  <child parent-msg="{{@ msg}}"></child>
 </div>
 ```
 
@@ -212,6 +212,8 @@ new Vue({
   }
 })
 ```
+
+Note, that we are using `@` before prop name in template. It is special syntax, that bounds prop *two-way*, meaning changes from both parent and child will be synced back to other. Otherwise, without `@` symbol, props are bound *one-way-down*, which means once you pass prop using `childProp="{{parentProp}}"` syntax, changes made by child instance will not be synced back to parent instance. See [Prop Binding Types](/guide/components.html#Prop_Binding_Types) for detailed info.
 
 For more info about instance hook orders, see [Lifecycle of ViewModel instances](/api/options.html#Lifecycle).
 
