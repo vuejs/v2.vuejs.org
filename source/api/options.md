@@ -130,6 +130,26 @@ For passing data more details see the following:
 - [Prop Binding Types](/guide/components.html#Prop_Binding_Types)
 - [Passing Callbacks as Props](/guide/components.html#Passing_Callbacks_as_Props)
 
+Instead of defining the props as strings, you can use Objects that contain validation requirements:
+
+``` js
+Vue.component('prop-validation-demo', {
+  props: [
+    {
+      name: 'size',
+      type: Number
+    },
+    {
+      name: 'message',
+      type: String,
+      required: true
+    }
+  ]
+})
+```
+
+For prop validation more details see [Prop Validation](/guide/components.html#Prop_Validation).
+
 #### Notes on hyphened attributes
 
 HTML attribute names ignore upper and lower case differences, so we usually use hyphened attributes instead of camel case. There are some special cases when using `props` with attributes that contains hyphens:
