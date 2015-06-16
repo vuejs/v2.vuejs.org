@@ -289,7 +289,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Check out the API reference for a [full list of lifecycle hooks](/api/options.html#Lifecycle) that are availble.
+Check out the API reference for a [full list of lifecycle hooks](/api/options.html#Lifecycle) that are available.
 
 ## Dynamic Components
 
