@@ -1,6 +1,6 @@
 title: Common FAQs
 type: guide
-order: 15
+order: 16
 ---
 
 - **Why doesn't Vue.js support IE8?**
