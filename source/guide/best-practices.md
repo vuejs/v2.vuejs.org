@@ -137,7 +137,7 @@ Note this pattern also applies to `$index` when using a component with `v-repeat
 
 ## Communication Between Instances
 
-A common pattern for parent-child communication in Vue is by passing down a parent method as a callback to the child using `props`. This allows the communication to be defined inside the template (where composition happens) while keeping the JavaScript implementation details decoupled:
+A common pattern for parent-child communication in Vue is passing down a parent method as a callback to the child using `props`. This allows the communication to be defined inside the template (where composition happens) while keeping the JavaScript implementation details decoupled:
 
 ``` html
 <div id="demo">
