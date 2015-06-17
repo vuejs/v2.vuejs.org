@@ -88,8 +88,10 @@ There is also the `vm.$nextTick()` instance method, which is especially handy in
 ``` js
 Vue.component('example', {
   template: '{{msg}}',
-  data: {
-    msg: 'not updated'
+  data: function () {
+    return {
+      msg: 'not updated'
+    }
   },
   methods: {
     updateMessage: function () {
