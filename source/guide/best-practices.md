@@ -136,6 +136,30 @@ Vue.component('child-component', {
 
 Note this pattern also applies to `$index` when using a component with `v-repeat`.
 
+Similarly, HTML content inside a component container are considered "transclusion content". They will not be inserted anywhere unless the child template contains at least one `<content></content>` outlet. The inserted contents are also compiled in parent scope:
+
+``` html
+<div>
+  <child-component>
+    <!-- compiled in parent scope -->
+    <p>{{msg}}</p>
+  </child-component>
+</div>
+```
+
+You can use the `inline-template` attribute to indicate you want the content to be compiled in the child scope as the child's template:
+
+``` html
+<div>
+  <child-component inline-template>
+    <!-- compiled in child scope -->
+    <p>{{msg}}</p>
+  </child-component>
+</div>
+```
+
+For more details, see [Content Insertion](/guide/components.html#Content_Insertion).
+
 ## Communication Between Instances
 
 A common pattern for parent-child communication in Vue is passing down a parent method as a callback to the child using `props`. This allows the communication to be defined inside the template (where composition happens) while keeping the JavaScript implementation details decoupled:
