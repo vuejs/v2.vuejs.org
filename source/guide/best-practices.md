@@ -250,3 +250,7 @@ When you need to communicate across multiple nested components, you can use the 
 ## Props Availability
 
 If you've ever tried to access a component's props in the `created` hook, you'd find them as `undefined`. This is because the `created` hook is called before any DOM compilation happens for the instance, thus props are not processed yet. Props are initialized with the parent values *after* template compilation. Similarly, two-way-bound props can only trigger parent changes after compilation.
+
+## Changing Default Options
+
+It is possible to change the default value of an option by setting it on the global `Vue.options` object. For example, you can set `Vue.options.replace = true` to give all Vue instances the behavior of `replace: true`. Use this feature carefully, and use it only when you are starting a new project, because it affects the behavior of every instance.
