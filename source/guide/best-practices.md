@@ -1,6 +1,7 @@
 title: Tips & Best Practices
 type: guide
 order: 15
+is_new: true
 ---
 
 ## Data Initialization

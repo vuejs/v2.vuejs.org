@@ -114,6 +114,21 @@ $header-height = 40px
         &.current
             font-weight 600
             color $green
+        &.new
+            &:after
+                content "NEW"
+                display inline-block
+                font-size 10px
+                font-weight 600
+                color #fff
+                background-color $green
+                line-height 14px
+                padding 0 4px
+                border-radius 3px
+                margin-left 5px
+                vertical-align middle
+                position relative
+                top -1px
         &:hover
             border-bottom 2px solid $green
     .section-link
