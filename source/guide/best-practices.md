@@ -1,11 +1,11 @@
-title: Best Practices for Beginners
+title: Tips & Best Practices
 type: guide
 order: 15
 ---
 
-## Data
+## Data Initialization
 
-Initializing your data properties in Vue Model is safe and good for performance. Suppose you have following template:
+Vue's data observation model favors deterministic data models. It is recommended to initialize all the data properties that needs to be reactive upfront in the `data` option. For example, given the following template:
 
 ``` html
 <div id="demo">
@@ -14,12 +14,11 @@ Initializing your data properties in Vue Model is safe and good for performance.
 </div>
 ```
 
-Recommended approach would be initializing data properties in you ViewModel, even if you need them to be empty/falsy:
+It's recommended to initialize your data like this instead of an empty object:
 
 ``` js
 new Vue({
   el: '#demo',
-  
   data: {
     message: '',
     validation: {
@@ -29,30 +28,152 @@ new Vue({
 })
 ```
 
-## Scope
+The reason for this is that Vue observes data changes by recursively walking the data object and convert existing properties into reactive getters and setters using `Object.defineProperty`. If a property is not present when the instance is created, Vue will not be able to track it.
 
-Every Vue.js component is a separate Vue child instance with it's own scope. It's important to understand [how scopes work in Vue.js](/guide/components.html#A_Note_on_Scope), especially when referring to ViewModel properties, methods from templates. Beginning from version 0.11, thumb of rule for scope in template is: 
+You don't have to set every nested properties in your data though. It is ok to initialize a field as an empty object, and set it to a new object with nested structures later, because Vue will be able to walk the nested properties of this new object and observe them.
 
-<p class="tip">if something appears in the parent template, it will be compiled in parent scope; if it appears in child template, it will be compiled in child scope.</p>
+## Adding and Deleting Properties
 
-Following snippets demonstrate *wrong* and *right* scope usage:
+As mentioned above, Vue observes data by converting properties with `Object.defineProperty`. However, in ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with this constraint, observed Objects are augmented with three methods:
+
+- `obj.$add(key, value)`
+- `obj.$set(key, value)`
+- `obj.$delete(key)`
+
+These methods can be used to add / delete properties from observed objects while triggering the desired DOM updates. The difference between `$add` and `$set` is that `$add` will return early if the key already exists on the object, so just calling `obj.$add(key)` won’t overwrite the existing value with `undefined`.
+
+A related note is that when you change a data-bound Array directly by setting indices (e.g. `arr[1] = value`), Vue will not be able to pick up the change. Again, you can use augmented methods to notify Vue.js about those changes. Observerd Arrays are augmented with two methods:
+
+- `arr.$set(index, value)`
+- `arr.$remove(index | value)`
+
+Vue component instances also have corresponding instance methods:
+
+- `vm.$get(path)`
+- `vm.$set(path, value)`
+- `vm.$add(key, value)`
+- `vm.$delete(key, value)`
+
+Note that `vm.$get` and `vm.$set` both accept paths.
+
+<p class="tip">Despite the existence of these methods, make sure to only add observed fields when necessary. It's helpful to think of the `data` option as the schema for your component state. Explicitly listing possiblely-present properties in the component definition makes it easy to understand what a component may contain when you look at it later.</p>
+
+## Understanding Async Updates
+
+It is important to know that by default Vue performs view updates **asynchronously**. Instead, whenever a data change is observed, Vue will create a queue and buffer all the data changes that happened in the same event loop. If the same watcher is triggered multiple times, it will be pushed into the queue only once. Then, in the next event loop "tick", Vue flushes the queue and performs only the necessary DOM updates. Internally Vue uses `MutationObserver` if available for the asynchronous queueing and falls back to `setTimeout(fn, 0)`.
+
+For example, when you set `vm.someData = 'new value'`, the DOM will not update immediately. It will update in the next "tick", when the queue is flushed. This behavior can be tricky when you want to do something that depends on the updated DOM state. Although Vue.js generally encourages developers to think in a "data-driven" way and avoid touching the DOM directly, sometimes you might just want to use that handy jQuery plugin you've always been using. In order to wait until Vue.js has finished updating the DOM after a data change, you can use `Vue.nextTick(callback)` immediately after the data is changed - when the callback is called, the DOM would have been updated. For example:
+
+``` html
+<div id="example">{{msg}}</div>
+```
+
+``` js
+var vm = new Vue({
+  el: '#example',
+  data: {
+    msg: '123'
+  }
+})
+vm.msg = 'new message' // change data
+vm.$el.textContent === 'new message' // false
+Vue.nextTick(function () {
+  vm.$el.textContent === 'new message' // true
+})
+```
+
+There is also the `vm.$nextTick()` instance method, which is especially handy inside components, because it doesn't need global `Vue` and its callback's `this` context will be automatically bound to the current Vue instance:
+
+``` js
+Vue.component('example', {
+  template: '{{msg}}',
+  data: {
+    msg: 'not updated'
+  },
+  methods: {
+    updateMessage: function () {
+      this.msg = 'updated'
+      console.log(this.$el.textContent) // => 'not updated'
+      this.$nextTick(function () {
+        console.log(this.$el.textContent) // => 'updated'
+      })
+    }
+  }
+})
+```
+
+## Component Scope
+
+Every Vue.js component is a separate Vue instance with its own scope. It's important to understand how scopes work when using components. The rule of thumb is:
+
+> If something appears in the parent template, it will be compiled in parent scope; if it appears in child template, it will be compiled in child scope.
+
+A common mistake is trying to bind a directive to a child property/method in the parent template:
+
+``` html
+<div id="demo">
+  <!-- does NOT work -->
+  <child-component v-on="click: childMethod"></child-component>
+</div>
+```
+
+If you need to bind child-scope directives on a component root node, you should use the `replace: true` option, and include the root node in the child's template:
+
+``` js
+Vue.component('child-component', {
+  // make the component template replace its container node
+  replace: true,
+  // this does work, because we are in the right scope
+  template: '<div v-on="click: childMethod">Child</div>',
+  methods: {
+    childMethod: function () {
+      console.log('child method invoked!')
+    }
+  }
+})
+```
+
+Note this pattern also applies to `$index` when using a component with `v-repeat`.
+
+## Communication Between Instances
+
+A common pattern for parent-child communication in Vue is by passing down a parent method as a callback to the child using `props`. This allows the communication to be defined inside the template (where composition happens) while keeping the JavaScript implementation details decoupled:
+
+``` html
+<div id="demo">
+  <p>Child says: {{msg}}</p>
+  <child-component send-message="{{onChildMsg}}"></child-component>
+</div>
+```
 
 ``` js
 new Vue({
   el: '#demo',
-
+  data: {
+    msg: ''
+  },
   methods: {
-    parentMethod: function() {
-      return console.log('parent')
+    onChildMsg: function(msg) {
+      this.msg = msg
+      return 'Got it!'
     }
   },
-
   components: {
-    child: {
-      template: '<a v-on="click: parentMethod">click here</a>' // WRONG: you cannot access `parentMethod` from child instance (child component)
+    'child-component': {
+      props: ['send-message'],
+      // props with hyphens are auto-camelized
+      template:
+        '<button v-on="click:onClick">Say Yeah!</button>' +
+        '<p>Parent responds: {{response}}</p>',
+      // component `data` option must be a function
+      data: function () {
+        return {
+          response: ''
+        }
+      },
       methods: {
-        childMethod: function() {
-          return console.log('child')
+        onClick: function () {
+          this.response = this.sendMessage('Yeah!')
         }
       }
     }
@@ -60,198 +181,45 @@ new Vue({
 })
 ```
 
-``` html
-<div id="demo">
-  <!-- works, because this is parent template -->
-  <a v-on="click: parentMethod">click here</a>
-
-  <!-- does NOT work, because childMethod does not exist in this scope -->
-  <a v-on="click: childMethod"></a>
-</div>
-```
-
-## Communication between instances
-
-In Vue.js, parent-child communication is mainly done with `props`. Using `props` you can call parent method from child:
-
-``` html
-<div id="demo">
-  <child-component say="{{listenToChild}}"></child-component>
-  <p v-if="wordOfChild.length">Child says: {{wordOfChild}}</p>
-</div>
-```
-
-``` js
-new Vue({
-  el: '#demo',
-
-  data: {
-    wordOfChild: ''
-  },
-
-  methods: {
-    listenToChild: function(what) {
-      return this.wordOfChild = what
-    }
-  },
-
-  components: {
-    'child-component': {
-      props: ['say'],
-      template: '<button type="button" v-on="click: say(\'Yeah!\')">Say Yeah!</button>'
-    }
-  }
-})
-```
-
 **Result:**
 
-<div id="demo"><child-component say="{{listenToChild}}"></child-component><p v-if="wordOfChild.length">Child says: {&#123;wordOfChild&#125;}</p></div>
+<div id="demo"><p>Child says: {&#123;msg&#125;}</p><child-component send-message="{&#123;onChildMsg&#125;}"></child-component></div>
 
 <script>
-  new Vue({
-    el: '#demo',
-
-    data: {
-      wordOfChild: ''
-    },
-
-    methods: {
-      listenToChild: function(what) {
-        return this.wordOfChild = what
-      }
-    },
-
-    components: {
-      'child-component': {
-        props: ['say'],
-        template: '<button type="button" v-on="click: say(\'Yeah!\')">Say Yeah!</button>'
-      }
-    }
-  })
-</script>
-
-Instances can also communicate using [Events](/api/instance-methods.html#Events), but this is mostly for more complex use cases, where `props` can't get the job done. In following demo, you can see how parent ViewModel broadcasts event to all children:
-
-<iframe width="100%" height="300" src="//jsfiddle.net/azamatsharapov/dxpvb3n3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-## Adding data properties
-
-As it's already mentioned in [Guide](/guide/list.html#Iterating_Throught_An_Object):
-
-"In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with three methods: $add(key, value), $set(key, value) and $delete(key). These methods can be used to add / delete properties from observed objects while triggering the desired View updates. The difference between $add and $set is that $add will return early if the key already exists on the object, so just calling obj.$add(key) won’t overwrite the existing value with undefined."
-
-Another important thing you should know is, when you change data-bound Array directly using indices, Vue.js will not pick your changes and so View will not be updated. Again, you can use augmented methods to notify Vue.js about those changes.
-
-ViewModel instances have following augmented methods available: `$get`, `$set`, `$add` and `$delete`. Among those, `$get` and `$set` can take paths as a first argument, which is useful in some cases.
-
-Observed objects (e.g. data property of ViewModel) have `$add`, `$set` and `$delete` methods. 
-
-Observed arrays have `$set` and `$remove` methods.
- 
-``` js
 new Vue({
   el: '#demo',
-  
-  data: {
-    arrayItems: [],
-    objectItems: {}
-  },
-
-  ready: function() {
-    // adds new item and sets 'value' of it
-    this.arrayItems.$set(0, 'someValue')
-
-    // removes arrayItems[0]
-    this.arrayItems.$remove(0)
-  
-    // adding key to observed object
-    this.objectItems.$add('a', {})
-
-    // using path!
-    this.$set('objectItems.a.b', 'value')
-    
-    // will change objectItems to {}
-    this.objectItems.$delete('a')
-  }
-})
-```
-
-## Props availability
-
-As you are probably already aware, Vue.js allows [passing data to child](/guide/components.html#Explicit_Data_Passing) instances using `props`. It should be also noted, that props are available *after* template compilation. You can see details in following snippet:
-
-``` html
-<div id="demo">
-  <child parent-msg="{{@ msg}}"></child>
-</div>
-```
-
-``` js
-new Vue({
-  el: '#demo',
-
   data: {
     msg: ''
   },
-
+  methods: {
+    onChildMsg: function(msg) {
+      this.msg = msg
+      return 'Got it!'
+    }
+  },
   components: {
-    child: {
-      props: ['parentMsg'],
-      template: '<p>{{ parentMsg }}</p>',
-      
-      created: function() {
-        // WRONG: because 'created' hooks is fired before compilation
-        this.parentMsg = 'newValue'
+    'child-component': {
+      props: ['send-message'],
+      data: function () {
+        return {
+          fromParent: ''
+        }
       },
-      compiled: function() {
-        // Works! because 'compiled' hook is fired after compilation
-        this.parentMsg = 'newValue'
+      template:
+        '<button v-on="click:onClick">Say Yeah!</button>' +
+        '<p>Parent responds: <span v-text="fromParent"></span></p>',
+      methods: {
+        onClick: function () {
+          this.fromParent = this.sendMessage('Yeah!')
+        }
       }
     }
   }
 })
-```
+</script>
 
-Note, that we are using `@` before prop name in template. It is special syntax, that bounds prop *two-way*, meaning changes from both parent and child will be synced back to other. Otherwise, without `@` symbol, props are bound *one-way-down*, which means once you pass prop using `childProp="{{parentProp}}"` syntax, changes made by child instance will not be synced back to parent instance. See [Prop Binding Types](/guide/components.html#Prop_Binding_Types) for detailed info.
+When you need to communicate across multiple nested components, you can use the [Event System](/api/instance-methods.html#Events). In addition, it is also quite feasible to implement a [Flux](https://facebook.github.io/flux/docs/overview.html)-like architecture with Vue, which you may want to consider for larger-scale applications.
 
-For more info about instance hook orders, see [Lifecycle of ViewModel instances](/api/options.html#Lifecycle).
+## Props Availability
 
-## Async rendering
-
-By default, Vue.js renders Views asynchronously. It means, when you change some data in your Model, Vue.js doesn't update DOM immediately, but buffers View changes to fire in a right moment, which is good for performance. If you need to run something, that depends on DOM changes, you can use `Vue.$nextTick()`. For example, say you want to bind some kind of "datepicker" jQuery UI plugin to input element, which is hidden/shown using `v-if` directive:
-
-``` html
-<div id="demo">
-  <button v-on="click: showDatepicker">Choose date</button>
-  <input v-if="show" class="datepicker" type="text">
-</div>
-```
-
-Assuming that `show` data property is falsy, this input will not exist in DOM until `show` is truthy. After changing `show` property value, you should use `Vue.$nextTick()` to run "datepicker" related code:
-
-``` js
-new Vue({
-  el: '#demo',
-
-  data: {
-    show: false
-  },
-
-  methods: {
-    showDatepicker: function() {
-      this.show = true
-
-      Vue.nextTick(function() {
-        $('.datepicker').datepicker()
-      })
-    }
-  }
-})
-```
-
-[Here is the demo](http://jsfiddle.net/azamatsharapov/hpgd5n8j/).
-
-There is also `vm.$nextTick()` instance method, which is especially handy when using in components, because it doesn't need global `Vue` and it's callback's `this` will be bound to the current ViewModel instance.
-
-If your application depends on DOM changes much and you don't want to use `$nextTick`, you can configure Vue.js to run in synchronous mode by default: `Vue.config.async = false`.
+If you've ever tried to access a component's props in the `created` hook, you'd find them as `undefined`. This is because the `created` hook is called before any DOM compilation happens for the instance, thus props are not processed yet. Props are initialized with the parent values *after* template compilation. Similarly, two-way-bound props can only trigger parent changes after compilation.

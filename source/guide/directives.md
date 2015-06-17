@@ -90,30 +90,4 @@ Some directives don't even expect an attribute value - they simply do something 
 
 A full list of empty directives can be found in the [API reference](/api/directives.html#Empty_Directives).
 
-## Understanding Async Updates
-
-You can think of directives as mappings of your data state to the DOM state. However, it is important to understand that in Vue.js, the directive update process is asynchronous by default. For example, when you set `vm.someData = 'new value'`, the DOM will not update immediately. Vue.js buffers all data changes happening in the same event loop, and execute any necessary DOM updates asynchronously in the next "tick". Internally it uses `MutationObserver` if available and falls back to `setTimeout(fn, 0)`. This prevents multiple changes to the same piece of data from triggering duplicate updates.
-
-This behavior can be tricky when you want to do something that depends on the updated DOM state. Although Vue.js generally encourages developers to think in a "data-driven" way and avoid touching the DOM directly, sometimes you might just want to use that handy jQuery plugin you've always been using. In order to wait until Vue.js has finished updating the DOM after a data change, you can use `Vue.nextTick(callback)` immediately after the data is changed - when the callback is called, the DOM would have been updated. For example:
-
-``` html
-<div id="example">{{msg}}</div>
-```
-
-``` js
-var vm = new Vue({
-  el: '#example',
-  data: {
-    msg: '123'
-  }
-})
-vm.msg = 'new message' // change data
-vm.$el.textContent === 'new message' // false
-Vue.nextTick(function () {
-  vm.$el.textContent === 'new message' // true
-})
-```
-
-Alternatively, you can turn off async updates by setting `Vue.config.async = false`. However, note that in sync mode the order in which watchers and directives trigger may become different, so it does not guaruntee the exact same behavior.
-
 Next, let's talk about [Filters](/guide/filters.html).
