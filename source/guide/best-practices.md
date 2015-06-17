@@ -187,7 +187,15 @@ new Vue({
   },
   components: {
     'child-component': {
-      props: ['send-message'],
+      props: [
+        // you can use prop assertions to ensure the
+        // callback prop is indeed a function.
+        {
+          name: 'send-message',
+          type: Function,
+          required: true
+        }
+      ],
       // props with hyphens are auto-camelized
       template:
         '<button v-on="click:onClick">Say Yeah!</button>' +
