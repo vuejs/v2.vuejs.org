@@ -591,7 +591,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 	exports.isObject = function (obj) {
-	  return obj && typeof obj === 'object'
+	  return obj !== null && typeof obj === 'object'
 	}
 
 	/**
@@ -614,9 +614,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @return {Boolean}
 	 */
 
-	exports.isArray = function (obj) {
-	  return Array.isArray(obj)
-	}
+	exports.isArray = Array.isArray
 
 	/**
 	 * Define a non-enumerable property
@@ -3305,7 +3303,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = this.get()
 	    if (
 	      value !== this.value ||
-	      Array.isArray(value) ||
+	      _.isArray(value) ||
 	      this.deep
 	    ) {
 	      var oldValue = this.value
