@@ -190,9 +190,10 @@ Insert the vm's `$el` before target element.
 
 Insert the vm's `$el` after target element.
 
-### vm.$remove( [callback] )
+### vm.$remove( [callback], withTransition )
 
 - **callback** `Function` *optional*
+- **withTransition** `Boolean` *optional*
 
 Remove the vm's `$el` from the DOM.
 
