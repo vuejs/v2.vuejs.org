@@ -41,7 +41,7 @@ If a directive argument is provided, the argument will be the class to be toggle
 "></span>
 ```
 
-Alternatively, you can bind the directive directly to an Object. The keys of the object will the list of classes to toggle based on corresponding values.
+Alternatively, you can bind the directive directly to an Object. The keys of the object will be the list of classes to toggle based on corresponding values.
 
 ### v-attr
 
@@ -57,7 +57,7 @@ Updates the element's given attribute (indicated by the argument).
 
 Falsy values except 0 will remove the attribute.
 
-Alternatively, you can bind the directive directly to an Object. The keys of the object will the list of attributes to set based on corresponding values.
+Alternatively, you can bind the directive directly to an Object. The keys of the object will be the list of attributes to set based on corresponding values.
 
 Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives.
 
