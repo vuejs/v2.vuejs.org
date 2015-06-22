@@ -177,19 +177,60 @@ If the option is available at instantiation, the instance will immediately enter
 
 - **Type:** `String`
 
-A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$el` will be overwritten, unless [content insertion points](/guide/components.html#Content_Insertion) are present in the template. If the **replace** option is `true`, the template will replace `vm.$el` entirely.
+A string template to be used as the markup for the Vue instance. By default, the template will **replace** the mounted element. When the `replace` option is set to `false`, the template will be inserted into the mounted element instead. In both cases, any existing markup inside the mounted element will be ignored, unless [content insertion points](/guide/components.html#Content_Insertion) are present in the template.
 
-If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
 <p class="tip">Vue.js uses DOM-based templating. The compiler walks through DOM elements and looks for directives and creates data bindings. This means all Vue.js templates are parsable HTML that can be converted into actual DOM elements by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more Vue instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.</p>
 
 ### replace
 
 - **Type:** `Boolean`  
-- **Default:** `false`
+- **Default:** `true`
 - **Restriction:** only respected if the **template** option is also present.
 
-Whether to replace the original `vm.$el` with the template's content instead of appending to it.
+Whether to replace the element being mounted on with the template. If set to `false`, the template will overwrite the element's inner content without replacing the element itself.
+
+**Example**:
+
+``` html
+<div id="replace"></div>
+```
+
+``` js
+new Vue({
+  el: '#replace',
+  template: '<p>replaced</p>'
+})
+```
+
+Will result in:
+
+``` html
+<p>replaced</p>
+```
+
+In comparison, when `replace` is set to `false`:
+
+``` html
+<div id="insert"></div>
+```
+
+``` js
+new Vue({
+  el: '#insert',
+  replace: false,
+  template: '<p>inserted</p>'
+})
+```
+
+Will result in:
+
+``` html
+<div id="insert">
+  <p>inserted</p>
+</div>
+```
 
 ## Lifecycle
 
