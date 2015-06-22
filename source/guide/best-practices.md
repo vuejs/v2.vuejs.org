@@ -87,7 +87,7 @@ There is also the `vm.$nextTick()` instance method, which is especially handy in
 
 ``` js
 Vue.component('example', {
-  template: '{{msg}}',
+  template: '<span>{{msg}}</span>',
   data: function () {
     return {
       msg: 'not updated'
@@ -120,12 +120,10 @@ A common mistake is trying to bind a directive to a child property/method in the
 </div>
 ```
 
-If you need to bind child-scope directives on a component root node, you should use the `replace: true` option, and include the root node in the child's template:
+If you need to bind child-scope directives on a component root node, you should do so in the child component's own template:
 
 ``` js
 Vue.component('child-component', {
-  // make the component template replace its container node
-  replace: true,
   // this does work, because we are in the right scope
   template: '<div v-on="click: childMethod">Child</div>',
   methods: {

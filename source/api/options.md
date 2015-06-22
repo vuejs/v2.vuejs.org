@@ -167,7 +167,7 @@ vm.aDouble // -> 4
 - **Type:** `String | HTMLElement | Function`
 - **Restriction:** only accepts type `Function` when used in `Vue.extend()`.
 
-Provide the Vue instance with an existing DOM element. It can be a CSS selector string, an actual HTMLElement, or a function that returns an HTMLElement. The resolved element will be accessible as `vm.$el`.
+Provide the Vue instance with an existing DOM element. It can be a CSS selector string, an actual HTMLElement, or a function that returns an HTMLElement. Note that the provided element merely serves as a mounting point; it will be replaced if a template is also provided, unless `replace` is set to false. The resolved element will be accessible as `vm.$el`.
 
 When used in `Vue.extend`, a function must be provided so each instance gets a separately created element.
 

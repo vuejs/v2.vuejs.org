@@ -10,7 +10,7 @@ Vue.js allows you to treat extended Vue subclasses as reusable components that a
 ``` js
 // Extend Vue to get a reusable constructor
 var MyComponent = Vue.extend({
-  template: 'A custom component!'
+  template: '<p>A custom component!</p>'
 })
 ```
 
@@ -39,7 +39,7 @@ To make things easier, you can also directly pass in the option object instead o
 // Note: this method returns the global Vue,
 // not the registered constructor.
 Vue.component('my-component', {
-  template: 'A custom component!'
+  template: '<p>A custom component!</p>'
 })
 ```
 
@@ -48,6 +48,12 @@ Then you can use the registered component in a parent instance's template (make 
 ``` html
 <!-- inside parent template -->
 <my-component></my-component>
+```
+
+Which will render:
+
+``` html
+<p>A custom component!</p>
 ```
 
 You don't have to register every component globally. You can limit a component's availability to another component and its descendents by passing it in with the `components` option (this encapsulation also applies to other assets such as directives and filters):
@@ -275,7 +281,7 @@ When a component is used in a parent template, e.g.:
 
 The directives here (`v-show` and `v-on`) will be compiled in the parent's scope, so the value of `active` and `onClick` will be resolved against the parent. Any directives/interpolations inside the child's template will be compiled in the child's scope. This ensures a cleaner separation between parent and child components.
 
-This rule also applies to [content insertion](#Content_Insertion), as explained later in this guide.
+Read more details on [Component Scope](/guide/best-practices.html#Component_Scope).
 
 ## Component Lifecycle
 
@@ -399,8 +405,7 @@ new Vue({
   },
   components: {
     'user-profile': {
-      template: '<li>{{name}} {{email}}</li>',
-      replace: true
+      template: '<li>{{name}} {{email}}</li>'
     }
   }
 })
@@ -426,8 +431,7 @@ var parent2 = new Vue({
   },
   components: {
     'user-profile': {
-      template: '<li>{&#123;name&#125;} - {&#123;email&#125;}</li>',
-      replace: true
+      template: '<li>{&#123;name&#125;} - {&#123;email&#125;}</li>'
     }
   }
 })
@@ -470,7 +474,7 @@ Although you can directly access a Vue instance's children and parent, it is mor
 
 ``` js
 var parent = new Vue({
-  template: '<child></child>',
+  template: '<div><child></child></div>',
   created: function () {
     this.$on('child-created', function (child) {
       console.log('new child created: ')
@@ -484,12 +488,12 @@ var parent = new Vue({
       }
     }
   }
-})
+}).$mount()
 ```
 
 <script>
 var parent = new Vue({
-  template: '<child></child>',
+  template: '<div><child></child></div>',
   created: function () {
     this.$on('child-created', function (child) {
       console.log('new child created: ')
@@ -503,7 +507,7 @@ var parent = new Vue({
       }
     }
   }
-})
+}).$mount()
 </script>
 
 ## Private Assets

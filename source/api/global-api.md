@@ -59,14 +59,16 @@ Create a "subclass" of the base Vue constructor. All [instantiation options](/ap
 Internally, `Vue.extend()` is called on all component options before instantiating the components. For more details regarding components, see [Component System](/guide/components.html).
 
 **Example**
+``` html
+<div id="mount-point"></div>
+```
 
 ``` js
+// create reusable constructor
 var Profile = Vue.extend({
-  el: function () {
-    return document.createElement('p')
-  },
-  template: '{{firstName}} {{lastName}} aka {{alias}}'
+  template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>'
 })
+// create an instance of Profile
 var profile = new Profile({
   data: {
     firstName : 'Walter',
@@ -74,7 +76,8 @@ var profile = new Profile({
     alias     : 'Heisenberg'
   }  
 })
-profile.$appendTo('body')
+// mount it on an element
+profile.$mount('#mount-point')
 ```
 
 Will result in:
