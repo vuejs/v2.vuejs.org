@@ -181,6 +181,8 @@ A string template to be used as the markup for the Vue instance. By default, the
 
 If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
+Note that if the template contains more than one top-level node, the instance will become a "block instance" - i.e. one that manages a list of nodes rather than a single node. `vm.$el` will be the anchor node that denotes the start of the block rather than a node in the template.
+
 <p class="tip">Vue.js uses DOM-based templating. The compiler walks through DOM elements and looks for directives and creates data bindings. This means all Vue.js templates are parsable HTML that can be converted into actual DOM elements by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more Vue instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.</p>
 
 ### replace
