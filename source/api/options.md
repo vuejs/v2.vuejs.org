@@ -49,60 +49,6 @@ var MyComponent = Vue.extend({
 
 <p class="tip">Under the hood, Vue.js attaches a hidden property `__ob__` and recursively converts the object's enumerable properties into getters and setters to enable dependency collection. Properties with keys that starts with `$` or `_` are skipped.</p>
 
-### methods
-
-- **Type:** `Object`
-
-Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
-
-**Example:**
-
-```js
-var vm = new Vue({
-  data: { a: 1 },
-  methods: {
-    plus: function () {
-      this.a++
-    }
-  }
-})
-vm.plus()
-vm.a // 2
-```
-
-### computed
-
-- **Type:** `Object`
-
-Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
-
-**Example:**
-
-```js
-var vm = new Vue({
-  data: { a: 1 },
-  computed: {
-    // get only, just need a function
-    aDouble: function () {
-      return this.a * 2
-    },
-    // both get and set
-    aPlus: {
-      get: function () {
-        return this.a + 1
-      },
-      set: function (v) {
-        this.a = v - 1
-      }
-    }
-  }
-})
-vm.aPlus   // -> 2
-vm.aPlus = 3
-vm.a       // -> 2
-vm.aDouble // -> 4
-```
-
 ### props
 
 - **Type:** `Array`
@@ -159,6 +105,60 @@ HTML attribute names ignore upper and lower case differences, so we usually use 
 2. If the attribute still contains dashes, it will be camelized. This is because it's inconvenient to access top level properties containing dashes in templates: the expression `my-param` will be parsed as a minus expression unless you use the awkward `this['my-param']` syntax.
 
 This means a param attribute `data-hello` will be set on the vm as `vm.hello`; And `my-param` will be set as `vm.myParam`.
+
+### methods
+
+- **Type:** `Object`
+
+Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+
+**Example:**
+
+```js
+var vm = new Vue({
+  data: { a: 1 },
+  methods: {
+    plus: function () {
+      this.a++
+    }
+  }
+})
+vm.plus()
+vm.a // 2
+```
+
+### computed
+
+- **Type:** `Object`
+
+Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+
+**Example:**
+
+```js
+var vm = new Vue({
+  data: { a: 1 },
+  computed: {
+    // get only, just need a function
+    aDouble: function () {
+      return this.a * 2
+    },
+    // both get and set
+    aPlus: {
+      get: function () {
+        return this.a + 1
+      },
+      set: function (v) {
+        this.a = v - 1
+      }
+    }
+  }
+})
+vm.aPlus   // -> 2
+vm.aPlus = 3
+vm.a       // -> 2
+vm.aDouble // -> 4
+```
 
 ## DOM
 
