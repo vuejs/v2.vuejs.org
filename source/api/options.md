@@ -258,7 +258,7 @@ Called after the compilation is finished. At this stage all directives have been
 
 - **Type:** `Function`
 
-Called after compilation **and** the `$el` is **inserted into the document for the first time**. Note this insertion must be executed via Vue (with methods like `vm.$appendTo()` or as a result of a directive update) to trigger the `ready` hook.
+Called after compilation **and** the `$el` is **inserted into the document for the first time**, i.e. right after the first `attached` hook. Note this insertion must be executed via Vue (with methods like `vm.$appendTo()` or as a result of a directive update) to trigger the `ready` hook.
 
 ### attached
 
