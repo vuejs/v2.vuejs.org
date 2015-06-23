@@ -208,7 +208,9 @@ Defer the callback to be executed after the next DOM update cycle. Use it immedi
 
 - **element** `HTMLElement` | **selector** `String` *optional*
 
-If the Vue instance didn't get an `el` option at instantiation, you can manually call `$mount()` to assign an element to it and start the compilation. If no argument is provided, an empty `<div>` will be automatically created. Calling `$mount()` on an already mounted instance will have no effect. The method returns the instance itself so you can chain other instance methods after it.
+If the Vue instance didn't get an `el` option at instantiation, you can manually call `$mount(el)` to start the compilation phase. By default, the mounted element will be replaced by the instance's template. When the `replace` option is set to `false`, the template will be inserted into the mounted element and overwrite any existing inner content, unless the template contains `<content>` outlets.
+
+If no argument is provided, the template will be created as an out-of-document element, and you will have to use other DOM instance mathods to insert it into the document yourself. If `replace` option is set to `false`, then an empty `<div>` will be automatically created as the wrapper element. Calling `$mount()` on an already mounted instance will have no effect. The method returns the instance itself so you can chain other instance methods after it.
 
 ### vm.$destroy( [remove] )
 
