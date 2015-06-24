@@ -329,19 +329,26 @@ If you want to keep the switched-out components alive so that you can preserve i
 </component>
 ```
 
-### Transition Control
+## Transition Control
 
-There are two additional attribute parameters that allows advanced control of how dynamic components should transition from one to another.
+There are two additional param attributes that allows advanced control of how components should be rendered / transitioned.
 
-#### `wait-for`
+### `wait-for`
 
-An event name to wait for on the incoming child component before switching it with the current component. This allows you to wait for asynchronous data to be loaded before triggering the transition to avoid unwanted flash of emptiness in between.
+An event name to wait for on the incoming child component before inserting it into the DOM. This allows you to wait for asynchronous data to be loaded before triggering the transition and avoid displaying empty content.
+
+This attribute can be used both on static and dynamic components. Note: for dynamic components, all components that will potentially get rendered must `$emit` the awaited event, otherwise they will never get inserted.
 
 **Example:**
 
 ``` html
+<!-- static -->
+<my-component wait-for="data-loaded"></my-component>
+
+<!-- dynamic -->
 <component is="{{view}}" wait-for="data-loaded"></component>
 ```
+
 ``` js
 // component definition
 {
@@ -360,9 +367,11 @@ An event name to wait for on the incoming child component before switching it wi
 }
 ```
 
-#### `transition-mode`
+### `transition-mode`
 
-By default, the transitions for incoming and outgoing components happen simultaneously. This param allows you to configure two other modes:
+The `transition-mode` param attribute allows you to specify how the transition between two dynamic components should be executed.
+
+By default, the transitions for incoming and outgoing components happen simultaneously. This attribute allows you to configure two other modes:
 
 - `in-out`: New component transitions in first, current component transitions out after incoming transition has finished.
 - `out-in`: Current component transitions out first, new componnent transitions in after outgoing transition has finished.
