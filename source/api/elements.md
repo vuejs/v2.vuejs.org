@@ -18,7 +18,7 @@ Alternative syntax for invoking components. Primarily used for dynamic component
 
 ### content
 
-`<content>` tags serve as content insertion outlets in component templates. It optionally accepts a `select` attribute, which should be a valid CSS selector to be used to match a subset of inserted content to be displayed:
+`<content>` tags serve as content insertion outlets in component templates. The `<content>` element itself will be replaced. It optionally accepts a `select` attribute, which should be a valid CSS selector to be used to match a subset of inserted content to be displayed:
 
 ``` html
 <!-- only display <li>'s in the inserted content -->
@@ -29,7 +29,12 @@ The select attribute can also contain mustache expressions. For more details, se
 
 ### partial
 
-`<partial>` tags serve as outlets for registered partials. Partial contents are also compiled by Vue when inserted. It requires a `name` attribute to be provided. For example:
+`<partial>` tags serve as outlets for registered partials. Partial contents are also compiled by Vue when inserted. The `<partial>` element itself will be replaced. It requires a `name` attribute to be provided. For example:
+
+``` js
+// registering a partial
+Vue.partial('my-partial', '<p>This is a partial! {{msg}}</p>')
+```
 
 ``` html
 <!-- a static partial -->

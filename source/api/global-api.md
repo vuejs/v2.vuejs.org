@@ -127,6 +127,13 @@ Register or retrieve a global component. For more details see [Component System]
 
 Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Functions).
 
+### Vue.partial( id, [partial] )
+
+- **id** `String`
+- **partial** `String` *optional*
+
+Register or retrieve a global template partial string. For more details see [Partial](/api/elements.html#partial).
+
 ### Vue.use( plugin, [args...] )
 
 - **plugin** `Object` or `Function`

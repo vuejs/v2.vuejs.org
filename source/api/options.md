@@ -322,6 +322,12 @@ A hash of components to be made available to the Vue instance. For details on ho
 
 A hash of transitions to be made available to the Vue instance. For details see the guide on [Transitions](/guide/transitions.html).
 
+### partials
+
+- **Type:** `Object`
+
+A hash of partial strings to be made available to the Vue instance. For details see [Partial](/api/elements.html#partial).
+
 ## Others
 
 ### inherit
