@@ -253,6 +253,42 @@ new Vue({
 
 When you need to communicate across multiple nested components, you can use the [Event System](/api/instance-methods.html#Events). In addition, it is also quite feasible to implement a [Flux](https://facebook.github.io/flux/docs/overview.html)-like architecture with Vue, which you may want to consider for larger-scale applications.
 
+## Fragment Instance
+
+Starting in 0.12.2, the `replace` option now defaults to `true`. This basically means:
+
+> Whatever you put in the template will be what ends up rendered in the DOM.
+
+So, if your template contains more than one top-level elements:
+
+``` js
+Vue.component('example', {
+  template:
+    '<div>A</div>' +
+    '<div>B</div>'
+})
+```
+
+Or, if the template contains only text:
+
+``` js
+Vue.component('example', {
+  template: 'Hello world'
+})
+```
+
+In both cases, the instance will become a **fragment instance** which doesn't have a root element. A fragment instance's `$el` will point to an "anchor node", which is an empty Text node (or a Comment node in debug mode). What's probably more important though, is that directives, transitions and attributes (except for props) on the component element will not take any effect - because there is no root element to bind them to:
+
+``` html
+<!-- doesn't work due to no root element -->
+<example v-show="ok" v-transition="fade"></example>
+
+<!-- props work as intended -->
+<example prop="{{someData}}"></example>
+```
+
+There are, of course, valid use cases for fragment instances, but it is in general a good idea to give your component template a single root element. It ensures directives and attributes on the component element to be properly transferred, and also results in slightly better performance.
+
 ## Changing Default Options
 
 It is possible to change the default value of an option by setting it on the global `Vue.options` object. For example, you can set `Vue.options.replace = false` to give all Vue instances the behavior of `replace: false`. Use this feature carefully, and use it only when you are starting a new project, because it affects the behavior of every instance.
