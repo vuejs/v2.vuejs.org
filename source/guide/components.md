@@ -73,7 +73,7 @@ It is important to understand the difference between `Vue.extend()` and `Vue.com
 
 Vue.js supports two API styles for using components: the imperative, constructor-based API, and the declarative, template-based API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
 
-<p class="tip">The `table` element has restrictions on what elements can appear inside it, so custom elements will be hoisted out and not render properly. In those cases you can use the component directive syntax: `<tr v-component="my-component"></tr>`. Note this syntax is only available on table elements.</p>
+<p class="tip">The `table` element has restrictions on what elements can appear inside it, so custom elements will be hoisted out and not render properly. In those cases you can use the component directive syntax: `<tr v-component="my-component"></tr>`.</p>
 
 ## Data Flow
 
