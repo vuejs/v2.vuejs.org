@@ -1,10 +1,10 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 0.12.4
-dev_size: 218.59
-min_size: 67.31
-gz_size: 21.89
+vue_version: 0.12.5
+dev_size: 218.88
+min_size: 67.44
+gz_size: 21.93
 ---
 
 > **Compatibility Note:** Vue.js does not support IE8 and below.
@@ -19,7 +19,7 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 <a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Production Version</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
 </div>
 
-Also available on [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
+Also available on [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) or [jsdelivr](//cdn.jsdelivr.net/vue/0.12.4/vue.min.js) (takes some time to sync so the latest version might not be available yet).
 
 ## NPM
 
