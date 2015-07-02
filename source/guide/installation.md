@@ -19,7 +19,7 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 <a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Production Version</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
 </div>
 
-Also available on [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) or [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
+Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
 
 ## NPM
 
