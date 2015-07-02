@@ -45,6 +45,13 @@ The parent instance, if the current instance has one.
 
 The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
 
+### vm.$children
+
+- **Type:** `Array<Vue>`
+- **Read only**
+
+The direct child components of the current instance.
+
 ### vm.$
 
 - **Type:** `Object`
