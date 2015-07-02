@@ -200,26 +200,26 @@ It is possible for a component to validate the props it is receiving. This is us
 
 ``` js
 Vue.component('example', {
-  props: [
-    // type check
-    {
-      name: 'on-something',
-      type: Function
-    },
-    // presence check
-    {
-      name: 'required-prop',
+  props: {
+    // basic type check (`null` means accept any type)
+    'on-some-event': Function,
+    // check presence
+    'required-prop': {
       type: String,
       required: true
     },
+    // with default value
+    'prop-with-default': {
+      type: Number,
+      default: 100
+    },
     // custom validator function
-    {
-      name: 'greater-than-ten',
+    'greater-than-ten': {
       validator: function (value) {
         return value > 10
       }
     }
-  ]
+  }
 })
 ```
 

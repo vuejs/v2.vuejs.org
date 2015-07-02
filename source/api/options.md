@@ -51,15 +51,15 @@ var MyComponent = Vue.extend({
 
 ### props
 
-- **Type:** `Array`
+- **Type:** `Array | Object`
 
-An array of attribute names to be set on the Vue instance as initial data. Useful when passing data to a component.
+A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
 **Example:**
 
 ``` js
 Vue.component('param-demo', {
-  props: ['size', 'message'],
+  props: ['size', 'message'], // simple syntax
   compiled: function () {
     console.log(this.size)    // -> 100
     console.log(this.message) // -> 'hello!'
@@ -71,30 +71,26 @@ Vue.component('param-demo', {
 <param-demo size="100" message="hello!"></param-demo>
 ```
 
-For passing data more details see the following:
+For more details on data passing, make sure to read the following sections in guide:
 
 - [Prop Binding Types](/guide/components.html#Prop_Binding_Types)
 - [Passing Callbacks as Props](/guide/components.html#Passing_Callbacks_as_Props)
 
-Instead of defining the props as strings, you can use Objects that contain validation requirements:
+The alternative Object-based syntax looks like this:
 
 ``` js
 Vue.component('prop-validation-demo', {
-  props: [
-    {
-      name: 'size',
-      type: Number
-    },
-    {
-      name: 'message',
+  props: {
+    size: Number,
+    name: {
       type: String,
       required: true
     }
-  ]
+  }
 })
 ```
 
-For prop validation more details see [Prop Validation](/guide/components.html#Prop_Validation).
+For more details on the Object-based syntax and prop validation, see [Prop Validation](/guide/components.html#Prop_Validation).
 
 #### Notes on hyphened attributes
 
