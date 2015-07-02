@@ -388,7 +388,7 @@ vm.$emit('bye')             // -> goodbye!
 
 - **Type**: `Object`
 
-An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
 
 **Example:**
 
@@ -400,6 +400,13 @@ var vm = new Vue({
   watch: {
     'a': function (val, oldVal) {
       console.log('new: %s, old: %s', val, oldVal)
+    },
+    // string method name
+    'b': 'someMethod',
+    // deep watcher
+    'c': {
+      handler: function (val, oldVal) { /* ... */ },
+      deep: true
     }
   }
 })
