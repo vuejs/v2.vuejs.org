@@ -59,16 +59,18 @@ A list/hash of attributes that are exposed to accept data from the parent compon
 
 ``` js
 Vue.component('param-demo', {
-  props: ['size', 'message'], // simple syntax
+  props: ['size', 'myMessage'], // simple syntax
   compiled: function () {
     console.log(this.size)    // -> 100
-    console.log(this.message) // -> 'hello!'
+    console.log(this.myMessage) // -> 'hello!'
   }
 })
 ```
 
+Note that because HTML attributes are case-insensitive, you need to use a prop's hyphenated form when it appears as an attribute in templates:
+
 ``` html
-<param-demo size="100" message="hello!"></param-demo>
+<param-demo size="100" my-message="hello!"></param-demo>
 ```
 
 For more details on data passing, make sure to read the following sections in guide:
@@ -88,6 +90,13 @@ Vue.component('prop-validation-demo', {
     }
   }
 })
+```
+
+The following component usage will result in two warnings: type mismatch for "size", and missing required prop "name".
+
+``` html
+<prop-validation-demoo size="hello">
+</prop-validation-demo>
 ```
 
 For more details on the Object-based syntax and prop validation, see [Prop Validation](/guide/components.html#Prop_Validation).

@@ -114,7 +114,23 @@ new Vue({
 })
 </script>
 
-#### Dynamic Props
+### camelCase vs. Hyphenated
+
+HTML attributes are case-insensitive. When using camelCased prop names as attributes, you need to use their hyphenated equivalents:
+
+``` js
+Vue.component('child', {
+  props: ['myMessage'],
+  template: '<span>{{myMessage}}</span>'
+})
+```
+
+``` html
+<!-- important: use hyphenated names! -->
+<child my-message="hello!"></child>
+```
+
+### Dynamic Props
 
 We can also pass down dynamic data from the parent. For example:
 
@@ -162,9 +178,8 @@ Vue.component('parent', {
 
 Vue.component('child', {
   // ...
-  props: ['on-load'],
+  props: ['onLoad'],
   ready: function () {
-    // props with hyphens are camelized
     this.onLoad('message from child!')
   }
 })
@@ -202,19 +217,19 @@ It is possible for a component to validate the props it is receiving. This is us
 Vue.component('example', {
   props: {
     // basic type check (`null` means accept any type)
-    'on-some-event': Function,
+    onSomeEvent: Function,
     // check presence
-    'required-prop': {
+    requiredProp: {
       type: String,
       required: true
     },
     // with default value
-    'prop-with-default': {
+    propWithDefault: {
       type: Number,
       default: 100
     },
     // custom validator function
-    'greater-than-ten': {
+    greaterThanTen: {
       validator: function (value) {
         return value > 10
       }
