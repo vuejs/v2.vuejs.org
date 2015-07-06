@@ -68,9 +68,10 @@ Vue.use('my-plugin', {
 })
 ```
 
-## Existing Tools
+## Existing Plugins & Tools
 
 - [vue-resource](https://github.com/vuejs/vue-resource): A plugin that provides services for making web requests and handle responses using a XMLHttpRequest or JSONP.
+- [vue-validator](https://github.com/vuejs/vue-validator): A plugin for form validations.
 - [vue-devtools](https://github.com/vuejs/vue-devtools): A Chrome devtools extension for debugging Vue.js applications.
 - [vue-touch](https://github.com/vuejs/vue-touch): Add touch-gesture directives using Hammer.js.
 - [vue-element](https://github.com/vuejs/vue-element): Register Custom Elements with Vue.js.
