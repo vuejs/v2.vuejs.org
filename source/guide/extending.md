@@ -63,7 +63,7 @@ Vue.use(vueTouch)
 You can also pass in additional options to the plugin:
 
 ```js
-Vue.use('my-plugin', {
+Vue.use(require('my-plugin'), {
   /* pass in additional options */
 })
 ```
