@@ -145,7 +145,7 @@ demo.items.$remove(0)
 
 ## 替换数组
 
-当你使用非修改方法，比如`filter()`, `concat()` 或 `slice()`，返回的数组将是一个不同的实例。在此情况下，你可以用新数组替换旧的数组W:
+当你使用非修改方法，比如`filter()`, `concat()` 或 `slice()`，返回的数组将是一个不同的实例。在此情况下，你可以用新数组替换旧的数组:
 
 ``` js
 demo.items = demo.items.filter(function (item) {
