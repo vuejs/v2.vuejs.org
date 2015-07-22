@@ -428,14 +428,16 @@ vm.a = 2 // -> new: 2, old: 1
 
 The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
+Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+
 **Example:**
 
 ``` js
 var mixin = {
-  created: function () { console.log(2) }
+  created: function () { console.log(1) }
 }
 var vm = new Vue({
-  created: function () { console.log(1) },
+  created: function () { console.log(2) },
   mixins: [mixin]
 })
 // -> 1
