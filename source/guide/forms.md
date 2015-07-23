@@ -96,15 +96,15 @@ If you want user input to be automatically persisted as numbers, you can add a `
 
 ## Dynamic Select Options
 
-When you need to dynamically render a list of options for a `<select>` element, it's recommended to use an `options` attribute together with `v-model`:
+When you need to dynamically render a list of options for a `<select>` element, it's recommended to use an `options` attribute together with `v-model` so that when the options change dynamically, `v-model` is properly synced:
 
 ``` html
 <select v-model="selected" options="myOptions"></select>
 ```
 
-In your data, `myOptions` should be an keypath/expression that points to an Array to use as its options. The Array can contain plain strings, or contain objects.
+In your data, `myOptions` should be an keypath/expression that points to an Array to use as its options.
 
-The object can be in the format of `{text:'', value:''}`. This allows you to have the option text displayed differently from its underlying value:
+The Array can contain plain strings or objects. The object can be in the format of `{text:'', value:''}`. This allows you to have the option text displayed differently from its underlying value:
 
 ``` js
 [
@@ -146,9 +146,25 @@ Will render:
 </select>
 ```
 
+It's quite likely that your source data does not come in this desired format, and you will have to transform the data in order to generate dynamic options. In order to DRY-up the transformation, the `options` param supports filters, and it can be helpful to put your transformation logic into a reusable [custom filter](/guide/custom-filter.html):
+
+``` js
+Vue.filter('extract', function (value, keyToExtract) {
+  return value.map(function (item) {
+    return item[keyToExtract]
+  })
+})
+```
+
+``` html
+<select options="users | extract 'name'"></select>
+```
+
+The above filter transforms data like `[{ name: 'Bruce' }, { name: 'Chuck' }]` into `['Bruce', 'Chuck']` so it becomes properly formatted.
+
 ## Input Debounce
 
-The `debounce` param allows you to set a minimum delay after each keystroke before an update is executed. This can be useful when you are performing expensive operations on each update, for example making an Ajax request for type-ahead autocompletion.
+The `debounce` param allows you to set a minimum delay after each keystroke before the input's value is synced to the model. This can be useful when you are performing expensive operations on each update, for example making an Ajax request for type-ahead autocompletion.
 
 ``` html
 <input v-model="msg" debounce="500">
@@ -163,5 +179,7 @@ new Vue({
   data: { msg: 'edit me' }
 })
 </script>
+
+Note that the `debounce` param does not debounce the user's input events: it debounces the "write" operation to the underlying data. Therefore you should use `vm.$watch()` to react to data changes when using `debounce`.
 
 Next: [Computed Properties](/guide/computed.html).
