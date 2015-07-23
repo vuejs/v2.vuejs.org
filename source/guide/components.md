@@ -228,6 +228,11 @@ Vue.component('example', {
       type: Number,
       default: 100
     },
+    // a two-way prop. will throw warning if binding type
+    // does not match.
+    twoWayProp: {
+      twoWay: true
+    },
     // custom validator function
     greaterThanTen: {
       validator: function (value) {
