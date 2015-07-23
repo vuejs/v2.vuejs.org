@@ -61,6 +61,8 @@ Alternatively, you can bind the directive directly to an Object. The keys of the
 
 Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives.
 
+Starting in 0.12.8, `v-attr` also sets the corresponding property on the element if the property exists. For example, `<input value="{% raw %}{{val}}{% endraw %}">` will not only update the attribute, but also set the value property. If the element doesn't have a corresponding property for the bound attribute, it will not be set.
+
 <p class="tip">You should use `v-attr` instead of mustache binding when setting the `src` attribute on `<img>` elements. Your templates are parsed by the browser before being compiled by Vue.js, so the mustache binding will cause a 404 when the browser tries to fetch it as the image's URL.</p>
 
 ### v-style
