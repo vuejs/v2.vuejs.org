@@ -46,6 +46,8 @@ computed: {
 
 A computed property is essentially a property defined with getter/setter functions. You can use a computed property just like a normal property, but when you access it, you get the value returned by the getter function; when you change its value, you trigger the setter function passing in the new value as its argument.
 
+Before 0.12.8, computed properties behave just like getters - every time you access it, the getter function is re-evaluated. In 0.12.8 this has been improved - computed properties are cached and lazily re-evaluated only when necessary.
+
 <p class="tip">Before Vue.js 0.11 there used to be a dependency collection gotcha which requires users to explicitly list dependencies when conditional statements are involved. Starting with 0.11 it is no longer necessary to do so.</p>
 
 Next, let's learn about how to [write a custom directive](/guide/custom-directive.html).
