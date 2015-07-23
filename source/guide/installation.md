@@ -19,13 +19,21 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 <a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Production Version</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
 </div>
 
-Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
+### CDN
+
+Available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
+
+### CSP-compliant build
+
+Some environments, such as Google Chrome Apps, enforces Content Secuirty Policy (CSP) and does not allow the use of `new Function()` for evaluating expressions. In these cases you can use the [CSP-compliant build](https://github.com/yyx990803/vue/tree/csp/dist) instead.
 
 ## NPM
 
 ``` bash
 $ npm install vue
-# for edge version:
+# for csp-compliant version:
+$ npm install vue@csp
+# for dev build (from GitHub):
 $ npm install yyx990803/vue#dev
 ```
 
@@ -34,14 +42,6 @@ $ npm install yyx990803/vue#dev
 ``` bash
 # only stable version is available through Bower
 $ bower install vue
-```
-
-## Duo
-
-```js
-var Vue = require('yyx990803/vue')
-// for edge version:
-var Vue = require('yyx990803/vue@dev')
 ```
 
 ## AMD Module Loaders
