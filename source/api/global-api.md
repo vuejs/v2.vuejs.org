@@ -9,8 +9,10 @@ order: 5
 
 ``` js
 {
-  // print stack trace for warnings?
+  // enable debug mode. see below for details.
   debug: true,
+  // enable strict mode. see below for details.
+  strict: false,
   // attribute prefix for directives
   prefix: 'v-',
   // interpolation delimiters
@@ -36,9 +38,16 @@ Vue.config.debug = true // turn on debugging mode
 
 **Debug Mode**
 
-When `Vue.config.debug` is set to true, Vue will automatically use synchronous mode and throw a `debugger` statement when there is a warning. This enables the user to inspect the full stack trace in browser dev tools.
+When `Vue.config.debug` is set to true, Vue will:
+
+1. Print stack traces for all warnings.
+2. Make all anchor nodes visible in the DOM as Comment nodes. This makes it easier to inspect the structure of the rendered result.
 
 <p class="tip">debug mode is not available in the minified production builds.</p>
+
+**Strict Mode**
+
+By default, Vue components inherit all assets from both the class inheritance chain (via `Vue.extend`) AND their parents in the view hierarchy. In strict mode, components will only be able to inherit assets from the class inheritance chain, but NOT from their parents in the view hierarchy. When strict mode is enabled, assets should be either registered globally, or explicitly depended on by the component that needs them. When enforced, this could result in better component encapsulation and reusability in larger projects.
 
 **Changing Delimiters**
 
