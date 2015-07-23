@@ -89,14 +89,13 @@ new Vue({
 })
 </script>
 
-## Using an identifier
+## Using an alias
 
-Sometimes we might want to have more explicit variable access instead of implicitly falling back to parent scope. You can do that by providing an argument to the `v-repeat` directive and use it as the identifier for the item being iterated:
+Sometimes we might want to have more explicit variable access instead of implicitly falling back to parent scope. You can do that by providing an alias to the `v-repeat` directive and use it as the alias for the item being iterated:
 
 ``` html
 <ul id="users">
-  <!-- think of this as "for each user in users" -->
-  <li v-repeat="user: users">
+  <li v-repeat="user in users">
     {{user.name}} - {{user.email}}
   </li>
 </ul>
@@ -128,7 +127,9 @@ new Vue({
 })
 </script>
 
-<p class="tip">Using an identifier with `v-repeat` in general results in more readable templates and slightly better performance.</p>
+<p class="tip">The `user in users` syntax is only available in Vue 0.12.8 and above. For older versions, you must use the `user : users` syntax.</p>
+
+<p class="tip">Using an alias with `v-repeat` in general results in more readable templates and slightly better performance.</p>
 
 ## Mutation Methods
 

@@ -185,6 +185,16 @@ If an argument is provided, a wrapper data object will always be created, using 
 </ul>
 ```
 
+Starting in 0.12.8, a special alternative is available to make the syntax more natural:
+
+``` html
+<ul>
+  <li v-repeat="user in users">
+    {{user.name}} {{user.email}}
+  </li>
+</ul>
+```
+
 For detailed examples, see [Displaying a List](/guide/list.html).
 
 ## Literal Directives
