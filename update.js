@@ -26,6 +26,6 @@ fs.writeFileSync(
   installation
     .replace(/vue_version: .*/, 'vue_version: ' + version)
     .replace(/(\w+)_size:.*/g, function (m, p1) {
-      return p1 + '_size: ' + sizes[p1]
+      return p1 + '_size: "' + sizes[p1] + '"'
     })
 )
