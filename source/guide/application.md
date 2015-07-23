@@ -15,11 +15,11 @@ Webpack and Browserify are more than just module bundlers, though. They both pro
 
 In a typical Vue.js project we will be breaking up our code into many small components, and it would be nice to have each component encapsulate its CSS styles, template and JavaScript definition in the same place. As mentioned above, when using Webpack or Browserify, with proper source transforms we can write our components like this:
 
-<img src="/images/vueify.png">
+<img src="/images/vue-component.png">
 
 If you are into pre-processors, you can even do this:
 
-<img src="/images/vueify_with_pre.png">
+<img src="/images/vue-component-with-pre-processors.png">
 
 You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). It is recommended to use the Webpack setup because Webpack's loader API enables better file dependency tracking and caching if you are using pre-processors.
 

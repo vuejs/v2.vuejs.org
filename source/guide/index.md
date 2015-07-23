@@ -17,6 +17,8 @@ Even if you are already familiar with some of these terms, it is recommended tha
 
 ## Concepts Overview
 
+![MVVM](/images/mvvm.png)
+
 ### ViewModel
 
 An object that syncs the Model and the View. In Vue.js, every Vue instance is a ViewModel. They are instantiated with the `Vue` constructor or its sub-classes:
@@ -47,13 +49,17 @@ A slightly modified plain JavaScript object.
 vm.$data // The Model
 ```
 
-In Vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and Vue instances that are observing them will be notified of the changes. Vue.js achieves transparent reactivity by converting the properties on data objects into ES5 getter/setters. There's no need for dirty checking, nor do you have to explicitly signal Vue to update the View. Whenever the data changes, the View is updated on the next frame.
+In Vue.js, models are simply plain JavaScript objects, or **data objects**. Once an object is used as data inside a Vue instnace, it becomes **reactive**. You can manipulate their properties and Vue instances that are observing them will be notified of the changes. Vue.js achieves transparent reactivity by converting the properties on data objects into ES5 getter/setters. There's no need for dirty checking, nor do you have to explicitly signal Vue to update the View. Whenever the data changes, the View is updated on the next frame.
 
 Vue instances proxy all properties on data objects they observe. So once an object `{ a: 1 }` has been observed, both `vm.$data.a` and `vm.a` will return the same value, and setting `vm.a = 2` will modify `vm.$data`.
 
 The data objects are mutated in place, so modifying it by reference has the same effects as modifying `vm.$data`. This makes it possible for multiple Vue instances to observe the same piece of data. In larger applications it is also recommended to treat Vue instances as pure views, and externalize the data manipulation logic into a more discrete store layer.
 
 One caveat here is that once the observation has been initiated, Vue.js will not be able to detect newly added or deleted properties. To get around that, observed objects are augmented with `$add`, `$set` and `$delete` methods.
+
+Below is a high-level overview of how reactive updates are implemented in Vue.js:
+
+![Data Observation](/images/data.png)
 
 ### Directives
 
@@ -106,6 +112,8 @@ Filters are functions used to process the raw values before updating the View. T
 Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. For more details see [Filters in Depth](/guide/filters.html).
 
 ### Components
+
+![Component Tree](/images/components.png)
 
 In Vue.js, every component is simply a Vue instance. Components form a nested tree-like hierarchy that represents your application interface. They can be instantiated by a custom constructor returned from `Vue.extend`, but a more declarative approach is registering them with `Vue.component(id, constructor)`. Once registered, they can be declaratively nested in other Vue instance's templates in the form of custom elements:
 
