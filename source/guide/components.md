@@ -209,9 +209,9 @@ The two-way binding will sync the change of child's `msg` property back to the p
 
 <p class="tip">Note that if the prop being passed down is an Object or an Array, it is passed by reference. Mutating the Object or Array itself inside the child will affect parent state, regardless of the binding type you are using.</p>
 
-### Prop Validation
+### Prop Specification
 
-It is possible for a component to validate the props it is receiving. This is useful when you are authoring a component that is intended to be used by others, as these prop validation requirements essentially constitute your component's API, and ensure your users are using your component correctly. Instead of defining the props as strings, you can use Objects that contain validation requirements:
+It is possible for a component to specify the requirements for the props it is receiving. This is useful when you are authoring a component that is intended to be used by others, as these prop validation requirements essentially constitute your component's API, and ensure your users are using your component correctly. Instead of defining the props as strings, you can use Objects that contain validation requirements:
 
 ``` js
 Vue.component('example', {
@@ -227,6 +227,14 @@ Vue.component('example', {
     propWithDefault: {
       type: Number,
       default: 100
+    },
+    // object/array defaults should be returned from a
+    // factory function
+    propWithObjectDefault: {
+      type: Object,
+      default: function () {
+        return { msg: 'hello' }
+      }
     },
     // a two-way prop. will throw warning if binding type
     // does not match.
@@ -255,8 +263,6 @@ The `type` can be one of the following native constructors:
 In addition, `type` can also be a custom constructor function and the the assertion will be made with an `instanceof` check.
 
 When a prop validation fails, Vue will refuse the set the value on the child component, and throw a warning if using the development build.
-
-You can still use strings if your props don't need any validation, and you can mix string and object props in the option array.
 
 ### Inheriting Parent Scope
 
