@@ -472,14 +472,14 @@ var parent2 = new Vue({
 })
 </script>
 
-### Repeat Component with Identifier
+### Repeat Component with alias
 
-The identifier syntax also works when using a component, and the repeated data will be set as a property on the component using the identifier as the key:
+The alias syntax also works when using a component, and the repeated data will be set as a property on the component using the alias as the key:
 
 ``` html
 <ul id="list-example">
   <!-- data available inside component as `this.user` -->
-  <user-profile v-repeat="user:users"></user-profile>
+  <user-profile v-repeat="user in users"></user-profile>
 </ul>
 ```
 
