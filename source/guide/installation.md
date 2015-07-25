@@ -25,7 +25,7 @@ Available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [c
 
 ### CSP-compliant build
 
-Some environments, such as Google Chrome Apps, enforces Content Secuirty Policy (CSP) and does not allow the use of `new Function()` for evaluating expressions. In these cases you can use the [CSP-compliant build](https://github.com/yyx990803/vue/tree/csp/dist) instead.
+Some environments, such as Google Chrome Apps, enforces Content Security Policy (CSP) and does not allow the use of `new Function()` for evaluating expressions. In these cases you can use the [CSP-compliant build](https://github.com/yyx990803/vue/tree/csp/dist) instead.
 
 ## NPM
 
