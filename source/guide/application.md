@@ -118,7 +118,7 @@ describe('my-component', function () {
 
 ## Deploying for Production
 
-The minified standalone build of Vue.js has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Browserify for Webpack to build Vue.js applications, it's not so obvious how to do that.
+The minified standalone build of Vue.js has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Browserify or Webpack to build Vue.js applications, it's not so obvious how to do that.
 
 Starting in 0.12.8, it is quite simple to configure the tools to strip out the warnings:
 
