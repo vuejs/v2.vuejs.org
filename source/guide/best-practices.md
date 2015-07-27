@@ -292,3 +292,5 @@ There are, of course, valid use cases for fragment instances, but it is in gener
 ## Changing Default Options
 
 It is possible to change the default value of an option by setting it on the global `Vue.options` object. For example, you can set `Vue.options.replace = false` to give all Vue instances the behavior of `replace: false`. Use this feature carefully, and use it only when you are starting a new project, because it affects the behavior of every instance.
+
+Next: [Common FAQs](/guide/faq.html).
