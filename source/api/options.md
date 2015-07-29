@@ -99,7 +99,7 @@ The following component usage will result in two warnings: type mismatch for "si
 </prop-validation-demo>
 ```
 
-For more details on the Object-based syntax and prop validation, see [Prop Validation](/guide/components.html#Prop_Validation).
+For more details on the Object-based syntax and prop validation, see [Prop Specification](/guide/components.html#Prop_Specification).
 
 #### Notes on hyphened attributes
 
