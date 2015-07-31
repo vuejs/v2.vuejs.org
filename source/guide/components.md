@@ -547,7 +547,7 @@ var parent = new Vue({
 
 ## Private Assets
 
-Sometimes a component needs to use assets such as directives, filters and its own child components, but might want to keep these assets encapsulated so the component itself can be reused elsewhere. You can do that using the private assets instantiation options. Private assets will only be accessible by the instances of the owner component and its child components.
+Sometimes a component needs to use assets such as directives, filters and its own child components, but might want to keep these assets encapsulated so the component itself can be reused elsewhere. You can do that using the private assets instantiation options. Private assets will only be accessible by the instances of the owner component, components that inherit from it, and its child components in the view hierarchy.
 
 ``` js
 // All 5 types of assets
@@ -573,6 +573,8 @@ var MyComponent = Vue.extend({
 })
 ```
 
+<p class="tip">You can prohibit child components from accessing a parent component's private assets by setting `Vue.config.strict = true`.</p>
+
 Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registration methods:
 
 ``` js
@@ -581,6 +583,40 @@ MyComponent
   .filter('...', function () {})
   .component('...', {})
   // ...
+```
+
+### Asset Naming Convention
+
+Some assets, such as components and directives, appear in templates in the form of HTML attributes or HTML custom tags. Since HTML attribute names and tag names are **case-insensitive**, we often need to name our assets using dash-case instead of camelCase. **Starting in 0.12.9**, it is now supported to name your assets using camelCase, and use them in templates with dash-case.
+
+**Example**
+
+``` js
+// in a component definition
+components: {
+  // register using camelCase
+  myComponent: { /*... */ }
+}
+```
+
+``` html
+<!-- use dash case in templates -->
+<my-component></my-component>
+```
+
+This works nicely with [ES6 object literal shorthand](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_6):
+
+``` js
+import compA from './components/a';
+import compB from './components/b';
+
+export default {
+  components: {
+    // use in templates as <comp-a> and <comp-b>
+    compA,
+    compB
+  }
+}
 ```
 
 ## Content Insertion
