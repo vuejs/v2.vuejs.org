@@ -104,7 +104,7 @@ When you need to dynamically render a list of options for a `<select>` element, 
 
 In your data, `myOptions` should be an keypath/expression that points to an Array to use as its options.
 
-The Array can contain plain strings or objects. The object can be in the format of `{text:'', value:''}`. This allows you to have the option text displayed differently from its underlying value:
+The Array can contain plain strings or objects in the format of `{text:'', value:''}`. This object format allows you to have the option text displayed differently from its underlying value:
 
 ``` js
 [
@@ -157,7 +157,10 @@ Vue.filter('extract', function (value, keyToExtract) {
 ```
 
 ``` html
-<select options="users | extract 'name'"></select>
+<select
+  v-model="selectedUser"
+  options="users | extract 'name'">
+</select>
 ```
 
 The above filter transforms data like `[{ name: 'Bruce' }, { name: 'Chuck' }]` into `['Bruce', 'Chuck']` so it becomes properly formatted.
