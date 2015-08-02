@@ -44,9 +44,9 @@ var demo = new Vue({
 })
 </script>
 
-## Block Repeat
+## Fragment Repeat
 
-Sometimes you might want to repeat a block of more than one nodes - in that case, you can use a `<template>` tag to wrap the repeat block. The `<template>` tag here merely serves as a semantic wrapper. For example:
+Sometimes you might want to repeat a fragment of more than one nodes - in that case, you can use a `<template>` tag to wrap the repeat fragment. The `<template>` tag here merely serves as a semantic wrapper. For example:
 
 ``` html
 <ul>
