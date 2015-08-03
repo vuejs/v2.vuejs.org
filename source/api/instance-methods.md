@@ -78,7 +78,7 @@ Set a data value on the Vue instance given a valid keypath. If the path doesn't 
 - **keypath** `String`
 - **value** `*`
 
-Add a root level property to the Vue instance (and also its `$data`). Due to the limitations of ES5, Vue cannot detect properties directly added to or deleted from an Object, so use this method and `vm.$delete` when you need to do so. Additionally, all observed objects are augmented with these two methods too.
+Add a root level property to the Vue instance (and also its `$data`). Due to the limitations of ES5, Vue cannot detect properties directly added to or deleted from an Object, so use this method and `vm.$delete` when you need to do so. Make sure to use this only when necessary, because this method forces a dirty check of all watchers in the current vm.
 
 ### vm.$delete( keypath )
 
@@ -214,9 +214,9 @@ If no argument is provided, the template will be created as an out-of-document e
 
 ### vm.$destroy( [remove] )
 
-- **remove** `Boolean` *optional*
+- **remove** `Boolean` *optional* (Default: `false`)
 
-Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and remove its `$el` from the DOM. Also, all `$on` and `$watch` listeners will be automatically removed.
+Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and optionally remove its `$el` from the DOM. Also, all `$on` and `$watch` listeners will be automatically removed.
 
 ### vm.$compile( element )
 

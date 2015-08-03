@@ -61,7 +61,7 @@ Alternatively, you can bind the directive directly to an Object. The keys of the
 
 Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives.
 
-Starting in 0.12.8, when used on input elements' `value` attribute, `v-attr` also sets the corresponding `value` property on the element. For example, `<input value="{% raw %}{{val}}{% endraw %}">` will not only update the attribute, but also set the underlying JavaScript property.
+Starting in 0.12.9, when used on input elements' `value` attribute, `v-attr` now updates the corresponding `value` property on the element instead of the attribute. For example, `<input value="{% raw %}{{val}}{% endraw %}">` will update the underlying JavaScript property instead of the attribute.
 
 <p class="tip">You should use `v-attr` instead of mustache binding when setting the `src` attribute on `<img>` elements. Your templates are parsed by the browser before being compiled by Vue.js, so the mustache binding will cause a 404 when the browser tries to fetch it as the image's URL.</p>
 
@@ -199,7 +199,7 @@ For detailed examples, see [Displaying a List](/guide/list.html).
 
 ## Literal Directives
 
-> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaluated only once on first compile and do not react to data changes.
+> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function once. Literal directives can also accept mustache expressions inside their value - please refer to [Dynamic Literal](/guide/custom-directive.html#Dynamic_Literal) for more details.
 
 ### v-transition
 

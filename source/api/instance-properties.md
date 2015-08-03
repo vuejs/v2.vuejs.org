@@ -8,7 +8,7 @@ order: 3
 - **Type:** `HTMLElement`
 - **Read only**
 
-The DOM element that the Vue instance is managing.
+The DOM element that the Vue instance is managing. Note that for [Fragment Instances](/guide/best-practices.html#Fragment_Instance), `vm.$el` will return an anchor node that indicates the starting position of the fragment.
 
 ### vm.$data
 
