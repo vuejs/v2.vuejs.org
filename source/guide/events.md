@@ -29,11 +29,13 @@ new Vue({
 
 ## Invoke Handler with Expression
 
-`targetVM` could be useful when `v-on` is used with `v-repeat`, since the latter creates a lot of child ViewModels. However, it is often more convenient to use an invocation expression passing in `this`, which equals the current context ViewModel:
+`targetVM` could be useful when `v-on` is used with `v-repeat`, since the latter creates a lot of child ViewModels. However, it is often more convenient and explicit to use an invocation expression passing in the current alias, which equals the current data object being interated on:
 
 ``` html
 <ul id="list">
-  <li v-repeat="items" v-on="click: toggle(this)">{{text}}</li>
+  <li v-repeat="item in items" v-on="click: toggle(item)">
+    {{text}}
+  </li>
 </ul>
 ```
 
