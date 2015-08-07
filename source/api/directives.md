@@ -23,7 +23,8 @@ Updates the element's `innerHTML`.
 
 - This directive can trigger transitions.
 
-Set the element's display to `none` or its original value, depending on the truthy-ness of the binding's value.
+Set the element's display to `none` or its original value, depending on the truthy-ness of the binding's value.  
+Simple inline boolean expressions, such as `v-show="(foo && bar) || bas"`, are supported in-line.
 
 ### v-class
 
