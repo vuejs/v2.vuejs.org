@@ -146,6 +146,8 @@ Will render:
 </select>
 ```
 
+### Options Filter
+
 It's quite likely that your source data does not come in this desired format, and you will have to transform the data in order to generate dynamic options. In order to DRY-up the transformation, the `options` param supports filters, and it can be helpful to put your transformation logic into a reusable [custom filter](/guide/custom-filter.html):
 
 ``` js
@@ -164,6 +166,20 @@ Vue.filter('extract', function (value, keyToExtract) {
 ```
 
 The above filter transforms data like `[{ name: 'Bruce' }, { name: 'Chuck' }]` into `['Bruce', 'Chuck']` so it becomes properly formatted.
+
+### Static Default Option
+
+> 0.12.10+ only
+
+You can provide one static default option in addition to the dyanmically generated options:
+
+``` html
+<select v-model="selectedUser" options="users">
+  <option value="">Select a user...</option>
+</select>
+```
+
+Dynamic options created from `users` will be appended after the static option. The static option will be selected by default if the `v-model` value is falsy (excluding `0`).
 
 ## Input Debounce
 
