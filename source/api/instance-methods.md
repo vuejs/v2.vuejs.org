@@ -73,16 +73,16 @@ Retrieve a value from the Vue instance given an expression. Expressions that thr
 
 Set a data value on the Vue instance given a valid keypath. If the path doesn't exist it will be created.
 
-### vm.$add( keypath, value )
+### vm.$add( key, value )
 
-- **keypath** `String`
+- **key** `String`
 - **value** `*`
 
 Add a root level property to the Vue instance (and also its `$data`). Due to the limitations of ES5, Vue cannot detect properties directly added to or deleted from an Object, so use this method and `vm.$delete` when you need to do so. Make sure to use this only when necessary, because this method forces a dirty check of all watchers in the current vm.
 
-### vm.$delete( keypath )
+### vm.$delete( key )
 
-- **keypath** `String`
+- **key** `String`
 
 Delete a root level property on the Vue instance (and also its `$data`).
 
