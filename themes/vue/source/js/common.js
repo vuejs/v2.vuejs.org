@@ -59,6 +59,9 @@
       }
     }, true)
 
+    // make links clickable
+    allLinks.forEach(makeLinkClickable)
+
     // init smooth scroll
     smoothScroll.init({
       speed: 400,
@@ -133,6 +136,14 @@
       if (previousActive) previousActive.classList.remove('active')
       currentActive.classList.add('active')
     }
+  }
+
+  function makeLinkClickable (link) {
+    var wrapper = document.createElement('a')
+    wrapper.href = '#' + link.id
+    wrapper.setAttribute('data-scroll', '')
+    link.parentNode.insertBefore(wrapper, link)
+    wrapper.appendChild(link)
   }
 
   // Search with SwiftType
