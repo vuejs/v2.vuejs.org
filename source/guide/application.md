@@ -30,9 +30,9 @@ You can find examples of the build setups on GitHub:
 
 ## Routing
 
-<p class="tip">The official `vue-router` module is in active development and will be released soon.</p>
+For Single Page Applications, it is recommended to use the [offical vue-router library](https://github.com/vuejs/vue-router), which is now in technical preview. For more details, please refer to vue-router's [documentation](http://vuejs.github.io/vue-router/).
 
-You can implement some rudimentary routing logic by manually listening on hashchange and utilizing a dynamic component:
+If you just need some very simple routing logic, you can also implement it by manually listening on hashchange and utilizing a dynamic component:
 
 **Example:**
 
@@ -55,7 +55,7 @@ var app = new Vue({
 app.currentView = 'page1'
 ```
 
-With this mechanism it's very easy to leverage standalone routing libraries such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director).
+With this mechanism it's also very easy to leverage external routing libraries such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director).
 
 ## Communication with Server
 
