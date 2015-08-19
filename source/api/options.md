@@ -184,7 +184,7 @@ If the option is available at instantiation, the instance will immediately enter
 
 A string template to be used as the markup for the Vue instance. By default, the template will **replace** the mounted element. When the `replace` option is set to `false`, the template will be inserted into the mounted element instead. In both cases, any existing markup inside the mounted element will be ignored, unless [content insertion points](/guide/components.html#Content_Insertion) are present in the template.
 
-If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
 Note that if the template contains more than one top-level node, the instance will become a [fragment instance](/guide/best-practices.html#Fragment_Instance) - i.e. one that manages a list of nodes rather than a single node.
 
