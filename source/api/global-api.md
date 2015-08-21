@@ -99,7 +99,7 @@ Will result in:
 
 - **callback** `Function`
 
-Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. For more details see [Understanding Async Updates](/guide/directives.html#Understanding_Async_Updates).
+Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. For more details see [Understanding Async Updates](/guide/best-practices.html#Understanding_Async_Updates).
 
 ### Vue.directive( id, [definition] )
 
