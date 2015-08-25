@@ -53,7 +53,6 @@ exports.install = function (Vue, options) {
 ### Using a Plugin
 
 Assuming using a CommonJS build system:
-
 ``` js
 var vueTouch = require('vue-touch')
 // use the plugin globally
@@ -70,7 +69,9 @@ Vue.use(require('my-plugin'), {
 
 ## Existing Plugins & Tools
 
+- [vue-router](https://github.com/vuejs/vue-router): The official router for Vue.js. Deeply integrated with Vue.js core to make building Single Page Applications a breeze. 
 - [vue-resource](https://github.com/vuejs/vue-resource): A plugin that provides services for making web requests and handle responses using a XMLHttpRequest or JSONP.
+- [vue-async-data](https://github.com/vuejs/vue-async-data): Async data loading plugin.
 - [vue-validator](https://github.com/vuejs/vue-validator): A plugin for form validations.
 - [vue-devtools](https://github.com/vuejs/vue-devtools): A Chrome devtools extension for debugging Vue.js applications.
 - [vue-touch](https://github.com/vuejs/vue-touch): Add touch-gesture directives using Hammer.js.
