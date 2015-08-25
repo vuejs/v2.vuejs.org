@@ -587,7 +587,7 @@ MyComponent
 
 ### Asset Naming Convention
 
-Some assets, such as components and directives, appear in templates in the form of HTML attributes or HTML custom tags. Since HTML attribute names and tag names are **case-insensitive**, we often need to name our assets using dash-case instead of camelCase. **Starting in 0.12.9**, it is now supported to name your assets using camelCase, and use them in templates with dash-case.
+Some assets, such as components and directives, appear in templates in the form of HTML attributes or HTML custom tags. Since HTML attribute names and tag names are **case-insensitive**, we often need to name our assets using dash-case instead of camelCase. **Starting in 0.12.11**, it is now supported to name your assets using camelCase or PascalCase, and use them in templates with dash-case.
 
 **Example**
 
@@ -607,14 +607,15 @@ components: {
 This works nicely with [ES6 object literal shorthand](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_6):
 
 ``` js
-import compA from './components/a';
-import compB from './components/b';
+// PascalCase
+import TextBox from './components/text-box';
+import DropdownMenu from './components/dropdown-menu';
 
 export default {
   components: {
-    // use in templates as <comp-a> and <comp-b>
-    compA,
-    compB
+    // use in templates as <text-box> and <dropdown-menu>
+    TextBox,
+    DropdownMenu
   }
 }
 ```
