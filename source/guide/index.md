@@ -1,19 +1,19 @@
-title: Getting Started
+title: 시작하기
 type: guide
 order: 2
 ---
 
-## Introduction
+## 소개
 
-Vue.js is a library for building interactive web interfaces.
+Vue.js는 인터렉티브 웹 인터페이스를 만들기위한 라이브러리입니다.
 
-Technically, Vue.js is focused on the [ViewModel](#ViewModel) layer of the MVVM pattern. It connects the [View](#View) and the [Model](#Model) via two way data bindings. Actual DOM manipulations and output formatting are abstracted away into [Directives](#Directives) and [Filters](#Filters).
+기술적으로 말하자면, Vue.js는 MVVM 패턴의 [ViewModel](#ViewModel)층에 초점을 두고 있습니다. Vue.js는 [View](#View)와 [Model](#Model)을 양방향 바인딩으로 연결합니다. 실제 DOM 조작과 출력 포멧팅은 [Directives](#Directives)와 [Filters](#Filters)로 추상화됩니다.
 
-Philosophically, the goal is to provide the benefits of reactive data binding and composable view components with an API that is as simple as possible. It is not a full-blown framework - it is designed to be a view layer that is simple and flexible. You can use it alone for rapid prototyping, or mix and match with other libraries for a custom front-end stack. It's also a natural fit for no-backend services such as Firebase.
+원칙적으로, 목표는 가능한한 간단한 API로 반응적 데이터 바인딩과 조합가능한 뷰 컴포넌트의 이점을 제공하는 것입니다. Vue.js는 거대한 프레임워크가 아닙니다. Vue.js는 간단하고 유연한 뷰 층이 되도록 설계되었습니다. Vue.js는 단독으로 빠른 프로토타이핑에 사용하거나, 다른 라이브러리와 조합해 독자적인 프론트엔드 스택으로 사용할 수 있습니다. Vue.js는 Firebase같은 백엔드가 없는 서비스와도 잘 어울립니다.
 
-Vue.js' API is heavily influenced by [AngularJS], [KnockoutJS], [Ractive.js] and [Rivets.js]. Despite the similarities, I believe Vue.js offers a valuable alternative to these existing libraries by finding a sweetspot between simplicity and functionality.
+Vue.js API는 [AngularJS], [KnockoutJS], [Ractive.js], [Rivets.js]에 영향을 많이 받았습니다. 비슷함에도 불구하고, Vue.js가 기존 라이브러리의 단순함과 기능성의 조화를 이룬 가치있는 대안이 되리라 믿습니다.
 
-Even if you are already familiar with some of these terms, it is recommended that you go through the following concepts overview because your notion of these terms might be different from what they mean in the Vue.js context.
+이런 용어에 이미 익숙하다하더레도, 밑에 있는 개념의 개요를 읽어보시는 것을 추천합니다. 왜냐하면, 당신이 알고 있는 용어와 Vue.js 의 문맥안에서의 의미가 다를 수 있기 때문입니다.
 
 ## Concepts Overview
 
@@ -21,7 +21,7 @@ Even if you are already familiar with some of these terms, it is recommended tha
 
 ### ViewModel
 
-An object that syncs the Model and the View. In Vue.js, every Vue instance is a ViewModel. They are instantiated with the `Vue` constructor or its sub-classes:
+모델과 뷰를 동기화하는 객체입니다. Vue.js에서는 모든 Vue 객체는 ViewModel입니다. `Vue` 생성자나 그 하위 클래스로 객체화할 수 있습니다.
 
 ```js
 var vm = new Vue({ /* options */ })
