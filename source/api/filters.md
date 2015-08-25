@@ -62,7 +62,7 @@ JSON.stringify() incoming value rather than outputting the string representation
 
 ### key
 
-- this filter only works in `v-on`
+- this filter only works with `v-on`
 - this filter takes exactly one argument
 
 Wrap the handler so it only gets called when the keyCode matches the argument. You can also use string aliases for a few commonly-used keys:
@@ -83,6 +83,13 @@ Wrap the handler so it only gets called when the keyCode matches the argument. Y
 ```
 
 `doSomething` will only be called when the Enter key is pressed.
+
+### debounce
+
+- this filter only works with `v-on`
+- this filter takes one optional argument
+
+Wrap the handler to debounce it for X milliseconds, where X is the argument. Default is 300ms. A debounced handler will be delayed until at least X ms has passed after the call moment; if the handler is called again before the delay period, the delay poriod is reset to X ms.
 
 ### filterBy
 

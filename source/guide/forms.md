@@ -199,6 +199,6 @@ new Vue({
 })
 </script>
 
-Note that the `debounce` param does not debounce the user's input events: it debounces the "write" operation to the underlying data. Therefore you should use `vm.$watch()` to react to data changes when using `debounce`.
+Note that the `debounce` param does not debounce the user's input events: it debounces the "write" operation to the underlying data. Therefore you should use `vm.$watch()` to react to data changes when using `debounce`. For debouncing real DOM events you should use the [debounce filter](/api/filters.html#debounce).
 
 Next: [Computed Properties](/guide/computed.html).
