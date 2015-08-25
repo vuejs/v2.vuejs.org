@@ -104,10 +104,16 @@ When you need to dynamically render a list of options for a `<select>` element, 
 
 In your data, `myOptions` should be an keypath/expression that points to an Array to use as its options.
 
-The Array can contain plain strings or objects in the format of `{text:'', value:''}`. This object format allows you to have the option text displayed differently from its underlying value:
+The options Array can contain plain strings:
 
 ``` js
-[
+options = ['a', 'b', 'c']
+```
+
+Or, it can contain objects in the format of `{text:'', value:''}`. This object format allows you to have the option text displayed differently from its underlying value:
+
+``` js
+options = [
   { text: 'A', value: 'a' },
   { text: 'B', value: 'b' }
 ]
@@ -121,6 +127,19 @@ Will render:
   <option value="b">B</option>
 </select>
 ```
+
+The `value` can also be Objects:
+
+> 0.12.11+ only
+
+``` js
+options = [
+  { text: 'A', value: { msg: 'hello' }},
+  { text: 'B', value: { msg: 'bye' }}
+]
+```
+
+### Option Groups
 
 Alternatively, the object can be in the format of `{ label:'', options:[...] }`. In this case it will be rendered as an `<optgroup>`:
 
