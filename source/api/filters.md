@@ -117,7 +117,7 @@ Optionally, you can narrow down which specific property to search in with the op
 </ul>
 ```
 
-Now the item will only match if the value of `searchText` is found in its `name` property. Note here we need to quote `name` to indicate its a literal string argument. With this limitation, `searchText` with value `'555'` will no longer match this item, but `'Jack'` will.
+Now the item will only match if the value of `searchText` is found in its `name` property. Note here we need to quote `name` to indicate it's a literal string argument. With this limitation, `searchText` with value `'555'` will no longer match this item, but `'Jack'` will.
 
 > New in 0.12.11
 
