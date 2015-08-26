@@ -5,7 +5,7 @@ order: 8
 
 Vue.js' inline expressions are very convenient, but the best use cases for them are simple boolean operations or string concatenations. For more complicated logic, you should use **computed properties**.
 
-A computed property is used to declaratively describe a value that depends on other values. When you data-bind to a computed property inside the template, Vue knows when to update the DOM when any of the values depended upon by the computed property has changed. This can be very power and makes your code more declarative, data-driven and thus easier to maintain.
+A computed property is used to declaratively describe a value that depends on other values. When you data-bind to a computed property inside the template, Vue knows when to update the DOM when any of the values depended upon by the computed property has changed. This can be very powerful and makes your code more declarative, data-driven and thus easier to maintain.
 
 It is often a better idea to use a computed property rather than an imperative `$watch` callback. Consider this example:
 
