@@ -94,6 +94,46 @@ If you want user input to be automatically persisted as numbers, you can add a `
 <input v-model="age" number>
 ```
 
+## Bind to Expressions
+
+> ^0.12.12 only
+
+When using `v-model` on checkbox and radio inputs, the bound value is either a boolean or a string:
+
+``` html
+<!-- toggle is either true or false -->
+<input type="checkbox" v-model="toggle">
+
+<!-- pick is "red" when this radio box is selected -->
+<input type="radio" v-model="pick" value="red">
+```
+
+This can be a bit limiting - sometimes we may want to bind the underlying value to something else. Here's how you can do that:
+
+**Checkbox**
+
+``` html
+<input type="checkbox" v-model="toggle" true-exp="a" false-exp="b">
+```
+
+``` js
+// when checked:
+vm.toggle === vm.a
+// when unchecked:
+vm.toggle === vm.b
+```
+
+**Radio**
+
+``` html
+<input type="radio" v-model="pick" exp="a">
+```
+
+``` js
+// when checked:
+vm.pick === vm.a
+```
+
 ## Dynamic Select Options
 
 When you need to dynamically render a list of options for a `<select>` element, it's recommended to use an `options` attribute together with `v-model` so that when the options change dynamically, `v-model` is properly synced:
