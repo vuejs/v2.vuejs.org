@@ -106,6 +106,6 @@ computed: {
 }
 ```
 
-Now, every time you access `vm.example`, the timestamp will be up-to-date. However, note this only affects programmatic access inside JavaScript; data-bindings are still dependency-drive. When you bind to a computed property in the template as `{% raw %}{{example}}{% endraw %}`, the DOM will only be updated when a reactive dependency has changed.
+Now, every time you access `vm.example`, the timestamp will be up-to-date. However, note this only affects programmatic access inside JavaScript; data-bindings are still dependency-driven. When you bind to a computed property in the template as `{% raw %}{{example}}{% endraw %}`, the DOM will only be updated when a reactive dependency has changed.
 
 Next, let's learn about how to [write a custom directive](/guide/custom-directive.html).
