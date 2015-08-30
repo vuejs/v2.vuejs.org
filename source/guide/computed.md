@@ -68,7 +68,7 @@ computed: {
 // ...
 ```
 
-### Computed Poperty Caching
+### Computed Property Caching
 
 Before 0.12.8, computed properties behave just like getters - every time you access it, the getter function is re-evaluated. In 0.12.8 this has been improved - computed properties are cached and lazily re-evaluated only when one of its reactive dependencies have changed.
 
@@ -91,7 +91,7 @@ var vm = new Vue({
 
 In the example above, the computed property relies on `vm.msg`. Because this is an observed data property on the Vue instance, it is considered a reactive dependency. Whenever `vm.msg` is changed, `vm.example`'s value will be re-evaludated.
 
-However, `Date.now()` is **not** a reactive dependency, because it has nothing to do with Vue's data observation system. Therefore, when you programatically access `vm.computed`, you will find the timestamp to remain the same unless `vm.msg` triggered a re-evaluation.
+However, `Date.now()` is **not** a reactive dependency, because it has nothing to do with Vue's data observation system. Therefore, when you programatically access `vm.example`, you will find the timestamp to remain the same unless `vm.msg` triggered a re-evaluation.
 
 Sometimes you may want to preserve the simple getter-like behavior, where every time you access `vm.example` it is simply re-evaluated. Starting in 0.12.11, it's possible to turn off caching for a specific computed property:
 
