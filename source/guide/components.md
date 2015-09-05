@@ -633,8 +633,10 @@ When there is only one `<content>` tag with no attributes, the entire original c
 Template for `my-component`:
 
 ``` html
-<h1>This is my component!</h1>
-<content>This will only be displayed if no content is inserted</content>
+<div>
+  <h1>This is my component!</h1>
+  <content>This will only be displayed if no content is inserted</content>
+</div>
 ```
 
 Parent markup that uses the component:
@@ -649,11 +651,11 @@ Parent markup that uses the component:
 The rendered result will be:
 
 ``` html
-<my-component>
+<div>
   <h1>This is my component!</h1>
   <p>This is some original content</p>
   <p>This is some more original content</p>
-</my-component>
+</div>
 ```
 
 ### Multiple Insertion Points
@@ -665,9 +667,11 @@ The rendered result will be:
 For example, suppose we have a `multi-insertion` component with the following template:
 
 ``` html
-<content select="p:nth-child(3)"></content>
-<content select="p:nth-child(2)"></content>
-<content select="p:nth-child(1)"></content>
+<div>
+  <content select="p:nth-child(3)"></content>
+  <content select="p:nth-child(2)"></content>
+  <content select="p:nth-child(1)"></content>
+</div>
 ```
 
 Parent markup:
@@ -683,11 +687,11 @@ Parent markup:
 The rendered result will be:
 
 ``` html
-<multi-insertion>
+<div>
   <p>Three</p>
   <p>Two</p>
   <p>One</p>
-</multi-insertion>
+</div>
 ```
 
 The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
