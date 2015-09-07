@@ -139,6 +139,7 @@ Or, just pass in a custom filter function:
 ``` html
 <div v-repeat="user in users | filterBy myCustomFilterFunction">
 ```
+Where [myCustomFilterFunction] is regular [vm] method accepting three arguments [user], [index] and [users] from the example above.
 
 ### orderBy
 
