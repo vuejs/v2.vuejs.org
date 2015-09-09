@@ -75,6 +75,7 @@ Wrap the handler so it only gets called when the keyCode matches the argument. Y
 - down
 - left
 - right
+- space
 
 **Example:**
 
