@@ -124,14 +124,14 @@ new Vue({
 
 The classes being added and toggled are based on the value of your `v-transition` directive. In the case of `v-transition="fade"`, the class `.fade-transition` will be always present, and the classes `.fade-enter` and `.fade-leave` will be toggled automatically at the right moments. When no value is provided they will default to `.v-transition`, `.v-enter` and `.v-leave`.
 
-When the `show` property changes, Vue.js will insert or remove the `<p>` element accordingly, and apply transition classes as specified below:
+When the `show` property changes, Vue.js will insert or remove the `<div>` element accordingly, and apply transition classes as specified below:
 
 - When `show` becomes false, Vue.js will:
   1. Call `beforeLeave` hook;
   2. Apply `v-leave` class to the element to trigger the transition;
   3. Call `leave` hook;
   4. Wait for the transition to finish; (listening to a `transitionend` event)
-  5. Remove the element from the DOM and remove `v-leave` class.
+  5. Remove the element from the DOM and remove `v-leave` class;
   6. Call `afterLeave` hook.
 
 - When `show` becomes true, Vue.js will:
@@ -139,7 +139,7 @@ When the `show` property changes, Vue.js will insert or remove the `<p>` element
   2. Apply `v-enter` class to the element;
   3. Insert it into the DOM;
   4. Call `enter` hook;
-  5. Force a CSS layout so `v-enter` is actually applied, then remove the `v-enter` class to trigger a transition back to the element's original state.
+  5. Force a CSS layout so `v-enter` is actually applied, then remove the `v-enter` class to trigger a transition back to the element's original state;
   6. Wait for the transition to finish;
   7. Call `afterEnter` hook.
 
@@ -169,7 +169,7 @@ enter: function (el, done) {
 
 ## CSS Animations
 
-CSS animations are applied in the same way with CSS transitions, the difference being that `v-enter` is not removed immediately after the element is inserted, but on an `animationend` callback.
+CSS animations are applied in the same way with CSS transitions, the difference being that `v-enter` is not removed immediately after the element is inserted, but on an `animationend` event.
 
 **Example:** (omitting prefixed CSS rules here)
 
