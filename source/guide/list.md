@@ -274,7 +274,7 @@ new Vue({
   data: {
     val: 3
   }
-});
+})
 ```
 **Result:**
 <ul id="range" class="demo"><li v-repeat="val">Hi! {&#123;$index&#125;}</li></ul>
