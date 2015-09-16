@@ -89,7 +89,7 @@ var vm = new Vue({
 })
 ```
 
-In the example above, the computed property relies on `vm.msg`. Because this is an observed data property on the Vue instance, it is considered a reactive dependency. Whenever `vm.msg` is changed, `vm.example`'s value will be re-evaludated.
+In the example above, the computed property relies on `vm.msg`. Because this is an observed data property on the Vue instance, it is considered a reactive dependency. Whenever `vm.msg` is changed, `vm.example`'s value will be re-evaluated.
 
 However, `Date.now()` is **not** a reactive dependency, because it has nothing to do with Vue's data observation system. Therefore, when you programatically access `vm.example`, you will find the timestamp to remain the same unless `vm.msg` triggered a re-evaluation.
 
