@@ -259,7 +259,7 @@ Starting in 0.12.2, the `replace` option now defaults to `true`. This basically 
 
 > Whatever you put in the template will be what ends up rendered in the DOM.
 
-So, if your template contains more than one top-level elements:
+So, if your template contains more than one top-level element:
 
 ``` js
 Vue.component('example', {
