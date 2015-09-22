@@ -34,7 +34,7 @@ new Vue({
 ``` html
 <ul id="list">
   <li v-repeat="item in items" v-on="click: toggle(item)">
-    {{text}}
+    {{item.text}}
   </li>
 </ul>
 ```
