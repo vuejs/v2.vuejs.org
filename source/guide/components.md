@@ -262,7 +262,7 @@ The `type` can be one of the following native constructors:
 
 In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
 
-When a prop validation fails, Vue will refuse the set the value on the child component, and throw a warning if using the development build.
+When a prop validation fails, Vue will refuse to set the value on the child component, and throw a warning if using the development build.
 
 ### Inheriting Parent Scope
 
