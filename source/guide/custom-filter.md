@@ -50,7 +50,7 @@ Vue.filter('currencyDisplay', {
       return isNaN(number) ? 0 : number
     }
   }
-}
+})
 ```
 
 Demo:
