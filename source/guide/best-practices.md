@@ -29,7 +29,7 @@ new Vue({
 })
 ```
 
-The reason for this is that Vue observes data changes by recursively walking the data object and convert existing properties into reactive getters and setters using `Object.defineProperty`. If a property is not present when the instance is created, Vue will not be able to track it.
+The reason for this is that Vue observes data changes by recursively walking the data object and converting existing properties into reactive getters and setters using `Object.defineProperty`. If a property is not present when the instance is created, Vue will not be able to track it.
 
 You don't have to set every single nested property in your data though. It is ok to initialize a field as an empty object, and set it to a new object with nested structures later, because Vue will be able to walk the nested properties of this new object and observe them.
 
