@@ -125,7 +125,7 @@ Now the item will only match if the value of `searchText` is found in its `name`
 Starting in 0.12.11 you can pass in multiple data keys:
 
 ``` html
-<li v-repeat="user in uers | filterBy searchText in 'name' 'phone'"></li>
+<li v-repeat="user in users | filterBy searchText in 'name' 'phone'"></li>
 ```
 
 Or pass in a dynamic argument with an Array value:
