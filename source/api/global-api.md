@@ -150,6 +150,12 @@ Register or retrieve a global template partial string. For more details see [Par
 
 Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](/guide/extending.html#Extend_with_Plugins).
 
+### Vue.mixin( mixin )
+
+- **mixin** `Object`
+
+Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+
 ### Vue.util
 
 Exposes the internal `util` module, which contains a number of utility methods. This is intended for advanced plugin/directive authoring, so you will need to look at the source code to see what's available.
