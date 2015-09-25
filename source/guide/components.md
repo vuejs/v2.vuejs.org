@@ -138,7 +138,7 @@ We can also pass down dynamic data from the parent. For example:
 <div>
   <input v-model="parentMsg">
   <br>
-  <child msg="{{parentMsg}}"></child>
+  <child my-message="{{parentMsg}}"></child>
 </div>
 ```
 
