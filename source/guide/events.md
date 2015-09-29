@@ -1,4 +1,4 @@
-title: Listening for Events
+title: Event Handling
 type: guide
 order: 6
 ---

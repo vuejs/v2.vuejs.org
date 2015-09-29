@@ -1,9 +1,9 @@
-title: Class and Style
+title: Class and Style Bindings
 type: guide
-order: 4
+order: 5
 ---
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we just need to calculate a final string with our expressions. However, meddling with string concatenation is often cumbersome and error-prone. For this reason, Vue.js provides special enhancements when `v-bind` is used for `class` and `style`. In addition to Strings, the expressions can also evaluate to Objects or Arrays.
+A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we just need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue.js provides special enhancements when `v-bind` is used for `class` and `style`. In addition to Strings, the expressions can also evaluate to Objects or Arrays.
 
 ## Binding HTML Classes
 
@@ -43,7 +43,7 @@ data: {
 }
 ```
 
-This will render the same result.
+This will render the same result. As you may have noticed, we can also bind to a [computed property](computed.html) that returns an Object. This is a common and powerful pattern.
 
 ### Array Syntax
 
@@ -103,6 +103,8 @@ data: {
 }
 ```
 
+Again, the Object syntax is often used in conjunction with computed properties that return Objects.
+
 ### Array Syntax
 
 The Array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
@@ -114,3 +116,5 @@ The Array syntax for `v-bind:style` allows you to apply multiple style objects t
 ### Auto-prefixing
 
 When you use a CSS property that requires vendor prefxes in `v-bind:style`, for example `transform`, Vue.js will automatically detect and add appropriate prefixes to the applied styles.
+
+Next, let's learn about [Handling Events](events.html).

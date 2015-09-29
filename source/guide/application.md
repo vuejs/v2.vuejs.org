@@ -1,4 +1,4 @@
-title: Building Larger Apps
+title: Building Large-Scale Apps
 type: guide
 order: 15
 ---
