@@ -7,6 +7,8 @@ Vue.js is a library for building interactive web interfaces. The goal of Vue.js 
 
 Vue.js itself is not a full-blown framework - it is focused on the view layer only. It is therefore very easy to pick up and to integrate with other libraries or existing projects. On the other hand, when used in combination with proper tooling and supporting libraries, Vue.js is also perfectly capable of powering sophisticated Single-Page Applications.
 
+If you are an experienced frontend developer and are interested in how Vue.js compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+
 ## Reactive Data Binding
 
 At the core of Vue.js is a reactive data-binding system that makes it a breeze to keep your data and the DOM in sync. When using jQuery to manually manipulate the DOM, the code we write is often imperative, repetitive and error-prone. Vue.js embraces a design pattern called [MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel) (Model-View-ViewModel) to make it simpler. In plain words, it means we use special syntax in our normal HTML templates to "bind" the DOM to the underlying data. Once the bindings are created, the DOM will then be kept in sync with the data. Whenever you modify the data, the DOM updates accordingly. As a result, most of our application logic is now directly manipulating data, rather than messing around with DOM updates. This makes our code easier to write, easier to reason about and easier to maintain.
@@ -161,6 +163,6 @@ You may have noticed that Vue.js component usage is very similar to how you woul
 
 2. Vue.js components provides critical features that are not present in plain custom elements, most notably cross-component data flow, event communication and dynamic component switching with transition effects.
 
-The component system allows us to divide a complex interface into small, self-contained components, and is the foundation for building large-scale applications with Vue.js. The Vue.js ecosystem also provides advanced tooling and various supporting libraries for building large SPAs, but the philosophy is compose your stack with loosely coupled, swappable components rather than a monolithic framework.
+The component system allows us to divide a complex interface into small, self-contained components, and is the foundation for building large-scale applications with Vue.js. The Vue.js ecosystem also provides advanced tooling and various supporting libraries for building large SPAs, but you don't have to use them if you don't need them - think of it as a set of swappable parts that work nicely together instead of a monolithic framework.
 
 We have briefly introduced the two most important concepts in Vue.js, and will obviously cover more details on each topic in later sections of this guide. But for now, let's go back to ground zero and start with the basics: [Data Binding Syntax](/guide/syntax.html).

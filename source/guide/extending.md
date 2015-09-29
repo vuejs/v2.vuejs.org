@@ -1,6 +1,6 @@
 title: Extending Vue
 type: guide
-order: 14
+order: 16
 ---
 
 ## Extend with Mixins
