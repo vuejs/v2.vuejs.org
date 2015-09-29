@@ -1,6 +1,4 @@
 title: Filters
-type: guide
-order: 4
 ---
 
 ## Synopsis

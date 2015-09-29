@@ -1,6 +1,4 @@
 title: Directives
-type: guide
-order: 3
 ---
 
 ## Synopsis
