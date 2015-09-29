@@ -7,7 +7,7 @@ Vue.js is a library for building interactive web interfaces. The goal of Vue.js 
 
 Vue.js itself is not a full-blown framework - it is focused on the view layer only. It is therefore very easy to pick up and to integrate with other libraries or existing projects. On the other hand, when used in combination with proper tooling and supporting libraries, Vue.js is also perfectly capable of powering sophisticated Single-Page Applications.
 
-## Reactive Data-Binding
+## Reactive Data Binding
 
 At the core of Vue.js is a reactive data-binding system that makes it a breeze to keep your data and the DOM in sync. When using jQuery to manually manipulate the DOM, the code we write is often imperative, repetitive and error-prone. Vue.js embraces a design pattern called [MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel) (Model-View-ViewModel) to make it simpler. In plain words, it means we use special syntax in our normal HTML templates to "bind" the DOM to the underlying data. Once the bindings are created, the DOM will then be kept in sync with the data. Whenever you modify the data, the DOM updates accordingly. As a result, most of our application logic is now directly manipulating data, rather than messing around with DOM updates. This makes our code easier to write, easier to reason about and easier to maintain.
 
@@ -59,7 +59,7 @@ exampleVM.$el === document.querySelector('#example-1') // true
 exampleVM.$data === exampleData // true
 ```
 
-If you are interested in the technical details, Vue.js uses the [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) method to convert each property on the `exampleData` object into a pair of getter and setter. This enables Vue.js to seamlessly detect when a property is accessed or modified, and update the DOM accordingly.
+Vue.js uses the [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) method to convert each property on the `exampleData` object into a pair of getter and setter. This enables Vue.js to seamlessly detect when a property is accessed or modified, and update the DOM accordingly.
 
 Note that we didn't have to write any DOM-manipulating code: the HTML template, enhanced with the bindings, is a declarative mapping of the underlying data state, which is in turn just plain JavaScript objects. Our view is entirely data-driven.
 
@@ -122,7 +122,7 @@ var MyComponent = Vue.extend({
 Vue.component('my-component', MyComponent)
 ```
 
-Once we've registered our component, we can then use it in another Vue instance, which will create an instance of `MyComponent` as a child component:
+Once we've registered our component, we can then use it in another Vue instance:
 
 ``` html
 <div id="component-example">
