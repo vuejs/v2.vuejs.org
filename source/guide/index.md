@@ -7,7 +7,7 @@ Vue.js is a library for building interactive web interfaces. The goal of Vue.js 
 
 Vue.js itself is not a full-blown framework - it is focused on the view layer only. It is therefore very easy to pick up and to integrate with other libraries or existing projects. On the other hand, when used in combination with proper tooling and supporting libraries, Vue.js is also perfectly capable of powering sophisticated Single-Page Applications.
 
-If you are an experienced frontend developer and are interested in how Vue.js compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+If you are an experienced frontend developer and want to know how Vue.js compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html); if you are more interested about how Vue.js approaches larger-scale applications, check out the section on [Building Larger-Scale Applications](application.html).
 
 ## Reactive Data Binding
 

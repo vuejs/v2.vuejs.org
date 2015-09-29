@@ -59,7 +59,7 @@ So far we've only been binding to simple property keys in our templates. But Vue
 {{ message.split('').reverse().join('') }}
 ```
 
-These expressions will be evaluated in the data scope of the owner Vue instance. The limitation is that each binding can only contain **one single expression**, so the following will **NOT** work:
+These expressions will be evaluated in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
 
 ``` html
 <!-- this is a statement, not an expression: -->
