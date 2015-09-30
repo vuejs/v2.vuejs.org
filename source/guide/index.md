@@ -104,23 +104,25 @@ There are quite a few other directives, each with its own special functionality.
 
 ## Component System
 
-The Component System is another important concept in Vue.js. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+The Component System is another important concept in Vue.js, becaues it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
 
 ![Component Tree](/images/components.png)
 
-In Vue.js, we can create parent-child relationships between multiple Vue instances to form a "Component Tree". This can be achieved by:
+And a typical large application built with Vue.js would form exactly what is on the right - a tree of components. We will talk a lot more about components later in the guide, but for now let's get a taste of what the API looks like. In order to create a component, we need to:
 
-1. Extending the base `Vue` constructor to define a component class;
+1. Extend the base `Vue` constructor to define a component class;
+
 2. Register this extended constructor as a component, so that it can be used inside templates in the form of a **Custom Element**.
 
 Example:
 
 ``` js
-// define a component class
+// Define a component class
 var MyComponent = Vue.extend({
   template: '<div>Hello MyComponent!</div>'
 })
-// register it as a global component
+// Register it globally.
+// It is also possible to register a local-only component.
 Vue.component('my-component', MyComponent)
 ```
 
@@ -161,8 +163,8 @@ You may have noticed that Vue.js component usage is very similar to how you woul
 
 1. The Web Components Spec is still very much a work in progress, and is not natively implemented in every browser. In comparison, Vue.js components don't require any polyfills and works consistently in all supported browsers (IE9 and above).
 
-2. Vue.js components provides critical features that are not present in plain custom elements, most notably cross-component data flow, event communication and dynamic component switching with transition effects.
+2. Vue.js components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and dynamic component switching with transition effects.
 
-The component system allows us to divide a complex interface into small, self-contained components, and is the foundation for building large-scale applications with Vue.js. The Vue.js ecosystem also provides advanced tooling and various supporting libraries for building large SPAs, but you don't have to use them if you don't need them - think of it as a set of swappable parts that work nicely together instead of a monolithic framework.
+The component system is the foundation for building large apps with Vue.js. In addition, the Vue.js ecosystem also provides advanced tooling and various supporting libraries for building large SPAs, but you don't have to use them if you don't need them - think of it as a set of swappable parts that work nicely together instead of a monolithic framework.
 
 We have briefly introduced the two most important concepts in Vue.js, and will obviously cover more details on each topic in later sections of this guide. But for now, let's go back to ground zero and start with the basics: [Data Binding Syntax](/guide/syntax.html).
