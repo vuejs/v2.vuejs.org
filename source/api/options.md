@@ -97,7 +97,7 @@ Vue.component('prop-validation-demo', {
 The following component usage will result in two warnings: type mismatch for "size", and missing required prop "name".
 
 ``` html
-<prop-validation-demoo size="hello">
+<prop-validation-demo size="hello">
 </prop-validation-demo>
 ```
 
