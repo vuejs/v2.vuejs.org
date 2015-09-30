@@ -1,6 +1,6 @@
 title: Custom Filters
 type: guide
-order: 12
+order: 14
 ---
 
 ## The Basics

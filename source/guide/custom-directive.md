@@ -1,6 +1,6 @@
 title: Custom Directives
 type: guide
-order: 11
+order: 13
 ---
 
 ## The Basics

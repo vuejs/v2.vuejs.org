@@ -1,6 +1,6 @@
 title: Component System
 type: guide
-order: 13
+order: 11
 ---
 
 ## Using Components

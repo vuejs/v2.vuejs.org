@@ -1,6 +1,6 @@
 title: Transition System
 type: guide
-order: 14
+order: 12
 ---
 
 With Vue.js' transition system you can apply automatic transition effects when elements are inserted into or removed from the DOM. Vue.js will automatically add/remove CSS classes at appropriate times to trigger CSS transitions or animations for you, and you can also provide JavaScript hook functions to perform custom DOM manipulations during the transition.
