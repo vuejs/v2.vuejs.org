@@ -118,9 +118,26 @@ methods: {
 }
 ```
 
+## Event Modifiers
+
+It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
+
+To address this problem, Vue.js provides two **event modifiers** for `v-on`: `.prevent` and `.stop`. Recall that modifiers are directive postfixes denoted by a dot:
+
+``` html
+<!-- the click event's propagation will be stopped -->
+<a v-on:click.stop="doThis"></a>
+
+<!-- the submit event will no longer reload the page -->
+<form v-on:submit.prevent="onSubmit"></form>
+
+<!-- modifiers can be chained -->
+<a v-on:click.stop.prevent="doThat">
+```
+
 ## Key Modifiers
 
-When listening for keyboard events, we often need to check for common key codes. Vue.js provides a convenient set of key modifiers that can only be used with `v-on` directives. Recall that **modifiers** are postfixes denoted by a dot:
+When listening for keyboard events, we often need to check for common key codes. Vue.js also allows adding key modifiers for `v-on` when listening for key events:
 
 ``` html
 <!-- only call vm.submit() when the keyCode is 13 -->
