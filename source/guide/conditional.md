@@ -3,7 +3,7 @@ type: guide
 order: 7
 ---
 
-### v-if
+## v-if
 
 In string templates, for example Handlebars, we would write a conditional block like this:
 
@@ -27,7 +27,7 @@ It is also possible to add an "else" block with `v-else`:
 <h1 v-else>No</h1>
 ```
 
-### Template v-if
+## Template v-if
 
 Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<tempalte>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
 
@@ -39,7 +39,7 @@ Because `v-if` is a directive, it has to be attached to a single element. But wh
 </template>
 ```
 
-### v-show
+## v-show
 
 Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
 
@@ -51,7 +51,7 @@ The difference is that an element with `v-show` will always be rendered and rema
 
 Note that `v-show` doesn't support the `<template>` syntax.
 
-### v-if vs. v-show
+## v-if vs. v-show
 
 When a `v-if` block is toggled, Vue.js will have to perform a partial compilation/teardown process, because the template content inside `v-if` can also contain data bindings or child components. `v-if` is "real" conditional rendering becaues it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
 

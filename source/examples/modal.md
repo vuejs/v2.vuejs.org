@@ -1,7 +1,6 @@
 title: Modal Component
 type: examples
 order: 7
-is_new: true
 ---
 
 > Features used: component, prop passing, content insertion, transitions.

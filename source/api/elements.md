@@ -1,7 +1,6 @@
 title: Special Elements
 type: api
 order: 8
-is_new: true
 ---
 
 > The following is a list of abstract elements that serve special purposes in Vue.js templates.
