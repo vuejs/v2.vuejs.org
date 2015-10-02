@@ -7,6 +7,14 @@ order: 9
 
 You can use the `v-model` directive to create two-way data bindings on form input elements. It automatically picks the correct way to update the element based on the input type.
 
+### Text
+
+### Checkbox
+
+### Radio
+
+### Select
+
 **Example**
 
 ``` html
@@ -77,26 +85,7 @@ new Vue({
 })
 </script>
 
-## Lazy Updates
-
-By default, `v-model` syncs the input with the data after each `input` event. You can add a `lazy` attribute to change the behavior to sync after `change` events:
-
-``` html
-<!-- synced after "change" instead of "input" -->
-<input v-model="msg" lazy>
-```
-
-## Casting Value as Number
-
-If you want user input to be automatically persisted as numbers, you can add a `number` attribute to your `v-model` managed inputs:
-
-``` html
-<input v-model="age" number>
-```
-
-## Bind to Expressions
-
-> ^0.12.12 only
+## Binding Non-String Values
 
 When using `v-model` on checkbox and radio inputs, the bound value is either a boolean or a string:
 
@@ -134,113 +123,26 @@ vm.toggle === vm.b
 vm.pick === vm.a
 ```
 
-## Dynamic Select Options
+## Param Attributes
 
-When you need to dynamically render a list of options for a `<select>` element, it's recommended to use an `options` attribute together with `v-model` so that when the options change dynamically, `v-model` is properly synced:
+### lazy
 
-``` html
-<select v-model="selected" options="myOptions"></select>
-```
-
-In your data, `myOptions` should be an keypath/expression that points to an Array to use as its options.
-
-The options Array can contain plain strings:
-
-``` js
-options = ['a', 'b', 'c']
-```
-
-Or, it can contain objects in the format of `{text:'', value:''}`. This object format allows you to have the option text displayed differently from its underlying value:
-
-``` js
-options = [
-  { text: 'A', value: 'a' },
-  { text: 'B', value: 'b' }
-]
-```
-
-Will render:
+By default, `v-model` syncs the input with the data after each `input` event. You can add a `lazy` attribute to change the behavior to sync after `change` events:
 
 ``` html
-<select>
-  <option value="a">A</option>
-  <option value="b">B</option>
-</select>
+<!-- synced after "change" instead of "input" -->
+<input v-model="msg" lazy>
 ```
 
-The `value` can also be Objects:
+### number
 
-> 0.12.11+ only
-
-``` js
-options = [
-  { text: 'A', value: { msg: 'hello' }},
-  { text: 'B', value: { msg: 'bye' }}
-]
-```
-
-### Option Groups
-
-Alternatively, the object can be in the format of `{ label:'', options:[...] }`. In this case it will be rendered as an `<optgroup>`:
-
-``` js
-[
-  { label: 'A', options: ['a', 'b']},
-  { label: 'B', options: ['c', 'd']}
-]
-```
-
-Will render:
+If you want user input to be automatically persisted as numbers, you can add a `number` attribute to your `v-model` managed inputs:
 
 ``` html
-<select>
-  <optgroup label="A">
-    <option value="a">a</option>
-    <option value="b">b</option>
-  </optgroup>
-  <optgroup label="B">
-    <option value="c">c</option>
-    <option value="d">d</option>
-  </optgroup>
-</select>
+<input v-model="age" number>
 ```
 
-### Options Filter
-
-It's quite likely that your source data does not come in this desired format, and you will have to transform the data in order to generate dynamic options. In order to DRY-up the transformation, the `options` param supports filters, and it can be helpful to put your transformation logic into a reusable [custom filter](/guide/custom-filter.html):
-
-``` js
-Vue.filter('extract', function (value, keyToExtract) {
-  return value.map(function (item) {
-    return item[keyToExtract]
-  })
-})
-```
-
-``` html
-<select
-  v-model="selectedUser"
-  options="users | extract 'name'">
-</select>
-```
-
-The above filter transforms data like `[{ name: 'Bruce' }, { name: 'Chuck' }]` into `['Bruce', 'Chuck']` so it becomes properly formatted.
-
-### Static Default Option
-
-> 0.12.10+ only
-
-You can provide one static default option in addition to the dyanmically generated options:
-
-``` html
-<select v-model="selectedUser" options="users">
-  <option value="">Select a user...</option>
-</select>
-```
-
-Dynamic options created from `users` will be appended after the static option. The static option will be selected by default if the `v-model` value is falsy (excluding `0`).
-
-## Input Debounce
+### debounce
 
 The `debounce` param allows you to set a minimum delay after each keystroke before the input's value is synced to the model. This can be useful when you are performing expensive operations on each update, for example making an Ajax request for type-ahead autocompletion.
 
@@ -260,4 +162,4 @@ new Vue({
 
 Note that the `debounce` param does not debounce the user's input events: it debounces the "write" operation to the underlying data. Therefore you should use `vm.$watch()` to react to data changes when using `debounce`. For debouncing real DOM events you should use the [debounce filter](/api/filters.html#debounce).
 
-Next: [Computed Properties](/guide/computed.html).
+We've covered a lot of ground so far. By now you should already be able to build some simple, dynamic interfaces with Vue.js, but you may still feel that the whole reactive system is a bit like magic. It is time that we talk about it in more details. Next up: [Reactivity In Depth](reactivity.html).
