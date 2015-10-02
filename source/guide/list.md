@@ -3,26 +3,27 @@ type: guide
 order: 8
 ---
 
-You can use the `v-repeat` directive to repeat a template element based on an Array of objects on the ViewModel. For every object in the Array, the directive will create a child Vue instance using that object as its `$data` object. These child instances inherit all data on the parent, so in the repeated element you have access to properties on both the repeated instance and the parent instance. In addition, you get access to the `$index` property, which will be the corresponding Array index of the rendered instance.
+## v-for
+
+We can use the `v-for` directive to render a list of items based on an Array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data Array and `item` is an **alias** for the Array element being iterated on:
 
 **Example:**
 
 ``` html
-<ul id="demo">
-  <li v-repeat="items" class="item-{{$index}}">
-    {{$index}} - {{parentMsg}} {{childMsg}}
+<ul id="example-1">
+  <li v-for="item in items">
+    {{ item.message }}
   </li>
 </ul>
 ```
 
 ``` js
-var demo = new Vue({
-  el: '#demo',
+var example1 = new Vue({
+  el: '#example-1',
   data: {
-    parentMsg: 'Hello',
     items: [
-      { childMsg: 'Foo' },
-      { childMsg: 'Bar' }
+      { message: 'Foo' },
+      { message: 'Bar' }
     ]
   }
 })
@@ -30,150 +31,122 @@ var demo = new Vue({
 
 **Result:**
 
-<ul id="demo"><li v-repeat="items" class="item-{&#123;$index&#125;}">{&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}</li></ul>
+{% raw %}
+<ul id="example-1" class="demo">
+  <li v-for="item in items">
+    {{item.message}}
+  </li>
+</ul>
 <script>
-var demo = new Vue({
-  el: '#demo',
+var example1 = new Vue({
+  el: '#example-1',
   data: {
-    parentMsg: 'Hello',
     items: [
-      { childMsg: 'Foo' },
-      { childMsg: 'Bar' }
+      { message: 'Foo' },
+      { message: 'Bar' }
     ]
+  },
+  watch: {
+    items: function () {
+      smoothScroll.animateScroll(null, '#example-1')
+    }
   }
 })
 </script>
+{% endraw %}
 
-## Fragment Repeat
+Inside `v-for` blocks we have full access to parent scope properties, plus a special variable `$index` which, as you probably have guessed, is the Array index for the current item:
 
-Sometimes you might want to repeat a fragment of more than one nodes - in that case, you can use a `<template>` tag to wrap the repeat fragment. The `<template>` tag here merely serves as a semantic wrapper. For example:
+``` html
+<ul id="example-2">
+  <li v-for="item in items">
+    {{ parentMessage }} {{ $index }} {{ item.message }}
+  </li>
+</ul>
+```
+
+``` js
+var example2 = new Vue({
+  el: '#example-2',
+  data: {
+    parentMessage: 'Parent',
+    items: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
+  }
+})
+```
+
+**Result:**
+
+{% raw%}
+<ul id="example-2" class="demo">
+  <li v-for="item in items">
+    {{ parentMessage }} - {{ $index }} - {{ item.message }}
+  </li>
+</ul>
+<script>
+var example2 = new Vue({
+  el: '#example-2',
+  data: {
+    parentMessage: 'Parent',
+    items: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
+  },
+  watch: {
+    items: function () {
+      smoothScroll.animateScroll(null, '#example-2')
+    }
+  }
+})
+</script>
+{% endraw %}
+
+## Template v-for
+
+Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
 
 ``` html
 <ul>
-  <template v-repeat="list">
-    <li>{{msg}}</li>
+  <template v-for="item in items">
+    <li>{{ item.msg }}</li>
     <li class="divider"></li>
   </template>
 </ul>
 ```
 
-## Arrays of Primitive Values
-
-For Arrays containing primitive values, you can access the value simply as `$value`:
-
-``` html
-<ul id="tags">
-  <li v-repeat="tags">
-    {{$value}}
-  </li>
-</ul>
-```
-
-``` js
-new Vue({
-  el: '#tags',
-  data: {
-    tags: ['JavaScript', 'MVVM', 'Vue.js']
-  }
-})
-```
-
-**Result:**
-<ul id="tags" class="demo"><li v-repeat="tags">{&#123;$value&#125;}</li></ul>
-<script>
-new Vue({
-  el: '#tags',
-  data: {
-    tags: ['JavaScript', 'MVVM', 'Vue.js']
-  }
-})
-</script>
-
-## Using an alias
-
-Sometimes we might want to have more explicit variable access instead of implicitly falling back to parent scope. You can do that by providing an alias to the `v-repeat` directive and use it as the alias for the item being iterated:
-
-``` html
-<ul id="users">
-  <li v-repeat="user in users">
-    {{user.name}} - {{user.email}}
-  </li>
-</ul>
-```
-
-``` js
-new Vue({
-  el: '#users',
-  data: {
-    users: [
-      { name: 'Foo Bar', email: 'foo@bar.com' },
-      { name: 'John Doh', email: 'john@doh.com' }
-    ]
-  }
-})
-```
-
-**Result:**
-<ul id="users" class="demo"><li v-repeat="user: users">{&#123;user.name&#125;} - {&#123;user.email&#125;}</li></ul>
-<script>
-new Vue({
-  el: '#users',
-  data: {
-    users: [
-      { name: 'Foo Bar', email: 'foo@bar.com' },
-      { name: 'John Doh', email: 'john@doh.com' }
-    ]
-  }
-})
-</script>
-
-<p class="tip">The `user in users` syntax is only available in Vue 0.12.8 and above. For older versions, you must use the `user : users` syntax.</p>
-
-<p class="tip">Using an alias with `v-repeat` in general results in more readable templates and slightly better performance.</p>
-
 ## Mutation Methods
 
-Under the hood, Vue.js intercepts an observed Array's mutating methods (`push()`, `pop()`, `shift()`, `unshift()`, `splice()`, `sort()` and `reverse()`) so they will also trigger View updates.
+Vue.js wraps an observed Array's mutation methods so they will also trigger View updates. The wrapped methods are:
 
-``` js
-// the DOM will be updated accordingly
-demo.items.unshift({ childMsg: 'Baz' })
-demo.items.pop()
-```
+- `push()`
+- `pop()`
+- `shift()`
+- `unshift()`
+- `splice()`
+- `sort()`
+- `reverse()`
 
-## Augmented Methods
-
-Vue.js augments observed Arrays with two convenience methods: `$set()` and `$remove()`.
-
-You should avoid directly setting elements of a data-bound Array with indices, because those changes will not be picked up by Vue.js. Instead, use the augmented `$set()` method:
-
-``` js
-// same as `demo.items[0] = ...` but triggers view update
-demo.items.$set(0, { childMsg: 'Changed!'})
-```
-
-`$remove()` is just syntax sugar for `splice()`. It will remove the element at the given index. When the argument is not a number, `$remove()` will search for that value in the array and remove the first occurrence.
-
-``` js
-// remove the item at index 0
-demo.items.$remove(0)
-```
+You can open the console and play with the previous examples' `items` array by calling its mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
 
 ## Replacing an Array
 
-When you are using non-mutating methods, e.g. `filter()`, `concat()` or `slice()`, the returned Array will be a different instance. In that case, you can just replace the old Array with the new one:
+Mutation methods, as the name suggests, mutate the original Array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original Array but **always return a new Array**. When working with non-mutating methods, you can just replace the old Array with the new one:
 
 ``` js
-demo.items = demo.items.filter(function (item) {
-  return item.childMsg.match(/Hello/)
+example1.items = example1.items.filter(function (item) {
+  return item.message.match(/Foo/)
 })
 ```
 
-You might think this will blow away the existing DOM and re-build everything. But worry not - Vue.js recognizes array elements that already have an associated Vue instance and will reuse those instances whenever possible.
+You might think this will cause Vue.js to throw away the existing DOM and re-render the entire list - luckily that is not the case. Vue.js implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
 
-## Using `track-by`
+## Array Replacement Optimization
 
-In some cases, you might need to replace the Array with completely new objects - e.g. ones returned from an API call. Since by default `v-repeat` determines the reusability of an existing child instance and its DOM nodes by tracking the identity of its data object, this could cause the entire list to be re-rendered. However, if each of your data objects has a unique id property, then you can use a `track-by` param to give Vue.js a hint so that it can reuse existing instances as much as possible.
+In some cases, you might need to replace the Array with completely new objects - e.g. ones created from an API call. Since by default `v-for` determines the reusability of existing scopes and DOM elements by tracking the identity of its data object, this could cause the entire list to be re-rendered. However, if each of your data objects has a unique id property, then you can use a `track-by` special attribute to give Vue.js a hint so that it can reuse existing instances as much as possible.
 
 For example, if your data looks like this:
 
@@ -189,26 +162,55 @@ For example, if your data looks like this:
 Then you can give the hint like this:
 
 ``` html
-<div v-repeat="items" track-by="_uid">
+<div v-for="item in items" track-by="_uid">
   <!-- content -->
 </div>
 ```
 
-Later on, when you replace the `items` array and Vue.js encounters a new object with `_uid: '88f869d'`, it knows it can reuse the existing instance with the same `_uid`.
+Later on, when you replace the `items` array and Vue.js encounters a new object with `_uid: '88f869d'`, it knows it can reuse the existing scope and DOM elements associated with the same `_uid`.
 
-If you don't have a unique key to track by, you can also use `track-by="$index"`. Make sure to use this carefully though, because when tracking by `$index`, instead of moving the child instances and DOM nodes, Vue will simply reuse them in place in the order they were first created. Avoid using `track-by="$index"` in two situations: when your repeated block contains form inputs that can cause the list to re-render; or when you are repeating a component with mutable state in addition to the repeated data being assigned to it.
+If you don't have a unique key to track by, you can also use `track-by="$index"`, which is essentially telling Vue.js "don't move the DOM nodes around; just morph them in place." This can make Array replacement extremely efficient, but you should use this feature with caution. Because DOM nodes are no longer moved to reflect the change in order, temporary state like DOM input values and component private state can become out of sync. So, avoid using `track-by="$index"` if the `v-for` block contains form input elements or child components.
 
-<p class="tip">Using `track-by` properly can greatly increase the performance when re-rendering large `v-repeat` lists using completely new data.</p>
+## Array Observation Caveats
 
-## Iterating Through An Object
+Due to limitations of JavaScript, Vue.js **cannot** detect the following changes to an Array:
 
-You can also use `v-repeat` to iterate through the properties of an Object. Each repeated instance will have a special property `$key`. For primitive values, you also get `$value` which is similar to primitive values in Arrays.
+1. When you directly set an item with the index, e.g. `vm.items[0] = {}`;
+2. When you modify the length of the Array, e.g. `vm.items.length = 0`.
+
+To deal with caveat (1), Vue.js augments observed Arrays with a `$set()` method:
+
+``` js
+// same as `example1.items[0] = ...` but triggers view update
+example1.items.$set(0, { childMsg: 'Changed!'})
+```
+
+To deal with caveat (2), just replace `items` with an empty array instead.
+
+In addition to `$set()`, Vue.js also augments Arrays with a convenience method `$remove()`, which searches for and removes an item from target Array by calling `splice()` internally. So instead of:
+
+``` js
+var index = this.items.indexOf(item)
+if (index !== -1) {
+  this.items.splice(index, 1)
+}
+```
+
+You can just do:
+
+``` js
+this.items.$remove(item)
+```
+
+## Object v-for
+
+You can also use `v-for` to iterate through the properties of an Object. In addition to `$index`, each scope will have access to another special property `$key`.
 
 ``` html
-<ul id="repeat-object">
-  <li v-repeat="primitiveValues">{{$key}} : {{$value}}</li>
-  <li>===</li>
-  <li v-repeat="objectValues">{{$key}} : {{msg}}</li>
+<ul id="repeat-object" class="demo">
+  <li v-for="value in object">
+    {{ $key }} : {{ value }}
+  </li>
 </ul>
 ```
 
@@ -216,77 +218,67 @@ You can also use `v-repeat` to iterate through the properties of an Object. Each
 new Vue({
   el: '#repeat-object',
   data: {
-    primitiveValues: {
+    object: {
       FirstName: 'John',
       LastName: 'Doe',
       Age: 30
-    },
-    objectValues: {
-      one: {
-        msg: 'Hello'
-      },
-      two: {
-        msg: 'Bye'
-      }
     }
   }
 })
 ```
 
 **Result:**
-<ul id="repeat-object" class="demo"><li v-repeat="primitiveValues">{&#123;$key&#125;} : {&#123;$value&#125;}</li><li>===</li><li v-repeat="objectValues">{&#123;$key&#125;} : {&#123;msg&#125;}</li></ul>
+
+{% raw %}
+<ul id="repeat-object" class="demo">
+  <li v-for="value in object">
+    {{ $key }} : {{ value }}
+  </li>
+</ul>
 <script>
 new Vue({
   el: '#repeat-object',
   data: {
-    primitiveValues: {
+    object: {
       FirstName: 'John',
       LastName: 'Doe',
       Age: 30
-    },
-    objectValues: {
-      one: {
-        msg: 'Hello'
-      },
-      two: {
-        msg: 'Bye'
-      }
     }
   }
 })
 </script>
+{% endraw %}
 
-<p class="tip">In ECMAScript 5 there is no way to detect when a new property is added to an Object, or when a property is deleted from an Object. To deal with that, observed objects will be augmented with three methods: `$add(key, value)`, `$set(key, value)` and `$delete(key)`. These methods can be used to add / delete properties from observed objects while triggering the desired View updates. The difference between `$add` and `$set` is that `$add` will return early if the key already exists on the object, so just calling `obj.$add(key)` won't overwrite the existing value with `undefined`.</p>
+<p class="tip">When iterating over an Object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guarunteed to be consistent in all JavaScript engine implementations.</p>
 
-## Iterating Over a Range
+## Range v-for
 
-`v-repeat` can also take an integer Number. In this case it will repeat the template that many times.
+`v-for` can also take an integer Number. In this case it will repeat the template that many times.
 
 ``` html
-<div id="range">
-    <div v-repeat="val">Hi! {{$index}}</div>
+<div>
+  <span v-for="n in 10">{{ n }} </span>
 </div>
 ```
 
-``` js
-new Vue({
-  el: '#range',
-  data: {
-    val: 3
-  }
-})
-```
-**Result:**
-<ul id="range" class="demo"><li v-repeat="val">Hi! {&#123;$index&#125;}</li></ul>
+Result:
+
+{% raw %}
+<div id="range" class="demo">
+  <span v-for="n in 10">{{ n }} </span>
+</div>
 <script>
-new Vue({
-  el: '#range',
-  data: { val: 3 }
-});
+new Vue({ el: '#range' })
 </script>
+{% endraw %}
 
-## Array Filters
+## Displaying Filtered/Sorted Results
 
-Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. Vue provides two built-in filters to simplify such usage: `filterBy` and `orderBy`. Check out their [documentations](/api/filters.html#filterBy) for more details.
+Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. There are two options to achieve this:
 
-Next up: [Listening for Events](/guide/events.html).
+1. Create a computed property that returns the filtered or sorted Array;
+2. Use the built-in `filterBy` and `orderBy` filters.
+
+A computed property would give you finer-grained control and more flexibility since it's full JavaScript; but the filters can be more convenient for common use cases. For detailed usage of the Array filters, check out their [documentation](/api/filters.html#filterBy).
+
+Next up: [Form Input Bindings](forms.html).
