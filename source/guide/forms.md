@@ -330,4 +330,4 @@ new Vue({
 
 Note that the `debounce` param does not debounce the user's input events: it debounces the "write" operation to the underlying data. Therefore you should use `vm.$watch()` to react to data changes when using `debounce`. For debouncing real DOM events you should use the [debounce filter](/api/filters.html#debounce).
 
-We've covered a lot of ground so far. By now you should already be able to build some simple, dynamic interfaces with Vue.js, but you may still feel that the whole reactive system is a bit like magic. It is time that we talk about it in more details. Next up: [Reactivity In Depth](reactivity.html).
+We've covered most of the basics now. It's time to jump into the [Component System](components.html)!

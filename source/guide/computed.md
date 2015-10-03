@@ -129,44 +129,8 @@ computed: {
 // ...
 ```
 
-### Computed Property Caching
+Now when you call `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
 
-You may think that computed properties behave just like getters - every time you access it, the getter function is re-evaluated. That is not the case. Vue.js computed properties are cached by default and lazily re-evaluated only when one of its reactive dependencies have changed.
+Next, let's learn about [Class and Style Bindings](class-and-style.html).
 
-Imagine we have an expensive computed property A, which requires looping through a huge Array and doing a lot of computations. Then, we may have other computed properties that in turn depend on A. Without caching, we'd be calling A's getter many more times than necessary and this could potentially cause performance issues. With caching, A's value will be cached as long as its dependencies haven't changed, and accessing it many times will not trigger unnecessary computations.
-
-However, it is important to understand what is considered a "reactive dependency":
-
-``` js
-var vm = new Vue({
-  data: {
-    msg: 'hi'
-  },
-  computed: {
-    example: {
-      return Date.now() + this.msg
-    }
-  }
-})
-```
-
-In the example above, the computed property relies on `vm.msg`. Because this is an observed data property on the Vue instance, it is considered a reactive dependency. Whenever `vm.msg` is changed, `vm.example`'s value will be re-evaluated.
-
-However, `Date.now()` is **not** a reactive dependency, because it has nothing to do with Vue's data observation system. Therefore, when you programatically access `vm.example`, you will find the timestamp to remain the same unless `vm.msg` triggered a re-evaluation.
-
-Sometimes you may want to preserve the simple getter-like behavior, where every time you access `vm.example` it is simply re-evaluated. You can do that by turning off caching for a specific computed property:
-
-``` js
-computed: {
-  example: {
-    cache: false,
-    get: function () {
-      return Date.now() + this.msg
-    }
-  }
-}
-```
-
-Now, every time you access `vm.example`, the timestamp will be up-to-date. **However, note this only affects programmatic access inside JavaScript; data-bindings are still dependency-driven.** When you bind to a computed property in the template as `{% raw %}{{example}}{% endraw %}`, the DOM will only be updated when a reactive dependency has changed.
-
-Enough about computed properties! Next, let's learn about [Class and Style Bindings](class-and-style.html).
+> The technical details behind how computed properties are updated are [discussed in another section](reactivity.html#Inside_Computed_Properties) dedicated to the reactivity system in Vue.js.
