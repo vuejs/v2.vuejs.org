@@ -61,7 +61,7 @@ exampleVM.$el === document.querySelector('#example-1') // true
 exampleVM.$data === exampleData // true
 ```
 
-Vue.js uses the [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) method to convert each property on the `exampleData` object into a pair of getter and setter. This enables Vue.js to seamlessly detect when a property is accessed or modified, and update the DOM accordingly.
+Vue.js uses the [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) method to convert each property on the `exampleData` object into a pair of getter and setter. This enables Vue.js to seamlessly detect when a property is accessed or modified, and update the DOM accordingly. The DOM changes are buffered in an asynchronous update queue so that Vue.js can perform DOM manipulations in the most efficient order and at the best timing.
 
 Note that we didn't have to write any DOM-manipulating code: the HTML template, enhanced with the bindings, is a declarative mapping of the underlying data state, which is in turn just plain JavaScript objects. Our view is entirely data-driven.
 
