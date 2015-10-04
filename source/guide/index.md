@@ -3,7 +3,7 @@ type: guide
 order: 2
 ---
 
-Vue.js is a library for building interactive web interfaces. The goal of Vue.js is to provide the benefits of **reactive data binding** and **composable view components** with an API that is as simple as possible.
+Vue.js (pronounced /vjuː/, like **view**) is a library for building interactive web interfaces. The goal of Vue.js is to provide the benefits of **reactive data binding** and **composable view components** with an API that is as simple as possible.
 
 Vue.js itself is not a full-blown framework - it is focused on the view layer only. It is therefore very easy to pick up and to integrate with other libraries or existing projects. On the other hand, when used in combination with proper tooling and supporting libraries, Vue.js is also perfectly capable of powering sophisticated Single-Page Applications.
 
@@ -52,16 +52,7 @@ var exampleVM = new Vue({
 </script>
 {% endraw %}
 
-This looks pretty similar to just rendering a template, but Vue.js has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open up your browser developer console and modify `exampleData.name`. You should see the rendered example above update accordingly. In addition, the Vue instance `exampleVM` proxies the properties of the data object it observes, so modifying `exampleVM.name` has the exact same effect.
-
-The Vue instance also holds reference to the DOM element it is managing and the data object it is observing:
-
-``` js
-exampleVM.$el === document.querySelector('#example-1') // true
-exampleVM.$data === exampleData // true
-```
-
-Vue.js uses the [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) method to convert each property on the `exampleData` object into a pair of getter and setter. This enables Vue.js to seamlessly detect when a property is accessed or modified, and update the DOM accordingly. The DOM changes are buffered in an asynchronous update queue so that Vue.js can perform DOM manipulations in the most efficient order and at the best timing.
+This looks pretty similar to just rendering a template, but Vue.js has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open up your browser developer console and modify `exampleData.name`. You should see the rendered example above update accordingly.
 
 Note that we didn't have to write any DOM-manipulating code: the HTML template, enhanced with the bindings, is a declarative mapping of the underlying data state, which is in turn just plain JavaScript objects. Our view is entirely data-driven.
 
@@ -108,63 +99,24 @@ The Component System is another important concept in Vue.js, becaues it's an abs
 
 ![Component Tree](/images/components.png)
 
-And a typical large application built with Vue.js would form exactly what is on the right - a tree of components. We will talk a lot more about components later in the guide, but for now let's get a taste of what the API looks like. In order to create a component, we need to:
-
-1. Extend the base `Vue` constructor to define a component class;
-
-2. Register this extended constructor as a component, so that it can be used inside templates in the form of a **Custom Element**.
-
-Example:
-
-``` js
-// Define a component class
-var MyComponent = Vue.extend({
-  template: '<div>Hello MyComponent!</div>'
-})
-// Register it globally.
-// It is also possible to register a local-only component.
-Vue.component('my-component', MyComponent)
-```
-
-Once we've registered our component, we can then use it in another Vue instance:
+In fact, a typical large application built with Vue.js would form exactly what is on the right - a tree of components. We will talk a lot more about components later in the guide, but here's an (imaginary) example of what an app's template would look like with components:
 
 ``` html
-<div id="component-example">
-  <!-- use the registered component -->
-  <my-component></my-component>
+<div id="app">
+  <app-nav></app-nav>
+  <app-view>
+    <app-sidebar></app-sidebar>
+    <app-content></app-content>
+  </app-view>
 </div>
 ```
 
-``` js
-// create the demo instance
-var componentExampleVM = new Vue({
-  el: '#component-example'
-})
-```
+You may have noticed that Vue.js components are very similar to **Custom Elements**, which is part of the [Web Components Spec](http://www.w3.org/wiki/WebComponents/). In fact, Vue.js' component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
 
-Result:
-
-{% raw %}
-<div id="component-example" class="demo">
-  <my-component></my-component>
-</div>
-<script>
-var MyComponent = Vue.extend({
-  template: '<div>Hello MyComponent!</div>'
-})
-Vue.component('my-component', MyComponent)
-var componentExampleVM = new Vue({
-  el: '#component-example'
-})
-</script>
-{% endraw %}
-
-You may have noticed that Vue.js component usage is very similar to how you would use a **Custom Element**, which is part of the [Web Components Spec](http://www.w3.org/wiki/WebComponents/). In fact, Vue.js' component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
-
-1. The Web Components Spec is still very much a work in progress, and is not natively implemented in every browser. In comparison, Vue.js components don't require any polyfills and works consistently in all supported browsers (IE9 and above).
+1. The Web Components Spec is still very much a work in progress, and is not natively implemented in every browser. In comparison, Vue.js components don't require any polyfills and works consistently in all supported browsers (IE9 and above). When needed, Vue.js components can also be wrapped inside a native custom element.
 
 2. Vue.js components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and dynamic component switching with transition effects.
 
-The component system is the foundation for building large apps with Vue.js. In addition, the Vue.js ecosystem also provides advanced tooling and various supporting libraries for building large SPAs, but you don't have to use them if you don't need them - think of it as a set of swappable parts that work nicely together instead of a monolithic framework.
+The component system is the foundation for building large apps with Vue.js. In addition, the Vue.js ecosystem also provides advanced tooling and various supporting libraries that can be put together to create a more "framework" like system.
 
-We have briefly introduced the two most important concepts in Vue.js, and will obviously cover more details on each topic in later sections of this guide. But for now, let's go back to ground zero and start with the basics: [Data Binding Syntax](/guide/syntax.html).
+We have briefly introduced the two most important concepts in Vue.js, and will obviously cover more details on each topic in later sections of this guide. But for now, let's go back to ground zero and start with the basics: [The Vue Instance](instance.html).
