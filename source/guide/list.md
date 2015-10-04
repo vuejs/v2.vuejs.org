@@ -1,6 +1,6 @@
 title: List Rendering
 type: guide
-order: 8
+order: 9
 ---
 
 ## v-for

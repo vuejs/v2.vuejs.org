@@ -1,6 +1,6 @@
 title: Computed Properties
 type: guide
-order: 4
+order: 5
 ---
 
 In-template expressions are very convenient, but they are really meant for simple operations only. Templates are meant to describe the structure of your view. Putting too much logic into your templates can make them bloated and hard to maintain. This is why Vue.js limits binding expressions to one expression only. For any logic that requires more than one expression, you should use a **computed property**.

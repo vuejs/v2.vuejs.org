@@ -1,6 +1,6 @@
 title: Form Input Bindings
 type: guide
-order: 9
+order: 10
 ---
 
 ## Basics Usage

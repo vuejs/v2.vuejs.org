@@ -1,6 +1,6 @@
 title: Data Binding Syntax
 type: guide
-order: 3
+order: 4
 ---
 
 Vue.js uses a DOM-based templating implementation. This means that all Vue.js templates are essentially valid, parsable HTML enhanced with some special attributes. Keep that in mind, since this makes Vue templates fundamentally different from string-based templates.

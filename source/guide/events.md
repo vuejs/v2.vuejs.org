@@ -1,6 +1,6 @@
 title: Methods and Event Handling
 type: guide
-order: 6
+order: 7
 ---
 
 ## Method Handler
