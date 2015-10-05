@@ -1,6 +1,6 @@
 title: List Rendering
 type: guide
-order: 9
+order: 8
 ---
 
 ## v-for
@@ -281,4 +281,4 @@ Sometimes we only need to display a filtered or sorted version of the Array with
 
 A computed property would give you finer-grained control and more flexibility since it's full JavaScript; but the filters can be more convenient for common use cases. For detailed usage of the Array filters, check out their [documentation](/api/filters.html#filterBy).
 
-Next up: [Form Input Bindings](forms.html).
+Next up: [Methods and Event Handling](events.html).

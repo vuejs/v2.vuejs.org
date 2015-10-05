@@ -607,7 +607,17 @@ Vue.component('async-webpack-example', function (resolve) {
 
 When you use the `template` option, the content of the template will replace the element the Vue instance is mounted on. It is therefore recommended to always include a single root-level element in templates.
 
-If your template contains more than one top-level element or only plain text, it will still render correctly. However, the instance will become a **fragment instance** which doesn't have a root element. A fragment instance's `$el` will point to an "anchor node", which is an empty Text node (or a Comment node in debug mode). What's probably more important though, is that directives, transitions and attributes (except for props) on the component element will not take any effect - because there is no root element to bind them to:
+There are a few conditions that will turn a Vue instance into a **fragment instance**:
+
+1. Template contains only another component.
+2. Template contains multiple top-level elements.
+3. Template contains only plain text.
+4. Template contains only a `<partial>`.
+5. Template root node has `v-if` or `v-for`.
+
+The reason is that all of the above cause the instance to have an unknown number of top-level elements, so it has to manage its DOM content as a fragment. A fragment instance will still render the content correctly. However, it will **not** have a root node, and its `$el` will point to an "anchor node", which is an empty Text node (or a Comment node in debug mode).
+
+What's more important though, is that **directives, transitions and attributes (except for props) on the component element will be ignored**, because there is no root element to bind them to:
 
 ``` html
 <!-- doesn't work due to no root element -->

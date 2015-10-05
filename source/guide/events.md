@@ -1,6 +1,6 @@
 title: Methods and Event Handling
 type: guide
-order: 7
+order: 9
 ---
 
 ## Method Handler
@@ -174,4 +174,4 @@ You might be concerned that this whole event listening approach violates the goo
 2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
 3. When a ViewModel is destroyed, all event listeners are automatically removed. You don't need to worry about cleaning it up yourself.
 
-Next up: [Conditional Rendering](conditional.html).
+Next up: [Form Input Bindings](forms.html).

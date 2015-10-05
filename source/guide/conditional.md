@@ -1,6 +1,6 @@
 title: Conditional Rendering
 type: guide
-order: 8
+order: 7
 ---
 
 ## v-if
