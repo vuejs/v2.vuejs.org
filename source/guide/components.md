@@ -105,8 +105,6 @@ var Parent = Vue.extend({
 })
 ```
 
-However, note that `Vue.component()` does **not** return the extended constructor. If you need access to the created component constructor, you should always use `Vue.extend()`.
-
 ### Component Option Caveats
 
 Most of the options that can be passed into the Vue constructor can be used in `Vue.extend()`, with two special cases: `data` and `el`. Imagine we simply pass an object as `data` to `Vue.extend()`:
