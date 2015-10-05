@@ -118,7 +118,9 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-## Mutation Methods
+## Array Change Detection
+
+### Mutation Methods
 
 Vue.js wraps an observed Array's mutation methods so they will also trigger View updates. The wrapped methods are:
 
@@ -132,7 +134,7 @@ Vue.js wraps an observed Array's mutation methods so they will also trigger View
 
 You can open the console and play with the previous examples' `items` array by calling its mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
 
-## Replacing an Array
+### Replacing an Array
 
 Mutation methods, as the name suggests, mutate the original Array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original Array but **always return a new Array**. When working with non-mutating methods, you can just replace the old Array with the new one:
 
@@ -144,7 +146,7 @@ example1.items = example1.items.filter(function (item) {
 
 You might think this will cause Vue.js to throw away the existing DOM and re-render the entire list - luckily that is not the case. Vue.js implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
 
-## Array Replacement Optimization
+### track-by
 
 In some cases, you might need to replace the Array with completely new objects - e.g. ones created from an API call. Since by default `v-for` determines the reusability of existing scopes and DOM elements by tracking the identity of its data object, this could cause the entire list to be re-rendered. However, if each of your data objects has a unique id property, then you can use a `track-by` special attribute to give Vue.js a hint so that it can reuse existing instances as much as possible.
 
@@ -169,9 +171,13 @@ Then you can give the hint like this:
 
 Later on, when you replace the `items` array and Vue.js encounters a new object with `_uid: '88f869d'`, it knows it can reuse the existing scope and DOM elements associated with the same `_uid`.
 
-If you don't have a unique key to track by, you can also use `track-by="$index"`, which is essentially telling Vue.js "don't move the DOM nodes around; just morph them in place." This can make Array replacement extremely efficient, but you should use this feature with caution. Because DOM nodes are no longer moved to reflect the change in order, temporary state like DOM input values and component private state can become out of sync. So, avoid using `track-by="$index"` if the `v-for` block contains form input elements or child components.
+### track-by $index
 
-## Array Observation Caveats
+If you don't have a unique key to track by, you can also use `track-by="$index"`, which will force `v-for` into in-place update mode: fragments are no longered moved around, they simply get flushed with the new value at the corresponding index. This mode can also handle duplicate values in the source array.
+
+This can make Array replacement extremely efficient, but it comes at a tradeoff. Because DOM nodes are no longer moved to reflect the change in order, temporary state like DOM input values and component private state can become out of sync. So, be careful when using `track-by="$index"` if the `v-for` block contains form input elements or child components.
+
+### Caveats
 
 Due to limitations of JavaScript, Vue.js **cannot** detect the following changes to an Array:
 
