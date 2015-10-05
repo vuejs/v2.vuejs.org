@@ -33,7 +33,7 @@ Although you can create extended instances imperatively, in most cases you will 
 
 ## Properties and Methods
 
-Each Vue instance proxies all the properties in its `data` object:
+Each Vue instance **proxies** all the properties found in its `data` object:
 
 ``` js
 var data = { a: 1 }
@@ -74,56 +74,23 @@ Consult the API reference for the full list of instance properties and methods.
 
 ## Instance Lifecycle
 
-Each Vue instance goes through a series of initialization phases when it is created - for example, it needs to setup data observation, compile the template, and create the necessary data bindings. Along the way, it will invoke some **lifecycle hooks**, for example, the `created` hook:
+Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to setup data observation, compile the template, and create the necessary data bindings. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance created:
 
 ``` js
 var vm = new Vue({
   data: {
     a: 1
   },
-  // the `created` hook is called after data
-  // has been observed.
   created: function () {
     // `this` points to the vm instance
-    console.log(this.a) // -> 1
+    console.log('a is: ' + this.a)
   }
 })
+// -> "a is: 1"
 ```
 
-Here's a diagram that can help you better envision the lifecycle of a Vue instance:
+There are also other hooks which will be called at different stages of the instance's lifecycle, inlcuding `beforeCompile`, `compiled`, `ready`, `beforeDestroy` and `destroyed`. All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. Some users may have been wondering where does the concept of "controllers" live in the Vue.js world, and the answer is: there are no controllers in Vue.js. Your custom logic for a component would be split among these lifecycle hooks.
 
-![Vue instance lifecycle](/images/lifecycle.png)
+You can consult the API reference for more details on the instance lifecycle and when these hooks are called.
 
-## Fragment Instance
-
-When you use the `template` option, the content of the template will replace the element the Vue instance is mounted on. It is therefore recommended to always include a single root-level element in templates.
-
-If your template contains more than one top-level element:
-
-``` js
-Vue.component('example', {
-  template:
-    '<div>A</div>' +
-    '<div>B</div>'
-})
-```
-
-Or, if the template contains only text:
-
-``` js
-Vue.component('example', {
-  template: 'Hello world'
-})
-```
-
-In both cases, the instance will become a **fragment instance** which doesn't have a root element. A fragment instance's `$el` will point to an "anchor node", which is an empty Text node (or a Comment node in debug mode). What's probably more important though, is that directives, transitions and attributes (except for props) on the component element will not take any effect - because there is no root element to bind them to:
-
-``` html
-<!-- doesn't work due to no root element -->
-<example v-show="ok" v-transition="fade"></example>
-
-<!-- props work as intended -->
-<example prop="{{someData}}"></example>
-```
-
-There are, of course, valid use cases for fragment instances, but it is in general a good idea to give your component template a single root element. It ensures directives and attributes on the component element to be properly transferred, and also results in slightly better performance.
+Next, let's take a look at the [Data Binding Syntax](syntax.html).
