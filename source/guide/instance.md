@@ -89,8 +89,8 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, inlcuding `beforeCompile`, `compiled`, `ready`, `beforeDestroy` and `destroyed`. All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. Some users may have been wondering where does the concept of "controllers" live in the Vue.js world, and the answer is: there are no controllers in Vue.js. Your custom logic for a component would be split among these lifecycle hooks.
+There are also other hooks which will be called at different stages of the instance's lifecycle, for example `compiled`, `ready` and `destroyed`. All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. Some users may have been wondering where does the concept of "controllers" live in the Vue.js world, and the answer is: there are no controllers in Vue.js. Your custom logic for a component would be split among these lifecycle hooks.
 
 You can consult the API reference for more details on the instance lifecycle and when these hooks are called.
 
-Next, let's take a look at the [Data Binding Syntax](syntax.html).
+Now that we know how to create Vue instances, let's take a look at the [Data Binding Syntax](syntax.html).
