@@ -617,17 +617,20 @@ There are a few conditions that will turn a Vue instance into a **fragment insta
 
 The reason is that all of the above cause the instance to have an unknown number of top-level elements, so it has to manage its DOM content as a fragment. A fragment instance will still render the content correctly. However, it will **not** have a root node, and its `$el` will point to an "anchor node", which is an empty Text node (or a Comment node in debug mode).
 
-What's more important though, is that **directives, transitions and attributes (except for props) on the component element will be ignored**, because there is no root element to bind them to:
+What's more important though, is that **non-terminal directives, transitions and attributes (except for props) on the component element will be ignored**, because there is no root element to bind them to:
 
 ``` html
 <!-- doesn't work due to no root element -->
 <example v-show="ok" transition="fade"></example>
 
-<!-- props work as intended -->
+<!-- props work -->
 <example :prop="someData"></example>
+
+<!-- v-if and v-for work as well, but without transitions -->
+<example v-if="ok"></example>
 ```
 
-There are, of course, valid use cases for fragment instances, but it is in general a good idea to give your component template a single root element. It ensures directives and attributes on the component element to be properly transferred, and also results in slightly better performance.
+There are, of course, valid use cases for fragment instances, but it is in general a good idea to give your component template a single, plain root element. It ensures directives and attributes on the component element to be properly transferred, and also results in slightly better performance.
 
 ### Inline Template
 
