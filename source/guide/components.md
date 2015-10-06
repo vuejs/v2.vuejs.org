@@ -474,7 +474,7 @@ Despite the existence of props and events, sometimes you might still need to dir
 
 ``` js
 var parent = new Vue({ el: '#parent' })
-// access child component
+// access child component instance
 var child = parent.$.profile
 ```
 
@@ -482,21 +482,42 @@ When `v-ref` is used together with `v-for`, the ref you get will be an Array or 
 
 ## Content Distribution with Slots
 
-When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component (similar to the Angular concept of "transclusion".) Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content.
+When using components, it is often desired to compose them like this:
+
+``` html
+<app>
+  <app-header></app-header>
+  <app-footer></app-footer>
+</app>
+```
+
+There are two things to note here:
+
+1. The `<app>` component do not know what content may be present inside its mount target. It is decided by whatever parent component that is using `<app>`.
+
+2. The `<app>` component very likely has its own template.
+
+To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after with the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
 
 ### Compilation Scope
 
-Every Vue.js component is a separate Vue instance with its own scope. It's important to understand how scopes work when using components. The rule of thumb is:
+Before we dig into the API, let's first clarify which scope the contents are compiled in. Imagine a template like this:
 
-> If something appears in the parent template, it will be compiled in parent scope; if it appears in child template, it will be compiled in child scope.
+``` html
+<child>
+  {{ msg }}
+</child>
+```
+
+Should the `msg` be bound to the parent's data or the child data? The answer is parent. A simple rule of thumb for component scope is:
+
+> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in child scope.
 
 A common mistake is trying to bind a directive to a child property/method in the parent template:
 
 ``` html
-<div id="demo">
-  <!-- does NOT work -->
-  <child-component v-on="click: childMethod"></child-component>
-</div>
+<!-- does NOT work -->
+<child v-show="someChildProperty"></child>
 ```
 
 If you need to bind child-scope directives on a component root node, you should do so in the child component's own template:
@@ -504,47 +525,32 @@ If you need to bind child-scope directives on a component root node, you should 
 ``` js
 Vue.component('child-component', {
   // this does work, because we are in the right scope
-  template: '<div v-on="click: childMethod">Child</div>',
-  methods: {
-    childMethod: function () {
-      console.log('child method invoked!')
+  template: '<div v-show="someChildProperty">Child</div>',
+  data: function () {
+    return {
+      someChildProperty: true
     }
   }
 })
 ```
 
-Similarly, HTML content inside a component container are considered "transclusion content". They will not be inserted anywhere unless the child template contains at least one `<content></content>` outlet. The inserted contents are also compiled in parent scope:
-
-``` html
-<div>
-  <child-component>
-    <!-- compiled in parent scope -->
-    <p>{{msg}}</p>
-  </child-component>
-</div>
-```
-
-You can use the `inline-template` attribute to indicate you want the content to be compiled in the child scope as the child's template:
-
-``` html
-<div>
-  <child-component inline-template>
-    <!-- compiled in child scope -->
-    <p>{{msg}}</p>
-  </child-component>
-</div>
-```
+Similarly, distributed content will be compiled in the parent scope.
 
 ### Single Slot
 
-When there is only one `<content>` tag with no attributes, the entire original content will be inserted at its position in the DOM and replaces it. Anything originally inside the `<content>` tags is considered **fallback content**. Fallback content will only be displayed if the hosting element is empty and has no content to be inserted. For example:
+Parent content will be **discarded** unless the child component template contains at least one `<slot>` outlet. When there is only one slot with no attributes, the entire content fragment will be inserted at its position in the DOM, replacing the slot itself.
 
-Template for `my-component`:
+Anything originally inside the `<content>` tags is considered **fallback content**. Fallback content is compiled in the child scope and will only be displayed if the hosting element is empty and has no content to be inserted.
+
+Suppose we have a component with the following template:
 
 ``` html
 <div>
   <h1>This is my component!</h1>
-  <content>This will only be displayed if no content is inserted</content>
+  <slot>
+    This will only be displayed if there is no content
+    to be distributed.
+  </slot>
 </div>
 ```
 
@@ -567,19 +573,19 @@ The rendered result will be:
 </div>
 ```
 
-### Multiple Slots
+### Named Slots
 
-`<content>` elements have a special attribute, `select`, which expects a CSS selector. You can have multiple `<content>` insertion points with different `select` attributes, and each of them will be replaced by the elements matching that selector from the original content.
+`<slot>` elements have a special attribute, `name`, which can be used to further customize how content should be distributed. You can have multiple slots with different names. A named slot will match any element that has a corresponding `slot` attribute in the content fragment.
 
-<p class="tip">Starting in 0.11.6, `<content>` selectors can only match top-level children of the host node. This keeps the behavior consistent with the Shadow DOM spec and avoids accidentally selecting unwanted nodes in nested transclusions.</p>
+There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. If there is no default slot, unmatched content will be discarded.
 
 For example, suppose we have a `multi-insertion` component with the following template:
 
 ``` html
 <div>
-  <content select="p:nth-child(3)"></content>
-  <content select="p:nth-child(2)"></content>
-  <content select="p:nth-child(1)"></content>
+  <slot name="one"></slot>
+  <slot></slot>
+  <slot name="two"></slot>
 </div>
 ```
 
@@ -587,9 +593,9 @@ Parent markup:
 
 ``` html
 <multi-insertion>
-  <p>One</p>
-  <p>Two</p>
-  <p>Three</p>
+  <p slot="one">One</p>
+  <p slot="two">Two</p>
+  <p>Default A</p>
 </multi-insertion>
 ```
 
@@ -597,13 +603,13 @@ The rendered result will be:
 
 ``` html
 <div>
-  <p>Three</p>
-  <p>Two</p>
-  <p>One</p>
+  <p slot="one">One</p>
+  <p>Default A</p>
+  <p slot="two">Two</p>
 </div>
 ```
 
-The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
+The content distribution API is a very useful mechanism when designing components that are meant to be composed together.
 
 ## Dynamic Components
 
