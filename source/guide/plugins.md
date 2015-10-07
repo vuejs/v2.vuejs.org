@@ -48,5 +48,3 @@ Vue.use(require('my-plugin'), {
 - [vue-touch](https://github.com/vuejs/vue-touch): Add touch-gesture directives using Hammer.js.
 - [vue-element](https://github.com/vuejs/vue-element): Register Custom Elements with Vue.js.
 - [List of User Contributed Tools](https://github.com/yyx990803/vue/wiki/User-Contributed-Components-&-Tools)
-
-Next: [Tips & Best Practices](/guide/best-practices.html).

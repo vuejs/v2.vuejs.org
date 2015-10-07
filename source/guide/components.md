@@ -808,5 +808,3 @@ When the `inline-template` special attribute is present on a child component, th
 ```
 
 However, `inline-template` makes the scope of your templates harder to reason about, and makes the component's template compilation un-cachable. As a best practice, prefer defining templates inside the component using the `template` option.
-
-Next: [Applying Transition Effects](/guide/transitions.html).

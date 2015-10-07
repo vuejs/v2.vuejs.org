@@ -3,7 +3,7 @@ type: guide
 order: 13
 ---
 
-One of Vue.js' most distinct features is the unobtrusive reactive system - models are just plain JavaScript objects, modify it and the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-lvel details of Vue.js' reactivity system.
+We've covered most of the basics - now it's time to take a deep dive! One of Vue.js' most distinct features is the unobtrusive reactive system - models are just plain JavaScript objects, modify it and the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-lvel details of Vue.js' reactivity system.
 
 ## How Changes Are Tracked
 
@@ -168,5 +168,3 @@ computed: {
 ```
 
 Now, every time you access `vm.example`, the timestamp will be up-to-date. **However, note this only affects programmatic access inside JavaScript; data-bindings are still dependency-driven.** When you bind to a computed property in the template as `{% raw %}{{example}}{% endraw %}`, the DOM will only be updated when a reactive dependency has changed.
-
-We've covered almost everything about Vue.js itself! Next, let's learn about how to extend Vue with your own [Custom Directives](custom-directive.html).

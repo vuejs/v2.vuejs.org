@@ -47,7 +47,3 @@ $ bower install vue
 ## AMD Module Loaders
 
 The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
-
-## Ready?
-
-[Let's Get Started](/guide/).

@@ -286,5 +286,3 @@ Sometimes we only need to display a filtered or sorted version of the Array with
 2. Use the built-in `filterBy` and `orderBy` filters.
 
 A computed property would give you finer-grained control and more flexibility since it's full JavaScript; but the filters can be more convenient for common use cases. For detailed usage of the Array filters, check out their [documentation](/api/filters.html#filterBy).
-
-Next up: [Methods and Event Handling](events.html).

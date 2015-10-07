@@ -329,5 +329,3 @@ new Vue({
 {% endraw %}
 
 Note that the `debounce` param does not debounce the user's input events: it debounces the "write" operation to the underlying data. Therefore you should use `vm.$watch()` to react to data changes when using `debounce`. For debouncing real DOM events you should use the [debounce filter](/api/filters.html#debounce).
-
-We've covered most of the basics now. It's time to jump into the [Component System](components.html)!

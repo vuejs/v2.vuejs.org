@@ -100,5 +100,3 @@ Vue.filter('concat', function (value, input) {
 For this simple example above, you can achieve the same result with just an expression, but for more complicated procedures that need more than one statement, you need to put them either in a computed property or a custom filter.
 
 The built-in `filterBy` and `orderBy` filters are both filters that perform non-trivial work on the Array being passed in and relies on the current state of the owner Vue instance.
-
-Alright! Now it's time to learn how the [Component System](/guide/components.html) works.

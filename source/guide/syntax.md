@@ -158,5 +158,3 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 ```
 
 They may look a bit different from "valid" HTML, but all Vue.js supported browsers can parse it correctly, and they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely apprecaite it when you learn more about its usage later.
-
-Now that we've grokked the syntax, let's talk about [Computed Properties](computed.html).

@@ -256,5 +256,3 @@ We can write:
 Element directives cannot accept arguments or expressions, but it can read the element's attributes to determine its behavior.
 
 A big difference from normal directives is that element directives are **terminal**, which means once Vue encounters an element directive, it will leave that element and all its children alone - only the element directive itself will be able to manipulate that element and its children. 
-
-Next, we'll see how to [write a custom filter](/guide/custom-filter.html).

@@ -379,5 +379,3 @@ Vue.transition('stagger', {
 Example:
 
 <iframe width="100%" height="200" style="margin-left:10px" src="http://jsfiddle.net/yyx990803/mvo99bse/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-Next: [Building Larger Apps](/guide/application.html).

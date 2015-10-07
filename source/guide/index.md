@@ -118,5 +118,3 @@ You may have noticed that Vue.js components are very similar to **Custom Element
 2. Vue.js components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and dynamic component switching with transition effects.
 
 The component system is the foundation for building large apps with Vue.js. In addition, the Vue.js ecosystem also provides advanced tooling and various supporting libraries that can be put together to create a more "framework" like system.
-
-We have briefly introduced the two most important concepts in Vue.js, and will obviously cover more details on each topic in later sections of this guide. But for now, let's go back to ground zero and start with the basics: [The Vue Instance](instance.html).

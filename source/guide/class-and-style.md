@@ -116,5 +116,3 @@ The Array syntax for `v-bind:style` allows you to apply multiple style objects t
 ### Auto-prefixing
 
 When you use a CSS property that requires vendor prefxes in `v-bind:style`, for example `transform`, Vue.js will automatically detect and add appropriate prefixes to the applied styles.
-
-Next, let's learn about [Conditional Rendering](conditional.html).

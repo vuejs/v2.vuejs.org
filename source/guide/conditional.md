@@ -60,5 +60,3 @@ When a `v-if` block is toggled, Vue.js will have to perform a partial compilatio
 In comparison, `v-show` is much simpler - the element is always compiled and preserved, with just simple CSS-based toggling.
 
 Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
-
-Next, let's talk about [List Rendering](list.html).
