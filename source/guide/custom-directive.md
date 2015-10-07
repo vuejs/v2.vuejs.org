@@ -3,12 +3,20 @@ type: guide
 order: 14
 ---
 
-## The Basics
+## Basics
 
-Vue.js allows you to register custom directives, essentially enabling you to teach Vue new tricks on how to map data changes to DOM behavior. You can register a global custom directive with the `Vue.directive(id, definition)` method, passing in a **directive id** followed by a **definition object**. A definition object can provide several hook functions (all optional):
+In addition to the default set of directives shipped in core, Vue.js also allows you to register custom directives. Custom directives provide a mechanism for mapping data changes to arbitrary DOM behavior.
+
+You can register a global custom directive with the `Vue.directive(id, definition)` method, passing in a **directive id** followed by a **definition object**. You can also register a local custom directive by including it in a component's `directives` option.
+
+### Hook Functions
+
+A definition object can provide several hook functions (all optional):
 
 - **bind**: called only once, when the directive is first bound to the element.
+
 - **update**: called for the first time immediately after `bind` with the initial value, then again whenever the binding value changes. The new value and the previous value are provided as the argument.
+
 - **unbind**: called only once, when the directive is unbound from the element.
 
 **Example**
@@ -31,7 +39,7 @@ Vue.directive('my-directive', {
 })
 ```
 
-Once registered, you can use it in Vue.js templates like this (you need to add the Vue.js prefix to it):
+Once registered, you can use it in Vue.js templates like this (remember to add the `v-` prefix):
 
 ``` html
 <div v-my-directive="someValue"></div>
@@ -45,21 +53,23 @@ Vue.directive('my-directive', function (value) {
 })
 ```
 
+### Directive Instance Properties
+
 All the hook functions will be copied into the actual **directive object**, which you can access inside these functions as their `this` context. The directive object exposes some useful properties:
 
 - **el**: the element the directive is bound to.
 - **vm**: the context ViewModel that owns this directive.
 - **expression**: the expression of the binding, excluding arguments and filters.
 - **arg**: the argument, if present.
-- **raw**: the raw, unparsed expression.
 - **name**: the name of the directive, without the prefix.
+- **descriptor**: an object that contains the parsing result of the entire directive.
 
-<p class="tip">You should treat all these properties as read-only and refrain from changing them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.</p>
+<p class="tip">You should treat all these properties as read-only and never modify them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.</p>
 
 An example of a custom directive using some of these properties:
 
 ``` html
-<div id="demo" v-demo="LightSlateGray : msg"></div>
+<div id="demo" v-demo:hello="msg"></div>
 ```
 
 ``` js
@@ -71,7 +81,6 @@ Vue.directive('demo', {
   update: function (value) {
     this.el.innerHTML =
       'name - '       + this.name + '<br>' +
-      'raw - '        + this.raw + '<br>' +
       'expression - ' + this.expression + '<br>' +
       'argument - '   + this.arg + '<br>' +
       'value - '      + value
@@ -87,17 +96,15 @@ var demo = new Vue({
 
 **Result**
 
-<div id="demo" v-demo="LightSlateGray : msg"></div>
+<div id="demo" v-demo:hello="msg"></div>
 <script>
 Vue.directive('demo', {
   bind: function () {
-    this.el.style.color = '#fff'
-    this.el.style.backgroundColor = this.arg
+    console.log('demo bound!')
   },
   update: function (value) {
     this.el.innerHTML =
       'name - ' + this.name + '<br>' +
-      'raw - ' + this.raw + '<br>' +
       'expression - ' + this.expression + '<br>' +
       'argument - ' + this.arg + '<br>' +
       'value - ' + value
@@ -106,61 +113,60 @@ Vue.directive('demo', {
 var demo = new Vue({
   el: '#demo',
   data: {
-    msg: 'hello!'
+    msg: 'world!'
   }
 })
 </script>
 
-### Multiple Clauses
+### Object Literals
 
-Comma separated arguments are bound as multiple directive instances. In the following example, directive methods are called twice:
-
-``` html
-<div v-demo="color: 'white', text: 'hello!'"></div>
-```
-
-You can achieve single binding with all arguments by closing value with object literal:
+If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression:
 
 ``` html
-<div v-demo="{color: 'white', text: 'hello!'}"></div>
+<div v-demo="{ color: 'white', text: 'hello!' }"></div>
 ```
 
 ``` js
 Vue.directive('demo', function (value) {
-  console.log(value) // Object {color: 'white', text: 'hello!'}
+  console.log(value.color) // "white"
+  console.log(value.text) // "hello!"
 })
 ```
 
-## Literal Directives
+### Literal Modifier
 
-If you pass in `isLiteral: true` when creating a custom directive, the attribute value will be taken as a literal string and assigned as that directive's `expression`. The directive will not attempt to setup data observation.
-
-Example:
+When a directive is used with the literal modifer, its attribute value will be interpreted as a plain string and passed directly into the `update` method. The `update` method will also be called only once, because a plain string cannot be reactive.
 
 ``` html
-<div v-literal-dir="foo"></div>
+<div v-demo.literal="foo bar baz">
+```
+``` js
+Vue.directive('demo', function (value) {
+  console.log(value) // "foo bar baz"
+})
+```
+
+## Advanced Options
+
+### deep
+
+If your custom directive is expected to be used on an Object, and it needs to trigger `update` when a nested property inside the object changes, you need to pass in `deep: true` in your directive definition.
+
+``` html
+<div v-my-directive="obj"></div>
 ```
 
 ``` js
-Vue.directive('literal-dir', {
-  isLiteral: true,
-  bind: function () {
-    console.log(this.expression) // 'foo'
+Vue.directive('my-directive', {
+  deep: true,
+  update: function (obj) {
+    // will be called when nested properties in `obj`
+    // changes.
   }
 })
 ```
 
-### Dynamic Literal
-
-However, in the case that the literal directive contains mustache tags, the behavior is as follows:
-
-- The directive instance will have a flag `this._isDynamicLiteral` set to `true`;
-
-- If no `update` function is provided, the mustache expression will be evaluated only once and assigned to `this.expression`. No data observation happens.
-
-- If an `update` function is provided, the directive **will** setup data observation for that expression and call `update` when the evaluated result changes.
-
-## Two-way Directives
+### twoWay
 
 If your directive expects to write data back to the Vue instance, you need to pass in `twoWay: true`. This option allows the use of `this.set(value)` inside the directive:
 
@@ -183,7 +189,7 @@ Vue.directive('example', {
 })
 ```
 
-## Inline Statements
+### acceptStatement
 
 Passing in `acceptStatement:true` enables your custom directive to accept inline statements like `v-on` does:
 
@@ -204,29 +210,11 @@ Vue.directive('my-directive', {
 
 Use this wisely though, because in general you want to avoid side-effects in your templates.
 
-## Deep Observation
-
-If your custom directive is expected to be used on an Object, and it needs to trigger `update` when a nested property inside the object changes, you need to pass in `deep: true` in your directive definition.
-
-``` html
-<div v-my-directive="obj"></div>
-```
-
-``` js
-Vue.directive('my-directive', {
-  deep: true,
-  update: function (obj) {
-    // will be called when nested properties in `obj`
-    // changes.
-  }
-})
-```
-
-## Directive Priority
+### priority
 
 You can optionally provide a priority number for your directive (defaults to 0). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
 
-You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, logic control directives `v-if` and `v-repeat` are considered "terminal" and they always have the highest priority in the compilation process.
+You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, flow control directives `v-if` and `v-for` always have the highest priority in the compilation process.
 
 ## Element Directives
 
