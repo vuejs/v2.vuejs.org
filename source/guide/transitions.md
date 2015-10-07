@@ -1,11 +1,25 @@
-title: Transition System
+title: Transitions
 type: guide
-order: 12
+order: 11
 ---
 
 With Vue.js' transition system you can apply automatic transition effects when elements are inserted into or removed from the DOM. Vue.js will automatically add/remove CSS classes at appropriate times to trigger CSS transitions or animations for you, and you can also provide JavaScript hook functions to perform custom DOM manipulations during the transition.
 
-With the directive `v-transition="my-transition"` applied, Vue will:
+To apply transition effects, you need to use the special `transition` attribute on the target element:
+
+``` html
+<div v-if="show" transition="my-transition"></div>
+```
+
+The `transition` attribute can be used together with:
+
+- `v-if`
+- `v-show`
+- `v-for` (triggered for insertion and removal only)
+- Dynamic components (introduced in the [next section](components.html#Dynamic_Components))
+- On a component root node, and triggered via Vue instance DOM methods, e.g. `vm.$appendTo(el)`.
+
+When an element with transition is inserted or removed, Vue will:
 
 1. Try to find a JavaScript transition hooks object registered either through `Vue.transition(id, hooks)` or passed in with the `transitions` option, using the id `"my-transition"`. If it finds it, it will call the appropriate hooks at different stages of the transition.
 
@@ -13,19 +27,20 @@ With the directive `v-transition="my-transition"` applied, Vue will:
 
 3. If no JavaScript hooks are provided and no CSS transitions/animations are detected, the DOM operation (insertion/removal) is executed immediately on next frame.
 
-<p class="tip">All Vue.js transitions are triggered only if the DOM manipulation was applied through Vue.js, either by a built-in directive, e.g. `v-if`, or by one of Vue's instance methods, e.g. `vm.$appendTo()`.</p>
-
 ## CSS Transitions
+
+### Example
 
 A typical CSS transition looks like this:
 
 ``` html
-<div v-if="show" v-transition="expand">hello</div>
+<div v-if="show" transition="expand">hello</div>
 ```
 
 You also need to define CSS rules for `.expand-transition`, `.expand-enter` and `.expand-leave` classes:
 
 ``` css
+/* always present */
 .expand-transition {
   transition: all .3s ease;
   height: 30px;
@@ -33,6 +48,9 @@ You also need to define CSS rules for `.expand-transition`, `.expand-enter` and 
   background-color: #eee;
   overflow: hidden;
 }
+
+/* .expand-enter defines the starting state for entering */
+/* .expand-leave defines the ending state for leaving */
 .expand-enter, .expand-leave {
   height: 0;
   padding: 0 10px;
@@ -73,7 +91,11 @@ Vue.transition('expand', {
 })
 ```
 
-<div id="demo"><div v-if="show" v-transition="expand">hello</div><button v-on="click: show = !show">Toggle</button></div>
+{% raw %}
+<div id="demo">
+  <div v-if="show" transition="expand">hello</div>
+  <button @click="show = !show">Toggle</button>
+</div>
 
 <style>
 .expand-transition {
@@ -121,8 +143,21 @@ new Vue({
   }
 })
 </script>
+{% endraw %}
 
-The classes being added and toggled are based on the value of your `v-transition` directive. In the case of `v-transition="fade"`, the class `.fade-transition` will be always present, and the classes `.fade-enter` and `.fade-leave` will be toggled automatically at the right moments. When no value is provided they will default to `.v-transition`, `.v-enter` and `.v-leave`.
+### Transition CSS Classes
+
+The classes being added and toggled are based on the value of the `transition` attribute. In the case of `transition="fade"`, three CSS classes are involved:
+
+1. The class `.fade-transition` will be always present on the element.
+
+2. `.fade-enter` defines the starting state of an entering transition. It is applied for a single frame and then immediately removed.
+
+3. `.fade-leave` defines the ending state of a leaving transition. It is applied when the leaving transition starts and removed when the tranition finishes.
+
+If the `transition` attribute has no value, the classes will default to `.v-transition`, `.v-enter` and `.v-leave`.
+
+### Transition Flow Details
 
 When the `show` property changes, Vue.js will insert or remove the `<div>` element accordingly, and apply transition classes as specified below:
 
@@ -167,14 +202,14 @@ enter: function (el, done) {
 
 <p class="tip">When multiple elements are being transitioned together, Vue.js batches them and only applies one forced layout.</p>
 
-## CSS Animations
+### CSS Animations
 
 CSS animations are applied in the same way with CSS transitions, the difference being that `v-enter` is not removed immediately after the element is inserted, but on an `animationend` event.
 
-**Example:** (omitting prefixed CSS rules here)
+Example: (omitting prefixed CSS rules here)
 
 ``` html
-<span v-show="show" v-transition="bounce">Look at me!</span>
+<span v-show="show" transition="bounce">Look at me!</span>
 ```
 
 ``` css
@@ -208,7 +243,12 @@ CSS animations are applied in the same way with CSS transitions, the difference 
 }
 ```
 
-<div id="anim" class="demo"><span v-show="show" v-transition="bounce">Look at me!</span><br><button v-on="click: show = !show">Toggle</button></div>
+{% raw %}
+<div id="anim" class="demo">
+  <span v-show="show" transition="bounce">Look at me!</span>
+  <br>
+  <button @click="show = !show">Toggle</button>
+</div>
 
 <style>
   .bounce-enter {
@@ -277,13 +317,19 @@ new Vue({
   data: { show: true }
 })
 </script>
+{% endraw %}
 
-## JavaScript Only Transitions
+## JavaScript Transitions
 
-You can also use just the JavaScript hooks without defining any CSS rules. When using JavaScript only transitions, the `done` callbacks are required for the `enter` and `leave` hooks, otherwise they will be called synchronously and the transition will finish immediately. The following example registers a custom JavaScript transition using jQuery:
+You can also use just the JavaScript hooks without defining any CSS rules. When using JavaScript only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**, otherwise they will be called synchronously and the transition will finish immediately.
+
+It's also a good idea to explicitly declare `css: false` for your JavaScript transitions so that Vue.js can skip the CSS detection. This also prevents cascaded CSS rules from accidentally interfering with the transition.
+
+The following example registers a custom JavaScript transition using jQuery:
 
 ``` js
 Vue.transition('fade', {
+  css: false,
   enter: function (el, done) {
     // element is already inserted into the DOM
     // call done when animation finishes.
@@ -304,20 +350,18 @@ Vue.transition('fade', {
 })
 ```
 
-Then you can use it by providing the transition id to `v-transition`, same deal:
+Then you can use it with the `transition` attribute, same deal:
 
 ``` html
-<p v-transition="fade"></p>
+<p transition="fade"></p>
 ```
-
-<p class="tip">If the element with a JavaScript-only transition happens to have other CSS transitions or animations applied, it may intefere with Vue's transition detection. In such cases you can add `css: false` to your transition object to explicitly disable Vue from sniffing CSS-related transitions.</p>
 
 ## Staggering Transitions
 
-It's possible to create staggering transitions when using `v-transition` with `v-repeat`. You can do this either by adding a `stagger`, `enter-stagger` or `leave-stagger` attribute to your transitioned element:
+It's possible to create staggering transitions when using `transition` with `v-for`. You can do this either by adding a `stagger`, `enter-stagger` or `leave-stagger` attribute to your transitioned element:
 
 ``` html
-<div v-repeat="list" v-transition stagger="100"></div>
+<div v-repeat="list" transition stagger="100"></div>
 ```
 
 Or, you can provide a `stagger`, `enterStagger` or `leaveStagger` hook for finer-grained control:
@@ -334,6 +378,6 @@ Vue.transition('stagger', {
 
 Example:
 
-<iframe width="100%" height="200" style="margin-left:10px" src="http://jsfiddle.net/yyx990803/ujqrsu6w/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="200" style="margin-left:10px" src="http://jsfiddle.net/yyx990803/mvo99bse/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 Next: [Building Larger Apps](/guide/application.html).
