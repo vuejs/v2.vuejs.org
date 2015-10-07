@@ -655,6 +655,7 @@ The `transition-mode` param attribute allows you to specify how the transition b
 By default, the transitions for incoming and outgoing components happen simultaneously. This attribute allows you to configure two other modes:
 
 - `in-out`: New component transitions in first, current component transitions out after incoming transition has finished.
+
 - `out-in`: Current component transitions out first, new componnent transitions in after outgoing transition has finished.
 
 **Example**
@@ -662,11 +663,56 @@ By default, the transitions for incoming and outgoing components happen simultan
 ``` html
 <!-- fade out first, then fade in -->
 <component
-  is="{{view}}"
-  v-transition="fade"
+  :is="view"
+  transition="fade"
   transition-mode="out-in">
 </component>
 ```
+
+``` css
+.fade-transition {
+  transition: opacity .3s ease;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
+```
+
+{% raw %}
+<div id="transition-mode-demo" class="demo">
+  <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
+  <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
+  <component
+    :is="view"
+    transition="fade"
+    transition-mode="out-in">
+  </component>
+</div>
+<style>
+  .fade-transition {
+    transition: opacity .3s ease;
+  }
+  .fade-enter, .fade-leave {
+    opacity: 0;
+  }
+</style>
+<script>
+new Vue({
+  el: '#transition-mode-demo',
+  data: {
+    view: 'v-a'
+  },
+  components: {
+    'v-a': {
+      template: '<div>Component A</div>'
+    },
+    'v-b': {
+      template: '<div>Component B</div>'
+    }
+  }
+})
+</script>
+{% endraw %}
 
 ## Misc
 
