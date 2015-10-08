@@ -3,7 +3,7 @@
         <%- partial('partials/main_menu') %>
     </ul>
     <div class="list">
-        <h2><%- type.charAt(0).toUpperCase() + type.slice(1) %></h2>
+        <h2><%- type === 'api' ? 'API Reference' : (type.charAt(0).toUpperCase() + type.slice(1)) %></h2>
         <ul class="menu-root">
             <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
                 <li>

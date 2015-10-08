@@ -22,11 +22,17 @@
 
   // build sidebar
   var currentPageAnchor = menu.querySelector('.sidebar-link.current')
-  if (currentPageAnchor) {
+  var isAPI = document.querySelector('.content').classList.contains('api')
+  if (currentPageAnchor || isAPI) {
     var allLinks = []
-    var sectionContainer = document.createElement('ul')
-    sectionContainer.className = 'menu-sub'
-    currentPageAnchor.parentNode.appendChild(sectionContainer)
+    var sectionContainer
+    if (isAPI) {
+      sectionContainer = document.querySelector('.menu-root')
+    } else {
+      sectionContainer = document.createElement('ul')
+      sectionContainer.className = 'menu-sub'
+      currentPageAnchor.parentNode.appendChild(sectionContainer)
+    }
     var h2s = content.querySelectorAll('h2')
     if (h2s.length) {
       each.call(h2s, function (h) {
@@ -35,7 +41,7 @@
         allLinks.push(h)
         allLinks.push.apply(allLinks, h3s)
         if (h3s.length) {
-          sectionContainer.appendChild(makeSubLinks(h3s))
+          sectionContainer.appendChild(makeSubLinks(h3s, isAPI))
         }
       })
     } else {
@@ -119,8 +125,11 @@
     return h3s
   }
 
-  function makeSubLinks (h3s) {
+  function makeSubLinks (h3s, small) {
     var container = document.createElement('ul')
+    if (small) {
+      container.className = 'menu-sub'
+    }
     h3s.forEach(function (h) {
       container.appendChild(makeLink(h))
     })
