@@ -3,17 +3,21 @@ type: guide
 order: 18
 ---
 
-Vue.js is designed to be as flexible as possible - it's just an interface library that doesn't enforce any architectural decisions. While this can be very useful for rapid prototyping, it could be a challenge for those with less experience to build larger scale applications with it. The following is an opinionated perspective on how to organize larger projects when using Vue.js.
+The Vue.js core library is designed to be focused and flexible - it's just a view layer library that doesn't enforce any application-level architecture. While this can be great for integrating with existing projects, it could be a challenge for those with less experience to build larger scale applications from scratch.
+
+The Vue.js ecosystem provides a set of tools, libraries on how to build large SPAs with Vue. This part is where we start get a bit "framework"-ish, but it's really just an opinionated list of recommendations; you still get to pick what to use for each part of the stack.
 
 ## Modularization
 
-Although the standalone build of Vue.js can be used as a global, it is often better to utilize a modularized build system to better organize your code. The recommended approach of doing so is by writing your source code in CommonJS modules (the format used by Node.js, and also the format used by Vue.js source code) and bundle them using [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/).
+For large projects it's necessary to utilize a modularized build system to better organize your code. The recommended approach of doing so is by writing your source code in CommonJS or ES6 modules and bundle them using [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/).
 
-Webpack and Browserify are more than just module bundlers, though. They both provide source transform APIs that allow you to transform your source code with other pre-processors. For example, you can write your code with future ES6/7 syntax using [babel-loader](https://github.com/babel/babel-loader) or [babelify](https://github.com/babel/babelify).
+Webpack and Browserify are more than just module bundlers, though. They both provide source transform APIs that allow you to transform your source code with other pre-processors. For example, you can write your code with future ES2015/2016 syntax using [babel-loader](https://github.com/babel/babel-loader) or [babelify](https://github.com/babel/babelify).
+
+If you've never used them before, I highly recommend going through a few tutorials to get familiar with the concept of module bunlders, and start writing JavaScript using the latest ECMAScript features.
 
 ## Single File Components
 
-In a typical Vue.js project we will be breaking up our code into many small components, and it would be nice to have each component encapsulate its CSS styles, template and JavaScript definition in the same place. As mentioned above, when using Webpack or Browserify, with proper source transforms we can write our components like this:
+In a typical Vue.js project we will be dividing our interface into many small components, and it would be nice to have each component encapsulate its CSS styles, template and JavaScript definition in the same place. As mentioned above, when using Webpack or Browserify, with proper source transforms we can write our components like this:
 
 <img src="/images/vue-component.png">
 
@@ -21,7 +25,7 @@ If you are into pre-processors, you can even do this:
 
 <img src="/images/vue-component-with-pre-processors.png">
 
-You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). It is recommended to use the Webpack setup because Webpack's loader API enables better file dependency tracking and caching if you are using pre-processors.
+You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). It is recommended to use the Webpack setup because Webpack's loader API enables better file dependency tracking / caching and some advanced features that are not feasible with Browserify transforms.
 
 You can find examples of the build setups on GitHub:
 
@@ -30,7 +34,7 @@ You can find examples of the build setups on GitHub:
 
 ## Routing
 
-For Single Page Applications, it is recommended to use the [offical vue-router library](https://github.com/vuejs/vue-router), which is now in technical preview. For more details, please refer to vue-router's [documentation](http://vuejs.github.io/vue-router/).
+For Single Page Applications, it is recommended to use the [offical vue-router library](https://github.com/vuejs/vue-router), which is currently in technical preview. For more details, please refer to vue-router's [documentation](http://vuejs.github.io/vue-router/).
 
 If you just need some very simple routing logic, you can also implement it by manually listening on hashchange and utilizing a dynamic component:
 
@@ -38,7 +42,7 @@ If you just need some very simple routing logic, you can also implement it by ma
 
 ``` html
 <div id="app">
-  <component is="{{currentView}}"></component>
+  <component :is="currentView"></component>
 </div>
 ```
 
@@ -63,9 +67,9 @@ All Vue instances can have their raw `$data` directly serialized with `JSON.stri
 
 ## Unit Testing
 
-Anything compatible with a CommonJS-based build system works. A recommendation is using the [Karma](http://karma-runner.github.io/0.12/index.html) test runner together with its [CommonJS pre-processor](https://github.com/karma-runner/karma-commonjs) to test your code modularly.
+Anything compatible with a module-based build system works. A recommendation is using the [Karma](http://karma-runner.github.io/0.12/index.html) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup, please refer to each project's respective documentation.
 
-The best practice is to export raw options / functions inside modules. Consider this example:
+In terms of code structure for testing, the best practice is to export raw options / functions in your component modules. Consider this example:
 
 ``` js
 // my-component.js
@@ -114,13 +118,11 @@ describe('my-component', function () {
 })
 ```
 
-<p class="tip">Since Vue.js directives react to data updates asynchronously, when you are asserting DOM state after changing the data, you will have to do so in a `Vue.nextTick` callback.</p>
+<p class="tip">Since Vue.js directives perform updates asynchronously, when you are asserting DOM state after changing the data, you will have to do so in a `Vue.nextTick` callback.</p>
 
 ## Deploying for Production
 
-The minified standalone build of Vue.js has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Browserify or Webpack to build Vue.js applications, it's not so obvious how to do that.
-
-Starting in 0.12.8, it is quite simple to configure the tools to strip out the warnings:
+The minified standalone build of Vue.js has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Browserify or Webpack to build Vue.js applications, you will need some additional configuration to achieve this.
 
 ### Webpack
 
@@ -155,6 +157,6 @@ Just run your bundling command with `NODE_ENV` set to `"production"`. Vue automa
 NODE_ENV=production browserify -e main.js | uglifyjs -c -m > build.js
 ```
 
-## An Example
+## An App Example
 
 The [Vue.js Hackernews Clone](https://github.com/yyx990803/vue-hackernews) is an example application that uses Webpack + vue-loader for code organization, Director.js for routing, and HackerNews' official Firebase API as the backend. It's by no means a big application, but it demonstrates the combined usage of the concepts discussed on this page.
