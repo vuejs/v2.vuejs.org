@@ -3,7 +3,7 @@ type: guide
 order: 15
 ---
 
-## The Basics
+## Basics
 
 Similar to custom directives, you can register a custom filter with the global `Vue.filter()` method, passing in a **filterID** and a **filter function**. The filter function takes a value as the argument and returns the transformed value:
 

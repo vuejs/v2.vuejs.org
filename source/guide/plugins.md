@@ -5,7 +5,7 @@ order: 17
 
 Plugins usually adds global-level functionality to Vue.
 
-### Writing a Plugin
+## Writing a Plugin
 
 There are typically several types of plugins you can write:
 
@@ -21,7 +21,7 @@ exports.install = function (Vue, options) {
 }
 ```
 
-### Using a Plugin
+## Using a Plugin
 
 Assuming using a CommonJS build system:
 ``` js
