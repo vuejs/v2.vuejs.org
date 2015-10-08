@@ -37,18 +37,16 @@ Up till now we have used filters to transform values coming from the model and b
 
 ``` js
 Vue.filter('currencyDisplay', {
-  currencyDisplay: {
-    // model -> view
-    // formats the value when updating the input element.
-    read: function(val) {
-      return '$'+val.toFixed(2)
-    },
-    // view -> model
-    // formats the value when writing to the data.
-    write: function(val, oldVal) {
-      var number = +val.replace(/[^\d.]/g, '')
-      return isNaN(number) ? 0 : parseFloat(number.toFixed(2))
-    }
+  // model -> view
+  // formats the value when updating the input element.
+  read: function(val) {
+    return '$'+val.toFixed(2)
+  },
+  // view -> model
+  // formats the value when writing to the data.
+  write: function(val, oldVal) {
+    var number = +val.replace(/[^\d.]/g, '')
+    return isNaN(number) ? 0 : parseFloat(number.toFixed(2))
   }
 })
 ```
