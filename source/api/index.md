@@ -7,15 +7,65 @@ type: api
 
 ### debug
 
+- Default: `false`
+- Only available in development build
+- Usage:
+
+  ``` js
+  Vue.config.debug = true
+  ```
+
+  When in debug mode, Vue will:
+
+  1. Print stack traces for all warnings.
+
+  2. Make all anchor nodes visible in the DOM as Comment nodes. This makes it easier to inspect the structure of the rendered result.
+
 ### delimiters
+
+- Default: `{% raw %}["{{", "}}"]{% endraw %}`
+- Usage:
+
+  ``` js
+  // ES6 template string style
+  Vue.config.delimiters = ['${', '}']
+  ```
+
+  Change the plain text interpolation delimiters.
 
 ### unsafeDelimiters
 
+- Default: `{% raw %}["{{{", "}}}"]{% endraw %}`
+- Usage:
+
+  ``` js
+  // make it look more dangerous
+  Vue.config.delimiters = ['{!!', '!!}']
+  ```
+
+  Change the raw HTML interpolation delimiters.
+
 ### silent
+
+- Default: `false`
+- Usage:
+
+  ``` js
+  Vue.config.silent = true
+  ```
+
+  Suppress all Vue.js logs and warnings.
 
 ### async
 
-### proto
+- Default: `true`
+- Usage:
+
+  ``` js
+  Vue.config.async = false
+  ```
+
+  When async mode is off, Vue will perform all DOM updates synchronously upon detecting data change. This may help with debugging in some scenarios, but could also cause degraded performance and affect the order in which wathcer callbacks are called. **`async: false` is not recommended in production.**
 
 ## Global API
 
