@@ -15,7 +15,7 @@ order: 16
 
   2. You cannot define your own getter/setters on data objects. This isn't much of a problem because data objects are expected to be obtained from plain JSON and Vue.js provides computed properties.
 
-  3. Vue.js adds a few extra properties/methods to obsesrved objects: `__ob__`, `$add`, `$set` and `$delete`. These properties are inenumberable so they will not show up in `for ... in ...` loops. However if you overwrite them things will likely break.
+  3. Vue.js adds a few extra properties/methods to observed objects: `__ob__`, `$add`, `$set` and `$delete`. These properties are inenumberable so they will not show up in `for ... in ...` loops. However if you overwrite them things will likely break.
 
   That's pretty much it. Accessing properties on the object is the same as before, `JSON.stringify` and `for ... in ...` loops will work as normal. 99.9% of the time you don't even need to think about it.
 
