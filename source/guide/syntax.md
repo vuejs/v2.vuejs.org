@@ -31,6 +31,8 @@ The double mustaches interprets the data as plain text, not HTML. In order to ou
 <div>{{{ raw_html }}}</div>
 ```
 
+The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use [partials](/api/#partial).
+
 <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
 
 ### Attributes

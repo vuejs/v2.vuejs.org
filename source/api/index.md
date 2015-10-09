@@ -1364,307 +1364,597 @@ type: api
 
 ### v-text
 
-Updates the element's `textContent`.
+- **Expects:** `String`
 
-Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled as a `v-text` directive on a textNode.
+- **Details:**
+
+  Updates the element's `textContent`.
+
+  Internally, `{% raw %}{{ Mustache }}{% endraw %}` interpolations are also compiled as a `v-text` directive on a textNode. The directive form requires a wrapper element, but offers slightly better performance and avoids FOUC (Flash of Uncompiled Content).
+
+- **Example:**
+
+  ``` html
+  <span v-text="msg"></span>
+  <!-- same as -->
+  <span>{{msg}}</span>
+  ```
 
 ### v-html
 
-Updates the element's `innerHTML`.
+- **Expects:** `String`
 
-<p class="tip">Using `v-html` with user-supplied data can be dangerous. It is suggested that you only use `v-html` when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.</p>
+- **Details:**
 
-### v-show
+  Updates the element's `innerHTML`. The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use [partials](#partial).
 
-- This directive can trigger transitions.
+  Internally, `{% raw %}{{{ Mustache }}}{% endraw %}` interpolations are also compiled as a `v-html` directive using anchor nodes. The directive form requires a wrapper element, but offers slightly better performance and avoids FOUC (Flash of Uncompiled Content).
 
-Set the element's display to `none` or its original value, depending on the truthy-ness of the binding's value.
+  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
 
-### v-on
+- **Example:**
 
-- This directive requires an argument.
-- This directive requires the value to be a Function or a statement.
-
-Attaches an event listener to the element. The event type is denoted by the argument. It is also the only directive that can be used with the `key` filter. For more details see [Listening for Events](/guide/events.html).
-
-### v-model
-
-- This directive can only be used on `<input>`, `<select>` or `<textarea>` elements.
-- Directive params: [`lazy`](/guide/forms.html#Lazy_Updates), [`number`](/guide/forms.html#Casting_Value_as_Number), [`options`](/guide/forms.html#Dynamic_Select_Options), [`debounce`](/guide/forms.html#Input_Debounce)
-
-Create a two-way binding on a form input element. Data is synced on every `input` event by default. For detailed examples see [Handling Forms](/guide/forms.html).
+  ``` html
+  <div v-html="html"></div>
+  <!-- same as -->
+  <div>{{html}}</div>
+  ```
 
 ### v-if
 
-- This directive can trigger transitions.
+- **Expects:** `*`
 
-Conditionally insert / remove the element based on the truthy-ness of the binding value. If the element is a `<template>` element, its content will be extracted as the conditional block.
+- **Usage:**
 
-**Example:**
+  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained data bndings / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
 
-``` html
-<template v-if="test">
-  <p>hello</p>
-  <p>world</p>
-</template>
-```
+- **See also:** [Conditional Rendering](/guide/conditional.html)
 
-Will render:
+### v-show
 
-``` html
-<!--v-if-start-->
-<p>hello</p>
-<p>world</p>
-<!--v-if-end-->
-```
+- **Expects:** `*`
+
+- **Usage:**
+
+  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value. Triggers transitions if present.
+
+- **See also:** [Conditional Rendering](/guide/conditional.html#v-show)
 
 ### v-for
 
-- This directive creates child Vue instances.
-- This directive requires the value to be an Array, Object or Number.
-- This directive can trigger transitions.
-- This directive accepts an optional argument.
-- Directive params: [`track-by`](/guide/list.html#Using_track-by), [`stagger`](/guide/transitions.html#Staggering_Transitions), [`enter-stagger`](/guide/transitions.html#Staggering_Transitions), [`leave-stagger`](/guide/transitions.html#Staggering_Transitions)
+- **Expects:** `Array | Object | Number | String`
 
-Create a child ViewModel for every item in the binding Array or Object. If the value is a whole Number then that many child ViewModels are created. These child ViewModels will be automatically created / destroyed when mutating methods, e.g. `push()`, are called on the Array or Object, or the number is increased or decreased.
+- **Param Attributes:**
+  - [`track-by`](/guide/list.html#track-by)
+  - [`stagger`](/guide/transitions.html#Staggering_Transitions)
+  - [`enter-stagger`](/guide/transitions.html#Staggering_Transitions)
+  - [`leave-stagger`](/guide/transitions.html#Staggering_Transitions)
 
-When no argument is provided, the child ViewModel will directly use the assigned element in the Array as its `$data`. If the value is not an object, a wrapper data object will be created and the value will be set on that object using the alias key `$value`.
+- **Usage:**
 
-**Example:**
+  Render the element or template block multiple times based on the source data. The expression must use the special syntax to provide an alias for the current element being itereated on:
 
-``` html
-<ul>
-  <li v-repeat="users">
-    {{name}} {{email}}
-  </li>
-</ul>
-```
+  ``` html
+  <div v-for="item in items">
+    {{ item.text }}
+  </div>
+  ```
 
-If an argument is provided, a wrapper data object will always be created, using the argument string as the alias key. This allows for more explicit property access in templates:
+  The detailed usage for `v-for` is explained in the guide section linked below.
 
-``` html
-<ul>
-  <li v-repeat="user : users">
-    {{user.name}} {{user.email}}
-  </li>
-</ul>
-```
+- **See also:** [List Rendering](/guide/list.html).
 
-Starting in 0.12.8, a special alternative is available to make the syntax more natural:
+### v-on
 
-``` html
-<ul>
-  <li v-repeat="user in users">
-    {{user.name}} {{user.email}}
-  </li>
-</ul>
-```
+- **Shorthand:** `@`
 
-For detailed examples, see [Displaying a List](/guide/list.html).
+- **Expects:** `Function | Inline Statement`
+
+- **Argument:** `event (required)`
+
+- **Mofifiers:**
+  - `.stop` - call `event.stopPropagation()`.
+  - `.prevent` - call `event.preventDefault()`.
+  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
+
+- **Usage:**
+
+  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement.
+
+- **Example:**
+
+  ``` html
+  <!-- method handler -->
+  <button v-on:click="doThis"></button>
+
+  <!-- inline statement -->
+  <button v-on:click="doThat('hello')"></button>
+
+  <!-- shorthand -->
+  <button @click="doThis"></button>
+
+  <!-- stop propagation -->
+  <button @click.stop="doThis"></button>
+
+  <!-- prevent default -->
+  <button @click.prevent="doThis"></button>
+
+  <!-- chain modifiers -->
+  <button @click.stop.prevent="doThis"></button>
+
+  <!-- key modifier using keyAlias -->
+  <input @keyup.enter="onEnter">
+
+  <!-- key modifier using keyCode -->
+  <input @keyup.13="onEnter">
+  ```
+
+- **See also:** [Methods and Event Handling](/guide/events.html)
+
+### v-model
+
+- **Expects:** varies based on input type
+
+- **Limited to:**
+  - `<input>`
+  - `<select>`
+  - `<textarea>`
+
+- **Param Attributes:**
+  - [`lazy`](/guide/forms.html#lazy)
+  - [`number`](/guide/forms.html#number)
+  - [`debounce`](/guide/forms.html#debounce)
+
+- **Usage:**
+
+  Create a two-way binding on a form input element. For detailed usage, see guide section linked below.
+
+- **See also:** [Form Input Bindings](/guide/forms.html)
 
 ### v-ref
 
-Register a reference to a child component on its parent for easier access. Only respected when used on a component or with `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
+- **Does not expect expression**
 
-When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
+- **Limited to:** child components
 
-New in 0.12: If the `v-repeat`'s source data is an Object, then `v-ref` will return an Object with instances matching each key in the Object.
+- **Argument:** `id (required)`
+
+- **Usage:**
+
+  Register a reference to a child component on its parent for direct access. Does not expect an expression. Must provide an argument as the id to register with. The component instance will be accessible on its parent's `$refs` object.
+
+  When used on a component together with `v-for`, the registered value will be an Array containing all the child component instances corresponding to the Array they are bound to. If the data source for `v-for` is an Object, the registered value will be an Object containing key-instance pairs mirroring the source Object.
+
+- **Example:**
+
+  ``` html
+  <comp v-ref:child></comp>
+  ```
+
+  ``` js
+  // access from parent:
+  this.$refs.child
+  ```
+
+  With `v-for`:
+
+  ``` html
+  <comp v-ref:list v-for="item in list"></comp>
+  ```
+
+  ``` js
+  // this will be an array in parent
+  this.$refs.list
+  ```
+
+- **See also:** [Child Component Refs](/guide/components.html#Child_Component_Refs)
 
 ### v-el
 
-Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
+- **Does not expect expression**
+
+- **Argument:** `id (required)`
+
+- **Usage:**
+  
+  Register a reference to a DOM element on its owner Vue instance's `$els` object for easier access.
+
+- **Example:**
+
+  ``` html
+  <span v-el:msg>hello</span>
+  ```
+  ``` js
+  this.$els.msg.textContent // -> "hello"
+  ```
 
 ### v-pre
 
-Skip compilation for this element and all its children. Skipping large numbers of nodes with no directives on them can speed up compilation.
+- **Does not expect expression**
+
+- **Usage**
+
+  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+
+- **Example:**
+
+  ``` html
+  <span v-pre>{{ this will not be compiled }}</span>
+  ```
 
 ### v-cloak
 
-This property remains on the element until the associated ViewModel finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the ViewModel is ready.
+- **Does not expect expression**
+
+- **Usage:**
+
+  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+
+- **Example:**
+
+  ``` css
+  [v-cloak] {
+    display: none;
+  }
+  ```
+
+  ``` html
+  <div v-cloak>
+    {{ message }}
+  </div>
+  ```
+
+  The `<div>` will not be visible until the compilation is done.
 
 ## Special Elements
 
 ### component
 
-Alternative syntax for invoking components. Primarily used for dynamic components with the `is` attribute:
+- **Attributes:**
+  - `is`
 
-``` html
-<!-- a dynamic component controlled by -->
-<!-- the `componentId` property on the vm -->
-<component is="{{componentId}}"></component>
-```
+- **Usage:**
+
+  Alternative syntax for invoking components. Primarily used for dynamic components with the `is` attribute:
+
+  ``` html
+  <!-- a dynamic component controlled by -->
+  <!-- the `componentId` property on the vm -->
+  <component :is="componentId"></component>
+  ```
+
+- **See also:** [Dynamic Components](/guide/components.html#Dynamic_Components)
 
 ### slot
 
-`<content>` tags serve as content insertion outlets in component templates. The `<content>` element itself will be replaced. It optionally accepts a `select` attribute, which should be a valid CSS selector to be used to match a subset of inserted content to be displayed:
+- **Attributes:**
+  - `name`
 
-``` html
-<!-- only display <li>'s in the inserted content -->
-<content select="li"></content>
-```
+- **Usage:**
 
-The select attribute can also contain mustache expressions. For more details, see [Content Insertion](/guide/components.html#Content_Insertion).
+  `<slot>` elements serve as content distribution outlets in component templates. The slot element itself will be replaced.
+
+  A slot with the `name` attribute is called a named slot. A named slot will distribute content with a `slot` attribute that matches its name.
+
+  For detailed usage, see the guide section linked below.
+
+- **See also:** [Content Distribution with Slots](/guide/components.html#Content_Distribution_with_Slots)
 
 ### partial
 
-`<partial>` tags serve as outlets for registered partials. Partial contents are also compiled by Vue when inserted. The `<partial>` element itself will be replaced. It requires a `name` attribute to be provided. For example:
+- **Attributes:**
+  - `name`
 
-``` js
-// registering a partial
-Vue.partial('my-partial', '<p>This is a partial! {{msg}}</p>')
-```
+- **Usage:**
 
-``` html
-<!-- a static partial -->
-<partial name="my-partial"></partial>
+  `<partial>` elements serve as outlets for registered template partials. Partial contents are also compiled by Vue when inserted. The `<partial>` element itself will be replaced. It requires a `name` attribute which will be used to resolve the partial's content.
 
-<!-- a dynamic partial -->
-<partial name="{{partialId}}"></partial>
-```
+- **Example:**
+
+  ``` js
+  // registering a partial
+  Vue.partial('my-partial', '<p>This is a partial! {{msg}}</p>')
+  ```
+
+  ``` html
+  <!-- a static partial -->
+  <partial name="my-partial"></partial>
+
+  <!-- a dynamic partial -->
+  <!-- renders partial with id === vm.partialId -->
+  <partial v-bind:name="partialId"></partial>
+
+  <!-- dynamic partial using v-bind shorthand -->
+  <partial :name="partialId"></partial>
+  ```
 
 ## Filters
 
 ### capitalize
 
-*'abc' => 'Abc'*
+- **Example:**
+
+  ``` html
+  {{ msg | capitalize }}
+  ```
+
+  *'abc' => 'Abc'*
 
 ### uppercase
 
-*'abc' => 'ABC'*
+- **Example:**
+
+  ``` html
+  {{ msg | uppercase }}
+  ```
+
+  *'abc' => 'ABC'*
 
 ### lowercase
 
-*'ABC' => 'abc'*
+- **Example:**
+
+  ``` html
+  {{ msg | lowercase }}
+  ```
+
+  *'ABC' => 'abc'*
 
 ### currency
 
-- this filter takes one optional argument
+- **Arguments:**
+  - `{String} [symbol] - default: '$'`
 
-*12345 => $12,345.00*
+- **Example:**
 
-You can pass an optional argument which will be used as the currency symbol (default is $).
+  ``` html
+  {{ amount | currency }}
+  ```
+
+  *12345 => $12,345.00*
+
+  Use a different symbol:
+
+  ``` html
+  {{ amount | currency '£' }}
+  ```
+
+  *12345 => £12,345.00*
 
 ### pluralize
 
-- this filter takes at least one argument
+- **Arguments:**
+  - `{String} single, [double, triple, ...]`
 
-Pluralizes the argument based on the filtered value. When there is exactly one arg, plural forms simply add an "s" at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple ... forms of the word to be pluralized. When the number to be pluralized exceeds the length of the args, it will use the last entry in the array.
+- **Usage:**
 
-**Example:**
+  Pluralizes the argument based on the filtered value. When there is exactly one arg, plural forms simply add an "s" at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple ... forms of the word to be pluralized. When the number to be pluralized exceeds the length of the args, it will use the last entry in the array.
 
-``` html
-{{count}} {{count | pluralize 'item'}}
-```
+- **Example:**
 
-*1 => '1 item'*  
-*2 => '2 items'*
+  ``` html
+  {{count}} {{count | pluralize 'item'}}
+  ```
 
-``` html
-{{date}}{{date | pluralize 'st' 'nd' 'rd' 'th'}}
-```
+  *1 => '1 item'*  
+  *2 => '2 items'*
 
-Will result in:
+  ``` html
+  {{date}}{{date | pluralize 'st' 'nd' 'rd' 'th'}}
+  ```
 
-*1 => '1st'*  
-*2 => '2nd'*
-*3 => '3rd'*
-*4 => '4th'*
-*5 => '5th'*
+  Will result in:
+
+  *1 => '1st'*  
+  *2 => '2nd'*
+  *3 => '3rd'*
+  *4 => '4th'*
+  *5 => '5th'*
 
 ### json
 
-- this filter takes one optional argument
+- **Arguments:**
+  - `{Number} [indent] - default: 2`
 
-JSON.stringify() incoming value rather than outputting the string representation (i.e. `[object Object]`). It also takes one optional argument which is the indent level (defaults to 2):
+- **Usage:**
+  
+  JSON.stringify() incoming value instead of outputting the `toString()` value (e.g. `[object Object]`).
 
-``` html
-<pre>{{$data | json 4}}</pre>
-```
+- **Example:**
+
+  Print an object with 4-space indent:
+
+  ``` html
+  <pre>{{ nestedObject | json 4 }}</pre>
+  ```
 
 ### debounce
 
-- this filter only works with `v-on`
-- this filter takes one optional argument
+- **Limited to:** directives that expect `Function` values, e.g. `v-on`
 
-Wrap the handler to debounce it for X milliseconds, where X is the argument. Default is 300ms. A debounced handler will be delayed until at least X ms has passed after the call moment; if the handler is called again before the delay period, the delay period is reset to X ms.
+- **Arguments:**
+  - `{Number} [wait] - default: 300`
+
+- **Usage:**
+
+  Wrap the handler to debounce it for `x` milliseconds, where `x` is the argument. Default wait time is 300ms. A debounced handler will be delayed until at least `x` ms has passed after the call moment; if the handler is called again before the delay period, the delay period is reset to `x` ms.
+
+- **Example:**
+
+  ``` html
+  <input @keyup="onKeyup | debounce 500">
+  ```
 
 ### filterBy
 
-**Syntax:** `filterBy searchKey [in dataKey...]`.
+- **Limited to:** directives that expect `Array` values, e.g. `v-for`
 
-- this filter only works for Array values
+- **Arguments:**
+  - `{String | Function} targetStringOrFunction`
+  - `"in" (optional delimiter)`
+  - `{String} [...searchKeys]`
 
-Return a filtered version of the source Array. The `searchKey` argument is a property key on the context ViewModel. The value of that property will be used as the string to search for:
+- **Usage:**
 
-``` html
-<input v-model="searchText">
-<ul>
-  <li v-repeat="users | filterBy searchText">{{name}}</li>
-</ul>
-```
+  Return a filtered version of the source Array. The first argument can either be a string or a function.
 
-When the filter is applied, it will filter the `users` Array by recursively searching for the current value of `searchText` on each item in the Array. For example, if an item is `{ name: 'Jack', phone: '555-123-4567' }` and `searchText` has value `'555'`, the item will be considered a match.
+  When the first argument is a string, it will be used as the target string to search for in each element of the Array:
 
-Optionally, you can narrow down which specific property to search in with the optional `in dataKey` argument:
+  ``` html
+  <div v-for="item in items | filterBy 'hello'">
+  ```
 
-``` html
-<input v-model="searchText">
-<ul>
-  <li v-repeat="user in users | filterBy searchText in 'name'">{{name}}</li>
-</ul>
-```
+  In the above example, only items that contain the target string `"hello"` will be displayed.
 
-Now the item will only match if the value of `searchText` is found in its `name` property. Note here we need to quote `name` to indicate it's a literal string argument. With this limitation, `searchText` with value `'555'` will no longer match this item, but `'Jack'` will.
+  If the item is an object, the filter will recursively search every nested property of the object for the target string. To narrow down the search scope, additional search keys can be specified:
 
-> New in 0.12.11
+  ``` html
+  <div v-for="user in users | filterBy 'Jack' in 'name'">
+  ```
 
-Starting in 0.12.11 you can pass in multiple data keys:
+  In the above example, the filter will only search for `"Jack"` in the `name` field of each user object. **It is a good idea to always limit the search scope for better performance.**
 
-``` html
-<li v-repeat="user in users | filterBy searchText in 'name' 'phone'"></li>
-```
+  The examples above are using static arguments - we can, of course, use dynamic arguments as target string or search keys. Combined with `v-model` we can easily implement type-ahead filtering:
 
-Or pass in a dynamic argument with an Array value:
+  ``` html
+  <div id="filter-by-example">
+    <input v-model="name">
+    <ul>
+      <li v-for="user in users | filterBy name in 'name'">
+        {{ user.name }}
+      </li>
+    </ul>
+  </div>
+  ```
 
-``` html
-<!-- fields = ['fieldA', 'fieldB'] -->
-<div v-repeat="user in users | filterBy searchText in fields">
-```
+  ``` js
+  new Vue({
+    el: '#filter-by-example',
+    data: {
+      name: '',
+      users: [
+        { name: 'Bruce' },
+        { name: 'Chuck' },
+        { name: 'Jackie' }
+      ]
+    }
+  })
+  ```
 
-Or, just pass in a custom filter function:
+  {% raw %}
+  <div id="filter-by-example" class="demo">
+    <input v-model="name">
+    <ul>
+      <li v-for="user in users | filterBy name in 'name'">
+        {{ user.name }}
+      </li>
+    </ul>
+  </div>
+  <script>
+  new Vue({
+    el: '#filter-by-example',
+    data: {
+      name: '',
+      users: [{ name: 'Bruce' }, { name: 'Chuck' }, { name: 'Jackie' }]
+    }
+  })
+  </script>
+  {% endraw %}
 
-``` html
-<div v-repeat="user in users | filterBy myCustomFilterFunction">
-```
+- **Additional Examples:**
+
+  Multiple search keys:
+
+  ``` html
+  <li v-for="user in users | filterBy searchText in 'name' 'phone'"></li>
+  ```
+
+  Multiple search keys with a dyanmic Array argument:
+
+  ``` html
+  <!-- fields = ['fieldA', 'fieldB'] -->
+  <div v-for="user in users | filterBy searchText in fields">
+  ```
+
+  Use a custom filter function:
+
+  ``` html
+  <div v-for="user in users | filterBy myCustomFilterFunction">
+  ```
 
 ### orderBy
 
-**Syntax:** `orderBy sortKey [reverseKey]`.
+- **Limited to:** directives that expect `Array` values, e.g. `v-for`
 
-- this filter only works for Array values
+- **Arguments:**
+  - `{String} sortKey`
+  - `{String} [order] - default: 1`
 
-Return a sorted version of the source Array. The `sortKey` argument is a property key on the context ViewModel. The value of that property will be used as the key to sort the Array items with. The optional `reverseKey` argument is also a property key on the context ViewModel, but the value's truthiness will determine whether the result should be reversed.
+- **Usage:**
 
-``` html
-<ul>
-  <li v-repeat="user in users | orderBy field reverse">{{name}}</li>
-</ul>
-```
+  Return a sorted version of the source Array. The `sortKey` is the key to use for the sorting. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
 
-``` js
-new Vue({
-  /* ... */
-  data: {
-    field: 'name',
-    reverse: false
-  }
-})
-```
+- **Example:**
 
-You can also use quotes for literal sort key. To indicate a literal reverse, use `-1`:
+  Sort users by name:
 
-``` html
-<ul>
-  <li v-repeat="user in users | orderBy 'name' -1">{{name}}</li>
-</ul>
-```
+  ``` html
+  <ul>
+    <li v-repeat="user in users | orderBy 'name'">
+      {{user.name}}
+    </li>
+  </ul>
+  ```
+
+  In descending order:
+
+  ``` html
+  <ul>
+    <li v-repeat="user in users | orderBy 'name' -1">
+      {{user.name}}
+    </li>
+  </ul>
+  ```
+
+  Dynamic sort order:
+
+  ``` html
+  <div id="orderby-example">
+    <button @click="order = order * -1">Reverse Sort Order</button>
+    <ul>
+      <li v-for="user in users | orderBy 'name' order">
+        {{ user.name }}
+      </li>
+    </ul>
+  </div>
+  ```
+
+  ``` js
+  new Vue({
+    el: '#orderby-example',
+    data: {
+      order: 1,
+      users: [{ name: 'Bruce' }, { name: 'Chuck' }, { name: 'Jackie' }]
+    }
+  })
+  ```
+
+  {% raw %}
+  <div id="orderby-example" class="demo">
+    <button @click="order = order * -1">Reverse Sort Order</button>
+    <ul>
+      <li v-for="user in users | orderBy 'name' order">
+        {{ user.name }}
+      </li>
+    </ul>
+  </div>
+  <script>
+  new Vue({
+    el: '#orderby-example',
+    data: {
+      order: 1,
+      users: [{ name: 'Bruce' }, { name: 'Chuck' }, { name: 'Jackie' }]
+    }
+  })
+  </script>
+  {% endraw %}
