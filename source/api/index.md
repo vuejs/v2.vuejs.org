@@ -723,6 +723,16 @@ type: api
 
 ## Options / Misc
 
+### parent
+
+- **Type:** `Vue instance`
+
+- **Details:**
+
+  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+
+- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child_Communication)
+
 ### events
 
 - **Type:** `Object`
@@ -846,7 +856,7 @@ type: api
 
 ### vm.$parent
 
-- **Type:** `Vue`
+- **Type:** `Vue instance`
 
 - **Read only**
 
@@ -856,7 +866,7 @@ type: api
 
 ### vm.$root
 
-- **Type:** `Vue`
+- **Type:** `Vue instance`
 
 - **Read only**
 
@@ -866,7 +876,7 @@ type: api
 
 ### vm.$children
 
-- **Type:** `Array<Vue>`
+- **Type:** `Array<Vue instance>`
 
 - **Read only**
 
@@ -904,152 +914,319 @@ type: api
 
 ### vm.$watch( expOrFn, callback, [options] )
 
-- **expOrFn** `String|Function`
-- **callback( newValue, oldValue )** `Function`
-- **options** `Object` *optional*
-  - **deep** `Boolean`
-  - **immediate** `Boolean`
-  - **sync** `Boolean`
+- **Arguments:**
+  - `{String|Function} expOrFn`
+  - `{Function} callback`
+  - `{Object} [options]`
+    - `{Boolean} deep`
+    - `{Boolean} immediate`
 
-Watch an expression or a computed function on the Vue instance for changes. The expression can be a single keypath or actual expressions:
+- **Returns:** `{Function} unwatch`
 
-``` js
-vm.$watch('a + b', function (newVal, oldVal) {
-  // do something
-})
-// or
-vm.$watch(
-  function () {
-    return this.a + this.b
-  },
-  function (newVal, oldVal) {
+- **Usage:**
+
+  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression can be a single keypath or any valid binding expressions.
+
+- **Example:**
+
+  ``` js
+  // keypath
+  vm.$watch('a.b.c', function (newVal, oldVal) {
     // do something
-  }
-)
-```
+  })
 
-To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  // expression
+  vm.$watch('a + b', function (newVal, oldVal) {
+    // do something
+  })
 
-``` js
-vm.$watch('someObject', callback, {
-  deep: true
-})
-vm.someObject.nestedValue = 123
-// callback is fired
-```
+  // function
+  vm.$watch(
+    function () {
+      return this.a + this.b
+    },
+    function (newVal, oldVal) {
+      // do something
+    }
+  )
+  ```
 
-Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  `vm.$watch` returns an unwatch function that stops firing the callback:
 
-``` js
-vm.$watch('a', callback, {
-  immediate: true
-})
-// callback is fired immediately with current value of `a`
-```
+  ``` js
+  var unwatch = vm.$watch('a', cb)
+  // later, teardown the watcher
+  unwatch()
+  ```
 
-Finally, `vm.$watch` returns an unwatch function that stops firing the callback:
+- **Option: deep**
 
-``` js
-var unwatch = vm.$watch('a', cb)
-// later, teardown the watcher
-unwatch()
-```
+  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+
+  ``` js
+  vm.$watch('someObject', callback, {
+    deep: true
+  })
+  vm.someObject.nestedValue = 123
+  // callback is fired
+  ```
+
+- **Option: immediate**
+
+  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+
+  ``` js
+  vm.$watch('a', callback, {
+    immediate: true
+  })
+  // callback is fired immediately with current value of `a`
+  ```
 
 ### vm.$get( expression )
 
-- **expression** `String`
+- **Arguments:**
+  - `{String} expression`
 
-Retrieve a value from the Vue instance given an expression. Expressions that throw errors will be suppressed and return `undefined`.
+- **Usage:**
+
+  Retrieve a value from the Vue instance given an expression. Expressions that throw errors will be suppressed and return `undefined`.
+
+- **Example:**
+
+  ``` js
+  var vm = new Vue({
+    data: {
+      a: {
+        b: 1
+      }
+    }
+  })
+  vm.$get('a.b') // -> 1
+  vm.$get('a.b + 1') // -> 2
+  ```
 
 ### vm.$set( keypath, value )
 
-- **keypath** `String`
-- **value** `*`
+- **Arguments:**
+  - `{String} keypath`
+  - `{*} value`
 
-Set a data value on the Vue instance given a valid keypath. If the path doesn't exist it will be created.
+- **Usage:**
+
+  Set a data value on the Vue instance given a valid keypath. In most cases you should prefer setting properties using plain object syntax, e.g. `vm.a.b = 123`. This method is only needed in two scenarios:
+
+  1. When you have a keypath string and want to dynamically set the value using that keypath.
+
+  2. When you want to set a property that doesn't exist.
+
+  If the path doesn't exist it will be recursively created and made reactive. If a new root-level reactive property is created due to a `$set` call, the Vue instance will be forced into a "digest cycle", during which all its watchers are re-evaluated.
+
+- **Example:**
+
+  ``` js
+  var vm = new Vue({
+    data: {
+      a: {
+        b: 1
+      }
+    }
+  })
+  
+  // set an existing path
+  vm.$set('a.b', 2)
+  vm.a.b // -> 2
+
+  // set a non-existent path, will force digest
+  vm.$set('c', 3)
+  vm.c // ->
+  ```
+
+- **See also:** [Reactivity in Depth](/guide/reactivity.html)
 
 ### vm.$delete( key )
 
-- **key** `String`
+- **Arguments:**
+  - `{String} key`
 
-Delete a root level property on the Vue instance (and also its `$data`).
+- **Usage:**
+
+  Delete a root level property on the Vue instance (and also its `$data`). Forces a digest cycle. Not recommended.
 
 ### vm.$eval( expression )
 
-- **expression** `String`
+- **Arguments:**
+  - `{String} expression`
 
-Evaluate an expression that can also contain filters.
+- **Usage:**
 
-``` js
-// assuming vm.msg = 'hello'
-vm.$eval('msg | uppercase') // -> 'HELLO'
-```
+  Evaluate a valid binding expression on the current instance. The expression can also contain filters.
+
+- **Example:**
+
+  ``` js
+  // assuming vm.msg = 'hello'
+  vm.$eval('msg | uppercase') // -> 'HELLO'
+  ```
 
 ### vm.$interpolate( templateString )
 
-- **templateString** `String`
+- **Arguments:**
+  - `{String} templateString`
 
-Evaluate a piece of template string containing mustache interpolations. Note that this method simply performs string interpolation; attribute directives are not compiled.
+- **Usage:**
 
-``` js
-// assuming vm.msg = 'hello'
-vm.$interpolate('{{msg}} world!') // -> 'hello world!'
-```
+  Evaluate a piece of template string containing mustache interpolations. Note that this method simply performs string interpolation; attribute directives are ignored.
+
+- **Example:**
+
+  ``` js
+  // assuming vm.msg = 'hello'
+  vm.$interpolate('{{msg}} world!') // -> 'hello world!'
+  ```
 
 ### vm.$log( [keypath] )
 
-- **keypath** `String` *optional*
+- **Arguments:**
+  - `{String} [keypath]`
 
-Log the current instance data as a plain object, which is more console-inspectable than a bunch of getter/setters. Also accepts an optional key.
+- **Usage:**
 
-``` js
-vm.$log() // logs entire ViewModel data
-vm.$log('item') // logs vm.item
-```
+  Log the current instance data as a plain object, which is more console-inspectable than a bunch of getter/setters. Also accepts an optional key.
+
+  ``` js
+  vm.$log() // logs entire ViewModel data
+  vm.$log('item') // logs vm.item
+  ```
 
 ## Instance Methods / Events
 
-### vm.$dispatch( event, [args...] )
-
-- **event** `String`
-- **args...** *optional*
-
-Dispatch an event from the current vm that propagates all the way up to its `$root`. If a callback returns `false`, it will stop the propagation at its owner instance.
-
-### vm.$broadcast( event, [args...] )
-
-- **event** `String`
-- **args...** *optional*
-
-Emit an event to all children vms of the current vm, which gets further broadcasted to their children all the way down. If a callback returns `false`, its owner instance will not broadcast the event any further.
-
-### vm.$emit( event, [args...] )
-
-- **event** `String`
-- **args...** *optional*
-
-Trigger an event on this vm only.
-
 ### vm.$on( event, callback )
 
-- **event** `String`
-- **callback** `Function`
+- **Arguments:**
+  - `{String} event`
+  - `{Function} callback`
 
-Listen for an event on the current vm.
+- **Usage:**
+
+  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`, `vm.$dispatch` or `vm.$broadcast`. The callback will receive all the additional arguments passed into these event-triggering methods.
+
+- **Example:**
+
+  ``` js
+  vm.$on('test', function (msg) {
+    console.log(msg)
+  })
+  vm.$emit('test', 'hi')
+  // -> "hi"
+  ```
 
 ### vm.$once( event, callback )
 
-- **event** `String`
-- **callback** `Function`
+- **Arguments:**
+  - `{String} event`
+  - `{Function} callback`
 
-Attach a one-time only listener for an event.
+- **Usage:**
+
+  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
 
 ### vm.$off( [event, callback] )
 
-- **event** `String` *optional*
-- **callback** `Function` *optional*
+- **Arguments:**
+  - `{String} [event]`
+  - `{Function} [callback]`
 
-If no arguments are given, stop listening for all events; if only the event is given, remove all callbacks for that event; if both event and callback are given, remove that specific callback only.
+- **Usage:**
+
+  Remove event listener(s).
+
+  - If no arguments are provided, remove all event listeners;
+
+  - If only the event is provided, remove all listeners for that event;
+
+  - If both event and callback are given, remove the listener for that specific callback only.
+
+### vm.$emit( event, [...args] )
+
+- **Arguments:**
+  - `{String} event`
+  - `[...args]`
+
+  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+
+### vm.$dispatch( event, [...args] )
+
+- **Arguments:**
+  - `{String} event`
+  - `[...args]`
+
+- **Usage:**
+
+  Dispatch an event, first triggering it on the instance itself, and then propagates upward along the parent chain. The propagation stops when it triggers a parent event listener, unless that listener returns `true`. Any additional arguments will be passed into the listener's callback function.
+
+- **Example:**
+
+  ``` js
+  // create a parent chain
+  var parent = new Vue()
+  var child1 = new Vue({ parent: parent })
+  var child2 = new Vue({ parent: child1 })
+
+  parent.$on('test', function () {
+    console.log('parent notified')
+  })
+  child1.$on('test', function () {
+    console.log('child1 notified')
+  })
+  child2.$on('test', function () {
+    console.log('child2 notified')
+  })
+
+  child2.$dispatch('test')
+  // -> "child2 notified"
+  // -> "child1 notified"
+  // parent is NOT notified, because child1 didn't return
+  // true in its callback
+  ```
+
+- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child_Communication)
+
+### vm.$broadcast( event, [...args] )
+
+- **Arguments:**
+  - `{String} event`
+  - `[...args]`
+
+- **Usage:**
+
+  Broadcast an event that propagates downward to all descendents of the current instance. Since the descendents expand into multiple sub-trees, the event propagation will follow many different "paths". The propagation for each path will stop when a listener callback is fired along that path, unless the callback returns `true`.
+
+- **Example:**
+
+  ``` js
+  var parent = new Vue()
+  // child1 and child2 are siblings
+  var child1 = new Vue({ parent: parent })
+  var child2 = new Vue({ parent: parent })
+  // child3 is nested under child2
+  var child3 = new Vue({ parent: child2 })
+
+  child1.$on('test', function () {
+    console.log('child1 notified')
+  })
+  child2.$on('test', function () {
+    console.log('child2 notified')
+  })
+  child3.$on('test', function () {
+    console.log('child3 notified')
+  })
+
+  parent.$broadcast('test')
+  // -> "child1 notified"
+  // -> "child2 notified"
+  // child3 is NOT notified, because child2 didn't return
+  // true in its callback
+  ```
 
 ## Instance Methods / DOM
 
