@@ -7,6 +7,8 @@ type: api
 
 ### debug
 
+- **Type:** `Boolean`
+
 - **Default:** `false`
 
 - **Usage:**
@@ -25,6 +27,8 @@ type: api
 
 ### delimiters
 
+- **Type:** `Array<String>`
+
 - **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
 - **Usage:**
@@ -37,6 +41,8 @@ type: api
   Change the plain text interpolation delimiters.
 
 ### unsafeDelimiters
+
+- **Type:** `Array<String>`
 
 - **Default:** `{% raw %}["{{{", "}}}"]{% endraw %}`
 
@@ -51,6 +57,8 @@ type: api
 
 ### silent
 
+- **Type:** `Boolean`
+
 - **Default:** `false`
 
 - **Usage:**
@@ -62,6 +70,8 @@ type: api
   Suppress all Vue.js logs and warnings.
 
 ### async
+
+- **Type:** `Boolean`
 
 - **Default:** `true`
 
@@ -113,7 +123,7 @@ type: api
   <p>Walter White aka Heisenberg</p>
   ```
 
-- **See also:** [Guide - Components](/guide/components.html)
+- **See also:** [Components](/guide/components.html)
 
 ### Vue.nextTick( callback )
 
@@ -133,7 +143,7 @@ type: api
   })
   ```
 
-- **See also:** [Guide - Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
+- **See also:** [Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
 
 ### Vue.directive( id, [definition] )
 
@@ -162,7 +172,7 @@ type: api
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **See also:** [Guide - Custom Directives](/guide/custom-directive.html)
+- **See also:** [Custom Directives](/guide/custom-directive.html)
 
 ### Vue.elementDirective( id, [definition] )
 
@@ -186,7 +196,7 @@ type: api
   var myDirective = Vue.elementDirective('my-element')
   ```
 
-- **See also:** [Guide - Element Directives](/guide/custom-directive.html#Element_Directives)
+- **See also:** [Element Directives](/guide/custom-directive.html#Element_Directives)
 
 ### Vue.filter( id, [definition] )
 
@@ -214,7 +224,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-- **See also:** [Guide - Custom Filter](/guide/custom-filter.html)
+- **See also:** [Custom Filter](/guide/custom-filter.html)
 
 ### Vue.component( id, [definition] )
 
@@ -237,7 +247,7 @@ type: api
   var MyComponent = Vue.component('my-component')
   ```
 
-- **See also:** [Guide - Components](/guide/components.html).
+- **See also:** [Components](/guide/components.html).
 
 ### Vue.transition( id, [hooks] )
 
@@ -260,7 +270,7 @@ type: api
   var fadeTransition = Vue.transition('fade')
   ```
 
-- **See also:** [Guide - Transitions](/guide/transitions.html).
+- **See also:** [Transitions](/guide/transitions.html).
 
 ### Vue.partial( id, [partial] )
 
@@ -292,7 +302,7 @@ type: api
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
 
-- **See also:** [Guide - Plugins](/guide/plugins.html).
+- **See also:** [Plugins](/guide/plugins.html).
 
 ### Vue.mixin( mixin )
 
@@ -303,7 +313,7 @@ type: api
 
   Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
-- **See also:** [Guide - Global Mixins](/guide/mixins.html#Global_Mixin)
+- **See also:** [Global Mixins](/guide/mixins.html#Global_Mixin)
 
 ## Options / Data
 
@@ -341,7 +351,7 @@ type: api
   })
   ```
 
-- **See also:** [Guide - Reactivity in Depth](/guide/reactivity.html).
+- **See also:** [Reactivity in Depth](/guide/reactivity.html).
 
 ### props
 
@@ -373,7 +383,7 @@ type: api
   })
   ```
 
-- **See also:** [Guide - Props](/guide/components.html#Props)
+- **See also:** [Props](/guide/components.html#Props)
 
 ### computed
 
@@ -411,8 +421,8 @@ type: api
   ```
 
 - **See also:**
-  - [Guide - Computed Properties](/guide/computed.html)
-  - [Guide - Reactivity in Depth: Inside Computed Properties](/guide/reactivity.html#Inside_Computed_Properties)
+  - [Computed Properties](/guide/computed.html)
+  - [Reactivity in Depth: Inside Computed Properties](/guide/reactivity.html#Inside_Computed_Properties)
 
 ### methods
 
@@ -437,7 +447,7 @@ type: api
   vm.a // 2
   ```
 
-- **See also:** [Guide - Methods and Event Handling](/guide/events.html)
+- **See also:** [Methods and Event Handling](/guide/events.html)
 
 ### watch
 
@@ -477,270 +487,323 @@ type: api
 ### el
 
 - **Type:** `String | HTMLElement | Function`
+
 - **Restriction:** only accepts type `Function` when used in `Vue.extend()`.
 
-Provide the Vue instance with an existing DOM element. It can be a CSS selector string, an actual HTMLElement, or a function that returns an HTMLElement. Note that the provided element merely serves as a mounting point; it will be replaced if a template is also provided, unless `replace` is set to false. The resolved element will be accessible as `vm.$el`.
+- **Details:**
 
-When used in `Vue.extend`, a function must be provided so each instance gets a separately created element.
+  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string, an actual HTMLElement, or a function that returns an HTMLElement. Note that the provided element merely serves as a mounting point; it will be replaced if a template is also provided, unless `replace` is set to false. The resolved element will be accessible as `vm.$el`.
 
-If the option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  When used in `Vue.extend`, a function must be provided so each instance gets a separately created element.
+
+  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ### template
 
 - **Type:** `String`
 
-A string template to be used as the markup for the Vue instance. By default, the template will **replace** the mounted element. When the `replace` option is set to `false`, the template will be inserted into the mounted element instead. In both cases, any existing markup inside the mounted element will be ignored, unless [content insertion points](/guide/components.html#Content_Insertion) are present in the template.
+- **Details:**
 
-If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  A string template to be used as the markup for the Vue instance. By default, the template will **replace** the mounted element. When the `replace` option is set to `false`, the template will be inserted into the mounted element instead. In both cases, any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
 
-Note that if the template contains more than one top-level node, the instance will become a [fragment instance](/guide/best-practices.html#Fragment_Instance) - i.e. one that manages a list of nodes rather than a single node.
+  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
-<p class="tip">Vue.js uses DOM-based templating. The compiler walks through DOM elements and looks for directives and creates data bindings. This means all Vue.js templates are parsable HTML that can be converted into actual DOM elements by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more Vue instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.</p>
+  Note that under certain situations, for example when the template contains more than one top-level element, or contains only plain text, the instance will become a fragment instance - i.e. one that manages a list of nodes rather than a single node. Non flow-control directives on the mount point for fragment instances are ignored.
+
+- **See also:**
+  - [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+  - [Content Distribution](/guide/components.html#Content_Distribution_with_Slots)
+  - [Fragment Instance](/guide/components.html#Fragment_Instance)
 
 ### replace
 
 - **Type:** `Boolean`  
+
 - **Default:** `true`
+
 - **Restriction:** only respected if the **template** option is also present.
 
-Whether to replace the element being mounted on with the template. If set to `false`, the template will overwrite the element's inner content without replacing the element itself.
+- **Details:**
 
-**Example**:
+  Determines whether to replace the element being mounted on with the template. If set to `false`, the template will overwrite the element's inner content without replacing the element itself.
 
-``` html
-<div id="replace"></div>
-```
+- **Example**:
 
-``` js
-new Vue({
-  el: '#replace',
-  template: '<p>replaced</p>'
-})
-```
+  ``` html
+  <div id="replace"></div>
+  ```
 
-Will result in:
+  ``` js
+  new Vue({
+    el: '#replace',
+    template: '<p>replaced</p>'
+  })
+  ```
 
-``` html
-<p>replaced</p>
-```
+  Will result in:
 
-In comparison, when `replace` is set to `false`:
+  ``` html
+  <p>replaced</p>
+  ```
 
-``` html
-<div id="insert"></div>
-```
+  In comparison, when `replace` is set to `false`:
 
-``` js
-new Vue({
-  el: '#insert',
-  replace: false,
-  template: '<p>inserted</p>'
-})
-```
+  ``` html
+  <div id="insert"></div>
+  ```
 
-Will result in:
+  ``` js
+  new Vue({
+    el: '#insert',
+    replace: false,
+    template: '<p>inserted</p>'
+  })
+  ```
 
-``` html
-<div id="insert">
-  <p>inserted</p>
-</div>
-```
+  Will result in:
+
+  ``` html
+  <div id="insert">
+    <p>inserted</p>
+  </div>
+  ```
 
 ## Options / Lifecycle Hooks
-
-![Lifecycle Hooks](/images/lifecycle.png)
 
 ### created
 
 - **Type:** `Function`
 
-Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, DOM compilation has not been started, and the `$el` property will not be available yet.
+- **Details:**
+  
+  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, DOM compilation has not been started, and the `$el` property will not be available yet.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ### beforeCompile
 
 - **Type:** `Function`
 
-Called right before the compilation starts.
+- **Details:**
+  
+  Called right before the compilation starts.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ### compiled
 
 - **Type:** `Function`
 
-Called after the compilation is finished. At this stage all directives have been linked so data changes will trigger DOM updates. However, `$el` is not guaranteed to have been inserted into the document yet.
+- **Details:**
+
+  Called after the compilation is finished. At this stage all directives have been linked so data changes will trigger DOM updates. However, `$el` is not guaranteed to have been inserted into the document yet.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ### ready
 
 - **Type:** `Function`
 
-Called after compilation **and** the `$el` is **inserted into the document for the first time**, i.e. right after the first `attached` hook. Note this insertion must be executed via Vue (with methods like `vm.$appendTo()` or as a result of a directive update) to trigger the `ready` hook.
+- **Details:**
+
+  Called after compilation **and** the `$el` is **inserted into the document for the first time**, i.e. right after the first `attached` hook. Note this insertion must be executed via Vue (with methods like `vm.$appendTo()` or as a result of a directive update) to trigger the `ready` hook.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ### attached
 
 - **Type:** `Function`
 
-Called when `vm.$el` is attached to DOM by a directive or a VM instance method such as `$appendTo()`. Direct manipulation of `vm.$el` will **not** trigger this hook.
+- **Details:**
+  
+  Called when `vm.$el` is attached to DOM by a directive or a VM instance method such as `$appendTo()`. Direct manipulation of `vm.$el` will **not** trigger this hook.
 
 ### detached
 
 - **Type:** `Function`
 
-Called when `vm.$el` is removed from the DOM by a directive or a VM instance method. Direct manipulation of `vm.$el` will **not** trigger this hook.
+- **Details:**
+  
+  Called when `vm.$el` is removed from the DOM by a directive or a VM instance method. Direct manipulation of `vm.$el` will **not** trigger this hook.
 
 ### beforeDestroy
 
 - **Type:** `Function`
 
-Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+- **Details:**
+  
+  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ### destroyed
 
 - **Type:** `Function`
 
-Called after a Vue instance has been destroyed. When this hook is called, all bindings and directives of the Vue instance have been unbound and all child Vue instances have also been destroyed.
+- **Details:**
 
-Note if there is a leaving transition, the `destroyed` hook is called **after** the transition has finished.
+  Called after a Vue instance has been destroyed. When this hook is called, all bindings and directives of the Vue instance have been unbound and all child Vue instances have also been destroyed.
+
+  Note if there is a leaving transition, the `destroyed` hook is called **after** the transition has finished.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ## Options / Assets
-
-**Assets Naming Convention**
-
-Some assets, such as components and directives, appear in templates in the form of HTML attributes or HTML custom tags. Since HTML attribute names and tag names are **case-insensitive**, we often need to name our assets using dash-case instead of camelCase. **Starting in 0.12.11**, it is now supported to name your assets using camelCase or PascalCase, and use them in templates with dash-case.
-
-**Example**
-
-``` js
-// in a component definition
-components: {
-  // register using camelCase
-  myComponent: { /*... */ }
-}
-```
-
-``` html
-<!-- use dash case in templates -->
-<my-component></my-component>
-```
-
-This works nicely with [ES6 object literal shorthand](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_6):
-
-``` js
-// PascalCase
-import TextBox from './components/text-box';
-import DropdownMenu from './components/dropdown-menu';
-
-export default {
-  components: {
-    // use in templates as <text-box> and <dropdown-menu>
-    TextBox,
-    DropdownMenu
-  }
-}
-```
 
 ### directives
 
 - **Type:** `Object`
 
-A hash of directives to be made available to the Vue instance. For details on how to write a custom directive, see [Writing Custom Directives](/guide/custom-directive.html).
+- **Details:**
+
+  A hash of directives to be made available to the Vue instance.
+
+- **See also:**
+  - [Custom Directives](/guide/custom-directive.html)
+  - [Assets Naming Convention](/guide/components.html#Assets_Naming_Convention)
 
 ### elementDirectives
 
 - **Type:** `Object`
 
-A hash of element directives to be made available to the Vue instance. For details on how to write a element directive, see [Element Directives](/guide/custom-directive.html#Element_Directives).
+- **Details:**
+
+  A hash of element directives to be made available to the Vue instance.
+
+- **See also:**
+  - [Element Directives](/guide/custom-directive.html#Element_Directives)
+  - [Assets Naming Convention](/guide/components.html#Assets_Naming_Convention)
 
 ### filters
 
 - **Type:** `Object`
 
-A hash of filters to be made available to the Vue instance. For details on how to write a custom filter, see [Writing Custom Filters](/guide/custom-filter.html).
+- **Details:**
+
+  A hash of filters to be made available to the Vue instance.
+
+- **See also:**
+  - [Custom Filters](/guide/custom-filter.html)
+  - [Assets Naming Convention](/guide/components.html#Assets_Naming_Convention)
 
 ### components
 
 - **Type:** `Object`
 
-A hash of components to be made available to the Vue instance. For details on how to extend and compose Vue instances, see [Component System](/guide/components.html).
+- **Details:**
+
+  A hash of components to be made available to the Vue instance.
+
+- **See also:**
+  - [Components](/guide/components.html)
 
 ### transitions
 
 - **Type:** `Object`
 
-A hash of transitions to be made available to the Vue instance. For details see the guide on [Transitions](/guide/transitions.html).
+- **Details:**
+
+  A hash of transitions to be made available to the Vue instance.
+
+- **See also:**
+  - [Transitions](/guide/transitions.html)
 
 ### partials
 
 - **Type:** `Object`
 
-A hash of partial strings to be made available to the Vue instance. For details see [Partial](/api/elements.html#partial).
+- **Details:**
+
+  A hash of partial strings to be made available to the Vue instance.
+
+- **See also:**
+  - [Special Elements - partial](#partial)
 
 ## Options / Misc
 
 ### events
 
-An object where keys are events to listen for and values are the corresponding callbacks. Note these are Vue events rather than DOM events. The value can also be a string of a method name. The Vue instance will call `$on()` for each entry in the object at instantiation.
+- **Type:** `Object`
 
-**Example:**
+- **Details:**
 
-``` js
-var vm = new Vue({
-  events: {
-    'hook:created': function () {
-      console.log('created!')
+  An object where keys are events to listen for and values are the corresponding callbacks. Note these are Vue events rather than DOM events. The value can also be a string of a method name. The Vue instance will call `$on()` for each entry in the object at instantiation.
+
+- **Example:**
+
+  ``` js
+  var vm = new Vue({
+    events: {
+      'hook:created': function () {
+        console.log('created!')
+      },
+      greeting: function (msg) {
+        console.log(msg)
+      },
+      // can also use a string for methods
+      bye: 'sayGoodbye'
     },
-    greeting: function (msg) {
-      console.log(msg)
-    },
-    // can also use a string for methods
-    bye: 'sayGoodbye'
-  },
-  methods: {
-    sayGoodbye: function () {
-      console.log('goodbye!')
+    methods: {
+      sayGoodbye: function () {
+        console.log('goodbye!')
+      }
     }
-  }
-}) // -> created!
-vm.$emit('greeting', 'hi!') // -> hi!
-vm.$emit('bye')             // -> goodbye!
-```
+  }) // -> created!
+  vm.$emit('greeting', 'hi!') // -> hi!
+  vm.$emit('bye')             // -> goodbye!
+  ```
+
+- **See also:**
+  - [Instance Methods - Events](#Instance_Methods_/_Events)
+  - [Parent-Child Communication](/guide/components.html#Parent-Child_Communication)
 
 ### mixins
 
 - **Type:** `Array`
 
-The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+- **Details:**
 
-Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
-**Example:**
+  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
 
-``` js
-var mixin = {
-  created: function () { console.log(1) }
-}
-var vm = new Vue({
-  created: function () { console.log(2) },
-  mixins: [mixin]
-})
-// -> 1
-// -> 2
-```
+- **Example:**
+
+  ``` js
+  var mixin = {
+    created: function () { console.log(1) }
+  }
+  var vm = new Vue({
+    created: function () { console.log(2) },
+    mixins: [mixin]
+  })
+  // -> 1
+  // -> 2
+  ```
+
+- **See also:** [Mixins](/guide/mixins.html)
 
 ### name
 
 - **Type:** `String`
+
 - **Restrctions:** only respected when used in `Vue.extend()`.
 
-When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
+- **Details:**
 
-**Example:**
+  When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
 
-``` js
-var Ctor = Vue.extend({
-  name: 'cool-stuff'
-})
-var vm = new Ctor()
-console.log(vm) // -> CoolStuff {$el: null, ...}
-```
+- **Example:**
+
+  ``` js
+  var Ctor = Vue.extend({
+    name: 'cool-stuff'
+  })
+  var vm = new Ctor()
+  console.log(vm) // -> CoolStuff {$el: null, ...}
+  ```
 
 ## Instance Properties
 
