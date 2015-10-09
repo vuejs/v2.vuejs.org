@@ -1230,60 +1230,135 @@ type: api
 
 ## Instance Methods / DOM
 
-### vm.$appendTo( element|selector, [callback] )
+### vm.$appendTo( elementOrSelector, [callback] )
 
-- **element** `HTMLElement` | **selector** `String`
-- **callback** `Function` *optional*
+- **Arguments:**
+  - `{Element|String} elementOrSelector`
+  - `{Function} [callback]`
 
-Append the vm's `$el` to target element. The argument can be either an element or a querySelector string.
+- **Returns:** `vm` - the instance itself
 
-### vm.$before( element|selector, [callback] )
+- **Usage:**
 
-- **element** `HTMLElement` | **selector** `String`
-- **callback** `Function` *optional*
+  Append the Vue instance's DOM element or fragment to target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immedialtely if no transition has been triggered).
 
-Insert the vm's `$el` before target element.
+### vm.$before( elementOrSelector, [callback] )
 
-### vm.$after( element|selector, [callback] )
+- **Arguments:**
+  - `{Element|String} elementOrSelector`
+  - `{Function} [callback]`
 
-- **element** `HTMLElement` | **selector** `String`
-- **callback** `Function` *optional*
+- **Returns:** `vm` - the instance itself
 
-Insert the vm's `$el` after target element.
+- **Usage:**
+
+  Insert the Vue instance's DOM element or fragment before target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immedialtely if no transition has been triggered).
+
+### vm.$after( elementOrSelector, [callback] )
+
+- **Arguments:**
+  - `{Element|String} elementOrSelector`
+  - `{Function} [callback]`
+
+- **Returns:** `vm` - the instance itself
+
+- **Usage:**
+
+  Insert the Vue instance's DOM element or fragment after target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immedialtely if no transition has been triggered).
 
 ### vm.$remove( [callback] )
 
-- **callback** `Function` *optional*
+- **Arguments:**
+  - `{Function} [callback]`
 
-Remove the vm's `$el` from the DOM.
+- **Returns:** `vm` - the instance itself
+
+- **Usage:**
+  
+  Remove the Vue instance's DOM element or fragment from the DOM. This method will trigger transitions if present. The callback is fired after the transition has completed (or immedialtely if no transition has been triggered).
 
 ### vm.$nextTick( callback )
 
-- **callback** `Function`
+- **Arguments:**
+  - `{Function} [callback]`
 
-Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+- **Usage:**
+
+  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+
+- **Example:**
+
+  ``` js
+  new Vue({
+    // ...
+    methods: {
+      // ...
+      example: function () {
+        // modify data
+        this.message = 'changed'
+        // DOM is not updated yet
+        this.$nextTick(function () {
+          // DOM is now updated
+          // `this` is bound to the current instance
+          this.doSomethingElse()
+        })
+      }
+    }
+  })
+  ```
+
+- **See also:**
+  - [Vue.nextTick](#Vue-nextTick)
+  - [Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
 
 ## Instance Methods / Lifecycle
 
-### vm.$mount( [element|selector] )
+### vm.$mount( [elementOrSelector] )
 
-- **element** `HTMLElement` | **selector** `String` *optional*
+- **Arguments:**
+  - `{Element|String} [elementOrSelector]`
 
-If the Vue instance didn't get an `el` option at instantiation, you can manually call `$mount(el)` to start the compilation phase. By default, the mounted element will be replaced by the instance's template. When the `replace` option is set to `false`, the template will be inserted into the mounted element and overwrite any existing inner content, unless the template contains `<content>` outlets.
+- **Returns:** `vm` - the instance itself
 
-If no argument is provided, the template will be created as an out-of-document element, and you will have to use other DOM instance methods to insert it into the document yourself. If `replace` option is set to `false`, then an empty `<div>` will be automatically created as the wrapper element. Calling `$mount()` on an already mounted instance will have no effect. The method returns the instance itself so you can chain other instance methods after it.
+- **Usage:**
+
+  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element or fragment. `vm.$mount()` can be used to manually start the mounting/compilation of an unmounted Vue instance.
+
+  If no argument is provided, the template will be created as an out-of-document fragment, and you will have to use other DOM instance methods to insert it into the document yourself. If `replace` option is set to `false`, then an empty `<div>` will be automatically created as the wrapper element.
+
+  Calling `$mount()` on an already mounted instance will have no effect. The method returns the instance itself so you can chain other instance methods after it.
+
+- **Example:**
+
+  ``` js
+  var MyComponent = Vue.extend({
+    template: '<div>Hello!</div>'
+  })
+  
+  // create and mount to #app (will replace #app)
+  new MyComponent().$mount('#app')
+
+  // the above is the same as:
+  new MyComponent({ el: '#app' })
+
+  // or, compile off-document and append afterwards:
+  new MyComponent().$mount().$appendTo('#container')
+  ```
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ### vm.$destroy( [remove] )
 
-- **remove** `Boolean` *optional* (Default: `false`)
+- **Arguments:**
+  - `{Boolean} [remove] - default: false`
 
-Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and optionally remove its `$el` from the DOM. Also, all `$on` and `$watch` listeners will be automatically removed.
+- **Usage:**
 
-### vm.$compile( element )
+  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners and, if the `remove` argument is true, remove its associated DOM element or fragment from the DOM.
 
-- **element** `HTMLElement`
+  Triggers the `beforeDestroy` and `destroyed` hooks.
 
-Partially compile a piece of DOM (Element or DocumentFragment). The method returns a `decompile` function that tearsdown the directives created during the process. Note the decompile function does not remove the DOM. This method is exposed primarily for writing advanced custom directives.
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
 ## Directives
 
