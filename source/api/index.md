@@ -7,9 +7,9 @@ type: api
 
 ### debug
 
-- Default: `false`
+- **Default:** `false`
 
-- Usage:
+- **Usage:**
 
   ``` js
   Vue.config.debug = true
@@ -25,9 +25,9 @@ type: api
 
 ### delimiters
 
-- Default: `{% raw %}["{{", "}}"]{% endraw %}`
+- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- Usage:
+- **Usage:**
 
   ``` js
   // ES6 template string style
@@ -38,9 +38,9 @@ type: api
 
 ### unsafeDelimiters
 
-- Default: `{% raw %}["{{{", "}}}"]{% endraw %}`
+- **Default:** `{% raw %}["{{{", "}}}"]{% endraw %}`
 
-- Usage:
+- **Usage:**
 
   ``` js
   // make it look more dangerous
@@ -51,9 +51,9 @@ type: api
 
 ### silent
 
-- Default: `false`
+- **Default:** `false`
 
-- Usage:
+- **Usage:**
 
   ``` js
   Vue.config.silent = true
@@ -63,9 +63,9 @@ type: api
 
 ### async
 
-- Default: `true`
+- **Default:** `true`
 
-- Usage:
+- **Usage:**
 
   ``` js
   Vue.config.async = false
@@ -77,10 +77,10 @@ type: api
 
 ### Vue.extend( options )
 
-- Arguments:
+- **Arguments:**
   - `{Object} options`
 
-- Usage:
+- **Usage:**
 
   Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
 
@@ -113,14 +113,14 @@ type: api
   <p>Walter White aka Heisenberg</p>
   ```
 
-- See also: [Guide - Components](/guide/components.html)
+- **See also:** [Guide - Components](/guide/components.html)
 
 ### Vue.nextTick( callback )
 
-- Arguments:
+- **Arguments:**
   - `{Functon} callback`
 
-- Usage:
+- **Usage:**
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
 
@@ -133,15 +133,15 @@ type: api
   })
   ```
 
-- See also: [Guide - Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
+- **See also:** [Guide - Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
 
 ### Vue.directive( id, [definition] )
 
-- Arguments:
+- **Arguments:**
   - `{String} id`
   - `{Function | Object} [definition]`
 
-- Usage:
+- **Usage:**
   
   Register or retrieve a global directive.
 
@@ -162,15 +162,15 @@ type: api
   var myDirective = Vue.directive('my-directive')
   ```
 
-- See also: [Guide - Custom Directives](/guide/custom-directive.html)
+- **See also:** [Guide - Custom Directives](/guide/custom-directive.html)
 
 ### Vue.elementDirective( id, [definition] )
 
-- Arguments:
+- **Arguments:**
   - `{String} id`
   - `{Object} [definition]`
 
-- Usage:
+- **Usage:**
 
   Register or retrieve a global element directive.
 
@@ -186,15 +186,15 @@ type: api
   var myDirective = Vue.elementDirective('my-element')
   ```
 
-- See also: [Guide - Element Directives](/guide/custom-directive.html#Element_Directives)
+- **See also:** [Guide - Element Directives](/guide/custom-directive.html#Element_Directives)
 
 ### Vue.filter( id, [definition] )
 
-- Arguments:
+- **Arguments:**
   - `{String} id`
   - `{Function | Object} [definition]`
 
-- Usage:
+- **Usage:**
 
   Register or retrieve a global filter.
 
@@ -214,15 +214,15 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-- See also: [Guide - Custom Filter](/guide/custom-filter.html)
+- **See also:** [Guide - Custom Filter](/guide/custom-filter.html)
 
 ### Vue.component( id, [definition] )
 
-- Arguments:
+- **Arguments:**
   - `{String} id`
   - `{Function | Object} [definition]`
 
-- Usage:
+- **Usage:**
 
   Register or retrieve a global component.
 
@@ -237,15 +237,15 @@ type: api
   var MyComponent = Vue.component('my-component')
   ```
 
-- See also: [Guide - Components](/guide/components.html).
+- **See also:** [Guide - Components](/guide/components.html).
 
 ### Vue.transition( id, [hooks] )
 
-- Arguments:
+- **Arguments:**
   - `{String} id`
   - `{Object} [hooks]`
 
-- Usage:
+- **Usage:**
 
   Register or retrieve a global transition hooks object.
 
@@ -260,15 +260,15 @@ type: api
   var fadeTransition = Vue.transition('fade')
   ```
 
-- See also: [Guide - Transitions](/guide/transitions.html).
+- **See also:** [Guide - Transitions](/guide/transitions.html).
 
 ### Vue.partial( id, [partial] )
 
-- Arguments:
+- **Arguments:**
   - `{String} id`
   - `{String} [partial]`
 
-- Usage:
+- **Usage:**
 
   Register or retrieve a global template partial string.
 
@@ -280,223 +280,197 @@ type: api
   var myPartial = Vue.partial('my-partial')
   ```
 
-- See also: [Special Elements - &lt;partial&gt;](#partial).
+- **See also:** [Special Elements - &lt;partial&gt;](#partial).
 
 ### Vue.use( plugin, [options] )
 
-- Arguments:
+- **Arguments:**
   - `{Object | Function} plugin`
   - `{Object} [options]`
 
-- Usage:
+- **Usage:**
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
 
-- See also: [Guide - Plugins](/guide/plugins.html).
+- **See also:** [Guide - Plugins](/guide/plugins.html).
 
 ### Vue.mixin( mixin )
 
-- Arguments
+- **Arguments:**
   - `{Object} mixin`
 
-- Usage:
+- **Usage:**
 
   Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
-- See also: [Guide - Global Mixins](/guide/mixins.html#Global_Mixin)
+- **See also:** [Guide - Global Mixins](/guide/mixins.html#Global_Mixin)
 
 ## Options / Data
 
 ### data
 
 - **Type:** `Object | Function`
+
 - **Restricton:** Only accepts `Function` when used in `Vue.extend()`.
 
-The data object for the Vue instance. It can be accessed as `vm.$data`:
+- **Details:**
 
-```js
-var data = { a: 1 }
-var vm = new Vue({
-  data: data
-})
-vm.$data === data // -> true
-```
+  The data object for the Vue instance. Vue.js will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects, existing getter/setters and prototype properties are ignored. It is not recommended to observe complex objects.
 
-The Vue instance will proxy access to all its properties, therefore you can manipulate the properties on the Vue instance and the changes get synced back to the actual data object:
+  Once the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object.
 
-```js
-vm.a   // -> 1
-vm.a = 2
-data.a // -> 2
-data.a = 3
-vm.a   // -> 3
-```
+  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
 
-Note that properties that start with `_` or `$` will not be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+- **Example:**
 
-The object must be JSON-compliant (no circular references). You can use it just like an ordinary object, and it will look exactly the same when serialized with `JSON.stringify`. You can also share it between multiple Vue instances.
+  ``` js
+  var data = { a: 1 }
 
-A special case here is when using the `data` option in `Vue.extend()`. Since we don't want nested objects to be shared by all instances created from that extended constructor, we must provide a function that returns a fresh copy of the default data:
+  // direct instance creation
+  var vm = new Vue({
+    data: data
+  })
+  vm.a // -> 1
+  vm.$data === data // -> true
 
-``` js
-var MyComponent = Vue.extend({
-  data: function () {
-    return {
-      message: 'some default data.',
-      object: {
-        fresh: true
-      }
+  // must use function when in Vue.extend()
+  var Component = Vue.extend({
+    data: function () {
+      return { a: 1 }
     }
-  }
-})
-```
+  })
+  ```
 
-<p class="tip">Under the hood, Vue.js attaches a hidden property `__ob__` and recursively converts the object's enumerable properties into getters and setters to enable dependency collection.</p>
+- **See also:** [Guide - Reactivity in Depth](/guide/reactivity.html).
 
 ### props
 
 - **Type:** `Array | Object`
 
-A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+- **Details:**
 
-**Example:**
+  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
-``` js
-Vue.component('param-demo', {
-  props: ['size', 'myMessage'], // simple syntax
-  compiled: function () {
-    console.log(this.size)    // -> 100
-    console.log(this.myMessage) // -> 'hello!'
-  }
-})
-```
+- **Example:**
 
-Note that because HTML attributes are case-insensitive, you need to use a prop's hyphenated form when it appears as an attribute in templates:
+  ``` js
+  // simple syntax
+  Vue.component('props-demo-simple', {
+    props: ['size', 'myMessage']
+  })
 
-``` html
-<param-demo size="100" my-message="hello!"></param-demo>
-```
-
-For more details on data passing, make sure to read the following sections in guide:
-
-- [Prop Binding Types](/guide/components.html#Prop_Binding_Types)
-- [Passing Callbacks as Props](/guide/components.html#Passing_Callbacks_as_Props)
-
-The alternative Object-based syntax looks like this:
-
-``` js
-Vue.component('prop-validation-demo', {
-  props: {
-    size: Number,
-    name: {
-      type: String,
-      required: true
+  // object syntax with validation
+  Vue.component('props-demo-advanced', {
+    props: {
+      // just type check
+      size: Number,
+      // type check plus other validations
+      name: {
+        type: String,
+        required: true
+      }
     }
-  }
-})
-```
+  })
+  ```
 
-The following component usage will result in two warnings: type mismatch for "size", and missing required prop "name".
-
-``` html
-<prop-validation-demo size="hello">
-</prop-validation-demo>
-```
-
-For more details on the Object-based syntax and prop validation, see [Prop Specification](/guide/components.html#Prop_Specification).
-
-#### Notes on hyphened attributes
-
-HTML attribute names ignore upper and lower case differences, so we usually use hyphened attributes instead of camel case. There are some special cases when using `props` with attributes that contains hyphens:
-
-1. If the attribute is a data attribute, the `data-` prefix will be auto stripped;
-
-2. If the attribute still contains dashes, it will be camelized. This is because it's inconvenient to access top level properties containing dashes in templates: the expression `my-param` will be parsed as a minus expression unless you use the awkward `this['my-param']` syntax.
-
-This means a param attribute `data-hello` will be set on the vm as `vm.hello`; And `my-param` will be set as `vm.myParam`.
+- **See also:** [Guide - Props](/guide/components.html#Props)
 
 ### computed
 
 - **Type:** `Object`
 
-Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+- **Details:**
 
-**Example:**
+  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
 
-```js
-var vm = new Vue({
-  data: { a: 1 },
-  computed: {
-    // get only, just need a function
-    aDouble: function () {
-      return this.a * 2
-    },
-    // both get and set
-    aPlus: {
-      get: function () {
-        return this.a + 1
+- **Example:**
+
+  ```js
+  var vm = new Vue({
+    data: { a: 1 },
+    computed: {
+      // get only, just need a function
+      aDouble: function () {
+        return this.a * 2
       },
-      set: function (v) {
-        this.a = v - 1
+      // both get and set
+      aPlus: {
+        get: function () {
+          return this.a + 1
+        },
+        set: function (v) {
+          this.a = v - 1
+        }
       }
     }
-  }
-})
-vm.aPlus   // -> 2
-vm.aPlus = 3
-vm.a       // -> 2
-vm.aDouble // -> 4
-```
+  })
+  vm.aPlus   // -> 2
+  vm.aPlus = 3
+  vm.a       // -> 2
+  vm.aDouble // -> 4
+  ```
+
+- **See also:**
+  - [Guide - Computed Properties](/guide/computed.html)
+  - [Guide - Reactivity in Depth: Inside Computed Properties](/guide/reactivity.html#Inside_Computed_Properties)
 
 ### methods
 
 - **Type:** `Object`
 
-Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+- **Details:**
 
-**Example:**
+  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
 
-```js
-var vm = new Vue({
-  data: { a: 1 },
-  methods: {
-    plus: function () {
-      this.a++
+- **Example:**
+
+  ```js
+  var vm = new Vue({
+    data: { a: 1 },
+    methods: {
+      plus: function () {
+        this.a++
+      }
     }
-  }
-})
-vm.plus()
-vm.a // 2
-```
+  })
+  vm.plus()
+  vm.a // 2
+  ```
+
+- **See also:** [Guide - Methods and Event Handling](/guide/events.html)
 
 ### watch
 
-- **Type**: `Object`
+- **Type:** `Object`
 
-An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+- **Details:**
 
-**Example:**
+  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
 
-``` js
-var vm = new Vue({
-  data: {
-    a: 1
-  },
-  watch: {
-    'a': function (val, oldVal) {
-      console.log('new: %s, old: %s', val, oldVal)
+- **Example:**
+
+  ``` js
+  var vm = new Vue({
+    data: {
+      a: 1
     },
-    // string method name
-    'b': 'someMethod',
-    // deep watcher
-    'c': {
-      handler: function (val, oldVal) { /* ... */ },
-      deep: true
+    watch: {
+      'a': function (val, oldVal) {
+        console.log('new: %s, old: %s', val, oldVal)
+      },
+      // string method name
+      'b': 'someMethod',
+      // deep watcher
+      'c': {
+        handler: function (val, oldVal) { /* ... */ },
+        deep: true
+      }
     }
-  }
-})
-vm.a = 2 // -> new: 2, old: 1
-```
+  })
+  vm.a = 2 // -> new: 2, old: 1
+  ```
+
+- **See also:** [Instance Methods - vm.$watch](#vm-watch)
 
 ## Options / DOM
 
@@ -731,7 +705,7 @@ vm.$emit('bye')             // -> goodbye!
 
 ### mixins
 
-- **Type**: `Array`
+- **Type:** `Array`
 
 The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
@@ -753,7 +727,7 @@ var vm = new Vue({
 
 ### name
 
-- **Type**: `String`
+- **Type:** `String`
 - **Restrctions:** only respected when used in `Vue.extend()`.
 
 When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.

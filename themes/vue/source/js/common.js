@@ -106,9 +106,12 @@
 
   function makeLink (h) {
     var link = document.createElement('li')
+    var text = h.textContent.replace(/\(.*\)$/, '')
+    h.id = text.replace(/\.\$?/, '-')
+    console.log()
     link.innerHTML =
       '<a class="section-link" data-scroll href="#' + h.id + '">' +
-        h.textContent.replace(/\(.*\)$/, '') +
+        text +
       '</a>'
     return link
   }
