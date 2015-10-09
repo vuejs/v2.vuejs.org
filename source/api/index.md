@@ -8,7 +8,7 @@ type: api
 ### debug
 
 - Default: `false`
-- Only available in development build
+
 - Usage:
 
   ``` js
@@ -21,9 +21,12 @@ type: api
 
   2. Make all anchor nodes visible in the DOM as Comment nodes. This makes it easier to inspect the structure of the rendered result.
 
+  <p class="tip">Debug mode is only available in development build.</p>
+
 ### delimiters
 
 - Default: `{% raw %}["{{", "}}"]{% endraw %}`
+
 - Usage:
 
   ``` js
@@ -36,6 +39,7 @@ type: api
 ### unsafeDelimiters
 
 - Default: `{% raw %}["{{{", "}}}"]{% endraw %}`
+
 - Usage:
 
   ``` js
@@ -48,6 +52,7 @@ type: api
 ### silent
 
 - Default: `false`
+
 - Usage:
 
   ``` js
@@ -59,6 +64,7 @@ type: api
 ### async
 
 - Default: `true`
+
 - Usage:
 
   ``` js
@@ -71,104 +77,233 @@ type: api
 
 ### Vue.extend( options )
 
-- **options** `Object`
+- Arguments:
+  - `{Object} options`
 
-Create a "subclass" of the base Vue constructor. All [instantiation options](/api/options.html) can be used here. The special cases to note here are `el` and `data`, which must be functions in this case.
+- Usage:
 
-Internally, `Vue.extend()` is called on all component options before instantiating the components. For more details regarding components, see [Component System](/guide/components.html).
+  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
 
-**Example**
-``` html
-<div id="mount-point"></div>
-```
+  The special cases to note here are `el` and `data` options - they must be functions when used with `Vue.extend()`.
 
-``` js
-// create reusable constructor
-var Profile = Vue.extend({
-  template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>'
-})
-// create an instance of Profile
-var profile = new Profile({
-  data: {
-    firstName : 'Walter',
-    lastName  : 'White',
-    alias     : 'Heisenberg'
-  }  
-})
-// mount it on an element
-profile.$mount('#mount-point')
-```
+  ``` html
+  <div id="mount-point"></div>
+  ```
 
-Will result in:
+  ``` js
+  // create reusable constructor
+  var Profile = Vue.extend({
+    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>'
+  })
+  // create an instance of Profile
+  var profile = new Profile({
+    data: {
+      firstName: 'Walter',
+      lastName: 'White',
+      alias: 'Heisenberg'
+    }  
+  })
+  // mount it on an element
+  profile.$mount('#mount-point')
+  ```
 
-``` html
-<p>Walter White aka Heisenberg</p>
-```
+  Will result in:
+
+  ``` html
+  <p>Walter White aka Heisenberg</p>
+  ```
+
+- See also: [Guide - Components](/guide/components.html)
 
 ### Vue.nextTick( callback )
 
-- **callback** `Function`
+- Arguments:
+  - `{Functon} callback`
 
-Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. For more details see [Understanding Async Updates](/guide/best-practices.html#Understanding_Async_Updates).
+- Usage:
+
+  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+
+  ``` js
+  // modify data
+  vm.msg = 'Hello'
+  // DOM not updated yet
+  Vue.nextTick(function () {
+    // DOM updated
+  })
+  ```
+
+- See also: [Guide - Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
 
 ### Vue.directive( id, [definition] )
 
-- **id** `String`
-- **definition** `Function` or `Object` *optional*
+- Arguments:
+  - `{String} id`
+  - `{Function | Object} [definition]`
 
-Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/custom-directive.html).
+- Usage:
+  
+  Register or retrieve a global directive.
+
+  ``` js
+  // register
+  Vue.directive('my-directive', {
+    bind: function () {},
+    update: function () {},
+    unbind: function () {}
+  })
+
+  // register (simple function directive)
+  Vue.directive('my-directive', function () {
+    // this will be called as `update`
+  })
+
+  // getter, return the directive definition if registered
+  var myDirective = Vue.directive('my-directive')
+  ```
+
+- See also: [Guide - Custom Directives](/guide/custom-directive.html)
 
 ### Vue.elementDirective( id, [definition] )
 
-- **id** `String`
-- **definition** `Function` or `Object` *optional*
+- Arguments:
+  - `{String} id`
+  - `{Object} [definition]`
 
-Register or retrieve a global custom element directive. For more details see [Element Directives](/guide/custom-directive.html#Element_Directives).
+- Usage:
+
+  Register or retrieve a global element directive.
+
+  ``` js
+  // register
+  Vue.elementDirective('my-element', {
+    bind: function () {},
+    // element directives do not use `update`
+    unbind: function () {}
+  })
+
+  // getter, return the directive definition if registered
+  var myDirective = Vue.elementDirective('my-element')
+  ```
+
+- See also: [Guide - Element Directives](/guide/custom-directive.html#Element_Directives)
 
 ### Vue.filter( id, [definition] )
 
-- **id** `String`
-- **definition** `Function` *optional*
+- Arguments:
+  - `{String} id`
+  - `{Function | Object} [definition]`
 
-Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/custom-filter.html).
+- Usage:
+
+  Register or retrieve a global filter.
+
+  ``` js
+  // register
+  Vue.filter('my-filter', function (value) {
+    // return processed value
+  })
+
+  // two way filter
+  Vue.filter('my-filter', {
+    read: function () {},
+    write: function () {}
+  })
+
+  // getter, return the filter if registered
+  var myFilter = Vue.filter('my-filter')
+  ```
+
+- See also: [Guide - Custom Filter](/guide/custom-filter.html)
 
 ### Vue.component( id, [definition] )
 
-- **id** `String`
-- **definition** `Function Constructor` or `Object` *optional*
+- Arguments:
+  - `{String} id`
+  - `{Function | Object} [definition]`
 
-Register or retrieve a global component. For more details see [Component System](/guide/components.html).
+- Usage:
 
-### Vue.transition( id, [definition] )
+  Register or retrieve a global component.
 
-- **id** `String`
-- **definition** `Object` *optional*
+  ``` js
+  // register an extended constructor
+  Vue.component('my-component', Vue.extend({ /* ... */}))
 
-Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Only_Transitions).
+  // register an options object (automatically call Vue.extend)
+  Vue.component('my-component', { /* ... */ })
+
+  // retrive a registered component (always return constructor)
+  var MyComponent = Vue.component('my-component')
+  ```
+
+- See also: [Guide - Components](/guide/components.html).
+
+### Vue.transition( id, [hooks] )
+
+- Arguments:
+  - `{String} id`
+  - `{Object} [hooks]`
+
+- Usage:
+
+  Register or retrieve a global transition hooks object.
+
+  ``` js
+  // register
+  Vue.transition('fade', {
+    enter: function () {},
+    leave: function () {}
+  })
+
+  // retrieve registered hooks
+  var fadeTransition = Vue.transition('fade')
+  ```
+
+- See also: [Guide - Transitions](/guide/transitions.html).
 
 ### Vue.partial( id, [partial] )
 
-- **id** `String`
-- **partial** `String` *optional*
+- Arguments:
+  - `{String} id`
+  - `{String} [partial]`
 
-Register or retrieve a global template partial string. For more details see [Partial](/api/elements.html#partial).
+- Usage:
 
-### Vue.use( plugin, [args...] )
+  Register or retrieve a global template partial string.
 
-- **plugin** `Object` or `Function`
-- **args...** *optional*
+  ``` js
+  // register
+  Vue.partial('my-partial', '<div>Hi</div>')
 
-Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](/guide/extending.html#Extend_with_Plugins).
+  // retrieve registered partial
+  var myPartial = Vue.partial('my-partial')
+  ```
+
+- See also: [Special Elements - &lt;partial&gt;](#partial).
+
+### Vue.use( plugin, [options] )
+
+- Arguments:
+  - `{Object | Function} plugin`
+  - `{Object} [options]`
+
+- Usage:
+
+  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+
+- See also: [Guide - Plugins](/guide/plugins.html).
 
 ### Vue.mixin( mixin )
 
-- **mixin** `Object`
+- Arguments
+  - `{Object} mixin`
 
-Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+- Usage:
 
-### Vue.util
+  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
-Exposes the internal `util` module, which contains a number of utility methods. This is intended for advanced plugin/directive authoring, so you will need to look at the source code to see what's available.
+- See also: [Guide - Global Mixins](/guide/mixins.html#Global_Mixin)
 
 ## Options / Data
 
@@ -1034,7 +1169,7 @@ Skip compilation for this element and all its children. Skipping large numbers o
 
 This property remains on the element until the associated ViewModel finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the ViewModel is ready.
 
-## Element Directives
+## Special Elements
 
 ### component
 
