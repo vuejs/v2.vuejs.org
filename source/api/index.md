@@ -807,72 +807,100 @@ type: api
 
 ## Instance Properties
 
-### vm.$el
-
-- **Type:** `HTMLElement`
-- **Read only**
-
-The DOM element that the Vue instance is managing. Note that for [Fragment Instances](/guide/best-practices.html#Fragment_Instance), `vm.$el` will return an anchor node that indicates the starting position of the fragment.
-
 ### vm.$data
 
 - **Type:** `Object`
 
-The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
+- **Details:**
+
+  The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
+
+### vm.$el
+
+- **Type:** `HTMLElement`
+
+- **Read only**
+
+- **Details:**
+
+  The DOM element that the Vue instance is managing. Note that for [Fragment Instances](/guide/components.html#Fragment_Instance), `vm.$el` will return an anchor node that indicates the starting position of the fragment.
 
 ### vm.$options
 
 - **Type:** `Object`
 
-The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+- **Read only**
 
-``` js
-new Vue({
-  customOption: 'foo',
-  created: function () {
-    console.log(this.$options.customOption) // -> 'foo'
-  }
-})
-```
+- **Details:**
+
+  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+
+  ``` js
+  new Vue({
+    customOption: 'foo',
+    created: function () {
+      console.log(this.$options.customOption) // -> 'foo'
+    }
+  })
+  ```
 
 ### vm.$parent
 
 - **Type:** `Vue`
+
 - **Read only**
 
-The parent instance, if the current instance has one.
+- **Details:**
+
+  The parent instance, if the current instance has one.
 
 ### vm.$root
 
 - **Type:** `Vue`
+
 - **Read only**
 
-The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+- **Details:**
+
+  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
 
 ### vm.$children
 
 - **Type:** `Array<Vue>`
+
 - **Read only**
 
-The direct child components of the current instance.
+- **Details:**
+
+  The direct child components of the current instance.
 
 ### vm.$refs
 
 - **Type:** `Object`
+
 - **Read only**
 
-An object that holds child components that have `v-ref` registered. For more details see [v-ref](/api/directives.html#v-ref).
+- **Details:**
+
+  An object that holds child components that have `v-ref` registered.
+
+- **See also:**
+  - [Child Component Refs](/guide/components.html#Child_Component_Refs)
+  - [v-ref](#v-ref).
 
 ### vm.$els
 
 - **Type:** `Object`
+
 - **Read only**
 
-An object that holds DOM elements that have `v-el` registered. For more details see [v-el](/api/directives.html#v-el).
+- **Details:**
+
+  An object that holds DOM elements that have `v-el` registered.
+
+- **See also:** [v-el](#v-el).
 
 ## Instance Methods / Data
-
-> You can observe data changes on a Vue instance. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.
 
 ### vm.$watch( expOrFn, callback, [options] )
 
@@ -981,8 +1009,6 @@ vm.$log('item') // logs vm.item
 
 ## Instance Methods / Events
 
-> Each vm is also an event emitter. When you have multiple nested ViewModels, you can use the event system to communicate between them.
-
 ### vm.$dispatch( event, [args...] )
 
 - **event** `String`
@@ -1026,8 +1052,6 @@ Attach a one-time only listener for an event.
 If no arguments are given, stop listening for all events; if only the event is given, remove all callbacks for that event; if both event and callback are given, remove that specific callback only.
 
 ## Instance Methods / DOM
-
-> All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger Vue.js transitions if there are any declared on vm's `$el`. For more details on transitions see [Adding Transition Effects](/guide/transitions.html).
 
 ### vm.$appendTo( element|selector, [callback] )
 
