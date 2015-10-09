@@ -108,7 +108,6 @@
     var link = document.createElement('li')
     var text = h.textContent.replace(/\(.*\)$/, '')
     // make sure the ids are link-able...
-    console.log(h.id)
     h.id = h.id
       .replace(/\(.*\)$/, '')
       .replace(/\$/, '')
