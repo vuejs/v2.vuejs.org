@@ -145,6 +145,31 @@ type: api
 
 - **See also:** [Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
 
+### Vue.set( object, key, value )
+
+- **Arguments:**
+  - `{Object} object`
+  - `{String} key`
+  - `{*} value`
+
+- **Usage:**
+
+  Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
+
+- **See also:** [Reactivity in Depth](/guide/reactivity.html)
+
+### Vue.delete( object, key )
+
+- **Arguments:**
+  - `{Object} object`
+  - `{String} key`
+
+- **Usage:**
+
+  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+
+- **See also:** [Reactivity in Depth](/guide/reactivity.html)
+
 ### Vue.directive( id, [definition] )
 
 - **Arguments:**
