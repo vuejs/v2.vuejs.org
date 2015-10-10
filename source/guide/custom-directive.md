@@ -62,6 +62,7 @@ All the hook functions will be copied into the actual **directive object**, whic
 - **expression**: the expression of the binding, excluding arguments and filters.
 - **arg**: the argument, if present.
 - **name**: the name of the directive, without the prefix.
+- **modifiers**: an object containing modifiers, if any.
 - **descriptor**: an object that contains the parsing result of the entire directive.
 
 <p class="tip">You should treat all these properties as read-only and never modify them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.</p>
@@ -69,7 +70,7 @@ All the hook functions will be copied into the actual **directive object**, whic
 An example of a custom directive using some of these properties:
 
 ``` html
-<div id="demo" v-demo:hello="msg"></div>
+<div id="demo" v-demo:hello.a.b="msg"></div>
 ```
 
 ``` js
@@ -83,6 +84,7 @@ Vue.directive('demo', {
       'name - '       + this.name + '<br>' +
       'expression - ' + this.expression + '<br>' +
       'argument - '   + this.arg + '<br>' +
+      'modifiers - '  + JSON.stringify(this.modifiers) + '<br>' +
       'value - '      + value
   }
 })
@@ -96,7 +98,7 @@ var demo = new Vue({
 
 **Result**
 
-<div id="demo" v-demo:hello="msg"></div>
+<div id="demo" v-demo:hello.a.b="msg"></div>
 <script>
 Vue.directive('demo', {
   bind: function () {
@@ -107,6 +109,7 @@ Vue.directive('demo', {
       'name - ' + this.name + '<br>' +
       'expression - ' + this.expression + '<br>' +
       'argument - ' + this.arg + '<br>' +
+      'modifiers - '  + JSON.stringify(this.modifiers) + '<br>' +
       'value - ' + value
   }
 })
