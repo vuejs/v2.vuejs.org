@@ -1420,6 +1420,27 @@ type: api
 
 - **See also:** [Conditional Rendering](/guide/conditional.html#v-show)
 
+### v-else
+
+- **Does not expect expression**
+
+- **Restriction:** previous sibling element must have `v-if` or `v-show`.
+
+- **Usage:**
+
+  Denote the "else block" for `v-if` and `v-show`.
+
+  ``` html
+  <div v-if="Math.random() > 0.5">
+    Sorry
+  </div>
+  <div v-else>
+    Not sorry
+  </div>
+  ```
+
+- **See also:** [Conditional Rendering](/guide/conditional.html#v-show)
+
 ### v-for
 
 - **Expects:** `Array | Object | Number | String`

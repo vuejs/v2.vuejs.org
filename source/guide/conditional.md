@@ -51,6 +51,21 @@ The difference is that an element with `v-show` will always be rendered and rema
 
 Note that `v-show` doesn't support the `<template>` syntax.
 
+## v-else
+
+You can use the `v-else` directive to indicate an "else block" for `v-if` or `v-show`:
+
+``` html
+<div v-if="Math.random() > 0.5">
+  Sorry
+</div>
+<div v-else>
+  Not sorry
+</div>
+```
+
+The `v-else` element must following immediately after the `v-if` or `v-show` element - otherwise it will not be recognized.
+
 ## v-if vs. v-show
 
 When a `v-if` block is toggled, Vue.js will have to perform a partial compilation/teardown process, because the template content inside `v-if` can also contain data bindings or child components. `v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
