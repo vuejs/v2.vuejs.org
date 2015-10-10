@@ -29,7 +29,7 @@ It is also possible to add an "else" block with `v-else`:
 
 ## Template v-if
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<tempalte>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
 
 ``` html
 <template v-if="ok">
@@ -53,7 +53,7 @@ Note that `v-show` doesn't support the `<template>` syntax.
 
 ## v-if vs. v-show
 
-When a `v-if` block is toggled, Vue.js will have to perform a partial compilation/teardown process, because the template content inside `v-if` can also contain data bindings or child components. `v-if` is "real" conditional rendering becaues it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+When a `v-if` block is toggled, Vue.js will have to perform a partial compilation/teardown process, because the template content inside `v-if` can also contain data bindings or child components. `v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
 
 `v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - partial compilation won't start until the condition becomes true for the first time (and the compilation is subsequently cached).
 

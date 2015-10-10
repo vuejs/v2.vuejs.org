@@ -135,7 +135,7 @@ Vue.directive('demo', function (value) {
 
 ### Literal Modifier
 
-When a directive is used with the literal modifer, its attribute value will be interpreted as a plain string and passed directly into the `update` method. The `update` method will also be called only once, because a plain string cannot be reactive.
+When a directive is used with the literal modifier, its attribute value will be interpreted as a plain string and passed directly into the `update` method. The `update` method will also be called only once, because a plain string cannot be reactive.
 
 ``` html
 <div v-demo.literal="foo bar baz">

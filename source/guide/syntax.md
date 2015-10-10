@@ -127,13 +127,13 @@ Here the argument is the event name to listen to. We will talk about event handl
 
 ### Modifiers
 
-Modifiers are special postfixes denoted by a dot, which indicates that a directive should be bound in some speical way. For example, the `.literal` modifier tells the directive to interpret its attribute value as a literal string rather than an expression:
+Modifiers are special postfixes denoted by a dot, which indicates that a directive should be bound in some special way. For example, the `.literal` modifier tells the directive to interpret its attribute value as a literal string rather than an expression:
 
 ``` html
 <a v-bind:href.literal="/a/b/c"></a>
 ```
 
-Of course, this seems pointless because we can just do `href="/a/b/c"` instead of using a directive. The example here is just for demontrating the syntax. We will see more practical uses of modifiers later.
+Of course, this seems pointless because we can just do `href="/a/b/c"` instead of using a directive. The example here is just for demonstrating the syntax. We will see more practical uses of modifiers later.
 
 ## Shorthands
 
@@ -159,4 +159,4 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 <a @click="doSomething"></a>
 ```
 
-They may look a bit different from "valid" HTML, but all Vue.js supported browsers can parse it correctly, and they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely apprecaite it when you learn more about its usage later.
+They may look a bit different from "valid" HTML, but all Vue.js supported browsers can parse it correctly, and they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.

@@ -173,9 +173,9 @@ Later on, when you replace the `items` array and Vue.js encounters a new object 
 
 ### track-by $index
 
-If you don't have a unique key to track by, you can also use `track-by="$index"`, which will force `v-for` into in-place update mode: fragments are no longered moved around, they simply get flushed with the new value at the corresponding index. This mode can also handle duplicate values in the source array.
+If you don't have a unique key to track by, you can also use `track-by="$index"`, which will force `v-for` into in-place update mode: fragments are no longer moved around, they simply get flushed with the new value at the corresponding index. This mode can also handle duplicate values in the source array.
 
-This can make Array replacement extremely efficient, but it comes at a tradeoff. Because DOM nodes are no longer moved to reflect the change in order, temporary state like DOM input values and component private state can become out of sync. So, be careful when using `track-by="$index"` if the `v-for` block contains form input elements or child components.
+This can make Array replacement extremely efficient, but it comes at a trade-off. Because DOM nodes are no longer moved to reflect the change in order, temporary state like DOM input values and component private state can become out of sync. So, be careful when using `track-by="$index"` if the `v-for` block contains form input elements or child components.
 
 ### Caveats
 
@@ -255,7 +255,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">When iterating over an Object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guarunteed to be consistent in all JavaScript engine implementations.</p>
+<p class="tip">When iterating over an Object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent in all JavaScript engine implementations.</p>
 
 ## Range v-for
 

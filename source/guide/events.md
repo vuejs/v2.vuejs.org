@@ -102,7 +102,7 @@ new Vue({
 
 Similar to the restrictions on inline expressions, event handlers are restricted to **one statement only**.
 
-Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the speical `$event` variable:
+Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special `$event` variable:
 
 ``` html
 <button v-on:click="say('hello!', $event)">Submit</button>
@@ -168,7 +168,7 @@ Here's the full list of key modifier aliases:
 
 ## Why Listeners in HTML?
 
-You might be concerned that this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintainance difficulty. In fact, there are several benefits in using `v-on`:
+You might be concerned that this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
 
 1. It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
 

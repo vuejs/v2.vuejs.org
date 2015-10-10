@@ -81,7 +81,7 @@ type: api
   Vue.config.async = false
   ```
 
-  When async mode is off, Vue will perform all DOM updates synchronously upon detecting data change. This may help with debugging in some scenarios, but could also cause degraded performance and affect the order in which wathcer callbacks are called. **`async: false` is not recommended in production.**
+  When async mode is off, Vue will perform all DOM updates synchronously upon detecting data change. This may help with debugging in some scenarios, but could also cause degraded performance and affect the order in which watcher callbacks are called. **`async: false` is not recommended in production.**
 
 ## Global API
 
@@ -321,7 +321,7 @@ type: api
 
 - **Type:** `Object | Function`
 
-- **Restricton:** Only accepts `Function` when used in `Vue.extend()`.
+- **Restriction:** Only accepts `Function` when used in `Vue.extend()`.
 
 - **Details:**
 
@@ -799,7 +799,7 @@ type: api
 
 - **Type:** `String`
 
-- **Restrctions:** only respected when used in `Vue.extend()`.
+- **Restriction:** only respected when used in `Vue.extend()`.
 
 - **Details:**
 
@@ -1091,7 +1091,7 @@ type: api
 
 - **Usage:**
 
-  Log the current instance data as a plain object, which is more console-inspectable than a bunch of getter/setters. Also accepts an optional key.
+  Log the current instance data as a plain object, which is more inspection-friendly than a bunch of getter/setters. Also accepts an optional key.
 
   ``` js
   vm.$log() // logs entire ViewModel data
@@ -1199,7 +1199,7 @@ type: api
 
 - **Usage:**
 
-  Broadcast an event that propagates downward to all descendents of the current instance. Since the descendents expand into multiple sub-trees, the event propagation will follow many different "paths". The propagation for each path will stop when a listener callback is fired along that path, unless the callback returns `true`.
+  Broadcast an event that propagates downward to all descendants of the current instance. Since the descendants expand into multiple sub-trees, the event propagation will follow many different "paths". The propagation for each path will stop when a listener callback is fired along that path, unless the callback returns `true`.
 
 - **Example:**
 
@@ -1240,7 +1240,7 @@ type: api
 
 - **Usage:**
 
-  Append the Vue instance's DOM element or fragment to target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immedialtely if no transition has been triggered).
+  Append the Vue instance's DOM element or fragment to target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
 ### vm.$before( elementOrSelector, [callback] )
 
@@ -1252,7 +1252,7 @@ type: api
 
 - **Usage:**
 
-  Insert the Vue instance's DOM element or fragment before target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immedialtely if no transition has been triggered).
+  Insert the Vue instance's DOM element or fragment before target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
 ### vm.$after( elementOrSelector, [callback] )
 
@@ -1264,7 +1264,7 @@ type: api
 
 - **Usage:**
 
-  Insert the Vue instance's DOM element or fragment after target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immedialtely if no transition has been triggered).
+  Insert the Vue instance's DOM element or fragment after target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
 ### vm.$remove( [callback] )
 
@@ -1275,7 +1275,7 @@ type: api
 
 - **Usage:**
   
-  Remove the Vue instance's DOM element or fragment from the DOM. This method will trigger transitions if present. The callback is fired after the transition has completed (or immedialtely if no transition has been triggered).
+  Remove the Vue instance's DOM element or fragment from the DOM. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
 ### vm.$nextTick( callback )
 
@@ -1406,7 +1406,7 @@ type: api
 
 - **Usage:**
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained data bndings / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained data bindings / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
 
 - **See also:** [Conditional Rendering](/guide/conditional.html)
 
@@ -1432,7 +1432,7 @@ type: api
 
 - **Usage:**
 
-  Render the element or template block multiple times based on the source data. The expression must use the special syntax to provide an alias for the current element being itereated on:
+  Render the element or template block multiple times based on the source data. The expression must use the special syntax to provide an alias for the current element being iterated on:
 
   ``` html
   <div v-for="item in items">
@@ -1728,7 +1728,7 @@ type: api
 
 - **Usage:**
 
-  Pluralizes the argument based on the filtered value. When there is exactly one arg, plural forms simply add an "s" at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple ... forms of the word to be pluralized. When the number to be pluralized exceeds the length of the args, it will use the last entry in the array.
+  Pluralizes the argument based on the filtered value. When there is exactly one argument, plural forms simply add an "s" at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple ... forms of the word to be pluralized. When the number to be pluralized exceeds the length of the arguments, it will use the last entry in the array.
 
 - **Example:**
 
@@ -1758,7 +1758,7 @@ type: api
 
 - **Usage:**
   
-  JSON.stringify() incoming value instead of outputting the `toString()` value (e.g. `[object Object]`).
+  Output the result of calling `JSON.stringify()` on the value instead of outputting the `toString()` value (e.g. `[object Object]`).
 
 - **Example:**
 

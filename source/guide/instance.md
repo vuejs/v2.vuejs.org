@@ -24,7 +24,7 @@ var MyComponent = Vue.extend({
   // extension options
 })
 
-// all instnaces of `MyComponent` are created with
+// all instances of `MyComponent` are created with
 // the pre-defined extension options
 var myComponentInstance = new MyComponent()
 ```

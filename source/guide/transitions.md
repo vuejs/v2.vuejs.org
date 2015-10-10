@@ -153,7 +153,7 @@ The classes being added and toggled are based on the value of the `transition` a
 
 2. `.fade-enter` defines the starting state of an entering transition. It is applied for a single frame and then immediately removed.
 
-3. `.fade-leave` defines the ending state of a leaving transition. It is applied when the leaving transition starts and removed when the tranition finishes.
+3. `.fade-leave` defines the ending state of a leaving transition. It is applied when the leaving transition starts and removed when the transition finishes.
 
 If the `transition` attribute has no value, the classes will default to `.v-transition`, `.v-enter` and `.v-leave`.
 

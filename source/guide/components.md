@@ -200,7 +200,7 @@ Vue.component('child', {
 
 ### Dynamic Props
 
-Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenver the data is updated in the parent, it will also flow down to the child:
+Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
 
 ``` html
 <div>
@@ -656,7 +656,7 @@ By default, the transitions for incoming and outgoing components happen simultan
 
 - `in-out`: New component transitions in first, current component transitions out after incoming transition has finished.
 
-- `out-in`: Current component transitions out first, new componnent transitions in after outgoing transition has finished.
+- `out-in`: Current component transitions out first, new component transitions in after outgoing transition has finished.
 
 **Example**
 
@@ -718,11 +718,11 @@ new Vue({
 
 ### Authoring Reusable Components
 
-When authoring components, it is good to keep in mind whether you intend to reuse this component somewhere else later. It is ok for one-off components to have some tight coupling with each other, but reusable components should define a clean public interface.
+When authoring components, it is good to keep in mind whether you intend to reuse this component somewhere else later. It is OK for one-off components to have some tight coupling with each other, but reusable components should define a clean public interface.
 
 The API for a Vue.js component essentially comes in three parts - props, events and slots:
 
-- **Props** allow the external enviroment to feed data to the component;
+- **Props** allow the external environment to feed data to the component;
 
 - **Events** allow the component to trigger actions in the external environment;
 
@@ -756,7 +756,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrived your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
+The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {

@@ -13,7 +13,7 @@ For large projects it's necessary to utilize a modularized build system to bette
 
 Webpack and Browserify are more than just module bundlers, though. They both provide source transform APIs that allow you to transform your source code with other pre-processors. For example, you can write your code with future ES2015/2016 syntax using [babel-loader](https://github.com/babel/babel-loader) or [babelify](https://github.com/babel/babelify).
 
-If you've never used them before, I highly recommend going through a few tutorials to get familiar with the concept of module bunlders, and start writing JavaScript using the latest ECMAScript features.
+If you've never used them before, I highly recommend going through a few tutorials to get familiar with the concept of module bundlers, and start writing JavaScript using the latest ECMAScript features.
 
 ## Single File Components
 
@@ -34,9 +34,9 @@ You can find examples of the build setups on GitHub:
 
 ## Routing
 
-For Single Page Applications, it is recommended to use the [offical vue-router library](https://github.com/vuejs/vue-router), which is currently in technical preview. For more details, please refer to vue-router's [documentation](http://vuejs.github.io/vue-router/).
+For Single Page Applications, it is recommended to use the [official vue-router library](https://github.com/vuejs/vue-router), which is currently in technical preview. For more details, please refer to vue-router's [documentation](http://vuejs.github.io/vue-router/).
 
-If you just need some very simple routing logic, you can also implement it by manually listening on hashchange and utilizing a dynamic component:
+If you just need some very simple routing logic, you can also implement it by manually listening on `hashchange` and utilizing a dynamic component:
 
 **Example:**
 
@@ -117,7 +117,7 @@ Notice we are putting all actions that mutate the store's state inside the store
 
 One thing to take note is that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for the mutations to be observed.
 
-If we enforce a convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we've essentially arrived at the [Flux](https://facebook.github.io/flux/) architecture. The benefits of this convention is we can record all state mutations happening to the store, and on top of that we can implement advanced debugging helpers such as mutation logs, snapshots, history rerolls etc.
+If we enforce a convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we've essentially arrived at the [Flux](https://facebook.github.io/flux/) architecture. The benefits of this convention is we can record all state mutations happening to the store, and on top of that we can implement advanced debugging helpers such as mutation logs, snapshots, history re-rolls etc.
 
 The Flux architecture is commonly used in React applications. Turns out the core idea behind Flux can be quite simply achieved in Vue.js, thanks to the unobtrusive reactivity system. Do note what we demonstrated here is just an example to introduce the concept - you may not need it at all for simple scenarios, and you should adapt the pattern to fit the real needs of your application.
 
