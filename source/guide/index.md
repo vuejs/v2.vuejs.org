@@ -87,7 +87,7 @@ var exampleVM2 = new Vue({
 </script>
 {% endraw %}
 
-Here we are encoutering something new. The `v-if` attribute you are seeing are called **Directives**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue.js, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Go ahead and set `exampleVM2.greeting` to `false` in the console. You should see the "Hello!" message disappear.
+Here we are encountering something new. The `v-if` attribute you are seeing are called **Directives**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue.js, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Go ahead and set `exampleVM2.greeting` to `false` in the console. You should see the "Hello!" message disappear.
 
 This second example demonstrates that not only can we bind DOM text to the data, we can also bind the **structure** of the DOM to the data. Moreover, Vue.js also provides a powerful transition effect system that can automatically apply transition effects when elements are inserted/removed by Vue.
 
@@ -95,7 +95,7 @@ There are quite a few other directives, each with its own special functionality.
 
 ## Component System
 
-The Component System is another important concept in Vue.js, becaues it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+The Component System is another important concept in Vue.js, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
 
 ![Component Tree](/images/components.png)
 
