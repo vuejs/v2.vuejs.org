@@ -34,7 +34,7 @@ var exampleData = {
 // which links the View and the Model
 var exampleVM = new Vue({
   el: '#example-1',
-  data: data
+  data: exampleData
 })
 ```
 
