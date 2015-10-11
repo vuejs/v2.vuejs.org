@@ -1940,14 +1940,16 @@ type: api
 
   Return a sorted version of the source Array. The `sortKey` is the key to use for the sorting. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
 
+  For arrays of primitive values, any truthy `sortKey` will work.
+
 - **Example:**
 
   Sort users by name:
 
   ``` html
   <ul>
-    <li v-repeat="user in users | orderBy 'name'">
-      {{user.name}}
+    <li v-for="user in users | orderBy 'name'">
+      {{ user.name }}
     </li>
   </ul>
   ```
@@ -1956,8 +1958,18 @@ type: api
 
   ``` html
   <ul>
-    <li v-repeat="user in users | orderBy 'name' -1">
-      {{user.name}}
+    <li v-for="user in users | orderBy 'name' -1">
+      {{ user.name }}
+    </li>
+  </ul>
+  ```
+
+  Sort primitive values:
+
+  ``` html
+  <ul>
+    <li v-for="n in numbers | orderBy true">
+      {{ n }}
     </li>
   </ul>
   ```
