@@ -43,7 +43,7 @@ Mustaches can also be used inside HTML attributes:
 <div id="item-{{ id }}"></div>
 ```
 
-However, this can only be used inside native HTML attributes. You cannot use mustaches in custom attributes or Vue.js directives. Don't worry, Vue.js will raise warnings for you when mustaches are used in wrong places.
+Note that attribute interpolations are disallowed in Vue.js directives and special attributes. Don't worry, Vue.js will raise warnings for you when mustaches are used in wrong places.
 
 ## Binding Expressions
 
