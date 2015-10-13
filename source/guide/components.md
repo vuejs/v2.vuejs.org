@@ -639,7 +639,7 @@ Vue.component('activate-example', {
   activate: function (done) {
     var self = this
     loadDataAsync(function (data) {
-      this.someData = data
+      self.someData = data
       done()
     })
   }
