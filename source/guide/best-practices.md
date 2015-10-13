@@ -43,7 +43,7 @@ As mentioned above, Vue observes data by converting properties with `Object.defi
 
 These methods can be used to add / delete properties from observed objects while triggering the desired DOM updates. The difference between `$add` and `$set` is that `$add` will return early if the key already exists on the object, so just calling `obj.$add(key)` won’t overwrite the existing value with `undefined`.
 
-A related note is that when you change a data-bound Array directly by setting indices (e.g. `arr[1] = value`), Vue will not be able to pick up the change. Again, you can use augmented methods to notify Vue.js about those changes. Observerd Arrays are augmented with two methods:
+A related note is that when you change a data-bound Array directly by setting indices (e.g. `arr[1] = value`), Vue will not be able to pick up the change. Again, you can use augmented methods to notify Vue.js about those changes. Observed Arrays are augmented with two methods:
 
 - `arr.$set(index, value)`
 - `arr.$remove(index | value)`
