@@ -9,10 +9,10 @@ A common need for data binding is manipulating an element's class list and its i
 
 ### Object Syntax
 
-We can pass an Object to `v-bind:class` to dynamically toggle classes:
+We can pass an Object to `v-bind:class` to dynamically toggle classes. Note the `v-bind:class` directive can co-exist with the plain `class` attribute:
 
 ``` html
-<div v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>
+<div class="static" v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>
 ```
 ``` js
 data: {
@@ -24,7 +24,7 @@ data: {
 Which will render:
 
 ``` html
-<div class="class-a"></div>
+<div class="static class-a"></div>
 ```
 
 When `isA` and `isB` changes, the class list will be updated accordingly. For example, if `isB` becomes `true`, the class list will become `"class-a class-b"`.
