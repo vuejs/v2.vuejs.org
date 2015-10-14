@@ -108,7 +108,7 @@ Much better, isn't it?
 
 ### Computed Setter
 
-Computed properties are by default get-only, but you can also provide a setter when you need it:
+Computed properties are by default getter-only, but you can also provide a setter when you need it:
 
 ``` js
 // ...
