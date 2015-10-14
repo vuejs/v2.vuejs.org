@@ -802,6 +802,23 @@ export default {
 }
 ```
 
+### Recursive Component
+
+Components can recursively invoke itself in its own template, however, it can only do so when it has the `name` option:
+
+``` js
+var StackOverflow = Vue.extend({
+  name: 'stack-overflow',
+  template:
+    '<div>' +
+      // recursively invoke self
+      '<stack-overflow></stack-overflow>' +
+    '</div>'
+})
+```
+
+A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional. When you register a component globally using `Vue.component()`, the global ID is automatically set as the component's `name` option.
+
 ### Fragment Instance
 
 When you use the `template` option, the content of the template will replace the element the Vue instance is mounted on. It is therefore recommended to always include a single root-level element in templates.

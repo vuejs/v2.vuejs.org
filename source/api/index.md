@@ -828,16 +828,27 @@ type: api
 
 - **Details:**
 
-  When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
+  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+
+  Another benefit of specifying a `name` option is console inspection. When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
 
 - **Example:**
 
   ``` js
   var Ctor = Vue.extend({
-    name: 'cool-stuff'
+    name: 'stack-overflow',
+    template:
+      '<div>' +
+        // recursively invoke self
+        '<stack-overflow></stack-overflow>' +
+      '</div>'
   })
+
+  // this will actually result in a max stack size exceeded
+  // error, but let's assume it works...
   var vm = new Ctor()
-  console.log(vm) // -> CoolStuff {$el: null, ...}
+
+  console.log(vm) // -> StackOverflow {$el: null, ...}
   ```
 
 ## Instance Properties
