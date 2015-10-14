@@ -1,5 +1,5 @@
-Per i tradottori:
-La pagina home è qui: 
+Per i traduttori:
+La pagina landing/home è qui: 
 
 vuejs.org/themes/vue/layout/index.ejs
 
