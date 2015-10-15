@@ -217,7 +217,7 @@ Use this wisely though, because in general you want to avoid side-effects in you
 
 You can optionally provide a priority number for your directive (defaults to 0). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
 
-You can checkout the priorities for some built-in directives in the [API reference](/api/directives.html). Additionally, flow control directives `v-if` and `v-for` always have the highest priority in the compilation process.
+You can checkout the priorities for some built-in directives in the [API reference](/api/#Directives). Additionally, flow control directives `v-if` and `v-for` always have the highest priority in the compilation process.
 
 ## Element Directives
 
