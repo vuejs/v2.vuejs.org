@@ -361,7 +361,7 @@ Then you can use it with the `transition` attribute, same deal:
 It's possible to create staggering transitions when using `transition` with `v-for`. You can do this either by adding a `stagger`, `enter-stagger` or `leave-stagger` attribute to your transitioned element:
 
 ``` html
-<div v-repeat="list" transition stagger="100"></div>
+<div v-for="list" transition stagger="100"></div>
 ```
 
 Or, you can provide a `stagger`, `enterStagger` or `leaveStagger` hook for finer-grained control:
