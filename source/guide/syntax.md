@@ -95,7 +95,7 @@ Filters can also take arguments:
 {{ message | filterA 'arg1' arg2 }}
 ```
 
-The filter function always receives the expression's value as the first argument. Quoted arguments are interpreted as plain string, while un-quoted ones will be evaluated as expressions. Here, the plain string `"arg1"` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+The filter function always receives the expression's value as the first argument. Quoted arguments are interpreted as plain string, while un-quoted ones will be evaluated as expressions. Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
 
 ## Directives
 
