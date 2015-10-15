@@ -49,7 +49,7 @@ Vue.set(data, 'c', 3)
 // `vm.c` and `data.c` are now reactive
 ```
 
-There are also a few Array-related caveats, which were [discussed earlier in the list rendering section](http://localhost:4000/guide/list.html#Array_Observation_Caveats).
+There are also a few Array-related caveats, which were [discussed earlier in the list rendering section](/guide/list.html#Caveats).
 
 ## Initialize Your Data
 
