@@ -1,2 +1,3 @@
+---
 blog_index: true
 ---

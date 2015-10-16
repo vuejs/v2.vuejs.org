@@ -1,3 +1,4 @@
+---
 title: Vue.js 0.12 released!
 date: 2015-06-11 17:37:30
 ---

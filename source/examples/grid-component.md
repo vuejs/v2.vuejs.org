@@ -1,3 +1,4 @@
+---
 title: Grid Component
 type: examples
 order: 3

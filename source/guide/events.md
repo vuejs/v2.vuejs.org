@@ -1,3 +1,4 @@
+---
 title: Methods and Event Handling
 type: guide
 order: 9

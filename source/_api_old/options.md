@@ -1,3 +1,4 @@
+---
 title: Component Options
 type: api
 order: 2

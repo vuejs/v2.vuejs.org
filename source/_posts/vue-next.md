@@ -1,3 +1,4 @@
+---
 title: Vue.js 0.10.6, and what's next
 date: 2014-07-29 00:04:55
 ---

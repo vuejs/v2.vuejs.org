@@ -1,3 +1,4 @@
+---
 title: Modal Component
 type: examples
 order: 6

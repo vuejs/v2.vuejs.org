@@ -1,3 +1,4 @@
+---
 title: Vue.js 0.11 released!
 date: 2014-11-09 09:23:40
 ---

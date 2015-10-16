@@ -1,3 +1,4 @@
+---
 title: Introduction
 type: guide
 order: 2

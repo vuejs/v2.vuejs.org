@@ -1,3 +1,4 @@
+---
 title: Global API
 type: api
 order: 5

@@ -1,3 +1,4 @@
+---
 title: Class and Style Bindings
 type: guide
 order: 6

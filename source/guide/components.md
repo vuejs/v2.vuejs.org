@@ -1,3 +1,4 @@
+---
 title: Components
 type: guide
 order: 12

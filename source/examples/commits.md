@@ -1,3 +1,4 @@
+---
 title: GitHub Commits
 type: examples
 order: 1

@@ -1,3 +1,4 @@
+---
 title: Vue.js 0.10 is here!
 date: 2014-03-22 19:00:13
 type: '{{type}}'

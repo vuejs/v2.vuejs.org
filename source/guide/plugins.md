@@ -1,3 +1,4 @@
+---
 title: Plugins
 type: guide
 order: 17

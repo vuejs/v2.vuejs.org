@@ -1,3 +1,4 @@
+---
 title: Custom Directive
 type: examples
 order: 7

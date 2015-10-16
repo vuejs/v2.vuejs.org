@@ -1,3 +1,4 @@
+---
 title: Mixins
 type: guide
 order: 16
