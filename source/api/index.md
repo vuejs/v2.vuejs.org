@@ -1519,6 +1519,8 @@ type: api
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement.
 
+  When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
+
 - **Example:**
 
   ``` html
@@ -1547,7 +1549,64 @@ type: api
   <input @keyup.13="onEnter">
   ```
 
+  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+
+  ``` html
+  <my-component @my-event="handleThis"></my-component>
+  ```
+
 - **See also:** [Methods and Event Handling](/guide/events.html)
+
+### v-bind
+
+- **Shorthand:** `:`
+
+- **Expects:** `*`
+
+- **Argument:** `attrOrProp (required)`
+
+- **Mofifiers:**
+  - `.sync` - make the binding two-way. Only respected for prop bindings.
+  - `.once` - make the binding one-time. Only respected for prop bindings.
+
+- **Usage:**
+
+  Dynamically bind an attribute or a component prop to an expression.
+
+  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+
+  When used for prop binding, the prop must be properly declared in the child component. Prop bindings can specify a different binding type using one of the modifiers.
+
+- **Example:**
+
+  ``` html
+  <!-- bind an attribute -->
+  <img v-bind:src="imageSrc">
+
+  <!-- shorthand -->
+  <img :src="imageSrc">
+
+  <!-- class binding -->
+  <div :class="{ red: isRed }"></div>
+  <div :class="[classA, classB]"></div>
+
+  <!-- style binding -->
+  <div :style="{ fontSize: size + 'px' }"></div>
+  <div :style="[styleObjectA, styleObjectB]"></div>
+
+  <!-- prop binding. "prop" must be declared in my-component. -->
+  <my-component :prop="someThing"></my-component>
+
+  <!-- two-way prop binding -->
+  <my-component :prop.sync="someThing"></my-component>
+
+  <!-- one-time prop binding -->
+  <my-component :prop.once="someThing"></my-component>
+  ```
+
+- **See also:**
+  - [Class and Style Bindings](/guide/class-and-style.html)
+  - [Component Props](/guide/components.html#Props)
 
 ### v-model
 
