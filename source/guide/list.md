@@ -286,4 +286,4 @@ Sometimes we only need to display a filtered or sorted version of the Array with
 1. Create a computed property that returns the filtered or sorted Array;
 2. Use the built-in `filterBy` and `orderBy` filters.
 
-A computed property would give you finer-grained control and more flexibility since it's full JavaScript; but the filters can be more convenient for common use cases. For detailed usage of the Array filters, check out their [documentation](/api/filters.html#filterBy).
+A computed property would give you finer-grained control and more flexibility since it's full JavaScript; but the filters can be more convenient for common use cases. For detailed usage of the Array filters, check out their [documentation](/api/#filterBy).
