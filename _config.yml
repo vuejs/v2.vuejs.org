@@ -12,7 +12,7 @@ language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://vuejs.org
+url: http://012.vuejs.org
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -97,4 +97,4 @@ markdown:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:vuejs/vuejs.org.git
+  repository: git@github.com:vuejs/012.vuejs.org.git
