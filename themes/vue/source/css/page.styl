@@ -93,11 +93,15 @@ $header-height = 40px
     top 0
     left 60px
     bottom 0
-    overflow-y scroll
     padding 2.2em 0
     width 260px
     margin-right 20px
+    overflow-x hidden
+    overflow-y auto
     -webkit-overflow-scrolling touch
+    -ms-overflow-style none
+    &::-webkit-scrollbar
+        width: 0 !important
     h2
         margin-top .2em
     ul
