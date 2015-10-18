@@ -8,4 +8,4 @@ order: 8
 
 <iframe width="100%" height="500" src="todomvc/index.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-> [[Source](https://github.com/yyx990803/vue/tree/dev/examples/todomvc)]
+> [[Source](https://github.com/vuejs/vue/tree/dev/examples/todomvc)]

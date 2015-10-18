@@ -15,9 +15,9 @@ gz_size: "23.52"
 Simply download and include with a script tag. `Vue` will be registered as a global variable.
 
 <div id="downloads">
-<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+<a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
 
-<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}kb min+gzip</span>
+<a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}kb min+gzip</span>
 </div>
 
 ### CDN
@@ -26,7 +26,7 @@ Available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [c
 
 ### CSP-compliant build
 
-Some environments, such as Google Chrome Apps, enforces Content Security Policy (CSP) and does not allow the use of `new Function()` for evaluating expressions. In these cases you can use the [CSP-compliant build](https://github.com/yyx990803/vue/tree/csp/dist) instead.
+Some environments, such as Google Chrome Apps, enforces Content Security Policy (CSP) and does not allow the use of `new Function()` for evaluating expressions. In these cases you can use the [CSP-compliant build](https://github.com/vuejs/vue/tree/csp/dist) instead.
 
 ## NPM
 
@@ -35,7 +35,7 @@ $ npm install vue
 # for csp-compliant version:
 $ npm install vue@csp
 # for dev build (from GitHub):
-$ npm install yyx990803/vue#dev
+$ npm install vuejs/vue#dev
 ```
 
 ## Bower

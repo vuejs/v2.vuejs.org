@@ -73,4 +73,4 @@ Vue.use(VueRouter)
 
 - [vue-element](https://github.com/vuejs/vue-element): Register Custom Elements with Vue.js.
 
-- [List of User Contributed Tools](https://github.com/yyx990803/vue/wiki/User-Contributed-Components-&-Tools)
+- [List of User Contributed Tools](https://github.com/vuejs/vue/wiki/User-Contributed-Components-&-Tools)

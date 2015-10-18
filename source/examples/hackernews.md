@@ -10,4 +10,4 @@ order: 9
   <a href="http://vuejs.github.io/vue-hackernews" target="_blank"><img style="width:100%" src="/images/hn.png"></a>
 </div>
 
-> [[Source](https://github.com/yyx990803/vue-hackernews)]
+> [[Source](https://github.com/vuejs/vue-hackernews)]
