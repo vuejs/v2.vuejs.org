@@ -123,8 +123,7 @@ new Vue({
 new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue.js!',
-    color: 'red'
+    message: 'Hello Vue.js!'
   },
   methods: {
     reverseMessage: function () {
