@@ -5,7 +5,7 @@
 # Site
 title: Vue.js
 subtitle:
-description: "Simple, Fast & Composable MVVM for building interative interfaces."
+description: "Reactive Components for Modern Web Interfaces"
 author: Evan You
 email:
 language:
@@ -21,7 +21,7 @@ category_dir: categories
 code_dir: downloads/code
 
 # Directory
-source_dir: source
+source_dir: src
 public_dir: public
 
 # Writing
@@ -37,7 +37,7 @@ render_drafts: false
 post_asset_folder: false
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   tab_replace:
 
 # Category & Tag
@@ -49,9 +49,9 @@ tag_map:
 ## 2: Enable pagination
 ## 1: Disable pagination
 ## 0: Fully Disable
-archive: 2
-category: 2
-tag: 2
+archive: 0
+category: 0
+tag: 0
 
 # Server
 ## Hexo uses Connect as a server
