@@ -8,7 +8,7 @@ We've covered most of the basics - now it's time to take a deep dive! One of Vue
 
 ## How Changes Are Tracked
 
-When you pass a plain JavaScript object to a Vue.js instance as its `data` option, Vue.js will walk through all of its properties and convert them to getter/setters using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue.js doesn't support IE8 and below.
+When you pass a plain JavaScript object to a Vue instance as its `data` option, Vue.js will walk through all of its properties and convert them to getter/setters using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue.js doesn't support IE8 and below.
 
 The getter/setters are invisible to the user, but under the hood they enable Vue.js to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format getter/setters differently when converted data objects are logged, so make sure to use the `vm.$log()` instance method for more inspection-friendly output.
 
@@ -34,7 +34,7 @@ data.b = 2
 // `data.b` is NOT reactive
 ```
 
-However, there are ways to "add a property and make it reactive" after an instance has been created.
+However, there are ways to **add a property and make it reactive** after an instance has been created.
 
 For Vue instances, you can use the `$set(path, value)` instance method:
 
