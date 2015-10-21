@@ -1510,7 +1510,7 @@ type: api
 
 - **Argument:** `event (required)`
 
-- **Mofifiers:**
+- **Modifiers:**
   - `.stop` - call `event.stopPropagation()`.
   - `.prevent` - call `event.preventDefault()`.
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
@@ -1565,7 +1565,7 @@ type: api
 
 - **Argument:** `attrOrProp (required)`
 
-- **Mofifiers:**
+- **Modifiers:**
   - `.sync` - make the binding two-way. Only respected for prop bindings.
   - `.once` - make the binding one-time. Only respected for prop bindings.
 
