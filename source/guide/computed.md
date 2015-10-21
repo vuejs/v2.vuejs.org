@@ -82,7 +82,7 @@ var vm = new Vue({
     msg: 'hi'
   },
   computed: {
-    example: {
+    example: function () {
       return Date.now() + this.msg
     }
   }
