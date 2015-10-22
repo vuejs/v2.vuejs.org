@@ -1986,7 +1986,7 @@ type: api
   <li v-for="user in users | filterBy searchText in 'name' 'phone'"></li>
   ```
 
-  Multiple search keys with a dyanmic Array argument:
+  Multiple search keys with a dynamic Array argument:
 
   ``` html
   <!-- fields = ['fieldA', 'fieldB'] -->
