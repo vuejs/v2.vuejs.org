@@ -1455,7 +1455,7 @@ type: api
 
   Toggle's the element's `display` CSS property based on the truthy-ness of the expression value. Triggers transitions if present.
 
-- **See also:** [Conditional Rendering](/guide/conditional.html#v-show)
+- **See also:** [Conditional Rendering - v-show](/guide/conditional.html#v-show)
 
 ### v-else
 
@@ -1476,7 +1476,7 @@ type: api
   </div>
   ```
 
-- **See also:** [Conditional Rendering](/guide/conditional.html#v-show)
+- **See also:** [Conditional Rendering - v-else](/guide/conditional.html#v-else)
 
 ### v-for
 
