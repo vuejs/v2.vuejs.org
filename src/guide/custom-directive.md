@@ -65,6 +65,7 @@ All the hook functions will be copied into the actual **directive object**, whic
 - **name**: the name of the directive, without the prefix.
 - **modifiers**: an object containing modifiers, if any.
 - **descriptor**: an object that contains the parsing result of the entire directive.
+- **params**: an object containing param attributes. [Explained below](#params).
 
 <p class="tip">You should treat all these properties as read-only and never modify them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.</p>
 
@@ -150,7 +151,68 @@ Vue.directive('demo', function (value) {
 })
 ```
 
+### Element Directives
+
+In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained later in the guide). You can register a custom element directive like so:
+
+``` js
+Vue.elementDirective('my-directive', {
+  // same API as normal directives
+  bind: function () {
+    // manipulate this.el...
+  }
+})
+```
+
+Then, instead of:
+
+``` html
+<div v-my-directive></div>
+```
+
+We can write:
+
+``` html
+<my-directive></my-directive>
+```
+
+Element directives cannot accept arguments or expressions, but it can read the element's attributes to determine its behavior.
+
+A big difference from normal directives is that element directives are **terminal**, which means once Vue encounters an element directive, it will completely skip that element - only the element directive itself will be able to manipulate that element and its children.
+
 ## Advanced Options
+
+### params
+
+Custom directive can provide a `params` array, and the Vue compiler will automatically extract these attributes on the element that the directive is bound to. Example:
+
+``` html
+<div v-example a="hi"></div>
+```
+``` js
+Vue.directive('example', {
+  params: ['a'],
+  bind: function () {
+    console.log(this.params.a) // -> "hi"
+  }
+})
+```
+
+This API also supports dynamic attributes. The `this.params[key]` value is automatically kept up-to-date. In addition, you can specify a callback when the value has changed:
+
+``` html
+<div v-example v-bind:a="someValue"></div>
+```
+``` js
+Vue.directive('example', {
+  params: ['a'],
+  paramWatchers: {
+    a: function (val, oldVal) {
+      console.log('a changed!')
+    }
+  }
+})
+```
 
 ### deep
 
@@ -219,32 +281,3 @@ Use this wisely though, because in general you want to avoid side-effects in you
 You can optionally provide a priority number for your directive (defaults to 0). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
 
 You can checkout the priorities for some built-in directives in the [API reference](/api/#Directives). Additionally, flow control directives `v-if` and `v-for` always have the highest priority in the compilation process.
-
-## Element Directives
-
-In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained later in the guide). You can register a custom element directive like so:
-
-``` js
-Vue.elementDirective('my-directive', {
-  // same API as normal directives
-  bind: function () {
-    // manipulate this.el...
-  }
-})
-```
-
-Then, instead of:
-
-``` html
-<div v-my-directive></div>
-```
-
-We can write:
-
-``` html
-<my-directive></my-directive>
-```
-
-Element directives cannot accept arguments or expressions, but it can read the element's attributes to determine its behavior.
-
-A big difference from normal directives is that element directives are **terminal**, which means once Vue encounters an element directive, it will leave that element and all its children alone - only the element directive itself will be able to manipulate that element and its children. 
