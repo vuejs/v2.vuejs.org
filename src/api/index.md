@@ -1524,7 +1524,7 @@ type: api
 
 - **Usage:**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement.
+  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
 
   When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
 
@@ -1545,6 +1545,9 @@ type: api
 
   <!-- prevent default -->
   <button @click.prevent="doThis"></button>
+
+  <!-- prevent default without expression -->
+  <form @submit.prevent></form>
 
   <!-- chain modifiers -->
   <button @click.stop.prevent="doThis"></button>

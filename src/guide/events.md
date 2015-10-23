@@ -134,6 +134,9 @@ To address this problem, Vue.js provides two **event modifiers** for `v-on`: `.p
 
 <!-- modifiers can be chained -->
 <a v-on:click.stop.prevent="doThat">
+
+<!-- just the modifier -->
+<form v-on:submit.prevent></form>
 ```
 
 ## Key Modifiers
