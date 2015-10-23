@@ -1,7 +1,7 @@
 ---
 title: Custom Directive
 type: examples
-order: 7
+order: 8
 ---
 
 > In this example we are integrating a 3rd party jQuery plugin (select2) by wrapping it inside a custom directive.

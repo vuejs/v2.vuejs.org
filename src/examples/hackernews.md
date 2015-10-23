@@ -1,7 +1,7 @@
 ---
 title: HackerNews Clone
 type: examples
-order: 9
+order: 10
 ---
 
 > This is a HackerNews clone built upon HN's official Firebase API, and using Webpack + vue-loader for the build setup.
