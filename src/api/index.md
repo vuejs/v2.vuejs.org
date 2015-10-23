@@ -1498,6 +1498,13 @@ type: api
   </div>
   ```
 
+  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+
+  ``` html
+  <div v-for="(index, item) in items"></div>
+  <div v-for="(key, val) in object"></div>
+  ```
+
   The detailed usage for `v-for` is explained in the guide section linked below.
 
 - **See also:** [List Rendering](/guide/list.html).

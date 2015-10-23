@@ -106,6 +106,14 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
+Alternatively, you can also specify an alias for the index (or the key if `v-for` is used on an Object):
+
+``` html
+<div v-for="(index, item) in items">
+  {{ index }} {{ item.message }}
+</div>
+```
+
 ## Template v-for
 
 Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
@@ -255,6 +263,14 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+You can also provide an alias for the key:
+
+``` html
+<div v-for="(key, val) in object">
+  {{ key }} {{ val }}
+</div>
+```
 
 <p class="tip">When iterating over an Object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent in all JavaScript engine implementations.</p>
 
