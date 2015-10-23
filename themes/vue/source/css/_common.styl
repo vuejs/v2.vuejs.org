@@ -120,3 +120,47 @@ a.button
     .carbon-poweredby
         color #aaa
         font-weight normal
+
+#nav
+    .nav-link
+        cursor pointer
+    .nav-dropdown-container
+        .nav-link
+            &:hover
+                border-bottom none
+        &:hover
+            .nav-dropdown
+                display block
+    .nav-dropdown
+        display none
+        position absolute
+        top 100%
+        left 0
+        background-color #fff
+        padding 10px 0
+        border 1px solid #ddd
+        border-bottom-color #ccc
+        text-align left
+        border-radius 4px
+        li
+            line-height 1.8em
+            margin 0
+            display block
+        a
+            color $light
+            font-size .9em
+            display block
+            padding 0 30px 0 20px
+            &:hover
+                color $green
+    .arrow
+        display inline-block
+        vertical-align middle
+        margin-top -1px
+        margin-left 6px
+        margin-right -14px
+        width 0
+        height 0
+        border-left 4px solid transparent
+        border-right 4px solid transparent
+        border-top 5px solid #ccc
