@@ -1434,7 +1434,7 @@ type: api
   ``` html
   <div v-html="html"></div>
   <!-- same as -->
-  <div>{{html}}</div>
+  <div>{{{html}}}</div>
   ```
 
 ### v-if
