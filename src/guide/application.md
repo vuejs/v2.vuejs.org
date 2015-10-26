@@ -170,7 +170,7 @@ describe('my-component', function () {
   it('should set correct default data', function () {
     expect(typeof myComponent.data).toBe('function')
     var defaultData = myComponent.data()
-    expect(defaultData.message).toBe('hello!')
+    expect(defaultData.msg).toBe('hello!')
   })
 })
 ```
