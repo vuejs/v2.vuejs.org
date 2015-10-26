@@ -461,7 +461,7 @@ Despite the existence of props and events, sometimes you might still need to dir
 ``` js
 var parent = new Vue({ el: '#parent' })
 // access child component instance
-var child = parent.$.profile
+var child = parent.$refs.profile
 ```
 
 When `v-ref` is used together with `v-for`, the ref you get will be an Array or an Object containing the child components mirroring the data source.
