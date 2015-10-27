@@ -14,7 +14,7 @@ deploy:	all
 update:
 	cd ../vue && \
 		git checkout -- dist && \
-		git checkout 1.0.0-rc.2 && \
+		git checkout master && \
 		grunt build && \
 		webpack --config build/webpack.test.config.js > /dev/null
 	cp ../vue/dist/vue.min.js themes/vue/source/js/vue.min.js
