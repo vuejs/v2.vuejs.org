@@ -1,4 +1,6 @@
-all: update
+all: update deploy
+
+deploy:
 	rm db.json
 	hexo generate
 	cp -R ./todomvc public/examples
@@ -7,8 +9,6 @@ all: update
 	cp ../vue/test/unit/runner.html public/unit/index.html
 	cp ../vue/test/unit/specs.js public/unit/specs.js
 	cp ../vue/test/unit/specs.js.map public/unit/specs.js.map
-
-deploy:	all
 	hexo deploy
 
 update:
