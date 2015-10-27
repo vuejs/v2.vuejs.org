@@ -161,7 +161,7 @@ And you can test that module like this:
 
 ``` js
 // Some Jasmine 2.0 tests
-describe('my-component', function () {  
+describe('my-component', function () {
   // require source module
   var myComponent = require('../src/my-component')
   it('should have a created hook', function () {
@@ -216,4 +216,4 @@ NODE_ENV=production browserify -e main.js | uglifyjs -c -m > build.js
 
 ## An App Example
 
-The [Vue.js Hackernews Clone](https://github.com/vuejs/vue-hackernews) is an example application that uses Webpack + vue-loader for code organization, Director.js for routing, and HackerNews' official Firebase API as the backend. It's by no means a big application, but it demonstrates the combined usage of the concepts discussed on this page.
+The [Vue.js Hackernews Clone](https://github.com/vuejs/vue-hackernews) is an example application that uses Webpack + vue-loader for code organization, vue-router for routing, and HackerNews' official Firebase API as the backend. It's by no means a big application, but it demonstrates the combined usage of the concepts discussed on this page.
