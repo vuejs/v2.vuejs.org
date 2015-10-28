@@ -1694,7 +1694,7 @@ type: api
 
 - **Note:**
 
-  Because HTML is case-insensitive, camelCase usage like `v-el:someEl` will be converted to all lowercase. You can use `v-el:some-el` which properly sets `this.$refs.someEl`.
+  Because HTML is case-insensitive, camelCase usage like `v-el:someEl` will be converted to all lowercase. You can use `v-el:some-el` which properly sets `this.$els.someEl`.
 
 - **Example:**
 
