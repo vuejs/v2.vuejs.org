@@ -1652,15 +1652,21 @@ type: api
 
   When used on a component together with `v-for`, the registered value will be an Array containing all the child component instances corresponding to the Array they are bound to. If the data source for `v-for` is an Object, the registered value will be an Object containing key-instance pairs mirroring the source Object.
 
+- **Note:**
+
+  Because HTML is case-insensitive, camelCase usage like `v-ref:someRef` will be converted to all lowercase. You can use `v-ref:some-ref` which properly sets `this.$refs.someRef`.
+
 - **Example:**
 
   ``` html
   <comp v-ref:child></comp>
+  <comp v-ref:some-child></comp>
   ```
 
   ``` js
   // access from parent:
   this.$refs.child
+  this.$refs.someChild
   ```
 
   With `v-for`:
@@ -1686,13 +1692,19 @@ type: api
   
   Register a reference to a DOM element on its owner Vue instance's `$els` object for easier access.
 
+- **Note:**
+
+  Because HTML is case-insensitive, camelCase usage like `v-el:someEl` will be converted to all lowercase. You can use `v-el:some-el` which properly sets `this.$refs.someEl`.
+
 - **Example:**
 
   ``` html
   <span v-el:msg>hello</span>
+  <span v-el:other-msg>world</span>
   ```
   ``` js
   this.$els.msg.textContent // -> "hello"
+  this.$els.otherMsg.textContent // -> "world"
   ```
 
 ### v-pre
