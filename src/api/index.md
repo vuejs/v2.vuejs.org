@@ -1571,9 +1571,9 @@ type: api
 
 - **Shorthand:** `:`
 
-- **Expects:** `*`
+- **Expects:** `* (with argument) | Object (without argument)`
 
-- **Argument:** `attrOrProp (required)`
+- **Argument:** `attrOrProp (optional)`
 
 - **Modifiers:**
   - `.sync` - make the binding two-way. Only respected for prop bindings.
@@ -1581,11 +1581,13 @@ type: api
 
 - **Usage:**
 
-  Dynamically bind an attribute or a component prop to an expression.
+  Dynamically bind one or more attributes, or a component prop to an expression.
 
   When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
 
   When used for prop binding, the prop must be properly declared in the child component. Prop bindings can specify a different binding type using one of the modifiers.
+
+  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
 
 - **Example:**
 
@@ -1603,6 +1605,9 @@ type: api
   <!-- style binding -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
+
+  <!-- binding an object of attributes -->
+  <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
@@ -1922,6 +1927,22 @@ type: api
 
   ``` html
   <input @keyup="onKeyup | debounce 500">
+  ```
+
+### limitBy
+
+- **Limited to:** directives that expect `Array` values, e.g. `v-for`
+
+- **Arguments:**
+  - `{Number} limit`
+
+- **Usage:**
+
+  Limit the array to the first N items, as specified by the argument.
+
+  ``` html
+  <!-- only display first 10 items -->
+  <div v-for="item in items | limitBy 10"></div>
   ```
 
 ### filterBy
