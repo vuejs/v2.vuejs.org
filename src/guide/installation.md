@@ -12,7 +12,7 @@ gz_size: "23.73"
 
 ## Standalone
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Simply download and include with a script tag. `Vue` will be registered as a global variable. **Pro tip: don't use the minified version during development. you will miss out all the nice warnings for common mistakes.**
 
 <div id="downloads">
 <a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
