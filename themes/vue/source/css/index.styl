@@ -250,6 +250,38 @@ html, body
 #main
     display none
 
+#donate
+    height 24px
+    margin-left -2px !important
+    .wrapper
+       vertical-align top
+       height 20px
+       border 1px solid #d4d4d4
+       display inline-block
+       box-sizing border-box
+       line-height 16px
+       border-radius 3px
+       cursor pointer
+       background-image linear-gradient(to bottom,#fcfcfc 0,#eee 100%)
+       position relative
+       width 72px
+       &:hover
+            border-color #ccc
+            background-image linear-gradient(to bottom,#eee 0,#ddd 100%)
+        img
+            width 14px
+            height 14px
+            position absolute
+            top 3px
+            left 5px
+        a
+            font 700 11px/14px 'Helvetica Neue', Helvetica, Arial, sans-serif
+            color #333333
+            text-shadow 0 1px 0 #fff
+            position absolute
+            top 2px
+            left 24px
+
 @media screen and (max-width: 480px)
     body
         font-size 14px
@@ -307,7 +339,7 @@ html, body
     #ad
         position static
         .carbon-img, .carbon-text, .carbon-poweredby
-            display inline-block
+            display inline-bloc
 
 @media screen and (max-width: 860px)
     #features, #hero
