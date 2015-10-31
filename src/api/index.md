@@ -353,9 +353,11 @@ type: api
 
   The data object for the Vue instance. Vue.js will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects, existing getter/setters and prototype properties are ignored. It is not recommended to observe complex objects.
 
-  Once the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object.
+  Once the instance is created, the data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object.
 
   Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+
+  If required, the original **plain** data object can be extracted by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`. 
 
 - **Example:**
 
