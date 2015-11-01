@@ -717,6 +717,26 @@ new Vue({
 
 ## Misc
 
+### Components and v-for
+
+You can directly use `v-for` on the custom component, like any normal element:
+
+``` html
+<my-component v-for="item in items"></my-component>
+```
+
+However, this won't pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+
+``` html
+<my-component
+  v-for="item in items"
+  :item="item"
+  :index="$index">
+</my-component>
+```
+
+The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+
 ### Authoring Reusable Components
 
 When authoring components, it is good to keep in mind whether you intend to reuse this component somewhere else later. It is OK for one-off components to have some tight coupling with each other, but reusable components should define a clean public interface.
