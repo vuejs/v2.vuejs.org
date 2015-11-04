@@ -61,7 +61,7 @@ Inside `v-for` blocks we have full access to parent scope properties, plus a spe
 ``` html
 <ul id="example-2">
   <li v-for="item in items">
-    {{ parentMessage }} {{ $index }} {{ item.message }}
+    {{ parentMessage }} - {{ $index }} - {{ item.message }}
   </li>
 </ul>
 ```
