@@ -241,6 +241,22 @@ new Vue({
 </script>
 {% endraw %}
 
+### Literal vs. Dynamic
+
+A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
+
+``` html
+<!-- this passes down a plain string "1" -->
+<comp some-prop="1"></comp>
+```
+
+However, since this is a literal prop, its value is passed down a the plain string `"1"`, instead of an actual number. If we want to pass down an actual JavaScript number, we need to use the dynamic syntax to make its value be evaluated as a JavaScript expression:
+
+``` html
+<!-- this passes down an actual number -->
+<comp :some-prop="1"></comp>
+```
+
 ### Prop Binding Types
 
 By default, all props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This default is meant to prevent child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about. However, it is also possible to explicitly enforce a two-way or a one-time binding with the `.sync` and `.once` **binding type modifiers**:
