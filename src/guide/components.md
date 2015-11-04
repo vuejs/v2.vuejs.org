@@ -393,7 +393,7 @@ var parent = new Vue({
       // `this` in event callbacks are automatically bound
       // to the instance that registered it
       this.messages.push(msg)
-    })
+    }
   }
 })
 ```
