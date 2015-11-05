@@ -1935,14 +1935,18 @@ type: api
 
 - **Arguments:**
   - `{Number} limit`
+  - `{Number} [offset]`
 
 - **Usage:**
 
-  Limit the array to the first N items, as specified by the argument.
+  Limit the array to the first N items, as specified by the argument. An optional second argument can be provided to set a starting offset.
 
   ``` html
   <!-- only display first 10 items -->
   <div v-for="item in items | limitBy 10"></div>
+
+  <!-- display items 5 to 15 -->
+  <div v-for="item in items | limitBy 10 5"></div>
   ```
 
 ### filterBy

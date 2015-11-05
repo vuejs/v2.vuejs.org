@@ -8,6 +8,8 @@ A common need for data binding is manipulating an element's class list and its i
 
 ## Binding HTML Classes
 
+<p class="tip">Although you can use mustache interpolations such as `{% raw %}class="{{ className }}"{% endraw %}` to bind the class, it is not recommended to mix that style with `v-bind:class`. Use one or the other!</p>
+
 ### Object Syntax
 
 We can pass an Object to `v-bind:class` to dynamically toggle classes. Note the `v-bind:class` directive can co-exist with the plain `class` attribute:
