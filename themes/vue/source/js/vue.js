@@ -1,5 +1,5 @@
 /*!
- * Vue.js v1.0.4
+ * Vue.js v1.0.6
  * (c) 2015 Evan You
  * Released under the MIT License.
  */
@@ -146,7 +146,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	extend(p, __webpack_require__(65))
 	extend(p, __webpack_require__(66))
 
-	Vue.version = '1.0.4'
+	Vue.version = '1.0.6'
 	module.exports = _.Vue = Vue
 
 	/* istanbul ignore if */
@@ -2359,6 +2359,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (!definition) {
 	      return this.options[type + 's'][id]
 	    } else {
+	      /* istanbul ignore if */
+	      if (true) {
+	        if (type === 'component' && _.commonTagRE.test(id)) {
+	          _.warn(
+	            'Do not use built-in HTML elements as component ' +
+	            'id: ' + id
+	          )
+	        }
+	      }
 	      if (
 	        type === 'component' &&
 	        _.isPlainObject(definition)
@@ -2600,17 +2609,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  } else if (("development") !== 'production' && containerAttrs) {
 	    // warn container directives for fragment instances
-	    var names = containerAttrs.map(function (attr) {
-	      return '"' + attr.name + '"'
-	    }).join(', ')
-	    var plural = containerAttrs.length > 1
-	    _.warn(
-	      'Attribute' + (plural ? 's ' : ' ') + names +
-	      (plural ? ' are' : ' is') + ' ignored on component ' +
-	      '<' + options.el.tagName.toLowerCase() + '> because ' +
-	      'the component is a fragment instance: ' +
-	      'http://vuejs.org/guide/components.html#Fragment_Instance'
-	    )
+	    var names = containerAttrs
+	      .filter(function (attr) {
+	        // allow vue-loader/vueify scoped css attributes
+	        return attr.name.indexOf('_v-') < 0 &&
+	          // allow event listeners
+	          !onRE.test(attr.name) &&
+	          // allow slots
+	          attr.name !== 'slot'
+	      })
+	      .map(function (attr) {
+	        return '"' + attr.name + '"'
+	      })
+	    if (names.length) {
+	      var plural = names.length > 1
+	      _.warn(
+	        'Attribute' + (plural ? 's ' : ' ') + names.join(', ') +
+	        (plural ? ' are' : ' is') + ' ignored on component ' +
+	        '<' + options.el.tagName.toLowerCase() + '> because ' +
+	        'the component is a fragment instance: ' +
+	        'http://vuejs.org/guide/components.html#Fragment_Instance'
+	      )
+	    }
 	  }
 
 	  return function rootLinkFn (vm, el, scope) {
@@ -2871,8 +2891,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkComponent (el, options) {
 	  var component = _.checkComponent(el, options)
 	  if (component) {
+	    var ref = _.findRef(el)
 	    var descriptor = {
 	      name: 'component',
+	      ref: ref,
 	      expression: component.id,
 	      def: internalDirectives.component,
 	      modifiers: {
@@ -2880,6 +2902,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	    var componentLinkFn = function (vm, el, host, scope, frag) {
+	      if (ref) {
+	        _.defineReactive((scope || vm).$refs, ref, null)
+	      }
 	      vm._bindDir(descriptor, el, host, scope, frag)
 	    }
 	    componentLinkFn.terminal = true
@@ -2946,7 +2971,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // either an element directive, or if/for
 	    def: def || publicDirectives[dirName]
 	  }
+	  // check ref for v-for
+	  if (dirName === 'for') {
+	    descriptor.ref = _.findRef(el)
+	  }
 	  var fn = function terminalNodeLinkFn (vm, el, host, scope, frag) {
+	    if (descriptor.ref) {
+	      _.defineReactive((scope || vm).$refs, descriptor.ref, null)
+	    }
 	    vm._bindDir(descriptor, el, host, scope, frag)
 	  }
 	  fn.terminal = true
@@ -2981,6 +3013,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value = textParser.tokensToExp(tokens)
 	      arg = name
 	      pushDir('bind', publicDirectives.bind, true)
+	      // warn against mixing mustaches with v-bind
+	      if (true) {
+	        if (name === 'class' && Array.prototype.some.call(attrs, function (attr) {
+	          return attr.name === ':class' || attr.name === 'v-bind:class'
+	        })) {
+	          _.warn(
+	            'class="' + rawValue + '": Do not mix mustache interpolation ' +
+	            'and v-bind for "class" on the same element. Use one or the other.'
+	          )
+	        }
+	      }
 	    } else
 
 	    // special attribute: transition
@@ -3028,10 +3071,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      if (dirDef) {
-	        if (_.isLiteral(value)) {
-	          value = _.stripQuotes(value)
-	          modifiers.literal = true
-	        }
 	        pushDir(dirName, dirDef)
 	      }
 	    }
@@ -3553,9 +3592,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _.replace(this.el, this.end)
 	    _.before(this.start, this.end)
 
-	    // check ref
-	    this.ref = _.findRef(this.el)
-
 	    // cache
 	    this.cache = Object.create(null)
 
@@ -3729,7 +3765,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	   */
 
 	  updateRef: function () {
-	    var ref = this.ref
+	    var ref = this.descriptor.ref
 	    if (!ref) return
 	    var hash = (this._scope || this.vm).$refs
 	    var refs
@@ -3741,11 +3777,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        refs[frag.scope.$key] = findVmFromFrag(frag)
 	      })
 	    }
-	    if (!hash.hasOwnProperty(ref)) {
-	      _.defineReactive(hash, ref, refs)
-	    } else {
-	      hash[ref] = refs
-	    }
+	    hash[ref] = refs
 	  },
 
 	  /**
@@ -3823,11 +3855,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (inDoc && staggerAmount) {
 	      var op = frag.staggerCb = _.cancellable(function () {
 	        frag.staggerCb = null
-	        frag.remove(true)
+	        frag.remove()
 	      })
 	      setTimeout(op, staggerAmount)
 	    } else {
-	      frag.remove(true)
+	      frag.remove()
 	    }
 	  },
 
@@ -4000,19 +4032,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      return res
 	    } else {
-	      var type = typeof value
-	      if (type === 'number') {
+	      if (typeof value === 'number') {
 	        value = range(value)
-	      } else if (type === 'string') {
-	        value = _.toArray(value)
 	      }
 	      return value || []
 	    }
 	  },
 
 	  unbind: function () {
-	    if (this.ref) {
-	      (this._scope || this.vm).$refs[this.ref] = null
+	    if (this.descriptor.ref) {
+	      (this._scope || this.vm).$refs[this.descriptor.ref] = null
 	    }
 	    if (this.frags) {
 	      var i = this.frags.length
@@ -4254,21 +4283,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Remove fragment, single node version
-	 *
-	 * @param {Boolean} [destroy]
 	 */
 
-	function singleRemove (destroy) {
+	function singleRemove () {
 	  this.inserted = false
 	  var shouldCallRemove = _.inDoc(this.node)
 	  var self = this
+	  self.callHook(destroyChild)
 	  transition.remove(this.node, this.vm, function () {
 	    if (shouldCallRemove) {
 	      self.callHook(detach)
 	    }
-	    if (destroy) {
-	      self.destroy()
-	    }
+	    self.destroy()
 	  })
 	}
 
@@ -4295,21 +4321,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Remove fragment, multi-nodes version
-	 *
-	 * @param {Boolean} [destroy]
 	 */
 
-	function multiRemove (destroy) {
+	function multiRemove () {
 	  this.inserted = false
 	  var self = this
 	  var shouldCallRemove = _.inDoc(this.node)
+	  self.callHook(destroyChild)
 	  _.removeNodeRange(this.node, this.end, this.vm, this.frag, function () {
 	    if (shouldCallRemove) {
 	      self.callHook(detach)
 	    }
-	    if (destroy) {
-	      self.destroy()
-	    }
+	    self.destroy()
 	  })
 	}
 
@@ -4323,6 +4346,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!child._isAttached) {
 	    child._callHook('attached')
 	  }
+	}
+
+	/**
+	 * Call destroy for all contained instances,
+	 * with remove:false and defer:true.
+	 * Defer is necessary because we need to
+	 * keep the children to call detach hooks
+	 * on them.
+	 *
+	 * @param {Vue} child
+	 */
+
+	function destroyChild (child) {
+	  child.$destroy(false, true)
 	}
 
 	/**
@@ -4386,7 +4423,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  insert: function () {
 	    if (this.elseFrag) {
-	      this.elseFrag.remove(true)
+	      this.elseFrag.remove()
 	      this.elseFrag = null
 	    }
 	    this.frag = this.factory.create(this._host, this._scope, this._frag)
@@ -4395,10 +4432,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  remove: function () {
 	    if (this.frag) {
-	      this.frag.remove(true)
+	      this.frag.remove()
 	      this.frag = null
 	    }
-	    if (this.elseFactory) {
+	    if (this.elseFactory && !this.elseFrag) {
 	      this.elseFrag = this.elseFactory.create(this._host, this._scope, this._frag)
 	      this.elseFrag.before(this.anchor)
 	    }
@@ -4430,15 +4467,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  update: function (value) {
-	    var el = this.el
-	    transition.apply(el, value ? 1 : -1, function () {
+	    this.apply(this.el, value)
+	    if (this.elseEl) {
+	      this.apply(this.elseEl, !value)
+	    }
+	  },
+
+	  apply: function (el, value) {
+	    function done () {
 	      el.style.display = value ? '' : 'none'
-	    }, this.vm)
-	    var elseEl = this.elseEl
-	    if (elseEl) {
-	      transition.apply(elseEl, value ? -1 : 1, function () {
-	        elseEl.style.display = value ? 'none' : ''
-	      }, this.vm)
+	    }
+	    // do not apply transition if not in doc
+	    if (_.inDoc(el)) {
+	      transition.apply(el, value ? 1 : -1, done, this.vm)
+	    } else {
+	      done()
 	    }
 	  }
 	}
@@ -5448,12 +5491,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  bind: function () {
 	    if (!this.el.__vue__) {
-	      // check ref
-	      this.ref = _.findRef(this.el)
-	      var refs = (this._scope || this.vm).$refs
-	      if (this.ref && !refs.hasOwnProperty(this.ref)) {
-	        _.defineReactive(refs, this.ref, null)
-	      }
 	      // keep-alive cache
 	      this.keepAlive = this.params.keepAlive
 	      if (this.keepAlive) {
@@ -5563,6 +5600,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        self.transition(newComponent, cb)
 	      })
 	    } else {
+	      // update ref for kept-alive component
+	      if (cached) {
+	        newComponent._updateRef()
+	      }
 	      this.transition(newComponent, cb)
 	    }
 	  },
@@ -5607,7 +5648,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // if no inline-template, then the compiled
 	        // linker can be cached for better performance.
 	        _linkerCachable: !this.inlineTemplate,
-	        _ref: this.ref,
+	        _ref: this.descriptor.ref,
 	        _asComponent: true,
 	        _isRouterView: this._isRouterView,
 	        // if this is a transcluded component, context
@@ -5672,6 +5713,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    var child = this.childVM
 	    if (!child || this.keepAlive) {
+	      if (child) {
+	        // remove ref
+	        child._updateRef(true)
+	      }
 	      return
 	    }
 	    // the sole purpose of `deferCleanup` is so that we can
@@ -5818,6 +5863,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	          childKey,
 	          function (val) {
 	            parentWatcher.set(val)
+	          }, {
+	            // ensure sync upward before parent sync down.
+	            // this is necessary in cases e.g. the child
+	            // mutates a prop array, then replaces it. (#1683)
+	            sync: true
 	          }
 	        )
 	      })
@@ -7003,7 +7053,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = {
 
-	  priority: 1000,
+	  priority: 1100,
 
 	  update: function (id, oldId) {
 	    var el = this.el
@@ -7461,7 +7511,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var props = []
 	  var names = Object.keys(propOptions)
 	  var i = names.length
-	  var options, name, attr, value, path, parsed, prop, isTitleBinding
+	  var options, name, attr, value, path, parsed, prop
 	  while (i--) {
 	    name = names[i]
 	    options = propOptions[name] || empty
@@ -7487,72 +7537,67 @@ return /******/ (function(modules) { // webpackBootstrap
 	      name: name,
 	      path: path,
 	      options: options,
-	      mode: propBindingModes.ONE_WAY
+	      mode: propBindingModes.ONE_WAY,
+	      raw: null
 	    }
 
-	    // IE title issues
-	    isTitleBinding = false
-	    if (name === 'title' && (el.getAttribute(':title') || el.getAttribute('v-bind:title'))) {
-	      isTitleBinding = true
-	    }
-
-	    // first check literal version
 	    attr = _.hyphenate(name)
-	    value = prop.raw = _.attr(el, attr)
-	    if (value === null || isTitleBinding) {
-	      // then check dynamic version
-	      if ((value = _.getBindAttr(el, attr)) === null) {
-	        if ((value = _.getBindAttr(el, attr + '.sync')) !== null) {
-	          prop.mode = propBindingModes.TWO_WAY
-	        } else if ((value = _.getBindAttr(el, attr + '.once')) !== null) {
-	          prop.mode = propBindingModes.ONE_TIME
-	        }
+	    // first check dynamic version
+	    if ((value = _.getBindAttr(el, attr)) === null) {
+	      if ((value = _.getBindAttr(el, attr + '.sync')) !== null) {
+	        prop.mode = propBindingModes.TWO_WAY
+	      } else if ((value = _.getBindAttr(el, attr + '.once')) !== null) {
+	        prop.mode = propBindingModes.ONE_TIME
 	      }
+	    }
+	    if (value !== null) {
+	      // has dynamic binding!
 	      prop.raw = value
-	      if (value !== null) {
-	        parsed = dirParser.parse(value)
-	        value = parsed.expression
-	        prop.filters = parsed.filters
-	        // check binding type
-	        if (_.isLiteral(value)) {
-	          // for expressions containing literal numbers and
-	          // booleans, there's no need to setup a prop binding,
-	          // so we can optimize them as a one-time set.
-	          prop.optimizedLiteral = true
-	        } else {
-	          prop.dynamic = true
-	          // check non-settable path for two-way bindings
-	          if (("development") !== 'production' &&
-	              prop.mode === propBindingModes.TWO_WAY &&
-	              !settablePathRE.test(value)) {
-	            prop.mode = propBindingModes.ONE_WAY
-	            _.warn(
-	              'Cannot bind two-way prop with non-settable ' +
-	              'parent path: ' + value
-	            )
-	          }
-	        }
-	        prop.parentPath = value
-
-	        // warn required two-way
-	        if (
-	          ("development") !== 'production' &&
-	          options.twoWay &&
-	          prop.mode !== propBindingModes.TWO_WAY
-	        ) {
+	      parsed = dirParser.parse(value)
+	      value = parsed.expression
+	      prop.filters = parsed.filters
+	      // check binding type
+	      if (_.isLiteral(value)) {
+	        // for expressions containing literal numbers and
+	        // booleans, there's no need to setup a prop binding,
+	        // so we can optimize them as a one-time set.
+	        prop.optimizedLiteral = true
+	      } else {
+	        prop.dynamic = true
+	        // check non-settable path for two-way bindings
+	        if (("development") !== 'production' &&
+	            prop.mode === propBindingModes.TWO_WAY &&
+	            !settablePathRE.test(value)) {
+	          prop.mode = propBindingModes.ONE_WAY
 	          _.warn(
-	            'Prop "' + name + '" expects a two-way binding type.'
+	            'Cannot bind two-way prop with non-settable ' +
+	            'parent path: ' + value
 	          )
 	        }
+	      }
+	      prop.parentPath = value
 
-	      } else if (options.required) {
-	        // warn missing required
-	        ("development") !== 'production' && _.warn(
-	          'Missing required prop: ' + name
+	      // warn required two-way
+	      if (
+	        ("development") !== 'production' &&
+	        options.twoWay &&
+	        prop.mode !== propBindingModes.TWO_WAY
+	      ) {
+	        _.warn(
+	          'Prop "' + name + '" expects a two-way binding type.'
 	        )
 	      }
+	    /* eslint-disable no-cond-assign */
+	    } else if (value = _.attr(el, attr)) {
+	    /* eslint-enable no-cond-assign */
+	      // has literal binding!
+	      prop.raw = value
+	    } else if (options.required) {
+	      // warn missing required
+	      ("development") !== 'production' && _.warn(
+	        'Missing required prop: ' + name
+	      )
 	    }
-
 	    // push prop
 	    props.push(prop)
 	  }
@@ -7605,8 +7650,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      } else if (prop.optimizedLiteral) {
 	        // optimized literal, cast it and just set once
-	        raw = _.stripQuotes(raw)
-	        value = _.toBoolean(_.toNumber(raw))
+	        var stripped = _.stripQuotes(raw)
+	        value = stripped === raw
+	          ? _.toBoolean(_.toNumber(raw))
+	          : stripped
 	        _.initProp(vm, prop, value)
 	      } else {
 	        // string literal, but we need to cater for
@@ -8129,23 +8176,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Limit filter for arrays
 	 *
 	 * @param {Number} n
+	 * @param {Number} offset (Decimal expected)
 	 */
 
-	exports.limitBy = function (arr, n) {
+	exports.limitBy = function (arr, n, offset) {
+	  offset = offset ? parseInt(offset, 10) : 0
 	  return typeof n === 'number'
-	    ? arr.slice(0, n)
+	    ? arr.slice(offset, offset + n)
 	    : arr
 	}
 
 	/**
 	 * Filter filter for arrays
 	 *
-	 * @param {String} searchKey
+	 * @param {String} search
 	 * @param {String} [delimiter]
-	 * @param {String} dataKey
+	 * @param {String} ...dataKeys
 	 */
 
-	exports.filterBy = function (arr, search, delimiter /* ...dataKeys */) {
+	exports.filterBy = function (arr, search, delimiter) {
 	  arr = toArray(arr)
 	  if (search == null) {
 	    return arr
@@ -8324,17 +8373,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.$parent.$children.push(this)
 	  }
 
-	  // set ref
-	  if (options._ref) {
-	    (this._scope || this._context).$refs[options._ref] = this
-	  }
-
 	  // merge options.
 	  options = this.$options = mergeOptions(
 	    this.constructor.options,
 	    options,
 	    this
 	  )
+
+	  // set ref
+	  this._updateRef()
 
 	  // initialize data as empty object.
 	  // it will be filled up in _initScope().
@@ -9092,6 +9139,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	var compiler = __webpack_require__(14)
 
 	/**
+	 * Update v-ref for component.
+	 *
+	 * @param {Boolean} remove
+	 */
+
+	exports._updateRef = function (remove) {
+	  var ref = this.$options._ref
+	  if (ref) {
+	    var refs = (this._scope || this._context).$refs
+	    if (remove) {
+	      if (refs[ref] === this) {
+	        refs[ref] = null
+	      }
+	    } else {
+	      refs[ref] = this
+	    }
+	  }
+	}
+
+	/**
 	 * Transclude, compile and link element.
 	 *
 	 * If a pre-compiled linker is available, that means the
@@ -9212,6 +9279,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports._destroy = function (remove, deferCleanup) {
 	  if (this._isBeingDestroyed) {
+	    if (!deferCleanup) {
+	      this._cleanup()
+	    }
 	    return
 	  }
 	  this._callHook('beforeDestroy')
@@ -9222,18 +9292,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var parent = this.$parent
 	  if (parent && !parent._isBeingDestroyed) {
 	    parent.$children.$remove(this)
-	    // unregister ref
-	    var ref = this.$options._ref
-	    if (ref) {
-	      var scope = this._scope || this._context
-	      if (scope.$refs[ref] === this) {
-	        scope.$refs[ref] = null
-	      }
-	    }
-	  }
-	  // remove self from owner fragment
-	  if (this._frag) {
-	    this._frag.children.$remove(this)
+	    // unregister ref (remove: true)
+	    this._updateRef(true)
 	  }
 	  // destroy all children.
 	  i = this.$children.length
@@ -9275,6 +9335,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 	exports._cleanup = function () {
+	  if (this._isDestroyed) {
+	    return
+	  }
+	  // remove self from owner fragment
+	  // do it in cleanup so that we can call $destroy with
+	  // defer right when a fragment is about to be removed.
+	  if (this._frag) {
+	    this._frag.children.$remove(this)
+	  }
 	  // remove reference from data ob
 	  // frozen object may not have observer.
 	  if (this._data.__ob__) {
