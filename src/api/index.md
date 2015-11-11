@@ -51,7 +51,7 @@ type: api
 
   ``` js
   // make it look more dangerous
-  Vue.config.delimiters = ['{!!', '!!}']
+  Vue.config.unsafeDelimiters = ['{!!', '!!}']
   ```
 
   Change the raw HTML interpolation delimiters.
