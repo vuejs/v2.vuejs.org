@@ -84,6 +84,20 @@ type: api
 
   When async mode is off, Vue will perform all DOM updates synchronously upon detecting data change. This may help with debugging in some scenarios, but could also cause degraded performance and affect the order in which watcher callbacks are called. **`async: false` is not recommended in production.**
 
+### convertAllProperties
+
+- **Type:** `Boolean`
+
+- **Default:** `false`
+
+- **Usage:**
+  
+  ``` js
+  Vue.config.convertAllProperties = true
+  ```
+
+  (Added in 1.0.8) Turning this option on will enable Vue to convert and observe objects that already contain getters/setters defined with `Object.defineProperty`. This is off by default because there is a small performance cost and this is not a commonly-needed feature.
+
 ## Global API
 
 ### Vue.extend( options )

@@ -170,6 +170,8 @@ Here's the full list of key modifier aliases:
 - left
 - right
 
+In addition, single letter key aliases are also supported in 1.0.8+.
+
 ## Why Listeners in HTML?
 
 You might be concerned that this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
