@@ -2,10 +2,10 @@
 title: Installation
 type: guide
 order: 0
-vue_version: 1.0.7
-dev_size: "241.91"
-min_size: "72.50"
-gz_size: "23.82"
+vue_version: 1.0.8
+dev_size: "243.86"
+min_size: "73.06"
+gz_size: "24.05"
 ---
 
 > **Compatibility Note:** Vue.js does not support IE8 and below.
