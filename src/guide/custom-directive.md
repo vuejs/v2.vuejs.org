@@ -78,8 +78,7 @@ An example of a custom directive using some of these properties:
 ``` js
 Vue.directive('demo', {
   bind: function () {
-    this.el.style.color = '#fff'
-    this.el.style.backgroundColor = this.arg
+    console.log('demo bound!')
   },
   update: function (value) {
     this.el.innerHTML =
