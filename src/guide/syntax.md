@@ -148,7 +148,16 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 
 <!-- shorthand -->
 <a :href="url"></a>
+
+or
+
+<!-- full syntax -->
+<button v-bind:disabled="someDynamicCondition">Button</button>
+
+<!-- shorthand -->
+<button :disabled="someDynamicCondition">Button</button>
 ```
+
 
 ### `v-on` Shorthand
 
