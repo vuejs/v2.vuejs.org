@@ -765,7 +765,7 @@ The API for a Vue.js component essentially comes in three parts - props, events 
 
 - **Slots** allow the external environment to insert content into the component's view structure.
 
-With the dedicate shorthand syntax for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
+With the dedicated shorthand syntax for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
 
 ``` html
 <my-component
