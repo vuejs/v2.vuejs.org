@@ -77,7 +77,7 @@ Consult the API reference for the full list of instance properties and methods.
 
 ## Instance Lifecycle
 
-Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to setup data observation, compile the template, and create the necessary data bindings. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance is created:
+Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, and create the necessary data bindings. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance is created:
 
 ``` js
 var vm = new Vue({
