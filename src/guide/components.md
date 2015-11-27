@@ -415,10 +415,10 @@ var parent = new Vue({
 ```
 
 {% raw %}
-<template id="child-template">
+<script type="x/template" id="child-template">
   <input v-model="msg">
   <button v-on:click="notify">Dispatch Event</button>
-</template>
+</script>
 
 <div id="events-example" class="demo">
   <p>Messages: {{ messages | json }}</p>
