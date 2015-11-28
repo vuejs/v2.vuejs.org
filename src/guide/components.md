@@ -858,13 +858,30 @@ A component like the above will result in a "max stack size exceeded" error, so 
 
 ### Fragment Instance
 
-When you use the `template` option, the content of the template will replace the element the Vue instance is mounted on. It is therefore recommended to always include a single root-level element in templates.
+When you use the `template` option, the content of the template will replace the element the Vue instance is mounted on. It is therefore recommended to always have a single root-level, plain element in templates.
 
-There are a few conditions that will turn a Vue instance into a **fragment instance**:
+Instead of templates like this:
+
+``` html
+<div>root node 1</div>
+<div>root node 2</div>
+```
+
+Prefer this:
+
+``` html
+<div>
+  I have a single root node!
+  <div>node 1</div>
+  <div>node 2</div>
+</div>
+```
+
+There are multiple conditions that will turn a Vue instance into a **fragment instance**:
 
 1. Template contains multiple top-level elements.
 2. Template contains only plain text.
-3. Template contains only another component.
+3. Template contains only another component (which can potentially be a fragment instance itself).
 4. Template contains only an element directive, e.g. `<partial>` or vue-router's `<router-view>`.
 5. Template root node has a flow-control directive, e.g. `v-if` or `v-for`.
 
