@@ -50,6 +50,13 @@ Vue.set(data, 'c', 3)
 // `vm.c` and `data.c` are now reactive
 ```
 
+Sometimes you may want to assign a number of properties on to an existing object, for example using `Object.assign()` or `_.extend()`. However, new properties added to the object will not trigger changes. In such cases, create a fresh object with properties from both the original object and the mixin object:
+
+``` js
+// instead of `Object.assign(this.someObject, { a: 1, b: 2 })`
+this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
+```
+
 There are also a few Array-related caveats, which were [discussed earlier in the list rendering section](/guide/list.html#Caveats).
 
 ## Initialize Your Data
