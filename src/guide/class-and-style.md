@@ -30,7 +30,7 @@ Which will render:
 <div class="static class-a"></div>
 ```
 
-When `isA` and `isB` changes, the class list will be updated accordingly. For example, if `isB` becomes `true`, the class list will become `"class-a class-b"`.
+When `isA` and `isB` changes, the class list will be updated accordingly. For example, if `isB` becomes `true`, the class list will become `"static class-a class-b"`.
 
 And you can directly bind to an object in data as well:
 
