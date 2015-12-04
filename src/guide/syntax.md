@@ -124,7 +124,7 @@ Another example is the `v-on` directive, which listens to DOM events:
 <a v-on:click="doSomething">
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more details too.
+Here the argument is the event name to listen to. We will talk about event handling in more detail too.
 
 ### Modifiers
 
