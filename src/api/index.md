@@ -978,7 +978,9 @@ type: api
 
 - **Usage:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression can be a single keypath or any valid binding expressions.
+  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. **Note when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array.**
+
+  The expression can be a single keypath or any valid binding expressions.
 
 - **Example:**
 
