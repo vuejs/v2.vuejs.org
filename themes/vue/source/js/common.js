@@ -24,7 +24,7 @@
   var currentPageAnchor = menu.querySelector('.sidebar-link.current')
   var isAPI = document.querySelector('.content').classList.contains('api')
   if (currentPageAnchor || isAPI) {
-    var allLinks = []
+    var allHeaders = []
     var sectionContainer
     if (isAPI) {
       sectionContainer = document.querySelector('.menu-root')
@@ -33,22 +33,22 @@
       sectionContainer.className = 'menu-sub'
       currentPageAnchor.parentNode.appendChild(sectionContainer)
     }
-    var h2s = content.querySelectorAll('h2')
-    if (h2s.length) {
-      each.call(h2s, function (h) {
+    var headers = content.querySelectorAll('h2')
+    if (headers.length) {
+      each.call(headers, function (h) {
         sectionContainer.appendChild(makeLink(h))
         var h3s = collectH3s(h)
-        allLinks.push(h)
-        allLinks.push.apply(allLinks, h3s)
+        allHeaders.push(h)
+        allHeaders.push.apply(allHeaders, h3s)
         if (h3s.length) {
           sectionContainer.appendChild(makeSubLinks(h3s, isAPI))
         }
       })
     } else {
-      h2s = content.querySelectorAll('h3')
-      each.call(h2s, function (h) {
+      headers = content.querySelectorAll('h3')
+      each.call(headers, function (h) {
         sectionContainer.appendChild(makeLink(h))
-        allLinks.push(h)
+        allHeaders.push(h)
       })
     }
 
@@ -66,7 +66,7 @@
     }, true)
 
     // make links clickable
-    allLinks.forEach(makeLinkClickable)
+    allHeaders.forEach(makeHeaderClickable)
 
     // init smooth scroll
     smoothScroll.init({
@@ -89,10 +89,10 @@
     } else {
       main.className = ''
     }
-    if (animating || !allLinks) return
+    if (animating || !allHeaders) return
     var last
-    for (var i = 0; i < allLinks.length; i++) {
-      var link = allLinks[i]
+    for (var i = 0; i < allHeaders.length; i++) {
+      var link = allHeaders[i]
       if (link.offsetTop > top) {
         if (!last) last = link
         break
@@ -109,8 +109,8 @@
     var text = h.textContent.replace(/\(.*\)$/, '')
     // make sure the ids are link-able...
     h.id = h.id
-      .replace(/\(.*\)$/, '')
-      .replace(/\$/, '')
+      .replace(/_28.*$/, '') // remove anything after brackets
+      .replace(/_24/g, '') // remove $
     link.innerHTML =
       '<a class="section-link" data-scroll href="#' + h.id + '">' +
         text +
@@ -152,7 +152,7 @@
     }
   }
 
-  function makeLinkClickable (link) {
+  function makeHeaderClickable (link) {
     var wrapper = document.createElement('a')
     wrapper.href = '#' + link.id
     wrapper.setAttribute('data-scroll', '')
