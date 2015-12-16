@@ -23,6 +23,8 @@ To use this constructor as a component, you need to **register** it with `Vue.co
 Vue.component('my-component', MyComponent)
 ```
 
+Note that Vue.js does not enforce the [W3C rules](http://www.w3.org/TR/custom-elements/#concepts) for custom tag-names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.
+
 Once registered, the component can now be used in a parent instance's template as a custom element, `<my-component>`. Make sure the component is registered **before** you instantiate your root Vue instance. Here's the full example:
 
 ``` html
