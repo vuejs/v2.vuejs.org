@@ -317,6 +317,13 @@ Vue.component('example', {
       validator: function (value) {
         return value > 10
       }
+    },
+    // coerce function (new in 1.0.12)
+    // cast the value before setting it on the component
+    propG: {
+      coerce: function (val) {
+        return val + '' // cast the value to string
+      }
     }
   }
 })
