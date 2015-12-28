@@ -1,34 +1,76 @@
 (function () {
 
-  if (PAGE_TYPE) {
-    initSubHeaders()
-    initVersionSelect()
-  }
   initSearch()
+  initMobileMenu()
+  if (PAGE_TYPE) {
+    initVersionSelect()
+    initSubHeaders()
+  }
+
+  /**
+   * Swiftype search box
+   */
+
+  function initSearch () {
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+    _st('install','HgpxvBc7pUaPUWmG9sgv','2.0.0');
+  }
+
+  /**
+   * Mobile burger menu button for toggling sidebar
+   */
+
+  function initMobileMenu () {
+    var mobileBar = document.getElementById('mobile-bar')
+    var sidebar = document.querySelector('.sidebar')
+    var menuButton = mobileBar.querySelector('.menu-button')
+
+    menuButton.addEventListener('click', function () {
+      sidebar.classList.toggle('open')
+    })
+
+    document.body.addEventListener('click', function (e) {
+      if (e.target !== menuButton && !sidebar.contains(e.target)) {
+        sidebar.classList.remove('open')
+      }
+    })
+  }
+
+  /**
+   * Doc version select
+   */
+
+  function initVersionSelect () {
+    // version select
+    document.querySelector('.version-select').addEventListener('change', function (e) {
+      var version = e.target.value
+      if (version.indexOf('1.') !== 0) {
+        version = version.replace('.', '')
+        var section = window.location.pathname.match(/\/(\w+?)\//)[1]
+        window.location.assign('http://' + version + '.vuejs.org/' + section + '/')
+      } else {
+        // TODO when 1.x is out
+      }
+    })
+  }
+
+  /**
+   * Sub headers in sidebar
+   */
 
   function initSubHeaders () {
     var each = [].forEach
     var main = document.getElementById('main')
-    var doc = document.documentElement
-    var body = document.body
     var header = document.getElementById('header')
-    var menu = document.querySelector('.sidebar')
+    var sidebar = document.querySelector('.sidebar')
     var content = document.querySelector('.content')
-    var mobileBar = document.getElementById('mobile-bar')
-
-    var menuButton = mobileBar.querySelector('.menu-button')
-    menuButton.addEventListener('click', function () {
-      menu.classList.toggle('open')
-    })
-
-    body.addEventListener('click', function (e) {
-      if (e.target !== menuButton && !menu.contains(e.target)) {
-        menu.classList.remove('open')
-      }
-    })
 
     // build sidebar
-    var currentPageAnchor = menu.querySelector('.sidebar-link.current')
+    var currentPageAnchor = sidebar.querySelector('.sidebar-link.current')
     var isAPI = document.querySelector('.content').classList.contains('api')
     if (currentPageAnchor || isAPI) {
       var allHeaders = []
@@ -63,7 +105,7 @@
       sectionContainer.addEventListener('click', function (e) {
         e.preventDefault()
         if (e.target.classList.contains('section-link')) {
-          menu.classList.remove('open')
+          sidebar.classList.remove('open')
           setActive(e.target)
           animating = true
           setTimeout(function () {
@@ -89,7 +131,8 @@
     window.addEventListener('resize', updateSidebar)
 
     function updateSidebar () {
-      var top = doc && doc.scrollTop || body.scrollTop
+      var doc = document.documentElement
+      var top = doc && doc.scrollTop || document.body.scrollTop
       var headerHeight = header.offsetHeight
       if (top > headerHeight) {
         main.className = 'fix-sidebar'
@@ -149,9 +192,9 @@
     }
 
     function setActive (id) {
-      var previousActive = menu.querySelector('.section-link.active')
+      var previousActive = sidebar.querySelector('.section-link.active')
       var currentActive = typeof id === 'string'
-        ? menu.querySelector('.section-link[href="#' + id + '"]')
+        ? sidebar.querySelector('.section-link[href="#' + id + '"]')
         : id
       if (currentActive !== previousActive) {
         if (previousActive) previousActive.classList.remove('active')
@@ -166,29 +209,5 @@
       link.parentNode.insertBefore(wrapper, link)
       wrapper.appendChild(link)
     }
-  }
-
-  function initVersionSelect () {
-    // version select
-    document.querySelector('.version-select').addEventListener('change', function (e) {
-      var version = e.target.value
-      if (version.indexOf('1.') !== 0) {
-        version = version.replace('.', '')
-        var section = window.location.pathname.match(/\/(\w+?)\//)[1]
-        window.location.assign('http://' + version + '.vuejs.org/' + section + '/')
-      } else {
-        // TODO when 1.x is out
-      }
-    })
-  }
-
-  function initSearch () {
-    // Search with SwiftType
-    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-    })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-    _st('install','HgpxvBc7pUaPUWmG9sgv','2.0.0');
   }
 })()
