@@ -252,7 +252,7 @@ A common mistake beginners tend to make is attempting to pass down a number usin
 <comp some-prop="1"></comp>
 ```
 
-However, since this is a literal prop, its value is passed down a the plain string `"1"`, instead of an actual number. If we want to pass down an actual JavaScript number, we need to use the dynamic syntax to make its value be evaluated as a JavaScript expression:
+However, since this is a literal prop, its value is passed down as a plain string `"1"`, instead of an actual number. If we want to pass down an actual JavaScript number, we need to use the dynamic syntax to make its value be evaluated as a JavaScript expression:
 
 ``` html
 <!-- this passes down an actual number -->
