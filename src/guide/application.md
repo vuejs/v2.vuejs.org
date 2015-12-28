@@ -4,6 +4,8 @@ type: guide
 order: 18
 ---
 
+> **NEW:** Get up and running with single file Vue components, hot-reload, lint-on-save and unit testing in minutes with [vue-cli](https://github.com/vuejs/vue-cli)!
+
 The Vue.js core library is designed to be focused and flexible - it's just a view layer library that doesn't enforce any application-level architecture. While this can be great for integrating with existing projects, it could be a challenge for those with less experience to build larger scale applications from scratch.
 
 The Vue.js ecosystem provides a set of tools, libraries on how to build large SPAs with Vue. This part is where we start get a bit "framework"-ish, but it's really just an opinionated list of recommendations; you still get to pick what to use for each part of the stack.
@@ -28,7 +30,7 @@ If you are into pre-processors, you can even do this:
 
 You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). It is recommended to use the Webpack setup because Webpack's loader API enables better file dependency tracking / caching and some advanced features that are not feasible with Browserify transforms.
 
-You can find examples of the build setups on GitHub:
+The fastest way to get up and running with a pre-configured build setup is using the official [vue-cli](https://github.com/vuejs/vue-cli). You can also find examples of the build setups on GitHub:
 
 - [Webpack + vue-loader](https://github.com/vuejs/vue-loader-example)
 - [Browserify + vueify](https://github.com/vuejs/vueify-example)
