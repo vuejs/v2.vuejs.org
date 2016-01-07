@@ -39,6 +39,21 @@ $ npm install vue
 $ npm install vue@csp
 ```
 
+## CLI
+
+Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides battery-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save and production-ready builds:
+
+``` bash
+# install vue-cli
+$ npm install -g vue-cli
+# create a new project using the "webpack" boilerplate
+$ vue init webpack my-project
+# install dependencies and go!
+$ cd my-project
+$ npm install
+$ npm run dev
+```
+
 ## Dev Build
 
 **Important**: the CommonJS bundle distributed on NPM (`vue.common.js`) is **not** checked into source control, therefore to use Vue from the latest source code on GitHub, you will have to build it yourself!
