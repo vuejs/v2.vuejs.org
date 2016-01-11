@@ -916,6 +916,26 @@ What's more important though, is that **non-flow-control directives, non-prop at
 
 There are, of course, valid use cases for fragment instances, but it is in general a good idea to give your component template a single, plain root element. It ensures directives and attributes on the component element to be properly transferred, and also results in slightly better performance.
 
+If you want to apply **transition effects with dynamic components without creating any fragment instance**, simply move your `transition` param from the dynamic `<component>` element to the `root node` of the component which will be dynamically loaded:
+
+``` html
+<component :is="currentView">
+  <!-- component changes when vm.currentView changes! -->
+</component>
+```
+
+``` html
+<template>
+  <!-- to avoid a fragment instance, we apply the
+  transition param on the root node of the
+  component dynamically loaded -->
+  <div transition="fade">
+    <div>node 1</div>
+    <div>node 2</div>
+  </div>
+</template>
+```
+
 ### Inline Template
 
 When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
