@@ -353,7 +353,7 @@ When a prop validation fails, Vue will refuse to set the value on the child comp
 
 A child component holds access to its parent component as `this.$parent`. A root Vue instance will be available to all of its descendants as `this.$root`. Each parent component has an array, `this.$children`, which contains all its child components.
 
-Although it's possible to access any instance the parent chain, you should avoid directly relying on parent data in a child component and prefer passing data down explicitly using props. In addition, it is a very bad idea to mutate parent state from a child component, because:
+Although it's possible to access any instance in the parent chain, you should avoid directly relying on parent data in a child component and prefer passing data down explicitly using props. In addition, it is a very bad idea to mutate parent state from a child component, because:
 
 1. It makes the parent and child tightly coupled;
 
