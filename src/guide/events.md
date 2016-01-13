@@ -6,7 +6,7 @@ order: 9
 
 ## Method Handler
 
-We can then use the `v-on` directive to listen to DOM events:
+We can use the `v-on` directive to listen to DOM events:
 
 ``` html
 <div id="example">
