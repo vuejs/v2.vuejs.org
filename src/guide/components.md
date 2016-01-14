@@ -652,6 +652,7 @@ new Vue({
   <!-- component changes when vm.currentview changes! -->
 </component>
 ```
+### `keep-alive`
 
 If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
 

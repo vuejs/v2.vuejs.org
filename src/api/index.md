@@ -970,7 +970,7 @@ type: api
 ### vm.$watch( expOrFn, callback, [options] )
 
 - **Arguments:**
-  - `{String|Function} expOrFn`
+  - `{String | Function} expOrFn`
   - `{Function} callback`
   - `{Object} [options]`
     - `{Boolean} deep`
@@ -1290,7 +1290,7 @@ type: api
 ### vm.$appendTo( elementOrSelector, [callback] )
 
 - **Arguments:**
-  - `{Element|String} elementOrSelector`
+  - `{Element | String} elementOrSelector`
   - `{Function} [callback]`
 
 - **Returns:** `vm` - the instance itself
@@ -1302,7 +1302,7 @@ type: api
 ### vm.$before( elementOrSelector, [callback] )
 
 - **Arguments:**
-  - `{Element|String} elementOrSelector`
+  - `{Element | String} elementOrSelector`
   - `{Function} [callback]`
 
 - **Returns:** `vm` - the instance itself
@@ -1314,7 +1314,7 @@ type: api
 ### vm.$after( elementOrSelector, [callback] )
 
 - **Arguments:**
-  - `{Element|String} elementOrSelector`
+  - `{Element | String} elementOrSelector`
   - `{Function} [callback]`
 
 - **Returns:** `vm` - the instance itself
@@ -1373,7 +1373,7 @@ type: api
 ### vm.$mount( [elementOrSelector] )
 
 - **Arguments:**
-  - `{Element|String} [elementOrSelector]`
+  - `{Element | String} [elementOrSelector]`
 
 - **Returns:** `vm` - the instance itself
 
@@ -1783,6 +1783,10 @@ type: api
 
 - **Attributes:**
   - `is`
+
+- **Param Attributes:**
+  - [`keep-alive`](/guide/components.html#keep-alive)
+  - [`transition-mode`](/guide/components.html#transition-mode)
 
 - **Usage:**
 
