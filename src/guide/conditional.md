@@ -65,7 +65,7 @@ You can use the `v-else` directive to indicate an "else block" for `v-if` or `v-
 </div>
 ```
 
-The `v-else` element must following immediately after the `v-if` or `v-show` element - otherwise it will not be recognized.
+The `v-else` element must immediately follow the `v-if` or `v-show` element - otherwise it will not be recognized.
 
 ## v-if vs. v-show
 
