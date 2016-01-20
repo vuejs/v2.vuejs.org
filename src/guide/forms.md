@@ -66,6 +66,16 @@ Mutiple checkboxes, bound to the same Array:
 <br>
 <span>Checked names: {{ checkedNames | json }}</span>
 ```
+
+``` js
+new Vue({
+  el: '...',
+  data: {
+    checkedNames: []
+  }
+})
+```
+
 {% raw %}
 <div id="example-3" class="demo">
   <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
