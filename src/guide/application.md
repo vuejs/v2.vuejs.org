@@ -122,7 +122,7 @@ One thing to take note is that you should never replace the original state objec
 
 If we enforce a convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we've essentially arrived at the [Flux](https://facebook.github.io/flux/) architecture. The benefits of this convention is we can record all state mutations happening to the store, and on top of that we can implement advanced debugging helpers such as mutation logs, snapshots, history re-rolls etc.
 
-The Flux architecture is commonly used in React applications. Turns out the core idea behind Flux can be quite simply achieved in Vue.js, thanks to the unobtrusive reactivity system. Do note what we demonstrated here is just an example to introduce the concept - you may not need it at all for simple scenarios, and you should adapt the pattern to fit the real needs of your application.
+The Flux architecture is commonly used in React applications, but it can be applied to Vue.js application as well. For example, [Vuex](https://github.com/vuejs/vuex/) is a Flux-inspired application architecture that is designed specifically for managing state inside large Vue.js applications. [Redux](https://github.com/rackt/redux/), the most popular Flux implementation for React, is view-layer agnostic and can also easily work with Vue via some [simple bindings](https://github.com/egoist/revue).
 
 ## Unit Testing
 
