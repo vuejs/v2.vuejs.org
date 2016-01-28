@@ -91,7 +91,7 @@ type: api
 - **Default:** `false`
 
 - **Usage:**
-  
+
   ``` js
   Vue.config.convertAllProperties = true
   ```
@@ -126,7 +126,7 @@ type: api
       firstName: 'Walter',
       lastName: 'White',
       alias: 'Heisenberg'
-    }  
+    }
   })
   // mount it on an element
   profile.$mount('#mount-point')
@@ -194,7 +194,7 @@ type: api
   - `{Function | Object} [definition]`
 
 - **Usage:**
-  
+
   Register or retrieve a global directive.
 
   ``` js
@@ -563,7 +563,7 @@ type: api
 
 ### replace
 
-- **Type:** `Boolean`  
+- **Type:** `Boolean`
 
 - **Default:** `true`
 
@@ -622,7 +622,7 @@ type: api
 
 - **Details:**
 
-  Called synchronously after the instance has already been initialized, but not has started processing the options and the data for set up the scope.
+  Called synchronously after the instance has just been initialized, before data observation and event / watcher setup.
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
@@ -631,7 +631,7 @@ type: api
 - **Type:** `Function`
 
 - **Details:**
-  
+
   Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, DOM compilation has not been started, and the `$el` property will not be available yet.
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
@@ -641,7 +641,7 @@ type: api
 - **Type:** `Function`
 
 - **Details:**
-  
+
   Called right before the compilation starts.
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
@@ -671,7 +671,7 @@ type: api
 - **Type:** `Function`
 
 - **Details:**
-  
+
   Called when `vm.$el` is attached to DOM by a directive or a VM instance method such as `$appendTo()`. Direct manipulation of `vm.$el` will **not** trigger this hook.
 
 ### detached
@@ -679,7 +679,7 @@ type: api
 - **Type:** `Function`
 
 - **Details:**
-  
+
   Called when `vm.$el` is removed from the DOM by a directive or a VM instance method. Direct manipulation of `vm.$el` will **not** trigger this hook.
 
 ### beforeDestroy
@@ -687,7 +687,7 @@ type: api
 - **Type:** `Function`
 
 - **Details:**
-  
+
   Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
@@ -1098,7 +1098,7 @@ type: api
       }
     }
   })
-  
+
   // set an existing path
   vm.$set('a.b', 2)
   vm.a.b // -> 2
@@ -1341,7 +1341,7 @@ type: api
 - **Returns:** `vm` - the instance itself
 
 - **Usage:**
-  
+
   Remove the Vue instance's DOM element or fragment from the DOM. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
 ### vm.$nextTick( callback )
@@ -1401,7 +1401,7 @@ type: api
   var MyComponent = Vue.extend({
     template: '<div>Hello!</div>'
   })
-  
+
   // create and mount to #app (will replace #app)
   new MyComponent().$mount('#app')
 
@@ -1731,7 +1731,7 @@ type: api
 - **Argument:** `id (required)`
 
 - **Usage:**
-  
+
   Register a reference to a DOM element on its owner Vue instance's `$els` object for easier access.
 
 - **Note:**
@@ -1921,7 +1921,7 @@ type: api
   {{count}} {{count | pluralize 'item'}}
   ```
 
-  *1 => '1 item'*  
+  *1 => '1 item'*
   *2 => '2 items'*
 
   ``` html
@@ -1930,7 +1930,7 @@ type: api
 
   Will result in:
 
-  *1 => '1st'*  
+  *1 => '1st'*
   *2 => '2nd'*
   *3 => '3rd'*
   *4 => '4th'*
@@ -1942,7 +1942,7 @@ type: api
   - `{Number} [indent] - default: 2`
 
 - **Usage:**
-  
+
   Output the result of calling `JSON.stringify()` on the value instead of outputting the `toString()` value (e.g. `[object Object]`).
 
 - **Example:**
