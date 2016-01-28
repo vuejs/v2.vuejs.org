@@ -616,6 +616,16 @@ type: api
 
 ## Options / Lifecycle Hooks
 
+### init
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called synchronously after the instance has already been initialized, but not has started processing the options and the data for set up the scope.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+
 ### created
 
 - **Type:** `Function`
