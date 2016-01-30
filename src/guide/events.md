@@ -139,6 +139,17 @@ To address this problem, Vue.js provides two **event modifiers** for `v-on`: `.p
 <form v-on:submit.prevent></form>
 ```
 
+In 1.0.16, two additional modifiers have been introduced:
+
+``` html
+<!-- use capture mode when adding the event listener -->
+<div v-on:click.capture="doThis">...</div>
+
+<!-- only trigger handler if event.target is the element itself -->
+<!-- i.e. not from a child element -->
+<div v-on:click.self="doThat">...</div>
+```
+
 ## Key Modifiers
 
 When listening for keyboard events, we often need to check for common key codes. Vue.js also allows adding key modifiers for `v-on` when listening for key events:

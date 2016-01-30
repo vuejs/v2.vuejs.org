@@ -1550,6 +1550,8 @@ type: api
 - **Modifiers:**
   - `.stop` - call `event.stopPropagation()`.
   - `.prevent` - call `event.preventDefault()`.
+  - `.capture` - add event listener in capture mode.
+  - `.self` - only trigger handler if event was dispatched from this element.
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
 
 - **Usage:**
@@ -1615,6 +1617,7 @@ type: api
 - **Modifiers:**
   - `.sync` - make the binding two-way. Only respected for prop bindings.
   - `.once` - make the binding one-time. Only respected for prop bindings.
+  - `.camel` - convert the attribute name to camelCase when setting it. Only respected for normal attributes. Used for binding camelCase SVG attributes.
 
 - **Usage:**
 
