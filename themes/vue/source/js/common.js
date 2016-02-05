@@ -157,10 +157,6 @@
     function makeLink (h) {
       var link = document.createElement('li')
       var text = h.textContent.replace(/\(.*\)$/, '')
-      // make sure the ids are link-able...
-      h.id = h.id
-        .replace(/_28.*$/, '') // remove anything after brackets
-        .replace(/_24/g, '') // remove $
       link.innerHTML =
         '<a class="section-link" data-scroll href="#' + h.id + '">' +
           text +

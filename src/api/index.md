@@ -100,7 +100,7 @@ type: api
 
 ## Global API
 
-### Vue.extend( options )
+<h3 id="Vue-extend">Vue.extend( options )</h3>
 
 - **Arguments:**
   - `{Object} options`
@@ -140,7 +140,7 @@ type: api
 
 - **See also:** [Components](/guide/components.html)
 
-### Vue.nextTick( callback )
+<h3 id="Vue-nextTick">Vue.nextTick( callback )</h3>
 
 - **Arguments:**
   - `{Functon} callback`
@@ -160,7 +160,7 @@ type: api
 
 - **See also:** [Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
 
-### Vue.set( object, key, value )
+<h3 id="Vue-set">Vue.set( object, key, value )</h3>
 
 - **Arguments:**
   - `{Object} object`
@@ -175,7 +175,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](/guide/reactivity.html)
 
-### Vue.delete( object, key )
+<h3 id="Vue-delete">Vue.delete( object, key )</h3>
 
 - **Arguments:**
   - `{Object} object`
@@ -187,7 +187,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](/guide/reactivity.html)
 
-### Vue.directive( id, [definition] )
+<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
 - **Arguments:**
   - `{String} id`
@@ -216,7 +216,7 @@ type: api
 
 - **See also:** [Custom Directives](/guide/custom-directive.html)
 
-### Vue.elementDirective( id, [definition] )
+<h3 id="Vue-elementDirective">Vue.elementDirective( id, [definition] )</h3>
 
 - **Arguments:**
   - `{String} id`
@@ -240,7 +240,7 @@ type: api
 
 - **See also:** [Element Directives](/guide/custom-directive.html#Element_Directives)
 
-### Vue.filter( id, [definition] )
+<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
 - **Arguments:**
   - `{String} id`
@@ -268,7 +268,7 @@ type: api
 
 - **See also:** [Custom Filter](/guide/custom-filter.html)
 
-### Vue.component( id, [definition] )
+<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
 
 - **Arguments:**
   - `{String} id`
@@ -291,7 +291,7 @@ type: api
 
 - **See also:** [Components](/guide/components.html).
 
-### Vue.transition( id, [hooks] )
+<h3 id="Vue-transition">Vue.transition( id, [hooks] )</h3>
 
 - **Arguments:**
   - `{String} id`
@@ -314,7 +314,7 @@ type: api
 
 - **See also:** [Transitions](/guide/transitions.html).
 
-### Vue.partial( id, [partial] )
+<h3 id="Vue-partial">Vue.partial( id, [partial] )</h3>
 
 - **Arguments:**
   - `{String} id`
@@ -334,7 +334,7 @@ type: api
 
 - **See also:** [Special Elements - &lt;partial&gt;](#partial).
 
-### Vue.use( plugin, [options] )
+<h3 id="Vue-use">Vue.use( plugin, [options] )</h3>
 
 - **Arguments:**
   - `{Object | Function} plugin`
@@ -346,7 +346,7 @@ type: api
 
 - **See also:** [Plugins](/guide/plugins.html).
 
-### Vue.mixin( mixin )
+<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
 - **Arguments:**
   - `{Object} mixin`
@@ -977,7 +977,7 @@ type: api
 
 ## Instance Methods / Data
 
-### vm.$watch( expOrFn, callback, [options] )
+<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
 - **Arguments:**
   - `{String | Function} expOrFn`
@@ -1049,7 +1049,7 @@ type: api
   // callback is fired immediately with current value of `a`
   ```
 
-### vm.$get( expression )
+<h3 id="vm-get">vm.$get( expression )</h3>
 
 - **Arguments:**
   - `{String} expression`
@@ -1072,7 +1072,7 @@ type: api
   vm.$get('a.b + 1') // -> 2
   ```
 
-### vm.$set( keypath, value )
+<h3 id="vm-set">vm.$set( keypath, value )</h3>
 
 - **Arguments:**
   - `{String} keypath`
@@ -1110,7 +1110,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](/guide/reactivity.html)
 
-### vm.$delete( key )
+<h3 id="vm-delete">vm.$delete( key )</h3>
 
 - **Arguments:**
   - `{String} key`
@@ -1119,7 +1119,7 @@ type: api
 
   Delete a root level property on the Vue instance (and also its `$data`). Forces a digest cycle. Not recommended.
 
-### vm.$eval( expression )
+<h3 id="vm-eval">vm.$eval( expression )</h3>
 
 - **Arguments:**
   - `{String} expression`
@@ -1135,7 +1135,7 @@ type: api
   vm.$eval('msg | uppercase') // -> 'HELLO'
   ```
 
-### vm.$interpolate( templateString )
+<h3 id="vm-interpolate">vm.$interpolate( templateString )</h3>
 
 - **Arguments:**
   - `{String} templateString`
@@ -1151,7 +1151,7 @@ type: api
   vm.$interpolate('{{msg}} world!') // -> 'hello world!'
   ```
 
-### vm.$log( [keypath] )
+<h3 id="vm-log">vm.$log( [keypath] )</h3>
 
 - **Arguments:**
   - `{String} [keypath]`
@@ -1167,7 +1167,7 @@ type: api
 
 ## Instance Methods / Events
 
-### vm.$on( event, callback )
+<h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **Arguments:**
   - `{String} event`
@@ -1187,7 +1187,7 @@ type: api
   // -> "hi"
   ```
 
-### vm.$once( event, callback )
+<h3 id="vm-once">vm.$once( event, callback )</h3>
 
 - **Arguments:**
   - `{String} event`
@@ -1197,7 +1197,7 @@ type: api
 
   Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
 
-### vm.$off( [event, callback] )
+<h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
 - **Arguments:**
   - `{String} [event]`
@@ -1213,7 +1213,7 @@ type: api
 
   - If both event and callback are given, remove the listener for that specific callback only.
 
-### vm.$emit( event, [...args] )
+<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
 - **Arguments:**
   - `{String} event`
@@ -1221,7 +1221,7 @@ type: api
 
   Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
 
-### vm.$dispatch( event, [...args] )
+<h3 id="vm-dispatch">vm.$dispatch( event, [...args] )</h3>
 
 - **Arguments:**
   - `{String} event`
@@ -1258,7 +1258,7 @@ type: api
 
 - **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child_Communication)
 
-### vm.$broadcast( event, [...args] )
+<h3 id="vm-broadcast">vm.$broadcast( event, [...args] )</h3>
 
 - **Arguments:**
   - `{String} event`
@@ -1297,7 +1297,7 @@ type: api
 
 ## Instance Methods / DOM
 
-### vm.$appendTo( elementOrSelector, [callback] )
+<h3 id="vm-appendTo">vm.$appendTo( elementOrSelector, [callback] )</h3>
 
 - **Arguments:**
   - `{Element | String} elementOrSelector`
@@ -1309,7 +1309,7 @@ type: api
 
   Append the Vue instance's DOM element or fragment to target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
-### vm.$before( elementOrSelector, [callback] )
+<h3 id="vm-before">vm.$before( elementOrSelector, [callback] )</h3>
 
 - **Arguments:**
   - `{Element | String} elementOrSelector`
@@ -1321,7 +1321,7 @@ type: api
 
   Insert the Vue instance's DOM element or fragment before target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
-### vm.$after( elementOrSelector, [callback] )
+<h3 id="vm-after">vm.$after( elementOrSelector, [callback] )</h3>
 
 - **Arguments:**
   - `{Element | String} elementOrSelector`
@@ -1333,7 +1333,7 @@ type: api
 
   Insert the Vue instance's DOM element or fragment after target element. The target can be either an element or a querySelector string. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
-### vm.$remove( [callback] )
+<h3 id="vm-remove">vm.$remove( [callback] )</h3>
 
 - **Arguments:**
   - `{Function} [callback]`
@@ -1344,7 +1344,7 @@ type: api
 
   Remove the Vue instance's DOM element or fragment from the DOM. This method will trigger transitions if present. The callback is fired after the transition has completed (or immediately if no transition has been triggered).
 
-### vm.$nextTick( callback )
+<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
 
 - **Arguments:**
   - `{Function} [callback]`
@@ -1380,7 +1380,7 @@ type: api
 
 ## Instance Methods / Lifecycle
 
-### vm.$mount( [elementOrSelector] )
+<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
 - **Arguments:**
   - `{Element | String} [elementOrSelector]`
@@ -1414,7 +1414,7 @@ type: api
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
 
-### vm.$destroy( [remove] )
+<h3 id="vm-destroy">vm.$destroy( [remove] )</h3>
 
 - **Arguments:**
   - `{Boolean} [remove] - default: false`
