@@ -143,7 +143,7 @@ type: api
 <h3 id="Vue-nextTick">Vue.nextTick( callback )</h3>
 
 - **Arguments:**
-  - `{Functon} callback`
+  - `{Function} callback`
 
 - **Usage:**
 
