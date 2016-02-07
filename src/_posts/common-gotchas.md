@@ -33,6 +33,6 @@ Further reading: [Component Option Caveats](/guide/components.html#Component_Opt
 
 All Vue.js templates are valid, parsable HTML markup, and Vue.js relies on spec-compliant parsers to process its templates. However, as specified in the standard, HTML is case-insensitive when matching tag and attribute names. This means camelCase attributes like `:myProp="123"` will be matched as `:myprop="123"`. As a rule of thumb, you should use camelCase in JavaScript and kebab-case in templates. For example a prop defined in JavaScript as `myProp` should be bound in templates as `:my-prop`.
 
-Further reading [camelCase vs. kebab-case](http://vuejs.org/guide/components.html#camelCase_vs-_kebab-case).
+Further reading: [camelCase vs. kebab-case](http://vuejs.org/guide/components.html#camelCase_vs-_kebab-case).
 
-We are also discussing the possibility of eliminating this inconsistency by resolving props and components in a case-insensitive manner as well. Join the conversation [here](https://github.com/vuejs/vue/issues/2308).
+We are also discussing the possibility of eliminating this inconsistency by resolving props and components in a case-insensitive manner. Join the conversation [here](https://github.com/vuejs/vue/issues/2308).
