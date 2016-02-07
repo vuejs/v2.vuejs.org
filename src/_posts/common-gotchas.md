@@ -3,7 +3,7 @@ title: Common Beginner Gotchas
 date: 2016-02-06 10:00:00
 ---
 
-There are few type of questions that we frequently see from users who are new to Vue.js. Although they are all mentioned somewhere in the guide, it may not be very easy to find the corresponding section if you are not already familiar with them. Therefore we are aggregating them in this post and hopefully it can save you some time!
+There are few types of questions that we frequently see from users who are new to Vue.js. Although they are all mentioned somewhere in the guide, they are easy to miss and can be hard to find when you do get bitten by the gotchas. Therefore we are aggregating them in this post and hopefully it can save you some time!
 
 <!-- more -->
 
