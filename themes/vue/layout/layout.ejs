@@ -15,7 +15,6 @@
         </script>
         <%- css(isIndex ? 'css/index' : 'css/page') %>
         <%- partial('partials/ga') %>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
         <script src="/js/vue.js"></script>
     </head>
     <body>
@@ -32,6 +31,7 @@
                     <%- body %>
                 <% } %>
             </div>
+            <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
             <script src="/js/smooth-scroll.min.js"></script>
             <script src="/js/common.js"></script>
         <% } else { %>
