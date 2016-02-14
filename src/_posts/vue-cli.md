@@ -40,7 +40,7 @@ Current available templates include:
 
 ### Bring Your Own Setup
 
-If you are not happy with the offical templates, you can fork these templates, modify them to fit your specific needs (or even create your own from scratch), and use them via `vue-cli` too, because `vue-cli` can work directly on GitHub repos:
+If you are not happy with the official templates, you can fork these templates, modify them to fit your specific needs (or even create your own from scratch), and use them via `vue-cli` too, because `vue-cli` can work directly on GitHub repos:
 
 ``` bash
 vue init username/repo my-project
