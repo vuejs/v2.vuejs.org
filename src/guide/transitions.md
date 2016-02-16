@@ -35,7 +35,10 @@ When an element with transition is inserted or removed, Vue will:
 A typical CSS transition looks like this:
 
 ``` html
-<div v-if="show" transition="expand">hello</div>
+<div id="app">
+    <div v-if="show" transition="expand">hello</div>
+    <button @click="toggle">botao</button>
+</div>
 ```
 
 You also need to define CSS rules for `.expand-transition`, `.expand-enter` and `.expand-leave` classes:
@@ -62,6 +65,18 @@ You also need to define CSS rules for `.expand-transition`, `.expand-enter` and 
 In addition, you can provide JavaScript hooks:
 
 ``` js
+new Vue({
+  el: '#app',
+  data: {
+    show: true
+  },
+  methods: {
+    toggle: function () {
+      this.show = !this.show
+    }
+  }
+})
+
 Vue.transition('expand', {
 
   beforeEnter: function (el) {
