@@ -43,7 +43,7 @@ var MyComponent = Vue.extend({
 Vue.component('my-component', MyComponent)
 
 // create a root instance
-new Vue({
+new MyComponent({
   el: '#example'
 })
 ```
