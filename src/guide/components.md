@@ -4,6 +4,10 @@ type: guide
 order: 12
 ---
 
+##What are Components?
+Components are one of the most powerful features of Vue.js, helping you extend basic HTML elements and create reusable code.
+At a high level, Components are markers on a DOM element that tell Vue.js compiler to attach a specified behavior to that DOM element, or even to transform the DOM element and its children.
+
 ## Using Components
 
 ### Registration
