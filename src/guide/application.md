@@ -30,10 +30,10 @@ If you are into pre-processors, you can even do this:
 
 You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). It is recommended to use the Webpack setup because Webpack's loader API enables better file dependency tracking / caching and some advanced features that are not feasible with Browserify transforms.
 
-The fastest way to get up and running with a pre-configured build setup is using the official [vue-cli](https://github.com/vuejs/vue-cli). You can also find examples of the build setups on GitHub:
+The fastest way to get up and running with a pre-configured build setup is using the official [vue-cli](https://github.com/vuejs/vue-cli). You can also find the official scaffold templates on GitHub:
 
-- [Webpack + vue-loader](https://github.com/vuejs/vue-loader-example)
-- [Browserify + vueify](https://github.com/vuejs/vueify-example)
+- [Webpack + vue-loader](https://github.com/vuejs-templates/webpack)
+- [Browserify + vueify](https://github.com/vuejs-templates/browserify)
 
 ## Routing
 
