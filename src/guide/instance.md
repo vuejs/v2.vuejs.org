@@ -73,7 +73,7 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
-Consult the API reference for the full list of instance properties and methods.
+Consult the [API reference](/api) for the full list of instance properties and methods.
 
 ## Instance Lifecycle
 
