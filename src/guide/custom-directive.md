@@ -213,6 +213,8 @@ Vue.directive('example', {
 })
 ```
 
+<p class="tip">Note you need to use their camel-case at `paramWatchers`, when using kebab-case attributes. For example, if you have defined the attribute like `disable-effect`, you need to set `disableEffect` to `paramsWatchers`.</p>
+
 ### deep
 
 If your custom directive is expected to be used on an Object, and it needs to trigger `update` when a nested property inside the object changes, you need to pass in `deep: true` in your directive definition.
