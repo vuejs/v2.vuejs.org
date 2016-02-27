@@ -213,7 +213,7 @@ Vue.directive('example', {
 })
 ```
 
-<p class="tip">Note you need to use their camel-case at `paramWatchers`, when using kebab-case attributes. For example, if you have defined the attribute like `disable-effect`, you need to set `disableEffect` to `paramsWatchers`.</p>
+<p class="tip">Note that similar to props, directive params follow the same camelCase <=> kebab case mapping between JavaScript and HTML. For example, for a param used as `disable-effect` in the template, you need to access it as `disableEffect` in JavaScript.</p>
 
 ### deep
 
