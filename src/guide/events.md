@@ -181,7 +181,14 @@ Here's the full list of key modifier aliases:
 - left
 - right
 
-In addition, single letter key aliases are also supported in 1.0.8+.
+**1.0.8+:** Single letter key aliases are also supported.
+
+**1.0.17+:** You can also define custom key modifier aliases:
+
+``` js
+// enable @keyup.f1
+Vue.directive('on').keyCodes.f1 = 112
+```
 
 ## Why Listeners in HTML?
 

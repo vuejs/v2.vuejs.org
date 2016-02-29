@@ -114,6 +114,12 @@ Alternatively, you can also specify an alias for the index (or the key if `v-for
 </div>
 ```
 
+Starting in 1.0.17 you can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript syntax for iterators:
+
+``` html
+<div v-for="item of items"></div>
+```
+
 ## Template v-for
 
 Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
