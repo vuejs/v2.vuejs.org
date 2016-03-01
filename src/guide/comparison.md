@@ -72,4 +72,4 @@ Riot 2.0 provides a similar component-based development model (which is called a
 - A far-more powerful router (Riot’s routing API is just way too minimal)
 - More mature tooling support (see webpack + vue-loader)
 - Transition effect system (Riot has none)
-- Better performance. (Riot in fact uses dirty checking rather than a virtual-dom, and thus suffers from the same performance issues with Angular.)
+- Better performance. (Riot in fact uses dirty checking rather than a virtual-dom, and thus suffers from the same performance issues as Angular.)
