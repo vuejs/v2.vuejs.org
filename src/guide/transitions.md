@@ -212,7 +212,7 @@ When the `show` property changes, Vue.js will insert or remove the `<div>` eleme
 
 In addition, if you remove an element when its enter transition is in progress, the `enterCancelled` hook will be called to give you the opportunity to clean up changes or timers created in `enter`. Vice-versa for leaving transitions.
 
-All of the above hook functions are called with their `this` contexts set to the associated Vue instances. If the element is the root node of a Vue instance, that instance will be used as the context. Otherwise, the context will be the owner instance of the transition directive.
+All of the above hook functions are called with their `this` contexts set to the associated Vue instances. It follows the same rule of compilation scopes: a transition's `this` context will point to the scope it is compiled in.
 
 Finally, the `enter` and `leave` can optionally take a second callback argument. When you do so, you are indicating that you want to explicitly control when the transition should end, so instead of waiting for the CSS `transitionend` event, Vue.js will expect you to eventually call the callback to finish the transition. For example:
 
