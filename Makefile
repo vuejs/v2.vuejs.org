@@ -1,7 +1,7 @@
 all: update deploy
 
 deploy:
-	rm db.json
+	rm -f db.json
 	hexo generate
 	cp -R ./todomvc public/examples
 	mkdir -p public/unit
