@@ -266,12 +266,12 @@ type: api
 
   ``` js
   // register an extended constructor
-  Vue.component('my-component', Vue.extend({ /* ... */}))
+  Vue.component('my-component', Vue.extend({ /* ... */ }))
 
   // register an options object (automatically call Vue.extend)
   Vue.component('my-component', { /* ... */ })
 
-  // retrive a registered component (always return constructor)
+  // retrieve a registered component (always return constructor)
   var MyComponent = Vue.component('my-component')
   ```
 
