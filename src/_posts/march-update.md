@@ -5,7 +5,7 @@ date: 2016-03-14 18:45:00
 
 ## Growing Community
 
-Vue's growth in the past year has been nothing short of amazing. As of today we are at over 15,000 stars on GitHub, over 500k downloads from npm, and over 2,000 users in the Gitter channel. What's more exciting though, is that the community successfully organized the first [London Vue.js Meetup](http://www.meetup.com/London-Vue-js-Meetup/) and the first [Paris Vue.js Meetup](http://www.meetup.com/Vuejs-Paris/?scroll=true)! A big shoutout to the awesome organizers: [Jack](https://twitter.com/JackBarham), [Jame](https://twitter.com/onejamesbrowne/) and [Eduardo](https://twitter.com/posva/).
+Vue's growth in the past year has been nothing short of amazing. As of today we are at over 15,000 stars on GitHub, over 500k downloads from npm, and over 2,000 users in the Gitter channel. What's more exciting though, is that the community successfully organized the first [London Vue.js Meetup](http://www.meetup.com/London-Vue-js-Meetup/) and the first [Paris Vue.js Meetup](http://www.meetup.com/Vuejs-Paris/?scroll=true)! A big shoutout to the awesome organizers: [Jack](https://twitter.com/JackBarham), [James](https://twitter.com/onejamesbrowne/) and [Eduardo](https://twitter.com/posva/).
 
 <!-- more -->
 
