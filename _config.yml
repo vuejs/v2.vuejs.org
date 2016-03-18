@@ -98,3 +98,8 @@ markdown:
 deploy:
   type: git
   repository: git@github.com:vuejs/vuejs.org.git
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
