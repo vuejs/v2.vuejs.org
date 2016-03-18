@@ -84,6 +84,20 @@ type: api
 
   When async mode is off, Vue will perform all DOM updates synchronously upon detecting data change. This may help with debugging in some scenarios, but could also cause degraded performance and affect the order in which watcher callbacks are called. **`async: false` is not recommended in production.**
 
+### devtools
+
+- **Type:** `Boolean`
+
+- **Default:** `true` (`false` in production builds)
+
+- **Usage:**
+
+  ``` js
+  Vue.config.devtools = true
+  ```
+
+  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+
 ## Global API
 
 <h3 id="Vue-extend">Vue.extend( options )</h3>
