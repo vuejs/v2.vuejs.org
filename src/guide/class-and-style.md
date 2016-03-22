@@ -76,6 +76,31 @@ If you would like to also toggle a class in the list conditionally, you can do i
 
 This will always apply `classA`, but will only apply `classB` when `isB` is `true`.
 
+### Mixed Syntax
+Sometimes it's convenient to use several syntax styles at once.
+In that case you can use the trick with two version of the directive.
+We will be using `v-bind:class.1` for object syntax and `v-bind:class.2` for array syntax:
+
+``` html
+<div v-bind:class.1="classObject" v-bind:class.2="[classC, classD]">
+```
+``` js
+data: {
+  classObject: {
+    'class-a': true,
+    'class-b': false
+  },
+  classC: 'class-c',
+  classD: 'class-d'
+}
+```
+
+Which will render:
+
+``` html
+<div class="class-a class-c class-d"></div>
+```
+
 ## Binding Inline Styles
 
 ### Object Syntax
