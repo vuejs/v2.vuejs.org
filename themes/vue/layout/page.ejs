@@ -2,13 +2,13 @@
     <%- partial('partials/sidebar', { type: page.type, index: page.index }) %>
 <% } %>
 <div class="content <%- page.type ? page.type + ' with-sidebar' : '' %>">
-    <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
-    <div id="ad">
-      <a href="https://strikingly.com" target="_blank">
-        <span>Proudly sponsored by</span><br>
+    <div id="ad" style="width:140px">
+        <a href="https://strikingly.com" target="_blank">
+            <span>Proudly sponsored by</span><br>
         <img src="/images/strikingly.png">
       </a>
     </div>
+    <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
     <%- page.content %>
     <% if (page.type === 'guide') { %>
       <div class="guide-links">
