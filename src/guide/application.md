@@ -28,7 +28,9 @@ If you are into pre-processors, you can even do this:
 
 <img src="/images/vue-component-with-pre-processors.png">
 
-You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). It is recommended to use the Webpack setup because Webpack's loader API enables better file dependency tracking / caching and some advanced features that are not feasible with Browserify transforms.
+You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). You can also play with it online at [Webpackbin.com](http://www.webpackbin.com/vue)!
+
+Which build tool to choose is largely dependent on your experience and needs. Webpack-based setup offers more powerful features such as code splitting, processing static assets as module dependencies and extracting component CSS into a separate file, but can be a bit more complex to configure. Browserify can be easier to setup in scenarios where you don't need the advanced features that Webpack offers.
 
 The fastest way to get up and running with a pre-configured build setup is using the official [vue-cli](https://github.com/vuejs/vue-cli). You can also find the official scaffold templates on GitHub:
 
