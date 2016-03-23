@@ -59,7 +59,7 @@ You also need to define CSS rules for `.expand-transition`, `.expand-enter` and 
 }
 ```
 
-You can use dynamically named transitions
+You can use dynamically named transitions :
 
 ``` html
 <div v-if="show" :transition="transitionName">hello</div>
