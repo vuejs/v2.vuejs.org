@@ -59,10 +59,20 @@ You also need to define CSS rules for `.expand-transition`, `.expand-enter` and 
 }
 ```
 
-You can use dynamically named transitions :
+You can achieve different transitions on the same element by using dynamic binding:
 
-``` html
+```html
 <div v-if="show" :transition="transitionName">hello</div>
+```
+
+```js
+new Vue({
+  el: '...',
+  data: {
+    show: false,
+    transitionName: 'fade'
+  }
+})
 ```
 
 In addition, you can provide JavaScript hooks:
