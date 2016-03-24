@@ -135,29 +135,36 @@ var MyComponent = Vue.extend({
 
 The `el` option also requires a function value when used in `Vue.extend()`, for exactly the same reason.
 
-### Template Caveats
+### Template Parsing
 
-Because Vue.js templates are not string-based, but rather DOM-based, they have to be individually valid pieces of HTML. Some HTML elements have restrictions on what elements can appear inside them. Most common of these restrictions are:
+Vue.js template engine is DOM-based and uses native parser that comes with the browser instead of providing a custom one. There are benefits to this approach when compared to string-based template engines, but there are also caveats. Templates have to be individually valid pieces of HTML. Some HTML elements have restrictions on what elements can appear inside them. Most common of these restrictions are:
 
 - `a` can not contain other interactive elements (e.g. buttons and other links)
-- `li` should be a direct child of `ul`, and `ul` can only contain `li`
+- `li` should be a direct child of `ul` or `ol`, and both `ul` and `ol` can only contain `li`
 - `option` should be a direct child of `select`, and `select` can only contain `option` (and `optgroup`)
 - `table` can only contain `thead`, `tbody`, `tfoot` and `tr`, and these elements should be direct cildren of `table`
 - `tr` can only contain `th` and `td`, and these elements should be direct children of `tr`
 
 In practive these restriction can cause unexpected behavior. Although in simple cases it might appear to work, you can not rely on custom elements being expanded before browser validation. E.g. `<my-select><option>...</option></my-select>` is not a valid template even if `my-select` component eventually expands to `<select>...</select>`.
 
-Another consequence is that you can not use custom elements inside of `ul`, `select`, `table` and other elements with similar  restrictions. Custom elements will be hoisted out and thus not render properly. In such cases you should use the `is` special attribute to indicate a custom element:
+Another consequence is that you can not use custom tags (including custom elements and special tags like `<component>`, `<template>` and `<partial>`) inside of `ul`, `select`, `table` and other elements with similar restrictions. Custom tags will be hoisted out and thus not render properly.
 
-``` html
-<ul is="my-list">
-  <li is="my-list-item"></li>
-</ul>
-```
+In case of a custom element you should use the `is` special attribute:
 
 ``` html
 <table>
   <tr is="my-component"></tr>
+</table>
+```
+
+In case of a `<template>` inside of a `<table>` you should use `<tbody>`, as tables are allowed to have multiple `tbody`:
+
+``` html
+<table>
+  <tbody v-for="item in items">
+    <tr>Even row</tr>
+    <tr>Odd row</tr>
+  </tbody>
 </table>
 ```
 
