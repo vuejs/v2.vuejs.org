@@ -19,12 +19,7 @@
     </div>
 </div>
 <div class="content blog post">
-    <div id="ad" style="width:140px">
-        <a href="https://strikingly.com" target="_blank">
-            <span>Proudly sponsored by</span><br>
-            <img src="/images/strikingly.png">
-        </a>
-    </div>
+    <%- partial('partials/ad') %>
     <h1><%- page.title %></h1>
     <h4><%- page.date.format('MMM D[,] YYYY') %></h4>
     <%- page.content %>
