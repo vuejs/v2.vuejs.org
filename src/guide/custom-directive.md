@@ -279,9 +279,9 @@ Use this wisely though, because in general you want to avoid side-effects in you
 
 ### terminal
 
-In some cases, we may want to used as the **terminal** directives. For example, you may want to perform custom directive than normal directive like `v-if` or `v-for`. If you want to do so, you need to pass in `terminal: true` in your directive definition.
+Vue compiles templates by recursively walking the DOM tree. However when it encounters a **terminal** directive, it will stop walking that element's children. The terminal directive takes over the job of compiling the element and its children. For example, `v-if` and `v-for` are both terminal directives.
 
-The following is an example that inject to DOM is specified with argument of directive:
+Writing a custom terminal directive is an advanced topic and requires decent knowledge of Vue's compilation pipeline, but it's possible. You can specify a custom terminal directive by specifying `terminal: true`. You will also likely need to use `Vue.FragmentFactory` for partial compilation. Here's an example of a custom terminal directive that compiles and "injects" its content template to another location on the page:
 
 ``` js
 var FragmentFactory = Vue.FragmentFactory
@@ -316,11 +316,10 @@ Vue.directive('inject', {
 </div>
 ```
 
-If you want to define the terminal directive, we recommend that you understand internal API of Vue and other terminal directives like `v-if` and `v-for`. In the target element of the compilation, notice that when Vue.js finds the terminal directive, even if the other directives exist, these are not handled. As the above example code, you should be handled other directives.
-
+If you want to write a custom terminal directive, it is recommend that you read through the source code of built-in terminal directives like `v-if` and `v-for` to get a better understanding of Vue internals.
 
 ### priority
 
-You can optionally provide a priority number for your directive. If you don't provide a priority, as default priority value, normal directive set to `1000`, terminal directive set to `2000`. A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
+You can optionally provide a priority number for your directive. If no priority is specified, a default priority will be used - `1000` for normal directives and `2000` for terminal directives. A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
 
 You can checkout the priorities for some built-in directives in the [API reference](/api/#Directives). Additionally, flow control directives `v-if` and `v-for` always have the highest priority in the compilation process.
