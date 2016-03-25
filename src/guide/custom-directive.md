@@ -279,6 +279,8 @@ Use this wisely though, because in general you want to avoid side-effects in you
 
 ### terminal
 
+> 1.0.19+
+
 Vue compiles templates by recursively walking the DOM tree. However when it encounters a **terminal** directive, it will stop walking that element's children. The terminal directive takes over the job of compiling the element and its children. For example, `v-if` and `v-for` are both terminal directives.
 
 Writing a custom terminal directive is an advanced topic and requires decent knowledge of Vue's compilation pipeline, but it's possible. You can specify a custom terminal directive by specifying `terminal: true`. You will also likely need to use `Vue.FragmentFactory` for partial compilation. Here's an example of a custom terminal directive that compiles and "injects" its content template to another location on the page:
