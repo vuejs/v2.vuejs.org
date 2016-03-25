@@ -277,8 +277,50 @@ Vue.directive('my-directive', {
 
 Use this wisely though, because in general you want to avoid side-effects in your templates.
 
+### terminal
+
+In some cases, we may want to used as the **terminal** directives. For example, you may want to perform custom directive than normal directive like `v-if` or `v-for`. If you want to do so, you need to pass in `terminal: true` in your directive definition.
+
+The following is an example that inject to DOM is specified with argument of directive:
+
+``` js
+var FragmentFactory = Vue.FragmentFactory
+var remove = Vue.util.remove
+var createAnchor = Vue.util.createAnchor
+
+Vue.directive('inject', {
+  terminal: true,
+  bind: function () {
+    var container = document.getElementById(this.arg)
+    this.anchor = createAnchor('v-inject')
+    container.appendChild(this.anchor)
+    remove(this.el)
+    var factory = new FragmentFactory(this.vm, this.el)
+    this.frag = factory.create(this._host, this._scope, this._frag)
+    this.frag.before(this.anchor)
+  },
+  unbind: function () {
+    this.frag.remove()
+    remove(this.anchor)
+  }
+})
+```
+
+``` html
+<div id="modal"></div>
+...
+<div v-inject:modal>
+  <h1>header</h1>
+  <p>body</p>
+  <p>footer</p>
+</div>
+```
+
+If you want to define the terminal directive, we recommend that you understand internal API of Vue and other terminal directives like `v-if` and `v-for`. In the target element of the compilation, notice that when Vue.js finds the terminal directive, even if the other directives exist, these are not handled. As the above example code, you should be handled other directives.
+
+
 ### priority
 
-You can optionally provide a priority number for your directive (defaults to 1000). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
+You can optionally provide a priority number for your directive. If you don't provide a priority, as default priority value, normal directive set to `1000`, terminal directive set to `2000`. A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
 
 You can checkout the priorities for some built-in directives in the [API reference](/api/#Directives). Additionally, flow control directives `v-if` and `v-for` always have the highest priority in the compilation process.
