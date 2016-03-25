@@ -76,6 +76,12 @@ If you would like to also toggle a class in the list conditionally, you can do i
 
 This will always apply `classA`, but will only apply `classB` when `isB` is `true`.
 
+However, this can be a bit verbose if you have multiple conditional classes. In version 1.0.19+, it's also possible to use the Object syntax inside Array syntax:
+
+``` html
+<div v-bind:class="[classA, { classB: isB, classC: isC }]">
+```
+
 ## Binding Inline Styles
 
 ### Object Syntax
