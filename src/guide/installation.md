@@ -8,7 +8,13 @@ min_size: "72.92"
 gz_size: "25.10"
 ---
 
-> **Compatibility Note:** Vue.js does not support IE8 and below.
+### Compatibility Note
+
+Vue.js does **not** support IE8 and below, because Vue.js uses ECMAScript 5 features that are un-shimmable in IE8. However Vue.js supports all [ECMASCript 5 compliant browsers](http://caniuse.com/#feat=es5).
+
+### Release Notes
+
+Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
 
 ## Standalone
 
@@ -56,7 +62,7 @@ $ npm run dev
 
 ## Dev Build
 
-**Important**: the CommonJS bundle distributed on NPM (`vue.common.js`) is **not** checked into source control, therefore to use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Important**: the CommonJS bundle distributed on NPM (`vue.common.js`) is only checked-in during releases on the `master` branch, so the file in the `dev` branch is the same as the stable release. To use Vue from the latest source code on GitHub, you will have to build it yourself!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
