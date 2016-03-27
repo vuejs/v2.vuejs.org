@@ -17,7 +17,7 @@ The `transition` attribute can be used together with:
 - `v-if`
 - `v-show`
 - `v-for` (triggered for insertion and removal only)
-- Dynamic components (introduced in the [next section](components.html#Dynamic_Components))
+- Dynamic components (introduced in the [next section](components.html#Dynamic-Components))
 - On a component root node, and triggered via Vue instance DOM methods, e.g. `vm.$appendTo(el)`.
 
 When an element with transition is inserted or removed, Vue will:

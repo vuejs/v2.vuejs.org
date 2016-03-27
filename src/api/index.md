@@ -158,7 +158,7 @@ type: api
   })
   ```
 
-- **See also:** [Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
+- **See also:** [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="Vue-set">Vue.set( object, key, value )</h3>
 

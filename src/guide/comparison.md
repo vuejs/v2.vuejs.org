@@ -42,7 +42,7 @@ Some additional notes:
 
 - For large applications, the React community has been doing a lot of innovation in terms of state management solutions, e.g. Flux/Redux. Vue itself doesn't really address that problem (same for React core), but the state management patterns can be easily adopted for a similar architecture. Vue has its own state management solution called [Vuex](https://github.com/vuejs/vuex), and it's also possible to [use Redux with Vue](https://github.com/egoist/revue).
 
-- The trend in React development is pushing you to put everything in JavaScript, including your CSS. There has been many CSS-in-JS solutions out there but all more or less have its own problems. And most importantly, it deviates from the standard CSS authoring experience and makes it very awkward to leverage existing work in the CSS community. Vue's [single file components](http://vuejs.org/guide/application.html#Single_File_Components) gives you component-encapsulated CSS while still allowing you to use your pre-processors of choice.
+- The trend in React development is pushing you to put everything in JavaScript, including your CSS. There has been many CSS-in-JS solutions out there but all more or less have its own problems. And most importantly, it deviates from the standard CSS authoring experience and makes it very awkward to leverage existing work in the CSS community. Vue's [single file components](/guide/application.html#Single-File-Components) gives you component-encapsulated CSS while still allowing you to use your pre-processors of choice.
 
 ## Ember
 
