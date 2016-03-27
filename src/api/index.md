@@ -238,7 +238,7 @@ type: api
   var myDirective = Vue.elementDirective('my-element')
   ```
 
-- **See also:** [Element Directives](/guide/custom-directive.html#Element_Directives)
+- **See also:** [Element Directives](/guide/custom-directive.html#Element-Directives)
 
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
@@ -355,7 +355,7 @@ type: api
 
   Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
-- **See also:** [Global Mixins](/guide/mixins.html#Global_Mixin)
+- **See also:** [Global Mixins](/guide/mixins.html#Global-Mixin)
 
 ## Options / Data
 
@@ -468,7 +468,7 @@ type: api
 
 - **See also:**
   - [Computed Properties](/guide/computed.html)
-  - [Reactivity in Depth: Inside Computed Properties](/guide/reactivity.html#Inside_Computed_Properties)
+  - [Reactivity in Depth: Inside Computed Properties](/guide/reactivity.html#Inside-Computed-Properties)
 
 ### methods
 
@@ -544,7 +544,7 @@ type: api
 
   If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### template
 
@@ -559,9 +559,9 @@ type: api
   Note that under certain situations, for example when the template contains more than one top-level element, or contains only plain text, the instance will become a fragment instance - i.e. one that manages a list of nodes rather than a single node. Non flow-control directives on the mount point for fragment instances are ignored.
 
 - **See also:**
-  - [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
-  - [Content Distribution](/guide/components.html#Content_Distribution_with_Slots)
-  - [Fragment Instance](/guide/components.html#Fragment_Instance)
+  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+  - [Content Distribution](/guide/components.html#Content-Distribution-with-Slots)
+  - [Fragment Instance](/guide/components.html#Fragment-Instance)
 
 ### replace
 
@@ -626,7 +626,7 @@ type: api
 
   Called synchronously after the instance has just been initialized, before data observation and event / watcher setup.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
@@ -636,7 +636,7 @@ type: api
 
   Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, DOM compilation has not been started, and the `$el` property will not be available yet.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### beforeCompile
 
@@ -646,7 +646,7 @@ type: api
 
   Called right before the compilation starts.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### compiled
 
@@ -656,7 +656,7 @@ type: api
 
   Called after the compilation is finished. At this stage all directives have been linked so data changes will trigger DOM updates. However, `$el` is not guaranteed to have been inserted into the document yet.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### ready
 
@@ -666,7 +666,7 @@ type: api
 
   Called after compilation **and** the `$el` is **inserted into the document for the first time**, i.e. right after the first `attached` hook. Note this insertion must be executed via Vue (with methods like `vm.$appendTo()` or as a result of a directive update) to trigger the `ready` hook.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### attached
 
@@ -692,7 +692,7 @@ type: api
 
   Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
@@ -704,7 +704,7 @@ type: api
 
   Note if there is a leaving transition, the `destroyed` hook is called **after** the transition has finished.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ## Options / Assets
 
@@ -718,7 +718,7 @@ type: api
 
 - **See also:**
   - [Custom Directives](/guide/custom-directive.html)
-  - [Assets Naming Convention](/guide/components.html#Assets_Naming_Convention)
+  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
 
 ### elementDirectives
 
@@ -729,8 +729,8 @@ type: api
   A hash of element directives to be made available to the Vue instance.
 
 - **See also:**
-  - [Element Directives](/guide/custom-directive.html#Element_Directives)
-  - [Assets Naming Convention](/guide/components.html#Assets_Naming_Convention)
+  - [Element Directives](/guide/custom-directive.html#Element-Directives)
+  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
@@ -742,7 +742,7 @@ type: api
 
 - **See also:**
   - [Custom Filters](/guide/custom-filter.html)
-  - [Assets Naming Convention](/guide/components.html#Assets_Naming_Convention)
+  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
 
 ### components
 
@@ -787,7 +787,7 @@ type: api
 
   Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
 
-- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child_Communication)
+- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child-Communication)
 
 ### events
 
@@ -822,8 +822,8 @@ type: api
   ```
 
 - **See also:**
-  - [Instance Methods - Events](#Instance_Methods_/_Events)
-  - [Parent-Child Communication](/guide/components.html#Parent-Child_Communication)
+  - [Instance Methods - Events](#Instance-Methods-Events)
+  - [Parent-Child Communication](/guide/components.html#Parent-Child-Communication)
 
 ### mixins
 
@@ -900,7 +900,7 @@ type: api
 
 - **Details:**
 
-  The DOM element that the Vue instance is managing. Note that for [Fragment Instances](/guide/components.html#Fragment_Instance), `vm.$el` will return an anchor node that indicates the starting position of the fragment.
+  The DOM element that the Vue instance is managing. Note that for [Fragment Instances](/guide/components.html#Fragment-Instance), `vm.$el` will return an anchor node that indicates the starting position of the fragment.
 
 ### vm.$options
 
@@ -962,7 +962,7 @@ type: api
   An object that holds child components that have `v-ref` registered.
 
 - **See also:**
-  - [Child Component Refs](/guide/components.html#Child_Component_Refs)
+  - [Child Component Refs](/guide/components.html#Child-Component-Refs)
   - [v-ref](#v-ref).
 
 ### vm.$els
@@ -1258,7 +1258,7 @@ type: api
   // true in its callback
   ```
 
-- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child_Communication)
+- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child-Communication)
 
 <h3 id="vm-broadcast">vm.$broadcast( event, [...args] )</h3>
 
@@ -1378,7 +1378,7 @@ type: api
 
 - **See also:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](/guide/reactivity.html#Async_Update_Queue)
+  - [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
 
 ## Instance Methods / Lifecycle
 
@@ -1414,7 +1414,7 @@ type: api
   new MyComponent().$mount().$appendTo('#container')
   ```
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 <h3 id="vm-destroy">vm.$destroy( [remove] )</h3>
 
@@ -1427,7 +1427,7 @@ type: api
 
   Triggers the `beforeDestroy` and `destroyed` hooks.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle_Diagram)
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ## Directives
 
@@ -1516,9 +1516,9 @@ type: api
 
 - **Param Attributes:**
   - [`track-by`](/guide/list.html#track-by)
-  - [`stagger`](/guide/transitions.html#Staggering_Transitions)
-  - [`enter-stagger`](/guide/transitions.html#Staggering_Transitions)
-  - [`leave-stagger`](/guide/transitions.html#Staggering_Transitions)
+  - [`stagger`](/guide/transitions.html#Staggering-Transitions)
+  - [`enter-stagger`](/guide/transitions.html#Staggering-Transitions)
+  - [`leave-stagger`](/guide/transitions.html#Staggering-Transitions)
 
 - **Usage:**
 
@@ -1730,7 +1730,7 @@ type: api
   this.$refs.list
   ```
 
-- **See also:** [Child Component Refs](/guide/components.html#Child_Component_Refs)
+- **See also:** [Child Component Refs](/guide/components.html#Child-Component-Refs)
 
 ### v-el
 
@@ -1816,7 +1816,7 @@ type: api
   <component :is="componentId"></component>
   ```
 
-- **See also:** [Dynamic Components](/guide/components.html#Dynamic_Components)
+- **See also:** [Dynamic Components](/guide/components.html#Dynamic-Components)
 
 ### slot
 
@@ -1831,7 +1831,7 @@ type: api
 
   For detailed usage, see the guide section linked below.
 
-- **See also:** [Content Distribution with Slots](/guide/components.html#Content_Distribution_with_Slots)
+- **See also:** [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
 
 ### partial
 
