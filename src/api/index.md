@@ -93,6 +93,7 @@ type: api
 - **Usage:**
 
   ``` js
+  // make sure to set this synchronously immediately after loading Vue
   Vue.config.devtools = true
   ```
 
