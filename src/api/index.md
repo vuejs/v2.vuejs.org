@@ -2172,7 +2172,7 @@ type: api
 
 - **Usage**
   
-  Set an element in the array to a value by index and triggers view updates.
+  Set an element in the array to a value by index and trigger view updates.
 
   ``` js
     vm.animals.$set(0, { name: 'Aardvark' })
@@ -2180,18 +2180,16 @@ type: api
 
 - **See also:** [Mutation Methods](/guide/list.html#Mutation-Methods)
 
-### array.$remove(indexOrReference)
+### array.$remove(reference)
 
 - **Arguments**
-  - `{Number | Reference} indexOrReference`
+  - `{Reference} reference`
 
 - **Usage**
   
-  Remove an element from an array by index or reference and triggers view updates.
+  Remove an element from an array by reference and trigger view updates.
 
   ``` js
-    vm.animals.$remove(0)
-    // or
     var aardvark = vm.animals[0]
     vm.animals.$remove(aardvark)
   ```
