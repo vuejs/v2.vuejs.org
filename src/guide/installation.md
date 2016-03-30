@@ -10,7 +10,7 @@ gz_size: "25.10"
 
 ### Compatibility Note
 
-Vue.js does **not** support IE8 and below, because Vue.js uses ECMAScript 5 features that are un-shimmable in IE8. However Vue.js supports all [ECMASCript 5 compliant browsers](http://caniuse.com/#feat=es5).
+Vue.js does **not** support IE8 and below, because Vue.js uses ECMAScript 5 features that are un-shimmable in IE8. However Vue.js supports all [ECMAScript 5 compliant browsers](http://caniuse.com/#feat=es5).
 
 ### Release Notes
 
