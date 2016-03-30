@@ -2161,3 +2161,39 @@ type: api
   })
   </script>
   {% endraw %}
+
+## Array Extension Methods
+
+### array.$set(index, value)
+
+- **Arguments**
+  - `{Number} index`
+  - `{*} value`
+
+- **Usage**
+  
+  Set an element in the array to a value by index and triggers view updates.
+
+  ``` js
+    vm.animals.$set(0, { name: 'Aardvark' })
+  ```
+
+- **See also:** [Mutation Methods](/guide/list.html#Mutation-Methods)
+
+### array.$remove(indexOrReference)
+
+- **Arguments**
+  - `{Number | Reference} indexOrReference`
+
+- **Usage**
+  
+  Remove an element from an array by index or reference and triggers view updates.
+
+  ``` js
+    vm.animals.$remove(0)
+    // or
+    var aardvark = vm.animals[0]
+    vm.animals.$remove(aardvark)
+  ```
+
+- **See also:** [Mutation Methods](/guide/list.html#Mutation-Methods)
