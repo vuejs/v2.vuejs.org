@@ -658,6 +658,16 @@ type: api
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
+### activate
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after compilation is finished, right before `ready` hook.
+
+- **See also:** [Guide](/guide/components.html#activate-Hook)
+
 ### ready
 
 - **Type:** `Function`
