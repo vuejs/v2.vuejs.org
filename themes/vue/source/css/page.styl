@@ -246,23 +246,18 @@ $header-height = 40px
     border-top 1px solid #e5e5e5
     font-size .9em
 
-@media screen and (min-width: 720px)
-    #main.fix-sidebar
-        .sidebar
-            position fixed
-
 @media screen and (max-width: 1200px)
     .content.with-sidebar
         margin-left 280px
     #ad
         z-index 8
         position relative
-        width auto
+        width 140px
         height 60px
         padding 0
         bottom 0
         right 0
-        margin 0 0 15px
+        margin 0 0 15px -6px
         .carbon-wrap, .carbon-img, .carbon-text, .carbon-poweredby
             display inline-block
             vertical-align top
@@ -277,17 +272,13 @@ $header-height = 40px
 #donate
     margin-top 15px
 
-@media screen and (max-width: 560px)
-    #downloads
-        text-align center
-        margin-bottom 25px
-        .info
-            margin-top 5px
-            margin-left 0
-    iframe
-        margin: 0 !important
-
 @media screen and (max-width: 720px)
+    #ad
+        width 100%
+        margin-bottom -25px
+    #main.fix-sidebar
+        .sidebar
+            position fixed
     body
         -webkit-text-size-adjust none
         font-size 14px
@@ -331,3 +322,13 @@ $header-height = 40px
     .footer
         margin-left 0
         text-align center
+
+@media screen and (max-width: 560px)
+    #downloads
+        text-align center
+        margin-bottom 25px
+        .info
+            margin-top 5px
+            margin-left 0
+    iframe
+        margin: 0 !important
