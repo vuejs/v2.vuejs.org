@@ -2101,14 +2101,14 @@ type: api
 - **Limited to:** directives that expect `Array` values, e.g. `v-for`
 
 - **Arguments:**
-  - `{String} sortKey`
+  - `{String | Array<String> | Function} sortKeys`
   - `{String} [order] - default: 1`
 
 - **Usage:**
 
-  Return a sorted version of the source Array. The `sortKey` is the key to use for the sorting. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
+  Return a sorted version of the source Array. `sortKeys` is an Array with the keys to use for the sorting. You can pass a String if you only need to sort on one key. You can also pass a Function if you want to use your own sorting strategy instead. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
 
-  For arrays of primitive values, any truthy `sortKey` will work.
+  For arrays of primitive values, set `sortKey` to `true`.
 
 - **Example:**
 
@@ -2165,6 +2165,16 @@ type: api
   })
   ```
 
+  Sort using two keys:
+
+  ``` html
+  <ul>
+    <li v-for="user in users | orderBy ['lastName', 'firstName']">
+      {{ user.lastName }} {{ user.firstName }}
+    </li>
+  </ul>
+  ```
+
   {% raw %}
   <div id="orderby-example" class="demo">
     <button @click="order = order * -1">Reverse Sort Order</button>
@@ -2180,6 +2190,85 @@ type: api
     data: {
       order: 1,
       users: [{ name: 'Bruce' }, { name: 'Chuck' }, { name: 'Jackie' }]
+    }
+  })
+  </script>
+  {% endraw %}
+
+  Sort using a Function:
+
+  ``` html
+  <div id="orderby-compare-example" class="demo">
+    <button @click="order = order * -1">Reverse Sort Order</button>
+    <ul>
+      <li v-for="user in users | orderBy ageByTen">
+        {{ user.name }} - {{ user.age }}
+      </li>
+    </ul>
+  </div>
+  ```
+
+  ``` js
+  new Vue({
+    el: '#orderby-compare-example',
+    data: {
+      order: 1,
+      users: [
+        {
+          name: 'Jackie',
+          age: 62
+        },
+        {
+          name: 'Chuck',
+          age: 76
+        },
+        {
+          name: 'Bruce',
+          age: 61
+        }
+      ]
+    },
+    methods: {
+      ageByTen: function (a, b) {
+        return Math.floor(a.age / 10) - Math.floor(b.age / 10)
+      }
+    }
+  })
+  ```
+
+  {% raw %}
+  <div id="orderby-compare-example" class="demo">
+    <button @click="order = order * -1">Reverse Sort Order</button>
+    <ul id="orderby-compare-example">
+      <li v-for="user in users | orderBy ageByTen order">
+        {{ user.name }} - {{ user.age }}
+      </li>
+    </ul>
+  </div>
+  <script>
+  new Vue({
+    el: '#orderby-compare-example',
+    data: {
+      order: 1,
+      users: [
+        {
+          name: 'Jackie',
+          age: 62
+        },
+        {
+          name: 'Chuck',
+          age: 76
+        },
+        {
+          name: 'Bruce',
+          age: 61
+        }
+      ]
+    },
+    methods: {
+      ageByTen: function (a, b) {
+        return Math.floor(a.age / 10) - Math.floor(b.age / 10)
+      }
     }
   })
   </script>
