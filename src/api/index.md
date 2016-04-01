@@ -2106,7 +2106,7 @@ type: api
 
 - **Usage:**
 
-  Return a sorted version of the source Array. `sortKeys` is an Array with the keys to use for the sorting. You can pass a String if you only need to sort on one key. You can also pass a Function if you want to use your own sorting strategy instead. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
+  Return a sorted version of the source Array. The `sortKeys` is an Array with the keys to use for the sorting. You can pass a String if you need to sort only one key. You can also pass a Function if you want to use your own sorting strategy instead. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
 
   For arrays of primitive values, set `sortKey` to `true`.
 
