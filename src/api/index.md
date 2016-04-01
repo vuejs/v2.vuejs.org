@@ -2169,7 +2169,7 @@ type: api
 
   ``` html
   <ul>
-    <li v-for="user in users | orderBy 'lastName', 'firstName'">
+    <li v-for="user in users | orderBy 'lastName' 'firstName'">
       {{ user.lastName }} {{ user.firstName }}
     </li>
   </ul>
