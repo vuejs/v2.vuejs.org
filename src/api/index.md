@@ -2101,12 +2101,12 @@ type: api
 - **Limited to:** directives that expect `Array` values, e.g. `v-for`
 
 - **Arguments:**
-  - `{String | Array<String> | Function} sortKeys`
+  - `{String | Array<String> | Function} ...sortKeys`
   - `{String} [order] - default: 1`
 
 - **Usage:**
 
-  Return a sorted version of the source Array. The `sortKeys` is an Array with the keys to use for the sorting. You can pass a String if you need to sort only one key. You can also pass a Function if you want to use your own sorting strategy instead. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
+  Return a sorted version of the source Array. You can pass any number of Strings to sort on keys. You can also pass an array containing the sorting keys or a Function if you want to use your own sorting strategy instead. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
 
   For arrays of primitive values, set `sortKey` to `true`.
 
@@ -2169,7 +2169,7 @@ type: api
 
   ``` html
   <ul>
-    <li v-for="user in users | orderBy ['lastName', 'firstName']">
+    <li v-for="user in users | orderBy 'lastName', 'firstName'">
       {{ user.lastName }} {{ user.firstName }}
     </li>
   </ul>
