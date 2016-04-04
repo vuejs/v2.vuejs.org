@@ -246,6 +246,13 @@ $header-height = 40px
     border-top 1px solid #e5e5e5
     font-size .9em
 
+#main.fix-sidebar
+    .sidebar
+        position fixed
+
+#donate
+    margin-top 15px
+
 @media screen and (max-width: 1200px)
     .content.with-sidebar
         margin-left 280px
@@ -269,16 +276,10 @@ $header-height = 40px
             bottom 0
             left 145px
 
-#donate
-    margin-top 15px
-
 @media screen and (max-width: 720px)
     #ad
         width 100%
         margin-bottom -25px
-    #main.fix-sidebar
-        .sidebar
-            position fixed
     body
         -webkit-text-size-adjust none
         font-size 14px
