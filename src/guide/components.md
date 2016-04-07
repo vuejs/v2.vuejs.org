@@ -316,6 +316,8 @@ Vue.component('example', {
   props: {
     // basic type check (`null` means accept any type)
     propA: Number,
+    // multiple possible types (1.0.21+)
+    propM: [String, Number],
     // a required string
     propB: {
       type: String,
