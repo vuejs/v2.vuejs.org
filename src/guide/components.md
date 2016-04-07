@@ -142,7 +142,7 @@ Vue.js template engine is DOM-based and uses native parser that comes with the b
 - `a` can not contain other interactive elements (e.g. buttons and other links)
 - `li` should be a direct child of `ul` or `ol`, and both `ul` and `ol` can only contain `li`
 - `option` should be a direct child of `select`, and `select` can only contain `option` (and `optgroup`)
-- `table` can only contain `thead`, `tbody`, `tfoot` and `tr`, and these elements should be direct cildren of `table`
+- `table` can only contain `thead`, `tbody`, `tfoot` and `tr`, and these elements should be direct children of `table`
 - `tr` can only contain `th` and `td`, and these elements should be direct children of `tr`
 
 In practice these restriction can cause unexpected behavior. Although in simple cases it might appear to work, you can not rely on custom elements being expanded before browser validation. E.g. `<my-select><option>...</option></my-select>` is not a valid template even if `my-select` component eventually expands to `<select>...</select>`.
