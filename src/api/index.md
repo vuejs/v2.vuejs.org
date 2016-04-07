@@ -2108,7 +2108,7 @@ type: api
 
   Return a sorted version of the source Array. You can pass any number of Strings to sort on keys. You can also pass an array containing the sorting keys or a Function if you want to use your own sorting strategy instead. The optional `order` argument specifies whether the result should be in ascending (`order >= 0`) or descending (`order < 0`) order.
 
-  For arrays of primitive values, set `sortKey` to `true`.
+  For arrays of primitive values, simply omit `sortKeys` and provide the order, e.g. `orderBy 1`.
 
 - **Example:**
 
