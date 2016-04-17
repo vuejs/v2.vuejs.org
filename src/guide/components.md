@@ -549,9 +549,9 @@ To make the composition work, we need a way to interweave the parent "content" a
 Before we dig into the API, let's first clarify which scope the contents are compiled in. Imagine a template like this:
 
 ``` html
-<child>
+<child-component>
   {{ msg }}
-</child>
+</child-component>
 ```
 
 Should the `msg` be bound to the parent's data or the child data? The answer is parent. A simple rule of thumb for component scope is:
@@ -562,7 +562,7 @@ A common mistake is trying to bind a directive to a child property/method in the
 
 ``` html
 <!-- does NOT work -->
-<child v-show="someChildProperty"></child>
+<child-component v-show="someChildProperty"></child-component>
 ```
 
 Assuming `someChildProperty` is a property on the child component, the example above would not work as intended. The parent's template should not be aware of the state of a child component.
