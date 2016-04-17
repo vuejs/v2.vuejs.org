@@ -4,7 +4,7 @@ type: guide
 order: 20
 ---
 
-## Join the VueJS Community!
+## Join the Vue.js Community!
 
 The vibrant community around Vue.js is continually growing. Nevertheless, helpful hands are always welcome. In fact, a growing community is the best sign of a healthy OSS project worth putting any effort into, even if it is as the user of the software. 
 
