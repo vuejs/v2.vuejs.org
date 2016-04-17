@@ -12,7 +12,7 @@ If you would like to also be a part of the Vue.js community, this page was meant
 
 ....welcome aboard!
 
-## Resources You Should Now About!
+## Resources You Should Know About!
 
 ### The Community
 - [The Forum](http://forum.vuejs.org/) - THE best place to ask questions and get answers about Vue.js and its components.
@@ -31,8 +31,8 @@ If you would like to also be a part of the Vue.js community, this page was meant
 
 - The Main Components of Vue
   - [Vue](https://github.com/vuejs/vue) - The core repository.
-  - [Vuex](https://github.com/vuejs/vuex) - A Flux-inspired Application Architecture for VueJS.
-  - [Vue-router](https://github.com/vuejs/vue-router) - A routing system for SPAs with VueJS.
+  - [Vuex](https://github.com/vuejs/vuex) - A Flux-inspired Application Architecture for Vue.js.
+  - [Vue-router](https://github.com/vuejs/vue-router) - A routing system for SPAs with Vue.js.
   - [Vue-resource](https://github.com/vuejs/vue-resource) - A plugin, which provides services for making web requests and to handle responses using XMLHttpRequests or JSONP. 
 
 
