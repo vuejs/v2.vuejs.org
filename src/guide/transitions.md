@@ -16,7 +16,8 @@ The `transition` attribute can be used together with:
 
 - `v-if`
 - `v-show`
-- `v-for` (triggered for insertion and removal only)
+- `v-for` (triggered for insertion and removal only, for animating changes of order
+  [use vue-animated-list plugin](https://github.com/vuejs/vue-animated-list))
 - Dynamic components (introduced in the [next section](components.html#Dynamic-Components))
 - On a component root node, and triggered via Vue instance DOM methods, e.g. `vm.$appendTo(el)`.
 
