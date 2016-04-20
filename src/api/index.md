@@ -1898,6 +1898,7 @@ type: api
 
 - **Arguments:**
   - `{String} [symbol] - default: '$'`
+  - `{Number} [decimal places] - default: 2`
 
 - **Example:**
 
@@ -1914,6 +1915,14 @@ type: api
   ```
 
   *12345 => £12,345.00*
+
+  Some currencies have 3 or 4 decimal places, while some others have none, for example Japanese Yen (¥) or Vietnamese Dong (₫):
+
+  ``` html
+  {{ amount | currency '₫' 0 }}
+  ```
+
+  *12345 => ₫12,345*
 
 ### pluralize
 
