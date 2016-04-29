@@ -574,46 +574,46 @@ type: api
 
 - **Details:**
 
-  Determines whether to replace the element being mounted on with the template. If set to `false`, the template will overwrite the element's inner content without replacing the element itself.
+  Determines whether to replace the element being mounted on with the template. If set to `false`, the template will overwrite the element's inner content without replacing the element itself. If set to `true`, the template will overwrite the element and merge the element's attributes with the attributes of the component's root node.
 
 - **Example**:
 
   ``` html
-  <div id="replace"></div>
+  <div id="replace" class="foo"></div>
   ```
 
   ``` js
   new Vue({
     el: '#replace',
-    template: '<p>replaced</p>'
+    template: '<p class="bar">replaced</p>'
   })
   ```
 
   Will result in:
 
   ``` html
-  <p>replaced</p>
+  <p class="foo bar">replaced</p>
   ```
 
   In comparison, when `replace` is set to `false`:
 
   ``` html
-  <div id="insert"></div>
+  <div id="insert" class="foo"></div>
   ```
 
   ``` js
   new Vue({
     el: '#insert',
     replace: false,
-    template: '<p>inserted</p>'
+    template: '<p class="bar">inserted</p>'
   })
   ```
 
   Will result in:
 
   ``` html
-  <div id="insert">
-    <p>inserted</p>
+  <div id="insert" class="foo">
+    <p class="bar">inserted</p>
   </div>
   ```
 
