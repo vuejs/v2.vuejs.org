@@ -592,7 +592,7 @@ type: api
   Will result in:
 
   ``` html
-  <p class="foo bar">replaced</p>
+  <p class="foo bar" id="replace">replaced</p>
   ```
 
   In comparison, when `replace` is set to `false`:
