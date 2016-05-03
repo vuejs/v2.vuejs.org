@@ -424,7 +424,9 @@ type: api
       // type check plus other validations
       name: {
         type: String,
-        required: true
+        required: true,
+        // warn if not two way bound
+        twoWay: true
       }
     }
   })
