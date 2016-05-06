@@ -223,6 +223,10 @@ You can just do:
 this.items.$remove(item)
 ```
 
+#### Using `Object.freeze()`
+
+When iterating over an array of objects frozen with `Object.freeze()`, you need to explicitly use a `track-by` key. A warning will be displayed in this scenario when Vue.js is unable to track objects automatically.
+
 ## Object v-for
 
 You can also use `v-for` to iterate through the properties of an Object. In addition to `$index`, each scope will have access to another special property `$key`.
