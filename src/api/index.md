@@ -434,6 +434,33 @@ type: api
 
 - **See also:** [Props](/guide/components.html#Props)
 
+### propsData
+
+> 1.0.22+
+
+- **Type:** `Object`
+
+- **Restriction:** only respected in instance creation via `new`.
+
+- **Details:**
+
+  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+
+- **Example:**
+
+  ``` js
+  var Comp = Vue.extend({
+    props: ['msg'],
+    template: '<div>{{ msg }}</div>'
+  })
+
+  var vm = new Comp({
+    propsData: {
+      msg: 'hello'
+    }
+  })
+  ```
+
 ### computed
 
 - **Type:** `Object`
@@ -883,6 +910,30 @@ type: api
   var vm = new Ctor()
 
   console.log(vm) // -> StackOverflow {$el: null, ...}
+  ```
+
+### extends
+
+> 1.0.22+
+
+- **Type:** `Object | Function`
+
+- **Details:**
+
+  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+
+  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+
+- **Example:**
+
+  ``` js
+  var CompA = { ... }
+
+  // extend CompA without having to call Vue.extend on either
+  var CompB = {
+    extends: CompA,
+    ...
+  }
   ```
 
 ## Instance Properties
@@ -1900,7 +1951,7 @@ type: api
 
 - **Arguments:**
   - `{String} [symbol] - default: '$'`
-  - `{Number} [decimal places] - default: 2`
+  - **1.0.22+** `{Number} [decimal places] - default: 2`
 
 - **Example:**
 
