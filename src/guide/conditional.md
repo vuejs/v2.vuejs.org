@@ -67,6 +67,23 @@ You can use the `v-else` directive to indicate an "else block" for `v-if` or `v-
 
 The `v-else` element must immediately follow the `v-if` or `v-show` element - otherwise it will not be recognized.
 
+
+**Caveat**: when used with components and `v-show`, `v-else` doesn't get applied properly due to directives priorities. So instead of doing this:
+
+```html
+<custom-component v-show="condition"></custom-component>
+<p v-else>This could be a component too</p>
+```
+
+Replace the `v-else` with another `v-show`:
+
+```html
+<custom-component v-show="condition"></custom-component>
+<p v-show="!condition">This could be a component too</p>
+```
+
+It does work as intended with `v-if`.
+
 ## v-if vs. v-show
 
 When a `v-if` block is toggled, Vue.js will have to perform a partial compilation/teardown process, because the template content inside `v-if` can also contain data bindings or child components. `v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
