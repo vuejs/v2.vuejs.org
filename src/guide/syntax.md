@@ -128,7 +128,7 @@ Here the argument is the event name to listen to. We will talk about event handl
 
 ### Modifiers
 
-Modifiers are special postfixes denoted by a dot, which indicates that a directive should be bound in some special way. For example, the `.literal` modifier tells the directive to interpret its attribute value as a literal string rather than an expression:
+Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the `.literal` modifier tells the directive to interpret its attribute value as a literal string rather than an expression:
 
 ``` html
 <a v-bind:href.literal="/a/b/c"></a>
