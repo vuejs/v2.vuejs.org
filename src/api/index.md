@@ -1563,6 +1563,7 @@ type: api
   ```
 
 - **See also:** [Conditional Rendering - v-else](/guide/conditional.html#v-else)
+- **See also:** [Conditional Rendering - Component caveat](/guide/conditional.html#Component-caveat)
 
 ### v-for
 
