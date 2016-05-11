@@ -68,7 +68,9 @@ You can use the `v-else` directive to indicate an "else block" for `v-if` or `v-
 The `v-else` element must immediately follow the `v-if` or `v-show` element - otherwise it will not be recognized.
 
 
-**Caveat**: when used with components and `v-show`, `v-else` doesn't get applied properly due to directives priorities. So instead of doing this:
+### Component caveat
+
+When used with components and `v-show`, `v-else` doesn't get applied properly due to directives priorities. So instead of doing this:
 
 ```html
 <custom-component v-show="condition"></custom-component>
