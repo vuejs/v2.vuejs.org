@@ -13,7 +13,7 @@ Current premium sponsors:
     <img width="250px" src="/images/jsfiddle.png">
   </a>
   <a href="https://laravel.com">
-    <img width="200px" src="/images/laravel.png">
+    <img width="250px" src="/images/laravel.png">
   </a>
 </p>
 
