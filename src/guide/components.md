@@ -677,7 +677,7 @@ new Vue({
 ```
 
 ``` html
-<component :is="currentView">
+<component is="currentView">
   <!-- component changes when vm.currentview changes! -->
 </component>
 ```
