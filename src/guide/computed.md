@@ -73,6 +73,7 @@ Vue.js does provide an API method called `$watch` that allows you to observe dat
 
 ``` js
 var vm = new Vue({
+  el: '#demo',
   data: {
     firstName: 'Foo',
     lastName: 'Bar',
