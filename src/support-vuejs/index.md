@@ -6,14 +6,14 @@ Current premium sponsors:
   <a href="https://strikingly.com">
     <img width="360px" src="/images/strikingly.png">
   </a>
-  <a href="http://itunescn.com">
-    <img width="250px" src="/images/itunescn.png">
-  </a>
   <a href="https://jsfiddle.net">
     <img width="250px" src="/images/jsfiddle.png">
   </a>
   <a href="https://laravel.com">
     <img width="250px" src="/images/laravel.png">
+  </a>
+  <a href="https://chaitin.cn">
+    <img width="250px" src="/images/chaitin.png">
   </a>
 </p>
 
