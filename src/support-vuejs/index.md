@@ -6,6 +6,9 @@ Current premium sponsors:
   <a href="https://strikingly.com">
     <img width="360px" src="/images/strikingly.png">
   </a>
+  <a href="https://itunescn.com">
+    <img width="250px" src="/images/itunescn.png">
+  </a>
   <a href="https://jsfiddle.net">
     <img width="250px" src="/images/jsfiddle.png">
   </a>
