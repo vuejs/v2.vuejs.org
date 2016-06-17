@@ -4,34 +4,32 @@ type: guide
 order: 1
 ---
 
-Let's start with a quick tour of Vue's data binding features. If you are more interested in a high-level overview first, check out this [blog post](http://blog.evanyou.me/2015/10/25/vuejs-re-introduction/).
+Let's start with a quick tour of Vue's data binding features. If you are more interested in a high-level overview first, check out this [blog post](!!TODO: HIGH LEVEL OVERVIEW FOR RELEASED 2.0). If you are already familiar with 1.0, the [migration guide](!!TODO: MIGRATION GUIDE FROM 1.0 to 2.0).
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/yyx990803/okv0rgrk/). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page.
+The easiest way to try out Vue.js is using the [JSFiddle Hello World example](!!TODO: ADD WORKING JSFIDDLE). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page.
 
 ### Hello World
 
 ``` html
-<div id="app">
-  {{ message }}
-</div>
+<p>{{ message }}</p>
 ```
 ``` js
 new Vue({
-  el: '#app',
+  el: 'body',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hello Vue!'
   }
 })
 ```
 {% raw %}
 <div id="app" class="demo">
-  {{ message }}
+  <p>{{ message }}</p>
 </div>
 <script>
 new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hello Vue!'
   }
 })
 </script>
@@ -40,16 +38,14 @@ new Vue({
 ### Two-way Binding
 
 ``` html
-<div id="app">
-  <p>{{ message }}</p>
-  <input v-model="message">
-</div>
+<p>{{ message }}</p>
+<input v-model="message">
 ```
 ``` js
 new Vue({
-  el: '#app',
+  el: 'body',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hello Vue!'
   }
 })
 ```
@@ -62,7 +58,7 @@ new Vue({
 new Vue({
   el: '#app2',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hello Vue!'
   }
 })
 </script>
@@ -71,33 +67,31 @@ new Vue({
 ### Render a List
 
 ``` html
-<div id="app">
-  <ul>
-    <li v-for="todo in todos">
-      {{ todo.text }}
-    </li>
-  </ul>
-</div>
+<ol>
+  <li v-for="todo in todos">
+    {{ todo.text }}
+  </li>
+</ol>
 ```
 ``` js
 new Vue({
-  el: '#app',
+  el: 'body',
   data: {
     todos: [
       { text: 'Learn JavaScript' },
-      { text: 'Learn Vue.js' },
-      { text: 'Build Something Awesome' }
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
     ]
   }
 })
 ```
 {% raw %}
 <div id="app3" class="demo">
-  <ul>
+  <ol>
     <li v-for="todo in todos">
       {{ todo.text }}
     </li>
-  </ul>
+  </ol>
 </div>
 <script>
 new Vue({
@@ -105,8 +99,8 @@ new Vue({
   data: {
     todos: [
       { text: 'Learn JavaScript' },
-      { text: 'Learn Vue.js' },
-      { text: 'Build Something Awesome' }
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
     ]
   }
 })
@@ -116,14 +110,12 @@ new Vue({
 ### Handle User Input
 
 ``` html
-<div id="app">
-  <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
-</div>
+<p>{{ message }}</p>
+<button v-on:click="reverseMessage">Reverse Message</button>
 ```
 ``` js
 new Vue({
-  el: '#app',
+  el: 'body',
   data: {
     message: 'Hello Vue.js!'
   },
@@ -157,19 +149,17 @@ new Vue({
 ### All Together Now
 
 ``` html
-<div id="app">
-  <input v-model="newTodo" v-on:keyup.enter="addTodo">
-  <ul>
-    <li v-for="todo in todos">
-      <span>{{ todo.text }}</span>
-      <button v-on:click="removeTodo($index)">X</button>
-    </li>
-  </ul>
-</div>
+<input v-model="newTodo" v-on:keyup.enter="addTodo">
+<ul>
+  <li v-for="(todo, index) in todos">
+    <span>{{ todo.text }}</span>
+    <button v-on:click="removeTodo(index)">X</button>
+  </li>
+</ul>
 ```
 ``` js
 new Vue({
-  el: '#app',
+  el: 'body',
   data: {
     newTodo: '',
     todos: [
@@ -194,9 +184,9 @@ new Vue({
 <div id="app5" class="demo">
   <input v-model="newTodo" v-on:keyup.enter="addTodo">
   <ul>
-    <li v-for="todo in todos">
+    <li v-for="(todo, index) in todos">
       <span>{{ todo.text }}</span>
-      <button v-on:click="removeTodo($index)">X</button>
+      <button v-on:click="removeTodo(index)">X</button>
     </li>
   </ul>
 </div>
@@ -225,4 +215,4 @@ new Vue({
 </script>
 {% endraw %}
 
-I hope this gives you a basic idea of how Vue.js works. I'm sure you also have many questions now - read along, and we will cover them in the rest of the guide.
+I hope this gives you a basic idea of how Vue works. I'm sure you also have many questions now - read along, and we will cover them in the rest of the guide.
