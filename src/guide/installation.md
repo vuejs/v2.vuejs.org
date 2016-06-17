@@ -40,7 +40,7 @@ There _is_ a solution however. When using Vue in a build system with [Webpack + 
 
 ## NPM
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](http://webpack.github.io/) and [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](application.html#Single-File-Components).
+NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](application.html#Single-File-Components).
 
 ``` bash
 # latest stable
