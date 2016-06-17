@@ -48,7 +48,7 @@
     // version select
     document.querySelector('.version-select').addEventListener('change', function (e) {
       var version = e.target.value
-      if (version.indexOf('1.') !== 0) {
+      if (version.indexOf('2.') !== 0) {
         version = version.replace('.', '')
         var section = window.location.pathname.match(/\/(\w+?)\//)[1]
         window.location.assign('http://' + version + '.vuejs.org/' + section + '/')
