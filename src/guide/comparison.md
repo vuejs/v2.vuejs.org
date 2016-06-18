@@ -8,7 +8,7 @@ order: 19
 
 There are a few reasons to use Vue over Angular, although they might not apply for everyone:
 
-- Vue.js is much simpler than Angular, both in terms of API and design. You can learn almost everything about it really fast and get productive.
+- Vue.js is much simpler than Angular, both in terms of API and design. You can learn everything about it quickly and become more productive.
 
 - Vue.js is a more flexible, less opinionated solution. That allows you to structure your app the way you want it to be, instead of being forced to do everything the Angular way. It's only an interface layer so you can use it as a light feature in pages instead of a full blown SPA. It gives you bigger room to mix and match with other libraries, but you are also responsible for making more architectural decisions. For example, Vue.js' core doesn't come with routing or ajax functionalities by default, and usually assumes you are building the application using an external module bundler. This is probably the most important distinction.
 
