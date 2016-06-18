@@ -11,11 +11,13 @@ The easiest way to try out Vue.js is using the [JSFiddle Hello World example](ht
 ### Hello World
 
 ``` html
-<p>{{ message }}</p>
+<div id="app">
+  {{ message }}
+</div>
 ```
 ``` js
 new Vue({
-  el: 'body',
+  el: '#app',
   data: {
     message: 'Hello Vue!'
   }
@@ -23,7 +25,7 @@ new Vue({
 ```
 {% raw %}
 <div id="app" class="demo">
-  <p>{{ message }}</p>
+  {{ message }}
 </div>
 <script>
 new Vue({
@@ -38,12 +40,14 @@ new Vue({
 ### Two-way Binding
 
 ``` html
-<p>{{ message }}</p>
-<input v-model="message">
+<div id="app">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
 ```
 ``` js
 new Vue({
-  el: 'body',
+  el: '#app',
   data: {
     message: 'Hello Vue!'
   }
@@ -67,15 +71,17 @@ new Vue({
 ### Render a List
 
 ``` html
-<ol>
-  <li v-for="todo in todos">
-    {{ todo.text }}
-  </li>
-</ol>
+<div id="app">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
 ```
 ``` js
 new Vue({
-  el: 'body',
+  el: '#app',
   data: {
     todos: [
       { text: 'Learn JavaScript' },
@@ -110,12 +116,14 @@ new Vue({
 ### Handle User Input
 
 ``` html
-<p>{{ message }}</p>
-<button v-on:click="reverseMessage">Reverse Message</button>
+<div id="app">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
 ```
 ``` js
 new Vue({
-  el: 'body',
+  el: '#app',
   data: {
     message: 'Hello Vue.js!'
   },
@@ -149,17 +157,19 @@ new Vue({
 ### All Together Now
 
 ``` html
-<input v-model="newTodo" v-on:keyup.enter="addTodo">
-<ul>
-  <li v-for="(todo, index) in todos">
-    <span>{{ todo.text }}</span>
-    <button v-on:click="removeTodo(index)">X</button>
-  </li>
-</ul>
+<div id="app">
+  <input v-model="newTodo" v-on:keyup.enter="addTodo">
+  <ul>
+    <li v-for="(todo, index) in todos">
+      <span>{{ todo.text }}</span>
+      <button v-on:click="removeTodo(index)">X</button>
+    </li>
+  </ul>
+</div>
 ```
 ``` js
 new Vue({
-  el: 'body',
+  el: '#app',
   data: {
     newTodo: '',
     todos: [
