@@ -108,7 +108,7 @@ However, this can be a bit verbose if you have multiple conditional classes. Tha
 
 ### Object Syntax
 
-The Object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case for the CSS property names:
+The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case for the CSS property names:
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -138,7 +138,7 @@ Again, the object syntax is often used in conjunction with computed properties t
 
 ### Array Syntax
 
-The Array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
+The array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
 
 ``` html
 <div v-bind:style="[baseStyles, overridingStyles]">
