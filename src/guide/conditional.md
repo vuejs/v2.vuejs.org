@@ -15,7 +15,7 @@ In string templates, for example Handlebars, we would write a conditional block 
 {{/if}}
 ```
 
-In Vue.js, we use the `v-if` directive to achieve the same:
+In Vue, we use the `v-if` directive to achieve the same:
 
 ``` html
 <h1 v-if="ok">Yes</h1>
@@ -50,7 +50,7 @@ Another option for conditionally displaying an element is the `v-show` directive
 
 The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` simply toggles the `display` CSS property of the element.
 
-Note that `v-show` doesn't support the `<template>` syntax.
+<p class="tip">Note that `v-show` doesn't support the `<template>` syntax.</p>
 
 ## v-else
 
@@ -70,7 +70,7 @@ The `v-else` element must immediately follow the `v-if` or `v-show` element - ot
 
 ### Component caveat
 
-When used with components and `v-show`, `v-else` doesn't get applied properly due to directives priorities. So instead of doing this:
+When used with components and `v-show`, `v-else` doesn't get applied properly due to directive priorities. So instead of doing this:
 
 ```html
 <custom-component v-show="condition"></custom-component>
@@ -88,7 +88,7 @@ It does work as intended with `v-if`.
 
 ## v-if vs. v-show
 
-When a `v-if` block is toggled, Vue.js will have to perform a partial compilation/teardown process, because the template content inside `v-if` can also contain data bindings or child components. `v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+When a `v-if` block is toggled, Vue will have to perform a partial compilation/teardown process, because the template content inside `v-if` can also contain data bindings or child components. `v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
 
 `v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - partial compilation won't start until the condition becomes true for the first time (and the compilation is subsequently cached).
 
