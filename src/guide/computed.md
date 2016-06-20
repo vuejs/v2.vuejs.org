@@ -1,5 +1,5 @@
 ---
-title: Computed Properties and Watching Properties
+title: Computed Properties and Watchers
 type: guide
 order: 5
 ---
