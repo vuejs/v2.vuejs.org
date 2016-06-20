@@ -20,11 +20,12 @@
         &:last-child
             margin-bottom 0
     li
-        cursor pointer
         color $medium
-        -ms-user-select none
-        -moz-user-select none
-        -webkit-user-select none
+        // !!TODO: Check to make sure this isn't here for a good reason.
+        // cursor pointer
+        // -ms-user-select none
+        // -moz-user-select none
+        // -webkit-user-select none
         &.done
             color $light
             text-decoration line-through
@@ -33,6 +34,8 @@
             margin-top 0
         &:last-child
             margin-bottom 0
+
+
 
 ul#demo, ul.demo
     li
