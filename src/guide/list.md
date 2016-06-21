@@ -263,7 +263,7 @@ You can also provide a second argument for the key:
 
 ``` html
 <div v-for="(value, key) in object">
-  {{ key }} : {{ val }}
+  {{ key }} : {{ value }}
 </div>
 ```
 
@@ -271,7 +271,7 @@ And another for the index:
 
 ``` html
 <div v-for="(value, key, index) in object">
-  {{ index }}. {{ key }} : {{ val }}
+  {{ index }}. {{ key }} : {{ value }}
 </div>
 ```
 
