@@ -69,7 +69,7 @@ Here we have declared a computed property `reversedMessage`. The function we pro
 
 ``` js
 console.log(vm.reversedMessage) // -> 'olleH'
-vm.a = 'Goodbye'
+vm.message = 'Goodbye'
 console.log(vm.reversedMessage) // -> 'eybdooG'
 ```
 
