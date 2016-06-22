@@ -227,7 +227,7 @@ If necessary, you can even define custom key modifier aliases:
 
 ``` js
 // enable v-on:keyup.f1
-Vue.directive('on').keyCodes.f1 = 112
+Vue.config.keyCodes.f1 = 112
 ```
 
 ## Why Listeners in HTML?
