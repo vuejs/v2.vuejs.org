@@ -166,7 +166,6 @@ For example:
 ```
 
 ``` html
-<!-- !!TODO: FIGURE OUT IF IT'S OK NOT TO USE VUE-RESOURCE HERE   -->
 <!-- Since there is already a rich ecosystem of ajax libraries    -->
 <!-- and collections of general-purpose utility methods, Vue core -->
 <!-- is able to remain small by not reinventing them. This also   -->
