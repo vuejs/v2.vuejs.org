@@ -344,6 +344,7 @@ beforeEnter: function (el) {
 // the done callback is optional when
 // used in combination with CSS
 onEnter: function (el, done) {
+  // ...
   done()
 },
 afterEnter: function (el) {
@@ -360,6 +361,7 @@ beforeLeave: function (el) {
 // used in combination with CSS
 onLeave: function (el, done) {
   // ...
+  done()
 },
 afterLeave: function (el) {
   // ...
