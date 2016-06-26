@@ -80,7 +80,7 @@ Vue.js allows you to define filters that can be later on appended to the end of 
 
 The filter function always receives the expression's value as the first argument.
 
-``` javascript
+``` js
 new Vue({
   ...
   filters: {
