@@ -130,7 +130,7 @@ A more advanced example can be found on [Vuex](https://github.com/vuejs/vuex)'s 
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed
-Vue.config.optionMergeStrategies.vuex = (toVal, fromVal) => {
+Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
   if (!toVal) return fromVal
   if (!fromVal) return toVal
   return {
