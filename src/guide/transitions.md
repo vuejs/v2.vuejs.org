@@ -15,9 +15,9 @@ Vue provides a variety of ways to apply transition effects when items are insert
 
 On this page, we'll only cover entering and leaving transitions, but you can see the next section for [managing state transitions](transitioning-state.html), as they are really a separate problem.
 
-## The `transition` Directive
+## The `transition` attribute
 
-Vue provides a `transition` directive, allowing you to easily animate entering/leaving transitions for:
+Vue provides a `transition` attribute, allowing you to easily animate entering/leaving transitions for:
 
 - `v-if`
 - `v-show`
@@ -26,7 +26,7 @@ Vue provides a `transition` directive, allowing you to easily animate entering/l
 - dynamic components (introduced in the [next section](components.html#Dynamic-Components))
 - component root nodes
 
-To use transitions on an element/component, a `transition` attribute must be added:
+Let's add a `transition` attribute to an element now:
 
 ``` html
 <div v-if="shouldRender" transition></div>
