@@ -193,7 +193,7 @@ Multiple select (bound to Array):
   <option>C</option>
 </select>
 <br>
-<span>Selected: </span>
+<span>Selected: {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
