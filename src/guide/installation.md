@@ -2,10 +2,10 @@
 title: Installation
 type: guide
 order: 0
-vue_version: 1.0.25
-dev_size: "266.31"
-min_size: "74.97"
-gz_size: "26.02"
+vue_version: 1.0.26
+dev_size: "266.44"
+min_size: "75.01"
+gz_size: "26.03"
 ---
 
 ### Compatibility Note
