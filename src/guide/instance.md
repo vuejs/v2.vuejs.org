@@ -16,7 +16,7 @@ var vm = new Vue({
 
 A Vue instance is essentially a **ViewModel** as defined in the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), hence the variable name `vm` you will see throughout the docs.
 
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, a template, an element to mount on, methods, lifecycle callbacks, and more. The full list of options can be found in the API reference.
+When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, a template, an element to mount on, methods, lifecycle callbacks, and more. The full list of options can be found in the [API reference](/api).
 
 The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
 
@@ -30,7 +30,7 @@ var MyComponent = Vue.extend({
 var myComponentInstance = new MyComponent()
 ```
 
-Although you can create extended instances imperatively, in most cases you will be registering a component constructor as a custom element and composing them in templates declaratively. We will talk about the component system in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
+Although you can create extended instances imperatively, in most cases you will be registering a component constructor as a custom element and composing them in templates declaratively. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
 
 ## Properties and Methods
 
