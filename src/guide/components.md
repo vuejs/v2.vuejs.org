@@ -71,8 +71,6 @@ new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-<p class="tip">Note the component's template **replaces** the custom element, which only serves as a **mounting point**. This behavior can be changed by setting the `replace: false` option.<br><br>Another important detail is that just as when targeting a root element with `el`, Vue components require exactly one root element. That means `template: 'hello'` and `template: '<p>hi</p><p>bye</p>'` are both invalid and will throw warnings.</p>
-
 ### Local Registration
 
 You don't have to register every component globally. You can make a component available only in the scope of another instance/component by registering it with the `components` instance option:
