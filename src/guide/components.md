@@ -193,7 +193,7 @@ As long as you use string templates (`<script type="text/x-template">`, inline t
 
 - `a` can not contain other interactive elements (e.g. buttons and other links)
 - `li` should be a direct child of `ul` or `ol`, and both `ul` and `ol` can only contain `li`
-- `option` should be a direct child of `select`, and `select` can only contain `option` (and `optgroup`)c
+- `option` should be a direct child of `select`, and `select` can only contain `option` (and `optgroup`)
 - `table` can only contain `thead`, `tbody`, `tfoot` and `tr`, and these elements should be direct children of `table`
 - `tr` can only contain `th` and `td`, and these elements should be direct children of `tr`
 
