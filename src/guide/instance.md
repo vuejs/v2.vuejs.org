@@ -30,7 +30,7 @@ var MyComponent = Vue.extend({
 var myComponentInstance = new MyComponent()
 ```
 
-Although you can create extended instances imperatively, in most cases you will be registering a component constructor as a custom element and composing them in templates declaratively. We will talk about the component system in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
+Although you can create extended instances imperatively, in most cases you will be registering a component constructor as a custom element and composing them in templates declaratively. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
 
 ## Properties and Methods
 
