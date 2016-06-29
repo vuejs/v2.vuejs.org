@@ -611,14 +611,25 @@ is just syntactic sugar for:
 <input v-bind:value="something" v-on:input="something = $event.target.value">
 ```
 
-So then theoretically, if we had a component that accepted a `value` prop and emitted an input event with an object in the shape of `{ target: { value: 'new value' }`, it _should_ work with `v-model`, right? Let's put theory into practice!
+When used with a component, this simplifies to:
+
+``` html
+<input v-bind:value="something" v-on:input="something = arguments[0]">
+```
+
+So for a component to work with `v-model`, it must:
+
+- accept a `value` prop
+- emit an `input` event with the new value
+
+Let's see it in action:
 
 ``` html
 <div id="v-model-example">
-  <p>{{ message.text }}</p>
+  <p>{{ message }}</p>
   <my-input
     label="Message"
-    v-model="message.text"
+    v-model="message"
   ></my-input>
 </div>
 ````
@@ -639,7 +650,7 @@ Vue.component('my-input', {
   },
   methods: {
     onInput: function (event) {
-      this.$emit('input', event)
+      this.$emit('input', event.target.value)
     }
   },
 })
@@ -647,19 +658,17 @@ Vue.component('my-input', {
 new Vue({
   el: '#v-model-example',
   data: {
-    message: {
-      text: 'hello'
-    }
+    message: 'hello'
   }
 })
 ```
 
 {% raw %}
 <div id="v-model-example" class="demo">
-  <p>{{ message.text }}</p>
+  <p>{{ message }}</p>
   <my-input
     label="Message"
-    v-model="message.text"
+    v-model="message"
   ></my-input>
 </div>
 <script>
@@ -678,20 +687,26 @@ Vue.component('my-input', {
   },
   methods: {
     onInput: function (event) {
-      this.$emit('input', event)
+      this.$emit('input', event.target.value)
     }
   },
 })
 new Vue({
   el: '#v-model-example',
   data: {
-    message: {
-      text: 'hello'
-    }
+    message: 'hello'
   }
 })
 </script>
 {% endraw %}
+
+This interface can be used not only to connect with form inputs inside a component, but also to easily integrate input methods that you invent yourself:
+
+``` html
+<voice-recognizer v-model="question"></voice-recognizer>
+<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
+<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+```
 
 ### Child Component Refs
 
