@@ -6,7 +6,7 @@ order: 10
 
 ## Basics Usage
 
-You can use the `v-model` directive to create two-way data bindings on form input elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
 
 ### Text
 
@@ -24,6 +24,31 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
 <script>
 new Vue({
   el: '#example-1',
+  data: {
+    message: ''
+  }
+})
+</script>
+{% endraw %}
+
+### Multiline text
+
+``` html
+<span>Multiline message is:</span>
+<p>{{ message }}</p>
+<br>
+<textarea v-model="message"></textarea>
+```
+
+{% raw %}
+<div id="example-textarea" class="demo">
+  <span>Message is:</span>
+  <p style="white-space: pre">{{ message }}</p><br>
+  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+</div>
+<script>
+new Vue({
+  el: '#example-textarea',
   data: {
     message: ''
   }
