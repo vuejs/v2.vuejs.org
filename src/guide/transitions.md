@@ -343,7 +343,7 @@ beforeEnter: function (el) {
 },
 // the done callback is optional when
 // used in combination with CSS
-onEnter: function (el, done) {
+enter: function (el, done) {
   // ...
   done()
 },
@@ -359,7 +359,7 @@ beforeLeave: function (el) {
 },
 // the done callback is optional when
 // used in combination with CSS
-onLeave: function (el, done) {
+leave: function (el, done) {
   // ...
   done()
 },
@@ -374,7 +374,7 @@ leaveCancelled: function (el) {
 
 These hooks can be used in combination with CSS transitions/animations or on their own.
 
-<p class="note">When using JavaScript-only transitions, **the `done` callbacks are required for the `onEnter` and `onLeave` hooks**. Otherwise, they will be called synchronously and the transition will finish immediately.</p>
+<p class="note">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, they will be called synchronously and the transition will finish immediately.</p>
 
 <p class="node">It's also a good idea to explicitly declare `css: false` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.</p>
 
@@ -402,11 +402,11 @@ Vue.transition('example-transition-4', {
   beforeEnter: function (el) {
     el.style.opacity = 0
   },
-  onEnter: function (el, done) {
+  enter: function (el, done) {
     Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
     Velocity(el, { fontSize: '1em' }, { complete: done })
   },
-  onLeave: function (el, done) {
+  leave: function (el, done) {
     Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
     Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
     Velocity(el, {
@@ -445,11 +445,11 @@ Vue.transition('example-transition-4', {
   beforeEnter: function (el) {
     el.style.opacity = 0
   },
-  onEnter: function (el, done) {
+  enter: function (el, done) {
     Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
     Velocity(el, { fontSize: '1em' }, { complete: done })
   },
-  onLeave: function (el, done) {
+  leave: function (el, done) {
     Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
     Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
     Velocity(el, {
@@ -501,7 +501,7 @@ Vue.transition('staggered-fade', {
     el.style.opacity = 0
     el.style.height = 0
   },
-  onEnter: function (el, done) {
+  enter: function (el, done) {
     var delay = el.dataset.index * 50
     setTimeout(function () {
       Velocity(
@@ -511,7 +511,7 @@ Vue.transition('staggered-fade', {
       )
     }, delay)
   },
-  onLeave: function (el, done) {
+  leave: function (el, done) {
     var delay = el.dataset.index * 150
     setTimeout(function () {
       Velocity(
@@ -565,7 +565,7 @@ Vue.transition('staggered-fade', {
     el.style.opacity = 0
     el.style.height = 0
   },
-  onEnter: function (el, done) {
+  enter: function (el, done) {
     var delay = el.dataset.index * 50
     setTimeout(function () {
       Velocity(
@@ -575,7 +575,7 @@ Vue.transition('staggered-fade', {
       )
     }, delay)
   },
-  onLeave: function (el, done) {
+  leave: function (el, done) {
     var delay = el.dataset.index * 150
     setTimeout(function () {
       Velocity(
