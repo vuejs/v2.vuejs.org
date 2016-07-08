@@ -1,10 +1,8 @@
 ---
 title: Plugins
 type: guide
-order: 17
+order: 16
 ---
-
-
 
 ## Writing a Plugin
 
