@@ -1,7 +1,7 @@
 ---
 title: Building Large-Scale Apps
 type: guide
-order: 18
+order: 17
 ---
 
 > **NEW:** Get up and running with single file Vue components, hot-reload, lint-on-save and unit testing in minutes with [vue-cli](https://github.com/vuejs/vue-cli)!
