@@ -4,57 +4,82 @@ type: guide
 order: 20
 ---
 
-Anything compatible with a module-based build system works. A recommendation is using the [Karma](http://karma-runner.github.io/0.12/index.html) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup, please refer to each project's respective documentation.
+## Setup and Tooling
 
-In terms of code structure for testing, the best practice is to export raw options / functions in your component modules. Consider this example:
+Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation, try the [Karma](http://karma-runner.github.io/0.12/index.html) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup, please refer to each project's respective documentation, though these example Karma configurations for [Webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js) and [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js) may help you get started.
 
-``` js
-// my-component.js
-module.exports = {
-  template: '<span>{{msg}}</span>',
-  data: function () {
-    return {
-      msg: 'hello!'
+## Simple Assertions
+
+In terms of code structure for testing, you don't have to do anything special in your components to make them testable. Just export the raw options:
+
+``` html
+<template>
+  <span>{{ message }}</span>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        message: 'hello!'
+      }
+    },
+    created () {
+      this.message = 'bye!'
     }
-  },
-  created: function () {
-    console.log('my-component created!')
   }
-}
+</script>
 ```
 
-You can use that file in your entry module like this:
+When you test that component, all you have to do is import the object along with Vue to make many common assertions:
 
 ``` js
-// main.js
-var Vue = require('vue')
-var app = new Vue({
-  el: '#app',
-  data: { /* ... */ },
-  components: {
-    'my-component': require('./my-component')
-  }
+// Import Vue and the component being tested
+import Vue from 'vue'
+import MyComponent from 'path/to/MyComponent.vue'
+
+// Here are some Jasmine 2.0 tests, though you can
+// use any assertion library you prefer:
+describe('MyComponent', () => {
+  // Inspect the raw component options
+  it('has a created hook', () => {
+    expect(typeof MyComponent.created).toBe('function')
+  })
+
+  // Evaluate the results of functions in
+  // the raw component options
+  it('sets the correct default data', () => {
+    expect(typeof MyComponent.data).toBe('function')
+    const defaultData = MyComponent.data()
+    expect(defaultData.message).toBe('hello!')
+  })
+
+  // Inspect the component instance on mount
+  it('correctly sets the message when created', () => {
+    const vm = new Vue(MyComponent).$mount()
+    expect(vm.message).toBe('bye!')
+  })
+
+  // Inspect the generated HTML on mount
+  it('renders the correct message', () => {
+    const vm = new Vue(MyComponent).$mount()
+    expect(vm.$el.textContent).toBe('bye!')
+  })
 })
 ```
 
-And you can test that module like this:
+## Asserting Asynchronous Updates
+
+Since Vue performs DOM updates asynchronously, some assertions will have to be made in a `Vue.nextTick` callback:
 
 ``` js
-// Some Jasmine 2.0 tests
-describe('my-component', function () {
-  // require source module
-  var myComponent = require('../src/my-component')
-  it('should have a created hook', function () {
-    expect(typeof myComponent.created).toBe('function')
-  })
-  it('should set correct default data', function () {
-    expect(typeof myComponent.data).toBe('function')
-    var defaultData = myComponent.data()
-    expect(defaultData.msg).toBe('hello!')
+// Inspect the generated HTML after a state update
+it('updates the rendered message when vm.message updates', done => {
+  const vm = new Vue(MyComponent).$mount()
+  vm.message = 'foo'
+  Vue.nextTick(() => {
+    expect(vm.$el.textContent).toBe('foo')
+    done()
   })
 })
 ```
-
-There are example Karma configurations for both [Webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js) and [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js).
-
-<p class="tip">Since Vue.js directives perform updates asynchronously, when you are asserting DOM state after changing the data, you will have to do so in a `Vue.nextTick` callback.</p>
