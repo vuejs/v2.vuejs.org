@@ -4,35 +4,56 @@ type: guide
 order: 19
 ---
 
-In large applications, state management often becomes complex due to multiple pieces of state scattered across many components and the interactions between them. It is often overlooked that the source of truth in Vue.js applications is the raw data object - a Vue instance simply proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you should avoid duplicating it. Instead, share it by identity:
+## Official Flux-Like Implementation
+
+Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers [vuex](https://github.com/vuejs/vuex/tree/next): our own Elm-inspired state management library. It even integrates into [vue-devtools](https://github.com/vuejs/vue-devtools), providing zero-setup access to time travel.
+
+### Information for React Developers
+
+If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via some [simple bindings](https://github.com/egoist/revue). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+
+## Simple State Management from Scratch
+
+It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance simply proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can simply share it by identity:
 
 ``` js
-var sourceOfTruth = {}
+const sourceOfTruth = {}
 
-var vmA = new Vue({
+const vmA = new Vue({
   data: sourceOfTruth
 })
 
-var vmB = new Vue({
+const vmB = new Vue({
   data: sourceOfTruth
 })
 ```
 
-Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their views automatically. Extending this idea further, we would arrive at the **store pattern**:
+Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their views automatically. Subcomponents within each of these instances would also have access via `this.$root.$data`. We have a single source of truth now, but debugging would be a nightmare. Any piece of data could be changed by any part of our app at any time, without leaving a trace.
+
+To help solve this problem, we can adopt a simple **store pattern**:
 
 ``` js
 var store = {
+  debug: true,
   state: {
     message: 'Hello!'
   },
-  actionA: function () {
-    this.state.message = 'action A triggered'
+  setMessageAction (newValue) {
+    this.debug && console.log('setMessageAction triggered with', newValue)
+    this.state.message = newValue
   },
-  actionB: function () {
+  clearMessageAction () {
+    this.debug && console.log('clearMessageAction triggered')
     this.state.message = 'action B triggered'
   }
 }
+```
 
+Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how are they triggered. When something goes wrong, we'll also now have a log of what happened leading up to the bug.
+
+In additon, each instance/component can still own and manage its own private state:
+
+``` js
 var vmA = new Vue({
   data: {
     privateState: {},
@@ -48,12 +69,10 @@ var vmB = new Vue({
 })
 ```
 
-Notice we are putting all actions that mutate the store's state inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen to the state, and how are they triggered. Each component can still own and manage its private state.
-
 ![State Management](/images/state.png)
 
-One thing to take note is that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for the mutations to be observed.
+<p class="tip">It's important to note that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for mutations to be observed.</p>
 
-If we enforce a convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we've essentially arrived at the [Flux](https://facebook.github.io/flux/) architecture. The benefit of this convention is we can record all state mutations happening to the store, and on top of that we can implement advanced debugging helpers such as mutation logs, snapshots, history re-rolls, etc.
+As we continue developing the convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we eventually arrive at the [Flux](https://facebook.github.io/flux/) architecture. The benefit of this convention is we can record all state mutations happening to the store and implement advanced debugging helpers such as mutation logs, snapshots, and history re-rolls / time travel.
 
-The Flux architecture is commonly used in React applications, but it can be applied to Vue.js application as well. For example, [Vuex](https://github.com/vuejs/vuex/) is a Flux-inspired application architecture that is designed specifically for managing state inside large Vue.js applications. [Redux](https://github.com/rackt/redux/), the most popular Flux implementation for React, is view-layer agnostic and can also easily work with Vue via some [simple bindings](https://github.com/egoist/revue).
+This brings us full circle back to [vuex](https://github.com/vuejs/vuex/tree/next), so if you've read this far it's probably time to try it out!
