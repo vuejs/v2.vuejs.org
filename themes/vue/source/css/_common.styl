@@ -82,10 +82,13 @@ a.small-button
     .gutter
         width 1.5em
     .code
+        $code-line-height = 1.5em
         pre
             padding 1.2em 1.4em
-            line-height 1.5em
+            line-height $code-line-height
             margin 0
+        .line
+            min-height $code-line-height
     &.html, &.js, &.bash, &.css
         .code:after
             position absolute
