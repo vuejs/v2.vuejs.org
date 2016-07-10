@@ -1,7 +1,7 @@
 ---
 title: Join the Vue Community!
 type: guide
-order: 19
+order: 22
 ---
 
 ## Join the Vue.js Community!
