@@ -39,7 +39,7 @@ import Vue from 'vue'
 import MyComponent from 'path/to/MyComponent.vue'
 
 // Here are some Jasmine 2.0 tests, though you can
-// use any assertion library you prefer:
+// use any assertion library you prefer
 describe('MyComponent', () => {
   // Inspect the raw component options
   it('has a created hook', () => {
