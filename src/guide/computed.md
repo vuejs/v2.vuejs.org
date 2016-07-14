@@ -94,6 +94,7 @@ The above code is imperative and repetitive. Compare it with a computed property
 
 ``` js
 var vm = new Vue({
+  el: '#demo',
   data: {
     firstName: 'Foo',
     lastName: 'Bar'
