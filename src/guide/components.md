@@ -92,6 +92,8 @@ var Parent = Vue.extend({
 
 The same encapsulation applies for other assets types such as directives, filters and transitions.
 
+<p class="tip">Local components can not use the `el`-property! Instead, they have to provide their own template.</p>
+
 ### Registration Sugar
 
 To make things easier, you can directly pass in the options object instead of an actual constructor to `Vue.component()` and the `component` option. Vue.js will automatically call `Vue.extend()` for you under the hood:
