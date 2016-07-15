@@ -189,7 +189,7 @@ The `el` option also requires a function value when used in a component instance
 
 ### Template Parsing Caveats
 
-As long as you use string templates (`<script type="text/x-template">`, inline template strings, or `.vue` components), you are not subject to many of the restrictions inherent to HTML elements. However, if you use the `el` option to mount to an element with existing content as the template:
+As long as you use string templates ([`<script type="text/x-template">`](#X-Templates), inline template strings, or [`.vue` components](single-file-components.html)), you are not subject to many of the restrictions inherent to HTML elements. However, if you use the `el` option to mount to an element with existing content as the template:
 
 - `a` can not contain other interactive elements (e.g. buttons and other links)
 - `li` should be a direct child of `ul` or `ol`, and both `ul` and `ol` can only contain `li`
@@ -700,7 +700,7 @@ new Vue({
 </script>
 {% endraw %}
 
-This interface can be used not only to connect with form inputs inside a component, but also to easily integrate input methods that you invent yourself:
+This interface can be used not only to connect with form inputs inside a component, but also to easily integrate input types that you invent yourself. Imagine these possibilities:
 
 ``` html
 <voice-recognizer v-model="question"></voice-recognizer>
@@ -1197,20 +1197,38 @@ Components can recursively invoke themselves in their own template. However, the
 
 ``` js
 name: 'stack-overflow',
-template: '<div><stack-overflow/></div>'
+template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
 A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be false). When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
 
-### Inline Template
+### Inline Templates
 
 When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
 
 ``` html
 <my-component inline-template>
-  <p>These are compiled as the component's own template</p>
+  <p>These are compiled as the component's own template.</p>
   <p>Not parent's transclusion content.</p>
 </my-component>
 ```
 
 However, `inline-template` makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the `template` option or in a `template` element in a `.vue` file.
+
+### X-Templates
+
+Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+
+``` html
+<script type="text/x-template" id="hello-world-template">
+  <p>Hello hello hello</p>
+</script>
+```
+
+``` js
+Vue.component('hello-world', {
+  template: '#hello-world-template'
+})
+```
+
+These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.
