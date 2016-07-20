@@ -37,7 +37,7 @@ new Vue({
 <span>Multiline message is:</span>
 <p>{{ message }}</p>
 <br>
-<textarea v-model="message"></textarea>
+<textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
 
 {% raw %}
