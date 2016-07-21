@@ -1232,3 +1232,18 @@ Vue.component('hello-world', {
 ```
 
 These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.
+
+### Cheap Static Components with `v-once`
+
+Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
+
+``` js
+Vue.component('terms-of-service', {
+  template: '\
+    <div v-once>\
+      <h1>Terms of Service</h1>\
+      ... a lot of static content ...\
+    </div>\
+  '
+})
+```
