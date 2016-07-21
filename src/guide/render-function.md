@@ -1,12 +1,14 @@
 ---
 title: Render Functions
 type: guide
-order: 12.5
+order: 14
 ---
 
 ## Basics
 
-Let's say you want to create a component for anchored headings, like this:
+Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render  function**, a closer-to-the-compiler alternative to templates.
+
+Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
 
 ``` html
 <h1>
@@ -16,7 +18,7 @@ Let's say you want to create a component for anchored headings, like this:
 </h1>
 ```
 
-For the HTML above, you decide you want an interface like this:
+For the HTML above, you decide you want this component interface:
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
@@ -63,9 +65,7 @@ Vue.component('anchored-heading', {
 
 That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element. The whole thing is also wrapped in a useless `div` because components must contain exactly one root node.
 
-While templates work great for most components, it's clear that this isn't one of them. We need the full programmatic power of JavaScript, which Vue offers in an alternative to templates: the **render function**.
-
-Rewriting that component with a render function looks like this:
+While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
 
 ``` js
 Vue.component('anchored-heading', {
@@ -94,19 +94,25 @@ The second thing you'll have to become familiar with is how to use template feat
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function returning one of these. Required.
+  // An HTML tag name, component options, or function
+  // returning one of these. Required.
   'div',
 
   // {Object}
-  // An options object corresponding to the attributes you would use in a template. Optional.
+  // An options object corresponding to the attributes
+  // you would use in a template. Optional.
   {
-    // Normal HTML attributes and component props
+    // Normal HTML attributes
     attrs: {
       id: 'foo'
     },
-    // DOM properties
+    // Component props
     props: {
-      innerHTML: 'bar'
+      myProp: 'bar'
+    },
+    // DOM properties
+    domProps: {
+      innerHTML: 'baz'
     },
     // Event handlers are nested under "on", though
     // modifiers such as in v-on:keyup.enter are not
@@ -130,8 +136,12 @@ createElement(
     ref: 'myRef'
   }
 
-  // {Array | Function => Array | String}
-  // Children VNodes. When the first argument is a component definition, children must be a function returning an array. When the first argument is an HTML tag name, you can just use an array of VNodes directly. Optional.
+  // {String | Array | Function}
+  // Children VNodes. When the first argument is a
+  // component definition, children must be a function
+  // returning an array. When the first argument is an
+  // HTML tag name, you can just use an array of
+  // VNodes directly. Optional.
   [
     createElement('h1', ['hello world'])
     createElement(MyComponent, {
@@ -150,13 +160,13 @@ With this knowledge, we can finish the component we started:
 var getChildrenTextContent = function (children) {
   return children.map(function (node) {
     return node.children
-      ? getTextContent(node.children)
+      ? getChildrenTextContent(node.children)
       : node.text
   }).join('')
 }
 
 Vue.component('anchored-heading', {
-  render (createElement) {
+  render: function (createElement) {
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
@@ -196,11 +206,11 @@ new Vue({
     return createElement(
       Vue.options.components['anchored-heading'],
       {
-        attrs: {
+        props: {
           level: 1
         }
       },
-      // Here's the thunk
+      // Here's the "thunk"
       function () {
         return [
           createElement('span', 'Hello'),
@@ -211,8 +221,6 @@ new Vue({
   }
 })
 ```
-
-<p class="tip">If you do not use a thunk </p>
 
 ## JSX
 
@@ -245,11 +253,83 @@ new Vue({
 
 For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
 
-## Higher-Order Components
+## Functional Components
 
-A few template features compile to higher-order components instead of being passed through the options object.
+The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's just a function with some props.
+
+In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
+
+``` js
+Vue.component('my-component', {
+  functional: true,
+  // To compensate for the lack of an instance,
+  // we are now provided a 2nd options argument.
+  render: function (createElement, options) {
+    // ...
+  },
+  // Props are optional
+  props: {
+    // ...
+  }
+})
+```
+
+Everything the component needs is passed through `options`, which is an object containing:
+
+- `props`: An object of the provided props
+- `children`: A function returning the children
+- `data`: The entire data object passed to the component
+- `parent`: A reference to the parent component
+
+After adding `functional: true`, updating the render function of our anchored heading component would simply require adding the `options` argument, updating `this.$slots.default` to `options.children`, then updating `this.level` to `options.props.level`.
+
+Since functional components are just functions, they're much cheaper to render. They're also very useful as wrapper components. For example, when you need to:
+
+- Programmatically choose one of several other components to delegate to
+- Manipulate children, props, or data before passing them on to a child component
+
+Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
+
+``` js
+var EmptyList = { /* ... */ }
+var TableList = { /* ... */ }
+var OrderedList = { /* ... */ }
+var UnorderedList = { /* ... */ }
+
+Vue.component('smart-list', {
+  functional: true,
+  render: function (createElement, options) {
+    function appropriateListComponent {
+      var items = options.props.items
+
+      if (items.length === 0)           return EmptyList
+      if (typeof items[0] === 'object') return TableList
+      if (options.props.isOrdered)      return OrderedList
+
+      return UnorderedList
+    }
+
+    return createElement(
+      appropriateListComponent(),
+      options.data,
+      options.children
+    )
+  },
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    isOrdered: Boolean
+  }
+})
+```
+
+## Misc
 
 ### `keep-alive`
+
+Instead of being passed through the options object, the `keep-alive` attribute actually compiles to a higher-order component.
 
 ``` html
 <my-component keep-alive></my-component>
@@ -261,23 +341,6 @@ compiles to:
 h('keep-alive', {
   props: {
     child: h(MyComponent)
-  }
-})
-```
-
-### `transition-mode`
-
-``` html
-<my-component transition-mode="out-in"></my-component>
-```
-
-compiles to:
-
-``` js
-h('transition-control', {
-  props: {
-    child: h(MyComponent),
-    mode: 'out-in'
   }
 })
 ```

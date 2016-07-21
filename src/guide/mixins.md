@@ -1,7 +1,7 @@
 ---
 title: Mixins
 type: guide
-order: 15
+order: 17
 ---
 
 ## Basics
