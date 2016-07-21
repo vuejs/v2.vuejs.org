@@ -1,7 +1,7 @@
 ---
 title: State Transitions
 type: guide
-order: 11.5
+order: 12
 ---
 
 Vue's transition system offers many simple ways to animate entering and leaving, but what about when the data behind your view simply changes? This data is often used to display:

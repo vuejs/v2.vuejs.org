@@ -1,7 +1,7 @@
 ---
 title: Components
 type: guide
-order: 12
+order: 13
 ---
 
 ## What are Components?

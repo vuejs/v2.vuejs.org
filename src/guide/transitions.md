@@ -69,7 +69,7 @@ One of the most common transition types uses CSS transitions. Here's a simple ex
   <button @click="showHello = !showHello">
     Toggle render
   </button>
-  <p v-if="showHello" transition="example-transiton-1">hello</p>
+  <p v-if="showHello" transition="example-transition-1">hello</p>
 </div>
 ```
 
@@ -85,13 +85,13 @@ new Vue({
 ``` css
 /* enter and leave animations can use different */
 /* durations and timing functions               */
-.example-transiton-1-enter-active {
+.example-transition-1-enter-active {
   transition: all .3s ease;
 }
-.example-transiton-1-leave-active {
+.example-transition-1-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.example-transiton-1-enter, .example-transiton-1-leave-active {
+.example-transition-1-enter, .example-transition-1-leave-active {
   padding-left: 10px;
   opacity: 0;
 }
@@ -102,7 +102,7 @@ new Vue({
   <button @click="showHello = !showHello">
     Toggle render
   </button>
-  <p v-if="showHello" transition="example-transiton-1">hello</p>
+  <p v-if="showHello" transition="example-transition-1">hello</p>
 </div>
 <script>
 new Vue({
@@ -113,13 +113,13 @@ new Vue({
 })
 </script>
 <style>
-.example-transiton-1-enter-active {
+.example-transition-1-enter-active {
   transition: all .3s ease;
 }
-.example-transiton-1-leave-active {
+.example-transition-1-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.example-transiton-1-enter, .example-transiton-1-leave-active {
+.example-transition-1-enter, .example-transition-1-leave-active {
   padding-left: 10px;
   opacity: 0;
 }
