@@ -597,6 +597,14 @@ new Vue({
 
 In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
 
+#### Binding Native Events to Components
+
+There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`. For example:
+
+``` html
+<my-component v-on:click.native="doTheThing"></my-component>
+```
+
 ### Form Input Components using Custom Events
 
 This strategy can also be used to create custom form inputs that work with `v-model`. Remember:
