@@ -88,7 +88,7 @@ Much simpler! Sort of. The code is shorter, but also requires greater familiarit
 
 ## `createElement` Arguments
 
-The second thing you'll have to become familiar with is how to use template features in the `createElement` function:
+The second thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
 
 ``` js
 // @returns {VNode}
@@ -102,39 +102,8 @@ createElement(
   // An options object corresponding to the attributes
   // you would use in a template. Optional.
   {
-    // Normal HTML attributes
-    attrs: {
-      id: 'foo'
-    },
-    // Component props
-    props: {
-      myProp: 'bar'
-    },
-    // DOM properties
-    domProps: {
-      innerHTML: 'baz'
-    },
-    // Event handlers are nested under "on", though
-    // modifiers such as in v-on:keyup.enter are not
-    // supported. You'll have to manually check the
-    // keyCode in the handler instead.
-    on: {
-      click: this.clickHandler
-    },
-    // Same API as `v-bind:class`
-    class: {
-      foo: true,
-      bar: false
-    },
-    // Same API as `v-bind:style`
-    style: {
-      color: 'red',
-      fontSize: '14px'
-    },
-    // Other special top-level properties
-    key: 'myKey',
-    ref: 'myRef'
-  }
+    // ... (see more detail below)
+  },
 
   // {String | Array | Function}
   // Children VNodes. When the first argument is a
@@ -154,7 +123,54 @@ createElement(
 )
 ```
 
-With this knowledge, we can finish the component we started:
+### The Options Object In-Depth
+
+``` js
+{
+  // Normal HTML attributes
+  attrs: {
+    id: 'foo'
+  },
+  // Component props
+  props: {
+    myProp: 'bar'
+  },
+  // DOM properties
+  domProps: {
+    innerHTML: 'baz'
+  },
+  // Event handlers are nested under "on", though
+  // modifiers such as in v-on:keyup.enter are not
+  // supported. You'll have to manually check the
+  // keyCode in the handler instead.
+  on: {
+    click: this.clickHandler
+  },
+  // For components only. Allows you to listen to
+  // native events, rather than events emitted from
+  // the component using vm.$emit.
+  nativeOn: {
+    click: this.nativeClickHandler
+  }
+  // Same API as `v-bind:class`
+  class: {
+    foo: true,
+    bar: false
+  },
+  // Same API as `v-bind:style`
+  style: {
+    color: 'red',
+    fontSize: '14px'
+  },
+  // Other special top-level properties
+  key: 'myKey',
+  ref: 'myRef'
+}
+```
+
+### Complete Example
+
+With this knowledge, we can now finish the component we started:
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -278,6 +294,7 @@ Everything the component needs is passed through `options`, which is an object c
 
 - `props`: An object of the provided props
 - `children`: A function returning the children
+- `slots`: A function returning a slots object
 - `data`: The entire data object passed to the component
 - `parent`: A reference to the parent component
 
@@ -329,18 +346,18 @@ Vue.component('smart-list', {
 
 ### `keep-alive`
 
-Instead of being passed through the options object, the `keep-alive` attribute actually compiles to a higher-order component.
+Instead of being passed through the options object, the `keep-alive` attribute actually compiles to a higher-order component. So this template:
 
 ``` html
 <my-component keep-alive></my-component>
 ```
 
-compiles to:
+would appear in a render function as:
 
 ``` js
-h('keep-alive', {
+createElement('keep-alive', {
   props: {
-    child: h(MyComponent)
+    child: createElement(MyComponent)
   }
 })
 ```
