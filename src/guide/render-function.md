@@ -112,7 +112,7 @@ createElement(
   // HTML tag name, you can just use an array of
   // VNodes directly. Optional.
   [
-    createElement('h1', ['hello world'])
+    createElement('h1', 'hello world')
     createElement(MyComponent, {
       props: {
         someProp: 'foo'
@@ -209,6 +209,33 @@ Vue.component('anchored-heading', {
 })
 ```
 
+## Replacing Template Features with Plain JavaScript
+
+Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a propriety alternative. For example, in a template using `v-if` and `v-for`:
+
+``` html
+<div>
+  <ul v-if="items.length">
+    <li v-for="item in items">{{ item.name }}</li>
+  </ul>
+  <p v-else>No items found.</p>
+</div>
+```
+
+This could be rewritten with JavaScript's `if-else` and `map` in a render function:
+
+``` js
+render: function (createElement) {
+  if (this.items.length) {
+    return createElement('ul', this.items.map(function (item) {
+      return createElement('li', item.name)
+    }))
+  } else {
+    return createElement('p', 'No items found.')
+  }
+}
+```
+
 ## Rendering Components with Children
 
 As mentioned above, components with children must use a thunk: i.e. a function that returns an array of children, rather than the array of children directly. This delays children creation until the component itself is rendered, allowing more efficient re-renders.
@@ -220,8 +247,7 @@ new Vue({
   el: '#demo',
   render: function (createElement) {
     return createElement(
-      Vue.options.components['anchored-heading'],
-      {
+      Vue.options.components['anchored-heading'], {
         props: {
           level: 1
         }
@@ -229,7 +255,7 @@ new Vue({
       // Here's the "thunk"
       function () {
         return [
-          createElement('span', 'Hello'),
+          createElement('strong', 'Hello'),
           ' world!'
         ]
       }
