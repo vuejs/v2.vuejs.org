@@ -99,7 +99,7 @@ createElement(
   'div',
 
   // {Object}
-  // An options object corresponding to the attributes
+  // An data object corresponding to the attributes
   // you would use in a template. Optional.
   {
     // ... (see more detail below)
@@ -123,7 +123,7 @@ createElement(
 )
 ```
 
-### The Options Object In-Depth
+### The Data Object In-Depth
 
 ``` js
 {
@@ -305,8 +305,8 @@ In cases like this, we can mark components as `functional`, which means that the
 Vue.component('my-component', {
   functional: true,
   // To compensate for the lack of an instance,
-  // we are now provided a 2nd options argument.
-  render: function (createElement, options) {
+  // we are now provided a 2nd context argument.
+  render: function (createElement, context) {
     // ...
   },
   // Props are optional
@@ -316,7 +316,7 @@ Vue.component('my-component', {
 })
 ```
 
-Everything the component needs is passed through `options`, which is an object containing:
+Everything the component needs is passed through `context`, which is an object containing:
 
 - `props`: An object of the provided props
 - `children`: A function returning the children
@@ -324,7 +324,7 @@ Everything the component needs is passed through `options`, which is an object c
 - `data`: The entire data object passed to the component
 - `parent`: A reference to the parent component
 
-After adding `functional: true`, updating the render function of our anchored heading component would simply require adding the `options` argument, updating `this.$slots.default` to `options.children`, then updating `this.level` to `options.props.level`.
+After adding `functional: true`, updating the render function of our anchored heading component would simply require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
 
 Since functional components are just functions, they're much cheaper to render. They're also very useful as wrapper components. For example, when you need to:
 
@@ -341,21 +341,21 @@ var UnorderedList = { /* ... */ }
 
 Vue.component('smart-list', {
   functional: true,
-  render: function (createElement, options) {
+  render: function (createElement, context) {
     function appropriateListComponent {
-      var items = options.props.items
+      var items = context.props.items
 
       if (items.length === 0)           return EmptyList
       if (typeof items[0] === 'object') return TableList
-      if (options.props.isOrdered)      return OrderedList
+      if (context.props.isOrdered)      return OrderedList
 
       return UnorderedList
     }
 
     return createElement(
       appropriateListComponent(),
-      options.data,
-      options.children
+      context.data,
+      context.children
     )
   },
   props: {
@@ -372,7 +372,7 @@ Vue.component('smart-list', {
 
 ### `keep-alive`
 
-Instead of being passed through the options object, the `keep-alive` attribute actually compiles to a higher-order component. So this template:
+Instead of being passed through the data object, the `keep-alive` attribute actually compiles to a higher-order component. So this template:
 
 ``` html
 <my-component keep-alive></my-component>
