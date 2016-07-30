@@ -220,7 +220,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 <p v-else>No items found.</p>
 ```
 
-This could be rewritten with JavaScript's `if-else` and `map` in a render function:
+This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
 
 ``` js
 render: function (createElement) {
