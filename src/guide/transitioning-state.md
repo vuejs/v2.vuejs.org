@@ -1,15 +1,15 @@
 ---
-title: State Transitions
+title: Transitioning State
 type: guide
 order: 12
 ---
 
-Vue's transition system offers many simple ways to animate entering and leaving, but what about when the data behind your view simply changes? This data is often used to display:
+Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
 
 - numbers and calculations
+- colors displayed
 - the positions of SVG nodes
 - the sizes and other properties of elements
-- colors displayed
 
 All of these are either already stored as raw numbers or can be converted into numbers. Once we do that, we can animate these state changes using 3rd-party libraries to tween state, in combination with Vue's reactivity and component systems.
 
@@ -20,7 +20,7 @@ Watchers allow us to animate changes of any numerical property into another prop
 ``` html
 <script src="https://npmcdn.com/tween.js@16.3.4"></script>
 
-<div id="example-6">
+<div id="animated-number-demo">
   <input v-model.number="number" type="number">
   <p>{{ animatedNumber }}</p>
 </div>
@@ -28,7 +28,7 @@ Watchers allow us to animate changes of any numerical property into another prop
 
 ``` js
 new Vue({
-  el: '#example-6',
+  el: '#animated-number-demo',
   data: {
     number: 0,
     animatedNumber: 0
@@ -55,13 +55,13 @@ new Vue({
 
 {% raw %}
 <script src="https://npmcdn.com/tween.js@16.3.4"></script>
-<div id="example-6" class="demo">
+<div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number">
   <p>{{ animatedNumber }}</p>
 </div>
 <script>
 new Vue({
-  el: '#example-6',
+  el: '#animated-number-demo',
   data: {
     number: 0,
     animatedNumber: 0
@@ -238,6 +238,143 @@ new Vue({
 }
 </style>
 {% endraw %}
+
+## Dynamic State Transitions
+
+Just as with Vue's transition components, the data backing state transitions can be updated in real time, which is especially useful for prototyping! Even using a simple SVG polygon, you can achieve many effects that would be difficult to conceive of until you've played with the variables a little.
+
+{% raw %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
+<div id="svg-polygon-demo" class="demo">
+  <svg width="200" height="200" class="demo-svg">
+    <polygon :points="points" class="demo-polygon"></polygon>
+    <circle cx="100" cy="100" r="90" class="demo-circle"></circle>
+  </svg>
+  <label>Sides: {{ sides }}</label>
+  <input
+    class="demo-range-input"
+    type="range"
+    min="3"
+    max="500"
+    v-model.number="sides"
+  >
+  <label>Minimum Radius: {{ minRadius }}%</label>
+  <input
+    class="demo-range-input"
+    type="range"
+    min="0"
+    max="90"
+    v-model.number="minRadius"
+  >
+  <label>Update Interval: {{ updateInterval }} milliseconds</label>
+  <input
+    class="demo-range-input"
+    type="range"
+    min="10"
+    max="2000"
+    v-model.number="updateInterval"
+  >
+</div>
+<script>
+new Vue({
+  el: '#svg-polygon-demo',
+  data: function () {
+    var defaultSides = 10
+    var stats = Array.apply(null, { length: defaultSides })
+      .map(function () { return 100 })
+    return {
+      stats: stats,
+      points: generatePoints(stats),
+      sides: defaultSides,
+      minRadius: 50,
+      interval: null,
+      updateInterval: 500
+    }
+  },
+  watch: {
+    sides: function (newSides, oldSides) {
+      var sidesDifference = newSides - oldSides
+      if (sidesDifference > 0) {
+        for (var i = 1; i <= sidesDifference; i++) {
+          this.stats.push(this.newRandomValue())
+        }
+      } else {
+        var absoluteSidesDifference = Math.abs(sidesDifference)
+        for (var i = 1; i <= absoluteSidesDifference; i++) {
+          this.stats.shift()
+        }
+      }
+    },
+    stats: function (newStats) {
+      TweenLite.to(
+        this.$data,
+        this.updateInterval / 1000,
+        { points: generatePoints(newStats) }
+      )
+    },
+    updateInterval: function () {
+      this.resetInterval()
+    }
+  },
+  mounted: function () {
+    this.resetInterval()
+  },
+  methods: {
+    randomizeStats: function () {
+      var vm = this
+      this.stats = this.stats.map(function () {
+        return vm.newRandomValue()
+      })
+    },
+    newRandomValue: function () {
+      return Math.ceil(this.minRadius + Math.random() * (100 - this.minRadius))
+    },
+    resetInterval: function () {
+      var vm = this
+      clearInterval(this.interval)
+      this.randomizeStats()
+      this.interval = setInterval(function () {
+        vm.randomizeStats()
+      }, this.updateInterval)
+    }
+  }
+})
+
+function valueToPoint (value, index, total) {
+  var x     = 0
+  var y     = -value * 0.9
+  var angle = Math.PI * 2 / total * index
+  var cos   = Math.cos(angle)
+  var sin   = Math.sin(angle)
+  var tx    = x * cos - y * sin + 100
+  var ty    = x * sin + y * cos + 100
+  return { x: tx, y: ty }
+}
+
+function generatePoints (stats) {
+  var total = stats.length
+  return stats.map(function (stat, index) {
+    var point = valueToPoint(stat, index, total)
+    return point.x + ',' + point.y
+  }).join(' ')
+}
+</script>
+<style>
+.demo-svg { display: block; }
+.demo-polygon { fill: #41B883; }
+.demo-circle {
+  fill: transparent;
+  stroke: #35495E;
+}
+.demo-range-input {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+</style>
+{% endraw %}
+
+See [this fiddle](https://jsfiddle.net/chrisvfritz/fbvusejy/) for the complete code behind the above demo.
 
 ## Organizing Transitions into Components
 
