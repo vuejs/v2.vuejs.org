@@ -909,8 +909,23 @@ new Vue({
 
 ``` html
 <component v-bind:is="currentView">
-  <!-- component changes when vm.currentview changes! -->
+  <!-- component changes when vm.currentView changes! -->
 </component>
+```
+
+If you prefer, you can also bind directly to component objects:
+
+``` js
+var Home = {
+  template: '<p>Welcome home!</p>'
+}
+
+new Vue({
+  el: 'body',
+  data: {
+    currentView: Home
+  }
+})
 ```
 
 ### `keep-alive`
@@ -923,25 +938,15 @@ If you want to keep the switched-out components in memory so that you can preser
 </component>
 ```
 
-### `transition-mode`
+### Transitioning Components
 
-The `transition-mode` param attribute allows you to specify how the transition between two dynamic components should be executed.
-
-By default, the transitions for incoming and outgoing components happen simultaneously. This attribute allows you to configure two other modes:
-
-- `in-out`: New component transitions in first, then current component transitions out after incoming transition has finished.
-
-- `out-in`: Current component transitions out first, then new component transitions in after outgoing transition has finished.
-
-Here's a simple example:
+Just as we did [with elements](transitions.html#Transitioning-Between-Elements), we can transition between components, but we don't need the `key` attribute:
 
 ``` html
 <!-- fade out first, then fade in -->
-<component
-  v-bind:is="view"
-  transition="fade"
-  transition-mode="out-in">
-</component>
+<transition name="fade" mode="out-in">
+  <component v-bind:is="view"></component>
+</transition>
 ```
 
 ``` css
@@ -957,11 +962,9 @@ Here's a simple example:
 <div id="transition-mode-demo" class="demo">
   <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
   <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
-  <component
-    v-bind:is="view"
-    transition="fade"
-    transition-mode="out-in">
-  </component>
+  <transition name="fade" mode="out-in">
+    <component v-bind:is="view"></component>
+  </transition>
 </div>
 <style>
 .fade-enter-active, .fade-leave-active {
