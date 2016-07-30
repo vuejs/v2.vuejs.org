@@ -21,7 +21,7 @@ Watchers allow us to animate changes of any numerical property into another prop
 <script src="https://npmcdn.com/tween.js@16.3.4"></script>
 
 <div id="animated-number-demo">
-  <input v-model.number="number" type="number">
+  <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
 </div>
 ```
@@ -56,7 +56,7 @@ new Vue({
 {% raw %}
 <script src="https://npmcdn.com/tween.js@16.3.4"></script>
 <div id="animated-number-demo" class="demo">
-  <input v-model.number="number" type="number">
+  <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
 </div>
 <script>
@@ -384,8 +384,8 @@ Managing many state transitions can quickly increase the complexity of a Vue ins
 <script src="https://npmcdn.com/tween.js@16.3.4"></script>
 
 <div id="example-8">
-  <input v-model.number="firstNumber" type="number"> +
-  <input v-model.number="secondNumber" type="number"> =
+  <input v-model.number="firstNumber" type="number" step="20"> +
+  <input v-model.number="secondNumber" type="number" step="20"> =
   {{ result }}
   <p>
     <animated-integer v-bind:value="firstNumber"></animated-integer> +
@@ -444,8 +444,8 @@ Vue.component('animated-integer', {
 new Vue({
   el: '#example-8',
   data: {
-    firstNumber: 23,
-    secondNumber: 17
+    firstNumber: 20,
+    secondNumber: 40
   },
   computed: {
     result: function () {
@@ -458,8 +458,8 @@ new Vue({
 {% raw %}
 <script src="https://npmcdn.com/tween.js@16.3.4"></script>
 <div id="example-8" class="demo">
-  <input v-model.number="firstNumber" type="number"> +
-  <input v-model.number="secondNumber" type="number"> =
+  <input v-model.number="firstNumber" type="number" step="20"> +
+  <input v-model.number="secondNumber" type="number" step="20"> =
   {{ result }}
   <p>
     <animated-integer v-bind:value="firstNumber"></animated-integer> +
@@ -509,8 +509,8 @@ Vue.component('animated-integer', {
 new Vue({
   el: '#example-8',
   data: {
-    firstNumber: 23,
-    secondNumber: 17
+    firstNumber: 20,
+    secondNumber: 40
   },
   computed: {
     result: function () {
