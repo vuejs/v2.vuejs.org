@@ -85,7 +85,7 @@ new Vue({
   ...
   filters: {
     capitalize: function (value) {
-      if (!value && value !== 0) return ''
+      if (!value) return ''
       value = value.toString()
       return value.charAt(0).toUpperCase() + value.slice(1)
     }
