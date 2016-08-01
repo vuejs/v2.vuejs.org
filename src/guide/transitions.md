@@ -1,7 +1,7 @@
 ---
 title: 'Transitions: Entering, Leaving, and Lists'
 type: guide
-order: 11
+order: 12
 ---
 
 ## Overview
@@ -21,7 +21,7 @@ Vue provides a `transition` wrapper component, allowing you to add entering/leav
 
 - Conditional rendering (using `v-if`)
 - Conditional display (using `v-show`)
-- Dynamic components (introduced in the [next section](components.html#Dynamic-Components))
+- Dynamic components
 - Component root nodes
 
 This is what a very simple example looks like in action:
@@ -592,7 +592,7 @@ and custom JavaScript hooks:
 
 ## Transitioning Between Elements
 
-We discuss [transitioning between components](components.html#Dynamic-Components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:
+We discuss [transitioning between components](#Transitioning-Between-Components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:
 
 ``` html
 <transition>
@@ -882,6 +882,76 @@ new Vue({
 {% endraw %}
 
 Pretty cool, right?
+
+## Transitioning Between Components
+
+Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we just wrap a [dynamic component](components.html#Dynamic-Components):
+
+``` html
+<transition name="component-fade" mode="out-in">
+  <component v-bind:is="view"></component>
+</transition>
+```
+
+``` js
+new Vue({
+  el: '#transition-components-demo',
+  data: {
+    view: 'v-a'
+  },
+  components: {
+    'v-a': {
+      template: '<div>Component A</div>'
+    },
+    'v-b': {
+      template: '<div>Component B</div>'
+    }
+  }
+})
+```
+
+``` css
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .3s ease;
+}
+.component-fade-enter, .component-fade-leave-active {
+  opacity: 0;
+}
+```
+
+{% raw %}
+<div id="transition-components-demo" class="demo">
+  <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
+  <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
+  <transition name="component-fade" mode="out-in">
+    <component v-bind:is="view"></component>
+  </transition>
+</div>
+<style>
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .3s ease;
+}
+.component-fade-enter, .component-fade-leave-active {
+  opacity: 0;
+}
+</style>
+<script>
+new Vue({
+  el: '#transition-components-demo',
+  data: {
+    view: 'v-a'
+  },
+  components: {
+    'v-a': {
+      template: '<div>Component A</div>'
+    },
+    'v-b': {
+      template: '<div>Component B</div>'
+    }
+  }
+})
+</script>
+{% endraw %}
 
 ## List Transitions
 
@@ -1388,9 +1458,7 @@ new Vue({
 
 ## Reusable Transitions
 
-Transitions can be reused through Vue's component system. If you aren't yet familiar with it, you should read [the components guide](components.html) now before continuing with the rest of this document.
-
-OK, I'll assume you're familiar with components now. To create a reusable transition, all you have to do is place a `<transition>` or `<transition-group>` component at the root, then pass any children into the transition component.
+Transitions can be reused through Vue's component system. To create a reusable transition, all you have to do is place a `<transition>` or `<transition-group>` component at the root, then pass any children into the transition component.
 
 Here's an example using a template component:
 

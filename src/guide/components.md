@@ -1,7 +1,7 @@
 ---
 title: Components
 type: guide
-order: 13
+order: 11
 ---
 
 ## What are Components?
@@ -89,7 +89,7 @@ new Vue({
 })
 ```
 
-The same encapsulation applies for other registerable Vue features, such as directives and transitions.
+The same encapsulation applies for other registerable Vue features, such as directives.
 
 ### Component Option Caveats
 
@@ -937,60 +937,6 @@ If you want to keep the switched-out components in memory so that you can preser
   <!-- inactive components will be cached! -->
 </component>
 ```
-
-### Transitioning Components
-
-Just as we did [with elements](transitions.html#Transitioning-Between-Elements), we can transition between components, but we don't need the `key` attribute:
-
-``` html
-<!-- fade out first, then fade in -->
-<transition name="fade" mode="out-in">
-  <component v-bind:is="view"></component>
-</transition>
-```
-
-``` css
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease;
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0;
-}
-```
-
-{% raw %}
-<div id="transition-mode-demo" class="demo">
-  <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
-  <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
-  <transition name="fade" mode="out-in">
-    <component v-bind:is="view"></component>
-  </transition>
-</div>
-<style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease;
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0;
-}
-</style>
-<script>
-new Vue({
-  el: '#transition-mode-demo',
-  data: {
-    view: 'v-a'
-  },
-  components: {
-    'v-a': {
-      template: '<div>Component A</div>'
-    },
-    'v-b': {
-      template: '<div>Component B</div>'
-    }
-  }
-})
-</script>
-{% endraw %}
 
 ## Misc
 

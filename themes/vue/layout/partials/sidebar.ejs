@@ -20,6 +20,16 @@
         </h2>
         <ul class="menu-root">
             <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
+                <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
+                <% if (fileName === 'installation') { %>
+                  <li><h3>Essentials</h3></li>
+                <% } %>
+                <% if (fileName === 'transitions') { %>
+                  <li><h3>Advanced</h3></li>
+                <% } %>
+                <% if (fileName === 'comparison') { %>
+                  <li><h3>Meta</h3></li>
+                <% } %>
                 <li>
                     <a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
                 </li>
