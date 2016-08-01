@@ -4,7 +4,7 @@ type: guide
 order: 10
 ---
 
-## Basics Usage
+## Basic Usage
 
 You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
 
