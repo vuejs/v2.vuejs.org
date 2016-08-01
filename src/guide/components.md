@@ -716,7 +716,7 @@ This interface can be used not only to connect with form inputs inside a compone
 <webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
 ```
 
-### Child Component Refs
+### Child Component Reference
 
 Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
 
