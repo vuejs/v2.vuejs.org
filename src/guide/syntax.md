@@ -170,3 +170,5 @@ or
 ```
 
 They may look a bit different from "valid" HTML, but all Vue.js supported browsers can parse it correctly, and they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
+
+**Note:** The use of shorthand could give some errors if used in a page rendered completely or partially server side because the incorrect html/xml syntax could confuse the server engine.
