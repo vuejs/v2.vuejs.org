@@ -152,7 +152,7 @@ Vue.directive('demo', function (value) {
 
 ### Element Directives
 
-In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained later in the guide). You can register a custom element directive like so:
+In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained earlier in the guide). You can register a custom element directive like so:
 
 ``` js
 Vue.elementDirective('my-directive', {
