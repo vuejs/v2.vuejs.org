@@ -6,56 +6,6 @@ type: api
 
 `Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
 
-### debug
-
-- **Type:** `Boolean`
-
-- **Default:** `false`
-
-- **Usage:**
-
-  ``` js
-  Vue.config.debug = true
-  ```
-
-  When in debug mode, Vue will:
-
-  1. Print stack traces for all warnings.
-
-  2. Make all anchor nodes visible in the DOM as Comment nodes. This makes it easier to inspect the structure of the rendered result.
-
-  <p class="tip">Debug mode is only available in development build.</p>
-
-### delimiters
-
-- **Type:** `Array<String>`
-
-- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
-
-- **Usage:**
-
-  ``` js
-  // ES6 template string style
-  Vue.config.delimiters = ['${', '}']
-  ```
-
-  Change the plain text interpolation delimiters.
-
-### unsafeDelimiters
-
-- **Type:** `Array<String>`
-
-- **Default:** `{% raw %}["{{{", "}}}"]{% endraw %}`
-
-- **Usage:**
-
-  ``` js
-  // make it look more dangerous
-  Vue.config.unsafeDelimiters = ['{!!', '!!}']
-  ```
-
-  Change the raw HTML interpolation delimiters.
-
 ### silent
 
 - **Type:** `Boolean`
@@ -68,21 +18,31 @@ type: api
   Vue.config.silent = true
   ```
 
-  Suppress all Vue.js logs and warnings.
+  Suppress all Vue logs and warnings.
 
-### async
+### optionMergeStrategies
 
-- **Type:** `Boolean`
+- **Type:** `Object`
 
-- **Default:** `true`
+- **Default:** `{}`
 
 - **Usage:**
 
   ``` js
-  Vue.config.async = false
+  Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
+    return child + 1
+  }
+
+  const Profile = Vue.extend({
+    _my_option: 1
+  })
+
+  // Profile.options._my_option = 2
   ```
 
-  When async mode is off, Vue will perform all DOM updates synchronously upon detecting data change. This may help with debugging in some scenarios, but could also cause degraded performance and affect the order in which watcher callbacks are called. **`async: false` is not recommended in production.**
+  Define custom merging strategies for options.
+
+  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
 
 ### devtools
 
@@ -98,6 +58,36 @@ type: api
   ```
 
   Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+
+### errorHandler
+
+- **Type:** `Function`
+
+- **Default:** Error is thrown in place
+
+- **Usage:**
+
+  ``` js
+  Vue.config.errorHandler = function (err, vm) {
+    // handle error
+  }
+  ```
+
+  Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
+
+### keyCodes
+
+- **Type:** `Object`
+
+- **Default:** `{}`
+
+- **Usage:**
+
+  ``` js
+  Vue.config.keyCodes = { esc: 27 }
+  ```
+
+  Define custom key aliases for v-on.
 
 ## Global API
 
