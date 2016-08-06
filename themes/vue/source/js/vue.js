@@ -1,6 +1,6 @@
 /*!
- * Vue.js v1.0.26
- * (c) 2016 Evan You
+ * Vue.js v2.0.0-beta.7
+ * (c) 2014-2016 Evan You
  * Released under the MIT License.
  */
 (function (global, factory) {
@@ -1253,7 +1253,10 @@
     }
   }
 
-  var VNode = function VNode(tag, data, children, text, elm, ns, context, host, componentOptions) {
+  var VNode = // hoisted static node
+  // compoennt placeholder node
+  // rendered in this component's scope
+  function VNode(tag, data, children, text, elm, ns, context, componentOptions) {
     this.tag = tag;
     this.data = data;
     this.children = children;
@@ -1261,13 +1264,14 @@
     this.elm = elm;
     this.ns = ns;
     this.context = context;
-    this.host = host;
     this.key = data && data.key;
     this.componentOptions = componentOptions;
     this.child = undefined;
     this.parent = undefined;
     this.raw = false;
     this.isStatic = false;
+    this.isRootInsert = true;
+    this.isComment = false;
     // apply construct hook.
     // this is applied during render, before patch happens.
     // unlike other hooks, this is applied on both client and server.
@@ -1275,23 +1279,19 @@
     if (constructHook) {
       constructHook(this);
     }
-  };
+  } // necessary for enter transition check
+  // contains raw HTML
+  // component instance
+  ;
 
   var emptyVNode = function emptyVNode() {
-    return new VNode(undefined, undefined, undefined, '');
+    var node = new VNode();
+    node.text = '';
+    node.isComment = true;
+    return node;
   };
 
   function normalizeChildren(children, ns) {
-    // Invoke children thunks. Components always receive their children
-    // as thunks so that they can perform the actual render inside their
-    // own dependency collection cycle. Also, since JSX automatically
-    // wraps component children in a thunk, we handle nested thunks to
-    // prevent situations such as <MyComponent>{ children }</MyComponent>
-    // from failing when it produces a double thunk.
-    while (typeof children === 'function') {
-      children = children();
-    }
-
     if (isPrimitive(children)) {
       return [createTextVNode(children)];
     }
@@ -1306,7 +1306,7 @@
         } else if (isPrimitive(c)) {
           if (last && last.text) {
             last.text += String(c);
-          } else {
+          } else if (c !== '') {
             // convert primitive to vnode
             res.push(createTextVNode(c));
           }
@@ -1419,6 +1419,8 @@
     };
   }
 
+  var activeInstance = null;
+
   function initLifecycle(vm) {
     var options = vm.$options;
 
@@ -1479,6 +1481,8 @@
         callHook(vm, 'beforeUpdate');
       }
       var prevEl = vm.$el;
+      var prevActiveInstance = activeInstance;
+      activeInstance = vm;
       if (!vm._vnode) {
         // Vue.prototype.__patch__ is injected in entry points
         // based on the rendering backend used.
@@ -1486,6 +1490,7 @@
       } else {
         vm.$el = vm.__patch__(vm._vnode, vnode);
       }
+      activeInstance = prevActiveInstance;
       vm._vnode = vnode;
       // update __vue__ reference
       if (prevEl) {
@@ -1505,6 +1510,7 @@
 
     Vue.prototype._updateFromParent = function (propsData, listeners, parentVnode, renderChildren) {
       var vm = this;
+      var hasChildren = !!(vm.$options._renderChildren || renderChildren);
       vm.$options._parentVnode = parentVnode;
       vm.$options._renderChildren = renderChildren;
       // update props
@@ -1528,6 +1534,10 @@
         var oldListeners = vm.$options._parentListeners;
         vm.$options._parentListeners = listeners;
         vm._updateListeners(listeners, oldListeners);
+      }
+      // force udpate if has children
+      if (hasChildren) {
+        vm.$forceUpdate();
       }
     };
 
@@ -1593,12 +1603,7 @@
   var hooks = { init: init, prepatch: prepatch, insert: insert, destroy: destroy };
   var hooksToMerge = Object.keys(hooks);
 
-  function createComponent(Ctor, data, parent, context, host, _children, tag) {
-    // ensure children is a thunk
-    if ("development" !== 'production' && _children && typeof _children !== 'function') {
-      warn('A component\'s children should be a function that returns the ' + 'children array. This allows the component to track the children ' + 'dependencies and optimizes re-rendering.');
-    }
-
+  function createComponent(Ctor, data, context, children, tag) {
     if (!Ctor) {
       return;
     }
@@ -1609,7 +1614,7 @@
 
     if (typeof Ctor !== 'function') {
       if ("development" !== 'production') {
-        warn('Invalid Component definition: ' + Ctor, parent);
+        warn('Invalid Component definition: ' + Ctor, context);
       }
       return;
     }
@@ -1621,9 +1626,8 @@
       } else {
         Ctor = resolveAsyncComponent(Ctor, function () {
           // it's ok to queue this on every render because
-          // $forceUpdate is buffered. this is only called
-          // if the
-          parent.$forceUpdate();
+          // $forceUpdate is buffered by the scheduler.
+          context.$forceUpdate();
         });
         if (!Ctor) {
           // return nothing if this is indeed an async component
@@ -1649,15 +1653,13 @@
           });
         }
         return {
-          v: Ctor.options.render.call(null, parent.$createElement, {
+          v: Ctor.options.render.call(null, context.$createElement, {
             props: props,
-            parent: parent,
             data: data,
-            children: function children() {
-              return normalizeChildren(_children);
-            },
+            parent: context,
+            children: normalizeChildren(children),
             slots: function slots() {
-              return resolveSlots(_children);
+              return resolveSlots(children);
             }
           })
         };
@@ -1683,16 +1685,17 @@
 
     // return a placeholder vnode
     var name = Ctor.options.name || tag;
-    var vnode = new VNode('vue-component-' + Ctor.cid + (name ? '-' + name : ''), data, undefined, undefined, undefined, undefined, context, host, { Ctor: Ctor, propsData: propsData, listeners: listeners, parent: parent, tag: tag, children: _children });
+    var vnode = new VNode('vue-component-' + Ctor.cid + (name ? '-' + name : ''), data, undefined, undefined, undefined, undefined, context, { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children });
     return vnode;
   }
 
-  function createComponentInstanceForVnode(vnode // we know it's MountedComponentVNode but flow doesn't
+  function createComponentInstanceForVnode(vnode, // we know it's MountedComponentVNode but flow doesn't
+  parent // activeInstance in lifecycle state
   ) {
     var vnodeComponentOptions = vnode.componentOptions;
     var options = {
       _isComponent: true,
-      parent: vnodeComponentOptions.parent,
+      parent: parent,
       propsData: vnodeComponentOptions.propsData,
       _componentTag: vnodeComponentOptions.tag,
       _parentVnode: vnode,
@@ -1710,7 +1713,7 @@
 
   function init(vnode, hydrating) {
     if (!vnode.child) {
-      var child = vnode.child = createComponentInstanceForVnode(vnode);
+      var child = vnode.child = createComponentInstanceForVnode(vnode, activeInstance);
       child.$mount(hydrating ? vnode.elm : undefined, hydrating);
     }
   }
@@ -1723,10 +1726,6 @@
     vnode, // new parent vnode
     options.children // new children
     );
-    // always update abstract components.
-    if (child.$options.abstract) {
-      child.$forceUpdate();
-    }
   }
 
   function insert(vnode) {
@@ -1865,12 +1864,6 @@
   }
 
   function _createElement(context, tag, data, children) {
-    var parent = renderState.activeInstance;
-    var host = context !== parent ? parent : undefined;
-    if (!parent) {
-      "development" !== 'production' && warn('createElement cannot be called outside of component ' + 'render functions.');
-      return;
-    }
     if (data && data.__ob__) {
       "development" !== 'production' && warn('Avoid using observed data object as vnode data: ' + JSON.stringify(data) + '\n' + 'Always create fresh vnode data objects in each render!', context);
       return;
@@ -1884,25 +1877,21 @@
       var ns = config.getTagNamespace(tag);
       if (config.isReservedTag(tag)) {
         // platform built-in elements
-        return new VNode(tag, data, normalizeChildren(children, ns), undefined, undefined, ns, context, host);
+        return new VNode(tag, data, normalizeChildren(children, ns), undefined, undefined, ns, context);
       } else if (Ctor = resolveAsset(context.$options, 'components', tag)) {
         // component
-        return createComponent(Ctor, data, parent, context, host, children, tag);
+        return createComponent(Ctor, data, context, children, tag);
       } else {
         // unknown or unlisted namespaced elements
         // check at runtime because it may get assigned a namespace when its
         // parent normalizes children
-        return new VNode(tag, data, normalizeChildren(children, ns), undefined, undefined, ns, context, host);
+        return new VNode(tag, data, normalizeChildren(children, ns), undefined, undefined, ns, context);
       }
     } else {
       // direct component options / constructor
-      return createComponent(tag, data, parent, context, host, children);
+      return createComponent(tag, data, context, children);
     }
   }
-
-  var renderState = {
-    activeInstance: null
-  };
 
   function initRender(vm) {
     vm.$vnode = null; // the placeholder node in parent tree
@@ -1924,11 +1913,6 @@
 
     Vue.prototype._render = function () {
       var vm = this;
-
-      // set current active instance
-      var prev = renderState.activeInstance;
-      renderState.activeInstance = vm;
-
       var _vm$$options = vm.$options;
       var render = _vm$$options.render;
       var staticRenderFns = _vm$$options.staticRenderFns;
@@ -1977,8 +1961,6 @@
       }
       // set parent
       vnode.parent = _parentVnode;
-      // restore render state
-      renderState.activeInstance = prev;
       return vnode;
     };
 
@@ -2046,8 +2028,12 @@
           }
           var data = vnode.data;
           for (var key in value) {
-            var hash = asProp || config.mustUseProp(key) ? data.domProps || (data.domProps = {}) : data.attrs || (data.attrs = {});
-            hash[key] = value[key];
+            if (key === 'class' || key === 'style') {
+              data[key] = value[key];
+            } else {
+              var hash = asProp || config.mustUseProp(key) ? data.domProps || (data.domProps = {}) : data.attrs || (data.attrs = {});
+              hash[key] = value[key];
+            }
           }
         }
       }
@@ -2600,4294 +2586,19 @@
   /**
    * Assert whether a prop is valid.
    */
-
-  Dep.prototype.addSub = function (sub) {
-    this.subs.push(sub);
-  };
-
-  /**
-   * Remove a directive subscriber.
-   *
-   * @param {Directive} sub
-   */
-
-  Dep.prototype.removeSub = function (sub) {
-    this.subs.$remove(sub);
-  };
-
-  /**
-   * Add self as a dependency to the target watcher.
-   */
-
-  Dep.prototype.depend = function () {
-    Dep.target.addDep(this);
-  };
-
-  /**
-   * Notify all subscribers of a new value.
-   */
-
-  Dep.prototype.notify = function () {
-    // stablize the subscriber list first
-    var subs = toArray(this.subs);
-    for (var i = 0, l = subs.length; i < l; i++) {
-      subs[i].update();
-    }
-  };
-
-  var arrayProto = Array.prototype;
-  var arrayMethods = Object.create(arrayProto)
-
-  /**
-   * Intercept mutating methods and emit events
-   */
-
-  ;['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'].forEach(function (method) {
-    // cache original method
-    var original = arrayProto[method];
-    def(arrayMethods, method, function mutator() {
-      // avoid leaking arguments:
-      // http://jsperf.com/closure-with-arguments
-      var i = arguments.length;
-      var args = new Array(i);
-      while (i--) {
-        args[i] = arguments[i];
-      }
-      var result = original.apply(this, args);
-      var ob = this.__ob__;
-      var inserted;
-      switch (method) {
-        case 'push':
-          inserted = args;
-          break;
-        case 'unshift':
-          inserted = args;
-          break;
-        case 'splice':
-          inserted = args.slice(2);
-          break;
-      }
-      if (inserted) ob.observeArray(inserted);
-      // notify change
-      ob.dep.notify();
-      return result;
-    });
-  });
-
-  /**
-   * Swap the element at the given index with a new value
-   * and emits corresponding event.
-   *
-   * @param {Number} index
-   * @param {*} val
-   * @return {*} - replaced element
-   */
-
-  def(arrayProto, '$set', function $set(index, val) {
-    if (index >= this.length) {
-      this.length = Number(index) + 1;
-    }
-    return this.splice(index, 1, val)[0];
-  });
-
-  /**
-   * Convenience method to remove the element at given index or target element reference.
-   *
-   * @param {*} item
-   */
-
-  def(arrayProto, '$remove', function $remove(item) {
-    /* istanbul ignore if */
-    if (!this.length) return;
-    var index = indexOf(this, item);
-    if (index > -1) {
-      return this.splice(index, 1);
-    }
-  });
-
-  var arrayKeys = Object.getOwnPropertyNames(arrayMethods);
-
-  /**
-   * By default, when a reactive property is set, the new value is
-   * also converted to become reactive. However in certain cases, e.g.
-   * v-for scope alias and props, we don't want to force conversion
-   * because the value may be a nested value under a frozen data structure.
-   *
-   * So whenever we want to set a reactive property without forcing
-   * conversion on the new value, we wrap that call inside this function.
-   */
-
-  var shouldConvert = true;
-
-  function withoutConversion(fn) {
-    shouldConvert = false;
-    fn();
-    shouldConvert = true;
-  }
-
-  /**
-   * Observer class that are attached to each observed
-   * object. Once attached, the observer converts target
-   * object's property keys into getter/setters that
-   * collect dependencies and dispatches updates.
-   *
-   * @param {Array|Object} value
-   * @constructor
-   */
-
-  function Observer(value) {
-    this.value = value;
-    this.dep = new Dep();
-    def(value, '__ob__', this);
-    if (isArray(value)) {
-      var augment = hasProto ? protoAugment : copyAugment;
-      augment(value, arrayMethods, arrayKeys);
-      this.observeArray(value);
-    } else {
-      this.walk(value);
-    }
-  }
-
-  // Instance methods
-
-  /**
-   * Walk through each property and convert them into
-   * getter/setters. This method should only be called when
-   * value type is Object.
-   *
-   * @param {Object} obj
-   */
-
-  Observer.prototype.walk = function (obj) {
-    var keys = Object.keys(obj);
-    for (var i = 0, l = keys.length; i < l; i++) {
-      this.convert(keys[i], obj[keys[i]]);
-    }
-  };
-
-  /**
-   * Observe a list of Array items.
-   *
-   * @param {Array} items
-   */
-
-  Observer.prototype.observeArray = function (items) {
-    for (var i = 0, l = items.length; i < l; i++) {
-      observe(items[i]);
-    }
-  };
-
-  /**
-   * Convert a property into getter/setter so we can emit
-   * the events when the property is accessed/changed.
-   *
-   * @param {String} key
-   * @param {*} val
-   */
-
-  Observer.prototype.convert = function (key, val) {
-    defineReactive(this.value, key, val);
-  };
-
-  /**
-   * Add an owner vm, so that when $set/$delete mutations
-   * happen we can notify owner vms to proxy the keys and
-   * digest the watchers. This is only called when the object
-   * is observed as an instance's root $data.
-   *
-   * @param {Vue} vm
-   */
-
-  Observer.prototype.addVm = function (vm) {
-    (this.vms || (this.vms = [])).push(vm);
-  };
-
-  /**
-   * Remove an owner vm. This is called when the object is
-   * swapped out as an instance's $data object.
-   *
-   * @param {Vue} vm
-   */
-
-  Observer.prototype.removeVm = function (vm) {
-    this.vms.$remove(vm);
-  };
-
-  // helpers
-
-  /**
-   * Augment an target Object or Array by intercepting
-   * the prototype chain using __proto__
-   *
-   * @param {Object|Array} target
-   * @param {Object} src
-   */
-
-  function protoAugment(target, src) {
-    /* eslint-disable no-proto */
-    target.__proto__ = src;
-    /* eslint-enable no-proto */
-  }
-
-  /**
-   * Augment an target Object or Array by defining
-   * hidden properties.
-   *
-   * @param {Object|Array} target
-   * @param {Object} proto
-   */
-
-  function copyAugment(target, src, keys) {
-    for (var i = 0, l = keys.length; i < l; i++) {
-      var key = keys[i];
-      def(target, key, src[key]);
-    }
-  }
-
-  /**
-   * Attempt to create an observer instance for a value,
-   * returns the new observer if successfully observed,
-   * or the existing observer if the value already has one.
-   *
-   * @param {*} value
-   * @param {Vue} [vm]
-   * @return {Observer|undefined}
-   * @static
-   */
-
-  function observe(value, vm) {
-    if (!value || typeof value !== 'object') {
+  function assertProp(prop, name, value, vm, absent) {
+    if (prop.required && absent) {
+      warn('Missing required prop: "' + name + '"', vm);
       return;
     }
-    var ob;
-    if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
-      ob = value.__ob__;
-    } else if (shouldConvert && (isArray(value) || isPlainObject(value)) && Object.isExtensible(value) && !value._isVue) {
-      ob = new Observer(value);
-    }
-    if (ob && vm) {
-      ob.addVm(vm);
-    }
-    return ob;
-  }
-
-  /**
-   * Define a reactive property on an Object.
-   *
-   * @param {Object} obj
-   * @param {String} key
-   * @param {*} val
-   */
-
-  function defineReactive(obj, key, val) {
-    var dep = new Dep();
-
-    var property = Object.getOwnPropertyDescriptor(obj, key);
-    if (property && property.configurable === false) {
+    if (value == null && !prop.required) {
       return;
     }
-
-    // cater for pre-defined getter/setters
-    var getter = property && property.get;
-    var setter = property && property.set;
-
-    var childOb = observe(val);
-    Object.defineProperty(obj, key, {
-      enumerable: true,
-      configurable: true,
-      get: function reactiveGetter() {
-        var value = getter ? getter.call(obj) : val;
-        if (Dep.target) {
-          dep.depend();
-          if (childOb) {
-            childOb.dep.depend();
-          }
-          if (isArray(value)) {
-            for (var e, i = 0, l = value.length; i < l; i++) {
-              e = value[i];
-              e && e.__ob__ && e.__ob__.dep.depend();
-            }
-          }
-        }
-        return value;
-      },
-      set: function reactiveSetter(newVal) {
-        var value = getter ? getter.call(obj) : val;
-        if (newVal === value) {
-          return;
-        }
-        if (setter) {
-          setter.call(obj, newVal);
-        } else {
-          val = newVal;
-        }
-        childOb = observe(newVal);
-        dep.notify();
-      }
-    });
-  }
-
-
-
-  var util = Object.freeze({
-  	defineReactive: defineReactive,
-  	set: set,
-  	del: del,
-  	hasOwn: hasOwn,
-  	isLiteral: isLiteral,
-  	isReserved: isReserved,
-  	_toString: _toString,
-  	toNumber: toNumber,
-  	toBoolean: toBoolean,
-  	stripQuotes: stripQuotes,
-  	camelize: camelize,
-  	hyphenate: hyphenate,
-  	classify: classify,
-  	bind: bind,
-  	toArray: toArray,
-  	extend: extend,
-  	isObject: isObject,
-  	isPlainObject: isPlainObject,
-  	def: def,
-  	debounce: _debounce,
-  	indexOf: indexOf,
-  	cancellable: cancellable,
-  	looseEqual: looseEqual,
-  	isArray: isArray,
-  	hasProto: hasProto,
-  	inBrowser: inBrowser,
-  	devtools: devtools,
-  	isIE: isIE,
-  	isIE9: isIE9,
-  	isAndroid: isAndroid,
-  	isIos: isIos,
-  	iosVersionMatch: iosVersionMatch,
-  	iosVersion: iosVersion,
-  	hasMutationObserverBug: hasMutationObserverBug,
-  	get transitionProp () { return transitionProp; },
-  	get transitionEndEvent () { return transitionEndEvent; },
-  	get animationProp () { return animationProp; },
-  	get animationEndEvent () { return animationEndEvent; },
-  	nextTick: nextTick,
-  	get _Set () { return _Set; },
-  	query: query,
-  	inDoc: inDoc,
-  	getAttr: getAttr,
-  	getBindAttr: getBindAttr,
-  	hasBindAttr: hasBindAttr,
-  	before: before,
-  	after: after,
-  	remove: remove,
-  	prepend: prepend,
-  	replace: replace,
-  	on: on,
-  	off: off,
-  	setClass: setClass,
-  	addClass: addClass,
-  	removeClass: removeClass,
-  	extractContent: extractContent,
-  	trimNode: trimNode,
-  	isTemplate: isTemplate,
-  	createAnchor: createAnchor,
-  	findRef: findRef,
-  	mapNodeRange: mapNodeRange,
-  	removeNodeRange: removeNodeRange,
-  	isFragment: isFragment,
-  	getOuterHTML: getOuterHTML,
-  	mergeOptions: mergeOptions,
-  	resolveAsset: resolveAsset,
-  	checkComponentAttr: checkComponentAttr,
-  	commonTagRE: commonTagRE,
-  	reservedTagRE: reservedTagRE,
-  	get warn () { return warn; }
-  });
-
-  var uid = 0;
-
-  function initMixin (Vue) {
-    /**
-     * The main init sequence. This is called for every
-     * instance, including ones that are created from extended
-     * constructors.
-     *
-     * @param {Object} options - this options object should be
-     *                           the result of merging class
-     *                           options and the options passed
-     *                           in to the constructor.
-     */
-
-    Vue.prototype._init = function (options) {
-      options = options || {};
-
-      this.$el = null;
-      this.$parent = options.parent;
-      this.$root = this.$parent ? this.$parent.$root : this;
-      this.$children = [];
-      this.$refs = {}; // child vm references
-      this.$els = {}; // element references
-      this._watchers = []; // all watchers as an array
-      this._directives = []; // all directives
-
-      // a uid
-      this._uid = uid++;
-
-      // a flag to avoid this being observed
-      this._isVue = true;
-
-      // events bookkeeping
-      this._events = {}; // registered callbacks
-      this._eventsCount = {}; // for $broadcast optimization
-
-      // fragment instance properties
-      this._isFragment = false;
-      this._fragment = // @type {DocumentFragment}
-      this._fragmentStart = // @type {Text|Comment}
-      this._fragmentEnd = null; // @type {Text|Comment}
-
-      // lifecycle state
-      this._isCompiled = this._isDestroyed = this._isReady = this._isAttached = this._isBeingDestroyed = this._vForRemoving = false;
-      this._unlinkFn = null;
-
-      // context:
-      // if this is a transcluded component, context
-      // will be the common parent vm of this instance
-      // and its host.
-      this._context = options._context || this.$parent;
-
-      // scope:
-      // if this is inside an inline v-for, the scope
-      // will be the intermediate scope created for this
-      // repeat fragment. this is used for linking props
-      // and container directives.
-      this._scope = options._scope;
-
-      // fragment:
-      // if this instance is compiled inside a Fragment, it
-      // needs to reigster itself as a child of that fragment
-      // for attach/detach to work properly.
-      this._frag = options._frag;
-      if (this._frag) {
-        this._frag.children.push(this);
-      }
-
-      // push self into parent / transclusion host
-      if (this.$parent) {
-        this.$parent.$children.push(this);
-      }
-
-      // merge options.
-      options = this.$options = mergeOptions(this.constructor.options, options, this);
-
-      // set ref
-      this._updateRef();
-
-      // initialize data as empty object.
-      // it will be filled up in _initData().
-      this._data = {};
-
-      // call init hook
-      this._callHook('init');
-
-      // initialize data observation and scope inheritance.
-      this._initState();
-
-      // setup event system and option events.
-      this._initEvents();
-
-      // call created hook
-      this._callHook('created');
-
-      // if `el` option is passed, start compilation.
-      if (options.el) {
-        this.$mount(options.el);
-      }
-    };
-  }
-
-  var pathCache = new Cache(1000);
-
-  // actions
-  var APPEND = 0;
-  var PUSH = 1;
-  var INC_SUB_PATH_DEPTH = 2;
-  var PUSH_SUB_PATH = 3;
-
-  // states
-  var BEFORE_PATH = 0;
-  var IN_PATH = 1;
-  var BEFORE_IDENT = 2;
-  var IN_IDENT = 3;
-  var IN_SUB_PATH = 4;
-  var IN_SINGLE_QUOTE = 5;
-  var IN_DOUBLE_QUOTE = 6;
-  var AFTER_PATH = 7;
-  var ERROR = 8;
-
-  var pathStateMachine = [];
-
-  pathStateMachine[BEFORE_PATH] = {
-    'ws': [BEFORE_PATH],
-    'ident': [IN_IDENT, APPEND],
-    '[': [IN_SUB_PATH],
-    'eof': [AFTER_PATH]
-  };
-
-  pathStateMachine[IN_PATH] = {
-    'ws': [IN_PATH],
-    '.': [BEFORE_IDENT],
-    '[': [IN_SUB_PATH],
-    'eof': [AFTER_PATH]
-  };
-
-  pathStateMachine[BEFORE_IDENT] = {
-    'ws': [BEFORE_IDENT],
-    'ident': [IN_IDENT, APPEND]
-  };
-
-  pathStateMachine[IN_IDENT] = {
-    'ident': [IN_IDENT, APPEND],
-    '0': [IN_IDENT, APPEND],
-    'number': [IN_IDENT, APPEND],
-    'ws': [IN_PATH, PUSH],
-    '.': [BEFORE_IDENT, PUSH],
-    '[': [IN_SUB_PATH, PUSH],
-    'eof': [AFTER_PATH, PUSH]
-  };
-
-  pathStateMachine[IN_SUB_PATH] = {
-    "'": [IN_SINGLE_QUOTE, APPEND],
-    '"': [IN_DOUBLE_QUOTE, APPEND],
-    '[': [IN_SUB_PATH, INC_SUB_PATH_DEPTH],
-    ']': [IN_PATH, PUSH_SUB_PATH],
-    'eof': ERROR,
-    'else': [IN_SUB_PATH, APPEND]
-  };
-
-  pathStateMachine[IN_SINGLE_QUOTE] = {
-    "'": [IN_SUB_PATH, APPEND],
-    'eof': ERROR,
-    'else': [IN_SINGLE_QUOTE, APPEND]
-  };
-
-  pathStateMachine[IN_DOUBLE_QUOTE] = {
-    '"': [IN_SUB_PATH, APPEND],
-    'eof': ERROR,
-    'else': [IN_DOUBLE_QUOTE, APPEND]
-  };
-
-  /**
-   * Determine the type of a character in a keypath.
-   *
-   * @param {Char} ch
-   * @return {String} type
-   */
-
-  function getPathCharType(ch) {
-    if (ch === undefined) {
-      return 'eof';
-    }
-
-    var code = ch.charCodeAt(0);
-
-    switch (code) {
-      case 0x5B: // [
-      case 0x5D: // ]
-      case 0x2E: // .
-      case 0x22: // "
-      case 0x27: // '
-      case 0x30:
-        // 0
-        return ch;
-
-      case 0x5F: // _
-      case 0x24:
-        // $
-        return 'ident';
-
-      case 0x20: // Space
-      case 0x09: // Tab
-      case 0x0A: // Newline
-      case 0x0D: // Return
-      case 0xA0: // No-break space
-      case 0xFEFF: // Byte Order Mark
-      case 0x2028: // Line Separator
-      case 0x2029:
-        // Paragraph Separator
-        return 'ws';
-    }
-
-    // a-z, A-Z
-    if (code >= 0x61 && code <= 0x7A || code >= 0x41 && code <= 0x5A) {
-      return 'ident';
-    }
-
-    // 1-9
-    if (code >= 0x31 && code <= 0x39) {
-      return 'number';
-    }
-
-    return 'else';
-  }
-
-  /**
-   * Format a subPath, return its plain form if it is
-   * a literal string or number. Otherwise prepend the
-   * dynamic indicator (*).
-   *
-   * @param {String} path
-   * @return {String}
-   */
-
-  function formatSubPath(path) {
-    var trimmed = path.trim();
-    // invalid leading 0
-    if (path.charAt(0) === '0' && isNaN(path)) {
-      return false;
-    }
-    return isLiteral(trimmed) ? stripQuotes(trimmed) : '*' + trimmed;
-  }
-
-  /**
-   * Parse a string path into an array of segments
-   *
-   * @param {String} path
-   * @return {Array|undefined}
-   */
-
-  function parse(path) {
-    var keys = [];
-    var index = -1;
-    var mode = BEFORE_PATH;
-    var subPathDepth = 0;
-    var c, newChar, key, type, transition, action, typeMap;
-
-    var actions = [];
-
-    actions[PUSH] = function () {
-      if (key !== undefined) {
-        keys.push(key);
-        key = undefined;
-      }
-    };
-
-    actions[APPEND] = function () {
-      if (key === undefined) {
-        key = newChar;
-      } else {
-        key += newChar;
-      }
-    };
-
-    actions[INC_SUB_PATH_DEPTH] = function () {
-      actions[APPEND]();
-      subPathDepth++;
-    };
-
-    actions[PUSH_SUB_PATH] = function () {
-      if (subPathDepth > 0) {
-        subPathDepth--;
-        mode = IN_SUB_PATH;
-        actions[APPEND]();
-      } else {
-        subPathDepth = 0;
-        key = formatSubPath(key);
-        if (key === false) {
-          return false;
-        } else {
-          actions[PUSH]();
-        }
-      }
-    };
-
-    function maybeUnescapeQuote() {
-      var nextChar = path[index + 1];
-      if (mode === IN_SINGLE_QUOTE && nextChar === "'" || mode === IN_DOUBLE_QUOTE && nextChar === '"') {
-        index++;
-        newChar = '\\' + nextChar;
-        actions[APPEND]();
-        return true;
-      }
-    }
-
-    while (mode != null) {
-      index++;
-      c = path[index];
-
-      if (c === '\\' && maybeUnescapeQuote()) {
-        continue;
-      }
-
-      type = getPathCharType(c);
-      typeMap = pathStateMachine[mode];
-      transition = typeMap[type] || typeMap['else'] || ERROR;
-
-      if (transition === ERROR) {
-        return; // parse error
-      }
-
-      mode = transition[0];
-      action = actions[transition[1]];
-      if (action) {
-        newChar = transition[2];
-        newChar = newChar === undefined ? c : newChar;
-        if (action() === false) {
-          return;
-        }
-      }
-
-      if (mode === AFTER_PATH) {
-        keys.raw = path;
-        return keys;
-      }
-    }
-  }
-
-  /**
-   * External parse that check for a cache hit first
-   *
-   * @param {String} path
-   * @return {Array|undefined}
-   */
-
-  function parsePath(path) {
-    var hit = pathCache.get(path);
-    if (!hit) {
-      hit = parse(path);
-      if (hit) {
-        pathCache.put(path, hit);
-      }
-    }
-    return hit;
-  }
-
-  /**
-   * Get from an object from a path string
-   *
-   * @param {Object} obj
-   * @param {String} path
-   */
-
-  function getPath(obj, path) {
-    return parseExpression(path).get(obj);
-  }
-
-  /**
-   * Warn against setting non-existent root path on a vm.
-   */
-
-  var warnNonExistent;
-  if ('development' !== 'production') {
-    warnNonExistent = function (path, vm) {
-      warn('You are setting a non-existent path "' + path.raw + '" ' + 'on a vm instance. Consider pre-initializing the property ' + 'with the "data" option for more reliable reactivity ' + 'and better performance.', vm);
-    };
-  }
-
-  /**
-   * Set on an object from a path
-   *
-   * @param {Object} obj
-   * @param {String | Array} path
-   * @param {*} val
-   */
-
-  function setPath(obj, path, val) {
-    var original = obj;
-    if (typeof path === 'string') {
-      path = parse(path);
-    }
-    if (!path || !isObject(obj)) {
-      return false;
-    }
-    var last, key;
-    for (var i = 0, l = path.length; i < l; i++) {
-      last = obj;
-      key = path[i];
-      if (key.charAt(0) === '*') {
-        key = parseExpression(key.slice(1)).get.call(original, original);
-      }
-      if (i < l - 1) {
-        obj = obj[key];
-        if (!isObject(obj)) {
-          obj = {};
-          if ('development' !== 'production' && last._isVue) {
-            warnNonExistent(path, last);
-          }
-          set(last, key, obj);
-        }
-      } else {
-        if (isArray(obj)) {
-          obj.$set(key, val);
-        } else if (key in obj) {
-          obj[key] = val;
-        } else {
-          if ('development' !== 'production' && obj._isVue) {
-            warnNonExistent(path, obj);
-          }
-          set(obj, key, val);
-        }
-      }
-    }
-    return true;
-  }
-
-var path = Object.freeze({
-    parsePath: parsePath,
-    getPath: getPath,
-    setPath: setPath
-  });
-
-  var expressionCache = new Cache(1000);
-
-  var allowedKeywords = 'Math,Date,this,true,false,null,undefined,Infinity,NaN,' + 'isNaN,isFinite,decodeURI,decodeURIComponent,encodeURI,' + 'encodeURIComponent,parseInt,parseFloat';
-  var allowedKeywordsRE = new RegExp('^(' + allowedKeywords.replace(/,/g, '\\b|') + '\\b)');
-
-  // keywords that don't make sense inside expressions
-  var improperKeywords = 'break,case,class,catch,const,continue,debugger,default,' + 'delete,do,else,export,extends,finally,for,function,if,' + 'import,in,instanceof,let,return,super,switch,throw,try,' + 'var,while,with,yield,enum,await,implements,package,' + 'protected,static,interface,private,public';
-  var improperKeywordsRE = new RegExp('^(' + improperKeywords.replace(/,/g, '\\b|') + '\\b)');
-
-  var wsRE = /\s/g;
-  var newlineRE = /\n/g;
-  var saveRE = /[\{,]\s*[\w\$_]+\s*:|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`)|new |typeof |void /g;
-  var restoreRE = /"(\d+)"/g;
-  var pathTestRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\]|\[[A-Za-z_$][\w$]*\])*$/;
-  var identRE = /[^\w$\.](?:[A-Za-z_$][\w$]*)/g;
-  var literalValueRE$1 = /^(?:true|false|null|undefined|Infinity|NaN)$/;
-
-  function noop() {}
-
-  /**
-   * Save / Rewrite / Restore
-   *
-   * When rewriting paths found in an expression, it is
-   * possible for the same letter sequences to be found in
-   * strings and Object literal property keys. Therefore we
-   * remove and store these parts in a temporary array, and
-   * restore them after the path rewrite.
-   */
-
-  var saved = [];
-
-  /**
-   * Save replacer
-   *
-   * The save regex can match two possible cases:
-   * 1. An opening object literal
-   * 2. A string
-   * If matched as a plain string, we need to escape its
-   * newlines, since the string needs to be preserved when
-   * generating the function body.
-   *
-   * @param {String} str
-   * @param {String} isString - str if matched as a string
-   * @return {String} - placeholder with index
-   */
-
-  function save(str, isString) {
-    var i = saved.length;
-    saved[i] = isString ? str.replace(newlineRE, '\\n') : str;
-    return '"' + i + '"';
-  }
-
-  /**
-   * Path rewrite replacer
-   *
-   * @param {String} raw
-   * @return {String}
-   */
-
-  function rewrite(raw) {
-    var c = raw.charAt(0);
-    var path = raw.slice(1);
-    if (allowedKeywordsRE.test(path)) {
-      return raw;
-    } else {
-      path = path.indexOf('"') > -1 ? path.replace(restoreRE, restore) : path;
-      return c + 'scope.' + path;
-    }
-  }
-
-  /**
-   * Restore replacer
-   *
-   * @param {String} str
-   * @param {String} i - matched save index
-   * @return {String}
-   */
-
-  function restore(str, i) {
-    return saved[i];
-  }
-
-  /**
-   * Rewrite an expression, prefixing all path accessors with
-   * `scope.` and generate getter/setter functions.
-   *
-   * @param {String} exp
-   * @return {Function}
-   */
-
-  function compileGetter(exp) {
-    if (improperKeywordsRE.test(exp)) {
-      'development' !== 'production' && warn('Avoid using reserved keywords in expression: ' + exp);
-    }
-    // reset state
-    saved.length = 0;
-    // save strings and object literal keys
-    var body = exp.replace(saveRE, save).replace(wsRE, '');
-    // rewrite all paths
-    // pad 1 space here because the regex matches 1 extra char
-    body = (' ' + body).replace(identRE, rewrite).replace(restoreRE, restore);
-    return makeGetterFn(body);
-  }
-
-  /**
-   * Build a getter function. Requires eval.
-   *
-   * We isolate the try/catch so it doesn't affect the
-   * optimization of the parse function when it is not called.
-   *
-   * @param {String} body
-   * @return {Function|undefined}
-   */
-
-  function makeGetterFn(body) {
-    try {
-      /* eslint-disable no-new-func */
-      return new Function('scope', 'return ' + body + ';');
-      /* eslint-enable no-new-func */
-    } catch (e) {
-      if ('development' !== 'production') {
-        /* istanbul ignore if */
-        if (e.toString().match(/unsafe-eval|CSP/)) {
-          warn('It seems you are using the default build of Vue.js in an environment ' + 'with Content Security Policy that prohibits unsafe-eval. ' + 'Use the CSP-compliant build instead: ' + 'http://vuejs.org/guide/installation.html#CSP-compliant-build');
-        } else {
-          warn('Invalid expression. ' + 'Generated function body: ' + body);
-        }
-      }
-      return noop;
-    }
-  }
-
-  /**
-   * Compile a setter function for the expression.
-   *
-   * @param {String} exp
-   * @return {Function|undefined}
-   */
-
-  function compileSetter(exp) {
-    var path = parsePath(exp);
-    if (path) {
-      return function (scope, val) {
-        setPath(scope, path, val);
-      };
-    } else {
-      'development' !== 'production' && warn('Invalid setter expression: ' + exp);
-    }
-  }
-
-  /**
-   * Parse an expression into re-written getter/setters.
-   *
-   * @param {String} exp
-   * @param {Boolean} needSet
-   * @return {Function}
-   */
-
-  function parseExpression(exp, needSet) {
-    exp = exp.trim();
-    // try cache
-    var hit = expressionCache.get(exp);
-    if (hit) {
-      if (needSet && !hit.set) {
-        hit.set = compileSetter(hit.exp);
-      }
-      return hit;
-    }
-    var res = { exp: exp };
-    res.get = isSimplePath(exp) && exp.indexOf('[') < 0
-    // optimized super simple getter
-    ? makeGetterFn('scope.' + exp)
-    // dynamic getter
-    : compileGetter(exp);
-    if (needSet) {
-      res.set = compileSetter(exp);
-    }
-    expressionCache.put(exp, res);
-    return res;
-  }
-
-  /**
-   * Check if an expression is a simple path.
-   *
-   * @param {String} exp
-   * @return {Boolean}
-   */
-
-  function isSimplePath(exp) {
-    return pathTestRE.test(exp) &&
-    // don't treat literal values as paths
-    !literalValueRE$1.test(exp) &&
-    // Math constants e.g. Math.PI, Math.E etc.
-    exp.slice(0, 5) !== 'Math.';
-  }
-
-var expression = Object.freeze({
-    parseExpression: parseExpression,
-    isSimplePath: isSimplePath
-  });
-
-  // we have two separate queues: one for directive updates
-  // and one for user watcher registered via $watch().
-  // we want to guarantee directive updates to be called
-  // before user watchers so that when user watchers are
-  // triggered, the DOM would have already been in updated
-  // state.
-
-  var queue = [];
-  var userQueue = [];
-  var has = {};
-  var circular = {};
-  var waiting = false;
-
-  /**
-   * Reset the batcher's state.
-   */
-
-  function resetBatcherState() {
-    queue.length = 0;
-    userQueue.length = 0;
-    has = {};
-    circular = {};
-    waiting = false;
-  }
-
-  /**
-   * Flush both queues and run the watchers.
-   */
-
-  function flushBatcherQueue() {
-    var _again = true;
-
-    _function: while (_again) {
-      _again = false;
-
-      runBatcherQueue(queue);
-      runBatcherQueue(userQueue);
-      // user watchers triggered more watchers,
-      // keep flushing until it depletes
-      if (queue.length) {
-        _again = true;
-        continue _function;
-      }
-      // dev tool hook
-      /* istanbul ignore if */
-      if (devtools && config.devtools) {
-        devtools.emit('flush');
-      }
-      resetBatcherState();
-    }
-  }
-
-  /**
-   * Run the watchers in a single queue.
-   *
-   * @param {Array} queue
-   */
-
-  function runBatcherQueue(queue) {
-    // do not cache length because more watchers might be pushed
-    // as we run existing watchers
-    for (var i = 0; i < queue.length; i++) {
-      var watcher = queue[i];
-      var id = watcher.id;
-      has[id] = null;
-      watcher.run();
-      // in dev build, check and stop circular updates.
-      if ('development' !== 'production' && has[id] != null) {
-        circular[id] = (circular[id] || 0) + 1;
-        if (circular[id] > config._maxUpdateCount) {
-          warn('You may have an infinite update loop for watcher ' + 'with expression "' + watcher.expression + '"', watcher.vm);
-          break;
-        }
-      }
-    }
-    queue.length = 0;
-  }
-
-  /**
-   * Push a watcher into the watcher queue.
-   * Jobs with duplicate IDs will be skipped unless it's
-   * pushed when the queue is being flushed.
-   *
-   * @param {Watcher} watcher
-   *   properties:
-   *   - {Number} id
-   *   - {Function} run
-   */
-
-  function pushWatcher(watcher) {
-    var id = watcher.id;
-    if (has[id] == null) {
-      // push watcher into appropriate queue
-      var q = watcher.user ? userQueue : queue;
-      has[id] = q.length;
-      q.push(watcher);
-      // queue the flush
-      if (!waiting) {
-        waiting = true;
-        nextTick(flushBatcherQueue);
-      }
-    }
-  }
-
-  var uid$2 = 0;
-
-  /**
-   * A watcher parses an expression, collects dependencies,
-   * and fires callback when the expression value changes.
-   * This is used for both the $watch() api and directives.
-   *
-   * @param {Vue} vm
-   * @param {String|Function} expOrFn
-   * @param {Function} cb
-   * @param {Object} options
-   *                 - {Array} filters
-   *                 - {Boolean} twoWay
-   *                 - {Boolean} deep
-   *                 - {Boolean} user
-   *                 - {Boolean} sync
-   *                 - {Boolean} lazy
-   *                 - {Function} [preProcess]
-   *                 - {Function} [postProcess]
-   * @constructor
-   */
-  function Watcher(vm, expOrFn, cb, options) {
-    // mix in options
-    if (options) {
-      extend(this, options);
-    }
-    var isFn = typeof expOrFn === 'function';
-    this.vm = vm;
-    vm._watchers.push(this);
-    this.expression = expOrFn;
-    this.cb = cb;
-    this.id = ++uid$2; // uid for batching
-    this.active = true;
-    this.dirty = this.lazy; // for lazy watchers
-    this.deps = [];
-    this.newDeps = [];
-    this.depIds = new _Set();
-    this.newDepIds = new _Set();
-    this.prevError = null; // for async error stacks
-    // parse expression for getter/setter
-    if (isFn) {
-      this.getter = expOrFn;
-      this.setter = undefined;
-    } else {
-      var res = parseExpression(expOrFn, this.twoWay);
-      this.getter = res.get;
-      this.setter = res.set;
-    }
-    this.value = this.lazy ? undefined : this.get();
-    // state for avoiding false triggers for deep and Array
-    // watchers during vm._digest()
-    this.queued = this.shallow = false;
-  }
-
-  /**
-   * Evaluate the getter, and re-collect dependencies.
-   */
-
-  Watcher.prototype.get = function () {
-    this.beforeGet();
-    var scope = this.scope || this.vm;
-    var value;
-    try {
-      value = this.getter.call(scope, scope);
-    } catch (e) {
-      if ('development' !== 'production' && config.warnExpressionErrors) {
-        warn('Error when evaluating expression ' + '"' + this.expression + '": ' + e.toString(), this.vm);
-      }
-    }
-    // "touch" every property so they are all tracked as
-    // dependencies for deep watching
-    if (this.deep) {
-      traverse(value);
-    }
-    if (this.preProcess) {
-      value = this.preProcess(value);
-    }
-    if (this.filters) {
-      value = scope._applyFilters(value, null, this.filters, false);
-    }
-    if (this.postProcess) {
-      value = this.postProcess(value);
-    }
-    this.afterGet();
-    return value;
-  };
-
-  /**
-   * Set the corresponding value with the setter.
-   *
-   * @param {*} value
-   */
-
-  Watcher.prototype.set = function (value) {
-    var scope = this.scope || this.vm;
-    if (this.filters) {
-      value = scope._applyFilters(value, this.value, this.filters, true);
-    }
-    try {
-      this.setter.call(scope, scope, value);
-    } catch (e) {
-      if ('development' !== 'production' && config.warnExpressionErrors) {
-        warn('Error when evaluating setter ' + '"' + this.expression + '": ' + e.toString(), this.vm);
-      }
-    }
-    // two-way sync for v-for alias
-    var forContext = scope.$forContext;
-    if (forContext && forContext.alias === this.expression) {
-      if (forContext.filters) {
-        'development' !== 'production' && warn('It seems you are using two-way binding on ' + 'a v-for alias (' + this.expression + '), and the ' + 'v-for has filters. This will not work properly. ' + 'Either remove the filters or use an array of ' + 'objects and bind to object properties instead.', this.vm);
-        return;
-      }
-      forContext._withLock(function () {
-        if (scope.$key) {
-          // original is an object
-          forContext.rawValue[scope.$key] = value;
-        } else {
-          forContext.rawValue.$set(scope.$index, value);
-        }
-      });
-    }
-  };
-
-  /**
-   * Prepare for dependency collection.
-   */
-
-  Watcher.prototype.beforeGet = function () {
-    Dep.target = this;
-  };
-
-  /**
-   * Add a dependency to this directive.
-   *
-   * @param {Dep} dep
-   */
-
-  Watcher.prototype.addDep = function (dep) {
-    var id = dep.id;
-    if (!this.newDepIds.has(id)) {
-      this.newDepIds.add(id);
-      this.newDeps.push(dep);
-      if (!this.depIds.has(id)) {
-        dep.addSub(this);
-      }
-    }
-  };
-
-  /**
-   * Clean up for dependency collection.
-   */
-
-  Watcher.prototype.afterGet = function () {
-    Dep.target = null;
-    var i = this.deps.length;
-    while (i--) {
-      var dep = this.deps[i];
-      if (!this.newDepIds.has(dep.id)) {
-        dep.removeSub(this);
-      }
-    }
-    var tmp = this.depIds;
-    this.depIds = this.newDepIds;
-    this.newDepIds = tmp;
-    this.newDepIds.clear();
-    tmp = this.deps;
-    this.deps = this.newDeps;
-    this.newDeps = tmp;
-    this.newDeps.length = 0;
-  };
-
-  /**
-   * Subscriber interface.
-   * Will be called when a dependency changes.
-   *
-   * @param {Boolean} shallow
-   */
-
-  Watcher.prototype.update = function (shallow) {
-    if (this.lazy) {
-      this.dirty = true;
-    } else if (this.sync || !config.async) {
-      this.run();
-    } else {
-      // if queued, only overwrite shallow with non-shallow,
-      // but not the other way around.
-      this.shallow = this.queued ? shallow ? this.shallow : false : !!shallow;
-      this.queued = true;
-      // record before-push error stack in debug mode
-      /* istanbul ignore if */
-      if ('development' !== 'production' && config.debug) {
-        this.prevError = new Error('[vue] async stack trace');
-      }
-      pushWatcher(this);
-    }
-  };
-
-  /**
-   * Batcher job interface.
-   * Will be called by the batcher.
-   */
-
-  Watcher.prototype.run = function () {
-    if (this.active) {
-      var value = this.get();
-      if (value !== this.value ||
-      // Deep watchers and watchers on Object/Arrays should fire even
-      // when the value is the same, because the value may
-      // have mutated; but only do so if this is a
-      // non-shallow update (caused by a vm digest).
-      (isObject(value) || this.deep) && !this.shallow) {
-        // set new value
-        var oldValue = this.value;
-        this.value = value;
-        // in debug + async mode, when a watcher callbacks
-        // throws, we also throw the saved before-push error
-        // so the full cross-tick stack trace is available.
-        var prevError = this.prevError;
-        /* istanbul ignore if */
-        if ('development' !== 'production' && config.debug && prevError) {
-          this.prevError = null;
-          try {
-            this.cb.call(this.vm, value, oldValue);
-          } catch (e) {
-            nextTick(function () {
-              throw prevError;
-            }, 0);
-            throw e;
-          }
-        } else {
-          this.cb.call(this.vm, value, oldValue);
-        }
-      }
-      this.queued = this.shallow = false;
-    }
-  };
-
-  /**
-   * Evaluate the value of the watcher.
-   * This only gets called for lazy watchers.
-   */
-
-  Watcher.prototype.evaluate = function () {
-    // avoid overwriting another watcher that is being
-    // collected.
-    var current = Dep.target;
-    this.value = this.get();
-    this.dirty = false;
-    Dep.target = current;
-  };
-
-  /**
-   * Depend on all deps collected by this watcher.
-   */
-
-  Watcher.prototype.depend = function () {
-    var i = this.deps.length;
-    while (i--) {
-      this.deps[i].depend();
-    }
-  };
-
-  /**
-   * Remove self from all dependencies' subcriber list.
-   */
-
-  Watcher.prototype.teardown = function () {
-    if (this.active) {
-      // remove self from vm's watcher list
-      // this is a somewhat expensive operation so we skip it
-      // if the vm is being destroyed or is performing a v-for
-      // re-render (the watcher list is then filtered by v-for).
-      if (!this.vm._isBeingDestroyed && !this.vm._vForRemoving) {
-        this.vm._watchers.$remove(this);
-      }
-      var i = this.deps.length;
-      while (i--) {
-        this.deps[i].removeSub(this);
-      }
-      this.active = false;
-      this.vm = this.cb = this.value = null;
-    }
-  };
-
-  /**
-   * Recrusively traverse an object to evoke all converted
-   * getters, so that every nested property inside the object
-   * is collected as a "deep" dependency.
-   *
-   * @param {*} val
-   */
-
-  var seenObjects = new _Set();
-  function traverse(val, seen) {
-    var i = undefined,
-        keys = undefined;
-    if (!seen) {
-      seen = seenObjects;
-      seen.clear();
-    }
-    var isA = isArray(val);
-    var isO = isObject(val);
-    if ((isA || isO) && Object.isExtensible(val)) {
-      if (val.__ob__) {
-        var depId = val.__ob__.dep.id;
-        if (seen.has(depId)) {
-          return;
-        } else {
-          seen.add(depId);
-        }
-      }
-      if (isA) {
-        i = val.length;
-        while (i--) traverse(val[i], seen);
-      } else if (isO) {
-        keys = Object.keys(val);
-        i = keys.length;
-        while (i--) traverse(val[keys[i]], seen);
-      }
-    }
-  }
-
-  var text$1 = {
-
-    bind: function bind() {
-      this.attr = this.el.nodeType === 3 ? 'data' : 'textContent';
-    },
-
-    update: function update(value) {
-      this.el[this.attr] = _toString(value);
-    }
-  };
-
-  var templateCache = new Cache(1000);
-  var idSelectorCache = new Cache(1000);
-
-  var map = {
-    efault: [0, '', ''],
-    legend: [1, '<fieldset>', '</fieldset>'],
-    tr: [2, '<table><tbody>', '</tbody></table>'],
-    col: [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>']
-  };
-
-  map.td = map.th = [3, '<table><tbody><tr>', '</tr></tbody></table>'];
-
-  map.option = map.optgroup = [1, '<select multiple="multiple">', '</select>'];
-
-  map.thead = map.tbody = map.colgroup = map.caption = map.tfoot = [1, '<table>', '</table>'];
-
-  map.g = map.defs = map.symbol = map.use = map.image = map.text = map.circle = map.ellipse = map.line = map.path = map.polygon = map.polyline = map.rect = [1, '<svg ' + 'xmlns="http://www.w3.org/2000/svg" ' + 'xmlns:xlink="http://www.w3.org/1999/xlink" ' + 'xmlns:ev="http://www.w3.org/2001/xml-events"' + 'version="1.1">', '</svg>'];
-
-  /**
-   * Check if a node is a supported template node with a
-   * DocumentFragment content.
-   *
-   * @param {Node} node
-   * @return {Boolean}
-   */
-
-  function isRealTemplate(node) {
-    return isTemplate(node) && isFragment(node.content);
-  }
-
-  var tagRE$1 = /<([\w:-]+)/;
-  var entityRE = /&#?\w+?;/;
-  var commentRE = /<!--/;
-
-  /**
-   * Convert a string template to a DocumentFragment.
-   * Determines correct wrapping by tag types. Wrapping
-   * strategy found in jQuery & component/domify.
-   *
-   * @param {String} templateString
-   * @param {Boolean} raw
-   * @return {DocumentFragment}
-   */
-
-  function stringToFragment(templateString, raw) {
-    // try a cache hit first
-    var cacheKey = raw ? templateString : templateString.trim();
-    var hit = templateCache.get(cacheKey);
-    if (hit) {
-      return hit;
-    }
-
-    var frag = document.createDocumentFragment();
-    var tagMatch = templateString.match(tagRE$1);
-    var entityMatch = entityRE.test(templateString);
-    var commentMatch = commentRE.test(templateString);
-
-    if (!tagMatch && !entityMatch && !commentMatch) {
-      // text only, return a single text node.
-      frag.appendChild(document.createTextNode(templateString));
-    } else {
-      var tag = tagMatch && tagMatch[1];
-      var wrap = map[tag] || map.efault;
-      var depth = wrap[0];
-      var prefix = wrap[1];
-      var suffix = wrap[2];
-      var node = document.createElement('div');
-
-      node.innerHTML = prefix + templateString + suffix;
-      while (depth--) {
-        node = node.lastChild;
-      }
-
-      var child;
-      /* eslint-disable no-cond-assign */
-      while (child = node.firstChild) {
-        /* eslint-enable no-cond-assign */
-        frag.appendChild(child);
-      }
-    }
-    if (!raw) {
-      trimNode(frag);
-    }
-    templateCache.put(cacheKey, frag);
-    return frag;
-  }
-
-  /**
-   * Convert a template node to a DocumentFragment.
-   *
-   * @param {Node} node
-   * @return {DocumentFragment}
-   */
-
-  function nodeToFragment(node) {
-    // if its a template tag and the browser supports it,
-    // its content is already a document fragment. However, iOS Safari has
-    // bug when using directly cloned template content with touch
-    // events and can cause crashes when the nodes are removed from DOM, so we
-    // have to treat template elements as string templates. (#2805)
-    /* istanbul ignore if */
-    if (isRealTemplate(node)) {
-      return stringToFragment(node.innerHTML);
-    }
-    // script template
-    if (node.tagName === 'SCRIPT') {
-      return stringToFragment(node.textContent);
-    }
-    // normal node, clone it to avoid mutating the original
-    var clonedNode = cloneNode(node);
-    var frag = document.createDocumentFragment();
-    var child;
-    /* eslint-disable no-cond-assign */
-    while (child = clonedNode.firstChild) {
-      /* eslint-enable no-cond-assign */
-      frag.appendChild(child);
-    }
-    trimNode(frag);
-    return frag;
-  }
-
-  // Test for the presence of the Safari template cloning bug
-  // https://bugs.webkit.org/showug.cgi?id=137755
-  var hasBrokenTemplate = (function () {
-    /* istanbul ignore else */
-    if (inBrowser) {
-      var a = document.createElement('div');
-      a.innerHTML = '<template>1</template>';
-      return !a.cloneNode(true).firstChild.innerHTML;
-    } else {
-      return false;
-    }
-  })();
-
-  // Test for IE10/11 textarea placeholder clone bug
-  var hasTextareaCloneBug = (function () {
-    /* istanbul ignore else */
-    if (inBrowser) {
-      var t = document.createElement('textarea');
-      t.placeholder = 't';
-      return t.cloneNode(true).value === 't';
-    } else {
-      return false;
-    }
-  })();
-
-  /**
-   * 1. Deal with Safari cloning nested <template> bug by
-   *    manually cloning all template instances.
-   * 2. Deal with IE10/11 textarea placeholder bug by setting
-   *    the correct value after cloning.
-   *
-   * @param {Element|DocumentFragment} node
-   * @return {Element|DocumentFragment}
-   */
-
-  function cloneNode(node) {
-    /* istanbul ignore if */
-    if (!node.querySelectorAll) {
-      return node.cloneNode();
-    }
-    var res = node.cloneNode(true);
-    var i, original, cloned;
-    /* istanbul ignore if */
-    if (hasBrokenTemplate) {
-      var tempClone = res;
-      if (isRealTemplate(node)) {
-        node = node.content;
-        tempClone = res.content;
-      }
-      original = node.querySelectorAll('template');
-      if (original.length) {
-        cloned = tempClone.querySelectorAll('template');
-        i = cloned.length;
-        while (i--) {
-          cloned[i].parentNode.replaceChild(cloneNode(original[i]), cloned[i]);
-        }
-      }
-    }
-    /* istanbul ignore if */
-    if (hasTextareaCloneBug) {
-      if (node.tagName === 'TEXTAREA') {
-        res.value = node.value;
-      } else {
-        original = node.querySelectorAll('textarea');
-        if (original.length) {
-          cloned = res.querySelectorAll('textarea');
-          i = cloned.length;
-          while (i--) {
-            cloned[i].value = original[i].value;
-          }
-        }
-      }
-    }
-    return res;
-  }
-
-  /**
-   * Process the template option and normalizes it into a
-   * a DocumentFragment that can be used as a partial or a
-   * instance template.
-   *
-   * @param {*} template
-   *        Possible values include:
-   *        - DocumentFragment object
-   *        - Node object of type Template
-   *        - id selector: '#some-template-id'
-   *        - template string: '<div><span>{{msg}}</span></div>'
-   * @param {Boolean} shouldClone
-   * @param {Boolean} raw
-   *        inline HTML interpolation. Do not check for id
-   *        selector and keep whitespace in the string.
-   * @return {DocumentFragment|undefined}
-   */
-
-  function parseTemplate(template, shouldClone, raw) {
-    var node, frag;
-
-    // if the template is already a document fragment,
-    // do nothing
-    if (isFragment(template)) {
-      trimNode(template);
-      return shouldClone ? cloneNode(template) : template;
-    }
-
-    if (typeof template === 'string') {
-      // id selector
-      if (!raw && template.charAt(0) === '#') {
-        // id selector can be cached too
-        frag = idSelectorCache.get(template);
-        if (!frag) {
-          node = document.getElementById(template.slice(1));
-          if (node) {
-            frag = nodeToFragment(node);
-            // save selector to cache
-            idSelectorCache.put(template, frag);
-          }
-        }
-      } else {
-        // normal string template
-        frag = stringToFragment(template, raw);
-      }
-    } else if (template.nodeType) {
-      // a direct node
-      frag = nodeToFragment(template);
-    }
-
-    return frag && shouldClone ? cloneNode(frag) : frag;
-  }
-
-var template = Object.freeze({
-    cloneNode: cloneNode,
-    parseTemplate: parseTemplate
-  });
-
-  var html = {
-
-    bind: function bind() {
-      // a comment node means this is a binding for
-      // {{{ inline unescaped html }}}
-      if (this.el.nodeType === 8) {
-        // hold nodes
-        this.nodes = [];
-        // replace the placeholder with proper anchor
-        this.anchor = createAnchor('v-html');
-        replace(this.el, this.anchor);
-      }
-    },
-
-    update: function update(value) {
-      value = _toString(value);
-      if (this.nodes) {
-        this.swap(value);
-      } else {
-        this.el.innerHTML = value;
-      }
-    },
-
-    swap: function swap(value) {
-      // remove old nodes
-      var i = this.nodes.length;
-      while (i--) {
-        remove(this.nodes[i]);
-      }
-      // convert new value to a fragment
-      // do not attempt to retrieve from id selector
-      var frag = parseTemplate(value, true, true);
-      // save a reference to these nodes so we can remove later
-      this.nodes = toArray(frag.childNodes);
-      before(frag, this.anchor);
-    }
-  };
-
-  /**
-   * Abstraction for a partially-compiled fragment.
-   * Can optionally compile content with a child scope.
-   *
-   * @param {Function} linker
-   * @param {Vue} vm
-   * @param {DocumentFragment} frag
-   * @param {Vue} [host]
-   * @param {Object} [scope]
-   * @param {Fragment} [parentFrag]
-   */
-  function Fragment(linker, vm, frag, host, scope, parentFrag) {
-    this.children = [];
-    this.childFrags = [];
-    this.vm = vm;
-    this.scope = scope;
-    this.inserted = false;
-    this.parentFrag = parentFrag;
-    if (parentFrag) {
-      parentFrag.childFrags.push(this);
-    }
-    this.unlink = linker(vm, frag, host, scope, this);
-    var single = this.single = frag.childNodes.length === 1 &&
-    // do not go single mode if the only node is an anchor
-    !frag.childNodes[0].__v_anchor;
-    if (single) {
-      this.node = frag.childNodes[0];
-      this.before = singleBefore;
-      this.remove = singleRemove;
-    } else {
-      this.node = createAnchor('fragment-start');
-      this.end = createAnchor('fragment-end');
-      this.frag = frag;
-      prepend(this.node, frag);
-      frag.appendChild(this.end);
-      this.before = multiBefore;
-      this.remove = multiRemove;
-    }
-    this.node.__v_frag = this;
-  }
-
-  /**
-   * Call attach/detach for all components contained within
-   * this fragment. Also do so recursively for all child
-   * fragments.
-   *
-   * @param {Function} hook
-   */
-
-  Fragment.prototype.callHook = function (hook) {
-    var i, l;
-    for (i = 0, l = this.childFrags.length; i < l; i++) {
-      this.childFrags[i].callHook(hook);
-    }
-    for (i = 0, l = this.children.length; i < l; i++) {
-      hook(this.children[i]);
-    }
-  };
-
-  /**
-   * Insert fragment before target, single node version
-   *
-   * @param {Node} target
-   * @param {Boolean} withTransition
-   */
-
-  function singleBefore(target, withTransition) {
-    this.inserted = true;
-    var method = withTransition !== false ? beforeWithTransition : before;
-    method(this.node, target, this.vm);
-    if (inDoc(this.node)) {
-      this.callHook(attach);
-    }
-  }
-
-  /**
-   * Remove fragment, single node version
-   */
-
-  function singleRemove() {
-    this.inserted = false;
-    var shouldCallRemove = inDoc(this.node);
-    var self = this;
-    this.beforeRemove();
-    removeWithTransition(this.node, this.vm, function () {
-      if (shouldCallRemove) {
-        self.callHook(detach);
-      }
-      self.destroy();
-    });
-  }
-
-  /**
-   * Insert fragment before target, multi-nodes version
-   *
-   * @param {Node} target
-   * @param {Boolean} withTransition
-   */
-
-  function multiBefore(target, withTransition) {
-    this.inserted = true;
-    var vm = this.vm;
-    var method = withTransition !== false ? beforeWithTransition : before;
-    mapNodeRange(this.node, this.end, function (node) {
-      method(node, target, vm);
-    });
-    if (inDoc(this.node)) {
-      this.callHook(attach);
-    }
-  }
-
-  /**
-   * Remove fragment, multi-nodes version
-   */
-
-  function multiRemove() {
-    this.inserted = false;
-    var self = this;
-    var shouldCallRemove = inDoc(this.node);
-    this.beforeRemove();
-    removeNodeRange(this.node, this.end, this.vm, this.frag, function () {
-      if (shouldCallRemove) {
-        self.callHook(detach);
-      }
-      self.destroy();
-    });
-  }
-
-  /**
-   * Prepare the fragment for removal.
-   */
-
-  Fragment.prototype.beforeRemove = function () {
-    var i, l;
-    for (i = 0, l = this.childFrags.length; i < l; i++) {
-      // call the same method recursively on child
-      // fragments, depth-first
-      this.childFrags[i].beforeRemove(false);
-    }
-    for (i = 0, l = this.children.length; i < l; i++) {
-      // Call destroy for all contained instances,
-      // with remove:false and defer:true.
-      // Defer is necessary because we need to
-      // keep the children to call detach hooks
-      // on them.
-      this.children[i].$destroy(false, true);
-    }
-    var dirs = this.unlink.dirs;
-    for (i = 0, l = dirs.length; i < l; i++) {
-      // disable the watchers on all the directives
-      // so that the rendered content stays the same
-      // during removal.
-      dirs[i]._watcher && dirs[i]._watcher.teardown();
-    }
-  };
-
-  /**
-   * Destroy the fragment.
-   */
-
-  Fragment.prototype.destroy = function () {
-    if (this.parentFrag) {
-      this.parentFrag.childFrags.$remove(this);
-    }
-    this.node.__v_frag = null;
-    this.unlink();
-  };
-
-  /**
-   * Call attach hook for a Vue instance.
-   *
-   * @param {Vue} child
-   */
-
-  function attach(child) {
-    if (!child._isAttached && inDoc(child.$el)) {
-      child._callHook('attached');
-    }
-  }
-
-  /**
-   * Call detach hook for a Vue instance.
-   *
-   * @param {Vue} child
-   */
-
-  function detach(child) {
-    if (child._isAttached && !inDoc(child.$el)) {
-      child._callHook('detached');
-    }
-  }
-
-  var linkerCache = new Cache(5000);
-
-  /**
-   * A factory that can be used to create instances of a
-   * fragment. Caches the compiled linker if possible.
-   *
-   * @param {Vue} vm
-   * @param {Element|String} el
-   */
-  function FragmentFactory(vm, el) {
-    this.vm = vm;
-    var template;
-    var isString = typeof el === 'string';
-    if (isString || isTemplate(el) && !el.hasAttribute('v-if')) {
-      template = parseTemplate(el, true);
-    } else {
-      template = document.createDocumentFragment();
-      template.appendChild(el);
-    }
-    this.template = template;
-    // linker can be cached, but only for components
-    var linker;
-    var cid = vm.constructor.cid;
-    if (cid > 0) {
-      var cacheId = cid + (isString ? el : getOuterHTML(el));
-      linker = linkerCache.get(cacheId);
-      if (!linker) {
-        linker = compile(template, vm.$options, true);
-        linkerCache.put(cacheId, linker);
-      }
-    } else {
-      linker = compile(template, vm.$options, true);
-    }
-    this.linker = linker;
-  }
-
-  /**
-   * Create a fragment instance with given host and scope.
-   *
-   * @param {Vue} host
-   * @param {Object} scope
-   * @param {Fragment} parentFrag
-   */
-
-  FragmentFactory.prototype.create = function (host, scope, parentFrag) {
-    var frag = cloneNode(this.template);
-    return new Fragment(this.linker, this.vm, frag, host, scope, parentFrag);
-  };
-
-  var ON = 700;
-  var MODEL = 800;
-  var BIND = 850;
-  var TRANSITION = 1100;
-  var EL = 1500;
-  var COMPONENT = 1500;
-  var PARTIAL = 1750;
-  var IF = 2100;
-  var FOR = 2200;
-  var SLOT = 2300;
-
-  var uid$3 = 0;
-
-  var vFor = {
-
-    priority: FOR,
-    terminal: true,
-
-    params: ['track-by', 'stagger', 'enter-stagger', 'leave-stagger'],
-
-    bind: function bind() {
-      // support "item in/of items" syntax
-      var inMatch = this.expression.match(/(.*) (?:in|of) (.*)/);
-      if (inMatch) {
-        var itMatch = inMatch[1].match(/\((.*),(.*)\)/);
-        if (itMatch) {
-          this.iterator = itMatch[1].trim();
-          this.alias = itMatch[2].trim();
-        } else {
-          this.alias = inMatch[1].trim();
-        }
-        this.expression = inMatch[2];
-      }
-
-      if (!this.alias) {
-        'development' !== 'production' && warn('Invalid v-for expression "' + this.descriptor.raw + '": ' + 'alias is required.', this.vm);
-        return;
-      }
-
-      // uid as a cache identifier
-      this.id = '__v-for__' + ++uid$3;
-
-      // check if this is an option list,
-      // so that we know if we need to update the <select>'s
-      // v-model when the option list has changed.
-      // because v-model has a lower priority than v-for,
-      // the v-model is not bound here yet, so we have to
-      // retrive it in the actual updateModel() function.
-      var tag = this.el.tagName;
-      this.isOption = (tag === 'OPTION' || tag === 'OPTGROUP') && this.el.parentNode.tagName === 'SELECT';
-
-      // setup anchor nodes
-      this.start = createAnchor('v-for-start');
-      this.end = createAnchor('v-for-end');
-      replace(this.el, this.end);
-      before(this.start, this.end);
-
-      // cache
-      this.cache = Object.create(null);
-
-      // fragment factory
-      this.factory = new FragmentFactory(this.vm, this.el);
-    },
-
-    update: function update(data) {
-      this.diff(data);
-      this.updateRef();
-      this.updateModel();
-    },
-
-    /**
-     * Diff, based on new data and old data, determine the
-     * minimum amount of DOM manipulations needed to make the
-     * DOM reflect the new data Array.
-     *
-     * The algorithm diffs the new data Array by storing a
-     * hidden reference to an owner vm instance on previously
-     * seen data. This allows us to achieve O(n) which is
-     * better than a levenshtein distance based algorithm,
-     * which is O(m * n).
-     *
-     * @param {Array} data
-     */
-
-    diff: function diff(data) {
-      // check if the Array was converted from an Object
-      var item = data[0];
-      var convertedFromObject = this.fromObject = isObject(item) && hasOwn(item, '$key') && hasOwn(item, '$value');
-
-      var trackByKey = this.params.trackBy;
-      var oldFrags = this.frags;
-      var frags = this.frags = new Array(data.length);
-      var alias = this.alias;
-      var iterator = this.iterator;
-      var start = this.start;
-      var end = this.end;
-      var inDocument = inDoc(start);
-      var init = !oldFrags;
-      var i, l, frag, key, value, primitive;
-
-      // First pass, go through the new Array and fill up
-      // the new frags array. If a piece of data has a cached
-      // instance for it, we reuse it. Otherwise build a new
-      // instance.
-      for (i = 0, l = data.length; i < l; i++) {
-        item = data[i];
-        key = convertedFromObject ? item.$key : null;
-        value = convertedFromObject ? item.$value : item;
-        primitive = !isObject(value);
-        frag = !init && this.getCachedFrag(value, i, key);
-        if (frag) {
-          // reusable fragment
-          frag.reused = true;
-          // update $index
-          frag.scope.$index = i;
-          // update $key
-          if (key) {
-            frag.scope.$key = key;
-          }
-          // update iterator
-          if (iterator) {
-            frag.scope[iterator] = key !== null ? key : i;
-          }
-          // update data for track-by, object repeat &
-          // primitive values.
-          if (trackByKey || convertedFromObject || primitive) {
-            withoutConversion(function () {
-              frag.scope[alias] = value;
-            });
-          }
-        } else {
-          // new isntance
-          frag = this.create(value, alias, i, key);
-          frag.fresh = !init;
-        }
-        frags[i] = frag;
-        if (init) {
-          frag.before(end);
-        }
-      }
-
-      // we're done for the initial render.
-      if (init) {
-        return;
-      }
-
-      // Second pass, go through the old fragments and
-      // destroy those who are not reused (and remove them
-      // from cache)
-      var removalIndex = 0;
-      var totalRemoved = oldFrags.length - frags.length;
-      // when removing a large number of fragments, watcher removal
-      // turns out to be a perf bottleneck, so we batch the watcher
-      // removals into a single filter call!
-      this.vm._vForRemoving = true;
-      for (i = 0, l = oldFrags.length; i < l; i++) {
-        frag = oldFrags[i];
-        if (!frag.reused) {
-          this.deleteCachedFrag(frag);
-          this.remove(frag, removalIndex++, totalRemoved, inDocument);
-        }
-      }
-      this.vm._vForRemoving = false;
-      if (removalIndex) {
-        this.vm._watchers = this.vm._watchers.filter(function (w) {
-          return w.active;
-        });
-      }
-
-      // Final pass, move/insert new fragments into the
-      // right place.
-      var targetPrev, prevEl, currentPrev;
-      var insertionIndex = 0;
-      for (i = 0, l = frags.length; i < l; i++) {
-        frag = frags[i];
-        // this is the frag that we should be after
-        targetPrev = frags[i - 1];
-        prevEl = targetPrev ? targetPrev.staggerCb ? targetPrev.staggerAnchor : targetPrev.end || targetPrev.node : start;
-        if (frag.reused && !frag.staggerCb) {
-          currentPrev = findPrevFrag(frag, start, this.id);
-          if (currentPrev !== targetPrev && (!currentPrev ||
-          // optimization for moving a single item.
-          // thanks to suggestions by @livoras in #1807
-          findPrevFrag(currentPrev, start, this.id) !== targetPrev)) {
-            this.move(frag, prevEl);
-          }
-        } else {
-          // new instance, or still in stagger.
-          // insert with updated stagger index.
-          this.insert(frag, insertionIndex++, prevEl, inDocument);
-        }
-        frag.reused = frag.fresh = false;
-      }
-    },
-
-    /**
-     * Create a new fragment instance.
-     *
-     * @param {*} value
-     * @param {String} alias
-     * @param {Number} index
-     * @param {String} [key]
-     * @return {Fragment}
-     */
-
-    create: function create(value, alias, index, key) {
-      var host = this._host;
-      // create iteration scope
-      var parentScope = this._scope || this.vm;
-      var scope = Object.create(parentScope);
-      // ref holder for the scope
-      scope.$refs = Object.create(parentScope.$refs);
-      scope.$els = Object.create(parentScope.$els);
-      // make sure point $parent to parent scope
-      scope.$parent = parentScope;
-      // for two-way binding on alias
-      scope.$forContext = this;
-      // define scope properties
-      // important: define the scope alias without forced conversion
-      // so that frozen data structures remain non-reactive.
-      withoutConversion(function () {
-        defineReactive(scope, alias, value);
-      });
-      defineReactive(scope, '$index', index);
-      if (key) {
-        defineReactive(scope, '$key', key);
-      } else if (scope.$key) {
-        // avoid accidental fallback
-        def(scope, '$key', null);
-      }
-      if (this.iterator) {
-        defineReactive(scope, this.iterator, key !== null ? key : index);
-      }
-      var frag = this.factory.create(host, scope, this._frag);
-      frag.forId = this.id;
-      this.cacheFrag(value, frag, index, key);
-      return frag;
-    },
-
-    /**
-     * Update the v-ref on owner vm.
-     */
-
-    updateRef: function updateRef() {
-      var ref = this.descriptor.ref;
-      if (!ref) return;
-      var hash = (this._scope || this.vm).$refs;
-      var refs;
-      if (!this.fromObject) {
-        refs = this.frags.map(findVmFromFrag);
-      } else {
-        refs = {};
-        this.frags.forEach(function (frag) {
-          refs[frag.scope.$key] = findVmFromFrag(frag);
-        });
-      }
-      hash[ref] = refs;
-    },
-
-    /**
-     * For option lists, update the containing v-model on
-     * parent <select>.
-     */
-
-    updateModel: function updateModel() {
-      if (this.isOption) {
-        var parent = this.start.parentNode;
-        var model = parent && parent.__v_model;
-        if (model) {
-          model.forceUpdate();
-        }
-      }
-    },
-
-    /**
-     * Insert a fragment. Handles staggering.
-     *
-     * @param {Fragment} frag
-     * @param {Number} index
-     * @param {Node} prevEl
-     * @param {Boolean} inDocument
-     */
-
-    insert: function insert(frag, index, prevEl, inDocument) {
-      if (frag.staggerCb) {
-        frag.staggerCb.cancel();
-        frag.staggerCb = null;
-      }
-      var staggerAmount = this.getStagger(frag, index, null, 'enter');
-      if (inDocument && staggerAmount) {
-        // create an anchor and insert it synchronously,
-        // so that we can resolve the correct order without
-        // worrying about some elements not inserted yet
-        var anchor = frag.staggerAnchor;
-        if (!anchor) {
-          anchor = frag.staggerAnchor = createAnchor('stagger-anchor');
-          anchor.__v_frag = frag;
-        }
-        after(anchor, prevEl);
-        var op = frag.staggerCb = cancellable(function () {
-          frag.staggerCb = null;
-          frag.before(anchor);
-          remove(anchor);
-        });
-        setTimeout(op, staggerAmount);
-      } else {
-        var target = prevEl.nextSibling;
-        /* istanbul ignore if */
-        if (!target) {
-          // reset end anchor position in case the position was messed up
-          // by an external drag-n-drop library.
-          after(this.end, prevEl);
-          target = this.end;
-        }
-        frag.before(target);
-      }
-    },
-
-    /**
-     * Remove a fragment. Handles staggering.
-     *
-     * @param {Fragment} frag
-     * @param {Number} index
-     * @param {Number} total
-     * @param {Boolean} inDocument
-     */
-
-    remove: function remove(frag, index, total, inDocument) {
-      if (frag.staggerCb) {
-        frag.staggerCb.cancel();
-        frag.staggerCb = null;
-        // it's not possible for the same frag to be removed
-        // twice, so if we have a pending stagger callback,
-        // it means this frag is queued for enter but removed
-        // before its transition started. Since it is already
-        // destroyed, we can just leave it in detached state.
-        return;
-      }
-      var staggerAmount = this.getStagger(frag, index, total, 'leave');
-      if (inDocument && staggerAmount) {
-        var op = frag.staggerCb = cancellable(function () {
-          frag.staggerCb = null;
-          frag.remove();
-        });
-        setTimeout(op, staggerAmount);
-      } else {
-        frag.remove();
-      }
-    },
-
-    /**
-     * Move a fragment to a new position.
-     * Force no transition.
-     *
-     * @param {Fragment} frag
-     * @param {Node} prevEl
-     */
-
-    move: function move(frag, prevEl) {
-      // fix a common issue with Sortable:
-      // if prevEl doesn't have nextSibling, this means it's
-      // been dragged after the end anchor. Just re-position
-      // the end anchor to the end of the container.
-      /* istanbul ignore if */
-      if (!prevEl.nextSibling) {
-        this.end.parentNode.appendChild(this.end);
-      }
-      frag.before(prevEl.nextSibling, false);
-    },
-
-    /**
-     * Cache a fragment using track-by or the object key.
-     *
-     * @param {*} value
-     * @param {Fragment} frag
-     * @param {Number} index
-     * @param {String} [key]
-     */
-
-    cacheFrag: function cacheFrag(value, frag, index, key) {
-      var trackByKey = this.params.trackBy;
-      var cache = this.cache;
-      var primitive = !isObject(value);
-      var id;
-      if (key || trackByKey || primitive) {
-        id = getTrackByKey(index, key, value, trackByKey);
-        if (!cache[id]) {
-          cache[id] = frag;
-        } else if (trackByKey !== '$index') {
-          'development' !== 'production' && this.warnDuplicate(value);
-        }
-      } else {
-        id = this.id;
-        if (hasOwn(value, id)) {
-          if (value[id] === null) {
-            value[id] = frag;
-          } else {
-            'development' !== 'production' && this.warnDuplicate(value);
-          }
-        } else if (Object.isExtensible(value)) {
-          def(value, id, frag);
-        } else if ('development' !== 'production') {
-          warn('Frozen v-for objects cannot be automatically tracked, make sure to ' + 'provide a track-by key.');
-        }
-      }
-      frag.raw = value;
-    },
-
-    /**
-     * Get a cached fragment from the value/index/key
-     *
-     * @param {*} value
-     * @param {Number} index
-     * @param {String} key
-     * @return {Fragment}
-     */
-
-    getCachedFrag: function getCachedFrag(value, index, key) {
-      var trackByKey = this.params.trackBy;
-      var primitive = !isObject(value);
-      var frag;
-      if (key || trackByKey || primitive) {
-        var id = getTrackByKey(index, key, value, trackByKey);
-        frag = this.cache[id];
-      } else {
-        frag = value[this.id];
-      }
-      if (frag && (frag.reused || frag.fresh)) {
-        'development' !== 'production' && this.warnDuplicate(value);
-      }
-      return frag;
-    },
-
-    /**
-     * Delete a fragment from cache.
-     *
-     * @param {Fragment} frag
-     */
-
-    deleteCachedFrag: function deleteCachedFrag(frag) {
-      var value = frag.raw;
-      var trackByKey = this.params.trackBy;
-      var scope = frag.scope;
-      var index = scope.$index;
-      // fix #948: avoid accidentally fall through to
-      // a parent repeater which happens to have $key.
-      var key = hasOwn(scope, '$key') && scope.$key;
-      var primitive = !isObject(value);
-      if (trackByKey || key || primitive) {
-        var id = getTrackByKey(index, key, value, trackByKey);
-        this.cache[id] = null;
-      } else {
-        value[this.id] = null;
-        frag.raw = null;
-      }
-    },
-
-    /**
-     * Get the stagger amount for an insertion/removal.
-     *
-     * @param {Fragment} frag
-     * @param {Number} index
-     * @param {Number} total
-     * @param {String} type
-     */
-
-    getStagger: function getStagger(frag, index, total, type) {
-      type = type + 'Stagger';
-      var trans = frag.node.__v_trans;
-      var hooks = trans && trans.hooks;
-      var hook = hooks && (hooks[type] || hooks.stagger);
-      return hook ? hook.call(frag, index, total) : index * parseInt(this.params[type] || this.params.stagger, 10);
-    },
-
-    /**
-     * Pre-process the value before piping it through the
-     * filters. This is passed to and called by the watcher.
-     */
-
-    _preProcess: function _preProcess(value) {
-      // regardless of type, store the un-filtered raw value.
-      this.rawValue = value;
-      return value;
-    },
-
-    /**
-     * Post-process the value after it has been piped through
-     * the filters. This is passed to and called by the watcher.
-     *
-     * It is necessary for this to be called during the
-     * watcher's dependency collection phase because we want
-     * the v-for to update when the source Object is mutated.
-     */
-
-    _postProcess: function _postProcess(value) {
-      if (isArray(value)) {
-        return value;
-      } else if (isPlainObject(value)) {
-        // convert plain object to array.
-        var keys = Object.keys(value);
-        var i = keys.length;
-        var res = new Array(i);
-        var key;
-        while (i--) {
-          key = keys[i];
-          res[i] = {
-            $key: key,
-            $value: value[key]
-          };
-        }
-        return res;
-      } else {
-        if (typeof value === 'number' && !isNaN(value)) {
-          value = range(value);
-        }
-        return value || [];
-      }
-    },
-
-    unbind: function unbind() {
-      if (this.descriptor.ref) {
-        (this._scope || this.vm).$refs[this.descriptor.ref] = null;
-      }
-      if (this.frags) {
-        var i = this.frags.length;
-        var frag;
-        while (i--) {
-          frag = this.frags[i];
-          this.deleteCachedFrag(frag);
-          frag.destroy();
-        }
-      }
-    }
-  };
-
-  /**
-   * Helper to find the previous element that is a fragment
-   * anchor. This is necessary because a destroyed frag's
-   * element could still be lingering in the DOM before its
-   * leaving transition finishes, but its inserted flag
-   * should have been set to false so we can skip them.
-   *
-   * If this is a block repeat, we want to make sure we only
-   * return frag that is bound to this v-for. (see #929)
-   *
-   * @param {Fragment} frag
-   * @param {Comment|Text} anchor
-   * @param {String} id
-   * @return {Fragment}
-   */
-
-  function findPrevFrag(frag, anchor, id) {
-    var el = frag.node.previousSibling;
-    /* istanbul ignore if */
-    if (!el) return;
-    frag = el.__v_frag;
-    while ((!frag || frag.forId !== id || !frag.inserted) && el !== anchor) {
-      el = el.previousSibling;
-      /* istanbul ignore if */
-      if (!el) return;
-      frag = el.__v_frag;
-    }
-    return frag;
-  }
-
-  /**
-   * Find a vm from a fragment.
-   *
-   * @param {Fragment} frag
-   * @return {Vue|undefined}
-   */
-
-  function findVmFromFrag(frag) {
-    var node = frag.node;
-    // handle multi-node frag
-    if (frag.end) {
-      while (!node.__vue__ && node !== frag.end && node.nextSibling) {
-        node = node.nextSibling;
-      }
-    }
-    return node.__vue__;
-  }
-
-  /**
-   * Create a range array from given number.
-   *
-   * @param {Number} n
-   * @return {Array}
-   */
-
-  function range(n) {
-    var i = -1;
-    var ret = new Array(Math.floor(n));
-    while (++i < n) {
-      ret[i] = i;
-    }
-    return ret;
-  }
-
-  /**
-   * Get the track by key for an item.
-   *
-   * @param {Number} index
-   * @param {String} key
-   * @param {*} value
-   * @param {String} [trackByKey]
-   */
-
-  function getTrackByKey(index, key, value, trackByKey) {
-    return trackByKey ? trackByKey === '$index' ? index : trackByKey.charAt(0).match(/\w/) ? getPath(value, trackByKey) : value[trackByKey] : key || value;
-  }
-
-  if ('development' !== 'production') {
-    vFor.warnDuplicate = function (value) {
-      warn('Duplicate value found in v-for="' + this.descriptor.raw + '": ' + JSON.stringify(value) + '. Use track-by="$index" if ' + 'you are expecting duplicate values.', this.vm);
-    };
-  }
-
-  var vIf = {
-
-    priority: IF,
-    terminal: true,
-
-    bind: function bind() {
-      var el = this.el;
-      if (!el.__vue__) {
-        // check else block
-        var next = el.nextElementSibling;
-        if (next && getAttr(next, 'v-else') !== null) {
-          remove(next);
-          this.elseEl = next;
-        }
-        // check main block
-        this.anchor = createAnchor('v-if');
-        replace(el, this.anchor);
-      } else {
-        'development' !== 'production' && warn('v-if="' + this.expression + '" cannot be ' + 'used on an instance root element.', this.vm);
-        this.invalid = true;
-      }
-    },
-
-    update: function update(value) {
-      if (this.invalid) return;
-      if (value) {
-        if (!this.frag) {
-          this.insert();
-        }
-      } else {
-        this.remove();
-      }
-    },
-
-    insert: function insert() {
-      if (this.elseFrag) {
-        this.elseFrag.remove();
-        this.elseFrag = null;
-      }
-      // lazy init factory
-      if (!this.factory) {
-        this.factory = new FragmentFactory(this.vm, this.el);
-      }
-      this.frag = this.factory.create(this._host, this._scope, this._frag);
-      this.frag.before(this.anchor);
-    },
-
-    remove: function remove() {
-      if (this.frag) {
-        this.frag.remove();
-        this.frag = null;
-      }
-      if (this.elseEl && !this.elseFrag) {
-        if (!this.elseFactory) {
-          this.elseFactory = new FragmentFactory(this.elseEl._context || this.vm, this.elseEl);
-        }
-        this.elseFrag = this.elseFactory.create(this._host, this._scope, this._frag);
-        this.elseFrag.before(this.anchor);
-      }
-    },
-
-    unbind: function unbind() {
-      if (this.frag) {
-        this.frag.destroy();
-      }
-      if (this.elseFrag) {
-        this.elseFrag.destroy();
-      }
-    }
-  };
-
-  var show = {
-
-    bind: function bind() {
-      // check else block
-      var next = this.el.nextElementSibling;
-      if (next && getAttr(next, 'v-else') !== null) {
-        this.elseEl = next;
-      }
-    },
-
-    update: function update(value) {
-      this.apply(this.el, value);
-      if (this.elseEl) {
-        this.apply(this.elseEl, !value);
-      }
-    },
-
-    apply: function apply(el, value) {
-      if (inDoc(el)) {
-        applyTransition(el, value ? 1 : -1, toggle, this.vm);
-      } else {
-        toggle();
-      }
-      function toggle() {
-        el.style.display = value ? '' : 'none';
-      }
-    }
-  };
-
-  var text$2 = {
-
-    bind: function bind() {
-      var self = this;
-      var el = this.el;
-      var isRange = el.type === 'range';
-      var lazy = this.params.lazy;
-      var number = this.params.number;
-      var debounce = this.params.debounce;
-
-      // handle composition events.
-      //   http://blog.evanyou.me/2014/01/03/composition-event/
-      // skip this for Android because it handles composition
-      // events quite differently. Android doesn't trigger
-      // composition events for language input methods e.g.
-      // Chinese, but instead triggers them for spelling
-      // suggestions... (see Discussion/#162)
-      var composing = false;
-      if (!isAndroid && !isRange) {
-        this.on('compositionstart', function () {
-          composing = true;
-        });
-        this.on('compositionend', function () {
-          composing = false;
-          // in IE11 the "compositionend" event fires AFTER
-          // the "input" event, so the input handler is blocked
-          // at the end... have to call it here.
-          //
-          // #1327: in lazy mode this is unecessary.
-          if (!lazy) {
-            self.listener();
-          }
-        });
-      }
-
-      // prevent messing with the input when user is typing,
-      // and force update on blur.
-      this.focused = false;
-      if (!isRange && !lazy) {
-        this.on('focus', function () {
-          self.focused = true;
-        });
-        this.on('blur', function () {
-          self.focused = false;
-          // do not sync value after fragment removal (#2017)
-          if (!self._frag || self._frag.inserted) {
-            self.rawListener();
-          }
-        });
-      }
-
-      // Now attach the main listener
-      this.listener = this.rawListener = function () {
-        if (composing || !self._bound) {
-          return;
-        }
-        var val = number || isRange ? toNumber(el.value) : el.value;
-        self.set(val);
-        // force update on next tick to avoid lock & same value
-        // also only update when user is not typing
-        nextTick(function () {
-          if (self._bound && !self.focused) {
-            self.update(self._watcher.value);
-          }
-        });
-      };
-
-      // apply debounce
-      if (debounce) {
-        this.listener = _debounce(this.listener, debounce);
-      }
-
-      // Support jQuery events, since jQuery.trigger() doesn't
-      // trigger native events in some cases and some plugins
-      // rely on $.trigger()
-      //
-      // We want to make sure if a listener is attached using
-      // jQuery, it is also removed with jQuery, that's why
-      // we do the check for each directive instance and
-      // store that check result on itself. This also allows
-      // easier test coverage control by unsetting the global
-      // jQuery variable in tests.
-      this.hasjQuery = typeof jQuery === 'function';
-      if (this.hasjQuery) {
-        var method = jQuery.fn.on ? 'on' : 'bind';
-        jQuery(el)[method]('change', this.rawListener);
-        if (!lazy) {
-          jQuery(el)[method]('input', this.listener);
-        }
-      } else {
-        this.on('change', this.rawListener);
-        if (!lazy) {
-          this.on('input', this.listener);
-        }
-      }
-
-      // IE9 doesn't fire input event on backspace/del/cut
-      if (!lazy && isIE9) {
-        this.on('cut', function () {
-          nextTick(self.listener);
-        });
-        this.on('keyup', function (e) {
-          if (e.keyCode === 46 || e.keyCode === 8) {
-            self.listener();
-          }
-        });
-      }
-
-      // set initial value if present
-      if (el.hasAttribute('value') || el.tagName === 'TEXTAREA' && el.value.trim()) {
-        this.afterBind = this.listener;
-      }
-    },
-
-    update: function update(value) {
-      // #3029 only update when the value changes. This prevent
-      // browsers from overwriting values like selectionStart
-      value = _toString(value);
-      if (value !== this.el.value) this.el.value = value;
-    },
-
-    unbind: function unbind() {
-      var el = this.el;
-      if (this.hasjQuery) {
-        var method = jQuery.fn.off ? 'off' : 'unbind';
-        jQuery(el)[method]('change', this.listener);
-        jQuery(el)[method]('input', this.listener);
-      }
-    }
-  };
-
-  var radio = {
-
-    bind: function bind() {
-      var self = this;
-      var el = this.el;
-
-      this.getValue = function () {
-        // value overwrite via v-bind:value
-        if (el.hasOwnProperty('_value')) {
-          return el._value;
-        }
-        var val = el.value;
-        if (self.params.number) {
-          val = toNumber(val);
-        }
-        return val;
-      };
-
-      this.listener = function () {
-        self.set(self.getValue());
-      };
-      this.on('change', this.listener);
-
-      if (el.hasAttribute('checked')) {
-        this.afterBind = this.listener;
-      }
-    },
-
-    update: function update(value) {
-      this.el.checked = looseEqual(value, this.getValue());
-    }
-  };
-
-  var select = {
-
-    bind: function bind() {
-      var _this = this;
-
-      var self = this;
-      var el = this.el;
-
-      // method to force update DOM using latest value.
-      this.forceUpdate = function () {
-        if (self._watcher) {
-          self.update(self._watcher.get());
-        }
-      };
-
-      // check if this is a multiple select
-      var multiple = this.multiple = el.hasAttribute('multiple');
-
-      // attach listener
-      this.listener = function () {
-        var value = getValue(el, multiple);
-        value = self.params.number ? isArray(value) ? value.map(toNumber) : toNumber(value) : value;
-        self.set(value);
-      };
-      this.on('change', this.listener);
-
-      // if has initial value, set afterBind
-      var initValue = getValue(el, multiple, true);
-      if (multiple && initValue.length || !multiple && initValue !== null) {
-        this.afterBind = this.listener;
-      }
-
-      // All major browsers except Firefox resets
-      // selectedIndex with value -1 to 0 when the element
-      // is appended to a new parent, therefore we have to
-      // force a DOM update whenever that happens...
-      this.vm.$on('hook:attached', function () {
-        nextTick(_this.forceUpdate);
-      });
-      if (!inDoc(el)) {
-        nextTick(this.forceUpdate);
-      }
-    },
-
-    update: function update(value) {
-      var el = this.el;
-      el.selectedIndex = -1;
-      var multi = this.multiple && isArray(value);
-      var options = el.options;
-      var i = options.length;
-      var op, val;
-      while (i--) {
-        op = options[i];
-        val = op.hasOwnProperty('_value') ? op._value : op.value;
-        /* eslint-disable eqeqeq */
-        op.selected = multi ? indexOf$1(value, val) > -1 : looseEqual(value, val);
-        /* eslint-enable eqeqeq */
-      }
-    },
-
-    unbind: function unbind() {
-      /* istanbul ignore next */
-      this.vm.$off('hook:attached', this.forceUpdate);
-    }
-  };
-
-  /**
-   * Get select value
-   *
-   * @param {SelectElement} el
-   * @param {Boolean} multi
-   * @param {Boolean} init
-   * @return {Array|*}
-   */
-
-  function getValue(el, multi, init) {
-    var res = multi ? [] : null;
-    var op, val, selected;
-    for (var i = 0, l = el.options.length; i < l; i++) {
-      op = el.options[i];
-      selected = init ? op.hasAttribute('selected') : op.selected;
-      if (selected) {
-        val = op.hasOwnProperty('_value') ? op._value : op.value;
-        if (multi) {
-          res.push(val);
-        } else {
-          return val;
-        }
-      }
-    }
-    return res;
-  }
-
-  /**
-   * Native Array.indexOf uses strict equal, but in this
-   * case we need to match string/numbers with custom equal.
-   *
-   * @param {Array} arr
-   * @param {*} val
-   */
-
-  function indexOf$1(arr, val) {
-    var i = arr.length;
-    while (i--) {
-      if (looseEqual(arr[i], val)) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
-  var checkbox = {
-
-    bind: function bind() {
-      var self = this;
-      var el = this.el;
-
-      this.getValue = function () {
-        return el.hasOwnProperty('_value') ? el._value : self.params.number ? toNumber(el.value) : el.value;
-      };
-
-      function getBooleanValue() {
-        var val = el.checked;
-        if (val && el.hasOwnProperty('_trueValue')) {
-          return el._trueValue;
-        }
-        if (!val && el.hasOwnProperty('_falseValue')) {
-          return el._falseValue;
-        }
-        return val;
-      }
-
-      this.listener = function () {
-        var model = self._watcher.value;
-        if (isArray(model)) {
-          var val = self.getValue();
-          if (el.checked) {
-            if (indexOf(model, val) < 0) {
-              model.push(val);
-            }
-          } else {
-            model.$remove(val);
-          }
-        } else {
-          self.set(getBooleanValue());
-        }
-      };
-
-      this.on('change', this.listener);
-      if (el.hasAttribute('checked')) {
-        this.afterBind = this.listener;
-      }
-    },
-
-    update: function update(value) {
-      var el = this.el;
-      if (isArray(value)) {
-        el.checked = indexOf(value, this.getValue()) > -1;
-      } else {
-        if (el.hasOwnProperty('_trueValue')) {
-          el.checked = looseEqual(value, el._trueValue);
-        } else {
-          el.checked = !!value;
-        }
-      }
-    }
-  };
-
-  var handlers = {
-    text: text$2,
-    radio: radio,
-    select: select,
-    checkbox: checkbox
-  };
-
-  var model = {
-
-    priority: MODEL,
-    twoWay: true,
-    handlers: handlers,
-    params: ['lazy', 'number', 'debounce'],
-
-    /**
-     * Possible elements:
-     *   <select>
-     *   <textarea>
-     *   <input type="*">
-     *     - text
-     *     - checkbox
-     *     - radio
-     *     - number
-     */
-
-    bind: function bind() {
-      // friendly warning...
-      this.checkFilters();
-      if (this.hasRead && !this.hasWrite) {
-        'development' !== 'production' && warn('It seems you are using a read-only filter with ' + 'v-model="' + this.descriptor.raw + '". ' + 'You might want to use a two-way filter to ensure correct behavior.', this.vm);
-      }
-      var el = this.el;
-      var tag = el.tagName;
-      var handler;
-      if (tag === 'INPUT') {
-        handler = handlers[el.type] || handlers.text;
-      } else if (tag === 'SELECT') {
-        handler = handlers.select;
-      } else if (tag === 'TEXTAREA') {
-        handler = handlers.text;
-      } else {
-        'development' !== 'production' && warn('v-model does not support element type: ' + tag, this.vm);
-        return;
-      }
-      el.__v_model = this;
-      handler.bind.call(this);
-      this.update = handler.update;
-      this._unbind = handler.unbind;
-    },
-
-    /**
-     * Check read/write filter stats.
-     */
-
-    checkFilters: function checkFilters() {
-      var filters = this.filters;
-      if (!filters) return;
-      var i = filters.length;
-      while (i--) {
-        var filter = resolveAsset(this.vm.$options, 'filters', filters[i].name);
-        if (typeof filter === 'function' || filter.read) {
-          this.hasRead = true;
-        }
-        if (filter.write) {
-          this.hasWrite = true;
-        }
-      }
-    },
-
-    unbind: function unbind() {
-      this.el.__v_model = null;
-      this._unbind && this._unbind();
-    }
-  };
-
-  // keyCode aliases
-  var keyCodes = {
-    esc: 27,
-    tab: 9,
-    enter: 13,
-    space: 32,
-    'delete': [8, 46],
-    up: 38,
-    left: 37,
-    right: 39,
-    down: 40
-  };
-
-  function keyFilter(handler, keys) {
-    var codes = keys.map(function (key) {
-      var charCode = key.charCodeAt(0);
-      if (charCode > 47 && charCode < 58) {
-        return parseInt(key, 10);
-      }
-      if (key.length === 1) {
-        charCode = key.toUpperCase().charCodeAt(0);
-        if (charCode > 64 && charCode < 91) {
-          return charCode;
-        }
-      }
-      return keyCodes[key];
-    });
-    codes = [].concat.apply([], codes);
-    return function keyHandler(e) {
-      if (codes.indexOf(e.keyCode) > -1) {
-        return handler.call(this, e);
-      }
-    };
-  }
-
-  function stopFilter(handler) {
-    return function stopHandler(e) {
-      e.stopPropagation();
-      return handler.call(this, e);
-    };
-  }
-
-  function preventFilter(handler) {
-    return function preventHandler(e) {
-      e.preventDefault();
-      return handler.call(this, e);
-    };
-  }
-
-  function selfFilter(handler) {
-    return function selfHandler(e) {
-      if (e.target === e.currentTarget) {
-        return handler.call(this, e);
-      }
-    };
-  }
-
-  var on$1 = {
-
-    priority: ON,
-    acceptStatement: true,
-    keyCodes: keyCodes,
-
-    bind: function bind() {
-      // deal with iframes
-      if (this.el.tagName === 'IFRAME' && this.arg !== 'load') {
-        var self = this;
-        this.iframeBind = function () {
-          on(self.el.contentWindow, self.arg, self.handler, self.modifiers.capture);
-        };
-        this.on('load', this.iframeBind);
-      }
-    },
-
-    update: function update(handler) {
-      // stub a noop for v-on with no value,
-      // e.g. @mousedown.prevent
-      if (!this.descriptor.raw) {
-        handler = function () {};
-      }
-
-      if (typeof handler !== 'function') {
-        'development' !== 'production' && warn('v-on:' + this.arg + '="' + this.expression + '" expects a function value, ' + 'got ' + handler, this.vm);
-        return;
-      }
-
-      // apply modifiers
-      if (this.modifiers.stop) {
-        handler = stopFilter(handler);
-      }
-      if (this.modifiers.prevent) {
-        handler = preventFilter(handler);
-      }
-      if (this.modifiers.self) {
-        handler = selfFilter(handler);
-      }
-      // key filter
-      var keys = Object.keys(this.modifiers).filter(function (key) {
-        return key !== 'stop' && key !== 'prevent' && key !== 'self' && key !== 'capture';
-      });
-      if (keys.length) {
-        handler = keyFilter(handler, keys);
-      }
-
-      this.reset();
-      this.handler = handler;
-
-      if (this.iframeBind) {
-        this.iframeBind();
-      } else {
-        on(this.el, this.arg, this.handler, this.modifiers.capture);
-      }
-    },
-
-    reset: function reset() {
-      var el = this.iframeBind ? this.el.contentWindow : this.el;
-      if (this.handler) {
-        off(el, this.arg, this.handler);
-      }
-    },
-
-    unbind: function unbind() {
-      this.reset();
-    }
-  };
-
-  var prefixes = ['-webkit-', '-moz-', '-ms-'];
-  var camelPrefixes = ['Webkit', 'Moz', 'ms'];
-  var importantRE = /!important;?$/;
-  var propCache = Object.create(null);
-
-  var testEl = null;
-
-  var style = {
-
-    deep: true,
-
-    update: function update(value) {
-      if (typeof value === 'string') {
-        this.el.style.cssText = value;
-      } else if (isArray(value)) {
-        this.handleObject(value.reduce(extend, {}));
-      } else {
-        this.handleObject(value || {});
-      }
-    },
-
-    handleObject: function handleObject(value) {
-      // cache object styles so that only changed props
-      // are actually updated.
-      var cache = this.cache || (this.cache = {});
-      var name, val;
-      for (name in cache) {
-        if (!(name in value)) {
-          this.handleSingle(name, null);
-          delete cache[name];
-        }
-      }
-      for (name in value) {
-        val = value[name];
-        if (val !== cache[name]) {
-          cache[name] = val;
-          this.handleSingle(name, val);
-        }
-      }
-    },
-
-    handleSingle: function handleSingle(prop, value) {
-      prop = normalize(prop);
-      if (!prop) return; // unsupported prop
-      // cast possible numbers/booleans into strings
-      if (value != null) value += '';
-      if (value) {
-        var isImportant = importantRE.test(value) ? 'important' : '';
-        if (isImportant) {
-          /* istanbul ignore if */
-          if ('development' !== 'production') {
-            warn('It\'s probably a bad idea to use !important with inline rules. ' + 'This feature will be deprecated in a future version of Vue.');
-          }
-          value = value.replace(importantRE, '').trim();
-          this.el.style.setProperty(prop.kebab, value, isImportant);
-        } else {
-          this.el.style[prop.camel] = value;
-        }
-      } else {
-        this.el.style[prop.camel] = '';
-      }
-    }
-
-  };
-
-  /**
-   * Normalize a CSS property name.
-   * - cache result
-   * - auto prefix
-   * - camelCase -> dash-case
-   *
-   * @param {String} prop
-   * @return {String}
-   */
-
-  function normalize(prop) {
-    if (propCache[prop]) {
-      return propCache[prop];
-    }
-    var res = prefix(prop);
-    propCache[prop] = propCache[res] = res;
-    return res;
-  }
-
-  /**
-   * Auto detect the appropriate prefix for a CSS property.
-   * https://gist.github.com/paulirish/523692
-   *
-   * @param {String} prop
-   * @return {String}
-   */
-
-  function prefix(prop) {
-    prop = hyphenate(prop);
-    var camel = camelize(prop);
-    var upper = camel.charAt(0).toUpperCase() + camel.slice(1);
-    if (!testEl) {
-      testEl = document.createElement('div');
-    }
-    var i = prefixes.length;
-    var prefixed;
-    if (camel !== 'filter' && camel in testEl.style) {
-      return {
-        kebab: prop,
-        camel: camel
-      };
-    }
-    while (i--) {
-      prefixed = camelPrefixes[i] + upper;
-      if (prefixed in testEl.style) {
-        return {
-          kebab: prefixes[i] + prop,
-          camel: prefixed
-        };
-      }
-    }
-  }
-
-  // xlink
-  var xlinkNS = 'http://www.w3.org/1999/xlink';
-  var xlinkRE = /^xlink:/;
-
-  // check for attributes that prohibit interpolations
-  var disallowedInterpAttrRE = /^v-|^:|^@|^(?:is|transition|transition-mode|debounce|track-by|stagger|enter-stagger|leave-stagger)$/;
-  // these attributes should also set their corresponding properties
-  // because they only affect the initial state of the element
-  var attrWithPropsRE = /^(?:value|checked|selected|muted)$/;
-  // these attributes expect enumrated values of "true" or "false"
-  // but are not boolean attributes
-  var enumeratedAttrRE = /^(?:draggable|contenteditable|spellcheck)$/;
-
-  // these attributes should set a hidden property for
-  // binding v-model to object values
-  var modelProps = {
-    value: '_value',
-    'true-value': '_trueValue',
-    'false-value': '_falseValue'
-  };
-
-  var bind$1 = {
-
-    priority: BIND,
-
-    bind: function bind() {
-      var attr = this.arg;
-      var tag = this.el.tagName;
-      // should be deep watch on object mode
-      if (!attr) {
-        this.deep = true;
-      }
-      // handle interpolation bindings
-      var descriptor = this.descriptor;
-      var tokens = descriptor.interp;
-      if (tokens) {
-        // handle interpolations with one-time tokens
-        if (descriptor.hasOneTime) {
-          this.expression = tokensToExp(tokens, this._scope || this.vm);
-        }
-
-        // only allow binding on native attributes
-        if (disallowedInterpAttrRE.test(attr) || attr === 'name' && (tag === 'PARTIAL' || tag === 'SLOT')) {
-          'development' !== 'production' && warn(attr + '="' + descriptor.raw + '": ' + 'attribute interpolation is not allowed in Vue.js ' + 'directives and special attributes.', this.vm);
-          this.el.removeAttribute(attr);
-          this.invalid = true;
-        }
-
-        /* istanbul ignore if */
-        if ('development' !== 'production') {
-          var raw = attr + '="' + descriptor.raw + '": ';
-          // warn src
-          if (attr === 'src') {
-            warn(raw + 'interpolation in "src" attribute will cause ' + 'a 404 request. Use v-bind:src instead.', this.vm);
-          }
-
-          // warn style
-          if (attr === 'style') {
-            warn(raw + 'interpolation in "style" attribute will cause ' + 'the attribute to be discarded in Internet Explorer. ' + 'Use v-bind:style instead.', this.vm);
-          }
-        }
-      }
-    },
-
-    update: function update(value) {
-      if (this.invalid) {
-        return;
-      }
-      var attr = this.arg;
-      if (this.arg) {
-        this.handleSingle(attr, value);
-      } else {
-        this.handleObject(value || {});
-      }
-    },
-
-    // share object handler with v-bind:class
-    handleObject: style.handleObject,
-
-    handleSingle: function handleSingle(attr, value) {
-      var el = this.el;
-      var interp = this.descriptor.interp;
-      if (this.modifiers.camel) {
-        attr = camelize(attr);
-      }
-      if (!interp && attrWithPropsRE.test(attr) && attr in el) {
-        var attrValue = attr === 'value' ? value == null // IE9 will set input.value to "null" for null...
-        ? '' : value : value;
-
-        if (el[attr] !== attrValue) {
-          el[attr] = attrValue;
-        }
-      }
-      // set model props
-      var modelProp = modelProps[attr];
-      if (!interp && modelProp) {
-        el[modelProp] = value;
-        // update v-model if present
-        var model = el.__v_model;
-        if (model) {
-          model.listener();
-        }
-      }
-      // do not set value attribute for textarea
-      if (attr === 'value' && el.tagName === 'TEXTAREA') {
-        el.removeAttribute(attr);
-        return;
-      }
-      // update attribute
-      if (enumeratedAttrRE.test(attr)) {
-        el.setAttribute(attr, value ? 'true' : 'false');
-      } else if (value != null && value !== false) {
-        if (attr === 'class') {
-          // handle edge case #1960:
-          // class interpolation should not overwrite Vue transition class
-          if (el.__v_trans) {
-            value += ' ' + el.__v_trans.id + '-transition';
-          }
-          setClass(el, value);
-        } else if (xlinkRE.test(attr)) {
-          el.setAttributeNS(xlinkNS, attr, value === true ? '' : value);
-        } else {
-          el.setAttribute(attr, value === true ? '' : value);
-        }
-      } else {
-        el.removeAttribute(attr);
-      }
-    }
-  };
-
-  var el = {
-
-    priority: EL,
-
-    bind: function bind() {
-      /* istanbul ignore if */
-      if (!this.arg) {
-        return;
-      }
-      var id = this.id = camelize(this.arg);
-      var refs = (this._scope || this.vm).$els;
-      if (hasOwn(refs, id)) {
-        refs[id] = this.el;
-      } else {
-        defineReactive(refs, id, this.el);
-      }
-    },
-
-    unbind: function unbind() {
-      var refs = (this._scope || this.vm).$els;
-      if (refs[this.id] === this.el) {
-        refs[this.id] = null;
-      }
-    }
-  };
-
-  var ref = {
-    bind: function bind() {
-      'development' !== 'production' && warn('v-ref:' + this.arg + ' must be used on a child ' + 'component. Found on <' + this.el.tagName.toLowerCase() + '>.', this.vm);
-    }
-  };
-
-  var cloak = {
-    bind: function bind() {
-      var el = this.el;
-      this.vm.$once('pre-hook:compiled', function () {
-        el.removeAttribute('v-cloak');
-      });
-    }
-  };
-
-  // must export plain object
-  var directives = {
-    text: text$1,
-    html: html,
-    'for': vFor,
-    'if': vIf,
-    show: show,
-    model: model,
-    on: on$1,
-    bind: bind$1,
-    el: el,
-    ref: ref,
-    cloak: cloak
-  };
-
-  var vClass = {
-
-    deep: true,
-
-    update: function update(value) {
-      if (!value) {
-        this.cleanup();
-      } else if (typeof value === 'string') {
-        this.setClass(value.trim().split(/\s+/));
-      } else {
-        this.setClass(normalize$1(value));
-      }
-    },
-
-    setClass: function setClass(value) {
-      this.cleanup(value);
-      for (var i = 0, l = value.length; i < l; i++) {
-        var val = value[i];
-        if (val) {
-          apply(this.el, val, addClass);
-        }
-      }
-      this.prevKeys = value;
-    },
-
-    cleanup: function cleanup(value) {
-      var prevKeys = this.prevKeys;
-      if (!prevKeys) return;
-      var i = prevKeys.length;
-      while (i--) {
-        var key = prevKeys[i];
-        if (!value || value.indexOf(key) < 0) {
-          apply(this.el, key, removeClass);
-        }
-      }
-    }
-  };
-
-  /**
-   * Normalize objects and arrays (potentially containing objects)
-   * into array of strings.
-   *
-   * @param {Object|Array<String|Object>} value
-   * @return {Array<String>}
-   */
-
-  function normalize$1(value) {
-    var res = [];
-    if (isArray(value)) {
-      for (var i = 0, l = value.length; i < l; i++) {
-        var _key = value[i];
-        if (_key) {
-          if (typeof _key === 'string') {
-            res.push(_key);
-          } else {
-            for (var k in _key) {
-              if (_key[k]) res.push(k);
-            }
-          }
-        }
-      }
-    } else if (isObject(value)) {
-      for (var key in value) {
-        if (value[key]) res.push(key);
-      }
-    }
-    return res;
-  }
-
-  /**
-   * Add or remove a class/classes on an element
-   *
-   * @param {Element} el
-   * @param {String} key The class name. This may or may not
-   *                     contain a space character, in such a
-   *                     case we'll deal with multiple class
-   *                     names at once.
-   * @param {Function} fn
-   */
-
-  function apply(el, key, fn) {
-    key = key.trim();
-    if (key.indexOf(' ') === -1) {
-      fn(el, key);
-      return;
-    }
-    // The key contains one or more space characters.
-    // Since a class name doesn't accept such characters, we
-    // treat it as multiple classes.
-    var keys = key.split(/\s+/);
-    for (var i = 0, l = keys.length; i < l; i++) {
-      fn(el, keys[i]);
-    }
-  }
-
-  var component = {
-
-    priority: COMPONENT,
-
-    params: ['keep-alive', 'transition-mode', 'inline-template'],
-
-    /**
-     * Setup. Two possible usages:
-     *
-     * - static:
-     *   <comp> or <div v-component="comp">
-     *
-     * - dynamic:
-     *   <component :is="view">
-     */
-
-    bind: function bind() {
-      if (!this.el.__vue__) {
-        // keep-alive cache
-        this.keepAlive = this.params.keepAlive;
-        if (this.keepAlive) {
-          this.cache = {};
-        }
-        // check inline-template
-        if (this.params.inlineTemplate) {
-          // extract inline template as a DocumentFragment
-          this.inlineTemplate = extractContent(this.el, true);
-        }
-        // component resolution related state
-        this.pendingComponentCb = this.Component = null;
-        // transition related state
-        this.pendingRemovals = 0;
-        this.pendingRemovalCb = null;
-        // create a ref anchor
-        this.anchor = createAnchor('v-component');
-        replace(this.el, this.anchor);
-        // remove is attribute.
-        // this is removed during compilation, but because compilation is
-        // cached, when the component is used elsewhere this attribute
-        // will remain at link time.
-        this.el.removeAttribute('is');
-        this.el.removeAttribute(':is');
-        // remove ref, same as above
-        if (this.descriptor.ref) {
-          this.el.removeAttribute('v-ref:' + hyphenate(this.descriptor.ref));
-        }
-        // if static, build right now.
-        if (this.literal) {
-          this.setComponent(this.expression);
-        }
-      } else {
-        'development' !== 'production' && warn('cannot mount component "' + this.expression + '" ' + 'on already mounted element: ' + this.el);
-      }
-    },
-
-    /**
-     * Public update, called by the watcher in the dynamic
-     * literal scenario, e.g. <component :is="view">
-     */
-
-    update: function update(value) {
-      if (!this.literal) {
-        this.setComponent(value);
-      }
-    },
-
-    /**
-     * Switch dynamic components. May resolve the component
-     * asynchronously, and perform transition based on
-     * specified transition mode. Accepts a few additional
-     * arguments specifically for vue-router.
-     *
-     * The callback is called when the full transition is
-     * finished.
-     *
-     * @param {String} value
-     * @param {Function} [cb]
-     */
-
-    setComponent: function setComponent(value, cb) {
-      this.invalidatePending();
-      if (!value) {
-        // just remove current
-        this.unbuild(true);
-        this.remove(this.childVM, cb);
-        this.childVM = null;
-      } else {
-        var self = this;
-        this.resolveComponent(value, function () {
-          self.mountComponent(cb);
-        });
-      }
-    },
-
-    /**
-     * Resolve the component constructor to use when creating
-     * the child vm.
-     *
-     * @param {String|Function} value
-     * @param {Function} cb
-     */
-
-    resolveComponent: function resolveComponent(value, cb) {
-      var self = this;
-      this.pendingComponentCb = cancellable(function (Component) {
-        self.ComponentName = Component.options.name || (typeof value === 'string' ? value : null);
-        self.Component = Component;
-        cb();
-      });
-      this.vm._resolveComponent(value, this.pendingComponentCb);
-    },
-
-    /**
-     * Create a new instance using the current constructor and
-     * replace the existing instance. This method doesn't care
-     * whether the new component and the old one are actually
-     * the same.
-     *
-     * @param {Function} [cb]
-     */
-
-    mountComponent: function mountComponent(cb) {
-      // actual mount
-      this.unbuild(true);
-      var self = this;
-      var activateHooks = this.Component.options.activate;
-      var cached = this.getCached();
-      var newComponent = this.build();
-      if (activateHooks && !cached) {
-        this.waitingFor = newComponent;
-        callActivateHooks(activateHooks, newComponent, function () {
-          if (self.waitingFor !== newComponent) {
-            return;
-          }
-          self.waitingFor = null;
-          self.transition(newComponent, cb);
-        });
-      } else {
-        // update ref for kept-alive component
-        if (cached) {
-          newComponent._updateRef();
-        }
-        this.transition(newComponent, cb);
-      }
-    },
-
-    /**
-     * When the component changes or unbinds before an async
-     * constructor is resolved, we need to invalidate its
-     * pending callback.
-     */
-
-    invalidatePending: function invalidatePending() {
-      if (this.pendingComponentCb) {
-        this.pendingComponentCb.cancel();
-        this.pendingComponentCb = null;
-      }
-    },
-
-    /**
-     * Instantiate/insert a new child vm.
-     * If keep alive and has cached instance, insert that
-     * instance; otherwise build a new one and cache it.
-     *
-     * @param {Object} [extraOptions]
-     * @return {Vue} - the created instance
-     */
-
-    build: function build(extraOptions) {
-      var cached = this.getCached();
-      if (cached) {
-        return cached;
-      }
-      if (this.Component) {
-        // default options
-        var options = {
-          name: this.ComponentName,
-          el: cloneNode(this.el),
-          template: this.inlineTemplate,
-          // make sure to add the child with correct parent
-          // if this is a transcluded component, its parent
-          // should be the transclusion host.
-          parent: this._host || this.vm,
-          // if no inline-template, then the compiled
-          // linker can be cached for better performance.
-          _linkerCachable: !this.inlineTemplate,
-          _ref: this.descriptor.ref,
-          _asComponent: true,
-          _isRouterView: this._isRouterView,
-          // if this is a transcluded component, context
-          // will be the common parent vm of this instance
-          // and its host.
-          _context: this.vm,
-          // if this is inside an inline v-for, the scope
-          // will be the intermediate scope created for this
-          // repeat fragment. this is used for linking props
-          // and container directives.
-          _scope: this._scope,
-          // pass in the owner fragment of this component.
-          // this is necessary so that the fragment can keep
-          // track of its contained components in order to
-          // call attach/detach hooks for them.
-          _frag: this._frag
-        };
-        // extra options
-        // in 1.0.0 this is used by vue-router only
-        /* istanbul ignore if */
-        if (extraOptions) {
-          extend(options, extraOptions);
-        }
-        var child = new this.Component(options);
-        if (this.keepAlive) {
-          this.cache[this.Component.cid] = child;
-        }
-        /* istanbul ignore if */
-        if ('development' !== 'production' && this.el.hasAttribute('transition') && child._isFragment) {
-          warn('Transitions will not work on a fragment instance. ' + 'Template: ' + child.$options.template, child);
-        }
-        return child;
-      }
-    },
-
-    /**
-     * Try to get a cached instance of the current component.
-     *
-     * @return {Vue|undefined}
-     */
-
-    getCached: function getCached() {
-      return this.keepAlive && this.cache[this.Component.cid];
-    },
-
-    /**
-     * Teardown the current child, but defers cleanup so
-     * that we can separate the destroy and removal steps.
-     *
-     * @param {Boolean} defer
-     */
-
-    unbuild: function unbuild(defer) {
-      if (this.waitingFor) {
-        if (!this.keepAlive) {
-          this.waitingFor.$destroy();
-        }
-        this.waitingFor = null;
-      }
-      var child = this.childVM;
-      if (!child || this.keepAlive) {
-        if (child) {
-          // remove ref
-          child._inactive = true;
-          child._updateRef(true);
-        }
-        return;
-      }
-      // the sole purpose of `deferCleanup` is so that we can
-      // "deactivate" the vm right now and perform DOM removal
-      // later.
-      child.$destroy(false, defer);
-    },
-
-    /**
-     * Remove current destroyed child and manually do
-     * the cleanup after removal.
-     *
-     * @param {Function} cb
-     */
-
-    remove: function remove(child, cb) {
-      var keepAlive = this.keepAlive;
-      if (child) {
-        // we may have a component switch when a previous
-        // component is still being transitioned out.
-        // we want to trigger only one lastest insertion cb
-        // when the existing transition finishes. (#1119)
-        this.pendingRemovals++;
-        this.pendingRemovalCb = cb;
-        var self = this;
-        child.$remove(function () {
-          self.pendingRemovals--;
-          if (!keepAlive) child._cleanup();
-          if (!self.pendingRemovals && self.pendingRemovalCb) {
-            self.pendingRemovalCb();
-            self.pendingRemovalCb = null;
-          }
-        });
-      } else if (cb) {
-        cb();
-      }
-    },
-
-    /**
-     * Actually swap the components, depending on the
-     * transition mode. Defaults to simultaneous.
-     *
-     * @param {Vue} target
-     * @param {Function} [cb]
-     */
-
-    transition: function transition(target, cb) {
-      var self = this;
-      var current = this.childVM;
-      // for devtool inspection
-      if (current) current._inactive = true;
-      target._inactive = false;
-      this.childVM = target;
-      switch (self.params.transitionMode) {
-        case 'in-out':
-          target.$before(self.anchor, function () {
-            self.remove(current, cb);
-          });
-          break;
-        case 'out-in':
-          self.remove(current, function () {
-            target.$before(self.anchor, cb);
-          });
-          break;
-        default:
-          self.remove(current);
-          target.$before(self.anchor, cb);
-      }
-    },
-
-    /**
-     * Unbind.
-     */
-
-    unbind: function unbind() {
-      this.invalidatePending();
-      // Do not defer cleanup when unbinding
-      this.unbuild();
-      // destroy all keep-alive cached instances
-      if (this.cache) {
-        for (var key in this.cache) {
-          this.cache[key].$destroy();
-        }
-        this.cache = null;
-      }
-    }
-  };
-
-  /**
-   * Call activate hooks in order (asynchronous)
-   *
-   * @param {Array} hooks
-   * @param {Vue} vm
-   * @param {Function} cb
-   */
-
-  function callActivateHooks(hooks, vm, cb) {
-    var total = hooks.length;
-    var called = 0;
-    hooks[0].call(vm, next);
-    function next() {
-      if (++called >= total) {
-        cb();
-      } else {
-        hooks[called].call(vm, next);
-      }
-    }
-  }
-
-  var propBindingModes = config._propBindingModes;
-  var empty = {};
-
-  // regexes
-  var identRE$1 = /^[$_a-zA-Z]+[\w$]*$/;
-  var settablePathRE = /^[A-Za-z_$][\w$]*(\.[A-Za-z_$][\w$]*|\[[^\[\]]+\])*$/;
-
-  /**
-   * Compile props on a root element and return
-   * a props link function.
-   *
-   * @param {Element|DocumentFragment} el
-   * @param {Array} propOptions
-   * @param {Vue} vm
-   * @return {Function} propsLinkFn
-   */
-
-  function compileProps(el, propOptions, vm) {
-    var props = [];
-    var names = Object.keys(propOptions);
-    var i = names.length;
-    var options, name, attr, value, path, parsed, prop;
-    while (i--) {
-      name = names[i];
-      options = propOptions[name] || empty;
-
-      if ('development' !== 'production' && name === '$data') {
-        warn('Do not use $data as prop.', vm);
-        continue;
-      }
-
-      // props could contain dashes, which will be
-      // interpreted as minus calculations by the parser
-      // so we need to camelize the path here
-      path = camelize(name);
-      if (!identRE$1.test(path)) {
-        'development' !== 'production' && warn('Invalid prop key: "' + name + '". Prop keys ' + 'must be valid identifiers.', vm);
-        continue;
-      }
-
-      prop = {
-        name: name,
-        path: path,
-        options: options,
-        mode: propBindingModes.ONE_WAY,
-        raw: null
-      };
-
-      attr = hyphenate(name);
-      // first check dynamic version
-      if ((value = getBindAttr(el, attr)) === null) {
-        if ((value = getBindAttr(el, attr + '.sync')) !== null) {
-          prop.mode = propBindingModes.TWO_WAY;
-        } else if ((value = getBindAttr(el, attr + '.once')) !== null) {
-          prop.mode = propBindingModes.ONE_TIME;
-        }
-      }
-      if (value !== null) {
-        // has dynamic binding!
-        prop.raw = value;
-        parsed = parseDirective(value);
-        value = parsed.expression;
-        prop.filters = parsed.filters;
-        // check binding type
-        if (isLiteral(value) && !parsed.filters) {
-          // for expressions containing literal numbers and
-          // booleans, there's no need to setup a prop binding,
-          // so we can optimize them as a one-time set.
-          prop.optimizedLiteral = true;
-        } else {
-          prop.dynamic = true;
-          // check non-settable path for two-way bindings
-          if ('development' !== 'production' && prop.mode === propBindingModes.TWO_WAY && !settablePathRE.test(value)) {
-            prop.mode = propBindingModes.ONE_WAY;
-            warn('Cannot bind two-way prop with non-settable ' + 'parent path: ' + value, vm);
-          }
-        }
-        prop.parentPath = value;
-
-        // warn required two-way
-        if ('development' !== 'production' && options.twoWay && prop.mode !== propBindingModes.TWO_WAY) {
-          warn('Prop "' + name + '" expects a two-way binding type.', vm);
-        }
-      } else if ((value = getAttr(el, attr)) !== null) {
-        // has literal binding!
-        prop.raw = value;
-      } else if ('development' !== 'production') {
-        // check possible camelCase prop usage
-        var lowerCaseName = path.toLowerCase();
-        value = /[A-Z\-]/.test(name) && (el.getAttribute(lowerCaseName) || el.getAttribute(':' + lowerCaseName) || el.getAttribute('v-bind:' + lowerCaseName) || el.getAttribute(':' + lowerCaseName + '.once') || el.getAttribute('v-bind:' + lowerCaseName + '.once') || el.getAttribute(':' + lowerCaseName + '.sync') || el.getAttribute('v-bind:' + lowerCaseName + '.sync'));
-        if (value) {
-          warn('Possible usage error for prop `' + lowerCaseName + '` - ' + 'did you mean `' + attr + '`? HTML is case-insensitive, remember to use ' + 'kebab-case for props in templates.', vm);
-        } else if (options.required) {
-          // warn missing required
-          warn('Missing required prop: ' + name, vm);
-        }
-      }
-      // push prop
-      props.push(prop);
-    }
-    return makePropsLinkFn(props);
-  }
-
-  /**
-   * Build a function that applies props to a vm.
-   *
-   * @param {Array} props
-   * @return {Function} propsLinkFn
-   */
-
-  function makePropsLinkFn(props) {
-    return function propsLinkFn(vm, scope) {
-      // store resolved props info
-      vm._props = {};
-      var inlineProps = vm.$options.propsData;
-      var i = props.length;
-      var prop, path, options, value, raw;
-      while (i--) {
-        prop = props[i];
-        raw = prop.raw;
-        path = prop.path;
-        options = prop.options;
-        vm._props[path] = prop;
-        if (inlineProps && hasOwn(inlineProps, path)) {
-          initProp(vm, prop, inlineProps[path]);
-        }if (raw === null) {
-          // initialize absent prop
-          initProp(vm, prop, undefined);
-        } else if (prop.dynamic) {
-          // dynamic prop
-          if (prop.mode === propBindingModes.ONE_TIME) {
-            // one time binding
-            value = (scope || vm._context || vm).$get(prop.parentPath);
-            initProp(vm, prop, value);
-          } else {
-            if (vm._context) {
-              // dynamic binding
-              vm._bindDir({
-                name: 'prop',
-                def: propDef,
-                prop: prop
-              }, null, null, scope); // el, host, scope
-            } else {
-                // root instance
-                initProp(vm, prop, vm.$get(prop.parentPath));
-              }
-          }
-        } else if (prop.optimizedLiteral) {
-          // optimized literal, cast it and just set once
-          var stripped = stripQuotes(raw);
-          value = stripped === raw ? toBoolean(toNumber(raw)) : stripped;
-          initProp(vm, prop, value);
-        } else {
-          // string literal, but we need to cater for
-          // Boolean props with no value, or with same
-          // literal value (e.g. disabled="disabled")
-          // see https://github.com/vuejs/vue-loader/issues/182
-          value = options.type === Boolean && (raw === '' || raw === hyphenate(prop.name)) ? true : raw;
-          initProp(vm, prop, value);
-        }
-      }
-    };
-  }
-
-  /**
-   * Process a prop with a rawValue, applying necessary coersions,
-   * default values & assertions and call the given callback with
-   * processed value.
-   *
-   * @param {Vue} vm
-   * @param {Object} prop
-   * @param {*} rawValue
-   * @param {Function} fn
-   */
-
-  function processPropValue(vm, prop, rawValue, fn) {
-    var isSimple = prop.dynamic && isSimplePath(prop.parentPath);
-    var value = rawValue;
-    if (value === undefined) {
-      value = getPropDefaultValue(vm, prop);
-    }
-    value = coerceProp(prop, value, vm);
-    var coerced = value !== rawValue;
-    if (!assertProp(prop, value, vm)) {
-      value = undefined;
-    }
-    if (isSimple && !coerced) {
-      withoutConversion(function () {
-        fn(value);
-      });
-    } else {
-      fn(value);
-    }
-  }
-
-  /**
-   * Set a prop's initial value on a vm and its data object.
-   *
-   * @param {Vue} vm
-   * @param {Object} prop
-   * @param {*} value
-   */
-
-  function initProp(vm, prop, value) {
-    processPropValue(vm, prop, value, function (value) {
-      defineReactive(vm, prop.path, value);
-    });
-  }
-
-  /**
-   * Update a prop's value on a vm.
-   *
-   * @param {Vue} vm
-   * @param {Object} prop
-   * @param {*} value
-   */
-
-  function updateProp(vm, prop, value) {
-    processPropValue(vm, prop, value, function (value) {
-      vm[prop.path] = value;
-    });
-  }
-
-  /**
-   * Get the default value of a prop.
-   *
-   * @param {Vue} vm
-   * @param {Object} prop
-   * @return {*}
-   */
-
-  function getPropDefaultValue(vm, prop) {
-    // no default, return undefined
-    var options = prop.options;
-    if (!hasOwn(options, 'default')) {
-      // absent boolean value defaults to false
-      return options.type === Boolean ? false : undefined;
-    }
-    var def = options['default'];
-    // warn against non-factory defaults for Object & Array
-    if (isObject(def)) {
-      'development' !== 'production' && warn('Invalid default value for prop "' + prop.name + '": ' + 'Props with type Object/Array must use a factory function ' + 'to return the default value.', vm);
-    }
-    // call factory function for non-Function types
-    return typeof def === 'function' && options.type !== Function ? def.call(vm) : def;
-  }
-
-  /**
-   * Assert whether a prop is valid.
-   *
-   * @param {Object} prop
-   * @param {*} value
-   * @param {Vue} vm
-   */
-
-  function assertProp(prop, value, vm) {
-    if (!prop.options.required && ( // non-required
-    prop.raw === null || // abscent
-    value == null) // null or undefined
-    ) {
-        return true;
-      }
-    var options = prop.options;
-    var type = options.type;
+    var type = prop.type;
     var valid = !type;
     var expectedTypes = [];
     if (type) {
-      if (!isArray(type)) {
+      if (!Array.isArray(type)) {
         type = [type];
       }
       for (var i = 0; i < type.length && !valid; i++) {
@@ -6897,39 +2608,14 @@ var template = Object.freeze({
       }
     }
     if (!valid) {
-      if ('development' !== 'production') {
-        warn('Invalid prop: type check failed for prop "' + prop.name + '".' + ' Expected ' + expectedTypes.map(formatType).join(', ') + ', got ' + formatValue(value) + '.', vm);
-      }
-      return false;
+      warn('Invalid prop: type check failed for prop "' + name + '".' + ' Expected ' + expectedTypes.map(capitalize).join(', ') + ', got ' + Object.prototype.toString.call(value).slice(8, -1) + '.', vm);
+      return;
     }
-    var validator = options.validator;
+    var validator = prop.validator;
     if (validator) {
       if (!validator(value)) {
-        'development' !== 'production' && warn('Invalid prop: custom validator check failed for prop "' + prop.name + '".', vm);
-        return false;
+        warn('Invalid prop: custom validator check failed for prop "' + name + '".', vm);
       }
-    }
-    return true;
-  }
-
-  /**
-   * Force parsing value with coerce option.
-   *
-   * @param {*} value
-   * @param {Object} options
-   * @return {*}
-   */
-
-  function coerceProp(prop, value, vm) {
-    var coerce = prop.options.coerce;
-    if (!coerce) {
-      return value;
-    }
-    if (typeof coerce === 'function') {
-      return coerce(value);
-    } else {
-      'development' !== 'production' && warn('Invalid coerce for prop "' + prop.name + '": expected function, got ' + typeof coerce + '.', vm);
-      return value;
     }
   }
 
@@ -6970,41 +2656,41 @@ var template = Object.freeze({
 
 
   var util = Object.freeze({
-    defineReactive: defineReactive,
-    _toString: _toString,
-    toNumber: toNumber,
-    makeMap: makeMap,
-    isBuiltInTag: isBuiltInTag,
-    remove: remove,
-    hasOwn: hasOwn,
-    isPrimitive: isPrimitive,
-    cached: cached,
-    camelize: camelize,
-    capitalize: capitalize,
-    hyphenate: hyphenate,
-    bind: bind,
-    toArray: toArray,
-    extend: extend,
-    isObject: isObject,
-    isPlainObject: isPlainObject,
-    toObject: toObject,
-    noop: noop,
-    no: no,
-    genStaticKeys: genStaticKeys,
-    isReserved: isReserved,
-    def: def,
-    parsePath: parsePath,
-    hasProto: hasProto,
-    inBrowser: inBrowser,
-    devtools: devtools,
-    UA: UA,
-    nextTick: nextTick,
-    get _Set () { return _Set; },
-    mergeOptions: mergeOptions,
-    resolveAsset: resolveAsset,
-    get warn () { return warn; },
-    get formatComponentName () { return formatComponentName; },
-    validateProp: validateProp
+  	defineReactive: defineReactive,
+  	_toString: _toString,
+  	toNumber: toNumber,
+  	makeMap: makeMap,
+  	isBuiltInTag: isBuiltInTag,
+  	remove: remove,
+  	hasOwn: hasOwn,
+  	isPrimitive: isPrimitive,
+  	cached: cached,
+  	camelize: camelize,
+  	capitalize: capitalize,
+  	hyphenate: hyphenate,
+  	bind: bind,
+  	toArray: toArray,
+  	extend: extend,
+  	isObject: isObject,
+  	isPlainObject: isPlainObject,
+  	toObject: toObject,
+  	noop: noop,
+  	no: no,
+  	genStaticKeys: genStaticKeys,
+  	isReserved: isReserved,
+  	def: def,
+  	parsePath: parsePath,
+  	hasProto: hasProto,
+  	inBrowser: inBrowser,
+  	devtools: devtools,
+  	UA: UA,
+  	nextTick: nextTick,
+  	get _Set () { return _Set; },
+  	mergeOptions: mergeOptions,
+  	resolveAsset: resolveAsset,
+  	get warn () { return warn; },
+  	get formatComponentName () { return formatComponentName; },
+  	validateProp: validateProp
   });
 
   function initUse(Vue) {
@@ -7197,7 +2883,7 @@ var template = Object.freeze({
     }
   });
 
-  Vue.version = '2.0.0-beta.6';
+  Vue.version = '2.0.0-beta.7';
 
   // attributes that should be using props for binding
   var mustUseProp = makeMap('value,selected,checked,muted');
@@ -7394,6 +3080,10 @@ var template = Object.freeze({
     return document.createTextNode(text);
   }
 
+  function createComment(text) {
+    return document.createComment(text);
+  }
+
   function insertBefore(parentNode, newNode, referenceNode) {
     parentNode.insertBefore(newNode, referenceNode);
   }
@@ -7434,6 +3124,7 @@ var nodeOps = Object.freeze({
     createElement: createElement$1,
     createElementNS: createElementNS,
     createTextNode: createTextNode,
+    createComment: createComment,
     insertBefore: insertBefore,
     removeChild: removeChild,
     appendChild: appendChild,
@@ -7461,7 +3152,7 @@ var nodeOps = Object.freeze({
     if (vnode1.isStatic || vnode2.isStatic) {
       return vnode1 === vnode2;
     }
-    return vnode1.key === vnode2.key && vnode1.tag === vnode2.tag && !vnode1.data === !vnode2.data;
+    return vnode1.key === vnode2.key && vnode1.tag === vnode2.tag && vnode1.isComment === vnode2.isComment && !vnode1.data === !vnode2.data;
   }
 
   function createKeyToOldIdx(children, beginIdx, endIdx) {
@@ -7510,10 +3201,11 @@ var nodeOps = Object.freeze({
       nodeOps.removeChild(parent, el);
     }
 
-    function createElm(vnode, insertedVnodeQueue) {
+    function createElm(vnode, insertedVnodeQueue, nested) {
       var i = void 0,
           elm = void 0;
       var data = vnode.data;
+      vnode.isRootInsert = !nested;
       if (isDef(data)) {
         if (isDef(i = data.hook) && isDef(i = i.init)) i(vnode);
         // after calling the init hook, if the vnode is a child component
@@ -7521,12 +3213,7 @@ var nodeOps = Object.freeze({
         // component also has set the placeholder vnode's elm.
         // in that case we can just return the element and be done.
         if (isDef(i = vnode.child)) {
-          if (vnode.data.pendingInsert) {
-            insertedVnodeQueue.push.apply(insertedVnodeQueue, vnode.data.pendingInsert);
-          }
-          vnode.elm = vnode.child.$el;
-          invokeCreateHooks(vnode, insertedVnodeQueue);
-          setScope(vnode);
+          initComponent(vnode, insertedVnodeQueue);
           return vnode.elm;
         }
       }
@@ -7542,7 +3229,7 @@ var nodeOps = Object.freeze({
         setScope(vnode);
         if (Array.isArray(children)) {
           for (i = 0; i < children.length; ++i) {
-            nodeOps.appendChild(elm, createElm(children[i], insertedVnodeQueue));
+            nodeOps.appendChild(elm, createElm(children[i], insertedVnodeQueue, true));
           }
         } else if (isPrimitive(vnode.text)) {
           nodeOps.appendChild(elm, nodeOps.createTextNode(vnode.text));
@@ -7550,6 +3237,8 @@ var nodeOps = Object.freeze({
         if (isDef(data)) {
           invokeCreateHooks(vnode, insertedVnodeQueue);
         }
+      } else if (vnode.isComment) {
+        elm = vnode.elm = nodeOps.createComment(vnode.text);
       } else {
         elm = vnode.elm = nodeOps.createTextNode(vnode.text);
       }
@@ -7567,15 +3256,24 @@ var nodeOps = Object.freeze({
       }
     }
 
+    function initComponent(vnode, insertedVnodeQueue) {
+      if (vnode.data.pendingInsert) {
+        insertedVnodeQueue.push.apply(insertedVnodeQueue, vnode.data.pendingInsert);
+      }
+      vnode.elm = vnode.child.$el;
+      invokeCreateHooks(vnode, insertedVnodeQueue);
+      setScope(vnode);
+    }
+
     // set scope id attribute for scoped CSS.
     // this is implemented as a special case to avoid the overhead
     // of going through the normal attribute patching process.
     function setScope(vnode) {
       var i = void 0;
-      if (isDef(i = vnode.host) && isDef(i = i.$options._scopeId)) {
+      if (isDef(i = vnode.context) && isDef(i = i.$options._scopeId)) {
         nodeOps.setAttribute(vnode.elm, i, '');
       }
-      if (isDef(i = vnode.context) && isDef(i = i.$options._scopeId)) {
+      if (isDef(i = activeInstance) && i !== vnode.context && isDef(i = i.$options._scopeId)) {
         nodeOps.setAttribute(vnode.elm, i, '');
       }
     }
@@ -7776,6 +3474,7 @@ var nodeOps = Object.freeze({
       }
     }
 
+    var bailed = false;
     function hydrate(elm, vnode, insertedVnodeQueue) {
       if ("development" !== 'production') {
         if (!assertNodeMatch(elm, vnode)) {
@@ -7791,18 +3490,31 @@ var nodeOps = Object.freeze({
         if (isDef(i = data.hook) && isDef(i = i.init)) i(vnode, true /* hydrating */);
         if (isDef(i = vnode.child)) {
           // child component. it should have hydrated its own tree.
-          invokeCreateHooks(vnode, insertedVnodeQueue);
+          initComponent(vnode, insertedVnodeQueue);
           return true;
         }
       }
       if (isDef(tag)) {
         if (isDef(children)) {
           var childNodes = nodeOps.childNodes(elm);
-          for (var _i3 = 0; _i3 < children.length; _i3++) {
-            var success = hydrate(childNodes[_i3], children[_i3], insertedVnodeQueue);
-            if (!success) {
-              return false;
+          var childrenMatch = true;
+          if (childNodes.length !== children.length) {
+            childrenMatch = false;
+          } else {
+            for (var _i3 = 0; _i3 < children.length; _i3++) {
+              if (!hydrate(childNodes[_i3], children[_i3], insertedVnodeQueue)) {
+                childrenMatch = false;
+                break;
+              }
             }
+          }
+          if (!childrenMatch) {
+            if ("development" !== 'production' && typeof console !== 'undefined' && !bailed) {
+              bailed = true;
+              console.warn('Parent: ', elm);
+              console.warn('Mismatching childNodes vs. VNodes: ', childNodes, children);
+            }
+            return false;
           }
         }
         if (isDef(data)) {
@@ -7813,18 +3525,11 @@ var nodeOps = Object.freeze({
     }
 
     function assertNodeMatch(node, vnode) {
-      var match = true;
-      if (!node) {
-        match = false;
-      } else if (vnode.tag) {
-        match = vnode.tag.indexOf('vue-component') === 0 || vnode.tag === nodeOps.tagName(node).toLowerCase();
+      if (vnode.tag) {
+        return vnode.tag.indexOf('vue-component') === 0 || vnode.tag === nodeOps.tagName(node).toLowerCase();
       } else {
-        match = _toString(vnode.text) === node.data;
+        return _toString(vnode.text) === node.data;
       }
-      if ("development" !== 'production' && !match) {
-        warn('The client-side rendered virtual DOM tree is not matching ' + 'server-rendered content. Bailing hydration and performing ' + 'full client-side render.');
-      }
-      return match;
     }
 
     return function patch(oldVnode, vnode, hydrating, removeOnly) {
@@ -7846,7 +3551,7 @@ var nodeOps = Object.freeze({
             // mounting to a real element
             // check if this is server-rendered content and if we can perform
             // a successful hydration.
-            if (oldVnode.hasAttribute('server-rendered')) {
+            if (oldVnode.nodeType === 1 && oldVnode.hasAttribute('server-rendered')) {
               oldVnode.removeAttribute('server-rendered');
               hydrating = true;
             }
@@ -7854,6 +3559,8 @@ var nodeOps = Object.freeze({
               if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
                 invokeInsertHook(vnode, insertedVnodeQueue, true);
                 return oldVnode;
+              } else if ("development" !== 'production') {
+                warn('The client-side rendered virtual DOM tree is not matching ' + 'server-rendered content. This is likely caused by incorrect ' + 'HTML markup, for example nesting block-level elements inside ' + '<p>, or missing <tbody>. Bailing hydration and performing ' + 'full client-side render.');
               }
             }
             // either not server-rendered, or hydration failed.
@@ -8148,14 +3855,21 @@ var nodeOps = Object.freeze({
   });
 
   function updateStyle(oldVnode, vnode) {
-    if (!oldVnode.data.style && !vnode.data.style) {
+    if ((!oldVnode.data || !oldVnode.data.style) && !vnode.data.style) {
       return;
     }
     var cur = void 0,
         name = void 0;
-    var elm = vnode.elm;
+    var el = vnode.elm;
     var oldStyle = oldVnode.data.style || {};
     var style = vnode.data.style || {};
+
+    // handle string
+    if (typeof style === 'string') {
+      el.style.cssText = style;
+      return;
+    }
+
     var needClone = style.__ob__;
 
     // handle array syntax
@@ -8171,14 +3885,14 @@ var nodeOps = Object.freeze({
 
     for (name in oldStyle) {
       if (!style[name]) {
-        elm.style[normalize(name)] = '';
+        el.style[normalize(name)] = '';
       }
     }
     for (name in style) {
       cur = style[name];
       if (cur !== oldStyle[name]) {
         // ie9 setting to null has no effect, must use empty string
-        elm.style[normalize(name)] = cur || '';
+        el.style[normalize(name)] = cur || '';
       }
     }
   }
@@ -8386,9 +4100,16 @@ var nodeOps = Object.freeze({
     var afterAppear = data.afterAppear;
     var appearCancelled = data.appearCancelled;
 
+    // activeInstance will always be the <transition> component managing this
+    // transition. One edge case to check is when the <transition> is placed
+    // as the root node of a child component. In that case we need to check
+    // <transition>'s parent for appear check.
 
-    var context = vnode.context.$parent || vnode.context;
-    var isAppear = !context._isMounted;
+    var transitionNode = activeInstance.$vnode;
+    var context = transitionNode && transitionNode.parent ? transitionNode.parent.context : activeInstance;
+
+    var isAppear = !context._isMounted || !vnode.isRootInsert;
+
     if (isAppear && !appear && appear !== '') {
       return;
     }
@@ -10068,7 +5789,6 @@ var nodeOps = Object.freeze({
   var transforms$1 = void 0;
   var dataGenFns = void 0;
   var platformDirectives$1 = void 0;
-  var isPlatformReservedTag$1 = void 0;
   var staticRenderFns = void 0;
   var currentOptions = void 0;
 
@@ -10081,7 +5801,6 @@ var nodeOps = Object.freeze({
     transforms$1 = pluckModuleFunction(options.modules, 'transformCode');
     dataGenFns = pluckModuleFunction(options.modules, 'genData');
     platformDirectives$1 = options.directives || {};
-    isPlatformReservedTag$1 = options.isReservedTag || no;
     var code = ast ? genElement(ast) : '_h("div")';
     // console.log(code)
     staticRenderFns = prevStaticRenderFns;
@@ -10112,9 +5831,7 @@ var nodeOps = Object.freeze({
         code = genComponent(el);
       } else {
         var data = genData(el);
-        // if the element is potentially a component,
-        // wrap its children as a thunk.
-        var children = !el.inlineTemplate ? genChildren(el, !isPlatformReservedTag$1(el.tag) /* asThunk */) : null;
+        var children = el.inlineTemplate ? null : genChildren(el);
         code = '_h(\'' + el.tag + '\'' + (data ? ',' + data : '' // data
         ) + (children ? ',' + children : '' // children
         ) + ')';
@@ -10253,12 +5970,10 @@ var nodeOps = Object.freeze({
     }
   }
 
-  function genChildren(el, asThunk) {
-    if (!el.children.length) {
-      return;
+  function genChildren(el) {
+    if (el.children.length) {
+      return '[' + el.children.map(genNode).join(',') + ']';
     }
-    var code = '[' + el.children.map(genNode).join(',') + ']';
-    return asThunk ? 'function(){return ' + code + '}' : code;
   }
 
   function genNode(node) {
@@ -10281,7 +5996,7 @@ var nodeOps = Object.freeze({
   }
 
   function genComponent(el) {
-    var children = genChildren(el, true);
+    var children = genChildren(el);
     return '_h(' + el.component + ',' + genData(el) + (children ? ',' + children : '') + ')';
   }
 
@@ -10391,7 +6106,9 @@ var nodeOps = Object.freeze({
         warn('class="' + staticClass + '": ' + 'Interpolation inside attributes has been deprecated. ' + 'Use v-bind or the colon shorthand instead.');
       }
     }
-    el.staticClass = JSON.stringify(staticClass);
+    if (staticClass) {
+      el.staticClass = JSON.stringify(staticClass);
+    }
     var classBinding = getBindingAttr(el, 'class', false /* getStatic */);
     if (classBinding) {
       el.classBinding = classBinding;
@@ -10431,44 +6148,7 @@ var nodeOps = Object.freeze({
     genData: genData$2
   };
 
-  function transformNode$2(el) {
-    var transition = getBindingAttr(el, 'transition');
-    if (transition === '""') {
-      transition = true;
-    }
-    if (transition) {
-      el.transition = transition;
-    }
-    var mode = getBindingAttr(el, 'transition-mode');
-    if (mode) {
-      el.transitionMode = mode;
-    }
-  }
-
-  function genData$3(el) {
-    return el.transition ? 'transition:' + el.transition + ',' : '';
-  }
-
-  function transformCode(el, code) {
-    return el.transitionMode ? '_h(\'TransitionControl\',{props:{mode:' + el.transitionMode + ',child:' + code + '}})' : code;
-  }
-
-  var transition$1 = {
-    transformNode: transformNode$2,
-    genData: genData$3,
-    transformCode: transformCode
-  };
-
-    pluralize: function pluralize(value) {
-      var args = toArray(arguments, 1);
-      var length = args.length;
-      if (length > 1) {
-        var index = value % 10 - 1;
-        return index in args ? args[index] : args[length - 1];
-      } else {
-        return args[0] + (value === 1 ? '' : 's');
-      }
-    },
+  var modules$1 = [klass$1, style$1];
 
   var warn$3 = void 0;
 
@@ -10686,7 +6366,8 @@ var nodeOps = Object.freeze({
           delimiters: options.delimiters
         }, this);
 
-  Vue.version = '1.0.26';
+        var render = _compileToFunctions.render;
+        var staticRenderFns = _compileToFunctions.staticRenderFns;
 
         options.render = render;
         options.staticRenderFns = staticRenderFns;
