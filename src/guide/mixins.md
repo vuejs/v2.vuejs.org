@@ -1,7 +1,7 @@
 ---
 title: Mixins
 type: guide
-order: 16
+order: 17
 ---
 
 ## Basics
@@ -124,4 +124,19 @@ For most object-based options, you can simply use the same strategy used by `met
 ``` js
 var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
+```
+
+A more advanced example can be found on [Vuex](https://github.com/vuejs/vuex)'s merging strategy:
+
+``` js
+const merge = Vue.config.optionMergeStrategies.computed
+Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
+  if (!toVal) return fromVal
+  if (!fromVal) return toVal
+  return {
+    getters: merge(toVal.getters, fromVal.getters),
+    state: merge(toVal.state, fromVal.state),
+    actions: merge(toVal.actions, fromVal.actions)
+  }
+}
 ```

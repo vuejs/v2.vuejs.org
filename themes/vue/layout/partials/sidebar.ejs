@@ -1,6 +1,6 @@
 <div class="sidebar">
     <ul class="main-menu">
-        <%- partial('partials/main_menu') %>
+        <%- partial('partials/main_menu', { context: 'sidebar' }) %>
     </ul>
     <div class="list">
         <div id="donate" style="margin-bottom: 20px">
@@ -12,13 +12,24 @@
         <h2>
             <%- type === 'api' ? 'API' : (type.charAt(0).toUpperCase() + type.slice(1)) %>
             <select class="version-select">
-                <option selected>1.0</option>
+                <option selected>2.0</option>
+                <option>1.0</option>
                 <option>0.12</option>
                 <option>0.11</option>
             </select>
         </h2>
         <ul class="menu-root">
             <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
+                <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
+                <% if (fileName === 'installation') { %>
+                  <li><h3>Essentials</h3></li>
+                <% } %>
+                <% if (fileName === 'transitions') { %>
+                  <li><h3>Advanced</h3></li>
+                <% } %>
+                <% if (fileName === 'comparison') { %>
+                  <li><h3>Meta</h3></li>
+                <% } %>
                 <li>
                     <a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
                 </li>
