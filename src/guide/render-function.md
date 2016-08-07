@@ -151,9 +151,9 @@ createElement(
   // the component using vm.$emit.
   nativeOn: {
     click: this.nativeClickHandler
-  }
+  },
   // Same API as `v-bind:class`
-  class: {
+  'class': {
     foo: true,
     bar: false
   },
@@ -505,5 +505,3 @@ createElement('keep-alive', {
   }
 })
 ```
-
-
