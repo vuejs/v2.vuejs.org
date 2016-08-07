@@ -1,7 +1,7 @@
 ---
 title: Server-Side Rendering
 type: guide
-order: 25
+order: 23
 ---
 
 ## Hello World
