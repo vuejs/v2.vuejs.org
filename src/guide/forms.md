@@ -4,23 +4,9 @@ type: guide
 order: 10
 ---
 
-## Basics Usage
+## Basic Usage
 
-You can use the `v-model` directive to create two-way data bindings on form input elements. It automatically picks the correct way to update the element based on the input type. Although it can seem a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
-
-That means this:
-
-``` html
-<input v-model="message">
-```
-
-is the same as:
-
-``` html
-<input v-bind:value="message" v-on:input="message = $event.target.value">
-```
-
-<p class="tip" id="two-way-binding">Did your heart skip a beat when you read the words __two-way data bindings__? Aren't those bad? This is a great question! The phrase "two-way binding" is overloaded, meaning it's actually used to mean two separate things.<br><br>Two-way binding for _form inputs_, which is what `v-model` is for, is just simplifying syntax for a very common and safe pattern. Two-way binding _between scopes/components/models_, where there are two separate sources of truth for the same data, is what can be dangerous and lead to state bugs.</p>
+You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
 
 ### Text
 
@@ -37,6 +23,31 @@ is the same as:
 <script>
 new Vue({
   el: '#example-1',
+  data: {
+    message: ''
+  }
+})
+</script>
+{% endraw %}
+
+### Multiline text
+
+``` html
+<span>Multiline message is:</span>
+<p>{{ message }}</p>
+<br>
+<textarea v-model="message" placeholder="add multiple lines"></textarea>
+```
+
+{% raw %}
+<div id="example-textarea" class="demo">
+  <span>Message is:</span>
+  <p style="white-space: pre">{{ message }}</p><br>
+  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+</div>
+<script>
+new Vue({
+  el: '#example-textarea',
   data: {
     message: ''
   }

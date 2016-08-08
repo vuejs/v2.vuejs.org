@@ -1,7 +1,7 @@
 ---
 title: Components
 type: guide
-order: 13
+order: 11
 ---
 
 ## What are Components?
@@ -89,7 +89,7 @@ new Vue({
 })
 ```
 
-The same encapsulation applies for other registerable Vue features, such as directives and transitions.
+The same encapsulation applies for other registerable Vue features, such as directives.
 
 ### Component Option Caveats
 
@@ -716,7 +716,7 @@ This interface can be used not only to connect with form inputs inside a compone
 <webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
 ```
 
-### Child Component Refs
+### Child Component Reference
 
 Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
 
@@ -751,7 +751,7 @@ There are two things to note here:
 
 2. The `<app>` component very likely has its own template.
 
-To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue implements a content distribution API that is modeled after with the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
+To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
 
 ### Compilation Scope
 
@@ -938,60 +938,6 @@ If you want to keep the switched-out components in memory so that you can preser
 </component>
 ```
 
-### Transitioning Components
-
-Just as we did [with elements](transitions.html#Transitioning-Between-Elements), we can transition between components, but we don't need the `key` attribute:
-
-``` html
-<!-- fade out first, then fade in -->
-<transition name="fade" mode="out-in">
-  <component v-bind:is="view"></component>
-</transition>
-```
-
-``` css
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease;
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0;
-}
-```
-
-{% raw %}
-<div id="transition-mode-demo" class="demo">
-  <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
-  <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
-  <transition name="fade" mode="out-in">
-    <component v-bind:is="view"></component>
-  </transition>
-</div>
-<style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease;
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0;
-}
-</style>
-<script>
-new Vue({
-  el: '#transition-mode-demo',
-  data: {
-    view: 'v-a'
-  },
-  components: {
-    'v-a': {
-      template: '<div>Component A</div>'
-    },
-    'v-b': {
-      template: '<div>Component B</div>'
-    }
-  }
-})
-</script>
-{% endraw %}
-
 ## Misc
 
 ### Components and v-for
@@ -1013,6 +959,103 @@ However, this won't automatically pass any data to the component, because compon
 ```
 
 The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+
+Here's a complete example of a simple todo list:
+
+``` html
+<div id="todo-list-example">
+  <input
+    v-model="newTodoText" v
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:title="todo"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+```
+
+``` js
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    <\li>\
+  ',
+  props: ['title']
+})
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      'Do the dishes',
+      'Take out the trash',
+      'Mow the lawn'
+    ]
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push(this.newTodoText)
+      this.newTodoText = ''
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="todo-list-example" class="demo">
+  <input
+    v-model="newTodoText" v
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:title="todo"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+<script>
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    <\li>\
+  ',
+  props: ['title']
+})
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      'Do the dishes',
+      'Take out the trash',
+      'Mow the lawn'
+    ]
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push(this.newTodoText)
+      this.newTodoText = ''
+    }
+  }
+})
+</script>
+{% endraw %}
+
 
 Here's a complete example of a simple todo list:
 

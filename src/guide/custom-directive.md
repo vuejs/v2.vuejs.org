@@ -6,37 +6,7 @@ order: 16
 
 ## Intro
 
-In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Directives provide a reusable way of binding behavior that requires low-level DOM access, such as focusing on an input element.
-
-Here's a simple example:
-
-``` js
-Vue.directive('focus', {
-  bind: function (el) {
-    Vue.nextTick(function () {
-      el.focus()
-    })
-  }
-})
-```
-
-This registers a global custom directive `v-focus`. If you want to register a directive locally instead, components also accept a `directives` option:
-
-``` js
-directives: {
-  focus: {
-    // directive definition
-  }
-}
-```
-
-Now in your template, you can use the `v-focus` attribute on any element, like this:
-
-``` html
-<input v-focus>
-```
-
-When the page loads, that element will gain focus. In fact, if you haven't clicked on anything else since visiting this page, the input below should be focused now:
+In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Directives provide a reusable way of binding behavior that requires low-level DOM access, such as focusing on an input element, like this one:
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -56,6 +26,38 @@ new Vue({
 </script>
 {% endraw %}
 
+When the page loads, that element gains focus. In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
+
+``` js
+// Register a global custom directive called v-focus
+Vue.directive('focus', {
+  // When the directive is first bound to the element...
+  bind: function (el) {
+    // After the next render...
+    Vue.nextTick(function () {
+      // Focus the element
+      el.focus()
+    })
+  }
+})
+```
+
+If you want to register a directive locally instead, components also accept a `directives` option:
+
+``` js
+directives: {
+  focus: {
+    // directive definition
+  }
+}
+```
+
+Then in a template, you can use the new `v-focus` attribute on any element, like this:
+
+``` html
+<input v-focus>
+```
+
 ## Hook Functions
 
 A directive definition object can provide several hook functions (all optional):
@@ -68,24 +70,20 @@ A directive definition object can provide several hook functions (all optional):
 For example:
 
 ``` js
-Vue.directive('my-directive', {
-  bind: function (el, binding, vnode) {
-    // Do preparation work (e.g. add event listeners or
-    // expensive stuff that needs to be run only once)
-  },
-  update: function (el, binding, vnode, oldVnode) {
-    // Do something based on the possibly updated value
-    // stored in binding.value (e.g. change behavior if
-    // the options passed into the directive have changed)
-  },
-  componentUpdated: function (el, binding, vnode, oldVnode) {
-    // Do something based on the new state of the DOM
-    // (e.g. apply special behavior depending on the new
-    // state of the element or its surrounding nodes)
-  },
-  unbind: function (el, binding, vnode) {
-    // Do clean up work (e.g. remove event listeners
-    // added in bind)
+Vue.directive('demo', function (value) {
+  console.log(value) // "foo bar baz"
+})
+```
+
+### Element Directives
+
+In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained earlier in the guide). You can register a custom element directive like so:
+
+``` js
+Vue.elementDirective('my-directive', {
+  // same API as normal directives
+  bind: function () {
+    // manipulate this.el...
   }
 })
 ```

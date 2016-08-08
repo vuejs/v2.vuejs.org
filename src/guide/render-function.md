@@ -151,9 +151,9 @@ createElement(
   // the component using vm.$emit.
   nativeOn: {
     click: this.nativeClickHandler
-  }
+  },
   // Same API as `v-bind:class`
-  class: {
+  'class': {
     foo: true,
     bar: false
   },
@@ -207,6 +207,35 @@ Vue.component('anchored-heading', {
     }
   }
 })
+```
+
+### Constraints
+
+#### VNodes Must Be Unique
+
+All VNodes in the component tree must be unique. That means the following render function is invalid:
+
+``` js
+render: function (createElement) {
+  var myParagraphVNode = createElement('p', 'hi')
+  return createElement('div', [
+    // Yikes - duplicate VNodes!
+    myParagraphVNode, myParagraphVNode
+  ])
+}
+```
+
+If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+
+``` js
+render: function (createElement) {
+  var myParagraph =
+  return createElement('div',
+    Array.apply(null, { length: 20 }).map(function () {
+      return createElement('p', 'hi')
+    })
+  )
+}
 ```
 
 ## Replacing Template Features with Plain JavaScript
@@ -365,6 +394,97 @@ Vue.component('smart-list', {
   }
 })
 ```
+
+### `slots` vs `children`
+
+You may wonder why we need both `slots` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+
+``` html
+<my-functional-component>
+  <p slot="foo">
+    first
+  </p>
+  <p>second</p>
+</my-functional-component>
+```
+
+For this component, `children()` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
+
+## Template Compilation
+
+You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+
+{% raw %}
+<div id="vue-compile-demo" class="demo">
+  <textarea v-model="templateText" rows="10"></textarea>
+  <div v-if="typeof result === 'object'">
+    <label>render:</label>
+    <pre><code>{{ result.render }}</code></pre>
+    <label>staticRenderFns:</label>
+    <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
+  </div>
+  <div v-else>
+    <label>Compilation Error:</label>
+    <pre><code>{{ result }}</code></pre>
+  </div>
+</div>
+<script>
+new Vue({
+  el: '#vue-compile-demo',
+  data: {
+    templateText: '\
+<div>\n\
+  <h1>I\'m a template!</h1>\n\
+  <p v-if="message">\n\
+    {{ message }}\n\
+  </p>\n\
+  <p v-else>\n\
+    No message.\n\
+  </p>\n\
+</div>\
+    ',
+  },
+  computed: {
+    result: function () {
+      if (!this.templateText) {
+        return 'Enter a valid template above'
+      }
+      try {
+        var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
+        return {
+          render: this.formatFunction(result.render),
+          staticRenderFns: result.staticRenderFns.map(this.formatFunction)
+        }
+      } catch (error) {
+        return error.message
+      }
+    }
+  },
+  methods: {
+    formatFunction: function (fn) {
+      return fn.toString().replace(/(\{\n)(\S)/, '$1  $2')
+    }
+  }
+})
+console.error = function (error) {
+  throw new Error(error)
+}
+</script>
+<style>
+#vue-compile-demo pre {
+  padding: 10px;
+  overflow-x: auto;
+}
+#vue-compile-demo code {
+  white-space: pre;
+  padding: 0
+}
+#vue-compile-demo textarea {
+  width: 100%;
+
+}
+</style>
+{% endraw %}
 
 ## Misc
 
