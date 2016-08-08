@@ -46,11 +46,11 @@ This is due to React's many heavy invariant checks, which help it provide many e
 
 ### HTML & CSS
 
-In React, everything is Just JavaScript - which sounds very simple and elegant... until you dig deeper. The unfortunately reality is that reinventing HTML and CSS within JavaScript can cause a lot of pain. In Vue, we instead embrace web technologies and build on top of them.
+In React, everything is Just JavaScript, which sounds very simple and elegant - until you dig deeper. The unfortunate reality is that reinventing HTML and CSS within JavaScript can cause a lot of pain. In Vue, we instead embrace web technologies and build on top of them. To show you what that means, we'll dive into some examples.
 
 #### JSX vs Templates
 
-With React's JSX, there are minor differencs from HTML, such as using `className` instead of `class`, but that's really not too bad. What feels really awkward is constantly switching back and forth between JavaScript and JSX, especially since not everything is an expression in JavaScript.
+With React's JSX, there are minor differences from HTML, such as using `className` instead of `class`, but that's really not too bad. What feels really awkward is constantly switching back and forth between JavaScript and JSX, especially since not everything is an expression in JavaScript.
 
 Take this example below:
 
@@ -78,15 +78,15 @@ render () {
 
 This is an extremely common use case, but using JSX, there are a few problems that may not be immediately obvious:
 
-- __Syntax Noise__: All the curly braces add a lot of visual noise, but what's worse is that while writing it, I had to make a lot of decisions about how I want to minimize their visual impact. I tried to find the best compromise possible, but that fact that I even had to spend time considering it is
+- __Syntax Noise__: All the curly braces add a lot of visual noise, but what's worse is that while writing it, you have to frequently make decisions about how to minimize their visual impact, slowing development.
 
-- __Cajoling JavaScript into Expressions__: I chose to use a ternary rather than an if statement here, which I think makes the code less readable, but it's still probably the best of bad options. My only alternatives include hoisting this logic out of its context or wrapping an if statement in an immediately-invoked functional expression.
+- __Cajoling JavaScript into Expressions__: The example uses a ternary rather than an if statement here, which arguably makes the code less readable, but it's still possibly the best of bad options. The only alternatives include hoisting this logic out of its context or wrapping an if statement in an immediately-invoked function expression. Do expressions will help a little when they're a more stable feature, but they're currently at stage 0.
 
-- __Readability to Non-React Developers__: Imagine having a designer that's familiar with HTML and CSS look at this. They'd be paralyzed with confusion at every single line. While the JSX will look somewhat similar to HTML, we use `className` instead of `class`, the ternary will be meaningless, and parentheses and curly braces are everywhere. It'd be difficult for them to make even simple modifications.
+- __Readability to Non-React Developers__: Imagine having a designer that's familiar with HTML and CSS look at this. They'd be paralyzed with confusion at every single line. While the JSX will look somewhat similar to HTML, `className` replaces `class`, the ternary will be meaningless, and parentheses and curly braces are everywhere. It'd be difficult for them to make simple modifications or even understand what this code is doing.
 
-In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes it is useful to have the power of a full programming language. Render functions not recommended for most components however.
+In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes it is useful to have the power of a full programming language. Render functions are not recommended for most components however.
 
-Instead, we offer templates a simpler alternative:
+Instead, we offer templates as a simpler alternative:
 
 ``` html
 <template>
@@ -104,7 +104,7 @@ Instead, we offer templates a simpler alternative:
 A few advantages here:
 
 - Any valid HTML is valid in a template
-- Many fewer implementation and stylistic decisions had to be made while writing it
+- Many fewer implementation and stylistic decisions have to be made while writing a template
 - There's much less visual noise
 - It reads more like English (e.g. for each item in items)
 
@@ -128,19 +128,25 @@ Vue on the other hand, gives you full access to CSS within [single-file componen
 </style>
 ```
 
-The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `_v-f3f3eg9`) to elements and compiling `.list-container:hover` to `.list-container[_v-f3f3eg9]:hover`.
+The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `_v-f3f3eg9`) to elements and compiling `.list-container:hover` to something like `.list-container[_v-f3f3eg9]:hover`.
 
-Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors you'd like. This allows you to perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size and complexity or your application.
+Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors you'd like. This allows you to perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
 
 ### Scale
 
 #### Scaling Up
 
-For large applications, both Vue and React offer robust routing solutions. The React community has also been very innovative in terms of state management solutions (e.g. Flux/Redux). These state management patterns and [even Redux itself](https://github.com/egoist/revue) can be easily integrated into Vue applications. In fact, Vue has even taken this model a step further with [Vuex](https://github.com/vuejs/vuex), an Elm-inspired state management solution that integrates deeply into Vue that we think offers a far superior development experience.
+For large applications, both Vue and React offer robust routing solutions. The React community has also been very innovative in terms of state management solutions (e.g. Flux/Redux). These state management patterns and [even Redux itself](https://github.com/egoist/revue) can be easily integrated into Vue applications. In fact, Vue has even taken this model a step further with [Vuex](https://github.com/vuejs/vuex), an Elm-inspired state management solution that integrates deeply into Vue that we think offers a superior development experience.
 
-Another important difference between these offerings is that Vue's companion libraries for state management and routing (among [other concerns](https://github.com/vuejs)) are all officially supported and kept up-to-date with the core library. React instead chooses to leave these concerns to the community.
+Another important difference between these offerings is that Vue's companion libraries for state management and routing (among [other concerns](https://github.com/vuejs)) are all officially supported and kept up-to-date with the core library. React instead chooses to leave these concerns to the community, creating to a more fragmented ecosystem.
 
-Finally, Vue offers a [CLI project generator](https://github.com/vuejs/vue-cli) that makes is trivially easy to start a new project using your choice of build system. React has made strides in this area, but has yet to produce a production-ready, out-of-the-box solution for new projects.
+Finally, Vue offers a [CLI project generator](https://github.com/vuejs/vue-cli) that makes is trivially easy to start a new project using your choice of build system, including [Webpack](github.com/vuejs-templates/webpack), [Browserify](github.com/vuejs-templates/browserify), [SystemJS](https://github.com/vuejs-templates/systemjs) - or even [no build system](https://github.com/vuejs-templates/simple). React is also making strides in this area with [create-react-app](https://github.com/facebookincubator/create-react-app), but it currently has a few limitations:
+
+- It does not allow any configuration during project generation, while Vue's project templates allow Yeoman-like customization.
+- It only offers a single template that assumes you're building a single-page application, while Vue offers a wide variety of templates for various purposes and build systems.
+- It cannot generate projects from user-built templates, which is especially important for enterprise environments with pre-established conventions.
+
+It's important to note though that many of these limitations are intentional design decisions and they do have their advantages. You can read more about the [differing philosophy here](https://github.com/facebookincubator/create-react-app#philosophy). One advantage is that as long your project's needs are very simple and you never need to "eject" to customize it, you'll be able to update your build process as a dependency.
 
 #### Scaling Down
 
