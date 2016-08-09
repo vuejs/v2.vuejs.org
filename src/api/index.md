@@ -373,3 +373,30 @@ type: api
   ```
 
 - **See also:** [Props](/guide/components.html#Props)
+
+### propsData
+
+> 1.0.22+
+
+- **Type:** `Object`
+
+- **Restriction:** only respected in instance creation via `new`.
+
+- **Details:**
+
+  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+
+- **Example:**
+
+  ``` js
+  var Comp = Vue.extend({
+    props: ['msg'],
+    template: '<div>{{ msg }}</div>'
+  })
+
+  var vm = new Comp({
+    propsData: {
+      msg: 'hello'
+    }
+  })
+  ```
