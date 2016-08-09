@@ -39,7 +39,8 @@ new Vue({
 </script>
 {% endraw %}
 
-### Two-way Binding (Data Binding Dua Arah)
+<!-- ### Two-way Binding -->
+### Data Binding Dua Arah
 
 ``` html
 <div id="app">
@@ -158,7 +159,7 @@ new Vue({
 {% endraw %}
 
 <!-- ### All Together Now -->
-### Sekarang Lakukan Secara Bersamaan
+### Lakukan Secara Bersamaan
 
 ``` html
 <div id="app">

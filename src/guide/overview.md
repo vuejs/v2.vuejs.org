@@ -1,14 +1,17 @@
 ---
-title: Overview
+title: Selayang Pandang
 type: guide
 order: 2
 ---
 
-Vue.js (pronounced /vjuː/, like **view**) is a library for building interactive web interfaces. The goal of Vue.js is to provide the benefits of **reactive data binding** and **composable view components** with an API that is as simple as possible.
+<!-- Vue.js (pronounced /vjuː/, like **view**) is a library for building interactive web interfaces. The goal of Vue.js is to provide the benefits of **reactive data binding** and **composable view components** with an API that is as simple as possible. -->
+Vue.js (baca /vjuː/, seperti pada **view**) adalah sebuah library (pustaka) yang digunakan untuk membangun sebuah halaman web yang interaktif. Tujuan dari Vue.js adalah untuk memberikan kelebihan dari **reactive data binding** dan **composable view components** dengan sebuah API (Application Programming Interface) yang sesimpel mungkin.
 
-Vue.js itself is not a full-blown framework - it is focused on the view layer only. It is therefore very easy to pick up and to integrate with other libraries or existing projects. On the other hand, when used in combination with proper tooling and supporting libraries, Vue.js is also perfectly capable of powering sophisticated Single-Page Applications.
+<!-- Vue.js itself is not a full-blown framework - it is focused on the view layer only. It is therefore very easy to pick up and to integrate with other libraries or existing projects. On the other hand, when used in combination with proper tooling and supporting libraries, Vue.js is also perfectly capable of powering sophisticated Single-Page Applications. -->
+Vue.js sendiri bukanlah sebuah framework yang utuh, namun ia hanya fokus pada layer (lapisan) view. Karenanya sangat mudah untuk mengambil dan mengintegrasikannya dengan library lain maupun project lain yang sudah ada. Di sisi lain, ketika digunakan di dalam kombinasi dengan tool dan library yang tepat, Vue.js juga mampu digunakan untuk membuat Single-Page Application.
 
-If you are an experienced frontend developer and want to know how Vue.js compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html); if you are more interested about how Vue.js approaches larger-scale applications, check out the section on [Building Larger-Scale Applications](application.html).
+<!-- If you are an experienced frontend developer and want to know how Vue.js compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html); if you are more interested about how Vue.js approaches larger-scale applications, check out the section on [Building Larger-Scale Applications](application.html). -->
+Jika Anda adalah seorang frontend developer berpengalaman dan ingin mengetahui perbandingan Vue.js dengan library/framework lainnya, silakan baca [Perbandingan dengan Framework Lain](comparison.html); dan jika Anda lebih tertarik mengenai bagaimana pendekatan Vue.js pada larger-scale applications (aplikasi berskala besar), silakan baca halaman [Membangun Aplikasi Berskala Besar](application.html).
 
 ## Reactive Data Binding
 
