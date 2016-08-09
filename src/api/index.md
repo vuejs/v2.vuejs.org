@@ -364,9 +364,11 @@ type: api
       // type check plus other validations
       name: {
         type: String,
+        default: 0,
         required: true,
-        // warn if not two way bound
-        twoWay: true
+        validator: function (value) {
+          return value > 0
+        }
       }
     }
   })
@@ -400,3 +402,100 @@ type: api
     }
   })
   ```
+
+### computed
+
+- **Type:** `Object`
+
+- **Details:**
+
+  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+
+- **Example:**
+
+  ```js
+  var vm = new Vue({
+    data: { a: 1 },
+    computed: {
+      // get only, just need a function
+      aDouble: function () {
+        return this.a * 2
+      },
+      // both get and set
+      aPlus: {
+        get: function () {
+          return this.a + 1
+        },
+        set: function (v) {
+          this.a = v - 1
+        }
+      }
+    }
+  })
+  vm.aPlus   // -> 2
+  vm.aPlus = 3
+  vm.a       // -> 2
+  vm.aDouble // -> 4
+  ```
+
+- **See also:**
+  - [Computed Properties](/guide/computed.html)
+  - [Reactivity in Depth: Inside Computed Properties](/guide/reactivity.html#Inside-Computed-Properties)
+
+### methods
+
+- **Type:** `Object`
+
+- **Details:**
+
+  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+
+- **Example:**
+
+  ```js
+  var vm = new Vue({
+    data: { a: 1 },
+    methods: {
+      plus: function () {
+        this.a++
+      }
+    }
+  })
+  vm.plus()
+  vm.a // 2
+  ```
+
+- **See also:** [Methods and Event Handling](/guide/events.html)
+
+### watch
+
+- **Type:** `Object`
+
+- **Details:**
+
+  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+
+- **Example:**
+
+  ``` js
+  var vm = new Vue({
+    data: {
+      a: 1
+    },
+    watch: {
+      'a': function (val, oldVal) {
+        console.log('new: %s, old: %s', val, oldVal)
+      },
+      // string method name
+      'b': 'someMethod',
+      // deep watcher
+      'c': {
+        handler: function (val, oldVal) { /* ... */ },
+        deep: true
+      }
+    }
+  })
+  vm.a = 2 // -> new: 2, old: 1
+  ```
+
+- **See also:** [Instance Methods - vm.$watch](#vm-watch)
