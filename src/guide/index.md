@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: Memulai
 type: guide
 order: 1
 ---
