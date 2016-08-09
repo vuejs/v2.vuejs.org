@@ -297,3 +297,45 @@ type: api
   ```
 
 - **See also:** [Render Functions](/guide/render-function.html).
+
+## Options / Data
+
+### data
+
+- **Type:** `Object | Function`
+
+- **Restriction:** Only accepts `Function` when used in a component definition.
+
+- **Details:**
+
+  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects, existing getter/setters and prototype properties are ignored. It is not recommended to observe complex objects.
+
+  Once the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object.
+
+  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+
+  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
+
+  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
+
+- **Example:**
+
+  ``` js
+  var data = { a: 1 }
+
+  // direct instance creation
+  var vm = new Vue({
+    data: data
+  })
+  vm.a // -> 1
+  vm.$data === data // -> true
+
+  // must use function when in Vue.extend()
+  var Component = Vue.extend({
+    data: function () {
+      return { a: 1 }
+    }
+  })
+  ```
+
+- **See also:** [Reactivity in Depth](/guide/reactivity.html).
