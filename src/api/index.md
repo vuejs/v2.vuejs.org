@@ -339,3 +339,37 @@ type: api
   ```
 
 - **See also:** [Reactivity in Depth](/guide/reactivity.html).
+
+### props
+
+- **Type:** `Array | Object`
+
+- **Details:**
+
+  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+
+- **Example:**
+
+  ``` js
+  // simple syntax
+  Vue.component('props-demo-simple', {
+    props: ['size', 'myMessage']
+  })
+
+  // object syntax with validation
+  Vue.component('props-demo-advanced', {
+    props: {
+      // just type check
+      size: Number,
+      // type check plus other validations
+      name: {
+        type: String,
+        required: true,
+        // warn if not two way bound
+        twoWay: true
+      }
+    }
+  })
+  ```
+
+- **See also:** [Props](/guide/components.html#Props)
