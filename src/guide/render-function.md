@@ -183,6 +183,7 @@ var getChildrenTextContent = function (children) {
 
 Vue.component('anchored-heading', {
   render: function (createElement) {
+    // create kebabCase id
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
@@ -240,7 +241,7 @@ render: function (createElement) {
 
 ## Replacing Template Features with Plain JavaScript
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a propriety alternative. For example, in a template using `v-if` and `v-for`:
+Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide an appropriate alternative. For example, in a template using `v-if` and `v-for`:
 
 ``` html
 <ul v-if="items.length">
