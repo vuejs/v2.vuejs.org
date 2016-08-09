@@ -4,9 +4,11 @@ type: guide
 order: 1
 ---
 
-Let's start with a quick tour of Vue's data binding features. If you are more interested in a high-level overview first, check out this [blog post](http://blog.evanyou.me/2015/10/25/vuejs-re-introduction/).
+<!-- Let's start with a quick tour of Vue's data binding features. If you are more interested in a high-level overview first, check out this [blog post](http://blog.evanyou.me/2015/10/25/vuejs-re-introduction/). -->
+Mari kita mulai dengan tour ringkas penggunaan fitur data binding pada Vue.js. Jika anda lebih tertarik untuk ikhtisar yang lebih tinggi levelnya, cek [postingan blog ini](http://blog.evanyou.me/2015/10/25/vuejs-re-introduction/).
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/yyx990803/okv0rgrk/). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page.
+<!-- The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/yyx990803/okv0rgrk/). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page. -->
+Cara termudah untuk mencoba Vue.js adalah melalui [contoh Hello World pada JSFiddle](https://jsfiddle.net/yyx990803/okv0rgrk/). Silakan membuka tab baru dan ikuti sebagaimana yang telah kami contohkan.
 
 ### Hello World
 
@@ -37,7 +39,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Two-way Binding
+### Two-way Binding (Data Binding Dua Arah)
 
 ``` html
 <div id="app">
@@ -68,7 +70,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Render a List
+### Render sebuah List
 
 ``` html
 <div id="app">
@@ -84,9 +86,9 @@ new Vue({
   el: '#app',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue.js' },
-      { text: 'Build Something Awesome' }
+      { text: 'Belajar JavaScript' },
+      { text: 'Belajar Vue.js' },
+      { text: 'Buat sesuatu yang mengagumkan' }
     ]
   }
 })
@@ -104,21 +106,22 @@ new Vue({
   el: '#app3',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue.js' },
-      { text: 'Build Something Awesome' }
+      { text: 'Belajar JavaScript' },
+      { text: 'Belajar Vue.js' },
+      { text: 'Buat sesuatu yang mengagumkan' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-### Handle User Input
+<!-- ### Handle User Input -->
+### Menangani Inputan dari Pengguna
 
 ``` html
 <div id="app">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Balik Pesan</button>
 </div>
 ```
 ``` js
@@ -137,7 +140,7 @@ new Vue({
 {% raw %}
 <div id="app4" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Balik Pesan</button>
 </div>
 <script>
 new Vue({
@@ -154,7 +157,8 @@ new Vue({
 </script>
 {% endraw %}
 
-### All Together Now
+<!-- ### All Together Now -->
+### Sekarang Lakukan Secara Bersamaan
 
 ``` html
 <div id="app">
@@ -226,3 +230,4 @@ new Vue({
 {% endraw %}
 
 I hope this gives you a basic idea of how Vue.js works. I'm sure you also have many questions now - read along, and we will cover them in the rest of the guide.
+Kami harap ini dapat memberikan Anda gambaran bagaimana Vue.js bekerja. Kami yakin anda juga memiliki banyak pertanyaan sekarang. Silakan baca terus, dan kami akan membahasnya di panduan berikutnya.
