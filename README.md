@@ -1,10 +1,10 @@
-# vuejs.org
+# docs.vuejs.id
 
-This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
+Situs ini dibangun dengan [hexo](http://hexo.io/). Konten situs ditulis menggunakan format Markdown yang bertempat di folder `src`. Pull request dipersilakan!
 
-## Developing
+## Pengembangan
 
-Start a dev server at `localhost:4000`:
+Memulai server pengembangan pada `localhost:4000`:
 
 ```
 $ npm install -g hexo-cli
