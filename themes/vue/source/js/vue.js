@@ -1596,6 +1596,9 @@
       for (var i = 0, j = handlers.length; i < j; i++) {
         handlers[i].call(vm);
       }
+    } else {
+      // direct component options / constructor
+      return createComponent(tag, data, parent, context, host, children);
     }
     vm.$emit('hook:' + hook);
   }
@@ -3632,7 +3635,6 @@ var nodeOps = Object.freeze({
         }
       }
     }
-  }
 
   var ref = {
     create: function create(_, vnode) {
@@ -3673,7 +3675,6 @@ var nodeOps = Object.freeze({
         refs[key] = ref;
       }
     }
-  }
 
   var baseModules = [ref, directives];
 
@@ -4368,7 +4369,8 @@ var nodeOps = Object.freeze({
         }
       }
     }
-  };
+    return true;
+  }
 
   function setSelected(el, binding, vm) {
     var value = binding.value;
@@ -4388,6 +4390,8 @@ var nodeOps = Object.freeze({
           el.selectedIndex = i;
           break;
         }
+      } else {
+        el.style.display = value ? '' : 'none';
       }
     }
   }
@@ -4511,6 +4515,8 @@ var nodeOps = Object.freeze({
       if (!children.length) {
         return;
       }
+    }
+  }, 0);
 
       // warn multiple elements
       if ("development" !== 'production' && children.length > 1) {
@@ -5060,6 +5066,7 @@ var nodeOps = Object.freeze({
         }
       }
     }
+  }
 
     if (expression === undefined) {
       expression = exp.slice(0, i).trim();
@@ -5296,6 +5303,7 @@ var nodeOps = Object.freeze({
           if (element.pre) {
             inVPre = true;
           }
+          return;
         }
         if (platformIsPreTag(element.tag)) {
           inPre = true;
