@@ -297,3 +297,205 @@ type: api
   ```
 
 - **See also:** [Render Functions](/guide/render-function.html).
+
+## Options / Data
+
+### data
+
+- **Type:** `Object | Function`
+
+- **Restriction:** Only accepts `Function` when used in a component definition.
+
+- **Details:**
+
+  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects, existing getter/setters and prototype properties are ignored. It is not recommended to observe complex objects.
+
+  Once the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object.
+
+  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+
+  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
+
+  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
+
+- **Example:**
+
+  ``` js
+  var data = { a: 1 }
+
+  // direct instance creation
+  var vm = new Vue({
+    data: data
+  })
+  vm.a // -> 1
+  vm.$data === data // -> true
+
+  // must use function when in Vue.extend()
+  var Component = Vue.extend({
+    data: function () {
+      return { a: 1 }
+    }
+  })
+  ```
+
+- **See also:** [Reactivity in Depth](/guide/reactivity.html).
+
+### props
+
+- **Type:** `Array | Object`
+
+- **Details:**
+
+  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+
+- **Example:**
+
+  ``` js
+  // simple syntax
+  Vue.component('props-demo-simple', {
+    props: ['size', 'myMessage']
+  })
+
+  // object syntax with validation
+  Vue.component('props-demo-advanced', {
+    props: {
+      // just type check
+      size: Number,
+      // type check plus other validations
+      name: {
+        type: String,
+        default: 0,
+        required: true,
+        validator: function (value) {
+          return value > 0
+        }
+      }
+    }
+  })
+  ```
+
+- **See also:** [Props](/guide/components.html#Props)
+
+### propsData
+
+> 1.0.22+
+
+- **Type:** `Object`
+
+- **Restriction:** only respected in instance creation via `new`.
+
+- **Details:**
+
+  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+
+- **Example:**
+
+  ``` js
+  var Comp = Vue.extend({
+    props: ['msg'],
+    template: '<div>{{ msg }}</div>'
+  })
+
+  var vm = new Comp({
+    propsData: {
+      msg: 'hello'
+    }
+  })
+  ```
+
+### computed
+
+- **Type:** `Object`
+
+- **Details:**
+
+  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+
+- **Example:**
+
+  ```js
+  var vm = new Vue({
+    data: { a: 1 },
+    computed: {
+      // get only, just need a function
+      aDouble: function () {
+        return this.a * 2
+      },
+      // both get and set
+      aPlus: {
+        get: function () {
+          return this.a + 1
+        },
+        set: function (v) {
+          this.a = v - 1
+        }
+      }
+    }
+  })
+  vm.aPlus   // -> 2
+  vm.aPlus = 3
+  vm.a       // -> 2
+  vm.aDouble // -> 4
+  ```
+
+- **See also:**
+  - [Computed Properties](/guide/computed.html)
+  - [Reactivity in Depth: Inside Computed Properties](/guide/reactivity.html#Inside-Computed-Properties)
+
+### methods
+
+- **Type:** `Object`
+
+- **Details:**
+
+  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+
+- **Example:**
+
+  ```js
+  var vm = new Vue({
+    data: { a: 1 },
+    methods: {
+      plus: function () {
+        this.a++
+      }
+    }
+  })
+  vm.plus()
+  vm.a // 2
+  ```
+
+- **See also:** [Methods and Event Handling](/guide/events.html)
+
+### watch
+
+- **Type:** `Object`
+
+- **Details:**
+
+  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+
+- **Example:**
+
+  ``` js
+  var vm = new Vue({
+    data: {
+      a: 1
+    },
+    watch: {
+      'a': function (val, oldVal) {
+        console.log('new: %s, old: %s', val, oldVal)
+      },
+      // string method name
+      'b': 'someMethod',
+      // deep watcher
+      'c': {
+        handler: function (val, oldVal) { /* ... */ },
+        deep: true
+      }
+    }
+  })
+  vm.a = 2 // -> new: 2, old: 1
+  ```
+
+- **See also:** [Instance Methods - vm.$watch](#vm-watch)

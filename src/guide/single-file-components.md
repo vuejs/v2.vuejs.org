@@ -13,7 +13,7 @@ This can work very well for small to medium-sized projects, where JavaScript is 
 - **Global definitions** force unique names for every component
 - **String templates** lack syntax highlighting and require ugly slashes for multiline HTML
 - **No CSS support** means that while HTML and JavaScript are modularized into components, CSS is conspicuously left out
-- **No build step** restricts us to HTML and ES5 JavaScript, rather than preprocessors like Jade and Babel
+- **No build step** restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and Babel
 
 All of these are solved by **single-file components** with a `.vue` extension, made possible with build tools such as Webpack or Browserify.
 
