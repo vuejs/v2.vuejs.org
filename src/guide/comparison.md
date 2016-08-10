@@ -80,7 +80,7 @@ This is an extremely common use case, but using JSX, there are a few problems th
 
 - __Syntax Noise__: All the curly braces add a lot of visual noise, but what's worse is that while writing it, you have to frequently make decisions about how to minimize their visual impact, slowing development.
 
-- __Cajoling JavaScript into Expressions__: The example uses a ternary rather than an if statement here, which arguably makes the code less readable, but it's still possibly the best of bad options. The only alternatives include hoisting this logic out of its context or wrapping an if statement in an immediately-invoked function expression. Do expressions will help a little when they're a more stable feature, but they're currently at stage 0.
+- __Cajoling JavaScript into Expressions__: The example uses a ternary rather than an if statement here, which arguably makes the code less readable, but is still possibly the best of bad options. The only alternatives include hoisting this logic out of its context or wrapping an if statement in an immediately-invoked function expression. Do expressions will help a little when they're a more stable feature, but they're currently at stage 0.
 
 - __Readability to Non-React Developers__: Imagine having a designer that's familiar with HTML and CSS look at this. They'd be paralyzed with confusion at every single line. While the JSX will look somewhat similar to HTML, `className` replaces `class`, the ternary will be meaningless, and parentheses and curly braces are everywhere. It'd be difficult for them to make simple modifications or even understand what this code is doing.
 
