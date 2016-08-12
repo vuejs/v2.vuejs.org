@@ -128,7 +128,7 @@ Vue on the other hand, gives you full access to CSS within [single-file componen
 </style>
 ```
 
-The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `_v-f3f3eg9`) to elements and compiling `.list-container:hover` to something like `.list-container[_v-f3f3eg9]:hover`.
+The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `data-v-1`) to elements and compiling `.list-container:hover` to something like `.list-container[data-v-1]:hover`.
 
 Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors you'd like. This allows you to perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
 
@@ -140,7 +140,7 @@ For large applications, both Vue and React offer robust routing solutions. The R
 
 Another important difference between these offerings is that Vue's companion libraries for state management and routing (among [other concerns](https://github.com/vuejs)) are all officially supported and kept up-to-date with the core library. React instead chooses to leave these concerns to the community, creating a more fragmented ecosystem.
 
-Finally, Vue offers a [CLI project generator](https://github.com/vuejs/vue-cli) that makes it trivially easy to start a new project using your choice of build system, including [Webpack](github.com/vuejs-templates/webpack), [Browserify](github.com/vuejs-templates/browserify), [SystemJS](https://github.com/vuejs-templates/systemjs) - or even [no build system](https://github.com/vuejs-templates/simple). React is also making strides in this area with [create-react-app](https://github.com/facebookincubator/create-react-app), but it currently has a few limitations:
+Finally, Vue offers a [CLI project generator](https://github.com/vuejs/vue-cli) that makes it trivially easy to start a new project using your choice of build system, including [Webpack](github.com/vuejs-templates/webpack), [Browserify](github.com/vuejs-templates/browserify), or even [no build system](https://github.com/vuejs-templates/simple). React is also making strides in this area with [create-react-app](https://github.com/facebookincubator/create-react-app), but it currently has a few limitations:
 
 - It does not allow any configuration during project generation, while Vue's project templates allow Yeoman-like customization.
 - It only offers a single template that assumes you're building a single-page application, while Vue offers a wide variety of templates for various purposes and build systems.
