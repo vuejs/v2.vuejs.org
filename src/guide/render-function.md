@@ -370,7 +370,7 @@ var UnorderedList = { /* ... */ }
 Vue.component('smart-list', {
   functional: true,
   render: function (createElement, context) {
-    function appropriateListComponent {
+    function appropriateListComponent() {
       var items = context.props.items
 
       if (items.length === 0)           return EmptyList
