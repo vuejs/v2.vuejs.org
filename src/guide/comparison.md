@@ -138,15 +138,15 @@ Finally, just as with HTML, you also have the option of writing your CSS using a
 
 For large applications, both Vue and React offer robust routing solutions. The React community has also been very innovative in terms of state management solutions (e.g. Flux/Redux). These state management patterns and [even Redux itself](https://github.com/egoist/revue) can be easily integrated into Vue applications. In fact, Vue has even taken this model a step further with [Vuex](https://github.com/vuejs/vuex), an Elm-inspired state management solution that integrates deeply into Vue that we think offers a superior development experience.
 
-Another important difference between these offerings is that Vue's companion libraries for state management and routing (among [other concerns](https://github.com/vuejs)) are all officially supported and kept up-to-date with the core library. React instead chooses to leave these concerns to the community, creating to a more fragmented ecosystem.
+Another important difference between these offerings is that Vue's companion libraries for state management and routing (among [other concerns](https://github.com/vuejs)) are all officially supported and kept up-to-date with the core library. React instead chooses to leave these concerns to the community, creating a more fragmented ecosystem.
 
 Finally, Vue offers a [CLI project generator](https://github.com/vuejs/vue-cli) that makes is trivially easy to start a new project using your choice of build system, including [Webpack](github.com/vuejs-templates/webpack), [Browserify](github.com/vuejs-templates/browserify), [SystemJS](https://github.com/vuejs-templates/systemjs) - or even [no build system](https://github.com/vuejs-templates/simple). React is also making strides in this area with [create-react-app](https://github.com/facebookincubator/create-react-app), but it currently has a few limitations:
 
 - It does not allow any configuration during project generation, while Vue's project templates allow Yeoman-like customization.
 - It only offers a single template that assumes you're building a single-page application, while Vue offers a wide variety of templates for various purposes and build systems.
-- It cannot generate projects from user-built templates, which is especially important for enterprise environments with pre-established conventions.
+- It cannot generate projects from user-built templates, which can be especially useful for enterprise environments with pre-established conventions.
 
-It's important to note though that many of these limitations are intentional design decisions and they do have their advantages. You can read more about the [differing philosophy here](https://github.com/facebookincubator/create-react-app#philosophy). One advantage is that as long your project's needs are very simple and you never need to "eject" to customize it, you'll be able to update your build process as a dependency.
+It's important to note though that many of these limitations are intentional design decisions made by the create-react-app team and they do have their advantages. For example, as long your project's needs are very simple and you never need to "eject" to customize your build process, you'll be able to update it as a dependency. You can read more about the [differing philosophy here](https://github.com/facebookincubator/create-react-app#philosophy).
 
 #### Scaling Down
 
