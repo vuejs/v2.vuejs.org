@@ -105,12 +105,8 @@ createElement(
     // ... (see more detail below)
   },
 
-  // {String | Array | Function}
-  // Children VNodes. When the first argument is a
-  // component definition, children must be a function
-  // returning an array. When the first argument is an
-  // HTML tag name, you can just use an array of
-  // VNodes directly. Optional.
+  // {String | Array}
+  // Children VNodes. Optional.
   [
     createElement('h1', 'hello world')
     createElement(MyComponent, {
@@ -262,34 +258,6 @@ render: function (createElement) {
     return createElement('p', 'No items found.')
   }
 }
-```
-
-## Rendering Components with Children
-
-As mentioned above, components with children must use a thunk: i.e. a function that returns an array of children, rather than the array of children directly. This delays children creation until the component itself is rendered, allowing more efficient re-renders.
-
-For example:
-
-``` js
-new Vue({
-  el: '#demo',
-  render: function (createElement) {
-    return createElement(
-      Vue.options.components['anchored-heading'], {
-        props: {
-          level: 1
-        }
-      },
-      // Here's the "thunk"
-      function () {
-        return [
-          createElement('strong', 'Hello'),
-          ' world!'
-        ]
-      }
-    )
-  }
-})
 ```
 
 ## JSX
@@ -486,23 +454,3 @@ console.error = function (error) {
 }
 </style>
 {% endraw %}
-
-## Misc
-
-### `keep-alive`
-
-Instead of being passed through the data object, the `keep-alive` attribute actually compiles to a higher-order component. So this template:
-
-``` html
-<my-component keep-alive></my-component>
-```
-
-would appear in a render function as:
-
-``` js
-createElement('keep-alive', {
-  props: {
-    child: createElement(MyComponent)
-  }
-})
-```
