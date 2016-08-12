@@ -206,13 +206,13 @@ We have a separate section for Angular 2, because it really is a completely new 
 
 While Angular 1 could be used for smaller applications, Angular 2 has shifted focus to best facilitate large enterprise applications. As part of this, it almost requires TypeScript, which can be very useful for developers that desire the type safety of languages such as Java and C#.
 
-Vue is also well-suited to [enterprise environments](https://github.com/vuejs/awesome-vue#enterprise-usage) and can even be used [with TypeScript](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/vue), though it's definitely optional.
+Vue is also well-suited to [enterprise environments](https://github.com/vuejs/awesome-vue#enterprise-usage) and can even be used [with TypeScript](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/vue), though it's definitely optional in our case.
 
-It can be difficult to make many more comparisons as of writing, as Angular 2 has yet to be released and still has over 1,000 open issues on GitHub. However, while performance characteristics and implementation details are still likely to change, the API is stable at this point, so we can safely compare Vue's flexibility and learning curve - two areas where they differ significantly.
+It can be difficult to make many more comparisons as of writing though, as Angular 2 has yet to be released and still has over 1,000 open issues on GitHub. However, while performance characteristics and implementation details are still likely to change, the API is stable at this point, so we can safely compare the flexibility and learning curve of the two libraries - two areas where they differ significantly.
 
 ### Flexibility
 
-Vue is much less opinionated than Angular 2, offering official support for a variety of build systems, with no restrictions on how you structure your application. Many developers enjoy this freedom, while some prefer having only one Right Way to build applications.
+Vue is much less opinionated than Angular 2, offering official support for a variety of build systems, with no restrictions on how you structure your application. Many developers enjoy this freedom, while some prefer having only one Right Way to build any application.
 
 ### Learning Curve
 
@@ -242,7 +242,7 @@ There also seem to be philosophical differences in the API design which if you'r
 
 ## Polymer
 
-Polymer is yet another Google-sponsored project and in fact was a source of inspiration for Vue as well. Vue's components can be loosely compared to Polymer's custom elements and both provide a very similar development style. The biggest difference is that Polymer is built upon the latest Web Components features and requires non-trivial polyfills to work (with degraded performance) in browsers that don't support those features natively. In contrast, Vue works without any dependencies down to IE9.
+Polymer is yet another Google-sponsored project and in fact was a source of inspiration for Vue as well. Vue's components can be loosely compared to Polymer's custom elements and both provide a very similar development style. The biggest difference is that Polymer is built upon the latest Web Components features and requires non-trivial polyfills to work (with degraded performance) in browsers that don't support those features natively. In contrast, Vue works without any dependencies or polyfills down to IE9.
 
 In Polymer 1.0, the team has also made its data-binding system very limited in order to compensate for the performance. For example, the only expressions supported in Polymer templates are boolean negation and single method calls. Its computed property implementation is also not very flexible.
 
@@ -250,10 +250,10 @@ Finally, when deploying to production, Polymer elements need to be bundled via a
 
 ## Riot
 
-Riot 2.0 provides a similar component-based development model (which is called a "tag" in Riot), with a minimal and beautifully designed API. I think Riot and Vue share a lot in design philosophies. However, despite being a bit heavier than Riot, Vue does offer some significant advantages:
+Riot 2.0 provides a similar component-based development model (which is called a "tag" in Riot), with a minimal and beautifully designed API. Riot and Vue probably share a lot in design philosophies. However, despite being a bit heavier than Riot, Vue does offer some significant advantages:
 
 - True conditional rendering. Riot renders all if branches and simply shows/hides them.
 - A far more powerful router. Riot’s routing API is extremely minimal.
-- More mature tooling support. Vue provides official support for [Webpack](https://github.com/vuejs/vue-loader), [Browserify](https://github.com/vuejs/vueify), and [SystemJS](https://github.com/vuejs/systemjs-plugin-vue).
+- More mature tooling support. Vue provides official support for [Webpack](https://github.com/vuejs/vue-loader), [Browserify](https://github.com/vuejs/vueify), and [SystemJS](https://github.com/vuejs/systemjs-plugin-vue), while Riot relies on community support for build system integration.
 - [Transition effect system](transitions.html). Riot has none.
 - Better performance. [Despite advertising](https://github.com/vuejs/vuejs.org/issues/346) use of a virtual DOM, Riot in fact uses dirty checking and thus suffers from the same performance issues as Angular 1.
