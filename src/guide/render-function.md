@@ -99,10 +99,10 @@ createElement(
   'div',
 
   // {Object}
-  // An data object corresponding to the attributes
+  // A data object corresponding to the attributes
   // you would use in a template. Optional.
   {
-    // ... (see more detail below)
+    // (see details in the next section below)
   },
 
   // {String | Array}
