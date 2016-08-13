@@ -499,3 +499,99 @@ type: api
   ```
 
 - **See also:** [Instance Methods - vm.$watch](#vm-watch)
+
+## Instance Properties
+
+### vm.$data
+
+- **Type:** `Object`
+
+- **Details:**
+
+  The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
+
+### vm.$el
+
+- **Type:** `HTMLElement`
+
+- **Read only**
+
+- **Details:**
+
+  The DOM element that the Vue instance is managing. `vm.$el` will return a DOM element that created with the Vue instance.
+
+### vm.$options
+
+- **Type:** `Object`
+
+- **Read only**
+
+- **Details:**
+
+  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+
+  ``` js
+  new Vue({
+    customOption: 'foo',
+    created: function () {
+      console.log(this.$options.customOption) // -> 'foo'
+    }
+  })
+  ```
+
+### vm.$parent
+
+- **Type:** `Vue instance`
+
+- **Read only**
+
+- **Details:**
+
+  The parent instance, if the current instance has one.
+
+### vm.$root
+
+- **Type:** `Vue instance`
+
+- **Read only**
+
+- **Details:**
+
+  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+
+### vm.$children
+
+- **Type:** `Array<Vue instance>`
+
+- **Read only**
+
+- **Details:**
+
+  The direct child components of the current instance.
+
+### vm.$refs
+
+- **Type:** `Object`
+
+- **Read only**
+
+- **Details:**
+
+  An object that holds child components that have `ref` registered.
+
+- **See also:**
+  - [Child-Component-Reference](/guide/components.html#Child-Component-Reference)
+  - !!TODO: [ref](#ref).
+
+### vm.$isServer
+
+- **Type:** `Boolean`
+
+- **Read only**
+
+- **Details:**
+
+  Whether the current Vue instance is running on the server-side.
+
+- **See also:**
+  - !!TODO: [Server-Side Rendering](/guide/ssr.html).
