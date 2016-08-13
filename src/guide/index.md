@@ -157,7 +157,7 @@ new Vue({
 ### 综合
 
 ``` html
-<div id="app">
+<div id="app5">
   <input v-model="newTodo" v-on:keyup.enter="addTodo">
   <ul>
     <li v-for="(todo,index) in todos">
@@ -169,11 +169,11 @@ new Vue({
 ```
 ``` js
 new Vue({
-  el: '#app',
+  el: '#app5',
   data: {
     newTodo: '',
     todos: [
-      { text: 'Add some todos' }
+      { text: '添加一些内容' }
     ]
   },
   methods: {
@@ -202,11 +202,11 @@ new Vue({
 </div>
 <script>
 new Vue({
-  el: '#app',
+  el: '#app5',
   data: {
     newTodo: '',
     todos: [
-      { text: 'Add some todos' }
+      { text: '添加一些内容' }
     ]
   },
   methods: {
