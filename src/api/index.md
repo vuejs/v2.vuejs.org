@@ -669,3 +669,58 @@ type: api
   })
   // callback is fired immediately with current value of `a`
   ```
+## Instance Methods / Events
+
+<h3 id="vm-on">vm.$on( event, callback )</h3>
+
+- **Arguments:**
+  - `{String} event`
+  - `{Function} callback`
+
+- **Usage:**
+
+  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+
+- **Example:**
+
+  ``` js
+  vm.$on('test', function (msg) {
+    console.log(msg)
+  })
+  vm.$emit('test', 'hi')
+  // -> "hi"
+  ```
+
+<h3 id="vm-once">vm.$once( event, callback )</h3>
+
+- **Arguments:**
+  - `{String} event`
+  - `{Function} callback`
+
+- **Usage:**
+
+  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+
+<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+
+- **Arguments:**
+  - `{String} [event]`
+  - `{Function} [callback]`
+
+- **Usage:**
+
+  Remove event listener(s).
+
+  - If no arguments are provided, remove all event listeners;
+
+  - If only the event is provided, remove all listeners for that event;
+
+  - If both event and callback are given, remove the listener for that specific callback only.
+
+<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+
+- **Arguments:**
+  - `{String} event`
+  - `[...args]`
+
+  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
