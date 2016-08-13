@@ -98,6 +98,7 @@ markdown:
 deploy:
   type: git
   repository: git@github.com:dingyiming/vuejs.org.git
+  branch: gh-pages
 
 feed:
   type: atom
