@@ -4,11 +4,17 @@ type: guide
 order: 6
 ---
 
+A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we just need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+
 数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是 attribute，我们可以用 `v-bind` 处理它们：只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在 `v-bind` 用于 `class` 和 `style` 时，Vue.js 专门增强了它。表达式的结果类型除了字符串之外，还可以是对象或数组。
+
+## Binding HTML Classes
 
 ## 绑定 HTML Class
 
-<p class="tip">尽管可以用 Mustache 标签绑定 class，比如 `{% raw %}class="{{ className }}"{% endraw %}`，但是我们不推荐这种写法和 `v-bind:class` 混用。两者只能选其一！</p>
+### Object Syntax
+
+We can pass an object to `v-bind:class` to dynamically toggle classes:
 
 ### 对象语法
 
@@ -24,6 +30,7 @@ data: {
   hasEror: false
 }
 ```
+The `v-bind:class` directive can also co-exist with the plain `class` attribute:
 
 `v-bind:class` 指令可以与普通的 `class` 特性共存：
 
@@ -31,11 +38,17 @@ data: {
 <div class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }"></div>
 ```
 
+This will render:
+
 渲染为：
 
 ``` html
 <div class="static active"></div>
 ```
+
+When `isActive` or `hasError` changes, the class list will be updated accordingly. For example, if `hasError` becomes `true`, the class list will become `"static active text-danger"`.
+
+You can also directly bind to an object:
 
 当 `isActive` 和 `hasError` 变化时，class 列表将相应地更新。例如，如果 `hasError` 变为 `true`，class 列表将变为 `"static active text-danger"`。
 
@@ -52,6 +65,8 @@ data: {
   }
 }
 ```
+
+This will render the same result. We can also bind to a [computed property](computed.html) that returns an object. This is a common and powerful pattern:
 
 我们也可以在这里绑定一个返回对象的[计算属性](computed.html)。这是一个常用且强大的模式。
 
@@ -74,6 +89,10 @@ computed: {
 }
 ```
 
+### Array Syntax
+
+We can pass an array to `v-bind:class` to apply a list of classes:
+
 ### 数组语法
 
 我们可以把一个数组传给 `v-bind:class`，以应用一个 class 列表：
@@ -95,11 +114,17 @@ data: {
 <div class="active text-danger"></div>
 ```
 
+If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+
 如果你也想根据条件切换列表中的 class，可以用三元表达式：
 
 ``` html
 <div v-bind:class="[isActive ? activeClass : '', errorClass]">
 ```
+
+This will always apply `errorClass`, but will only apply `activeClass` when `isActive` is `true`.
+
+However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside array syntax:
 
 此例始终添加 `errorClass`，但是只有在 `isActive` 是 `true` 时添加 `activeClass` 。
 
@@ -109,6 +134,11 @@ data: {
 <div v-bind:class="[{ active: isActive }, errorClass]">
 ```
 
+## Binding Inline Styles
+
+### Object Syntax
+
+The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case for the CSS property names:
 
 ## 绑定内联样式
 
@@ -126,6 +156,8 @@ data: {
 }
 ```
 
+It is often a good idea to bind to a style object directly so that the template is cleaner:
+
 直接绑定到一个样式对象通常更好，让模板更清晰：
 
 ``` html
@@ -140,6 +172,12 @@ data: {
 }
 ```
 
+Again, the object syntax is often used in conjunction with computed properties that return objects.
+
+### Array Syntax
+
+The array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
+
 同样的，对象语法常常结合返回对象的计算属性使用。
 
 ### 数组语法
@@ -149,6 +187,10 @@ data: {
 ``` html
 <div v-bind:style="[baseStyles, overridingStyles]">
 ```
+
+### Auto-prefixing
+
+When you use a CSS property that requires vendor prefixes in `v-bind:style`, for example `transform`, Vue will automatically detect and add appropriate prefixes to the applied styles.
 
 ### 自动添加前缀
 

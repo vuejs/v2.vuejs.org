@@ -4,6 +4,10 @@ type: guide
 order: 1
 ---
 
+Let's start with a quick tour of Vue's data binding features. If you are more interested in a high-level overview first, check out this [blog post](!!TODO: HIGH LEVEL OVERVIEW FOR RELEASED 2.0). If you are already familiar with Vue 1.0, the [migration guide](!!TODO: MIGRATION GUIDE FROM 1.0 to 2.0) may be a good place to start.
+
+The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/ng41aepx/). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page.
+
 我们以 Vue 数据绑定的快速导览开始。如果你对高级概述更感兴趣，可查看这篇[博文](http://blog.evanyou.me/2015/10/25/vuejs-re-introduction/)。如果你已经对Vue 1.0非常熟悉，这篇[迁移指南](http://rc.vuejs.org/guide/!!TODO:%20MIGRATION%20GUIDE%20FROM%201.0%20to%202.0)可能是个很好的开端。
 
 尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/ng41aepx/)。在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
@@ -37,6 +41,8 @@ new Vue({
 </script>
 {% endraw %}
 
+### Two-way Binding
+
 ### 双向绑定
 
 ``` html
@@ -67,6 +73,8 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+### Render a List
 
 ### 渲染列表
 
@@ -113,6 +121,8 @@ new Vue({
 </script>
 {% endraw %}
 
+### Handle User Input
+
 ### 处理用户输入
 
 ``` html
@@ -153,6 +163,8 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+### All Together Now
 
 ### 综合
 
@@ -224,5 +236,7 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+I hope this gives you a basic idea of how Vue works. I'm sure you also have many questions now - read along, and we will cover them in the rest of the guide.
 
 希望上例能让你对 Vue.js 的工作原理有一个基础概念。我知道你现在有许多疑问——继续阅读，在后面的教程将一一解答。
