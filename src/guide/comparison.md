@@ -1,5 +1,5 @@
 ---
-title: Comparison with Other Frameworks
+title: 对比其他框架
 type: guide
 order: 24
 ---

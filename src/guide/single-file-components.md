@@ -1,5 +1,5 @@
 ---
-title: Single File Components
+title: 单文件组件
 type: guide
 order: 19
 ---

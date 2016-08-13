@@ -1,5 +1,5 @@
 ---
-title: Transitioning State
+title: 过渡状态
 type: guide
 order: 13
 ---

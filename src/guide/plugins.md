@@ -1,5 +1,5 @@
 ---
-title: Plugins
+title: 插件
 type: guide
 order: 18
 ---

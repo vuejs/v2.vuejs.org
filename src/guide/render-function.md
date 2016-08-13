@@ -1,5 +1,5 @@
 ---
-title: Render Functions
+title: Render 函数
 type: guide
 order: 14
 ---

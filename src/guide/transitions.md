@@ -1,5 +1,5 @@
 ---
-title: 'Transitions: Entering, Leaving, and Lists'
+title: '过渡: 进入, 离开, 和 列表'
 type: guide
 order: 12
 ---
@@ -1653,4 +1653,3 @@ new Vue({
 {% endraw %}
 
 Finally, the ultimate way of creating dynamic transitions is through components that accept props to change the nature of the transition(s) to be used. It may sound cheesy, but the only limit really is your imagination.
-

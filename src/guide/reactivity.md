@@ -1,5 +1,5 @@
 ---
-title: Reactivity in Depth
+title: 深入响应式原理
 type: guide
 order: 15
 ---
