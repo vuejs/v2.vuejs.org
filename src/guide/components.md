@@ -647,7 +647,7 @@ Vue.component('my-input', {
   template: '\
     <div class="form-group">\
       <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-on:input="onInput">\
+      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
     </div>\
   ',
   props: ['value', 'label'],
@@ -684,7 +684,7 @@ Vue.component('my-input', {
   template: '\
     <div class="form-group">\
       <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-on:input="onInput">\
+      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
     </div>\
   ',
   props: ['value', 'label'],
