@@ -967,7 +967,7 @@ Here's a complete example of a simple todo list:
 ``` html
 <div id="todo-list-example">
   <input
-    v-model="newTodoText" v
+    v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >
