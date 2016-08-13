@@ -595,3 +595,77 @@ type: api
 
 - **See also:**
   - !!TODO: [Server-Side Rendering](/guide/ssr.html).
+
+## Instance Methods / Data
+
+<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+
+- **Arguments:**
+  - `{String | Function} expOrFn`
+  - `{Function} callback`
+  - `{Object} [options]`
+    - `{Boolean} deep`
+    - `{Boolean} immediate`
+
+- **Returns:** `{Function} unwatch`
+
+- **Usage:**
+
+  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression can be a single keypath or any valid binding expressions.
+
+<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+
+- **Example:**
+
+  ``` js
+  // keypath
+  vm.$watch('a.b.c', function (newVal, oldVal) {
+    // do something
+  })
+
+  // expression
+  vm.$watch('a + b', function (newVal, oldVal) {
+    // do something
+  })
+
+  // function
+  vm.$watch(
+    function () {
+      return this.a + this.b
+    },
+    function (newVal, oldVal) {
+      // do something
+    }
+  )
+  ```
+
+  `vm.$watch` returns an unwatch function that stops firing the callback:
+
+  ``` js
+  var unwatch = vm.$watch('a', cb)
+  // later, teardown the watcher
+  unwatch()
+  ```
+
+- **Option: deep**
+
+  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+
+  ``` js
+  vm.$watch('someObject', callback, {
+    deep: true
+  })
+  vm.someObject.nestedValue = 123
+  // callback is fired
+  ```
+
+- **Option: immediate**
+
+  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+
+  ``` js
+  vm.$watch('a', callback, {
+    immediate: true
+  })
+  // callback is fired immediately with current value of `a`
+  ```
