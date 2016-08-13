@@ -724,3 +724,40 @@ type: api
   - `[...args]`
 
   Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+
+## Instance Methods / DOM
+
+<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
+
+- **Arguments:**
+  - `{Function} [callback]`
+
+- **Usage:**
+
+  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+
+- **Example:**
+
+  ``` js
+  new Vue({
+    // ...
+    methods: {
+      // ...
+      example: function () {
+        // modify data
+        this.message = 'changed'
+        // DOM is not updated yet
+        this.$nextTick(function () {
+          // DOM is now updated
+          // `this` is bound to the current instance
+          this.doSomethingElse()
+        })
+      }
+    }
+  })
+  ```
+
+- **See also:**
+  - [Vue.nextTick](#Vue-nextTick)
+  -!!TODO: [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
+
