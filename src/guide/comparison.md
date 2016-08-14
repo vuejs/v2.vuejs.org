@@ -59,19 +59,14 @@ render () {
   const { items } = this.props
 
   return (
-    <div className='list-container'>{
-      items.length
-        ? <ul>{
-            items.map(item => {
-              return (
-                <li key={item.id}>
-                  { item.name }
-                </li>
-              )
-            })
-          }</ul>
+    <div className='list-container'>
+      {items.length
+        ? <ul>
+            {items.map(item => <li key={item.id}>{item.name}</li>)}
+          </ul>
         : <p>No items found.</p>
-    }</div>
+      }
+    </div>
   )
 }
 ```
