@@ -1,4 +1,4 @@
-# vue.js2 中英文 对照 翻译（正在进行中...）
+# vue.js2 中英文 对照 翻译（正在进行中...） http://vuefe.cn
 
 > 基于 hexo && vuejs.org
 
