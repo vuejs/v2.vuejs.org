@@ -761,3 +761,62 @@ type: api
   - [Vue.nextTick](#Vue-nextTick)
   -!!TODO: [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
 
+## Instance Methods / Lifecycle
+
+<h3 id="vm-mount">vm.$mount( [elementOrSelector], [hydrating] )</h3>
+
+- **Arguments:**
+  - `{Element | String} [elementOrSelector]`
+  - `{Boolean} [hydrating]`
+
+- **Returns:** `vm` - the instance itself
+
+- **Usage:**
+
+  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting/compilation of an unmounted Vue instance.
+
+  If `elementOrSelector` argument is not provided, the element is managed in Vue instance will be created as an out-of-document DOM element, and you will have to use DOM API to insert it into the document yourself.
+
+  If `hydrating` argument is provided as `true`, in the rendering process of this method, run the DOM elements hydration.
+
+  The method returns the instance itself so you can chain other instance methods after it.
+
+- **Example:**
+
+  ``` js
+  var MyComponent = Vue.extend({
+    template: '<div>Hello!</div>'
+  })
+
+  // create and mount to #app (will replace #app)
+  new MyComponent().$mount('#app')
+
+  // the above is the same as:
+  new MyComponent({ el: '#app' })
+
+  // or, compile off-document and append afterwards:
+  var component = new MyComponent().$mount()
+  document.getElementById('app').appendChild(vm.$el)
+  ```
+
+- **See also:**
+  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+  - !!TODO: [Server-Side Rendering](/guide/ssr.html)
+
+<h3 id="vm-forceUpdate">vm.$forceUpdate( )</h3>
+
+- **Usage:**
+ 
+  The Vue instance will be forced into a “digest cycle”, during which all its watchers are re-evaluated.
+  
+<p class="tip">Note: This method have an influence on your application performance degradation. The excessive call is no recommended.</p>
+
+<h3 id="vm-destroy">vm.$destroy( )</h3>
+
+- **Usage:**
+
+  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+
+  Triggers the `beforeDestroy` and `destroyed` hooks.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
