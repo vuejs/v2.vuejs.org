@@ -109,7 +109,7 @@ It doesn't end there though. By embracing HTML rather than trying to reinvent it
 
 #### Component-Scoped CSS
 
-Unless you're OK spreading components out over multiple files, there simply isn't a good option for scoping CSS in React. Very basic CSS works fine, but common features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work. And no matter what you end up using in the end, it'll have involved a lot of research before you can even get a simple hover state to work.
+Unless you're OK spreading components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), it's difficult to find a good solution for scoping CSS in React. Very basic CSS works fine, but common features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work. And no matter what you end up using in the end, it'll have involved a lot of research before you can even get a simple hover state to work.
 
 Vue on the other hand, gives you full access to CSS within [single-file components](single-file-components.html):
 
