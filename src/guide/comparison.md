@@ -73,7 +73,7 @@ render () {
 
 This is an extremely common use case, but using JSX, there are a few problems that may not be immediately obvious:
 
-- __Syntax Noise__: All the curly braces add a lot of visual noise, but what's worse is that while writing it, you have to frequently make decisions about how to minimize their visual impact, slowing development.
+- __Syntax Noise__: All the curly braces add visual noise, but what's worse is that while writing it, you have to frequently make decisions about how to minimize their visual impact, slowing development.
 
 - __Cajoling JavaScript into Expressions__: The example uses a ternary rather than an if statement here, which arguably makes the code less readable, but is still possibly the best of bad options. The only alternatives include hoisting this logic out of its context or wrapping an if statement in an immediately-invoked function expression. Do expressions will help a little when they're a more stable feature, but they're currently at stage 0.
 
