@@ -782,7 +782,7 @@ Vue.component('my-input', {
   template: '\
     <div class="form-group">\
       <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-on:input="onInput">\
+      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
     </div>\
   ',
   props: ['value', 'label'],
@@ -819,7 +819,7 @@ Vue.component('my-input', {
   template: '\
     <div class="form-group">\
       <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-on:input="onInput">\
+      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
     </div>\
   ',
   props: ['value', 'label'],
@@ -1102,7 +1102,7 @@ Here's a complete example of a simple todo list:
 ``` html
 <div id="todo-list-example">
   <input
-    v-model="newTodoText" v
+    v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >

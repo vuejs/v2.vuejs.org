@@ -499,3 +499,324 @@ type: api
   ```
 
 - **See also:** [Instance Methods - vm.$watch](#vm-watch)
+
+## Instance Properties
+
+### vm.$data
+
+- **Type:** `Object`
+
+- **Details:**
+
+  The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
+
+### vm.$el
+
+- **Type:** `HTMLElement`
+
+- **Read only**
+
+- **Details:**
+
+  The DOM element that the Vue instance is managing. `vm.$el` will return a DOM element that created with the Vue instance.
+
+### vm.$options
+
+- **Type:** `Object`
+
+- **Read only**
+
+- **Details:**
+
+  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+
+  ``` js
+  new Vue({
+    customOption: 'foo',
+    created: function () {
+      console.log(this.$options.customOption) // -> 'foo'
+    }
+  })
+  ```
+
+### vm.$parent
+
+- **Type:** `Vue instance`
+
+- **Read only**
+
+- **Details:**
+
+  The parent instance, if the current instance has one.
+
+### vm.$root
+
+- **Type:** `Vue instance`
+
+- **Read only**
+
+- **Details:**
+
+  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+
+### vm.$children
+
+- **Type:** `Array<Vue instance>`
+
+- **Read only**
+
+- **Details:**
+
+  The direct child components of the current instance.
+
+### vm.$refs
+
+- **Type:** `Object`
+
+- **Read only**
+
+- **Details:**
+
+  An object that holds child components that have `ref` registered.
+
+- **See also:**
+  - [Child-Component-Reference](/guide/components.html#Child-Component-Reference)
+  - !!TODO: [ref](#ref).
+
+### vm.$isServer
+
+- **Type:** `Boolean`
+
+- **Read only**
+
+- **Details:**
+
+  Whether the current Vue instance is running on the server-side.
+
+- **See also:**
+  - !!TODO: [Server-Side Rendering](/guide/ssr.html).
+
+## Instance Methods / Data
+
+<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+
+- **Arguments:**
+  - `{String | Function} expOrFn`
+  - `{Function} callback`
+  - `{Object} [options]`
+    - `{Boolean} deep`
+    - `{Boolean} immediate`
+
+- **Returns:** `{Function} unwatch`
+
+- **Usage:**
+
+  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression can be a single keypath or any valid binding expressions.
+
+<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+
+- **Example:**
+
+  ``` js
+  // keypath
+  vm.$watch('a.b.c', function (newVal, oldVal) {
+    // do something
+  })
+
+  // expression
+  vm.$watch('a + b', function (newVal, oldVal) {
+    // do something
+  })
+
+  // function
+  vm.$watch(
+    function () {
+      return this.a + this.b
+    },
+    function (newVal, oldVal) {
+      // do something
+    }
+  )
+  ```
+
+  `vm.$watch` returns an unwatch function that stops firing the callback:
+
+  ``` js
+  var unwatch = vm.$watch('a', cb)
+  // later, teardown the watcher
+  unwatch()
+  ```
+
+- **Option: deep**
+
+  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+
+  ``` js
+  vm.$watch('someObject', callback, {
+    deep: true
+  })
+  vm.someObject.nestedValue = 123
+  // callback is fired
+  ```
+
+- **Option: immediate**
+
+  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+
+  ``` js
+  vm.$watch('a', callback, {
+    immediate: true
+  })
+  // callback is fired immediately with current value of `a`
+  ```
+## Instance Methods / Events
+
+<h3 id="vm-on">vm.$on( event, callback )</h3>
+
+- **Arguments:**
+  - `{String} event`
+  - `{Function} callback`
+
+- **Usage:**
+
+  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+
+- **Example:**
+
+  ``` js
+  vm.$on('test', function (msg) {
+    console.log(msg)
+  })
+  vm.$emit('test', 'hi')
+  // -> "hi"
+  ```
+
+<h3 id="vm-once">vm.$once( event, callback )</h3>
+
+- **Arguments:**
+  - `{String} event`
+  - `{Function} callback`
+
+- **Usage:**
+
+  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+
+<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+
+- **Arguments:**
+  - `{String} [event]`
+  - `{Function} [callback]`
+
+- **Usage:**
+
+  Remove event listener(s).
+
+  - If no arguments are provided, remove all event listeners;
+
+  - If only the event is provided, remove all listeners for that event;
+
+  - If both event and callback are given, remove the listener for that specific callback only.
+
+<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+
+- **Arguments:**
+  - `{String} event`
+  - `[...args]`
+
+  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+
+## Instance Methods / DOM
+
+<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
+
+- **Arguments:**
+  - `{Function} [callback]`
+
+- **Usage:**
+
+  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+
+- **Example:**
+
+  ``` js
+  new Vue({
+    // ...
+    methods: {
+      // ...
+      example: function () {
+        // modify data
+        this.message = 'changed'
+        // DOM is not updated yet
+        this.$nextTick(function () {
+          // DOM is now updated
+          // `this` is bound to the current instance
+          this.doSomethingElse()
+        })
+      }
+    }
+  })
+  ```
+
+- **See also:**
+  - [Vue.nextTick](#Vue-nextTick)
+  -!!TODO: [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
+
+## Instance Methods / Lifecycle
+
+<h3 id="vm-mount">vm.$mount( [elementOrSelector], [hydrating] )</h3>
+
+- **Arguments:**
+  - `{Element | String} [elementOrSelector]`
+  - `{Boolean} [hydrating]`
+
+- **Returns:** `vm` - the instance itself
+
+- **Usage:**
+
+  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting/compilation of an unmounted Vue instance.
+
+  If `elementOrSelector` argument is not provided, the element is managed in Vue instance will be created as an out-of-document DOM element, and you will have to use DOM API to insert it into the document yourself.
+
+  If `hydrating` argument is provided as `true`, in the rendering process of this method, run the DOM elements hydration.
+
+  The method returns the instance itself so you can chain other instance methods after it.
+
+- **Example:**
+
+  ``` js
+  var MyComponent = Vue.extend({
+    template: '<div>Hello!</div>'
+  })
+
+  // create and mount to #app (will replace #app)
+  new MyComponent().$mount('#app')
+
+  // the above is the same as:
+  new MyComponent({ el: '#app' })
+
+  // or, compile off-document and append afterwards:
+  var component = new MyComponent().$mount()
+  document.getElementById('app').appendChild(vm.$el)
+  ```
+
+- **See also:**
+  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+  - !!TODO: [Server-Side Rendering](/guide/ssr.html)
+
+<h3 id="vm-forceUpdate">vm.$forceUpdate( )</h3>
+
+- **Usage:**
+ 
+  The Vue instance will be forced into a “digest cycle”, during which all its watchers are re-evaluated.
+  
+<p class="tip">Note: This method have an influence on your application performance degradation. The excessive call is no recommended.</p>
+
+<h3 id="vm-destroy">vm.$destroy( )</h3>
+
+- **Usage:**
+
+  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+
+  Triggers the `beforeDestroy` and `destroyed` hooks.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)

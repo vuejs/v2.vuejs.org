@@ -59,26 +59,21 @@ render () {
   const { items } = this.props
 
   return (
-    <div className='list-container'>{
-      items.length
-        ? <ul>{
-            items.map(item => {
-              return (
-                <li key={item.id}>
-                  { item.name }
-                </li>
-              )
-            })
-          }</ul>
+    <div className='list-container'>
+      {items.length
+        ? <ul>
+            {items.map(item => <li key={item.id}>{item.name}</li>)}
+          </ul>
         : <p>No items found.</p>
-    }</div>
+      }
+    </div>
   )
 }
 ```
 
 This is an extremely common use case, but using JSX, there are a few problems that may not be immediately obvious:
 
-- __Syntax Noise__: All the curly braces add a lot of visual noise, but what's worse is that while writing it, you have to frequently make decisions about how to minimize their visual impact, slowing development.
+- __Syntax Noise__: All the curly braces add visual noise, but what's worse is that while writing it, you have to frequently make decisions about how to minimize their visual impact, slowing development.
 
 - __Cajoling JavaScript into Expressions__: The example uses a ternary rather than an if statement here, which arguably makes the code less readable, but is still possibly the best of bad options. The only alternatives include hoisting this logic out of its context or wrapping an if statement in an immediately-invoked function expression. Do expressions will help a little when they're a more stable feature, but they're currently at stage 0.
 
@@ -114,7 +109,7 @@ It doesn't end there though. By embracing HTML rather than trying to reinvent it
 
 #### Component-Scoped CSS
 
-Unless you're OK spreading components out over multiple files, there simply isn't a good option for scoping CSS in React. Very basic CSS works fine, but common features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work. And no matter what you end up using in the end, it'll have involved a lot of research before you can even get a simple hover state to work.
+Unless you're OK spreading components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), it's difficult to find a good solution for scoping CSS in React. Very basic CSS works fine, but common features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work. And no matter what you end up using in the end, it'll have involved a lot of research before you can even get a simple hover state to work.
 
 Vue on the other hand, gives you full access to CSS within [single-file components](single-file-components.html):
 
@@ -186,7 +181,7 @@ That's why we offer a [Webpack template](https://github.com/vuejs-templates/webp
 
 ### Data binding
 
-Angular 1 uses two-way binding between scopes, while Vue enforces a one-way data flow between components. The makes the flow of data easier to reason about in non-trivial applications.
+Angular 1 uses two-way binding between scopes, while Vue enforces a one-way data flow between components. This makes the flow of data easier to reason about in non-trivial applications.
 
 ### Directives vs Components
 
