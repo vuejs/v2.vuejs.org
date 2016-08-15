@@ -55,17 +55,21 @@ With React's JSX, there are minor differences from HTML, such as using `classNam
 Take this example below:
 
 ``` jsx
-render () {
-  const { items } = this.props
+render() {
+  let { items } = this.props
 
+  let children
+  if (items.length > 0) {
+    children = items.map(item =>
+      <li key={item.id}>{item.name}</li>
+    )
+  } else {
+    children = <p>No items found.</p>
+  }
+ 
   return (
     <div className='list-container'>
-      {items.length
-        ? <ul>
-            {items.map(item => <li key={item.id}>{item.name}</li>)}
-          </ul>
-        : <p>No items found.</p>
-      }
+      {children}
     </div>
   )
 }
