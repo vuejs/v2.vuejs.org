@@ -56,14 +56,12 @@ Take this example below:
 
 ``` jsx
 render() {
-  const { items } = this.props
+  let { items } = this.props
 
   let children
   if (items.length > 0) {
     children = items.map(item =>
-      <li key={item.id}>
-        {item.name}
-      </li>
+      <li key={item.id}>{item.name}</li>
     )
   } else {
     children = <p>No items found.</p>
