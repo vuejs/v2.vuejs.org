@@ -181,7 +181,7 @@ That's why we offer a [Webpack template](https://github.com/vuejs-templates/webp
 
 ### Data binding
 
-Angular 1 uses two-way binding between scopes, while Vue enforces a one-way data flow between components. The makes the flow of data easier to reason about in non-trivial applications.
+Angular 1 uses two-way binding between scopes, while Vue enforces a one-way data flow between components. This makes the flow of data easier to reason about in non-trivial applications.
 
 ### Directives vs Components
 
