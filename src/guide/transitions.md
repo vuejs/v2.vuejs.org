@@ -7,7 +7,7 @@ order: 12
 ## 概述
 
 Vue 在元素在DOM中插入、更新或者移除时，提供多种不同方式的应用过渡效果。
-包括一下工具：
+包括以下工具：
 
 - 在 CSS 过渡和动画中自动应用 class
 - 可以配合使用第三方 CSS 动画库，如 Animate.css
@@ -108,8 +108,7 @@ new Vue({
 
 对于这些类名，`v` 是过渡名的前缀。使用 `name="my-transition"` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
 
-`v-enter-active` and `v-leave-active` 可以控制 enter/leave 过渡的不同阶段，下一节，
-`v-enter-active` and `v-leave-active` give you the ability to specify different easing curves for enter/leave transitions, which you'll see an example of in the following section.
+`v-enter-active` and `v-leave-active` 可以控制 进入/离开 过渡的不同阶段，在下面章节会有个示例说明。
 
 ### CSS 过渡
 
@@ -182,6 +181,14 @@ new Vue({
 }
 </style>
 {% endraw %}
+
+***
+
+> 原文：http://rc.vuejs.org/guide/transitions.html
+
+***
+
+# Transitions: Entering, Leaving, and Lists
 
 ## Overview
 
