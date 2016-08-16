@@ -4,6 +4,185 @@ type: guide
 order: 12
 ---
 
+## 概述
+
+Vue 在元素在DOM中插入、更新或者移除时，提供多种不同方式的应用过渡效果。
+包括一下工具：
+
+- 在 CSS 过渡和动画中自动应用 class
+- 可以配合使用第三方 CSS 动画库，如 Animate.css
+- 在过渡钩子函数中使用 JavaScript 直接操作 DOM
+- 可以配合使用第三方 JavaScript 动画库，如 Velocity.js
+
+在这里, 我们会讲到 进入、离开和列表的过渡， 你也可以看下一节的 [管理过渡状态](transitioning-state.html).
+
+## 单元素/组件的过渡
+
+Vue 提供了 `transition` 的封装组件，可以给任何元素和组件添加 entering/leaving 过渡
+
+- 条件渲染 （使用 `v-if`）
+- 条件展示 （使用 `v-show`）
+- 动态组件
+- 组件根节点
+
+这里是一个典型的例子：
+
+``` html
+<div id="demo">
+  <button v-on:click="show = !show">
+    Toggle
+  </button>
+  <transition name="fade">
+    <p v-if="show">hello</p>
+  </transition>
+</div>
+```
+
+``` js
+new Vue({
+  el: '#demo',
+  data: {
+    show: true
+  }
+})
+```
+
+``` css
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+```
+
+{% raw %}
+<div id="demo">
+  <button v-on:click="show = !show">
+    Toggle
+  </button>
+  <transition name="demo-transition">
+    <p v-if="show">hello</p>
+  </transition>
+</div>
+<script>
+new Vue({
+  el: '#demo',
+  data: {
+    show: true
+  }
+})
+</script>
+<style>
+.demo-transition-enter-active, .demo-transition-leave-active {
+  transition: opacity .5s
+}
+.demo-transition-enter, .demo-transition-leave-active {
+  opacity: 0
+}
+</style>
+{% endraw %}
+
+当插入或删除带有过渡的元素时，Vue 将：
+
+1. 自动嗅探目标元素是否有 CSS 过渡或动画，并在合适时添加/删除 CSS 类名。
+
+2. 如果设置了过渡的 [JavaScript 钩子函数](#JavaScript-Hooks)，会在相应的阶段调用它们。
+
+3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。
+
+### 过渡的-CSS-类名
+
+会有 4 个类名在 enter/leave 的过渡中切换
+
+1. `v-enter`: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
+
+2. `v-enter-active`: 定义进入过渡的结束状态。在元素被插入时生效，在 `transition/animation` 完成之后移除。
+
+3. `v-leave`:  定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
+
+4. `v-leave-active`: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 `transition/animation` 完成之后移除。
+
+
+!!TODO: 这里再有一个漂亮的流程图就棒呆了
+
+对于这些类名，`v` 是过渡名的前缀。使用 `name="my-transition"` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
+
+`v-enter-active` and `v-leave-active` 可以控制 enter/leave 过渡的不同阶段，下一节，
+`v-enter-active` and `v-leave-active` give you the ability to specify different easing curves for enter/leave transitions, which you'll see an example of in the following section.
+
+### CSS 过渡
+
+常用的过渡都是使用 CSS 过渡。
+
+下面是一个简单例子：
+
+``` html
+<div id="example-1">
+  <button @click="show = !show">
+    Toggle render
+  </button>
+  <transition name="slide-fade">
+    <p v-if="show">hello</p>
+  </transition>
+</div>
+```
+
+``` js
+new Vue({
+  el: '#example-1',
+  data: {
+    show: true
+  }
+})
+```
+
+``` css
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-active {
+  padding-left: 10px;
+  opacity: 0;
+}
+```
+
+{% raw %}
+<div id="example-1" class="demo">
+  <button @click="show = !show">
+    Toggle
+  </button>
+  <transition name="slide-fade">
+    <p v-if="show">hello</p>
+  </transition>
+</div>
+<script>
+new Vue({
+  el: '#example-1',
+  data: {
+    show: true
+  }
+})
+</script>
+<style>
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-active {
+  padding-left: 10px;
+  opacity: 0;
+}
+</style>
+{% endraw %}
+
 ## Overview
 
 Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:
