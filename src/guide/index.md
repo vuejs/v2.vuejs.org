@@ -8,7 +8,7 @@ order: 1
 
 尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/ng41aepx/)。在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
 
-# Hello World
+### Hello World
 
 ```html
 <div id="app">
@@ -39,7 +39,7 @@ new Vue({
 </script>
 {% endraw %}
 
-# 双向绑定
+### 双向绑定
 
 ```html
 <div id="app">
@@ -73,7 +73,7 @@ new Vue({
 {% endraw %}
 
 
-# 渲染列表
+### 渲染列表
 
 ```html
 <div id="app">
@@ -120,7 +120,7 @@ new Vue({
 </script>
 {% endraw %}
 
-# 处理用户输入
+### 处理用户输入
 
 ```html
 <div id="app">
@@ -164,7 +164,7 @@ new Vue({
 
  {% endraw %}
 
-# 综合
+### 综合
 
 ```html
 <div id="app5">
