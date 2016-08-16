@@ -4,10 +4,6 @@ type: guide
 order: 3
 ---
 
-## Constructor
-
-Every Vue app is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
-
 ## 构造器
 
 每个 Vue.js 应用的起步都是通过构造函数 `Vue` 创建一个 **Vue 的根实例**：
@@ -17,12 +13,6 @@ var vm = new Vue({
   // 选项
 })
 ```
-
-A Vue instance is essentially a **ViewModel** as defined in the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), hence the variable name `vm` you will see throughout the docs.
-
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](/api).
-
-The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
 
 一个 Vue 实例其实正是一个 [MVVM 模式](https://en.wikipedia.org/wiki/Model_View_ViewModel)中所描述的 ViewModel - 因此在文档中经常会使用 `vm` 这个变量名。
 
@@ -38,8 +28,6 @@ var MyComponent = Vue.extend({
 // 所有的 `MyComponent` 实例都将以预定义的扩展选项被创建
 var myComponentInstance = new MyComponent()
 ```
-
-Although you can create extended instances imperatively, in most cases you will be registering a component constructor as a custom element and composing them in templates declaratively. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
 
 尽管可以命令式地创建扩展实例，不过在多数情况下将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](/components.md)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
 
@@ -68,10 +56,6 @@ data.a = 3
 vm.a // -> 3
 ```
 
-It should be noted that only these proxied properties are **reactive**. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.
-
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate them from proxied data properties. For example:
-
 注意只有这些被代理的属性是**响应的**。如果在实例创建之后添加新的属性到实例上，它不会触发视图更新。我们将在后面详细讨论响应系统。
 
 除了这些数据属性，Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 `$`，以便与代理的数据属性区分。例如：
@@ -92,13 +76,7 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
-Consult the [API reference](/api) for the full list of instance properties and methods.
-
 参考 [API 文档](/api)查看全部的实例属性与方法。
-
-## Instance Lifecycle
-
-Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, and create the necessary data bindings. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance is created:
 
 
 ## 实例生命周期
@@ -118,18 +96,120 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, for example `mounted`, `updated`, and `destroyed`. All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. Some users may have been wondering where the concept of "controllers" lives in the Vue world and the answer is: there are no controllers. Your custom logic for a component would be split among these lifecycle hooks.
 
 也有一些其它的钩子，在实例生命周期的不同阶段调用，如 `mounted`、 `updated` 、`destroyed`。钩子的 `this` 指向调用它的 Vue 实例。一些用户可能会问 Vue.js 是否有“控制器”的概念？答案是，没有。组件的自定义逻辑可以分割在这些钩子中。
+
+
+## 生命周期图示
+
+下图说明了实例的生命周期。你不需要立马弄明白所有的东西，不过以后它会有帮助。
+
+![Lifecycle](!!TODO: EVAN WILL NEED TO UPDATE /images/lifecycle.png)
+
+![](https://cloud.githubusercontent.com/assets/12537013/17702060/f847b38a-63fe-11e6-9c29-38e58d46f036.png)
+
+***
+
+> 原文： http://rc.vuejs.org/guide/instance.html
+
+***
+
+
+# The Vue Instance
+
+
+## Constructor
+
+Every Vue app is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
+
+``` js
+var vm = new Vue({
+  // options
+})
+```
+
+A Vue instance is essentially a **ViewModel** as defined in the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), hence the variable name `vm` you will see throughout the docs.
+
+When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](/api).
+
+The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
+
+``` js
+var MyComponent = Vue.extend({
+  // extension options
+})
+
+// all instances of `MyComponent` are created with
+// the pre-defined extension options
+var myComponentInstance = new MyComponent()
+```
+
+Although you can create extended instances imperatively, in most cases you will be registering a component constructor as a custom element and composing them in templates declaratively. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
+
+## Properties and Methods
+
+Each Vue instance **proxies** all the properties found in its `data` object:
+
+``` js
+var data = { a: 1 }
+var vm = new Vue({
+  data: data
+})
+
+vm.a === data.a // -> true
+
+// setting the property also affects original data
+vm.a = 2
+data.a // -> 2
+
+// ... and vice-versa
+data.a = 3
+vm.a // -> 3
+```
+
+It should be noted that only these proxied properties are **reactive**. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.
+
+In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate them from proxied data properties. For example:
+
+``` js
+var data = { a: 1 }
+var vm = new Vue({
+  el: '#example',
+  data: data
+})
+
+vm.$data === data // -> true
+vm.$el === document.getElementById('example') // -> true
+
+// $watch is an instance method
+vm.$watch('a', function (newVal, oldVal) {
+  // this callback will be called when `vm.a` changes
+})
+```
+
+Consult the [API reference](/api) for the full list of instance properties and methods.
+
+## Instance Lifecycle
+
+Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, and create the necessary data bindings. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance is created:
+
+``` js
+var vm = new Vue({
+  data: {
+    a: 1
+  },
+  created: function () {
+    // `this` points to the vm instance
+    console.log('a is: ' + this.a)
+  }
+})
+// -> "a is: 1"
+```
+
+There are also other hooks which will be called at different stages of the instance's lifecycle, for example `mounted`, `updated`, and `destroyed`. All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. Some users may have been wondering where the concept of "controllers" lives in the Vue world and the answer is: there are no controllers. Your custom logic for a component would be split among these lifecycle hooks.
 
 ## Lifecycle Diagram
 
 Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but this diagram will be helpful in the future.
 
 ![Lifecycle](!!TODO: EVAN WILL NEED TO UPDATE /images/lifecycle.png)
-
-## 生命周期图示
-
-下图说明了实例的生命周期。你不需要立马弄明白所有的东西，不过以后它会有帮助。
-
-![Lifecycle](/images/lifecycle.png)

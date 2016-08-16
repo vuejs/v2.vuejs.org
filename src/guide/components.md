@@ -4,19 +4,9 @@ type: guide
 order: 11
 ---
 
-## What are Components?
-
-Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue's compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special `is` attribute.
-
 ## 什么是组件？
 
 组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 `is` 特性扩展。
-
-## Using Components
-
-### Registration
-
-We've learned in the previous sections that we can create a new Vue instances with:
 
 ## 使用组件
 
@@ -31,8 +21,6 @@ new Vue({
 })
 ```
 
-To register a global component, you can use `Vue.component(tagName, options)`. For example:
-
 为了注册全局组件，可以用`Vue.component(tagName, options)` **注册** 。
 
 示例：
@@ -42,10 +30,6 @@ Vue.component('my-component', {
   // 选项...
 })
 ```
-
-<p class="tip">Note that Vue does not enforce the [W3C rules](http://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
-
-Once registered, a component can be used in an instance's template as a custom element, `<my-component></my-component>`. Make sure the component is registered **before** you instantiate the root Vue instance. Here's the full example:
 
 <p class="tip">对于自定义标签名字，Vue.js 不强制要求遵循 [W3C 规则](http://www.w3.org/TR/custom-elements/#concepts)（小写，并且包含一个短杠），尽管遵循这个规则比较好。</p>
 
@@ -71,8 +55,6 @@ new Vue({
 })
 ```
 
-Which will render:
-
 渲染为：
 
 ``` html
@@ -93,10 +75,6 @@ new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-### Local Registration
-
-You don't have to register every component globally. You can make a component available only in the scope of another instance/component by registering it with the `components` instance option:
-
 ### 局部注册
 
 不需要全局注册每个组件。可以让组件只能用在其它组件内，用实例选项 `components` 注册：
@@ -115,13 +93,7 @@ new Vue({
 })
 ```
 
-The same encapsulation applies for other registerable Vue features, such as directives.
-
 这种封装也适用于可注册的Vue特性，如指令。
-
-### Component Option Caveats
-
-Most of the options that can be passed into the Vue constructor can be used in a component, with two special cases: `data` and `el` must be functions. In fact, if you try this:
 
 ### 组件选项问题
 
@@ -135,8 +107,6 @@ Vue.component('my-component', {
   }
 })
 ```
-
-Then Vue will halt and emit warnings in the console, telling you that `data` must be a function for component instances. It's good to understand why the rules exist though, so let's cheat.
 
 Vue将在控制台显示警告，告诉你`data`必须是组件实例的一个函数。虽然很显然存在这个规则，不过我们可以绕过它。
 
@@ -184,8 +154,6 @@ new Vue({
 </script>
 {% endraw %}
 
-Since all three component instances share the same `data` object, incrementing one counter increments them all! Ouch. Let's fix this by instead returning a fresh data object:
-
 所有的实例将共享同一个 `data` 对象！这基本不是我们想要的，因此我们应当使用一个函数作为 `data` 选项，让这个函数返回一个新对象：
 
 ``` js
@@ -195,8 +163,6 @@ data: function () {
   }
 }
 ```
-
-Now all our counters each have their own internal state:
 
 现在所有的计数器都有自己内部状态。
 
@@ -221,28 +187,10 @@ new Vue({
 </script>
 {% endraw %}
 
-The `el` option also requires a function value when used in a component instance, for exactly the same reason.
 
 同理，`el` 选项用在组件实例中时也须是一个函数。
 
-
-### Template Parsing Caveats
-
-As long as you use string templates ([`<script type="text/x-template">`](#X-Templates), inline template strings, or [`.vue` components](single-file-components.html)), you are not subject to many of the restrictions inherent to HTML elements. However, if you use the `el` option to mount to an element with existing content as the template:
-
-- `a` can not contain other interactive elements (e.g. buttons and other links)
-- `li` should be a direct child of `ul` or `ol`, and both `ul` and `ol` can only contain `li`
-- `option` should be a direct child of `select`, and `select` can only contain `option` (and `optgroup`)
-- `table` can only contain `thead`, `tbody`, `tfoot` and `tr`, and these elements should be direct children of `table`
-- `tr` can only contain `th` and `td`, and these elements should be direct children of `tr`
-
-In practice these restrictions can cause unexpected behavior. Although in simple cases it might appear to work, you can not rely on custom elements being expanded before browser validation. E.g. `<my-select><option>...</option></my-select>` is not a valid template even if `my-select` component eventually expands to `<select>...</select>`.
-
-Another consequence is that you can not use custom tags (including custom elements and special tags like `<component>`, `<template>` and `<partial>`) inside of `ul`, `select`, `table` and other elements with similar restrictions. Custom tags will be hoisted out and thus not render properly.
-
-In case of a custom element you should use the `is` special attribute:
-
-### 模板解析
+### 模板解析问题
 
 Vue 的模板是 DOM 模板，使用浏览器原生的解析器而不是自己实现一个。相比字符串模板，DOM 模板有一些好处，但是也有问题，它必须是有效的 HTML 片段。一些 HTML 元素对什么元素可以放在它里面有限制。
 只要你使用字符串模板 ([`<script type="text/x-template">`](#X-Templates),内联模板字符串,或[`.vue` components](single-file-components.html)),可以不受许多固有HTML元素的限制，不过用`el`在已存在内容插入模板时有一些常见的限制:
@@ -266,8 +214,6 @@ Vue 的模板是 DOM 模板，使用浏览器原生的解析器而不是自己�
 </table>
 ```
 
-In case of a `<template>` inside of a `<table>` you should use `<tbody>`, as tables are allowed to have multiple `tbody`:
-
 `<template>` 不能用在 `<table>` 内，这时应使用 `<tbody>`，`<table>` 可以有多个 `<tbody>`：
 
 ``` html
@@ -279,12 +225,6 @@ In case of a `<template>` inside of a `<table>` you should use `<tbody>`, as tab
 </table>
 ```
 
-Again, it should be noted that these limitations do **not** apply with string templates via:
-
-- `<script type="text/x-template">`
-- inline template strings
-- `.vue` components
-
 重申一遍，这些限制一定不能用在字符串模板中:
 
 - `<script type="text/x-template">`
@@ -293,11 +233,7 @@ Again, it should be noted that these limitations do **not** apply with string te
 
 ## Props
 
-### Passing Data with Props
-
-Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
-
-A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](/api/#props):
+### 用Props 传递数据
 
 **组件实例的作用域是孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 **props** 把数据传给子组件。
 
@@ -313,15 +249,11 @@ Vue.component('child', {
 })
 ```
 
-Then we can pass a plain string to it like so:
-
 然后向它传入一个普通字符串：
 
 ``` html
 <child message="hello!"></child>
 ```
-
-Result:
 
 结果:
 
@@ -344,10 +276,6 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML attributes are case-insensitive, so when using non-string templates, camelCased prop names need to use their kebab-case (hyphen-delimited) equivalents:
-
-### camelCase vs. kebab-case
-
 HTML 特性不区分大小写。名字形式为 camelCase 的 prop 用作特性时，需要转为 kebab-case（短横线隔开）：
 
 ``` js
@@ -363,13 +291,7 @@ Vue.component('child', {
 <child my-message="hello!"></child>
 ```
 
-Again, if you're using string templates, then this limitation does not apply.
-
 如果用字符串模板，这个限制不适用。
-
-### Dynamic Props
-
-Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
 
 ### 动态 Props
 
@@ -383,15 +305,11 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-It's often simpler to use the shorthand syntax for `v-bind`:
-
 使用 `v-bind` 的缩写语法通常更简单：
 
 ``` html
 <child :my-message="parentMsg"></child>
 ```
-
-Result:
 
 结果:
 
@@ -417,10 +335,6 @@ new Vue({
 </script>
 {% endraw %}
 
-### Literal vs. Dynamic
-
-A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
-
 ### 字面量语法 vs. 动态语法
 
 初学者常犯的一个错误是使用字面量语法传递数值：
@@ -429,8 +343,6 @@ A common mistake beginners tend to make is attempting to pass down a number usin
 <!-- 传递了一个字符串 "1" -->
 <comp some-prop="1"></comp>
 ```
-
-However, since this is a literal prop, its value is passed down as a plain string `"1"` instead of an actual number. If we want to pass down an actual JavaScript number, we need to use `v-bind` so that its value is evaluated as a JavaScript expression:
 
 因为它是一个字面 prop，它的值以字符串 `"1"` 而不是以实际的数字传下去。如果想传递一个实际的 JavaScript 数字，需要使用动态语法，从而让它的值被当作 JavaScript 表达式计算：
 

@@ -85,6 +85,13 @@ $ bower install vue#next
 
 独立下载版本或通过 Bower 安装的版本已用 UMD包装，因此它们可以直接用作 AMD 模块。
 
+***
+
+> 原文：http://rc.vuejs.org/guide/installation.html
+
+***
+
+# Installation
 
 ### Compatibility Note
 
