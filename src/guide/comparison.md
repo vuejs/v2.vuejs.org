@@ -120,7 +120,7 @@ The React ecosystem also has [a project](https://wix.github.io/react-templates/)
 
 #### Component-Scoped CSS
 
-Unless you're OK spreading components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), it's difficult to find a good solution for scoping CSS in React. Very basic CSS works fine, but common features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work. And no matter what you end up using in the end, it'll have involved a lot of research before you can even get a simple hover state to work.
+Unless you spread components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), scoping CSS in React comes with caveats. Very basic CSS works great out-of-the-box, but some more complex features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work.
 
 Vue on the other hand, gives you full access to CSS within [single-file components](single-file-components.html):
 
@@ -136,7 +136,7 @@ Vue on the other hand, gives you full access to CSS within [single-file componen
 
 The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `data-v-1`) to elements and compiling `.list-container:hover` to something like `.list-container[data-v-1]:hover`.
 
-Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors you'd like. This allows you to perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
+Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors (or postprocessors) you'd like. This allows you to perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
 
 ### Scale
 
