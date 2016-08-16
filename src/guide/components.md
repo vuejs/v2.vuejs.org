@@ -351,19 +351,15 @@ new Vue({
 <comp v-bind:some-prop="1"></comp>
 ```
 
-### One-Way Data Flow
-
-All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about.
-
-This means you should never mutate props. If you do, Vue will slap your hand with a warning in the console. If you feel the need to mutate a prop, you can instead use it in a computed property or to define the initial value for a data property.
-
-<p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
-
-Here's an example:
-
 ### 单向数据流
 
-所有的props
+所有的props在父子组件之间形成一个单一向下的数据绑定:父组件属性更新，会相应传递到子组件中，而不是其他方法。防止子组件更新父组件状态，是因为子组件偶然更新父组件状态会让应用数据流变复杂。
+
+绝不更改props的属性。一旦props属性被修改，Vue会在控制台抛出警告。如果需要修改prop属性,可以通过计算属性或者声明一个初始数据。
+
+<p class="tip">请注意,在JavaScript中对象和数据是通过引用传递的,所以如果prop是一个数组或对象，在子组件中更改对象或数组***会影响父组件状态***</p>
+
+这有个示例:
 
 ``` html
 <div id="parent-object-mutation-demo">
@@ -419,7 +415,7 @@ new Vue({
 </script>
 {% endraw %}
 
-To fix this, you can clone the object with:
+为了防止这个问题，可以像这样复制一个对象:
 
 ``` js
 data: function () {
@@ -429,7 +425,7 @@ data: function () {
 }
 ```
 
-Or if you're using Babel with ES2015, the much simpler:
+或者用Babel和ES2015可以更简单:
 
 ``` js
 data () {
@@ -439,38 +435,35 @@ data () {
 }
 ```
 
-### Prop Validation
+### Prop验证
 
-It is possible for a component to specify requirements for the props it is receiving. If a requirement is not meant, Vue will emit warnings. This is especially useful when you are authoring a component that is intended to be used by others.
-
-Instead of defining the props as an array of strings, you can use an object with validation requirements:
+组件可以为 props 指定验证要求。当组件给其他人使用时这很有用，因为这些验证要求构成了组件的 API，确保其他人正确地使用组件。此时 props 的值是一个对象，包含验证要求：
 
 ``` js
 Vue.component('example', {
   props: {
-    // basic type check (`null` means accept any type)
+    // 基础类型检测 （`null` 意思是任何类型都可以）
     propA: Number,
-    // multiple possible types
+    // 多种类型 (1.0.21+)
     propB: [String, Number],
-    // a required string
+    // 必需且是字符串
     propC: {
       type: String,
       required: true
     },
-    // a number with default value
+    // 数字，有默认值
     propD: {
       type: Number,
       default: 100
     },
-    // object/array defaults should be returned from a
-    // factory function
+    // 对象/数组的默认值应当由一个函数返回
     propE: {
       type: Object,
       default: function () {
         return { message: 'hello' }
       }
     },
-    // custom validator function
+    // 自定义验证函数
     propF: {
       validator: function (value) {
         return value > 10
@@ -479,8 +472,6 @@ Vue.component('example', {
   }
 })
 ```
-
-The `type` can be one of the following native constructors:
 
 `type` 可以是下面原生构造器：
 
@@ -491,31 +482,21 @@ The `type` can be one of the following native constructors:
 - Object
 - Array
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
-
-When a prop validation fails, Vue will refuse to set the value on the child component and throw a warning if using the development build.
-
 `type` 也可以是一个自定义构造器，使用 `instanceof` 检测。
 
 当 prop 验证失败了，Vue 将拒绝在子组件上设置此值，如果使用的是开发版本会抛出一条警告。
-
-## Parent-Child Communication
-
-### Parent Chain
-
-A child component holds access to its parent component as `this.$parent`. A root Vue instance will be available to all of its descendants as `this.$root`. Each parent component has an array, `this.$children`, which contains all its child components.
-
-<p class="tip">These properties are made available as an escape hatch to accomodate extreme edge cases. They are not the correct way to access and mutate components in the vast majority of circumstances and if abused, can make your components much more difficult to reason about.</p>
-
-Instead, prefer passing data down explicitly using props. Where data must be shared and mutated by multiple components, a parent component can be used to manage state in a single location. To mutate parent state, custom events can be emitted that parents may choose to listen to or mutation methods can be passed to child components.
-
-For managing state in more complex applications, [vuex](https://github.com/vuejs/vuex/) is recommended as an officially supported companion library.
 
 ## 父子组件通信
 
 ### 父链
 
 子组件可以用 `this.$parent` 访问它的父组件。根实例的后代可以用 `this.$root` 访问它。父组件有一个数组 `this.$children`，包含它所有的子元素。
+
+<p class="tip">These properties are made available as an escape hatch to accomodate extreme edge cases. They are not the correct way to access and mutate components in the vast majority of circumstances and if abused, can make your components much more difficult to reason about.</p>
+
+Instead, prefer passing data down explicitly using props. Where data must be shared and mutated by multiple components, a parent component can be used to manage state in a single location. To mutate parent state, custom events can be emitted that parents may choose to listen to or mutation methods can be passed to child components.
+
+For managing state in more complex applications, [vuex](https://github.com/vuejs/vuex/) is recommended as an officially supported companion library.
 
 尽管可以访问父链上任意的实例，不过子组件应当避免直接依赖父组件的数据，尽量显式地使用 props 传递数据。另外，在子组件中修改父组件的状态是非常糟糕的做法，因为：
 
@@ -524,14 +505,13 @@ For managing state in more complex applications, [vuex](https://github.com/vuejs
 2. 只看父组件，很难理解父组件的状态。因为它可能被任意子组件修改！理想情况下，只有组件自己能修改它的状态。
 
 
-### Custom Events
+### 自定义事件
 
 You can use a pattern similar to the EventEmitter in Node.js: a centralized event hub that allows components to communicate, no matter where they are in the component tree. Because Vue instances implement the event emitter interface, you can actually use an empty Vue instance for this purpose:
 
 
 ### 自定义事件
 
-Vue 实例实现了一个自定义事件接口，用于在组件树中通信。这个事件系统独立于原生 DOM 事件，用法也不同。
 
 ``` js
 var bus = new Vue()
