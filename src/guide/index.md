@@ -26,25 +26,18 @@ new Vue({
 ```
 
 {% raw %}
-
-
-
-<div id="app" class="demo">
+<div id="app11" class="demo">
   {{ message }}
 </div>
-
-
-
 <script>
 new Vue({
-  el: &#39;#app&#39;,
+  el: '#app11',
   data: {
-    message: &#39;Hello Vue!&#39;
+    message: 'Hello Vue!'
   }
 })
 </script>
-
- {% endraw %}
+{% endraw %}
 
 # 双向绑定
 
@@ -65,26 +58,20 @@ new Vue({
 ```
 
 {% raw %}
-
-
-
-<div id="app2" class="demo">
+<div id="app12">
   <p>{{ message }}</p>
   <input v-model="message">
 </div>
-
-
-
 <script>
 new Vue({
-  el: &#39;#app2&#39;,
+  el: '#app12',
   data: {
-    message: &#39;Hello Vue!&#39;
+    message: 'Hello Vue!'
   }
 })
 </script>
+{% endraw %}
 
- {% endraw %}
 
 # 渲染列表
 
@@ -112,33 +99,26 @@ new Vue({
 ```
 
 {% raw %}
-
-
-
-<div id="app3" class="demo">
-  <ul>
-  <li v-for="todo in todos">
+<div id="app13" class="demo">
+  <ol>
+    <li v-for="todo in todos">
       {{ todo.text }}
     </li>
-</ul>
+  </ol>
 </div>
-
-
-
 <script>
 new Vue({
-  el: &#39;#app3&#39;,
+  el: '#app13',
   data: {
     todos: [
-      { text: &#39;Learn JavaScript&#39; },
-      { text: &#39;Learn Vue&#39; },
-      { text: &#39;Build something awesome&#39; }
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
     ]
   }
 })
 </script>
-
- {% endraw %}
+{% endraw %}
 
 # 处理用户输入
 
@@ -164,25 +144,19 @@ new Vue({
 ```
 
 {% raw %}
-
-
-
-<div id="app4" class="demo">
+<div id="app14" class="demo">
   <p>{{ message }}</p>
   <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
-
-
-
 <script>
 new Vue({
-  el: &#39;#app4&#39;,
+  el: '#app14',
   data: {
-    message: &#39;Hello Vue.js!&#39;
+    message: 'Hello Vue.js!'
   },
   methods: {
     reverseMessage: function () {
-      this.message = this.message.split(&#39;&#39;).reverse().join(&#39;&#39;)
+      this.message = this.message.split('').reverse().join('')
     }
   }
 })
@@ -229,7 +203,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="app5" class="demo">
+<div id="app15" class="demo">
   <input v-model="newTodo" v-on:keyup.enter="addTodo">
   <ul>
     <li v-for="(todo, index) in todos">
@@ -240,7 +214,7 @@ new Vue({
 </div>
 <script>
 new Vue({
-  el: '#app5',
+  el: '#app15',
   data: {
     newTodo: '',
     todos: [
