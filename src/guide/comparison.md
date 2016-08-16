@@ -50,12 +50,10 @@ In React, everything is Just JavaScript, which sounds very simple and elegant - 
 
 #### JSX vs Templates
 
-With React's JSX, there are minor differences from HTML, such as using `className` instead of `class`, but that's really not too bad. What feels really awkward is constantly switching back and forth between JavaScript and JSX, especially since not everything is an expression in JavaScript.
-
-Take this example below:
+Let's dive into a simple React render function, kindly [provided by Dan Abramov](https://github.com/vuejs/vuejs.org/pull/371):
 
 ``` jsx
-render() {
+render () {
   let { items } = this.props
 
   let children
@@ -66,7 +64,7 @@ render() {
   } else {
     children = <p>No items found.</p>
   }
- 
+
   return (
     <div className='list-container'>
       {children}
@@ -77,11 +75,13 @@ render() {
 
 This is an extremely common use case, but using JSX, there are a few problems that may not be immediately obvious:
 
-- __Syntax Noise__: All the curly braces add visual noise, but what's worse is that while writing it, you have to frequently make decisions about how to minimize their visual impact, slowing development.
+- __Decisions, Decisions__: Despite the simplicity of the above code, it actually went through a series of iterations until Dan Abramov kindly ended the bikeshedding with a definitive version we could settle on. It's interesting to note though, that none of the other recommended solutions we saw were identical to Dan's. This is because JSX requires frequent compromises between readability and declarativeness that come down to individual judgment calls. These are some of the factors to be considered:
 
-- __Cajoling JavaScript into Expressions__: The example uses a ternary rather than an if statement here, which arguably makes the code less readable, but is still possibly the best of bad options. The only alternatives include hoisting this logic out of its context or wrapping an if statement in an immediately-invoked function expression. Do expressions will help a little when they're a more stable feature, but they're currently at stage 0.
+- Not everything is an expression in JavaScript, making some common language features such as if statements a bit awkward to embed within JSX. There are sometimes alternatives which _are_ expressions, such as a ternary in this case, but many consider ternaries to be less readable.
+- When nesting JSX within JavaScript within JSX (etc), visual noise is created with curly braces and possibly parentheses. Different people make different decisions in how they prefer to minimize that noise.
+- To address the above two concerns, many choose to do as much as possible outside JSX, then only embed a variable, like `children` in the example above. The downside is that the render function then ceases to be a declarative description of the generated view, instead becoming an imperative list of operations with a final result.
 
-- __Readability to Non-React Developers__: Imagine having a designer that's familiar with HTML and CSS look at this. They'd be paralyzed with confusion at every single line. While the JSX will look somewhat similar to HTML, `className` replaces `class`, the ternary will be meaningless, and parentheses and curly braces are everywhere. It'd be difficult for them to make simple modifications or even understand what this code is doing.
+- __Learning Curve__: While JSX looks similar to HTML, it's definitely not and there are edge cases to keep in mind - one being the use of `className` instead of `class`, such as in the example. To get this code reading as nicely as possible, it's also necessary to use ES2015+ language features, which many developers have not mastered yet. Combined, these two caveats significantly limit pool of people that can contribute to the frontend. You eliminate designers, intermediate JavaScript developers, or even advanced JavaScript developers that aren't yet familiar with the quirks of React's JSX.
 
 In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes it is useful to have the power of a full programming language. Render functions are not recommended for most components however.
 
@@ -95,21 +95,28 @@ Instead, we offer templates as a simpler alternative:
         {{ item.name }}
       </li>
     </ul>
-    <p v-else>No items found</p>
+    <p v-else>No items found.</p>
   </div>
 </template>
 ```
 
 A few advantages here:
 
-- Any valid HTML is valid in a template
 - Many fewer implementation and stylistic decisions have to be made while writing a template
-- There's much less visual noise
+- A template will always be declarative
+- Any valid HTML is valid in a template
 - It reads more like English (e.g. for each item in items)
+- Advanced versions of JavaScript are not required to increase readability
 
-This is not only much easier for the developer that's writing it, but designers, junior developers, or those newer to JavaScript are also much more likely to be able to understand what's going on and even contribute code.
+This is not only much easier for the developer that's writing it, but designers and less experienced developers will also find it much easier parsing and contributing code.
 
 It doesn't end there though. By embracing HTML rather than trying to reinvent it, Vue also allows you to use preprocessors such as Pug (formerly known as Jade) in your templates.
+
+The React ecosystem also has [a project](https://wix.github.io/react-templates/) that allows you to write templates, but there are a few disadvantages:
+
+- It's not nearly as feature-rich as Vue's templates
+- It requires separating your HTML from component files
+- Because it's a 3rd party library rather than an officially supported first-class citizen, it may or may not be kept up-to-date with React core into the future
 
 #### Component-Scoped CSS
 
