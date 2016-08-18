@@ -315,7 +315,7 @@ Vue.component('my-component', {
 Everything the component needs is passed through `context`, which is an object containing:
 
 - `props`: An object of the provided props
-- `children`: A function returning the children
+- `children`: An array of the VNode children
 - `slots`: A function returning a slots object
 - `data`: The entire data object passed to the component
 - `parent`: A reference to the parent component
@@ -377,7 +377,7 @@ You may wonder why we need both `slots` and `children`. Wouldn't `slots().defaul
 </my-functional-component>
 ```
 
-For this component, `children()` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
+For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
 
 ## Template Compilation
 
