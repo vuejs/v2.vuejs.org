@@ -377,7 +377,7 @@ You may wonder why we need both `slots` and `children`. Wouldn't `slots.default`
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
+For this component, `children` will give you both paragraphs, `slots.default` will give you only the second, and `slots.foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
 
 ## Template Compilation
 
