@@ -316,7 +316,7 @@ Everything the component needs is passed through `context`, which is an object c
 
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
-- `slots`: A function returning a slots object
+- `slots`: A slots object
 - `data`: The entire data object passed to the component
 - `parent`: A reference to the parent component
 
@@ -366,7 +366,7 @@ Vue.component('smart-list', {
 
 ### `slots` vs `children`
 
-You may wonder why we need both `slots` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+You may wonder why we need both `slots` and `children`. Wouldn't `slots.default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
 
 ``` html
 <my-functional-component>
