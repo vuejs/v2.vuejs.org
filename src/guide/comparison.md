@@ -58,8 +58,12 @@ render () {
 
   let children
   if (items.length > 0) {
-    children = items.map(item =>
-      <li key={item.id}>{item.name}</li>
+    children = (
+      <ul>
+        {items.map(item =>
+          <li key={item.id}>{item.name}</li>
+        )}
+      </ul>
     )
   } else {
     children = <p>No items found.</p>
@@ -75,13 +79,15 @@ render () {
 
 This is an extremely common use case, but using JSX, there are a few problems that may not be immediately obvious:
 
-- __Decisions, Decisions__: Despite the simplicity of the above code, it actually went through a series of iterations until Dan Abramov kindly ended the bikeshedding with a definitive version we could settle on. It's interesting to note though, that none of the other recommended solutions we saw were identical to Dan's. This is because JSX requires frequent compromises between readability and declarativeness that come down to individual judgment calls. These are some of the factors to be considered:
+- __Decisions, Decisions__: Despite the simplicity of the above code, it actually went through a series of iterations until Dan Abramov kindly ended the bikeshedding with a definitive version we could settle on. It's interesting to note though, that none of the other recommended solutions we saw were identical to Dan's. This is because JSX, just like JavaScript, requires frequent compromises between readability and declarativeness that come down to individual judgment calls. These are some of the factors to be considered:
 
 - Not everything is an expression in JavaScript, making some common language features such as if statements a bit awkward to embed within JSX. There are sometimes alternatives which _are_ expressions, such as a ternary in this case, but many consider ternaries to be less readable.
-- When nesting JSX within JavaScript within JSX (etc), visual noise is created with curly braces and possibly parentheses. Different people make different decisions in how they prefer to minimize that noise.
-- To address the above two concerns, many choose to do as much as possible outside JSX, then only embed a variable, like `children` in the example above. The downside is that the render function then ceases to be a declarative description of the generated view, instead becoming an imperative list of operations with a final result.
+- When nesting JSX within JavaScript within JSX (etc), visual noise is created with curly braces and often parentheses. Different people make different decisions in how they prefer to minimize that noise.
+- To address the above two concerns, the simplest option is to do as much as possible outside JSX, then only embed a variable, like `children` in the example above. The downside is that the render function then ceases to be a purely declarative description of the generated view, instead becoming an imperative list of operations with a declarative (but less descriptive) result. Other alternatives include:
+  - Generating parts of the UI in helper functions, then calling them in the main render function. The downside is that visually parsing a component takes longer, as one has to jump around a lot more.
+  - Breaking a component out into more, smaller components (e.g. `ListContainer`, `List`, `ListItem`, and `EmptyList`). This has advantages beyond making render functions easier to read as an application grows in complexity. However, if it never grows complex enough to otherwise warrant the split, it's a lot of added boilerplate.
 
-- __Learning Curve__: While JSX looks similar to HTML, it's definitely not and there are edge cases to keep in mind - one being the use of `className` instead of `class`, such as in the example. To get this code reading as nicely as possible, it's also necessary to use ES2015+ language features, which many developers have not mastered yet. Combined, these two caveats significantly limit pool of people that can contribute to the frontend. You eliminate designers, intermediate JavaScript developers, or even advanced JavaScript developers that aren't yet familiar with the quirks of React's JSX.
+- __Learning Curve__: While JSX looks similar to HTML, it's definitely not and there are edge cases to keep in mind - one being the use of `className` instead of `class`, such as in the example. To get this code reading as nicely as possible, it's also necessary to use ES2015+ language features, which many developers have not mastered yet. Combined, these two caveats significantly limit the pool of people that can contribute to the frontend. You eliminate designers, intermediate JavaScript developers, or even advanced JavaScript developers that aren't yet familiar with the quirks of React's JSX.
 
 In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes it is useful to have the power of a full programming language. Render functions are not recommended for most components however.
 
