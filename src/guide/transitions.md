@@ -137,8 +137,8 @@ new Vue({
 ```
 
 ``` css
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
@@ -180,6 +180,390 @@ new Vue({
   opacity: 0;
 }
 </style>
+{% endraw %}
+
+
+### CSS 动画
+
+
+CSS 动画用法同 CSS 过渡，区别是在动画中 `v-enter` 类名在节点插入 DOM 后不会立即删除，而是在 `animationend` 事件触发时删除。
+
+示例： (省略了兼容性前缀)
+
+``` html
+<div id="example-2">
+  <button @click="show = !show">Toggle show</button>
+  <transition name="bounce">
+    <p v-if="show">Look at me!</p>
+  </transition>
+</div>
+```
+
+``` js
+new Vue({
+  el: '#example-2',
+  data: {
+    show: true
+  }
+})
+```
+
+``` css
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-out .5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+```
+
+{% raw %}
+<div id="example-2" class="demo">
+  <button @click="show = !show">Toggle show</button>
+  <transition name="bounce">
+    <p v-show="show">Look at me!</p>
+  </transition>
+</div>
+
+<style>
+  .bounce-enter-active {
+    -webkit-animation: bounce-in .5s;
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    -webkit-animation: bounce-out .5s;
+    animation: bounce-out .5s;
+  }
+  @keyframes bounce-in {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+    50% {
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+  @keyframes bounce-out {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+    100% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+  }
+  @-webkit-keyframes bounce-in {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+    50% {
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+  @-webkit-keyframes bounce-out {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+    100% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+  }
+</style>
+<script>
+new Vue({
+  el: '#example-2',
+  data: {
+    show: true
+  }
+})
+</script>
+{% endraw %}
+
+
+### 自定义过渡类名
+
+我们可以通过以下属性来自定义过渡类名：
+
+- `enter-class`
+- `enter-active-class`
+- `leave-class`
+- `leave-active-class`
+
+他们的优先级高于普通的类名，这对于 Vue 的过渡系统和其他第三方 CSS 动画库，如 [Animate.css](https://daneden.github.io/animate.css/) 结合使用十分有用。
+
+示例：
+
+``` html
+<link href="https://npmcdn.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+
+<div id="example-3">
+  <button @click="show = !show">
+    Toggle render
+  </button>
+  <transition
+    name="custom-classes-transition"
+    enter-active-class="animated tada"
+    leave-active-class="animated bounceOutRight"
+  >
+    <p v-if="show">hello</p>
+  </transition>
+</div>
+```
+
+``` js
+new Vue({
+  el: '#example-3',
+  data: {
+    show: true
+  }
+})
+```
+
+{% raw %}
+<link href="https://npmcdn.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
+<div id="example-3" class="demo">
+  <button @click="show = !show">
+    Toggle render
+  </button>
+  <transition
+    name="custom-classes-transition"
+    enter-active-class="animated tada"
+    leave-active-class="animated bounceOutRight"
+  >
+    <p v-if="show">hello</p>
+  </transition>
+</div>
+<script>
+new Vue({
+  el: '#example-3',
+  data: {
+    show: true
+  }
+})
+</script>
+{% endraw %}
+
+
+### 同时使用 Transitions 和 Animations
+
+Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可以是 `transitionend` 或 `animationend` 的，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别类型并设置监听。
+
+但是，在一些场景中，你需要给同一个元素同时设置两种过渡动效，比如 animation 很快的被触发并完成了，而 transition 效果还没结束。在这种情况中，你就需要使用 `type` 属性并设置 `animation` 或 `transition` 来明确声明你需要 Vue 监听的类型。
+
+### JavaScript 钩子
+
+可以在属性中声明 JavaScript 钩子
+
+``` html
+<transition
+  v-on:before-enter="beforeEnter"
+  v-on:enter="enter"
+  v-on:after-enter="afterEnter"
+  v-on:enter-cancelled="enterCancelled"
+
+  v-on:before-leave="beforeLeave"
+  v-on:leave="leave"
+  v-on:after-leave="afterLeave"
+  v-on:leave-cancelled="leaveCancelled"
+>
+  <!-- ... -->
+</transition>
+```
+
+``` js
+// ...
+methods: {
+  // --------
+  // ENTERING
+  // --------
+
+  beforeEnter: function (el) {
+    // ...
+  },
+  // the done callback is optional when
+  // used in combination with CSS
+  enter: function (el, done) {
+    // ...
+    done()
+  },
+  afterEnter: function (el) {
+    // ...
+  },
+  enterCancelled: function (el) {
+    // ...
+  },
+
+  // --------
+  // LEAVING
+  // --------
+
+  beforeLeave: function (el) {
+    // ...
+  },
+  // the done callback is optional when
+  // used in combination with CSS
+  leave: function (el, done) {
+    // ...
+    done()
+  },
+  afterLeave: function (el) {
+    // ...
+  },
+  // leaveCancelled only available with v-show
+  leaveCancelled: function (el) {
+    // ...
+  }
+}
+```
+
+这些钩子函数可以结合 CSS transitions/animations 使用，也可以单独使用。
+
+<p class="tip">当只用 JavaScript 过渡的时候 ** 在 `enter` 和 `leave` 中，回调函数 `done` 是必须的 **。 否则，它们会被同步调用，过渡会立即完成。</p>
+
+<p class="tip">推荐对于仅使用 JavaScript 过渡的元素添加 `v-bind:css="false"`，Vue 会跳过 CSS 的检测。这也可以避免过渡过程中 CSS 的影响。</p>
+
+一个使用 Velocity.js 的简单例子：
+
+``` html
+<!--
+Velocity works very much like jQuery.animate and is
+a great option for JavaScript animations
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+
+<div id="example-4">
+  <button @click="show = !show">
+    Toggle
+  </button>
+  <transition
+    v-on:before-enter="beforeEnter"
+    v-on:enter="enter"
+    v-on:leave="leave"
+    v-bind:css="false"
+  >
+    <p v-if="show">
+      Demo
+    </p>
+  </transition>
+</div>
+```
+
+``` js
+new Vue({
+  el: '#example-4',
+  data: {
+    show: false
+  },
+  methods: {
+    beforeEnter: function (el) {
+      el.style.opacity = 0
+    },
+    enter: function (el, done) {
+      Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+      Velocity(el, { fontSize: '1em' }, { complete: done })
+    },
+    leave: function (el, done) {
+      Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
+      Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+      Velocity(el, {
+        rotateZ: '45deg',
+        translateY: '30px',
+        translateX: '30px',
+        opacity: 0
+      }, { complete: done })
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="example-4" class="demo">
+  <button @click="show = !show">
+    Toggle
+  </button>
+  <transition
+    v-on:before-enter="beforeEnter"
+    v-on:enter="enter"
+    v-on:leave="leave"
+  >
+    <p v-if="show">
+      Demo
+    </p>
+  </transition>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script>
+new Vue({
+  el: '#example-4',
+  data: {
+    show: false
+  },
+  methods: {
+    beforeEnter: function (el) {
+      el.style.opacity = 0
+      el.style.transformOrigin = 'left'
+    },
+    enter: function (el, done) {
+      Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+      Velocity(el, { fontSize: '1em' }, { complete: done })
+    },
+    leave: function (el, done) {
+      Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
+      Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+      Velocity(el, {
+        rotateZ: '45deg',
+        translateY: '30px',
+        translateX: '30px',
+        opacity: 0
+      }, { complete: done })
+    }
+  }
+})
+</script>
 {% endraw %}
 
 ***
