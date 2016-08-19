@@ -67,14 +67,6 @@ A directive definition object can provide several hook functions (all optional):
 - `componentUpdated`: called after the component has completed an update cycle
 - `unbind`: called only once, when the directive is unbound from the element.
 
-For example:
-
-``` js
-Vue.directive('demo', function (value) {
-  console.log(value) // "foo bar baz"
-})
-```
-
 We'll explore the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `oldVnode`) in the next section.
 
 ## Directive Hook Arguments
