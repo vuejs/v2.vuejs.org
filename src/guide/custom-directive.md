@@ -75,19 +75,6 @@ Vue.directive('demo', function (value) {
 })
 ```
 
-### Element Directives
-
-In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained earlier in the guide). You can register a custom element directive like so:
-
-``` js
-Vue.elementDirective('my-directive', {
-  // same API as normal directives
-  bind: function () {
-    // manipulate this.el...
-  }
-})
-```
-
 We'll explore the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `oldVnode`) in the next section.
 
 ## Directive Hook Arguments
