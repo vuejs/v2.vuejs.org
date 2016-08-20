@@ -844,9 +844,11 @@ new Vue({
 </style>
 {% endraw %}
 
-With one simple attribute addition, we've fixed that original transition without having to add any special styling.
+只用添加一个简单的属性，就解决了之前的过渡问题而无需任何额外的代码。
 
-The `in-out` mode isn't used as often, but can sometimes be useful for a slightly different transition effect. Let's try combining it with the slide-fade transition we worked on earlier:
+`in-out` 模式不是经常用到，但对于一些稍微不同的过渡效果还是有用的。
+将之前的滑动淡出的例子结合：
+
 
 {% raw %}
 <div id="in-out-translate-demo" class="demo">
@@ -892,11 +894,12 @@ new Vue({
 </style>
 {% endraw %}
 
-Pretty cool, right?
+很酷吧？
 
-## Transitioning Between Components
+## 多个组件的过渡
 
-Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we just wrap a [dynamic component](components.html#Dynamic-Components):
+多个组件的过渡很简单很多 - 我们不需要使用 `key` 属性。相反，我们只需要使用[动态组件](components.html#动态组件):
+
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -964,21 +967,21 @@ new Vue({
 </script>
 {% endraw %}
 
-## List Transitions
+## 列表过渡
 
-So far, we've managed transitions for:
+目前为止，我们已经讲到：
 
-- Individual nodes
-- Multiple nodes where only 1 is rendered at a time
+- 单个节点
+- 多个节点中渲染一个节点
 
-So what about for when we have a whole list of items we want to render simultaneously, for example with `v-for`? In this case, we'll use the `<transition-group>` component. Before we dive into an example though, there are a few things that are important to know about this component:
+那么怎么同步渲染整个列表，比如使用 `v-for` ？在这种场景中，使用  `<transition-group>` 组件。在我们深入例子之前，先了解关于这个组件的几个特点：
 
-- Unlike `<transition>`, it renders an actual element: a `<span>` by default. You can change the element that's rendered with the `tag` attribute.
-- Elements inside are **always required** to have a unique `key` attribute
+- 不同于 `<transition>`， 它会以一个真实元素呈现：默认为一个 `<span>`。你也可以通过 `tag` 属性更换为其他元素。
+- 元素 **一定需要** 指定唯一的 `key` 属性值
 
-### List Entering/Leaving Transitions
+### 列表的进入和离开过渡
 
-Now let's dive into a simple example, transitioning entering and leaving using the same CSS classes we've used previously:
+现在让我们由一个简单的例子深入，进入和离开的过渡使用之前一样的 CSS 类名。
 
 ``` html
 <div id="list-demo" class="demo">
@@ -1072,13 +1075,14 @@ new Vue({
 </style>
 {% endraw %}
 
-There's one problem with this example. When you add or remove an item, the ones around it instantly snap into their new place instead of smoothly transitioning. We'll fix that later.
+这个例子有个问题，当添加和移除元素的时候，周围的元素会瞬间到移动到他们的新布局的位置，而不是平滑的过渡，我们下面会解决这个问题。
 
-### List Move Transitions
 
-The `<transition-group>` component has another trick up its sleeve. It can not only animate entering and leaving, but also changes in position. The only new concept you need to know to use this feature is the addition of **the `v-move` class**, which is added when items are changing positions. Like the other classes, its prefix will match the value of match a provided `name` attribute and you can also manually specify a class with the `move-class` attribute.
+### 列表的位移过渡
 
-This class is mostly useful for specifying the transition timing and easing curve, as you'll see below:
+`<transition-group>` 组件还有一个特性。不仅可以进入和离开动画，还可以改变定位。要使用这个新功能只了解新增 ** `v-move` class 类名**，它会在元素的改变定位的过程中应用。像之前的类名一样，可以通过 `name` 属性来自定义前缀，也可以通过 `move-class` 属性手动设置。
+
+这个类名对于设置过渡的切换时机和过渡曲线非常有用，你会看到如下的例子：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
@@ -1143,10 +1147,10 @@ new Vue({
 </style>
 {% endraw %}
 
-This might seem like magic, but under the hood, Vue is using a simple animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
+这个看起来很神奇，内部的实现，Vue 使用了一个叫 [FLIP](https://aerotwist.com/blog/flip-your-animations/) 简单的动画队列
+使用 transforms 将元素从之前的位置平滑过渡新的位置。
 
-We can combine this technique with our previous implementation to animate every possible change to our list!
-
+我们将之前实现的例子和这个技术结合，使我们的列表一切变动都会有动画过渡。
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
@@ -1256,9 +1260,9 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
+<p class="tip">需要注意的是使用 FLIP 过渡的不能是设置 `display: inline` 的元素。作为替代方案，可以设置为 `display: inline-block` 或者放置于 flex 中</p>
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can transitioned [just as easily](https://jsfiddle.net/chrisvfritz/a2ngorat/):
+FLIP 动画不仅可以实现单列过渡，多维网格的过渡也同样[简单](https://jsfiddle.net/chrisvfritz/a2ngorat/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
@@ -1321,9 +1325,9 @@ new Vue({
 </style>
 {% endraw %}
 
-### Staggering List Transitions
+### 列表的渐进过渡
 
-By communicating with JavaScript transitions through data attributes, it's also possible to stagger transitions in a list:
+通过 data 属性与 JavaScript 通信 ，就可以实现列表的渐进过渡：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1467,11 +1471,11 @@ new Vue({
 </script>
 {% endraw %}
 
-## Reusable Transitions
+## 可复用的过渡
 
-Transitions can be reused through Vue's component system. To create a reusable transition, all you have to do is place a `<transition>` or `<transition-group>` component at the root, then pass any children into the transition component.
+过渡可以通过 Vue 的组件系统实现复用。要创建一个可复用过渡组件，你需要做的就是将 `<transition>` 或者 `<transition-group>` 作为根组件，然后将任何子组件放置在其中就可以了。
 
-Here's an example using a template component:
+使用 template 的简单例子：
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1496,7 +1500,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-And functional components are especially well-suited to this task:
+函数组件更适合完成这个任务：
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1521,19 +1525,18 @@ Vue.component('my-special-transition', {
 })
 ```
 
-## Dynamic Transitions
+## 动态过渡
 
-Yes, even transitions in Vue are data-driven! The most basic example of a dynamic transition binds the `name` attribute to a dynamic property.
+在 Vue 中即使是过渡也是数据驱动的！动态过渡最基本的例子是通过 `name` 属性来来绑定动态值。
 
 ```html
 <transition v-bind:name="transitionName">
   <!-- ... -->
 </transition>
 ```
+当你想在 Vue 的过渡系统中定义的 CSS 过渡/动画不同过渡间切换会非常有用。
 
-This can be useful when you've defined CSS transitions/animations using Vue's transition class conventions and simply want to switch between them.
-
-Really though, any transition attribute can be dynamically bound. And it's not just attributes. Since event hooks are just methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
+所有的过渡属性都是动态绑定。它不仅是简单的属性，通过事件的钩子函数方法，可以在获取相应到上下文数据。这意味着，可以根据组件状态通过 JavaScript 过渡设置不同的过渡效果。
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1663,8 +1666,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Finally, the ultimate way of creating dynamic transitions is through components that accept props to change the nature of the transition(s) to be used. It may sound cheesy, but the only limit really is your imagination.
-
+最后，创建动态过渡的最终方案是组件通过 props 接受来动态修改之前的过渡。一句老话，唯一的限制是你的想象力。
 
 ***
 
