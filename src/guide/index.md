@@ -6,7 +6,7 @@ order: 1
 
 Let's start with a quick tour of Vue's data binding features. If you are more interested in a high-level overview first, check out this [blog post](!!TODO: HIGH LEVEL OVERVIEW FOR RELEASED 2.0). If you are already familiar with Vue 1.0, the [migration guide](!!TODO: MIGRATION GUIDE FROM 1.0 to 2.0) may be a good place to start.
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/ng41aepx/). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page.
+The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/yyx990803/okv0rgrk/). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page.
 
 ### Hello World
 
