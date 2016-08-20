@@ -669,6 +669,34 @@ type: api
   })
   // callback is fired immediately with current value of `a`
   ```
+
+<h3 id="vm-set">vm.$set( object, key, value )</h3>
+
+- **Arguments:**
+  - `{Object} object`
+  - `{String} key`
+  - `{*} value`
+
+- **Returns:** the set value.
+
+- **Usage:**
+
+  This is the **alias** of the global `Vue.set`.
+
+- **See also:** [Vue.set](#Vue-set)
+
+<h3 id="vm-delete">vm.$delete( object, key )</h3>
+
+- **Arguments:**
+  - `{Object} object`
+  - `{String} key`
+
+- **Usage:**
+
+  This is the **alias** of the global `Vue.delete`.
+
+- **See also:** [Vue.delete](#Vue-delete)
+
 ## Instance Methods / Events
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
