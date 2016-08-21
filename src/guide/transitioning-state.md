@@ -379,7 +379,7 @@ function generatePoints (stats) {
 
 See [this fiddle](https://jsfiddle.net/chrisvfritz/fbvusejy/) for the complete code behind the above demo.
 
-## 组织Organizing Transitions into Components
+## 通过组件组织过渡
 
 管理太多的状态转换的很快会接近到 Vue 实例或者组件的复杂性，不过，很多动画可以提取到专用的子组件。
 我们来将之前的示例改写一下：
