@@ -669,6 +669,34 @@ type: api
   })
   // callback is fired immediately with current value of `a`
   ```
+
+<h3 id="vm-set">vm.$set( object, key, value )</h3>
+
+- **Arguments:**
+  - `{Object} object`
+  - `{String} key`
+  - `{*} value`
+
+- **Returns:** the set value.
+
+- **Usage:**
+
+  This is the **alias** of the global `Vue.set`.
+
+- **See also:** [Vue.set](#Vue-set)
+
+<h3 id="vm-delete">vm.$delete( object, key )</h3>
+
+- **Arguments:**
+  - `{Object} object`
+  - `{String} key`
+
+- **Usage:**
+
+  This is the **alias** of the global `Vue.delete`.
+
+- **See also:** [Vue.delete](#Vue-delete)
+
 ## Instance Methods / Events
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
@@ -820,3 +848,325 @@ type: api
   Triggers the `beforeDestroy` and `destroyed` hooks.
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+## Directives
+
+### v-text
+
+- **Expects:** `String`
+
+- **Details:**
+
+  Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
+
+- **Example:**
+
+  ```html
+  <span v-text="msg"></span>
+  <!-- same as -->
+  <span>{{msg}}</span>
+  ```
+
+- **See also:** [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
+
+### v-html
+
+- **Expects:** `String`
+
+- **Details:**
+
+  Updates the element's `innerHTML`. The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use [functional components](!!TODO).
+
+  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+
+- **Example:**
+
+  ```html
+  <div v-html="html"></div>
+  ```
+- **See also:** [Data Binding Syntax - interpolations](/guide/syntax.html#Raw-HTML)
+
+### v-if
+
+- **Expects:** `*`
+
+- **Usage:**
+
+  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained data bindings / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+
+- **See also:** [Conditional Rendering - v-if](/guide/conditional.html)
+
+### v-show
+
+- **Expects:** `*`
+
+- **Usage:**
+
+  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value. Triggers transitions if present.
+
+- **See also:** [Conditional Rendering - v-show](/guide/conditional.html#v-show)
+
+### v-else
+
+- **Does not expect expression**
+
+- **Restriction:** previous sibling element must have `v-if` or `v-show`.
+
+- **Usage:**
+
+  Denote the "else block" for `v-if` and `v-show`.
+
+  ```html
+  <div v-if="Math.random() > 0.5">
+    Sorry
+  </div>
+  <div v-else>
+    Not sorry
+  </div>
+  ```
+
+- **See also:**
+  - [Conditional Rendering - v-else](/guide/conditional.html#v-else)
+  - [Conditional Rendering - Component caveat](/guide/conditional.html#Component-caveat)
+
+### v-for
+
+- **Expects:** `Array | Object | Number | String`
+
+- **Param Attributes:**
+  - [`key`](/guide/list.html#key)
+
+- **Usage:**
+
+  Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+
+  ```html
+  <div v-for="item in items">
+    {{ item.text }}
+  </div>
+  ```
+
+  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+
+  ```html
+  <div v-for="(item, index) in items"></div>
+  <div v-for="(key, val) in object"></div>
+  <div v-for="(key, val, index) in object"></div>
+  ```
+
+  The detailed usage for `v-for` is explained in the guide section linked below.
+
+- **See also:** [List Rendering](/guide/list.html).
+
+### v-on
+
+- **Shorthand:** `@`
+
+- **Expects:** `Function | Inline Statement`
+
+- **Argument:** `event (required)`
+
+- **Modifiers:**
+  - `.stop` - call `event.stopPropagation()`.
+  - `.prevent` - call `event.preventDefault()`.
+  - `.capture` - add event listener in capture mode.
+  - `.self` - only trigger handler if event was dispatched from this element.
+  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
+  - `.native` - listen for a native event on the root element of component.
+
+- **Usage:**
+
+  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
+
+  When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
+
+  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+
+- **Example:**
+
+  ```html
+  <!-- method handler -->
+  <button v-on:click="doThis"></button>
+
+  <!-- inline statement -->
+  <button v-on:click="doThat('hello', $event)"></button>
+
+  <!-- shorthand -->
+  <button @click="doThis"></button>
+
+  <!-- stop propagation -->
+  <button @click.stop="doThis"></button>
+
+  <!-- prevent default -->
+  <button @click.prevent="doThis"></button>
+
+  <!-- prevent default without expression -->
+  <form @submit.prevent></form>
+
+  <!-- chain modifiers -->
+  <button @click.stop.prevent="doThis"></button>
+
+  <!-- key modifier using keyAlias -->
+  <input @keyup.enter="onEnter">
+
+  <!-- key modifier using keyCode -->
+  <input @keyup.13="onEnter">
+  ```
+
+  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+
+  ```html
+  <my-component @my-event="handleThis"></my-component>
+
+  <!-- inline statement -->
+  <my-component @my-event="handleThis(123, $event)"></my-component>
+  ```
+
+- **See also:**
+  - [Methods and Event Handling](/guide/events.html)
+  - [Components - Custom Events](/guide/components.html#Custom-Events)
+
+### v-bind
+
+- **Shorthand:** `:`
+
+- **Expects:** `* (with argument) | Object (without argument)`
+
+- **Argument:** `attrOrProp (optional)`
+
+- **Modifiers:**
+  - `.prop` - Used for binding DOM attributes.
+
+- **Usage:**
+
+  Dynamically bind one or more attributes, or a component prop to an expression.
+
+  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+
+  When used for prop binding, the prop must be properly declared in the child component.
+
+  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
+
+- **Example:**
+
+  ```html
+  <!-- bind an attribute -->
+  <img v-bind:src="imageSrc">
+
+  <!-- shorthand -->
+  <img :src="imageSrc">
+
+  <!-- class binding -->
+  <div :class="{ red: isRed }"></div>
+  <div :class="[classA, classB]"></div>
+  <div :class="[classA, { classB: isB, classC: isC }]">
+
+  <!-- style binding -->
+  <div :style="{ fontSize: size + 'px' }"></div>
+  <div :style="[styleObjectA, styleObjectB]"></div>
+
+  <!-- binding an object of attributes -->
+  <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
+
+  <!-- DOM attribute binding with prop modifier -->
+  <div v-bind:text-content.prop="text"></div>
+
+  <!-- prop binding. "prop" must be declared in my-component. -->
+  <my-component :prop="someThing"></my-component>
+  
+  <!-- XLink -->
+  <svg><a :xlink:special="foo"></a></svg>
+  ```
+
+- **See also:**
+  - [Class and Style Bindings](/guide/class-and-style.html)
+  - [Components - Component Props](/guide/components.html#Props)
+
+### v-model
+
+- **Expects:** varies based on value of form inputs element or output of components
+
+- **Limited to:**
+  - `<input>`
+  - `<select>`
+  - `<textarea>`
+  - components
+
+- **Param Attributes:**
+  - [`lazy`](/guide/forms.html#lazy)
+  - [`number`](/guide/forms.html#number)
+  - [`trim`](/guild/forms.html#trim)
+
+- **Usage:**
+
+  Create a two-way binding on a form input element or a component. For detailed usage, see guide section linked below.
+
+- **See also:**
+  - [Form Input Bindings](/guide/forms.html)
+  - [Components - Parent-Child Commnunication](/guide/components.html#Form-Input-Components-using-Custom-Events)
+
+### v-pre
+
+- **Does not expect expression**
+
+- **Usage**
+
+  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+
+- **Example:**
+
+  ```html
+  <span v-pre>{{ this will not be compiled }}</span>
+   ```
+
+### v-cloak
+
+- **Does not expect expression**
+
+- **Usage:**
+
+  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+
+- **Example:**
+
+  ```css
+  [v-cloak] {
+    display: none;
+  }
+  ```
+
+  ```html
+  <div v-cloak>
+    {{ message }}
+  </div>
+  ```
+
+  The `<div>` will not be visible until the compilation is done.
+
+### v-once
+
+- **Does not expect expression**
+
+- **Details:**
+
+  Evaluates the element and component **once** only.
+
+  ```html
+  <!-- single element -->
+  <span v-once>This will never change: {{msg}}</span>
+  <!-- the element have children -->
+  <div v-once>
+    <h1>comment</h1>
+    <p>{{msg}}</p>
+  </div>
+  <!-- component -->
+  <my-component v-once :comment="msg"></my-component>
+  <!-- v-for directive -->
+  <ul>
+    <li v-for="i in list" v-once>{{i}}</li>
+  </ul>
+  ```
+
+- **See also:**
+  - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
+  - [Components - Cheap Static Components with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
