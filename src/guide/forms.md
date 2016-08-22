@@ -344,3 +344,11 @@ If you want user input to be automatically typecast as a number, you can add the
 ```
 
 This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string.
+
+### `.trim`
+
+If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
+
+```html
+<input v-model.trim="msg">
+```

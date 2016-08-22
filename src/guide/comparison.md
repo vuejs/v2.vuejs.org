@@ -50,34 +50,32 @@ In React, everything is Just JavaScript, which sounds very simple and elegant - 
 
 #### JSX vs Templates
 
-With React's JSX, there are minor differences from HTML, such as using `className` instead of `class`, but that's really not too bad. What feels really awkward is constantly switching back and forth between JavaScript and JSX, especially since not everything is an expression in JavaScript.
-
-Take this example below:
+In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within Javascript. Here's an example, [vetted by the React community](https://github.com/vuejs/vuejs.org/pull/371):
 
 ``` jsx
 render () {
-  const { items } = this.props
+  let { items } = this.props
+
+  let children
+  if (items.length > 0) {
+    children = (
+      <ul>
+        {items.map(item =>
+          <li key={item.id}>{item.name}</li>
+        )}
+      </ul>
+    )
+  } else {
+    children = <p>No items found.</p>
+  }
 
   return (
     <div className='list-container'>
-      {items.length
-        ? <ul>
-            {items.map(item => <li key={item.id}>{item.name}</li>)}
-          </ul>
-        : <p>No items found.</p>
-      }
+      {children}
     </div>
   )
 }
 ```
-
-This is an extremely common use case, but using JSX, there are a few problems that may not be immediately obvious:
-
-- __Syntax Noise__: All the curly braces add visual noise, but what's worse is that while writing it, you have to frequently make decisions about how to minimize their visual impact, slowing development.
-
-- __Cajoling JavaScript into Expressions__: The example uses a ternary rather than an if statement here, which arguably makes the code less readable, but is still possibly the best of bad options. The only alternatives include hoisting this logic out of its context or wrapping an if statement in an immediately-invoked function expression. Do expressions will help a little when they're a more stable feature, but they're currently at stage 0.
-
-- __Readability to Non-React Developers__: Imagine having a designer that's familiar with HTML and CSS look at this. They'd be paralyzed with confusion at every single line. While the JSX will look somewhat similar to HTML, `className` replaces `class`, the ternary will be meaningless, and parentheses and curly braces are everywhere. It'd be difficult for them to make simple modifications or even understand what this code is doing.
 
 In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes it is useful to have the power of a full programming language. Render functions are not recommended for most components however.
 
@@ -91,25 +89,32 @@ Instead, we offer templates as a simpler alternative:
         {{ item.name }}
       </li>
     </ul>
-    <p v-else>No items found</p>
+    <p v-else>No items found.</p>
   </div>
 </template>
 ```
 
 A few advantages here:
 
-- Any valid HTML is valid in a template
 - Many fewer implementation and stylistic decisions have to be made while writing a template
-- There's much less visual noise
+- A template will always be declarative
+- Any valid HTML is valid in a template
 - It reads more like English (e.g. for each item in items)
+- Advanced versions of JavaScript are not required to increase readability
 
-This is not only much easier for the developer that's writing it, but designers, junior developers, or those newer to JavaScript are also much more likely to be able to understand what's going on and even contribute code.
+This is not only much easier for the developer that's writing it, but designers and less experienced developers will also find it much easier parsing and contributing code.
 
-It doesn't end there though. By embracing HTML rather than trying to reinvent it, Vue also allows you to use preprocessors such as Pug (formerly known as Jade) in your templates.
+It doesn't end there though. By embracing HTML rather than trying to reinvent it within JavaScript, Vue also allows you to use preprocessors such as Pug (formerly known as Jade) in your templates.
+
+The React ecosystem also has [a project](https://wix.github.io/react-templates/) that allows you to write templates, but there are a few disadvantages:
+
+- It's not nearly as feature-rich as Vue's templating system
+- It requires separating your HTML from component files
+- Because it's a 3rd party library rather than officially supported, it may or may not be kept up-to-date with React core into the future
 
 #### Component-Scoped CSS
 
-Unless you're OK spreading components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), it's difficult to find a good solution for scoping CSS in React. Very basic CSS works fine, but common features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work. And no matter what you end up using in the end, it'll have involved a lot of research before you can even get a simple hover state to work.
+Unless you spread components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), scoping CSS in React comes with caveats. Very basic CSS works great out-of-the-box, but some more complex features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work.
 
 Vue on the other hand, gives you full access to CSS within [single-file components](single-file-components.html):
 
@@ -125,7 +130,7 @@ Vue on the other hand, gives you full access to CSS within [single-file componen
 
 The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `data-v-1`) to elements and compiling `.list-container:hover` to something like `.list-container[data-v-1]:hover`.
 
-Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors you'd like. This allows you to perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
+Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors (or postprocessors) you'd like. This allows you to perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
 
 ### Scale
 
