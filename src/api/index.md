@@ -835,7 +835,7 @@ type: api
 
 - **Usage:**
  
-  The Vue instance will be forced into a “digest cycle”, during which all its watchers are re-evaluated.
+  The Vue instance will be forced the re-render.
   
 <p class="tip">Note: This method have an influence on your application performance degradation. The excessive call is no recommended.</p>
 
