@@ -5,25 +5,38 @@
     margin-bottom 40px
     font-size 1.2em
     line-height 1.5em
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    -webkit-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
+    overflow-x scroll
     h1
         margin 0 0 .5em
         font-size 1.8em
-    ul
+    ul, ol
         padding-left 1.5em
-        margin 0
+
+        &:first-child
+            margin-top 0
+        &:last-child
+            margin-bottom 0
     li
-        cursor pointer
         color $medium
-        -ms-user-select none
-        -moz-user-select none
-        -webkit-user-select none
+        // !!TODO: Check to make sure this isn't here for a good reason.
+        // cursor pointer
+        // -ms-user-select none
+        // -moz-user-select none
+        // -webkit-user-select none
         &.done
             color $light
             text-decoration line-through
+    p
+        &:first-child
+            margin-top 0
+        &:last-child
+            margin-bottom 0
+
+
 
 ul#demo, ul.demo
     li

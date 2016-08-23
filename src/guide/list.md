@@ -4,11 +4,11 @@ type: guide
 order: 8
 ---
 
-## v-for
+## `v-for`
 
-We can use the `v-for` directive to render a list of items based on an Array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data Array and `item` is an **alias** for the Array element being iterated on:
+We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
 
-**Example:**
+### Simple example
 
 ``` html
 <ul id="example-1">
@@ -30,7 +30,7 @@ var example1 = new Vue({
 })
 ```
 
-**Result:**
+Result:
 
 {% raw %}
 <ul id="example-1" class="demo">
@@ -56,12 +56,12 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-Inside `v-for` blocks we have full access to parent scope properties, plus a special variable `$index` which, as you probably have guessed, is the Array index for the current item:
+Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
 
 ``` html
 <ul id="example-2">
-  <li v-for="item in items">
-    {{ parentMessage }} - {{ $index }} - {{ item.message }}
+  <li v-for="(item, index) in items">
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
   </li>
 </ul>
 ```
@@ -79,12 +79,12 @@ var example2 = new Vue({
 })
 ```
 
-**Result:**
+Result:
 
 {% raw%}
 <ul id="example-2" class="demo">
-  <li v-for="item in items">
-    {{ parentMessage }} - {{ $index }} - {{ item.message }}
+  <li v-for="(item, index) in items">
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
   </li>
 </ul>
 <script>
@@ -106,15 +106,7 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-Alternatively, you can also specify an alias for the index (or the key if `v-for` is used on an Object):
-
-``` html
-<div v-for="(index, item) in items">
-  {{ index }} {{ item.message }}
-</div>
-```
-
-Starting in 1.0.17 you can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript syntax for iterators:
+You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
 
 ``` html
 <div v-for="item of items"></div>
@@ -137,7 +129,7 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 
 ### Mutation Methods
 
-Vue.js wraps an observed Array's mutation methods so they will also trigger View updates. The wrapped methods are:
+Vue wraps an observed array's mutation methods so they will also trigger view updates. The wrapped methods are:
 
 - `push()`
 - `pop()`
@@ -147,11 +139,11 @@ Vue.js wraps an observed Array's mutation methods so they will also trigger View
 - `sort()`
 - `reverse()`
 
-You can open the console and play with the previous examples' `items` array by calling its mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
+You can open the console and play with the previous examples' `items` array by calling their mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
 
 ### Replacing an Array
 
-Mutation methods, as the name suggests, mutate the original Array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original Array but **always return a new Array**. When working with non-mutating methods, you can just replace the old Array with the new one:
+Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original Array but **always return a new array**. When working with non-mutating methods, you can just replace the old array with the new one:
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -159,11 +151,11 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-You might think this will cause Vue.js to throw away the existing DOM and re-render the entire list - luckily that is not the case. Vue.js implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
+You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
 
-### track-by
+### `key`
 
-In some cases, you might need to replace the Array with completely new objects - e.g. ones created from an API call. Since by default `v-for` determines the reusability of existing scopes and DOM elements by tracking the identity of its data object, this could cause the entire list to be re-rendered. However, if each of your data objects has a unique id property, then you can use a `track-by` special attribute to give Vue.js a hint so that it can reuse existing instances as much as possible.
+In some cases, you might need to replace the array with completely new objects - e.g. ones created from an API call. Since by default `v-for` determines the reusability of existing scopes and DOM elements by tracking the identity of its data object, this could cause the entire list to be re-rendered. However, if each of your data objects has a unique property, then you can use a `key` special attribute to give Vue a hint so that it can reuse existing instances as much as possible.
 
 For example, if your data looks like this:
 
@@ -179,62 +171,55 @@ For example, if your data looks like this:
 Then you can give the hint like this:
 
 ``` html
-<div v-for="item in items" track-by="_uid">
+<div v-for="item in items" v-bind:key="item._uid">
   <!-- content -->
 </div>
 ```
 
-Later on, when you replace the `items` array and Vue.js encounters a new object with `_uid: '88f869d'`, it knows it can reuse the existing scope and DOM elements associated with the same `_uid`.
+Later on, when you replace the `items` array and Vue encounters a new object with `_uid: '88f869d'`, it knows it can reuse the existing scope and DOM elements associated with the same `_uid`.
 
-### track-by $index
+### `v-bind:key="index"`
 
-If you don't have a unique key to track by, you can also use `track-by="$index"`, which will force `v-for` into in-place update mode: fragments are no longer moved around, they simply get flushed with the new value at the corresponding index. This mode can also handle duplicate values in the source array.
+If you don't have a unique key to track by, you can also use `v-bind:key="index"`, which will force `v-for` into in-place update mode: fragments are no longer moved around, they simply get flushed with the new value at the corresponding index. This mode can also handle duplicate values in the source array.
 
-This can make Array replacement extremely efficient, but it comes at a trade-off. Because DOM nodes are no longer moved to reflect the change in order, temporary state like DOM input values and component private state can become out of sync. So, be careful when using `track-by="$index"` if the `v-for` block contains form input elements or child components.
+<p class="tip">This can make array replacement extremely efficient, but it comes at a trade-off. Because DOM nodes are no longer moved to reflect the change in order, **temporary state like DOM input values and component private state can become out of sync**. Keep this in mind when using `v-bind:key="index"` if the `v-for` block contains form input elements or child components.</p>
 
 ### Caveats
 
-Due to limitations of JavaScript, Vue.js **cannot** detect the following changes to an Array:
+Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
 
-1. When you directly set an item with the index, e.g. `vm.items[0] = {}`;
-2. When you modify the length of the Array, e.g. `vm.items.length = 0`.
+1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
+2. When you modify the length of the array, e.g. `vm.items.length = newLength`
 
-To deal with caveat (1), Vue.js augments observed Arrays with a `$set()` method:
-
-``` js
-// same as `example1.items[0] = ...` but triggers view update
-example1.items.$set(0, { childMsg: 'Changed!'})
-```
-
-To deal with caveat (2), just replace `items` with an empty array instead.
-
-In addition to `$set()`, Vue.js also augments Arrays with a convenience method `$remove()`, which searches for and removes an item from target Array by calling `splice()` internally. So instead of:
+To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
 
 ``` js
-var index = this.items.indexOf(item)
-if (index !== -1) {
-  this.items.splice(index, 1)
-}
+// Vue.set
+Vue.set(example1.items, indexOfItem, newValue)
+```
+``` js
+// Array.prototype.splice`
+example1.items.splice(indexOfItem, 1, newValue)
 ```
 
-You can just do:
+To deal with caveat 2, you can also use `splice`:
 
 ``` js
-this.items.$remove(item)
-```
+example1.items.splice(newLength)
+````
 
 #### Using `Object.freeze()`
 
-When iterating over an array of objects frozen with `Object.freeze()`, you need to explicitly use a `track-by` key. A warning will be displayed in this scenario when Vue.js is unable to track objects automatically.
+When iterating over an array of objects frozen with `Object.freeze()`, you need to explicitly use `key`. A warning will be displayed in this scenario when Vue is unable to track objects automatically.
 
-## Object v-for
+## Object `v-for`
 
-You can also use `v-for` to iterate through the properties of an Object. In addition to `$index`, each scope will have access to another special property `$key`.
+You can also use `v-for` to iterate through the properties of an object.
 
 ``` html
 <ul id="repeat-object" class="demo">
   <li v-for="value in object">
-    {{ $key }} : {{ value }}
+    {{ value }}
   </li>
 </ul>
 ```
@@ -252,12 +237,12 @@ new Vue({
 })
 ```
 
-**Result:**
+Result:
 
 {% raw %}
 <ul id="repeat-object" class="demo">
   <li v-for="value in object">
-    {{ $key }} : {{ value }}
+    {{ value }}
   </li>
 </ul>
 <script>
@@ -274,23 +259,31 @@ new Vue({
 </script>
 {% endraw %}
 
-You can also provide an alias for the key:
+You can also provide a second argument for the key:
 
 ``` html
-<div v-for="(key, val) in object">
-  {{ key }} {{ val }}
+<div v-for="(value, key) in object">
+  {{ key }} : {{ value }}
 </div>
 ```
 
-<p class="tip">When iterating over an Object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent in all JavaScript engine implementations.</p>
+And another for the index:
+
+``` html
+<div v-for="(value, key, index) in object">
+  {{ index }}. {{ key }} : {{ value }}
+</div>
+```
+
+<p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
 
 ## Range v-for
 
-`v-for` can also take an integer Number. In this case it will repeat the template that many times.
+`v-for` can also take an integer. In this case it will repeat the template that many times.
 
 ``` html
 <div>
-  <span v-for="n in 10">{{ n }} </span>
+  <span v-for="n in 10">{{ n }}</span>
 </div>
 ```
 
@@ -307,9 +300,19 @@ new Vue({ el: '#range' })
 
 ## Displaying Filtered/Sorted Results
 
-Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. There are two options to achieve this:
+Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
 
-1. Create a computed property that returns the filtered or sorted Array;
-2. Use the built-in `filterBy` and `orderBy` filters.
+For example:
 
-A computed property would give you finer-grained control and more flexibility since it's full JavaScript; but the filters can be more convenient for common use cases. For detailed usage of the Array filters, check out their [documentation](/api/#filterBy).
+``` js
+data: {
+  numbers: [ 1, 2, 3, 4, 5 ]
+},
+computed: {
+  evenNumbers: function () {
+    return this.numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+}
+```

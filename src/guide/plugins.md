@@ -1,10 +1,8 @@
 ---
 title: Plugins
 type: guide
-order: 17
+order: 18
 ---
-
-
 
 ## Writing a Plugin
 
@@ -14,20 +12,41 @@ Plugins usually add global-level functionality to Vue. There is no strictly defi
 
 2. Add one or more global assets: directives/filters/transitions etc. e.g. [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. Add some Vue instance methods by attaching them to Vue.prototype.
+3. Add some component options by global mixin. e.g. [vuex](https://github.com/vuejs/vuex)
 
-4. A library that provides an API of its own, while at the same time injecting some combination of the above. e.g. [vue-router](https://github.com/vuejs/vue-router)
+4. Add some Vue instance methods by attaching them to Vue.prototype.
+
+5. A library that provides an API of its own, while at the same time injecting some combination of the above. e.g. [vue-router](https://github.com/vuejs/vue-router)
 
 A Vue.js plugin should expose an `install` method. The method will be called with the `Vue` constructor as the first argument, along with possible options:
 
 ``` js
 MyPlugin.install = function (Vue, options) {
   // 1. add global method or property
-  Vue.myGlobalMethod = ...
+  Vue.myGlobalMethod = function () {
+    // something logic ...
+  }
+
   // 2. add a global asset
-  Vue.directive('my-directive', {})
-  // 3. add an instance method
-  Vue.prototype.$myMethod = ...
+  Vue.directive('my-directive', {
+    bind (el, binding, vnode, oldVnode) {
+      // something logic ...
+    }
+    ...
+  })
+
+  // 3. inject some component options
+  Vue.mixin({
+    created: function () {
+      // something logic ...
+    }
+    ...
+  })
+
+  // 4. add an instance method
+  Vue.prototype.$myMethod = function (options) {
+    // something logic ...
+  }
 }
 ```
 
@@ -46,7 +65,7 @@ You can optionally pass in some options:
 Vue.use(MyPlugin, { someOption: true })
 ```
 
-Some plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment you always need to call `Vue.use()` explicitly:
+Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
 
 ``` js
 // When using CommonJS via Browserify or Webpack
@@ -57,11 +76,55 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
+## Tips for writing a Plugin
+
+### Using Vue Utilities
+
+When you are writing a plaugin with Vue.js API, sometimes may be need the utility library. Vue is exposing the `Vue.util` internaly utilitiy, you can write a plugin by using it, not include the external utility library.
+
+``` js
+// Equivalent to `Object.assign`
+var a = {}
+var b = { foo: 1, bar: 'hello' }
+Vue.util.extend(a, b)
+console.log(a) // => Object { foo: 1, bar: "hello" }
+```
+
+### Modularization
+
+If you want to publish a plugin, you had better implement as the UMD module pattern in order to  corresponding to some use-cases as following example.
+
+``` js
+;(function () {
+  MyPlugin.install = function (Vue, options) {
+    // something impplementation ...
+    // ...
+  }
+
+  if (typeof exports === 'object') {
+    module.exports = MyPlugin // CommonJS
+  } else if (typeof define == 'function' && define.amd) {
+    define([], function () { return MyPlugin }) // AMD
+  } else if (window.Vue) {
+    window.MyPlugin = MyPlugin // Browser (not required options)
+    Vue.use(MyPlugin)
+  }
+})()
+```
+
+### Minimization
+
+Normally, Vue application or component fetch from HTTP server, and run in the browser. File size directly affect the performance of application, so you had better minify your a plugin with Browserify or Webpack. e.g. the below Webpack
+
+``` sh
+webpack plugin.js bundle.js --optimize-minimize
+```
+
 ## Existing Plugins & Tools
 
-- [vue-router](https://github.com/vuejs/vue-router): The official router for Vue.js. Deeply integrated with Vue.js core to make building Single Page Applications a breeze.
+- [vuex](https://github.com/vuejs/vuex): Application architecture for centralized state management in Vue.js application.
 
-- [vue-resource](https://github.com/vuejs/vue-resource): A plugin that provides services for making web requests and handle responses using a XMLHttpRequest or JSONP.
+- [vue-router](https://github.com/vuejs/vue-router): The official router for Vue.js. Deeply integrated with Vue.js core to make building Single Page Applications a breeze.
 
 - [vue-async-data](https://github.com/vuejs/vue-async-data): Async data loading plugin.
 

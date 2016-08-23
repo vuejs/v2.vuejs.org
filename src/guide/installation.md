@@ -2,15 +2,15 @@
 title: Installation
 type: guide
 order: 0
-vue_version: 1.0.26
-dev_size: "266.44"
-min_size: "75.01"
-gz_size: "26.03"
+vue_version: 2.0.0-rc.1
+dev_size: "187.07"
+min_size: "60.65"
+gz_size: "22.06"
 ---
 
 ### Compatibility Note
 
-Vue.js does **not** support IE8 and below, because Vue.js uses ECMAScript 5 features that are un-shimmable in IE8. However Vue.js supports all [ECMAScript 5 compliant browsers](http://caniuse.com/#feat=es5).
+Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](http://caniuse.com/#feat=es5).
 
 ### Release Notes
 
@@ -18,7 +18,7 @@ Detailed release notes for each version are available on [GitHub](https://github
 
 ## Standalone
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable. **Pro tip: don't use the minified version during development. you will miss out all the nice warnings for common mistakes.**
+Simply download and include with a script tag. `Vue` will be registered as a global variable. **Pro tip: Don't use the minified version during development. You will miss out all the nice warnings for common mistakes.**
 
 <div id="downloads">
 <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
@@ -32,30 +32,31 @@ Available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [c
 
 Also available on [npmcdn](https://npmcdn.com/vue/dist/vue.min.js), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [npmcdn.com/vue/](https://npmcdn.com/vue/).
 
-### CSP-compliant build
+### CSP environments
 
-Some environments, such as Google Chrome Apps, enforces Content Security Policy (CSP) and does not allow the use of `new Function()` for evaluating expressions. In these cases you can use the [CSP-compliant build](https://github.com/vuejs/vue/tree/csp/dist) instead.
+Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.
+
+There _is_ a solution however. When using Vue in a build system with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple-2.0) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple-2.0), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
 
 ## NPM
 
-NPM is the recommended installation method when building large scale apps with Vue.js. It pairs nicely with a CommonJS module bundler such as [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/). Vue.js also provides accompanying tools for authoring [Single File Components](application.html#Single-File-Components).
+NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](application.html#Single-File-Components).
 
 ``` bash
 # latest stable
-$ npm install vue
-# latest stable + CSP-compliant
-$ npm install vue@csp
+$ npm install vue@next
 ```
 
 ## CLI
 
-Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides battery-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save and production-ready builds:
+Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds:
 
 ``` bash
 # install vue-cli
-$ npm install -g vue-cli
+$ npm install --global vue-cli
 # create a new project using the "webpack" boilerplate
-$ vue init webpack my-project
+# !!TODO: THIS TEMPLATE DOES NOT EXIST YET
+$ vue init webpack-2.0 my-project
 # install dependencies and go!
 $ cd my-project
 $ npm install
@@ -64,11 +65,12 @@ $ npm run dev
 
 ## Dev Build
 
-**Important**: the CommonJS bundle distributed on NPM (`vue.common.js`) is only checked-in during releases on the `master` branch, so the file in the `dev` branch is the same as the stable release. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Important**: the CommonJS bundle distributed on NPM (`vue.common.js`) is only checked in during releases on the `next` branch. To use Vue from the latest source code on GitHub, you will have to build it yourself!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
 cd node_modules/vue
+git checkout next
 npm install
 npm run build
 ```
@@ -77,7 +79,7 @@ npm run build
 
 ``` bash
 # latest stable
-$ bower install vue
+$ bower install vue#next
 ```
 
 ## AMD Module Loaders

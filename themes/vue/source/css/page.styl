@@ -33,7 +33,7 @@ $header-height = 40px
     &:hover, &.current
         border-bottom 3px solid $green
 
-#search-query
+.search-query
     height 30px
     line-height 30px
     box-sizing border-box
@@ -219,6 +219,7 @@ $header-height = 40px
         position relative
         border-bottom-right-radius $radius
         border-top-right-radius $radius
+
         &:before
             position absolute
             top 14px
@@ -234,6 +235,9 @@ $header-height = 40px
             font-weight bold
             font-family $logo-font
             font-size 14px
+
+        em
+            color $medium
 
 .guide-links
     margin-top 2em
@@ -290,7 +294,7 @@ $header-height = 40px
         padding-bottom 1px
         &:hover, &.current
             border-bottom 2px solid $green
-    #search-query
+    .search-query
         width 200px
         margin-bottom 10px
     #mobile-bar

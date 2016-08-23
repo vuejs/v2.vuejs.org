@@ -4,28 +4,67 @@ type: guide
 order: 9
 ---
 
-## Method Handler
+## Listening to Events
 
-We can use the `v-on` directive to listen to DOM events:
+We can use the `v-on` directive to listen to DOM events and run some JavaScript when they're triggered.
+
+For example:
 
 ``` html
-<div id="example">
+<div id="example-1">
+  <button v-on:click="counter += 1">Add 1</button>
+  <p>The button above has been clicked {{ counter }} times.</p>
+</div>
+```
+``` js
+var example1 = new Vue({
+  el: '#example-1',
+  data: {
+    counter: 0
+  }
+})
+```
+
+Result:
+
+{% raw %}
+<div id="example-1" class="demo">
+  <button v-on:click="counter += 1">Add 1</button>
+  <p>The button above has been clicked {{ counter }} times.</p>
+</div>
+<script>
+var example1 = new Vue({
+  el: '#example-1',
+  data: {
+    counter: 0
+  }
+})
+</script>
+{% endraw %}
+
+## Method Event Handlers
+
+The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the `v-on` attribute simply isn't feasible. That's why `v-on` can also accept the name of a method you'd like to call.
+
+For example:
+
+``` html
+<div id="example-2">
+  <!-- `greet` is the name of a method defined below -->
   <button v-on:click="greet">Greet</button>
 </div>
 ```
 
-We are binding a click event listener to a method named `greet`. Here's how to define that method in our Vue instance:
-
 ``` js
-var vm = new Vue({
-  el: '#example',
+var example2 = new Vue({
+  el: '#example-2',
   data: {
     name: 'Vue.js'
   },
   // define methods under the `methods` object
   methods: {
     greet: function (event) {
-      // `this` inside methods point to the Vue instance
+      // `this` inside methods points to the Vue instance
       alert('Hello ' + this.name + '!')
       // `event` is the native DOM event
       alert(event.target.tagName)
@@ -37,24 +76,21 @@ var vm = new Vue({
 vm.greet() // -> 'Hello Vue.js!'
 ```
 
-Test it yourself:
+Result:
 
 {% raw %}
-<div id="example" class="demo">
+<div id="example-2" class="demo">
   <button v-on:click="greet">Greet</button>
 </div>
 <script>
-var vm = new Vue({
-  el: '#example',
+var example2 = new Vue({
+  el: '#example-2',
   data: {
     name: 'Vue.js'
   },
-  // define methods under the `methods` object
   methods: {
     greet: function (event) {
-      // `this` inside methods point to the vm
       alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
       alert(event.target.tagName)
     }
   }
@@ -62,22 +98,22 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-## Inline Statement Handler
+## Methods in Inline Handlers
 
-Instead of binding directly to a method name, we can also use an inline JavaScript statement:
+Instead of binding directly to a method name, we can also use methods in an inline JavaScript statement:
 
 ``` html
-<div id="example-2">
-  <button v-on:click="say('hi')">Say Hi</button>
-  <button v-on:click="say('what')">Say What</button>
+<div id="example-3">
+  <button v-on:click="say('hi')">Say hi</button>
+  <button v-on:click="say('what')">Say what</button>
 </div>
 ```
 ``` js
 new Vue({
-  el: '#example-2',
+  el: '#example-3',
   methods: {
-    say: function (msg) {
-      alert(msg)
+    say: function (message) {
+      alert(message)
     }
   }
 })
@@ -85,36 +121,35 @@ new Vue({
 
 Result:
 {% raw %}
-<div id="example-2" class="demo">
-  <button v-on:click="say('hi')">Say Hi</button>
-  <button v-on:click="say('what')">Say What</button>
+<div id="example-3" class="demo">
+  <button v-on:click="say('hi')">Say hi</button>
+  <button v-on:click="say('what')">Say what</button>
 </div>
 <script>
 new Vue({
-  el: '#example-2',
+  el: '#example-3',
   methods: {
-    say: function (msg) {
-      alert(msg)
+    say: function (message) {
+      alert(message)
     }
   }
 })
 </script>
 {% endraw %}
 
-Similar to the restrictions on inline expressions, event handlers are restricted to **one statement only**.
-
 Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special `$event` variable:
 
 ``` html
-<button v-on:click="say('hello!', $event)">Submit</button>
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
 ```
 
 ``` js
 // ...
 methods: {
-  say: function (msg, event) {
+  warn: function (message, event) {
     // now we have access to the native event
-    event.preventDefault()
+    if (event) event.preventDefault()
+    alert(message)
   }
 }
 ```
@@ -123,7 +158,12 @@ methods: {
 
 It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
 
-To address this problem, Vue.js provides two **event modifiers** for `v-on`: `.prevent` and `.stop`. Recall that modifiers are directive postfixes denoted by a dot:
+To address this problem, Vue provides **event modifiers** for `v-on`. Recall that modifiers are directive postfixes denoted by a dot.
+
+- `.stop`
+- `.prevent`
+- `.capture`
+- `.self`
 
 ``` html
 <!-- the click event's propagation will be stopped -->
@@ -137,11 +177,7 @@ To address this problem, Vue.js provides two **event modifiers** for `v-on`: `.p
 
 <!-- just the modifier -->
 <form v-on:submit.prevent></form>
-```
 
-In 1.0.16, two additional modifiers have been introduced:
-
-``` html
 <!-- use capture mode when adding the event listener -->
 <div v-on:click.capture="doThis">...</div>
 
@@ -152,14 +188,14 @@ In 1.0.16, two additional modifiers have been introduced:
 
 ## Key Modifiers
 
-When listening for keyboard events, we often need to check for common key codes. Vue.js also allows adding key modifiers for `v-on` when listening for key events:
+When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for `v-on` when listening for key events:
 
 ``` html
 <!-- only call vm.submit() when the keyCode is 13 -->
 <input v-on:keyup.13="submit">
 ```
 
-Remembering all the keyCodes is a hassle, so Vue.js provides aliases for most commonly used keys:
+Remembering all the keyCodes is a hassle, so Vue provides aliases for the most commonly used keys:
 
 ``` html
 <!-- same as above -->
@@ -181,20 +217,24 @@ Here's the full list of key modifier aliases:
 - left
 - right
 
-**1.0.8+:** Single letter key aliases are also supported.
+Single letter key aliases are also supported.
 
-**1.0.17+:** You can also define custom key modifier aliases:
+``` html
+<input v-on:keyup.v="say('That is the first letter in Vue')">
+```
+
+If necessary, you can even define custom key modifier aliases:
 
 ``` js
-// enable @keyup.f1
-Vue.directive('on').keyCodes.f1 = 112
+// enable v-on:keyup.f1
+Vue.config.keyCodes.f1 = 112
 ```
 
 ## Why Listeners in HTML?
 
-You might be concerned that this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
+You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
 
-1. It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
+1. It's easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
 
 2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
 

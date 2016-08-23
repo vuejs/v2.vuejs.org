@@ -4,22 +4,21 @@ type: guide
 order: 10
 ---
 
-## Basics Usage
+## Basic Usage
 
 You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
 
 ### Text
 
 ``` html
-<span>Message is: {{ message }}</span>
-<br>
-<input type="text" v-model="message" placeholder="edit me">
+<input v-model="message" placeholder="edit me">
+<p>Message is: {{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <span>Message is: {{ message }}</span><br>
-  <input type="text" v-model="message" placeholder="edit me">
+  <input v-model="message" placeholder="edit me">
+  <p>Message is: {{ message }}</p>
 </div>
 <script>
 new Vue({
@@ -89,7 +88,7 @@ Mutiple checkboxes, bound to the same Array:
 <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
 <label for="mike">Mike</label>
 <br>
-<span>Checked names: {{ checkedNames | json }}</span>
+<span>Checked names: {{ checkedNames }}</span>
 ```
 
 ``` js
@@ -110,7 +109,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames | json }}</span>
+  <span>Checked names: {{ checkedNames }}</span>
 </div>
 <script>
 new Vue({
@@ -160,7 +159,7 @@ Single select:
 
 ``` html
 <select v-model="selected">
-  <option selected>A</option>
+  <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
@@ -169,7 +168,7 @@ Single select:
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
-    <option selected>A</option>
+    <option>A</option>
     <option>B</option>
     <option>C</option>
   </select>
@@ -189,22 +188,22 @@ Multiple select (bound to Array):
 
 ``` html
 <select v-model="selected" multiple>
-  <option selected>A</option>
+  <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
 <br>
-<span>Selected: {{ selected | json }}</span>
+<span>Selected: {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
   <select v-model="selected" multiple style="width: 50px">
-    <option selected>A</option>
+    <option>A</option>
     <option>B</option>
     <option>C</option>
   </select>
   <br>
-  <span>Selected: {{ selected | json }}</span>
+  <span>Selected: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -325,43 +324,31 @@ typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
 
-## Param Attributes
+## Modifiers
 
-### lazy
+### `.lazy`
 
-By default, `v-model` syncs the input with the data after each `input` event. You can add a `lazy` attribute to change the behavior to sync after `change` events:
+By default, `v-model` syncs the input with the data after each `input` event. You can add the `lazy` modifier to instead sync after `change` events:
 
 ``` html
 <!-- synced after "change" instead of "input" -->
-<input v-model="msg" lazy>
+<input v-model.lazy="msg" >
 ```
 
-### number
+### `.number`
 
-If you want user input to be automatically persisted as numbers, you can add a `number` attribute to your `v-model` managed inputs:
+If you want user input to be automatically typecast as a number, you can add the `number` modifier to your `v-model` managed inputs:
 
 ``` html
-<input v-model="age" number>
+<input v-model.number="age" type="number">
 ```
 
-### debounce
+This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string.
 
-The `debounce` param allows you to set a minimum delay after each keystroke before the input's value is synced to the model. This can be useful when you are performing expensive operations on each update, for example making an Ajax request for type-ahead autocompletion.
+### `.trim`
 
-``` html
-<input v-model="msg" debounce="500">
+If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
+
+```html
+<input v-model.trim="msg">
 ```
- {% raw %}
-<div id="debounce-demo" class="demo">
-  {{ msg }}<br>
-  <input v-model="msg" debounce="500">
-</div>
-<script>
-new Vue({
-  el:'#debounce-demo',
-  data: { msg: 'edit me' }
-})
-</script>
-{% endraw %}
-
-Note that the `debounce` param does not debounce the user's input events: it debounces the "write" operation to the underlying data. Therefore you should use `vm.$watch()` to react to data changes when using `debounce`. For debouncing real DOM events you should use the [debounce filter](/api/#debounce).
