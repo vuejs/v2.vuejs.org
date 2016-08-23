@@ -251,7 +251,7 @@ type: api
   var MyComponent = Vue.component('my-component')
   ```
 
-- **See also:** [Components](/guide/components.html).
+- **See also:** [Components](/guide/components.html)
 
 <h3 id="Vue-use">Vue.use( plugin )</h3>
 
@@ -262,7 +262,7 @@ type: api
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
 
-- **See also:** [Plugins](/guide/plugins.html).
+- **See also:** [Plugins](/guide/plugins.html)
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
@@ -296,7 +296,7 @@ type: api
   })
   ```
 
-- **See also:** [Render Functions](/guide/render-function.html).
+- **See also:** [Render Functions](/guide/render-function.html)
 
 ## Options / Data
 
@@ -338,7 +338,7 @@ type: api
   })
   ```
 
-- **See also:** [Reactivity in Depth](/guide/reactivity.html).
+- **See also:** [Reactivity in Depth](/guide/reactivity.html)
 
 ### props
 
@@ -581,7 +581,7 @@ type: api
 
 - **See also:**
   - [Child-Component-Reference](/guide/components.html#Child-Component-Reference)
-  - !!TODO: [ref](#ref).
+  - [ref](#ref)
 
 ### vm.$isServer
 
@@ -593,8 +593,7 @@ type: api
 
   Whether the current Vue instance is running on the server-side.
 
-- **See also:**
-  - !!TODO: [Server-Side Rendering](/guide/ssr.html).
+- **See also:** [Server-Side Rendering](/guide/ssr.html)
 
 ## Instance Methods / Data
 
@@ -787,7 +786,7 @@ type: api
 
 - **See also:**
   - [Vue.nextTick](#Vue-nextTick)
-  -!!TODO: [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
+  - [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
 
 ## Instance Methods / Lifecycle
 
@@ -829,7 +828,7 @@ type: api
 
 - **See also:**
   - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
-  - !!TODO: [Server-Side Rendering](/guide/ssr.html)
+  - [Server-Side Rendering](/guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate( )</h3>
 
@@ -875,7 +874,7 @@ type: api
 
 - **Details:**
 
-  Updates the element's `innerHTML`. The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use [functional components](!!TODO).
+  Updates the element's `innerHTML`. The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use [functional components](/guide/render-function.html#Functional-Components).
 
   <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
 
