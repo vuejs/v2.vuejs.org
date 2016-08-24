@@ -26,23 +26,30 @@ In every real-world scenario that we've tested so far, Vue outperforms React by 
 
 #### Render Performance
 
-Here's a simplified way to think about it. In React, let's say the cost of rendering an element is 1 and the cost of an average component is 2. In Vue, the cost of an element would be more like 0.1, but the cost of an average component would be 4, due to the setup required for our reactivity system.
+When rendering UI, manipulating the DOM is typically the most expensive operation and unfortunately, no library can make those raw operations faster. The best we can do is:
 
-In extreme cases, such as using 1 normal component to render each element, Vue will probably be slower. However, both Vue and React offer functional components that would typically be preferred in a situation like this. As of writing, React plans to offer performance improvements for functional components, making them roughly the cost of elements. Vue's functional components already offer that optimization, so that when using functional components, Vue should then perform about 20 times as fast in this scenario, but only 10 times as fast after React optimizes their functional components.
+1. Minimize the number of necessary DOM mutations. Both React and Vue use virtual DOM abstractions to accomplish this and both implementations work about equally well.
+2. Add as little overhead as possible on top of those DOM manipulations. This is an area where Vue and React differ.
+
+In React, let's say the additional overhead of rendering an element is 1 and the overhead of an average component is 2. In Vue, the overhead of an element would be more like 0.1, but the overhead of an average component would be 4, due to the setup required for our reactivity system.
+
+This means that in typical applications, where there are many more elements than components being rendered, Vue will outperform React by a significant margin. To demonstrate this, let's render a list of 10,000 items in a single component. In Chrome 52 on my 2014 Macbook Air, [Vue renders](https://jsfiddle.net/chrisvfritz/859gL422/) in an average of 60ms, while [React renders](https://jsfiddle.net/chrisvfritz/65ojbkab/) in an average of 127ms.
+
+In extreme cases however, such as using 1 normal component to render each element, Vue will usually be slower. When modifying the previous examples accordingly, [Vue renders](https://jsfiddle.net/chrisvfritz/mk8jaqpg/) in ~585ms, while [React renders](https://jsfiddle.net/chrisvfritz/2sx0341o/) in ~157ms! This isn't the end of the story though. Both Vue and React offer functional components, which are preferred in situations like this. Since functional components are closer to the cost of elements, Vue is once again on top, with [~73ms](https://jsfiddle.net/chrisvfritz/413wjqyf/) vs [~144ms](https://jsfiddle.net/chrisvfritz/kss01xg7/) - and this performance boost only required adding a single line for Vue: `functional: true`.
 
 #### Update Performance
 
 In React, you need to implement `shouldComponentUpdate` everywhere and use immutable data structures to achieve fully optimized re-renders. In Vue, a component's dependencies are automatically tracked so that it only updates when one of those dependencies change. The only further optimization that sometimes can be helpful in Vue is adding a `key` attribute to items in long lists.
 
-This means updates in unoptimized Vue will be much faster than unoptimized React and actually, due to the improved render performance in Vue, even optimized React will usually be slower than Vue is out-of-the-box.
+This means updates in unoptimized Vue will be much faster than unoptimized React and actually, due to the improved render performance in Vue, even fully-optimized React will usually be slower than Vue is out-of-the-box.
 
 #### In Development
 
-Obviously, performance in production is the most important and that's what we've been discussing so far. Performance in development still matters though. Both Vue and React remain fast enough in development for most normal applications.
+Obviously, performance in production is the most important and that's what we've been discussing so far. Performance in development still matters though. The good news is that both Vue and React remain fast enough in development for most normal applications.
 
-However, if you're prototyping any high-performance data visualizations or animations, you may find it useful to know that in scenarios where Vue can't handle more than 20 frames per second in development, we've seen React slow down to 2 frames per second.
+However, if you're prototyping any high-performance data visualizations or animations, you may find it useful to know that in scenarios where Vue can't handle more than 10 frames per second in development, we've seen React slow down to about 1 frame per second.
 
-This is due to React's many heavy invariant checks, which help it provide many excellent warnings and error messages. We agree that these are important in Vue, but have also kept an eye on performance while we implement these checks.
+This is due to React's many heavy invariant checks, which help it to provide many excellent warnings and error messages. We agree that these are important in Vue, but have tried to keep a closer eye on performance while we implement these checks.
 
 ### HTML & CSS
 
