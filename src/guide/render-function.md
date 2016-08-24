@@ -10,9 +10,6 @@ Vue 推荐使用在绝大多数情况下使用 template 来创建你的 HTML。�
 
 让我们先深入一个使用 `render` 函数的简单例子，假设你想生成一个带锚链接的标题：
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render  function**, a closer-to-the-compiler alternative to templates.
-
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
 
 ``` html
 <h1>
@@ -22,13 +19,13 @@ Let's dive into a simple example where a `render` function would be practical. S
 </h1>
 ```
 
-For the HTML above, you decide you want this component interface:
+在 HTML 层， 我们决定这样定义组件接口：
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-When you get started with a component that just generates a heading based on the `level` prop, you quickly arrive at this:
+当我们开始写一个通过 `level` prop 动态生成heading 标签的组件，你可很快能想到这样实现：
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -67,9 +64,9 @@ Vue.component('anchored-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element. The whole thing is also wrapped in a useless `div` because components must contain exactly one root node.
+template 在这种场景中就表现的有些冗余了。虽然我们可以使用 `<slot></slot>` 来接收每一个级别的标题标签，在标题标签中添加相同的锚点元素。但是些都会被包裹在一个无用的 `div` 中，因为组件必须有根节点。
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+虽然模板在大多数组件中都非常好用，但是在这里它就不是很简洁的了。那么，我们来尝试使用 `render` 函数重写上面的例子：
 
 ``` js
 Vue.component('anchored-heading', {
@@ -88,11 +85,12 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](/api/#Instance-Properties) before diving into render functions.**
+简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot`  属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`, 这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [instance properties API](/api/#Instance-Properties)。**
 
-## `createElement` Arguments
 
-The second thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+## `createElement` 参数
+
+第二件你需要熟悉的是如何在 `createElement` 函数中生成模板。这里是 `createElement` 接受的参数：
 
 ``` js
 // @returns {VNode}
@@ -123,54 +121,51 @@ createElement(
 )
 ```
 
-### The Data Object In-Depth
+### 完整数据对象
 
 ``` js
 {
-  // Normal HTML attributes
+  // 普通的 HTML 属性
   attrs: {
     id: 'foo'
   },
-  // Component props
+  // 组件 props
   props: {
     myProp: 'bar'
   },
-  // DOM properties
+  // DOM 属性
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under "on", though
-  // modifiers such as in v-on:keyup.enter are not
-  // supported. You'll have to manually check the
-  // keyCode in the handler instead.
+  // 事件监听器基于 "on"
+  // 所以不再支持如 v-on:keyup.enter 修饰器
+  // 需要手动匹配 keyCode。
   on: {
     click: this.clickHandler
   },
-  // For components only. Allows you to listen to
-  // native events, rather than events emitted from
-  // the component using vm.$emit.
+  // 仅对于组件，用于监听原生事件，而不是组件使用 vm.$emit 触发的事件。
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Same API as `v-bind:class`
+  // 和 `v-bind:class` API 一致
   'class': {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`
+  // 和 `v-bind:style` API 一致
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // Other special top-level properties
+  // 其他特殊顶层属性
   key: 'myKey',
   ref: 'myRef'
 }
 ```
 
-### Complete Example
+### 完整示例
 
-With this knowledge, we can now finish the component we started:
+有了这方面的知识，我们现在可以完成我们最开始想实现的组件：
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -210,11 +205,11 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### Constraints
+### 约束
 
-#### VNodes Must Be Unique
+#### VNodes 必须唯一
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+所有组件树中的 VNodes 必须唯一。这意味着，下面的 render function 是无效的：
 
 ``` js
 render: function (createElement) {
@@ -226,7 +221,7 @@ render: function (createElement) {
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+如果你真的需要重复很多次的元素/组件，你可以使用工厂函数来实现。例如，下面这个例子 render 函数完美有效地渲染了 20 个重复的段落：
 
 ``` js
 render: function (createElement) {
@@ -239,9 +234,9 @@ render: function (createElement) {
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## 使用 JavaScript 代替模板功能
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide an appropriate alternative. For example, in a template using `v-if` and `v-for`:
+无论什么都可以使用普通的 JavaScript 实现，而不用依赖 Vue 的 render 函数额外提供 API。比如， template 中的 `v-if` 和 `v-for`:
 
 ``` html
 <ul v-if="items.length">
@@ -249,8 +244,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 </ul>
 <p v-else>No items found.</p>
 ```
-
-This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
+这些都会在 render 函数中被 JavaScript 的 `if`/`else` 和 `map` 重写：
 
 ``` js
 render: function (createElement) {
@@ -266,7 +260,7 @@ render: function (createElement) {
 
 ## JSX
 
-If you're writing a lot of `render` functions, it might feel painful that we're using 14 lines above in place of this much simpler and arguably more readable template:
+如果你写了很多 `render`  函数，可能会觉得痛苦，在多于 14 行代码的场景中还是模板简单、易读很多。
 
 ``` html
 <anchored-heading :level="1">
@@ -274,7 +268,8 @@ If you're writing a lot of `render` functions, it might feel painful that we're 
 </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+这就是会有一个 [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) 插件，用于在 Vue 中使用 JSX 语法的原因，它可以让我们回到于更接近模板的语法上。
+
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -290,46 +285,54 @@ new Vue({
   }
 })
 ```
+<p class="tip">将 `h` 作为 `createElement` 的别名是一个惯例，你会发现在 Vue 生态中，实际上必须依赖 JSX，如果 `h` 不可用， 会在应用中触发报错。</p>
 
-<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. If `h` is not available in the scope, your app will throw an error.</p>
+更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
 
-## Functional Components
+## 函数化组件
 
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's just a function with some props.
+之前创建的锚点标题组件是比较简单，没有管理或者监听任何传递给他的状态，也没有生命周期方法。它只是一个接收参数的函数。
+在这个例子中，我们标记组件为 `functional`， 这意味它是无状态（没有 `data`），无实例（没有 `this` 上下文）。
+一个 **函数化组件** 就像这样：
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
 
 ``` js
 Vue.component('my-component', {
   functional: true,
-  // To compensate for the lack of an instance,
-  // we are now provided a 2nd context argument.
+  // 为了弥补缺少的实例
+  // 提供第二个参数作为上下文
   render: function (createElement, context) {
     // ...
   },
-  // Props are optional
+  // Props 可选
   props: {
     // ...
   }
 })
 ```
 
-Everything the component needs is passed through `context`, which is an object containing:
+组件需要的一切都是通过上下文传递，包括：
 
-- `props`: An object of the provided props
-- `children`: An array of the VNode children
-- `slots`: A slots object
-- `data`: The entire data object passed to the component
-- `parent`: A reference to the parent component
+- `props`: 提供props 的对象
+- `children`: VNode 子节点的数组
+- `slots`: slots 对象
+- `data`: 传递给组件的 data 对象
+- `parent`: 对父组件的引用
 
-After adding `functional: true`, updating the render function of our anchored heading component would simply require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
+
+函数化组件只是一个函数，所以渲染开销也低很多。但同样它也有完整的组件封装，你需要知道这些， 比如：
 
 Since functional components are just functions, they're much cheaper to render. They're also very useful as wrapper components. For example, when you need to:
 
+- 程序化地在多个组件中选择一个
+- 在将 children, props, data 传递给子组件之前操作它们。 
+
 - Programmatically choose one of several other components to delegate to
 - Manipulate children, props, or data before passing them on to a child component
+
+下面是一个依赖传入 props 的值的 `smart-list` 组件例子，它能代表更多具体的组件：
 
 Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
 
@@ -368,9 +371,9 @@ Vue.component('smart-list', {
 })
 ```
 
-### `slots` vs `children`
+### `slots` 和 `children` 对比
 
-You may wonder why we need both `slots` and `children`. Wouldn't `slots.default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+你可能想知道为什么同时需要 `slots` 和 `children`。`slots.default` 不是和 `children` 类似的吗？在一些场景中，是这样，但是如果是函数式组件和下面这样的 children 呢？
 
 ``` html
 <my-functional-component>
@@ -381,9 +384,13 @@ You may wonder why we need both `slots` and `children`. Wouldn't `slots.default`
 </my-functional-component>
 ```
 
+对于这个组件，`children` 会给你两个段落标签，而 `slots.default` 只会传递第二个匿名段落标签，`slots.foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots` ，因此你可以选择组件通过插槽系统或者简单的通过 `children` 接收。
+
 For this component, `children` will give you both paragraphs, `slots.default` will give you only the second, and `slots.foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
 
-## Template Compilation
+## 模板编译
+
+你可能有兴趣知道，Vue 的模板实际是编译成了 render 函数。这是一个实现细节，通常不需要关心，但如果你想看看模板的功能是怎样被编译的，你会发现会非常有趣。下面是一个使用 `Vue.compile`  来实时编译模板字符串的简单 demo：
 
 You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
 
