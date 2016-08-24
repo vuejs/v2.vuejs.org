@@ -126,8 +126,6 @@ webpack plugin.js bundle.js --optimize-minimize
 
 - [vue-router](https://github.com/vuejs/vue-router): The official router for Vue.js. Deeply integrated with Vue.js core to make building Single Page Applications a breeze.
 
-- [vue-resource](https://github.com/vuejs/vue-resource): A plugin that provides services for making web requests and handle responses using a XMLHttpRequest or JSONP.
-
 - [vue-async-data](https://github.com/vuejs/vue-async-data): Async data loading plugin.
 
 - [vue-validator](https://github.com/vuejs/vue-validator): A plugin for form validations.

@@ -50,7 +50,7 @@ In React, everything is Just JavaScript, which sounds very simple and elegant - 
 
 #### JSX vs Templates
 
-Let's dive into a simple React render function, kindly [provided by Dan Abramov](https://github.com/vuejs/vuejs.org/pull/371):
+In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within Javascript. Here's an example, [vetted by the React community](https://github.com/vuejs/vuejs.org/pull/371):
 
 ``` jsx
 render () {
@@ -76,18 +76,6 @@ render () {
   )
 }
 ```
-
-This is an extremely common use case, but using JSX, there are a few problems that may not be immediately obvious:
-
-- __Decisions, Decisions__: Despite the simplicity of the above code, it actually went through a series of iterations until Dan Abramov kindly ended the bikeshedding with a definitive version we could settle on. It's interesting to note though, that none of the other recommended solutions we saw were identical to Dan's. This is because JSX, just like JavaScript, requires frequent compromises between readability and declarativeness that come down to individual judgment calls. These are some of the factors to be considered:
-
-- Not everything is an expression in JavaScript, making some common language features such as if statements a bit awkward to embed within JSX. There are sometimes alternatives which _are_ expressions, such as a ternary in this case, but many consider ternaries to be less readable.
-- When nesting JSX within JavaScript within JSX (etc), visual noise is created with curly braces and often parentheses. Different people make different decisions in how they prefer to minimize that noise.
-- To address the above two concerns, the simplest option is to do as much as possible outside JSX, then only embed a variable, like `children` in the example above. The downside is that the render function then ceases to be a purely declarative description of the generated view, instead becoming an imperative list of operations with a declarative (but less descriptive) result. Other alternatives include:
-  - Generating parts of the UI in helper functions, then calling them in the main render function. The downside is that visually parsing a component takes longer, as one has to jump around a lot more.
-  - Breaking a component out into more, smaller components (e.g. `ListContainer`, `List`, `ListItem`, and `EmptyList`). This has advantages beyond making render functions easier to read as an application grows in complexity. However, if it never grows complex enough to otherwise warrant the split, it's a lot of added boilerplate.
-
-- __Learning Curve__: While JSX looks similar to HTML, it's definitely not and there are edge cases to keep in mind - one being the use of `className` instead of `class`, such as in the example. To get this code reading as nicely as possible, it's also necessary to use ES2015+ language features, which many developers have not mastered yet. Combined, these two caveats significantly limit the pool of people that can contribute to the frontend. You eliminate designers, intermediate JavaScript developers, or even advanced JavaScript developers that aren't yet familiar with the quirks of React's JSX.
 
 In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes it is useful to have the power of a full programming language. Render functions are not recommended for most components however.
 
@@ -116,13 +104,13 @@ A few advantages here:
 
 This is not only much easier for the developer that's writing it, but designers and less experienced developers will also find it much easier parsing and contributing code.
 
-It doesn't end there though. By embracing HTML rather than trying to reinvent it, Vue also allows you to use preprocessors such as Pug (formerly known as Jade) in your templates.
+It doesn't end there though. By embracing HTML rather than trying to reinvent it within JavaScript, Vue also allows you to use preprocessors such as Pug (formerly known as Jade) in your templates.
 
 The React ecosystem also has [a project](https://wix.github.io/react-templates/) that allows you to write templates, but there are a few disadvantages:
 
-- It's not nearly as feature-rich as Vue's templates
+- It's not nearly as feature-rich as Vue's templating system
 - It requires separating your HTML from component files
-- Because it's a 3rd party library rather than an officially supported first-class citizen, it may or may not be kept up-to-date with React core into the future
+- Because it's a 3rd party library rather than officially supported, it may or may not be kept up-to-date with React core into the future
 
 #### Component-Scoped CSS
 
