@@ -640,7 +640,7 @@ Let's see it in action:
     v-model="message"
   ></my-input>
 </div>
-````
+```
 
 ``` js
 Vue.component('my-input', {
