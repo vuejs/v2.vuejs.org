@@ -384,15 +384,12 @@ Vue.component('smart-list', {
 </my-functional-component>
 ```
 
-对于这个组件，`children` 会给你两个段落标签，而 `slots.default` 只会传递第二个匿名段落标签，`slots.foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots` ，因此你可以选择组件通过插槽系统或者简单的通过 `children` 接收。
+对于这个组件，`children` 会给你两个段落标签，而 `slots.default` 只会传递第二个匿名段落标签，`slots.foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots` ，因此你可以选择让组件通过 `slot` 系统分发或者简单的通过 `children` 接收，让其他组件去处理。
 
-For this component, `children` will give you both paragraphs, `slots.default` will give you only the second, and `slots.foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
 
 ## 模板编译
 
 你可能有兴趣知道，Vue 的模板实际是编译成了 render 函数。这是一个实现细节，通常不需要关心，但如果你想看看模板的功能是怎样被编译的，你会发现会非常有趣。下面是一个使用 `Vue.compile`  来实时编译模板字符串的简单 demo：
-
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">
