@@ -12,30 +12,25 @@
 
 ## Current premium sponsors:
 
-<p style="text-align: center">
-  <a href="https://strikingly.com">
-    <img width="360px" src="/images/strikingly.png">
-  </a>
+<p style="text-align: center; margin-bottom: 60px" class="sponsors-page">
   <a href="https://itunescn.com">
-    <img width="250px" src="/images/itunescn.png">
-  </a>
-  <a href="https://jsfiddle.net">
-    <img width="250px" src="/images/jsfiddle.png">
-  </a>
-  <a href="https://laravel.com">
-    <img width="250px" src="/images/laravel.png">
-  </a>
-  <a href="https://chaitin.cn">
-    <img width="250px" src="/images/chaitin.png">
-  </a>
-  <a href="https://htmlburger.com" target="_blank">
-    <img width="250px" src="/images/htmlburger.png">
-  </a>
-  <a href="https://starter.someline.com/" target="_blank">
-    <img width="250px" src="/images/someline.png">
-  </a>
-  <a href="http://gold.xitu.io/?utm_source=vuejs&utm_medium=image&utm_content=juejin&utm_campaign=q3_website" target="_blank">
+    <img src="/images/itunescn.png">
+  </a><a href="https://jsfiddle.net">
+    <img src="/images/jsfiddle.png">
+  </a><a href="https://laravel.com">
+    <img src="/images/laravel.png">
+  </a><a href="https://chaitin.cn">
+    <img src="/images/chaitin.png">
+  </a><a href="https://htmlburger.com" target="_blank">
+    <img src="/images/htmlburger.png">
+  </a><a href="https://starter.someline.com/" target="_blank">
+    <img src="/images/someline.png">
+  </a><a href="http://gold.xitu.io/?utm_source=vuejs&utm_medium=image&utm_content=juejin&utm_campaign=q3_website" target="_blank">
     <img width="180px" src="/images/juejin.png">
+  </a><a href="http://monterail.com/" target="_blank">
+    <img src="/images/monterail.svg">
+  </a><a href="https://www.trisoft.ro/" target="_blank">
+    <img src="/images/trisoft.png">
   </a>
 </p>
 
