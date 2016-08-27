@@ -74,6 +74,8 @@ new Vue({ el: '#example' })
 
 Note the component's template **replaces** the custom element, which only serves as a **mounting point**. This behavior can be configured using the `replace` instance option.
 
+Also note that components are provided a template instead of mounting with the `el` option! Only the root Vue instance (defined using `new Vue`) will include an `el` to mount to).
+
 ### Local Registration
 
 You don't have to register every component globally. You can make a component available only in the scope of another component by registering it with the `components` instance option:
