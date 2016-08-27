@@ -98,4 +98,4 @@ There are also other hooks which will be called at different stages of the insta
 
 Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but this diagram will be helpful in the future.
 
-![Lifecycle](/images/lifecycle.png)
+![Lifecycle](../images/lifecycle.png)
