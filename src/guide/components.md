@@ -149,7 +149,7 @@ Vue.js template engine is DOM-based and uses native parser that comes with the b
 
 In practice these restriction can cause unexpected behavior. Although in simple cases it might appear to work, you can not rely on custom elements being expanded before browser validation. E.g. `<my-select><option>...</option></my-select>` is not a valid template even if `my-select` component eventually expands to `<select>...</select>`.
 
-Another consequence is that you can not use custom tags (including custom elements and special tags like `<component>`, `<template>` and `<partial>`) inside of `ul`, `select`, `table` and other elements with similar restrictions. Custom tags will be hoisted out and thus not render properly.
+Another consequence is that you can not use custom tags (including custom elements and special tags like `<component>`, `<template>` and `<partial>`) inside of `select`, `table` and other elements with similar restrictions. Custom tags will be hoisted out and thus not render properly.
 
 In case of a custom element you should use the `is` special attribute:
 
