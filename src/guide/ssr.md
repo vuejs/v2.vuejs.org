@@ -287,16 +287,11 @@ var createRenderer = require('vue-server-renderer').createRenderer
 var lru = require('lru-cache')
 
 var renderer = createRenderer({
-  cache: lru({
-    max: 10000000,
-    length: function (n, key) {
-      return n.length
-    }
-  })
+  cache: lru(1000)
 })
 ```
 
-That will cache up to 10 million characters of HTML (10MB assuming 1 byte per character). See [the lru-cache options](https://github.com/isaacs/node-lru-cache#options) for other configurations.
+That will cache up to 1000 unique renders. For other configurations that more closely align to memory usage, see [the lru-cache options](https://github.com/isaacs/node-lru-cache#options).
 
 Then for components you want to cache, you must provide them with:
 
