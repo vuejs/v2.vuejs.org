@@ -18,7 +18,7 @@ We can pass an object to `v-bind:class` to dynamically toggle classes:
 ``` js
 data: {
   isActive: true,
-  hasEror: false
+  hasError: false
 }
 ```
 
