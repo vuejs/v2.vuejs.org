@@ -667,7 +667,7 @@ Let's see it in action:
     v-model="message"
   ></my-input>
 </div>
-````
+```
 
 ``` js
 Vue.component('my-input', {
@@ -1130,9 +1130,9 @@ The factory function receives a `resolve` callback, which should be called when 
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // this special require syntax will instruct webpack to
+  // This special require syntax will instruct Webpack to
   // automatically split your built code into bundles which
-  // are automatically loaded over ajax requests.
+  // are loaded over Ajax requests.
   require(['./my-async-component'], resolve)
 })
 ```
