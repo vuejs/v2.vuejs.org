@@ -33,9 +33,51 @@ When rendering UI, manipulating the DOM is typically the most expensive operatio
 
 In React, let's say the additional overhead of rendering an element is 1 and the overhead of an average component is 2. In Vue, the overhead of an element would be more like 0.1, but the overhead of an average component would be 4, due to the setup required for our reactivity system.
 
-This means that in typical applications, where there are many more elements than components being rendered, Vue will outperform React by a significant margin. To demonstrate this, let's render a list of 10,000 items in a single component. In Chrome 52 on my 2014 Macbook Air, [Vue renders](https://jsfiddle.net/chrisvfritz/859gL422/) in an average of 60ms, while [React renders](https://jsfiddle.net/chrisvfritz/65ojbkab/) in an average of 127ms.
+This means that in typical applications, where there are many more elements than components being rendered, Vue will outperform React by a significant margin. In extreme cases however, such as using 1 normal component to render each element, Vue will usually be slower. This isn't the end of the story though.
 
-In extreme cases however, such as using 1 normal component to render each element, Vue will usually be slower. When modifying the previous examples accordingly, [Vue renders](https://jsfiddle.net/chrisvfritz/mk8jaqpg/) in ~585ms, while [React renders](https://jsfiddle.net/chrisvfritz/2sx0341o/) in ~157ms! This isn't the end of the story though. Both Vue and React offer functional components, which are preferred in situations like this. Since functional components are closer to the cost of elements, Vue is once again on top, with [~73ms](https://jsfiddle.net/chrisvfritz/413wjqyf/) vs [~144ms](https://jsfiddle.net/chrisvfritz/kss01xg7/) - and this performance boost only required adding a single line for Vue: `functional: true`.
+Both Vue and React also offer functional components, which are stateless and instanceless - and therefore, require less overhead. When these are used in performance-critical situations, Vue is once again faster. To demonstrate this, we built a simple [benchmark project](https://github.com/chrisvfritz/vue-render-performance-comparisons) that just renders 10,000 list items 100 times. We encourage you to try it yourself, as the results will vary depending on the hardware and browser used - and actually, they'll vary even between runs due to the nature of JavaScript engines.
+
+If you're feeling lazy though, below are the numbers from one run in Chrome 52 on a 2014 MacBook Air. To avoid cherry-picking, both benchmarks were actually run 20 separate times, with results from the best runs included below:
+
+{% raw %}
+<table class="benchmark-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Vue</th>
+      <th>React</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Fastest</th>
+      <td>23ms</td>
+      <td>63ms</td>
+    </tr>
+    <tr>
+      <th>Median</th>
+      <td>42ms</td>
+      <td>81ms</td>
+    </tr>
+    <tr>
+      <th>Average</th>
+      <td>51ms</td>
+      <td>94ms</td>
+    </tr>
+    <tr>
+      <th>95th Perc.</th>
+      <td>73ms</td>
+      <td>164ms</td>
+    </tr>
+    <tr>
+      <th>Slowest</th>
+      <td>343ms</td>
+      <td>453ms</td>
+    </tr>
+    </tr>
+  </tbody>
+</table>
+{% endraw %}
 
 #### Update Performance
 
