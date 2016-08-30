@@ -126,7 +126,12 @@ render () {
 }
 ```
 
-In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes it is useful to have the power of a full programming language. Render functions are not recommended for most components however.
+Render functions with JSX have a few advantages:
+
+- You can use the power of a full programming language (JavaScript) to build your view.
+- The tooling support (e.g. linting, type checking, editor autocompletion) for JSX is in some ways more advanced than what's currently available for Vue templates.
+
+In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes you need that power. Render functions are not recommended for most components however.
 
 Instead, we offer templates as a simpler alternative:
 
