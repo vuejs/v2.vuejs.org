@@ -688,6 +688,19 @@ type: api
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
+### activate
+
+- **Type:** `Function`
+
+- **Arguments:**
+  - `{Function} done`
+
+- **Details:**
+
+  Called after compilation is finished, right before the `ready` hook - but **only** during dynamic component swapping or in the initial render for static components. Unlike other lifecycle hooks, it accepts a `done` callback, which must be called for the rest of the lifecycle to complete. It's most useful for performing some asynchronous operation before a component is swapped in, like fetching data from an API.
+
+- **See also:** [Dynamic Components](/guide/components.html#Dynamic-Components)
+
 ### ready
 
 - **Type:** `Function`
