@@ -38,7 +38,7 @@ var app = new Vue({
 ```
 
 {% raw %}
-<div id="app11" class="demo">
+<div id="app" class="demo">
   {{ message }}
 </div>
 <script>
@@ -60,6 +60,7 @@ var app = new Vue({
   <span v-bind:id="id">Inspect me</span>
 </div>
 ```
+
 ``` js
 var app2 = new Vue({
   el: '#app-2',
@@ -199,7 +200,6 @@ var app5 = new Vue({
 ```
 
 {% raw %}
-
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
   <button v-on:click="reverseMessage">Reverse Message</button>
@@ -217,6 +217,7 @@ var app5 = new Vue({
   }
 })
 </script>
+{% endraw %}
 
 注意在方法中我们没有触碰DOM简单地更新了我们应用状态 - 所有DOM操作都由Vue来处理，我们可以聚焦在潜在的逻辑代码上。
 
@@ -228,6 +229,7 @@ Vue还提供了`v-model` 指令 很轻巧地实现输入和应用状态间的双
   <input v-model="message">
 </div>
 ```
+
 ``` js
 var app6 = new Vue({
   el: '#app-6',
