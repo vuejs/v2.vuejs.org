@@ -1,7 +1,7 @@
 ---
 title: Installation
 type: guide
-order: 0
+order: 1
 vue_version: 2.0.0-rc.1
 dev_size: "187.07"
 min_size: "60.65"
@@ -30,7 +30,7 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 
 Available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
 
-Also available on [npmcdn](https://npmcdn.com/vue/dist/vue.min.js), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [npmcdn.com/vue/](https://npmcdn.com/vue/).
+Also available on [unpkg](https://unpkg.com/vue/dist/vue.min.js), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [unpkg.com/vue/](https://unpkg.com/vue/).
 
 ### CSP environments
 

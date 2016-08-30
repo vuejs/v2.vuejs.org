@@ -171,8 +171,8 @@ For example:
 <!-- and collections of general-purpose utility methods, Vue core -->
 <!-- is able to remain small by not reinventing them. This also   -->
 <!-- gives you the freedom to just use what you're familiar with. -->
-<script src="https://npmcdn.com/axios@0.12.0/dist/axios.min.js"></script>
-<script src="https://npmcdn.com/lodash@4.13.1/lodash.min.js"></script>
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script>
 var watchExampleVM = new Vue({
   el: '#watch-example',
@@ -203,7 +203,7 @@ var watchExampleVM = new Vue({
           return
         }
         vm.answer = 'Thinking...'
-        axios.get('http://yesno.wtf/api')
+        axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
@@ -230,8 +230,8 @@ Result:
   </p>
   <p>{{ answer }}</p>
 </div>
-<script src="https://npmcdn.com/axios@0.12.0/dist/axios.min.js"></script>
-<script src="https://npmcdn.com/lodash@4.13.1/lodash.min.js"></script>
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script>
 var watchExampleVM = new Vue({
   el: '#watch-example',
@@ -254,7 +254,7 @@ var watchExampleVM = new Vue({
           return
         }
         vm.answer = 'Thinking...'
-        axios.get('http://yesno.wtf/api')
+        axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
