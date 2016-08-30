@@ -1,7 +1,7 @@
 ---
 title: Installation
 type: guide
-order: 0
+order: 1
 vue_version: 2.0.0-rc.1
 dev_size: "187.07"
 min_size: "60.65"
