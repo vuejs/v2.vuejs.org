@@ -4,7 +4,7 @@ type: guide
 order: 19
 ---
 
-## Introduction
+## 介绍
 
 In many Vue projects, global components will be defined using `Vue.component`, followed by `new Vue({ el: '#container '})` to target a container element in the body of every page.
 
