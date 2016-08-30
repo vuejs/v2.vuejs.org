@@ -4,9 +4,9 @@ type: guide
 order: 16
 ---
 
-## Intro
+## 简介
 
-In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Directives provide a reusable way of binding behavior that requires low-level DOM access, such as focusing on an input element, like this one:
+除了默认设置的核心指令(`v-model`和`v-show`),Vue也允许注册自定义指令。指令提供一个可复用的方法绑定行为更少地访问DOM，例如在input元素聚焦，像这样：
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -26,39 +26,39 @@ new Vue({
 </script>
 {% endraw %}
 
-When the page loads, that element gains focus. In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
+页面加载时，元素将获得焦点。事实上，你访问后还没点击任何内容，input就被聚焦了。现在让我们完善这个指令：
 
 ``` js
-// Register a global custom directive called v-focus
+// 注册一个全局自定义指令叫做 v-focus
 Vue.directive('focus', {
-  // When the directive is first bound to the element...
+  // 当指令第一次运行在元素上
   bind: function (el) {
-    // After the next render...
+    // 下一次渲染结束后
     Vue.nextTick(function () {
-      // Focus the element
+      // 聚焦元素
       el.focus()
     })
   }
 })
 ```
 
-If you want to register a directive locally instead, components also accept a `directives` option:
+也可以注册局部指令，组件中接受一个 `directives`的选项：
 
 ``` js
 directives: {
   focus: {
-    // directive definition
+    // 指令的定义
   }
 }
 ```
 
-Then in a template, you can use the new `v-focus` attribute on any element, like this:
+然后你可以在模板中任何元素上使用新的`v-focus`属性：
 
 ``` html
 <input v-focus>
 ```
 
-## Hook Functions
+## 钩子函数
 
 A directive definition object can provide several hook functions (all optional):
 
