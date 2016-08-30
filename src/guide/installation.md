@@ -1,8 +1,8 @@
 ---
 title: 安装
 type: guide
-order: 0
-vue_version: 2.0.0-rc.1
+order: 1
+vue_version: 2.0.0-rc.4
 dev_size: "187.07"
 min_size: "60.65"
 gz_size: "22.06"
@@ -30,8 +30,9 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实�
 
 可以从 [jsdelivr](http://cdn.jsdelivr.net/vue/2.0.0-rc.1/vue.min.js) 或 [cdnjs](http://cdnjs.cloudflare.com/ajax/libs/vue/2.0.0-rc.1/vue.min.js) 获取（版本更新可能略滞后）。
 
-也可以使用 [npmcdn](https://npmcdn.com/vue@1.0.26/dist/vue.min.js)，这个链接指向发布到 npm 上的最新稳定版本。 可以在 [npmcdn.com/vue/](https://npmcdn.com/vue/) 上查看包的源码。
 ### CSP 兼容版本
+
+可以在 [unpkg](https://unpkg.com/vue/dist/vue.min.js) 获取，会和npm一样保持最新版本，也可以在[unpkg.com/vue/](https://unpkg.com/vue/)浏览npm包资源。
 
 有些环境，如 Google Chrome Apps，强制应用内容安全策略 (CSP) ，不能使用 `new Function()` 对表达式求值。独立构建编译模板时依赖这个特性，所以不能在这类环境下使用。
 

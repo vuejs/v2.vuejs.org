@@ -19,7 +19,7 @@ Vue 的过渡系统提供了非常多简单的方法设置进入、离开和列�
 通过 watcher 我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用Tweenjs一个例子：
 
 ``` html
-<script src="https://npmcdn.com/tween.js@16.3.4"></script>
+<script src="https://unpkg.com/tween.js@16.3.4"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -55,7 +55,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://npmcdn.com/tween.js@16.3.4"></script>
+<script src="https://unpkg.com/tween.js@16.3.4"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -92,8 +92,8 @@ new Vue({
 
 
 ``` html
-<script src="https://npmcdn.com/tween.js@16.3.4"></script>
-<script src="https://npmcdn.com/color-js@1.0.3/color.js"></script>
+<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
 
 <div id="example-7">
   <input
@@ -169,8 +169,8 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://npmcdn.com/tween.js@16.3.4"></script>
-<script src="https://npmcdn.com/color-js@1.0.3/color.js"></script>
+<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
 <div id="example-7" class="demo">
   <input
     v-model="colorQuery"
@@ -385,7 +385,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/fbvusejy/) for the complete c
 我们来将之前的示例改写一下：
 
 ``` html
-<script src="https://npmcdn.com/tween.js@16.3.4"></script>
+<script src="https://unpkg.com/tween.js@16.3.4"></script>
 
 <div id="example-8">
   <input v-model.number="firstNumber" type="number" step="20"> +
@@ -460,7 +460,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://npmcdn.com/tween.js@16.3.4"></script>
+<script src="https://unpkg.com/tween.js@16.3.4"></script>
 <div id="example-8" class="demo">
   <input v-model.number="firstNumber" type="number" step="20"> +
   <input v-model.number="secondNumber" type="number" step="20"> =
