@@ -203,7 +203,7 @@ var watchExampleVM = new Vue({
           return
         }
         vm.answer = 'Thinking...'
-        axios.get('http://yesno.wtf/api')
+        axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
@@ -254,7 +254,7 @@ var watchExampleVM = new Vue({
           return
         }
         vm.answer = 'Thinking...'
-        axios.get('http://yesno.wtf/api')
+        axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
