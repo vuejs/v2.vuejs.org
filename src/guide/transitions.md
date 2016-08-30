@@ -328,7 +328,7 @@ These will override the conventional class names. This is especially useful when
 Here's an example:
 
 ``` html
-<link href="https://npmcdn.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+<link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
 
 <div id="example-3">
   <button @click="show = !show">
@@ -354,7 +354,7 @@ new Vue({
 ```
 
 {% raw %}
-<link href="https://npmcdn.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
+<link href="https://unpkg.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
     Toggle render
