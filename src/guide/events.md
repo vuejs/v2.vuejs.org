@@ -173,7 +173,7 @@ Here's the full list of key modifier aliases:
 
 - enter
 - tab
-- delete
+- delete (captures both "Delete" and, if the keyboard has it, "Backspace")
 - esc
 - space
 - up
