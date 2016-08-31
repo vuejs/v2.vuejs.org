@@ -210,7 +210,7 @@ methods: {
 
 - enter
 - tab
-- delete
+- delete (captures both "Delete" and "Backspace" keys)
 - esc
 - space
 - up
