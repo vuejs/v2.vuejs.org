@@ -1,4 +1,4 @@
-# vue.js2-rc3 中文翻译文档（正在进行中...） http://vuefe.cn
+# vue.js2-rc4 中文翻译文档（正在进行中...） http://vuefe.cn
 
 > 基于 hexo && vuejs.org
 
