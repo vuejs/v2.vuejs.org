@@ -704,7 +704,7 @@ new Vue({
 
 As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
 
-Sometimes, this works great, like when transitioning items are absolutely positioned on top of each other:
+Sometimes this works great, like when transitioning items are absolutely positioned on top of each other:
 
 {% raw %}
 <div id="no-mode-absolute-demo" class="demo">
@@ -790,7 +790,7 @@ new Vue({
 </style>
 {% endraw %}
 
-Simultaneous entering and leaving transitions isn't always desirable though, so Vue offers some alternative **transition modes**:
+Simultaneous entering and leaving transitions aren't always desirable though, so Vue offers some alternative **transition modes**:
 
 - `in-out`: New element transitions in first, then when complete, the current element transitions out.
 
