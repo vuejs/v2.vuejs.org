@@ -374,7 +374,7 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/fbvusejy/) for the complete code behind the above demo.
+See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete code behind the above demo.
 
 ## Organizing Transitions into Components
 

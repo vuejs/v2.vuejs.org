@@ -704,7 +704,7 @@ new Vue({
 
 As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
 
-Sometimes, this works great, like when transitioning items are absolutely positioned on top of each other:
+Sometimes this works great, like when transitioning items are absolutely positioned on top of each other:
 
 {% raw %}
 <div id="no-mode-absolute-demo" class="demo">
@@ -790,7 +790,7 @@ new Vue({
 </style>
 {% endraw %}
 
-Simultaneous entering and leaving transitions isn't always desirable though, so Vue offers some alternative **transition modes**:
+Simultaneous entering and leaving transitions aren't always desirable though, so Vue offers some alternative **transition modes**:
 
 - `in-out`: New element transitions in first, then when complete, the current element transitions out.
 
@@ -1247,7 +1247,7 @@ new Vue({
 
 <p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can transitioned [just as easily](https://jsfiddle.net/chrisvfritz/a2ngorat/):
+These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can transitioned [just as easily](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
