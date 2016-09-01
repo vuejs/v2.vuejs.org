@@ -125,7 +125,7 @@ Some directives can take an "argument", denoted by a colon after the directive n
 <a v-bind:href="url"></a>
 ```
 
-Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`. You may have noticed this achieves the same result as an attribute interpolation using `{% raw %}href="{{url}}"{% endraw %}`: that is correct, and in fact, attribute interpolations are translated into `v-bind` bindings internally.
+Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`. In Vue 1 ,you may have noticed this achieves the same result as an attribute interpolation using `{% raw %}href="{{url}}"{% endraw %}`: that is correct, and in fact, attribute interpolations are translated into `v-bind` bindings internally.But in Vue 2,Attributes  Mustaches cannot be used inside HTML attributes, instead use a v-bind directive.
 
 Another example is the `v-on` directive, which listens to DOM events:
 
