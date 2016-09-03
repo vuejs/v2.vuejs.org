@@ -6,7 +6,7 @@ order: 3
 
 ## Constructor
 
-Every Vue app is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
+Every Vue vm is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
 
 ``` js
 var vm = new Vue({
@@ -14,7 +14,7 @@ var vm = new Vue({
 })
 ```
 
-A Vue instance is essentially a **ViewModel** as defined in the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), hence the variable name `vm` you will see throughout the docs.
+Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was no doubt inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instances.
 
 When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](/api).
 
@@ -30,7 +30,7 @@ var MyComponent = Vue.extend({
 var myComponentInstance = new MyComponent()
 ```
 
-Although you can create extended instances imperatively, in most cases you will be registering a component constructor as a custom element and composing them in templates declaratively. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
+Although it is possible to create extended instances imperatively, most of the time it is recommended to compose them declaratively in templates as custom elements. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
 
 ## Properties and Methods
 
@@ -77,7 +77,7 @@ Consult the [API reference](/api) for the full list of instance properties and m
 
 ## Instance Lifecycle
 
-Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, and create the necessary data bindings. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance is created:
+Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance is created:
 
 ``` js
 var vm = new Vue({
@@ -98,4 +98,4 @@ There are also other hooks which will be called at different stages of the insta
 
 Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but this diagram will be helpful in the future.
 
-![Lifecycle](!!TODO: EVAN WILL NEED TO UPDATE /images/lifecycle.png)
+![Lifecycle](/images/lifecycle.png)
