@@ -8,16 +8,16 @@ order: 10
 
 {% raw %}
 <div style="max-width:600px">
-  <a href="https://github.com/vuejs/vue-hackernews-2.0" target="blank">
+  <a href="https://github.com/vuejs/vue-hackernews-2.0" target="_blank">
     <img style="width:100%" src="/images/hn.png">
   </a>
 </div>
 {% endraw %}
-[Live Demo](https://vue-hn.now.sh/)
 
-> [[Source](https://github.com/vuejs/vue-hackernews-2.0)]
-
+> [Live Demo](https://vue-hn.now.sh/)
 > Note: the demo may need some spin up time if nobody has accessed it for a certain period.
+>
+> [[Source](https://github.com/vuejs/vue-hackernews-2.0)]
 
 ## Features
 
