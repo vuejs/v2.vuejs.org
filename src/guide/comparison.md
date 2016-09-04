@@ -99,7 +99,7 @@ In React, everything is Just JavaScript, which sounds very simple and elegant - 
 
 #### JSX vs Templates
 
-In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within Javascript. Here's an example, [vetted by the React community](https://github.com/vuejs/vuejs.org/pull/371):
+In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within Javascript. Here's an example, [vetted by the React community](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
 
 ``` jsx
 render () {
