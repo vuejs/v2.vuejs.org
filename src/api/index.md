@@ -378,8 +378,6 @@ type: api
 
 ### propsData
 
-> 1.0.22+
-
 - **Type:** `Object`
 
 - **Restriction:** only respected in instance creation via `new`.
@@ -498,6 +496,50 @@ type: api
   ```
 
 - **See also:** [Instance Methods - vm.$watch](#vm-watch)
+
+## Options / DOM
+
+### el
+
+- **Type:** `String | HTMLElement | Function`
+
+- **Restriction:** only accepts type `Function` when used in a component definition.
+
+- **Details:**
+
+  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string, an actual HTMLElement, or a function that returns an HTMLElement. Note that the provided element merely serves as a mounting point; it will be replaced if a template is also provided. The resolved element will be accessible as `vm.$el`.
+
+  When used in `Vue.extend`, a function must be provided so each instance gets a separately created element.
+
+  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### template
+
+- **Type:** `String`
+
+- **Details:**
+
+  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+
+  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+
+- **See also:**
+  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+  - [Content Distribution](/guide/components.html#Content-Distribution-with-Slots)
+  - [Fragment Instance](/guide/components.html#Fragment-Instance)
+
+### render
+
+  - **Type:** `Function`
+
+  - **Details:**
+
+    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+
+  - **See also:**
+    - [Render Functions](/guide/render-function)
 
 ## Instance Properties
 
@@ -832,9 +874,9 @@ type: api
 <h3 id="vm-forceUpdate">vm.$forceUpdate( )</h3>
 
 - **Usage:**
- 
+
   The Vue instance will be forced the re-render.
-  
+
 <p class="tip">Note: This method have an influence on your application performance degradation. The excessive call is no recommended.</p>
 
 <h3 id="vm-destroy">vm.$destroy( )</h3>
@@ -1071,7 +1113,7 @@ type: api
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
-  
+
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
