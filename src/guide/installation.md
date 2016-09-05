@@ -18,7 +18,9 @@ Detailed release notes for each version are available on [GitHub](https://github
 
 ## Standalone
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable. **Pro tip: Don't use the minified version during development. You will miss out all the nice warnings for common mistakes.**
+Simply download and include with a script tag. `Vue` will be registered as a global variable.
+
+<p class="tip">Don't use the minified version during development. You will miss out all the nice warnings for common mistakes!</p>
 
 <div id="downloads">
 <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
@@ -46,6 +48,24 @@ NPM is the recommended installation method when building large scale application
 # latest stable
 $ npm install vue@next
 ```
+
+### Note on NPM Builds
+
+Because Single File Components pre-compile the templates into render functions at build time, the default export of the `vue` NPM package is the **runtime-only build**, which does not support the `template` option. If you still wish to use the `template` option, you will need to configure your bundler to alias `vue` to the standalone build.
+
+With webpack, add the following alias to your webpack config:
+
+``` js
+resolve: {
+  alias: {
+    vue: 'vue/dist/vue.js'
+  }
+}
+```
+
+For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) for the same effect.
+
+<p class="tip">Do NOT do `import Vue from 'vue/dist/vue'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
 
 ## CLI
 

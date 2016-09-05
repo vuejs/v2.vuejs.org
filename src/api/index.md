@@ -440,7 +440,6 @@ type: api
 
 - **See also:**
   - [Computed Properties](/guide/computed.html)
-  - [Reactivity in Depth: Inside Computed Properties](/guide/reactivity.html#Inside-Computed-Properties)
 
 ### methods
 

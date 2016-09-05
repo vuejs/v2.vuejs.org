@@ -77,6 +77,39 @@ You can open the console and play with the example vm yourself. The value of `vm
 
 You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function is pure and has no side effects, which makes it easy to test and reason about.
 
+### Computed Caching vs Methods
+
+You may have noticed we can achieve the same result by invoking a method in the expression:
+
+``` html
+<p>Reversed message: "{{ reverseMessage() }}"</p>
+```
+
+``` js
+// in component
+methods: {
+  reverseMessage: function () {
+    return this.message.split('').reverse().join('')
+  }
+}
+```
+
+Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on its dependencies.** A computed property will only re-evaluate when some of its dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+
+This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+
+``` js
+computed: {
+  now: function () {
+    return Date.now()
+  }
+}
+```
+
+In comparison, a method invocation will **always** run the function whenever a re-render happens.
+
+Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+
 ### Computed vs Watched Property
 
 Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
@@ -147,8 +180,6 @@ computed: {
 ```
 
 Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
-
-The technical details behind how computed properties are updated are discussed in [another section](reactivity.html#Inside-Computed-Properties) dedicated to the reactivity system.
 
 ## Watchers
 
@@ -270,3 +301,5 @@ var watchExampleVM = new Vue({
 {% endraw %}
 
 In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
+
+In addition to the `watch` option, you can also use the imperative [vm.$watch API](/api/#vm-watch).
