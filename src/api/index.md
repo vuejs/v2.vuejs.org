@@ -541,6 +541,112 @@ type: api
   - **See also:**
     - [Render Functions](/guide/render-function)
 
+## Options / Lifecycle Hooks
+
+### beforeCreate
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called synchronously after the instance has just been initialized, before data observation and event / watcher setup.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### created
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, DOM compilation has not been started, and the `$el` property will not be available yet.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### beforeDestroy
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### destroyed
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after a Vue instance has been destroyed. When this hook is called, all bindings and directives of the Vue instance have been unbound and all child Vue instances have also been destroyed.
+
+  Note if there is a leaving transition, the `destroyed` hook is called **after** the transition has finished.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### beforeMount
+
+- **Type:** `Function`
+
+- **Details:**
+
+Called after the template has just been compiled, before `vm.$el` is created.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### mounted
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### beforeUpdate
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called when the data changes, before the virtual DOM is re-rendered and patched.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### updated
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after a data change causes the virtual DOM to be re-rendered and patched.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### activated
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after a dynamic component is activated, allowing you to perform any necessary asynchronous operations before it should be swapped in.
+
+  The `activate` hook is only respected during dynamic component swapping or the initial render for static components - it does not affect manual insertions with instance methods.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### deactivated
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after the dynamic component has been swapped out.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
 ## Instance Properties
 
 ### vm.$data
