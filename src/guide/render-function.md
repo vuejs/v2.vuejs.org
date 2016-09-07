@@ -237,7 +237,7 @@ render: function (createElement) {
 
 ## Replacing Template Features with Plain JavaScript
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide an appropriate alternative. For example, in a template using `v-if` and `v-for`:
+Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
 
 ``` html
 <ul v-if="items.length">
