@@ -22,7 +22,7 @@ Being so similar in scope, we've put more time into fine-tuning this comparison 
 
 The React community [has been instrumental](https://github.com/vuejs/vuejs.org/issues/364) in helping us achieve this balance, with special thanks to Dan Abramov from the React team. He was extremely generous with his time and considerable expertise to help us refine this document until we were [both happy](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740) with the final result.
 
-With that said, I hope you can feel confident in the fairness of the review below, as we explore the differences between these two libraries.
+With that said, I hope you can feel confident in the fairness of the review below as we explore the differences between these two libraries.
 
 ### Performance Profiles
 
