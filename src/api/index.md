@@ -647,6 +647,54 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
+## Options / Assets
+
+### directives
+
+- **Type:** `Object`
+
+- **Details:**
+
+  A hash of directives to be made available to the Vue instance.
+
+- **See also:**
+  - [Custom Directives](/guide/custom-directive.html)
+  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
+
+### filters
+
+- **Type:** `Object`
+
+- **Details:**
+
+  A hash of filters to be made available to the Vue instance.
+
+- **See also:**
+  - [Custom Filters](/guide/custom-filter.html)
+  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
+
+### components
+
+- **Type:** `Object`
+
+- **Details:**
+
+  A hash of components to be made available to the Vue instance.
+
+- **See also:**
+  - [Components](/guide/components.html)
+
+### transitions
+
+- **Type:** `Object`
+
+- **Details:**
+
+  A hash of transitions to be made available to the Vue instance.
+
+- **See also:**
+  - [Transitions](/guide/transitions.html)
+
 ## Instance Properties
 
 ### vm.$data
