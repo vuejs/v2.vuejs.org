@@ -695,6 +695,127 @@ Called after the template has just been compiled, before `vm.$el` is created.
 - **See also:**
   - [Transitions](/guide/transitions.html)
 
+## Options / Misc
+
+### parent
+
+- **Type:** `Vue instance`
+
+- **Details:**
+
+  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+
+- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child-Communication)
+
+### mixins
+
+- **Type:** `Array`
+
+- **Details:**
+
+  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+
+  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+
+- **Example:**
+
+  ``` js
+  var mixin = {
+    created: function () { console.log(1) }
+  }
+  var vm = new Vue({
+    created: function () { console.log(2) },
+    mixins: [mixin]
+  })
+  // -> 1
+  // -> 2
+  ```
+
+- **See also:** [Mixins](/guide/mixins.html)
+
+### name
+
+- **Type:** `String`
+
+- **Restriction:** only respected when used in `Vue.extend()`.
+
+- **Details:**
+
+  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+
+  Another benefit of specifying a `name` option is console inspection. When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
+
+- **Example:**
+
+  ``` js
+  var Ctor = Vue.extend({
+    name: 'stack-overflow',
+    template:
+      '<div>' +
+        // recursively invoke self
+        '<stack-overflow></stack-overflow>' +
+      '</div>'
+  })
+
+  // this will actually result in a max stack size exceeded
+  // error, but let's assume it works...
+  var vm = new Ctor()
+
+  console.log(vm) // -> StackOverflow {$el: null, ...}
+  ```
+
+### extends
+
+- **Type:** `Object | Function`
+
+- **Details:**
+
+  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+
+  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+
+- **Example:**
+
+  ``` js
+  var CompA = { ... }
+
+  // extend CompA without having to call Vue.extend on either
+  var CompB = {
+    extends: CompA,
+    ...
+  }
+  ```
+
+### delimiters
+
+- **Type:** `Array<String>`
+
+- **default:** `["{{", "}}"]`
+
+- **Details:**
+
+  Change the plain text interpolation delimiters. This option is only available in the standalone build.
+
+- **Example:**
+
+  ``` js
+  new Vue({
+    delimiters: ['${', '}']
+  })
+
+  // Delimiters changed to ES6 template string style
+  ```
+
+### functional
+
+- **Type:** `boolean`
+
+- **Details:**
+
+  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+
+- **See also:** [Functional Components](/guide/render-function.html#Functional-Components)
+
 ## Instance Properties
 
 ### vm.$data
