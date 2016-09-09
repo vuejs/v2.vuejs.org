@@ -162,7 +162,7 @@ var app4 = new Vue({
 </script>
 {% endraw %}
 
-In the console, enter `app3.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
 
 ## Handling User Input
 

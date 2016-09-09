@@ -237,7 +237,7 @@ render: function (createElement) {
 
 ## Replacing Template Features with Plain JavaScript
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide an appropriate alternative. For example, in a template using `v-if` and `v-for`:
+Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
 
 ``` html
 <ul v-if="items.length">
@@ -316,7 +316,7 @@ Everything the component needs is passed through `context`, which is an object c
 
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
-- `slots`: A slots object
+- `slots`: A function returning a slots object
 - `data`: The entire data object passed to the component
 - `parent`: A reference to the parent component
 
@@ -364,9 +364,9 @@ Vue.component('smart-list', {
 })
 ```
 
-### `slots` vs `children`
+### `slots()` vs `children`
 
-You may wonder why we need both `slots` and `children`. Wouldn't `slots.default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
 
 ``` html
 <my-functional-component>
@@ -377,7 +377,7 @@ You may wonder why we need both `slots` and `children`. Wouldn't `slots.default`
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots.default` will give you only the second, and `slots.foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
+For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
 
 ## Template Compilation
 

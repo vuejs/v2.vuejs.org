@@ -378,8 +378,6 @@ type: api
 
 ### propsData
 
-> 1.0.22+
-
 - **Type:** `Object`
 
 - **Restriction:** only respected in instance creation via `new`.
@@ -498,6 +496,325 @@ type: api
   ```
 
 - **See also:** [Instance Methods - vm.$watch](#vm-watch)
+
+## Options / DOM
+
+### el
+
+- **Type:** `String | HTMLElement | Function`
+
+- **Restriction:** only accepts type `Function` when used in a component definition.
+
+- **Details:**
+
+  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string, an actual HTMLElement, or a function that returns an HTMLElement. Note that the provided element merely serves as a mounting point; it will be replaced if a template is also provided. The resolved element will be accessible as `vm.$el`.
+
+  When used in `Vue.extend`, a function must be provided so each instance gets a separately created element.
+
+  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### template
+
+- **Type:** `String`
+
+- **Details:**
+
+  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+
+  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+
+- **See also:**
+  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+  - [Content Distribution](/guide/components.html#Content-Distribution-with-Slots)
+  - [Fragment Instance](/guide/components.html#Fragment-Instance)
+
+### render
+
+  - **Type:** `Function`
+
+  - **Details:**
+
+    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+
+  - **See also:**
+    - [Render Functions](/guide/render-function)
+
+## Options / Lifecycle Hooks
+
+### beforeCreate
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### created
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, DOM compilation has not been started, and the `$el` property will not be available yet.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### beforeMount
+
+- **Type:** `Function`
+
+- **Details:**
+
+Called after the template has just been compiled, before `vm.$el` is created.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### mounted
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### beforeUpdate
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called when the data changes, before the virtual DOM is re-rendered and patched.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### updated
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after a data change causes the virtual DOM to be re-rendered and patched.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### activated
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after a dynamic component is activated, allowing you to perform any necessary asynchronous operations before it should be swapped in.
+
+  The `activated` hook is only respected during dynamic component swapping or the initial render for static components - it does not affect manual insertions with instance methods.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### deactivated
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after the dynamic component has been swapped out.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### beforeDestroy
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+### destroyed
+
+- **Type:** `Function`
+
+- **Details:**
+
+  Called after a Vue instance has been destroyed. When this hook is called, all bindings and directives of the Vue instance have been unbound and all child Vue instances have also been destroyed.
+
+  Note if there is a leaving transition, the `destroyed` hook is called **after** the transition has finished.
+
+- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+
+## Options / Assets
+
+### directives
+
+- **Type:** `Object`
+
+- **Details:**
+
+  A hash of directives to be made available to the Vue instance.
+
+- **See also:**
+  - [Custom Directives](/guide/custom-directive.html)
+  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
+
+### filters
+
+- **Type:** `Object`
+
+- **Details:**
+
+  A hash of filters to be made available to the Vue instance.
+
+- **See also:**
+  - [Custom Filters](/guide/custom-filter.html)
+  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
+
+### components
+
+- **Type:** `Object`
+
+- **Details:**
+
+  A hash of components to be made available to the Vue instance.
+
+- **See also:**
+  - [Components](/guide/components.html)
+
+### transitions
+
+- **Type:** `Object`
+
+- **Details:**
+
+  A hash of transitions to be made available to the Vue instance.
+
+- **See also:**
+  - [Transitions](/guide/transitions.html)
+
+## Options / Misc
+
+### parent
+
+- **Type:** `Vue instance`
+
+- **Details:**
+
+  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+
+- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child-Communication)
+
+### mixins
+
+- **Type:** `Array`
+
+- **Details:**
+
+  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+
+  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+
+- **Example:**
+
+  ``` js
+  var mixin = {
+    created: function () { console.log(1) }
+  }
+  var vm = new Vue({
+    created: function () { console.log(2) },
+    mixins: [mixin]
+  })
+  // -> 1
+  // -> 2
+  ```
+
+- **See also:** [Mixins](/guide/mixins.html)
+
+### name
+
+- **Type:** `String`
+
+- **Restriction:** only respected when used in `Vue.extend()`.
+
+- **Details:**
+
+  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+
+  Another benefit of specifying a `name` option is console inspection. When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
+
+- **Example:**
+
+  ``` js
+  var Ctor = Vue.extend({
+    name: 'stack-overflow',
+    template:
+      '<div>' +
+        // recursively invoke self
+        '<stack-overflow></stack-overflow>' +
+      '</div>'
+  })
+
+  // this will actually result in a max stack size exceeded
+  // error, but let's assume it works...
+  var vm = new Ctor()
+
+  console.log(vm) // -> StackOverflow {$el: null, ...}
+  ```
+
+### extends
+
+- **Type:** `Object | Function`
+
+- **Details:**
+
+  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+
+  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+
+- **Example:**
+
+  ``` js
+  var CompA = { ... }
+
+  // extend CompA without having to call Vue.extend on either
+  var CompB = {
+    extends: CompA,
+    ...
+  }
+  ```
+
+### delimiters
+
+- **Type:** `Array<String>`
+
+- **default:** `["{{", "}}"]`
+
+- **Details:**
+
+  Change the plain text interpolation delimiters. This option is only available in the standalone build.
+
+- **Example:**
+
+  ``` js
+  new Vue({
+    delimiters: ['${', '}']
+  })
+
+  // Delimiters changed to ES6 template string style
+  ```
+
+### functional
+
+- **Type:** `boolean`
+
+- **Details:**
+
+  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+
+- **See also:** [Functional Components](/guide/render-function.html#Functional-Components)
 
 ## Instance Properties
 
@@ -832,9 +1149,9 @@ type: api
 <h3 id="vm-forceUpdate">vm.$forceUpdate( )</h3>
 
 - **Usage:**
- 
+
   The Vue instance will be forced the re-render.
-  
+
 <p class="tip">Note: This method have an influence on your application performance degradation. The excessive call is no recommended.</p>
 
 <h3 id="vm-destroy">vm.$destroy( )</h3>
@@ -1071,7 +1388,7 @@ type: api
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
-  
+
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```

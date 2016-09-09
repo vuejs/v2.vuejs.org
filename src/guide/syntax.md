@@ -94,7 +94,7 @@ The filter function always receives the expression's value as the first argument
 
 ``` js
 new Vue({
-  ...
+  // ...
   filters: {
     capitalize: function (value) {
       if (!value) return ''
