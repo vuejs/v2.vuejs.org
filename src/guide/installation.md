@@ -20,6 +20,8 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实�
 
 直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。**重要提示：在开发时请用开发版本，遇到常见错误它会给出友好的警告。**
 
+<p class="tip">开发环境不要用最小压缩版，不然就失去了错误提示和警告!</p>
+
 <div id="downloads">
 <a class="button" href="http://rc.vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
@@ -46,6 +48,25 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实�
 # 最新稳定版
 $ npm install vue@next
 ```
+
+### 用 npm 构建时注意
+
+
+由于在构建时单个组件预编译模板进入渲染函数，所以默认导出的`vue` npm 包是 **只在运行环境下使用的**，它不支持`template`选项。如你希望使用`template`选项，你需要配置你的构建工具软连接`vue`单独构建。
+
+用webpack，添加下面的配置:
+
+``` js
+resolve: {
+  alias: {
+    vue: 'vue/dist/vue.js'
+  }
+}
+```
+
+对于Browserify,可以用 [aliasify](https://github.com/benbria/aliasify) 
+
+<p class="tip">不要用`import Vue from 'vue/dist/vue` - 因为一些工具或第三方库可能z正常引入vue,这样做可能导致应用程序运行时和独立的构建导致错误。</p>
 
 ## 命令行工具
 

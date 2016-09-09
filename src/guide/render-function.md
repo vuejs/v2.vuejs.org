@@ -320,6 +320,7 @@ Vue.component('my-component', {
 - `data`: 传递给组件的 data 对象
 - `parent`: 对父组件的引用
 
+
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
 
 函数化组件只是一个函数，所以渲染开销也低很多。但同样它也有完整的组件封装，你需要知道这些， 比如：
@@ -371,9 +372,9 @@ Vue.component('smart-list', {
 })
 ```
 
-### `slots` 和 `children` 对比
+### `slots()` 和 `children` 对比
 
-你可能想知道为什么同时需要 `slots` 和 `children`。`slots.default` 不是和 `children` 类似的吗？在一些场景中，是这样，但是如果是函数式组件和下面这样的 children 呢？
+你可能想知道为什么同时需要 `slots()` 和 `children`。`slots().default` 不是和 `children` 类似的吗？在一些场景中，是这样，但是如果是函数式组件和下面这样的 children 呢？
 
 ``` html
 <my-functional-component>
@@ -384,8 +385,7 @@ Vue.component('smart-list', {
 </my-functional-component>
 ```
 
-对于这个组件，`children` 会给你两个段落标签，而 `slots.default` 只会传递第二个匿名段落标签，`slots.foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots` ，因此你可以选择让组件通过 `slot` 系统分发或者简单的通过 `children` 接收，让其他组件去处理。
-
+对于这个组件，`children` 会给你两个段落标签，而 `slots().default` 只会传递第二个匿名段落标签，`slots().foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots()` ，因此你可以选择让组件通过 `slot()` 系统分发或者简单的通过 `children` 接收，让其他组件去处理。
 
 ## 模板编译
 

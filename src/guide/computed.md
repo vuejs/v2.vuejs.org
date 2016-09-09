@@ -80,7 +80,40 @@ console.log(vm.reversedMessage) // -> 'eybdooG'
 
 你可以像绑定普通属性一样在模板中绑定计算属性。Vue 知道 `vm.reversedMessage` 依赖于 `vm.message`，因此当 `vm.message` 发生改变时，依赖于 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们是声明式地创建这种依赖关系：计算属性的 getter 是干净无副作用的，因此也是易于测试和理解的。
 
-### 计算属性 vs. $watch
+### Computed Caching vs Methods
+
+You may have noticed we can achieve the same result by invoking a method in the expression:
+
+``` html
+<p>Reversed message: "{{ reverseMessage() }}"</p>
+```
+
+``` js
+// in component
+methods: {
+  reverseMessage: function () {
+    return this.message.split('').reverse().join('')
+  }
+}
+```
+
+Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on its dependencies.** A computed property will only re-evaluate when some of its dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+
+This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+
+``` js
+computed: {
+  now: function () {
+    return Date.now()
+  }
+}
+```
+
+In comparison, a method invocation will **always** run the function whenever a re-render happens.
+
+Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+
+### 计算属性 vs watch
 
 Vue.js 提供了一个方法 `$watch`，它用于观察 Vue 实例上的数据变动。当一些数据需要根据其它数据变化时， `$watch` 很诱人 —— 特别是如果你来自 AngularJS。不过，通常更好的办法是使用计算属性而不是一个命令式的 `$watch` 回调。考虑下面例子：
 
@@ -276,11 +309,13 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
+在这个示例中，使用`watch`的设置允许我们执行异步操作（访问一个接口），限制我们多久执行该操作，并在我们获取最终结果时立刻设置状态。这是计算属性无法做到的。
 
-在这个示例中，使用watch的设置允许我们执行异步操作（访问一个接口），限制我们多久执行该操作，并在我们获取最终结果时立刻设置状态。这是计算属性无法做到的。
+关于`watch` 选项，可看API文档[vm.$watch API](/api/#vm-watch)。
 
 ***
 
 > 原文：http://rc.vuejs.org/guide/computed.html
 
 ***
+

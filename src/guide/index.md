@@ -12,10 +12,9 @@ Vue.js 自身不是一个全能框架——它只聚焦于视图层。因此它�
 
 如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](comparison.html)。
 
-
 ## 起步
 
-尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/ng41aepx/)。在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
+尝试 Vue.js 最简单的方法是使用  [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/4tpzm3e1/) 。在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
 
 ## 声明式渲染
 
@@ -121,7 +120,8 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-在控制台设置 `app2.seen = false`，可以看到消息消失了。
+在控制台设置 `app3.seen = false`，可以看到消息消失了。
+
 
 第二个示例演示了我们不仅可以绑定数据到文本和属性，也可以绑定到DOM结构上。甚至，Vue还提供一套强力的过渡系统在元素通过Vue插入/更新/移除自动应用[过渡效果](transitions.html)。
 
@@ -172,7 +172,7 @@ var app4 = new Vue({
 </script>
 {% endraw %}
 
-在控制台输入 `app3.todos.push({ text: 'New item' })`。可以看到新元素进了列表中。
+在控制台输入 `app4.todos.push({ text: 'New item' })`。可以看到新元素进了列表中。
 
 ## 处理用户输入
 

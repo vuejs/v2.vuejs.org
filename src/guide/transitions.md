@@ -803,6 +803,7 @@ new Vue({
 
 同时生效的进入和离开不能总满足需求，所以 Vue 提供了 **过渡模式**
 
+
 - `in-out`: 新元素先进行过渡，完成之后当前元素过渡离开。
 
 - `out-in`: 当前元素先进行过渡，完成之后新元素过渡进入。
@@ -1262,7 +1263,7 @@ new Vue({
 
 <p class="tip">需要注意的是使用 FLIP 过渡的不能是设置 `display: inline` 的元素。作为替代方案，可以设置为 `display: inline-block` 或者放置于 flex 中</p>
 
-FLIP 动画不仅可以实现单列过渡，多维网格的过渡也同样[简单](https://jsfiddle.net/chrisvfritz/a2ngorat/):
+FLIP 动画不仅可以实现单列过渡，多维网格的过渡也同样[简单](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">

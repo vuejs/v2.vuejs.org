@@ -31,6 +31,7 @@ var myComponentInstance = new MyComponent()
 
 尽管可以命令式地创建扩展实例，不过在多数情况下将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](/components.md)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
 
+
 ## Properties and Methods
 
 Each Vue instance **proxies** all the properties found in its `data` object:
@@ -83,6 +84,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 Vue 实例在创建时有一系列初始化步骤——例如，它需要建立数据观察，编译模板，创建必要的数据绑定。在此过程中，它也将调用一些**生命周期钩子**，给自定义逻辑提供运行机会。例如 `created`  钩子在实例创建后调用：
 
+
 ``` js
 var vm = new Vue({
   data: {
@@ -104,7 +106,7 @@ var vm = new Vue({
 
 下图说明了实例的生命周期。你不需要立马弄明白所有的东西，不过以后它会有帮助。
 
-![Lifecycle](!!TODO: EVAN WILL NEED TO UPDATE /images/lifecycle.png)
+![Lifecycle](/images/lifecycle.png)
 
 ![](https://cloud.githubusercontent.com/assets/12537013/17702060/f847b38a-63fe-11e6-9c29-38e58d46f036.png)
 
@@ -113,3 +115,6 @@ var vm = new Vue({
 > 原文： http://rc.vuejs.org/guide/instance.html
 
 ***
+
+
+
