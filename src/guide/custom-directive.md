@@ -63,6 +63,7 @@ Then in a template, you can use the new `v-focus` attribute on any element, like
 A directive definition object can provide several hook functions (all optional):
 
 - `bind`: called only once, when the directive is first bound to the element
+- `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not in-document)
 - `update`: called whenever the bound element is updated, even when the directive value has not changed
 - `componentUpdated`: called after the component has completed an update cycle
 - `unbind`: called only once, when the directive is unbound from the element.
