@@ -66,7 +66,7 @@ A directive definition object can provide several hook functions (all optional):
 - `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not in-document)
 - `update`: called whenever the bound element is updated, even when the directive value has not changed
 - `componentUpdated`: called after the component has completed an update cycle
-- `unbind`: called only once, when the directive is unbound from the element.
+- `unbind`: called only once, when the directive is unbound from the element
 
 We'll explore the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `oldVnode`) in the next section.
 
