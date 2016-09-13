@@ -211,6 +211,124 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
+### Components and v-for
+
+> This section assumes knowledge of [Components](/guide/components.html). Feel free to skip it and come back later.
+
+You can directly use `v-for` on a custom component, like any normal element:
+
+``` html
+<my-component v-for="item in items"></my-component>
+```
+
+However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+
+``` html
+<my-component
+  v-for="(item, index) in items"
+  v-bind:item="item"
+  v-bind:index="index">
+</my-component>
+```
+
+The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+
+Here's a complete example of a simple todo list:
+
+``` html
+<div id="todo-list-example">
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:title="todo"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+```
+
+``` js
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    <\li>\
+  ',
+  props: ['title']
+})
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      'Do the dishes',
+      'Take out the trash',
+      'Mow the lawn'
+    ]
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push(this.newTodoText)
+      this.newTodoText = ''
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="todo-list-example" class="demo">
+  <input
+    v-model="newTodoText" v
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:title="todo"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+<script>
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      'Do the dishes',
+      'Take out the trash',
+      'Mow the lawn'
+    ]
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push(this.newTodoText)
+      this.newTodoText = ''
+    }
+  }
+})
+</script>
+{% endraw %}
+
 ## key
 
 When Vue.js is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
