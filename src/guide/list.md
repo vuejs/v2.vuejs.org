@@ -8,7 +8,7 @@ order: 8
 
 We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
 
-### Simple example
+### Basic Usage
 
 ``` html
 <ul id="example-1">
@@ -112,7 +112,7 @@ You can also use `of` as the delimiter instead of `in`, so that it is closer to 
 <div v-for="item of items"></div>
 ```
 
-## Template v-for
+### Template v-for
 
 Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
 
@@ -125,94 +125,7 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-## Array Change Detection
-
-### Mutation Methods
-
-Vue wraps an observed array's mutation methods so they will also trigger view updates. The wrapped methods are:
-
-- `push()`
-- `pop()`
-- `shift()`
-- `unshift()`
-- `splice()`
-- `sort()`
-- `reverse()`
-
-You can open the console and play with the previous examples' `items` array by calling their mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
-
-### Replacing an Array
-
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original Array but **always return a new array**. When working with non-mutating methods, you can just replace the old array with the new one:
-
-``` js
-example1.items = example1.items.filter(function (item) {
-  return item.message.match(/Foo/)
-})
-```
-
-You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
-
-### `key`
-
-In some cases, you might need to replace the array with completely new objects - e.g. ones created from an API call. Since by default `v-for` determines the reusability of existing scopes and DOM elements by tracking the identity of its data object, this could cause the entire list to be re-rendered. However, if each of your data objects has a unique property, then you can use a `key` special attribute to give Vue a hint so that it can reuse existing instances as much as possible.
-
-For example, if your data looks like this:
-
-``` js
-{
-  items: [
-    { _uid: '88f869d', ... },
-    { _uid: '7496c10', ... }
-  ]
-}
-```
-
-Then you can give the hint like this:
-
-``` html
-<div v-for="item in items" v-bind:key="item._uid">
-  <!-- content -->
-</div>
-```
-
-Later on, when you replace the `items` array and Vue encounters a new object with `_uid: '88f869d'`, it knows it can reuse the existing scope and DOM elements associated with the same `_uid`.
-
-### `v-bind:key="index"`
-
-If you don't have a unique key to track by, you can also use `v-bind:key="index"`, which will force `v-for` into in-place update mode: fragments are no longer moved around, they simply get flushed with the new value at the corresponding index. This mode can also handle duplicate values in the source array.
-
-<p class="tip">This can make array replacement extremely efficient, but it comes at a trade-off. Because DOM nodes are no longer moved to reflect the change in order, **temporary state like DOM input values and component private state can become out of sync**. Keep this in mind when using `v-bind:key="index"` if the `v-for` block contains form input elements or child components.</p>
-
-### Caveats
-
-Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
-
-1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
-2. When you modify the length of the array, e.g. `vm.items.length = newLength`
-
-To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
-
-``` js
-// Vue.set
-Vue.set(example1.items, indexOfItem, newValue)
-```
-``` js
-// Array.prototype.splice`
-example1.items.splice(indexOfItem, 1, newValue)
-```
-
-To deal with caveat 2, you can also use `splice`:
-
-``` js
-example1.items.splice(newLength)
-````
-
-#### Using `Object.freeze()`
-
-When iterating over an array of objects frozen with `Object.freeze()`, you need to explicitly use `key`. A warning will be displayed in this scenario when Vue is unable to track objects automatically.
-
-## Object `v-for`
+### Object v-for
 
 You can also use `v-for` to iterate through the properties of an object.
 
@@ -277,7 +190,7 @@ And another for the index:
 
 <p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
 
-## Range v-for
+### Range v-for
 
 `v-for` can also take an integer. In this case it will repeat the template that many times.
 
@@ -298,11 +211,85 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
+## key
+
+When Vue.js is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
+
+This default mode is efficient, but only suitable **when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
+
+To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item. An ideal value for `key` would be the unique id of each item. This special attribute is a rough equivalent to `track-by` in 1.x, but it works like an attribute, so you need to use `v-bind` to bind it to dynamic values (using shorthand here):
+
+``` html
+<div v-for="item in items" :key="item.id">
+  <!-- content -->
+</div>
+```
+
+It is recommended to provide a `key` with `v-for` whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.
+
+Since it's a generic mechanism for Vue to identify nodes, the `key` also has other uses that are not specifically tied to `v-for`, as we will see later in the guide.
+
+## Array Change Detection
+
+### Mutation Methods
+
+Vue wraps an observed array's mutation methods so they will also trigger view updates. The wrapped methods are:
+
+- `push()`
+- `pop()`
+- `shift()`
+- `unshift()`
+- `splice()`
+- `sort()`
+- `reverse()`
+
+You can open the console and play with the previous examples' `items` array by calling their mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
+
+### Replacing an Array
+
+Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original Array but **always return a new array**. When working with non-mutating methods, you can just replace the old array with the new one:
+
+``` js
+example1.items = example1.items.filter(function (item) {
+  return item.message.match(/Foo/)
+})
+```
+
+You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
+
+### Caveats
+
+Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
+
+1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
+2. When you modify the length of the array, e.g. `vm.items.length = newLength`
+
+To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
+
+``` js
+// Vue.set
+Vue.set(example1.items, indexOfItem, newValue)
+```
+``` js
+// Array.prototype.splice`
+example1.items.splice(indexOfItem, 1, newValue)
+```
+
+To deal with caveat 2, you can also use `splice`:
+
+``` js
+example1.items.splice(newLength)
+```
+
 ## Displaying Filtered/Sorted Results
 
 Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
 
 For example:
+
+``` html
+<li v-for="n in evenNumbers">{{ n }}</li>
+```
 
 ``` js
 data: {
@@ -311,6 +298,25 @@ data: {
 computed: {
   evenNumbers: function () {
     return this.numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+}
+```
+
+Alternatively, you can also just use a method where computed properties are not feasible (e.g. inside nested `v-for` loops):
+
+``` html
+<li v-for="n in even(numbers)">{{ n }}</li>
+```
+
+``` js
+data: {
+  numbers: [ 1, 2, 3, 4, 5 ]
+},
+methods: {
+  even: function (numbers) {
+    return numbers.filter(function (number) {
       return number % 2 === 0
     })
   }
