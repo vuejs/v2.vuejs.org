@@ -1,5 +1,5 @@
 ---
-title: Methods and Event Handling
+title: Event Handling
 type: guide
 order: 9
 ---
