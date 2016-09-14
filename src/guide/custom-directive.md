@@ -6,7 +6,7 @@ order: 16
 
 ## Intro
 
-In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Directives provide a reusable way of binding behavior that requires low-level DOM access, such as focusing on an input element, like this one:
+In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you just need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -14,10 +14,8 @@ In addition to the default set of directives shipped in core (`v-model` and `v-s
 </div>
 <script>
 Vue.directive('focus', {
-  bind: function (el) {
-    Vue.nextTick(function () {
-      el.focus()
-    })
+  inserted: function (el) {
+    el.focus()
   }
 })
 new Vue({
@@ -31,13 +29,10 @@ When the page loads, that element gains focus. In fact, if you haven't clicked o
 ``` js
 // Register a global custom directive called v-focus
 Vue.directive('focus', {
-  // When the directive is first bound to the element...
-  bind: function (el) {
-    // After the next render...
-    Vue.nextTick(function () {
-      // Focus the element
-      el.focus()
-    })
+  // When the bound element is inserted into the DOM...
+  inserted: function (el) {
+    // Focus the element
+    el.focus()
   }
 })
 ```
@@ -62,11 +57,15 @@ Then in a template, you can use the new `v-focus` attribute on any element, like
 
 A directive definition object can provide several hook functions (all optional):
 
-- `bind`: called only once, when the directive is first bound to the element
-- `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not in-document)
-- `update`: called whenever the bound element is updated, even when the directive value has not changed
-- `componentUpdated`: called after the component has completed an update cycle
-- `unbind`: called only once, when the directive is unbound from the element
+- `bind`: called only once, when the directive is first bound to the element. This is where you can do one-time setup work.
+
+- `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not necessarily in-document).
+
+- `update`: called whenever the bound element's containing component is updated. The directive's value may or may not have changed. You can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
+
+- `componentUpdated`: called after the containing component has completed an update cycle.
+
+- `unbind`: called only once, when the directive is unbound from the element.
 
 We'll explore the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `oldVnode`) in the next section.
 
@@ -82,7 +81,7 @@ Directive hooks are passed these arguments:
   - **expression**: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be `"1 + 1"`.
   - **arg**: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
   - **modifiers**: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-- **vnode**: The virtual node produced by Vue's compiler. See the [VNode API]([!!TODO: Add link to the VNode API doc when it exists]) for full details.
+- **vnode**: The virtual node produced by Vue's compiler.<!--See the [VNode API]([!!TODO: Add link to the VNode API doc when it exists]) for full details.-->
 - **oldVnode**: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
 
 <p class="tip">Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
