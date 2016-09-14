@@ -1485,3 +1485,152 @@ Called after the template has just been compiled, before `vm.$el` is created.
 - **See also:**
   - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
   - [Components - Cheap Static Components with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
+
+
+## Special Elements
+
+### component
+
+- **Attributes:**
+  - `is` - String
+  - `inline-template` - Boolean
+
+- **Usage:**
+
+  Alternative syntax for invoking components. Primarily used for dynamic components with the `is` special attribute:
+
+  ```html
+  <!-- a dynamic component controlled by -->
+  <!-- the `componentId` property on the vm -->
+  <component :is="componentId"></component>
+  ```
+
+- **See also:** [Dynamic Components](/guide/components.html#Dynamic-Components)
+
+### transition
+
+- **Attributes:**
+  - `name` - String, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
+  - `appear` - Boolean, Whether to apply transition on initial render. Defaults to `false`.
+  - `css` - Boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
+  - `type` - String, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
+  - `mode` - String, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `enterClass` - String, Individually configure transition CSS classes.
+  - `leaveClass` - String, Individually configure transition CSS classes.
+  - `enterActiveClass` - String, Individually configure transition CSS classes.
+  - `leaveActiveClass` - String, Individually configure transition CSS classes.
+  - `appearClass` - String, Individually configure transition CSS classes.
+  - `appearActiveClass` - String, Individually configure transition CSS classes.
+ 
+- **Events:**
+  - `before-enter`
+  - `enter`
+  - `after-enter`
+  - `before-leave`
+  - `leave`
+  - `after-leave`
+  - `before-appear`
+  - `appear`
+  - `after-appear`
+
+- **Usage:**
+
+  `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
+
+  ```html
+  <!-- simple element -->
+  <transition>
+    <div v-if="ok">toggled content</div>
+  </transition>
+  <!-- dynamic component -->
+  <transition name="fade" mode="out-in" appear>
+    <component :is="view"></component>
+  </transition>
+  <!-- event hooking -->
+  <div id="transition-demo">
+    <transition @after-enter="transitionComplete">
+      <div v-show="ok">toggled content</div>
+    </transition>
+  </div>
+  <script>
+  new Vue({
+    ...
+    methods: {
+      transitionComplete: function (el) {
+        // for passed 'el' that DOM element as the argument, something ...
+      }
+    }
+    ... 
+  }).$mount('#transition-demo')
+  </script>
+  ```
+
+- **See also:** [Transitions: Entering, Leaving, and Lists](/guide/transitions.html)
+
+### transition-group
+
+- **Attributes:**
+  - exposes `<transition>` attributes (Note does not support the `mode` attribute).
+  - `tag` - String, Default to `span`.
+
+- **Events:**
+  - exposes `<transition>` events.
+
+- **Usage:**
+
+  `<transition-group>` serve as transition effects for **multiple** element/component. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
+
+  Note every child in a `<transition-group>` must be **uniquely keyed**.
+
+  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `moveClass` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+
+  ```html
+  <transition-group tag="ul" name="slide">
+    <li v-for="item in items" :key="item.id">
+      {{ item.text }}
+    </li>
+  </transition-group>
+  ``` 
+
+- **See also:** [Transitions: Entering, Leaving, and Lists](/guide/transitions.html)
+
+### keep-alive
+
+- **Usage:**
+
+  `<keep-alive>` serve as caching of inactive component. `<keep-alive>` used with component, it will be replaced.
+
+  Primarily used with preserve component state or avoid re-rendering.
+
+  ```html
+  <!-- basic -->
+  <keep-alive>
+    <component :is="view"></component>
+  </keep-alive>
+  <!-- multiple conditional children -->
+  <keep-alive>
+    <comp-a v-if="a > 1"></comp-a>
+    <comp-b v-else></comp-b>
+  </keep-alive>
+  <!-- used together with <transition> -->
+  <transition>
+    <keep-alive>
+      <component :is="view"></component>
+    </keep-alive>
+  </transition>
+  ```
+
+- **See also:** [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
+
+### slot
+
+- **Attributes:**
+  - `name` - String, Used for named slot.
+
+- **Usage:**
+
+  `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
+
+  For detailed usage, see the guide section linked below.
+
+- **See also:** [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
