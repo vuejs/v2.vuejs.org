@@ -99,7 +99,7 @@ There are four classes applied for enter/leave transitions.
 3. `v-leave`: Starting state for leave. Applied when leave transition is triggered, removed after one frame.
 4. `v-leave-active`: Active and ending state for leave. Applied when leave transition is triggered, removed when the transition/animation finishes.
 
-!!TODO: A nifty timeline diagram might be useful here.
+![Transition Diagram](/images/transition.png)
 
 Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter` class would instead be `my-transition-enter`.
 
