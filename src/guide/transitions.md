@@ -84,24 +84,24 @@ new Vue({
 
 When an element wrapped in a `transition` component is inserted or removed, this is what happens:
 
-1. Automatically sniff whether the target element has CSS transitions or animations applied. If it does, add/remove CSS classes at the appropriate times.
+1. Vue will automatically sniff whether the target element has CSS transitions or animations applied. If it does, CSS transition classes will be added/removed at appropriate timings.
 
-2. If the transition component provided [JavaScript hooks](#JavaScript-Hooks), call these hooks at the appropriate times.
+2. If the transition component provided [JavaScript hooks](#JavaScript-Hooks), these hooks will be called at appropriate timings.
 
-3. If no CSS transitions/animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal are executed immediately on next frame.
+3. If no CSS transitions/animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal will be executed immediately on next frame (Note: this is a browser animation frame, different from Vue's concept of `nextTick`).
 
 ### Transition Classes
 
 There are four classes applied for enter/leave transitions.
 
-1. `v-enter`: Starting state for enter. Applied before element is inserted, removed after 1 tick.
+1. `v-enter`: Starting state for enter. Applied before element is inserted, removed after one frame.
 2. `v-enter-active`: Active and ending state for enter. Applied before element is inserted, removed when transition/animation finishes.
-3. `v-leave`: Starting state for leave. Applied when leave transition is triggered, removed after 1 tick.
+3. `v-leave`: Starting state for leave. Applied when leave transition is triggered, removed after one frame.
 4. `v-leave-active`: Active and ending state for leave. Applied when leave transition is triggered, removed when the transition/animation finishes.
 
 !!TODO: A nifty timeline diagram might be useful here.
 
-For each of these classes, the `v` prefix is the name of the transition. If you use `name="my-transition"` for example, then the `v-enter` class would instead be `my-transition-enter`.
+Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter` class would instead be `my-transition-enter`.
 
 `v-enter-active` and `v-leave-active` give you the ability to specify different easing curves for enter/leave transitions, which you'll see an example of in the following section.
 
