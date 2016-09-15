@@ -329,7 +329,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Literal vs. Dynamic
+### Literal vs Dynamic
 
 A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
 
