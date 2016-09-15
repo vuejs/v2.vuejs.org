@@ -1376,7 +1376,7 @@ Use components instead.
 </div>
 {% endraw %}
 
-### `Vue.partial` (migration helper)
+### `Vue.partial` <sup>deprecated</sup>
 
 Use [functional components](render-function.html#Functional-Components) instead.
 
