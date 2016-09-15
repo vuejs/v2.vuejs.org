@@ -266,7 +266,11 @@ While Angular 1 could be used for smaller applications, Angular 2 has shifted fo
 
 Vue is also well-suited to [enterprise environments](https://github.com/vuejs/awesome-vue#enterprise-usage) and can even be used [with TypeScript](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/vue), though it's definitely optional in our case.
 
-It can be difficult to make many more comparisons as of writing though, as Angular 2 has yet to be released and still has over 1,000 open issues on GitHub. However, while performance characteristics and implementation details are still likely to change, the API is stable at this point, so we can safely compare the flexibility and learning curve of the two libraries - two areas where they differ significantly.
+### Size and Performance
+
+In terms of performance, both frameworks are exceptionally fast and there isn't enough data from real world use cases to make a verdict. However if you are determined to see some numbers, Vue 2.0 seems to be ahead of Angular 2 according to this [3rd party benchmark](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
+
+Size wise, although Angular 2 with offline compilation and tree-shaking is able to get its size down considerably, a full-featured Vue 2.0 with compiler included (23kb) is still lighter than a tree-shaken bare-bone example of Angular 2 (50kb). And do note the Angular 2 app's size is small due to tree-shaking, which removes code for features that you are not using. It will eventually grow back to its actual size as you import and use more features from the framework.
 
 ### Flexibility
 
