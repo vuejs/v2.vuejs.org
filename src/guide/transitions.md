@@ -440,3 +440,5 @@ Vue.transition('stagger', {
 Example:
 
 <iframe width="100%" height="200" style="margin-left:10px" src="https://jsfiddle.net/yyx990803/mvo99bse/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p class="tip">The `stagger` attribute will not affect the transition of items added or removed by `v-if` or `v-show`. Only changes to the array or object provided to `v-for` will cause transitions to stagger.</p>
