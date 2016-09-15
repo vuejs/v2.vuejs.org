@@ -39,7 +39,7 @@ import Vue from 'vue'
 import MyComponent from 'path/to/MyComponent.vue'
 
 // Here are some Jasmine 2.0 tests, though you can
-// use any assertion library you prefer
+// use any test runner / assertion library combo you prefer
 describe('MyComponent', () => {
   // Inspect the raw component options
   it('has a created hook', () => {
@@ -60,26 +60,73 @@ describe('MyComponent', () => {
     expect(vm.message).toBe('bye!')
   })
 
-  // Inspect the generated HTML on mount
+  // Mount an instance and inspect the render output
   it('renders the correct message', () => {
-    const vm = new Vue(MyComponent).$mount()
+    const Ctor = Vue.extend(MyComponent)
+    const vm = new Ctor().$mount()
     expect(vm.$el.textContent).toBe('bye!')
+  })
+})
+```
+
+## Writing Testable Components
+
+A lot of components' render output are primarily determined by the props they receive. In fact, if a component's render output solely depends on its props, it becomes quite straightforward to test, similar to asserting the return value of a pure function with different arguments. Take an contrived example:
+
+``` html
+<template>
+  <p>{{ msg }}</p>
+</template>
+
+<script>
+  export default {
+    props: ['msg']
+  }
+</script>
+```
+
+You can assert its render output with different props using the `propsData` option:
+
+``` js
+import Vue from 'vue'
+import MyComponent from './MyComponent.vue'
+
+// helper function that mounts and returns the rendered text
+function getRenderedText (Component, propsData) {
+  const Ctor = Vue.extend(MyComponent)
+  const vm = new Ctor({ propsData }).$mount()
+  return vm.$el.textContent
+}
+
+describe('MyComponent', () => {
+  it('render correctly with different props', () => {
+    expect(getRenderedText(MyComponent, {
+      msg: 'Hello'
+    })).toBe('Hello')
+
+    expect(getRenderedText(MyComponent, {
+      msg: 'Bye'
+    })).toBe('Bye')
   })
 })
 ```
 
 ## Asserting Asynchronous Updates
 
-Since Vue performs DOM updates asynchronously, some assertions will have to be made in a `Vue.nextTick` callback:
+Since Vue performs DOM updates asynchronously, assertions on DOM updates resulting from state change will have to be made in a `Vue.nextTick` callback:
 
 ``` js
 // Inspect the generated HTML after a state update
 it('updates the rendered message when vm.message updates', done => {
   const vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
+
+  // wait a "tick" after state change before asserting DOM updates
   Vue.nextTick(() => {
     expect(vm.$el.textContent).toBe('foo')
     done()
   })
 })
 ```
+
+We are planning to work on a collection of common test helpers that makes it even simpler to render components with different constraints (e.g. shallow rendering that ignores child components) and assert their output.
