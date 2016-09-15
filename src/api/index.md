@@ -150,7 +150,6 @@ type: api
   })
   ```
 
-!!TODO: The 'see also' link is dependant on whether its content will remain relevant after the rewrite([See Guide#Reactivity TODO for 2.0](https://github.com/vuejs/vuejs.org/blob/2.0/src/guide/reactivity.md#async-update-queue))
 - **See also:** [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="Vue-set">Vue.set( object, key, value )</h3>
@@ -1068,42 +1067,6 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
   Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
 
-## Instance Methods / DOM
-
-<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
-
-- **Arguments:**
-  - `{Function} [callback]`
-
-- **Usage:**
-
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
-
-- **Example:**
-
-  ``` js
-  new Vue({
-    // ...
-    methods: {
-      // ...
-      example: function () {
-        // modify data
-        this.message = 'changed'
-        // DOM is not updated yet
-        this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
-          this.doSomethingElse()
-        })
-      }
-    }
-  })
-  ```
-
-- **See also:**
-  - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
-
 ## Instance Methods / Lifecycle
 
 <h3 id="vm-mount">vm.$mount( [elementOrSelector], [hydrating] )</h3>
@@ -1153,6 +1116,40 @@ Called after the template has just been compiled, before `vm.$el` is created.
   The Vue instance will be forced the re-render.
 
 <p class="tip">Note: This method have an influence on your application performance degradation. The excessive call is no recommended.</p>
+
+<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
+
+- **Arguments:**
+  - `{Function} [callback]`
+
+- **Usage:**
+
+  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+
+- **Example:**
+
+  ``` js
+  new Vue({
+    // ...
+    methods: {
+      // ...
+      example: function () {
+        // modify data
+        this.message = 'changed'
+        // DOM is not updated yet
+        this.$nextTick(function () {
+          // DOM is now updated
+          // `this` is bound to the current instance
+          this.doSomethingElse()
+        })
+      }
+    }
+  })
+  ```
+
+- **See also:**
+  - [Vue.nextTick](#Vue-nextTick)
+  - [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy( )</h3>
 
