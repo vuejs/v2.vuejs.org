@@ -27,11 +27,13 @@ Now we get:
 - [CommonJS modules](https://webpack.github.io/docs/commonjs.html)
 - [Component-scoped CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
-As promised, we can also use preprocessors such as Jade, Babel, and Stylus for cleaner and more feature-rich components.
+As promised, we can also use preprocessors such as Jade, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-These specific languages are just examples. You could just as easily use Marko, TypeScript, and SCSS - or whatever other preprocessors that help you be productive.
+These specific languages are just examples. You could just as easily use Buble, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive.
+
+<!-- TODO: include CSS modules once it's supported in vue-loader 9.x -->
 
 ## Getting Started
 
@@ -40,15 +42,18 @@ These specific languages are just examples. You could just as easily use Marko, 
 With `.vue` components, we're entering the realm of advanced JavaScript applications. That means learning to use a few additional tools if you haven't already:
 
 - **Node Package Manager (NPM)**: Read the [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) through section _10: Uninstalling global packages_.
+
 - **Modern JavaScript with ES2015/16**: Read through Babel's [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). You don't have to memorize every feature right now, but keep this page as a reference you can come back to.
 
-After you've taken a day to dive into these resources, we recommend checking out the [browserify-simple-2.0](https://github.com/vuejs-templates/browserify-simple-2.0) template, which is the simplest template that uses `.vue` components.
+After you've taken a day to dive into these resources, we recommend checking out the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template, which is a minimal setup using [Webpack](http://webpack.github.io) to support `.vue` components.
 
-If you'd like to learn more about how `.vue` components work with Browserify, you can read [these docs](https://github.com/vuejs/vueify/blob/master/README.md). To learn more about Browserify itself, [their Usage guide](https://github.com/substack/node-browserify#usage) is recommended reading.
+Webpack is a module bundler that takes a number of "modules" and then bundle them into your final application. <!-- TODO: To learn more about Webpack itself, [the Webpack series on Egghead.io]([]) offers a good intro. -->
+
+In Webpack, each module can be transformed by a "loader" before included into the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with Webpack, you can read [the docs for vue-loader](vue-loader.vuejs.org).
 
 ### For Advanced Users
 
-Whether you prefer Webpack, Browserify, or SystemJS, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
+Whether you prefer Webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
 
 ## Deploying for Production
 
