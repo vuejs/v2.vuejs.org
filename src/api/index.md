@@ -833,7 +833,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Details:**
 
-  The DOM element that the Vue instance is managing. `vm.$el` will return a DOM element that created with the Vue instance.
+  The root DOM element that the Vue instance is managing.
 
 ### vm.$options
 
@@ -1518,7 +1518,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
   - `leaveActiveClass` - String, Individually configure transition CSS classes.
   - `appearClass` - String, Individually configure transition CSS classes.
   - `appearActiveClass` - String, Individually configure transition CSS classes.
- 
+
 - **Events:**
   - `before-enter`
   - `enter`
@@ -1557,7 +1557,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
         // for passed 'el' that DOM element as the argument, something ...
       }
     }
-    ... 
+    ...
   }).$mount('#transition-demo')
   </script>
   ```
@@ -1587,7 +1587,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
       {{ item.text }}
     </li>
   </transition-group>
-  ``` 
+  ```
 
 - **See also:** [Transitions: Entering, Leaving, and Lists](/guide/transitions.html)
 
