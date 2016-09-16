@@ -652,7 +652,7 @@ Fortunately, since the new directives are much simpler, you can master them more
 
 ### `transition` Attribute <sup>deprecated</sup>
 
-Vue's transition system has changed quite drastically and now uses `<transition>` and `<transition-group>` wrapper elements, rather than the `transition` attribute. It's recommended to to read the new [Transitions guide](transitions.html) to learn more.
+Vue's transition system has changed quite drastically and now uses `<transition>` and `<transition-group>` wrapper elements, rather than the `transition` attribute. It's recommended to read the new [Transitions guide](transitions.html) to learn more.
 
 {% raw %}
 <div class="upgrade-path">
