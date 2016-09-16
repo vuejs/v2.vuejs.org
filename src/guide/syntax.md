@@ -1,11 +1,19 @@
 ---
-title: 数据绑定语法
+title: 模板语法
 type: guide
 order: 4
 ---
 
+<<<<<<< HEAD
 
 Vue.js 使用一个极简的虚拟DOM实现组件渲染和插值变量。
+=======
+Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance's data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
+
+Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+
+If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](/guide/render-function.html) instead of templates, with optional JSX support.
+>>>>>>> 2.0
 
 Vue.js 的模板是基于 DOM 实现的。这意味着所有的 Vue.js 模板都是可解析的有效的 HTML，且通过一些特殊的特性做了增强。Vue 模板因而从根本上不同于基于字符串的模板，请记住这点。
 
@@ -21,7 +29,7 @@ Vue.js 的模板是基于 DOM 实现的。这意味着所有的 Vue.js 模板都
 
 Mustache 标签会被相应数据对象的 `msg` 属性的值替换。每当这个属性变化时它也会更新。
 
-你也可以使用[`v-once指令`](http://rc.vuejs.org/guide/!!TODO)只处理单次插值，今后的数据变化就不会再引起插值更新了,但是请记住这会影响所绑定节点中所有变化
+你也可以使用[`v-once指令`](/api/#v-once)只处理单次插值，今后的数据变化就不会再引起插值更新了,但是请记住这会影响所绑定节点中所有变化。
 
 ``` html
 <span v-once>This will never change: {{ msg }}</span>
@@ -35,14 +43,13 @@ Mustache 标签会被相应数据对象的 `msg` 属性的值替换。每当这�
 <div v-html="rawHtml"></div>
 ```
 
-内容以 HTML 字符串插入——数据绑定将被忽略。如果需要复用模板片断，应当使用 [`functional component`](http://rc.vuejs.org/guide/!!TODO)。
-
-<p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。记住，只对可信内容使用 HTML 插值，**永不**用于用户提交的内容。</p>
+The contents are inserted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
 
 ### HTML 特性
 
 Mustache 标签不可以用在 HTML 特性 (Attributes) 内，用一个[v-bind指令](http://rc.vuejs.org/guide/!!TODO)替换它
 
+<<<<<<< HEAD
 
 ## 绑定表达式
 
@@ -51,6 +58,23 @@ Mustache 标签不可以用在 HTML 特性 (Attributes) 内，用一个[v-bind�
 ### JavaScript 表达式
 
 到目前为止，我们的模板只绑定到简单的属性键。不过实际上 Vue.js 在数据绑定内支持全功能的 JavaScript 表达式：
+=======
+Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](/api/#v-bind):
+
+``` html
+<div v-bind:id="dynamicId"></div>
+```
+
+It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
+
+``` html
+<button v-bind:disabled="someDynamicCondition">Button</button>
+```
+
+### Using JavaScript Expressions
+
+So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
+>>>>>>> 2.0
 
 ``` html
 {{ number + 1 }}
@@ -58,9 +82,15 @@ Mustache 标签不可以用在 HTML 特性 (Attributes) 内，用一个[v-bind�
 {{ ok ? 'YES' : 'NO' }}
 
 {{ message.split('').reverse().join('') }}
+
+<div v-bind:id="'list-' + id"></div>
 ```
 
+<<<<<<< HEAD
 这些表达式将在所属的 Vue 实例的作用域内计算。一个限制是每个绑定只能包含**单个表达式**，因此下面的语句是**无效**的：
+=======
+These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
+>>>>>>> 2.0
 
 ``` html
 <!-- 这是一个语句，不是一个表达式： -->
@@ -70,21 +100,33 @@ Mustache 标签不可以用在 HTML 特性 (Attributes) 内，用一个[v-bind�
 {{ if (ok) { return message } }}
 ```
 
+<<<<<<< HEAD
 ### 过滤器
 
 Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管道符”指示：
+=======
+<p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
+
+### Filters
+
+Vue.js allows you to define filters that can be used to apply common text formatting. Filters should be appended to the end of a **mustache interpolation**, denoted by the "pipe" symbol:
+>>>>>>> 2.0
 
 ``` html
 {{ message | capitalize }}
 ```
 
+<<<<<<< HEAD
 <p class="tip">Vue 2 的过滤器只可以被用在mustache绑定中。为了获得在其它绑定表达式中一样的行为，你可以使用[计算属性](http://rc.vuejs.org/guide/!!TODO)替代它</p>
+=======
+<p class="tip">Vue 2.x filters can only be used inside mustache bindings. To achieve the same behavior inside directive bindings, you should use [Computed properties](/guide/computed.html) instead.</p>
+>>>>>>> 2.0
 
 过滤器函数总是接受表达式只做为第一个参数
 
 ```
 new Vue({
-  ...
+  // ...
   filters: {
     capitalize: function (value) {
       if (!value) return ''
@@ -107,17 +149,25 @@ new Vue({
 {{ message | filterA 'arg1' arg2 }}
 ```
 
+<<<<<<< HEAD
 过滤器函数始终以表达式的值作为第一个参数。带引号的参数视为字符串，而不带引号的参数按表达式计算。这里，字符串 `'arg1'` 将传给过滤器作为第二个参数，表达式 `arg2` 的值在计算出来之后作为第三个参数。
+=======
+Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+>>>>>>> 2.0
 
 ## 指令
 
+<<<<<<< HEAD
 指令 (Directives) 是特殊的带有前缀 `v-` 的特性。指令的值限定为**绑定表达式**，因此上面提到的 JavaScript 表达式及过滤器规则在这里也适用。指令的职责就是当其表达式的值改变时把某些特殊的行为应用到 DOM 上。我们来回头看下“概述”里的例子：
+=======
+Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception for `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
+>>>>>>> 2.0
 
 ``` html
-<p v-if="greeting">Hello!</p>
+<p v-if="seen">Now you see me</p>
 ```
 
-这里 `v-if` 指令将根据表达式 `greeting` 值的真假删除/插入 `<p>` 元素。
+这里 `v-if` 指令将根据表达式 `seen` 值的真假删除/插入 `<p>` 元素。
 
 ### 参数
 
@@ -127,7 +177,7 @@ new Vue({
 <a v-bind:href="url"></a>
 ```
 
-这里 `href` 是参数，它告诉 `v-bind` 指令将元素的 `href` 特性跟表达式 `url` 的值绑定。可能你已注意到可以用特性插值 `{% raw %}href="{{url}}"{% endraw %}` 获得同样的结果：这样没错，并且实际上在内部特性插值会转为 `v-bind` 绑定。
+这里 `href` 是参数，它告诉 `v-bind` 指令将元素的 `href` 特性跟表达式 `url` 的值绑定。
 
 另一个例子是 `v-on` 指令，它用于监听 DOM 事件：
 
@@ -139,13 +189,13 @@ new Vue({
 
 ### 修饰符
 
-修饰符 (Modifiers) 是以半角句号 `.` 开始的特殊后缀，用于表示指令应当以特殊方式绑定。例如 `.literal` 修饰符告诉指令将它的值解析为一个字面字符串而不是一个表达式：
+修饰符 (Modifiers) 是以半角句号 `.` 开始的特殊后缀，用于表示指令应当以特殊方式绑定。例如 `.prevent` 修饰符告诉`v-on`指令触发`event.preventDefault()`事件：
 
 ``` html
-<a v-bind:href.literal="/a/b/c"></a>
+<form v-on:submit.prevent="onSubmit"></form>
 ```
 
-当然，这似乎没有意义，因为我们只需要使用 `href="/a/b/c"` 而不必使用一个指令。这个例子只是为了演示语法。后面我们将看到修饰符更多的实践用法。
+后面我们将看到修饰符更多的实践用法例如`v-on`和 `v-model`。
 
 ## 缩写
 
@@ -165,6 +215,7 @@ new Vue({
 
 <!-- 缩写 -->
 <button :disabled="someDynamicCondition">Button</button>
+
 ```
 
 ### `v-on` 缩写
