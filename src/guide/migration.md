@@ -1050,7 +1050,42 @@ When used together with `<transition>`, make sure to nest it inside:
 </div>
 {% endraw %}
 
-## Interpolations
+## Interpolation
+
+### Interpolation within Attributes <sup>deprecated</sup>
+
+Interpolation within attributes is no longer valid. For example:
+
+``` html
+<button v-bind:class="btn btn-{{ size }}"></button>
+```
+
+Should either be updated to use an inline expression:
+
+``` html
+<button v-bind:class="'btn btn-' + size"></button>
+```
+
+Or a data/computed property:
+
+``` html
+<button v-bind:class="buttonClasses"></button>
+```
+
+``` js
+computed: {
+  buttonClasses: function () {
+    return 'btn btn-' + size
+  }
+}
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <strong>migration helper</strong> on your codebase to find examples of interpolation used within attributes.</p>
+</div>
+{% endraw %}
 
 ### HTML Interpolation <sup>deprecated</sup>
 
