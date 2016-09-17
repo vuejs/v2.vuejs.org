@@ -8,7 +8,7 @@ type: api
 
 ### silent
 
-- **Type:** `Boolean`
+- **Type:** `boolean`
 
 - **Default:** `false`
 
@@ -22,7 +22,7 @@ type: api
 
 ### optionMergeStrategies
 
-- **Type:** `Object`
+- **Type:** `{ [key: string]: Function }`
 
 - **Default:** `{}`
 
@@ -44,9 +44,11 @@ type: api
 
   The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
 
+- **See also**: [Custom Option Merging Strategies](/guide/mixins.html#Custom-Option-Merge-Strategies)
+
 ### devtools
 
-- **Type:** `Boolean`
+- **Type:** `boolean`
 
 - **Default:** `true` (`false` in production builds)
 
@@ -77,7 +79,7 @@ type: api
 
 ### keyCodes
 
-- **Type:** `Object`
+- **Type:** `{ [key: string]: number }`
 
 - **Default:** `{}`
 
@@ -156,8 +158,8 @@ type: api
 
 - **Arguments:**
   - `{Object} object`
-  - `{String} key`
-  - `{*} value`
+  - `{string} key`
+  - `{any} value`
 
 - **Returns:** the set value.
 
@@ -165,24 +167,28 @@ type: api
 
   Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
 
+  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
+
 - **See also:** [Reactivity in Depth](/guide/reactivity.html)
 
 <h3 id="Vue-delete">Vue.delete( object, key )</h3>
 
 - **Arguments:**
   - `{Object} object`
-  - `{String} key`
+  - `{string} key`
 
 - **Usage:**
 
   Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+
+  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
 
 - **See also:** [Reactivity in Depth](/guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
 - **Arguments:**
-  - `{String} id`
+  - `{string} id`
   - `{Function | Object} [definition]`
 
 - **Usage:**
@@ -193,6 +199,7 @@ type: api
   // register
   Vue.directive('my-directive', {
     bind: function () {},
+    inserted: function () {},
     update: function () {},
     componentUpdated: function () {},
     unbind: function () {}
@@ -200,7 +207,7 @@ type: api
 
   // register (simple function directive)
   Vue.directive('my-directive', function () {
-    // this will be called as `update`
+    // this will be called as `bind` and `update`
   })
 
   // getter, return the directive definition if registered
@@ -212,7 +219,7 @@ type: api
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
 - **Arguments:**
-  - `{String} id`
+  - `{string} id`
   - `{Function} [definition]`
 
 - **Usage:**
@@ -232,7 +239,7 @@ type: api
 <h3 id="Vue-component">Vue.component( id, [definition] )</h3>
 
 - **Arguments:**
-  - `{String} id`
+  - `{string} id`
   - `{Function | Object} [definition]`
 
 - **Usage:**
@@ -261,6 +268,8 @@ type: api
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
 
+  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+
 - **See also:** [Plugins](/guide/plugins.html)
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
@@ -277,11 +286,11 @@ type: api
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
 - **Arguments:**
-  - `{String} template`
+  - `{string} template`
 
 - **Usage:**
 
-  Compiles a template string into a render function. Only available in the standalone build.
+  Compiles a template string into a render function. **Only available in the standalone build.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -307,9 +316,11 @@ type: api
 
 - **Details:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects, existing getter/setters and prototype properties are ignored. It is not recommended to observe complex objects.
+  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
 
-  Once the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object.
+  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+
+  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
 
   Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
 
@@ -341,7 +352,7 @@ type: api
 
 ### props
 
-- **Type:** `Array | Object`
+- **Type:** `Array<string> | Object`
 
 - **Details:**
 
@@ -362,7 +373,7 @@ type: api
       size: Number,
       // type check plus other validations
       name: {
-        type: String,
+        type: string,
         default: 0,
         required: true,
         validator: function (value) {
@@ -377,7 +388,7 @@ type: api
 
 ### propsData
 
-- **Type:** `Object`
+- **Type:** `{ [key: string]: any }`
 
 - **Restriction:** only respected in instance creation via `new`.
 
@@ -402,11 +413,13 @@ type: api
 
 ### computed
 
-- **Type:** `Object`
+- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
 - **Details:**
 
   Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+
+  Computed properties are cached, and only re-computed on reactive dependency changes.
 
 - **Example:**
 
@@ -440,7 +453,7 @@ type: api
 
 ### methods
 
-- **Type:** `Object`
+- **Type:** `{ [key: string]: Function }`
 
 - **Details:**
 
@@ -465,7 +478,7 @@ type: api
 
 ### watch
 
-- **Type:** `Object`
+- **Type:** `{ [key: string]: string | Function | Object }`
 
 - **Details:**
 
@@ -500,23 +513,25 @@ type: api
 
 ### el
 
-- **Type:** `String | HTMLElement | Function`
+- **Type:** `string | HTMLElement`
 
-- **Restriction:** only accepts type `Function` when used in a component definition.
+- **Restriction:** only respected in instance creation via `new`.
 
 - **Details:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string, an actual HTMLElement, or a function that returns an HTMLElement. Note that the provided element merely serves as a mounting point; it will be replaced if a template is also provided. The resolved element will be accessible as `vm.$el`.
+  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement. 
 
-  When used in `Vue.extend`, a function must be provided so each instance gets a separately created element.
+  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
 
   If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+
+  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### template
 
-- **Type:** `String`
+- **Type:** `string`
 
 - **Details:**
 
@@ -524,10 +539,11 @@ type: api
 
   If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
+  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+
 - **See also:**
   - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
   - [Content Distribution](/guide/components.html#Content-Distribution-with-Slots)
-  - [Fragment Instance](/guide/components.html#Fragment-Instance)
 
 ### render
 
@@ -536,6 +552,8 @@ type: api
   - **Details:**
 
     An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+
+    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
 
   - **See also:**
     - [Render Functions](/guide/render-function)
@@ -558,7 +576,7 @@ type: api
 
 - **Details:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, DOM compilation has not been started, and the `$el` property will not be available yet.
+  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
@@ -568,7 +586,9 @@ type: api
 
 - **Details:**
 
-Called after the template has just been compiled, before `vm.$el` is created.
+  Called right before the mounting begins: the `render` function is about to be called for the first time.
+
+  **This hook is not called during server-side rendering.**
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
@@ -578,7 +598,9 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Details:**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`.
+  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+
+  **This hook is not called during server-side rendering.**
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
@@ -590,6 +612,10 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
   Called when the data changes, before the virtual DOM is re-rendered and patched.
 
+  You can perform further state changes in this hook and they will not trigger additional re-renders.
+
+  **This hook is not called during server-side rendering.**
+
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### updated
@@ -600,6 +626,10 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
   Called after a data change causes the virtual DOM to be re-rendered and patched.
 
+  The component's DOM will be in updated state when this hook is called, so you can perform DOM-dependent operations in this hook. However, in most cases you should avoid changing state in this hook, because it may lead to an infinite update loop.
+
+  **This hook is not called during server-side rendering.**
+
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### activated
@@ -608,11 +638,13 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Details:**
 
-  Called after a dynamic component is activated, allowing you to perform any necessary asynchronous operations before it should be swapped in.
+  Called when a kept-alive component is activated.
 
-  The `activated` hook is only respected during dynamic component swapping or the initial render for static components - it does not affect manual insertions with instance methods.
+  **This hook is not called during server-side rendering.**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **See also:**
+  - [Built-in Components - keep-alive](#keep-alive)
+  - [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
 
 ### deactivated
 
@@ -620,9 +652,13 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Details:**
 
-  Called after the dynamic component has been swapped out.
+  Called when a kept-alive component is deactivated.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+  **This hook is not called during server-side rendering.**
+
+- **See also:**
+  - [Built-in Components - keep-alive](#keep-alive)
+  - [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
 
 ### beforeDestroy
 
@@ -632,6 +668,8 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
   Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
 
+  **This hook is not called during server-side rendering.**
+
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
@@ -640,9 +678,9 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Details:**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all bindings and directives of the Vue instance have been unbound and all child Vue instances have also been destroyed.
+  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
 
-  Note if there is a leaving transition, the `destroyed` hook is called **after** the transition has finished.
+  **This hook is not called during server-side rendering.**
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
@@ -683,17 +721,6 @@ Called after the template has just been compiled, before `vm.$el` is created.
 - **See also:**
   - [Components](/guide/components.html)
 
-### transitions
-
-- **Type:** `Object`
-
-- **Details:**
-
-  A hash of transitions to be made available to the Vue instance.
-
-- **See also:**
-  - [Transitions](/guide/transitions.html)
-
 ## Options / Misc
 
 ### parent
@@ -704,11 +731,11 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
   Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
 
-- **See also:** [Parent-Child Communication](/guide/components.html#Parent-Child-Communication)
+  <p class="tip">Use `$parent` and `$children` sparringly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
 
 ### mixins
 
-- **Type:** `Array`
+- **Type:** `Array<Object>`
 
 - **Details:**
 
@@ -734,34 +761,15 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 ### name
 
-- **Type:** `String`
+- **Type:** `string`
 
-- **Restriction:** only respected when used in `Vue.extend()`.
+- **Restriction:** only respected when used as a component option.
 
 - **Details:**
 
   Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
 
-  Another benefit of specifying a `name` option is console inspection. When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
-
-- **Example:**
-
-  ``` js
-  var Ctor = Vue.extend({
-    name: 'stack-overflow',
-    template:
-      '<div>' +
-        // recursively invoke self
-        '<stack-overflow></stack-overflow>' +
-      '</div>'
-  })
-
-  // this will actually result in a max stack size exceeded
-  // error, but let's assume it works...
-  var vm = new Ctor()
-
-  console.log(vm) // -> StackOverflow {$el: null, ...}
-  ```
+  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the Vue devtool, unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
 
 ### extends
 
@@ -787,13 +795,13 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 ### delimiters
 
-- **Type:** `Array<String>`
+- **Type:** `Array<string>`
 
 - **default:** `["{{", "}}"]`
 
 - **Details:**
 
-  Change the plain text interpolation delimiters. This option is only available in the standalone build.
+  Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
 
 - **Example:**
 
@@ -824,6 +832,8 @@ Called after the template has just been compiled, before `vm.$el` is created.
 - **Details:**
 
   The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
+
+- **See also:** [Options - data](#data)
 
 ### vm.$el
 
@@ -882,7 +892,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Details:**
 
-  The direct child components of the current instance.
+  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
 
 ### vm.$refs
 
@@ -895,18 +905,18 @@ Called after the template has just been compiled, before `vm.$el` is created.
   An object that holds child components that have `ref` registered.
 
 - **See also:**
-  - [Child-Component-Reference](/guide/components.html#Child-Component-Reference)
+  - [Child Component Refs](/guide/components.html#Child-Component-Refs)
   - [ref](#ref)
 
 ### vm.$isServer
 
-- **Type:** `Boolean`
+- **Type:** `boolean`
 
 - **Read only**
 
 - **Details:**
 
-  Whether the current Vue instance is running on the server-side.
+  Whether the current Vue instance is running on the server.
 
 - **See also:** [Server-Side Rendering](/guide/ssr.html)
 
@@ -915,11 +925,11 @@ Called after the template has just been compiled, before `vm.$el` is created.
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
 - **Arguments:**
-  - `{String | Function} expOrFn`
+  - `{string | Function} expOrFn`
   - `{Function} callback`
   - `{Object} [options]`
-    - `{Boolean} deep`
-    - `{Boolean} immediate`
+    - `{boolean} deep`
+    - `{boolean} immediate`
 
 - **Returns:** `{Function} unwatch`
 
@@ -988,8 +998,8 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Arguments:**
   - `{Object} object`
-  - `{String} key`
-  - `{*} value`
+  - `{string} key`
+  - `{any} value`
 
 - **Returns:** the set value.
 
@@ -1003,7 +1013,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Arguments:**
   - `{Object} object`
-  - `{String} key`
+  - `{string} key`
 
 - **Usage:**
 
@@ -1016,7 +1026,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **Arguments:**
-  - `{String} event`
+  - `{string} event`
   - `{Function} callback`
 
 - **Usage:**
@@ -1036,7 +1046,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 <h3 id="vm-once">vm.$once( event, callback )</h3>
 
 - **Arguments:**
-  - `{String} event`
+  - `{string} event`
   - `{Function} callback`
 
 - **Usage:**
@@ -1046,7 +1056,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
 - **Arguments:**
-  - `{String} [event]`
+  - `{string} [event]`
   - `{Function} [callback]`
 
 - **Usage:**
@@ -1062,28 +1072,26 @@ Called after the template has just been compiled, before `vm.$el` is created.
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
 - **Arguments:**
-  - `{String} event`
+  - `{string} event`
   - `[...args]`
 
   Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
 
 ## Instance Methods / Lifecycle
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector], [hydrating] )</h3>
+<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
 - **Arguments:**
-  - `{Element | String} [elementOrSelector]`
-  - `{Boolean} [hydrating]`
+  - `{Element | string} [elementOrSelector]`
+  - `{boolean} [hydrating]`
 
 - **Returns:** `vm` - the instance itself
 
 - **Usage:**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting/compilation of an unmounted Vue instance.
+  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
 
-  If `elementOrSelector` argument is not provided, the element is managed in Vue instance will be created as an out-of-document DOM element, and you will have to use DOM API to insert it into the document yourself.
-
-  If `hydrating` argument is provided as `true`, in the rendering process of this method, run the DOM elements hydration.
+  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
 
   The method returns the instance itself so you can chain other instance methods after it.
 
@@ -1100,7 +1108,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
   // the above is the same as:
   new MyComponent({ el: '#app' })
 
-  // or, compile off-document and append afterwards:
+  // or, render off-document and append afterwards:
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(vm.$el)
   ```
@@ -1109,18 +1117,16 @@ Called after the template has just been compiled, before `vm.$el` is created.
   - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
   - [Server-Side Rendering](/guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate( )</h3>
+<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
 - **Usage:**
 
-  The Vue instance will be forced the re-render.
-
-<p class="tip">Note: This method have an influence on your application performance degradation. The excessive call is no recommended.</p>
+  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
 <h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
 
 - **Arguments:**
-  - `{Function} [callback]`
+  - `{Function} callback`
 
 - **Usage:**
 
@@ -1151,7 +1157,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
   - [Vue.nextTick](#Vue-nextTick)
   - [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="vm-destroy">vm.$destroy( )</h3>
+<h3 id="vm-destroy">vm.$destroy()</h3>
 
 - **Usage:**
 
@@ -1159,13 +1165,15 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
   Triggers the `beforeDestroy` and `destroyed` hooks.
 
+  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
 ## Directives
 
 ### v-text
 
-- **Expects:** `String`
+- **Expects:** `string`
 
 - **Details:**
 
@@ -1183,11 +1191,11 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 ### v-html
 
-- **Expects:** `String`
+- **Expects:** `string`
 
 - **Details:**
 
-  Updates the element's `innerHTML`. The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use [functional components](/guide/render-function.html#Functional-Components).
+  Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
 
   <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
 
@@ -1200,21 +1208,25 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 ### v-if
 
-- **Expects:** `*`
+- **Expects:** `any`
 
 - **Usage:**
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained data bindings / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+
+  This directive triggers transitions when its condition changes.
 
 - **See also:** [Conditional Rendering - v-if](/guide/conditional.html)
 
 ### v-show
 
-- **Expects:** `*`
+- **Expects:** `any`
 
 - **Usage:**
 
-  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value. Triggers transitions if present.
+  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
+
+  This directive triggers transitions when its condition changes.
 
 - **See also:** [Conditional Rendering - v-show](/guide/conditional.html#v-show)
 
@@ -1222,37 +1234,33 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Does not expect expression**
 
-- **Restriction:** previous sibling element must have `v-if` or `v-show`.
+- **Restriction:** previous sibling element must have `v-if`.
 
 - **Usage:**
 
-  Denote the "else block" for `v-if` and `v-show`.
+  Denote the "else block" for `v-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
-    Sorry
+    Now you see me
   </div>
   <div v-else>
-    Not sorry
+    Now you don't
   </div>
   ```
 
 - **See also:**
   - [Conditional Rendering - v-else](/guide/conditional.html#v-else)
-  - [Conditional Rendering - Component caveat](/guide/conditional.html#Component-caveat)
 
 ### v-for
 
-- **Expects:** `Array | Object | Number | String`
-
-- **Param Attributes:**
-  - [`key`](/guide/list.html#key)
+- **Expects:** `Array | Object | number | string`
 
 - **Usage:**
 
   Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
 
-  ```html
+  ``` html
   <div v-for="item in items">
     {{ item.text }}
   </div>
@@ -1260,15 +1268,25 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
   Alternatively, you can also specify an alias for the index (or the key if used on an Object):
 
-  ```html
+  ``` html
   <div v-for="(item, index) in items"></div>
   <div v-for="(key, val) in object"></div>
   <div v-for="(key, val, index) in object"></div>
   ```
 
+  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
+
+  ``` html
+  <div v-for="item in items" :key="item.id">
+    {{ item.text }}
+  </div>
+  ```
+
   The detailed usage for `v-for` is explained in the guide section linked below.
 
-- **See also:** [List Rendering](/guide/list.html).
+- **See also:**
+  - [List Rendering](/guide/list.html)
+  - [key](/guide/list.html#key)
 
 ### v-on
 
@@ -1332,6 +1350,9 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
   <!-- inline statement -->
   <my-component @my-event="handleThis(123, $event)"></my-component>
+
+  <!-- native event on component -->
+  <my-component @click.native="onClick"></my-component>
   ```
 
 - **See also:**
@@ -1342,7 +1363,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Shorthand:** `:`
 
-- **Expects:** `* (with argument) | Object (without argument)`
+- **Expects:** `any (with argument) | Object (without argument)`
 
 - **Argument:** `attrOrProp (optional)`
 
@@ -1404,10 +1425,10 @@ Called after the template has just been compiled, before `vm.$el` is created.
   - `<textarea>`
   - components
 
-- **Param Attributes:**
-  - [`lazy`](/guide/forms.html#lazy)
-  - [`number`](/guide/forms.html#number)
-  - [`trim`](/guild/forms.html#trim)
+- **Modifiers:**
+  - [`.lazy`](/guide/forms.html#lazy) - listen to `change` events instead of `input`
+  - [`.number`](/guide/forms.html#number) - cast input string to numbers
+  - [`.trim`](/guild/forms.html#trim) - trim input
 
 - **Usage:**
 
@@ -1415,7 +1436,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **See also:**
   - [Form Input Bindings](/guide/forms.html)
-  - [Components - Parent-Child Commnunication](/guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [Components - Form Input Components using Custom Events](/guide/components.html#Form-Input-Components-using-Custom-Events)
 
 ### v-pre
 
@@ -1461,7 +1482,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Details:**
 
-  Evaluates the element and component **once** only.
+  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
 
   ```html
   <!-- single element -->
@@ -1483,41 +1504,106 @@ Called after the template has just been compiled, before `vm.$el` is created.
   - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
   - [Components - Cheap Static Components with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
 
+## Special Attributes
 
-## Special Elements
+### key
+
+- **Expects:** `string`
+
+  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+
+  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+
+  The most common use case is combined with `v-for`:
+
+  ``` html
+  <ul>
+    <li v-for="item in items" :key="item.id">...</li>
+  </ul>
+  ```
+
+  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+
+  - Properly trigger lifecycle hooks of a component
+  - Trigger transitions
+
+  For example:
+
+  ``` html
+  <transition>
+    <span :key="text">{{ text }}</span>
+  </transition>
+  ```
+
+  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+
+### ref
+
+- **Expects:** `string`
+
+  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+
+  ``` html
+  <!-- vm.$refs.p will the DOM node -->
+  <p ref="p">hello</p>
+
+  <!-- vm.$refs.child will be the child comp instance -->
+  <child-comp ref="child"></child-comp>
+  ```
+
+  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+
+  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+
+- **See also:** [Child Component Refs](/guide/components.html#Child-Component-Refs)
+
+### slot
+
+- **Expects:** `string`
+
+  Used on content inserted into child components to indicate which named slot the content belongs to.
+
+  For detailed usage, see the guide section linked below.
+
+- **See also:** [Named Slots](/guide/components.html#Named-Slots)
+
+## Built-In Components
 
 ### component
 
-- **Attributes:**
-  - `is` - String
-  - `inline-template` - Boolean
+- **Props:**
+  - `is` - string | ComponentDefinition | ComponentConstructor
+  - `inline-template` - boolean
 
 - **Usage:**
 
-  Alternative syntax for invoking components. Primarily used for dynamic components with the `is` special attribute:
+  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
 
   ```html
   <!-- a dynamic component controlled by -->
   <!-- the `componentId` property on the vm -->
   <component :is="componentId"></component>
+
+  <!-- can also render registered component or component passed as prop -->
+  <component :is="$options.components.child"></component>
   ```
 
 - **See also:** [Dynamic Components](/guide/components.html#Dynamic-Components)
 
 ### transition
 
-- **Attributes:**
-  - `name` - String, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
-  - `appear` - Boolean, Whether to apply transition on initial render. Defaults to `false`.
-  - `css` - Boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - String, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
-  - `mode` - String, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
-  - `enterClass` - String, Individually configure transition CSS classes.
-  - `leaveClass` - String, Individually configure transition CSS classes.
-  - `enterActiveClass` - String, Individually configure transition CSS classes.
-  - `leaveActiveClass` - String, Individually configure transition CSS classes.
-  - `appearClass` - String, Individually configure transition CSS classes.
-  - `appearActiveClass` - String, Individually configure transition CSS classes.
+- **Props:**
+  - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
+  - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
+  - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
+  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
+  - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `enter-class` - string
+  - `leave-class` - string
+  - `enter-active-class` - string
+  - `leave-active-class` - string
+  - `appear-class` - string
+  - `appear-active-class` - string
 
 - **Events:**
   - `before-enter`
@@ -1539,17 +1625,21 @@ Called after the template has just been compiled, before `vm.$el` is created.
   <transition>
     <div v-if="ok">toggled content</div>
   </transition>
+
   <!-- dynamic component -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
+
   <!-- event hooking -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
       <div v-show="ok">toggled content</div>
     </transition>
   </div>
-  <script>
+  ```
+
+  ``` js
   new Vue({
     ...
     methods: {
@@ -1559,27 +1649,27 @@ Called after the template has just been compiled, before `vm.$el` is created.
     }
     ...
   }).$mount('#transition-demo')
-  </script>
   ```
 
 - **See also:** [Transitions: Entering, Leaving, and Lists](/guide/transitions.html)
 
 ### transition-group
 
-- **Attributes:**
-  - exposes `<transition>` attributes (Note does not support the `mode` attribute).
-  - `tag` - String, Default to `span`.
+- **Props:**
+  - `tag` - string, defaults to `span`.
+  - `move-class` - overwrite CSS class applied during moving transition.
+  - exposes the same props as `<transition>` except `mode`.
 
 - **Events:**
-  - exposes `<transition>` events.
+  - exposes the same events as `<transition>`.
 
 - **Usage:**
 
-  `<transition-group>` serve as transition effects for **multiple** element/component. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
+  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed**.
+  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
 
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `moveClass` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -1595,7 +1685,7 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 - **Usage:**
 
-  `<keep-alive>` serve as caching of inactive component. `<keep-alive>` used with component, it will be replaced.
+  When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
 
   Primarily used with preserve component state or avoid re-rendering.
 
@@ -1604,11 +1694,13 @@ Called after the template has just been compiled, before `vm.$el` is created.
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
+
   <!-- multiple conditional children -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
   </keep-alive>
+
   <!-- used together with <transition> -->
   <transition>
     <keep-alive>
@@ -1621,8 +1713,8 @@ Called after the template has just been compiled, before `vm.$el` is created.
 
 ### slot
 
-- **Attributes:**
-  - `name` - String, Used for named slot.
+- **Props:**
+  - `name` - string, Used for named slot.
 
 - **Usage:**
 
@@ -1631,3 +1723,11 @@ Called after the template has just been compiled, before `vm.$el` is created.
   For detailed usage, see the guide section linked below.
 
 - **See also:** [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
+
+## VNode Interface
+
+- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/next/src/core/vdom/vnode.js).
+
+## Server-Side Rendering
+
+- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/next/packages/vue-server-renderer).
