@@ -28,7 +28,7 @@ It depends on a few factors:
 
 - How many times you get distracted and start playing with a cool new feature. 😉 &nbsp;Not judging, it also happened to us while building 2.0!
 
-- Which deprecated features you're using. Most can be upgraded with find-and-replace, but others might take a few minutes. If you're not currently following best practices, Vue 2.0 will try harder to force you to. This is a good thing in the long run, but could also mean a signifcant (though possibly overdue) refactor.
+- Which deprecated features you're using. Most can be upgraded with find-and-replace, but others might take a few minutes. If you're not currently following best practices, Vue 2.0 will also try harder to force you to. This is a good thing in the long run, but could also mean a significant (though possibly overdue) refactor.
 
 ## Templates
 
