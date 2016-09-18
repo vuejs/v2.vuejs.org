@@ -169,7 +169,7 @@ mounted: function () {
 
 ### `v-for` Argument Order for Arrays
 
-When including an `index`, the argument order for arrays used to be `(index, value)`. It is now `(value, index)` to be more consisent with JavaScript's native array methods such as `forEach` and `map`.
+When including an `index`, the argument order for arrays used to be `(index, value)`. It is now `(value, index)` to be more consistent with JavaScript's native array methods such as `forEach` and `map`.
 
 {% raw %}
 <div class="upgrade-path">
@@ -180,7 +180,7 @@ When including an `index`, the argument order for arrays used to be `(index, val
 
 ### `v-for` Argument Order for Objects
 
-When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consisent with common object iterators such as lodash's.
+When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consistent with common object iterators such as lodash's.
 
 {% raw %}
 <div class="upgrade-path">
@@ -494,7 +494,7 @@ You would use:
 
 ### `v-model` with Inline `value` <sup>deprecated</sup>
 
-`v-model` no longer cares about initial value of an inline `value` attribute. For predictability, it will instead always treat the Vue instance data as the source of truth.
+`v-model` no longer cares about the initial value of an inline `value` attribute. For predictability, it will instead always treat the Vue instance data as the source of truth.
 
 That means this element:
 
@@ -581,7 +581,7 @@ If you really need to override another `!important`, you must use the string syn
 
 ### `v-el` and `v-ref` <sup>deprecated</sup>
 
-For simplicity, `v-el` and `v-ref` have been merged into the `ref` attribute, accessable on a component instance via `$refs`. That means `v-el:my-element` would become `ref="myElement"` and `v-ref:my-component` would become `ref="myComponent"`. When used on a normal element, the `ref` will be the DOM element, and when used on a component, the `ref` will be the component instance.
+For simplicity, `v-el` and `v-ref` have been merged into the `ref` attribute, accessible on a component instance via `$refs`. That means `v-el:my-element` would become `ref="myElement"` and `v-ref:my-component` would become `ref="myComponent"`. When used on a normal element, the `ref` will be the DOM element, and when used on a component, the `ref` will be the component instance.
 
 Since `v-ref` is no longer a directive, but a special attribute, it can also be dynamically defined. This is especially useful in combination with `v-for`. For example:
 
@@ -691,7 +691,7 @@ Vue.config.keyCodes.f1 = 112
 
 ### `$dispatch` and `$broadcast` <sup>deprecated</sup>
 
-`$dispatch` and `$broadcast` are being deprecated in favor of more explicity cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
+`$dispatch` and `$broadcast` are being deprecated in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
 
 The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It simply doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
 
@@ -857,7 +857,7 @@ computed: {
 }
 ```
 
-With JavaScript's native `.filter`, it's also manage much more complex filtering operations, because you have access to the full power of JavaScript within computed properties. For example, if you wanted to find all active users and case-insensitively match against both their name and email:
+JavaScript's native `.filter` can also manage much more complex filtering operations, because you have access to the full power of JavaScript within computed properties. For example, if you wanted to find all active users and case-insensitively match against both their name and email:
 
 ``` js
 this.users.filter(function (user) {
