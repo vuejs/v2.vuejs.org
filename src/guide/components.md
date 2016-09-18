@@ -843,7 +843,7 @@ new Vue({
 
 ### `keep-alive`
 
-If you want to keep the switched-out components in memory so that you can preserve their state or avoid re-rendering, you can wrap a dynamic component in a `keep-alive` element:
+If you want to keep the switched-out components in memory so that you can preserve their state or avoid re-rendering, you can wrap a dynamic component in a `<keep-alive>` element:
 
 ``` html
 <keep-alive>
@@ -852,6 +852,8 @@ If you want to keep the switched-out components in memory so that you can preser
   </component>
 </keep-alive>
 ```
+
+Check out more details on `<keep-alive>` in the [API reference](/api/#keep-alive).
 
 ## Misc
 

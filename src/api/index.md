@@ -1687,6 +1687,8 @@ type: api
 
   When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
 
+  When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+
   Primarily used with preserve component state or avoid re-rendering.
 
   ```html
@@ -1708,6 +1710,8 @@ type: api
     </keep-alive>
   </transition>
   ```
+
+  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
 - **See also:** [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
 
