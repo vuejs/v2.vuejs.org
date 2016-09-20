@@ -808,7 +808,7 @@ You can use the same mount point and dynamically switch between multiple compone
 
 ``` js
 new Vue({
-  el: 'body',
+  el: '#example',
   data: {
     currentView: 'home'
   },
@@ -834,7 +834,7 @@ var Home = {
 }
 
 new Vue({
-  el: 'body',
+  el: '#example',
   data: {
     currentView: Home
   }
