@@ -807,7 +807,7 @@ The content distribution API is a very useful mechanism when designing component
 You can use the same mount point and dynamically switch between multiple components using the reserved `<component>` element and dynamically bind to its `is` attribute:
 
 ``` js
-new Vue({
+var vm = new Vue({
   el: '#example',
   data: {
     currentView: 'home'
@@ -833,7 +833,7 @@ var Home = {
   template: '<p>Welcome home!</p>'
 }
 
-new Vue({
+var vm = new Vue({
   el: '#example',
   data: {
     currentView: Home
