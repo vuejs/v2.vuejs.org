@@ -661,6 +661,17 @@ Vue's transition system has changed quite drastically and now uses `<transition>
 </div>
 {% endraw %}
 
+### `Vue.transition` for Reusable Transitions <sup>deprecated</sup>
+
+With the new transition system, you can now just [use components for reusable transitions](http://rc.vuejs.org/guide/transitions.html#Reusable-Transitions).
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.transition</code>.</p>
+</div>
+{% endraw %}
+
 ### Transition `stagger` Attribute <sup>deprecated</sup>
 
 If you need to stagger list transitions, you can control timing by setting and accessing a `data-index` (or similar attribute) on an element. See [an example here](transitions.html#Staggering-List-Transitions).
