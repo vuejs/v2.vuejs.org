@@ -75,7 +75,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 Consult the [API reference](/api) for the full list of instance properties and methods.
 
-## Instance Lifecycle
+## Instance Lifecycle Hooks
 
 Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance is created:
 
