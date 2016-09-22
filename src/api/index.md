@@ -370,14 +370,14 @@ type: api
   Vue.component('props-demo-advanced', {
     props: {
       // just type check
-      size: Number,
+      height: Number,
       // type check plus other validations
-      name: {
-        type: string,
+      age: {
+        type: Number,
         default: 0,
         required: true,
         validator: function (value) {
-          return value > 0
+          return value >= 0
         }
       }
     }
@@ -519,7 +519,7 @@ type: api
 
 - **Details:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement. 
+  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
 
   After the instance is mounted, the resolved element will be accessible as `vm.$el`.
 
