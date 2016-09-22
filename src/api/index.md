@@ -373,7 +373,7 @@ type: api
       size: Number,
       // type check plus other validations
       name: {
-        type: string,
+        type: String,
         default: 0,
         required: true,
         validator: function (value) {
