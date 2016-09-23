@@ -1065,7 +1065,7 @@ There's one problem with this example. When you add or remove an item, the ones 
 
 ### List Move Transitions
 
-The `<transition-group>` component has another trick up its sleeve. It can not only animate entering and leaving, but also changes in position. The only new concept you need to know to use this feature is the addition of **the `v-move` class**, which is added when items are changing positions. Like the other classes, its prefix will match the value of match a provided `name` attribute and you can also manually specify a class with the `move-class` attribute.
+The `<transition-group>` component has another trick up its sleeve. It can not only animate entering and leaving, but also changes in position. The only new concept you need to know to use this feature is the addition of **the `v-move` class**, which is added when items are changing positions. Like the other classes, its prefix will match the value of a provided `name` attribute and you can also manually specify a class with the `move-class` attribute.
 
 This class is mostly useful for specifying the transition timing and easing curve, as you'll see below:
 
