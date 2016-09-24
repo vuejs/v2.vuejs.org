@@ -221,6 +221,17 @@ You would now write:
 </div>
 {% endraw %}
 
+### `v-for` Range Values
+
+Previously, `v-for="number in 10"` would have `number` starting at 0 and ending at 9. Now it starts at 1 and ends at 10.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Search your codebase for the regex <code>/\w+ in \d+/</code>. Wherever it appears in a <code>v-for</code>, check to see if you may be affected.</p>
+</div>
+{% endraw %}
+
 ## Props
 
 ### `coerce` Prop Option <sup>deprecated</sup>
