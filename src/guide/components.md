@@ -937,6 +937,8 @@ Vue.component(
 )
 ```
 
+<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, it's unfortunately not possible and probably never will be, as its creator has [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." If this is a feature that's important to you, we recommend using Webpack instead.</p>
+
 ### Component Naming Conventions
 
 When registering components (or props), you can use kebab-case, camelCase, or TitleCase. Vue doesn't care.
