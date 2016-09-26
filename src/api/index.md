@@ -933,7 +933,7 @@ type: api
   ```
 
 - **See also:**
-  - [Render Functions](/guide/render-function.html)
+  - [Render Function](/guide/render-function.html)
 
 ### vm.$refs
 
