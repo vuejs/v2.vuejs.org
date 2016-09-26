@@ -12,7 +12,7 @@ Components are one of the most powerful features of Vue. They help you extend ba
 
 ### Registration
 
-We've learned in the previous sections that we can create a new Vue instances with:
+We've learned in the previous sections that we can create a new Vue instance with:
 
 ``` js
 new Vue({
