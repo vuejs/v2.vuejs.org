@@ -1,7 +1,7 @@
 ---
 title: Comparison with Other Frameworks
 type: guide
-order: 24
+order: 25
 ---
 
 This is definitely the most difficult page in the guide to write, but we do feel it's important. Odds are, you've had problems you tried to solve and you've used another library to solve them. You're here because you want to know if Vue can solve your specific problems better. That's what we hope to answer for you.
@@ -220,9 +220,11 @@ Then you can start writing Vue code and even ship the minified version to produc
 
 Since you don't need to know about JSX, ES2015, or build systems to get started with Vue, it also typically takes developers less than a day reading [the guide](/guide) to learn enough to build non-trivial applications.
 
-### Custom Renderers
+### Native Rendering
 
-The React team has been ambitious in making React a platform-agnostic UI development paradigm, with custom renderers for mobile platforms, Canvas, and many more. While custom renderers can theoretically also be written for Vue, we are currently focused on the web.
+ReactNative enables you to write native-rendered apps for iOS and Android using the same React component model. This is great in that as a developer, you can apply your knowledge of a framework across multiple platforms. On this front, Vue has an official collaboration with [Weex](https://alibaba.github.io/weex/), a cross-platform UI framework developed by Alibaba Group, which uses Vue as its JavaScript framework runtime. This means with Weex, you can use the same Vue component syntax to author components that can not only be rendered in the Browser, but also natively on iOS and Android!
+
+At this moment, Weex is still in active development and is not as mature and battle-tested as ReactNative, but its development is driven by the production needs by the largest e-commmerce business in the world, and the Vue team will also actively collaborate with the Weex team to ensure a smooth experience for Vue developers.
 
 ### With MobX
 
@@ -262,11 +264,17 @@ Interestingly, there are quite a few similarities in how Angular 2 and Vue are a
 
 We have a separate section for Angular 2 because it really is a completely new framework. For example, it features a first-class component system, many implementation details have been completely rewritten, and the API has also changed quite drastically.
 
+### TypeScript
+
 While Angular 1 could be used for smaller applications, Angular 2 has shifted focus to best facilitate large enterprise applications. As part of this, it almost requires TypeScript, which can be very useful for developers that desire the type safety of languages such as Java and C#.
 
-Vue is also well-suited to [enterprise environments](https://github.com/vuejs/awesome-vue#enterprise-usage) and can even be used [with TypeScript](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/vue), though it's definitely optional in our case.
+Vue is also well-suited to [enterprise environments](https://github.com/vuejs/awesome-vue#enterprise-usage) and can even be used with TypeScript via our [official typings](https://github.com/vuejs/vue/tree/next/types) and [user-contributed decorators](https://github.com/itsFrank/vue-typescript), though it's definitely optional in our case.
 
-It can be difficult to make many more comparisons as of writing though, as Angular 2 has yet to be released and still has over 1,000 open issues on GitHub. However, while performance characteristics and implementation details are still likely to change, the API is stable at this point, so we can safely compare the flexibility and learning curve of the two libraries - two areas where they differ significantly.
+### Size and Performance
+
+In terms of performance, both frameworks are exceptionally fast and there isn't enough data from real world use cases to make a verdict. However if you are determined to see some numbers, Vue 2.0 seems to be ahead of Angular 2 according to this [3rd party benchmark](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
+
+Size wise, although Angular 2 with offline compilation and tree-shaking is able to get its size down considerably, a full-featured Vue 2.0 with compiler included (23kb) is still lighter than a tree-shaken bare-bone example of Angular 2 (50kb). And do note the Angular 2 app's size is small due to tree-shaking, which removes code for features that you are not using. It will eventually grow back to its actual size as you import and use more features from the framework.
 
 ### Flexibility
 
@@ -304,7 +312,11 @@ Polymer is yet another Google-sponsored project and in fact was a source of insp
 
 In Polymer 1.0, the team has also made its data-binding system very limited in order to compensate for the performance. For example, the only expressions supported in Polymer templates are boolean negation and single method calls. Its computed property implementation is also not very flexible.
 
-Finally, when deploying to production, Polymer elements need to be bundled via a Polymer-specific tool called vulcanizer. In comparison, Vue's [single-file components](single-file-components.html) can leverage everything the Webpack/Browserify/SystemJS ecosystems have to offer. This allows you to easily use ES2015+ and any CSS preprocessors you want in your Vue components.
+Polymer custom elements are authored in HTML files, which limits you to plain JavaScript/CSS (and language features supported by today's browsers). In comparison, Vue's single file components allows you to easily use ES2015+ and any CSS preprocessors you want.
+
+When deploying to production, Polymer recommends loading everything on-the-fly with HTML Imports, which assumes browsers implementing the spec, and HTTP/2 support on both server and client. This may or may not be feasible depending on your target audience and deployment environment. In cases where this is not desirable, you will have to use a special tool called Vulcanizer to bundle your Polymer elements. On this front, Vue can combine its async component feature with Webpack's code-splitting feature to easily split out parts of the application bundle to be lazy-loaded. This ensures compatibility with older browsers while retaining great app loading performance.
+
+It is also totally feasible to offer deeper integration between Vue with Web Component specs such as Custom Elements and Shadow DOM style encapsulation - however at this moment we are still waiting for the specs to mature and be widely implemented in all mainstream browsers before making any serious committments.
 
 ## Riot
 

@@ -84,7 +84,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](/api/#Instance-Properties) before diving into render functions.**
+Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](/api/#vm-slots) before diving into render functions.**
 
 ## `createElement` Arguments
 
@@ -121,8 +121,20 @@ createElement(
 
 ### The Data Object In-Depth
 
+One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects.
+
 ``` js
 {
+  // Same API as `v-bind:class`
+  'class': {
+    foo: true,
+    bar: false
+  },
+  // Same API as `v-bind:style`
+  style: {
+    color: 'red',
+    fontSize: '14px'
+  },
   // Normal HTML attributes
   attrs: {
     id: 'foo'
@@ -147,16 +159,6 @@ createElement(
   // the component using vm.$emit.
   nativeOn: {
     click: this.nativeClickHandler
-  },
-  // Same API as `v-bind:class`
-  'class': {
-    foo: true,
-    bar: false
-  },
-  // Same API as `v-bind:style`
-  style: {
-    color: 'red',
-    fontSize: '14px'
   },
   // Other special top-level properties
   key: 'myKey',
