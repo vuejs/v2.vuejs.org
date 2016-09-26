@@ -902,7 +902,7 @@ type: api
 
 - **Details:**
 
-  An object that holds virtual nodes containing parent contents used for content distribution (transclusion) inside [slots](/guide/components.html#Content-Distribution-with-Slots). The `default` property contains [single slot](/guide/components.html#Single-Slot) contents. Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property, with the same name of the slot.
+  An object that holds virtual nodes which contain parent contents used for content distribution (transclusion) inside [slots](/guide/components.html#Content-Distribution-with-Slots). The `default` property contains [single slot](/guide/components.html#Single-Slot) contents. Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property, with the same name of the slot.
 
 - **Example:**
 
