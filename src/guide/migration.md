@@ -1,5 +1,5 @@
 ---
-title: Migration from 1.x
+title: 1.x迁移
 type: guide
 order: 24
 ---
