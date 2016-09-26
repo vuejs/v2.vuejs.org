@@ -902,7 +902,7 @@ type: api
 
 - **Details:**
 
-  A hash of VNode children of component that should resolve with slot. VNode children resolved with Single Slot are stored as the `default` key. VNode children resolve with Named Slot are stored as the key that specified with `slot` attribute. those VNode children are stored an Array.
+  A hash of VNode children of component that should resolve with slot. VNode children resolved with Single Slot are stored as the `default` key. VNode children resolve with Named Slot are stored as the key that specified with `slot` attribute. Those VNode children are stored as an Array.
 
 - **Example:**
 
