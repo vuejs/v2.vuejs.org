@@ -902,42 +902,38 @@ type: api
 
 - **Details:**
 
-  A hash of VNode children of component that should resolve with slot. VNode children resolved with Single Slot are stored as the `default` key. VNode children resolve with Named Slot are stored as the key that specified with `slot` attribute. those VNode children are stored an Array.
+  An object that holds virtual nodes containing parent contents used for content distribution (transclusion) inside [slots](/guide/components.html#Content-Distribution-with-Slots). The `default` property contains [single slot](/guide/components.html#Single-Slot) contents. Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property, with the same name of the slot.
 
 - **Example:**
 
   ```html
-  <div id="slots-demo">
-    ...
-    <my-component1>
-      <p slot="slot1">named slot content1</p>
-      <div>single slot content</div>
-      <p slot="slot2">named slot content2</div></p>
-    </my-component1>
-    ...
-  </div>
+    <my-component>
+      <p slot="intro">Introduction</p>
+      <p slot="conclusion">Thank you very much</p>
+      <div>Everything which is not inside a named slot is available in the "default" slot</div>
+    </my-component>
   ```
   ```js
   new Vue({
     ...
     components: {
-      'my-component1': {
+      'my-component': {
         render: function (createElement) {
-          console.log('single slot', this.$slots.default)
-          console.log('named slot: slot1', this.$slots.slots1)
-          console.log('named slot: slot2', this.$slots.slots1)
-          return this.$slots.default
+          var slots = this.$slots
+          return createElement('div', { 'lang': 'en' }, [
+            slots.intro,
+            slots.default,
+            slots.conclusion
+          ])
         }
       }
     },
     ...
-  }).$mount('#slots-demo')
+  })
   ```
 
 - **See also:**
   - [Render Functions](/guide/render-function.html)
-  - [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
-  - [slot](#slot)
 
 ### vm.$refs
 
