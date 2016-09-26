@@ -65,6 +65,8 @@ You can optionally pass in some options:
 Vue.use(MyPlugin, { someOption: true })
 ```
 
+`Vue.use` automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.
+
 Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
 
 ``` js
@@ -76,66 +78,4 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
-## Tips for writing a Plugin
-
-### Using Vue Utilities
-
-When you are writing a plaugin with Vue.js API, sometimes may be need the utility library. Vue is exposing the `Vue.util` internaly utilitiy, you can write a plugin by using it, not include the external utility library.
-
-``` js
-// Equivalent to `Object.assign`
-var a = {}
-var b = { foo: 1, bar: 'hello' }
-Vue.util.extend(a, b)
-console.log(a) // => Object { foo: 1, bar: "hello" }
-```
-
-### Modularization
-
-If you want to publish a plugin, you had better implement as the UMD module pattern in order to  corresponding to some use-cases as following example.
-
-``` js
-;(function () {
-  MyPlugin.install = function (Vue, options) {
-    // something impplementation ...
-    // ...
-  }
-
-  if (typeof exports === 'object') {
-    module.exports = MyPlugin // CommonJS
-  } else if (typeof define == 'function' && define.amd) {
-    define([], function () { return MyPlugin }) // AMD
-  } else if (window.Vue) {
-    window.MyPlugin = MyPlugin // Browser (not required options)
-    Vue.use(MyPlugin)
-  }
-})()
-```
-
-### Minimization
-
-Normally, Vue application or component fetch from HTTP server, and run in the browser. File size directly affect the performance of application, so you had better minify your a plugin with Browserify or Webpack. e.g. the below Webpack
-
-``` sh
-webpack plugin.js bundle.js --optimize-minimize
-```
-
-## Existing Plugins & Tools
-
-- [vuex](https://github.com/vuejs/vuex): Application architecture for centralized state management in Vue.js application.
-
-- [vue-router](https://github.com/vuejs/vue-router): The official router for Vue.js. Deeply integrated with Vue.js core to make building Single Page Applications a breeze.
-
-- [vue-async-data](https://github.com/vuejs/vue-async-data): Async data loading plugin.
-
-- [vue-validator](https://github.com/vuejs/vue-validator): A plugin for form validations.
-
-- [vue-devtools](https://github.com/vuejs/vue-devtools): A Chrome devtools extension for debugging Vue.js applications.
-
-- [vue-touch](https://github.com/vuejs/vue-touch): Add touch-gesture directives using Hammer.js.
-
-- [vue-element](https://github.com/vuejs/vue-element): Register Custom Elements with Vue.js.
-
-- [vue-animated-list](https://github.com/vuejs/vue-animated-list): A plugin for easily animating `v-for` rendered lists.
-
-- [List of User Contributed Tools](https://github.com/vuejs/awesome-vue#libraries--plugins)
+Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins) for a huge collection of community-contributed plugins and libraries.

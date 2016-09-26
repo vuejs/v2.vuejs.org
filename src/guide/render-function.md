@@ -85,7 +85,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot`  属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`, 这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [instance properties API](/api/#Instance-Properties)。**
+简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot`  属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`, 这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [instance properties API](/api/#vm-slots)。**
 
 
 ## `createElement` 参数
@@ -123,8 +123,20 @@ createElement(
 
 ### 完整数据对象
 
+One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects.
+
 ``` js
 {
+  // 和`v-bind:class`一样
+  'class': {
+    foo: true,
+    bar: false
+  },
+  // 和`v-bind:style`一样
+  style: {
+    color: 'red',
+    fontSize: '14px'
+  },
   // 普通的 HTML 属性
   attrs: {
     id: 'foo'
@@ -146,16 +158,6 @@ createElement(
   // 仅对于组件，用于监听原生事件，而不是组件使用 vm.$emit 触发的事件。
   nativeOn: {
     click: this.nativeClickHandler
-  },
-  // 和 `v-bind:class` API 一致
-  'class': {
-    foo: true,
-    bar: false
-  },
-  // 和 `v-bind:style` API 一致
-  style: {
-    color: 'red',
-    fontSize: '14px'
   },
   // 其他特殊顶层属性
   key: 'myKey',

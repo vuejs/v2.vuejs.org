@@ -107,7 +107,7 @@ new Vue({
 // -> "hello!"
 ```
 
-<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above.</p>
+<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](/guide/plugins.html) to avoid duplicate application.</p>
 
 ## Custom Option Merge Strategies
 

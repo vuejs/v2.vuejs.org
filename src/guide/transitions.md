@@ -85,11 +85,13 @@ new Vue({
 
 当插入或删除带有过渡的元素时，Vue 将：
 
+<<<<<<< HEAD
 1. 自动嗅探目标元素是否有 CSS 过渡或动画，并在合适时添加/删除 CSS 类名。
 
 2. 如果设置了过渡的 [JavaScript 钩子函数](#JavaScript-Hooks)，会在相应的阶段调用它们。
 
-3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。
+3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：这是一个浏览器动效框架，和Vue的 `nextTick` 概念不同)
+
 
 ### 过渡的-CSS-类名
 
@@ -104,7 +106,9 @@ new Vue({
 4. `v-leave-active`: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 `transition/animation` 完成之后移除。
 
 
-!!TODO: 这里再有一个漂亮的流程图就棒呆了
+![Transition Diagram](/images/transition.png)
+
+Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter` class would instead be `my-transition-enter`.
 
 对于这些类名，`v` 是过渡名的前缀。使用 `name="my-transition"` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
 

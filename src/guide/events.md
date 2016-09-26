@@ -1,5 +1,5 @@
 ---
-title: 方法与事件处理器
+title: 事件处理器
 type: guide
 order: 9
 ---
@@ -73,7 +73,7 @@ var example2 = new Vue({
 })
 
 // 也可以在JavaScript代码里调用方法
-vm.greet() // -> 'Hello Vue.js!'
+example2.greet() // -> 'Hello Vue.js!'
 ```
 
 结果:

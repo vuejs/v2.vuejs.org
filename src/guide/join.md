@@ -1,7 +1,7 @@
 ---
 title: 加入Vue.js社区
 type: guide
-order: 25
+order: 26
 ---
 
 Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!

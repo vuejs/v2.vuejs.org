@@ -6,7 +6,7 @@ order: 16
 
 ## 简介
 
-除了默认设置的核心指令(`v-model`和`v-show`),Vue也允许注册自定义指令。指令提供一个可复用的方法绑定行为更少地访问DOM，例如在input元素聚焦，像这样：
+除了默认设置的核心指令(`v-model`和`v-show`),Vue也允许注册自定义指令。注意，在vue2.0里面，代码复用的主要形式和抽象是组件——然而可能有情况下,你只需要一些低级的DOM访问纯元素,这就是自定义指令仍将是有用的。下面这个例子聚集一个input元素，像这样：
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -14,10 +14,8 @@ order: 16
 </div>
 <script>
 Vue.directive('focus', {
-  bind: function (el) {
-    Vue.nextTick(function () {
-      el.focus()
-    })
+  inserted: function (el) {
+    el.focus()
   }
 })
 new Vue({
@@ -31,13 +29,10 @@ new Vue({
 ``` js
 // 注册一个全局自定义指令叫做 v-focus
 Vue.directive('focus', {
-  // 当指令第一次运行在元素上
-  bind: function (el) {
-    // 下一次渲染结束后
-    Vue.nextTick(function () {
-      // 聚焦元素
-      el.focus()
-    })
+  // 当绑定元素插入到DOM中。
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
   }
 })
 ```
@@ -62,9 +57,14 @@ directives: {
 
 A directive definition object can provide several hook functions (all optional):
 
-- `bind`: called only once, when the directive is first bound to the element
-- `update`: called whenever the bound element is updated, even when the directive value has not changed
-- `componentUpdated`: called after the component has completed an update cycle
+- `bind`: called only once, when the directive is first bound to the element. This is where you can do one-time setup work.
+
+- `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not necessarily in-document).
+
+- `update`: called whenever the bound element's containing component is updated. The directive's value may or may not have changed. You can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
+
+- `componentUpdated`: called after the containing component has completed an update cycle.
+
 - `unbind`: called only once, when the directive is unbound from the element.
 
 We'll explore the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `oldVnode`) in the next section.
@@ -81,7 +81,7 @@ Directive hooks are passed these arguments:
   - **expression**: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be `"1 + 1"`.
   - **arg**: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
   - **modifiers**: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-- **vnode**: The virtual node produced by Vue's compiler. See the [VNode API]([!!TODO: Add link to the VNode API doc when it exists]) for full details.
+- **vnode**: The virtual node produced by Vue's compiler.<!--See the [VNode API]([!!TODO: Add link to the VNode API doc when it exists]) for full details.-->
 - **oldVnode**: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
 
 <p class="tip">Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
