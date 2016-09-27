@@ -902,38 +902,47 @@ type: api
 
 - **Details:**
 
-  An object that holds virtual nodes which contain parent contents used for content distribution (transclusion) inside [slots](/guide/components.html#Content-Distribution-with-Slots). The `default` property contains [single slot](/guide/components.html#Single-Slot) contents. Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property, with the same name of the slot.
+  Used to access content [distributed by slots](/guide/components.html#Content-Distribution-with-Slots). Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+
+  Accessing `vm.$slots` is most useful when writing a component with a [render function](/guide/render-function.html).
 
 - **Example:**
 
   ```html
-    <my-component>
-      <p slot="intro">Introduction</p>
-      <p slot="conclusion">Thank you very much</p>
-      <div>Everything which is not inside a named slot is available in the "default" slot</div>
-    </my-component>
+  <blog-post>
+    <h1 slot="header">
+      About Me
+    </h1>
+
+    <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
+
+    <p slot="footer">
+      Copyright 2016 Evan You
+    </p>
+
+    <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
+  </blog-post>
   ```
+
   ```js
-  new Vue({
-    ...
-    components: {
-      'my-component': {
-        render: function (createElement) {
-          var slots = this.$slots
-          return createElement('div', { 'lang': 'en' }, [
-            slots.intro,
-            slots.default,
-            slots.conclusion
-          ])
-        }
-      }
-    },
-    ...
+  Vue.component('blog-post', {
+    render: function (createElement) {
+      var header = this.$slots.header
+      var body   = this.$slots.default
+      var footer = this.$slots.footer
+      return createElement('div', [
+        createElement('header', header)
+        createElement('main', body)
+        createElement('footer', footer)
+      ])
+    }
   })
   ```
 
 - **See also:**
-  - [Render Function](/guide/render-function.html)
+  - [`<slot>` Component](#slot)
+  - [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
+  - [Render Functions](/guide/render-function.html)
 
 ### vm.$refs
 
