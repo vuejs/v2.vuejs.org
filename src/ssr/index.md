@@ -1,6 +1,6 @@
 ---
 title: 服务端渲染
-type: changelog
+type: ssr
 order: 0
 ---
 
