@@ -902,42 +902,47 @@ type: api
 
 - **Details:**
 
-  A hash of VNode children of component that should resolve with slot. VNode children resolved with Single Slot are stored as the `default` key. VNode children resolve with Named Slot are stored as the key that specified with `slot` attribute. those VNode children are stored an Array.
+  Used to access content [distributed by slots](/guide/components.html#Content-Distribution-with-Slots). Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+
+  Accessing `vm.$slots` is most useful when writing a component with a [render function](/guide/render-function.html).
 
 - **Example:**
 
   ```html
-  <div id="slots-demo">
-    ...
-    <my-component1>
-      <p slot="slot1">named slot content1</p>
-      <div>single slot content</div>
-      <p slot="slot2">named slot content2</div></p>
-    </my-component1>
-    ...
-  </div>
+  <blog-post>
+    <h1 slot="header">
+      About Me
+    </h1>
+
+    <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
+
+    <p slot="footer">
+      Copyright 2016 Evan You
+    </p>
+
+    <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
+  </blog-post>
   ```
+
   ```js
-  new Vue({
-    ...
-    components: {
-      'my-component1': {
-        render: function (createElement) {
-          console.log('single slot', this.$slots.default)
-          console.log('named slot: slot1', this.$slots.slots1)
-          console.log('named slot: slot2', this.$slots.slots1)
-          return this.$slots.default
-        }
-      }
-    },
-    ...
-  }).$mount('#slots-demo')
+  Vue.component('blog-post', {
+    render: function (createElement) {
+      var header = this.$slots.header
+      var body   = this.$slots.default
+      var footer = this.$slots.footer
+      return createElement('div', [
+        createElement('header', header)
+        createElement('main', body)
+        createElement('footer', footer)
+      ])
+    }
+  })
   ```
 
 - **See also:**
-  - [Render Functions](/guide/render-function.html)
+  - [`<slot>` Component](#slot)
   - [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
-  - [slot](#slot)
+  - [Render Functions](/guide/render-function.html)
 
 ### vm.$refs
 
