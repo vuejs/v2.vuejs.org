@@ -332,7 +332,7 @@ You may have noticed that Vue components are very similar to **Custom Elements**
 
 1. The Web Components Spec is still in draft status, and is not natively implemented in every browser. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and built tool integrations.
+2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
 
 ## Ready for More?
 
