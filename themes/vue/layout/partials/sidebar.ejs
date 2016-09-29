@@ -15,13 +15,10 @@
             <select class="version-select">
                 <option value="rc" selected>2.0</option>
                 <!-- !!TODO: Update value to subdomain when 2.0 is released -->
-                <option value="">1.0</option>
-                <option>0.12</option>
-                <option>0.11</option> -->
             </select>
         </h2>
         <ul class="menu-root">
-            <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
+            <% type !== 'api' && type !== 'router' && site.pages.find({type: type}).sort('order').each(function (p) { %>
                 <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
                 <% if (fileName === 'installation') { %>
                   <li><h3>基础</h3></li>
@@ -31,6 +28,21 @@
                 <% } %>
                 <% if (fileName === 'comparison') { %>
                   <li><h3>更多</h3></li>
+                <% } %>
+                <li>
+                    <a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
+                </li>
+            <% }) %>
+             <% type === 'router' && site.pages.find({type: type}).sort('order').each(function (p) { %>
+                <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
+                <% if (fileName === 'getting-started') { %>
+                  <li><h3>基础</h3></li>
+                <% } %>
+                <% if (fileName === 'navigation-guards') { %>
+                  <li><h3>进阶</h3></li>
+                <% } %>
+                <% if (fileName === 'router-link') { %>
+                  <li><h3>API</h3></li>
                 <% } %>
                 <li>
                     <a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
