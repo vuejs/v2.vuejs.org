@@ -1,145 +1,53 @@
 <div id="hero">
   <div class="inner">
-    <ul id="nav">
-      <li><a href="/guide/" class="nav-link">Guide</a></li>
-      <li><a href="/api/" class="nav-link">API</a></li>
-      <li><a href="/examples/" class="nav-link">Examples</a></li>
-      <li><a href="/blog" class="nav-link">Blog</a></li>
-      <%- partial('partials/community_dropdown') %>
-    </ul>
-    <div id="logo-wrap">
-      <img id="logo" src="/images/logo.png">
-      <h1>Vue.js</h1>
-    </div>
-    <p class="desc">Reactive Components for Modern Web Interfaces</p>
-    <p class="buttons">
-      <a href="/guide/installation.html" class="small-button">Install v<%- theme.vue_version %></a>
-      <a href="/guide/index.html" class="small-button">Get Started</a>
-    </p>
-    <ul id="social">
-      <li><a href="https://twitter.com/vuejs" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @vuejs</a></li>
-      <li><iframe src="//ghbtns.com/github-btn.html?user=vuejs&repo=vue&type=watch&count=true"
-    allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe></li>
-      <li id="donate">
-        <span class="wrapper" style="width: 108px">
-          <img src="/images/patreon.png">
-          <a href="/support-vuejs">Support Vue.js</a>
-        </span>
-      </li>
-    </ul>
-
-    <ul id="translations">
-      <li><a href="http://cn.vuejs.org" class="nav-link">中文</a></li>
-      <li class="delimiter">|</li>
-      <li><a href="http://jp.vuejs.org" class="nav-link">日本語</a></li>
-      <li class="delimiter">|</li>
-      <li><a href="http://it.vuejs.org" class="nav-link">Italiano</a></li>
-    </ul>
-
-    <div id="sponsors">
-      <%- partial('partials/sponsors') %>
-    </div>
-  </div>
-
-  <div class="down"><img src="/images/down.png"></div>
-</div>
-
-<div id="sponsors-mobile">
-  <%- partial('partials/sponsors') %>
-</div>
-
-<div id="example">
-  <h2>10 Second Example</h2>
-  <div class="block">
-    <figure class="highlight lang-html"><table><tbody><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">p</span>&gt;</span>{{message}}<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-model</span>=<span class="value">"message"</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</pre></td></tr></tbody></table></figure>
-  </div>
-
-  <div class="sign">+</div>
-
-  <div class="block">
-    <figure class="highlight lang-js"><table><tbody><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre><span class="keyword">var</span> demo = <span class="keyword">new</span> Vue({
-  el: <span class="string">'#demo'</span>,
-  data: {
-    message: <span class="string">'Hello Vue.js!'</span>
-  }
-})
-</pre></td></tr></tbody></table></figure>
-  </div>
-
-  <div class="sign">=</div>
-
-  <div class="block result">
-    <div id="demo">
-      <p>{{message}}</p>
-      <input v-model="message">
-    </div>
-    <script>
-    var demo = new Vue({
-      el: '#demo',
-      data: {
-        message: 'Hello Vue.js!'
-      }
-    })
-    </script>
-  </div>
-</div>
-<div id="features">
-  <div class="feats">
-    <div class="feat">
-      <h2><span class="icon simple"></span>Simple</h2>
-      <p>Write some HTML, grab some JSON, create a Vue instance, that's it.</p>
-    </div>
-    <div class="feat">
-      <h2><span class="icon powerful"></span>Reactive</h2>
-      <p>Expressions & computed properties with transparent dependency tracking.</p>
-    </div>
-    <div class="feat">
-      <h2><span class="icon composable"></span>Components</h2>
-      <p>Compose your application with decoupled, reusable components.</p>
-    </div>
-    <div class="feat">
-      <h2><span class="icon compact"></span>Compact</h2>
-      <p>~24kb min+gzip, no dependency.</p>
-    </div>
-    <div class="feat">
-      <h2><span class="icon fast"></span>Fast</h2>
-      <p>Precise and efficient async batch DOM updates.</p>
-    </div>
-    <div class="feat">
-      <h2><span class="icon module"></span>Package Ready</h2>
-      <p>Install via NPM or Bower - leverage your favorite eco system!</p>
+    <div class="left">
+      <img class="hero-logo" src="/images/logo.png">
+    </div><div class="right">
+      <h1>
+        Make Web Development<br>
+        Fun Again.
+      </h1>
+      <p>
+        <a class="button" href="/guide/">GET STARTED</a>
+        <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
+      </p>
     </div>
   </div>
 </div>
-<div id="why">
-  <h2>You should try it out if you like:</h2>
-  <ul>
-    <li>Extendable Data bindings</li>
-    <li>Plain JS object models</li>
-    <li>APIs that simply make sense</li>
-    <li>Building UIs by composing components</li>
-    <li>Mixing &amp; matching small libraries</li>
-  </ul>
+
+<div id="highlights">
+  <div class="inner">
+    <div class="point">
+      <h2>Performant</h2>
+      <p>
+        16kb min+gzip Runtime<br>
+        Blazing Fast Virtual DOM<br>
+        Minimal Optimization Efforts
+      </p>
+    </div>
+
+    <div class="point">
+      <h2>Approachable</h2>
+      <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
+    </div>
+
+    <div class="point">
+      <h2>Progressive</h2>
+      <p>Lean, minimal core with a feature-rich, incrementally adoptable ecosystem.</p>
+    </div>
+  </div>
 </div>
+
+<div id="sponsors">
+  <div class="inner">
+    <h3>PROUDLY SPONSORED BY</h3>
+    <%- partial('partials/sponsors') %>
+    <br>
+    <a class="become-sponsor button white" href="/support-vuejs/">Become a Backer</a>
+  </div>
+</div>
+
 <div id="footer">
-  <a class="start" href="/guide/index.html">Get Started</a>
-  <p>Released under the <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
-  <p>Copyright (c) <%- date(Date.now(), 'YYYY') %> <a href="http://evanyou.me" target="_blank">Evan You</a></p>
+  Released under the <a href="https://opensource.org/licenses/MIT" href="_blank">MIT License</a><br>
+  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You
 </div>
-
-<!-- Twitter follow button script -->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

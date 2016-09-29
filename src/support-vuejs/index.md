@@ -31,6 +31,8 @@
     <img src="/images/monterail.png">
   </a><a href="https://www.trisoft.ro/" target="_blank">
     <img src="/images/trisoft.png">
+  </a><a href="http://actualize.co" target="_blank" style="width:180px">
+    <img src="/images/actualize.png" style="width:180px">
   </a>
 </p>
 
