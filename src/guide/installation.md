@@ -2,10 +2,10 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.0.0-rc.7
-dev_size: "184"
-min_size: "64"
-gz_size: "22"
+vue_version: 2.0.0-rc.8
+dev_size: "183.80"
+min_size: "61.54"
+gz_size: "22.53"
 ---
 
 ### 兼容性
@@ -30,15 +30,9 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实�
 
 ### CDN
 
-可以从 [jsdelivr](http://cdn.jsdelivr.net/vue/2.0.0-rc.1/vue.min.js) 或 [cdnjs](http://cdnjs.cloudflare.com/ajax/libs/vue/2.0.0-rc.1/vue.min.js) 获取（版本更新可能略滞后）。
+Recommended: [unpkg](https://unpkg.com/vue), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [unpkg.com/vue/](https://unpkg.com/vue/).
 
-### CSP 兼容版本
-
-可以在 [unpkg](https://unpkg.com/vue/dist/vue.min.js) 获取，会和npm一样保持最新版本，也可以在[unpkg.com/vue/](https://unpkg.com/vue/)浏览npm包资源。
-
-有些环境，如 Google Chrome Apps，强制应用内容安全策略 (CSP) ，不能使用 `new Function()` 对表达式求值。独立构建编译模板时依赖这个特性，所以不能在这类环境下使用。
-
-然而，有个解决方案，当用webpack+vue-loader或者Browserify+vueify构建vue应用时，你的模板将被编译进`render`函数实现完美运作在CSP环境中。
+Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), but these two services take some time to sync so the latest release may not be available yet.
 
 ## NPM
 
@@ -46,27 +40,36 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实�
 
 ``` bash
 # 最新稳定版
-$ npm install vue@next
+$ npm install vue
 ```
 
-### 用 npm 构建时注意
+### Standalone vs. Runtime-only Build
 
+There are two builds available, the standalone build and the runtime-only build.
 
-由于在构建时单个组件预编译模板进入渲染函数，所以默认导出的`vue` npm 包是 **只在运行环境下使用的**，它不支持`template`选项。如你希望使用`template`选项，你需要配置你的构建工具软连接`vue`单独构建。
+- The standalone build includes the compiler and supports the `template` option.
 
-用webpack，添加下面的配置:
+- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
+
+By default, the NPM package exports the standalone build. To use the runtime-only build, add the following alias to your webpack config:
 
 ``` js
 resolve: {
   alias: {
-    vue: 'vue/dist/vue.js'
+    vue: 'vue/dist/vue.common.js'
   }
 }
 ```
 
 对于Browserify,可以用 [aliasify](https://github.com/benbria/aliasify) 
 
-<p class="tip">不要用`import Vue from 'vue/dist/vue` - 因为一些工具或第三方库可能z正常引入vue,这样做可能导致应用程序运行时和独立的构建导致错误。</p>
+<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.common.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
+
+### CSP environments
+
+Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.
+
+On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple-2.0) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple-2.0), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
 
 ## 命令行工具
 
@@ -86,12 +89,11 @@ $ npm run dev
 
 ## 开发版本
 
-**重要**：发布到 NPM 上的 CommonJS 包 (`vue.common.js`) 只在发布新版本时签入 `next` 分支，想使用 GitHub 上最新的源码，需要自己编译：
+**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
 cd node_modules/vue
-git checkout next
 npm install
 npm run build
 ```
@@ -100,7 +102,7 @@ npm run build
 
 ``` bash
 # 最新稳定版本
-$ bower install vue#next
+$ bower install vue
 ```
 
 ## AMD 模块加载器

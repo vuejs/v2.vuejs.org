@@ -19,8 +19,8 @@
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
+        <%- partial('partials/header') %>
         <% if (!isIndex) { %>
-            <%- partial('partials/header') %>
             <div id="main">
                 <% if (page.blog_index) { %>
                     <%- partial('partials/blog') %>

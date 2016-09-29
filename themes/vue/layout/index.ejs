@@ -1,3 +1,9 @@
+<div class="sidebar">
+  <ul class="main-menu">
+    <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+  </ul>
+</div>
+
 <div id="hero">
   <div class="inner">
     <ul id="nav">
@@ -37,9 +43,19 @@
       <li class="delimiter">|</li>
       <li><a href="http://it.vuejs.org" class="nav-link">Italiano</a></li>
     </ul>
+    <div class="left">
+      <img class="hero-logo" src="/images/logo.png">
+    </div><div class="right">
+      <h2 class="vue">Vue.js</h2>
+      <h1>
+        The Progressive<br>JavaScript Framework
+      </h1>
+      <p>
+        <a class="button" href="/guide/">GET STARTED</a>
+        <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
+      </p>
+    </div>
   </div>
-
-  <div class="down"><img src="/images/down.png"></div>
 </div>
 
 <div id="sponsors-mobile">
@@ -77,22 +93,26 @@
 })
 </pre></td></tr></tbody></table></figure>
   </div>
-
-  <div class="sign">=</div>
-
-  <div class="block result">
-    <div id="demo">
-      <p>{{message}}</p>
-      <input v-model="message">
+<div id="highlights">
+  <div class="inner">
+    <div class="point">
+      <h2>Performant</h2>
+      <p>
+        16kb min+gzip Runtime<br>
+        Blazing Fast Virtual DOM<br>
+        Minimal Optimization Efforts
+      </p>
     </div>
-    <script>
-    var demo = new Vue({
-      el: '#demo',
-      data: {
-        message: 'Hello Vue.js!'
-      }
-    })
-    </script>
+
+    <div class="point">
+      <h2>Versatile</h2>
+      <p>Lean, minimal core with a feature-rich, incrementally adoptable ecosystem.</p>
+    </div>
+
+    <div class="point">
+      <h2>Approachable</h2>
+      <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
+    </div>
   </div>
 </div>
 <div id="features">
@@ -139,3 +159,22 @@
   <p>Copyright (c) <%- date(Date.now(), 'YYYY') %> <a href="http://evanyou.me" target="_blank">Evan You</a></p>
 </div>
 
+=======
+
+<div id="sponsors">
+  <div class="inner">
+    <h3>PROUDLY SPONSORED BY</h3>
+    <%- partial('partials/sponsors') %>
+    <br>
+    <a class="become-sponsor button white" href="/support-vuejs/">Become a Backer</a>
+  </div>
+</div>
+
+<div id="footer">
+  Released under the <a href="https://opensource.org/licenses/MIT" href="_blank">MIT License</a><br>
+  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You
+</div>
+
+<script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script src="/js/common.js"></script>
+>>>>>>> 9d5c0295ecf3f0c913b9d198f3f9b653f02ae8ab
