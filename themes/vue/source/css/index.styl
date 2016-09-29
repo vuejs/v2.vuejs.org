@@ -1,5 +1,7 @@
 @import "_common"
 @import "_header"
+@import "_search"
+@import '_sidebar'
 
 $width = 900px
 $space = 50px
@@ -8,7 +10,7 @@ body
     background-color darken($light, 10%)
 
 #hero
-    padding $space 0
+    padding $space 40px
     background-color #fff
     .inner
         max-width $width
@@ -34,7 +36,8 @@ body
         font-size 1.05em
         font-weight 600
         letter-spacing .1em
-        margin-right 1em
+        &:first-child
+            margin-right 1em
     .social-buttons
         list-style-type none
         padding 0
@@ -60,12 +63,14 @@ body
             color $green
             font-size 1.5em
             font-weight 400
+            margin 0
+            padding .5em 0
         p
             color $light
 
 #sponsors
     text-align center
-    padding 35px 30px 45px
+    padding 35px 40px 45px
     background-color #f6f6f6
     .inner
         max-width 700px
@@ -102,7 +107,33 @@ body
         color #fff
 
 @media screen and (max-width: $width)
+    body
+        -webkit-text-size-adjust none
+        font-size 14px
     #header
         display none
     #mobile-bar
         display block
+    #hero
+        padding $space 40px 30px
+        .hero-logo
+            float none
+            margin 30px 0 15px
+            width 140px
+            height 140px
+        .left, .right
+            text-align center
+            width 100%
+        h1
+            font-size 2em
+        .button
+            font-size .9em
+    #highlights
+        .point
+            display block
+            margin 0 auto
+            width 300px
+            padding 0 40px 30px
+            &:before
+                content "—"
+                color $green

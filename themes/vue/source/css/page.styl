@@ -4,69 +4,13 @@
 @import "_search"
 @import "_sponsor"
 @import "_migration"
+@import "_sidebar"
 
 #header
     box-shadow 0 0 4px rgba(0,0,0,.25)
 
-.sidebar
-    position absolute
-    z-index 10
-    top 0
-    left 60px
-    bottom 0
-    padding 2.2em 0
-    width 260px
-    margin-right 20px
-    overflow-x hidden
-    overflow-y auto
-    -webkit-overflow-scrolling touch
-    -ms-overflow-style none
-    h2
-        margin-top .2em
-    ul
-        list-style-type none
-        margin 0
-        line-height 1.8em
-        padding-left 1em
-    .version-select
-        vertical-align middle
-        margin-left 5px
-    .menu-root
-        padding-left 0
-    .menu-sub
-        font-size .85em
-    .sidebar-link
-        color $light
-        &.current
-            font-weight 600
-            color $green
-        &.new
-            &:after
-                content "NEW"
-                display inline-block
-                font-size 10px
-                font-weight 600
-                color #fff
-                background-color $green
-                line-height 14px
-                padding 0 4px
-                border-radius 3px
-                margin-left 5px
-                vertical-align middle
-                position relative
-                top -1px
-        &:hover
-            border-bottom 2px solid $green
-    .section-link
-        &.active
-            font-weight bold
-            color $green
-    .main-menu
-        margin-bottom 20px
-        display none
-        padding-left 0
-
 .content
+    position relative
     padding 2.2em 0
     max-width 600px
     margin 0 auto
@@ -180,7 +124,7 @@
     .content.with-sidebar
         margin-left 290px
     #ad
-        z-index 8
+        z-index 7
         position relative
         width 100%
         padding 0
@@ -212,32 +156,12 @@
         padding-bottom 1px
         &:hover, &.current
             border-bottom 2px solid $green
-    .search-query
-        width 200px
-        margin-bottom 10px
     #mobile-bar
         display block
     #main
         padding 2em 1.4em 0
     .highlight pre
         padding 1.2em 1em
-    .sidebar
-        position fixed
-        background-color #f9f9f9
-        height 100%
-        top 0
-        left 0
-        padding 60px 30px 20px
-        box-shadow 0 0 10px rgba(0,0,0,.2)
-        box-sizing border-box
-        transition all .4s cubic-bezier(0.4, 0, 0, 1)
-        -webkit-transform translate(-280px, 0)
-        transform translate(-280px, 0)
-        .main-menu
-            display block
-        &.open
-            -webkit-transform translate(0, 0)
-            transform translate(0, 0)
     .content
         &.with-sidebar
             margin-left 0
