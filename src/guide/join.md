@@ -27,7 +27,7 @@ If you would like to also be a part of the Vue.js community, this page was meant
  
 ### Contributing to Vue
 
-- [The rules to contribute](https://github.com/vuejs/vue/blob/dev/CONTRIBUTING.md) - As with any community, there has to be rules, in order to ensure everyone is doing the right things the right way.
+- [The rules to contribute](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md) - As with any community, there has to be rules, in order to ensure everyone is doing the right things the right way.
 
 - The Main Components of Vue
   - [Vue](https://github.com/vuejs/vue) - The core repository.
