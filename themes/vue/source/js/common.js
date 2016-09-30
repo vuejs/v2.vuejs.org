@@ -54,12 +54,9 @@
     // version select
     document.querySelector('.version-select').addEventListener('change', function (e) {
       var version = e.target.value
-      if (version.indexOf('1.') !== 0) {
-        version = version.replace('.', '')
+      if (version !== 'SELF') {
         var section = window.location.pathname.match(/\/(\w+?)\//)[1]
-        window.location.assign('http://' + version + '.vuejs.org/' + section + '/')
-      } else {
-        // TODO when 1.x is out
+        window.location.assign('http://' + (version ? version + '.' : '') + 'vuejs.org/' + section + '/')
       }
     })
   }
