@@ -47,23 +47,23 @@ $ npm install vue
 
 There are two builds available, the standalone build and the runtime-only build.
 
-- The standalone build includes the compiler and supports the `template` option.
+- The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
 
 - The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
 
-By default, the NPM package exports the standalone build. To use the runtime-only build, add the following alias to your webpack config:
+By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your webpack config:
 
 ``` js
 resolve: {
   alias: {
-    vue: 'vue/dist/vue.common.js'
+    vue: 'vue/dist/vue.js'
   }
 }
 ```
 
 For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
 
-<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.common.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
+<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
 
 ### CSP environments
 
