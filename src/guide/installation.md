@@ -2,7 +2,7 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 2.0.0
+vue_version: 2.0.1
 dev_size: "184.49"
 min_size: "61.72"
 gz_size: "22.58"
