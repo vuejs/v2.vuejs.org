@@ -102,27 +102,26 @@ type: api
 
   Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
 
-  The special cases to note here are `el` and `data` options - they must be functions when used with `Vue.extend()`.
+  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
 
   ``` html
   <div id="mount-point"></div>
   ```
 
   ``` js
-  // create reusable constructor
+  // create constructor
   var Profile = Vue.extend({
-    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>'
-  })
-  // create an instance of Profile
-  var profile = new Profile({
-    data: {
-      firstName: 'Walter',
-      lastName: 'White',
-      alias: 'Heisenberg'
+    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+    data: function () {
+      return {
+        firstName: 'Walter',
+        lastName: 'White',
+        alias: 'Heisenberg'
+      }
     }
   })
-  // mount it on an element
-  profile.$mount('#mount-point')
+  // create an instance of Profile and mount it on an element
+  new Profile().$mount('#mount-point')
   ```
 
   Will result in:

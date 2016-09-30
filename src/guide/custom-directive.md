@@ -81,7 +81,7 @@ Directive hooks are passed these arguments:
   - **expression**: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be `"1 + 1"`.
   - **arg**: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
   - **modifiers**: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-- **vnode**: The virtual node produced by Vue's compiler.<!--See the [VNode API]([!!TODO: Add link to the VNode API doc when it exists]) for full details.-->
+- **vnode**: The virtual node produced by Vue's compiler. See the [VNode API](/api/#VNode-Interface) for full details.
 - **oldVnode**: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
 
 <p class="tip">Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
