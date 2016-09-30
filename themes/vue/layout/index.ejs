@@ -24,22 +24,22 @@
 <div id="highlights">
   <div class="inner">
     <div class="point">
+      <h2>Approachable</h2>
+      <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
+    </div>
+
+    <div class="point">
+      <h2>Versatile</h2>
+      <p>Simple, minimal core with an incrementally adoptable stack that can handle apps of any scale.</p>
+    </div>
+
+    <div class="point">
       <h2>Performant</h2>
       <p>
         16kb min+gzip Runtime<br>
         Blazing Fast Virtual DOM<br>
         Minimal Optimization Efforts
       </p>
-    </div>
-
-    <div class="point">
-      <h2>Versatile</h2>
-      <p>Lean, minimal core with a feature-rich, incrementally adoptable ecosystem.</p>
-    </div>
-
-    <div class="point">
-      <h2>Approachable</h2>
-      <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
     </div>
   </div>
 </div>
@@ -60,3 +60,15 @@
 
 <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
 <script src="/js/common.js"></script>
+<script>
+var topScrolled = false
+window.addEventListener('scroll', function () {
+  if (window.pageYOffset > 165 && !topScrolled) {
+    topScrolled = true
+    document.getElementById('mobile-bar').classList.remove('top')
+  } else if (window.pageYOffset <= 165 && topScrolled) {
+    topScrolled = false
+    document.getElementById('mobile-bar').classList.add('top')
+  }
+})
+</script>

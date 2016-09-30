@@ -9,6 +9,22 @@ $space = 50px
 body
     background-color darken($light, 10%)
 
+#logo
+    span
+        font-size 1.2em
+    img
+        display none
+
+.sidebar
+    display none
+
+#mobile-bar
+    &.top
+        background-color transparent
+        box-shadow none
+        .logo
+            display none
+
 #hero
     padding $space 40px
     background-color #fff
@@ -116,6 +132,8 @@ body
     body
         -webkit-text-size-adjust none
         font-size 14px
+    .sidebar
+        display block
     #header
         display none
     #mobile-bar
