@@ -298,7 +298,7 @@ Vue.component('todo', {
 var app7 = new Vue({
   el: '#app-7',
   data: {
-  todos: [{ /* ... */}]
+    todos: [/* ... */]
   }
 })
 ```

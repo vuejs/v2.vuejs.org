@@ -81,8 +81,8 @@ directives: {
   - **oldValue**: 指令绑定的前一个值, 仅在 `update` 和 `componentUpdated` 钩子中可用。无论值是否改变都可用。
   - **expression**: 绑定值的字符串形式。 例如 `v-my-directive="1 + 1"` ， expression 的值是 `"1 + 1"`。
   - **arg**: 传给指令的参数。例如 `v-my-directive:foo`， arg 的值是 `"foo"`。
-  - **modifiers**: 一个包含编辑器的对象。 例如： `v-my-directive.foo.bar`, 编辑器对象 modifiers的值是 `{ foo: true, bar: true }`.
-- **vnode**: Vue 生成的虚拟节点<!--参考 [VNode API]([!!TODO: Add link to the VNode API doc when it exists]) for full details.-->
+  - **modifiers**: 一个包含编辑器的对象。 例如： `v-my-directive.foo.bar`, 编辑器对象 modifiers的值是 `{ foo: true, bar: true }`。
+- **vnode**: Vue 编译生成的虚拟节点, 参考 [VNode API](/api/#VNode-Interface) 详情。
 - **oldVnode**: 上一个虚拟节点, 仅在 `update` 和 `componentUpdated` 钩子中可用。
 
 <p class="tip">除了 `el` 之外, 其它参数都应该是只读的，尽量不要修改他们。如果需要在钩子之间共享数据，建议通过元素的 [dataset] 来进行。(https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
