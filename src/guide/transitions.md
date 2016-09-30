@@ -84,24 +84,24 @@ new Vue({
 
 When an element wrapped in a `transition` component is inserted or removed, this is what happens:
 
-1. Automatically sniff whether the target element has CSS transitions or animations applied. If it does, add/remove CSS classes at the appropriate times.
+1. Vue will automatically sniff whether the target element has CSS transitions or animations applied. If it does, CSS transition classes will be added/removed at appropriate timings.
 
-2. If the transition component provided [JavaScript hooks](#JavaScript-Hooks), call these hooks at the appropriate times.
+2. If the transition component provided [JavaScript hooks](#JavaScript-Hooks), these hooks will be called at appropriate timings.
 
-3. If no CSS transitions/animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal are executed immediately on next frame.
+3. If no CSS transitions/animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal will be executed immediately on next frame (Note: this is a browser animation frame, different from Vue's concept of `nextTick`).
 
 ### Transition Classes
 
 There are four classes applied for enter/leave transitions.
 
-1. `v-enter`: Starting state for enter. Applied before element is inserted, removed after 1 tick.
+1. `v-enter`: Starting state for enter. Applied before element is inserted, removed after one frame.
 2. `v-enter-active`: Active and ending state for enter. Applied before element is inserted, removed when transition/animation finishes.
-3. `v-leave`: Starting state for leave. Applied when leave transition is triggered, removed after 1 tick.
+3. `v-leave`: Starting state for leave. Applied when leave transition is triggered, removed after one frame.
 4. `v-leave-active`: Active and ending state for leave. Applied when leave transition is triggered, removed when the transition/animation finishes.
 
-!!TODO: A nifty timeline diagram might be useful here.
+![Transition Diagram](/images/transition.png)
 
-For each of these classes, the `v` prefix is the name of the transition. If you use `name="my-transition"` for example, then the `v-enter` class would instead be `my-transition-enter`.
+Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter` class would instead be `my-transition-enter`.
 
 `v-enter-active` and `v-leave-active` give you the ability to specify different easing curves for enter/leave transitions, which you'll see an example of in the following section.
 
@@ -328,7 +328,7 @@ These will override the conventional class names. This is especially useful when
 Here's an example:
 
 ``` html
-<link href="https://npmcdn.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+<link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
 
 <div id="example-3">
   <button @click="show = !show">
@@ -354,7 +354,7 @@ new Vue({
 ```
 
 {% raw %}
-<link href="https://npmcdn.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
+<link href="https://unpkg.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
     Toggle render
@@ -704,7 +704,7 @@ new Vue({
 
 As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
 
-Sometimes, this works great, like when transitioning items are absolutely positioned on top of each other:
+Sometimes this works great, like when transitioning items are absolutely positioned on top of each other:
 
 {% raw %}
 <div id="no-mode-absolute-demo" class="demo">
@@ -790,7 +790,7 @@ new Vue({
 </style>
 {% endraw %}
 
-Simultaneous entering and leaving transitions isn't always desirable though, so Vue offers some alternative **transition modes**:
+Simultaneous entering and leaving transitions aren't always desirable though, so Vue offers some alternative **transition modes**:
 
 - `in-out`: New element transitions in first, then when complete, the current element transitions out.
 
@@ -1065,7 +1065,7 @@ There's one problem with this example. When you add or remove an item, the ones 
 
 ### List Move Transitions
 
-The `<transition-group>` component has another trick up its sleeve. It can not only animate entering and leaving, but also changes in position. The only new concept you need to know to use this feature is the addition of **the `v-move` class**, which is added when items are changing positions. Like the other classes, its prefix will match the value of match a provided `name` attribute and you can also manually specify a class with the `move-class` attribute.
+The `<transition-group>` component has another trick up its sleeve. It can not only animate entering and leaving, but also changes in position. The only new concept you need to know to use this feature is the addition of **the `v-move` class**, which is added when items are changing positions. Like the other classes, its prefix will match the value of a provided `name` attribute and you can also manually specify a class with the `move-class` attribute.
 
 This class is mostly useful for specifying the transition timing and easing curve, as you'll see below:
 
@@ -1247,7 +1247,7 @@ new Vue({
 
 <p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can transitioned [just as easily](https://jsfiddle.net/chrisvfritz/a2ngorat/):
+These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can transitioned [just as easily](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">

@@ -1,11 +1,11 @@
 ---
 title: Installation
 type: guide
-order: 0
-vue_version: 2.0.0-rc.1
-dev_size: "187.07"
-min_size: "60.65"
-gz_size: "22.06"
+order: 1
+vue_version: 2.0.0-rc.8
+dev_size: "183.80"
+min_size: "61.54"
+gz_size: "22.53"
 ---
 
 ### Compatibility Note
@@ -18,7 +18,9 @@ Detailed release notes for each version are available on [GitHub](https://github
 
 ## Standalone
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable. **Pro tip: Don't use the minified version during development. You will miss out all the nice warnings for common mistakes.**
+Simply download and include with a script tag. `Vue` will be registered as a global variable.
+
+<p class="tip">Don't use the minified version during development. You will miss out all the nice warnings for common mistakes!</p>
 
 <div id="downloads">
 <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
@@ -28,15 +30,9 @@ Simply download and include with a script tag. `Vue` will be registered as a glo
 
 ### CDN
 
-Available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
+Recommended: [unpkg](https://unpkg.com/vue), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [unpkg.com/vue/](https://unpkg.com/vue/).
 
-Also available on [npmcdn](https://npmcdn.com/vue/dist/vue.min.js), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [npmcdn.com/vue/](https://npmcdn.com/vue/).
-
-### CSP environments
-
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.
-
-There _is_ a solution however. When using Vue in a build system with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple-2.0) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple-2.0), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), but these two services take some time to sync so the latest release may not be available yet.
 
 ## NPM
 
@@ -44,8 +40,36 @@ NPM is the recommended installation method when building large scale application
 
 ``` bash
 # latest stable
-$ npm install vue@next
+$ npm install vue
 ```
+
+### Standalone vs. Runtime-only Build
+
+There are two builds available, the standalone build and the runtime-only build.
+
+- The standalone build includes the compiler and supports the `template` option.
+
+- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
+
+By default, the NPM package exports the standalone build. To use the runtime-only build, add the following alias to your webpack config:
+
+``` js
+resolve: {
+  alias: {
+    vue: 'vue/dist/vue.common.js'
+  }
+}
+```
+
+For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
+
+<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.common.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
+
+### CSP environments
+
+Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.
+
+On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple-2.0) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple-2.0), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
 
 ## CLI
 
@@ -54,9 +78,8 @@ Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly 
 ``` bash
 # install vue-cli
 $ npm install --global vue-cli
-# create a new project using the "webpack" boilerplate
-# !!TODO: THIS TEMPLATE DOES NOT EXIST YET
-$ vue init webpack-2.0 my-project
+# create a new project using the "webpack" template
+$ vue init webpack my-project
 # install dependencies and go!
 $ cd my-project
 $ npm install
@@ -65,12 +88,11 @@ $ npm run dev
 
 ## Dev Build
 
-**Important**: the CommonJS bundle distributed on NPM (`vue.common.js`) is only checked in during releases on the `next` branch. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
 cd node_modules/vue
-git checkout next
 npm install
 npm run build
 ```
@@ -79,7 +101,7 @@ npm run build
 
 ``` bash
 # latest stable
-$ bower install vue#next
+$ bower install vue
 ```
 
 ## AMD Module Loaders

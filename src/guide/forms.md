@@ -8,6 +8,8 @@ order: 10
 
 You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
 
+<p class="tip">`v-model` doesn't care about the initial value provided to an input or a textarea. It will always treat the Vue instance data as the source of truth.</p>
+
 ### Text
 
 ``` html
@@ -53,6 +55,11 @@ new Vue({
   }
 })
 </script>
+{% endraw %}
+
+
+{% raw %}
+<p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
 {% endraw %}
 
 ### Checkbox

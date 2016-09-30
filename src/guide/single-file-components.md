@@ -27,11 +27,13 @@ Now we get:
 - [CommonJS modules](https://webpack.github.io/docs/commonjs.html)
 - [Component-scoped CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
-As promised, we can also use preprocessors such as Jade, Babel, and Stylus for cleaner and more feature-rich components.
+As promised, we can also use preprocessors such as Jade, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-These specific languages are just examples. You could just as easily use Marko, TypeScript, and SCSS - or whatever other preprocessors that help you be productive.
+These specific languages are just examples. You could just as easily use Buble, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive.
+
+<!-- TODO: include CSS modules once it's supported in vue-loader 9.x -->
 
 ## Getting Started
 
@@ -40,15 +42,18 @@ These specific languages are just examples. You could just as easily use Marko, 
 With `.vue` components, we're entering the realm of advanced JavaScript applications. That means learning to use a few additional tools if you haven't already:
 
 - **Node Package Manager (NPM)**: Read the [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) through section _10: Uninstalling global packages_.
+
 - **Modern JavaScript with ES2015/16**: Read through Babel's [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). You don't have to memorize every feature right now, but keep this page as a reference you can come back to.
 
-After you've taken a day to dive into these resources, we recommend checking out the [browserify-simple-2.0](https://github.com/vuejs-templates/browserify-simple-2.0) template, which is the simplest template that uses `.vue` components.
+After you've taken a day to dive into these resources, we recommend checking out the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template. Follow the instructions and you should have a Vue project with `.vue` components, ES2015 and hot-reloading running in no time!
 
-If you'd like to learn more about how `.vue` components work with Browserify, you can read [these docs](https://github.com/vuejs/vueify/blob/master/README.md). To learn more about Browserify itself, [their Usage guide](https://github.com/substack/node-browserify#usage) is recommended reading.
+The template uses [Webpack](https://webpack.github.io/), a module bundler that takes a number of "modules" and then bundle them into your final application. To learn more about Webpack itself, [this video](https://www.youtube.com/watch?v=WQue1AN93YU) offers a good intro. Once you get past the basics, you might also want to check out [this advanced Webpack course on Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
+
+In Webpack, each module can be transformed by a "loader" before included into the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with Webpack, you can read [the docs for vue-loader](vue-loader.vuejs.org).
 
 ### For Advanced Users
 
-Whether you prefer Webpack, Browserify, or SystemJS, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
+Whether you prefer Webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
 
 ## Deploying for Production
 
@@ -94,3 +99,25 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ``` bash
 NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] -e main.js | uglifyjs -c -m > build.js
 ```
+
+### Use the Runtime-Only Build
+
+There are two builds available, the standalone build and the runtime-only build.
+
+- The standalone build includes the compiler and supports the `template` option.
+
+- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
+
+By default, the NPM package exports the standalone build. To use the runtime-only build, add the following alias to your webpack config:
+
+``` js
+resolve: {
+  alias: {
+    vue: 'vue/dist/vue.common.js'
+  }
+}
+```
+
+For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
+
+<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.common.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>

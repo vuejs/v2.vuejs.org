@@ -1,0 +1,85 @@
+$header-height = 40px
+
+#header
+    background-color #fff
+    padding 25px 60px
+    position relative
+    z-index 2
+
+#nav
+    list-style-type none
+    margin 0
+    padding 0
+    position absolute
+    right 60px
+    top 25px
+    height $header-height
+    line-height $header-height
+    .break
+        display none
+    li
+        display inline-block
+        position relative
+        margin 0 .6em
+
+.nav-link
+    padding-bottom 3px
+    &:hover, &.current
+        border-bottom 3px solid $green
+
+.search-query
+    height 30px
+    line-height 30px
+    box-sizing border-box
+    padding 0 15px 0 30px
+    border 1px solid #e3e3e3
+    outline none
+    border-radius 15px
+    margin-right 10px
+    transition border-color .2s ease
+    background #fff url(/images/search.png) 8px 5px no-repeat
+    background-size 20px
+    vertical-align middle !important
+    &:focus
+        border-color $green
+
+#logo
+    display inline-block
+    font-size 1.5em
+    line-height $header-height
+    color $dark
+    font-family $logo-font
+    font-weight 500
+    img
+        vertical-align middle
+        margin-right 6px
+        width $header-height
+        height $header-height
+
+#mobile-bar
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 40px
+    background-color #fff
+    z-index 9
+    display none
+    box-shadow 0 0 4px rgba(0,0,0,.25)
+    .menu-button
+        position absolute
+        width 24px
+        height 24px
+        top 8px
+        left 12px
+        background url(../images/menu.png) center center no-repeat
+        background-size 24px
+    .logo
+        position absolute
+        width 30px
+        height 30px
+        background url(../images/logo.png) center center no-repeat
+        top 5px
+        left 50%
+        margin-left -15px
+        background-size 30px

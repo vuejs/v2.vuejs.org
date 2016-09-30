@@ -84,7 +84,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](/api/#Instance-Properties) before diving into render functions.**
+Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](/api/#vm-slots) before diving into render functions.**
 
 ## `createElement` Arguments
 
@@ -121,8 +121,20 @@ createElement(
 
 ### The Data Object In-Depth
 
+One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects.
+
 ``` js
 {
+  // Same API as `v-bind:class`
+  'class': {
+    foo: true,
+    bar: false
+  },
+  // Same API as `v-bind:style`
+  style: {
+    color: 'red',
+    fontSize: '14px'
+  },
   // Normal HTML attributes
   attrs: {
     id: 'foo'
@@ -147,16 +159,6 @@ createElement(
   // the component using vm.$emit.
   nativeOn: {
     click: this.nativeClickHandler
-  },
-  // Same API as `v-bind:class`
-  'class': {
-    foo: true,
-    bar: false
-  },
-  // Same API as `v-bind:style`
-  style: {
-    color: 'red',
-    fontSize: '14px'
   },
   // Other special top-level properties
   key: 'myKey',
@@ -237,7 +239,7 @@ render: function (createElement) {
 
 ## Replacing Template Features with Plain JavaScript
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide an appropriate alternative. For example, in a template using `v-if` and `v-for`:
+Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
 
 ``` html
 <ul v-if="items.length">
@@ -316,7 +318,7 @@ Everything the component needs is passed through `context`, which is an object c
 
 - `props`: An object of the provided props
 - `children`: An array of the VNode children
-- `slots`: A slots object
+- `slots`: A function returning a slots object
 - `data`: The entire data object passed to the component
 - `parent`: A reference to the parent component
 
@@ -364,9 +366,9 @@ Vue.component('smart-list', {
 })
 ```
 
-### `slots` vs `children`
+### `slots()` vs `children`
 
-You may wonder why we need both `slots` and `children`. Wouldn't `slots.default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
 
 ``` html
 <my-functional-component>
@@ -377,7 +379,7 @@ You may wonder why we need both `slots` and `children`. Wouldn't `slots.default`
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots.default` will give you only the second, and `slots.foo` will give you only the first. Having both `children` and `slots` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
+For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
 
 ## Template Compilation
 

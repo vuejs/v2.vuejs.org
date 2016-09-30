@@ -1,5 +1,5 @@
 ---
-title: Methods and Event Handling
+title: Event Handling
 type: guide
 order: 9
 ---
@@ -73,7 +73,7 @@ var example2 = new Vue({
 })
 
 // you can invoke methods in JavaScript too
-vm.greet() // -> 'Hello Vue.js!'
+example2.greet() // -> 'Hello Vue.js!'
 ```
 
 Result:
@@ -209,7 +209,7 @@ Here's the full list of key modifier aliases:
 
 - enter
 - tab
-- delete
+- delete (captures both "Delete" and "Backspace" keys)
 - esc
 - space
 - up
