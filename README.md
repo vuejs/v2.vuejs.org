@@ -1,4 +1,4 @@
-# vue.js2-rc7 中文翻译文档（正在进行中...） http://vuefe.cn
+# vue.js 2.0 正式版 中文翻译文档（正在进行中...） http://vuefe.cn
 
 > 基于 hexo && vuejs.org
 > 求小伙伴共同翻译，有兴趣加qq 315129552
