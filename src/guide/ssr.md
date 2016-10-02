@@ -206,7 +206,7 @@ server.listen(5000, function (error) {
 })
 ```
 
-And that's it! Here's [the full application](https://github.com/chrisvfritz/vue-ssr-demo-simple), in case you'd like to clone it and experiment further. Once you have it running locally, you can confirm that server-side rendering really is working by right-clickig on the page and selecting `View Page Source` (or similar). You should see this in the body:
+And that's it! Here's [the full application](https://github.com/chrisvfritz/vue-ssr-demo-simple), in case you'd like to clone it and experiment further. Once you have it running locally, you can confirm that server-side rendering really is working by right-clicking on the page and selecting `View Page Source` (or similar). You should see this in the body:
 
 ``` html
 <div id="app" server-rendered="true">You have been here for 0 seconds&period;</div>
