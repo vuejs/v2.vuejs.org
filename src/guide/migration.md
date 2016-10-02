@@ -990,7 +990,7 @@ function pluralizeKnife (count) {
   if (count === 0) {
     return 'no knives'
   } else if (count === 1) {
-    return count + 'knife'
+    return '1 knife'
   } else {
     return count + 'knives'
   }

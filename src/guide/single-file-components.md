@@ -49,7 +49,7 @@ After you've taken a day to dive into these resources, we recommend checking out
 
 The template uses [Webpack](https://webpack.github.io/), a module bundler that takes a number of "modules" and then bundle them into your final application. To learn more about Webpack itself, [this video](https://www.youtube.com/watch?v=WQue1AN93YU) offers a good intro. Once you get past the basics, you might also want to check out [this advanced Webpack course on Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
 
-In Webpack, each module can be transformed by a "loader" before included into the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with Webpack, you can read [the docs for vue-loader](vue-loader.vuejs.org).
+In Webpack, each module can be transformed by a "loader" before included into the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with Webpack, you can read [the docs for vue-loader](https://vue-loader.vuejs.org).
 
 ### For Advanced Users
 
@@ -99,25 +99,3 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ``` bash
 NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] -e main.js | uglifyjs -c -m > build.js
 ```
-
-### Use the Runtime-Only Build
-
-There are two builds available, the standalone build and the runtime-only build.
-
-- The standalone build includes the compiler and supports the `template` option.
-
-- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
-
-By default, the NPM package exports the standalone build. To use the runtime-only build, add the following alias to your webpack config:
-
-``` js
-resolve: {
-  alias: {
-    vue: 'vue/dist/vue.common.js'
-  }
-}
-```
-
-For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
-
-<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.common.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
