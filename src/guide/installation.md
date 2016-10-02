@@ -2,10 +2,10 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.0.0-rc.8
-dev_size: "183.80"
-min_size: "61.54"
-gz_size: "22.53"
+vue_version: 2.0.1
+dev_size: "184.49"
+min_size: "61.72"
+gz_size: "22.58"
 ---
 
 ### 兼容性
@@ -30,7 +30,7 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实�
 
 ### CDN
 
-Recommended: [unpkg](https://unpkg.com/vue), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [unpkg.com/vue/](https://unpkg.com/vue/).
+Recommended: [unpkg](https://unpkg.com/vue/dist/vue.js), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [unpkg.com/vue/](https://unpkg.com/vue/).
 
 Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), but these two services take some time to sync so the latest release may not be available yet.
 
@@ -47,23 +47,23 @@ $ npm install vue
 
 There are two builds available, the standalone build and the runtime-only build.
 
-- The standalone build includes the compiler and supports the `template` option.
+- The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
 
 - The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
 
-By default, the NPM package exports the standalone build. To use the runtime-only build, add the following alias to your webpack config:
+By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your webpack config:
 
 ``` js
 resolve: {
   alias: {
-    vue: 'vue/dist/vue.common.js'
+    vue: 'vue/dist/vue.js'
   }
 }
 ```
 
 对于Browserify,可以用 [aliasify](https://github.com/benbria/aliasify) 
 
-<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.common.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
+<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
 
 ### CSP environments
 

@@ -207,7 +207,7 @@ server.listen(5000, function (error) {
 })
 ```
 
-这样就完成了。[整个示例](https://github.com/chrisvfritz/vue-ssr-demo-simple)，克隆下来深度实验。一个它在本地运行时，你可以通过在页面右击选择`页面资源`（或类似操作）确认服务选渲染真的运行了。可以在body中看到：
+这样就完成了。[整个示例](https://github.com/chrisvfritz/vue-ssr-demo-simple)，克隆下来深度实验。一旦它在本地运行时，你可以通过在页面右击选择`页面资源`（或类似操作）确认服务选渲染真的运行了。可以在body中看到：
 
 ``` html
 <div id="app" server-rendered="true">You have been here for 0 seconds&period;</div>

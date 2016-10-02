@@ -122,8 +122,7 @@ var app3 = new Vue({
 
 在控制台设置 `app3.seen = false`，可以看到消息消失了。
 
-
-第二个示例演示了我们不仅可以绑定数据到文本和属性，也可以绑定到DOM结构上。甚至，Vue还提供一套强力的过渡系统在元素通过Vue插入/更新/移除自动应用[过渡效果](transitions.html)。
+示例演示了我们不仅可以绑定数据到文本和属性，也可以绑定到DOM结构上。甚至，Vue还提供一套强力的过渡系统在元素通过Vue插入/更新/移除自动应用[过渡效果](transitions.html)。
 
 这里有一些其他指令，每一个都有自己独特的函数。例如，`v-for`指令可以被用来从数组数据中展示列表元素。
 
@@ -263,7 +262,8 @@ var app6 = new Vue({
 Vue中，一个组件基本上是一个预定义了设置的Vue实例。在Vue注册组件也很简单：
 
 ``` js
-Vue.component('todo', {
+// Define a new component called todo-item
+Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
 ```
@@ -272,14 +272,21 @@ Vue.component('todo', {
 
 ``` html
 <ul>
-  <todo v-for="todo in todos"></todo>
+  <!--
+  Create an instance of the todo-item component
+  for each todo in a todos array
+  -->
+  <todo-item v-for="todo in todos"></todo-item>
 </ul>
 ```
 
 不过每个Todo都渲染一样的文本并不有趣。我们可以从父组件传递数据到子组件中。让我们修改组件定义，使它可以结构一个 [prop](/guide/components.html#Props)：
 
 ``` js
-Vue.component('todo', {
+Vue.component('todo-item', {
+  // The todo-item component now accepts a
+  // "prop", which is like a custom attribute.
+  // This prop is called todo.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
@@ -290,7 +297,11 @@ Vue.component('todo', {
 ``` html
 <div id="app-7">
   <ol>
-    <todo v-for="todo in todos" v-bind:todo="todo"></todo>
+    <!--
+    Now we provide each todo-item with the todo object
+    it's representing, so that its content can be dynamic
+    -->
+    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
   </ol>
 </div>
 ```
@@ -305,11 +316,11 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo v-for="todo in todos" v-bind:todo="todo"></todo>
+    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
   </ol>
 </div>
 <script>
-Vue.component('todo', {
+Vue.component('todo-item', {
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
@@ -326,7 +337,7 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-这只是一个例子，不过我们已经成功将应用分成两个更小的单元，并且子组件可以与父组件通过props很好地解耦。我们现在可以进一步使用复杂的模板和不影响父组件的逻辑改良`<todo>`组件
+这只是一个例子，不过我们已经成功将应用分成两个更小的单元，并且子组件可以与父组件通过props很好地解耦。我们现在可以进一步使用复杂的模板和不影响父组件的逻辑改良`<todo-item>`组件
 
 在大型应用中，很有必要把整个应用拆分使开发更好管理。更多关于组件的内容在[后面的指南](/guide/components.html),这里有个类似的示例展示应用的模板可以像这样：
 
