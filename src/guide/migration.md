@@ -1014,6 +1014,48 @@ In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixe
 </div>
 {% endraw %}
 
+### Two-Way Filters <sup>deprecated</sup>
+
+Some users have enjoyed using two-way filters with `v-model` to create interesting inputs with very little code. While seemingly simple however, two-way filters can also hide a great deal of complexity - and even encourage poor UX by delaying state updates. Instead, components are recommended as a more explicit and feature-rich way of creating custom inputs.
+
+We'll now walk through an example of a filter provided by the community and offer tips for how to migrate away from two-way filters. Here's a simple currency filter:
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+It mostly works well, but the delayed state updates can cause strange behavior. For example, try entering `99.999` into one of those inputs. When the input loses focus, its value will update to `$100.00`. When looking at the calculated total however, you'll see that `99.999` is what's stored in our data. The version of reality that the user sees is out of sync!
+
+To start transitioning towards a more robust solution using Vue 2.0, let's first refactor this filter into a component that uses it:
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/g7osemrx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+This allows us add behavior that wasn't possible with a filter alone, such as selecting the content of an input on focus. Now the next step will be to extract the business logic from the filter:
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/j4xtb20e/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+This increased modularity not only makes it easier to migrate to Vue 2, but also allows currency parsing and formatting to be:
+
+- unit tested in isolation from your Vue code
+- used by other parts of your application, such as to validate the payload to an API endpoint
+
+Having this validator extracted out, we can also more comfortably build it up into a more robust solution. We've now eliminated the state quirks and have even made it impossible for users to enter anything wrong, similar to what the browser's native number input tries to do.
+
+We're still limited however, by filters and by Vue 1.0 in general, so let's complete the upgrade to Vue 2.0:
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/r4e49aLs/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+You may notice that:
+
+- Every aspect of our input is more explicit, using lifecycle hooks and DOM events in place of the hidden behavior of two-way filters.
+- We can now use `v-model` directly on our custom inputs, which is not only more consistent with normal inputs, but also means our component is Vuex-friendly.
+- Since we're no longer using filter options that require a value to be returned, our currency work could actually be done asynchronously. That means if we had a lot of apps that had to work with currencies, we could easily refactor this logic into a shared microservice.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters used in directives like `v-model`. If you miss any, you should also see <strong>console errors</strong>.</p>
+</div>
+{% endraw %}
+
 ## Slots
 
 ### Duplicate Slots <sup>deprecated</sup>
