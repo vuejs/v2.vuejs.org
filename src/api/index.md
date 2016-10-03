@@ -1091,6 +1091,88 @@ type: api
   // -> "hi"
   ```
 
+  One way of communicating with other components is establishing a lightweight event bus
+  attaching to the `vm.$root`.
+
+  ```html
+  <!-- main.js -->
+  <script>
+  import Vue from 'vue'
+  import App from './App.vue'
+
+  new Vue({ // eslint-disable-line no-new
+    el: '#app',
+    render: (h) => h(App)
+  })
+  </script>
+
+  <!-- App.vue -->
+  <template>
+    <div id="app">
+      <receiver></receiver>
+      <sender></sender>
+    </div>
+  </template>
+
+  <script>
+  import Receiver from './components/receiver.vue'
+  import Sender from './components/sender.vue'
+
+  export default {
+    components: {
+      Receiver,
+      Sender
+    }
+  }
+  </script>
+
+  <style>
+  body {
+    font-family: Helvetica, sans-serif;
+  }
+  </style>
+
+  <!-- components/receiver.vue -->
+  <template lang="html">
+    <div>
+      <h2>Receiver Component</h2>
+      <span>receiveived events from:</span>
+      <ul>
+        <li v-for="(value, index) in mounted_components">{{value}}</li>
+      </ul>
+    </div>
+  </template>
+
+  <script>
+  export default {
+    data () {
+      return {
+        mounted_components: []
+      }
+    },
+    mounted () {
+      this.$root.$on('mounted-a-component', (data) => {
+        console.log('mounted', data);
+        this.mounted_components.push(data)
+      })
+    }
+  }
+  </script>
+
+  <!-- components/sender.vue -->
+  <template lang="html">
+    <h2>Sender Component</h2>
+  </template>
+
+  <script>
+  export default {
+    mounted () {
+      this.$root.$emit('mounted-a-component', 'sender-component')
+    }
+  }
+  </script>
+  ```
+
 <h3 id="vm-once">vm.$once( event, callback )</h3>
 
 - **Arguments:**
