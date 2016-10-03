@@ -653,7 +653,7 @@ Directives have a greatly reduced scope of responsibility: they are now only use
 Some of the most notable differences include:
 
 - Directives no longer have instances. This means there's no more `this` inside directive hooks. Instead, they receive everything they might need as arguments. If you really must persist state across hooks, you can do so on `el`.
-- Options such as `acceptStatement`, `deep`, `priority`, etc are all deprecated.
+- Options such as `acceptStatement`, `deep`, `priority`, etc are all deprecated. To replace `twoWay` directives, see [this example](#Two-Way-Filters-deprecated).
 - Some of the current hooks have different behavior and there are also a couple new hooks.
 
 Fortunately, since the new directives are much simpler, you can master them more easily. Read the new [Custom Directives guide](custom-directive.html) to learn more.
