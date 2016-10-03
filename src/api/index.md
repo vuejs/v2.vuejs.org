@@ -347,6 +347,8 @@ type: api
   })
   ```
 
+  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
+
 - **See also:** [Reactivity in Depth](/guide/reactivity.html)
 
 ### props
@@ -418,6 +420,8 @@ type: api
 
   Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
 
+  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+
   Computed properties are cached, and only re-computed on reactive dependency changes.
 
 - **Example:**
@@ -458,6 +462,8 @@ type: api
 
   Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
 
+  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+
 - **Example:**
 
   ```js
@@ -488,16 +494,18 @@ type: api
   ``` js
   var vm = new Vue({
     data: {
-      a: 1
+      a: 1,
+      b: 2,
+      c: 3
     },
     watch: {
-      'a': function (val, oldVal) {
+      a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
       // string method name
-      'b': 'someMethod',
+      b: 'someMethod',
       // deep watcher
-      'c': {
+      c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
       }
@@ -505,6 +513,8 @@ type: api
   })
   vm.a = 2 // -> new: 2, old: 1
   ```
+
+  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
 
 - **See also:** [Instance Methods - vm.$watch](#vm-watch)
 
@@ -558,6 +568,8 @@ type: api
     - [Render Functions](/guide/render-function)
 
 ## Options / Lifecycle Hooks
+
+All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.
 
 ### beforeCreate
 
