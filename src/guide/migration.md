@@ -1016,32 +1016,32 @@ In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixe
 
 ### Two-Way Filters <sup>deprecated</sup>
 
-Some users have enjoyed using two-way filters with `v-model` to create interesting inputs with very little code. While seemingly simple however, two-way filters can also hide a great deal of complexity - and even encourage poor UX by delaying state updates. Instead, components are recommended as a more explicit and feature-rich way of creating custom inputs.
+Some users have enjoyed using two-way filters with `v-model` to create interesting inputs with very little code. While _seemingly_ simple however, two-way filters can also hide a great deal of complexity - and even encourage poor UX by delaying state updates. Instead, components wrapping an input are recommended as a more explicit and feature-rich way of creating custom inputs.
 
-We'll now walk through an example of a filter provided by the community and offer tips for how to migrate away from two-way filters. Here's a simple currency filter:
+As an example, we'll now walk the migration of a two-way currency filter:
 
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-It mostly works well, but the delayed state updates can cause strange behavior. For example, try entering `99.999` into one of those inputs. When the input loses focus, its value will update to `$100.00`. When looking at the calculated total however, you'll see that `99.999` is what's stored in our data. The version of reality that the user sees is out of sync!
+It mostly works well, but the delayed state updates can cause strange behavior. For example, click on the `Result` tab and try entering `9.999` into one of those inputs. When the input loses focus, its value will update to `$10.00`. When looking at the calculated total however, you'll see that `9.999` is what's stored in our data. The version of reality that the user sees is out of sync!
 
-To start transitioning towards a more robust solution using Vue 2.0, let's first refactor this filter into a component that uses it:
+To start transitioning towards a more robust solution using Vue 2.0, let's first wrap this filter in a new `<currency-input>` component:
 
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/g7osemrx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/943zfbsh/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-This allows us add behavior that wasn't possible with a filter alone, such as selecting the content of an input on focus. Now the next step will be to extract the business logic from the filter:
+This allows us add behavior that a filter alone couldn't encapsulate, such as selecting the content of an input on focus. Now the next step will be to extract the business logic from the filter. Below, we pull everything out into an external [`currencyValidator` object](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e):
 
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/j4xtb20e/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/9c32kev2/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 This increased modularity not only makes it easier to migrate to Vue 2, but also allows currency parsing and formatting to be:
 
 - unit tested in isolation from your Vue code
 - used by other parts of your application, such as to validate the payload to an API endpoint
 
-Having this validator extracted out, we can also more comfortably build it up into a more robust solution. We've now eliminated the state quirks and have even made it impossible for users to enter anything wrong, similar to what the browser's native number input tries to do.
+Having this validator extracted out, we've also more comfortably built it up into a more robust solution. The state quirks have been eliminated and it's actually impossible for users to enter anything wrong, similar to what the browser's native number input tries to do.
 
 We're still limited however, by filters and by Vue 1.0 in general, so let's complete the upgrade to Vue 2.0:
 
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/r4e49aLs/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 You may notice that:
 
