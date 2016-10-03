@@ -706,8 +706,7 @@ type: api
   A hash of filters to be made available to the Vue instance.
 
 - **See also:**
-  - [Custom Filters](/guide/custom-filter.html)
-  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
+  - [`Vue.filter`](#Vue-filter)
 
 ### components
 

@@ -296,7 +296,11 @@ Now we can pass the todo into each repeated component using `v-bind`:
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    todos: [/* ... */]
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
   }
 })
 ```
