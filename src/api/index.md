@@ -829,7 +829,7 @@ type: api
 
 - **Details:**
 
-  The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
+  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
 
 - **See also:** [Options - data](#data)
 
