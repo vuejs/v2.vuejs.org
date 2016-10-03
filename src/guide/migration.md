@@ -332,7 +332,7 @@ Most use cases of mutating a prop can be replaced by one of these options:
 
 ### Props on a Root Instance <sup>deprecated</sup>
 
-On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must use `propsData` instead instead of `props`.
+On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must use `propsData` instead of `props`.
 
 {% raw %}
 <div class="upgrade-path">
