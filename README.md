@@ -15,6 +15,7 @@ $ hexo server
 ## Algumas considerações
 
 - Não traduzir nome de variáveis (código fonte)
+- Não é preciso colocar expressões em inglês no itálico 
 
 ## Translation Status (en to pt_br)
 
