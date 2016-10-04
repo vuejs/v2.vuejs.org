@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Instalação
 type: guide
 order: 1
 vue_version: 2.0.1
@@ -8,35 +8,35 @@ min_size: "61.72"
 gz_size: "22.58"
 ---
 
-### Compatibility Note
+### Nota sobre compatibilidade
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](http://caniuse.com/#feat=es5).
+Vue **não** suporta IE8 e versões anteriores, porque são usadas funcionalidades ECMAScript 5 que são incompatíveis com o IE8. Entretanto, suporta todos os [navegadores compatíveis com ECMAScript 5](http://caniuse.com/#feat=es5).
 
-### Release Notes
+### Notas de lançamento
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+Notas detalhadas para cada versão lançada estão disponíveis no [GitHub](https://github.com/vuejs/vue/releases).
 
-## Standalone
+## Versão standalone
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Simplesmente faça o download e inclua a tag script. `Vue` será registrado como uma variável global.
 
-<p class="tip">Don't use the minified version during development. You will miss out all the nice warnings for common mistakes!</p>
+<p class="tip">Não use a versão minificada durante a fase de desenvolvimento. Você irá perder avisos interessantes para os erros mais comuns!</p>
 
 <div id="downloads">
-<a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+<a class="button" href="/js/vue.js" download>Versão de desenvolvimento</a><span class="light info">Com mensagens de erro completas e modo debug</span>
 
-<a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}kb min+gzip</span>
+<a class="button" href="/js/vue.min.js" download>Versão de produção</a><span class="light info">Sem mensagens de erro, {{gz_size}}kb min+gzip</span>
 </div>
 
 ### CDN
 
-Recommended: [unpkg](https://unpkg.com/vue/dist/vue.js), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [unpkg.com/vue/](https://unpkg.com/vue/).
+Recomendado: [unpkg](https://unpkg.com/vue/dist/vue.js), que reflete a última versão assim que é disponível no npm. Você pode inclusive navegar pelo código fonte do pacote npm em [unpkg.com/vue/](https://unpkg.com/vue/).
 
-Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), but these two services take some time to sync so the latest release may not be available yet.
+Também disponível em [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) ou [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mas estes dois serviços levam um tempo para sincronizar com a última versão disponível.
 
 ## NPM
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+NPM é o método de instalação recomendada para aplicações em larga escala com o Vue. Ele combina perfeitamente com *module bundlers* tais como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
 
 ``` bash
 # latest stable
