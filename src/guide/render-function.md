@@ -24,7 +24,7 @@ Para o código HTML acima, você decide que quer esta interface para o seu compo
 <linked-heading :nivel="1">Alô Mundo!</linked-heading>
 ```
 
-Quando você começar a criar o componente de modo que gere os cabeçalhos de acordo com a proriedade (prop) `nivel`, você rapidamente chegará a algo assim:
+Quando você começar a criar o componente de modo que gere os cabeçalhos de acordo com a propriedade (prop) `nivel`, você rapidamente chegará a algo assim:
 
 ``` html
 <script type="text/x-template" id="linked-heading-template">
