@@ -6,7 +6,7 @@ order: 22
 
 ## 配置和工具
 
-任何与基于模块的构建系统兼容的任何东西都可以运行测试，但如果你正在寻找一个具体的建议，可以尝试[Karma](http://karma-runner.github.io/0.12/index.html)运行测试。它有很多社区插件，也支持[webpack](https://github.com/webpack/karma-webpack)和[Browserify](https://github.com/Nikku/karma-browserify)。对应配置的细节，请去看项目各自的文档，通过这些基于[webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js)和 [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js) 的Karma配置示例，或许可以帮助你入门。
+Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation, try the [Karma](http://karma-runner.github.io) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup, please refer to each project's respective documentation, though these example Karma configurations for [Webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js) and [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js) may help you get started.
 
 ## 简单的断言
 

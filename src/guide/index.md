@@ -1,32 +1,28 @@
 ---
-title: 起步
+title: 介绍
 type: guide
 order: 2
 ---
 
-## Vue.js是什么？
+## What is Vue.js?
 
-Vue.js（读音 /vjuː/, 类似于 **view**）是一个构建数据驱动的 web 界面的库。Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
+Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is very easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#libraries--plugins).
 
-Vue.js 自身不是一个全能框架——它只聚焦于视图层。因此它非常容易学习，`非常容易`与其它库或已有项目整合。另一方面，在与[相关工具](application.html)和[支持库](https://github.com/vuejs/awesome-vue#libraries--plugins)一起使用时，Vue.js 也能完美地驱动复杂的单页应用。
+If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
 
-如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](comparison.html)。
+## Getting Started
 
-## 起步
+The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/4tpzm3e1/). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page.
 
-尝试 Vue.js 最简单的方法是使用  [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/4tpzm3e1/) 。在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
+## Declarative Rendering
 
-## 声明式渲染
+At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
 
-Vue.js的核心系统使我们能以声明的方式使用简单的模板语法渲染数据到DOM中:
-
-
-```html
+``` html
 <div id="app">
   {{ message }}
 </div>
 ```
-
 ``` js
 var app = new Vue({
   el: '#app',
@@ -35,7 +31,6 @@ var app = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app" class="demo">
   {{ message }}
@@ -50,46 +45,48 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-我们已经创建了第一个Vue应用！直接渲染字一个模板非常简单，但Vue.js在背后做了大量工作。DOM 会自动响应数据的变化。怎么确定？我们如何知道？打开你的浏览器的控制台,修改`app.message`,你将看到上例相应地更新。
+We have already created our very first Vue app! This looks pretty similar to just rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open up your browser's JavaScript console and set `app.message` to a different value. You should see the rendered example above update accordingly.
 
-除了文本插值，也可以绑定元素属性像这样：
+In addition to text interpolation, we can also bind element attributes like this:
 
 ``` html
 <div id="app-2">
-  <span v-bind:id="id">Inspect me</span>
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds to see my dynamically bound title!
+  </span>
 </div>
 ```
-
 ``` js
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    id: 'inspect-me'
+    message: 'You loaded this page on ' + new Date()
   }
 })
 ```
-
 {% raw %}
 <div id="app-2" class="demo">
-  <span v-bind:id="id">Inspect me</span>
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds to see my dynamically bound title!
+  </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    id: 'inspect-me'
+    message: 'You loaded this page on ' + new Date()
   }
 })
 </script>
 {% endraw %}
 
-这里我们遇到新东西。你看到的 `v-bind` 属性是一个***指令***。指令带有前缀 v-，以指示它们是 Vue.js 提供的特殊特性。并且如你所想象的，它们会对绑定的目标元素添加响应式的特殊行为。这里基本上可以看作“绑定这个元素的`id`”属性为Vue实例中的`id`。
+Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
 
-使用浏览器调试工具定位再元素上 - 可以看到这有个id`inspect-me`。同样，可以在控制台修改 `app2.id`。
+If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
 
-## 条件和循环
+## Conditionals and Loops
 
-切换显示元素也是相当简单：
+It's quite simple to toggle the presence of an element, too:
 
 ``` html
 <div id="app-3">
@@ -120,11 +117,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-在控制台设置 `app3.seen = false`，可以看到消息消失了。
+Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
 
-示例演示了我们不仅可以绑定数据到文本和属性，也可以绑定到DOM结构上。甚至，Vue还提供一套强力的过渡系统在元素通过Vue插入/更新/移除自动应用[过渡效果](transitions.html)。
+This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
 
-这里有一些其他指令，每一个都有自己独特的函数。例如，`v-for`指令可以被用来从数组数据中展示列表元素。
+There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
 
 ``` html
 <div id="app-4">
@@ -132,10 +129,9 @@ var app3 = new Vue({
     <li v-for="todo in todos">
       {{ todo.text }}
     </li>
-  </ul>
+  </ol>
 </div>
 ```
-
 ``` js
 var app4 = new Vue({
   el: '#app-4',
@@ -148,7 +144,6 @@ var app4 = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app-4" class="demo">
   <ol>
@@ -171,11 +166,11 @@ var app4 = new Vue({
 </script>
 {% endraw %}
 
-在控制台输入 `app4.todos.push({ text: 'New item' })`。可以看到新元素进了列表中。
+In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
 
-## 处理用户输入
+## Handling User Input
 
-为了让用户与应用互动，我们用`v-on`指令加上事件监听来触发Vue实例中的方法：
+To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
 
 ``` html
 <div id="app-5">
@@ -183,7 +178,6 @@ var app4 = new Vue({
   <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
 ```
-
 ``` js
 var app5 = new Vue({
   el: '#app-5',
@@ -197,7 +191,6 @@ var app5 = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
@@ -218,9 +211,9 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-注意在方法中我们没有触碰DOM简单地更新了我们应用状态 - 所有DOM操作都由Vue来处理，我们可以聚焦在潜在的逻辑代码上。
+Note in the method we simply update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
 
-Vue还提供了`v-model` 指令 很轻巧地实现输入和应用状态间的双向数据绑定。
+Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
 
 ``` html
 <div id="app-6">
@@ -228,7 +221,6 @@ Vue还提供了`v-model` 指令 很轻巧地实现输入和应用状态间的双
   <input v-model="message">
 </div>
 ```
-
 ``` js
 var app6 = new Vue({
   el: '#app-6',
@@ -237,7 +229,6 @@ var app6 = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app-6" class="demo">
   <p>{{ message }}</p>
@@ -253,13 +244,13 @@ var app6 = new Vue({
 </script>
 {% endraw %}
 
-## 构建组件
+## Composing with Components
 
-组件系统是Vue中另一个重要的概念，因为它是一个抽象，使我们能够通过建立一些小型的，独立的，经常可复用的组件组成大型应用。几乎任何类型的应用界面都可以抽象成一棵组件树🌲:
+The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
 
-![组件树](/images/components.png)
+![Component Tree](/images/components.png)
 
-Vue中，一个组件基本上是一个预定义了设置的Vue实例。在Vue注册组件也很简单：
+In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
 
 ``` js
 // Define a new component called todo-item
@@ -268,7 +259,7 @@ Vue.component('todo-item', {
 })
 ```
 
-现在可以在另一个组件模板中使用它：
+Now you can compose it in another component's template:
 
 ``` html
 <ul>
@@ -280,7 +271,7 @@ Vue.component('todo-item', {
 </ul>
 ```
 
-不过每个Todo都渲染一样的文本并不有趣。我们可以从父组件传递数据到子组件中。让我们修改组件定义，使它可以结构一个 [prop](/guide/components.html#Props)：
+But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](/guide/components.html#Props):
 
 ``` js
 Vue.component('todo-item', {
@@ -292,7 +283,7 @@ Vue.component('todo-item', {
 })
 ```
 
-现在我们可以通过`v-bind`传递todo进入每个可重用的组件中：
+Now we can pass the todo into each repeated component using `v-bind`:
 
 ``` html
 <div id="app-7">
@@ -341,9 +332,9 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-这只是一个例子，不过我们已经成功将应用分成两个更小的单元，并且子组件可以与父组件通过props很好地解耦。我们现在可以进一步使用复杂的模板和不影响父组件的逻辑改良`<todo-item>`组件
+This is just a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
 
-在大型应用中，很有必要把整个应用拆分使开发更好管理。更多关于组件的内容在[后面的指南](/guide/components.html),这里有个类似的示例展示应用的模板可以像这样：
+In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](/guide/components.html), but here's an (imaginary) example of what an app's template might look like with components:
 
 ``` html
 <div id="app">
@@ -355,15 +346,14 @@ var app7 = new Vue({
 </div>
 ```
 
-### 关于自定义元素
+### Relation to Custom Elements
 
-可以注意到Vue组件很类似于**自定义元素**，遵循了[Web组件规范](http://www.w3.org/wiki/WebComponents/)。这是因为Vue的组件语法模仿了规范。例如，Vue组件实现的[Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)和`is`特性。不过也有些关键不同点：
+You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](http://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
 
-1.Web 组件规范仍然远未完成，并且没有浏览器实现。相比之下，Vue.js 组件不需要任何补丁，并且在所有支持的浏览器（IE9 及更高版本）之下表现一致。必要时，Vue.js 组件也可以放在原生自定义元素之内。
+1. The Web Components Spec is still in draft status, and is not natively implemented in every browser. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
 
-2.Vue.js 组件提供了原生自定义元素所不具备的一些重要功能，比如组件间的数据流，自定义事件系统，以及构建工具的继承。
+2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
 
+## Ready for More?
 
-## 准备好了吗?
-
-我们才简要介绍了Vue核心最基本的功能 - 其余指南将涵盖它们，并提供进一步的功能细节，所以请确保读完全部内容。
+We've just briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!

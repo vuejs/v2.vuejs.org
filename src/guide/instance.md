@@ -77,7 +77,10 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
-参考 [API 文档](/api)查看全部的实例属性与方法。
+
+<p class="tip">Note that __you should not use arrow functions on an instance property or callback__ (e.g. `vm.$watch('a', newVal => this.myMethod())`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myMethod` will be undefined.</p>
+
+Consult the [API reference](/api) for the full list of instance properties and methods.
 
 ## 实例生命周期
 
