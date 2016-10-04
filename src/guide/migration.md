@@ -725,6 +725,10 @@ If you need to stagger list transitions, you can control timing by setting and a
 
 ## Events
 
+### `events` option <sup>deprecated</sup>
+
+The `events` option has been deprecated. Event handlers should now be registered in the `created` hook instead. Check out the [`$dispatch` and `$broadcast` migration guide](#dispatch-and-broadcast-deprecated) for a detailed example.
+
 ### `Vue.directive('on').keyCodes` <sup>deprecated</sup>
 
 The new, more concise way to configure `keyCodes` is through`Vue.config.keyCodes`. For example:
