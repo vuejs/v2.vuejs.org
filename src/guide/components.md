@@ -146,7 +146,7 @@ Then Vue will halt and emit warnings in the console, telling you that `data` mus
 var data = { counter: 0 }
 
 Vue.component('simple-counter', {
-  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+  template: '<button v-on:click.native="counter += 1">{{ counter }}</button>',
   // data is technically a function, so Vue won't
   // complain, but we return the same object
   // reference for each component instance
