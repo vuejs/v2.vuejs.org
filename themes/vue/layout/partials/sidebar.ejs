@@ -6,11 +6,11 @@
         <div class="main-sponsor">
             <span>Platinum Sponsor (vacant)</span><br>
             <a href="<%-url_for("/support-vuejs")%>" target="_blank" class="logo">
-                YOUR<br>LOGO<br>HERE
+                SUA<br>LOGO<br>AQUI
             </a>
         </div>
         <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
-            Become a Sponsor
+            Seja um Patrocinador
         </a>
         <h2>
             <%- type === 'api' ? 'API' : (type.charAt(0).toUpperCase() + type.slice(1)) %>
@@ -28,13 +28,13 @@
                 <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
                 <% if (type === 'guide') { %>
                     <% if (fileName === 'installation') { %>
-                      <li><h3>Essentials</h3></li>
+                      <li><h3>Essencial</h3></li>
                     <% } %>
                     <% if (fileName === 'reactivity') { %>
-                      <li><h3>Advanced</h3></li>
+                      <li><h3>Avançado</h3></li>
                     <% } %>
                     <% if (fileName === 'migration') { %>
-                      <li><h3>Migrating</h3></li>
+                      <li><h3>Migração</h3></li>
                     <% } %>
                     <% if (fileName === 'comparison') { %>
                       <li><h3>Meta</h3></li>
@@ -42,7 +42,7 @@
                 <% } %>
                 <% if (type === 'cookbook') { %>
                     <% if (p.order === 1.1) { %>
-                      <li><h3>Vue Instance</h3></li>
+                      <li><h3>Instância Vue</h3></li>
                     <% } %>
                     <!-- Move cookbook sections here once they have -->
                     <!-- at least one recipe -->
@@ -52,11 +52,11 @@
                 </li>
             <% }) %>
             <% if (type === 'cookbook') { %>
-                <li><h3>Components</h3></li>
-                <li><h4>Form Inputs</h4></li>
-                <li><h4>3rd-Party Integrations</h4></li>
-                <li><h3>Transitions</h3></li>
-                <li><h3>Directives</h3></li>
+                <li><h3>Componentes</h3></li>
+                <li><h4>Campos de Formulário</h4></li>
+                <li><h4>Integração com Terceiros</h4></li>
+                <li><h3>Transições</h3></li>
+                <li><h3>Diretivas</h3></li>
                 <li><h3>Vue Router</h3></li>
                 <li><h3>Vuex</h3></li>
             <% } %>
