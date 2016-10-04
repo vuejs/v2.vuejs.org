@@ -160,6 +160,8 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   nativeOn: {
     click: this.nativeClickHandler
   },
+  // The name of a slot if the child of a component
+  slot: 'name-of-slot'
   // Other special top-level properties
   key: 'myKey',
   ref: 'myRef'

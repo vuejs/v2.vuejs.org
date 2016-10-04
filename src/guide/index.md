@@ -6,7 +6,7 @@ order: 2
 
 ## What is Vue.js?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is very easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](application.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#libraries--plugins).
+Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is very easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#libraries--plugins).
 
 If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
 
@@ -51,34 +51,38 @@ In addition to text interpolation, we can also bind element attributes like this
 
 ``` html
 <div id="app-2">
-  <span v-bind:id="id">Inspect me</span>
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds to see my dynamically bound title!
+  </span>
 </div>
 ```
 ``` js
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    id: 'inspect-me'
+    message: 'You loaded this page on ' + new Date()
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
-  <span v-bind:id="id">Inspect me</span>
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds to see my dynamically bound title!
+  </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    id: 'inspect-me'
+    message: 'You loaded this page on ' + new Date()
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here it is basically saying "bind this element's `id` attribute to the `id` property on the Vue instance."
+Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
 
-Use the browser devtools to inspect the element above - you should see that it has the id `inspect-me`. And yes, it would update if you modify `app2.id` in the console.
+If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
 
 ## Conditionals and Loops
 
