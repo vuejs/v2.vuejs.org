@@ -18,7 +18,7 @@ $ hexo server
 - [x] Entry Page
 
 **Guide**
-- [ ] Installation
+- [ ] Installation (@danielschmitz)
 - [ ] Introduction
 - [ ] The Vue Instance
 - [ ] Template Syntax
