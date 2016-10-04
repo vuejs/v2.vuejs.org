@@ -24,7 +24,6 @@ $ npm install
 $ hexo server
 ```
 
-<<<<<<< HEAD
 ## Considerações para padronização
 
 A fim de obtermos uma documentação padronizada, seguem recomendações do que fazer:
