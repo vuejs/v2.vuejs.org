@@ -61,7 +61,13 @@ resolve: {
 }
 ```
 
-For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
+For Browserify, add the following to your module's `package.json`:
+
+``` js
+  "browser": {
+      "vue": "vue/dist/vue.js"
+  },
+```
 
 <p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
 
