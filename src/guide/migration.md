@@ -665,7 +665,7 @@ Fortunately, since the new directives are much simpler, you can master them more
 </div>
 {% endraw %}
 
-### Directive `.literal` modifier <sup>deprecated</sup>
+### Directive `.literal` Modifier <sup>deprecated</sup>
 
 The `.literal` modifier has been removed, as the same can be easily achieved by just providing a string literal as the value.
 
