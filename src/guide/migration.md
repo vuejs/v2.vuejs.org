@@ -665,6 +665,29 @@ Fortunately, since the new directives are much simpler, you can master them more
 </div>
 {% endraw %}
 
+### Directive `.literal` modifier <sup>deprecated</sup>
+
+The `.literal` modifier has been removed, as the same can be easily achieved by just providing a string literal as the value.
+
+For example, you can update:
+
+``` js
+<p v-my-directive.literal="foo bar baz"></p>
+```
+
+to just:
+
+``` html
+<p v-my-directive="'foo bar baz'"></p>
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the `.literal` modifier on a directive.</p>
+</div>
+{% endraw %}
+
 ## Transitions
 
 ### `transition` Attribute <sup>deprecated</sup>
