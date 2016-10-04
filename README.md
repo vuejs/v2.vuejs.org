@@ -23,7 +23,7 @@ $ hexo server
 
 **Guide**
 - [ ] Installation (@danielschmitz)
-- [ ] Introduction
+- [ ] Introduction (@ErickPetru)
 - [ ] The Vue Instance
 - [ ] Template Syntax
 - [ ] Computed Properties and Watchers
