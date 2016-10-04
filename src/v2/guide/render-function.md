@@ -1,50 +1,50 @@
 ---
-title: Render Functions
+title: Funções "render" (Renderização)
 type: guide
 order: 15
 ---
 
-## Basics
+## Introdução
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+Vue recomenda que templates sejam utilizados para construir seu HTML na grande maioria dos casos. Haverá situações, no entanto, em que você irá realmente precisar de todo o poder de programação do JavaScript. É quando você pode usar a **função "render"**, uma alternativa aos templates que é mais próxima ao compilador.
 
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
+Vamos mergulhar em um simples exemplo onde a função `render` seria prática. Digamos que você quer gerar links em cabeçalhos (headings):
 
 ``` html
 <h1>
-  <a name="hello-world" href="#hello-world">
-    Hello world!
+  <a name="alo-mundo" href="#alo-mundo">
+    Alô Mundo!
   </a>
 </h1>
 ```
 
-For the HTML above, you decide you want this component interface:
+Para o código HTML acima, você decide que quer esta interface para o seu componente:
 
 ``` html
-<anchored-heading :level="1">Hello world!</anchored-heading>
+<linked-heading :nivel="1">Alô Mundo!</linked-heading>
 ```
 
-When you get started with a component that just generates a heading based on the `level` prop, you quickly arrive at this:
+Quando você começar a criar o componente de modo que gere os cabeçalhos de acordo com a proriedade (prop) `nivel`, você rapidamente chegará a algo assim:
 
 ``` html
-<script type="text/x-template" id="anchored-heading-template">
+<script type="text/x-template" id="linked-heading-template">
   <div>
-    <h1 v-if="level === 1">
+    <h1 v-if="nivel === 1">
       <slot></slot>
     </h1>
-    <h2 v-if="level === 2">
+    <h2 v-if="nivel === 2">
       <slot></slot>
     </h2>
-    <h3 v-if="level === 3">
+    <h3 v-if="nivel === 3">
       <slot></slot>
     </h3>
-    <h4 v-if="level === 4">
+    <h4 v-if="nivel === 4">
       <slot></slot>
     </h4>
-    <h5 v-if="level === 5">
+    <h5 v-if="nivel === 5">
       <slot></slot>
     </h5>
-    <h6 v-if="level === 6">
+    <h6 v-if="nivel === 6">
       <slot></slot>
     </h6>
   </div>
@@ -52,10 +52,10 @@ When you get started with a component that just generates a heading based on the
 ```
 
 ``` js
-Vue.component('anchored-heading', {
-  template: '#anchored-heading-template',
+Vue.component('linked-heading', {
+  template: '#linked-heading-template',
   props: {
-    level: {
+    nivel: {
       type: Number,
       required: true
     }
