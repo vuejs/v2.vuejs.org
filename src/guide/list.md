@@ -6,31 +6,31 @@ order: 8
 
 ## `v-for`
 
-We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
+我们用`v-for` 指令根据一组数组的选项列表进行渲染。`v-for` 指令需要以 `item in items` 形式的特殊语法，`items` 是源数据数组并且 `item` 是数组元素迭代的别名。
 
 ### 基本用法
 
 ``` html
 <ul id="example-1">
-  <li v-for="item in items">
-    {{ item.message }}
-  </li>
+	<li v-for="item in items">
+	  {{ item.message }}
+	</li>
 </ul>
 ```
 
 ``` js
 var example1 = new Vue({
-  el: '#example-1',
-  data: {
-    items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
-    ]
-  }
+	el: '#example-1',
+	data: {
+		items: [
+			{message: 'foo' },
+			{message: 'Bar' }
+		]	
+	}
 })
 ```
 
-Result:
+结果：
 
 {% raw %}
 <ul id="example-1" class="demo">
@@ -56,7 +56,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
+在 `v-for` 块内部，我们有完全访问父作用域的属性。`v-for` 也支持当前列表的索引可选的第二个参数。
 
 ``` html
 <ul id="example-2">
@@ -79,7 +79,7 @@ var example2 = new Vue({
 })
 ```
 
-Result:
+结果:
 
 {% raw%}
 <ul id="example-2" class="demo">
@@ -106,7 +106,7 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
+你也可以用 `of` 替代 `in` 作为分隔符, 所以它是最接近JavaScript迭代器的语法
 
 ``` html
 <div v-for="item of items"></div>
@@ -114,7 +114,7 @@ You can also use `of` as the delimiter instead of `in`, so that it is closer to 
 
 ### Template v-for
 
-Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+如同 `v-if` 模板，你也可以用带有 `v-for` 的 `<template>` 标签来渲染多个元素块。例如： 
 
 ``` html
 <ul>
@@ -125,9 +125,9 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-### Object v-for
+### 对象迭代 v-for
 
-You can also use `v-for` to iterate through the properties of an object.
+你也可以用 `v-for` 通过一个对象的属性来迭代。
 
 ``` html
 <ul id="repeat-object" class="demo">
@@ -150,7 +150,7 @@ new Vue({
 })
 ```
 
-Result:
+结果:
 
 {% raw %}
 <ul id="repeat-object" class="demo">
@@ -172,7 +172,7 @@ new Vue({
 </script>
 {% endraw %}
 
-You can also provide a second argument for the key:
+你也可以提供第二个的参数为键名:
 
 ``` html
 <div v-for="(value, key) in object">
@@ -180,7 +180,7 @@ You can also provide a second argument for the key:
 </div>
 ```
 
-And another for the index:
+第三个参数为索引:
 
 ``` html
 <div v-for="(value, key, index) in object">
@@ -188,11 +188,11 @@ And another for the index:
 </div>
 ```
 
-<p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
+<p class="tip">当遍历一个对象时，顺序是根据 `Object.keys()` 可枚举键名排列，不保证和JavaScript引擎实现是一致的。</p>
 
-### Range v-for
+### 整数迭代 v-for 
 
-`v-for` can also take an integer. In this case it will repeat the template that many times.
+`v-for` 也可以取整数。在这种情况下，它将重复多次模板
 
 ``` html
 <div>
@@ -200,7 +200,7 @@ And another for the index:
 </div>
 ```
 
-Result:
+结果:
 
 {% raw %}
 <div id="range" class="demo">
@@ -211,17 +211,17 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### Components and v-for
+### 组件 和 v-for
 
-> This section assumes knowledge of [Components](/guide/components.html). Feel free to skip it and come back later.
+> 了解组件相关知识，查看 [组件](/guide/components.html) 。
 
-You can directly use `v-for` on a custom component, like any normal element:
+在自定义组件里，你可以像任何普通元素一样用 `v-for` 。
 
 ``` html
 <my-component v-for="item in items"></my-component>
 ```
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+然而，他不能自动传递数据到组件里
 
 ``` html
 <my-component
