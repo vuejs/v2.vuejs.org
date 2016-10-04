@@ -32,7 +32,7 @@ $ hexo server
 - [ ] Advanced
 - [ ] Transitions: Entering, Leaving, and Lists
 - [ ] Transitioning State
-- [ ] Render Functions
+- [x] Render Functions (jbruni)
 - [ ] Reactivity in Depth
 - [ ] Custom Directives
 - [ ] Mixins
