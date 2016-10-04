@@ -1127,7 +1127,7 @@ When used together with `<transition>`, make sure to nest it inside:
 Interpolation within attributes is no longer valid. For example:
 
 ``` html
-<button v-bind:class="btn btn-{{ size }}"></button>
+<button class="btn btn-{{ size }}"></button>
 ```
 
 Should either be updated to use an inline expression:
