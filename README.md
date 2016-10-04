@@ -23,7 +23,7 @@ $ hexo server
 
 **Guide**
 - [ ] Installation (@danielschmitz)
-- [ ] Introduction (@ErickPetru)
+- [x] Introduction (@ErickPetru)
 - [ ] The Vue Instance
 - [ ] Template Syntax
 - [ ] Computed Properties and Watchers
@@ -48,7 +48,7 @@ $ hexo server
 - [ ] Server-Side Rendering
 - [ ] Migration from Vue 1.x
 - [ ] Migration from Vue Router 0.7.x
-- [ ] Comparison with Other Frameworks
+- [ ] Comparison with Other Frameworks (@ErickPetru)
 
 **API**
 - [ ] Global Config
@@ -79,4 +79,3 @@ $ hexo server
 - [ ] Wrapper Component
 - [ ] TodoMVC
 - [ ] HackerNews Clone
-
