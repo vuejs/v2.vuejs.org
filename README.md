@@ -19,7 +19,7 @@ $ hexo server
 ## Translation Status (en to pt_br)
 
 **Website**
-- [x] Entry Page
+- [x] Entry Page (@danielschmitz)
 
 **Guide**
 - [ ] Installation (@danielschmitz)
@@ -36,7 +36,7 @@ $ hexo server
 - [ ] Advanced
 - [ ] Transitions: Entering, Leaving, and Lists
 - [ ] Transitioning State
-- [x] Render Functions (jbruni)
+- [x] Render Functions (@jbruni)
 - [ ] Reactivity in Depth
 - [ ] Custom Directives
 - [ ] Mixins
