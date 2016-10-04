@@ -1,16 +1,16 @@
-# Support Vue.js Development
+# Ajude no desenvolvimento do Vue.js
 
 <a href="https://www.patreon.com/evanyou" target="_blank">
   <img style="width:120px" src="https://s3.amazonaws.com/patreon_public_assets/toolbox/patreon.png">
-  <span>Support Vue.js on Patreon (recurring pledge)</span>
+  <span>Ajude o Vue.js no Patreon (pagamento mensal)</span>
 </a>
 
 <a href="https://www.paypal.me/evanyou" target="_blank">
   <img style="width:120px" src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png">
-  <span>Donate via PayPal (one time)</span>
+  <span>Doe via PayPal (único pagamento)</span>
 </a>
 
-## Current premium sponsors:
+## Atuais mantedores premium:
 
 <p style="text-align: center; margin-bottom: 60px" class="sponsors-page">
   <a href="https://itunescn.com">
