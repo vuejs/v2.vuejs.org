@@ -1,30 +1,30 @@
 ---
-title: Introduction
+title: Introdução
 type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## O que é Vue.js?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is very easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#libraries--plugins).
+Vue (pronuncia-se /vjuː/, como **view**, em inglês) é um **framework progressivo** para a construção de *interfaces* de usuário. Ao contrário de outros *frameworks* monolíticos, Vue foi projetado desde sua concepção para ser adotável incrementalmente. A biblioteca principal é focada exclusivamente na camada visual (*view*), sendo muito fácil escolher e integrar com outras bibliotecas ou projetos existentes. Por outro lado, Vue também é perfeitamente capaz de dar poder a sofiticadas SPA (*Single-Page Applications*) quando usado em conjunto com [ferramentas modernas](single-file-components.html) e [bibliotecas adicionais](https://github.com/vuejs/awesome-vue#libraries--plugins).
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Se você é um desenvolvedor *frontend* experiente e quer saber como Vue se compara a outras bibliotecas/*frameworks*, confira a [Comparação com Outros Frameworks](comparison.html).
 
-## Getting Started
+## Primeiros Passos
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">O guia oficinal assume nível intermediário de conhecimento em HTML, CSS, e JavaScript. Caso você seja totalmente novo em desenvolvimento frontend, talvez não seja uma boa idéia pular direto em um framework no seu primeiro passo - aprenda o báscio e depois retorne aqui! Conhecimento prévio de outros frameworks ajuda, mas não é obrigatório.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can simply create an `.html` file and include Vue with:
+A forma mais simples de testar Vue.js é usando o [exemplo de Olá Mundo no JSFiddle](https://jsfiddle.net/ErickPetru/rpko63o0/). Sinta-se à vontade para abrí-lo em outra aba e acompanhar junto enquanto seguimos por alguns exemplos básicos. Ou, você pode simplesmente criar um arquivo `.html` e incluir o Vue com:
 
 ``` html
 <script src="https://unpkg.com/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note that we **do not** recommend beginners to start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+A página de [Instalação](installation.html) oferece mais opções. **Não** recomendamos iniciantes começar com `vue-cli`, especialmente se você não é familiarizado com ferramentas de build do Node.js.
 
-## Declarative Rendering
+## Renderização Declarativa
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+No núcleo do Vue.js está um sistema que nos permite declarativamente renderizar dados no DOM (*Document Object Model*) usando uma sintaxe de *template* simples:
 
 ``` html
 <div id="app">
@@ -35,7 +35,7 @@ At the core of Vue.js is a system that enables us to declaratively render data t
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Olá Vue!'
   }
 })
 ```
@@ -47,21 +47,20 @@ var app = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Olá Vue!'
   }
 })
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to just rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+Nós acabamos de criar nosso primeiro aplicativo Vue! Isso parece muito similar a simplesmente renderizar uma *template string*, mas Vue fez bastante trabalho por debaixo dos panos. Os dados e o DOM estão agora interligados e tudo se tornou **reativo**. Como podemos ter certeza? Apenas abra o *console* JavaScript de seu navegador e coloque um valor diferente em `app.message`. Você verá o exemplo renderizado acima se atualizando apropriadamente.
 
-In addition to text interpolation, we can also bind element attributes like this:
+Adicionalmente, além de interpolação de texto, nós podemos também vincular atributos de elementos assim:
 
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+    Pare o mouse sobre mim para ver minha dica vinculada dinamicamente!
   </span>
 </div>
 ```
@@ -69,40 +68,39 @@ In addition to text interpolation, we can also bind element attributes like this
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date()
+    message: 'Você carregou esta página em ' + new Date()
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Pare o mouse sobre mim para ver minha dica vinculada dinamicamente!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date()
+    message: 'Você carregou esta página em ' + new Date()
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Aqui estamos nos deparando com algo novo. O atributo `v-bind` que você está vendo é chamado de **diretiva**. Diretivas são prefixadas com `v-` para indicar que são atributos especiais providos pelo Vue, e como você deve ter percebido, aplicam comportamento especial de reatividade ao DOM renderizado. Neste caso está basicamente sendo dito "mantenha o atributo `title` do elemento atualizado em relação à propriedade `message` da instância Vue".
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Se você abrir seu *console* JavaScript novamente e informar `app2.message = 'alguma nova mensagem'`, novamente poderá ver que o HTML vinculado - neste caso, o atributo `title` - foi atualizado imediatamente.
 
-## Conditionals and Loops
+## Condicionais e Laços
 
-It's quite simple to toggle the presence of an element, too:
+Também é muito simples alternar a presença de um elemento:
 
 ``` html
 <div id="app-3">
-  <p v-if="seen">Now you see me</p>
+  <p v-if="seen">Agora você me viu</p>
 </div>
 ```
-
 ``` js
 var app3 = new Vue({
   el: '#app-3',
@@ -114,7 +112,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Agora você me viu</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -126,11 +124,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Vá em frente e informe `app3.seen = false` no *console*. Você verá a mensagem desaparecer.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+Este exemplo demonstra que nós podemos vincular dados não apenas ao texto e aos atributos, mas também à **estrutura** do DOM. Mais do que isso, Vue também provê um poderoso sistema de transições que pode automaticamente aplicar [efeitos de transição](transitions.html) quando elementos são inseridos/atualizados/removidos pelo Vue.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+Existem mais algumas diretivas, cada uma com sua própria funcionalidade. Por exemplo, a diretiva `v-for` pode ser usada para exibir uma lista de itens usando dados de um Array:
 
 ``` html
 <div id="app-4">
@@ -146,9 +144,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Aprender JavaScript' },
+      { text: 'Aprender Vue' },
+      { text: 'Criar algo incrível' }
     ]
   }
 })
@@ -166,16 +164,16 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Aprender JavaScript' },
+      { text: 'Aprender Vue' },
+      { text: 'Criar algo incrível' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+No *console*, informe `app4.todos.push({ text: 'Novo item' })`. Você verá um novo item ser acrescentado dinamicamente à lista.
 
 ## Handling User Input
 
