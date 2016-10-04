@@ -12,6 +12,10 @@ $ npm install
 $ hexo server
 ```
 
+## Algumas considerações
+
+- Não traduzir nome de variáveis (código fonte)
+
 ## Translation Status (en to pt_br)
 
 **Website**
