@@ -1,4 +1,4 @@
-# Support Vue.js Development
+# Ajude no desenvolvimento do Vue.js
 
 Vue.js is an MIT licensed open source project and completely free to use.
 However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development by [pledging on Patreon](https://www.patreon.com/evanyou) (recurring, with perks for different tiers) or [donating on PayPal](https://www.paypal.me/evanyou) (one time).
