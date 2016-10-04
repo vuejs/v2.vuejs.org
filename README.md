@@ -16,7 +16,7 @@ $ hexo server
 
 - Não traduzir nome de variáveis (código fonte)
 - Pode traduzir textos informativos no código fonte, como por exemplo: `<div id="level-1">Nível 1</div>`
-- Não é preciso colocar expressões em inglês no itálico 
+- Não é preciso colocar expressões em inglês no itálico
 
 ## Translation Status (en to pt_br)
 
@@ -27,7 +27,7 @@ $ hexo server
 - [ ] Installation (@danielschmitz)
 - [ ] Introduction (@ErickPetru)
 - [ ] The Vue Instance
-- [ ] Template Syntax
+- [ ] Template Syntax (@vitorarjol)
 - [ ] Computed Properties and Watchers
 - [ ] Class and Style Bindings
 - [ ] Conditional Rendering
