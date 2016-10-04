@@ -12,7 +12,7 @@ $ npm install
 $ hexo server
 ```
 
-## Transaltion Status (en to pt_br)
+## Translation Status (en to pt_br)
 
 **Website**
 - [x] Entry Page
