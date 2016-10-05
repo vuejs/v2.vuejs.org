@@ -224,7 +224,7 @@ Vue.component('linked-heading', {
     )
   },
   props: {
-    level: {
+    nivel: {
       type: Number,
       required: true
     }
@@ -260,20 +260,20 @@ render: function (createElement) {
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## Substituindo Features de Templates por Código JavaScript
 
 ### `v-if` and `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
+Sempre que algo possa ser facilmente realizado em código JavaScript, as funções de renderização do Vue não oferecerão uma alternativa específica. Por exemplo, em templates usando `v-if` e `v-for`:
 
 ``` html
 <ul v-if="items.length">
   <li v-for="item in items">{{ item.name }}</li>
 </ul>
-<p v-else>No items found.</p>
+<p v-else>Nenhum item encontrado.</p>
 ```
 
-This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
+Isto poderia ser re-escrito com `if`/`else` e `map` do JavaScript, em uma função `render`:
 
 ``` js
 render: function (createElement) {
@@ -282,7 +282,7 @@ render: function (createElement) {
       return createElement('li', item.name)
     }))
   } else {
-    return createElement('p', 'No items found.')
+    return createElement('p', 'Nenhum item encontrado.')
   }
 }
 ```
@@ -405,7 +405,8 @@ render (createElement) {
 
 ## JSX
 
-If you're writing a lot of `render` functions, it might feel painful to write something like this:
+<<<<<<< HEAD:src/v2/guide/render-function.md
+Se você estiver escrevendo mutias funções `render`, pode se tornar penoso escrever algo assim:
 
 ``` js
 createElement(
@@ -420,65 +421,65 @@ createElement(
 )
 ```
 
-Especially when the template version is so simple in comparison:
+Especialmente quando a versão template é tão simples assim:
 
 ``` html
-<anchored-heading :level="1">
-  <span>Hello</span> world!
-</anchored-heading>
+<linked-heading :nivel="1">
+  <span>Alô</span> mundo!
+</linked-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+Por isso há um [plugin para o Babel](https://github.com/vuejs/babel-plugin-transform-vue-jsx) para utilização de JSX com o Vue, nos trazendo de volta a uma sintaxe mais semelhante à utilizada em templates:
 
 ``` js
-import AnchoredHeading from './AnchoredHeading.vue'
+import LinkedHeading from './LinkedHeading.vue'
 
 new Vue({
   el: '#demo',
   render (h) {
     return (
-      <AnchoredHeading level={1}>
-        <span>Hello</span> world!
-      </AnchoredHeading>
+      <LinkedHeading nivel={1}>
+        <span>Alô</span> mundo!
+      </LinkedHeading>
     )
   }
 })
 ```
 
-<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. If `h` is not available in the scope, your app will throw an error.</p>
+<p class="tip">Apelidar `createElement` como `h` é uma convenção comum que você verá na comunidade Vue e é necessária para o JSX. Se `h` não estiver disponível no escopo, sua aplicação irá gerar um erro.</p>
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
+Para mais informações sobre como JSX é mapeado para JavaScript, veja [documentação de utilização](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
 
-## Functional Components
+## Componentes Funcionais
 
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's just a function with some props.
+O componente de cabeçalho com link que criamos anteriormente é relativamente simples. Ele não gerencia nenhum estado (state), não observa nenhum estado (state) passado para si, e não tem nenhum método ligado ao ciclo de vida da instância. Realmente, é apenas uma função com algumas propriedades (props).
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
+Em casos como este, nós podemos marcar componentes como `functional`, que significa que eles são *stateless* (sem estado, ou seja, sem a propriedade `data`) e são *instanceless* (sem instância, ou seja, sem uso do contexto `this`). Um **componente funcional** se parece assim:
 
 ``` js
-Vue.component('my-component', {
+Vue.component('meu-componente', {
   functional: true,
-  // To compensate for the lack of an instance,
-  // we are now provided a 2nd context argument.
+  // Para a compensar a inexistência de uma instância,
+  // é providenciado um segundo argumento: "context".
   render: function (createElement, context) {
     // ...
   },
-  // Props are optional
+  // Props são opcionais
   props: {
     // ...
   }
 })
 ```
 
-Everything the component needs is passed through `context`, which is an object containing:
+Tudo o que um componente funcional necessita é passado através de `context`, o qual é um objeto contendo:
 
-- `props`: An object of the provided props
-- `children`: An array of the VNode children
-- `slots`: A function returning a slots object
-- `data`: The entire data object passed to the component
-- `parent`: A reference to the parent component
+- `props`: Um objeto com as "props" providenciadas
+- `children`: Uma matriz (array) de elementos VNode filhos
+- `slots`: Uma função retornando um objeto "slots"
+- `data`: Todo o objeto `data` passado para o componente
+- `parent`: Uma referência ao componente pai
 
-After adding `functional: true`, updating the render function of our anchored heading component would simply require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com link iria requerer somente acrescentar o parâmetro `context`, e atualizar `this.$slots.default` para `context.children`, e por fim atualizar `this.level` para `context.props.level`.
 
 Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
 
