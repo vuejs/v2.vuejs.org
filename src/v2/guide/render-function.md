@@ -63,20 +63,20 @@ Vue.component('linked-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element. The whole thing is also wrapped in a useless `div` because components must contain exactly one root node.
+Esse template não está bom. Não somente é prolixo, mas também estamos duplicando `<slot></slot>` para cada nível de cabeçalho, e termos que fazer o mesmo quando incluirmos o elemento `<a>` para o link. E tudo está dentro de um elemento `div` inútil, somente porque componentes devem possuir exatamente um único elemento raiz (root).
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+Enquanto templates funcionam muito bem para a maioria dos componentes, está claro que este caso é uma exceção. Então vamos tentar re-escrever este componente usando uma função `render`:
 
 ``` js
-Vue.component('anchored-heading', {
+Vue.component('linked-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.nivel,   // nome do elemento (tag)
+      this.$slots.default // array de elementos-filho (children)
     )
   },
   props: {
-    level: {
+    nivel: {
       type: Number,
       required: true
     }
@@ -84,34 +84,34 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#vm-slots) before diving into render functions.**
+Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos-filho (children) em seu componente sem especificar um atributo `slot`, como o `Alô Mundo!` dentro de `linked-heading`, esses elementos estão acessíveis na instância do componente em `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção [API - propriedades da instância](/api/#vm-slots) antes de se aprofundar em funções "render".**
 
-## `createElement` Arguments
+## Parâmetros para `createElement`
 
-The second thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+A segunda coisa com a qual você precisa se familiarizar é como utilizar as features disponíveis em templates na função `createElement`. Estes são os parâmetros que `createElement` aceita:
 
 ``` js
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // Um nome de elemento (tag) HTML, um objeto com opções de componente,
+  // ou uma função retornando um dentre os anteriores. Requerido.
   'div',
 
   // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // Um objeto de dados (chave: valor) correspondendo aos atributos
+  // que você usaria em template. Opcional.
   {
-    // (see details in the next section below)
+    // (veja detalhes na próxima seção, abaixo)
   },
 
   // {String | Array}
-  // Children VNodes. Optional.
+  // VNodes filhos. Opcional.
   [
-    createElement('h1', 'hello world'),
+    createElement('h1', 'alô mundo')
     createElement(MyComponent, {
       props: {
-        someProp: 'foo'
+        umaProp: 'foo'
       }
     }),
     'bar'
