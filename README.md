@@ -21,7 +21,7 @@ $ hexo server
 - Não faça PRs para o vuejs/master
 - Não faça PULL ou MERGE de vuejs/master, deixe isso para o @danielschmitz
 
-## Palavras reservadas 
+## Palavras reservadas
 
 Estas palavras podem ser mantidas no inglês
 
@@ -86,14 +86,14 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Server-Side Rendering
 
 **Examples**
-- [ ] Markdown Editor
-- [ ] GitHub Commits
-- [ ] Firebase + Validation
-- [ ] Grid Component
-- [ ] Tree View
-- [ ] SVG Graph
-- [ ] Modal Component
-- [ ] Elastic Header
-- [ ] Wrapper Component
-- [ ] TodoMVC
-- [ ] HackerNews Clone
+- [x] Markdown Editor (@vitorarjol)
+- [x] GitHub Commits (@vitorarjol)
+- [x] Firebase + Validation (@vitorarjol)
+- [x] Grid Component (@vitorarjol)
+- [x] Tree View (@vitorarjol)
+- [x] SVG Graph (@vitorarjol)
+- [x] Modal Component (@vitorarjol)
+- [x] Elastic Header (@vitorarjol)
+- [x] Wrapper Component (@vitorarjol)
+- [x] TodoMVC (@vitorarjol)
+- [x] HackerNews Clone (@vitorarjol)
