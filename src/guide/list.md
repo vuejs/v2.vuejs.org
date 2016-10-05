@@ -221,7 +221,7 @@ new Vue({ el: '#range' })
 <my-component v-for="item in items"></my-component>
 ```
 
-然而，他不能自动传递数据到组件里
+然而他不能自动传递数据到组件里，因为组件有自己独立的作用域。为了传递迭代数据到组件里，我们要用 `props` ：
 
 ``` html
 <my-component
@@ -231,9 +231,9 @@ new Vue({ el: '#range' })
 </my-component>
 ```
 
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+不自动注入 `item` 到组件里是因为这样能让组件紧密耦合 `v-for` 怎么运作的。在一些情况下，明确了数据的来源让其组件可重复使用。
 
-Here's a complete example of a simple todo list:
+下面是一个简单的todo list完整的例子:
 
 ``` html
 <div id="todo-list-example">
@@ -331,11 +331,11 @@ new Vue({
 
 ## key
 
-When Vue.js is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
+当Vue.js用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，而不是移动DOM元素来匹配列表的顺序，Vue将简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似Vue 1.X的 `track-by="$index"` 。
 
-This default mode is efficient, but only suitable **when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
+这个默认的模式是有效的，但是只适合你的列表渲染输出时不依赖子组件状态或临时DOM状态（例如：表单输入框的值）
 
-To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item. An ideal value for `key` would be the unique id of each item. This special attribute is a rough equivalent to `track-by` in 1.x, but it works like an attribute, so you need to use `v-bind` to bind it to dynamic values (using shorthand here):
+给Vue一个提示以便它能跟踪每个节点身份，并且因此重新使用和重新排序现有元素，你需要为每项提供一个唯一 `key` 属性。一个有效的 `key` 值是每项唯一ID. 这个特殊的属性相当于Vue 1.x的 `track-by` ，但它像一个变量，所以你需要用 `v-bind` 来绑定动态值（简洁写法如下）
 
 ``` html
 <div v-for="item in items" :key="item.id">
@@ -343,15 +343,15 @@ To give Vue a hint so that it can track each node's identity, and thus reuse and
 </div>
 ```
 
-It is recommended to provide a `key` with `v-for` whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.
+它建议尽可能用 `v-for` 时提供一个 `key` 。除非迭代DOM内容很简单，或者你有意要依赖于对性能提升的默认行为。
 
-Since it's a generic mechanism for Vue to identify nodes, the `key` also has other uses that are not specifically tied to `v-for`, as we will see later in the guide.
+因为它是Vue识别节点的通用的机制，`key` 还具有并不特别依赖于 `v-for` 的其他用途，我们将在后面的指南中看到其他用途。
 
-## Array Change Detection
+## 数组更新检测
 
-### Mutation Methods
+### 突变方法
 
-Vue wraps an observed array's mutation methods so they will also trigger view updates. The wrapped methods are:
+Vue包含一组观察数组的突变方法，所以它们也将会触发视图更新。这些方法如下：
 
 - `push()`
 - `pop()`
@@ -361,11 +361,11 @@ Vue wraps an observed array's mutation methods so they will also trigger view up
 - `sort()`
 - `reverse()`
 
-You can open the console and play with the previous examples' `items` array by calling their mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
+你打开控制台，然后用前面例子的 `items` 数组调用突变方法：`example1.items.push({ measage: 'Baz' })`
 
-### Replacing an Array
+### 替换数组
 
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original Array but **always return a new array**. When working with non-mutating methods, you can just replace the old array with the new one:
+突变方法，顾名思义，改变原始数组的称呼。相比之下，也有非突然的方法，例如：`filter()` ，`concat()` ，`slice()` 。这些不会突变原始数组，但是会一直返回一个新的数组。当用非突变方法时，你刚好用一个新的组数去替换一个旧的数组：
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -373,16 +373,16 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
+你可你能认为这将导致Vue丢掉现有DOM和重新渲染整个列表。幸运的是，事实并非如此。Vue实现了一些智能化去最大化的重用DOM元素，所以用另外含有重叠对象的数组替换数组是非常高效的操作。
 
-### Caveats
+### 注意事项
 
-Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
+由于JavaScript的限制，Vue不能检测以下变动的数组：
 
-1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
-2. When you modify the length of the array, e.g. `vm.items.length = newLength`
+1. 当你直接设置一个项的索引时, 例如： `vm.items[indexOfItem] = newValue`
+2. 当你修改数组的长度时, 例如： `vm.items.length = newLength`
 
-To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
+为了避免第一种情况, 以下两种方式将达到像 `vm.items[indexOfItem] = newValue` 的效果， 同时也将触发状态更新:
 
 ``` js
 // Vue.set
@@ -393,17 +393,17 @@ Vue.set(example1.items, indexOfItem, newValue)
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
-To deal with caveat 2, you can also use `splice`:
+避免第二种情况, 使用 `splice`:
 
 ``` js
 example1.items.splice(newLength)
 ```
 
-## Displaying Filtered/Sorted Results
+## 显示过滤/排序结果
 
-Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
+有时我们无需实际改变或重置原始数据对数组进行过滤或排序。在这种情况下，你可以创建计算的属性返回过滤或排序的数组。
 
-For example:
+例如:
 
 ``` html
 <li v-for="n in evenNumbers">{{ n }}</li>
@@ -422,7 +422,7 @@ computed: {
 }
 ```
 
-Alternatively, you can also just use a method where computed properties are not feasible (e.g. inside nested `v-for` loops):
+此外, 你也只用来计算性能是不可行的方法 (例如： 嵌套在 `v-for` 里循环):
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
