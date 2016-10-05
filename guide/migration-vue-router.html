@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Migration from Vue Router 0.7.x - vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "guide"
+        </script>
+        <link rel="stylesheet" href="/css/page.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.js"></script>
+    </head>
+    <body>
+        <div id="mobile-bar" >
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png">
+    <span>Vue.js</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/" class="nav-link current">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="https://medium.com/the-vue-point" target="_blank" class="nav-link">Blog</a></li>
+<li class="nav-dropdown-container">
+  <a class="nav-link">Community</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+  </ul>
+</li>
+
+
+  </ul>
+</div>
+
+        
+            <div id="main">
+                
+                    
+    <div class="sidebar">
+    <ul class="main-menu">
+        <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/" class="nav-link current">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="https://medium.com/the-vue-point" target="_blank" class="nav-link">Blog</a></li>
+<li class="nav-dropdown-container">
+  <a class="nav-link">Community</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+    <div class="list">
+        <div id="donate" style="margin-bottom: 20px">
+            <span class="wrapper" style="width: 110px">
+              <img src="/images/patreon.png">
+              <a href="/support-vuejs">Support Vue.js</a>
+            </span>
+        </div>
+        <h2>
+            Guide
+            <select class="version-select">
+                <option value="SELF" selected>2.0</option>
+                <option value="v1">1.0</option>
+                <option value="012">0.12</option>
+                <option value="011">0.11</option>
+            </select>
+        </h2>
+        <ul class="menu-root">
+            
+                
+                
+                  <li><h3>Essentials</h3></li>
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/installation.html" class="sidebar-link">Installation</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/index.html" class="sidebar-link">Introduction</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/instance.html" class="sidebar-link">The Vue Instance</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/syntax.html" class="sidebar-link">Template Syntax</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/computed.html" class="sidebar-link">Computed Properties and Watchers</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/class-and-style.html" class="sidebar-link">Class and Style Bindings</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/list.html" class="sidebar-link">List Rendering</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/events.html" class="sidebar-link">Event Handling</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/forms.html" class="sidebar-link">Form Input Bindings</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/components.html" class="sidebar-link">Components</a>
+                </li>
+            
+                
+                
+                
+                  <li><h3>Advanced</h3></li>
+                
+                
+                
+                <li>
+                    <a href="/guide/transitions.html" class="sidebar-link">Transitions: Entering, Leaving, and Lists</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/transitioning-state.html" class="sidebar-link">Transitioning State</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/render-function.html" class="sidebar-link">Render Functions</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/reactivity.html" class="sidebar-link">Reactivity in Depth</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/custom-directive.html" class="sidebar-link">Custom Directives</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/mixins.html" class="sidebar-link">Mixins</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/plugins.html" class="sidebar-link">Plugins</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/single-file-components.html" class="sidebar-link">Single File Components</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/routing.html" class="sidebar-link">Routing</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/state-management.html" class="sidebar-link">State Management</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/unit-testing.html" class="sidebar-link">Unit Testing</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/ssr.html" class="sidebar-link">Server-Side Rendering</a>
+                </li>
+            
+                
+                
+                
+                
+                  <li><h3>Migrating</h3></li>
+                
+                
+                <li>
+                    <a href="/guide/migration.html" class="sidebar-link">Migration from Vue 1.x</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/migration-vue-router.html" class="sidebar-link current">Migration from Vue Router 0.7.x</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                  <li><h3>Meta</h3></li>
+                
+                <li>
+                    <a href="/guide/comparison.html" class="sidebar-link">Comparison with Other Frameworks</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/join.html" class="sidebar-link">Join the Vue.js Community!</a>
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div class="content guide with-sidebar migration-vue-router-guide">
+    <div id="ad">
+  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+</div>
+
+    <h1>Migration from Vue Router 0.7.x</h1>
+    <blockquote>
+<p>Only Vue Router 2 is compatible with Vue 2, so if you’re updating Vue, you’ll have to update Vue Router as well. That’s why we’ve included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the <a href="http://router.vuejs.org/en/" target="_blank" rel="external">Vue Router docs</a>.</p>
+</blockquote>
+<p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
+
+<h2 id="Route-Definitions"><a href="#Route-Definitions" class="headerlink" title="Route Definitions"></a>Route Definitions</h2><h3 id="router-map-deprecated"><a href="#router-map-deprecated" class="headerlink" title="router.map deprecated"></a><code>router.map</code> <sup>deprecated</sup></h3><p>Routes are now defined as an array on a <a href="http://router.vuejs.org/en/essentials/getting-started.html#javascript" target="_blank" rel="external"><code>routes</code> option</a> at router instantiation. So these routes for example:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.map(&#123;</div><div class="line">  <span class="string">'/foo'</span>: &#123;</div><div class="line">    component: Foo</div><div class="line">  &#125;,</div><div class="line">  <span class="string">'/bar'</span>: &#123;</div><div class="line">    component: Bar</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>Will instead be defined with:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  routes: [</div><div class="line">    &#123; path: <span class="string">'/foo'</span>, component: Foo &#125;,</div><div class="line">    &#123; path: <span class="string">'/bar'</span>, component: Bar &#125;</div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.map</code> being called.</p>
+</div>
+
+<h3 id="router-on-deprecated"><a href="#router-on-deprecated" class="headerlink" title="router.on deprecated"></a><code>router.on</code> <sup>deprecated</sup></h3><p>If you need to programmatically generate routes when starting up your app, you can do so by dynamically pushing definitions to a routes array. For example:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Normal base routes</span></div><div class="line"><span class="keyword">var</span> routes = [</div><div class="line">  <span class="comment">// ...</span></div><div class="line">]</div><div class="line"></div><div class="line"><span class="comment">// Dynamically generated routes</span></div><div class="line">marketingPages.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">page</span>) </span>&#123;</div><div class="line">  routes.push(&#123;</div><div class="line">    path: <span class="string">'/marketing/'</span> + page.slug</div><div class="line">    component: &#123;</div><div class="line">      extends: MarketingComponent</div><div class="line">      data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123; page: page &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> Router(&#123;</div><div class="line">  routes: routes</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>If you need to add new routes after the router has been instantiated, you can replace the router’s matcher with a new one that includes the route you’d like to add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.match = createMatcher(</div><div class="line">  [&#123;</div><div class="line">    path: <span class="string">'/my/new/path'</span>,</div><div class="line">    component: MyComponent</div><div class="line">  &#125;].concat(router.options.routes)</div><div class="line">)</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.on</code> being called.</p>
+</div>
+
+<h3 id="subroutes-deprecated"><a href="#subroutes-deprecated" class="headerlink" title="subroutes deprecated"></a><code>subroutes</code> <sup>deprecated</sup></h3><p><a href="http://router.vuejs.org/en/essentials/nested-routes.html" target="_blank" rel="external">Renamed to <code>children</code></a> for consistency within Vue and with other routing libraries.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>subroutes</code> option.</p>
+</div>
+
+<h3 id="router-redirect-deprecated"><a href="#router-redirect-deprecated" class="headerlink" title="router.redirect deprecated"></a><code>router.redirect</code> <sup>deprecated</sup></h3><p>This is now an <a href="http://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="external">option on route definitions</a>. So for example, you will update:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.redirect(&#123;</div><div class="line">  <span class="string">'/tos'</span>: <span class="string">'/terms-of-service'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>to a definition like below in your <code>routes</code> configuration:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  path: <span class="string">'/tos'</span>,</div><div class="line">  redirect: <span class="string">'/terms-of-service'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.redirect</code> being called.</p>
+</div>
+
+<h3 id="router-alias-deprecated"><a href="#router-alias-deprecated" class="headerlink" title="router.alias deprecated"></a><code>router.alias</code> <sup>deprecated</sup></h3><p>This is now an <a href="http://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="external">option on the definition for the route</a> you’d like to alias to. So for example, you will update:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.alias(&#123;</div><div class="line">  <span class="string">'/manage'</span>: <span class="string">'/admin'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>to a definition like below in your <code>routes</code> configuration:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  path: <span class="string">'/admin'</span>,</div><div class="line">  component: AdminPanel,</div><div class="line">  alias: <span class="string">'/manage'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>If you need multiple aliases, you can also use an array syntax:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">alias: [<span class="string">'/manage'</span>, <span class="string">'/administer'</span>, <span class="string">'/administrate'</span>]</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.alias</code> being called.</p>
+</div>
+
+<h2 id="Route-Matching"><a href="#Route-Matching" class="headerlink" title="Route Matching"></a>Route Matching</h2><p>Route matching now uses <a href="https://github.com/pillarjs/path-to-regexp" target="_blank" rel="external">path-to-regexp</a> under the hood, making it much more flexible than previously.</p>
+<h3 id="One-or-More-Named-Parameters"><a href="#One-or-More-Named-Parameters" class="headerlink" title="One or More Named Parameters"></a>One or More Named Parameters</h3><p>The syntax has changed slightly, so <code>/category/*tags</code> for example, should be updated to <code>/category/:tags+</code>.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the deprecated route syntax.</p>
+</div>
+
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><h3 id="v-link-deprecated"><a href="#v-link-deprecated" class="headerlink" title="v-link deprecated"></a><code>v-link</code> <sup>deprecated</sup></h3><p>The <code>v-link</code> directive has been replaced with a new <a href="http://router.vuejs.org/en/api/router-link.html" target="_blank" rel="external"><code>&lt;router-link&gt;</code> component</a>, as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"'/about'"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>You’ll need to update it like this:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>v-link</code> directive.</p>
+</div>
+
+<h3 id="v-link-active-deprecated"><a href="#v-link-active-deprecated" class="headerlink" title="v-link-active deprecated"></a><code>v-link-active</code> <sup>deprecated</sup></h3><p>The <code>v-link-active</code> directive has also been deprecated in favor of specifying a separate tag on <a href="http://router.vuejs.org/en/api/router-link.html" target="_blank" rel="external">the <code>&lt;router-link&gt;</code> component</a>. So for example, you’ll update this:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-link-active</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"'/about'"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>to this:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">tag</span>=<span class="string">"li"</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>The <code>&lt;a&gt;</code> will be the actual link (and will get the correct href), but the active class will be applied to the outer <code>&lt;li&gt;</code>.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>v-link-active</code> directive.</p>
+</div>
+
+<h2 id="Programmatic-Navigation"><a href="#Programmatic-Navigation" class="headerlink" title="Programmatic Navigation"></a>Programmatic Navigation</h2><h3 id="router-go"><a href="#router-go" class="headerlink" title="router.go"></a><code>router.go</code></h3><p><a href="http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation" target="_blank" rel="external">Renamed to <code>router.push</code></a> for consistency with terminology used in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="external">HTML5 History API</a>.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.go</code> being called.</p>
+</div>
+
+<h2 id="Router-Options-Modes"><a href="#Router-Options-Modes" class="headerlink" title="Router Options: Modes"></a>Router Options: Modes</h2><h3 id="hashbang-false-deprecated"><a href="#hashbang-false-deprecated" class="headerlink" title="hashbang: false deprecated"></a><code>hashbang: false</code> <sup>deprecated</sup></h3><p>Hashbangs are no longer required for Google to crawl a URL, so they are no longer the default (or even an option) for the hash strategy.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>hashbang: false</code> option.</p>
+</div>
+
+<h3 id="history-true-deprecated"><a href="#history-true-deprecated" class="headerlink" title="history: true deprecated"></a><code>history: true</code> <sup>deprecated</sup></h3><p>All routing mode options have been condensed into a single <a href="http://router.vuejs.org/en/api/options.html#mode" target="_blank" rel="external"><code>mode</code> option</a>. Update:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  history: <span class="string">'true'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>to:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  mode: <span class="string">'history'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>history: true</code> option.</p>
+</div>
+
+<h3 id="abstract-true-deprecated"><a href="#abstract-true-deprecated" class="headerlink" title="abstract: true deprecated"></a><code>abstract: true</code> <sup>deprecated</sup></h3><p>All routing mode options have been condensed into a single <a href="http://router.vuejs.org/en/api/options.html#mode" target="_blank" rel="external"><code>mode</code> option</a>. Update:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  abstract: <span class="string">'true'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>to:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  mode: <span class="string">'abstract'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>abstract: true</code> option.</p>
+</div>
+
+<h2 id="Route-Options-Misc"><a href="#Route-Options-Misc" class="headerlink" title="Route Options: Misc"></a>Route Options: Misc</h2><h3 id="saveScrollPosition-deprecated"><a href="#saveScrollPosition-deprecated" class="headerlink" title="saveScrollPosition deprecated"></a><code>saveScrollPosition</code> <sup>deprecated</sup></h3><p>This has been replaced with a <a href="http://router.vuejs.org/en/advanced/scroll-behavior.html" target="_blank" rel="external"><code>scrollBehavior</code> option</a> that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">saveScrollPosition: <span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>You can replace it with:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">scrollBehavior: <span class="function"><span class="keyword">function</span> (<span class="params">to, from, savedPosition</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> savedPosition || &#123; x: <span class="number">0</span>, y: <span class="number">0</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>saveScrollPosition: true</code> option.</p>
+</div>
+
+<h3 id="root-deprecated"><a href="#root-deprecated" class="headerlink" title="root deprecated"></a><code>root</code> <sup>deprecated</sup></h3><p>Renamed to <code>base</code> for consistency with <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank" rel="external">the HTML <code>&lt;base&gt;</code> element</a>.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>root</code> option.</p>
+</div>
+
+<h3 id="transitionOnLoad-deprecated"><a href="#transitionOnLoad-deprecated" class="headerlink" title="transitionOnLoad deprecated"></a><code>transitionOnLoad</code> <sup>deprecated</sup></h3><p>This option is no longer necessary now that Vue’s transition system has explicit <a href="transitions.html#Transitions-on-Initial-Render"><code>appear</code> transition control</a>.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>transitionOnLoad: true</code> option.</p>
+</div>
+
+<h3 id="suppressTransitionError-deprecated"><a href="#suppressTransitionError-deprecated" class="headerlink" title="suppressTransitionError deprecated"></a><code>suppressTransitionError</code> <sup>deprecated</sup></h3><p>Removed due to hooks simplification. If you really must supress transition errors, you can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank" rel="external"><code>try</code>…<code>catch</code></a> instead.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>suppressTransitionError: true</code> option.</p>
+</div>
+
+<h2 id="Route-Hooks"><a href="#Route-Hooks" class="headerlink" title="Route Hooks"></a>Route Hooks</h2><h3 id="activate-deprecated"><a href="#activate-deprecated" class="headerlink" title="activate deprecated"></a><code>activate</code> <sup>deprecated</sup></h3><p>Use <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards" target="_blank" rel="external"><code>beforeRouteEnter</code></a> in the component instead.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>beforeRouteEnter</code> hook.</p>
+</div>
+
+<h3 id="canActivate-deprecated"><a href="#canActivate-deprecated" class="headerlink" title="canActivate deprecated"></a><code>canActivate</code> <sup>deprecated</sup></h3><p>Use <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard" target="_blank" rel="external"><code>beforeEnter</code></a> in the route instead.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>canActivate</code> hook.</p>
+</div>
+
+<h3 id="deactivate-deprecated"><a href="#deactivate-deprecated" class="headerlink" title="deactivate deprecated"></a><code>deactivate</code> <sup>deprecated</sup></h3><p>Use the component’s <a href="/api/#beforeDestroy"><code>beforeDestroy</code></a> or <a href="/api/#destroyed"><code>destroyed</code></a> hooks instead.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>deactivate</code> hook.</p>
+</div>
+
+<h3 id="canDeactivate-deprecated"><a href="#canDeactivate-deprecated" class="headerlink" title="canDeactivate deprecated"></a><code>canDeactivate</code> <sup>deprecated</sup></h3><p>Use <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards" target="_blank" rel="external"><code>beforeRouteLeave</code></a> in the component instead.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>canDeactivate</code> hook.</p>
+</div>
+
+<h3 id="canReuse-false-deprecated"><a href="#canReuse-false-deprecated" class="headerlink" title="canReuse: false deprecated"></a><code>canReuse: false</code> <sup>deprecated</sup></h3><p>There’s no longer a use case for this in the new Vue Router.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>canReuse: false</code> option.</p>
+</div>
+
+<h3 id="data-deprecated"><a href="#data-deprecated" class="headerlink" title="data deprecated"></a><code>data</code> <sup>deprecated</sup></h3><p>The <code>$route</code> property is reactive, so you can just use a watcher to react to route changes, like this:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">watch: &#123;</div><div class="line">  <span class="string">'$route'</span>: <span class="string">'fetchData'</span></div><div class="line">&#125;,</div><div class="line">methods: &#123;</div><div class="line">  fetchData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>data</code> hook.</p>
+</div>
+
+<h3 id="loadingRouteData-deprecated"><a href="#loadingRouteData-deprecated" class="headerlink" title="$loadingRouteData deprecated"></a><code>$loadingRouteData</code> <sup>deprecated</sup></h3><p>Define your own property (e.g. <code>isLoading</code>), then update the loading state in a watcher on the route. For example, if fetching data with <a href="https://github.com/mzabriskie/axios" target="_blank" rel="external">axios</a>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    posts: [],</div><div class="line">    isLoading: <span class="literal">false</span>,</div><div class="line">    fetchError: <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">watch: &#123;</div><div class="line">  <span class="string">'$route'</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.isLoading = <span class="literal">true</span></div><div class="line">    <span class="keyword">this</span>.fetchData().then(() =&gt; &#123;</div><div class="line">      <span class="keyword">this</span>.isLoading = <span class="literal">false</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">methods: &#123;</div><div class="line">  fetchData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> axios.get(<span class="string">'/api/posts'</span>)</div><div class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.posts = response.data.posts</div><div class="line">      &#125;)</div><div class="line">      .catch(funciton (error) &#123;</div><div class="line">        <span class="keyword">this</span>.fetchError = error</div><div class="line">      &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>$loadingRouteData</code> meta property.</p>
+</div>
+
+
+    
+      <div class="guide-links">
+        
+          <span>← <a href="/guide/migration.html">Migration from Vue 1.x</a></span>
+        
+        
+          <span style="float:right"><a href="/guide/comparison.html">Comparison with Other Frameworks</a> →</span>
+        
+      </div>
+    
+    <div class="footer">
+      Caught a mistake or want to contribute to the documentation?
+      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/guide/migration-vue-router.md" target="_blank">
+        Edit this page on Github!
+      </a>
+    </div>
+</div>
+
+                
+            </div>
+            <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        </script>
+    </body>
+</html>
