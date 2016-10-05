@@ -27,7 +27,7 @@ $ hexo server
 - [ ] Installation (@danielschmitz)
 - [x] Introduction (@ErickPetru)
 - [ ] The Vue Instance
-- [ ] Template Syntax (@vitorarjol)
+- [x] Template Syntax (@vitorarjol)
 - [ ] Computed Properties and Watchers
 - [ ] Class and Style Bindings
 - [ ] Conditional Rendering
