@@ -19,6 +19,19 @@ $ hexo server
 - Não é preciso colocar expressões em inglês no itálico
 - Faça os comentários do commit em INGLÊS
 
+## Palavras reservadas 
+
+Estas palavras podem ser mantidas no inglês
+
+| debug        | bundle           | standalone  | runtime |
+| ------------- |-------------| -----| --------|
+| build      | import | render | alias | router
+| store      | scaffolding  |   loader | bind |
+| loop | for | true | false |
+| number (tipo) | string (tipo) | ? | ? |
+| ? | ? | ? | ? |
+
+
 ## Translation Status (en to pt_br)
 
 **Website**
