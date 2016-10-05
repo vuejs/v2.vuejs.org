@@ -63,7 +63,7 @@ Vue.component('linked-heading', {
 })
 ```
 
-Esse template não está bom. Não somente é prolixo, mas também estamos duplicando `<slot></slot>` para cada nível de cabeçalho, e termos que fazer o mesmo quando incluirmos o elemento `<a>` para o link. E tudo está dentro de um elemento `div` inútil, somente porque componentes devem possuir exatamente um único elemento raiz (root).
+Esse template não está bom. Não somente é prolixo, mas também estamos duplicando `<slot></slot>` para cada nível de cabeçalho, e teremos que fazer o mesmo quando incluirmos o elemento `<a>` para o link. E tudo está dentro de um elemento `div` inútil, somente porque componentes devem possuir exatamente um único elemento raiz (root).
 
 Enquanto templates funcionam muito bem para a maioria dos componentes, está claro que este caso é uma exceção. Então vamos tentar re-escrever este componente usando uma função `render`:
 
