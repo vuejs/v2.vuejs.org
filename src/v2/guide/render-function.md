@@ -119,50 +119,52 @@ createElement(
 )
 ```
 
-### The Data Object In-Depth
+### O Objeto de Dados em Detalhes
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects.
+Importante observar: assim como `v-bind:class` e `v-bind:style` têm tratamento especial em templates, eles têm suas respectivas propriedades no primeiro nível de um objeto de dados VNode.
 
 ``` js
 {
-  // Same API as `v-bind:class`
+  // Mesma API que `v-bind:class`
   'class': {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`
+  // Mesma API que `v-bind:style`
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // Normal HTML attributes
+  // Atributos HTML comuns
   attrs: {
     id: 'foo'
   },
-  // Component props
+  // Propriedades (props) de componente
   props: {
     myProp: 'bar'
   },
-  // DOM properties
+  // Propriedades DOM
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under "on", though
-  // modifiers such as in v-on:keyup.enter are not
-  // supported. You'll have to manually check the
-  // keyCode in the handler instead.
+  // Manipuladores de evento (event handlers) devem
+  // ser declarados dentro do objeto "on".
+  // Modificadores como ".enter" em "v-on:keyup.enter"
+  // não são suportados. Neste exemplo, você teria
+  // que verificar manualmente o "keyCode" do
+  // evento no código do handler.
   on: {
     click: this.clickHandler
   },
-  // For components only. Allows you to listen to
-  // native events, rather than events emitted from
-  // the component using vm.$emit.
+  // Somente para componentes. Permite que você escute
+  // a eventos nativos, ao invés de eventos emitidos
+  // pelo componente usando vm.$emit.
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the binding's
-  // oldValue cannot be set, as Vue keeps track
-  // of it for you.
+  // Diretivas customizadas. Observe que o binding
+  // oldValue não pode ser definido, o Vue já oferece
+  // isso pra você.
   directives: [
     {
       name: 'my-custom-directive',
@@ -174,23 +176,23 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
-  // Scoped slots in the form of
+  // Slot na forma de
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of the slot, if this component is the
-  // child of another component
+  // O nome do slot se este componente é
+  // filho de outro componente
   slot: 'name-of-slot'
-  // Other special top-level properties
+  // Outras propriedades especiais no primeiro nível
   key: 'myKey',
   ref: 'myRef'
 }
 ```
 
-### Complete Example
+### Exemplo Completo
 
-With this knowledge, we can now finish the component we started:
+Com este conhecimento, nós agora podemos finalizar o componente que começamos:
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -201,9 +203,9 @@ var getChildrenTextContent = function (children) {
   }).join('')
 }
 
-Vue.component('anchored-heading', {
+Vue.component('linked-heading', {
   render: function (createElement) {
-    // create kebabCase id
+    // criar id em kebabCase
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
@@ -230,29 +232,29 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### Constraints
+### Restrições
 
-#### VNodes Must Be Unique
+#### VNodes Têm Que Ser Únicos
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+Todos os VNodes na árvore do componente têm que ser únicos. Isso significa que a seguinte função `render` é inválida:
 
 ``` js
 render: function (createElement) {
-  var myParagraphVNode = createElement('p', 'hi')
+  var myParagraphVNode = createElement('p', 'oi')
   return createElement('div', [
-    // Yikes - duplicate VNodes!
+    // Oh não! - VNodes em duplicidade!
     myParagraphVNode, myParagraphVNode
   ])
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+Se você realmente quiser duplicar o mesmo elemento ou componente várias vezes, você pode fazê-lo com uma função fábrica (factory). Por exemplo, a seguinte função `render` contém uma forma perfeitamente válida de renderizar 20 parágrafos idênticos:
 
 ``` js
 render: function (createElement) {
   return createElement('div',
     Array.apply(null, { length: 20 }).map(function () {
-      return createElement('p', 'hi')
+      return createElement('p', 'oi')
     })
   )
 }
