@@ -18,6 +18,8 @@ $ hexo server
 - Pode traduzir textos informativos no código fonte, como por exemplo: `<div id="level-1">Nível 1</div>`
 - Não é preciso colocar expressões em inglês no itálico
 - Faça os comentários do commit em INGLÊS
+- Não faça PRs para o vuejs/master
+- Não faça PULL ou MERGE de vuejs/master, deixe isso para o @danielschmitz
 
 ## Palavras reservadas 
 
