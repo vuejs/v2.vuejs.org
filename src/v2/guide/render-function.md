@@ -6,7 +6,7 @@ order: 15
 
 ## Introdução
 
-Vue recomenda que templates sejam utilizados para construir seu HTML na grande maioria dos casos. Haverá situações, no entanto, em que você irá realmente precisar de todo o poder de programação do JavaScript. É quando você pode usar a **função "render"**, uma alternativa aos templates que é mais próxima ao compilador.
+Vue recomenda que templates sejam utilizados para construir seu HTML na grande maioria dos casos. Haverá situações, no entanto, em que você irá realmente precisar de todo o poder de programação do JavaScript. É quando você pode usar a **função "render"**, uma alternativa aos templates que é mais ligada ao compilador.
 
 Vamos mergulhar em um simples exemplo onde a função `render` seria prática. Digamos que você quer gerar links em cabeçalhos (headings):
 
@@ -88,7 +88,7 @@ Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiar
 
 ## Parâmetros para `createElement`
 
-A segunda coisa com a qual você precisa se familiarizar é como utilizar as features disponíveis em templates na função `createElement`. Estes são os parâmetros que `createElement` aceita:
+A segunda coisa com a qual você precisa se familiarizar é como utilizar as funcionalidades disponíveis em templates na função `createElement`. Estes são os parâmetros que `createElement` aceita:
 
 ``` js
 // @returns {VNode}
@@ -260,7 +260,7 @@ render: function (createElement) {
 }
 ```
 
-## Substituindo Features de Templates por Código JavaScript
+## Substituindo Funcionalidades de Templates por Código JavaScript
 
 ### `v-if` and `v-for`
 
@@ -405,7 +405,6 @@ render (createElement) {
 
 ## JSX
 
-<<<<<<< HEAD:src/v2/guide/render-function.md
 Se você estiver escrevendo mutias funções `render`, pode se tornar penoso escrever algo assim:
 
 ``` js
@@ -481,14 +480,14 @@ Tudo o que um componente funcional necessita é passado através de `context`, o
 
 Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com link iria requerer somente acrescentar o parâmetro `context`, e atualizar `this.$slots.default` para `context.children`, e por fim atualizar `this.level` para `context.props.level`.
 
-Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
+Como componentes funcionais são apenas funções, eles são muito mais leves para renderizar.
 
-They're also very useful as wrapper components.  For example, when you need to:
+Eles também são muito úteis como componentes *wrapper*. Por exemplo, quando você precisa:
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+- Programaticamente escolher um entre vários outros componentes para delegar
+- Manipular *children*, *props*, ou *data* antes de passá-los a componentes filhos
 
-Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
+Aqui está um exemplo de um componente `smart-list` que delega para componentes mais específicos, dependendo das propriedades (props) passadas a ele:
 
 ``` js
 var EmptyList = { /* ... */ }
@@ -525,24 +524,24 @@ Vue.component('smart-list', {
 })
 ```
 
-### `slots()` vs `children`
+### `slots()` versus `children`
 
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+Você pode ser perguntar por que nós precisamos de ambos -  `slots()` e `children`. Não seria `slots().default` o mesmo que `children`? EM alguns casos, sim - mas o que aconteceria se você tivesse um componente funcional contendo os seguintes elementos filhos?
 
 ``` html
-<my-functional-component>
+<meu-componente-funcional>
   <p slot="foo">
     first
   </p>
   <p>second</p>
-</my-functional-component>
+</meu-componente-funcional>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
+Para este componente, `children` lhe fornecerá ambos os parágrafos, enquanto `slots().default` lhe fornecerá apenas o segundo, e `slots().foo` lhe fornecerá apenas o primeiro. Tendo tanto `children` quanto `slots()` lhe proporciona escolher se este componente precisa saber sobre os slots or talvez apenas delegar tal responsabilidade para outro componente simplesmente passando adiante `children`.
 
-## Template Compilation
+## Compilação de Templates
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Você pode estar interessado em saber que templates do Vue são compilados para funções `render`. Este é um detalhe de implementação que você não necessita saber, mas se você quiser ver como templates específicos ficam quando compilados, você pode achar interessante. Abaixo temos uma pequena demonstração usando `Vue.compile` para compilar ao vivo um string de template:
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">
@@ -555,7 +554,7 @@ You may be interested to know that Vue's templates actually compile to render fu
     <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
-    <label>Compilation Error:</label>
+    <label>Erro de Compilação:</label>
     <pre><code>{{ result }}</code></pre>
   </div>
 </div>
@@ -566,13 +565,13 @@ new Vue({
     templateText: '\
 <div>\n\
   <header>\n\
-    <h1>I\'m a template!</h1>\n\
+    <h1>Sou um template!</h1>\n\
   </header>\n\
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\
   <p v-else>\n\
-    No message.\n\
+    Nenhuma mensagem.\n\
   </p>\n\
 </div>\
     ',
@@ -580,7 +579,7 @@ new Vue({
   computed: {
     result: function () {
       if (!this.templateText) {
-        return 'Enter a valid template above'
+        return 'Entre um template válido acima'
       }
       try {
         var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
