@@ -266,7 +266,22 @@ render: function (createElement) {
 
 ## JSX
 
-If you're writing a lot of `render` functions, it might feel painful that we're using 14 lines above in place of this much simpler and arguably more readable template:
+If you're writing a lot of `render` functions, it might feel painful to write something like this:
+
+``` js
+createElement(
+  'anchored-heading', {
+    props: {
+      level: 1
+    }
+  }, [
+    createElement('span', 'Hello'),
+    ' world!'
+  ]
+)
+```
+
+Especially when the template version is so simple in comparison:
 
 ``` html
 <anchored-heading :level="1">
