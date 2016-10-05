@@ -12,6 +12,13 @@ $ npm install
 $ hexo server
 ```
 
+## Como Proceder
+
+- Faça um fork deste repo na sua conta
+- Edite o arquivo README.md inserindo o seu login ao lado da página que deseja traduzir
+- Faça um Pull Request do README e você já poderá começar a traduzir a página
+- Para finalizar, faça um Pull Request da página em questão
+
 ## Algumas considerações
 
 - Não traduzir nome de variáveis (código fonte)
