@@ -28,8 +28,8 @@ Estas palavras podem ser mantidas no inglês
 | build      | import | render | alias | router
 | store      | scaffolding  |   loader | bind |
 | loop | for | true | false |
-| number (tipo) | string (tipo) | ? | ? |
-| ? | ? | ? | ? |
+| number (tipo) | string (tipo) | template | feature |
+| wrapper | ? | ? | ? |
 
 
 ## Translation Status (en to pt_br)
