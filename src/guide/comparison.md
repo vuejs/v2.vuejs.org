@@ -1,10 +1,10 @@
 ---
-title: Comparison with Other Frameworks
+title: Comparação com Outros Frameworks
 type: guide
 order: 26
 ---
 
-This is definitely the most difficult page in the guide to write, but we do feel it's important. Odds are, you've had problems you tried to solve and you've used another library to solve them. You're here because you want to know if Vue can solve your specific problems better. That's what we hope to answer for you.
+Esta é definitivamente a página mais difícil de ser escrito do guia, mas sentimos que é importante. É muito provável que você já teve problemas, tentou resolvê-los e já usou outra biblioteca para resolvê-los. Você está aqui pois quer saber se Vue pode resolver seus problemas específicos de uma forma melhor. É isto que esperamos lhe responder.
 
 We also try very hard to avoid bias. As the core team, we obviously like Vue a lot. There are some problems we think it solves better than anything else out there. If we didn't believe that, we wouldn't be working on it. We do want to be fair and accurate though. Where other libraries offer significant advantages, such as React's vast ecosystem of alternative renderers or Knockout's browser support back to IE6, we try to list these as well.
 
@@ -26,7 +26,7 @@ With that said, we hope you can feel confident in the fairness of the review bel
 
 ### Performance Profiles
 
-In every real-world scenario that we've tested so far, Vue outperforms React by a fair margin (usually at least 20-50% faster, though in some cases much more than that). We could now link to benchmarks - but frankly, all benchmarks are flawed in some way and very few resemble what you'd write in a real application. Instead, let's break it down.
+In every real-world scenario that we've tested so far, Vue outperforms React by a fair margin. If your eyebrows are raising right now, read further. We'll breakdown why (and even include a benchmark developed in collaboration with the React team).
 
 #### Render Performance
 
@@ -294,7 +294,7 @@ That said, it would probably make a better comparison between Vue core and Ember
 
 - Vue provides unobtrusive reactivity on plain JavaScript objects and fully automatic computed properties. In Ember, you need to wrap everything in Ember Objects and manually declare dependencies for computed properties.
 
-- Vue's template syntax harnesses the full power of JavaScript expressions, while Handlebars' expression and helper syntax is quite limited in comparison.
+- Vue's template syntax harnesses the full power of JavaScript expressions, while Handlebars' expression and helper syntax is intentionally quite limited in comparison.
 
 - Performance-wise, Vue outperforms Ember by a fair margin, even after the latest Glimmer engine update in Ember 2.0. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
 
