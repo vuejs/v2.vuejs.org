@@ -17,6 +17,7 @@ $ hexo server
 - Não traduzir nome de variáveis (código fonte)
 - Pode traduzir textos informativos no código fonte, como por exemplo: `<div id="level-1">Nível 1</div>`
 - Não é preciso colocar expressões em inglês no itálico
+- Faça os comentários do commit em INGLÊS
 
 ## Translation Status (en to pt_br)
 
