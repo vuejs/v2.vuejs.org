@@ -36,7 +36,7 @@ Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) or [
 
 ## NPM
 
-在用 Vue.js 构建大型应用时推荐使用 NPM 安装，NPM 能很好地和诸如 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 的 CommonJS 模块打包器配合使用。Vue.js 也提供配套工具来开发[单文件组件](application.html#单文件组件)。
+在用 Vue.js 构建大型应用时推荐使用 NPM 安装，NPM 能很好地和诸如 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
 
 ``` bash
 # 最新稳定版

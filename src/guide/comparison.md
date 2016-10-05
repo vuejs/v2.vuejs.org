@@ -26,7 +26,7 @@ With that said, we hope you can feel confident in the fairness of the review bel
 
 ### Performance Profiles
 
-In every real-world scenario that we've tested so far, Vue outperforms React by a fair margin (usually at least 20-50% faster, though in some cases much more than that). We could now link to benchmarks - but frankly, all benchmarks are flawed in some way and very few resemble what you'd write in a real application. Instead, let's break it down.
+In every real-world scenario that we've tested so far, Vue outperforms React by a fair margin. If your eyebrows are raising right now, read further. We'll breakdown why (and even include a benchmark developed in collaboration with the React team).
 
 #### Render Performance
 
