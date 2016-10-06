@@ -8,7 +8,6 @@ order: 2
 
 Vue.js（读音 /vjuː/, 类似于 **view**）是一个构建用户界面的渐进式框架。与其他单层框架（ monolithic frameworks）不同的是，Vue 被设计成从底层向上可以被增量式的采用。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。 
 
-
 Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
 
 如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](comparison.html)。
@@ -48,7 +47,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-我们已经生成了我们的第一个 Vue 应用！看起来这跟单单渲染一个字符串模板非常类似，但是 Vue.js 在背后做了大量工作。现在数据和DOM已经被绑定在一起，所有的元素都是**响应式的（reactive）**。我们如何知道?打开你的浏览器的控制台，并修改 `app.message`，你将看到上例相应地更新。
+我们已经生成了我们的第一个 Vue 应用！看起来这跟单单渲染一个字符串模板非常类似，但是 Vue.js 在背后做了大量工作。现在数据和 DOM 已经被绑定在一起，所有的元素都是**响应式的**。我们如何知道?打开你的浏览器的控制台，并修改 `app.message`，你将看到上例相应地更新。
 
 除了绑定插入的文本内容，我们还可以采用这样的方式绑定 DOM 元素属性：
 
@@ -83,7 +82,7 @@ var app2 = new Vue({
 
 这里我们遇到新东西。你看到的 `v-bind` 特性被称为**指令**。指令带有前缀 `v-`，以指示它们是 Vue.js 提供的特殊特性。并且如你所想象的，它们会对绑定的目标元素添加响应式的特殊行为。这个指令的简单含义是说：将该元素的 id 属性绑定到 Vue 实例的 id 属性上。
 
-用浏览器的开发者工具去监测以上元素 - 你会发现 这个元素的 id 为 `inspect-me`。是的，如果你在控制台里更改`app2.id`，那么该元素的 id 也会随之更新。
+用浏览器的开发者工具去监测以上元素 - 你会发现 这个元素的 id 为 `inspect-me`。是的，如果你在控制台里更改 `app2.id`，那么该元素的 id 也会随之更新。
 
 ## 条件与循环
 
@@ -102,7 +101,6 @@ var app3 = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app-3" class="demo">
   <span v-if="seen">Now you see me</span>
@@ -144,7 +142,6 @@ var app4 = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app-4" class="demo">
   <ol>
@@ -167,7 +164,7 @@ var app4 = new Vue({
 </script>
 {% endraw %}
 
-在控制台里，输入`app4.todos.push({ text: 'New item' })`。你会发现列表中多了一栏新内容。
+在控制台里，输入 `app4.todos.push({ text: 'New item' })`。你会发现列表中多了一栏新内容。
 
 ## 处理用户输入
 
@@ -192,7 +189,6 @@ var app5 = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
@@ -231,7 +227,6 @@ var app6 = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app-6" class="demo">
   <p>{{ message }}</p>
@@ -269,7 +264,7 @@ Vue.component('todo', {
 </ul>
 ```
 
-但是这样会为每个 todo 渲染同样的文本，这看起来并不是很6。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](/guide/components.html#Props) 字段：
+但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](/guide/components.html#Props) 字段：
 
 ``` js
 Vue.component('todo', {
@@ -295,7 +290,6 @@ var app7 = new Vue({
   }
 })
 ```
-
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
