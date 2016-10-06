@@ -420,7 +420,7 @@ createElement(
 )
 ```
 
-Especialmente quando a versão usando template version é tão simples em comparação:
+Especialmente quando a versão usando template é tão simples em comparação:
 
 ``` html
 <linked-heading :nivel="1">
