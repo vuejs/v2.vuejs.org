@@ -1570,11 +1570,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `string`
 
-  `key`的特殊属性主要用在Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态elements并且尽可能的尝试修复/再利用相同类型elements的算法。使用key，它会基于key的变化重新排列elements顺序，并且会移除keys不存在的elements。
+  `key`的特殊属性主要用在Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除keys不存在的元素。
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  相同公共父元素的子元素必须有**独特的key**。重复的key会造成渲染错误。
 
-  The most common use case is combined with `v-for`:
+  最常见的用例是结合`v-for`:
 
   ``` html
   <ul>
@@ -1582,12 +1582,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  它也可以用于强制替换元素/组件而不是重复使用它。它可以用来做如下你想做的:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - 正确的触发组件的生命周期hooks
+  - 触发转换
 
-  For example:
+  例如:
 
   ``` html
   <transition>
