@@ -53,7 +53,7 @@ new Vue({
 // -> "hook do component"
 ```
 
-Opções que aceitam objetos, por exemplo `methods`, `components` e `directives`, serão mescladas num único objeto. As opções do pr[oprio componente terão prioridade quando houver conflito nas chaves desses objetos:
+Opções que aceitam objetos, por exemplo `methods`, `components` e `directives`, serão mescladas num único objeto. As opções do próprio componente terão prioridade quando houver conflito nas chaves desses objetos:
 
 ``` js
 var mixin = {
