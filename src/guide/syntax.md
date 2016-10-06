@@ -1,5 +1,5 @@
 ---
-title: Template Syntax
+title: 模板语法
 type: guide
 order: 4
 ---

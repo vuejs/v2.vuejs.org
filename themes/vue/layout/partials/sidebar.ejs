@@ -6,32 +6,45 @@
         <div id="donate" style="margin-bottom: 20px">
             <span class="wrapper" style="width: 110px">
               <img src="/images/patreon.png">
-              <a href="/support-vuejs">Support Vue.js</a>
+              <a href="/support-vuejs">支持 Vue.js</a>
             </span>
         </div>
         <h2>
-            <%- type === 'api' ? 'API' : (type.charAt(0).toUpperCase() + type.slice(1)) %>
+            <% titles = {api: 'API', examples: '示例', guide: '教程'} %>
+            <%- titles[type] %>
             <select class="version-select">
                 <option value="SELF" selected>2.0</option>
-                <option value="v1">1.0</option>
-                <option value="012">0.12</option>
-                <option value="011">0.11</option>
             </select>
         </h2>
         <ul class="menu-root">
-            <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
+            <% type !== 'api' && type !== 'router' && site.pages.find({type: type}).sort('order').each(function (p) { %>
                 <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
                 <% if (fileName === 'installation') { %>
-                  <li><h3>Essentials</h3></li>
+                  <li><h3>基础</h3></li>
                 <% } %>
                 <% if (fileName === 'transitions') { %>
-                  <li><h3>Advanced</h3></li>
+                  <li><h3>进阶</h3></li>
                 <% } %>
                 <% if (fileName === 'migration') { %>
-                  <li><h3>Migrating</h3></li>
+                  <li><h3>迁移</h3></li>
                 <% } %>
                 <% if (fileName === 'comparison') { %>
-                  <li><h3>Meta</h3></li>
+                  <li><h3>更多</h3></li>
+                <% } %>
+                <li>
+                    <a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
+                </li>
+            <% }) %>
+             <% type === 'router' && site.pages.find({type: type}).sort('order').each(function (p) { %>
+                <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
+                <% if (fileName === 'getting-started') { %>
+                  <li><h3>基础</h3></li>
+                <% } %>
+                <% if (fileName === 'navigation-guards') { %>
+                  <li><h3>进阶</h3></li>
+                <% } %>
+                <% if (fileName === 'router-link') { %>
+                  <li><h3>API</h3></li>
                 <% } %>
                 <li>
                     <a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>

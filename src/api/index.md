@@ -2,31 +2,31 @@
 type: api
 ---
 
-## Global Config
+## 全局配置
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` is 是一个对象，包含 Vue 的全局配置。可以在启动应用之前修改下列属性：
 
 ### silent
 
-- **Type:** `boolean`
+- **类型:** `boolean`
 
-- **Default:** `false`
+- **默认值:** `false`
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  取消 Vue 所有的日志与警告。
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **类型:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **默认值:** `{}`
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -40,34 +40,34 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  自定义选项的混合策略。
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  合并策略函数接收定义在父实例和子实例上的 option，分别作为第一个和第二个参数的值，Vue实例上下文被作为第三个参数传入。
 
-- **See also**: [Custom Option Merging Strategies](/guide/mixins.html#Custom-Option-Merge-Strategies)
+- **参考**: [自定义选项的混合策略](/guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
-- **Type:** `boolean`
+- **类型:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **默认值:** `true` (生产版为 `false`)
 
-- **Usage:**
+- **用法:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // 务必在加载 Vue 之后，立即同步设置以下内容
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  配置是否允许 [vue-devtools](https://github.com/vuejs/vue-devtools) 检查代码。开发版本默认为 `true`，生产版本默认为 `false`。生产版本设为 `true` 可以启用检查。
 
 ### errorHandler
 
-- **Type:** `Function`
+- **类型:** `Function`
 
-- **Default:** Error is thrown in place
+- **默认值:** 默认抛出错误
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm) {
@@ -75,21 +75,21 @@ type: api
   }
   ```
 
-  Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
+  指定组件的渲染和观察期间未捕获错误的处理函数。处理函数被调用时，可获取错误信息和 Vue 实例。
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number }`
+- **类型:** `{ [key: string]: number }`
 
-- **Default:** `{}`
+- **默认值:** `{}`
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.keyCodes = { esc: 27 }
   ```
 
-  Define custom key aliases for v-on.
+  自定义 v-on 键位别名。
 
 ## Global API
 
@@ -1564,17 +1564,17 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
   - [Components - Cheap Static Components with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## 特殊元素
 
 ### key
 
 - **Expects:** `string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  `key`的特殊属性主要用在Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除keys不存在的元素。
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  相同公共父元素的子元素必须有**独特的key**。重复的key会造成渲染错误。
 
-  The most common use case is combined with `v-for`:
+  最常见的用例是结合`v-for`:
 
   ``` html
   <ul>
@@ -1582,12 +1582,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  它也可以用于强制替换元素/组件而不是重复使用它。当你遇到如下场景时它可能会很有用:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - 正确的触发组件的生命周期hooks
+  - 触发转换
 
-  For example:
+  例如:
 
   ``` html
   <transition>
@@ -1788,10 +1788,10 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## VNode接口
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- 请参考[VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
-## Server-Side Rendering
+## 服务端渲染
 
-- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- 请参考[vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
