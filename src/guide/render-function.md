@@ -264,7 +264,22 @@ render: function (createElement) {
 
 ## JSX
 
-如果你写了很多 `render`  函数，可能会觉得痛苦，在多于 14 行代码的场景中还是模板简单、易读很多。
+如果你写了很多 `render`  函数，可能会觉得痛苦：
+
+``` js
+createElement(
+  'anchored-heading', {
+    props: {
+      level: 1
+    }
+  }, [
+    createElement('span', 'Hello'),
+    ' world!'
+  ]
+)
+```
+
+特别是模板如此简单的情况下：
 
 ``` html
 <anchored-heading :level="1">
