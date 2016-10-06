@@ -6,7 +6,7 @@ order: 17
 
 ## Introdução
 
-Mixins são uma forma flexível de distribuir funcionalidade reutilizável em componentes Vue diferentes. Um objeto mixin pode conter quaisquer opções de componente. Quando um componente utiliza um mixin, todas as opções do mixin irão ser combinadas ("mixed") com as opções do próprio componente.
+Mixins são uma forma flexível de distribuir funcionalidade reutilizável em diversos componentes Vue. Um objeto mixin pode conter quaisquer opções de componente. Quando um componente utiliza um mixin, todas as opções do mixin irão ser combinadas ("mixed") com as opções do próprio componente.
 
 Exemplo:
 
