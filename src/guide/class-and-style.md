@@ -1,5 +1,5 @@
 ---
-title: Class and Style Bindings
+title: Class 与 Style 绑定
 type: guide
 order: 6
 ---

@@ -1,16 +1,17 @@
 ---
-title: Unit Testing
+title: 单元测试
 type: guide
 order: 22
 ---
 
-## Setup and Tooling
+## 配置和工具
 
 Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation, try the [Karma](http://karma-runner.github.io) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup, please refer to each project's respective documentation, though these example Karma configurations for [Webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js) and [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js) may help you get started.
 
-## Simple Assertions
+## 简单的断言
 
 In terms of code structure for testing, you don't have to do anything special in your components to make them testable. Just export the raw options:
+在测试的代码结构方面，你不必在你的组件中做任何特殊的事情使它们可测试。主要导出原始设置就可以了：
 
 ``` html
 <template>
@@ -31,36 +32,35 @@ In terms of code structure for testing, you don't have to do anything special in
 </script>
 ```
 
-When you test that component, all you have to do is import the object along with Vue to make many common assertions:
+当测试的组件时，所要做的就是导入对象和Vue然后使用许多常见的断言：
 
 ``` js
-// Import Vue and the component being tested
+// 导入Vue.js和组件，进行测试
 import Vue from 'vue'
 import MyComponent from 'path/to/MyComponent.vue'
 
-// Here are some Jasmine 2.0 tests, though you can
-// use any test runner / assertion library combo you prefer
+// 这里是一些Jasmine 2.0的测试，你也可以使用你喜欢的任何断言库或测试工具。
+
 describe('MyComponent', () => {
-  // Inspect the raw component options
+  // 检查原始组件选项
   it('has a created hook', () => {
     expect(typeof MyComponent.created).toBe('function')
   })
 
-  // Evaluate the results of functions in
-  // the raw component options
+  // 评估原始组件选项中的函数的结果
   it('sets the correct default data', () => {
     expect(typeof MyComponent.data).toBe('function')
     const defaultData = MyComponent.data()
     expect(defaultData.message).toBe('hello!')
   })
 
-  // Inspect the component instance on mount
+  // 检查mount中的组件实例
   it('correctly sets the message when created', () => {
     const vm = new Vue(MyComponent).$mount()
     expect(vm.message).toBe('bye!')
   })
 
-  // Mount an instance and inspect the render output
+  // 创建一个实例并检查渲染输出
   it('renders the correct message', () => {
     const Ctor = Vue.extend(MyComponent)
     const vm = new Ctor().$mount()
@@ -69,7 +69,7 @@ describe('MyComponent', () => {
 })
 ```
 
-## Writing Testable Components
+## 编写可被测试的组件
 
 A lot of components' render output are primarily determined by the props they receive. In fact, if a component's render output solely depends on its props, it becomes quite straightforward to test, similar to asserting the return value of a pure function with different arguments. Take an contrived example:
 
@@ -111,12 +111,12 @@ describe('MyComponent', () => {
 })
 ```
 
-## Asserting Asynchronous Updates
+## 主张异步更新
 
-Since Vue [performs DOM updates asynchronously](/guide/reactivity.html#Async-Update-Queue), assertions on DOM updates resulting from state change will have to be made in a `Vue.nextTick` callback:
+由于Vue进行[异步更新DOM]((/guide/reactivity.html#Async-Update-Queue))的情况，一些断言必须在` Vue nexttick `回调中进行：
 
 ``` js
-// Inspect the generated HTML after a state update
+// 在状态更新后检查生成的HTML
 it('updates the rendered message when vm.message updates', done => {
   const vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
