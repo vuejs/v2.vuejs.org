@@ -1,38 +1,40 @@
 ---
-title: The Vue Instance
+title: A Instância Vue
 type: guide
 order: 3
 ---
 
-## Constructor
+## Construtor
 
-Every Vue vm is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
+Todo vm do Vue é iniciado pela criação da **instância raiz do Vue** com a função construtora do Vue:
 
 ``` js
 var vm = new Vue({
-  // options
+  // opções
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instances.
+Embora não seja estritamente associado com o [padrão MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), o design do Vue foi sem dúvida inspirado por ele. Como convenção, muitas vezes usamos a variável `vm` (abreviação de ViewModel) para se referir à instância Vue.
 
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](../api).
+Quando você criar uma instância do Vue, é necessário repassar um **objeto** que contém opções para dados, elementos, métodos, ciclos de vida e mais. A lista completa de opções pode ser encontrada na [API](/api).
 
-The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
+o construtor `Vue` pode ser estendido para a criação de **contrutores de componentes** reutilizáveis com opções pré definidas:
 
 ``` js
 var MyComponent = Vue.extend({
-  // extension options
+  // opções da extensão
 })
 
-// all instances of `MyComponent` are created with
-// the pre-defined extension options
+// todas as instâncias de `MyComponent` são criadas com
+// as definições pré definidas pelas opções
 var myComponentInstance = new MyComponent()
 ```
 
-Although it is possible to create extended instances imperatively, most of the time it is recommended to compose them declaratively in templates as custom elements. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
+Embora seja possível criar instâncias repetidamente, na maioria das vezes é recomendado compô-los declarativamente em templates com elementos customizáveis. Vamos falar sobre [o sistema de componentes](components.html) com mais detalhes depois. Por enquanto, você precisa apenas saber que todos os componentes Vue são essencialmente extensões da instância Vue.
 
-## Properties and Methods
+## Propriedades e Métodos
+
+Cada instância Vue
 
 Each Vue instance **proxies** all the properties found in its `data` object:
 
