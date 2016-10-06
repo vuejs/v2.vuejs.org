@@ -40,11 +40,11 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  Définit des stratégies personnalisées de fusion pour les options.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  La stratégie de fusion reçoit en arguments la valeur de cette option définie dans le parent et les instances enfant en tant que premier et second argument, respectivement. L'instance Vue est passée en troisième argument.
 
-- **See also**: [Custom Option Merging Strategies](/guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Voir aussi**: [Stratégies personnalisées de fusion d'options](/guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
@@ -65,23 +65,23 @@ type: api
 
 - **Type:** `Function`
 
-- **Default:** Error is thrown in place
+- **Par défaut:** les exceptions ne sont pas interceptées
 
 - **Usage:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm) {
-    // handle error
+    // gérer le cas d'erreur
   }
   ```
 
-  Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
+  Définit un gestionnaire pour les erreurs non interceptées pendant le rendu d'un composant et au sein de ses watchers. Ce gestionnaire sera appelé avec comme arguments l'erreur et l'instance Vue associée.
 
 ### keyCodes
 
 - **Type:** `{ [key: string]: number }`
 
-- **Default:** `{}`
+- **Par défaut:** `{}`
 
 - **Usage:**
 
@@ -89,9 +89,9 @@ type: api
   Vue.config.keyCodes = { esc: 27 }
   ```
 
-  Define custom key aliases for v-on.
+  Définit des alias pour les touches du clavier avec `v-on`.
 
-## Global API
+## API globale
 
 <h3 id="Vue-extend">Vue.extend( options )</h3>
 
@@ -102,7 +102,7 @@ type: api
 
   Crée une "sous-classe" du constructeur de base Vue. L'argument doit être un objet contenant les options du composant.
 
-  Le cas spécial à noter ici est l'option `data` - cela doit être une fonction quand utilisé avec `Vue.extend()`.
+  Le cas spécial à noter ici est l'option `data` - il doit s'agir d'une fonction quand utilisé avec `Vue.extend()`.
 
   ``` html
   <div id="mount-point"></div>
@@ -289,7 +289,7 @@ type: api
 
 - **Usage:**
 
-  Compiles a template string into a render function. **Only available in the standalone build.**
+  Compile une string template en une fonction render. **Disponible uniquement sur la version standalone.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -303,7 +303,7 @@ type: api
   })
   ```
 
-- **See also:** [Render Functions](/guide/render-function.html)
+- **Voir aussi:** [Fonctions de rendu](/guide/render-function.html)
 
 ## Options / Data
 
@@ -315,11 +315,11 @@ type: api
 
 - **Détails:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
+  L'objet de données pour l'instance Vue. Vue va de manière récursive convertir ses propriétés en des getter/setters afin de les rendre "réactives". **L'objet doit être un objet littéral classique**: les objets natifs tels que les API du navigateur et les propriétés issues du prototype sont ignorées. Une règle d'or est que la donnée doit juste être de la donnée - il n'est pas recommandé d'observer des objets avec leur propre comportement stateful.
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  Une fois observé, vous ne pouvez plus ajouter de propriétés réactives à l'objet de données racine. C'est pourquoi il est recommandé de déclarer dès le départ toutes les propriétés réactives à la racine de l'objet de données, avant de créer l'instance.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  Après que l'instance ait été créée, l'objet de données initial peut être accédé via `vm.$data`. L'instance Vue servira également de proxy pour toutes les propriétés trouvées dans l'objet de données, donc `vm.a` sera l'équivalent de `vm.$data.a`.
 
   Les propriétés commençant par `_` ou `$` ne seront **pas** proxyfiées par l'instance Vue car elles pourraient entrer en conflit avec certaines propriétés internes et méthodes d'API de Vue. Vous devrez y accéder via `vm.$data._property`.
 
@@ -347,7 +347,7 @@ type: api
   })
   ```
 
-  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour la propriété `data`__ (exemple: `data: () => { return { a: this.myProp }}`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et  `this.myProp` vaudra `undefined`.</p>
 
 - **Voir aussi:** [Réactivité en détail](/guide/reactivity.html).
 
@@ -391,11 +391,11 @@ type: api
 
 - **Type:** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restriction:** utilisé uniquement si l'instance est créée via `new`.
 
-- **Details:**
+- **Détails:**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  Passe des valeurs d'attribut à l'instance durant sa création. Cette propriété a pour but principal de faciliter les tests unitaires.
 
 - **Example:**
 
@@ -420,9 +420,9 @@ type: api
 
   Les propriétés calculées qui seront ajoutées à l'instance Vue. Tous les getters et setters ont leur contexte `this` automatiquement lié à l'instance Vue.
 
-  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une propriété calculée__ (exemple: `aDouble: () => this.a * 2`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et `this.a` vaudra `undefined`.</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes.
+  Les propriétés calculées sont mises en cache, et réévaluées uniquement lorsque leurs dépendances réactives changent.
 
 - **Exemple:**
 
@@ -461,8 +461,8 @@ type: api
 - **Détails:**
 
   Les méthodes qui seront ajoutées à l'instance Vue. Vous pouvez accéder à ces méthodes directement depuis l'instance VM ou les utiliser à travers des expressions de directives. Toutes les méthodes ont leur contexte d'appel `this` automatiquement assigné à l'instance Vue.
-
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une méthode__ (exemple: `plus: () => this.a++`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et `this.a` vaudra `undefined`.</p>
 
 - **Exemple:**
 
@@ -487,7 +487,7 @@ type: api
 
 - **Détails:**
 
-  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de callback exécutée quand cette expression change. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un `Object` avec des options avancées. L'instance Vue appelera `$watch()` pour chaque entrée dans l'objet à l'initialisation.
+  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de callback exécutée quand cette expression change. On parle alors de *watcher* pour décrire ce lien. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un `Object` avec des options avancées. L'instance Vue appelera `$watch()` pour chaque entrée dans l'objet à l'initialisation.
 
 - **Exemple:**
 
@@ -513,8 +513,8 @@ type: api
   })
   vm.a = 2 // -> new: 2, old: 1
   ```
-
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un watcher__ (exemple: `searchQuery: newValue => this.updateAutocomplete(newValue)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et `this.updateAutocomplete` vaudra `undefined`.</p>
 
 - **Voir aussi:** [Méthodes d'instance - vm.$watch](#vm-watch)
 
