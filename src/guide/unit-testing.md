@@ -6,11 +6,10 @@ order: 22
 
 ## 配置和工具
 
-Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation, 使用 [Karma](http://karma-runner.github.io) 进行自动化测试. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup, please refer to each project's respective documentation, though these example Karma configurations for [Webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js) and [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js) may help you get started.
+任何兼容基于模块的构建系统都可以正常使用, 但如果你需要一个具体的建议, 可以使用 [Karma](http://karma-runner.github.io) 进行自动化测试.它有很多社区版的插件, 包括对 [Webpack](https://github.com/webpack/karma-webpack) 和 [Browserify](https://github.com/Nikku/karma-browserify) 的支持. 更多详细的安装步骤, 请参考各项目的安装文档, 通过这些 Karma 配置的例子可以快速帮助你上手（ [Webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js) 插件， [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js) 插件）。 
 
 ## 简单的断言
 
-In terms of code structure for testing, you don't have to do anything special in your components to make them testable. Just export the raw options:
 在测试的代码结构方面，你不必在你的组件中做任何特殊的事情使它们可测试。主要导出原始设置就可以了：
 
 ``` html
