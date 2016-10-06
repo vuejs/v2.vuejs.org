@@ -543,7 +543,7 @@ new Vue({
 <li>Array</li>
 </ul>
 <p>In addition, <code>type</code> can also be a custom constructor function and the assertion will be made with an <code>instanceof</code> check.</p>
-<p>When a prop validation fails, Vue will refuse to set the value on the child component and throw a warning if using the development build.</p>
+<p>When a prop validation fails, Vue will produce a console warning (if using the development build).</p>
 <h2 id="Custom-Events"><a href="#Custom-Events" class="headerlink" title="Custom Events"></a>Custom Events</h2><p>We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where custom events come in.</p>
 <h3 id="Using-v-on-with-Custom-Events"><a href="#Using-v-on-with-Custom-Events" class="headerlink" title="Using v-on with Custom Events"></a>Using <code>v-on</code> with Custom Events</h3><p>Every Vue instance implements the <a href="/api/#Instance-Methods-Events">Events interface</a>, which means it can:</p>
 <ul>

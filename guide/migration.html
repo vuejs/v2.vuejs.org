@@ -1089,7 +1089,7 @@ new Vue({
 </div>
 
 <h3 id="Vue-partial-deprecated"><a href="#Vue-partial-deprecated" class="headerlink" title="Vue.partial deprecated"></a><code>Vue.partial</code> <sup>deprecated</sup></h3><p>Partials have been deprecated in favor of more explicit data flow between components, using props. Unless you’re using a partial in a performance-critical area, the recommendation is to simply use a <a href="components.html">normal component</a> instead. If you were dynamically binding the <code>name</code> of a partial, you can use a <a href="http://vuejs.org/guide/components.html#Dynamic-Components">dynamic component</a>.</p>
-<p>If you happen to be using partials in a performance-critical part of your app, then you should upgrade to <a href="render-function.html#Functional-Components">functional components</a>. They must be in a plain JavaScript file (rather than in a <code>.vue</code> file) and are stateless and instanceless, just like partials. This makes rendering extremely fast.</p>
+<p>If you happen to be using partials in a performance-critical part of your app, then you should upgrade to <a href="render-function.html#Functional-Components">functional components</a>. They must be in a plain JS/JSX file (rather than in a <code>.vue</code> file) and are stateless and instanceless, just like partials. This makes rendering extremely fast.</p>
 <p>A benefit of functional components over partials is that they can be much more dynamic, because they grant you access to the full power of JavaScript. There is a cost to this power however. If you’ve never used a component framework with render functions before, they may take a bit longer to learn.</p>
 
 <div class="upgrade-path">
