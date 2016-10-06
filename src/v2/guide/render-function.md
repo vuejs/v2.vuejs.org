@@ -72,7 +72,7 @@ Vue.component('linked-heading', {
   render: function (createElement) {
     return createElement(
       'h' + this.nivel,   // nome do elemento (tag)
-      this.$slots.default // array de elementos-filho (children)
+      this.$slots.default // array de elementos filhos (children)
     )
   },
   props: {
@@ -84,7 +84,7 @@ Vue.component('linked-heading', {
 })
 ```
 
-Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos-filho (children) em seu componente sem especificar um atributo `slot`, como o `Alô Mundo!` dentro de `linked-heading`, esses elementos estão acessíveis na instância do componente em `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção [API - propriedades da instância](/api/#vm-slots) antes de se aprofundar em funções "render".**
+Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filhos (children) em seu componente sem especificar um atributo `slot`, como o `Alô Mundo!` dentro de `linked-heading`, esses elementos estão acessíveis na instância do componente em `$slots.default`. Se você ainda não leu, **é recomendado que leia a seção [API - propriedades da instância](/api/#vm-slots) antes de se aprofundar em funções "render".**
 
 ## Parâmetros para `createElement`
 
@@ -99,7 +99,7 @@ createElement(
   'div',
 
   // {Object}
-  // Um objeto de dados (chave: valor) correspondendo aos atributos
+  // Um objeto de dados correspondendo aos atributos
   // que você usaria em template. Opcional.
   {
     // (veja detalhes na próxima seção, abaixo)
@@ -405,7 +405,7 @@ render (createElement) {
 
 ## JSX
 
-Se você estiver escrevendo mutias funções `render`, pode se tornar penoso escrever muitas linhas de código dessa maneira:
+Se você estiver escrevendo muitas funções `render`, pode se tornar penoso escrever muitas linhas de código dessa maneira:
 
 ``` js
 createElement(
@@ -447,11 +447,11 @@ new Vue({
 
 <p class="tip">Apelidar `createElement` como `h` é uma convenção comum que você verá na comunidade Vue e é necessária para o JSX. Se `h` não estiver disponível no escopo, sua aplicação irá gerar um erro.</p>
 
-Para mais informações sobre como JSX é mapeado para JavaScript, veja [documentação de utilização](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
+Para mais informações sobre como JSX é mapeado para JavaScript, veja a [documentação de utilização](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
 
 ## Componentes Funcionais
 
-O componente de cabeçalho com link que criamos anteriormente é relativamente simples. Ele não gerencia nenhum estado (state), não observa nenhum estado (state) passado para si, e não tem nenhum método ligado ao ciclo de vida da instância. Realmente, é apenas uma função com algumas propriedades (props).
+O componente de cabeçalho com link que criamos anteriormente é relativamente simples. Ele não gerencia nenhum estado (state), não observa nenhum estado passado para si, e não tem nenhum método ligado ao ciclo de vida da instância. Realmente, é apenas uma função com algumas propriedades (props).
 
 Em casos como este, nós podemos marcar componentes como `functional`, que significa que eles são *stateless* (sem estado, ou seja, sem a propriedade `data`) e são *instanceless* (sem instância, ou seja, sem uso do contexto `this`). Um **componente funcional** se parece assim:
 
@@ -526,7 +526,7 @@ Vue.component('smart-list', {
 
 ### `slots()` versus `children`
 
-Você pode ser perguntar por que nós precisamos de ambos -  `slots()` e `children`. Não seria `slots().default` o mesmo que `children`? EM alguns casos, sim - mas o que aconteceria se você tivesse um componente funcional contendo os seguintes elementos filhos?
+Você pode ser perguntar por que nós precisamos de ambos -  `slots()` e `children`. Não seria `slots().default` o mesmo que `children`? Em alguns casos, sim - mas o que aconteceria se você tivesse um componente funcional contendo os seguintes elementos filhos?
 
 ``` html
 <meu-componente-funcional>
@@ -537,7 +537,7 @@ Você pode ser perguntar por que nós precisamos de ambos -  `slots()` e `childr
 </meu-componente-funcional>
 ```
 
-Para este componente, `children` lhe fornecerá ambos os parágrafos, enquanto `slots().default` lhe fornecerá apenas o segundo, e `slots().foo` lhe fornecerá apenas o primeiro. Tendo tanto `children` quanto `slots()` lhe proporciona escolher se este componente precisa saber sobre os slots or talvez apenas delegar tal responsabilidade para outro componente simplesmente passando adiante `children`.
+Para este componente, `children` lhe fornecerá ambos os parágrafos, enquanto `slots().default` lhe fornecerá apenas o segundo, e `slots().foo` lhe fornecerá apenas o primeiro. Tendo tanto `children` quanto `slots()` lhe proporciona escolher se este componente precisa saber sobre os slots ou talvez apenas delegar tal responsabilidade para outro componente simplesmente passando adiante `children`.
 
 ## Compilação de Templates
 
