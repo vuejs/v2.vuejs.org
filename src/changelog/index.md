@@ -6,6 +6,10 @@ order: 0
 
 [更新日志](https://github.com/vuejs/vue/releases)
 
+## [v2.0.1](https://github.com/vuejs/vue/releases/tag/v2.0.1)
+
+![image](https://cloud.githubusercontent.com/assets/12537013/19139459/6de9ff46-8bb7-11e6-82ee-e3e0f2eab71d.png)
+
 
 ## [v2.0.0-rc.8](https://github.com/vuejs/vue/releases/tag/v2.0.0-rc.8)
 
