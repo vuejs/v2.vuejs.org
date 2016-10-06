@@ -107,7 +107,7 @@ new Vue({
 // -> "beleza!"
 ```
 
-<p class="tip">Use mixins globais raramente e cuidadosamente, porque ele afeta cada uma das instâncias Vue criadas, incluindo os componentes de terceiros. Na maioria dos casos, você deveria utilizar somente para tratar opções customizadas, como demonstrado no exemplo acima. É também uma boa ideia disponibilizá-los como [Plugins](/guide/plugins.html) para evitar uso duplicado.</p>
+<p class="tip">Use mixins globais raramente e cuidadosamente, porque eles afetam cada uma das instâncias Vue criadas, incluindo os componentes de terceiros. Na maioria dos casos, você deveria utilizá-los somente para tratar opções customizadas, como demonstrado no exemplo acima. É também uma boa ideia disponibilizá-los como [Plugins](/guide/plugins.html), para evitar uso duplicado.</p>
 
 ## Estratégias de Mesclagem de Opções Customizadas
 
