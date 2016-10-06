@@ -160,20 +160,20 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // The list of custom directive that have binding
-  // object (except 'oldValue').
-  directives: [{
-    name: 'custom1', 
-    value: 'hello'
-    expression: 'value1',
-    arg: 'arg1',
-    modifiers: {
-      modifire1: true
+  // Custom directives. Note that the binding's 
+  // oldValue cannot be set, as Vue keeps track
+  // of it for you.
+  directives: [
+    {
+      name: 'my-custom-directive', 
+      value: '2'
+      expression: '1 + 1',
+      arg: 'foo',
+      modifiers: {
+        bar: true
+      }
     }
-  }, {
-    name: 'custom2',
-    arg: 'arg1'
-  }],
+  ],
   // The name of a slot if the child of a component
   slot: 'name-of-slot'
   // Other special top-level properties
