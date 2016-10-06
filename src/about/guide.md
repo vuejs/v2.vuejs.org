@@ -45,7 +45,7 @@ order: 1
 18 | x | plugins.md |  插件 |  | @hgcoder
 19 | x | single-file-components.md |  单文件组件 |  | @ATLgo 
 20 | 是 | routing.md | 路由 | @dingyiming | @dingyiming
-21 | x | state-management.md |  状态管理 | | @dear-lizhihua
+21 | 是 | state-management.md |  状态管理 | @dear-lizhihua | @dear-lizhihua
 22 | x | unit-testing.md | 单元测试 |  | @70data
 23 | 是 | ssr.md |  服务端渲染 | @dingyiming | @dingyiming
 24 | x  | migration.md | 1.x迁移 |   | @harrytospring 
