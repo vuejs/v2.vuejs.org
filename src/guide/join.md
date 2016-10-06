@@ -19,7 +19,7 @@ Now we'll answer both what the community can do for and what you can do for the 
 ### Explore the Ecosystem
 
 - [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): See what other awesome resources have been published by other awesome people.
-- [The "Show and Tell" Subforum](http://forum.vuejs.org/category/15/show-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
+- [The "Show and Tell" Subforum](http://forum.vuejs.org/c/show-and-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
 
 ## What You Can Do
 
