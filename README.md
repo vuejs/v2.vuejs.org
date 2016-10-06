@@ -65,7 +65,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Reactivity in Depth
 - [ ] Custom Directives
 - [ ] Mixins
-- [ ] Plugins
+- [x] Plugins (@jbruni)
 - [ ] Single File Components
 - [ ] Routing
 - [ ] State Management
