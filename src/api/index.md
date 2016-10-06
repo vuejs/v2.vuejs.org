@@ -2,31 +2,31 @@
 type: api
 ---
 
-## Global Config
+## 全局配置
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` is 是一个对象，包含 Vue 的全局配置。可以在启动应用之前修改下列属性：
 
 ### silent
 
-- **Type:** `boolean`
+- **类型:** `boolean`
 
-- **Default:** `false`
+- **默认值:** `false`
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  取消 Vue 所有的日志与警告。
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **类型:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **默认值:** `{}`
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -40,34 +40,34 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  自定义选项的混合策略。
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  合并策略函数接收定义在父实例和子实例上的 option，分别作为第一个和第二个参数的值，Vue实例上下文被作为第三个参数传入。
 
-- **See also**: [Custom Option Merging Strategies](/guide/mixins.html#Custom-Option-Merge-Strategies)
+- **参考**: [自定义选项的混合策略](/guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
-- **Type:** `boolean`
+- **类型:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **默认值:** `true` (生产版为 `false`)
 
-- **Usage:**
+- **用法:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // 务必在加载 Vue 之后，立即同步设置以下内容
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  配置是否允许 [vue-devtools](https://github.com/vuejs/vue-devtools) 检查代码。开发版本默认为 `true`，生产版本默认为 `false`。生产版本设为 `true` 可以启用检查。
 
 ### errorHandler
 
-- **Type:** `Function`
+- **类型:** `Function`
 
-- **Default:** Error is thrown in place
+- **默认值:** 默认抛出错误
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm) {
@@ -75,21 +75,21 @@ type: api
   }
   ```
 
-  Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
+  指定组件的渲染和观察期间未捕获错误的处理函数。处理函数被调用时，可获取错误信息和 Vue 实例。
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number }`
+- **类型:** `{ [key: string]: number }`
 
-- **Default:** `{}`
+- **默认值:** `{}`
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.keyCodes = { esc: 27 }
   ```
 
-  Define custom key aliases for v-on.
+  自定义 v-on 键位别名。
 
 ## Global API
 
