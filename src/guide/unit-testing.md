@@ -84,7 +84,7 @@ describe('MyComponent', () => {
 </script>
 ```
 
-你可以在不同的prop中，通过 `propsData` 选项断言他的渲染输出:
+你可以在不同的prop中，通过 `propsData` 选项断言它的渲染输出:
 
 ``` js
 import Vue from 'vue'
