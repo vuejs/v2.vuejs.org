@@ -1582,7 +1582,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </ul>
   ```
 
-  它也可以用于强制替换元素/组件而不是重复使用它。它可以用来做如下你想做的:
+  它也可以用于强制替换元素/组件而不是重复使用它。当你遇到如下场景时它可能会很有用:
 
   - 正确的触发组件的生命周期hooks
   - 触发转换
