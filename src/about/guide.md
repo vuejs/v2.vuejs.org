@@ -21,7 +21,7 @@ order: 1
 序号 | 是否完成  | 对应文档文件名 | 中文标题  | 贡献者 | 认领者
 ----- | ------- | ------------- | --- | --- | ---
 1 | 是 |  installation.md | 安装 | @dingyiming | @dingyiming
-2 | 否 | index.md |  介绍 |   | @dingyiming @hijiangtao
+2 | 是 | index.md |  介绍 | @hijiangtao   | @dingyiming @hijiangtao
 3 | 是 | instance.md | 实例 |  @dingyiming | @dingyiming
 4 | × | syntax.md  | 模板语法 |  | @tingtien
 5 | 是 | computed.md | 计算属性 |  @dingyiming | @dingyiming
