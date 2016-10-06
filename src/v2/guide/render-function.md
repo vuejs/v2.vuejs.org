@@ -405,26 +405,26 @@ render (createElement) {
 
 ## JSX
 
-Se você estiver escrevendo mutias funções `render`, pode se tornar penoso escrever algo assim:
+Se você estiver escrevendo mutias funções `render`, pode se tornar penoso escrever muitas linhas de código dessa maneira:
 
 ``` js
 createElement(
-  'anchored-heading', {
+  'linked-heading', {
     props: {
-      level: 1
+      nivel: 1
     }
   }, [
-    createElement('span', 'Hello'),
-    ' world!'
+    createElement('span', 'Alô'),
+    ' Mundo!'
   ]
 )
 ```
 
-Especialmente quando a versão template é tão simples assim:
+Especialmente quando a versão usando template version é tão simples em comparação:
 
 ``` html
 <linked-heading :nivel="1">
-  <span>Alô</span> mundo!
+  <span>Alô</span> Mundo!
 </linked-heading>
 ```
 
@@ -438,7 +438,7 @@ new Vue({
   render (h) {
     return (
       <LinkedHeading nivel={1}>
-        <span>Alô</span> mundo!
+        <span>Alô</span> Mundo!
       </LinkedHeading>
     )
   }
