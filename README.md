@@ -49,9 +49,9 @@ Estas palavras podem ser mantidas no inglês
 **Guide**
 - [x] Installation (@danielschmitz)
 - [x] Introduction (@ErickPetru)
-- [ ] The Vue Instance (@danielschmitz)
+- [x] The Vue Instance (@danielschmitz)
 - [x] Template Syntax (@vitorarjol)
-- [ ] Computed Properties and Watchers
+- [ ] Computed Properties and Watchers (@danielschmitz)
 - [ ] Class and Style Bindings
 - [ ] Conditional Rendering
 - [ ] List Rendering
