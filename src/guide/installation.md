@@ -106,4 +106,4 @@ $ bower install vue
 
 ## AMD Module Loaders
 
-A versão standalone ou a versão instalada via Bower são compilados com UMD, então podem ser usados diretamente como um módulo AMD.
+A versão standalone ou a versão instalada via Bower são compilados com UMD, então podem ser usados diretamente como um módulo AMD. 
