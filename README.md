@@ -47,9 +47,9 @@ Estas palavras podem ser mantidas no inglês
 - [x] Entry Page (@danielschmitz)
 
 **Guide**
-- [ ] Installation (@danielschmitz)
+- [x] Installation (@danielschmitz)
 - [x] Introduction (@ErickPetru)
-- [ ] The Vue Instance
+- [ ] The Vue Instance (@danielschmitz)
 - [x] Template Syntax (@vitorarjol)
 - [ ] Computed Properties and Watchers
 - [ ] Class and Style Bindings
