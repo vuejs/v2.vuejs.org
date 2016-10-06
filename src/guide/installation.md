@@ -36,7 +36,7 @@ Também disponível em [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js)
 
 ## NPM
 
-NPM é o método de instalação recomendada para aplicações em larga escala com o Vue. Ele combina perfeitamente com *module bundlers*, tais como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue também possui ferramentas para a criação de componentes como [arquivos únicos](single-file-components.html).
+NPM é o método de instalação recomendada para aplicações em larga escala com o Vue. Ele combina perfeitamente com *module bundlers*, tais como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue também possui ferramentas para a criação de [componentes em um único arquivo](single-file-components.html).
 
 ``` bash
 # latest stable
