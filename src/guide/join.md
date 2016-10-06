@@ -19,7 +19,8 @@ Vue.js 的社区正在急速增长，如果你正在阅读本文，这是你已�
 ### 探索生态
 
 - [Awesome Vue](https://github.com/vuejs/awesome-vue)：一览其他牛人发布的优秀资源。
-- ["Show and Tell" 子论坛](http://forum.vuejs.org/category/15/show-tell)：又一个好地方，可以欣赏他人借助不断壮大的 Vue 生态构建的事物，以及他人为不断壮大的 Vue 生态贡献的力量。
+- ["Show and Tell" 子论坛](http://forum.vuejs.org/c/show-and-tell)：又一个好地方，可以欣赏他人借助不断壮大的 Vue 生态构建的事物，以及他人为不断壮大的 Vue 生态贡献的力量。
+
 
 ## 你力所能及的
 
