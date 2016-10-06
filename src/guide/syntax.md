@@ -48,7 +48,7 @@ Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive
 <div v-bind:id="dynamicId"></div>
 ```
 
-It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
+It also works for boolean attributes - the attribute will be removed if the condition evaluates to a false value:
 
 ``` html
 <button v-bind:disabled="someDynamicCondition">Button</button>
