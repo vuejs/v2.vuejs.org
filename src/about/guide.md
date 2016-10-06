@@ -55,4 +55,4 @@ order: 1
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 认领者
 ----- | ------- | ------------- | --- | --- | ---
 25 | x |  comparison.md |   对比其他框架 |   | @yongbolv @daix6
-26 | x |  join.md |  加入Vue.js社区 |  | @daix6 
+26 | 是 |  join.md |  加入Vue.js社区 | @daix6  | @daix6 
