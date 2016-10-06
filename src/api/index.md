@@ -1570,7 +1570,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `string`
 
-  `key`的特殊属性主要用在Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  `key`的特殊属性主要用在Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态elements并且尽可能的尝试修复/再利用相同类型elements的算法。使用key，它会基于key的变化重新排列elements顺序，并且会移除keys不存在的elements。
 
   Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
 
