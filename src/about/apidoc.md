@@ -16,9 +16,9 @@ order: 2
 
 序号 | 是否完成  | 对应小节名称 | 中文标题  | 贡献者 | 认领者
 ----- | ------- | ------------- | --- | --- | ---
-1 | x |  Global Config | 全局配置 | | 
-2 | x | Global API | 全局API | |
-3 | x | Options / Data | 选项 / 数据 | | 
+1 | 是 |  Global Config | 全局配置 |  dear-lizhihua |  @dear-lizhihua
+2 | x | Global API | 全局API | | @dear-lizhihua
+3 | x | Options / Data | 选项 / 数据 | | @dear-lizhihua
 4 | x | Options / DOM | 选项 / DOM | |
 5 | x | Options / Lifecycle Hooks | 选项 / 生命周期钩子 | | 
 6 | x | Options / Assets | 选项 / 资源 | |
