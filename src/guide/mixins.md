@@ -33,7 +33,7 @@ var component = new Component() // -> "Bem-vindo ao mixin!"
 
 ## Mesclagem de Opções
 
-Quando um mixin e o próprio componente contêm opções que se sobrepõem, eles serão mesclados ("merged") usando estratégias apropriadas. Por examplo, funções hook com o mesmo nome serão mescladas em uma array de modo que ambas as funções sejam chamadas. As funções hook declaradas no mixin serão chamadas **antes** dos hooks declarados no próprio componente:
+Quando um mixin e o próprio componente contêm opções que se sobrepõem, eles serão mesclados ("merged") usando estratégias apropriadas. Por exemplo, funções hook com o mesmo nome serão mescladas em uma array de modo que ambas as funções sejam chamadas. As funções hook declaradas no mixin serão chamadas **antes** dos hooks declarados no próprio componente:
 
 ``` js
 var mixin = {
