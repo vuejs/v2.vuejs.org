@@ -21,14 +21,14 @@ order: 0
 
 ## 基础指引
 
-## 基础环境
+### 基础环境
 
 - `node lastest`
 - `npm lastest`
 - `npm i -g hexo`
 - `git bash`
 
-## 主要步骤
+### 主要步骤
 
 - `github fork` 仓库代码到自己的账号下
 - `git clone fork` 的仓库代码到本地
