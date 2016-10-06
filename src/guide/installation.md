@@ -36,22 +36,22 @@ Também disponível em [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js)
 
 ## NPM
 
-NPM é o método de instalação recomendada para aplicações em larga escala com o Vue. Ele combina perfeitamente com *module bundlers* tais como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+NPM é o método de instalação recomendada para aplicações em larga escala com o Vue. Ele combina perfeitamente com *module bundlers*, tais como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue também possui ferramentas para a criação de componentes como [arquivos únicos](single-file-components.html).
 
 ``` bash
 # latest stable
 $ npm install vue
 ```
 
-### Standalone vs. Runtime-only Build
+### Execução Standalone vs. Runtime-only 
 
-There are two builds available, the standalone build and the runtime-only build.
+Existem dois tipos de builds disponíveis, a *standalone* e a *runtime-olny*.
 
-- The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
+- A *standalone* inclui o compilador e dá suporte ao sistema de templates. **Ele também conta com a presença de APIs do navegador, então você não pode usá-la para execução no lado do servidor (server-side rendering).**
 
-- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
+- A versão *runtime-only* não inclui o compilador de templates, e não dá suporte ao sistema de templates. Você pode usar a opção *render* somente enquanto estiver usando o modo *runtime*, mas ela funciona com componentes do tipo *single-file*, já que estes componentes são pré compilados na renderização durante o build da aplicação. O modo *runtime-only* é cerca de 30% mais leve que a versão *standalone*, com 16Kb min+gzip.
 
-By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your webpack config:
+Por padrão, o NPM exporta a versão de build **runtime-only**. Para usar a versão **standalone**, adicione a seguinte configuração na configuração do seu *webpack*:
 
 ``` js
 resolve: {
@@ -61,9 +61,9 @@ resolve: {
 }
 ```
 
-For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
+Para o Browserify, pode-se usar o [aliasify](https://github.com/benbria/aliasify) para alcançar o mesmo resultado.
 
-<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
+<p class="tip">Não faça `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
 
 ### CSP environments
 
