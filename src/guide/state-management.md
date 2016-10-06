@@ -4,17 +4,17 @@ type: guide
 order: 21
 ---
 
-## Official Flux-Like Implementation
+## 类 Flux 状态管理的官方实现
 
-Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers [vuex](https://github.com/vuejs/vuex): our own Elm-inspired state management library. It even integrates into [vue-devtools](https://github.com/vuejs/vue-devtools), providing zero-setup access to time travel.
+由于多个状态分散的跨越在许多组件和交互间各个角落，大型应用复杂度也经常逐渐增长。为了解决这个问题，Vue 提供 [vuex](https://github.com/vuejs/vuex)： 我们有受到 Elm 启发的状态管理库。vuex 甚至融入了 [vue-devtools](https://github.com/vuejs/vue-devtools)，无需配置即可访问时光旅行。
 
-### Information for React Developers
+### React 的开发者请参考以下信息
 
-If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via some [simple bindings](https://github.com/egoist/revue). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+如果你是来自 React 的开发者，你可能会对 vuex 和 [redux](https://github.com/reactjs/redux) 间的差异表示关注，redux 是 React 生态环境中最流行的 Flux 实现。Redux 事实上无法感知视图层，所以它能够轻松的通过一些[简单绑定](https://github.com/egoist/revue)和Vue一起使用。vuex区别在于它是一个专门为 vue 应用所设计。这使得它能够更好地和vue进行整合，同时提供直观的API和改善过的开发体验。
 
-## Simple State Management from Scratch
+## 来自 Scratch 的简单状态管理
 
-It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance simply proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can simply share it by identity:
+经常被忽略的是，Vue 应用中原始 `数据` 对象的实际来源 - 当访问数据对象时，一个 Vue 实例只是简单的代理访问。所以，如果你有一处需要被多个实例间共享的状态，可以简单地通过维护一份数据来实现共享：
 
 ``` js
 const sourceOfTruth = {}
@@ -28,9 +28,9 @@ const vmB = new Vue({
 })
 ```
 
-Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their views automatically. Subcomponents within each of these instances would also have access via `this.$root.$data`. We have a single source of truth now, but debugging would be a nightmare. Any piece of data could be changed by any part of our app at any time, without leaving a trace.
+现在当 `sourceOfTruth` 发生变化，`vmA` 和 `vmB` 都将自动的更新引用它们的视图。子组件们的每个实例也会通过 `this.$root.$data` 去访问。现在我们有了唯一的实际来源，但是，调试将会变为噩梦。任何时间，我们应用中的任何部分，在任何数据改变后，都不会留下变更过的痕迹。
 
-To help solve this problem, we can adopt a simple **store pattern**:
+如何解决这个问题呢？我们采用一个简单的 **store 模式**：
 
 ``` js
 var store = {
@@ -49,9 +49,9 @@ var store = {
 }
 ```
 
-Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how are they triggered. When something goes wrong, we'll also now have a log of what happened leading up to the bug.
+需要注意，所有 store 中 state 的改变，都放置在 store 自身的 action 中去管理。这种类型的集中式状态管理能够被更容易地理解，是哪部分 mutation 发生变更，以及 mutation 是如何被触发。当错误出现时，我们现在也会有一个 log 记录 bug 之前发生了什么。
 
-In additon, each instance/component can still own and manage its own private state:
+此外，每个实例/组件仍然可以拥有和管理自己的私有状态：
 
 ``` js
 var vmA = new Vue({
@@ -69,10 +69,10 @@ var vmB = new Vue({
 })
 ```
 
-![State Management](/images/state.png)
+![状态管理](/images/state.png)
 
-<p class="tip">It's important to note that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for mutations to be observed.</p>
+<p class="tip">重要的是，注意你不应该在 action 中 替换原始的状态对象 - 组件和 store 需要引用同一个共享对象，变更才能够被观察</p>
 
-As we continue developing the convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we eventually arrive at the [Flux](https://facebook.github.io/flux/) architecture. The benefit of this convention is we can record all state mutations happening to the store and implement advanced debugging helpers such as mutation logs, snapshots, and history re-rolls / time travel.
+接着我们继续延伸约定，组件不允许直接修改属于 store 实例的 state，而是应该使用分发 (dispatch) 事件通知 store 执行 action 作为替代，我们最终达成了 [Flux](https://facebook.github.io/flux/) 架构。这样约定的好处是，我们能够记录所有 store 中发生的 state 改变，同时实现能做到记录变更 (mutation) 、保存状态快照、历史回滚/时光旅行的先进的调试工具。
 
-This brings us full circle back to [vuex](https://github.com/vuejs/vuex), so if you've read this far it's probably time to try it out!
+[vuex](https://github.com/vuejs/vuex)给我们带来了整个循环，如果你读了这么久，不妨去尝试一下它！
