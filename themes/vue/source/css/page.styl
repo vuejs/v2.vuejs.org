@@ -8,11 +8,87 @@
 
 #header
     box-shadow 0 0 4px rgba(0,0,0,.25)
+    .menu-button
+        position absolute
+        width 24px
+        height 24px
+        top 8px
+        left 12px
+        background url(../images/menu.png) center center no-repeat
+        background-size 24px
+    .logo
+        position absolute
+        width 30px
+        height 30px
+        background url(../images/logo.png) center center no-repeat
+        top 5px
+        left 50%
+        margin-left -15px
+        background-size 30px
+
+.sidebar
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 2.2em 0;
+    padding-left: 1.5em;
+    width: 260px;
+    margin-right: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling touch
+    -ms-overflow-style none
+    h2
+        margin-top .2em
+    ul
+        list-style-type none
+        margin 0
+        line-height 1.8em
+        padding-left 1em
+    .version-select
+        vertical-align middle
+        margin-left 5px
+    .menu-root
+        padding-left 0
+    .menu-sub
+        font-size .85em
+    .sidebar-link
+        color $light
+        &.current
+            font-weight 400
+            color $green
+        &.new
+            &:after
+                content "NEW"
+                display inline-block
+                font-size 10px
+                font-weight 400
+                color #fff
+                background-color $green
+                line-height 14px
+                padding 0 4px
+                border-radius 3px
+                margin-left 5px
+                vertical-align middle
+                position relative
+                top -1px
+        &:hover
+            border-bottom 2px solid $green
+    .section-link
+        &.active
+            font-weight 400
+            color $green
+    .main-menu
+        margin-bottom 20px
+        display none
+        padding-left 0
 
 .content
     position relative
     padding 2.2em 0
-    max-width 600px
+    max-width 800px
     margin 0 auto
     &.api
         ul
@@ -64,7 +140,7 @@
         padding-left 1.5em
     a
         color $green
-        font-weight 600
+        font-weight 400
     blockquote
         margin 2em 0
         padding-left 20px
@@ -120,9 +196,9 @@
 #donate
     margin-top 15px
 
-@media screen and (max-width: 1300px)
+@media screen and (max-width: 1500px)
     .content.with-sidebar
-        margin-left 290px
+        margin-left 280px
     #ad
         z-index 7
         position relative

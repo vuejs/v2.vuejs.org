@@ -1,5 +1,5 @@
 ---
-title: Join the Vue.js Community!
+title: 加入Vue.js社区
 type: guide
 order: 27
 ---
