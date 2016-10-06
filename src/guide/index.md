@@ -6,16 +6,16 @@ order: 2
 
 ## Vue.js 是什么
 
-Vue.js（读音 /vjuː/, 类似于 **view**）是一个构建用户界面的渐进式框架。与其他单层框架（ monolithic frameworks）不同的是，Vue 被设计成从底层向上可以被增量式的采用。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[现代化工具](//vuejs.org/guide/application.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。 
+Vue.js（读音 /vjuː/, 类似于 **view**）是一个构建用户界面的渐进式框架。与其他单层框架（ monolithic frameworks）不同的是，Vue 被设计成从底层向上可以被增量式的采用。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。 
 
 
 Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
 
-如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](//vuejs.org/guide/comparison.html)。
+如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](comparison.html)。
 
 ## 起步
 
-尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](//jsfiddle.net/chrisvfritz/4tpzm3e1/)。请在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](//vuejs.org/guide/installation.html)教程。
+尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](//jsfiddle.net/chrisvfritz/4tpzm3e1/)。请在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
 
 ## 声明式渲染
 
@@ -119,7 +119,7 @@ var app3 = new Vue({
 
 继续在控制台设置 `app3.seen = false`，你会发现 “Now you see me” 消失了。
 
-这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构** 到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入/删除元素时自动应用[过渡效果](//vuejs.org/guide/transitions.html)。
+这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构** 到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入/删除元素时自动应用[过渡效果](transitions.html)。
 
 也有一些其它指令，每个都有特殊的功能。例如， `v-for` 指令可以绑定数据到数据来渲染一个列表：
 
@@ -269,7 +269,7 @@ Vue.component('todo', {
 </ul>
 ```
 
-但是这样会为每个 todo 渲染同样的文本，这看起来并不是很6。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](//vuejs.org/guide/components.html#Props) 字段：
+但是这样会为每个 todo 渲染同样的文本，这看起来并不是很6。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](/guide/components.html#Props) 字段：
 
 ``` js
 Vue.component('todo', {
@@ -322,7 +322,7 @@ var app7 = new Vue({
 
 这只是一个人为的例子，但是我们已经将我们的应用分割成了两小的单元，子元素通过 `props` 接口实现了与父亲元素很好的解耦。我们现在可以在不影响到父亲应用的基础上，进一步为我们的 `todo` 组件改进更多复杂的模板和逻辑。
 
-在一个大型应用中，为了使得开发过程可控，有必要将应用整体分割成一个个的组件。在[后面的教程](//vuejs.org/guide/components.html)中我们将详述组件，不过这里有一个（假想）的例子，看看使用了组件的应用模板是什么样的：
+在一个大型应用中，为了使得开发过程可控，有必要将应用整体分割成一个个的组件。在[后面的教程](/guide/components.html)中我们将详述组件，不过这里有一个（假想）的例子，看看使用了组件的应用模板是什么样的：
 
 ``` html
 <div id="app">
