@@ -1564,13 +1564,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
   - [Components - Cheap Static Components with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## 特殊元素
 
 ### key
 
 - **Expects:** `string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  `key`的特殊属性主要用在Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
 
   Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
 
@@ -1788,10 +1788,10 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## VNode接口
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- 请参考[VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
-## Server-Side Rendering
+## 服务端渲染
 
-- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- 请参考[vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
