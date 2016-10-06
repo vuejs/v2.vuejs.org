@@ -1,35 +1,37 @@
 ---
 title: Components
 type: guide
-order: 12
+order: 11
 ---
 
 ## What are Components?
 
-Components are one of the most powerful features of Vue.js. They help you extend basic HTML elements to encapsulate reusable code. At a high level, Components are custom elements that Vue.js’ compiler would attach specified behavior to. In some cases, they may also appear as a native HTML element extended with the special `is` attribute.
+Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue's compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special `is` attribute.
 
 ## Using Components
 
 ### Registration
 
-We've learned in the previous sections that we can create a component constructor using `Vue.extend()`:
+We've learned in the previous sections that we can create a new Vue instance with:
 
 ``` js
-var MyComponent = Vue.extend({
-  // options...
+new Vue({
+  el: '#some-element',
+  // options
 })
 ```
 
-To use this constructor as a component, you need to **register** it with `Vue.component(tag, constructor)`:
+To register a global component, you can use `Vue.component(tagName, options)`. For example:
 
 ``` js
-// Globally register the component with tag: my-component
-Vue.component('my-component', MyComponent)
+Vue.component('my-component', {
+  // options
+})
 ```
 
-<p class="tip">Note that Vue.js does not enforce the [W3C rules](http://www.w3.org/TR/custom-elements/#concepts) for custom tag-names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
+<p class="tip">Note that Vue does not enforce the [W3C rules](http://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
 
-Once registered, the component can now be used in a parent instance's template as a custom element, `<my-component>`. Make sure the component is registered **before** you instantiate your root Vue instance. Here's the full example:
+Once registered, a component can be used in an instance's template as a custom element, `<my-component></my-component>`. Make sure the component is registered **before** you instantiate the root Vue instance. Here's the full example:
 
 ``` html
 <div id="example">
@@ -38,13 +40,10 @@ Once registered, the component can now be used in a parent instance's template a
 ```
 
 ``` js
-// define
-var MyComponent = Vue.extend({
+// register
+Vue.component('my-component', {
   template: '<div>A custom component!</div>'
 })
-
-// register
-Vue.component('my-component', MyComponent)
 
 // create a root instance
 new Vue({
@@ -72,101 +71,159 @@ new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-Note the component's template **replaces** the custom element, which only serves as a **mounting point**. This behavior can be configured using the `replace` instance option.
-
 ### Local Registration
 
-You don't have to register every component globally. You can make a component available only in the scope of another component by registering it with the `components` instance option:
+You don't have to register every component globally. You can make a component available only in the scope of another instance/component by registering it with the `components` instance option:
 
 ``` js
-var Child = Vue.extend({ /* ... */ })
+var Child = {
+  template: '<div>A custom component!</div>'
+}
 
-var Parent = Vue.extend({
-  template: '...',
+new Vue({
+  // ...
   components: {
-    // <my-component> will only be available in Parent's template
+    // <my-component> will only be available in parent's template
     'my-component': Child
   }
 })
 ```
 
-The same encapsulation applies for other assets types such as directives, filters and transitions.
+The same encapsulation applies for other registerable Vue features, such as directives.
 
-### Registration Sugar
+### DOM Template Parsing Caveats
 
-To make things easier, you can directly pass in the options object instead of an actual constructor to `Vue.component()` and the `component` option. Vue.js will automatically call `Vue.extend()` for you under the hood:
+When using the DOM as your template (e.g. using the `el` option to mount an element with existing content), you will be subject to some restrictions that are inherent to how HTML works, because Vue can only retrieve the template content **after** the browser has parsed and normalized it. Most notably, some elements such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<option>` can only appear inside certain other elements.
+
+This will lead to issues when using custom components with elements that have such restrictions, for example:
+
+``` html
+<table>
+  <my-row>...</my-row>
+</table>
+```
+
+The custom component `<my-row>` will be hoisted out as invalid content, thus causing errors in the eventual rendered output. A workaround is to use the `is` special attribute:
+
+``` html
+<table>
+  <tr is="my-row"></tr>
+</table>
+```
+
+**It should be noted that these limitations do not apply if you are using string templates from one of the following sources**:
+
+- `<script type="text/x-template">`
+- JavaScript inline template strings
+- `.vue` components
+
+Therefore, prefer using string templates whenever possible.
+
+### `data` Must Be a Function
+
+Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be function. In fact, if you try this:
 
 ``` js
-// extend and register in one step
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<span>{{ message }}</span>',
+  data: {
+    message: 'hello'
+  }
+})
+```
+
+Then Vue will halt and emit warnings in the console, telling you that `data` must be a function for component instances. It's good to understand why the rules exist though, so let's cheat.
+
+``` html
+<div id="example-2">
+  <simple-counter></simple-counter>
+  <simple-counter></simple-counter>
+  <simple-counter></simple-counter>
+</div>
+```
+
+``` js
+var data = { counter: 0 }
+
+Vue.component('simple-counter', {
+  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+  // data is technically a function, so Vue won't
+  // complain, but we return the same object
+  // reference for each component instance
+  data: function () {
+    return data
+  }
 })
 
-// also works for local registration
-var Parent = Vue.extend({
-  components: {
-    'my-component': {
-      template: '<div>A custom component!</div>'
+new Vue({
+  el: '#example-2'
+})
+```
+
+{% raw %}
+<div id="example-2" class="demo">
+  <simple-counter></simple-counter>
+  <simple-counter></simple-counter>
+  <simple-counter></simple-counter>
+</div>
+<script>
+var data = { counter: 0 }
+Vue.component('simple-counter', {
+  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+  data: function () {
+    return data
+  }
+})
+new Vue({
+  el: '#example-2'
+})
+</script>
+{% endraw %}
+
+Since all three component instances share the same `data` object, incrementing one counter increments them all! Ouch. Let's fix this by instead returning a fresh data object:
+
+``` js
+data: function () {
+  return {
+    counter: 0
+  }
+}
+```
+
+Now all our counters each have their own internal state:
+
+{% raw %}
+<div id="example-2-5" class="demo">
+  <my-component></my-component>
+  <my-component></my-component>
+  <my-component></my-component>
+</div>
+<script>
+Vue.component('my-component', {
+  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+  data: function () {
+    return {
+      counter: 0
     }
   }
 })
-```
-
-### Component Option Caveats
-
-Most of the options that can be passed into the Vue constructor can be used in `Vue.extend()`, with two special cases: `data` and `el`. Imagine we simply pass an object as `data` to `Vue.extend()`:
-
-``` js
-var data = { a: 1 }
-var MyComponent = Vue.extend({
-  data: data
+new Vue({
+  el: '#example-2-5'
 })
-```
+</script>
+{% endraw %}
 
-The problem with this is that the same `data` object will be shared across all instances of `MyComponent`! This is most likely not what we want, so we should use a function that returns a fresh object as the `data` option:
+The `el` option also requires a function value when used in a component instance, for exactly the same reason.
 
-``` js
-var MyComponent = Vue.extend({
-  data: function () {
-    return { a: 1 }
-  }
-})
-```
+### Composing Components
 
-The `el` option also requires a function value when used in `Vue.extend()`, for exactly the same reason.
+Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component's code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.
 
-### Template Parsing
+In Vue.js, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
 
-Vue.js template engine is DOM-based and uses native parser that comes with the browser instead of providing a custom one. There are benefits to this approach when compared to string-based template engines, but there are also caveats. Templates have to be individually valid pieces of HTML. Some HTML elements have restrictions on what elements can appear inside them. Most common of these restrictions are:
-
-- `a` can not contain other interactive elements (e.g. buttons and other links)
-- `li` should be a direct child of `ul` or `ol`, and both `ul` and `ol` can only contain `li`
-- `option` should be a direct child of `select`, and `select` can only contain `option` (and `optgroup`)
-- `table` can only contain `thead`, `tbody`, `tfoot` and `tr`, and these elements should be direct cildren of `table`
-- `tr` can only contain `th` and `td`, and these elements should be direct children of `tr`
-
-In practice these restriction can cause unexpected behavior. Although in simple cases it might appear to work, you can not rely on custom elements being expanded before browser validation. E.g. `<my-select><option>...</option></my-select>` is not a valid template even if `my-select` component eventually expands to `<select>...</select>`.
-
-Another consequence is that you can not use custom tags (including custom elements and special tags like `<component>`, `<template>` and `<partial>`) inside of `ul`, `select`, `table` and other elements with similar restrictions. Custom tags will be hoisted out and thus not render properly.
-
-In case of a custom element you should use the `is` special attribute:
-
-``` html
-<table>
-  <tr is="my-component"></tr>
-</table>
-```
-
-In case of a `<template>` inside of a `<table>` you should use `<tbody>`, as tables are allowed to have multiple `tbody`:
-
-``` html
-<table>
-  <tbody v-for="item in items">
-    <tr>Even row</tr>
-    <tr>Odd row</tr>
-  </tbody>
-</table>
-```
+<p style="text-align: center">
+  <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
+</p>
 
 ## Props
 
@@ -174,37 +231,37 @@ In case of a `<template>` inside of a `<table>` you should use `<tbody>`, as tab
 
 Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
 
-A "prop" is a field on a component's data that is expected to be passed down from its parent component. A child component needs to explicitly declare the props it expects to receive using the [`props` option](/api/#props):
+A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](/api/#props):
 
 ``` js
 Vue.component('child', {
   // declare the props
-  props: ['msg'],
-  // the prop can be used inside templates, and will also
-  // be set as `this.msg`
-  template: '<span>{{ msg }}</span>'
+  props: ['message'],
+  // just like data, the prop can be used inside templates
+  // and is also made available in the vm as this.message
+  template: '<span>{{ message }}</span>'
 })
 ```
 
-Then, we can pass a plain string to it like so:
+Then we can pass a plain string to it like so:
 
 ``` html
-<child msg="hello!"></child>
+<child message="hello!"></child>
 ```
 
-**Result:**
+Result:
 
 {% raw %}
 <div id="prop-example-1" class="demo">
-  <child msg="hello!"></child>
+  <child message="hello!"></child>
 </div>
 <script>
 new Vue({
   el: '#prop-example-1',
   components: {
     child: {
-      props: ['msg'],
-      template: '<span>{{ msg }}</span>'
+      props: ['message'],
+      template: '<span>{{ message }}</span>'
     }
   }
 })
@@ -213,7 +270,7 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML attributes are case-insensitive. When using camelCased prop names as attributes, you need to use their kebab-case (hyphen-delimited) equivalents:
+HTML attributes are case-insensitive, so when using non-string templates, camelCased prop names need to use their kebab-case (hyphen-delimited) equivalents:
 
 ``` js
 Vue.component('child', {
@@ -228,6 +285,8 @@ Vue.component('child', {
 <child my-message="hello!"></child>
 ```
 
+Again, if you're using string templates, then this limitation does not apply.
+
 ### Dynamic Props
 
 Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
@@ -240,13 +299,13 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-It is often simpler to use the shorthand syntax for `v-bind`:
+It's often simpler to use the shorthand syntax for `v-bind`:
 
 ``` html
 <child :my-message="parentMsg"></child>
 ```
 
-**Result:**
+Result:
 
 {% raw %}
 <div id="demo-2" class="demo">
@@ -270,7 +329,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Literal vs. Dynamic
+### Literal vs Dynamic
 
 A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
 
@@ -279,82 +338,68 @@ A common mistake beginners tend to make is attempting to pass down a number usin
 <comp some-prop="1"></comp>
 ```
 
-However, since this is a literal prop, its value is passed down as a plain string `"1"`, instead of an actual number. If we want to pass down an actual JavaScript number, we need to use the dynamic syntax to make its value be evaluated as a JavaScript expression:
+However, since this is a literal prop, its value is passed down as a plain string `"1"` instead of an actual number. If we want to pass down an actual JavaScript number, we need to use `v-bind` so that its value is evaluated as a JavaScript expression:
 
 ``` html
 <!-- this passes down an actual number -->
-<comp :some-prop="1"></comp>
+<comp v-bind:some-prop="1"></comp>
 ```
 
-### Prop Binding Types
+### One-Way Data Flow
 
-By default, all props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This default is meant to prevent child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about. However, it is also possible to explicitly enforce a two-way or a one-time binding with the `.sync` and `.once` **binding type modifiers**:
+All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about.
 
-Compare the syntax:
+In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
 
-``` html
-<!-- default, one-way-down binding -->
-<child :msg="parentMsg"></child>
+There are usually two cases where it's tempting to mutate a prop:
 
-<!-- explicit two-way binding -->
-<child :msg.sync="parentMsg"></child>
+1. The prop is used to only pass in an initial value, the child component simply wants to use it as a local data property afterwards;
 
-<!-- explicit one-time binding -->
-<child :msg.once="parentMsg"></child>
-```
+2. The prop is passed in as a raw value that needs to be transformed.
 
-The two-way binding will sync the change of child's `msg` property back to the parent's `parentMsg` property. The one-time binding, once set up, will not sync future changes between the parent and the child.
+The proper answer to these use cases are:
 
-<p class="tip">Note that if the prop being passed down is an Object or an Array, it is passed by reference. Mutating the Object or Array itself inside the child **will** affect parent state, regardless of the binding type you are using.</p>
+1. Define a local data property that uses the prop's initial value as its initial value;
+
+2. Define a computed property that is computed from the prop's value.
+
+<p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
 
 ### Prop Validation
 
-It is possible for a component to specify the requirements for the props it is receiving. This is useful when you are authoring a component that is intended to be used by others, as these prop validation requirements essentially constitute your component's API, and ensure your users are using your component correctly. Instead of defining the props as an array of strings, you can use the object hash format that contain validation requirements:
+It is possible for a component to specify requirements for the props it is receiving. If a requirement is not met, Vue will emit warnings. This is especially useful when you are authoring a component that is intended to be used by others.
+
+Instead of defining the props as an array of strings, you can use an object with validation requirements:
 
 ``` js
 Vue.component('example', {
   props: {
     // basic type check (`null` means accept any type)
     propA: Number,
+    // multiple possible types
+    propB: [String, Number],
     // a required string
-    propB: {
+    propC: {
       type: String,
       required: true
     },
     // a number with default value
-    propC: {
+    propD: {
       type: Number,
       default: 100
     },
     // object/array defaults should be returned from a
     // factory function
-    propD: {
+    propE: {
       type: Object,
       default: function () {
-        return { msg: 'hello' }
+        return { message: 'hello' }
       }
-    },
-    // indicate this prop expects a two-way binding. will
-    // raise a warning if binding type does not match.
-    propE: {
-      twoWay: true
     },
     // custom validator function
     propF: {
       validator: function (value) {
         return value > 10
-      }
-    },
-    // coerce function (new in 1.0.12)
-    // cast the value before setting it on the component
-    propG: {
-      coerce: function (val) {
-        return val + '' // cast the value to string
-      }
-    },
-    propH: {
-      coerce: function (val) {
-        return JSON.parse(val) // cast the value to Object
       }
     }
   }
@@ -372,156 +417,235 @@ The `type` can be one of the following native constructors:
 
 In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
 
-When a prop validation fails, Vue will refuse to set the value on the child component, and throw a warning if using the development build.
+When a prop validation fails, Vue will produce a console warning (if using the development build).
 
-## Parent-Child Communication
+## Custom Events
 
-### Parent Chain
+We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where custom events come in.
 
-A child component holds access to its parent component as `this.$parent`. A root Vue instance will be available to all of its descendants as `this.$root`. Each parent component has an array, `this.$children`, which contains all its child components.
+### Using `v-on` with Custom Events
 
-Although it's possible to access any instance in the parent chain, you should avoid directly relying on parent data in a child component and prefer passing data down explicitly using props. In addition, it is a very bad idea to mutate parent state from a child component, because:
+Every Vue instance implements the [Events interface](/api/#Instance-Methods-Events), which means it can:
 
-1. It makes the parent and child tightly coupled;
+- Listen to an event using `$on(eventName)`
+- Trigger an event using `$emit(eventName)`
 
-2. It makes the parent state much harder to reason about when looking at it alone, because its state may be modified by any child! Ideally, only a component itself should be allowed to modify its own state.
+In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
 
-### Custom Events
-
-All Vue instances implement a custom event interface that facilitates communication within a component tree. This event system is independent from the native DOM events and works differently.
-
-Each Vue instance is an event emitter that can:
-
-- Listen to events using `$on()`;
-
-- Trigger events on self using `$emit()`;
-
-- Dispatch an event that propagates upward along the parent chain using `$dispatch()`;
-
-- Broadcast an event that propagates downward to all descendants using `$broadcast()`.
-
-<p class="tip">Unlike DOM events, Vue events will automatically stop propagation after triggering callbacks for the first time along a propagation path, unless the callback explicitly returns `true`.</p>
-
-A simple example:
+Here's an example:
 
 ``` html
-<!-- template for child -->
-<template id="child-template">
-  <input v-model="msg">
-  <button v-on:click="notify">Dispatch Event</button>
-</template>
-
-<!-- template for parent -->
-<div id="events-example">
-  <p>Messages: {{ messages | json }}</p>
-  <child></child>
+<div id="counter-event-example">
+  <p>{{ total }}</p>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
 </div>
 ```
 
 ``` js
-// register child, which dispatches an event with
-// the current message
-Vue.component('child', {
-  template: '#child-template',
+Vue.component('button-counter', {
+  template: '<button v-on:click="increment">{{ counter }}</button>',
   data: function () {
-    return { msg: 'hello' }
+    return {
+      counter: 0
+    }
   },
   methods: {
-    notify: function () {
-      if (this.msg.trim()) {
-        this.$dispatch('child-msg', this.msg)
-        this.msg = ''
-      }
+    increment: function () {
+      this.counter += 1
+      this.$emit('increment')
     }
-  }
+  },
 })
 
-// bootstrap parent, which pushes message into an array
-// when receiving the event
-var parent = new Vue({
-  el: '#events-example',
+new Vue({
+  el: '#counter-event-example',
   data: {
-    messages: []
+    total: 0
   },
-  // the `events` option simply calls `$on` for you
-  // when the instance is created
-  events: {
-    'child-msg': function (msg) {
-      // `this` in event callbacks are automatically bound
-      // to the instance that registered it
-      this.messages.push(msg)
+  methods: {
+    incrementTotal: function () {
+      this.total += 1
     }
   }
 })
 ```
 
 {% raw %}
-<script type="x/template" id="child-template">
-  <input v-model="msg">
-  <button v-on:click="notify">Dispatch Event</button>
-</script>
-
-<div id="events-example" class="demo">
-  <p>Messages: {{ messages | json }}</p>
-  <child></child>
+<div id="counter-event-example" class="demo">
+  <p>{{ total }}</p>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
 </div>
 <script>
-Vue.component('child', {
-  template: '#child-template',
+Vue.component('button-counter', {
+  template: '<button v-on:click="increment">{{ counter }}</button>',
   data: function () {
-    return { msg: 'hello' }
+    return {
+      counter: 0
+    }
   },
   methods: {
-    notify: function () {
-      if (this.msg.trim()) {
-        this.$dispatch('child-msg', this.msg)
-        this.msg = ''
-      }
+    increment: function () {
+      this.counter += 1
+      this.$emit('increment')
     }
-  }
-})
-
-var parent = new Vue({
-  el: '#events-example',
-  data: {
-    messages: []
   },
-  events: {
-    'child-msg': function (msg) {
-      this.messages.push(msg)
+})
+new Vue({
+  el: '#counter-event-example',
+  data: {
+    total: 0
+  },
+  methods: {
+    incrementTotal: function () {
+      this.total += 1
     }
   }
 })
 </script>
 {% endraw %}
 
-### v-on for Custom Events
+In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
 
-The example above is pretty nice, but when we are looking at the parent's code, it's not so obvious where the `"child-msg"` event comes from. It would be better if we can declare the event handler in the template, right where the child component is used. To make this possible, `v-on` can be used to listen for custom events when used on a child component:
+#### Binding Native Events to Components
+
+There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`. For example:
 
 ``` html
-<child v-on:child-msg="handleIt"></child>
+<my-component v-on:click.native="doTheThing"></my-component>
 ```
 
-This makes things very clear: when the child triggers the `"child-msg"` event, the parent's `handleIt` method will be called. Any code that affects the parent's state will be inside the `handleIt` parent method; the child is only concerned with triggering the event.
+### Form Input Components using Custom Events
 
-### Child Component Refs
-
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `v-ref`. For example:
+This strategy can also be used to create custom form inputs that work with `v-model`. Remember:
 
 ``` html
-<div id="parent">
-  <user-profile v-ref:profile></user-profile>
+<input v-model="something">
+```
+
+is just syntactic sugar for:
+
+``` html
+<input v-bind:value="something" v-on:input="something = $event.target.value">
+```
+
+When used with a component, this simplifies to:
+
+``` html
+<input v-bind:value="something" v-on:input="something = arguments[0]">
+```
+
+So for a component to work with `v-model`, it must:
+
+- accept a `value` prop
+- emit an `input` event with the new value
+
+Let's see it in action:
+
+``` html
+<div id="v-model-example">
+  <p>{{ message }}</p>
+  <my-input
+    label="Message"
+    v-model="message"
+  ></my-input>
 </div>
 ```
 
 ``` js
-var parent = new Vue({ el: '#parent' })
-// access child component instance
-var child = parent.$refs.profile
+Vue.component('my-input', {
+  template: '\
+    <div class="form-group">\
+      <label v-bind:for="randomId">{{ label }}:</label>\
+      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
+    </div>\
+  ',
+  props: ['value', 'label'],
+  data: function () {
+    return {
+      randomId: 'input-' + Math.random()
+    }
+  },
+  methods: {
+    onInput: function (event) {
+      this.$emit('input', event.target.value)
+    }
+  },
+})
+
+new Vue({
+  el: '#v-model-example',
+  data: {
+    message: 'hello'
+  }
+})
 ```
 
-When `v-ref` is used together with `v-for`, the ref you get will be an Array or an Object containing the child components mirroring the data source.
+{% raw %}
+<div id="v-model-example" class="demo">
+  <p>{{ message }}</p>
+  <my-input
+    label="Message"
+    v-model="message"
+  ></my-input>
+</div>
+<script>
+Vue.component('my-input', {
+  template: '\
+    <div class="form-group">\
+      <label v-bind:for="randomId">{{ label }}:</label>\
+      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
+    </div>\
+  ',
+  props: ['value', 'label'],
+  data: function () {
+    return {
+      randomId: 'input-' + Math.random()
+    }
+  },
+  methods: {
+    onInput: function (event) {
+      this.$emit('input', event.target.value)
+    }
+  },
+})
+new Vue({
+  el: '#v-model-example',
+  data: {
+    message: 'hello'
+  }
+})
+</script>
+{% endraw %}
+
+This interface can be used not only to connect with form inputs inside a component, but also to easily integrate input types that you invent yourself. Imagine these possibilities:
+
+``` html
+<voice-recognizer v-model="question"></voice-recognizer>
+<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
+<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+```
+
+### Non Parent-Child Communication
+
+Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:
+
+``` js
+var bus = new Vue()
+```
+``` js
+// in component A's method
+bus.$emit('id-selected', 1)
+```
+``` js
+// in component B's created hook
+bus.$on('id-selected', function (id) {
+  // ...
+})
+```
+
+In more complex cases, you should consider employing a dedicated [state-management pattern](/guide/state-management.html).
 
 ## Content Distribution with Slots
 
@@ -540,19 +664,19 @@ There are two things to note here:
 
 2. The `<app>` component very likely has its own template.
 
-To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after with the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
+To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
 
 ### Compilation Scope
 
 Before we dig into the API, let's first clarify which scope the contents are compiled in. Imagine a template like this:
 
 ``` html
-<child>
-  {{ msg }}
-</child>
+<child-component>
+  {{ message }}
+</child-component>
 ```
 
-Should the `msg` be bound to the parent's data or the child data? The answer is parent. A simple rule of thumb for component scope is:
+Should the `message` be bound to the parent's data or the child data? The answer is the parent. A simple rule of thumb for component scope is:
 
 > Everything in the parent template is compiled in parent scope; everything in the child template is compiled in child scope.
 
@@ -560,10 +684,10 @@ A common mistake is trying to bind a directive to a child property/method in the
 
 ``` html
 <!-- does NOT work -->
-<child v-show="someChildProperty"></child>
+<child-component v-show="someChildProperty"></child-component>
 ```
 
-Assuming `someChildProperty` is a property on the child component, the example above would not work as intended. The parent's template should not be aware of the state of a child component.
+Assuming `someChildProperty` is a property on the child component, the example above would not work. The parent's template is not aware of the state of a child component.
 
 If you need to bind child-scope directives on a component root node, you should do so in the child component's own template:
 
@@ -587,11 +711,11 @@ Parent content will be **discarded** unless the child component template contain
 
 Anything originally inside the `<slot>` tags is considered **fallback content**. Fallback content is compiled in the child scope and will only be displayed if the hosting element is empty and has no content to be inserted.
 
-Suppose we have a component with the following template:
+Suppose we have a component called `my-component` with the following template:
 
 ``` html
 <div>
-  <h1>This is my component!</h1>
+  <h2>I'm the child title</h2>
   <slot>
     This will only be displayed if there is no content
     to be distributed.
@@ -599,22 +723,28 @@ Suppose we have a component with the following template:
 </div>
 ```
 
-Parent markup that uses the component:
+And a parent that uses the component:
 
 ``` html
-<my-component>
-  <p>This is some original content</p>
-  <p>This is some more original content</p>
-</my-component>
+<div>
+  <h1>I'm the parent title</h1>
+  <my-component>
+    <p>This is some original content</p>
+    <p>This is some more original content</p>
+  </my-component>
+</div>
 ```
 
 The rendered result will be:
 
 ``` html
 <div>
-  <h1>This is my component!</h1>
-  <p>This is some original content</p>
-  <p>This is some more original content</p>
+  <h1>I'm the parent title</h1>
+  <div>
+    <h2>I'm the child title</h2>
+    <p>This is some original content</p>
+    <p>This is some more original content</p>
+  </div>
 </div>
 ```
 
@@ -624,33 +754,49 @@ The rendered result will be:
 
 There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. If there is no default slot, unmatched content will be discarded.
 
-For example, suppose we have a `multi-insertion` component with the following template:
+For example, suppose we have an `app-layout` component with the following template:
 
 ``` html
-<div>
-  <slot name="one"></slot>
-  <slot></slot>
-  <slot name="two"></slot>
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
 </div>
 ```
 
 Parent markup:
 
 ``` html
-<multi-insertion>
-  <p slot="one">One</p>
-  <p slot="two">Two</p>
-  <p>Default A</p>
-</multi-insertion>
+<app-layout>
+  <h1 slot="header">Here might be a page title</h1>
+
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
+
+  <p slot="footer">Here's some contact info</p>
+</app-layout>
 ```
 
 The rendered result will be:
 
 ``` html
-<div>
-  <p slot="one">One</p>
-  <p>Default A</p>
-  <p slot="two">Two</p>
+<div class="container">
+  <header>
+    <h1>Here might be a page title</h1>
+  </header>
+  <main>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
+  </main>
+  <footer>
+    <p>Here's some contact info</p>
+  </footer>
 </div>
 ```
 
@@ -658,11 +804,11 @@ The content distribution API is a very useful mechanism when designing component
 
 ## Dynamic Components
 
-You can use the same mount point and dynamically switch between multiple components by using the reserved `<component>` element and dynamically bind to its `is` attribute:
+You can use the same mount point and dynamically switch between multiple components using the reserved `<component>` element and dynamically bind to its `is` attribute:
 
 ``` js
-new Vue({
-  el: 'body',
+var vm = new Vue({
+  el: '#example',
   data: {
     currentView: 'home'
   },
@@ -675,155 +821,91 @@ new Vue({
 ```
 
 ``` html
-<component :is="currentView">
-  <!-- component changes when vm.currentview changes! -->
-</component>
-```
-### `keep-alive`
-
-If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
-
-``` html
-<component :is="currentView" keep-alive>
-  <!-- inactive components will be cached! -->
+<component v-bind:is="currentView">
+  <!-- component changes when vm.currentView changes! -->
 </component>
 ```
 
-### `activate` Hook
-
-When switching components, the incoming component might need to perform some asynchronous operation before it should be swapped in. To control the timing of component swapping, implement the `activate` hook on the incoming component:
+If you prefer, you can also bind directly to component objects:
 
 ``` js
-Vue.component('activate-example', {
-  activate: function (done) {
-    var self = this
-    loadDataAsync(function (data) {
-      self.someData = data
-      done()
-    })
+var Home = {
+  template: '<p>Welcome home!</p>'
+}
+
+var vm = new Vue({
+  el: '#example',
+  data: {
+    currentView: Home
   }
 })
 ```
 
-Note the `activate` hook is only respected during dynamic component swapping or the initial render for static components - it does not affect manual insertions with instance methods.
+### `keep-alive`
 
-### `transition-mode`
-
-The `transition-mode` param attribute allows you to specify how the transition between two dynamic components should be executed.
-
-By default, the transitions for incoming and outgoing components happen simultaneously. This attribute allows you to configure two other modes:
-
-- `in-out`: New component transitions in first, current component transitions out after incoming transition has finished.
-
-- `out-in`: Current component transitions out first, new component transitions in after outgoing transition has finished.
-
-**Example**
+If you want to keep the switched-out components in memory so that you can preserve their state or avoid re-rendering, you can wrap a dynamic component in a `<keep-alive>` element:
 
 ``` html
-<!-- fade out first, then fade in -->
-<component
-  :is="view"
-  transition="fade"
-  transition-mode="out-in">
-</component>
-```
-
-``` css
-.fade-transition {
-  transition: opacity .3s ease;
-}
-.fade-enter, .fade-leave {
-  opacity: 0;
-}
-```
-
-{% raw %}
-<div id="transition-mode-demo" class="demo">
-  <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
-  <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
-  <component
-    :is="view"
-    transition="fade"
-    transition-mode="out-in">
+<keep-alive>
+  <component :is="currentView">
+    <!-- inactive components will be cached! -->
   </component>
-</div>
-<style>
-  .fade-transition {
-    transition: opacity .3s ease;
-  }
-  .fade-enter, .fade-leave {
-    opacity: 0;
-  }
-</style>
-<script>
-new Vue({
-  el: '#transition-mode-demo',
-  data: {
-    view: 'v-a'
-  },
-  components: {
-    'v-a': {
-      template: '<div>Component A</div>'
-    },
-    'v-b': {
-      template: '<div>Component B</div>'
-    }
-  }
-})
-</script>
-{% endraw %}
+</keep-alive>
+```
+
+Check out more details on `<keep-alive>` in the [API reference](/api/#keep-alive).
 
 ## Misc
 
-### Components and v-for
-
-You can directly use `v-for` on the custom component, like any normal element:
-
-``` html
-<my-component v-for="item in items"></my-component>
-```
-
-However, this won't pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
-
-``` html
-<my-component
-  v-for="item in items"
-  :item="item"
-  :index="$index">
-</my-component>
-```
-
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
-
 ### Authoring Reusable Components
 
-When authoring components, it is good to keep in mind whether you intend to reuse this component somewhere else later. It is OK for one-off components to have some tight coupling with each other, but reusable components should define a clean public interface.
+When authoring components, it's good to keep in mind whether you intend to reuse it somewhere else later. It's OK for one-off components to be tightly coupled, but reusable components should define a clean public interface and make no assumptions about the context it's used in.
 
-The API for a Vue.js component essentially comes in three parts - props, events and slots:
+The API for a Vue component comes in three parts - props, events, and slots:
 
-- **Props** allow the external environment to feed data to the component;
+- **Props** allow the external environment to pass data into the component
 
-- **Events** allow the component to trigger actions in the external environment;
+- **Events** allow the component to trigger side effects in the external environment
 
-- **Slots** allow the external environment to insert content into the component's view structure.
+- **Slots** allow the external environment to compose the component with extra content.
 
-With the dedicated shorthand syntax for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
+With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
 
 ``` html
 <my-component
   :foo="baz"
   :bar="qux"
   @event-a="doThis"
-  @event-b="doThat">
-  <!-- content -->
+  @event-b="doThat"
+>
   <img slot="icon" src="...">
   <p slot="main-text">Hello!</p>
 </my-component>
 ```
 
+### Child Component Refs
+
+Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
+
+``` html
+<div id="parent">
+  <user-profile ref="profile"></user-profile>
+</div>
+```
+
+``` js
+var parent = new Vue({ el: '#parent' })
+// access child component instance
+var child = parent.$refs.profile
+```
+
+When `ref` is used together with `v-for`, the ref you get will be an array or an object containing the child components mirroring the data source.
+
+<p class="tip">`$refs` are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using `$refs` in templates or computed properties.</p>
+
 ### Async Components
 
-In large applications, we may need to divide the app into smaller chunks, and only load a component from the server when it is actually needed. To make that easier, Vue.js allows you to define your component as a factory function that asynchronously resolves your component definition. Vue.js will only trigger the factory function when the component actually needs to be rendered, and will cache the result for future re-renders. For example:
+In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's actually needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component actually needs to be rendered and will cache the result for future re-renders. For example:
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
@@ -839,120 +921,117 @@ The factory function receives a `resolve` callback, which should be called when 
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // this special require syntax will instruct webpack to
+  // This special require syntax will instruct Webpack to
   // automatically split your built code into bundles which
-  // are automatically loaded over ajax requests.
+  // are loaded over Ajax requests.
   require(['./my-async-component'], resolve)
 })
 ```
 
-### Assets Naming Convention
+You can also return a `Promise` in the resolve function, so with Webpack 2 + ES2015 syntax you can do:
 
-Some assets, such as components and directives, appear in templates in the form of HTML attributes or HTML custom tags. Since HTML attribute names and tag names are **case-insensitive**, we often need to name our assets using kebab-case instead of camelCase, which can be a bit inconvenient.
+``` js
+Vue.component(
+  'async-webpack-example',
+  () => System.import('./my-async-component')
+)
+```
 
-Vue.js actually supports naming your assets using camelCase or PascalCase, and automatically resolves them as kebab-case in templates (similar to the name conversion for props):
+<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, it's unfortunately not possible and probably never will be, as its creator has [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." If this is a feature that's important to you, we recommend using Webpack instead.</p>
+
+### Component Naming Conventions
+
+When registering components (or props), you can use kebab-case, camelCase, or TitleCase. Vue doesn't care.
 
 ``` js
 // in a component definition
 components: {
   // register using camelCase
-  myComponent: { /*... */ }
+  'kebab-cased-component': { /* ... */ },
+  'camelCasedComponent': { /* ... */ },
+  'TitleCasedComponent': { /* ... */ }
 }
 ```
+
+Within HTML templates though, you have to use the kebab-case equivalents:
 
 ``` html
-<!-- use dash case in templates -->
+<!-- alway use kebab-case in HTML templates -->
+<kebab-cased-component></kebab-cased-component>
+<camel-cased-component></camel-cased-component>
+<title-cased-component></title-cased-component>
+```
+
+When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you reference your components and props using camelCase, PascalCase, or kebab-case:
+
+``` html
+<!-- use whatever you want in string templates! -->
 <my-component></my-component>
+<myComponent></myComponent>
+<MyComponent></MyComponent>
 ```
 
-This works nicely with [ES6 object literal shorthand](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_6):
+If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
 
-``` js
-// PascalCase
-import TextBox from './components/text-box';
-import DropdownMenu from './components/dropdown-menu';
-
-export default {
-  components: {
-    // use in templates as <text-box> and <dropdown-menu>
-    TextBox,
-    DropdownMenu
-  }
-}
+``` html
+<my-component/>
 ```
+
+Again, this _only_ works within string templates, as self-closing custom elements are not valid HTML and your browser's native parser will not understand them.
 
 ### Recursive Component
 
-Components can recursively invoke itself in its own template, however, it can only do so when it has the `name` option:
+Components can recursively invoke themselves in their own template. However, they can only do so with the `name` option:
 
 ``` js
-var StackOverflow = Vue.extend({
-  name: 'stack-overflow',
-  template:
-    '<div>' +
-      // recursively invoke self
-      '<stack-overflow></stack-overflow>' +
-    '</div>'
-})
+name: 'stack-overflow',
+template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional. When you register a component globally using `Vue.component()`, the global ID is automatically set as the component's `name` option.
+A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be false). When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
 
-### Fragment Instance
-
-When you use the `template` option, the content of the template will replace the element the Vue instance is mounted on. It is therefore recommended to always have a single root-level, plain element in templates.
-
-Instead of templates like this:
-
-``` html
-<div>root node 1</div>
-<div>root node 2</div>
-```
-
-Prefer this:
-
-``` html
-<div>
-  I have a single root node!
-  <div>node 1</div>
-  <div>node 2</div>
-</div>
-```
-
-There are multiple conditions that will turn a Vue instance into a **fragment instance**:
-
-1. Template contains multiple top-level elements.
-2. Template contains only plain text.
-3. Template contains only another component (which can potentially be a fragment instance itself).
-4. Template contains only an element directive, e.g. `<partial>` or vue-router's `<router-view>`.
-5. Template root node has a flow-control directive, e.g. `v-if` or `v-for`.
-
-The reason is that all of the above cause the instance to have an unknown number of top-level elements, so it has to manage its DOM content as a fragment. A fragment instance will still render the content correctly. However, it will **not** have a root node, and its `$el` will point to an "anchor node", which is an empty Text node (or a Comment node in debug mode).
-
-What's more important though, is that **non-flow-control directives, non-prop attributes and transitions on the component element will be ignored**, because there is no root element to bind them to:
-
-``` html
-<!-- doesn't work due to no root element -->
-<example v-show="ok" transition="fade"></example>
-
-<!-- props work -->
-<example :prop="someData"></example>
-
-<!-- flow control works, but without transitions -->
-<example v-if="ok"></example>
-```
-
-There are, of course, valid use cases for fragment instances, but it is in general a good idea to give your component template a single, plain root element. It ensures directives and attributes on the component element to be properly transferred, and also results in slightly better performance.
-
-### Inline Template
+### Inline Templates
 
 When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
 
 ``` html
 <my-component inline-template>
-  <p>These are compiled as the component's own template</p>
+  <p>These are compiled as the component's own template.</p>
   <p>Not parent's transclusion content.</p>
 </my-component>
 ```
 
-However, `inline-template` makes the scope of your templates harder to reason about, and makes the component's template compilation un-cachable. As a best practice, prefer defining templates inside the component using the `template` option.
+However, `inline-template` makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the `template` option or in a `template` element in a `.vue` file.
+
+### X-Templates
+
+Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+
+``` html
+<script type="text/x-template" id="hello-world-template">
+  <p>Hello hello hello</p>
+</script>
+```
+
+``` js
+Vue.component('hello-world', {
+  template: '#hello-world-template'
+})
+```
+
+These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.
+
+### Cheap Static Components with `v-once`
+
+Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
+
+``` js
+Vue.component('terms-of-service', {
+  template: '\
+    <div v-once>\
+      <h1>Terms of Service</h1>\
+      ... a lot of static content ...\
+    </div>\
+  '
+})
+```

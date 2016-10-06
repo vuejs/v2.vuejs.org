@@ -1,9 +1,9 @@
 <div id="header">
-    <a id="logo" href="/">
-        <img src="/images/logo.png">
-        <span>Vue.js</span>
-    </a>
-    <ul id="nav">
-        <%- partial('partials/main_menu') %>
-    </ul>
+  <a id="logo" href="/">
+    <img src="/images/logo.png">
+    <span>Vue.js</span>
+  </a>
+  <ul id="nav">
+    <%- partial('partials/main_menu', { context: 'nav' }) %>
+  </ul>
 </div>

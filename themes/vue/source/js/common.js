@@ -12,12 +12,18 @@
    */
 
   function initSearch () {
-    docsearch({
-      appId: 'BH4D9OD16A',
-      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-      indexName: 'vuejs',
-      inputSelector: '#search-query'
-    });
+    [
+      '#search-query-nav',
+      '#search-query-sidebar'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      docsearch({
+        appId: 'BH4D9OD16A',
+        apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+        indexName: 'vuejs',
+        inputSelector: selector
+      })
+    })
   }
 
   /**
@@ -48,13 +54,14 @@
     // version select
     document.querySelector('.version-select').addEventListener('change', function (e) {
       var version = e.target.value
-      if (version.indexOf('1.') !== 0) {
-        version = version.replace('.', '')
-        var section = window.location.pathname.match(/\/(\w+?)\//)[1]
-        window.location.assign('http://' + version + '.vuejs.org/' + section + '/')
-      } else {
-        // TODO when 1.x is out
-      }
+      var section = window.location.pathname.match(/\/(\w+?)\//)[1]
+      if (version === 'SELF') return
+      window.location.assign(
+        'http://' +
+        version +
+        (version && '.') +
+        'vuejs.org/' + section + '/'
+      )
     })
   }
 

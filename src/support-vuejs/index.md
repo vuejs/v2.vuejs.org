@@ -1,13 +1,38 @@
 # Support Vue.js Development
 
-Current premium sponsors:
+<a href="https://www.patreon.com/evanyou" target="_blank">
+  <img style="width:120px" src="https://s3.amazonaws.com/patreon_public_assets/toolbox/patreon.png">
+  <span>Support Vue.js on Patreon (recurring pledge)</span>
+</a>
 
-<p style="text-align: center">
-  <a href="https://strikingly.com">
-    <img width="360px" src="/images/strikingly.png">
-  </a>
-  <a href="https://laravel.com">
-    <img width="200px" src="/images/laravel.png">
+<a href="https://www.paypal.me/evanyou" target="_blank">
+  <img style="width:120px" src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png">
+  <span>Donate via PayPal (one time)</span>
+</a>
+
+## Current premium sponsors:
+
+<p style="text-align: center; margin-bottom: 60px" class="sponsors-page">
+  <a href="https://itunescn.com">
+    <img src="/images/itunescn.png">
+  </a><a href="https://jsfiddle.net">
+    <img src="/images/jsfiddle.png">
+  </a><a href="https://laravel.com">
+    <img src="/images/laravel.png">
+  </a><a href="https://chaitin.cn">
+    <img src="/images/chaitin.png">
+  </a><a href="https://htmlburger.com" target="_blank">
+    <img src="/images/htmlburger.png">
+  </a><a href="https://starter.someline.com/" target="_blank">
+    <img src="/images/someline.png">
+  </a><a href="http://gold.xitu.io/?utm_source=vuejs&utm_medium=image&utm_content=juejin&utm_campaign=q3_website" target="_blank">
+    <img width="180px" src="/images/juejin.png">
+  </a><a href="http://monterail.com/" target="_blank">
+    <img src="/images/monterail.png">
+  </a><a href="https://www.trisoft.ro/" target="_blank">
+    <img src="/images/trisoft.png">
+  </a><a href="http://actualize.co" target="_blank" style="width:180px">
+    <img src="/images/actualize.png" style="width:180px">
   </a>
 </p>
 
@@ -18,14 +43,4 @@ If you run a business and are using Vue in a revenue-generating product, it make
 
 If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while :)
 
-As of now I am exploring the possibility of working on Vue.js fulltime - if you are a business that is building core products using Vue.js, I am also open to conversations regarding custom sponsorship arrangements. [Get in touch on Twitter](https://twitter.com/youyuxi).
-
-<a href="https://www.patreon.com/evanyou" target="_blank">
-  <img style="width:120px" src="https://s3.amazonaws.com/patreon_public_assets/toolbox/patreon.png">
-  <span>Support Vue.js on Patreon (recurring pledge)</span>
-</a>
-
-<a href="https://www.paypal.me/evanyou" target="_blank">
-  <img style="width:120px" src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png">
-  <span>Donate via PayPal (one time)</span>
-</a>
+As of now I am exploring the possibility of working on Vue.js fulltime - if you are a business that is building core products using Vue.js, I am also open to conversations regarding custom sponsorship / consulting arrangements. [Get in touch on Twitter](https://twitter.com/youyuxi).

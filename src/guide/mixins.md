@@ -1,7 +1,7 @@
 ---
 title: Mixins
 type: guide
-order: 16
+order: 17
 ---
 
 ## Basics
@@ -107,7 +107,7 @@ new Vue({
 // -> "hello!"
 ```
 
-<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above.</p>
+<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](/guide/plugins.html) to avoid duplicate application.</p>
 
 ## Custom Option Merge Strategies
 
@@ -124,4 +124,19 @@ For most object-based options, you can simply use the same strategy used by `met
 ``` js
 var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
+```
+
+A more advanced example can be found on [Vuex](https://github.com/vuejs/vuex)'s merging strategy:
+
+``` js
+const merge = Vue.config.optionMergeStrategies.computed
+Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
+  if (!toVal) return fromVal
+  if (!fromVal) return toVal
+  return {
+    getters: merge(toVal.getters, fromVal.getters),
+    state: merge(toVal.state, fromVal.state),
+    actions: merge(toVal.actions, fromVal.actions)
+  }
+}
 ```
