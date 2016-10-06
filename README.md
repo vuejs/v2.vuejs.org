@@ -38,7 +38,7 @@ Estas palavras podem ser mantidas no inglês
 | store      | scaffolding  |   loader | bind |
 | loop | for | true | false |
 | number (tipo) | string (tipo) | template | feature |
-| wrapper | ? | ? | ? |
+| wrapper | hot-reload | ? | ? |
 
 
 ## Translation Status (en to pt_br)
