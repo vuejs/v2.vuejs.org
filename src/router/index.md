@@ -6,10 +6,9 @@ order: 0
 
 # vue-router 2
 
-> http://router.vuejs.org/en/index.html
+> Note: vue-router@2.x only works with Vue 2.x.
 
-> Note: vue-router@2.x only works with Vue 2.x. The docs for the 1.x router is [here](https://github.com/vuejs/vue-router/tree/1.0/docs/en).
-
+- [Looking for 0.7 Docs?](https://github.com/vuejs/vue-router/tree/1.0/docs/en)
 - [Release Notes](https://github.com/vuejs/vue-router/releases)
 - [Installation](installation.html)
 - Essentials

@@ -4,7 +4,6 @@ type: router
 order: 4
 ---
 
-
 # Nested Routes
 
 Real app UIs are usually composed of components that are nested multiple levels deep. It is also very common that the segments of a URL corresponds to a certain structure of nested components, for example:

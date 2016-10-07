@@ -61,4 +61,4 @@ watch: {
 }
 ```
 
-See full example [here](https://github.com/vuejs/vue-router/blob/next/examples/transitions/app.js).
+See full example [here](https://github.com/vuejs/vue-router/blob/dev/examples/transitions/app.js).

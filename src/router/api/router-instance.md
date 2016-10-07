@@ -31,7 +31,7 @@ order: 20
 - **router.beforeEach(guard)**
 - **router.afterEach(hook)**
 
-  Add global navigation guards. See [Navigation Guards](../advanced/navigation-gaurds.md).
+  Add global navigation guards. See [Navigation Guards](../advanced/navigation-guards.md).
 
 
 - **router.push(location)**
