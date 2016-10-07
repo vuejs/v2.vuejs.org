@@ -835,37 +835,37 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **另见:** [Functional Components](/guide/render-function.html#Functional-Components)
 
-## Instance Properties
+## 实例属性
 
 ### vm.$data
 
-- **Type:** `Object`
+- **类型:** `Object`
 
-- **Details:**
+- **详细:**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  Vue 实例观察的数据对象。Vue 实例代理了对其 data 对象属性的访问。
 
-- **See also:** [Options - data](#data)
+- **另见:** [选项 - data](#data)
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **类型:** `HTMLElement`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细:**
 
-  The root DOM element that the Vue instance is managing.
+  Vue 实例使用的根 DOM 元素。
 
 ### vm.$options
 
-- **Type:** `Object`
+- **类型:** `Object`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  用于当前 Vue 实例的初始化选项。当选项中需要自定义属性时会有用处：
 
   ``` js
   new Vue({
@@ -878,47 +878,47 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$parent
 
-- **Type:** `Vue instance`
+- **类型:** `Vue instance`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细:**
 
-  The parent instance, if the current instance has one.
+  父实例，如果当前实例有的话。
 
 ### vm.$root
 
-- **Type:** `Vue instance`
+- **类型:** `Vue instance`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细:**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  当前组件树的根 Vue 实例。如果当前实例没有父实例，属性值将会是其自身。
 
 ### vm.$children
 
-- **Type:** `Array<Vue instance>`
+- **类型:** `Array<Vue instance>`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细:**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  当前实例的直接子组件。**需要注意 `$children` 并不保证顺序，也不是响应式的。**如果你发现自己正在尝试使用 `$children` 来进行数据绑定，考虑使用一个数组配合 `v-for` 来生成子组件，并且使用 Array 作为真正的来源。
 
 ### vm.$slots
 
-- **Type:** `Object`
+- **类型:** `Object`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细:**
 
-  Used to access content [distributed by slots](/guide/components.html#Content-Distribution-with-Slots). Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  用来访问被 [slot 分发](/guide/components.html#Content-Distribution-with-Slots)的内容。每个[具名 slot](/guide/components.html#Named-Slots) 有其响应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在一个具名 slot 中的节点。
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](/guide/render-function.html).
+  在使用 [render 函数](/guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
-- **Example:**
+- **示例:**
 
   ```html
   <blog-post>
@@ -951,36 +951,36 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   })
   ```
 
-- **See also:**
-  - [`<slot>` Component](#slot)
-  - [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions](/guide/render-function.html)
+- **另见:**
+  - [`<slot>` 组件](#slot)
+  - [使用 Slots 进行内容分发](/guide/components.html#Content-Distribution-with-Slots)
+  - [Render 函数](/guide/render-function.html)
 
 ### vm.$refs
 
-- **Type:** `Object`
+- **类型:** `Object`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细:**
 
-  An object that holds child components that have `ref` registered.
+  一个对象，其中包含了所有拥有 `ref` 注册的子组件。
 
-- **See also:**
-  - [Child Component Refs](/guide/components.html#Child-Component-Refs)
+- **另见:**
+  - [子组件引用](/guide/components.html#Child-Component-Refs)
   - [ref](#ref)
 
 ### vm.$isServer
 
-- **Type:** `boolean`
+- **类型:** `boolean`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细:**
 
-  Whether the current Vue instance is running on the server.
+  当前 Vue 实例是否运行于服务器。
 
-- **See also:** [Server-Side Rendering](/guide/ssr.html)
+- **另见:** [服务端渲染](/guide/ssr.html)
 
 ## Instance Methods / Data
 
