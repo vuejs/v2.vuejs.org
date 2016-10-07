@@ -50,7 +50,7 @@ $ npm install vue
 - 独立构建包括编译和支持 `template` 选项。 **它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。
 **
 
-- 运行时构建不包括模板编译，不支持 `template` 选项。运行时构建，可以用 `render` 选项，但它只在单文件组件中起作用，因为单文件组件的模板是在构建时预编译到 `render` 函数中，运行时构建只有独立构建大小的30%，只有16Kb min+gzip大小。
+- 运行时构建不包括模板编译，不支持 `template` 选项。运行时构建，可以用 `render` 选项，但它只在单文件组件中起作用，因为单文件组件的模板是在构建时预编译到 `render` 函数中，运行时构建只有独立构建大小的30%，只有 16Kb min+gzip大小。
 
 默认 NPM 包导出的是 **运行时** 构建。为了使用独立构建，在 webpack 配置中添加下面的别名：
 
@@ -71,7 +71,7 @@ resolve: {
 有些环境，如 Google Chrome Apps ，强制应用内容安全策略 (CSP) ，不能使用 new Function() 对表达式求值。这时可以用 CSP 兼容版本。独立的构建取决于该功能编译模板，所以无法使用这些环境。
 
 
-另一方面，运行时构建的是完成兼容CSP的。当通过 [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) 或者 [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) 构建时，在 CSP 环境中模板将被完美预编译到 `render` 函数中。
+另一方面，运行时构建的是完成兼容 CS P的。当通过 [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) 或者 [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) 构建时，在 CSP 环境中模板将被完美预编译到 `render` 函数中。
 
 ## 命令行工具
 
@@ -91,7 +91,7 @@ $ npm run dev
 
 ## 开发版本
 
-**重要**: 在发布后构建的文件在Github仓库的 `/dist` 文件夹。为了使用 Github 上 Vue 最新的资源，你得自己构建。 
+**重要**: 在发布后构建的文件在 Github 仓库的 `/dist` 文件夹。为了使用 Github 上 Vue 最新的资源，你得自己构建。 
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
