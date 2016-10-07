@@ -1151,7 +1151,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 vm.$mount() 手动地开始挂载/编译未挂载的实例。
 
-  如果没有"elementOrSelector"参数，模板将被创建为文档之外的的片断，需要手工用其它的 DOM 实例方法把它插入文档中。如果 replace 选项为 false，则自动创建一个空 <div>，作为包装元素。
+  如果没有"elementOrSelector"参数，模板将被创建为文档之外的的片断，需要手工用其它的 DOM 实例方法把它插入文档中。如果 replace 选项为 false，则自动创建一个空 <code><div></code>，作为包装元素。
 
   这个方法返回实例自身，因而可以链式调用其它实例方法。
 
@@ -1168,7 +1168,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   // 同上
   new MyComponent({ el: '#app' })
 
-  // or, render off-document and append afterwards:
+  // 或者，在文档之外渲染并且随后挂载
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(vm.$el)
   ```
@@ -1181,7 +1181,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **示例：**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  迫使Vue实例重修渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
 
 <h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
 
