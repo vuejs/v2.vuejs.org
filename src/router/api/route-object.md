@@ -1,84 +1,86 @@
 ---
-title: 路由对象
+title: 路由信息对象
 type: router
 order: 18
 ---
 
-# The Route Object
+# 路由信息对象
 
-A **route object** represents the state of the current active route. It contains parsed information of the current URL and the **route records** matched by the URL.
+一个 **route object（路由信息对象）** 表示当前激活的路由的状态信息，包含了当前 URL 解析得到的信息，还有 URL 匹配到的 **route records（路由记录）**。
 
-The route object is immutable. Every successful navigation will result in a fresh route object.
 
-The route object can be found in multiple places:
+route object 是 immutable（不可变） 的，每次成功的导航后都会产生一个新的对象。
 
-- Inside components as `this.$route`, and obvious inside `$route` watcher callbacks;
+route object 出现在多个地方:
 
-- As the return value of calling `router.match(location)`;
+- 组件内的 `this.$route` 和 `$route` watcher 回调（监测变化处理）;
 
-- Inside navigation guards as the first argument:
+- `router.match(location)` 的返回值
+
+- 导航钩子的参数：
 
   ``` js
-  router.beforeEach((route, redirect, next) => {
-    // route here is a route object
+  router.beforeEach((to, from, next) => {
+    // to 和 from 都是 路由信息对象
   })
   ```
 
-- Inside the `scrollBehavior` function as arguments:
+- `scrollBehavior` 方法的参数:
 
   ``` js
   const router = new VueRouter({
     scrollBehavior (to, from, savedPosition) {
-      // to and from are both route objects
+      // to 和 from 都是 路由信息对象
     }
   })
   ```
 
-### Route Object Properties
+### 路由信息对象的属性
 
 - **$route.path**
 
-  - type: `string`
+  - 类型: `string`
 
-    A string that equals the path of the current route, always resolved as an absolute path. e.g. `"/foo/bar"`.
+    字符串，对应当前路由的路径，总是解析为绝对路径，如 `"/foo/bar"`。
 
 - **$route.params**
 
-  - type: `Object`
+  - 类型: `Object`
 
-    An object that contains key/value pairs of dynamic segments and star segments. If there are no params the value will be an empty object.
+  一个 key/value 对象，包含了 动态片段 和 全匹配片段，如果没有路由参数，就是一个空对象。
 
 - **$route.query**
 
-  - type: `Object`
+  - 类型: `Object`
 
-    An object that contains key/value pairs of the query string. For example, for a path `/foo?user=1`, we get `$route.query.user == 1`. If there is no query the value will be an empty object.
+    一个 key/value 对象，表示 URL 查询参数。例如，对于路径 `/foo?user=1`，则有 `$route.query.user == 1`，如果没有查询参数，则是个空对象。
 
 - **$route.hash**
 
-  - type: `string`
+  - 类型: `string`
 
-    The hash of the current route (without `#`), if it has one. If no hash is present the value will be an empty string.
+    当前路由的 hash 值 (不带 `#`) ，如果没有 hash 值，则为空字符串。
+
 
 - **$route.fullPath**
 
-  - type: `string`
+  - 类型: `string`
 
-    The full resolved URL including query and hash.
+    完成解析后的 URL，包含查询参数和 hash 的完整路径。
 
 - **$route.matched**
 
-  - type: `Array<RouteRecord>`
+  - 类型: `Array<RouteRecord>`
 
-  An Array containing **route records** for all nested path segments of the current route. Route records are the copies of the objects in the `routes` configuration Array (and in `children` Arrays):
+  一个数组，包含当前路由的所有嵌套路径片段的 **路由记录** 。路由记录就是 `routes` 配置数组中的对象副本（还有在 `children` 数组）。
 
   ``` js
   const router = new VueRouter({
     routes: [
-      // the following object is a route record
+      // 下面的对象就是 route record
       { path: '/foo', component: Foo,
         children: [
-          // this is also a route record
+          // 这也是个 route record
           { path: 'bar', component: Bar }
         ]
       }
@@ -86,8 +88,8 @@ The route object can be found in multiple places:
   })
   ```
 
-  When the URL is `/foo/bar`, `$route.matched` will be an Array containing both objects (cloned), in parent to child order.
+  当 URL 为 `/foo/bar`，`$route.matched` 将会是一个包含从上到下的所有对象（副本）。
 
 - **$route.name**
 
-  The name of the current route, if it has one. (See [Named Routes](../essentials/named-routes.md))
+  当前路由的名称，如果有的话。（查看 [命名路由](../essentials/named-routes.md)）

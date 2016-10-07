@@ -1,12 +1,13 @@
 ---
-title: 具名视图
+title: 命名视图
 type: router
 order: 7
 ---
 
-# Named Views
+# 命名视图
 
-Sometimes you need to display multiples views at the same time instead of nesting them, e.g. creating a layout with a `sidebar` view and a `main` view. This is where named views came in handy. Instead of having one single outlet in your view, you can have multiple and give each of them a name. A `router-view` without a name will be given `default` as its name.
+有时候想同时（同级）展示多个视图，而不是嵌套展示，例如创建一个布局，有 `sidebar`（侧导航） 和 `main`（主内容） 两个视图，这个时候命名视图就派上用场了。你可以在界面中拥有多个单独命名的视图，而不是只有一个单独的出口。如果 `router-view` 没有设置名字，那么默认为 `default`。
+
 
 ``` html
 <router-view class="view one"></router-view>
@@ -14,8 +15,7 @@ Sometimes you need to display multiples views at the same time instead of nestin
 <router-view class="view three" name="b"></router-view>
 ```
 
-A view is rendered by using a component, therefore multiple views require multiple components for the same route. Make sure to use the `components` (with
-an s) option:
+一个视图使用一个组件渲染，因此对于同个路由，多个视图就需要多个组件。确保正确使用 `components` 配置（带上 s）：
 
 ``` js
 const router = new VueRouter({
@@ -32,5 +32,5 @@ const router = new VueRouter({
 })
 ```
 
-A working demo of this example can be found
-[here](https://jsfiddle.net/posva/9b80nxx1/).
+以上案例相关的可运行代码，在
+[这里](https://jsfiddle.net/posva/9b80nxx1/).

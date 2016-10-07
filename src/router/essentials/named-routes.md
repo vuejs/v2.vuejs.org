@@ -1,12 +1,12 @@
 ---
-title: 具名路由
+title: 命名路由
 type: router
 order: 6
 ---
 
-# Named Routes
+# 命名路由
 
-Sometimes it is more convenient to identify a route with a name, especially when linking to a route or performing navigations. You can give a route a name in the `routes` options while creating the Router instance:
+有时候，通过一个名称来标识一个路由显得更方便一些，特别是在链接一个路由，或者是执行一些跳转的时候。你可以在创建 Router 实例的时候，在 `routes` 配置中给某个路由设置名称。
 
 ``` js
 const router = new VueRouter({
@@ -20,19 +20,18 @@ const router = new VueRouter({
 })
 ```
 
-To link to a named route, you can pass an object to the `router-link`
-component's `to` prop:
+要链接到一个命名路由，可以给 `router-link` 的 `to` 属性传一个对象：
 
 ``` html
 <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
 ```
 
-This is the exact same object used programatically with `router.push()`:
+这跟代码调用 `router.push()` 是一回事：
 
 ``` js
 router.push({ name: 'user', params: { userId: 123 }})
 ```
 
-In both cases, the router will navigate to the path `/user/123`.
+这两种方式都会把路由导航到 `/user/123` 路径。
 
-Full example [here](https://github.com/vuejs/vue-router/blob/next/examples/named-routes/app.js).
+完整的例子请 [戳这里](https://github.com/vuejs/vue-router/blob/next/examples/named-routes/app.js).
