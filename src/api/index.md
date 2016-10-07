@@ -305,15 +305,15 @@ type: api
 
 - **See also:** [Render Functions](/guide/render-function.html)
 
-## Options / Data
+## 选项 / 数据
 
 ### data
 
-- **Type:** `Object | Function`
+- **类型:** `Object | Function`
 
-- **Restriction:** Only accepts `Function` when used in a component definition.
+- **限制:** Only accepts `Function` when used in a component definition.
 
-- **Details:**
+- **详细:**
 
   The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
 
@@ -327,7 +327,7 @@ type: api
 
   If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
 
-- **Example:**
+- **示例:**
 
   ``` js
   var data = { a: 1 }
@@ -349,17 +349,17 @@ type: api
 
   <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
 
-- **See also:** [Reactivity in Depth](/guide/reactivity.html)
+- **另见:** [深入响应式原理h](/guide/reactivity.html)
 
 ### props
 
-- **Type:** `Array<string> | Object`
+- **类型:** `Array<string> | Object`
 
-- **Details:**
+- **详细:**
 
   A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
-- **Example:**
+- **示例:**
 
   ``` js
   // simple syntax
@@ -385,19 +385,19 @@ type: api
   })
   ```
 
-- **See also:** [Props](/guide/components.html#Props)
+- **另见:** [Props](/guide/components.html#Props)
 
 ### propsData
 
-- **Type:** `{ [key: string]: any }`
+- **类型:** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **限制:** only respected in instance creation via `new`.
 
-- **Details:**
+- **详细:**
 
   Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
 
-- **Example:**
+- **示例:**
 
   ``` js
   var Comp = Vue.extend({
@@ -414,9 +414,9 @@ type: api
 
 ### computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **类型:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Details:**
+- **详细:**
 
   Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
 
@@ -424,7 +424,7 @@ type: api
 
   Computed properties are cached, and only re-computed on reactive dependency changes.
 
-- **Example:**
+- **示例:**
 
   ```js
   var vm = new Vue({
@@ -451,20 +451,20 @@ type: api
   vm.aDouble // -> 4
   ```
 
-- **See also:**
-  - [Computed Properties](/guide/computed.html)
+- **另见:**
+  - [计算属性](/guide/computed.html)
 
 ### methods
 
-- **Type:** `{ [key: string]: Function }`
+- **类型:** `{ [key: string]: Function }`
 
-- **Details:**
+- **详细:**
 
   Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
 
   <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
 
-- **Example:**
+- **示例:**
 
   ```js
   var vm = new Vue({
@@ -479,17 +479,17 @@ type: api
   vm.a // 2
   ```
 
-- **See also:** [Methods and Event Handling](/guide/events.html)
+- **另见:** [方法与事件处理器](/guide/events.html)
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object }`
+- **类型:** `{ [key: string]: string | Function | Object }`
 
-- **Details:**
+- **详细:**
 
   An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
 
-- **Example:**
+- **示例:**
 
   ``` js
   var vm = new Vue({
@@ -516,7 +516,7 @@ type: api
 
   <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
 
-- **See also:** [Instance Methods - vm.$watch](#vm-watch)
+- **另见:** [实例方法 - vm.$watch](#vm-watch)
 
 ## Options / DOM
 
@@ -697,7 +697,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ## 选项 / 资源
 
-### 指令
+### directives
 
 - **类型:** `Object`
 
@@ -709,7 +709,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - [自定义指令](/guide/custom-directive.html)
   - [资源命名约定](/guide/components.html#Assets-Naming-Convention)
 
-### 过滤器
+### filters
 
 - **类型:** `Object`
 
@@ -720,7 +720,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **另见:**
   - [`Vue.filter`](#Vue-filter)
 
-### 组件
+### components
 
 - **类型:** `Object`
 
@@ -731,13 +731,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **另见:**
   - [组件](/guide/components.html)
 
-## Options / Misc
+## 选项 / 杂项
 
 ### parent
 
-- **Type:** `Vue instance`
+- **类型:** `Vue instance`
 
-- **Details:**
+- **详细:**
 
   Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
 
@@ -745,15 +745,15 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### mixins
 
-- **Type:** `Array<Object>`
+- **类型:** `Array<Object>`
 
-- **Details:**
+- **详细:**
 
   The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
   Mixin hooks are called in the order they are provided, and called before the component's own hooks.
 
-- **Example:**
+- **示例:**
 
   ``` js
   var mixin = {
@@ -767,15 +767,15 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   // -> 2
   ```
 
-- **See also:** [Mixins](/guide/mixins.html)
+- **另见:** [混合](/guide/mixins.html)
 
 ### name
 
-- **Type:** `string`
+- **类型:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **限制:** only respected when used as a component option.
 
-- **Details:**
+- **详细:**
 
   Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
 
@@ -783,15 +783,15 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### extends
 
-- **Type:** `Object | Function`
+- **类型:** `Object | Function`
 
-- **Details:**
+- **详细:**
 
   Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
 
   This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
 
-- **Example:**
+- **示例:**
 
   ``` js
   var CompA = { ... }
@@ -805,15 +805,15 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **类型:** `Array<string>`
 
-- **default:** `["{{", "}}"]`
+- **默认值:** `["{{", "}}"]`
 
-- **Details:**
+- **详细:**
 
   Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
 
-- **Example:**
+- **示例:**
 
   ``` js
   new Vue({
@@ -825,13 +825,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### functional
 
-- **Type:** `boolean`
+- **类型:** `boolean`
 
-- **Details:**
+- **详细:**
 
   Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
 
-- **See also:** [Functional Components](/guide/render-function.html#Functional-Components)
+- **另见:** [Functional Components](/guide/render-function.html#Functional-Components)
 
 ## Instance Properties
 
