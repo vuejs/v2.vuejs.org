@@ -140,3 +140,9 @@ Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
   }
 }
 ```
+
+***
+
+> 原文： http://vuejs.org/guide/mixins.html
+
+***

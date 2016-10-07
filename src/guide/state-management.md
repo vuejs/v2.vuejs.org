@@ -76,3 +76,9 @@ var vmB = new Vue({
 接着我们继续延伸约定，组件不允许直接修改属于 store 实例的 state，而是应该使用分发 (dispatch) 事件通知 store 执行 action 作为替代，我们最终达成了 [Flux](https://facebook.github.io/flux/) 架构。这样约定的好处是，我们能够记录所有 store 中发生的 state 改变，同时实现能做到记录变更 (mutation) 、保存状态快照、历史回滚/时光旅行的先进的调试工具。
 
 [vuex](https://github.com/vuejs/vuex) 给我们带来了整个循环机制，如果你读了这么久，不妨去尝试一下它！
+
+***
+
+> 原文： http://vuejs.org/guide/state-management.html
+
+***

@@ -478,3 +478,9 @@ methods: {
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>$loadingRouteData</code> meta property.</p>
 </div>
 {% endraw %}
+
+***
+
+> 原文： http://vuejs.org/guide/migration-vue-router.html
+
+***

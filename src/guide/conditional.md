@@ -99,6 +99,6 @@ order: 7
 
 ***
 
-> 原文：http://rc.vuejs.org/guide/conditional.html
+> 原文：http://vuejs.org/guide/conditional.html
 
 ***

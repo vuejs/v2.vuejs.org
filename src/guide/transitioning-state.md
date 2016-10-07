@@ -527,3 +527,9 @@ new Vue({
 
 我们能在组件中结合使用这一节讲到各种过渡策略和 Vue [内建的过渡系统](transitions.html)。总之，对于完成各种过渡动效几乎没有阻碍。
 
+***
+
+> 原文： http://vuejs.org/guide/transitioning-state.html
+
+***
+

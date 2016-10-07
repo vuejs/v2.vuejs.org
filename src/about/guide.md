@@ -25,12 +25,12 @@ order: 1
 3 | 是 | instance.md | 实例 |  @dingyiming | @dingyiming
 4 | × | syntax.md  | 模板语法 |  | @tingtien
 5 | 是 | computed.md | 计算属性 |  @dingyiming | @dingyiming
-6 | × | class-and-style.md | Class 与 Style 绑定 |   | @595074187
+6 | 是 | class-and-style.md | Class 与 Style 绑定 | @595074187  | @595074187
 7 | 是 |  conditional.md  | 条件渲染 | @dingyiming | @dingyiming
 8 | 是 | list.md |  列表渲染 | @tingtien | @tingtien
 9 | 是 | events.md | 事件处理器 | @dingyiming | @dingyiming
 10 | 是 |  forms.md  | 表单控件绑定 | @dingyiming | @dingyiming
-11 | × | components.md |  组件 |  | @ezreally
+11 | 是 | components.md |  组件 | @ezreally  | @ezreally
 
 ### Advanced  进阶
 
@@ -43,16 +43,22 @@ order: 1
 16 | 是 | custom-directive.md |  自定义指令 | @harrytospring | @harrytospring
 17 | 是 | mixins.md |  混合 |  @harrytospring | @harrytospring
 18 | x | plugins.md |  插件 |  | @hgcoder
-19 | x | single-file-components.md |  单文件组件 |  | @ATLgo 
+19 | 是 | single-file-components.md |  单文件组件 | @ATLgo  | @ATLgo 
 20 | 是 | routing.md | 路由 | @dingyiming | @dingyiming
 21 | 是 | state-management.md |  状态管理 | @dear-lizhihua | @dear-lizhihua
-22 | 是 | unit-testing.md | 单元测试 | @70data | @70data
+22 | 是 | unit-testing.md | 单元测试 | @70data  | @70data
 23 | 是 | ssr.md |  服务端渲染 | @dingyiming | @dingyiming
+
+### Migration  迁移
+
+序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 认领者
+----- | ------- | ------------- | --- | --- | ---
 24 | x  | migration.md | 1.x迁移 |   | @harrytospring 
+27 | x | migration-vue-router.md | vue-router 0.7.x 迁移 | | @forzajuve10 
 
 ### Meta  更多
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 认领者
 ----- | ------- | ------------- | --- | --- | ---
 25 | x |  comparison.md |   对比其他框架 |   | @yongbolv @daix6
-26 | 是 |  join.md |  加入Vue.js社区 | @daix6  | @daix6 
+26 | 是 |  join.md |  加入Vue.js社区 | @daix6   | @daix6 
