@@ -54,11 +54,11 @@ order: 1
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 认领者
 ----- | ------- | ------------- | --- | --- | ---
 24 | x  | migration.md | 1.x迁移 |   | @harrytospring 
-27 | x | migration-vue-router.md | vue-router 0.7.x 迁移 | | @forzajuve10 
+27 | 是 | migration-vue-router.md | vue-router 0.7.x 迁移 | @forzajuve10  | @forzajuve10 
 
 ### Meta  更多
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 认领者
 ----- | ------- | ------------- | --- | --- | ---
-25 | x |  comparison.md |   对比其他框架 |   | @yongbolv @daix6
+25 | 是 |  comparison.md |   对比其他框架 |  @yongbolv | @yongbolv @daix6
 26 | 是 |  join.md |  加入Vue.js社区 | @daix6   | @daix6 
