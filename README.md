@@ -64,7 +64,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] Render Functions (@jbruni)
 - [ ] Reactivity in Depth
 - [ ] Custom Directives
-- [ ] Mixins
+- [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
 - [ ] Single File Components
 - [ ] Routing
