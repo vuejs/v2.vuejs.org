@@ -1570,7 +1570,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `string`
 
-  `key` 的特殊属性主要用在 Vu e的虚拟 DOM 算法，在新旧 nodes 对比时辨识 VNodes。如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用 key，它会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。
+  `key` 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素。
 
   相同公共父元素的子元素必须有**独特的key**。重复的key会造成渲染错误。
 
@@ -1595,13 +1595,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  当 `text` 发生改变时，`<span>` 会随时被更新，因此会触发过度。
 
 ### ref
 
 - **Expects:** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` 被用来给元素或子组件注册引用信息。引用信息会根据父组件的 `$refs` 对象进行注册。如果在普通的DOM元素上使用，引用信息就是元素; 如果用在子组件上，引用信息就是组件实例:
 
   ``` html
   <!-- vm.$refs.p will the DOM node -->
@@ -1611,9 +1611,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <child-comp ref="child"></child-comp>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  当 `v-for` 用于元素或组件的时候，引用信息将是包含DOM节点或组件实例数组。
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不能使用，因此你不应该试图用它在模版中做数据绑定。
 
 - **See also:** [Child Component Refs](/guide/components.html#Child-Component-Refs)
 
@@ -1621,9 +1621,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  用于标记往哪个slot中插入子组件内容。
 
-  For detailed usage, see the guide section linked below.
+  详细用法，请参考下面指南部分的链接。
 
 - **See also:** [Named Slots](/guide/components.html#Named-Slots)
 
