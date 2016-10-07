@@ -244,7 +244,7 @@ Vue.config.keyCodes.f1 = 112
 
 ***
 
-> 原文：http://rc.vuejs.org/guide/events.html
+> 原文：http://vuejs.org/guide/events.html
 
 ***
 

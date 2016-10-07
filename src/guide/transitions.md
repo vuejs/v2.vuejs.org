@@ -1674,7 +1674,7 @@ new Vue({
 
 ***
 
-> 原文：http://rc.vuejs.org/guide/transitions.html
+> 原文：http://vuejs.org/guide/transitions.html
 
 ***
 

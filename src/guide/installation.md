@@ -113,6 +113,6 @@ $ bower install vue
 
 ***
 
-> 原文：http://rc.vuejs.org/guide/installation.html
+> 原文：http://vuejs.org/guide/installation.html
 
 ***

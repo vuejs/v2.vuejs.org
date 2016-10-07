@@ -327,3 +327,9 @@ Riot 2.0 provides a similar component-based development model (which is called a
 - More mature tooling support. Vue provides official support for [Webpack](https://github.com/vuejs/vue-loader), [Browserify](https://github.com/vuejs/vueify), and [SystemJS](https://github.com/vuejs/systemjs-plugin-vue), while Riot relies on community support for build system integration.
 - [Transition effect system](transitions.html). Riot has none.
 - Better performance. [Despite advertising](https://github.com/vuejs/vuejs.org/issues/346) use of a virtual DOM, Riot in fact uses dirty checking and thus suffers from the same performance issues as Angular 1.
+
+***
+
+> 原文：http://vuejs.org/guide/comparison.html
+
+***

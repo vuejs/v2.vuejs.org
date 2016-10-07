@@ -495,3 +495,9 @@ console.error = function (error) {
 }
 </style>
 {% endraw %}
+
+***
+
+> 原文： http://vuejs.org/guide/render-function.html
+
+***

@@ -315,7 +315,7 @@ var watchExampleVM = new Vue({
 
 ***
 
-> 原文：http://rc.vuejs.org/guide/computed.html
+> 原文：http://vuejs.org/guide/computed.html
 
 ***
 

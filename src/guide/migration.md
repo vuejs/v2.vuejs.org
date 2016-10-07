@@ -1543,3 +1543,9 @@ A benefit of functional components over partials is that they can be much more d
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.partial</code>.</p>
 </div>
 {% endraw %}
+
+***
+
+> 原文： http://vuejs.org/guide/migration.html
+
+***
