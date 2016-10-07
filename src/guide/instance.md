@@ -32,12 +32,6 @@ var myComponentInstance = new MyComponent()
 尽管可以命令式地创建扩展实例，不过在多数情况下将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](/components.md)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
 
 
-## 属性和方法
-
-
-每个 Vue 实例 **代理** 所有属性都在 `data` 对象中：
-
-
 ## 属性与方法
 
 每个 Vue 实例都会**代理**其 `data` 对象里所有的属性：
@@ -79,7 +73,7 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
-<p class="tip">注意, 不要再实例实现中或者回调函数中（如 `vm.$watch('a', newVal => this.myMethod())`）使用箭头函数。原因是箭头函数绑定父上下文，所以 `this` 不会像预想的一样是 Vue 实例, 而是 `this.myMethod` 未被定义。</p>
+<p class="tip">注意, 不要在实例属性或者回调函数中（如 `vm.$watch('a', newVal => this.myMethod())`）使用箭头函数。原因是箭头函数绑定父上下文，所以 `this` 不会像预想的一样是 Vue 实例, 而是 `this.myMethod` 未被定义。</p>
 
 实例属性和方法的完整列表中查阅 [API 参考](/api)。
 
