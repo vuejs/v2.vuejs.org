@@ -1225,7 +1225,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   在"beforeDestroy"和"destroyed"之间触发。
 
-  <p class="tip">在大多数场景中你不应该调用这个方法。最好控制子组件的生命周期在数据In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">在大多数场景中你不应该调用这个方法。最好使用"v-if"和"v-for"指令以数据驱动的方式控制子组件的生命周期。</p>
 
 - **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
