@@ -6,42 +6,42 @@ order: 24
 
 ## FAQ
 
-> Woah - this is a super long page! Does that mean 2.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
+> 哇，非常长的一页！是否意味着 Vue2.0 已经完全不同了呢，是否需要从头学起呢，Vue1.0 的项目是不是没法迁移了？ 
 
-I'm glad you asked! The answer is no. About 90% of the API is the same and the core concepts haven't changed. It's long because we like to offer very detailed explanations and include a lot of examples. Rest assured, __this is not something you have to read from top to bottom!__
+非常开心地告诉你，并不是！ 几乎90%的 API 和核心概念都没有变。因为本节包含了很多详尽的阐述以及许多迁移的例子，所以显得有点长。不用担心，__你也不必从头到尾把本节读一遍！__
 
-> Where should I start in a migration?
+> 怎么开始做项目迁移？
 
-1. Start by running the [migration helper](https://github.com/vuejs/vue-migration-helper) on a current project. We've carefully minified and compressed a senior Vue dev into a simple command line interface. Whenever they recognize a deprecated pattern, they'll let you know, offer suggestions, and provide links to more info.
+1. 就从运行 [migration helper](https://github.com/vuejs/vue-migration-helper) 这个工具开始吧。我们非常谨慎地把一个高级 Vue 开发工具简化并重新编译成了一个命令行工具。当这个工具发现了一个弃用的用法之后，就会给出通知和建议，并附上关于详细信息的链接。
 
-2. After that, browse through the table of contents for this page in the sidebar. If you see a topic you may be affected by, but the migration helper didn't catch, check it out.
+2. 然后，看看侧边栏给出的关于这一页的内容。如果你发现有的地方有影响，而该工具没有给出提示的，请检查并解决一下该项。
 
-3. If you have any tests, run them and see what still fails. If you don't have tests, just open the app in your browser and keep an eye out for warnings or errors as you navigate around.
+3. 如果有测试的话，测试一边看看还有什么问题。如果没有测试的话，打开app，随机翻一下，看一下有什么报错或者警告信息。
 
-4. By now, your app should be fully migrated. If you're still hungry for more though, you can read the rest of this page - or just dive in to the new and improved guide from [the beginning](index.html). Many parts will be skimmable, since you're already familiar with the core concepts.
+4. 至此，你的 app 基本已经迁移完毕了。如果你有更多想了解的，可以阅读一下本节剩下的部分。
 
-> How long will it take to migrate a Vue 1.x app to 2.0?
+> 从1.0 迁移到2.0要花多长时间？
 
-It depends on a few factors:
+取决于以下几个方面：
 
-- The size of your app (small to medium-sized apps will probably be less than a day)
+- 要迁移的 app 的规模。（小到中型的基本上一天内就可以搞定）
 
-- How many times you get distracted and start playing with a cool new feature. 😉 &nbsp;Not judging, it also happened to us while building 2.0!
+- 为了耍耍 Vue2.0 的新功能分心了多少次。 😉 &nbsp;不是说你们，我们构建 Vue2.0 的时候经常发生这种事。
 
-- Which deprecated features you're using. Most can be upgraded with find-and-replace, but others might take a few minutes. If you're not currently following best practices, Vue 2.0 will also try harder to force you to. This is a good thing in the long run, but could also mean a significant (though possibly overdue) refactor.
+- 使用了哪些弃用的功能。基本上大部分弃用的功能可以通过 find-and-replace 来实现升级，但有一些还是要花点时间。如果你没有遵循最佳实践，那么 Vue2.0 会强迫你去遵循。这有利于项目的长期运行，但是也意味着重构（也许有些需要重构的东西已经过时）。
 
-## Templates
+## 模板
 
-### Fragment Instances <sup>deprecated</sup>
+### 片段实例 <sup>弃用</sup>
 
-Every component must have exactly one root element. Fragment instances are no longer allowed. If you have a template like this:
+每个组件有且仅有一个根节点。不再支持片段实例，如果你有这样的模板：
 
 ``` html
 <p>foo</p>
 <p>bar</p>
 ```
 
-It's recommended to simply wrap the entire contents in a new element, like this:
+最好把它包裹到一个简单的容器里面去：
 
 ``` html
 <div>
@@ -52,38 +52,38 @@ It's recommended to simply wrap the entire contents in a new element, like this:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about multiple root elements in a template.</p>
+  <h4>升级方式</h4>
+  <p>升级后，为你的 app 运行端对端测试 ，并关注关于多个根节点的<strong>console warnings</strong>。
 </div>
 {% endraw %}
 
-## Lifecycle Hooks
+## 生命周期钩子
 
-### `beforeCompile` <sup>deprecated</sup>
+### `beforeCompile` <sup>弃用</sup>
 
-Use the `created` hook instead.
+用 `created` 钩子来代替。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到所有使用这个钩子的实例</p>
 </div>
 {% endraw %}
 
-### `compiled` <sup>deprecated</sup>
+### `compiled` <sup>弃用d</sup>
 
-Use the new `mounted` hook instead.
+用 `mounted` 钩子来代替。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到所有使用这个钩子的实例</p>
 </div>
 {% endraw %}
 
-### `attached` <sup>deprecated</sup>
+### `attached` <sup>弃用</sup>
 
-Use a custom in-dom check in other hooks. For example, to replace:
+依赖其它钩子使用自定义的dom内部方法，例如：
 
 ``` js
 attached: function () {
@@ -91,7 +91,7 @@ attached: function () {
 }
 ```
 
-You could use:
+现在可以这样做：
 
 ``` js
 mounted: function () {
@@ -103,14 +103,14 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到所有使用这个钩子的实例</p>
 </div>
 {% endraw %}
 
 ### `detached` <sup>deprecated</sup>
 
-Use a custom in-dom check in other hooks. For example, to replace:
+用自定义的 dom 内部的其他钩子代替，例如：
 
 ``` js
 detached: function () {
@@ -118,7 +118,7 @@ detached: function () {
 }
 ```
 
-You could use:
+可以用以下方式代替：
 
 ``` js
 destroyed: function () {
@@ -130,85 +130,84 @@ destroyed: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到所有使用这个钩子的实例</p>
 </div>
 {% endraw %}
 
 ### `init` <sup>deprecated</sup>
 
-Use the new `beforeCreate` hook instead, which is essentially the same thing. It was renamed for consistency with other lifecycle methods.
+用新的 `beforeCreate` 钩子代替，他们本质上是一样的。为了与其他生命周期的钩子命名保持一致性，所以重新命名了这个钩子。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到所有使用这个钩子的实例</p>
 </div>
 {% endraw %}
 
 ### `ready` <sup>deprecated</sup>
 
-Use the new `mounted` hook instead. It should be noted though that with `mounted`, there's no guarantee to be in-document. For that, also include `Vue.nextTick`/`vm.$nextTick`. For example:
+使用新的 `mounted` 钩子代替，. 应该注意的是，通过使用 `mounted` 钩子，并不能保证该实例已经插入文档。所以还应该在钩子函数中包含 `Vue.nextTick`/`vm.$nextTick` 例如：
 
 ``` js
 mounted: function () {
   this.$nextTick(function () {
-    // code that assumes this.$el is in-document
+    // 保证 this.$el 已经插入文档
   })
 }
 ```
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到所有使用这个钩子的实例</p>
 </div>
 {% endraw %}
 
 ## `v-for`
 
-### `v-for` Argument Order for Arrays
+### `v-for` 数组参数的顺序
 
-When including an `index`, the argument order for arrays used to be `(index, value)`. It is now `(value, index)` to be more consistent with JavaScript's native array methods such as `forEach` and `map`.
+当含有 `index` 时，以前传递的参数顺序是：`(index, value)`。现在变成了：`(value, index)` ，这样可以与js的新数组方法：`forEach`，`map` 保持一致。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the deprecated argument order. Note that if you name your index arguments something unusual like <code>position</code> or <code>num</code>, the helper will not flag them.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 来找到使用弃用参数顺序的实例。注意，该工具将不会标记以 <code>position</code> 或者 <code>num</code> 来命名 index 参数。</p>
 </div>
 {% endraw %}
 
-### `v-for` Argument Order for Objects
+### `v-for` 对象参数的顺序
 
-When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consistent with common object iterators such as lodash's.
+当包含 `key` 时，对象的参数顺序是 `(key, value)`。现在改为了 `(value, key)`，这样可以和通用的对象迭代器（比如 lodash 的迭代器）保持一致。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the deprecated argument order. Note that if you name your key arguments something like <code>name</code> or <code>property</code>, the helper will not flag them.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 来找到使用弃用参数顺序的实例。注意，该工具将不会标记以 </p><code>name</code> 或者 <code>property</code> 来命名 key 参数。</p>
 </div>
 {% endraw %}
 
 ### `$index` and `$key` <sup>deprecated</sup>
 
-The implicitly assigned `$index` and `$key` variables have been deprecated in favor of explicitly defining them in `v-for`. This makes the code easier to read for developers less experienced with Vue and also results in much clearer behavior when dealing with nested loops.
-
+隐式申明的 `$index` 的 `$key` 两个变量在新版里面已经弃用了，取代的是在 `v-for` 中显式地申明。这可以使无经验的 Vue 开发者更好地理解代码，同样也可以使得在处理嵌套循环时更加清晰。
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of these deprecated variables. If you miss any, you should also see <strong>console errors</strong> such as: <code>Uncaught ReferenceError: $index is not defined</code></p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 来找到使用弃用变量的实例。如果有些没有找到，也可以参考<strong>控制台警告信息</strong> 比如 <code>Uncaught ReferenceError: $index is not defined</code></p>
 </div>
 {% endraw %}
 
-### `track-by` <sup>deprecated</sup>
+### `track-by` <sup>弃用</sup>
 
-`track-by` has been replaced with `key`, which works like any other attribute: without the `v-bind:` or `:` prefix, it is treated as a literal string. In most cases, you'd want to use a dynamic binding which expects a full expression instead of a key. For example, in place of:
+`track-by` 被 `key`取代，和其他参数一样，如果没有 `v-bind`或者`:` 前缀，它将被作为一个字符串。大多数情况下， 我们想要能够动态绑定完整的表达式，而不是一个 key。例如：
 
 ``` html
 <div v-for="item in items" track-by="id">
 ```
 
-You would now write:
+现在应该写成：
 
 ``` html
 <div v-for="item in items" v-bind:key="item.id">
@@ -216,27 +215,27 @@ You would now write:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>track-by</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到含 <code>track-by</code>的实例。</p>
 </div>
 {% endraw %}
 
-### `v-for` Range Values
+### `v-for` 排序值
 
-Previously, `v-for="number in 10"` would have `number` starting at 0 and ending at 9. Now it starts at 1 and ends at 10.
+显然 `v-for="number in 10"` 将使得 `number` 从0到9迭代，现在变成了从1到10.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Search your codebase for the regex <code>/\w+ in \d+/</code>. Wherever it appears in a <code>v-for</code>, check to see if you may be affected.</p>
+  <h4>升级方式</h4>
+  <p>以正则 <code>/\w+ in \d+/</code>搜索整个代码，当出现在 <code>v-for</code>里面时，检查一下，对你是否有影响。</p>
 </div>
 {% endraw %}
 
 ## Props
 
-### `coerce` Prop Option <sup>deprecated</sup>
+### `coerce` Prop的参数 <sup>弃用</sup>
 
-If you want to coerce a prop, setup a local computed value based on it instead. For example, instead of:
+如果需要检查prop的值，创建一个内部的computed值，而不再在props内部去定义，例如：
 
 ``` js
 props: {
@@ -251,7 +250,7 @@ props: {
 }
 ```
 
-You could write:
+现在应该写为：
 
 ``` js
 props: {
@@ -266,95 +265,96 @@ computed: {
 }
 ```
 
-There are a few advantages:
+这样有一些好处：
 
-- You still have access to the original value of the prop.
-- You are forced to be more explicit, by giving your coerced value a name that differentiates it from the value passed in the prop.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>coerce</code> option.</p>
-</div>
-{% endraw %}
-
-### `twoWay` Prop Option <sup>deprecated</sup>
-
-Props are now always one-way down. To produce side effects in the parent scope, a component needs to explicitly emit an event instead of relying on implicit binding. For more information, see:
-
-- [Custom component events](components.html#Custom-Events)
-- [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state managment](state-management.html)
+- 你可以对保持原始 prop 值的操作权限。
+- 通过给予验证后的值一个不同的命名，强制开发者使用显式申明。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>twoWay</code> option.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找出包含 <code>coerce</code> 选项的实例。</p>
 </div>
 {% endraw %}
 
-### `v-bind` with `.once` and `.sync` Modifiers <sup>deprecated</sup>
+### `twoWay` Prop 的参数 <sup>弃用</sup>
 
-Props are now always one-way down. To produce side effects in the parent scope, a component needs to explicitly emit an event instead of relying on implicit binding. For more information, see:
+Props现在只能单项传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
-- [Custom component events](components.html#Custom-Events)
-- [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state managment](state-management.html)
+- [自定义组件事件](components.html#Custom-Events)
+- [自定义输入组件](components.html#Form-Input-Components-using-Custom-Events) (using component events)
+- [全局状态管理](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>.once</code> and <code>.sync</code> modifiers.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>工具，找出含有 <code>twoWay</code> 参数的实例。</p>
 </div>
 {% endraw %}
 
-### Prop Mutation <sup>deprecated</sup>
+### `v-bind` 的 `.once`和`.sync` 修饰符 <sup>弃用</sup>
 
-Mutating a prop locally is now considered an anti-pattern, e.g. declaring a prop and then setting `this.myProp = 'someOtherValue'` in the component. Due to the new rendering mechanism, whenever the parent component re-renders, the child component's local changes will be overwritten.
+Props现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
-Most use cases of mutating a prop can be replaced by one of these options:
-
-- a data property, with the prop used to set its default value
-- a computed property
+- [自定义组件事件](components.html#Custom-Events)
+- [自定义输入组件](components.html#Form-Input-Components-using-Custom-Events) (使用组件事件)
+- [全局状态管理](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about prop mutations.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到使用 <code>.once</code> 和 <code>.sync</code> 修饰符的实例。</p>
 </div>
 {% endraw %}
 
-### Props on a Root Instance <sup>deprecated</sup>
+### 修改 Props <sup>deprecated</sup>
 
-On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must use `propsData` instead instead of `props`.
+组件内修改prop是反模式（不推荐的）的。比如，先申明一个prop，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变prop的值。根据渲染机制，当父组件重新渲染时，子组件的内部prop
+值也将被覆盖。
+
+大多数情况下，改变prop值可以用以下选项代替：
+
+- 通过 data 属性，用prop去设置一个data属性的默认值。//todu
+- 通过 computed 属性。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that props passed to root instances are no longer working.</p>
+  <h4>升级方式</h4>
+  <p>运行端对端测试，查看关于 prop 修改的<strong>控制台警告信息</strong>。</p>
 </div>
 {% endraw %}
 
-## Built-In Directives
+### 根实例的 Props <sup>弃用</sup>
 
-### Truthiness/Falsiness with `v-bind`
-
-When used with `v-bind`, the only falsy values are now: `null`, `undefined`, and `false`. This means `0` and empty strings will render as truthy. So for example, `v-bind:draggable="''"` will render as `draggable="true"`.
-
-For enumerated attributes, in addition to the falsy values above, the string `"false"` will also render as `attr="false"`.
-
-<p class="tip">Note that for other directives (e.g. `v-if` and `v-show`), JavaScript's normal truthiness still applies.</p>
+对于一个根实例来说 (比如：用 `new Vue({ ... })` 创建的实例)，只能用 `propsData` 而不是 `props`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>升级方式</h4>
+  <p>运行端对端测试，将会弹出 <strong>failed tests</strong> 来通知你使用 `props` 的根实例已经失效。</p>
 </div>
 {% endraw %}
 
-### Listening for Native Events on Components with `v-on`
+## Built-In 指令
 
-When used on a component, `v-on` now only listens to custom events `$emit`ted by that component. To listen for a native DOM event on the root element, you can use the `.native` modifier. For example:
+### `v-bind` 真/假值
+
+在2.0中使用 `v-bind` 时, 只有 `null`, `undefined`, 和 `false`被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
+
+对于枚举属性，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
+
+<p class="tip">注意，对于其它钩子 (如 `v-if` 和 `v-show`)， 他们依然遵循 js 对真假值判断的一般规则。</p>
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行端到端测试，如果你app的任何部分有可能被这个升级影响到，将会弹出<strong>failed tests</strong></p>
+</div>
+{% endraw %}
+
+### 用 `v-on` 监听原生事件
+  
+  现在在组件上使用 `v-on` 只会监听自定义事件（组件用 `$emit` 触发的事件）。如果要监听根元素的原生事件，可以使用 `.native` 修饰符，比如：
 
 ``` html
 <my-component v-on:click.native="doSomething"></my-component>
@@ -362,16 +362,16 @@ When used on a component, `v-on` now only listens to custom events `$emit`ted by
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>升级方式</h4>
+  <p>运行端对端测试，如果你app的任何部分有可能被这个升级影响到，将会弹出<strong>failed tests</strong> </p>
 </div>
 {% endraw %}
 
-### `v-model` with `debounce` <sup>deprecated</sup>
+### 带有 `debounce` 的 `v-model`<sup>弃用</sup>
 
-Debouncing is used to limit how often we execute Ajax requests and other expensive operations. Vue's `debounce` attribute parameter for `v-model` made this easy for very simple cases, but it actually debounced __state updates__ rather than the expensive operations themselves. It's a subtle difference, but it comes with limitations as an application grows.
+Debouncing 曾经被用来控制 Ajax 请求及其它高耗任务的频率。 Vue 中`v-model`的 `debounce` 属性参数使得在一些简单情况下非常容易实现这种控制。但实际上，这是控制了 __状态更新__ 的频率，而不是控制高耗时任务本身。这是个微小的差别，但是会随着应用增长而显现出局限性。
 
-These limitations become apparent when designing a search indicator, like this one for example:
+例如在设计一个搜索提示时的局限性：
 
 {% raw %}
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
@@ -417,14 +417,13 @@ new Vue({
 </script>
 {% endraw %}
 
-Using the `debounce` attribute, there'd be no way to detect the "Typing" state, because we lose access to the input's real-time state. By decoupling the debounce function from Vue however, we're able to debounce only the operation we want to limit, removing the limits on features we can develop:
+使用 `debounce` 参数，便无法观察 "Typing" 的状态。因为无法对输入状态进行实时检测。然而，通过将 `debounce` 与 Vue 解耦，可以仅仅只延迟我们想要控制的操作，从而避开这些局限性：
 
 ``` html
 <!--
-By using the debounce function from lodash or another dedicated
-utility library, we know the specific debounce implementation we
-use will be best-in-class - and we can use it ANYWHERE. Not just
-in our template.
+通过使用lodash或者其它库的debounce函数，
+我们相信 debounce 实现是一流的，
+并且可以随处使用它，不仅仅是在模板中。
 -->
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
 <div id="debounce-search-demo">
@@ -459,7 +458,7 @@ new Vue({
     }
   },
   methods: {
-    // This is where the debounce actually belongs.
+    // 这是 debounce 实现的地方。
     expensiveOperation: _.debounce(function () {
       this.isCalculating = true
       setTimeout(function () {
@@ -471,25 +470,25 @@ new Vue({
 })
 ```
 
-Another advantage of this approach is there will be times when debouncing isn't quite the right wrapper function. For example, when hitting an API for search suggestions, waiting to offer suggestions until after the user has stopped typing for a period of time isn't an ideal experience. What you probably want instead is a __throttling__ function. Now since you're already using a utility library like lodash, refactoring to use its `throttle` function instead takes only a few seconds.
+这种方式的另外一个优点是：当包裹函数执行时间与延时时间相当时，将会等待较长时间。比如，当给出搜索建议时，要等待用户输入停止一段时间后才给出建议，这个体验非常差。其实，这时候更适合用__throttling__函数。因为现在你可以自由的使用类似lodash之类的库，所以很快就可以用throttling重构项目。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>debounce</code> attribute.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找出石勇 <code>debounce</code> 参数的 实例。</p>
 </div>
 {% endraw %}
 
-### `v-model` with `lazy` or `number` Param Attributes <sup>deprecated</sup>
+### 使用 `lazy` 或者 `number` 参数的 `v-model` 。 <sup>弃用</sup>
 
-The `lazy` and `number` param attributes are now modifiers, to make it more clear what That means instead of:
+`lazy` 和 `number` 参数现在以修饰符的形式使用，这样看起来更加清晰，而不是这样：
 
 ``` html
 <input v-model="name" lazy>
 <input v-model="age" type="number" number>
 ```
 
-You would use:
+现在写成这样：
 
 ``` html
 <input v-model.lazy="name">
@@ -498,22 +497,22 @@ You would use:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the these deprecated param attributes.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>工具找到这些弃用参数。</p>
 </div>
 {% endraw %}
 
-### `v-model` with Inline `value` <sup>deprecated</sup>
+###使用内联 `value`的`v-model`  <sup>弃用</sup>
 
-`v-model` no longer cares about the initial value of an inline `value` attribute. For predictability, it will instead always treat the Vue instance data as the source of truth.
+`v-model` 不再以内联 `value` 方式初始化的初值了，显然他将以实例的data相应的属性作为真正的初值。
 
-That means this element:
+这意味着以下元素：
 
 ``` html
 <input v-model="text" value="foo">
 ```
 
-backed by this data:
+在data选项中有下面写法的：
 
 ``` js
 data: {
@@ -521,7 +520,7 @@ data: {
 }
 ```
 
-will render with a value of "bar" instead of "foo". The same goes for a `<textarea>` with existing content. Instead of:
+将渲染model为 'bar' 而不是 'foo'。同样，对 `<textarea>` 已有的值来说：
 
 ``` html
 <textarea v-model="text">
@@ -529,24 +528,24 @@ will render with a value of "bar" instead of "foo". The same goes for a `<textar
 </textarea>
 ```
 
-You should ensure your initial value for `text` is "hello world".
+必须保证 `text` 初值为 "hello world"
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about inline value attributes with <code>v-model</code>.</p>
+  <h4>升级方式</h4>
+  <p>升级后运行端对端测试，注意关于<code>v-model</code>内联参数的 <strong>console warnings</strong></p>
 </div>
 {% endraw %}
 
 ### `v-model` with `v-for` Iterated Primitive Values <sup>deprecated</sup>
 
-Cases like this no longer work:
+像这样的写法将失效：
 
 ``` html
 <input v-for="str in strings" v-model="str">
 ```
 
-The reason is this is the equivalent JavaScript that the `<input>` would compile to:
+因为 `<input>` 将被便宜成类似下面的js代码：
 
 ``` js
 strings.map(function (str) {
@@ -554,9 +553,9 @@ strings.map(function (str) {
 })
 ```
 
-As you can see, `v-model`'s two-way binding doesn't make sense here. Setting `str` to another value in the iterator function will do nothing because it's just a local variable in the function scope.
+这样，`v-model` 的双向绑定在这里就失效了。把 `str` 赋值给迭代器里的另一个值也没有用，因为它仅仅是函数内部的一个变量。
 
-Instead, you should use an array of __objects__ so that `v-model` can update the field on the object. For example:
+替代方案是，你可以使用对象数组，这样`v-model` 就可以同步更新对象里面的字段了，例如：
 
 ``` html
 <input v-for="obj in objects" v-model="obj.str">
@@ -564,20 +563,20 @@ Instead, you should use an array of __objects__ so that `v-model` can update the
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>升级方式</h4>
+  <p>运行测试，如果你的 app 有地方被这个更新影响到的话将会弹出<strong>failed tests</strong>提示。</p>
 </div>
 {% endraw %}
 
-### `v-bind:style` with Object Syntax and `!important` <sup>deprecated</sup>
+### 带有 `!important` 的`v-bind:style`  <sup>弃用</sup>
 
-This will no longer work:
+这样写将失效：
 
 ``` html
 <p v-bind:style="{ color: myColor + ' !important' }">hello</p>
 ```
 
-If you really need to override another `!important`, you must use the string syntax:
+如果确实需要覆盖其它的 `!important`，最好用字符串形式去写：
 
 ``` html
 <p v-bind:style="'color: ' + myColor + ' !important'">hello</p>
@@ -585,30 +584,29 @@ If you really need to override another `!important`, you must use the string syn
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of style bindings with <code>!important</code> in objects.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper"> 迁移帮助工具。</a>找到含有 <code>!important</code> 的style绑定对象。</p>
 </div>
 {% endraw %}
 
-### `v-el` and `v-ref` <sup>deprecated</sup>
+### `v-el` 和`v-ref` <sup>弃用</sup>
 
-For simplicity, `v-el` and `v-ref` have been merged into the `ref` attribute, accessible on a component instance via `$refs`. That means `v-el:my-element` would become `ref="myElement"` and `v-ref:my-component` would become `ref="myComponent"`. When used on a normal element, the `ref` will be the DOM element, and when used on a component, the `ref` will be the component instance.
-
-Since `v-ref` is no longer a directive, but a special attribute, it can also be dynamically defined. This is especially useful in combination with `v-for`. For example:
+简单起见， `v-el` 和 `v-ref` 合并为一个 `ref` 属性了，可以在组件实例中通过 `$refs` 来调用。这意味着 `v-el:my-element` 将写成这样： `ref="myElement"`， `v-ref:my-component` 变成了这样： `ref="myComponent"`。绑定在一般元素上时，`ref` 指DOM元素，绑定在组件上时，`ref` 为一组件实例。
+因为 `v-ref` 不再是一个指令了而是一个特殊的属性，它也可以被动态定义了。这样在和`v-for` 结合的时候是很有用的：
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by given each item the same `ref`:
+以前 `v-el`/`v-ref` 和 `v-for` 一起使用将产生一个DOM数组或者组件数组，因为没法给每个元素一个特定名字。现在你还仍然可以这样做，给每个元素一个同样的`ref`：
 
 ``` html
 <p v-for="item in items" ref="items"></p>
 ```
 
-Unlike in 1.x, these `$refs` are not reactive, because they're registered/updated during the render process itself. Making them reactive would require duplicate renders for every change.
+和 1.x 中不同， `$refs` 不是响应的,因为它们在渲染过程中注册/更新。只有监听变化并重复渲染才能使它们响应。 because they're registered/updated during the render process itself. Making them reactive would require duplicate renders for every change.
 
-On the other hand, `$refs` are designed primarily for programmatic access in JavaScript - it is not recommended to rely on them in templates, because that would mean referring to state that does not belong to the instance itself. This would violate Vue's data-driven view model.
+另一方面，设计`$refs`主要是提供给 js 程序访问的，并不建议在模板中过度依赖使用它。因为这意味着在实例之外去访问实例状态，违背了 Vue 数据驱动的思想。
 
 {% raw %}
 <div class="upgrade-path">
@@ -617,16 +615,16 @@ On the other hand, `$refs` are designed primarily for programmatic access in Jav
 </div>
 {% endraw %}
 
-### `v-else` with `v-show` <sup>deprecated</sup>
+### `v-show`后面使用`v-else` <sup>弃用</sup>
 
-`v-else` no longer works with `v-show`. Use `v-if` with a negation expression instead. For example, instead of:
+`v-else` 不能再跟在 `v-show`后面使用。请在`v-if`的否定分支中使用`v-show`来代替。例如：
 
 ``` html
 <p v-if="foo">Foo</p>
 <p v-else v-show="bar">Not foo, but bar</p>
 ```
 
-You can use:
+现在应该写出这样：
 
 ``` html
 <p v-if="foo">Foo</p>
@@ -635,91 +633,91 @@ You can use:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-else</code> with <code>v-show</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找出实例中存在的 <code>v-else</code> 以及 <code>v-show</code>。</p>
 </div>
 {% endraw %}
 
-## Custom Directives
+## 自定义指令
 
-Directives have a greatly reduced scope of responsibility: they are now only used for applying low-level direct DOM manipulations. In most cases, you should prefer using components as the main code-reuse abstraction.
+在新版中，指令的使用范围已经大大减小了：现在指令仅仅被用于低级的 DOM 操作。大多数情况下，最好是把模板作为代码复用的抽象层。
 
-Some of the most notable differences include:
+显要的改变有如下几点：
 
-- Directives no longer have instances. This means there's no more `this` inside directive hooks. Instead, they receive everything they might need as arguments. If you really must persist state across hooks, you can do so on `el`.
-- Options such as `acceptStatement`, `deep`, `priority`, etc are all deprecated.
-- Some of the current hooks have different behavior and there are also a couple new hooks.
+- 指令不在拥有实例。意思是，在指令的钩子函数中不再拥有实例的`this`。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过`el`来访问实例。
+- 类似 `acceptStatement`， `deep`， `priority`等都已被弃用。
+- 现在有些钩子的意义和以前不一样了，并且多了两个钩子函数。
 
-Fortunately, since the new directives are much simpler, you can master them more easily. Read the new [Custom Directives guide](custom-directive.html) to learn more.
+幸运的是，新钩子更加简单，更加容易掌握。详见 [Custom Directives guide](custom-directive.html)。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of defined directives. The helper will flag all of them, as it's likely in most cases that you'll want to refactor to a component.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到定义指令的地方。在helper 工具会把这些地方标记出来，因为很有可能这些地方需要重构。</p>
 </div>
 {% endraw %}
 
-## Transitions
+## 过渡
 
-### `transition` Attribute <sup>deprecated</sup>
+### `transition` 参数 <sup>弃用</sup>
 
-Vue's transition system has changed quite drastically and now uses `<transition>` and `<transition-group>` wrapper elements, rather than the `transition` attribute. It's recommended to read the new [Transitions guide](transitions.html) to learn more.
+Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和 `<transition-group>` 来包裹元素实现过渡效果，而不再使用 `transition` 属性。详见 [Transitions guide](transitions.html)。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到使用 <code>transition</code> 属性的地方。</p>
 </div>
 {% endraw %}
 
-### `Vue.transition` for Reusable Transitions <sup>deprecated</sup>
+### 可复用的过渡 `Vue.transition` <sup>弃用</sup>
 
-With the new transition system, you can now just [use components for reusable transitions](http://rc.vuejs.org/guide/transitions.html#Reusable-Transitions).
+在新的过渡系统中，可以[通过模板复用过渡效果](http://rc.vuejs.org/guide/transitions.html#Reusable-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.transition</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到使用 <code>transition</code> 属性的地方。</p>
 </div>
 {% endraw %}
 
-### Transition `stagger` Attribute <sup>deprecated</sup>
+### 过渡的 `stagger` 参数 <sup>deprecated</sup>
 
-If you need to stagger list transitions, you can control timing by setting and accessing a `data-index` (or similar attribute) on an element. See [an example here](transitions.html#Staggering-List-Transitions).
+如果希望在列表渲染中使用渐近过渡，可以通过设置元素的`data-index` （或类似属性）来控制时间。 请参考[这个例子](transitions.html#Staggering-List-Transitions)。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute. During your update, you can transition (pun very much intended) to the new staggering strategy as well.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到使用 <code>transition</code> 属性的地方。升级期间，你可以“过渡”到新的过渡策略。</p>
 </div>
 {% endraw %}
 
 ## Events
 
-### `Vue.directive('on').keyCodes` <sup>deprecated</sup>
+### `Vue.directive('on').keyCodes` <sup>弃用</sup>
 
-The new, more concise way to configure `keyCodes` is through`Vue.config.keyCodes`. For example:
+新的简明配置 `keyCodes` 的方式是通过 `Vue.config.keyCodes`例如：
 
 ``` js
-// enable v-on:keyup.f1
+// v-on:keyup.f1 不可用
 Vue.config.keyCodes.f1 = 112
 ```
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the the old <code>keyCode</code> configuration syntax.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到过时的<code>keyCode</code>配置</p>
 </div>
 {% endraw %}
 
-### `$dispatch` and `$broadcast` <sup>deprecated</sup>
+### `$dispatch` 和 `$broadcast` <sup>弃用</sup>
 
-`$dispatch` and `$broadcast` are being deprecated in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
+`$dispatch` 和 `$broadcast` 已经被弃用。请使用更多简明清晰的组件间通信和更好的状态管理方案，如：[Vuex](https://github.com/vuejs/vuex).
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It simply doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+因为基于组件树结构的事件流方式实在是让人难以理解，并且在组件结构扩展的过程中会变得越来越脆弱。这种事件方式确实不太好，我们也不希望在以后让开发者们太痛苦。并且`$dispatch` 和 `$broadcast` 也没有解决兄弟组件间的通信问题。
 
-For the simplest possible upgrade from `$dispatch` and `$broadcast`, you can use a centralized event hub that allows components to communicate no matter where they are in the component tree. Because Vue instances implement an event emitter interface, you can actually use an empty Vue instance for this purpose.
+对于`$dispatch` 和 `$broadcast`最简单的升级方式就是：通过使用事件中心，允许组件自由交流，无论组件处于组件树的哪一层。由于Vue 实例实现了一个事件分发接口，你可以通过实例化一个空的Vue实例来实现这个目的。
 
-For example, let's say we have a todo app structured like this:
+比如，假设我们有个 todo 的应用结构如下：
 
 ```
 Todos
@@ -728,15 +726,15 @@ Todos
     |-- DeleteTodoButton
 ```
 
-We could manage communication between components with this single event hub:
+可以通过单独的事件中心管理组件间的通信：
 
 ``` js
-// This is the event hub we'll use in every
-// component to communicate between them.
+// 将在各处使用该事件中心
+// 组件通过它来通信
 var eventHub = new Vue()
 ```
 
-Then in our components, we can use `$emit`, `$on`, `$off` to emit events, listen for events, and clean up event listeners, respectively:
+然后再组件中，可以使用 `$emit`, `$on`, `$off` 分别来分发、监听、取消监听事件：
 
 ``` js
 // NewTodoInput
@@ -766,8 +764,8 @@ created: function () {
   eventHub.$on('add-todo', this.addTodo)
   eventHub.$on('delete-todo', this.deleteTodo)
 },
-// It's good to clean up event listeners before
-// a component is destroyed.
+// 最好在组件销毁前
+// 清除事件监听
 beforeDestroy: function () {
   eventHub.$off('add-todo', this.addTodo)
   eventHub.$off('delete-todo', this.deleteTodo)
@@ -784,26 +782,26 @@ methods: {
 }
 ```
 
-This pattern can serve as a replacement for `$dispatch` and `$broadcast` in simple scenarios, but for more complex cases, it's recommended to use a dedicated state management layer such as [Vuex](https://github.com/vuejs/vuex).
+在简单的情况下这样做可以代替 `$dispatch` 和 `$broadcast`，但是对于大多数复杂情况，更推荐使用一个专用的状态管理层如：[Vuex](https://github.com/vuejs/vuex).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>$dispatch</code> and <code>$broadcast</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找出使用 <code>$dispatch</code> 和 <code>$broadcast</code>的实例。</p>
 </div>
 {% endraw %}
 
-## Filters
+## 过滤器
 
-### Filters Outside Text Interpolations <sup>deprecated</sup>
+### 插入文本之外的过滤器 <sup>弃用</sup>
 
-Filters can now only be used inside text interpolations (`{% raw %}{{ }}{% endraw %}` tags). In the past we've found using filters within directives such as `v-model`, `v-on`, etc led to more complexity than convenience. For list filtering on `v-for`, it's also better to move that logic into JavaScript as computed properties, so that it can be reused throughout your component.
+现在过滤器只能用在插入文本中 (`{% raw %}{{ }}{% endraw %}` tags)。我们发现在指令（如：`v-model`， `v-on`等）中使用过滤器使事情变得更复杂。像`v-for` 这样的列表过滤器最好把处理逻辑作为一个计算属性放在js里面，这样就可以在整个模板中复用。
 
-In general, whenever something can be achieved in plain JavaScript, we want to avoid introducing a special syntax like filters to take care of the same concern. Here's how you can replace Vue's built-in directive filters:
+总之，能在原生js中实现的东西，我们尽量避免引入一个新的符号去重复处理同样的问题。下面是如何替换 Vue 内置过滤器：
 
-#### Replacing the `debounce` Filter
+#### 替换 `debounce` 过滤器
 
-Instead of:
+不再这样写
 
 ``` html
 <input v-on:keyup="doStuff | debounce 500">
@@ -817,7 +815,7 @@ methods: {
 }
 ```
 
-Use [lodash's `debounce`](https://lodash.com/docs/4.15.0#debounce) (or possibly [`throttle`](https://lodash.com/docs/4.15.0#throttle)) to directly limit calling the expensive method. You can achieve the same as above like this:
+请使用 [lodash's `debounce`](https://lodash.com/docs/4.15.0#debounce) (也有可能是 [`throttle`](https://lodash.com/docs/4.15.0#throttle)) 来直接控制高耗任务。可以这样来实现上面的功能：
 
 ``` html
 <input v-on:keyup="doStuff">
@@ -831,17 +829,17 @@ methods: {
 }
 ```
 
-For more on the advantages of this strategy, see [the example here with `v-model`](#v-model-with-debounce-deprecated).
+这种写法的更多优点详见： [the example here with `v-model`](#v-model-with-debounce-deprecated).
 
-#### Replacing the `limitBy` Filter
+#### 替换 `limitBy` 过滤器
 
-Instead of:
+不再这样写：
 
 ``` html
 <p v-for="item in items | limitBy 10">{{ item }}</p>
 ```
 
-Use JavaScript's built-in [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples) in a computed property:
+在 computed 属性中使用js内置方法： [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples)：
 
 ``` html
 <p v-for="item in filteredItems">{{ item }}</p>
@@ -855,15 +853,15 @@ computed: {
 }
 ```
 
-#### Replacing the `filterBy` Filter
+#### 替换 `filterBy` 过滤器
 
-Instead of:
+不再这样写：
 
 ``` html
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
 ```
 
-Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples) in a computed property:
+在 computed 属性中使用js内置方法 [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples)：
 
 ``` html
 <p v-for="user in filteredUsers">{{ user.name }}</p>
@@ -879,7 +877,7 @@ computed: {
 }
 ```
 
-JavaScript's native `.filter` can also manage much more complex filtering operations, because you have access to the full power of JavaScript within computed properties. For example, if you wanted to find all active users and case-insensitively match against both their name and email:
+js原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有js方法。比如，想要通过匹配用户名字和电子邮箱地址（不区分大小写）找到用户：
 
 ``` js
 this.users.filter(function (user) {
@@ -891,15 +889,15 @@ this.users.filter(function (user) {
 })
 ```
 
-#### Replacing the `orderBy` Filter
+#### 替换 `orderBy` 过滤器
 
-Instead of:
+不这样写：
 
 ``` html
 <p v-for="user in users | orderBy 'name'">{{ user.name }}</p>
 ```
 
-Use [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (or possibly [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) in a computed property:
+而是在 computed 属性中使用 [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (or possibly [`sortBy`](https://lodash.com/docs/4.15.0#sortBy))：
 
 ``` html
 <p v-for="user in orderedUsers">{{ user.name }}</p>
@@ -913,7 +911,7 @@ computed: {
 }
 ```
 
-You can even order by multiple columns:
+甚至可以字段排序：
 
 ``` js
 _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
@@ -921,20 +919,20 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters being used inside directives. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到指令中使用的过滤器。如果有些没找到，看看<strong>控制台错误信息</strong>.</p>
 </div>
 {% endraw %}
 
-### Filter Argument Syntax
+### 过滤器参数符号
 
-Filters' syntax for arguments now better aligns with JavaScript function invocation. So instead of taking space-delimited arguments:
+现在过滤器参数形式可以更好地与js函数调用方式一致，因此不用再用空格分隔参数：
 
 ``` html
 <p>{{ date | formatDate 'YY-MM-DD' timeZone }}</p>
 ```
 
-We surround the arguments with parentheses and delimit the arguments with commas:
+现在用圆括号括起来并用逗号分隔：
 
 ``` html
 <p>{{ date | formatDate('YY-MM-DD', timeZone) }}</p>
@@ -942,42 +940,42 @@ We surround the arguments with parentheses and delimit the arguments with commas
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the old filter syntax. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到老式的调用符号，如果有遗漏，请看<strong>控制台错误信息</strong>.</p>
 </div>
 {% endraw %}
 
-### Built-In Text Filters <sup>deprecated</sup>
+### 内置文本过滤器 <sup>弃用</sup>
 
-Although filters within text interpolations are still allowed, all of the filters have been removed. Instead, it's recommended to use more specialized libraries for solving problems in each domain (e.g. [`date-fns`](https://date-fns.org/) to format dates and [`accounting`](http://openexchangerates.github.io/accounting.js/) for currencies).
+尽管插入文本内部的过滤器依然有效，但是所有内置过滤器已经移除了。取代的是，推荐在每个区域使用更专业的库来解决。(比如用 [`date-fns`](https://date-fns.org/) 来格式化日期，用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 来格式化货币).
 
-For each of Vue's built-in text filters, we go through how you can replace them below. The example code could exist in custom helper functions, methods, or computed properties.
+对于每个内置过滤器，我们大概总结了下该怎么替换。代码示例可能写在自定义 helper 函数，方法或计算属性中。
 
-#### Replacing the `json` Filter
+#### 替换 `json` 过滤器
 
-You actually don't need to for debugging anymore, as Vue will nicely format output for you automatically, whether it's a string, number, array, or plain object. If you want the exact same functionality as JavaScript's `JSON.stringify` though, then you can use that in a method or computed property.
+不用一个个改，因为Vue已经帮你自动格式化好了，无论是字符串，数字还是数组，对象。如果想用js的 `JSON.stringify` 功能去实现，你也可以把它写在方法或者计算属性里面。
 
-#### Replacing the `capitalize` Filter
+#### 替换 `capitalize` 过滤器
 
 ``` js
 text[0].toUpperCase() + text.slice(1)
 ```
 
-#### Replacing the `uppercase` Filter
+#### 替换 `uppercase` 过滤器
 
 ``` js
 text.toUpperCase()
 ```
 
-#### Replacing the `lowercase` Filter
+#### 替换 `lowercase` 过滤器
 
 ``` js
 text.toLowerCase()
 ```
 
-#### Replacing the `pluralize` Filter
+#### 替换 `pluralize` 过滤器
 
-The [pluralize](https://www.npmjs.com/package/pluralize) package on NPM serves this purpose nicely, but if you only want to pluralize a specific word or want to have special output for cases like `0`, then you can also easily define your own pluralize functions. For example:
+NPM 上的 [pluralize](https://www.npmjs.com/package/pluralize) 库可以很好的实现这个功能。如果仅仅想将特定的词格式化成复数形式或者想给特定的值（'0'）指定特定的输出，也可以很容易地自定义复数格式化过滤器：
 
 ``` js
 function pluralizeKnife (count) {
@@ -993,50 +991,50 @@ function pluralizeKnife (count) {
 
 #### Replacing the `currency` Filter
 
-For a very naive implementation, you could just do something like this:
+对于简单的问题,可以这样做：
 
 ``` js
 '$' + price.toFixed(2)
 ```
 
-In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixed(2)` rounds up to `0.4`, but `0.045` rounds down to `0.4`). To work around these issues, you can use the [`accounting`](http://openexchangerates.github.io/accounting.js/) library to more reliably format currencies.
+大多数情况下，仍然会有奇怪的现象(比如 `0.035.toFixed(2)` 向上舍入得到 `0.4`,但是 `0.045` 向下舍入却也得到 `0.4`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多货币格式化。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the deprecated text filters. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到舍弃的过滤器。如果有些遗漏，请参考<strong>控制台错误信息</strong>.</p>
 </div>
 {% endraw %}
 
 ## Slots
 
-### Duplicate Slots <sup>deprecated</sup>
+### 重名的 Slots <sup>弃用</sup>
 
-It is no longer supported to have `<slot>`s with the same name in the same template. When a slot is rendered it is "used up" and cannot be rendered elsewhere in the same render tree. If you must render the same content in multiple places, pass that content as a prop.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about duplicate slots <code>v-model</code>.</p>
-</div>
-{% endraw %}
-
-### `slot` Attribute Styling <sup>deprecated</sup>
-
-Content inserted via named `<slot>` no longer preserves the `slot` attribute. Use a wrapper element to style them, or for advanced use cases, modify the inserted content programmatically using [render functions](render-function.html).
+同一模板中的重名 `<slot>` 已经弃用。当一个 slot 已经被渲染过了，那么就不能在同一模板其它地方被再次渲染了。如果要在不同位置渲染同一内容，可一用prop来传递。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find CSS selectors targeting named slots (e.g. <code>[slot="my-slot-name"]</code>).</p>
+  <h4>升级方式</h4>
+  <p>更新后运行测试，查看 <strong>控制台警告信息</strong> 关于重名slots的提示 <code>v-model</code>。</p>
 </div>
 {% endraw %}
 
-## Special Attributes
+### `slot` 样式参数 <sup>deprecated</sup>
 
-### `keep-alive` Attribute <sup>deprecated</sup>
+通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容 ：[render functions](render-function.html).
 
-`keep-alive` is no longer a special attribute, but rather a wrapper component, similar to `<transition>`. For example:
+{% raw %}
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到选择slots标签CSS选择器(例如： <code>[slot="my-slot-name"]</code>).</p>
+</div>
+{% endraw %}
+
+## 特殊属性
+
+### `keep-alive` 属性 <sup>deprecated</sup>
+
+`keep-alive` 不再是一个特殊属性而是一个包裹组件，类似于  `<transition>`比如：
 
 ``` html
 <keep-alive>
@@ -1044,7 +1042,7 @@ Content inserted via named `<slot>` no longer preserves the `slot` attribute. Us
 </keep-alive>
 ```
 
-This makes it possible to use `<keep-alive>` on multiple conditional children:
+这样可以在含多种状态子组件中使用 `<keep-alive>` ：
 
 ``` html
 <keep-alive>
@@ -1053,9 +1051,9 @@ This makes it possible to use `<keep-alive>` on multiple conditional children:
 </keep-alive>
 ```
 
-<p class="tip">When `<keep-alive>` has multiple children, they should eventually evaluate to a single child. Any child other than the first one will simply be ignored.</p>
+<p class="tip">当 `<keep-alive>`含有不同子组件时，应该分别影响到每一个子组件。不仅是第一个而是所有的子组件都将被忽略。</p>
 
-When used together with `<transition>`, make sure to nest it inside:
+和 `<transition>`一起使用时，确保把内容包裹在内：
 
 ``` html
 <transition>
@@ -1067,28 +1065,28 @@ When used together with `<transition>`, make sure to nest it inside:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find <code>keep-alive</code> attributes.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到<code>keep-alive</code> 属性。</p>
 </div>
 {% endraw %}
 
-## Interpolation
+## 计算插值//todaymark
 
-### Interpolation within Attributes <sup>deprecated</sup>
+### 属性内部的计算插值 <sup>弃用</sup>
 
-Interpolation within attributes is no longer valid. For example:
+属性内部的计算插值已经不能再使用了：
 
 ``` html
 <button v-bind:class="btn btn-{{ size }}"></button>
 ```
 
-Should either be updated to use an inline expression:
+应该写成行内表达式：
 
 ``` html
 <button v-bind:class="'btn btn-' + size"></button>
 ```
 
-Or a data/computed property:
+或者计算属性：
 
 ``` html
 <button v-bind:class="buttonClasses"></button>
@@ -1104,86 +1102,86 @@ computed: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of interpolation used within attributes.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到属性内部的计算插值</p>
 </div>
 {% endraw %}
 
-### HTML Interpolation <sup>deprecated</sup>
+### HTML 计算插值 <sup>deprecated</sup>
 
-HTML interpolations (`{% raw %}{{{ foo }}}{% endraw %}`) have been deprecated in favor of the [`v-html` directive](/api/#v-html).
+HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代的是 [`v-html` 指令](/api/#v-html).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find HTML interpolations.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到 HTML 计算插值。</p>
 </div>
 {% endraw %}
 
-### One-Time Bindings <sup>deprecated</sup>
+### 单次绑定sup>弃用</sup>
 
-One time bindings (`{% raw %}{{* foo }}{% endraw %}`) have been deprecated in favor of the new [`v-once` directive](/api/#v-once).
+单次绑定 (`{% raw %}{{* foo }}{% endraw %}`) 已经弃用取代的是 [`v-once` directive](/api/#v-once).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find one-time bindings.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>工具找到单次绑定使用位置。</p>
 </div>
 {% endraw %}
 
-## Reactivity
+## 响应
 
 ### `vm.$watch`
 
-Watchers created via `vm.$watch` are now fired before the associated component rerenders. This gives you the chance to further update state before the component rerender, thus avoiding unnecessary updates. For example, you can watch a component prop and update the component's own data when the prop changes.
+通过 `vm.$watch`创建的观察器现在将在组件渲染时被激活。这样可以让你在组件渲染前更新状态，不用做不必要的更新。比如可以通过观察组件的prop变化来更新组件本身的值。
 
-If you were previously relying on `vm.$watch` to do something with the DOM after a component updates, you can instead do so in the `updated` lifecycle hook.
+如果以前通过 `vm.$watch` 在组件更新后与 DOM 交互，现在就可以通过`updated`生命周期钩子来做这些。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that a watcher was relying on the old behavior.</p>
+  <h4>升级方式</h4>
+  <p>运行测试，如果有依赖于老方法的观察器将弹出 <strong>failed tests</strong>。</p>
 </div>
 {% endraw %}
 
 ### `vm.$set`
 
-The former `vm.$set` behavior has been deprecated and it is now just an alias for [`Vue.set`](/api/#Vue-set).
+曾经的 `vm.$set` 方法已经弃用，现在这样写： [`Vue.set`](/api/#Vue-set).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the deprecated usage.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到过时的用法</p>
 </div>
 {% endraw %}
 
 ### `vm.$delete`
 
-The former `vm.$delete` behavior has been deprecated and it is now just an alias for [`Vue.delete`](/api/#Vue-delete)
+曾经的 `vm.$delete` 方法已经弃用，现在这样写： [`Vue.delete`](/api/#Vue-delete)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the deprecated usage.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到过时的用法</p>
 </div>
 {% endraw %}
 
-### `Array.prototype.$set`  <sup>deprecated</sup>
+### `Array.prototype.$set`  <sup>弃用</sup>
 
-use Vue.set instead
+用 Vue.set 代替
 
 (console error, migration helper)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>.$set</code> on an array. If you miss any, you should see <strong>console errors</strong> from the missing method.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到数组上的<code>.$set</code>。如有遗漏请参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
-### `Array.prototype.$remove` <sup>deprecated</sup>
+### `Array.prototype.$remove` <sup>弃用</sup>
 
-Use `Array.prototype.splice` instead. For example:
+用 `Array.prototype.splice` 代替，例如：
 
 ``` js
 methods: {
@@ -1194,7 +1192,7 @@ methods: {
 }
 ```
 
-Or better yet, just pass removal methods an index:
+或者更好的方法，直接给除去的方法一个index参数：
 
 ``` js
 methods: {
@@ -1206,49 +1204,49 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>.$remove</code> on an array. If you miss any, you should see <strong>console errors</strong> from the missing method.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到数组上的<code>.$remove</code>。如有遗漏请参考<strong>控制台错误信息</strong></p>
 </div>
 {% endraw %}
 
-### `Vue.set` and `Vue.delete` on Vue instances <sup>deprecated</sup>
+### Vue实例上的`Vue.set` 和 `Vue.delete`<sup>弃用</sup>
 
-Vue.set and Vue.delete can no longer work on Vue instances. It is now mandatory to properly declare all top-level reactive properties in the data option. If you'd like to delete properties on a Vue instance or its `$data`, just set it to null.
+Vue.set 和 Vue.delete在实例上将不再起作用。现在都强制在实例的data选项中声明所有顶级响应值。如果删除实例属性或实例`$data`上的某个值，直接将它设置为null即可。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.set</code> or <code>Vue.delete</code> on a Vue instance. If you miss any, they'll trigger <strong>console warnings</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到实例中的 <code>Vue.set</code> 或 <code>Vue.delete</code> 。如有遗漏请参考<strong>控制台错误信息</strong>.</p>
 </div>
 {% endraw %}
 
-### Replacing `vm.$data` <sup>deprecated</sup>
+### 替换 `vm.$data` <sup>弃用</sup>
 
-It is now prohibited to replace a component instance's root $data. This prevents some edge cases in the reactivity system and makes the component state more predictable (especially with type-checking systems).
+现在禁止替换实例的 $data。这样防止了响应系统的一些极端情况并且让组件状态更加可控可预测（特别是对于存在类型检查的系统）。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of overwriting <code>vm.$data</code>. If you miss any, <strong>console warnings</strong> will be emitted.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到覆盖 <code>vm.$data</code>的位置。如有遗漏请参考<strong>控制台警告信息</strong>。</p>
 </div>
 {% endraw %}
 
-### `vm.$get` <sup>deprecated</sup>
+### `vm.$get` <sup>弃用</sup>
 
-Just retrieve reactive data directly.
+可以直接取回响应数据。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$get</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>工具找到<code>vm.$get</code>。如有遗漏请参考 <strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
-## DOM-Focused Instance Methods
+## 围绕 DOM 的实例方法
 
-### `vm.$appendTo` <sup>deprecated</sup>
+### `vm.$appendTo` <sup>弃用</sup>
 
-Use the native DOM API:
+使用 DOM 原生方法:
 
 ``` js
 myElement.appendChild(vm.$el)
@@ -1256,14 +1254,14 @@ myElement.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$appendTo</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到 <code>vm.$appendTo</code>。如果有遗漏可以参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
-### `vm.$before` <sup>deprecated</sup>
+### `vm.$before` <sup>弃用</sup>
 
-Use the native DOM API:
+使用 DOM 原生方法：
 
 ``` js
 myElement.parentNode.insertBefore(vm.$el, myElement)
@@ -1271,20 +1269,20 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$before</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>工具找到 <code>vm.$before</code>。如有遗漏，请参考 <strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
 ### `vm.$after` <sup>deprecated</sup>
 
-Use the native DOM API:
+使用 DOM 原生方法：
 
 ``` js
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
 ```
 
-Or if `myElement` is the last child:
+如果 `myElement` 是最后一个节点也可以这样写：
 
 ``` js
 myElement.parentNode.appendChild(vm.$el)
@@ -1292,14 +1290,14 @@ myElement.parentNode.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$after</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到<code>vm.$after</code>。如有遗漏，请参考<strong>控制台错误信息</strong>.</p>
 </div>
 {% endraw %}
 
 ### `vm.$remove` <sup>deprecated</sup>
 
-Use the native DOM API:
+使用 DOM 原生方法：
 
 ``` js
 vm.$el.remove()
@@ -1307,16 +1305,16 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$remove</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>找到<code>vm.$remove</code>.。如有遗漏，请参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
-## Meta Instance Methods
+## 底层实例方法
 
-### `vm.$eval` <sup>deprecated</sup>
+### `vm.$eval` <sup>弃用</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](http://forum.vuejs.org/) for ideas.
+尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 [the forum](http://forum.vuejs.org/)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1325,33 +1323,33 @@ No real use. If you do happen to rely on this feature somehow and aren't sure ho
 </div>
 {% endraw %}
 
-### `vm.$interpolate` <sup>deprecated</sup>
+### `vm.$interpolate` <sup>弃用</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](http://forum.vuejs.org/) for ideas.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$interpolate</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
-</div>
-{% endraw %}
-
-### `vm.$log` <sup>deprecated</sup>
-
-Use the [Vue Devtools](https://github.com/vuejs/vue-devtools) for the optimal debugging experience.
+尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 [the forum](http://forum.vuejs.org/)。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$log</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到<code>vm.$interpolate</code>。如有遗漏请参考<strong>控制台错误信息</strong>.</p>
 </div>
 {% endraw %}
 
-## Instance DOM Options
+### `vm.$log` <sup>弃用</sup>
 
-### `replace: false` <sup>deprecated</sup>
+请使用 [Vue Devtools](https://github.com/vuejs/vue-devtools) 感受最佳debug体验。
 
-Components now always replace the element they're bound to. To simulate the behavior of `replace: false`, you can wrap your root component with an element similar to the one you're replacing. For example:
+{% raw %}
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到 <code>vm.$log</code>。如有遗漏请参考<strong>控制台错误信息</strong>.</p>
+</div>
+{% endraw %}
+
+## 实例 DOM 选项
+
+### `replace: false` <sup>弃用</sup>
+
+现在组件总是会替换掉他们被绑定的元素。为了模仿`replace: false`的行为，可以用一个和将要替换元素类似的元素将根组件包裹起来：
 
 ``` js
 new Vue({
@@ -1360,7 +1358,7 @@ new Vue({
 })
 ```
 
-Or with a render function:
+或者使用渲染函数：
 
 ``` js
 new Vue({
@@ -1377,21 +1375,21 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>replace: false</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到 <code>replace: false</code>使用的位置。</p>
 </div>
 {% endraw %}
 
-## Global Config
+## 全局配置
 
-### `Vue.config.debug` <sup>deprecated</sup>
+### `Vue.config.debug` <sup>弃用</sup>
 
-No longer necessary, since warnings come with stack traces by default now.
+不再需要，因为警告信息将默认在堆栈信息里输出。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.debug</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到包含<code>Vue.config.debug</code>的地方。</p>
 </div>
 {% endraw %}
 
@@ -1401,30 +1399,30 @@ Async is now required for rendering performance.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.async</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>工具找到使用<code>Vue.config.async</code>的实例。</p>
 </div>
 {% endraw %}
 
-### `Vue.config.delimiters` <sup>deprecated</sup>
+### `Vue.config.delimiters` <sup>弃用</sup>
 
-This has been reworked as a [component-level option](/api/#delimiters). This allows you to use alternative delimiters within your app without breaking 3rd-party components.
+以 [模板选项](/api/#delimiters)的方式使用。这样可以 可以在使用自定义分隔符时避免影响第三方模板。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.delimiters</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到使用<code>Vue.config.delimiters</code>的实例。</p>
 </div>
 {% endraw %}
 
-### `Vue.config.unsafeDelimiters` <sup>deprecated</sup>
+### `Vue.config.unsafeDelimiters` <sup>弃用</sup>
 
-HTML interpolation has been [deprecated in favor of `v-html`](#HTML-Interpolation-deprecated).
+HTML interpolation [替换为 `v-html`](#HTML-Interpolation-deprecated).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.unsafeDelimiters</code>. After this, the helper will also find instances of HTML interpolation so that you can replace them with `v-html`.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到 <code>Vue.config.unsafeDelimiters</code>。然后 helper 工具也会找到HTML插入的实例，可以用`v-HTML`来替换。</p>
 </div>
 {% endraw %}
 
@@ -1432,33 +1430,33 @@ HTML interpolation has been [deprecated in favor of `v-html`](#HTML-Interpolatio
 
 ### `Vue.extend` with `el` <sup>deprecated</sup>
 
-The el option can no longer be used in `Vue.extend`. It's only valid as an instance creation option.
+el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about the <code>el</code> option with <code>Vue.extend</code>.</p>
+  <h4>升级方式</h4>
+  <p>更新后运行测试在<strong>控制台警告信息</strong>中找到关于带有<code>Vue.extend</code>的<code>el</code>。</p>
 </div>
 {% endraw %}
 
-### `Vue.elementDirective` <sup>deprecated</sup>
+### `Vue.elementDirective` <sup>弃用</sup>
 
-Use components instead.
+用组件来代替
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.elementDirective</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到包含<code>Vue.elementDirective</code>的实例。</p>
 </div>
 {% endraw %}
 
-### `Vue.partial` <sup>deprecated</sup>
+### `Vue.partial` <sup>弃用</sup>
 
-Use [functional components](render-function.html#Functional-Components) instead.
+用 [functional components](render-function.html#Functional-Components) 来代替。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.partial</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到包含 <code>Vue.partial</code>的实例</p>
 </div>
 {% endraw %}
