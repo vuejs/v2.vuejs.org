@@ -1083,19 +1083,19 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Vue.delete](#Vue-delete)
 
-## Instance Methods / Events
+## 实例方法/事件
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{string} event`
   - `{Function} callback`
 
-- **Usage:**
+- **用法：**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  监听当前实例上的自定义事件。事件可以由vm.$emit触发。传入这些方法的附加参数都会传入这个方法的回调。
 
-- **Example:**
+- **示例：**
 
   ``` js
   vm.$on('test', function (msg) {
@@ -1107,94 +1107,94 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-once">vm.$once( event, callback )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{string} event`
   - `{Function} callback`
 
-- **Usage:**
+- **用法：**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  监听一个自定义事件，但是只触发一次，在第一次触发之后删除监听器。
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{string} [event]`
   - `{Function} [callback]`
 
-- **Usage:**
+- **用法：**
 
-  Remove event listener(s).
+  删除事件监听器。
 
-  - If no arguments are provided, remove all event listeners;
+  - 如果没有参数，则删除所有的事件监听器；
 
-  - If only the event is provided, remove all listeners for that event;
+  - 如果只提供了事件，则删除这个事件所有的监听器；
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - 如果同时提供了事件与回调，则只删除这个回调。
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{string} event`
   - `[...args]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  触发当前实例上的事件。附加参数都会传给监听器回调。
 
-## Instance Methods / Lifecycle
+## 实例方法 / 生命周期
 
 <h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **Returns:** `vm` - the instance itself
+- **返回值：** `vm` - 实例自身
 
-- **Usage:**
+- **用法：**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 vm.$mount() 手动地挂载一个未挂载的实例。
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  如果没有"elementOrSelector"参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  这个方法返回实例自身，因而可以链式调用其它实例方法。
 
-- **Example:**
+- **示例：**
 
   ``` js
   var MyComponent = Vue.extend({
     template: '<div>Hello!</div>'
   })
 
-  // create and mount to #app (will replace #app)
+  // 创建并挂载到 #app (会替换 #app)
   new MyComponent().$mount('#app')
 
-  // the above is the same as:
+  // 同上
   new MyComponent({ el: '#app' })
 
-  // or, render off-document and append afterwards:
+  // 或者，在文档之外渲染并且随后挂载
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(vm.$el)
   ```
 
-- **See also:**
-  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
-  - [Server-Side Rendering](/guide/ssr.html)
+- **另见：**
+  - [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
+  - [服务端渲染](/guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
-- **Usage:**
+- **示例：**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  迫使Vue实例重修渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
 
 <h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{Function} callback`
 
-- **Usage:**
+- **用法：**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 Vue.nextTick 一样，不同的是回调的 this 自动绑定到调用它的实例上。
 
-- **Example:**
+- **示例：**
 
   ``` js
   new Vue({
@@ -1202,12 +1202,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     methods: {
       // ...
       example: function () {
-        // modify data
+        // 修改数据
         this.message = 'changed'
-        // DOM is not updated yet
+        // DOM 还没有更新
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // DOM 现在更新了
+          // `this` 绑定到当前实例
           this.doSomethingElse()
         })
       }
@@ -1215,21 +1215,21 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   })
   ```
 
-- **See also:**
+- **另见：**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
+  - [异步更新队列](/guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
-- **Usage:**
+- **用法：**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器。
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  在"beforeDestroy"和"destroyed"之间触发。
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">在大多数场景中你不应该调用这个方法。最好使用"v-if"和"v-for"指令以数据驱动的方式控制子组件的生命周期。</p>
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ## Directives
 
