@@ -311,9 +311,9 @@ type: api
 
 - **类型：** `Object | Function`
 
-- **限定：** 组件中定义 data 只接受 `函数`。
+- **限制：** 组件中定义 data 只接受 `函数`。
 
-- **细节：**
+- **详细：**
 
   Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。**对象必须是普通对象**：浏览器 API 创建的原生对象，原型上的属性会被忽略。大概来说，data 应该只能是数据 - 不推荐观察拥有状态行为的对象。
 
@@ -349,13 +349,14 @@ type: api
 
   <p class="tip">注意，__不应该对 `data` 属性使用箭头函数__ (例如`data: () => { return { a: this.myProp }}`)。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，`this.myProp` 将是 undefined。</p>
 
-- **参考：** [深入响应式原理](/guide/reactivity.html)
+- **另见：** [深入响应式原理](/guide/reactivity.html)
 
 ### props
 
 - **类型：** `Array<string> | Object`
 
-- **细节：**
+- **详细：**
+
   props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
 
 - **示例：**
@@ -384,15 +385,15 @@ type: api
   })
   ```
 
-- **参考：** [Props](/guide/components.html#Props)
+- **另见：** [Props](/guide/components.html#Props)
 
 ### propsData
 
 - **类型：** `{ [key: string]: any }`
 
-- **限定：** 只用于 `new` 创建的实例中。
+- **限制：** 只用于 `new` 创建的实例中。
 
-- **细节：**
+- **详细：**
 
   创建实例时传递 props。主要作用是方便测试。
 
@@ -415,7 +416,7 @@ type: api
 
 - **类型：** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **细节：**
+- **详细：**
 
   计算属性将被混入到 Vue 实例中。getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
 
@@ -450,14 +451,14 @@ type: api
   vm.aDouble // -> 4
   ```
 
-- **参考：**
+- **另见：**
   - [计算属性](/guide/computed.html)
 
 ### methods
 
 - **类型：** `{ [key: string]: Function }`
 
-- **细节：**
+- **详细：**
 
   methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 `this` 自动绑定为 Vue 实例。
 
@@ -478,13 +479,13 @@ type: api
   vm.a // 2
   ```
 
-- **参考：** [方法与事件处理器](/guide/events.html)
+- **另见：** [方法与事件处理器](/guide/events.html)
 
 ### watch
 
 - **类型：** `{ [key: string]: string | Function | Object }`
 
-- **细节：**
+- **详细：**
 
   一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 `$watch()`，遍历 watch 对象的每一个属性。
 
@@ -515,7 +516,7 @@ type: api
 
   <p class="tip">注意，__不应该使用箭头函数来定义 watcher 函数__ (例如 `searchQuery: newValue => this.updateAutocomplete(newValue)`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.updateAutocomplete` 将是 undefined。</p>
 
-- **参考：** [实例方法 - vm.$watch](#vm-watch)
+- **另见：** [实例方法 - vm.$watch](#vm-watch)
 
 ## Options / DOM
 
@@ -694,49 +695,49 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
 
-## Options / Assets
+## 选项 / 资源
 
 ### directives
 
-- **Type:** `Object`
+- **类型:** `Object`
 
-- **Details:**
+- **详细:**
 
-  A hash of directives to be made available to the Vue instance.
+一个 用于 Vue 实例 的带 hash 的指令。
 
-- **See also:**
-  - [Custom Directives](/guide/custom-directive.html)
-  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
+- **另见:**
+  - [自定义指令](/guide/custom-directive.html)
+  - [资源命名约定](/guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
-- **Type:** `Object`
+- **类型:** `Object`
 
-- **Details:**
+- **详细:**
 
-  A hash of filters to be made available to the Vue instance.
+一个 用于 Vue 实例 的带 hash 的过滤器。
 
-- **See also:**
+- **另见:**
   - [`Vue.filter`](#Vue-filter)
 
 ### components
 
-- **Type:** `Object`
+- **类型:** `Object`
 
-- **Details:**
+- **详细:**
 
-  A hash of components to be made available to the Vue instance.
+一个 用于 Vue 实例 的带 hash 的组件。
 
-- **See also:**
-  - [Components](/guide/components.html)
+- **另见:**
+  - [组件](/guide/components.html)
 
-## Options / Misc
+## 选项 / 杂项
 
 ### parent
 
-- **Type:** `Vue instance`
+- **类型:** `Vue instance`
 
-- **Details:**
+- **详细:**
 
   Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
 
@@ -744,15 +745,15 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### mixins
 
-- **Type:** `Array<Object>`
+- **类型:** `Array<Object>`
 
-- **Details:**
+- **详细:**
 
   The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
   Mixin hooks are called in the order they are provided, and called before the component's own hooks.
 
-- **Example:**
+- **示例:**
 
   ``` js
   var mixin = {
@@ -766,31 +767,31 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   // -> 2
   ```
 
-- **See also:** [Mixins](/guide/mixins.html)
+- **另见:** [混合](/guide/mixins.html)
 
 ### name
 
-- **Type:** `string`
+- **类型:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **限制:** only respected when used as a component option.
 
-- **Details:**
+- **详细:**
 
   Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the Vue devtool, unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
 
 ### extends
 
-- **Type:** `Object | Function`
+- **类型:** `Object | Function`
 
-- **Details:**
+- **详细:**
 
   Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
 
   This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
 
-- **Example:**
+- **示例:**
 
   ``` js
   var CompA = { ... }
@@ -804,15 +805,15 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **类型:** `Array<string>`
 
-- **default:** `["{{", "}}"]`
+- **默认值:** `["{{", "}}"]`
 
-- **Details:**
+- **详细:**
 
   Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
 
-- **Example:**
+- **示例:**
 
   ``` js
   new Vue({
@@ -824,13 +825,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### functional
 
-- **Type:** `boolean`
+- **类型:** `boolean`
 
-- **Details:**
+- **详细:**
 
   Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
 
-- **See also:** [Functional Components](/guide/render-function.html#Functional-Components)
+- **另见:** [Functional Components](/guide/render-function.html#Functional-Components)
 
 ## Instance Properties
 
@@ -1563,17 +1564,17 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
   - [Components - Cheap Static Components with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## 特殊元素
 
 ### key
 
 - **Expects:** `string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  `key` 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素。
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  相同公共父元素的子元素必须有**独特的key**。重复的key会造成渲染错误。
 
-  The most common use case is combined with `v-for`:
+  最常见的用例是结合 `v-for`:
 
   ``` html
   <ul>
@@ -1581,12 +1582,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  它也可以用于强制替换元素/组件而不是重复使用它。当你遇到如下场景时它可能会很有用:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - 正确的触发组件的生命周期hooks
+  - 触发转换
 
-  For example:
+  例如:
 
   ``` html
   <transition>
@@ -1594,13 +1595,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  当 `text` 发生改变时，`<span>` 会随时被更新，因此会触发过度。
 
 ### ref
 
 - **Expects:** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` 被用来给元素或子组件注册引用信息。引用信息会根据父组件的 `$refs` 对象进行注册。如果在普通的DOM元素上使用，引用信息就是元素; 如果用在子组件上，引用信息就是组件实例:
 
   ``` html
   <!-- vm.$refs.p will the DOM node -->
@@ -1610,9 +1611,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <child-comp ref="child"></child-comp>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  当 `v-for` 用于元素或组件的时候，引用信息将是包含DOM节点或组件实例数组。
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不能使用，因此你不应该试图用它在模版中做数据绑定。
 
 - **See also:** [Child Component Refs](/guide/components.html#Child-Component-Refs)
 
@@ -1620,9 +1621,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  用于标记往哪个slot中插入子组件内容。
 
-  For detailed usage, see the guide section linked below.
+  详细用法，请参考下面指南部分的链接。
 
 - **See also:** [Named Slots](/guide/components.html#Named-Slots)
 
@@ -1787,10 +1788,10 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## VNode接口
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- 请参考[VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
-## Server-Side Rendering
+## 服务端渲染
 
-- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- 请参考[vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).

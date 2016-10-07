@@ -349,7 +349,7 @@ vm.selected.number // -> 123
 
 ***
 
-> 原文：http://rc.vuejs.org/guide/forms.html
+> 原文：http://vuejs.org/guide/forms.html
 
 ***
 

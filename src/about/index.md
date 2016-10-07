@@ -40,6 +40,8 @@ order: 0
 - 翻译完后，使用git 提交更新到自己的仓库，后，在`https://github.com/vuefe/vuejs.org/pulls`  提交合并请求
 ![image](https://cloud.githubusercontent.com/assets/12537013/19106938/68c786fa-8b1c-11e6-8ea0-30f97cf1a83b.png)
 
+ - 希望大家看清楚需要合并的分支，为`vuefe vuejs.org/2.0-cn` 分支，不要向`vuejs` 官方分支发起合并请求，也不要向 `vuefe vuejs.org/master` 分支发起合并请求，谢谢。
+
 - 在QQ群里呼叫群主，合并请求
 - 群主合并内容，并记录贡献， 更新在线静态站内容
 

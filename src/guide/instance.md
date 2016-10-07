@@ -32,9 +32,11 @@ var myComponentInstance = new MyComponent()
 尽管可以命令式地创建扩展实例，不过在多数情况下将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](/components.md)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
 
 
-## Properties and Methods
+## 属性和方法
 
-Each Vue instance **proxies** all the properties found in its `data` object:
+
+每个 Vue 实例 **代理** 所有属性都在 `data` 对象中：
+
 
 ## 属性与方法
 
@@ -77,10 +79,9 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
+<p class="tip">注意, 不要再实例实现中或者回调函数中（如 `vm.$watch('a', newVal => this.myMethod())`）使用箭头函数。原因是箭头函数绑定父上下文，所以 `this` 不会像预想的一样是 Vue 实例, 而是 `this.myMethod` 未被定义。</p>
 
-<p class="tip">Note that __you should not use arrow functions on an instance property or callback__ (e.g. `vm.$watch('a', newVal => this.myMethod())`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myMethod` will be undefined.</p>
-
-Consult the [API reference](/api) for the full list of instance properties and methods.
+实例属性和方法的完整列表中查阅 [API 参考](/api)。
 
 ## 实例生命周期
 
@@ -112,7 +113,7 @@ var vm = new Vue({
 
 ***
 
-> 原文： http://rc.vuejs.org/guide/instance.html
+> 原文： http://vuejs.org/guide/instance.html
 
 ***
 

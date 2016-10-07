@@ -330,8 +330,8 @@ Vue.component({
 - [vue-server-renderer 文档](https://www.npmjs.com/package/vue-server-renderer#api):更多细节在这里，和更多先进的主题一起的文档。 例如 [preventing cross-request contamination](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) 和 [添加独立的服务构建](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
 - [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): 明确整合了  所有主要的Vue库和概念在单个应用中
 
---------------------------------------------------------------------------------
+***
 
-> 原文: http://rc.vuejs.org/guide/ssr.html
+> 原文: http://vuejs.org/guide/ssr.html
 
 ***

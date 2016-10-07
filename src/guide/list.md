@@ -440,3 +440,9 @@ methods: {
   }
 }
 ```
+
+***
+
+> 原文： http://vuejs.org/guide/list.html
+
+***

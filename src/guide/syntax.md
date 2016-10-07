@@ -183,3 +183,9 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 ```
 
 They may look a bit different from normal HTML, but `:` and `@` are valid chars for attribute names and all Vue.js supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
+
+***
+
+> 原文： http://vuejs.org/guide/syntax.html
+
+***
