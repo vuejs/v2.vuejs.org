@@ -351,7 +351,7 @@ This option is no longer necessary now that Vue's transition system has explicit
 
 ### `suppressTransitionError` <sup>deprecated</sup>
 
-Removed due to hooks simplification. If you really must supress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
+Removed due to hooks simplification. If you really must suppress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
 
 {% raw %}
 <div class="upgrade-path">
@@ -465,7 +465,7 @@ methods: {
       .then(function (response) {
         this.posts = response.data.posts
       })
-      .catch(funciton (error) {
+      .catch(function (error) {
         this.fetchError = error
       })
   }
