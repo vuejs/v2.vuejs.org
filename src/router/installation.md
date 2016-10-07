@@ -4,15 +4,15 @@ type: router
 order: 1
 ---
 
-# Installation
+# 安装
 
-### Direct Download / CDN
+### 直接下载 / CDN
 
-[https://unpkg.com/vue-router](https://unpkg.com/vue-router)
+[https://unpkg.com/vue-router@next](https://unpkg.com/vue-router@next)
 
-[Unpkg.com](https://unpkg.com) provides NPM-based CDN links. The above link will always point to the latest release on NPM. You can also use a specific version/tag via URLs like `https://unpkg.com/vue-router@2.0.0`.
+[Unpkg.com](https://unpkg.com) 提供了基于 NPM 的 CDN 链接。上面的链接会一直指向在 NPM 发布的最新版本。你也可以像  `https://unpkg.com/vue-router@2.0.0` 这样指定 版本号 或者 Tag。
 
-Include `vue-router` after Vue and it will install itself automatically:
+在 Vue 后面加载 `vue-router`，它会自动安装的：
 
 ``` html
 <script src="/path/to/vue.js"></script>
@@ -25,7 +25,7 @@ Include `vue-router` after Vue and it will install itself automatically:
 npm install vue-router
 ```
 
-When used with a module system, you must explicitly install the router via `Vue.use()`:
+如果在一个模块化工程中使用它，必须要通过 `Vue.use()` 明确地安装路由功能：
 
 ``` js
 import Vue from 'vue'
@@ -34,12 +34,11 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 ```
 
-You don't need to do this when using global script tags.
+如果使用全局的 script 标签，则无须如此（手动安装）。
 
-### Dev Build
+### 构建开发版
 
-You will have to clone directly from GitHub and build `vue-router` yourself if
-you want to use the latest dev build.
+如果你想使用最新的开发版，就得从 GitHub 上直接 clone，然后自己 build 一个 `vue-router`。
 
 ``` bash
 git clone https://github.com/vuejs/vue-router.git node_modules/vue-router

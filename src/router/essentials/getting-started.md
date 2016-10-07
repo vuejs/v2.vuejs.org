@@ -4,11 +4,11 @@ type: router
 order: 2
 ---
 
-# Getting Started
+# 起步
 
-> We will be using [ES2015](https://github.com/lukehoban/es6features) in the code samples in the guide.
+> 教程中的案例代码将使用 [ES2015](https://github.com/lukehoban/es6features) 来编写。
 
-Creating a Single-page Application with Vue.js + vue-router is dead simple. With Vue.js, we are already composing our application with components. When adding vue-router to the mix, all we need to do is map our components to the routes and let vue-router know where to render them. Here's a basic example:
+用 Vue.js + vue-router 创建单页应用，是非常简单的。使用 Vue.js 时，我们就已经把组件组合成一个应用了，当你要把 vue-router 加进来，只需要配置组件和路由映射，然后告诉 vue-router 在哪里渲染它们。下面是个基本例子：
 
 ### HTML
 
@@ -16,14 +16,14 @@ Creating a Single-page Application with Vue.js + vue-router is dead simple. With
 <div id="app">
   <h1>Hello App!</h1>
   <p>
-    <!-- use router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- <router-link> will be rendered as an `<a>` tag by default -->
+    <!-- 使用 router-link 组件来导航. -->
+    <!-- 通过传入 `to` 属性指定链接. -->
+    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
     <router-link to="/foo">Go to Foo</router-link>
     <router-link to="/bar">Go to Bar</router-link>
   </p>
-  <!-- route outlet -->
-  <!-- component matched by the route will render here -->
+  <!-- 路由出口 -->
+  <!-- 路由匹配到的组件将渲染在这里 -->
   <router-view></router-view>
 </div>
 ```
@@ -31,40 +31,40 @@ Creating a Single-page Application with Vue.js + vue-router is dead simple. With
 ### JavaScript
 
 ``` js
-// 0. If using a module system, call Vue.use(VueRouter)
+// 0. 如果使用模块化机制编程， 要调用 Vue.use(VueRouter)
 
-// 1. Define route components.
-// These can be imported from other files
+// 1. 定义（路由）组件。
+// 可以从其他文件 import 进来
 const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
 
-// 2. Define some routes
-// Each route should map to a component. The "component" can
-// either be an actual component constructor created via
-// Vue.extend(), or just a component options object.
-// We'll talk about nested routes later.
+// 2. 定义路由
+// 每个路由应该映射一个组件。 其中"component" 可以是
+// 通过 Vue.extend() 创建的组件构造器，
+// 或者，只是一个组件配置对象。
+// 我们晚点在讨论嵌套路由。
 const routes = [
   { path: '/foo', component: Foo },
   { path: '/bar', component: Bar }
 ]
 
-// 3. Create the router instance and pass the `routes` option
-// You can pass in additional options here, but let's
-// keep it simple for now.
+// 3. 创建 router 实例，然后传 `routes` 配置
+// 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
-  routes // short for routes: routes
+  routes // （缩写）相当于 routes: routes
 })
 
-// 4. Create and mount the root instance.
-// Make sure to inject the router with the router option to make the
-// whole app router-aware.
+// 4. 创建和挂载根实例。
+// 记得要通过 router 配置参数注入路由，
+// 从而让整个应用都有路由功能
 const app = new Vue({
   router
 }).$mount('#app')
 
-// Now the app has started!
+// 现在，应用已经启动了！
 ```
 
-You can also checkout this example [live](http://jsfiddle.net/yyx990803/xgrjzsup/).
+你可以看看这个例子
+[live](http://jsfiddle.net/yyx990803/xgrjzsup/)。
 
-Notice that a `<router-link>` automatically gets the `.router-link-active` class when its target route is matched. You can learn more about it in its [API reference](../api/router-link.md).
+要注意，当 `<router-link>` 对应的路由匹配成功，将自动设置 class 属性值  `.router-link-active`。查看 [API 文档](../api/router-link.md) 学习更多相关内容。
