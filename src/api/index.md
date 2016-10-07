@@ -101,10 +101,8 @@ type: api
 - **用法：**
 
   使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象。
-  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
 
   `data` 选项是特例，需要注意 - 在 `Vue.extend()` 中它必须是函数
-  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
 
   ``` html
   <div id="mount-point"></div>
@@ -112,7 +110,6 @@ type: api
 
   ``` js
   // 创建构造器
-  // create constructor
   var Profile = Vue.extend({
     template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
     data: function () {
@@ -124,12 +121,10 @@ type: api
     }
   })
   // 创建 Profile 实例，并挂载到一个元素上。
-  // create an instance of Profile and mount it on an element
   new Profile().$mount('#mount-point')
   ```
 
   结果如下：
-  Will result in:
 
   ``` html
   <p>Walter White aka Heisenberg</p>
@@ -146,17 +141,13 @@ type: api
 - **用法：**
 
   在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
 
   ``` js
   // 修改数据
-  // modify data
   vm.msg = 'Hello'
   // DOM 还没有更新
-  // DOM not updated yet
   Vue.nextTick(function () {
     // DOM 更新了
-    // DOM updated
   })
   ```
 
@@ -174,10 +165,8 @@ type: api
 - **用法：**
 
   设置对象的属性。如果对象是响应式的，确保属性被创建后也是响应式的，同时触发视图更新。这个方法主要用于避开 Vue 不能检测属性被添加的限制。
-  Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
 
   **注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象**
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
 
 - **参考：** [深入响应式原理](/guide/reactivity.html)
 
@@ -190,10 +179,8 @@ type: api
 - **用法：**
 
   删除对象的属性。如果对象是响应式的，确保删除更新视图的触发器。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
 
   **注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象**
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
 
 - **参考：** [深入响应式原理](/guide/reactivity.html)
 
@@ -206,11 +193,9 @@ type: api
 - **用法：**
 
   注册或获取全局指令。
-  Register or retrieve a global directive.
 
   ``` js
   // 注册
-  // register
   Vue.directive('my-directive', {
     bind: function () {},
     inserted: function () {},
@@ -220,14 +205,11 @@ type: api
   })
 
   // 注册（传入一个简单的指令函数）
-  // register (simple function directive)
   Vue.directive('my-directive', function () {
     // 这里将会被 `bind` 和 `update` 调用
-    // this will be called as `bind` and `update`
   })
 
   // getter，返回已注册的指令
-  // getter, return the directive definition if registered
   var myDirective = Vue.directive('my-directive')
   ```
 
@@ -242,17 +224,14 @@ type: api
 - **用法：**
 
   注册或获取全局过滤器。
-  Register or retrieve a global filter.
 
   ``` js
   // 注册
-  // register
   Vue.filter('my-filter', function (value) {
-    // return processed value
+    // 返回处理后的值
   })
 
   // getter，返回已注册的过滤器
-  // getter, return the filter if registered
   var myFilter = Vue.filter('my-filter')
   ```
 
@@ -265,19 +244,15 @@ type: api
 - **用法：**
 
   注册或获取全局组件。
-  Register or retrieve a global component.
 
   ``` js
   // 注册组件，传入一个扩展过的构造器
-  // register an extended constructor
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
   // 注册组件，传入一个选项对象（自动调用 Vue.extend）
-  // register an options object (automatically call Vue.extend)
   Vue.component('my-component', { /* ... */ })
 
   // 获取注册的组件（始终返回构造器）
-  // retrieve a registered component (always return constructor)
   var MyComponent = Vue.component('my-component')
   ```
 
@@ -291,10 +266,8 @@ type: api
 - **用法：**
 
   安装 Vue.js 插件。如果插件是一个对象，必须提供 `install` 方法。如果插件是一个函数，它会被作为 install 方法。install 方法将被作为 Vue 的参数调用。
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
 
   当 install 方法被同一个插件多次调用，插件将只会被安装一次。
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
 
 - **参考：** [插件](/guide/plugins.html)
 
@@ -306,7 +279,6 @@ type: api
 - **用法：**
 
   全局注册一个混合，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混合，向组件注入自定义逻辑。**不推荐在应用代码中使用**。
-  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
 - **参考：** [全局混合](/guide/mixins.html#Global-Mixin)
 
@@ -318,7 +290,6 @@ type: api
 - **用法：**
 
   在render函数中编译模板字符串。**只在独立构建时有效**
-  Compiles a template string into a render function. **Only available in the standalone build.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -345,22 +316,16 @@ type: api
 - **细节：**
 
   Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。**对象必须是普通对象**：浏览器 API 创建的原生对象，原型上的属性会被忽略。大概来说，data 应该只能是数据 - 不推荐观察拥有状态行为的对象。
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
 
   一旦观察过，不需要再次在数据对象上添加响应式属性。因此推荐在创建实例之前，就声明所有的根级响应式属性。
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
 
   实例创建之后，可以通过 `vm.$data` 访问原始数据对象。Vue 实例也代理了 data 对象上所有的属性，因此访问 `vm.a` 等价于访问 `vm.$data.a`。
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
 
   以 `_` 或 `$` 开头的属性 **不会** 被 Vue 实例代理，因为它们可能和 Vue 内置的属性、 API 方法冲突。你可以使用例如 `vm.$data._property` 的方式访问这些属性。
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
 
   当一个组件被定义， `data` 必须声明为返回一个初始数据对象的函数，因为组件可能被用来创建多个实例。如果 `data` 仍然是一个普通对象，则所有的实例将**共享引用**同一个数据对象！通过提供 `data` 函数，每次创建一个新实例后，我们能够调用 `data` 函数，从而返回初始数据的一个全新副本数据对象。
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
 
   可以通过将 `vm.$data` 传入 `JSON.parse(JSON.stringify(...))` 得到原始数据对象。
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
 
 - **示例：**
 
@@ -368,7 +333,6 @@ type: api
   var data = { a: 1 }
 
   // 直接创建一个实例
-  // direct instance creation
   var vm = new Vue({
     data: data
   })
@@ -376,7 +340,6 @@ type: api
   vm.$data === data // -> true
 
   // Vue.extend() 中 data 必须是函数
-  // must use function when in Vue.extend()
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -385,7 +348,6 @@ type: api
   ```
 
   <p class="tip">注意，__不应该对 `data` 属性使用箭头函数__ (例如`data: () => { return { a: this.myProp }}`)。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，`this.myProp` 将是 undefined。</p>
-  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
 
 - **参考：** [深入响应式原理](/guide/reactivity.html)
 
@@ -395,26 +357,21 @@ type: api
 
 - **细节：**
   props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
-  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
 - **示例：**
 
   ``` js
   // 简单语法
-  // simple syntax
   Vue.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
   // 对象语法，提供校验
-  // object syntax with validation
   Vue.component('props-demo-advanced', {
     props: {
       // 只检测类型
-      // just type check
       height: Number,
       // 检测类型 + 其他验证
-      // type check plus other validations
       age: {
         type: Number,
         default: 0,
@@ -434,12 +391,10 @@ type: api
 - **类型：** `{ [key: string]: any }`
 
 - **限定：** 只用于 `new` 创建的实例中。
-- **Restriction:** only respected in instance creation via `new`.
 
 - **细节：**
 
   创建实例时传递 props。主要作用是方便测试。
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
 
 - **示例：**
 
@@ -463,13 +418,10 @@ type: api
 - **细节：**
 
   计算属性将被混入到 Vue 实例中。getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
 
   <p class="tip">注意，__不应该使用箭头函数来定义计算属性函数__ (例如 `aDouble: () => this.a * 2`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
-  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
 
   计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。
-  Computed properties are cached, and only re-computed on reactive dependency changes.
 
 - **示例：**
 
@@ -478,12 +430,10 @@ type: api
     data: { a: 1 },
     computed: {
       // 仅读取，值只须为函数
-      // get only, just need a function
       aDouble: function () {
         return this.a * 2
       },
       // 读取和设置
-      // both get and set
       aPlus: {
         get: function () {
           return this.a + 1
@@ -510,10 +460,8 @@ type: api
 - **细节：**
 
   methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 `this` 自动绑定为 Vue 实例。
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
 
   <p class="tip">注意，__不应该使用箭头函数来定义 method 函数__ (例如 `plus: () => this.a++`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
 
 - **示例：**
 
@@ -539,7 +487,6 @@ type: api
 - **细节：**
 
   一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 `$watch()`，遍历 watch 对象的每一个属性。
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
 
 - **示例：**
 
@@ -554,9 +501,9 @@ type: api
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
-      // string method name
+      // 方法名
       b: 'someMethod',
-      // deep watcher
+      // 深度 watcher
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
@@ -567,7 +514,6 @@ type: api
   ```
 
   <p class="tip">注意，__不应该使用箭头函数来定义 watcher 函数__ (例如 `searchQuery: newValue => this.updateAutocomplete(newValue)`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.updateAutocomplete` 将是 undefined。</p>
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
 
 - **参考：** [实例方法 - vm.$watch](#vm-watch)
 
