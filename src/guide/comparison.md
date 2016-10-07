@@ -105,29 +105,29 @@ Vue 和 React 也提供提供功能性组件，这些组件都是没有声明，
 
 在 React 中，所有的组件的渲染功能使用的都是JSX。JSX 是使用 XML 语法编写 Javascript 的一种语法糖。这有一个[通过React社区审核过的][5]例子：
 
-```jsx
-        render () {
-        let { items } = this.props
-        
-        let children
-        if ( items.length > 0 ) {
-            children = (
-                <ul>
-                  {items.map( item =>
-                    <li key={item.id}>{item.name}</li>
-                  )}
-                </ul>
-            )
-        } else {
-            children = <p>No items found.</p>
-        }
-        
-        return (
-            <div className = 'list-container'>
-                {children}
-            </div>
-        )
-    }
+``` jsx
+    render () {
+	    let { items } = this.props
+	
+	    let children
+	    if ( items.length > 0 ) {
+	        children = (
+	            <ul>
+	              {items.map( item =>
+	                <li key={item.id}>{item.name}</li>
+	              )}
+	            </ul>
+	        )
+	    } else {
+	        children = <p>No items found.</p>
+	    }
+	
+	    return (
+	        <div className = 'list-container'>
+	            {children}
+	        </div>
+	    )
+	}
 ```
 
 JSX的渲染功能有一些优势：
@@ -140,16 +140,16 @@ JSX的渲染功能有一些优势：
 在这方面，我们提供的是个更简单的模板：
 
 ``` html
-    <template>
-        <div class="list-container">
-            <ul v-if="items.length">
-                <li v-for="item in items">
-                    {{ item.name }}
-                </li>
-            </ul>
-            <p v-else>No items found.</p>
-        </div>
-    </template>
+	<template>
+	    <div class="list-container">
+	        <ul v-if="items.length">
+	            <li v-for="item in items">
+	                {{ item.name }}
+	            </li>
+	        </ul>
+	        <p v-else>No items found.</p>
+	    </div>
+	</template>
 ```
 
 有点如下：
@@ -176,7 +176,7 @@ React 生态也有一个[项目][8]允许你写摸吧，但是有一些缺点：
 
 Vue让你可以完全访问[ 单文件组件 ][10]。
 
-```html
+``` html
 	<style scoped>
 	    @media (min-width: 250px) {
 	        .list-container:hover {
@@ -212,9 +212,9 @@ React学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 ES
 
 Vue样扩大后就像React，缩小后就像 Jquery。你需要做的就是把如下标签放到页面就行：
 
-``` html
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-```
+
+`<script src="https://unpkg.com/vue/dist/vue.js"></script>`
+
 
 然后就可编写Vue代码并应用到生产中，而不用担心性能问题。
 
@@ -275,7 +275,9 @@ Vue也适合[企业应用][20]，也可以使用TypeScript来支持[官方类型
 
 在性能方面，这两个框架都是非常快。但是如果你查看[第三方参照]()，就可以得出 Vue 2 比 Angular2 要快的。
 
-在尺寸方面，虽然 Angular 2 使用 `tree-shaking` 技术和编译技术能使代码尺寸减小， 但是即便包含编译器和全部功能 Vue 2（23kb） 比起 Angular 2（50kb）还是小的多。但是要注意的是Angular的App的尺寸减少是由于 `tree-shaking` 移除了那些Augular框架中没用到的功能，当随着引入功能的则多，尺寸会越来愈大。
+在尺寸方面，虽然 Angular 2 使用 tree-shaking 技术和编译技术能使代码尺寸减小。 
+
+即便包含编译器和全部功能 Vue2(23kb)比起 Angular 2(50kb)还是小的多。但是要注意，用 Angular 的 App 的尺寸缩减是用 tree-shaking 移除了那些框架中没有用到的功能，当随着引入功能的增多，尺寸会越来越大。
 
 ### 灵活性
 
@@ -292,11 +294,11 @@ Angular 2 的学习曲线是非常陡峭的。即使不包括TypeScript，它们
 Ember 是一个全能框架。它提供大量的约定，一旦你熟悉了它们，开发会很高效。不过，这也意味着学习曲线较高，而且不灵活。在框架和库（加上一系列松散耦合的工具）之间权衡选择。后者更自由，但是也要求你做更多的架构决定。
 
 也就是说，最好比较 Vue.js 内核和 Ember 的模板与数据模型层：
-- Vue 在普通 JavaScript 对象上建立响应，提供自动化的计算属性。在 Ember 中需要将所有东西放在 Ember 对象内，并且手工为计算属性声明依赖。
+* Vue 在普通 JavaScript 对象上建立响应，提供自动化的计算属性。在 Ember 中需要将所有东西放在 Ember 对象内，并且手工为计算属性声明依赖。
 
-- Vue 的模板语法可以用全功能的 JavaScript 表达式，而 Handlebars 的语法和帮助函数语法相比之下非常受限。
+* Vue 的模板语法可以用全功能的 JavaScript 表达式，而 Handlebars 的语法和帮助函数语法相比之下非常受限。
 
-- 在性能上，Vue 甩开 Ember 几条街，即使是 Ember 2.0 最新的 Glimmer 引擎。Vue 自动批量更新，在性能比较关键时 Ember 要手工管理循环。
+* 在性能上，Vue 甩开 Ember 几条街，即使是 Ember2.0 的最新Glimmer引擎。Vue自动批量更新，Ember 当性能关键处需要手动管理。
 
 ## Knockout
 
