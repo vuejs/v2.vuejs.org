@@ -1111,7 +1111,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **用法：**
 
-  听一个自定义事件，但是只触发一次，在第一次触发之后删除监听器。
+  监听一个自定义事件，但是只触发一次，在第一次触发之后删除监听器。
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
@@ -1149,9 +1149,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **用法：**
 
-  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 vm.$mount() 手动地开始挂载/编译未挂载的实例。
+  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 vm.$mount() 手动地挂载一个未挂载的实例。
 
-  如果没有"elementOrSelector"参数，模板将被创建为文档之外的的片断，需要手工用其它的 DOM 实例方法把它插入文档中。如果 replace 选项为 false，则自动创建一个空 <code><div></code>，作为包装元素。
+  如果没有"elementOrSelector"参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
 
   这个方法返回实例自身，因而可以链式调用其它实例方法。
 
