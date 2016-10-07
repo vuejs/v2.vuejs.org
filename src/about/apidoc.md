@@ -20,8 +20,8 @@ order: 2
 1 | 是 |  Global Config | 全局配置 |  @dear-lizhihua |  @dear-lizhihua
 2 | 是 | Global API | 全局API | @dear-lizhihua | @dear-lizhihua
 3 | 是 | Options / Data | 选项 / 数据 | @dear-lizhihua | @dear-lizhihua
-4 | x | Options / DOM | 选项 / DOM | | @ATLgo 
-5 | x | Options / Lifecycle Hooks | 选项 / 生命周期钩子 | |  @ATLgo 
+4 | 是 | Options / DOM | 选项 / DOM | @ATLgo | @ATLgo 
+5 | 是 | Options / Lifecycle Hooks | 选项 / 生命周期钩子 | @ATLgo |  @ATLgo 
 6 | 是 | Options / Assets | 选项 / 资源 | @dingyiming | @dingyiming
 7 | x | Options / Misc | 选项 / 杂项 |  |  @dingyiming
 8 | 是 | Instance Properties | 实例属性 | @coolzjy | @coolzjy

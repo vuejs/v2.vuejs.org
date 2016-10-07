@@ -23,8 +23,8 @@ order: 1
 1 | 是 |  installation.md | 安装 | @dingyiming | @dingyiming
 2 | 是 | index.md |  介绍 | @hijiangtao   | @dingyiming @hijiangtao
 3 | 是 | instance.md | 实例 |  @dingyiming | @dingyiming
-4 | × | syntax.md  | 模板语法 |  | @tingtien
-5 | 是 | computed.md | 计算属性 |  @dingyiming | @dingyiming
+4 | 是 | syntax.md  | 模板语法 | @daix6  | @tingtien @daix6
+5 | 是 | computed.md | 计算属 性 |  @dingyiming | @dingyiming
 6 | 是 | class-and-style.md | Class 与 Style 绑定 | @595074187  | @595074187
 7 | 是 |  conditional.md  | 条件渲染 | @dingyiming | @dingyiming
 8 | 是 | list.md |  列表渲染 | @tingtien | @tingtien
@@ -53,7 +53,7 @@ order: 1
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 认领者
 ----- | ------- | ------------- | --- | --- | ---
-24 | x  | migration.md | 1.x迁移 |   | @harrytospring 
+24 | 是  | migration.md | 1.x迁移 |  @harrytospring   | @harrytospring 
 27 | 是 | migration-vue-router.md | vue-router 0.7.x 迁移 | @forzajuve10  | @forzajuve10 
 
 ### Meta  更多
