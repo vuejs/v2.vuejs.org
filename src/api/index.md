@@ -520,182 +520,182 @@ type: api
 
 - **另见:** [实例方法 - vm.$watch](#vm-watch)
 
-## Options / DOM
+## 选项 / DOM
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **类型：** `string | HTMLElement`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **限制：** 只在由 `new` 创建的实例中遵守。
 
-- **Details:**
+- **详细：**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  为实例提供挂载元素。值可以是 CSS 选择符，或实际 HTML 元素。
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  在实例挂载之后， 元素可以用 `vm.$el` 访问。
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  如果在初始化的时候指定了该选项，实例将立即进入编译过程，否则，需要显式调用 `vm.$mount()` 手动开启编译。
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载root实例到 `<html>` 或者 `<body>` 上。</p>
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ### template
 
-- **Type:** `string`
+- **类型：** `string`
 
-- **Details:**
+- **详细：**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  一个字符串模板作为 Vue 实例的标识使用。模板将会 **替换** 挂载元素。挂载元素的内容都将被忽略，除非模板有内容分发 slot。
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  如果值以 `#` 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用 `<script type="x-template">` 包含模板。
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip">出于安全考虑，你应该只使用你信任的 Vue 模板。避免使用其他用户级的代码作为你的模板。</p>
 
-- **See also:**
-  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution](/guide/components.html#Content-Distribution-with-Slots)
+- **另见：**
+  - [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
+  - [内容分发](/guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
-  - **Type:** `Function`
+  - **类型：** `Function`
 
-  - **Details:**
+  - **详细：**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    一个可替换的字符串模板允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    如果组件是一个函数组件，Render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
 
-  - **See also:**
-    - [Render Functions](/guide/render-function)
+  - **另见：**
+    - [Render 函数](/guide/render-function)
 
-## Options / Lifecycle Hooks
+## 选项 / 生命周期钩子
 
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.
+所有的生命周期钩子自动绑定 `this` 上下文到实例中，因此你可以访问数据，对属性和方法进行运算。这意味着 __你不能使用箭头函数来定义一个生命周期方法__ (例如 `created: () => this.fetchTodos()`)。这是因为箭头函数绑定了父上下文，因此 `this` 与你期待的 Vue 实例不同， `this.fetchTodos` 的行为未定义。
 
 ### beforeCreate
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+  发生在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前。
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  发生在实例已经创建完成之后。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  在挂载开始之前被调用：相关的 `render` 函数首次被调用。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  `el` 被新创建的 `vm.$el` 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，当 `mounted` 被调用时 `vm.$el` 也在文档内。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
+  你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。
 
-  The component's DOM will be in updated state when this hook is called, so you can perform DOM-dependent operations in this hook. However, in most cases you should avoid changing state in this hook, because it may lead to an infinite update loop.
+  当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called when a kept-alive component is activated.
+  keep-alive 组件激活时调用。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **See also:**
+- **另见：**
   - [Built-in Components - keep-alive](#keep-alive)
   - [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
 
 ### deactivated
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called when a kept-alive component is deactivated.
+  keep-alive 组件停用时调用。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **See also:**
+- **另见：**
   - [Built-in Components - keep-alive](#keep-alive)
   - [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
 
 ### beforeDestroy
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  实例销毁之前调用。在这一步，实例仍然完全可用。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细：**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
 ## 选项 / 资源
 
