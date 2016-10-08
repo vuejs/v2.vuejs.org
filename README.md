@@ -54,7 +54,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Computed Properties and Watchers (@danielschmitz)
 - [ ] Class and Style Bindings
 - [ ] Conditional Rendering
-- [ ] List Rendering
+- [ ] List Rendering (@ErickPetru)
 - [ ] Event Handling
 - [ ] Form Input Bindings
 - [ ] Components
@@ -73,7 +73,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Server-Side Rendering
 - [ ] Migration from Vue 1.x
 - [ ] Migration from Vue Router 0.7.x
-- [ ] Comparison with Other Frameworks (@ErickPetru)
+- [x] Comparison with Other Frameworks (@ErickPetru)
 
 **API**
 - [ ] Global Config
