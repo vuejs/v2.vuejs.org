@@ -18,7 +18,7 @@ Vue 在元素在DOM中插入、更新或者移除时，提供多种不同方式�
 
 ## 单元素/组件的过渡
 
-Vue 提供了 `transition` 的封装组件，可以给任何元素和组件添加 entering/leaving 过渡
+Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
 
 - 条件渲染 （使用 `v-if`）
 - 条件展示 （使用 `v-show`）
