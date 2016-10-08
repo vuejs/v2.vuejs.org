@@ -36,22 +36,22 @@ Também disponível em [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js)
 
 ## NPM
 
-NPM é o método de instalação recomendada para aplicações em larga escala com o Vue. Ele combina perfeitamente com *module bundlers* tais como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+NPM é o método de instalação recomendada para aplicações em larga escala com o Vue. Ele combina perfeitamente com *module bundlers*, tais como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue também possui ferramentas para a criação de [componentes em um único arquivo](single-file-components.html).
 
 ``` bash
 # latest stable
 $ npm install vue
 ```
 
-### Standalone vs. Runtime-only Build
+### Execução Standalone vs. Runtime-only 
 
-There are two builds available, the standalone build and the runtime-only build.
+Existem dois tipos de builds disponíveis, a *standalone* e a *runtime-olny*.
 
-- The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
+- A *standalone* inclui o compilador e dá suporte ao sistema de templates. **Ele também conta com a presença de APIs do navegador, então você não pode usá-la para execução no lado do servidor (server-side rendering).**
 
-- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
+- A versão *runtime-only* não inclui o compilador de templates, e não dá suporte ao sistema de templates. Você pode usar a opção *render* somente enquanto estiver usando o modo *runtime*, mas ela funciona com componentes do tipo *single-file*, já que estes componentes são pré compilados na renderização durante o build da aplicação. O modo *runtime-only* é cerca de 30% mais leve que a versão *standalone*, com 16Kb min+gzip.
 
-By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your webpack config:
+Por padrão, o NPM exporta a versão de build **runtime-only**. Para usar a versão **standalone**, adicione a seguinte configuração na configuração do seu *webpack*:
 
 ``` js
 resolve: {
@@ -61,26 +61,26 @@ resolve: {
 }
 ```
 
-For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
+Para o Browserify, pode-se usar o [aliasify](https://github.com/benbria/aliasify) para alcançar o mesmo resultado.
 
-<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
+<p class="tip">Não faça `import Vue from 'vue/dist/vue.js'` - uma vez que algumas ferramentas ou bibliotecas de terceiros podem importar o vue de outra forma, fazendo com que a aplicação carregue os dois modos, runtime e standalone, ocasionando em erros.</p>
 
-### CSP environments
+### Ambientes CSP 
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.
+Em alguns ambientes, tais como o Google Chrome Apps, é necessário cumprir a `Content Security Policy` (CSP), no qual proíbe o uso do `new Function()` para avaliar expressões. A versão *standalone* depende desta funcionalidade para compilar os templates, então este recurso é inviável nestes ambientes.
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+Por outro lado, a versão *runtime-only* é 100% compatível com CSP. Quando usamos a versão *runtime-only* com [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) ou [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), seus templates serão pré compilados em uma função `render`, que funciona perfeitamente em ambientes CSP.
 
 ## CLI
 
-Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds:
+Vue.js provê um  [CLI oficial](https://github.com/vuejs/vue-cli) para rapidamente construir aplicações chamadas de *Single Page Applications*. Ele inclui uma série de funcionalidades e configurações prontas para uso, para o desenvolvimento de aplicações frontend. Leva somente alguns poucos minutos para se obter uma aplicação pronta para ser executada, inclusive com hot-reload, lint ao salvar, e uma build pronta para o servidor de produção. 
 
 ``` bash
-# install vue-cli
+# instakar vue-cli
 $ npm install --global vue-cli
-# create a new project using the "webpack" template
+# cria um novo projeto com o template "webpack" 
 $ vue init webpack my-project
-# install dependencies and go!
+# instalar as dependências e executar!
 $ cd my-project
 $ npm install
 $ npm run dev
@@ -88,7 +88,7 @@ $ npm run dev
 
 ## Dev Build
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Importante**: Os arquivos do GitHub no diretório `/dist` são somente usados na fase de release. Para usar o vue através da última versão dispoível no GitHub, você mesmo deverá compilar as fontes:
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -106,4 +106,4 @@ $ bower install vue
 
 ## AMD Module Loaders
 
-The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
+A versão standalone ou a versão instalada via Bower são compilados com UMD, então podem ser usados diretamente como um módulo AMD. 
