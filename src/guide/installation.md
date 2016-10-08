@@ -23,20 +23,20 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实�
 <p class="tip">开发环境不要用最小压缩版，不然就失去了错误提示和警告!</p>
 
 <div id="downloads">
-<a class="button" href="http://rc.vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
+<a class="button" href="http://vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
-<a class="button" href="http://rc.vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
+<a class="button" href="http://vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
 </div>
 
 ### CDN
 
-推荐： [unpkg](https://unpkg.com/vue/dist/vue.js), 会保持和 npm 发布的最新的版本一致。 可以在 [unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包资源。
+推荐： [unpkg](https://unpkg.com/vue/dist/vue.js)，会保持和 npm 发布的最新的版本一致。 可以在 [unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包资源。
 
-也可以从 [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取, 不过这两个服务版本更新可能略滞后。
+也可以从 [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取，不过这两个服务版本更新可能略滞后。
 
 ## NPM
 
-在用 Vue.js 构建大型应用时推荐使用 NPM 安装，NPM 能很好地和诸如 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
+在用 Vue.js 构建大型应用时推荐使用 NPM 安装，NPM 能很好地和诸如 [Webpack](https://webpack.github.io/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
 
 ``` bash
 # 最新稳定版
@@ -47,8 +47,7 @@ $ npm install vue
 
 有两种构建方式，独立构建和运行构建。
 
-- 独立构建包括编译和支持 `template` 选项。 **它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。
-**
+- 独立构建包括编译和支持 `template` 选项。 **它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。**
 
 - 运行时构建不包括模板编译， 不支持 `template` 选项。运行时构建，可以用 `render` 选项，不过得再单文件组件中起作用， 因为单文件组件的模板 是在构建时预编译到 `render` 函数中， 运行时构建只有独立构建大小的30%，只有16Kb min+gzip大小。
 
@@ -62,9 +61,9 @@ resolve: {
 }
 ```
 
-对于Browserify,可以用 [aliasify](https://github.com/benbria/aliasify)
+对于Browserify，可以用 [aliasify](https://github.com/benbria/aliasify)
 
-<p class="tip">不要用 `import Vue from 'vue/dist/vue.js'` - 由于一些工具或第三方库引入 Vue , 这可能会导致应用程序运行时加载和独立构建导致错误</p>
+<p class="tip">不要用 `import Vue from 'vue/dist/vue.js'` - 由于一些工具或第三方库引入 Vue ，这可能会导致应用程序运行时加载和独立构建导致错误</p>
 
 ### CSP 环境
 
@@ -91,7 +90,7 @@ $ npm run dev
 
 ## 开发版本
 
-**重要**: 在发布后构建的文件在Github仓库的 `/dist` 文件夹。 为了使用 Github 上 Vue 最新的资源，你得自己构建。 
+**重要：** 在发布后构建的文件在Github仓库的 `/dist` 文件夹。 为了使用 Github 上 Vue 最新的资源，你得自己构建。 
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
