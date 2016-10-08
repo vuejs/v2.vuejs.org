@@ -1530,7 +1530,7 @@ Vue.component('my-special-transition', {
 
 ## 动态过渡
 
-在 Vue 中即使是过渡也是数据驱动的！动态过渡最基本的例子是通过 `name` 属性来来绑定动态值。
+在 Vue 中即使是过渡也是数据驱动的！动态过渡最基本的例子是通过 `name` 特性来来绑定动态值。
 
 ```html
 <transition v-bind:name="transitionName">
