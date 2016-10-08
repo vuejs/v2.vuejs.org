@@ -11,7 +11,7 @@
 - [翻译仓库](https://github.com/vuefe/vuejs.org)，中文翻译分支 2.0-cn
 - [基础指引](https://github.com/vuefe/vuejs.org/wiki/%E5%85%B3%E4%BA%8E%E7%BF%BB%E8%AF%91---%E5%9F%BA%E7%A1%80%E6%8C%87%E5%BC%95)
 - 参与API翻译：https://github.com/vuefe/vuejs.org/issues/44
-- 参与Guide校对：https://github.com/vuefe/vuejs.org/issues/44
+- 参与Guide校对：https://github.com/vuefe/vuejs.org/issues/77
 - 提出建议：https://github.com/vuefe/vuejs.org/issues/48
 - 如果你看到错别字、漏译、错译，请直接提交 pr
     （[帮助](https://help.github.com/articles/using-pull-requests/)）。
