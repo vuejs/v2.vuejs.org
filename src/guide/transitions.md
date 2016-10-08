@@ -108,9 +108,7 @@ new Vue({
 
 ![Transition Diagram](/images/transition.png)
 
-Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter` class would instead be `my-transition-enter`.
-
-对于这些类名，`v` 是过渡名的前缀。使用 `name="my-transition"` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
+对于这些 `在 enter/leave 过渡中切换的类名`，`v-` 是这些类名的前缀。使用 `<name="my-transition>"` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
 
 `v-enter-active` and `v-leave-active` 可以控制 进入/离开 过渡的不同阶段，在下面章节会有个示例说明。
 
