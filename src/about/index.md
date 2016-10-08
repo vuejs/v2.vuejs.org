@@ -110,9 +110,9 @@ order: 0
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
 ----- | ------- | ------------- | --- | --- | --- | ---
-12 | 是 | transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/awe) | 
-13 | 是 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/awe) | 
-14 | 是 | render-function.md |  Render 函数 |  [awe](https://github.com/awe) | 
+12 | 是 | transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/hilongjw) | 
+13 | 是 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/hilongjw) | 
+14 | 是 | render-function.md |  Render 函数 |  [awe](https://github.com/hilongjw) | 
 15 | 是 | reactivity.md |  深入响应式原理 | [veaba](https://github.com/veaba) | 
 16 | 是 | custom-directive.md |  自定义指令 | [harrytospring](https://github.com/harrytospring) | 
 17 | 是 | mixins.md |  混合 |  [harrytospring](https://github.com/harrytospring) | 
@@ -121,12 +121,12 @@ order: 0
 20 | 是 | routing.md | 路由 | [dingyiming](https://github.com/dingyiming) | 
 21 | 是 | state-management.md |  状态管理 | [dear-lizhihua](https://github.com/dear-lizhihua) | 
 22 | 是 | unit-testing.md | 单元测试 | [70data](https://github.com/70data) |
-23 | 是 | ssr.md |  服务端渲染 | [dingyiming](https://github.com/dingyiming)｜　
+23 | 是 | ssr.md |  服务端渲染 | [dingyiming](https://github.com/dingyiming) | 　
 
 ### Migration  迁移
 
-序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者　| 校对贡献者
------ | ------- | ------------- | --- | --- | ---　| ---
+序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
+----- | ------- | ------------- | --- | --- | --- | ---
 24 | 是  | migration.md | 1.x迁移 |  [harrytospring](https://github.com/harrytospring) | 
 27 | 是 | migration-vue-router.md | vue-router 0.7.x 迁移 | [forzajuve10](https://github.com/forzajuve10) | 
 

@@ -106,9 +106,9 @@
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
 ----- | ------- | ------------- | --- | --- | --- | ---
-12 | 是 | transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/awe) | 
-13 | 是 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/awe) | 
-14 | 是 | render-function.md |  Render 函数 |  [awe](https://github.com/awe) | 
+12 | 是 | transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/hilongjw) | 
+13 | 是 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/hilongjw) | 
+14 | 是 | render-function.md |  Render 函数 |  [awe](https://github.com/hilongjw) |  
 15 | 是 | reactivity.md |  深入响应式原理 | [veaba](https://github.com/veaba) | 
 16 | 是 | custom-directive.md |  自定义指令 | [harrytospring](https://github.com/harrytospring) | 
 17 | 是 | mixins.md |  混合 |  [harrytospring](https://github.com/harrytospring) | 
