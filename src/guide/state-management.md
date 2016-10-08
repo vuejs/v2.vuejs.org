@@ -6,7 +6,7 @@ order: 21
 
 ## 类 Flux 状态管理的官方实现
 
-由于多个状态分散的跨越在许多组件和交互间各个角落，大型应用复杂度也经常逐渐增长。为了解决这个问题，Vue 提供 [vuex](https://github.com/vuejs/vuex)： 我们有受到 Elm 启发的状态管理库。vuex 甚至集成到 [vue-devtools](https://github.com/vuejs/vue-devtools)，无需配置即可开始时光旅行。
+由于多个状态分散的跨越在许多组件和交互间各个角落，大型应用复杂度也经常逐渐增长。为了解决这个问题，Vue 提供 [vuex](https://github.com/vuejs/vuex)： 我们有受到 Elm 启发的状态管理库。vuex 甚至集成到 [vue-devtools](https://github.com/vuejs/vue-devtools)，无需配置即可开始你的体验。
 
 ### React 的开发者请参考以下信息
 
@@ -49,7 +49,7 @@ var store = {
 }
 ```
 
-需要注意，所有 store 中 state 的改变，都放置在 store 自身的 action 中去管理。这种类型的集中式状态管理能够被更容易地理解哪种类型的 mutations 将会发生，以及 它们 是如何被触发。当错误出现时，我们现在也会有一个 log 记录 bug 之前发生了什么。
+需要注意，所有 store 中 state 的改变，都放置在 store 自身的 action 中去管理。这种集中式状态管理能够被更容易地理解哪种类型的 mutations 将会发生，以及它们是如何被触发。当错误出现时，我们现在也会有一个 log 记录 bug 之前发生了什么。
 
 此外，每个实例/组件仍然可以拥有和管理自己的私有状态：
 
