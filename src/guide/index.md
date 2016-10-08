@@ -53,14 +53,16 @@ var app = new Vue({
 
 ``` html
 <div id="app-2">
-  <span v-bind:id="id">Inspect me</span>
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds to see my dynamically bound title!
+  </span>
 </div>
 ```
 ``` js
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    id: 'inspect-me'
+    message: 'You loaded this page on ' + new Date()
   }
 })
 ```
@@ -80,9 +82,9 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-这里我们遇到新东西。你看到的 `v-bind` 特性被称为**指令**。指令带有前缀 `v-`，以指示它们是 Vue.js 提供的特殊属性。并且如你所想象的，它们会在渲染过的 DOM 上应用特殊的响应式行为。这个指令的简单含义是说：将该元素的 id 属性绑定到 Vue 实例的 id 属性上。
+这里我们遇到点新东西。你看到的 `v-bind` 属性被称为**指令**。指令带有前缀 `v-`，以表示它们是 Vue.js 提供的特殊属性。可能你已经猜到了，它们会在渲染过的 DOM 上应用特殊的响应式行为。这个指令的简单含义是说：将这个元素节点的 `title` 属性和 Vue 实例的 `message` 属性绑定到一起。
 
-用浏览器的开发者工具去监测以上元素 - 你会发现这个元素的 id 为 `inspect-me`。是的，如果你在控制台里更改 `app2.id`，那么该元素的 id 也会随之更新。
+你再次打开浏览器的控制台输入 `app2.message = 'some new message'`，你就会再一次看到这个绑定了`title`属性的HTML已经进行了更新。
 
 ## 条件与循环
 
