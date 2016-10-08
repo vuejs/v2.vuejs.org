@@ -90,7 +90,7 @@ new Vue({
 
 2. 如果设置了过渡的 [JavaScript 钩子函数](#JavaScript-Hooks)，会在相应的阶段调用它们。
 
-3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览逐帧动画机制，与 Vue，和Vue的 `nextTick` 概念不同)
+3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，与 Vue，和Vue的 `nextTick` 概念不同)
 
 
 ### 过渡的-CSS-类名
