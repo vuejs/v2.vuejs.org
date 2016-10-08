@@ -78,7 +78,7 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](/api/#v-bind
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 `Math` 和 `Date` 。你不应该在模板表达式中视图访问用户定义的全局变量。</p>
+<p class="tip">模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 `Math` 和 `Date` 。你不应该在模板表达式中试图访问用户定义的全局变量。</p>
 
 <p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
 
