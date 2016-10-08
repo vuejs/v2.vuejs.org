@@ -1539,7 +1539,7 @@ Vue.component('my-special-transition', {
 ```
 当你想在 Vue 的过渡系统中定义的 CSS 过渡/动画不同过渡间切换会非常有用。
 
-所有的过渡属性都是动态绑定。它不仅是简单的属性，通过事件的钩子函数方法，可以在获取相应到上下文数据。这意味着，可以根据组件状态通过 JavaScript 过渡设置不同的过渡效果。
+所有的过渡特性都是动态绑定。它不仅是简单的特性，通过事件的钩子函数方法，可以在获取相应到上下文数据。这意味着，可以根据组件状态通过 JavaScript 过渡设置不同的过渡效果。
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
