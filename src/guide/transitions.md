@@ -420,14 +420,14 @@ Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可�
 // ...
 methods: {
   // --------
-  // ENTERING
+  // 进入中
   // --------
 
   beforeEnter: function (el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // 此回调函数是可选项的设置
+  // 与 CSS结合 时使用
   enter: function (el, done) {
     // ...
     done()
@@ -440,14 +440,14 @@ methods: {
   },
 
   // --------
-  // LEAVING
+  // 离开时
   // --------
 
   beforeLeave: function (el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // 此回调函数是可选项的设置
+  // 与 CSS结合 时使用
   leave: function (el, done) {
     // ...
     done()
@@ -455,7 +455,7 @@ methods: {
   afterLeave: function (el) {
     // ...
   },
-  // leaveCancelled only available with v-show
+  // leaveCancelled 只用于 v-show 中
   leaveCancelled: function (el) {
     // ...
   }
