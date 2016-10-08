@@ -570,7 +570,7 @@ new Vue({
 
 ## 初始渲染的过渡
 
-可以通过 `appear` 属性设置节点的在初始渲染的过渡
+可以通过 `appear` 特性设置节点的在初始渲染的过渡
 
 ``` html
 <transition appear>
