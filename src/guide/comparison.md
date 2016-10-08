@@ -5,9 +5,9 @@ order: 26
 ---
 这个页面无疑是最难编写的，但也是非常重要的。或许你遇到了一些问题并且先前用其他的框架解决了。来这里的目的是看看Vue是否有更好的解决方案。那么你就来对了。
 
-客观来说，作为核心团队成员，显然我们会更偏爱Vue，对于某些问题用Vue来解决会更好，如果没有这点信念，我们也就不会整天为此忙活了。但是，我们想尽可能地公平和准确地来讲述。其他的框架也有显著的优点，比如 React 的生态系统，或者 Knockout 对浏览器支持到 IE6 。我们把这些也都会全列出来。
+客观来说，作为核心团队成员，显然我们会更偏爱Vue，对于某些问题用Vue来解决会更好，如果没有这点信念，我们也就不会整天为此忙活了。但是，我们想尽可能地公平和准确地来讲述。其他的框架也有显著的优点，比如 Rect 的生态系统，或者 Knockout 对浏览器支持到 IE6 。我们把这些也都会全列出来。
 
-我们希望得到**你们**的帮助，来使文档保持更新，因为 JavaScript 的世界进步的太快。如果你注意到一个不准确或似乎不太正确的地方，请[提交问题][1]让我们知道。
+我们希望得到**你们**的帮助，来使文档保持更新，因为 JavaScript 的世界进步的太快。如果你注意到一个不准确或似乎不太正确的地方，请[提交问题](https://github.com/vuejs/vuejs.org/issues/new?title=Inaccuracy+in+comparisons+guide)让我们知道。
 
 ## React
 
@@ -19,7 +19,7 @@ React 和 Vue 有许多相似之处，它们都有：
 
 相似的作用域，我们会用更多的时间来讲这一块的比较。不仅我们要保持技术的准确性，同时兼顾平衡。我们指出React比Vue更好的地方，例如，他们的生态系统和丰富的自定义渲染器。
 
-React社区[在这里][2]非常积极地帮助我们实现这一平衡，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨的花费时间来贡献专业知识，来帮我们完善这个文件，直到我们都[满意][3]。
+React社区[在这里](https://github.com/vuejs/vuejs.org/issues/364)非常积极地帮助我们实现这一平衡，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨的花费时间来贡献专业知识，来帮我们完善这个文件，直到我们都[满意](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740)。
 
 这么说，就是希望你能对这两个库的比较的公平性感到放心。
 
@@ -39,7 +39,7 @@ React社区[在这里][2]非常积极地帮助我们实现这一平衡，特别�
 
 这意味着，在典型的应用中，需要渲染的元素比组件的数量是更多的，因为Vue的性能表现将会远优于React。然而，在极端情况下，比如每个组件渲染一个元素，Vue 将通常会较慢。显然这还没有说完。
 
-Vue 和 React 也提供提供功能性组件，这些组件都是没有声明，没有实例化，因此需要更少的开销。当这些都用于性能的关键位置，Vue会更快。为了证明这点，我们建立一个简单的[参照项目][4]，它只是渲染 10,000 个列表项 100次。我们鼓励你自己去试一下，实际上，由于浏览器和硬件的原因，结果会有所不同，由于 JavaScript 引擎的不同，结果也会有很大不同。
+Vue 和 React 也提供提供功能性组件，这些组件都是没有声明，没有实例化，因此需要更少的开销。当这些都用于性能的关键位置，Vue会更快。为了证明这点，我们建立一个简单的[参照项目](https://github.com/chrisvfritz/vue-render-performance-comparisons)，它只是渲染 10,000 个列表项 100次。我们鼓励你自己去试一下，实际上，由于浏览器和硬件的原因，结果会有所不同，由于 JavaScript 引擎的不同，结果也会有很大不同。
 
 如果你懒得去做，下面的数字数字从一个运行在 Chrome 52 在一个 2014年产的 MacBook Air上。为了避免偶然性，每个参照项目都分开运行20次，和包含的最好的结果：
 
@@ -103,7 +103,7 @@ Vue 和 React 也提供提供功能性组件，这些组件都是没有声明，
 
 #### JSX vs Templates
 
-在 React 中，所有的组件的渲染功能使用的都是JSX。JSX 是使用 XML 语法编写 Javascript 的一种语法糖。这有一个[通过React社区审核过的][5]例子：
+在 React 中，所有的组件的渲染功能使用的都是JSX。JSX 是使用 XML 语法编写 Javascript 的一种语法糖。这有一个[通过React社区审核过的](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684)例子：
 
 ``` jsx
     render () {
@@ -135,7 +135,7 @@ JSX的渲染功能有一些优势：
 - 你可以使用的完整的编程语言JavaScript来构建你的视图页面。
 - 工具对JSX的支持相比于现有可用的其他Vue模板还是比较先进的（比如，linting、类型检查、编辑器的自动完成）。
 
-在 Vue 中，由于有时需要用那些功能，我们也提供了[渲染功能][6] 并且[ 支持JSX ][7]。然而，对于大多数组件来说，渲染功能是不推荐使用了。
+在 Vue 中，由于有时需要用那些功能，我们也提供了[渲染功能](render-function.html) 并且[ 支持JSX ](render-function.html#JSX)。然而，对于大多数组件来说，渲染功能是不推荐使用了。
 
 在这方面，我们提供的是个更简单的模板：
 
@@ -164,7 +164,7 @@ JSX的渲染功能有一些优势：
 
 还没有结束。Vue拥抱HTML，而不是用JavaScript重塑它。在模板内，Vue也允许你用预处理器比如Pub（原名 Jade） 。
 
-React 生态也有一个[项目][8]允许你写摸吧，但是有一些缺点：
+React 生态也有一个[项目](https://wix.github.io/react-templates/)允许你写摸吧，但是有一些缺点：
 
 - 功能远没有 Vue 模板系统的丰富。
 - 需要从组件文件中分离出HTML代码。
@@ -172,9 +172,9 @@ React 生态也有一个[项目][8]允许你写摸吧，但是有一些缺点：
 
 #### CSS的组件作用域
 
-除非你把组件分布在多个文件上(例如 [CSS Modules][9]),要不作用域内的CSS就会暴警告。非常简单的CSS还可以工作，但是稍微复杂点的，比如悬停状态、媒体查询、伪类选择符要么会被修改要么就不能用。
+除非你把组件分布在多个文件上(例如 [CSS Modules](https://github.com/gajus/react-css-modules)),要不作用域内的CSS就会暴警告。非常简单的CSS还可以工作，但是稍微复杂点的，比如悬停状态、媒体查询、伪类选择符要么会被修改要么就不能用。
 
-Vue让你可以完全访问[ 单文件组件 ][10]。
+Vue让你可以完全访问[ 单文件组件 ](single-file-components.html)。
 
 ``` html
 	<style scoped>
@@ -194,11 +194,11 @@ Vue让你可以完全访问[ 单文件组件 ][10]。
 
 #### 扩大
 
-Vue和React都提供了强大的路由来应对对于大型应用。React社区在状态管理方面非常有创新精神（比如Flux、Redux），而这些状态管理模式甚至[ Redux本身 ][11]也是非常容易能够集成在Vue应用中的。实际上，Vue更进一步地采用了这种模式（[Vuex][12]），把Vuex集成进Vue能带来更好的开发体验。
+Vue和React都提供了强大的路由来应对对于大型应用。React社区在状态管理方面非常有创新精神（比如Flux、Redux），而这些状态管理模式甚至[ Redux本身 ](https://github.com/egoist/revue)也是非常容易能够集成在Vue应用中的。实际上，Vue更进一步地采用了这种模式（[Vuex](https://github.com/vuejs/vuex)），把Vuex集成进Vue能带来更好的开发体验。
 
 两者另一个重要差异是，Vue伴随的路由库和状态管理库都是由官方支持维护且和核心库同步更新的。React 生态更成熟，选择是把这些问题交给社区维护。
 
-最后，Vue 提供了一个[Vue-cli 脚手架][13]，能让你非常容易地构建项目，可以包含 [Webpack][14], [Browserify][15], 或者 [no build system][16]。React在这方面也提供了[create-react-app][17]，但是现在还有一些局限性：
+最后，Vue 提供了一个[Vue-cli 脚手架](https://github.com/vuejs/vue-cli)，能让你非常容易地构建项目，可以包含 [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), 或者 [no build system](https://github.com/vuejs-templates/simple)。React在这方面也提供了[create-react-app](https://github.com/facebookincubator/create-react-app)，但是现在还有一些局限性：
 
 - 它不允许在项目生成时进行任何配置，而Vue运行Yeoman-like定制。
 - 它只提供一个构建单页面应用的单一模板，而Vue 提供各种用途的多种模板。
@@ -241,7 +241,7 @@ Due的一些语法和Angular的很相似（例如 `v-if` vs  `ng-if`）。因为
 
 ### 灵活性和模块化
 
-Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方式组织应用程序，而不是在任何时候都必须遵循 Angular 1 制定的规则，这使让Vue能适用于各种项目。我们知道把决定权交给你，是非常必要的，就是是为什么提供[Webpack template][19]，让你用几分钟，去选择是否用高级特性，比如热模块加载、linting 、
+Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方式组织应用程序，而不是在任何时候都必须遵循 Angular 1 制定的规则，这使让Vue能适用于各种项目。我们知道把决定权交给你，是非常必要的，就是是为什么提供[Webpack template](https://github.com/vuejs-templates/webpack)，让你用几分钟，去选择是否用高级特性，比如热模块加载、linting 、
  Css extraction 等等。
 
 ### 数据绑定
@@ -270,7 +270,7 @@ Augluar 2完全是一个全新的框架。例如,它具有优秀的组件系统�
 
 Angular 1面向的较小的应用程序，Angular 2已转移焦点，面向的是大型企业应用。TypeScript被引用，这对那些喜欢用Java或者C#等类型安全的语言的人是非常有用的。
 
-Vue也适合[企业应用][20]，也可以使用TypeScript来支持[官方类型][21]和[用户贡献的类型][22]，尽管这是可选的。
+Vue也适合[企业应用](https://github.com/vuejs/awesome-vue#enterprise-usage)，也可以使用TypeScript来支持[官方类型](https://github.com/vuejs/vue/tree/dev/types)和[用户贡献的类型](https://github.com/itsFrank/vue-typescript)，尽管这是可选的。
 
 ### 尺寸和性能
 
@@ -286,9 +286,9 @@ Vue 官方提供了构建工具，但没限制你如何构建。有人喜欢用�
 
 ### 学习曲线
 
-开始使用Vue，你使用的是熟悉的HTML、符合ES5规则的JavaScript（也就是纯JavaScript）。有了这些基本的技能，你可以快速地掌握它([指南][24])并投入开发 。
+开始使用Vue，你使用的是熟悉的HTML、符合ES5规则的JavaScript（也就是纯JavaScript）。有了这些基本的技能，你可以快速地掌握它([指南](/guide))并投入开发 。
 
-Angular 2 的学习曲线是非常陡峭的。即使不包括TypeScript，它们[开始指南][25]中所用的就有ES2015标准的JavaScript，18个NPM依赖包，4个文件和超过3千多字介绍，这一切都是为了完成个Hello World。而[Vue's Hello World][26]就非常简单。
+Angular 2 的学习曲线是非常陡峭的。即使不包括TypeScript，它们[开始指南](https://angular.io/docs/js/latest/quickstart.html)中所用的就有ES2015标准的JavaScript，18个NPM依赖包，4个文件和超过3千多字介绍，这一切都是为了完成个Hello World。而[Vue's Hello World](index.html#Hello-World)就非常简单。
 
 ## Ember
 
@@ -303,11 +303,11 @@ Ember 是一个全能框架。它提供大量的约定，一旦你熟悉了它�
 
 ## Knockout
 
-Knockout 是MVVM领域内的先驱，并且追踪依赖。它的响应系统和Vue相似。它对[浏览器支持][27]以及所有的表现也是让人印象深刻的。它能最低支持到IE6，而Vue最低只能支持到IE9。
+Knockout 是MVVM领域内的先驱，并且追踪依赖。它的响应系统和Vue相似。它对[浏览器支持](http://knockoutjs.com/documentation/browser-support.html)以及所有的表现也是让人印象深刻的。它能最低支持到IE6，而Vue最低只能支持到IE9。
 
-随着时间的推移，Knockout的发展已有所放缓，并且略显有点老旧了。比如，它的组件系统缺少完备的生命周期事件方法，尽管这些在现在是非常常见。以及相比[Vue][28]调用子组件的接口显得有点笨重。
+随着时间的推移，Knockout的发展已有所放缓，并且略显有点老旧了。比如，它的组件系统缺少完备的生命周期事件方法，尽管这些在现在是非常常见。以及相比[Vue](components.html#Content-Distribution-with-Slots)调用子组件的接口显得有点笨重。
 
-如果你有兴趣研究，会发现它们在接口设计的构思理念上是不同的。这些通过各自创建的 [ simple Todo List ][29]可以体现出来。或许有点主观，但是很多人认为Vue的API接口更简单结构更优雅。
+如果你有兴趣研究，会发现它们在接口设计的构思理念上是不同的。这些通过各自创建的 [ simple Todo List ](https://gist.github.com/chrisvfritz/9e5f2d6826af00fcbace7be8f6dccb89)可以体现出来。或许有点主观，但是很多人认为Vue的API接口更简单结构更优雅。
 
 ## Polymer
 
@@ -327,9 +327,9 @@ Riot 2.0 提供了一个类似于基于组件的开发模型（在Riot中称之�
 
 - 根据真实条件来渲染，Roit根据是否有分支简单显示或隐藏所有内容。
 - 功能更加强大的路由机制，Roit的路由功能的API是极少的。
-- 更多成熟工具的支持。Vue 提供官方支持[Webpack][30]、[Browserify][31]和[SystemJS][32]，而 Roit 是依靠社区来建立集成系统。
-- [过渡效果系统][33]。Riot现在没有提供。
-- 更好的性能。Roit [尽管广告称][34]用虚拟DOM，实际上用的还是脏检查机制，因此和Angular 1患有相同的性能问题。
+- 更多成熟工具的支持。Vue 提供官方支持[Webpack](https://github.com/vuejs/vue-loader)、[Browserify](https://github.com/vuejs/vueify)和[SystemJS](https://github.com/vuejs/systemjs-plugin-vue)，而 Roit 是依靠社区来建立集成系统。
+- [过渡效果系统](transitions.html)。Riot现在没有提供。
+- 更好的性能。Roit [尽管广告称](https://github.com/vuejs/vuejs.org/issues/346)用虚拟DOM，实际上用的还是脏检查机制，因此和Angular 1患有相同的性能问题。
 
 
 ***
