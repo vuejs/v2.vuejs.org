@@ -244,7 +244,6 @@ If you really want to duplicate the same element/component many times, you can d
 
 ``` js
 render: function (createElement) {
-  var myParagraph =
   return createElement('div',
     Array.apply(null, { length: 20 }).map(function () {
       return createElement('p', 'hi')
