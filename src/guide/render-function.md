@@ -110,7 +110,7 @@ createElement(
   // {String | Array}
   // Children VNodes. Optional.
   [
-    createElement('h1', 'hello world')
+    createElement('h1', 'hello world'),
     createElement(MyComponent, {
       props: {
         someProp: 'foo'

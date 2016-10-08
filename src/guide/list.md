@@ -259,7 +259,7 @@ Vue.component('todo-item', {
     <li>\
       {{ title }}\
       <button v-on:click="$emit(\'remove\')">X</button>\
-    <\li>\
+    </li>\
   ',
   props: ['title']
 })

@@ -468,7 +468,7 @@ methods: {
       .then(function (response) {
         this.posts = response.data.posts
       })
-      .catch(funciton (error) {
+      .catch(function (error) {
         this.fetchError = error
       })
   }
