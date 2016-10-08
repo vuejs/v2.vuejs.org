@@ -84,7 +84,7 @@ var app2 = new Vue({
 
 这里我们遇到点新东西。你看到的 `v-bind` 属性被称为**指令**。指令带有前缀 `v-`，以表示它们是 Vue.js 提供的特殊属性。可能你已经猜到了，它们会在渲染过的 DOM 上应用特殊的响应式行为。这个指令的简单含义是说：将这个元素节点的 `title` 属性和 Vue 实例的 `message` 属性绑定到一起。
 
-你再次打开浏览器的控制台输入 `mapp2.message = 'some new message'`，你就会再一次看到这个绑定了`title`属性的HTML已经进行了更新。
+你再次打开浏览器的控制台输入 `app2.message = 'some new message'`，你就会再一次看到这个绑定了`title`属性的HTML已经进行了更新。
 
 ## 条件与循环
 
