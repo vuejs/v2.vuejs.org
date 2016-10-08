@@ -122,14 +122,14 @@
 ### Migration  迁移
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者　| 校对贡献者
------ | ------- | ------------- | --- | --- | ---　| ---
+----- | ------- | ------------- | --- | --- | ---
 24 | 是  | migration.md | 1.x迁移 |  [harrytospring](https://github.com/harrytospring) | 
 27 | 是 | migration-vue-router.md | vue-router 0.7.x 迁移 | [forzajuve10](https://github.com/forzajuve10) | 
 
 ### Meta  更多
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
------ | ------- | ------------- | --- | --- | --- | ---
+----- | ------- | ------------- | --- | --- | ---
 25 | 是 |  comparison.md |   对比其他框架 |  [yongbolv](https://github.com/yongbolv) | 
 26 | 是 |  join.md |  加入Vue.js社区 | [daix6](https://github.com/daix6) | 
 
