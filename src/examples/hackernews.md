@@ -4,7 +4,7 @@ type: examples
 order: 10
 ---
 
-> HackerNews 克隆是基于 HN 的官方 firebase API，Vue 2.0 、vue-router 和 vuex 来构建的，使用服务器端渲染。
+> HackerNews 克隆是基于 HN 的官方 firebase API 、Vue 2.0 、vue-router 和 vuex 来构建的，使用服务器端渲染。
 
 {% raw %}
 <div style="max-width:600px">
@@ -15,8 +15,7 @@ order: 10
 {% endraw %}
 
 > [Live Demo](https://vue-hn.now.sh/)
-> Note: the demo may need some spin up time if nobody has accessed it for a certain period.
-笔记：如果没在特定时间段用到它，那么本示例需要一些加载时间。
+> 笔记：如果没在特定时间段用到它，那么本示例需要一些加载时间。
 >
 > [[Source](https://github.com/vuejs/vue-hackernews-2.0)]
 
