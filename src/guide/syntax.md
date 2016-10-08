@@ -4,9 +4,9 @@ type: guide
 order: 4
 ---
 
-Vue.js 使用了基于 HTML 的模版语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。所有 Vue.js 的模板都是合法的 HTML，所以能被遵循规范的浏览器和 HTML 解析器解析。
+Vue.js 使用了基于 HTML 的模版语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。所有 Vue.js 的模板都是合法的 HTML ，所以能被遵循规范的浏览器和 HTML 解析器解析。
 
-在底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，在应用状态改变时，Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。
+在底层的实现上， Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。
 
 如果你熟悉虚拟 DOM 并且偏爱 JavaScript 的原始力量，你也可以不用模板，[直接写渲染（render）函数](/guide/render-function.html)，使用可选的 JSX 语法。
 
@@ -30,7 +30,7 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 
 ### 纯 HTML
 
-双大括号会将数据解释为纯文本，而非 HTML。为了输出真正的 HTML，你需要使用 `v-html` 指令：
+双大括号会将数据解释为纯文本，而非 HTML 。为了输出真正的 HTML ，你需要使用 `v-html` 指令：
 
 ``` html
 <div v-html="rawHtml"></div>
@@ -56,7 +56,7 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](/api/#v-bind
 
 ### 使用 JavaScript 表达式
 
-迄今为止，在我们的模板中，我们一直都只绑定简单的属性键值。但实际上，对于所有的数据绑定，Vue.js 都提供了完全的 JavaScript 表达式支持。
+迄今为止，在我们的模板中，我们一直都只绑定简单的属性键值。但实际上，对于所有的数据绑定， Vue.js 都提供了完全的 JavaScript 表达式支持。
 
 ``` html
 {{ number + 1 }}
@@ -78,7 +78,7 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](/api/#v-bind
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 `Math` 和 `Date`。你不应该在模板表达式中视图访问用户定义的全局变量。</p>
+<p class="tip">模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 `Math` 和 `Date` 。你不应该在模板表达式中视图访问用户定义的全局变量。</p>
 
 <p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
 
@@ -119,7 +119,7 @@ new Vue({
 {{ message | filterA('arg1', arg2) }}
 ```
 
-这里，字符串 `'arg1'` 将传给过滤器作为第二个参数，`arg2` 表达式的值将被求值然后传给过滤器作为第三个参数。
+这里，字符串 `'arg1'` 将传给过滤器作为第二个参数， `arg2` 表达式的值将被求值然后传给过滤器作为第三个参数。
 
 ## 指令
 
@@ -129,11 +129,11 @@ new Vue({
 <p v-if="seen">Now you see me</p>
 ```
 
-这里，`v-if` 指令将根据表达式 `seen` 的值的真假来移除/插入 `<p>` 元素。
+这里， `v-if` 指令将根据表达式 `seen` 的值的真假来移除/插入 `<p>` 元素。
 
 ### 参数
 
-一些指令能接受一个“参数”，在指令后以冒号指明。例如，`v-bind` 指令被用来响应地更新 HTML 属性：
+一些指令能接受一个“参数”，在指令后以冒号指明。例如， `v-bind` 指令被用来响应地更新 HTML 属性：
 
 ``` html
 <a v-bind:href="url"></a>
