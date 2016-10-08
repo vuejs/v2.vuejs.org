@@ -6,42 +6,42 @@ order: 26
 
 Esta é definitivamente a página mais difícil de ser escrito do guia, mas sentimos que é importante. É muito provável que você já teve problemas, tentou resolvê-los e já usou outra biblioteca para resolvê-los. Você está aqui pois quer saber se Vue pode resolver seus problemas específicos de uma forma melhor. É isto que esperamos lhe responder.
 
-We also try very hard to avoid bias. As the core team, we obviously like Vue a lot. There are some problems we think it solves better than anything else out there. If we didn't believe that, we wouldn't be working on it. We do want to be fair and accurate though. Where other libraries offer significant advantages, such as React's vast ecosystem of alternative renderers or Knockout's browser support back to IE6, we try to list these as well.
+Nós também tentamos arduamente evitar arbitrariedade. Como parte da equipe responsável, obviamente gostamos muito do Vue. Há problemas que acreditamos que ele resolva melhor do que qualquer outra opção existente. Se não acreditássemos nisso, não estaríamos trabalhando nele. Entretanto, queremos ser justos e precisos. Nos esforçamos para listar também onde outras bibliotecas oferecem vantagens significativas, como o vasto ecossistema React de renderizadores alternativos ou o suporte retroativo do Knockout até IE6.
 
-We'd also like **your** help keeping this document up-to-date because the JavaScript world moves fast! If you notice an inaccuracy or something that doesn't seem quite right, please let us know by [opening an issue](https://github.com/vuejs/vuejs.org/issues/new?title=Inaccuracy+in+comparisons+guide).
+Nós também gostaríamos de **sua** ajuda para manter este documento atualizado, afinal o mundo JavaScript se move rápido! Se você perceber alguma inconsistência ou algo que não parece estar certo, por favor, nos mantenha a par [informando um problema](https://github.com/vuejs/vuejs.org/issues/new?title=Inaccuracy+in+comparisons+guide).
 
 ## React
 
-React and Vue share many similarities. They both:
+React e Vue compartilham muitas similaridades. Ambos:
 
-- utilize a virtual DOM
-- provide reactive and composable view components
-- maintain focus in the core library, with concerns such as routing and global state management handled by companion libraries
+- utilizam a abordagem de DOM virtual
+- provêm componentes visuais reativos e combináveis
+- mantêm o foco na biblioteca principal, com preocupações como roteamento e gerenciamento de estado global tratadas por bibliotecas companheiras
 
-Being so similar in scope, we've put more time into fine-tuning this comparison than any other. We want to ensure not only technical accuracy, but also balance. We point out where React outshines Vue, for example in the richness of their ecosystem and abundance of their custom renderers.
+Sendo tão similares em escopo, desprendemos mais tempo para refinar esta comparação em relação às outras. Queremos garantir não somente precisão técnica, mas também equilíbrio. Apontamos onde React supera Vue, por exemplo, na riqueza de seu ecossistema e na abundância de renderizadores personalizados.
 
-The React community [has been instrumental](https://github.com/vuejs/vuejs.org/issues/364) in helping us achieve this balance, with special thanks to Dan Abramov from the React team. He was extremely generous with his time and considerable expertise to help us refine this document until we were [both happy](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740) with the final result.
+A comunidade React [tem sido fundamental](https://github.com/vuejs/vuejs.org/issues/364) para nos ajudar a alcançar tal equilíbrio, com agradecimento especial a Dan Abramov da equipe React. Ele foi extremamente generoso com seu tempo e considerável experiência, nos ajudando a aperfeiçoar este documento até que ambos os lados [estivessem felizes](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740) com o resultado final.
 
-With that said, we hope you can feel confident in the fairness of the review below as we explore the differences between these two libraries.
+Com isso dito, esperamos que você possa se sentir confiante na equidade da análise abaixo enquanto exploramos as diferenças entre estas duas bibliotecas.
 
-### Performance Profiles
+### Desempenho
 
-In every real-world scenario that we've tested so far, Vue outperforms React by a fair margin. If your eyebrows are raising right now, read further. We'll breakdown why (and even include a benchmark developed in collaboration with the React team).
+Em todos os cenários de mundo real que testamos até agora, Vue supera React por uma margem justa (normalmente entre 20% a 50% mais rápido, embora em alguns casos, muito mais do que isso). Neste momento poderíamos referenciar *benchmarks* - mas, francamente, todos eles são falhos de alguma forma, e poucos se lembram do que você escreveria em uma aplicação real. Em vez disso, vamos dividir a análise em partes.
 
-#### Render Performance
+#### Desempenho de Renderização
 
-When rendering UI, manipulating the DOM is typically the most expensive operation and unfortunately, no library can make those raw operations faster. The best we can do is:
+Ao renderizar uma interface, manipulação do DOM é normalmente a operação mais custosa e, infelizmente, nenhuma biblioteca pode fazer essas operações brutas mais rápido. O melhor que podemos fazer é:
 
-1. Minimize the number of necessary DOM mutations. Both React and Vue use virtual DOM abstractions to accomplish this and both implementations work about equally well.
-2. Add as little overhead as possible on top of those DOM manipulations. This is an area where Vue and React differ.
+1. Minimizar o número de mutações DOM necessárias. Tanto React quanto Vue usam abstrações de DOM Virtual para isto, ambos com implementações igualmente boas.
+2. Adicionar a menor sobrecarga possível sobre essas manipulações do DOM. Já esta é uma área onde Vue e React diferem.
 
-In React, let's say the additional overhead of rendering an element is 1 and the overhead of an average component is 2. In Vue, the overhead of an element would be more like 0.1, but the overhead of an average component would be 4, due to the setup required for our reactivity system.
+No React, digamos que a sobrecarga de renderizar um elemento é 1 e a sobrecarga de um componente mediano é 2. No Vue, a sobrecarga de um elemento seria mais para 0,1 enquanto a sobrecarga de um componente mediano seria 4, devido à configuração exigida para nosso sistema de reatividade.
 
-This means that in typical applications, where there are many more elements than components being rendered, Vue will outperform React by a significant margin. In extreme cases however, such as using 1 normal component to render each element, Vue will usually be slower. This isn't the end of the story though.
+Isto significa que em aplicações típicas, quando ouver mais elementos do que componentes sendo renderizados, Vue superará React por uma margem significativa. Em casos extremos, no entanto, tais como utilizar um componente para renderizar cada elemento, Vue será geralmente mais lento. Contudo, este não é o fim da história.
 
-Both Vue and React also offer functional components, which are stateless and instanceless - and therefore, require less overhead. When these are used in performance-critical situations, Vue is once again faster. To demonstrate this, we built a simple [benchmark project](https://github.com/chrisvfritz/vue-render-performance-comparisons) that just renders 10,000 list items 100 times. We encourage you to try it yourself, as the results will vary depending on the hardware and browser used - and actually, they'll vary even between runs due to the nature of JavaScript engines.
+Tanto Vue quanto React também oferecem componentes funcionais, os quais não possuem estado e instância - e, portanto, geram menos sobrecarga. Quando estes são utilizados em situações de desempenho crítico, Vue é novamente mais rápido. Para demonstrar, construímos um [projeto para medição](https://github.com/chrisvfritz/vue-render-performance-comparisons) simples, que renderiza 10.000 itens de lista 100 vezes. Encorajamos você a experimentar por si próprio, já que os resultados irão variar dependendo do *hardware* e do navegador utilizado - de fato, eles vão variar até mesmo entre as execuções, devido à natureza dos motores JavaScript.
 
-If you're feeling lazy though, below are the numbers from one run in Chrome 52 on a 2014 MacBook Air. To avoid cherry-picking, both benchmarks were actually run 20 separate times, with results from the best runs included below:
+Porém, se você estiver se sentindo preguiçoso, abaixo estão os números da execução no Chrome 52 em um MacBook Air de 2014. Para evitar coincidências, ambos os *benchmarks* foram executados 20 vezes, com os resultados estatisticamente agrupados abaixo:
 
 {% raw %}
 <table class="benchmark-table">
@@ -54,27 +54,27 @@ If you're feeling lazy though, below are the numbers from one run in Chrome 52 o
   </thead>
   <tbody>
     <tr>
-      <th>Fastest</th>
+      <th>Mais rápido</th>
       <td>23ms</td>
       <td>63ms</td>
     </tr>
     <tr>
-      <th>Median</th>
+      <th>Mediana</th>
       <td>42ms</td>
       <td>81ms</td>
     </tr>
     <tr>
-      <th>Average</th>
+      <th>Média</th>
       <td>51ms</td>
       <td>94ms</td>
     </tr>
     <tr>
-      <th>95th Perc.</th>
+      <th>Percentil 95</th>
       <td>73ms</td>
       <td>164ms</td>
     </tr>
     <tr>
-      <th>Slowest</th>
+      <th>Mais lento</th>
       <td>343ms</td>
       <td>453ms</td>
     </tr>
@@ -83,27 +83,27 @@ If you're feeling lazy though, below are the numbers from one run in Chrome 52 o
 </table>
 {% endraw %}
 
-#### Update Performance
+#### Desempenho de Atualização
 
-In React, you need to implement `shouldComponentUpdate` everywhere and use immutable data structures to achieve fully optimized re-renders. In Vue, a component's dependencies are automatically tracked so that it only updates when one of those dependencies change. The only further optimization that sometimes can be helpful in Vue is adding a `key` attribute to items in long lists.
+No React, você precisa implementar `shouldComponentUpdate` em todo lugar e usar estruturas de dados imutáveis para obter reprocessamentos totalmente otimizados. No Vue, as dependências de um componente são automaticamente rastreadas a ele, de forma que só se atualize quando uma dessas dependências se modificar. A única otimização adicional que pode ser útil no Vue, às vezes, é adicionar um atributo `key` aos itens em listas longas.
 
-This means updates in unoptimized Vue will be much faster than unoptimized React and actually, due to the improved render performance in Vue, even fully-optimized React will usually be slower than Vue is out-of-the-box.
+Significa que atualizações não otimizadas no Vue serão muito mais rápidas do que React não otimizado. Na verdade, devido ao desempenho de renderização superior do Vue, mesmo React totalmente otimizado geralmente será mais lento que Vue sem otimizações manuais.
 
-#### In Development
+#### No Desenvolvimento
 
-Obviously, performance in production is the most important and that's what we've been discussing so far. Performance in development still matters though. The good news is that both Vue and React remain fast enough in development for most normal applications.
+Obviamente, o desempenho em produção é o mais importante e é sobre isso que estivemos discutindo até agora. Todavia, desempenho durante o desenvolvimento ainda importa. A boa notícia é que tanto Vue quanto React permanecem rápidos o suficiente em desenvolvimento para a maioria das aplicações comuns.
 
-However, if you're prototyping any high-performance data visualizations or animations, you may find it useful to know that in scenarios where Vue can't handle more than 10 frames per second in development, we've seen React slow down to about 1 frame per second.
+No entanto, se estiver prototipando visualizações de dados de alto desempenho ou animações, você pode achar útil saber que, em cenários críticos onde Vue não consegue lidar com mais de 10 quadros por segundo em desenvolvimento, temos visto React desacelerar para cerca de 1 quadro por segundo.
 
-This is due to React's many heavy invariant checks, which help it to provide many excellent warnings and error messages. We agree that these are important in Vue, but have tried to keep a closer eye on performance while we implement these checks.
+Isto ocorre devido às muitas checagens de invariantes pesadas do React, que o ajudam a fornecer vários avisos e mensagens de erro excelentes. Concordamos que estes também são importantes no Vue, mas temos tentado ficar de olho no desempenho enquanto implementamos tais verificações.
 
 ### HTML & CSS
 
-In React, everything is Just JavaScript, which sounds very simple and elegant - until you dig deeper. The unfortunate reality is that reinventing HTML and CSS within JavaScript can cause a lot of pain. In Vue, we instead embrace web technologies and build on top of them. To show you what that means, we'll dive into some examples.
+No React, tudo é somente JavaScript, o que soa muito simples e elegante - até você se aprofundar mais. A triste realidade é que reinventar HTML e CSS dentro do JavaScript pode causar muita dor. No Vue, simplesmente abraçamos as tecnologias Web e construímos em cima delas. Para mostrar o que significa, mergulharemos em alguns exemplos.
 
 #### JSX vs Templates
 
-In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within Javascript. Here's an example, [vetted by the React community](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
+No React, todos os componentes expressam sua interface com funções `render` usando JSX, uma sintaxe declarativa inspirada em XML, embutida dentro do JavaScript. Aqui está um exemplo, [conferido pela comunidade React](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
 
 ``` jsx
 render () {
@@ -119,7 +119,7 @@ render () {
       </ul>
     )
   } else {
-    children = <p>No items found.</p>
+    children = <p>Nenhum item encontrado.</p>
   }
 
   return (
@@ -130,14 +130,14 @@ render () {
 }
 ```
 
-Render functions with JSX have a few advantages:
+A utilização de *render functions* com JSX oferece algumas vantagens:
 
-- You can use the power of a full programming language (JavaScript) to build your view.
-- The tooling support (e.g. linting, type checking, editor autocompletion) for JSX is in some ways more advanced than what's currently available for Vue templates.
+- Você pode usar o poder de uma linguagem de programação completa (JavaScript) para construir sua camada visual.
+- Ferramentas de suporte (como *linting*, checagem de tipos, *autocomplete* de código) para JSX estão um pouco mais avançadas do que está atualmente disponível com *templates* Vue.
 
-In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes you need that power. Render functions are not recommended for most components however.
+No Vue, também temos [render functions](render-function.html) e até mesmo [suporte a JSX](render-function.html#JSX), afinal às vezes você precisa deste poder. Entretanto, elas não são recomendadas para a maioria dos componentes.
 
-Instead, we offer templates as a simpler alternative:
+Em seu lugar, oferecemos *templates* como uma alternativa mais simples:
 
 ``` html
 <template>
@@ -147,34 +147,34 @@ Instead, we offer templates as a simpler alternative:
         {{ item.name }}
       </li>
     </ul>
-    <p v-else>No items found.</p>
+    <p v-else>Nenhum item encontrado.</p>
   </div>
 </template>
 ```
 
-A few advantages here:
+Algumas vantagens neste caso:
 
-- Many fewer implementation and stylistic decisions have to be made while writing a template
-- A template will always be declarative
-- Any valid HTML is valid in a template
-- It reads more like English (e.g. for each item in items)
-- Advanced versions of JavaScript are not required to increase readability
+- Bem menos decisões de implementação e estilização precisam ser feitas enquanto se escreve um *template*
+- Um *template* sempre será declarativo
+- Qualquer HTML válido também é válido em um *template*
+- É legível como uma frase em inglês (exemplo: "para cada item em itens")
+- Versões avançadas de JavaScript não são necessárias para melhorar a legibilidade
 
-This is not only much easier for the developer that's writing it, but designers and less experienced developers will also find it much easier parsing and contributing code.
+Não é apenas muito mais fácil para o desenvolvedor que está escrevendo, mas designers ou desenvolvedores menos experientes também se sentirão muito mais confortáveis analisando e contribuindo com o código.
 
-It doesn't end there though. By embracing HTML rather than trying to reinvent it within JavaScript, Vue also allows you to use preprocessors such as Pug (formerly known as Jade) in your templates.
+Mas não termina aqui. Ao abraçar o HTML ao invés de tentar reinventá-lo com JavaScript, Vue também permite o uso de pré-processadores como Pug (anteriormente conhecido como Jade) em seus *templates*.
 
-The React ecosystem also has [a project](https://wix.github.io/react-templates/) that allows you to write templates, but there are a few disadvantages:
+O ecossistema React também possui [um projeto](https://wix.github.io/react-templates/) que permite escrever *templates*, mas existem algumas desvantagens:
 
-- It's not nearly as feature-rich as Vue's templating system
-- It requires separating your HTML from component files
-- Because it's a 3rd party library rather than officially supported, it may or may not be kept up-to-date with React core into the future
+- Não é nem de perto tão rico em recursos quanto o sistema de *templates* Vue
+- Requer separar seu HTML dos arquivos de seus componentes
+- Por ser uma biblioteca de terceiros ao invés de oficialmente suportada, pode ou não ser mantida atualizada em relação à evolução do React no futuro.
 
-#### Component-Scoped CSS
+#### CSS com Escopo por Componente
 
-Unless you spread components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), scoping CSS in React comes with caveats. Very basic CSS works great out-of-the-box, but some more complex features such as hover states, media queries, and pseudo-selectors all either require heavy dependencies to reinvent what CSS already does - or they simply don't work.
+A menos que distribua componentes por vários arquivos (por exemplo, com [CSS Modules](https://github.com/gajus/react-css-modules)), CSS com escopo no React vem com ressalvas. CSS realmente básico funciona muito bem por padrão, mas recursos um pouco mais complexos, como  estados `:hover`, `@media`, e pseudo-seletores, requerem dependências pesadas para reinventar o que o CSS já faz - ou simplesmente não funcionam.
 
-Vue on the other hand, gives you full access to CSS within [single-file components](single-file-components.html):
+Por outro lado, Vue proporciona acesso completo ao CSS com [single-file components](single-file-components.html):
 
 ``` html
 <style scoped>
@@ -186,144 +186,144 @@ Vue on the other hand, gives you full access to CSS within [single-file componen
 </style>
 ```
 
-The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `data-v-1`) to elements and compiling `.list-container:hover` to something like `.list-container[data-v-1]:hover`.
+O atributo opcional `scoped` automaticamente cria escopo ao CSS de seu componente adicionando um atributo único (por exemplo, `data-v-1`) aos elementos e compilando `.list-container:hover` para algo como `.list-container[data-v-1]:hover`.
 
-Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors (or postprocessors) you'd like. This allows you to perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
+Finalmente, assim como no HTML, você também tem a opção de escrever seu CSS utilizando qualquer pré-processador (ou pós-processador) de sua preferência. Isto permite realizar operações centradas no design, como manipulação de cores durante o processo de *build*, ao invés de precisar importar bibliotecas JavaScript especializadas que aumentariam o tamanho de seu pacote compilado e a complexidade de sua aplicação.
 
-### Scale
+### Escalabilidade
 
-#### Scaling Up
+#### Ampliando a Escala
 
-For large applications, both Vue and React offer robust routing solutions. The React community has also been very innovative in terms of state management solutions (e.g. Flux/Redux). These state management patterns and [even Redux itself](https://github.com/egoist/revue) can be easily integrated into Vue applications. In fact, Vue has even taken this model a step further with [Vuex](https://github.com/vuejs/vuex), an Elm-inspired state management solution that integrates deeply into Vue that we think offers a superior development experience.
+Para aplicações grandes, tanto Vue quanto React oferecem soluções de roteamento robustas. A comunidade React também tem sido muito inovadora em termos de soluções de gerenciamento de estado (com Flux/Redux). Esses padrões de gerenciamento de estado e até [o próprio Redux](https://github.com/egoist/revue) podem ser integrados facilmente em aplicações Vue. Na verdade, neste modelo, Vue até deu um passo adiante com o [Vuex](https://github.com/vuejs/vuex), uma solução de gerenciamento de estado ispirada em Elm, que se integra profundamente com o Vue, a qual nós acreditamos que oferece uma experiência de desenvolvimento superior.
 
-Another important difference between these offerings is that Vue's companion libraries for state management and routing (among [other concerns](https://github.com/vuejs)) are all officially supported and kept up-to-date with the core library. React instead chooses to leave these concerns to the community, creating a more fragmented ecosystem. Being more popular though, React's ecosystem is considerably richer than Vue's.
+Outra importante diferença entre os dois ecossistemas é que as bibliotecas companheiras do Vue para gerenciamento de estado e roteamento (dentre [outras preocupações](https://github.com/vuejs)) são oficialmente suportadas e mantidas sempre atualizadas em relação à biblioteca principal. Ao contrário disso, React escolhe deixar tais preocupações para a comunidade, criando um ecossistema mais fragmentado. Por outro lado, por ser mais popular, o ecossistema React é consideravelmente mais rico do que o do Vue.
 
-Finally, Vue offers a [CLI project generator](https://github.com/vuejs/vue-cli) that makes it trivially easy to start a new project using your choice of build system, including [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), or even [no build system](https://github.com/vuejs-templates/simple). React is also making strides in this area with [create-react-app](https://github.com/facebookincubator/create-react-app), but it currently has a few limitations:
+Por fim, Vue oferece um [CLI gerador de projetos](https://github.com/vuejs/vue-cli) que torna trivialmente simples iniciar um novo projeto usando o sistema de *build* de sua escolha, incluindo [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), ou mesmo [nenhum](https://github.com/vuejs-templates/simple). React também está fazendo avanços nesta área com o [create-react-app](https://github.com/facebookincubator/create-react-app), mas atualmente tem algumas limitações:
 
-- It does not allow any configuration during project generation, while Vue's project templates allow Yeoman-like customization.
-- It only offers a single template that assumes you're building a single-page application, while Vue offers a wide variety of templates for various purposes and build systems.
-- It cannot generate projects from user-built templates, which can be especially useful for enterprise environments with pre-established conventions.
+- Não permite nenhuma configuração durante a geração do projeto, enquanto os templates de projeto Vue permitem personalização no estilo Yeoman.
+- Oferece um modelo simples assumindo que você está criando uma aplicação *single-page*, enquanto Vue oferece muita variedade, para vários propósitos e sistemas de *build*.
+- Não permite criar projetos a partir de modelos feitos por outros desenvolvedores, o que pode ser muito útil, especialmente em ambientes empresariais com padrões estabelecidos.
 
-It's important to note though that many of these limitations are intentional design decisions made by the create-react-app team and they do have their advantages. For example, as long your project's needs are very simple and you never need to "eject" to customize your build process, you'll be able to update it as a dependency. You can read more about the [differing philosophy here](https://github.com/facebookincubator/create-react-app#philosophy).
+É importante notar, no entanto, que muitas dessas limitações são decisões de projeto intencionais tomadas pela equipe do create-react-app, as quais têm suas vantagens. Por exemplo, enquanto as necessidades de seu projeto são bem simples e você não precisa "ejetar" para customizar seu processo de *build*, é possível mantê-lo atualizado como uma dependência. Você pode ler mais sobre esta [filosofia diferente aqui](https://github.com/facebookincubator/create-react-app#philosophy).
 
-#### Scaling Down
+#### Reduzindo a Escala
 
-React is renowned for its steep learning curve. Before you can really get started, you need to know about JSX and probably ES2015+, since many examples use React's class syntax. You also have to learn about build systems, because although you could technically use Babel Standalone to live-compile your code, it's not recommended for production.
+React é conhecido por sua curva de aprendizado. Antes que você possa realmente começar, você precisa saber sobre JSX e provavelmente ES2015+, uma vez que muitos exemplos React usam sintaxe de classes. Você também precisa aprender sobre processos de transpilação, pois embora você pudesse tecnicamente usar Babel Standalone para compilar código em tempo real, não é algo recomendado para a produção.
 
-While Vue scales up just as well as, if not better than React, it also scales down just as well as jQuery. That's right - all you have to do is drop a single script tag into a page:
+Enquanto Vue escala ascendentemente tão bem quanto, se não até melhor que o React, ele também é capaz de reduzir a escala tão bem quanto jQuery. É isso mesmo - tudo que você precisa fazer é colocar uma única *tag script* na página:
 
 ``` html
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 ```
 
-Then you can start writing Vue code and even ship the minified version to production without feeling guilty or having to worry about performance problems.
+Então você pode começar a escrever código Vue e ainda distribuir a versão minificada em produção sem se sentir culpado ou ter que se preocupar sobre problemas de performance.
 
-Since you don't need to know about JSX, ES2015, or build systems to get started with Vue, it also typically takes developers less than a day reading [the guide](/guide) to learn enough to build non-trivial applications.
+E já que você não precisa obrigatoriamente saber sobre JSX, ES2015 ou sistemas de *build* para começar com o Vue, leva tipicamente menos de um dia para os desenvolvedores lerem os pontos mais importantes [no guia](/guide) e aprenderem o suficiente para criar aplicações não triviais.
 
-### Native Rendering
+### Renderização Nativa
 
-ReactNative enables you to write native-rendered apps for iOS and Android using the same React component model. This is great in that as a developer, you can apply your knowledge of a framework across multiple platforms. On this front, Vue has an official collaboration with [Weex](https://alibaba.github.io/weex/), a cross-platform UI framework developed by Alibaba Group, which uses Vue as its JavaScript framework runtime. This means with Weex, you can use the same Vue component syntax to author components that can not only be rendered in the Browser, but also natively on iOS and Android!
+ReactNative lhe permite escrever aplicativos nativamente renderizados para iOS e Android usando o mesmo modelo de componentes do React. É ótimo que, como desenvolvedor, você possa aplicar o conhecimento de um framework entre múltiplas plataformas. Nesta frente, Vue possui uma colaboração oficial com [Weex](https://alibaba.github.io/weex/), um framework de UI multiplataforma desenvolvido por Alibaba Group, o qual utiliza Vue como seu JavaScript framework runtime. Isso significa que, com Weex, você pode utilizar a mesma sintaxe de componentes Vue para criar componentes que podem ser renderizados não apenas no navegador, mas também nativamente em iOS e Android!
 
-At this moment, Weex is still in active development and is not as mature and battle-tested as ReactNative, but its development is driven by the production needs by the largest e-commmerce business in the world, and the Vue team will also actively collaborate with the Weex team to ensure a smooth experience for Vue developers.
+No presente momento, Weex ainda é um projeto em desenvolvimento ativo e não está tão maduro e testado na prática quanto o ReactNative, mas o desenvolvimento é dirigido às necessidades de produção do maior negócio de comércio eletrônico do mundo, e a equipe Vue colaborará ativamente com a equipe Weex para garantir a experiência mais suave possível aos desenvolvedores Vue.
 
-### With MobX
+### React + MobX
 
-MobX has become quite popular in the React community and it actually uses a nearly identical reactivity system to Vue. To a limited extent, the React + MobX workflow can be thought of as a more verbose Vue, so if you're using that combination and are enjoying it, jumping into Vue is probably the next logical step.
+MobX se tornou bem popular na comunidade React e, de fato, utiliza um sistema de reatividade quase idêntico ao Vue. De forma simplista, o fluxo de trabalho React + MobX pode ser pensado como um Vue com código mais prolixo. Por isso, se você estiver usando essa combinação e estiver gostando, saltar para o Vue é, provavelmente, o próximo passo lógico.
 
 ## Angular 1
 
-Some of Vue's syntax will look very similar to Angular (e.g. `v-if` vs `ng-if`). This is because there were a lot of things that Angular got right and these were an inspiration for Vue very early in its development. There are also many pains that come with Angular however, where Vue has attempted to offer a significant improvement.
+Um pouco da sintaxe Vue é muito similar ao Angular (por exemplo, `v-if` vs. `ng-if`). Isto ocorre pois acreditamos que há muitas coisas que o Angular resolveu corretamente, as quais serviram de inspiração para o Vue bem no início de seu desenvolvimento. Entretanto, também há muitas dores que vêm com o Angular, onde o Vue tentou oferecer melhorias significativas.
 
-### Complexity
+### Complexidade
 
-Vue is much simpler than Angular 1, both in terms of API and design. Learning enough to build non-trivial applications typically takes less than a day, which is not true for Angular 1.
+Vue é muito mais simples que o Angular 1, tanto em termos de API quanto de design. Aprender o suficiente para construir aplicações não triviais tipicamente leva menos de um dia, o que não é verdade para o Angular 1.
 
-### Flexibility and Modularity
+### Flexibilidade e Modularidade
 
-Angular 1 has strong opinions about how your applications should be structured, while Vue is a more flexible, modular solution. While this makes Vue more adaptable to a wide variety of projects, we also recognize that sometimes it's useful to have some decisions made for you, so that you can just get started coding.
+Angular 1 possui fortes opiniões sobre como as aplicações devem ser estruturadas, enquanto Vue é uma solução mais flexível e modular. Ainda que isto torne Vue mais adaptável a uma ampla variedade de projetos, reconhecemos que às vezes é útil ter algumas decisões já tomadas para você, para que possa simplesmente sair codificando.
 
-That's why we offer a [Webpack template](https://github.com/vuejs-templates/webpack) that can set you up within minutes, while also granting you access to advanced features such as hot module reloading, linting, CSS extraction, and much more.
+É por isso que oferecemos o [modelo de projeto com Webpack](https://github.com/vuejs-templates/webpack) que você pode configurar dentro de poucos minutos, ainda assim concedendo-lhe acesso a recursos avançados como *hot module reloading*, *linting*, extração de CSS, e muito mais.
 
-### Data binding
+### Interligação com Dados
 
-Angular 1 uses two-way binding between scopes, while Vue enforces a one-way data flow between components. This makes the flow of data easier to reason about in non-trivial applications.
+Angular 1 adota a abordagem de *two-way binding* entre escopos, enquanto Vue força um fluxo de dados de mão única entre componentes. Isto permite que o fluxo de dados seja mais compreensível em aplicações não triviais.
 
-### Directives vs Components
+### Diretivas vs. Componentes
 
-Vue has a clearer separation between directives and components. Directives are meant to encapsulate DOM manipulations only, while components are self-contained units that have their own view and data logic. In Angular, there's a lot of confusion between the two.
+Vue possui clara separação entre diretivas e componentes. Diretivas são feitas exclusivamente para encapsular lógica de manipulação do DOM, enquanto componentes são unidades auto-contidas que possuem sua própria lógica de dados e de apresentação. Com Angular, existe uma confusão considerável entre os dois.
 
-### Performance
+### Desempenho
 
-Vue has better performance and is much, much easier to optimize because it doesn't use dirty checking. Angular 1 becomes slow when there are a lot of watchers, because every time anything in the scope changes, all these watchers need to be re-evaluated again. Also, the digest cycle may have to run multiple times to "stabilize" if some watcher triggers another update. Angular users often have to resort to esoteric techniques to get around the digest cycle, and in some situations, there's simply no way to optimize a scope with many watchers.
+Vue tem melhor desempenho e é muito, muito mais fácil de otimizar, por não utilizar verificação suja de alterações de dados no escopo (*dirty checking*). Angular 1 torna-se lento quando há um grande número de observadores (*watchers*), pois a cada vez que qualquer coisa muda no escopo, todos esses observadores precisam ser reavaliados. Além disso, este laço de verificação suja do Angular (chamado *digest cycle*), pode ter que executar várias vezes para "estabilizar" se algum observador aciona outra atualização. Usuários do Angular por vezes têm de recorrer a técnicas esotéricas para contornar este ciclo e, em algumas situações, não há simplesmente nenhuma maneira de otimizar um escopo com muitos observadores.
 
-Vue doesn't suffer from this at all because it uses a transparent dependency-tracking observation system with async queueing - all changes trigger independently unless they have explicit dependency relationships.
+O Vue definitivamente não sofre com isso, pois usa um sistema de observação por rastreamento de dependências transparente, com enfileiramento assíncrono - todas as alterações disparam de forma independente, a menos que tenham dependências explícitas.
 
-Interestingly, there are quite a few similarities in how Angular 2 and Vue are addressing these Angular 1 issues.
+Curiosamente, há algumas semelhanças na forma como Angular 2 e Vue estão lidando com estes problemas existentes no Angular 1.
 
 ## Angular 2
 
-We have a separate section for Angular 2 because it really is a completely new framework. For example, it features a first-class component system, many implementation details have been completely rewritten, and the API has also changed quite drastically.
+Temos uma seção separada para Angular 2, por ser de fato um framework completamente novo. Por exemplo, possui um sistema de componentes de primeira classe, muitos detalhes de implementação foram totalmente reescritos, e a API também mudou drasticamente.
 
 ### TypeScript
 
-While Angular 1 could be used for smaller applications, Angular 2 has shifted focus to best facilitate large enterprise applications. As part of this, it almost requires TypeScript, which can be very useful for developers that desire the type safety of languages such as Java and C#.
+Enquanto Angular 1 poderia ser usado para aplicações menores, Angular 2 mudou o foco para grandes aplicações coorporativas. Como parte disto, ele praticamente exige TypeScript, o que pode ser muito útil para desenvolvedores que desejam a segurança de tipos de dados de linguagens como Java e C#.
 
-Vue is also well-suited to [enterprise environments](https://github.com/vuejs/awesome-vue#enterprise-usage) and can even be used with TypeScript via our [official typings](https://github.com/vuejs/vue/tree/dev/types) and [user-contributed decorators](https://github.com/itsFrank/vue-typescript), though it's definitely optional in our case.
+Vue também é adequado para [ambientes coorporativos](https://github.com/vuejs/awesome-vue#enterprise-usage) e pode até mesmo utilizar TypeScript através de nossa [tipagem oficial](https://github.com/vuejs/vue/tree/dev/types) e [decoradores criados pela comunidade](https://github.com/itsFrank/vue-typescript), entretanto isto é definitivamente opcional em nosso caso.
 
-### Size and Performance
+### Tamanho e Desempenho
 
-In terms of performance, both frameworks are exceptionally fast and there isn't enough data from real world use cases to make a verdict. However if you are determined to see some numbers, Vue 2.0 seems to be ahead of Angular 2 according to this [3rd party benchmark](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
+Em termos de desempenho, ambos os frameworks são excepcionalmente rápidos e não há dados suficientes a partir de casos do mundo real para oferecer um veredito. No entanto, se você está determinado a ver alguns números, Vue 2 parece estar à frente do Angular 2 de acordo com este [benchmark conduzido por terceiros](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
 
-Size wise, although Angular 2 with offline compilation and tree-shaking is able to get its size down considerably, a full-featured Vue 2.0 with compiler included (23kb) is still lighter than a tree-shaken bare-bone example of Angular 2 (50kb). And do note the Angular 2 app's size is small due to tree-shaking, which removes code for features that you are not using. It will eventually grow back to its actual size as you import and use more features from the framework.
+No que tange tamanho, Angular 2 oferece mecanismo de compilação *offline* e algoritmo de *tree-shaking* que podem reduzir o tamanho consideravelmente. Ainda assim, uma versão completa do Vue 2 com compilador incluído (23kb) ainda é mais leve do que um exemplo esqueleto otimizado do Angular 2 (50kb). E observe que o tamanho do aplicativo Angular 2 é pequeno graças ao *tree-shaking*, já que remove código referente a recursos que você não está usando. Ele acabará por crescer de volta ao seu tamanho real tão logo você importar e usar mais recursos do framework.
 
-### Flexibility
+### Flexibilidade
 
-Vue is much less opinionated than Angular 2, offering official support for a variety of build systems, with no restrictions on how you structure your application. Many developers enjoy this freedom, while some prefer having only one Right Way to build any application.
+Vue é muito menos opinativo que Angular 2, oferecendo suporte oficial a vários sistemas de *build*, sem restrições sobre como você estrutura sua aplicação. Muitos desenvolvedores gostam desta liberdade, enquanto outros preferem ter somente um "Jeito Certo" de construir qualquer aplicação.
 
-### Learning Curve
+### Curva de Aprendizado
 
-To get started with Vue, all you need is familiarity with HTML and ES5 JavaScript (i.e. plain JavaScript). With these basic skills, you can start building non-trivial applications within less than a day of reading [the guide](/guide).
+Para começar com Vue, tudo que você precisa é familiaridade com HTML e JavaScript versão ES5 (ou seja, JavaScript puro). Com estas habilidades básicas, você pode começar a construir aplicações não triviais com menos de um dia de leitura [do guia](/guide).
 
-Angular 2's learning curve is much steeper. Even without TypeScript, their [Quickstart guide](https://angular.io/docs/js/latest/quickstart.html) starts out with an app that uses ES2015 JavaScript, NPM with 18 dependencies, 4 files, and over 3,000 words to explain it all - just to say Hello World. It's an understatement to say that [Vue's Hello World](index.html#Hello-World) is considerably simpler. It's so trivial in fact, that we don't even dedicate a whole page in the guide to it.
+A curva de aprendizado do Angular 2 é muito mais acentuada. Mesmo sem TypeScript, seu [guia de Início Rápido](https://angular.io/docs/js/latest/quickstart.html) começa com um aplicativo que usa JavaScript versão ES2015, NPM com 18 dependências, 4 arquivos e mais de 3.000 palavras para explicar tudo - apenas para dizer "Olá Mundo". É um eufemismo dizer que nosso [Olá Mundo com Vue](index.html#Primeiros-Passos) é consideravelmente mais simples. Na verdade é tão trivial que nem dedicamos uma página inteira no guia para ele.
 
 ## Ember
 
-Ember is a full-featured framework that is designed to be highly opinionated. It provides a lot of established conventions and once you are familiar enough with them, it can make you very productive. However, it also means the learning curve is high and flexibility suffers. It's a trade-off when you try to pick between an opinionated framework and a library with a loosely coupled set of tools that work together. The latter gives you more freedom but also requires you to make more architectural decisions.
+Ember é um framework completo projetado para ser altamente opinativo. Ele fornece uma série de convenções estabelecidas e, uma vez que você fique bastante familiarizado com elas, pode se tornar muito produtivo. No entanto, também significa que a curva de aprendizado é elevada e a flexibilidade é sofrível. É uma escolha para você colocar na balança entre adotar um framework fortemente opinativo ou uma biblioteca com um conjunto de ferramentas de baixo acoplamento que funcionam em conjunto. Este último cenário lhe dá mais liberdade, mas também requer que você tome mais decisões arquitetônicas.
 
-That said, it would probably make a better comparison between Vue core and Ember's [templating](https://guides.emberjs.com/v2.7.0/templates/handlebars-basics/) and [object model](https://guides.emberjs.com/v2.7.0/object-model/) layers:
+Com isto dito, seria provavelmente mais adequado uma comparação entre o núcleo do Vue e as camadas de [templates](https://guides.emberjs.com/v2.7.0/templates/handlebars-basics/) e de [modelo de objetos](https://guides.emberjs.com/v2.7.0/object-model/) do Ember:
 
-- Vue provides unobtrusive reactivity on plain JavaScript objects and fully automatic computed properties. In Ember, you need to wrap everything in Ember Objects and manually declare dependencies for computed properties.
+- Vue oferece reatividade não obstrusiva em objetos JavaScript tradicionais e propriedades computadas totalmente automáticas. No Ember, você precisa envolver qualquer coisa em Objetos Ember e manualmente declarar dependências para propriedades computadas.
 
-- Vue's template syntax harnesses the full power of JavaScript expressions, while Handlebars' expression and helper syntax is intentionally quite limited in comparison.
+- A sintaxe de *templates* do Vue se arma com o poder total de expressões JavaScript, enquanto a sintaxe de expressões e *helpers* do Handlebars é bastante limitada.
 
-- Performance-wise, Vue outperforms Ember by a fair margin, even after the latest Glimmer engine update in Ember 2.0. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
+- Em termos de performance, Vue supera Ember por uma margem justa, mesmo após a atualização mais recente do motor Glimmer no Ember 2. Vue realiza atualizações em lote automaticamente, enquanto no Ember você precisa lidar manualmente com laços de execução em situações de desempenho crítico.
 
 ## Knockout
 
-Knockout was a pioneer in the MVVM and dependency tracking spaces and its reactivity system is very similar to Vue's. Its [browser support](http://knockoutjs.com/documentation/browser-support.html) is also very impressive considering everything it does, with support back to IE6! Vue on the other hand only supports IE9+.
+Knockout foi um pioneiro nas áreas de MVVM e rastreamento de dependências e seu sistema de reatividade é muito semelhante ao Vue. O [suporte a navegadores](http://knockoutjs.com/documentation/browser-support.html) é muito impressionante considerando tudo o que faz, suportante retroativamente até o IE6! Vue, por outro lado, suporta apenas IE9 e superiores.
 
-Over time though, Knockout development has slowed and it's begun to show its age a little. For example, its component system lacks a full set of lifecycle hooks and although it's a very common use case, the interface for passing children to a component feels a little clunky compared to [Vue's](components.html#Content-Distribution-with-Slots).
+Com o tempo, porém, o desenvolvimento do Knockout começou a diminuir e está começando a dar sinais de sua idade. Por exemplo, seu sistema de componentes carece de um conjunto completo de eventos de ciclo de vida e, embora seja um caso muito comum, a interface para passagem de elementos filhos a um componente pai se mostra um pouco desajeitada em comparação com o [Vue](components.html#Content-Distribution-with-Slots).
 
-There also seem to be philosophical differences in the API design which if you're curious, can be demonstrated by how each handles the creation of a [simple todo list](https://gist.github.com/chrisvfritz/9e5f2d6826af00fcbace7be8f6dccb89). It's definitely somewhat subjective, but many consider Vue's API to be less complex and better structured.
+Nos parece que existem também diferenças filosóficas na concepção da API que, se você estiver curioso, podem ser demonstradas pela forma como cada um lida com a criação de uma [lista de tarefas simples](https://gist.github.com/chrisvfritz/9e5f2d6826af00fcbace7be8f6dccb89). É definitivamente um tanto subjetivo, mas muitos consideram a API do Vue menos complexo e melhor estruturada.
 
 ## Polymer
 
-Polymer is yet another Google-sponsored project and in fact was a source of inspiration for Vue as well. Vue's components can be loosely compared to Polymer's custom elements and both provide a very similar development style. The biggest difference is that Polymer is built upon the latest Web Components features and requires non-trivial polyfills to work (with degraded performance) in browsers that don't support those features natively. In contrast, Vue works without any dependencies or polyfills down to IE9.
+Polymer é outro projeto patrocinado por Google e, de fato, também foi uma fonte de inspiração para o Vue. Componentes Vue podem ser vagamente comparados com elementos customizados Polymer, e ambos fornecem um estilo de desenvolvimento semelhante. A maior diferença é que o Polymer é construído sobre os mais recentes recursos de Web Components e, portanto, requer *polyfills* não triviais para funcionar (com um desempenho degradado) em navegadores que não suportam esses recursos de forma nativa. Em contraste, Vue funciona sem qualquer dependência externa ou *polyfills* até o IE9.
 
-In Polymer 1.0, the team has also made its data-binding system very limited in order to compensate for the performance. For example, the only expressions supported in Polymer templates are boolean negation and single method calls. Its computed property implementation is also not very flexible.
+No Polymer 1.0, a equipe fez também um sistema de *data-binding* muito limitado, a fim de compensar o desempenho. Por exemplo, as únicas expressões suportados em *templates* Polymer são de negação booleana e chamadas simples de métodos. Sua implementação de propriedades computadas também não é muito flexível.
 
-Polymer custom elements are authored in HTML files, which limits you to plain JavaScript/CSS (and language features supported by today's browsers). In comparison, Vue's single file components allows you to easily use ES2015+ and any CSS preprocessors you want.
+Elementos customizados do Polymer são autorados em arquivos HTML, o que limita a JavaScript/CSS puro (e a recursos suportados pelos navegadores atuais). Em comparação, *single-file components* Vue permitem facilmente usar ES2015+ e pré-processadores HTML/CSS.
 
-When deploying to production, Polymer recommends loading everything on-the-fly with HTML Imports, which assumes browsers implementing the spec, and HTTP/2 support on both server and client. This may or may not be feasible depending on your target audience and deployment environment. In cases where this is not desirable, you will have to use a special tool called Vulcanizer to bundle your Polymer elements. On this front, Vue can combine its async component feature with Webpack's code-splitting feature to easily split out parts of the application bundle to be lazy-loaded. This ensures compatibility with older browsers while retaining great app loading performance.
+Após a implantação, Polymer recomenda o carregamento de tudo sob demanda com importações HTML, o que assume navegadores adequados a esta especificação e suporte HTTP/2 tanto no servidor quanto no cliente. Isto pode ou não ser viável, dependendo de seu público-alvo e ambiente de implantação. Nos casos em que não é desejável, você terá que usar uma ferramenta especial chamada Vulcanizer para agrupar seus elementos Polymer. Nesta frente, Vue pode combinar sua característica de componentes assíncronos com o recurso de *code-splitting* do Webpack para dividir facilmente a aplicação em partes, com pacotes carregados somente quando requeridos. Isso garante compatibilidade com navegadores mais antigos, mantendo excelente desempenho no carregamento.
 
-It is also totally feasible to offer deeper integration between Vue with Web Component specs such as Custom Elements and Shadow DOM style encapsulation - however at this moment we are still waiting for the specs to mature and be widely implemented in all mainstream browsers before making any serious committments.
+Também é totalmente viável oferecermos integração mais profunda entre o Vue e as especificações de Web Componentes, como elementos customizados e encapsulamento de estilos com Shadow DOM - no entanto, neste momento, estamos esperando as especificações amadurecerem e se tornarem amplamente implementadas em todos os navegadores convencionais antes de nos compormetermos a fundo com isso.
 
 ## Riot
 
-Riot 2.0 provides a similar component-based development model (which is called a "tag" in Riot), with a minimal and beautifully designed API. Riot and Vue probably share a lot in design philosophies. However, despite being a bit heavier than Riot, Vue does offer some significant advantages:
+Riot 2.0 fornece um modelo de desenvolvimento baseado em componentes muito similar (os quais são chamados de "tag" no Riot), com uma API mínima e bem concebida. Riot e Vue provavelmente compartilham muitas filosofias de design. No entanto, apesar de ser um pouco mais pesado que Riot, Vue oferece algumas vantagens significativas:
 
-- True conditional rendering. Riot renders all if branches and simply shows/hides them.
-- A far more powerful router. Riot’s routing API is extremely minimal.
-- More mature tooling support. Vue provides official support for [Webpack](https://github.com/vuejs/vue-loader), [Browserify](https://github.com/vuejs/vueify), and [SystemJS](https://github.com/vuejs/systemjs-plugin-vue), while Riot relies on community support for build system integration.
-- [Transition effect system](transitions.html). Riot has none.
-- Better performance. [Despite advertising](https://github.com/vuejs/vuejs.org/issues/346) use of a virtual DOM, Riot in fact uses dirty checking and thus suffers from the same performance issues as Angular 1.
+- Verdadeira renderização condicional. Riot renderiza todos os nós e apenas exibe/oculta eles.
+- Um roteador muito mais poderoso. No Riot, a API de rotas é extremamente mínima.
+- Mais maturidade no suporte a ferramentas de *build*. Vue oferece suporte oficial a [Webpack](https://github.com/vuejs/vue-loader), [Browserify](https://github.com/vuejs/vueify), e [SystemJS](https://github.com/vuejs/systemjs-plugin-vue), enquanto Riot conta com o apoio da comunidade para integração com sistemas de *build*.
+- [Sistema de efeitos de transição](transitions.html). Riot não tem nenhum.
+- Melhor desempenho. [Apesar de anunciar](https://github.com/vuejs/vuejs.org/issues/346) o uso de DOM Virtual, a verdade é que Riot utiliza *dirty checking* e, portanto, sofre dos mesmos problemas de desempenho do Angular 1.
