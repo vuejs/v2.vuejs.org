@@ -109,7 +109,7 @@ order: 0
 ### Advanced  进阶
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
------ | ------- | ------------- | --- | --- | --- | ---
+----- | ------- | ------------- | --- | --- | --- 
 12 | 是 | transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/hilongjw) | 
 13 | 是 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/hilongjw) | 
 14 | 是 | render-function.md |  Render 函数 |  [awe](https://github.com/hilongjw) | 
@@ -126,7 +126,7 @@ order: 0
 ### Migration  迁移
 
 序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
------ | ------- | ------------- | --- | --- | --- | ---
+----- | ------- | ------------- | --- | --- | --- 
 24 | 是  | migration.md | 1.x迁移 |  [harrytospring](https://github.com/harrytospring) | 
 27 | 是 | migration-vue-router.md | vue-router 0.7.x 迁移 | [forzajuve10](https://github.com/forzajuve10) | 
 
