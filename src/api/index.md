@@ -1629,37 +1629,36 @@ type: api
 
 - **See also:** [Named Slots](/guide/components.html#Named-Slots)
 
-## Built-In Components
+## 内置的组件
 
 ### component
 
-- **Props:**
+- **特性：**
   - `is` - string | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
-- **Usage:**
+- **用法：**
 
-  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
+  动态渲染一个“元组件”。实际由 `is` 属性决定哪个渲染组件。
 
   ```html
-  <!-- a dynamic component controlled by -->
-  <!-- the `componentId` property on the vm -->
+  <!-- 动态组件由 vm 实例的属性值 `componentId` 控制 -->
   <component :is="componentId"></component>
 
-  <!-- can also render registered component or component passed as prop -->
+  <!-- 也能够渲染注册过的组件或 prop 传入的组件 -->
   <component :is="$options.components.child"></component>
   ```
 
-- **See also:** [Dynamic Components](/guide/components.html#Dynamic-Components)
+- **另见：** [动态组件](/guide/components.html#动态组件)
 
 ### transition
 
-- **Props:**
-  - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
-  - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
-  - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
-  - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+- **特性：**
+  - `name` - string, 用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为`.fade-enter`，`.fade-enter-active`等。默认类名为 `"v"`
+  - `appear` - boolean, 是否在初始渲染时使用过渡。默认为 `false`。
+  - `css` - boolean, 是否使用 CSS 过渡类。默认为 `true`。如果设置为 `false`，将只通过组件事件触发注册的 JavaScript 钩子。
+  - `type` - string, 指定过渡事件类型，侦听过渡何时结束。有效值为 `"transition"` 和 `"animation"`。默认 Vue.js 将自动检测出持续时间长的为过渡事件类型。
+  - `mode` - string, 控制离开/进入的过渡时间序列。有效的模式有 `"out-in"` 和 `"in-out"`；默认同时生效。
   - `enter-class` - string
   - `leave-class` - string
   - `enter-active-class` - string
@@ -1667,7 +1666,7 @@ type: api
   - `appear-class` - string
   - `appear-active-class` - string
 
-- **Events:**
+- **事件：**
   - `before-enter`
   - `enter`
   - `after-enter`
@@ -1678,22 +1677,22 @@ type: api
   - `appear`
   - `after-appear`
 
-- **Usage:**
+- **用法：**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
+  `<transition>` 元素作为单个元素/组件的过渡效果。`<transition>` 不会渲染额外的 DOM 元素，也不会出现在检测过的组件层级中。它只是将内容包裹在其中，简单的运用过渡行为。
 
   ```html
-  <!-- simple element -->
+  <!-- 简单元素 -->
   <transition>
     <div v-if="ok">toggled content</div>
   </transition>
 
-  <!-- dynamic component -->
+  <!-- 动态组件 -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
 
-  <!-- event hooking -->
+  <!-- 事件钩子 -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
       <div v-show="ok">toggled content</div>
@@ -1706,32 +1705,32 @@ type: api
     ...
     methods: {
       transitionComplete: function (el) {
-        // for passed 'el' that DOM element as the argument, something ...
+        // 传入 'el' 这个 DOM 元素作为参数。
       }
     }
     ...
   }).$mount('#transition-demo')
   ```
 
-- **See also:** [Transitions: Entering, Leaving, and Lists](/guide/transitions.html)
+- **另见：** [过渡：进入，离开和列表](/guide/transitions.html)
 
 ### transition-group
 
-- **Props:**
-  - `tag` - string, defaults to `span`.
-  - `move-class` - overwrite CSS class applied during moving transition.
-  - exposes the same props as `<transition>` except `mode`.
+- **特性：**
+  - `tag` - string, 默认为 `span`
+  - `move-class` - 覆盖移动过渡期间应用的 CSS 类。
+  - 除了 `mode`，其他特性和 `<transition>` 相同。
 
-- **Events:**
-  - exposes the same events as `<transition>`.
+- **事件：**
+  - 事件和 `<transition>` 相同.
 
-- **Usage:**
+- **用法：**
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
+  `<transition-group>` 元素作为多个元素/组件的过渡效果。`<transition-group>` 渲染一个真实的 DOM 元素。默认渲染 `<span>`，可以通过 `tag` 属性配置哪个元素应该被渲染。
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
+  注意，每个 `<transition-group>` 的子节点必须有 **独立的key** ，动画才能正常工作
 
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它将会获取应用 CSS 移动类（通过 `name` 属性或配置 `move-class` 属性自动生成）。如果 CSS `transform` 属性是“可过渡”属性，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/) 使元素流畅地到达动画终点。
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -1741,31 +1740,31 @@ type: api
   </transition-group>
   ```
 
-- **See also:** [Transitions: Entering, Leaving, and Lists](/guide/transitions.html)
+- **另见：** [过渡：进入，离开和列表](/guide/transitions.html)
 
 ### keep-alive
 
-- **Usage:**
+- **用法：**
 
-  When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
+  `<keep-alive>` 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。和 `<transition>` 相似，`<keep-alive>` 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。
 
-  When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+  当组件在 `<keep-alive>` 内被切换，它的 `activated` 和 `deactivated` 这两个生命周期钩子函数将会被对应执行。
 
-  Primarily used with preserve component state or avoid re-rendering.
+  主要用于保留组件状态或避免重新渲染。
 
   ```html
-  <!-- basic -->
+  <!-- 基本 -->
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- multiple conditional children -->
+  <!-- 多个条件判断的子组件 -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with <transition> -->
+  <!-- 和 <transition> 一起使用 -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -1773,22 +1772,23 @@ type: api
   </transition>
   ```
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
-- **See also:** [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
+- **另见：** [动态组件 - keep-alive](/guide/components.html#keep-alive)
 
 ### slot
 
-- **Props:**
-  - `name` - string, Used for named slot.
+- **特性：**
+  - `name` - string, 用于命名插槽。
 
 - **Usage:**
 
-  `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
+  `<slot>` 元素作为组件模板之中的内容分发插槽。 `<slot>` 元素自身将被替换。
 
+  详细用法，请参考下面 guide 部分的链接。
   For detailed usage, see the guide section linked below.
 
-- **See also:** [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
+- **另见：** [使用Slots分发内容](/guide/components.html#使用Slots分发内容)
 
 ## VNode接口
 
