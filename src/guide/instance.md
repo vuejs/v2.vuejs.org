@@ -29,7 +29,7 @@ var MyComponent = Vue.extend({
 var myComponentInstance = new MyComponent()
 ```
 
-尽管可以命令式地创建扩展实例，不过在多数情况下将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](guide/components.md)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
+尽管可以命令式地创建扩展实例，不过在多数情况下将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](components.html)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
 
 
 ## 属性与方法
