@@ -33,8 +33,37 @@ You can also perform one-time interpolations that do not update on data change b
 The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
 
 ``` html
-<div v-html="rawHtml"></div>
+<div id="app">
+  <div v-html="rawHtml">{{ message }}</div>
+</div>
 ```
+
+``` js
+new Vue({
+  el: '#app',
+  data: {
+    message: 'data bindings are ignored',
+    rawHtml: '<strong>Hello Vue.js!</strong>'
+  }
+})
+```
+
+结果：
+
+{% raw %}
+<div id="app" class="demo">
+  <div v-html="rawHtml">{{ message }}</div>
+</div>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: 'data bindings are ignored',
+    rawHtml: '<strong>Hello Vue.js!</strong>'
+  }
+})
+</script>
+{% endraw %}
 
 The contents are inserted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
 
@@ -48,7 +77,7 @@ Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive
 <div v-bind:id="dynamicId"></div>
 ```
 
-It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
+It also works for boolean attributes - the attribute will be removed if the condition evaluates to a false value:
 
 ``` html
 <button v-bind:disabled="someDynamicCondition">Button</button>
