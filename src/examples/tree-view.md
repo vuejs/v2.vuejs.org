@@ -1,9 +1,9 @@
 ---
-title: Tree View
+title: 树形视图
 type: examples
 order: 4
 ---
 
-> Example of a simple tree view implementation showcasing recursive usage of components.
+> 本示例是一个简单的树形视图实现，它展现了组件的递归使用。
 
 <iframe width="100%" height="500" src="https://jsfiddle.net/yyx990803/3p0j5sgy/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

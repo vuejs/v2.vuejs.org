@@ -1,12 +1,13 @@
 ---
-title: 匹配动态路由
+title: 动态路由匹配
 type: router
 order: 3
 ---
 
-# Dynamic Route Matching
+# 动态路由匹配
 
-Very often we will need to map routes with the given pattern to the same component. For example we may have a `User` component which should be rendered for all users but with different user IDs. In `vue-router` we can use a dynamic segment in the path to achieve that:
+我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 `User` 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。那么，我们可以在  `vue-router` 的路由路径中使用『动态路径参数』（dynamic segment）来达到这个效果：
+
 
 ``` js
 const User = {
@@ -15,15 +16,16 @@ const User = {
 
 const router = new VueRouter({
   routes: [
-    // dynamic segments start with a colon
+    // 动态路径参数 以冒号开头
     { path: '/user/:id', component: User }
   ]
 })
 ```
 
-Now URLs like `/user/foo` and `/user/bar` will both map to the same route.
+现在呢，像 `/user/foo` 和 `/user/bar` 都将映射到相同的路由。
 
-A dynamic segment is denoted by a colon `:`. When a route is matched, the value of the dynamic segments will be exposed as `this.$route.params` in every component. Therefore, we can render the current user ID by updating `User`'s template to this:
+一个『路径参数』使用冒号 `:` 标记。当匹配到一个路由时，参数值会被设置到
+ `this.$route.params`，可以在每个组件内使用。于是，我们可以更新 `User` 的模板，输出当前用户的 ID：
 
 ``` js
 const User = {
@@ -31,38 +33,38 @@ const User = {
 }
 ```
 
-You can checkout a live example [here](http://jsfiddle.net/yyx990803/4xfa2f19/).
+你可以看看这个[在线例子](http://jsfiddle.net/yyx990803/4xfa2f19/).
 
-You can have multiple dynamic segments in the same route, and they will map to corresponding fields on `$route.params`. Examples:
+你可以在一个路由中设置多段『路径参数』，对应的值都会设置到 `$route.params` 中。例如：
 
-| pattern | matched path | $route.params |
+| 模式 | 匹配路径 | $route.params |
 |---------|------|--------|
 | /user/:username | /user/evan | `{ username: 'evan' }` |
 | /user/:username/post/:post_id | /user/evan/post/123 | `{ username: 'evan', post_id: 123 }` |
 
-In addition to `$route.params`, the `$route` object also exposes other useful information such as `$route.query` (if there is a query in the URL), `$route.hash`, etc. You can check out the full details in the [API Reference](../api/route-object.md).
+除了 `$route.params` 外，`$route` 对象还提供了其它有用的信息，例如，`$route.query`（如果 URL 中有查询参数）、`$route.hash` 等等。你可以查看 [API 文档](../api/route-object.md) 的详细说明。
 
-### Reacting to Params Changes
+### 响应路由参数的变化
 
-One thing to note when using routes with params is that when the user navigates from `/user/foo` to `/user/bar`, **the same component instance will be reused**. Since both routes render the same component, this is more efficient than destroying the old instance and then creating a new one. **However, this also means that the lifecycle hooks of the component will not be called**.
+提醒一下，当使用路由参数时，例如从 `/user/foo` 导航到 `user/bar`，**原来的组件实例会被复用**。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。**不过，这也意味着组件的生命周期钩子不会再被调用**。
 
-To react to params changes in the same component, you can simply watch the `$route` object:
+复用组件时，想对路由参数的变化作出响应的话，你可以简单地 watch（监测变化） `$route` 对象：
 
 ``` js
 const User = {
   template: '...',
   watch: {
     '$route' (to, from) {
-      // react to route changes...
+      // 对路由变化作出响应...
     }
   }
 }
 ```
 
-### Advanced Matching Patterns
+### 高级匹配模式
 
-`vue-router` uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) as its path matching engine, so it supports many advanced matching patterns such as optional dynamic segments, zero or more / one or more requirements, and even custom regex patterns. Check out its [documentation](https://github.com/pillarjs/path-to-regexp#parameters) for these advanced patterns, and [this example](https://github.com/vuejs/vue-router/blob/next/examples/route-matching/app.js) of using them in `vue-router`.
+`vue-router` 使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp) 作为路径匹配引擎，所以支持很多高级的匹配模式，例如：可选的动态路径参数、匹配零个或多个、一个或多个，甚至是自定义正则匹配。查看它的 [文档](https://github.com/pillarjs/path-to-regexp#parameters) 学习高阶的路径匹配，还有 [这个例子 ](https://github.com/vuejs/vue-router/blob/next/examples/route-matching/app.js) 展示 `vue-router` 怎么使用这类匹配。
 
-### Matching Priority
+### 匹配优先级
 
-Sometimes the same URL may be matched by multiple routes. In such a case the matching priority is determined by the order of route definition: the earlier a route is defined, the higher priority it gets.
+有时候，同一个路径可以匹配多个路由，此时，匹配的优先级就按照路由的定义顺序：谁先定义的，谁的优先级就最高。

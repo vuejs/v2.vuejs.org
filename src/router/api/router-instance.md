@@ -1,37 +1,37 @@
 ---
-title: 路由实例
+title: Router 实例
 type: router
 order: 20
 ---
 
-# Router Instance
+# Router 实例
 
-### Properties
+### 属性
 
 #### router.app
 
-- type: `Vue instance`
+- 类型: `Vue instance`
 
-  The root Vue instance the `router` was injected into.
+  配置了 `router` 的 Vue 根实例。
 
 #### router.mode
 
-- type: `string`
+- 类型: `string`
 
-  The [mode](options.md#mode) the router is using.
+  路由使用的 [模式](options.md#mode)。
 
 #### router.currentRoute
 
-- type: `Route`
+- 类型: `Route`
 
-  The current route represented as a [Route Object](route-object.md).
+  当前路由对应的 [路由信息对象](route-object.md).
 
-### Methods
+### 方法
 
 - **router.beforeEach(guard)**
 - **router.afterEach(hook)**
 
-  Add global navigation guards. See [Navigation Guards](../advanced/navigation-gaurds.md).
+  增加全局的导航钩子。参考 [导航钩子](../advanced/navigation-guards.md).
 
 
 - **router.push(location)**
@@ -40,8 +40,8 @@ order: 20
 - **router.back()**
 - **router.forward()**
 
-  Programmatically navigate to a new URL. See [Programmatic Navigation](../essentials/navigation.md).
+  动态的导航到一个新 url。参考 [编程式导航](../essentials/navigation.md).
 
 - **router.getMatchedComponents()**
 
-  Returns an Array of the components (definition/constructor, not instances) matched by the current route. This is mostly used during server-side rendering to perform data prefetching.
+  返回当前路由匹配的组件数组（是数组的定义/构造类，不是实例）。通常在服务端渲染的数据预加载时时候。
