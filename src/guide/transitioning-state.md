@@ -381,7 +381,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete c
 
 ## 通过组件组织过渡
 
-管理太多的状态转换的很快会接近到 Vue 实例或者组件的复杂性，不过，很多动画可以提取到专用的子组件。
+管理太多的状态转换的很快会接近到 Vue 实例或者组件的复杂性，幸好很多的动画可以提取到专用的子组件。
 我们来将之前的示例改写一下：
 
 ``` html
