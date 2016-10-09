@@ -90,7 +90,7 @@ describe('MyComponent', () => {
 import Vue from 'vue'
 import MyComponent from './MyComponent.vue'
 
-// helper function that mounts and returns the rendered text
+// 挂载元素并返回已渲染的文本的工具函数 
 function getRenderedText (Component, propsData) {
   const Ctor = Vue.extend(Component)
   const vm = new Ctor({ propsData }).$mount()
@@ -112,7 +112,7 @@ describe('MyComponent', () => {
 
 ## 主张异步更新
 
-由于Vue进行[异步更新DOM]((/guide/reactivity.html#Async-Update-Queue))的情况，一些断言必须在` Vue nexttick `回调中进行：
+由于Vue进行[异步更新DOM](/guide/reactivity.html#Async-Update-Queue)的情况，一些依赖DOM更新结果的断言必须在` Vue nexttick `回调中进行：
 
 ``` js
 // 在状态更新后检查生成的HTML
@@ -120,7 +120,7 @@ it('updates the rendered message when vm.message updates', done => {
   const vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
 
-  // wait a "tick" after state change before asserting DOM updates
+  // 在状态改变后和断言DOM更新前等待一刻
   Vue.nextTick(() => {
     expect(vm.$el.textContent).toBe('foo')
     done()
