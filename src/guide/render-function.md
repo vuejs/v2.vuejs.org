@@ -160,9 +160,8 @@ createElement(
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // 自定义指令. Note that the binding's 
-  // oldValue cannot be set, as Vue keeps track
-  // of it for you.
+  // 自定义指令. 注意事项：不能对绑定的旧值设值
+  // Vue 会为您持续追踨
   directives: [
     {
       name: 'my-custom-directive', 
@@ -174,7 +173,7 @@ createElement(
       }
     }
   ],
-  // The name of a slot if the child of a component
+  // 如果子组件有定义 slot 的名称
   slot: 'name-of-slot'
   // 其他特殊顶层属性
   key: 'myKey',
