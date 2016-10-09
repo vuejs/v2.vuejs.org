@@ -76,7 +76,7 @@ order: 24
 </div>
 {% endraw %}
 
-### `compiled` <sup>弃用d</sup>
+### `compiled` <sup>弃用</sup>
 
 用 `mounted` 钩子来代替。
 
@@ -114,7 +114,7 @@ mounted: function () {
 </div>
 {% endraw %}
 
-### `detached` <sup>deprecated</sup>
+### `detached` <sup>弃用</sup>
 
 用自定义的 dom 内部的其他钩子代替，例如：
 
@@ -141,7 +141,7 @@ destroyed: function () {
 </div>
 {% endraw %}
 
-### `init` <sup>deprecated</sup>
+### `init` <sup>弃用</sup>
 
 用新的 `beforeCreate` 钩子代替，他们本质上是一样的。为了与其他生命周期的钩子命名保持一致性，所以重新命名了这个钩子。
 
@@ -152,7 +152,7 @@ destroyed: function () {
 </div>
 {% endraw %}
 
-### `ready` <sup>deprecated</sup>
+### `ready` <sup>弃用</sup>
 
 使用新的 `mounted` 钩子代替，. 应该注意的是，通过使用 `mounted` 钩子，并不能保证该实例已经插入文档。所以还应该在钩子函数中包含 `Vue.nextTick`/`vm.$nextTick` 例如：
 
@@ -195,7 +195,7 @@ mounted: function () {
 </div>
 {% endraw %}
 
-### `$index` and `$key` <sup>deprecated</sup>
+### `$index` and `$key` <sup>弃用</sup>
 
 隐式申明的 `$index` 的 `$key` 两个变量在新版里面已经弃用了，取代的是在 `v-for` 中显式地申明。这可以使无经验的 Vue 开发者更好地理解代码，同样也可以使得在处理嵌套循环时更加清晰。
 {% raw %}
@@ -313,7 +313,7 @@ Props现在只能单向传递。为了对父组件产生反向影响，子组件
 </div>
 {% endraw %}
 
-### 修改 Props <sup>deprecated</sup>
+### 修改 Props <sup>弃用</sup>
 
 组件内修改prop是反模式（不推荐的）的。比如，先申明一个prop，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变prop的值。根据渲染机制，当父组件重新渲染时，子组件的内部prop
 值也将被覆盖。
@@ -543,7 +543,7 @@ data: {
 </div>
 {% endraw %}
 
-### `v-model` with `v-for` Iterated Primitive Values <sup>deprecated</sup>
+### `v-model` with `v-for` Iterated Primitive Values <sup>弃用</sup>
 
 像这样的写法将失效：
 
@@ -663,7 +663,7 @@ strings.map(function (str) {
 </div>
 {% endraw %}
 
-### 指令 `.literal` 修饰符 <sup>废弃</sup>
+### 指令 `.literal` 修饰符 <sup>弃用</sup>
 
 `.literal` 修饰符已经被移除，为了获取一样的功能，可以简单地提供字符串修饰符作为值。
 
@@ -710,7 +710,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 </div>
 {% endraw %}
 
-### 过渡的 `stagger` 参数 <sup>deprecated</sup>
+### 过渡的 `stagger` 参数 <sup>弃用</sup>
 
 如果希望在列表渲染中使用渐近过渡，可以通过设置元素的`data-index` （或类似属性）来控制时间。 请参考[这个例子](transitions.html#Staggering-List-Transitions)。
 
@@ -1098,7 +1098,7 @@ You may notice that:
 </div>
 {% endraw %}
 
-### `slot` 样式参数 <sup>deprecated</sup>
+### `slot` 样式参数 <sup>弃用</sup>
 
 通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容 ：[render functions](render-function.html).
 
@@ -1111,7 +1111,7 @@ You may notice that:
 
 ## 特殊属性
 
-### `keep-alive` 属性 <sup>deprecated</sup>
+### `keep-alive` 属性 <sup>弃用</sup>
 
 `keep-alive` 不再是一个特殊属性而是一个包裹组件，类似于  `<transition>`比如：
 
@@ -1197,7 +1197,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 </div>
 {% endraw %}
 
-### 单次绑定sup>弃用</sup>
+### 单次绑定<sup>弃用</sup>
 
 单次绑定 (`{% raw %}{{* foo }}{% endraw %}`) 已经弃用取代的是 [`v-once` directive](/api/#v-once).
 
@@ -1353,7 +1353,7 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 </div>
 {% endraw %}
 
-### `vm.$after` <sup>deprecated</sup>
+### `vm.$after` <sup>弃用</sup>
 
 使用 DOM 原生方法：
 
@@ -1374,7 +1374,7 @@ myElement.parentNode.appendChild(vm.$el)
 </div>
 {% endraw %}
 
-### `vm.$remove` <sup>deprecated</sup>
+### `vm.$remove` <sup>弃用</sup>
 
 使用 DOM 原生方法：
 
@@ -1472,7 +1472,7 @@ new Vue({
 </div>
 {% endraw %}
 
-### `Vue.config.async` <sup>deprecated</sup>
+### `Vue.config.async` <sup>弃用</sup>
 
 Async is now required for rendering performance.
 
@@ -1507,7 +1507,7 @@ HTML interpolation [替换为 `v-html`](#HTML-Interpolation-deprecated).
 
 ## Global API
 
-### `Vue.extend` with `el` <sup>deprecated</sup>
+### `Vue.extend` with `el` <sup>弃用</sup>
 
 el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
