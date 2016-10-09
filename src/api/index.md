@@ -1152,9 +1152,9 @@ type: api
 
 - **用法：**
 
-  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 vm.$mount() 手动地挂载一个未挂载的实例。
+  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 `vm.$mount()` 手动地挂载一个未挂载的实例。
 
-  如果没有"elementOrSelector"参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
+  如果没有 `elementOrSelector` 参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
 
   这个方法返回实例自身，因而可以链式调用其它实例方法。
 
@@ -1226,23 +1226,23 @@ type: api
 
   完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器。
 
-  在"beforeDestroy"和"destroyed"之间触发。
+  在 `beforeDestroy` 和 `destroyed` 之间触发。
 
-  <p class="tip">在大多数场景中你不应该调用这个方法。最好使用"v-if"和"v-for"指令以数据驱动的方式控制子组件的生命周期。</p>
+  <p class="tip">在大多数场景中你不应该调用这个方法。最好使用 `v-if` 和 `v-for` 指令以数据驱动的方式控制子组件的生命周期。</p>
 
 - **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
-## Directives
+## 指令
 
 ### v-text
 
-- **Expects:** `string`
+- **类型：** `string`
 
-- **Details:**
+- **详细：**
 
   Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
 
-- **Example:**
+- **示例：**
 
   ```html
   <span v-text="msg"></span>
@@ -1250,7 +1250,7 @@ type: api
   <span>{{msg}}</span>
   ```
 
-- **See also:** [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
+- **另见：** [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
 
 ### v-html
 

@@ -4,30 +4,31 @@ type: guide
 order: 18
 ---
 
-## Writing a Plugin
+## 开发插件
 
-Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:
 
-1. Add some global methods or properties. e.g. [vue-element](https://github.com/vuejs/vue-element)
+插件通常会为Vue添加全局功能。插件的范围没有限制--一般有下面几种：
 
-2. Add one or more global assets: directives/filters/transitions etc. e.g. [vue-touch](https://github.com/vuejs/vue-touch)
+1. 添加全局方法或者属性，如: [vue-element](https://github.com/vuejs/vue-element) 
 
-3. Add some component options by global mixin. e.g. [vuex](https://github.com/vuejs/vuex)
+2. 添加全局资源：指令/过滤器/过渡等。如 vue-touch [vue-touch](https://github.com/vuejs/vue-touch)
 
-4. Add some Vue instance methods by attaching them to Vue.prototype.
+3. 通过全局 mixin方法 添加一些组件选项。 如: [vuex](https://github.com/vuejs/vuex)
 
-5. A library that provides an API of its own, while at the same time injecting some combination of the above. e.g. [vue-router](https://github.com/vuejs/vue-router)
+4. 添加 Vue 实例方法，通过把它们添加到 Vue.prototype 上实现。
 
-A Vue.js plugin should expose an `install` method. The method will be called with the `Vue` constructor as the first argument, along with possible options:
+5. A一个库，提供自己的 API，同时提供上面提到的一个或多个功能。如 [vue-router](https://github.com/vuejs/vue-router)
+
+Vue.js 的插件应当有一个公开方法 `install` 。这个方法的第一个参数是 `Vue` 构造器 , 第二个参数是一个可选的选项对象:
 
 ``` js
 MyPlugin.install = function (Vue, options) {
-  // 1. add global method or property
+  // 1. 添加全局方法或属性
   Vue.myGlobalMethod = function () {
     // something logic ...
   }
 
-  // 2. add a global asset
+  // 2. 添加全局资源
   Vue.directive('my-directive', {
     bind (el, binding, vnode, oldVnode) {
       // something logic ...
@@ -35,7 +36,7 @@ MyPlugin.install = function (Vue, options) {
     ...
   })
 
-  // 3. inject some component options
+  // 3. 注入组件
   Vue.mixin({
     created: function () {
       // something logic ...
@@ -43,42 +44,44 @@ MyPlugin.install = function (Vue, options) {
     ...
   })
 
-  // 4. add an instance method
+  // 4. 添加事例方法
   Vue.prototype.$myMethod = function (options) {
     // something logic ...
   }
 }
 ```
 
-## Using a Plugin
+## 使用插件
 
-Use plugins by calling the `Vue.use()` global method:
+通过 Vue.use() 全局方法使用插件:
 
 ``` js
-// calls `MyPlugin.install(Vue)`
+// 调用 `MyPlugin.install(Vue)`
 Vue.use(MyPlugin)
 ```
 
-You can optionally pass in some options:
+也可以传入一个选项对象:
 
 ``` js
 Vue.use(MyPlugin, { someOption: true })
 ```
 
-`Vue.use` automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.
+`Vue.use` 会自动阻止注册相同插件多次，届时只会注册一次该插件。
 
-Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
+一些插件，如  `vue-router` 如果 `Vue` 是全局变量则自动调用`Vue.use()` 。不过在模块环境中应当始终显式调用  `Vue.use()` :
 
 ``` js
-// When using CommonJS via Browserify or Webpack
+// 通过 Browserify 或 Webpack 使用 CommonJS 兼容模块
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 
-// Don't forget to call this
+// 不要忘了调用此方法
 Vue.use(VueRouter)
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins) for a huge collection of community-contributed plugins and libraries.
+[awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins) 集合了来自社区贡献的数以千计的插件和库。
+
+
 
 
 ***
