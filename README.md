@@ -52,7 +52,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] The Vue Instance (@danielschmitz)
 - [x] Template Syntax (@vitorarjol)
 - [ ] Computed Properties and Watchers (@danielschmitz)
-- [ ] Class and Style Bindings
+- [ ] Class and Style Bindings (@gidenilson)
 - [ ] Conditional Rendering
 - [ ] List Rendering (@ErickPetru)
 - [ ] Event Handling
