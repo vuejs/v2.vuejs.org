@@ -176,7 +176,7 @@ new Vue({
 ### `v-on` 缩写
 
 ``` html
-<!-- 完整缩写 -->
+<!-- 完整语法 -->
 <a v-on:click="doSomething"></a>
 
 <!-- 缩写 -->
