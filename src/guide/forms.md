@@ -6,7 +6,9 @@ order: 10
 
 ## 基础用法
 
-可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，`v-model` 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。
+你可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。
+
+<p class="tip"> `v-model` 并不关心表单控件初始化所生成的值。因为它会选择 Vue 实例数据来作为具体的值。</p>
 
 ### 文本
 
@@ -54,6 +56,8 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+<p class="tip">在文本区域插值( `<textarea>{{text}}</textarea>` ) 并不会生效，应用 `v-model` 来代替</p>
 
 ### 复选框
 
@@ -121,7 +125,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### 单选
+### 单选按钮
 
 
 ``` html
@@ -153,9 +157,9 @@ new Vue({
 </script>
 {% endraw %}
 
-### 选择
+### 选择列表
 
-单选:
+单选列表:
 
 ``` html
 <select v-model="selected">
@@ -184,7 +188,7 @@ new Vue({
 </script>
 {% endraw %}
 
-多选（绑定到一个数组）：
+多选列表（绑定到一个数组）：
 
 ``` html
 <select v-model="selected" multiple>
@@ -265,7 +269,7 @@ new Vue({
 
 ## 绑定 value
 
-对于单选按钮，勾选框及选择框选项，`v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
+对于单选按钮，勾选框及选择列表选项，`v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
 
 ``` html
 <!-- 当选中时，`picked` 为字符串 "a" -->
@@ -299,7 +303,7 @@ vm.toggle === vm.a
 vm.toggle === vm.b
 ```
 
-### 单选
+### 单选按钮
 
 ``` html
 <input type="radio" v-model="pick" v-bind:value="a">
@@ -310,7 +314,7 @@ vm.toggle === vm.b
 vm.pick === vm.a
 ```
 
-### 选项设置
+### 选择列表设置
 
 ``` html
 <select v-model="selected">
@@ -329,7 +333,7 @@ vm.selected.number // -> 123
 
 ### `.lazy`
 
-在默认情况下，`v-model` 在`input` 事件中同步输入框值与数据，可以添加一个修饰符 `lazy`，从而改到在 `change` 事件中同步：
+在默认情况下，`v-model` 在 `input` 事件中同步输入框值与数据，但你可以添加一个修饰符 `lazy`，从而转变为在 `change` 事件中同步：
 
 ``` html
 <!-- 在 "change" 而不是 "input" 事件中更新 -->
@@ -339,13 +343,31 @@ vm.selected.number // -> 123
 
 ### `.number`
 
-如果想自动将用户的输入转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 `number`给`v-model`来处理输入值：
+如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 `number` 给 `v-model` 来处理输入值：
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-这很有用，因为在带有`type="number"`时html输入的值也总是返回字符串类型。
+这通常很有用，因为在 `type="number"` 时 HTML 中输入的值也总是会返回字符串类型。
+
+### `.trim`
+
+如果想让用户的输入内容自动去掉起始和结尾的空格。可以添加 `trim` 修饰符给 `v-model` 来处理输入值：
+
+``` html
+<input v-model.trim="msg">
+```
+
+
+
+### `.trim`
+
+如果要自动过滤用户输入的首尾空格，可以添加 `trim` 修饰符到 `v-model` 上过滤输入：
+
+```html
+<input v-model.trim="msg">
+```
 
 ***
 

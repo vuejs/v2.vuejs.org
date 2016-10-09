@@ -16,19 +16,19 @@ order: 23
 
 ### 客户端的网络比较慢
 
-用户可能在网络比较慢的情况下从远处访问网站 - 或者通过比较差的连接。 这些情况下，你需要最小化必要请求使用户看的基本的内容。
+用户可能在网络比较慢的情况下从远处访问网站 - 或者通过比较差的带宽。 这些情况下，尽量减少页面请求数量，来保证用户尽快看到基本的内容。
 
-可以用 [Webpack的代码拆分](https://webpack.github.io/docs/code-splitting.html) 避免强制用户下载整个单页面应用，不过它也不会下载单个预先渲染过的HTML文件。
+可以用 [Webpack的代码拆分](https://webpack.github.io/docs/code-splitting.html) 避免强制用户下载整个单页面应用，但是，这样也远没有下载个单独的预先渲染过的HTML文件性能高。
 
 ### 客户端运行在老的(或者直接没有)JavaScript引擎上
 
-对于世界上的一些地区人口，通过1998年访问互联网的方式使用计算机可能是唯一途径。当Vue只能运行在IE9以上的浏览器时，你可以也想为那些老式浏览器提供基础内容 - 或者是在命令行中使用 [Lynx](http://lynx.browser.org/)的时髦的黑客。
+对于世界上的一些地区人，可能只能用1998年产的电脑访问互联网的方式使用计算机。而Vue只能运行在IE9以上的浏览器，你可以也想为那些老式浏览器提供基础内容 - 或者是在命令行中使用 [Lynx](http://lynx.browser.org/)的时髦的黑客。
 
-### 服务端渲染 对比 预先渲染
+### 服务端渲染 对比 预渲染(Prerendering)
 
-如果你只是用服务端渲染来改善一个少数的营销页面（如 首页，关于，联系 等等）的SEO，然后你可能想用__预先渲染__取代。然而用一个网站服务即时编译HTML,在构建时预先渲染出静态页面给特定的路由。其有点事设置预先渲染更加简单，可以保持前端是一个完整的静态站。
+如果你只是用服务端渲染来改善一个少数的营销页面（如 首页，关于，联系 等等）的SEO，那你可以用__预渲染__替换。预渲染不像服务器渲染那样即时编译HTML,预渲染只是在构建时为了特定的路由生成特定的几个静态页面。其优势是预渲染的设置更加简单，可以保持前端是一个完整的静态站。
 
-用webpack可以很简单地添加预先渲染通过[prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin)它被广泛地用在Vue应用上 - 事实上，创建者也是Vue核心团队成员之一。
+你用webpack可以很简单地通过[prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin)来添加预渲染，它被广泛地用在Vue应用上 - 事实上，创建者也是Vue核心团队成员之一。
 
 ## Hello World
 
@@ -64,11 +64,11 @@ renderer.renderToString(app, function (error, html) {
 - 路由
 - Vuex状态管理
 
-这个指南的其余部分，我们将探讨这些功能怎样运作。一旦你理解了基础，我们会提供更多细节温和和进一步的示例来帮助你解决意外情况。
+这个指南的其余部分，我们将探讨这些功能怎样运作。一旦你理解了基础，我们会提供更多细节和进一步的示例来帮助你解决意外情况。
 
 ## 通过Express Web服务器实现简单的服务端渲染
 
-如果没有一个Web服务器，我们很难说在服务端渲染，所以我们来补充它。我们将构建一个非常简单的服务端渲染应用，只用ES5，也不带其他构建步骤或Vue插件。
+如果没有一个Web服务器，很难说是服务端渲染，所以我们来补充它。我们将构建一个非常简单的服务端渲染应用，只用ES5，也不带其他构建步骤或Vue插件。
 
 启动一个应用告诉用户他们在一个页面上花了多少时间。
 
@@ -221,7 +221,7 @@ server.listen(5000, function (error) {
 
 ## 流式响应
 
-Vue还支持__流式__渲染，优先选择适用于支持流的Web服务器。允许HTML写入响应作为反馈，而不是在最后一次全部写入。其结果是请求服务速度更快，没有缺点！
+Vue还支持__流式__渲染，优先选择适用于支持流的Web服务器。允许HTML一边生成一般写入相应流，而不是在最后一次全部写入。其结果是请求服务速度更快，没有缺点！
 
 为了使上一节应用代码适用流式渲染，可以简单的替换 `server.get('*',...)`为下面的代码：
 
@@ -263,7 +263,7 @@ server.get('*', function (request, response) {
 })
 ```
 
-这不必先前的版本复杂多少，甚至这对你来说是个新概念。我们做了：
+这不比之前的版本复杂，甚至这对你来说都不是个新概念。我们做了：
 1. 建立流
 2. 在应用响应前写入HTML
 3. 在可获得时将应用HTML写入响应
@@ -280,8 +280,6 @@ Vue的服务端渲染默认非常快，但是你可以通过缓存渲染好的�
 
 在警告情况之外的，我们可以用下面的方法缓存组件。
 
-First, you'll need to provide your renderer with a [cache object](https://www.npmjs.com/package/vue-server-renderer#cache). Here's a simple example using [lru-cache](https://github.com/isaacs/node-lru-cache):
-
 首先，你需要提供给渲染器一个 [缓存对象](https://www.npmjs.com/package/vue-server-renderer#cache)。这有个简单的示例使用 [lru-cache](https://github.com/isaacs/node-lru-cache)
 
 ``` js
@@ -297,8 +295,8 @@ var renderer = createRenderer({
 
 然后对于你想缓存的组件，你可以为他们提供：
 
-- 一个独特的`名字`
-- 一个 `serverCacheKey`函数，返回一个独特的组件作用域
+- 一个唯一的`名字`
+- 一个 `serverCacheKey`函数，返回一个唯一的组件作用域
 
 例如:
 

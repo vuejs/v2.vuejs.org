@@ -82,9 +82,8 @@ Vue.js 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，�
 ``` bash
 # 全局安装 vue-cli
 $ npm install --global vue-cli
-# 创建一个基于 "webpack" 模板的新项目
-# !!要做的：这个模板还不存在 （目前 vue init webpack my-project）
-$ vue init webpack-2.0 my-project
+# 创建一个基于 webpack 模板的新项目
+$  vue init webpack my-project
 # 安装依赖，走你
 $ cd my-project
 $ npm install

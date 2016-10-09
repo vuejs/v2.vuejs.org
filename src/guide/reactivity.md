@@ -10,9 +10,9 @@ order: 15
 
 把一个普通Javascript对象传给 Vue 实例作为它的 `data` 选项，Vue.js 将遍历它的属性，用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 将它们转为 `getter/setter`。这是 ES5 特性，不能打补丁实现，这便是为什么 Vue.js 不支持 IE8 及更低版本。
 
-用户看不到 getter/setters，但是在内部它们让 Vue.js追踪依赖，在属性被访问和修改时通知变化。一个问题是在浏览器控制台打印数据对象时 getter/setter 的格式化不同，使用 `vm.$log()` 实例方法可以得到更友好的输出。所以你可能想要安装`vue-devtools`更多的检查接口。
+用户看不到 getter/setters，但是在内部它们让 Vue.js追踪依赖，在属性被访问和修改时告知。需要注意的问题是在浏览器控制台打印数据对象时 ，getter/setter 需要设置不同格式，则需要安装 `vue devtools` 以更加友好的检查接口。
 
-模板中每个指令/数据绑定都有一个对应的 **watcher** 对象，在计算过程中它把属性记录为依赖。之后当依赖的 `setter` 被调用时，会触发 **watcher** 重新计算 ，也就会导致它的关联指令更新 DOM。
+每个组件实例都有相应的**watcher**程序实例，在计算过程它把属性记录为依赖，当触发时依赖项的`setter`被调用时，通知``watcher``重新计算，从而致使它关联的组件得以更新。
 
 ![data](/images/data.png)
 
