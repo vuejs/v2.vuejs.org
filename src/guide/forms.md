@@ -350,7 +350,7 @@ vm.selected.number // -> 123
 
 ### `.trim`
 
-如果要自动过滤用户输入的首位空格，可以添加 `trim` 修饰符到 `v-model` 上管理输入：
+如果要自动过滤用户输入的首尾空格，可以添加 `trim` 修饰符到 `v-model` 上过滤输入：
 
 ```html
 <input v-model.trim="msg">
