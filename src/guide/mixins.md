@@ -1,17 +1,17 @@
 ---
-title: Mixins
+title: 混合
 type: guide
 order: 17
 ---
 
-## Basics
+## 基础
 
-Mixins are a flexible way to distribute reusable functionalities for Vue components. A mixin object can contain any component options. When a component uses a mixin, all options in the mixin will be "mixed" into the component's own options.
+混合是一种灵活的分布式复用 Vue 组件的方式。混合对象可以包含任意组件选项。以混合方式使用组件时，所有混合选项将被混入该组件本身的选项。
 
-Example:
+例子：
 
 ``` js
-// define a mixin object
+// 定义一个混合对象
 var myMixin = {
   created: function () {
     this.hello()
@@ -23,7 +23,7 @@ var myMixin = {
   }
 }
 
-// define a component that uses this mixin
+// 定义一个使用混合对象的组件
 var Component = Vue.extend({
   mixins: [myMixin]
 })
@@ -31,9 +31,9 @@ var Component = Vue.extend({
 var component = new Component() // -> "hello from mixin!"
 ```
 
-## Option Merging
+## 选项合并
 
-When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies. For example, hook functions with the same name are merged into an array so that all of them will be called. In addition, mixin hooks will be called **before** the component's own hooks:
+当组件和混合对象含有同名选项时, 这些选项将以恰当的方式混合。比如，同名钩子函数将混合为一个数组，因此都将被调用。另外，混合对象的 钩子将在组件自身钩子 **之前** 调用 ：
 
 ``` js
 var mixin = {
@@ -49,11 +49,11 @@ new Vue({
   }
 })
 
-// -> "mixin hook called"
-// -> "component hook called"
+// -> "混合对象的钩子被调用"
+// -> "组件钩子被调用"
 ```
 
-Options that expect object values, for example `methods`, `components` and `directives`, will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
+值为对象的选项, 例如 `methods`, `components` 和 `directives`，将被混合为同一个对象。 两个对象键名冲突时，取组件对象的键值对。
 
 ``` js
 var mixin = {
@@ -84,14 +84,14 @@ vm.bar() // -> "bar"
 vm.conflicting() // -> "from self"
 ```
 
-Note that the same merge strategies are used in `Vue.extend()`.
+注意： `Vue.extend()` 也使用同样的策略进行合并。
 
-## Global Mixin
+## 全局混合
 
-You can also apply a mixin globally. Use caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
+也可以全局注册混合对象。 注意使用！ 一旦使用全局混合对象，将会影响到 **所有** 之后创建的 Vue 实例。使用恰当时，可以为自定义对象注入处理逻辑。
 
 ``` js
-// inject a handler for `myOption` custom option
+// 为自定义的选项 'myOption' 注入一个处理器。 
 Vue.mixin({
   created: function () {
     var myOption = this.$options.myOption
@@ -107,11 +107,11 @@ new Vue({
 // -> "hello!"
 ```
 
-<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](/guide/plugins.html) to avoid duplicate application.</p>
+<p class="tip">谨慎使用全局混合对象，因为会影响到每个单独创建的 Vue 实例（包括第三方模板）。大多数情况下，只应当应用于自定义选项，就像上面示例一样。 也可以将其用作 [Plugins](/guide/plugins.html) 以避免产生重复应用</p>
 
-## Custom Option Merge Strategies
+## 自定义选项混合策略
 
-When custom options are merged, they use the default strategy, which simply overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `Vue.config.optionMergeStrategies`:
+自定义选项将使用默认策略，即简单地覆盖已有值。 如果想让自定义选项以自定义逻辑混合，可以向 `Vue.config.optionMergeStrategies` 添加一个函数：
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -119,14 +119,14 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 }
 ```
 
-For most object-based options, you can simply use the same strategy used by `methods`:
+对于大多数对象选项，可以使用 `methods` 的合并策略:
 
 ``` js
 var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-A more advanced example can be found on [Vuex](https://github.com/vuejs/vuex)'s merging strategy:
+更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 1.x的混合策略里找到:
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed
@@ -140,3 +140,9 @@ Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
   }
 }
 ```
+
+***
+
+> 原文： http://vuejs.org/guide/mixins.html
+
+***

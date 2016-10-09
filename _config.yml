@@ -8,11 +8,11 @@ subtitle:
 description: "Reactive Components for Modern Web Interfaces"
 author: Evan You
 email:
-language:
+language: zh-CN
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://vuejs.org
+url: http://vuefe.cn
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -97,7 +97,8 @@ markdown:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:vuejs/vuejs.org.git
+  repository: git@github.com:vuefe/vuefe.github.io.git
+  branch: master
 
 feed:
   type: atom

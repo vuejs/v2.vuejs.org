@@ -1,16 +1,16 @@
 ---
-title: Form Input Bindings
+title: 表单控件绑定
 type: guide
 order: 10
 ---
 
-## Basic Usage
+## 基础用法
 
-You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+你可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。
 
-<p class="tip">`v-model` doesn't care about the initial value provided to an input or a textarea. It will always treat the Vue instance data as the source of truth.</p>
+<p class="tip"> `v-model` 并不关心表单控件初始化所生成的值。因为它会选择 Vue 实例数据来作为具体的值。</p>
 
-### Text
+### 文本
 
 ``` html
 <input v-model="message" placeholder="edit me">
@@ -32,7 +32,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Multiline text
+### 多行文本
 
 ``` html
 <span>Multiline message is:</span>
@@ -57,14 +57,11 @@ new Vue({
 </script>
 {% endraw %}
 
+<p class="tip">在文本区域插值( `<textarea>{{text}}</textarea>` ) 并不会生效，应用 `v-model` 来代替</p>
 
-{% raw %}
-<p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
-{% endraw %}
+### 复选框
 
-### Checkbox
-
-Single checkbox, boolean value:
+单个勾选框，逻辑值：
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -85,7 +82,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Mutiple checkboxes, bound to the same Array:
+多个勾选框，绑定到同一个数组：
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
@@ -128,7 +125,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Radio
+### 单选按钮
 
 
 ``` html
@@ -160,9 +157,9 @@ new Vue({
 </script>
 {% endraw %}
 
-### Select
+### 选择列表
 
-Single select:
+单选列表:
 
 ``` html
 <select v-model="selected">
@@ -191,7 +188,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Multiple select (bound to Array):
+多选列表（绑定到一个数组）：
 
 ``` html
 <select v-model="selected" multiple>
@@ -222,7 +219,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Dynamic options rendered with `v-for`:
+动态选项，用 `v-for` 渲染：
 
 ``` html
 <select v-model="selected">
@@ -269,26 +266,27 @@ new Vue({
 </script>
 {% endraw %}
 
-## Value Bindings
 
-For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+## 绑定 value
+
+对于单选按钮，勾选框及选择列表选项，`v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
 
 ``` html
-<!-- `picked` is a string "a" when checked -->
+<!-- 当选中时，`picked` 为字符串 "a" -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` is either true or false -->
+<!-- `toggle` 为 true 或 false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when selected -->
+<!-- 当选中时，`selected` 为字符串 "abc" -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
+但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 `v-bind` 实现，并且这个属性的值可以不是字符串。
 
-### Checkbox
+### 复选框
 
 ``` html
 <input
@@ -299,63 +297,82 @@ But sometimes we may want to bind the value to a dynamic property on the Vue ins
 ```
 
 ``` js
-// when checked:
+// 当选中时
 vm.toggle === vm.a
-// when unchecked:
+// 当没有选中时
 vm.toggle === vm.b
 ```
 
-### Radio
+### 单选按钮
 
 ``` html
 <input type="radio" v-model="pick" v-bind:value="a">
 ```
 
 ``` js
-// when checked:
+// 当选中时
 vm.pick === vm.a
 ```
 
-### Select Options
+### 选择列表设置
 
 ``` html
 <select v-model="selected">
-  <!-- inline object literal -->
+    <!-- 内联对象字面量 -->
   <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
 
 ``` js
-// when selected:
+// 当选中时
 typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
 
-## Modifiers
+## 修饰符
 
 ### `.lazy`
 
-By default, `v-model` syncs the input with the data after each `input` event. You can add the `lazy` modifier to instead sync after `change` events:
+在默认情况下，`v-model` 在 `input` 事件中同步输入框值与数据，但你可以添加一个修饰符 `lazy`，从而转变为在 `change` 事件中同步：
 
 ``` html
-<!-- synced after "change" instead of "input" -->
+<!-- 在 "change" 而不是 "input" 事件中更新 -->
 <input v-model.lazy="msg" >
 ```
 
+
 ### `.number`
 
-If you want user input to be automatically typecast as a number, you can add the `number` modifier to your `v-model` managed inputs:
+如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 `number` 给 `v-model` 来处理输入值：
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string.
+这通常很有用，因为在 `type="number"` 时 HTML 中输入的值也总是会返回字符串类型。
 
 ### `.trim`
 
-If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
+如果想让用户的输入内容自动去掉起始和结尾的空格。可以添加 `trim` 修饰符给 `v-model` 来处理输入值：
+
+``` html
+<input v-model.trim="msg">
+```
+
+
+
+### `.trim`
+
+如果要自动过滤用户输入的首尾空格，可以添加 `trim` 修饰符到 `v-model` 上过滤输入：
 
 ```html
 <input v-model.trim="msg">
 ```
+
+***
+
+> 原文：http://vuejs.org/guide/forms.html
+
+***
+
+
