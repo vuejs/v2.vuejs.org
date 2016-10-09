@@ -64,7 +64,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-template 在这种场景中就表现的有些冗余了。虽然我们可以使用 `<slot></slot>` 来接收每一个级别的标题标签，在标题标签中添加相同的锚点元素。但是些都会被包裹在一个无用的 `div` 中，因为组件必须有根节点。
+template 在这种场景中就表现的有些冗余了。虽然我们重复使用 `<slot></slot>` 来接收每一个级别的标题标签，在标题标签中添加相同的锚点元素。但是些都会被包裹在一个无用的 `div` 中，因为组件必须有根节点。
 
 虽然模板在大多数组件中都非常好用，但是在这里它就不是很简洁的了。那么，我们来尝试使用 `render` 函数重写上面的例子：
 
@@ -72,8 +72,8 @@ template 在这种场景中就表现的有些冗余了。虽然我们可以使�
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // tag name 标签名称
+      this.$slots.default // 子组件中的阵列
     )
   },
   props: {
@@ -96,19 +96,19 @@ Vue.component('anchored-heading', {
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // 一个 HTML 标签，组件设置，或一个函数
+  // 必须 Return 上述其中一个
   'div',
 
   // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // 一个对应属性的数据对象
+  // 您可以在 template 中使用.可选项.
   {
-    // (see details in the next section below)
+    // (下一章，将详细说明相关细节)
   },
 
   // {String | Array}
-  // Children VNodes. Optional.
+  // 子节点(VNodes). 可选项.
   [
     createElement('h1', 'hello world'),
     createElement(MyComponent, {
@@ -123,21 +123,22 @@ createElement(
 
 ### 完整数据对象
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects.
+有一件事要注意：在 templates 中，`v-bind:class` 和  `v-bind:style` ，会有特别的处理，他们在 VNode 数据对象中，为最高级配置。
+
 
 ``` js
 {
-  // 和`v-bind:class`一样
+  // 和`v-bind:class`一样的 API
   'class': {
     foo: true,
     bar: false
   },
-  // 和`v-bind:style`一样
+  // 和`v-bind:style`一样的 API
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // 普通的 HTML 属性
+  // 正常的 HTML 特性
   attrs: {
     id: 'foo'
   },
@@ -159,9 +160,8 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the binding's 
-  // oldValue cannot be set, as Vue keeps track
-  // of it for you.
+  // 自定义指令. 注意事项：不能对绑定的旧值设值
+  // Vue 会为您持续追踨
   directives: [
     {
       name: 'my-custom-directive', 
@@ -173,7 +173,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
-  // The name of a slot if the child of a component
+  // 如果子组件有定义 slot 的名称
   slot: 'name-of-slot'
   // 其他特殊顶层属性
   key: 'myKey',
@@ -253,7 +253,7 @@ render: function (createElement) {
 
 ## 使用 JavaScript 代替模板功能
 
-无论什么都可以使用普通的 JavaScript 实现，而不用依赖 Vue 的 render 函数额外提供 API。比如， template 中的 `v-if` 和 `v-for`:
+无论什么都可以使用原生的 JavaScript 来实现，Vue 的 render 函数不会提供专用的 API。比如， template 中的 `v-if` 和 `v-for`:
 
 ``` html
 <ul v-if="items.length">
@@ -317,7 +317,7 @@ new Vue({
   }
 })
 ```
-<p class="tip">将 `h` 作为 `createElement` 的别名是一个惯例，你会发现在 Vue 生态中，实际上必须依赖 JSX，如果 `h` 不可用， 会在应用中触发报错。</p>
+<p class="tip">将 `h` 作为 `createElement` 的别名是一个通用惯例，你会发现在 Vue 生态系统中，实际上必须用到 JSX，如果在作用域中 `h` 失去作用， 在应用中会触发报错。</p>
 
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
 
@@ -357,17 +357,14 @@ Vue.component('my-component', {
 
 函数化组件只是一个函数，所以渲染开销也低很多。但同样它也有完整的组件封装，你需要知道这些， 比如：
 
-Since functional components are just functions, they're much cheaper to render. They're also very useful as wrapper components. For example, when you need to:
 
 - 程序化地在多个组件中选择一个
 - 在将 children, props, data 传递给子组件之前操作它们。 
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+
 
 下面是一个依赖传入 props 的值的 `smart-list` 组件例子，它能代表更多具体的组件：
 
-Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
 
 ``` js
 var EmptyList = { /* ... */ }
