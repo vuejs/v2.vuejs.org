@@ -72,8 +72,8 @@ template 在这种场景中就表现的有些冗余了。虽然我们重复使�
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // tag name 标签名称
+      this.$slots.default // 子组件中的阵列
     )
   },
   props: {
