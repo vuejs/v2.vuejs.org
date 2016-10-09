@@ -141,7 +141,7 @@ destroyed: function () {
 </div>
 {% endraw %}
 
-### `init` <sup>deprecated</sup>
+### `init` <sup>弃用</sup>
 
 用新的 `beforeCreate` 钩子代替，他们本质上是一样的。为了与其他生命周期的钩子命名保持一致性，所以重新命名了这个钩子。
 
