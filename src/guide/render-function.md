@@ -96,19 +96,19 @@ Vue.component('anchored-heading', {
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // 一个 HTML 标签，组件设置，或一个函数
+  // 必须 Return 上述其中一个
   'div',
 
   // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // 一个对应属性的数据对象
+  // 您可以在 template 中使用.可选项.
   {
-    // (see details in the next section below)
+    // (下一章，将详细说明相关细节)
   },
 
   // {String | Array}
-  // Children VNodes. Optional.
+  // 子节点(VNodes). 可选项.
   [
     createElement('h1', 'hello world'),
     createElement(MyComponent, {
