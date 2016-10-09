@@ -1,4 +1,4 @@
-# Support Vue.js Development
+# 支持 Vue.js 的开发
 
 <a href="https://www.patreon.com/evanyou" target="_blank">
   <img style="width:120px" src="https://s3.amazonaws.com/patreon_public_assets/toolbox/patreon.png">
@@ -10,7 +10,12 @@
   <span>Donate via PayPal (one time)</span>
 </a>
 
-## Current premium sponsors:
+<a href="javascript:;" id="donate">
+  <img src="/images/weixinpay.png">
+  <span>微信打赏</span>
+</a>
+
+## 当前特级赞助商
 
 <p style="text-align: center; margin-bottom: 60px" class="sponsors-page">
   <a href="https://itunescn.com">
@@ -36,11 +41,18 @@
   </a>
 </p>
 
-Vue.js is an MIT licensed open source project and completely free to use.
-However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development by [pledging on Patreon](https://www.patreon.com/evanyou) or [donating on PayPal](https://www.paypal.me/evanyou).
+Vue.js 是采用 MIT 许可的开源项目，使用完全免费。不过，如果没有资金的支持，维护和开发新功能是不可能持续的。你可以通过 [Patreon](https://www.patreon.com/evanyou) 或 [PayPal](https://www.paypal.me/evanyou) 来赞助。
 
-If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: **it ensures the project that your product relies on stays healthy and actively maintained.** It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
+如果你是企业经营者并且将 Vue 用在商业产品中，那么赞助 Vue 有商业上的益处：**可以让你的产品保持健康并得到积极的维护**，也能帮助你在 Vue 社区里曝光，从而更容易地吸引到 Vue 开发者。
 
-If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while :)
 
-As of now I am exploring the possibility of working on Vue.js fulltime - if you are a business that is building core products using Vue.js, I am also open to conversations regarding custom sponsorship / consulting arrangements. [Get in touch on Twitter](https://twitter.com/youyuxi).
+如果你是个人开发者并且享受 Vue 带来的高开发效率，可以用捐助来表示你的谢意——比如间或给我买杯咖啡 :)
+
+目前我在寻找全职开发 Vue.js 的机会。如果你是企业经营者，并且使用 Vue.js 来开发核心产品，我也可以做顾问。[在 Twitter 上联系我。](https://twitter.com/youyuxi)
+
+<div id="qrcode" class="hidden">
+  <h2>微信扫一扫，支持 Vue.js :)</h2>
+  <img src="/images/qrcode.png">
+</div>
+
+<script src="/js/money.js"></script>

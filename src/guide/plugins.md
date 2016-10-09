@@ -1,5 +1,5 @@
 ---
-title: Plugins
+title: 插件
 type: guide
 order: 18
 ---
@@ -79,3 +79,10 @@ Vue.use(VueRouter)
 ```
 
 Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins) for a huge collection of community-contributed plugins and libraries.
+
+
+***
+
+> 原文： http://vuejs.org/guide/plugins.html
+
+***

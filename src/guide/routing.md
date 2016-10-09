@@ -1,16 +1,16 @@
 ---
-title: Routing
+title: 路由
 type: guide
 order: 20
 ---
 
-## Official Router
+## 官方路由
 
-For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](http://vuejs.github.io/vue-router/).
+对于大多数单页面应用，都推荐使用官方支持的[vue-router库](https://github.com/vuejs/vue-router)。更多细节可以看[vue-router文档](http://vuejs.github.io/vue-router/)。
 
-## Simple Routing From Scratch
+## 从零开始简单的路由
 
-If you just need very simple routing, you can do so by dynamically rendering a page-level component like this:
+如果需要非常简单的路由，可以动态渲染一个页面级的组件像这样：
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }
@@ -35,9 +35,14 @@ new Vue({
   render (h) { return h(this.ViewComponent) }
 })
 ```
+结合HTML5 History API，你可以建立一个非常基本但功能齐全的客户端路由器。可以直接看[实例应用](https://github.com/chrisvfritz/vue-2.0-simple-routing-example)
 
-Combined with the HTML5 History API, you can build a very basic but fully-functional client-side router. To see that in practice, check out [this example app](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
+## 整合第三方路由
 
-## Integrating 3rd-Party Routers
+如果有非常喜欢的第三方路由，如[Page.js](https://github.com/visionmedia/page.js)或者 [Director](https://github.com/flatiron/director), 整合[很简单](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). 这有个 [复杂示例](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) 用了Page.js.
 
-If there's a 3rd-party router you prefer to use, such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director), integration is [similarly easy](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Here's a [complete example](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) using Page.js.
+***
+
+> 原文： http://vuejs.org/guide/routing.html
+
+***

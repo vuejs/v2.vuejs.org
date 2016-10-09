@@ -1,18 +1,19 @@
 ---
-title: Migration from Vue Router 0.7.x
+title: 从Vue Router 0.7.x迁移
 type: guide
 order: 25
 ---
 
-> Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](http://router.vuejs.org/en/).
+> 只有Vue Router 2与Vue 2是相互兼容的，所以如果你需要更新Vue,你也需要更新Vue Router。这也就是我们在主文档中将迁移路径的内容添加进来的原因。
+如果想要进一步了解新Vue Router的使用详情，请移步 [Vue Router docs](http://router.vuejs.org/en/).
 
-<p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
+<p class="tip">以下的弃用名单应该相对完整，但是迁移助手会不定期更新以保证赶上更新的进度.</p>
 
-## Route Definitions
+## Route 定义
 
-### `router.map` <sup>deprecated</sup>
+### `router.map` <sup>弃用</sup>
 
-Routes are now defined as an array on a [`routes` option](http://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
+现在的路由被定义在一个数组之中[`routes` option](http://router.vuejs.org/en/essentials/getting-started.html#javascript)在这个路由实例中. 这些是路由的示例:
 
 ``` js
 router.map({
@@ -25,7 +26,7 @@ router.map({
 })
 ```
 
-Will instead be defined with:
+会被替代以这样的方式定义:
 
 ``` js
 var router = new VueRouter({
@@ -36,26 +37,26 @@ var router = new VueRouter({
 })
 ```
 
-The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.
+考虑到不同浏览器中遍历对象不能保证会使用相同的键值，这个数组的语法可以允许更多可预测的路由匹配。.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.map</code> being called.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找示例<code>router.map</code>调用.</p>
 </div>
 {% endraw %}
 
-### `router.on` <sup>deprecated</sup>
+### `router.on` <sup>弃用</sup>
 
-If you need to programmatically generate routes when starting up your app, you can do so by dynamically pushing definitions to a routes array. For example:
+如果你需要在启动你的app时从程序上确保生成的路由，你可以通过动态的向路由数组推送定义来完成这个操作。举例说明:
 
 ``` js
-// Normal base routes
+// 普通基本的路由
 var routes = [
   // ...
 ]
 
-// Dynamically generated routes
+// 动态生成的路由
 marketingPages.forEach(function (page) {
   routes.push({
     path: '/marketing/' + page.slug
@@ -73,7 +74,7 @@ var router = new Router({
 })
 ```
 
-If you need to add new routes after the router has been instantiated, you can replace the router's matcher with a new one that includes the route you'd like to add:
+如果你需要在路由被实例化后增加新的路由，你可以用一个你需要新添加的路由去替换路由的匹配者:
 
 ``` js
 router.match = createMatcher(
@@ -86,25 +87,25 @@ router.match = createMatcher(
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.on</code> being called.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找示例<code>router.on</code>调用.</p>
 </div>
 {% endraw %}
 
-### `subroutes` <sup>deprecated</sup>
+### `subroutes` <sup>弃用</sup>
 
-[Renamed to `children`](http://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
+[重命名为`children`](http://router.vuejs.org/en/essentials/nested-routes.html)出于与Vue以及其他路由库的一致性考虑.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subroutes</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找示例<code>subroutes</code>的选项.</p>
 </div>
 {% endraw %}
 
-### `router.redirect` <sup>deprecated</sup>
+### `router.redirect` <sup>弃用</sup>
 
-This is now an [option on route definitions](http://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
+这现在是一个 [路由定义的选项](http://router.vuejs.org/en/essentials/redirect-and-alias.html). 所以举例说明一下，你将会更新:
 
 ``` js
 router.redirect({
@@ -112,7 +113,7 @@ router.redirect({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+成像下面你的'routes'配置里定义的样子:
 
 ``` js
 {
@@ -123,14 +124,14 @@ to a definition like below in your `routes` configuration:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.redirect</code> being called.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找示例<code>router.redirect</code>的调用.</p>
 </div>
 {% endraw %}
 
-### `router.alias` <sup>deprecated</sup>
+### `router.alias` <sup>弃用</sup>
 
-This is now an [option on the definition for the route](http://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
+这现在是一个[路由定义的选项](http://router.vuejs.org/en/essentials/redirect-and-alias.html) 你将要进行alias操作。所以举例说明，你将会更新:
 
 ``` js
 router.alias({
@@ -138,7 +139,7 @@ router.alias({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+成像下面你的'routes'配置里定义的样子:
 
 ``` js
 {
@@ -148,7 +149,7 @@ to a definition like below in your `routes` configuration:
 }
 ```
 
-If you need multiple aliases, you can also use an array syntax:
+如果你需要进行多次alias操作，你也可以使用一个数组语法去实现:
 
 ``` js
 alias: ['/manage', '/administer', '/administrate']
@@ -156,37 +157,37 @@ alias: ['/manage', '/administer', '/administrate']
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.alias</code> being called.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找示例<code>router.alias</code>的调用.</p>
 </div>
 {% endraw %}
 
-## Route Matching
+## Route 匹配
 
-Route matching now uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) under the hood, making it much more flexible than previously.
+路由匹配现在使用[path-to-regexp](https://github.com/pillarjs/path-to-regexp)这个包,这将会使得工作与之前相比更加灵活.
 
-### One or More Named Parameters
+### 一个或者更多的命名参数
 
-The syntax has changed slightly, so `/category/*tags` for example, should be updated to `/category/:tags+`.
+语法稍微有些许改变，所以以`/category/*tags`为例，应该被更新为`/category/:tags+`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the deprecated route syntax.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找弃用路由语法的示例.</p>
 </div>
 {% endraw %}
 
 ## Links
 
-### `v-link` <sup>deprecated</sup>
+### `v-link` <sup>弃用</sup>
 
-The `v-link` directive has been replaced with a new [`<router-link>` component](http://router.vuejs.org/en/api/router-link.html), as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:
+`v-link`指令已经被一个新的[`<router-link>`component](http://router.vuejs.org/en/api/router-link.html)指令替代,这一部分的工作已经被Vue2中的组件完成。这将意味着无论在什么时刻，什么情况下你将会拥有这样的一个链接:
 
 ``` html
 <a v-link="'/about'">About</a>
 ```
 
-You'll need to update it like this:
+你需要像这样去更新:
 
 ``` html
 <router-link to="/about">About</router-link>
@@ -194,14 +195,15 @@ You'll need to update it like this:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-link</code> directive.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>v-link</code>指令的示例</p>
 </div>
 {% endraw %}
 
-### `v-link-active` <sup>deprecated</sup>
+### `v-link-active` <sup>废弃</sup>
 
-The `v-link-active` directive has also been deprecated in favor of specifying a separate tag on [the `<router-link>` component](http://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
+`v-link-active`指令也因为新出现了一个用于定义隔离标签(在[`<router-link>`组件](http://router.vuejs.org/en/api/router-link.html)上)被废弃掉了。所以
+举例说明，你将会以这样的方式更新:
 
 ``` html
 <li v-link-active>
@@ -209,7 +211,7 @@ The `v-link-active` directive has also been deprecated in favor of specifying a 
 </li>
 ```
 
-to this:
+变成了这样:
 
 ``` html
 <router-link tag="li" to="/about">
@@ -217,44 +219,44 @@ to this:
 </router-link>
 ```
 
-The `<a>` will be the actual link (and will get the correct href), but the active class will be applied to the outer `<li>`.
+ `<a>`标签将会成为真实的链接(并且会获取到正确的跳转),但是激活的类将会被应用在外部的`<li>`标签上.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-link-active</code> directive.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>v-link-active</code>指令的示例</p>
 </div>
 {% endraw %}
 
-## Programmatic Navigation
+## 编程导航
 
 ### `router.go`
 
-[Renamed to `router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) for consistency with terminology used in the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API).
+[重命名为`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) 出于在[HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API)与语使用的一致性原则.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.go</code> being called.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>router.go</code>指令被调用的示例</p>
 </div>
 {% endraw %}
 
-## Router Options: Modes
+## 路由选择：Modes
 
-### `hashbang: false` <sup>deprecated</sup>
+### `hashbang: false` <sup>弃用</sup>
 
-Hashbangs are no longer required for Google to crawl a URL, so they are no longer the default (or even an option) for the hash strategy.
+Hashbangs将不再为谷歌需要去爬去一个网址，所以他们将不再成为哈希策略的默认选项.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>hashbang: false</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>hashbang: false</code>选项的示例</p>
 </div>
 {% endraw %}
 
-### `history: true` <sup>deprecated</sup>
+### `history: true` <sup>弃用</sup>
 
-All routing mode options have been condensed into a single [`mode` option](http://router.vuejs.org/en/api/options.html#mode). Update:
+所有路由模型选项将被简化成一个单个的[`mode` 选项](http://router.vuejs.org/en/api/options.html#mode). 更新:
 
 ``` js
 var router = new VueRouter({
@@ -262,7 +264,7 @@ var router = new VueRouter({
 })
 ```
 
-to:
+变成:
 
 ``` js
 var router = new VueRouter({
@@ -272,14 +274,14 @@ var router = new VueRouter({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>history: true</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>history: true</code>选项的示例</p>
 </div>
 {% endraw %}
 
-### `abstract: true` <sup>deprecated</sup>
+### `abstract: true` <sup>弃用</sup>
 
-All routing mode options have been condensed into a single [`mode` option](http://router.vuejs.org/en/api/options.html#mode). Update:
+所有路由模型选项将被简化成一个单个的[`mode` 选项](http://router.vuejs.org/en/api/options.html#mode). 更新:
 
 ``` js
 var router = new VueRouter({
@@ -297,22 +299,22 @@ var router = new VueRouter({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>abstract: true</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>abstract: true</code>选项的示例.</p>
 </div>
 {% endraw %}
 
-## Route Options: Misc
+## 路由选项：Misc
 
-### `saveScrollPosition` <sup>deprecated</sup>
+### `saveScrollPosition` <sup>弃用</sup>
 
-This has been replaced with a [`scrollBehavior` option](http://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:
+它已经被替换为[`scrollBehavior`option](http://router.vuejs.org/en/advanced/scroll-behavior.html)可以接受一个方法，所以滑动行为可以完全的被定制化处理 - 就算为每次路由进行定制也可以满足。这将会开启很多新的可能，但是简单的复制旧的行为:
 
 ``` js
 saveScrollPosition: true
 ```
 
-You can replace it with:
+你可以替换为:
 
 ``` js
 scrollBehavior: function (to, from, savedPosition) {
@@ -322,104 +324,105 @@ scrollBehavior: function (to, from, savedPosition) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>saveScrollPosition: true</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>saveScrollPosition: true</code>选项的示例.</p>
 </div>
 {% endraw %}
 
-### `root` <sup>deprecated</sup>
+### `root` <sup>弃用</sup>
 
-Renamed to `base` for consistency with [the HTML `<base>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).
+出于与[the HTML `<base>`element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)一致性重命名为`base`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>root</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>root</code>选项的示例.</p>
 </div>
 {% endraw %}
 
-### `transitionOnLoad` <sup>deprecated</sup>
+### `transitionOnLoad` <sup>弃用</sup>
 
-This option is no longer necessary now that Vue's transition system has explicit [`appear` transition control](transitions.html#Transitions-on-Initial-Render).
+由于Vue的过渡系统的存在这个选项将不再需要[`appear` transition control](transitions.html#Transitions-on-Initial-Render).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transitionOnLoad: true</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>transitionOnLoad: true</code>选项的示例.</p>
 </div>
 {% endraw %}
 
-### `suppressTransitionError` <sup>deprecated</sup>
+### `suppressTransitionError` <sup>弃用</sup>
 
-Removed due to hooks simplification. If you really must suppress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
+出于简化钩子的需要被移除。如果你真的需要抑制过渡错误，你可以使用 [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)作为替代.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>suppressTransitionError: true</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>suppressTransitionError: true</code>选项的示例.</p>
 </div>
 {% endraw %}
 
-## Route Hooks
+## 路由挂钩
 
-### `activate` <sup>deprecated</sup>
+### `activate` <sup>弃用</sup>
 
-Use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+使用[`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards)这一组件进行替代.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>beforeRouteEnter</code> hook.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>beforeRouteEnter</code>钩子的示例.</p>
 </div>
 {% endraw %}
 
-### `canActivate` <sup>deprecated</sup>
+### `canActivate` <sup>弃用</sup>
 
-Use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) in the route instead.
+使用[`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canActivate</code> hook.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>canActivate</code>钩子的示例.</p>
 </div>
 {% endraw %}
 
-### `deactivate` <sup>deprecated</sup>
+### `deactivate` <sup>弃用</sup>
 
-Use the component's [`beforeDestroy`](/api/#beforeDestroy) or [`destroyed`](/api/#destroyed) hooks instead.
+使用[`beforeDestroy`](/api/#beforeDestroy) or [`destroyed`](/api/#destroyed) 钩子作为替代.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>deactivate</code> hook.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>deactivate</code>钩子的示例.</p>
 </div>
 {% endraw %}
 
-### `canDeactivate` <sup>deprecated</sup>
+### `canDeactivate` <sup>弃用</sup>
 
-Use [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+在组件中使用[`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) 作为替代.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canDeactivate</code> hook.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>命令去寻找<code>canDeactivate</code>钩子的示例.</p>
 </div>
 {% endraw %}
 
-### `canReuse: false` <sup>deprecated</sup>
+### `canReuse: false` <sup>弃用</sup>
 
-There's no longer a use case for this in the new Vue Router.
+在新的Vue 路由中将不再被使用.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canReuse: false</code> option.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>canReuse: false</code>选项的示例.</p>
 </div>
 {% endraw %}
 
-### `data` <sup>deprecated</sup>
 
-The `$route` property is reactive, so you can just use a watcher to react to route changes, like this:
+### `data` <sup>弃用</sup>
+
+`$route`属性是可反应的，所有你可以就使用一个观察者去反应路由的改变，就像这样:
 
 ``` js
 watch: {
@@ -434,14 +437,14 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>data</code> hook.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>data</code>钩子的示例.</p>
 </div>
 {% endraw %}
 
-### `$loadingRouteData` <sup>deprecated</sup>
+### `$loadingRouteData` <sup>弃用</sup>
 
-Define your own property (e.g. `isLoading`), then update the loading state in a watcher on the route. For example, if fetching data with [axios](https://github.com/mzabriskie/axios):
+定义你自己的属性(举例说明`isLoading`),然后在路由上的观察者中更新加载状态.举例说明，如果使用[axios](https://github.com/mzabriskie/axios)获取数据:
 
 ``` js
 data: function () {
@@ -474,7 +477,13 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>$loadingRouteData</code> meta property.</p>
+  <h4>升级路径</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>$loadingRouteData</code>meta属性的示例.</p>
 </div>
 {% endraw %}
+
+***
+
+> 原文： http://vuejs.org/guide/migration-vue-router.html
+
+***
