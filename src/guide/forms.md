@@ -347,6 +347,15 @@ vm.selected.number // -> 123
 
 这很有用，因为在带有`type="number"`时html输入的值也总是返回字符串类型。
 
+
+### `.trim`
+
+如果要自动过滤用户输入的首位空格，可以添加 `trim` 修饰符到 `v-model` 上管理输入：
+
+```html
+<input v-model.trim="msg">
+```
+
 ***
 
 > 原文：http://vuejs.org/guide/forms.html
