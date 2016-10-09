@@ -741,19 +741,18 @@ type: api
 
 - **详细:**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  指定实例的父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
 
-  <p class="tip">Use `$parent` and `$children` sparringly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">同时使用 `$parent` 和 `$children` 有冲突 - 他们作为同一个入口 。更推荐用 props 和 events 实现父子组件通信</p>
 
 ### mixins
 
 - **类型:** `Array<Object>`
 
 - **详细:**
-
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
-
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  
+  `mixins` 选项接受一个数组作为混合对象。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。如：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。
+  Mixin钩子提供他们被调用的顺序,在调用组件的自己的钩子之前被调用。
 
 - **示例:**
 
@@ -775,13 +774,13 @@ type: api
 
 - **类型:** `string`
 
-- **限制:** only respected when used as a component option.
+- **限制:** 只有作为组件选项时起作用。
 
 - **详细:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
-
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  允许组件模板递归地调用自身。注意，组件在全局用 `Vue.component()` 注册时，全局 ID 自动作为组件的 name。
+  
+  指定一个 `name` 选项的另一个好处是便于调试。被命名的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools), 未命名组件将显示成 `<AnonymousComponent>`, 这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
 
 ### extends
 
@@ -789,16 +788,17 @@ type: api
 
 - **详细:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  
+  允许声明扩展另一个组件(可以是一个简单的选择对象或构造函数),而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
 
-  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+  这和 `mixins` 类似，区别在于,组件的选项需要比源组件被扩展有更高的优先级。
 
 - **示例:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call Vue.extend on either
+  // 在没有调用 Vue.extend 时候继承 CompA
   var CompB = {
     extends: CompA,
     ...
@@ -813,7 +813,8 @@ type: api
 
 - **详细:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
+ 改变纯文本插入分隔符。 **这个选择只有在独立构建时才有用。**
+
 
 - **示例:**
 
@@ -822,7 +823,7 @@ type: api
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Delimiters 将 ES6 模板转换成字符串样式
   ```
 
 ### functional
@@ -831,9 +832,9 @@ type: api
 
 - **详细:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+  使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
 
-- **另见:** [Functional Components](/guide/render-function.html#Functional-Components)
+- **另见:** [函数式组件](/guide/render-function.html#Functional-Components)
 
 ## 实例属性
 
@@ -972,70 +973,70 @@ type: api
 
 ### vm.$isServer
 
-- **类型:** `boolean`
+- **类型：** `boolean`
 
 - **只读**
 
-- **详细:**
+- **详细：**
 
   当前 Vue 实例是否运行于服务器。
 
-- **另见:** [服务端渲染](/guide/ssr.html)
+- **另见：** [服务端渲染](/guide/ssr.html)
 
-## Instance Methods / Data
+## 实例方法 / 数据
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{string | Function} expOrFn`
   - `{Function} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **返回值：** `{Function} unwatch`
 
-- **Usage:**
+- **用法：**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression can be a single keypath or any valid binding expressions.
+  观察 Vue 实例的一个表达式或计算函数。回调的参数为新值和旧值。表达式可以是某个键路径或任意合法绑定表达式。
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+  <p class="tip">注意：在修改（不是替换）对象或数组时，旧值将与新值相同，因为它们索引同一个对象/数组。Vue 不会保留修改之前值的副本。</p>
 
-- **Example:**
+- **示例：**
 
   ``` js
-  // keypath
+  // 键路径
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // 做点什么
   })
 
-  // expression
+  // 表达式
   vm.$watch('a + b', function (newVal, oldVal) {
-    // do something
+    // 做点什么
   })
 
-  // function
+  // 函数
   vm.$watch(
     function () {
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // 做点什么
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` 返回一个取消观察函数，用来停止触发回调：
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // 之后取消观察
   unwatch()
   ```
 
-- **Option: deep**
+- **选项：deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  为了发现对象内部值的变化，可以在选项参数中指定 `deep: true` 。注意监听数组的变动不需要这么做。
 
   ``` js
   vm.$watch('someObject', callback, {
@@ -1045,43 +1046,43 @@ type: api
   // callback is fired
   ```
 
-- **Option: immediate**
+- **选项：immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  在选项参数中指定 `immediate: true` 将立即以表达式的当前值触发回调：
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // callback is fired immediately with current value of `a`
+  // 立即以 `a` 的当前值触发回调
   ```
 
 <h3 id="vm-set">vm.$set( object, key, value )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{Object} object`
   - `{string} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **返回值：** 设置的值.
 
-- **Usage:**
+- **用法：**
 
-  This is the **alias** of the global `Vue.set`.
+  这是全局 `Vue.set` 的**别名**。
 
-- **See also:** [Vue.set](#Vue-set)
+- **另见：** [Vue.set](#Vue-set)
 
 <h3 id="vm-delete">vm.$delete( object, key )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{Object} object`
   - `{string} key`
 
-- **Usage:**
+- **用法：**
 
-  This is the **alias** of the global `Vue.delete`.
+  这是全局 `Vue.delete` 的**别名**。
 
-- **See also:** [Vue.delete](#Vue-delete)
+- **另见：** [Vue.delete](#Vue-delete)
 
 ## 实例方法/事件
 
@@ -1151,9 +1152,9 @@ type: api
 
 - **用法：**
 
-  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 vm.$mount() 手动地挂载一个未挂载的实例。
+  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 `vm.$mount()` 手动地挂载一个未挂载的实例。
 
-  如果没有"elementOrSelector"参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
+  如果没有 `elementOrSelector` 参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
 
   这个方法返回实例自身，因而可以链式调用其它实例方法。
 
@@ -1225,23 +1226,23 @@ type: api
 
   完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器。
 
-  在"beforeDestroy"和"destroyed"之间触发。
+  在 `beforeDestroy` 和 `destroyed` 之间触发。
 
-  <p class="tip">在大多数场景中你不应该调用这个方法。最好使用"v-if"和"v-for"指令以数据驱动的方式控制子组件的生命周期。</p>
+  <p class="tip">在大多数场景中你不应该调用这个方法。最好使用 `v-if` 和 `v-for` 指令以数据驱动的方式控制子组件的生命周期。</p>
 
 - **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
-## Directives
+## 指令
 
 ### v-text
 
-- **Expects:** `string`
+- **类型：** `string`
 
-- **Details:**
+- **详细：**
 
   Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
 
-- **Example:**
+- **示例：**
 
   ```html
   <span v-text="msg"></span>
@@ -1249,7 +1250,7 @@ type: api
   <span>{{msg}}</span>
   ```
 
-- **See also:** [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
+- **另见：** [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
 
 ### v-html
 

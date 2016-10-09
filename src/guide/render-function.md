@@ -243,7 +243,6 @@ render: function (createElement) {
 
 ``` js
 render: function (createElement) {
-  var myParagraph =
   return createElement('div',
     Array.apply(null, { length: 20 }).map(function () {
       return createElement('p', 'hi')
