@@ -508,7 +508,7 @@ new Vue({
 </div>
 {% endraw %}
 
-###使用内联 `value`的`v-model`  <sup>弃用</sup>
+### 使用内联 `value`的`v-model`  <sup>弃用</sup>
 
 `v-model` 不再以内联 `value` 方式初始化的初值了，显然他将以实例的data相应的属性作为真正的初值。
 
@@ -551,7 +551,7 @@ data: {
 <input v-for="str in strings" v-model="str">
 ```
 
-因为 `<input>` 将被便宜成类似下面的js代码：
+因为 `<input>` 将被编译成类似下面的js代码：
 
 ``` js
 strings.map(function (str) {
