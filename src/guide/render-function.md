@@ -128,17 +128,17 @@ createElement(
 
 ``` js
 {
-  // 和`v-bind:class`一样
+  // 和`v-bind:class`一样的 API
   'class': {
     foo: true,
     bar: false
   },
-  // 和`v-bind:style`一样
+  // 和`v-bind:style`一样的 API
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // 普通的 HTML 属性
+  // 正常的 HTML 特性
   attrs: {
     id: 'foo'
   },
@@ -160,7 +160,7 @@ createElement(
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the binding's 
+  // 自定义指令. Note that the binding's 
   // oldValue cannot be set, as Vue keeps track
   // of it for you.
   directives: [
