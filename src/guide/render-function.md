@@ -254,7 +254,7 @@ render: function (createElement) {
 
 ## 使用 JavaScript 代替模板功能
 
-无论什么都可以使用原生的 JavaScript 实现，而不用依赖 Vue 的 render 函数额外提供 API。比如， template 中的 `v-if` 和 `v-for`:
+无论什么都可以使用原生的 JavaScript 来实现，Vue 的 render 函数不会提供专用的 API。比如， template 中的 `v-if` 和 `v-for`:
 
 ``` html
 <ul v-if="items.length">
