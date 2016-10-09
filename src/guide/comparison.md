@@ -223,7 +223,7 @@ Vue样扩大后就像React，缩小后就像 Jquery。你需要做的就是把�
 ### 本地渲染
 
 
-ReactNative能使你用相同的组件模型编写有本地渲染能力的APP（IOS或Android）。能同时跨多平台开发，对开发者是非常棒的。相应地，Vue和Weex会进行官方合作，Weex是阿里的跨平台用户界面开发框架，Weex 的 JavaScript 框架运行时用的就是Vue。这以为着不仅在浏览器，在 IOS 和 Android 上面也可以用 Vue 来进行开发。
+ReactNative能使你用相同的组件模型编写有本地渲染能力的APP（IOS或Android）。能同时跨多平台开发，对开发者是非常棒的。相应地，Vue和Weex会进行官方合作，Weex是阿里的跨平台用户界面开发框架，Weex 的 JavaScript 框架运行时用的就是Vue。这意味着在借助Weex的情况下，你使用Vue语法开发的组件不仅仅可以运行在浏览器端，还能被用于开发 IOS 和 Android 上的原生应用。
 
 在现在，Weex 还在积极发展，成熟度也不能和 ReactNative 相抗衡。但是，Weex的发展是由世界上最大的电子商务企业的需求在驱动，Vue 团队也会和 Weex 团队积极合作确保为开发者带来良好的开发体验。
 
