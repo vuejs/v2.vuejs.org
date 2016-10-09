@@ -973,70 +973,70 @@ type: api
 
 ### vm.$isServer
 
-- **类型:** `boolean`
+- **类型：** `boolean`
 
 - **只读**
 
-- **详细:**
+- **详细：**
 
   当前 Vue 实例是否运行于服务器。
 
-- **另见:** [服务端渲染](/guide/ssr.html)
+- **另见：** [服务端渲染](/guide/ssr.html)
 
-## Instance Methods / Data
+## 实例方法 / 数据
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{string | Function} expOrFn`
   - `{Function} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **返回值：** `{Function} unwatch`
 
-- **Usage:**
+- **用法：**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression can be a single keypath or any valid binding expressions.
+  观察 Vue 实例的一个表达式或计算函数。回调的参数为新值和旧值。表达式可以是某个键路径或任意合法绑定表达式。
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+  <p class="tip">注意：在修改（不是替换）对象或数组时，旧值将与新值相同，因为它们索引同一个对象/数组。Vue 不会保留修改之前值的副本。</p>
 
-- **Example:**
+- **示例：**
 
   ``` js
-  // keypath
+  // 键路径
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // 做点什么
   })
 
-  // expression
+  // 表达式
   vm.$watch('a + b', function (newVal, oldVal) {
-    // do something
+    // 做点什么
   })
 
-  // function
+  // 函数
   vm.$watch(
     function () {
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // 做点什么
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` 返回一个取消观察函数，用来停止触发回调：
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // 之后取消观察
   unwatch()
   ```
 
-- **Option: deep**
+- **选项：deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  为了发现对象内部值的变化，可以在选项参数中指定 `deep: true` 。注意监听数组的变动不需要这么做。
 
   ``` js
   vm.$watch('someObject', callback, {
@@ -1046,43 +1046,43 @@ type: api
   // callback is fired
   ```
 
-- **Option: immediate**
+- **选项：immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  在选项参数中指定 `immediate: true` 将立即以表达式的当前值触发回调：
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // callback is fired immediately with current value of `a`
+  // 立即以 `a` 的当前值触发回调
   ```
 
 <h3 id="vm-set">vm.$set( object, key, value )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{Object} object`
   - `{string} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **返回值：** 设置的值.
 
-- **Usage:**
+- **用法：**
 
-  This is the **alias** of the global `Vue.set`.
+  这是全局 `Vue.set` 的**别名**。
 
-- **See also:** [Vue.set](#Vue-set)
+- **另见：** [Vue.set](#Vue-set)
 
 <h3 id="vm-delete">vm.$delete( object, key )</h3>
 
-- **Arguments:**
+- **参数：**
   - `{Object} object`
   - `{string} key`
 
-- **Usage:**
+- **用法：**
 
-  This is the **alias** of the global `Vue.delete`.
+  这是全局 `Vue.delete` 的**别名**。
 
-- **See also:** [Vue.delete](#Vue-delete)
+- **另见：** [Vue.delete](#Vue-delete)
 
 ## 实例方法/事件
 
