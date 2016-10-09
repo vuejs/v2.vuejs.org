@@ -4,10 +4,9 @@ type: router
 order: 4
 ---
 
+# 嵌套路由
 
-# Nested Routes
-
-Real app UIs are usually composed of components that are nested multiple levels deep. It is also very common that the segments of a URL corresponds to a certain structure of nested components, for example:
+实际生活中的应用界面，通常由多层嵌套的组件组合而成。同样地，URL 中各段动态路径也按某种结构对应嵌套的各层组件，例如：
 
 ```
 /user/foo/profile                     /user/foo/posts
@@ -20,9 +19,9 @@ Real app UIs are usually composed of components that are nested multiple levels 
 +------------------+                  +-----------------+
 ```
 
-With `vue-router`, it is very simple to express this relationship using nested route configurations.
+借助 `vue-router`，使用嵌套路由配置，就可以很简单地表达这种关系。
 
-Given the app we created in the last chapter:
+接着上节创建的 app：
 
 ``` html
 <div id="app">
@@ -42,7 +41,7 @@ const router = new VueRouter({
 })
 ```
 
-The `<router-view>` here is a top-level outlet. It renders the component matched by a top level route. Similarly, a rendered component can also contain its own, nested `<router-view>`. For example, if we add one inside the `User` component's template:
+这里的 `<router-view>` 是最顶层的出口，渲染最高级路由匹配到的组件。同样地，一个被渲染组件同样可以包含自己的嵌套 `<router-view>`。例如，在 `User` 组件的模板添加一个 `<router-view>`：
 
 ``` js
 const User = {
@@ -55,8 +54,7 @@ const User = {
 }
 ```
 
-To render components into this nested outlet, we need to use the `children`
-option in `VueRouter` constructor config:
+要在嵌套的出口中渲染组件，需要在 `VueRouter` 的参数中使用 `children` 配置：
 
 ``` js
 const router = new VueRouter({
@@ -64,14 +62,14 @@ const router = new VueRouter({
     { path: '/user/:id', component: User,
       children: [
         {
-          // UserProfile will be rendered inside User's <router-view>
-          // when /user/:id/profile is matched
+          // 当 /user/:id/profile 匹配成功，
+          // UserProfile 会被渲染在 User 的 <router-view> 中
           path: 'profile',
           component: UserProfile
         },
         {
-          // UserPosts will be rendered inside User's <router-view>
-          // when /user/:id/posts is matched
+          // 当 /user/:id/posts 匹配成功
+          // UserPosts 会被渲染在 User 的 <router-view> 中
           path: 'posts',
           component: UserPosts
         }
@@ -81,11 +79,11 @@ const router = new VueRouter({
 })
 ```
 
-**Note that nested paths that start with `/` will be treated as a root path. This allows you to leverage the component nesting without having to use a nested URL.**
+**要注意，以 `/` 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。**
 
-As you can see the `children` option is just another Array of route configuration objects like `routes` itself. Therefore, you can keep nesting views as much as you need.
+你会发现，`children` 配置就是像 `routes` 配置一样的路由配置数组，所以呢，你可以嵌套多层路由。
 
-At this point, with the above configuration, when you visit `/user/foo`, nothing will be rendered inside `User`'s outlet, because no sub route is matched. Maybe you do want to render something there. In such case you can provide an empty subroute path:
+此时，基于上面的配置，当你访问 `/user/foo` 时，`User` 的出口是不会渲染任何东西，这是因为没有匹配到合适的子路由。如果你想要渲染点什么，可以提供一个 空的 子路由：
 
 ``` js
 const router = new VueRouter({
@@ -93,15 +91,15 @@ const router = new VueRouter({
     {
       path: '/user/:id', component: User,
       children: [
-        // UserHome will be rendered inside User's <router-view>
-        // when /user/:id is matched
+        // 当 /user/:id 匹配成功，
+        // UserHome 会被渲染在 User 的 <router-view> 中
         { path: '', component: UserHome },
 
-        // ...other sub routes
+        // ...其他子路由
       ]
     }
   ]
 })
 ```
 
-A working demo of this example can be found [here](http://jsfiddle.net/yyx990803/L7hscd8h/).
+提供以上案例的可运行代码，[戳这里](http://jsfiddle.net/yyx990803/L7hscd8h/).

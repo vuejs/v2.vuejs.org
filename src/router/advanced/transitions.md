@@ -1,12 +1,13 @@
 ---
-title: 过渡
+title: 过渡动效
 type: router
 order: 12
 ---
 
-# Transitions
+# 过渡动效
 
-Since the `<router-view>` is essentially a dynamic component, we can apply transition effects to it the same way using the `<transition>` component:
+`<router-view>` 是基本的动态组件，所以我们可以用 `<transition>` 组件给它添加一些过渡效果：
+
 
 ``` html
 <transition>
@@ -14,11 +15,11 @@ Since the `<router-view>` is essentially a dynamic component, we can apply trans
 </transition>
 ```
 
-[Everything about `<transition>`](http://vuejs.org/guide/transitions.html) works the same here.
+[`<transition>` 的所有功能](http://vuejs.org/guide/transitions.html) 在这里同样适用。
 
-### Per-Route Transition
+### 单个路由的过渡
 
-The above usage will apply the same transition for all routes. If you want each route's component to have different transitions, you can instead use `<transition>` with different names inside each route component:
+上面的用法会给所有路由设置一样的过渡效果，如果你想让每个路由组件有各自的过渡效果，可以在各路由组件内使用 `<transition>` 并设置不同的 name。
 
 ``` js
 const Foo = {
@@ -38,20 +39,20 @@ const Bar = {
 }
 ```
 
-### Route-Based Dynamic Transition
+### 基于路由的动态过渡
 
-It is also possible to determine the transition to use dynamically based on the relationship between the target route and current route:
+还可以基于当前路由与目标路由的变化关系，动态设置过渡效果：
 
 ``` html
-<!-- use a dynamic transition name -->
+<!-- 使用动态的 transition name -->
 <transition :name="transitionName">
   <router-view></router-view>
 </transition>
 ```
 
 ``` js
-// then, in the parent component,
-// watch the $route to determine the transition to use
+// 接着在父组件内
+// watch $route 决定使用哪种过渡
 watch: {
   '$route' (to, from) {
     const toDepth = to.path.split('/').length
@@ -61,4 +62,4 @@ watch: {
 }
 ```
 
-See full example [here](https://github.com/vuejs/vue-router/blob/next/examples/transitions/app.js).
+查看完整例子 [这里](https://github.com/vuejs/vue-router/blob/next/examples/transitions/app.js).

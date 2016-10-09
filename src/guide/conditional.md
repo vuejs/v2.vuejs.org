@@ -21,7 +21,7 @@ order: 7
 <h1 v-if="ok">Yes</h1>
 ```
 
-也可以用 `v-else` 添加一个 "else" 块：
+也可以用 `v-else` 添加一个 “else” 块：
 
 ``` html
 <h1 v-if="ok">Yes</h1>
@@ -99,6 +99,6 @@ order: 7
 
 ***
 
-> 原文：http://rc.vuejs.org/guide/conditional.html
+> 原文：http://vuejs.org/guide/conditional.html
 
 ***

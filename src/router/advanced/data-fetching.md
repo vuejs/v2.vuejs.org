@@ -4,21 +4,21 @@ type: router
 order: 13
 ---
 
-# Data Fetching
+# 数据获取
 
-Sometimes you need to fetch data from the server when a route is activated. For example, before rendering a user profile, you need to fetch the user's data from the server. We can achieve this in two different ways:
+有时候，进入某个路由后，需要从服务器获取数据。例如，在渲染用户信息时，你需要从服务器获取用户的数据。我们可以通过两种方式来实现：
 
-- **Fetching After Navigation**: perform the navigation first, and fetch data in the incoming component's lifecycle hook. Display a loading state while data is being fetched.
+- **导航完成之后获取**：先完成导航，然后在接下来的组件生命周期钩子中获取数据。在数据获取期间显示『加载中』之类的指示。
 
-- **Fetching Before Navigation**: Fetch data before navigation in the route enter guard, and perform the navigation after data has been fetched.
+- **导航完成之前获取**：导航完成前，在路由的 `enter` 钩子中获取数据，在数据获取成功后执行导航。
 
-Technically, both are valid choices - it ultimately depends on the user experience you are aiming for.
+从技术角度讲，两种方式都不错 —— 就看你想要的用户体验是哪种。
 
-## Fetching After Navigation
+## 导航完成后获取数据
 
-When using this approach, we navigate and render the incoming component immediately, and fetch data in the component's `created` hook. It gives us the opportunity to display a loading state while the data is being fetched over the network, and we can also handle loading differently for each view.
+当你使用这种方式时，我们会马上导航和渲染组件，然后在组件的 `create` 钩子中获取数据。这让我们有机会在数据获取期间展示一个 loading 状态，还可以在不同视图间展示不同的 loading 状态。
 
-Let's assume we have a `Post` component that needs to fetch the data for a post based on `$route.params.id`:
+假设我们有一个 `Post` 组件，需要基于 `$route.params.id` 获取文章数据：
 
 ``` html
 <template>
@@ -49,12 +49,12 @@ export default {
     }
   },
   created () {
-    // fetch the data when the view is created and the data is
-    // already being observed
+    // 组件创建完后获取数据，
+    // 此时 data 已经被 observed 了
     this.fetchData()
   },
   watch: {
-    // call again the method if the route changes
+    // 如果路由有变化，会再次执行该方法
     '$route': 'fetchData'
   },
   methods: {
@@ -75,10 +75,9 @@ export default {
 }
 ```
 
-## Fetching Before Navigation
+## 在导航完成前获取数据
 
-With this approach we fetch the data before actually navigating to the new
-route. We can perform the data fetching in the `beforeRouteEnter` guard in the incoming component, and only call `next` when the fetch is complete:
+通过这种方式，我们在导航转入新的路由前获取数据。我们可以在接下来的组件的  `beforeRouteEnter` 钩子中获取数据，当数据获取成功后只调用 `next` 方法。
 
 ``` js
 export default {
@@ -88,10 +87,11 @@ export default {
       error: null
     }
   },
-  beforeRouteEnter (route, redirect, next) {
-    getPost(route.params.id, (err, post) => {
+  beforeRouteEnter (to, from, next) {
+    getPost(to.params.id, (err, post) => 
       if (err) {
         // display some global error message
+        next(false)
       } else {
         next(vm => {
           vm.post = post
@@ -99,8 +99,8 @@ export default {
       }
     })
   },
-  // when route changes when this component is already rendered,
-  // the logic will be slightly different.
+  // 路由改变前，组件就已经渲染完了
+  // 逻辑稍稍不同
   watch: {
     $route () {
       this.post = null
@@ -116,4 +116,4 @@ export default {
 }
 ```
 
-The user will stay on the current view while the resource is being fetched for the incoming view. It is therefore recommended to display a progress bar or some kind of indicator while the data is being fetched. If the data fetch fails, it's also necessary to display some kind of global warning message.
+在为后面的视图获取数据时，用户会停留在当前的界面，因此建议在数据获取期间，显示一些进度条或者别的指示。如果数据获取失败，同样有必要展示一些全局的错误提醒。

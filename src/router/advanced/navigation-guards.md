@@ -1,38 +1,47 @@
 ---
-title: Navigation Guards
+title: 导航钩子
 type: router
 order: 10
 ---
 
-# Navigation Guards
+# 导航钩子
 
-As the name suggests, the navigation guards provided by `vue-router` are primarily used to guard navigations either by redirecting it or canceling it. There are a number of ways to hook into the route navigation process: globally, per-route, or in-component.
+>（译者：『导航』表示路由正在发生改变。）
 
-### Global Guards
+正如其名，`vue-router` 提供的导航钩子主要用来拦截导航，让它完成跳转或取消。有多种方式可以在路由导航发生时执行钩子：全局的, 单个路由独享的, 或者组件级的。
 
-You can register global before guards using `router.beforeEach`:
+### 全局钩子
+
+你可以使用 `router.beforeEach` 注册一个全局的 `before` 钩子：
 
 ``` js
 const router = new VueRouter({ ... })
 
-router.beforeEach((route, redirect, next) => {
+router.beforeEach((to, from, next) => {
   // ...
 })
 ```
 
-Global before guards are called in creation order, whenever a navigation is triggered. Guards may be resolved asynchronously, and the navigation is considered **pending** before all hooks have been resolved.
+当一个导航触发时，全局的 `before` 钩子按照创建顺序调用。钩子是异步解析执行，此时导航在所有钩子 resolve 完之前一直处于 **等待中**。
 
-Every guard function receives three arguments:
+每个钩子方法接收三个参数：
 
-- `route: Route`: the target [Route Object](../api/route-object.md) being navigated to.
+- **`to: Route`**: 即将要进入的目标 [路由对象](../api/route-object.md)
 
-- `redirect: Function`: calling this function will abort the current navigation and start a new navigation towards the redirect target.
+- **`from: Route`**: 当前导航正要离开的路由
 
-- `next: Function`: resolve this guard and proceed to the next guard in the pipeline. If there are no hooks left, then the navigation is **confirmed**.
+- **`next: Function`**: 一定要调用该方法来 **resolve** 这个钩子。执行效果依赖 `next` 方法的调用参数。
 
-**If neither `redirect` nor `next` is called, the navigation will be cancelled.**
+  - **`next()`**: 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 **confirmed** （确认的）。
 
-You can also register global after hooks, however unlike guards, these hooks are much simpler and cannot affect the navigation:
+  - **`next(false)`**: 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么 URL 地址会重置到 `from` 路由对应的地址。
+
+  - **`next('/')` 或者 `next({ path: '/' })`**: 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。
+
+**确保要调用 `next` 方法，否则钩子就不会被 resolved。**
+
+
+同样可以注册一个全局的 `after` 钩子，不过它不像 `before` 钩子那样，`after` 钩子没有 `next` 方法，不能改变导航：
 
 ``` js
 router.afterEach(route => {
@@ -40,9 +49,9 @@ router.afterEach(route => {
 })
 ```
 
-### Per-Route Guard
+### 某个路由独享的钩子
 
-You can define `beforeEnter` guards directly on a route's configuration object:
+你可以在路由配置上直接定义 `beforeEnter` 钩子：
 
 ``` js
 const router = new VueRouter({
@@ -50,7 +59,7 @@ const router = new VueRouter({
     {
       path: '/foo',
       component: Foo,
-      beforeEnter: (route, redirect, next) => {
+      beforeEnter: (to, from, next) => {
         // ...
       }
     }
@@ -58,38 +67,37 @@ const router = new VueRouter({
 })
 ```
 
-These guards have the exact same signature as global before guards.
+这些钩子与全局 `before` 钩子的方法参数是一样的。
 
-### In-Component Guards
+### 组件内的钩子
 
-Finally, you can directly define route navigation guards inside route components with `beforeRouteEnter` and `beforeRouteLeave`:
+最后，你可以使用 `beforeRouteEnter` 和 `beforeRouteLeave`，在路由组件内直接定义路由导航钩子，
 
 ``` js
 const Foo = {
   template: `...`,
-  beforeRouteEnter (route, redirect, next) => {
-    // called before the route that renders this component is confirmed.
-    // does NOT have access to `this` component instance,
-    // because it has not been created yet when this guard is called!
+  beforeRouteEnter (to, from, next) => {
+    // 在渲染该组件的对应路由被 confirm 前调用
+    // 不！能！获取组件实例 `this`
+    // 因为当钩子执行前，组件实例还没被创建
   },
-  beforeRouteLeave (route, redirect, next) => {
-    // called when the route that renders this component is about to
-    // be navigated away from.
-    // has access to `this` component instance.
+  beforeRouteLeave (to, from, next) => {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
   }
 }
 ```
 
-The `beforeRouteEnter` guard does **NOT** have access to `this`, because the guard is called before the navigation is confirmed, thus the new entering component has not even been created yet.
+`beforeRouteEnter` 钩子 **不能** 访问 `this`，因为钩子在导航确认前被调用,因此即将登场的新组件还没被创建。
 
-However, you can access the instance by passing a callback to `next`. The callback will be called when the navigation is confirmed, and the component instance will be passed to the callback as the argument:
+不过，你可以通过传一个回调给 `next`来访问组件实例。在导航被确认的时候执行回调，并且把组件实例作为回调方法的参数。
 
 ``` js
-beforeRouteEnter (route, redirect, next) => {
+beforeRouteEnter (to, from, next) => {
   next(vm => {
-    // access to component instance via `vm`
+    // 通过 `vm` 访问组件实例
   })
 }
 ```
 
-You can directly access `this` inside `beforeRouteLeave`. The leave guard is usually used to prevent the user from accidentally leaving the route with unsaved edits. The navigation can be canceled by simply not calling `next` or `redirect`.
+你可以 在 `beforeRouteLeave` 中直接访问 `this`。这个 `leave` 钩子通常用来禁止用户在还未保存修改前突然离开。可以通过 `next(false)` 来取消导航。

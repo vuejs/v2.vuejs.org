@@ -29,12 +29,8 @@ var MyComponent = Vue.extend({
 var myComponentInstance = new MyComponent()
 ```
 
-尽管可以命令式地创建扩展实例，不过在多数情况下将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](/components.md)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
+尽管可以命令式地创建扩展实例，不过在多数情况下将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](/guide/components.html)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
 
-
-## Properties and Methods
-
-Each Vue instance **proxies** all the properties found in its `data` object:
 
 ## 属性与方法
 
@@ -59,7 +55,7 @@ vm.a // -> 3
 
 注意只有这些被代理的属性是**响应的**。如果在实例创建之后添加新的属性到实例上，它不会触发视图更新。我们将在后面详细讨论响应系统。
 
-除了这些数据属性，Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 `$`，以便与代理的数据属性区分。例如：
+除了这些数据属性， Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 `$`，以便与代理的数据属性区分。例如：
 
 ``` js
 var data = { a: 1 }
@@ -77,10 +73,9 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
+<p class="tip">注意，不要在实例属性或者回调函数中（如 `vm.$watch('a', newVal => this.myMethod())`）使用箭头函数。原因是箭头函数绑定父上下文，所以 `this` 不会像预想的一样是 Vue 实例，而是 `this.myMethod` 未被定义。</p>
 
-<p class="tip">Note that __you should not use arrow functions on an instance property or callback__ (e.g. `vm.$watch('a', newVal => this.myMethod())`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myMethod` will be undefined.</p>
-
-Consult the [API reference](/api) for the full list of instance properties and methods.
+实例属性和方法的完整列表中查阅 [API 参考](/api)。
 
 ## 实例生命周期
 
@@ -99,7 +94,7 @@ var vm = new Vue({
 ```
 
 
-也有一些其它的钩子，在实例生命周期的不同阶段调用，如 `mounted`、 `updated` 、`destroyed`。钩子的 `this` 指向调用它的 Vue 实例。一些用户可能会问 Vue.js 是否有“控制器”的概念？答案是，没有。组件的自定义逻辑可以分割在这些钩子中。
+也有一些其它的钩子，在实例生命周期的不同阶段调用，如 `mounted`、 `updated` 、`destroyed` 。钩子的 `this` 指向调用它的 Vue 实例。一些用户可能会问 Vue.js 是否有“控制器”的概念？答案是，没有。组件的自定义逻辑可以分布在这些钩子中。
 
 
 ## 生命周期图示
@@ -112,7 +107,7 @@ var vm = new Vue({
 
 ***
 
-> 原文： http://rc.vuejs.org/guide/instance.html
+> 原文： http://vuejs.org/guide/instance.html
 
 ***
 
