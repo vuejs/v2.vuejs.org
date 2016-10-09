@@ -6,7 +6,7 @@ order: 24
 
 ## FAQ
 
-> 哇，非常长的一页！是否意味着 Vue2.0 已经完全不同了呢，是否需要从头学起呢，Vue1.0 的项目是不是没法迁移了？ 
+> 哇，非常长的一页！是否意味着 Vue2.0 已经完全不同了呢，是否需要从头学起呢，Vue1.0 的项目是不是没法迁移了？
 
 非常开心地告诉你，并不是！ 几乎90%的 API 和核心概念都没有变。因为本节包含了很多详尽的阐述以及许多迁移的例子，所以显得有点长。不用担心，__你也不必从头到尾把本节读一遍！__
 
@@ -154,7 +154,7 @@ destroyed: function () {
 
 ### `ready` <sup>弃用</sup>
 
-使用新的 `mounted` 钩子代替，. 应该注意的是，通过使用 `mounted` 钩子，并不能保证该实例已经插入文档。所以还应该在钩子函数中包含 `Vue.nextTick`/`vm.$nextTick` 例如：
+使用新的 `mounted` 钩子代替，应该注意的是，通过使用 `mounted` 钩子，并不能保证该实例已经插入文档。所以还应该在钩子函数中包含 `Vue.nextTick`/`vm.$nextTick` 例如：
 
 ``` js
 mounted: function () {
@@ -191,7 +191,7 @@ mounted: function () {
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 来找到使用弃用参数顺序的实例。注意，该工具将不会标记以 </p><code>name</code> 或者 <code>property</code> 来命名 key 参数。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 来找到使用弃用参数顺序的实例。注意，该工具将不会标记以 <code>name</code> 或者 <code>property</code> 来命名 key 参数。</p>
 </div>
 {% endraw %}
 
@@ -315,8 +315,7 @@ Props现在只能单向传递。为了对父组件产生反向影响，子组件
 
 ### 修改 Props <sup>弃用</sup>
 
-组件内修改prop是反模式（不推荐的）的。比如，先申明一个prop，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变prop的值。根据渲染机制，当父组件重新渲染时，子组件的内部prop
-值也将被覆盖。
+组件内修改prop是反模式（不推荐的）的。比如，先申明一个prop，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变prop的值。根据渲染机制，当父组件重新渲染时，子组件的内部prop值也将被覆盖。
 
 大多数情况下，改变prop值可以用以下选项代替：
 
@@ -337,7 +336,7 @@ Props现在只能单向传递。为了对父组件产生反向影响，子组件
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行端对端测试，将会弹出 <strong>failed tests</strong> 来通知你使用 `props` 的根实例已经失效。</p>
+  <p>运行端对端测试，将会弹出 <strong>failed tests</strong> 来通知你使用 <code>props</code> 的根实例已经失效。</p>
 </div>
 {% endraw %}
 
@@ -359,7 +358,7 @@ Props现在只能单向传递。为了对父组件产生反向影响，子组件
 {% endraw %}
 
 ### 用 `v-on` 监听原生事件
-  
+
   现在在组件上使用 `v-on` 只会监听自定义事件（组件用 `$emit` 触发的事件）。如果要监听根元素的原生事件，可以使用 `.native` 修饰符，比如：
 
 ``` html
@@ -650,7 +649,7 @@ strings.map(function (str) {
 
 显要的改变有如下几点：
 
-- 指令不在拥有实例。意思是，在指令的钩子函数中不再拥有实例的`this`。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过`el`来访问实例。
+- 指令不再拥有实例。意思是，在指令的钩子函数中不再拥有实例的`this`。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过`el`来访问实例。
 - 类似 `acceptStatement`， `deep`， `priority`等都已被弃用。为了替换`双向`指令，见 [示例](#Two-Way-Filters-deprecated)。
 - 现在有些钩子的意义和以前不一样了，并且多了两个钩子函数。
 
