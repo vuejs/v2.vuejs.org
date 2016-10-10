@@ -1,10 +1,8 @@
 ---
-title: API
+title: API 参考
 type: vuex
 order: 15
 ---
-
-# API Reference
 
 ### Vuex.Store
 

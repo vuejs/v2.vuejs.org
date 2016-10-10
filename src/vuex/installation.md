@@ -4,15 +4,13 @@ type: vuex
 order: 1
 ---
 
-# 安装
-
-### Direct Download / CDN
+### 直接下载 / CDN
 
 [https://unpkg.com/vuex](https://unpkg.com/vuex)
 
-[Unpkg.com](https://unpkg.com) provides NPM-based CDN links. The above link will always point to the latest release on NPM. You can also use a specific version/tag via URLs like `https://unpkg.com/vuex@2.0.0`.
+[Unpkg.com](https://unpkg.com) 提供基于 NPM 的 CDN 链接。以上链接总是保持在 NPM 上的最新版本。你也可以通过类似于这样的 URL `https://unpkg.com/vuex@2.0.0` 使用特殊的 版本/标签。
 
-Include `vuex` after Vue and it will install itself automatically:
+在包含 Vue 之后包含 `vuex`，它会自动安装：
 
 ``` html
 <script src="/path/to/vue.js"></script>
@@ -25,7 +23,7 @@ Include `vuex` after Vue and it will install itself automatically:
 npm install vuex
 ```
 
-When used with a module system, you must explicitly install the router via `Vue.use()`:
+当配合模块系统一起使用时，你必须通过 `Vue.use()` 显式安装到路由上：
 
 ``` js
 import Vue from 'vue'
@@ -34,12 +32,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 ```
 
-You don't need to do this when using global script tags.
+当你使用全局脚本标签时不需要这样做。
 
-### Dev Build
+### 使用开发版
 
-You will have to clone directly from GitHub and build `vuex` yourself if
-you want to use the latest dev build.
+你如果想使用最新的开发版，请直接去 GitHub 克隆，然后构建你自己的 `vuex`。
 
 ``` bash
 git clone https://github.com/vuejs/vuex.git node_modules/vuex

@@ -4,8 +4,6 @@ type: router
 order: 12
 ---
 
-# 过渡动效
-
 `<router-view>` 是基本的动态组件，所以我们可以用 `<transition>` 组件给它添加一些过渡效果：
 
 

@@ -4,8 +4,6 @@ type: router
 order: 1
 ---
 
-# 安装
-
 ### 直接下载 / CDN
 
 [https://unpkg.com/vue-router](https://unpkg.com/vue-router)

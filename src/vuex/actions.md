@@ -4,8 +4,6 @@ type: vuex
 order: 7
 ---
 
-# Actions
-
 Actions are similar to mutations, the difference being that:
 
 - Instead of mutating the state, actions commit mutations.
