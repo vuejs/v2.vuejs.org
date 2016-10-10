@@ -4,7 +4,7 @@ type: api
 
 ## 全局配置
 
-`Vue.config` is 是一个对象，包含 Vue 的全局配置。可以在启动应用之前修改下列属性：
+`Vue.config`  是一个对象，包含 Vue 的全局配置。可以在启动应用之前修改下列属性：
 
 ### silent
 
@@ -40,9 +40,9 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  自定义选项的混合策略。
+  自定义合并策略的选项。
 
-  合并策略函数接收定义在父实例和子实例上的 option，分别作为第一个和第二个参数的值，Vue实例上下文被作为第三个参数传入。
+  合并策略选项分别接受第一个参数作为父实例，第二个参数为子实例，Vue实例上下文被作为第三个参数传入。
 
 - **参考**： [自定义选项的混合策略](/guide/mixins.html#Custom-Option-Merge-Strategies)
 
@@ -75,7 +75,7 @@ type: api
   }
   ```
 
-  指定组件的渲染和观察期间未捕获错误的处理函数。处理函数被调用时，可获取错误信息和 Vue 实例。
+  指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
 
 ### keyCodes
 
@@ -178,7 +178,7 @@ type: api
 
 - **用法：**
 
-  删除对象的属性。如果对象是响应式的，确保删除更新视图的触发器。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
+  删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
 
   **注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象**
 
@@ -278,7 +278,7 @@ type: api
 
 - **用法：**
 
-  全局注册一个混合，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混合，向组件注入自定义逻辑。**不推荐在应用代码中使用**。
+  全局注册一个混合，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混合，向组件注入自定义的行为。**不推荐在应用代码中使用**。
 
 - **参考：** [全局混合](/guide/mixins.html#Global-Mixin)
 
@@ -1240,68 +1240,69 @@ type: api
 
 - **详细：**
 
-  Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
+  更新元素的 `textContent`。如果要更新 `textContent` 部分，需要使用 `{% raw %}{{ Mustache }}{% endraw %}` 插值。
 
 - **示例：**
 
   ```html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- 和下面的一样 -->
   <span>{{msg}}</span>
   ```
 
-- **另见：** [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
+- **另见：** [数据绑定语法 - 插值](/guide/syntax.html#Text)
 
 ### v-html
 
-- **Expects:** `string`
+- **类型：** `string`
 
-- **Details:**
+- **详细：**
 
-  Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
 
-  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+  更新元素的 `innerHTML` 。**注意：内容按普通  HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新思考通过是否通过使用组件来替代。
 
-- **Example:**
+  <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
+  
+- **示例：**
 
   ```html
   <div v-html="html"></div>
   ```
-- **See also:** [Data Binding Syntax - interpolations](/guide/syntax.html#Raw-HTML)
+- **另见** [数据绑定语法 - 插值](/guide/syntax.html#Raw-HTML)
 
 ### v-if
 
-- **Expects:** `any`
+- **类型：** `any`
 
-- **Usage:**
+- **用法：**
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  根据表达式的值的真假条件渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 `<template>` ，将提出它的内容作为条件块。
 
-  This directive triggers transitions when its condition changes.
+  该指令在条件变化时触发改变。
 
-- **See also:** [Conditional Rendering - v-if](/guide/conditional.html)
+- **另见** [条件渲染 - v-if](/guide/conditional.html)
 
 ### v-show
 
-- **Expects:** `any`
+- **类型：** `any`
 
-- **Usage:**
+- **用法：**
 
-  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
+  根据表达式的值的真假切换元素的 display CSS 属性，如果有过渡将触发它。
 
-  This directive triggers transitions when its condition changes.
+  该指令在条件变化时触发改变。
 
-- **See also:** [Conditional Rendering - v-show](/guide/conditional.html#v-show)
+- **另见：** [条件渲染 - v-show](/guide/conditional.html#v-show)
 
 ### v-else
 
-- **Does not expect expression**
+- **不需要表达式**
 
-- **Restriction:** previous sibling element must have `v-if`.
+- **限制：** 前一兄弟元素必须有 `v-if`。
 
-- **Usage:**
+- **用法：**
 
-  Denote the "else block" for `v-if`.
+  为 `v-if` 添加 “else 块”。
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1312,16 +1313,16 @@ type: api
   </div>
   ```
 
-- **See also:**
-  - [Conditional Rendering - v-else](/guide/conditional.html#v-else)
+- **另见：**
+  - [条件渲染 - v-else](/guide/conditional.html#v-else)
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string`
+- **类型：** `Array | Object | number | string`
 
-- **Usage:**
+- **用法：**
 
-  Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  基于源数据将元素或模板块重复数次。指令的值必须使用特定语法 `alias in expression` ，为当前遍历的元素提供别名：
 
   ``` html
   <div v-for="item in items">
@@ -1329,7 +1330,7 @@ type: api
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  另外也可以为数组索引指定别名（或者用于对象的键）：
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -1337,7 +1338,7 @@ type: api
   <div v-for="(key, val, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
+  `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素,您需要提供一个 `key` 的特殊属性:
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -1345,171 +1346,171 @@ type: api
   </div>
   ```
 
-  The detailed usage for `v-for` is explained in the guide section linked below.
+  `v-for` 的详细用法可以通过以下链接查看教程详细说明。
 
-- **See also:**
-  - [List Rendering](/guide/list.html)
+- **另见：**
+  - [列表渲染](/guide/list.html)
   - [key](/guide/list.html#key)
 
 ### v-on
 
-- **Shorthand:** `@`
+- **缩写：** `@`
 
-- **Expects:** `Function | Inline Statement`
+- **类型：** `Function | Inline Statement`
 
-- **Argument:** `event (required)`
+- **参数：** `event (required)`
 
-- **Modifiers:**
-  - `.stop` - call `event.stopPropagation()`.
-  - `.prevent` - call `event.preventDefault()`.
-  - `.capture` - add event listener in capture mode.
+- **修饰符：**
+  - `.stop` - 调用 `event.stopPropagation()`。
+  - `.prevent` - 调用 `event.preventDefault()`。
+  - `.capture` - 添加事件侦听器时使用 capture 模式。
   - `.self` - only trigger handler if event was dispatched from this element.
-  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
-  - `.native` - listen for a native event on the root element of component.
+  - `.{keyCode | keyAlias}` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+  - `.native` - 监听组件根元素的原生事件。
 
-- **Usage:**
+- **用法：**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
+  绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
-  When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
+  用在普通元素上时，只能监听 **原生 DOM 事件**。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
 
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 `$event` 属性： `v-on:click="handle('ok', $event)"`。
 
-- **Example:**
+- **示例：**
 
   ```html
-  <!-- method handler -->
+  <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
 
-  <!-- inline statement -->
+  <!-- 内联语句 -->
   <button v-on:click="doThat('hello', $event)"></button>
 
-  <!-- shorthand -->
+  <!-- 缩写 -->
   <button @click="doThis"></button>
 
-  <!-- stop propagation -->
+  <!-- 停止冒泡 -->
   <button @click.stop="doThis"></button>
 
-  <!-- prevent default -->
+  <!-- 阻止默认行为 -->
   <button @click.prevent="doThis"></button>
 
-  <!-- prevent default without expression -->
+  <!-- 阻止默认行为，没有表达式 -->
   <form @submit.prevent></form>
 
-  <!-- chain modifiers -->
+  <!--  串联修饰符 -->
   <button @click.stop.prevent="doThis"></button>
 
-  <!-- key modifier using keyAlias -->
+  <!-- 键修饰符，键别名 -->
   <input @keyup.enter="onEnter">
 
-  <!-- key modifier using keyCode -->
+  <!-- 键修饰符，键代码 -->
   <input @keyup.13="onEnter">
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  在子组件上监听自定义事件（当子组件触发 “my-event” 时将调用事件处理器）：
 
   ```html
   <my-component @my-event="handleThis"></my-component>
 
-  <!-- inline statement -->
+  <!-- 内联语句 -->
   <my-component @my-event="handleThis(123, $event)"></my-component>
 
-  <!-- native event on component -->
+  <!-- 组件中的原生事件 -->
   <my-component @click.native="onClick"></my-component>
   ```
 
-- **See also:**
-  - [Methods and Event Handling](/guide/events.html)
-  - [Components - Custom Events](/guide/components.html#Custom-Events)
+- **另见：**
+  - [方法与事件处理器](/guide/events.html)
+  - [组件 - 自定义事件](/guide/components.html#Custom-Events)
 
 ### v-bind
 
-- **Shorthand:** `:`
+- **缩写：** `:`
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **类型：** `any (with argument) | Object (without argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **参数：** `attrOrProp (optional)`
 
-- **Modifiers:**
-  - `.prop` - Used for binding DOM attributes.
+- **修饰符：**
+  - `.prop` - 被用于绑定 DOM 属性。
 
-- **Usage:**
+- **用法：**
 
-  Dynamically bind one or more attributes, or a component prop to an expression.
+  动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。
 
-  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+  在绑定 `class` 或 `style` 属性时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
 
-  When used for prop binding, the prop must be properly declared in the child component.
+  在绑定 prop 时，prop 必须在子组件中声明。可以用修饰符指定不同的绑定类型。
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
+  没有参数时，可以绑定到一个包含 name-value 的对象。注意此时 `class` 和 `style` 绑定不支持数组和对象。
 
-- **Example:**
+- **示例：**
 
   ```html
-  <!-- bind an attribute -->
+  <!-- 绑定一个属性 -->
   <img v-bind:src="imageSrc">
 
-  <!-- shorthand -->
+  <!-- 缩写 -->
   <img :src="imageSrc">
 
-  <!-- class binding -->
+  <!-- class 绑定 -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]">
 
-  <!-- style binding -->
+  <!-- style 绑定 -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
+  <!-- 绑定一个对象属性 -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!-- DOM attribute binding with prop modifier -->
+  <!-- 通过 prop 修饰符绑定 DOM 属性 -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- prop binding. "prop" must be declared in my-component. -->
+  <!-- prop 绑定. “prop” 必须在 my-component 中声明。 -->
   <my-component :prop="someThing"></my-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-- **See also:**
-  - [Class and Style Bindings](/guide/class-and-style.html)
-  - [Components - Component Props](/guide/components.html#Props)
+- **另见：**
+  - [Class 与 Style 绑定(/guide/class-and-style.html)
+  - [组件 - 组件 Props](/guide/components.html#Props)
 
 ### v-model
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **类型：** 随表单控件类型不同而不同。
 
-- **Limited to:**
+- **限制：**
   - `<input>`
   - `<select>`
   - `<textarea>`
   - components
 
-- **Modifiers:**
-  - [`.lazy`](/guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](/guide/forms.html#number) - cast input string to numbers
-  - [`.trim`](/guild/forms.html#trim) - trim input
+- **修饰符：**
+  - [`.lazy`](/guide/forms.html#lazy) - 取代 `input` 监听 `change` 事件 
+  - [`.number`](/guide/forms.html#number) - 输入字符串转为数字
+  - [`.trim`](/guild/forms.html#trim) - 输入首尾空格过滤
 
-- **Usage:**
+- **用法：**
 
-  Create a two-way binding on a form input element or a component. For detailed usage, see guide section linked below.
+  在表单控件或者组件上创建双向绑定。细节请看下面链接的教程。
 
-- **See also:**
-  - [Form Input Bindings](/guide/forms.html)
-  - [Components - Form Input Components using Custom Events](/guide/components.html#Form-Input-Components-using-Custom-Events)
+- **另见：**
+  - [表单控件绑定](/guide/forms.html)
+  - [组件 - 在输入组件上使用自定义事件](/guide/components.html#Form-Input-Components-using-Custom-Events)
 
 ### v-pre
 
-- **Does not expect expression**
+- **不需要表达式**
 
-- **Usage**
+- **用法：**
 
-  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+  跳过编译这个元素和它的子元素。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。
 
-- **Example:**
+- **示例：**
 
   ```html
   <span v-pre>{{ this will not be compiled }}</span>
@@ -1517,13 +1518,13 @@ type: api
 
 ### v-cloak
 
-- **Does not expect expression**
+- **不需要表达式**
 
-- **Usage:**
+- **用法：**
 
-  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+  这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 `[v-cloak] { display: none }` 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。
 
-- **Example:**
+- **示例：**
 
   ```css
   [v-cloak] {
@@ -1537,41 +1538,41 @@ type: api
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  <div> 不会显示，直到编译结束。
 
 ### v-once
 
-- **Does not expect expression**
+- **不需要表达式**
 
-- **Details:**
+- **详细：**
 
-  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  只渲染元素和组件**一次**。随后的重新渲染,元素/组件及其所有的孩子将被视为静态内容和跳过。这可以用于优化更新性能。
 
   ```html
-  <!-- single element -->
+  <!-- 单个元素 -->
   <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- 有子元素 -->
   <div v-once>
     <h1>comment</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
+  <!-- 组件 -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- v-for directive -->
+  <!-- v-for 指令-->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
   ```
 
-- **See also:**
-  - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
-  - [Components - Cheap Static Components with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
+- **另见：**
+  - [数据绑定语法- 插值](/guide/syntax.html#Text)
+  - [组件 - 使用 v-once 实现轻量的静态组件](/guide/components.html#Cheap-Static-Components-with-v-once)
 
 ## 特殊元素
 
 ### key
 
-- **Expects:** `string`
+- **示例：** `string`
 
   `key` 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素。
 
@@ -1602,7 +1603,7 @@ type: api
 
 ### ref
 
-- **Expects:** `string`
+- **类型：** `string`
 
   `ref` 被用来给元素或子组件注册引用信息。引用信息会根据父组件的 `$refs` 对象进行注册。如果在普通的DOM元素上使用，引用信息就是元素; 如果用在子组件上，引用信息就是组件实例:
 
@@ -1618,17 +1619,17 @@ type: api
 
   关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不能使用，因此你不应该试图用它在模版中做数据绑定。
 
-- **See also:** [Child Component Refs](/guide/components.html#Child-Component-Refs)
+- **另见：** [子组件 Refs](/guide/components.html#Child-Component-Refs)
 
 ### slot
 
-- **Expects:** `string`
+- **类型：** `string`
 
   用于标记往哪个slot中插入子组件内容。
 
   详细用法，请参考下面指南部分的链接。
 
-- **See also:** [Named Slots](/guide/components.html#Named-Slots)
+- **另见：** [命名 Slots](/guide/components.html#Named-Slots)
 
 ## 内置的组件
 

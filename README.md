@@ -1,6 +1,6 @@
 ## vue.js 2.0 中文文档 http://vuefe.cn
 
->（即将完成 - 急需校对人员） 
+>（即将完成 - 急需校对） 
 
 ## 贡献要求
 
@@ -84,81 +84,78 @@
 - 支持多人协作翻译，冲突可以解决，认领过的，如果你觉着他太慢，可以再次认领，加速翻译，知道大家都是牺牲业余时间来贡献，所以慢也是可以理解的，慢就需要大家一起帮帮忙了！谢谢。
 
 
-## Guide 翻译贡献
+## Guide 翻译（已全部完成）贡献 
 
 ### Essentials  基础
 
-序号 | 是否完成  | 对应文档文件名 | 中文标题  | 翻译贡献者 | 校对贡献者
------ | ------- | ------------- | --- | --- | --- | ---
-1 | 是 |  installation.md | 安装 | [dingyiming](https://github.com/dingyiming) | 
-2 | 是 | index.md |  介绍 | [hijiangtao](https://github.com/hijiangtao) | 
-3 | 是 | instance.md | 实例 |  [dingyiming](https://github.com/dingyiming) |
-4 | 是 | syntax.md  | 模板语法 | [daix6](https://github.com/daix6) | 
-5 | 是 | computed.md | 计算属 性 |  [dingyiming](https://github.com/dingyiming) | 
-6 | 是 | class-and-style.md | Class 与 Style 绑定 | [595074187](https://github.com/595074187) | 
-7 | 是 |  conditional.md  | 条件渲染 | [dingyiming](https://github.com/dingyiming) | 
-8 | 是 | list.md |  列表渲染 | [tingtien](https://github.com/tingtien) | 
-9 | 是 | events.md | 事件处理器 | [dingyiming](https://github.com/dingyiming) | 
-10 | 是 |  forms.md  | 表单控件绑定 | [dingyiming](https://github.com/dingyiming) | 
-11 | 是 | components.md |  组件 | [ezreally](https://github.com/ezreally) | 
+序号 | 对应文档文件名 | 中文标题  | 翻译贡献者 | 校对贡献者
+----- | ------------- | --- | --- | --- | ---
+1 | installation.md | 安装 | [dingyiming](https://github.com/dingyiming) | 
+2 | index.md |  介绍 | [hijiangtao](https://github.com/hijiangtao) | 
+3 | instance.md | 实例 |  [dingyiming](https://github.com/dingyiming) |
+4 | syntax.md  | 模板语法 | [daix6](https://github.com/daix6) | 
+5 | computed.md | 计算属 性 |  [dingyiming](https://github.com/dingyiming) | 
+6 | class-and-style.md | Class 与 Style 绑定 | [595074187](https://github.com/595074187) | 
+7 | conditional.md  | 条件渲染 | [dingyiming](https://github.com/dingyiming) | 
+8 | list.md |  列表渲染 | [tingtien](https://github.com/tingtien) | 
+9 | events.md | 事件处理器 | [dingyiming](https://github.com/dingyiming) | 
+10 | forms.md  | 表单控件绑定 | [dingyiming](https://github.com/dingyiming) | 
+11 | components.md |  组件 | [ezreally](https://github.com/ezreally) | 
 
 ### Advanced  进阶
 
-序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
------ | ------- | ------------- | --- | --- | --- | ---
-12 | 是 | transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/hilongjw) | 
-13 | 是 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/hilongjw) | 
-14 | 是 | render-function.md |  Render 函数 |  [awe](https://github.com/hilongjw) |  
-15 | 是 | reactivity.md |  深入响应式原理 | [veaba](https://github.com/veaba) | 
-16 | 是 | custom-directive.md |  自定义指令 | [harrytospring](https://github.com/harrytospring) | 
-17 | 是 | mixins.md |  混合 |  [harrytospring](https://github.com/harrytospring) | 
-18 | 是 | plugins.md |  插件 | [hgcoder](https://github.com/hgcoder) | 
-19 | 是 | single-file-components.md |  单文件组件 | [ATLgo](https://github.com/ATLgo) | 
-20 | 是 | routing.md | 路由 | [dingyiming](https://github.com/dingyiming) | 
-21 | 是 | state-management.md |  状态管理 | [dear-lizhihua](https://github.com/dear-lizhihua) | 
-22 | 是 | unit-testing.md | 单元测试 | [70data](https://github.com/70data) |
-23 | 是 | ssr.md |  服务端渲染 | [dingyiming](https://github.com/dingyiming)｜　
+序号 | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
+----- | ------------- | --- | --- | --- 
+12 | transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/hilongjw) | 
+13 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/hilongjw) | 
+14 | render-function.md |  Render 函数 |  [awe](https://github.com/hilongjw) | 
+15 | reactivity.md |  深入响应式原理 | [veaba](https://github.com/veaba) | 
+16 | custom-directive.md |  自定义指令 | [harrytospring](https://github.com/harrytospring) | 
+17 | mixins.md |  混合 |  [harrytospring](https://github.com/harrytospring) | 
+18 | plugins.md |  插件 | [hgcoder](https://github.com/hgcoder) | 
+19 | single-file-components.md |  单文件组件 | [ATLgo](https://github.com/ATLgo) | 
+20 | routing.md | 路由 | [dingyiming](https://github.com/dingyiming) | 
+21 | state-management.md |  状态管理 | [dear-lizhihua](https://github.com/dear-lizhihua) | 
+22 | unit-testing.md | 单元测试 | [70data](https://github.com/70data) |
+23 | ssr.md |  服务端渲染 | [dingyiming](https://github.com/dingyiming) | 　
 
 ### Migration  迁移
 
-序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者　| 校对贡献者
------ | ------- | ------------- | --- | --- | ---
-24 | 是  | migration.md | 1.x迁移 |  [harrytospring](https://github.com/harrytospring) | 
-27 | 是 | migration-vue-router.md | vue-router 0.7.x 迁移 | [forzajuve10](https://github.com/forzajuve10) | 
+序号 | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
+----- | ------- | ------------- | --- | --- 
+24 | migration.md | 1.x迁移 |  [harrytospring](https://github.com/harrytospring) | 
+27 | migration-vue-router.md | vue-router 0.7.x 迁移 | [forzajuve10](https://github.com/forzajuve10) | 
 
 ### Meta  更多
 
-序号 | 是否完成  | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
------ | ------- | ------------- | --- | --- | ---
-25 | 是 |  comparison.md |   对比其他框架 |  [yongbolv](https://github.com/yongbolv) | 
-26 | 是 |  join.md |  加入Vue.js社区 | [daix6](https://github.com/daix6) | 
+序号 | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
+----- | ------- | ------------- | --- | --- 
+25 |  comparison.md |   对比其他框架 |  [yongbolv](https://github.com/yongbolv) | 
+26 |  join.md |  加入Vue.js社区 | [daix6](https://github.com/daix6) | 
 
-## API 翻译
+## API翻译（已全部完成）贡献
 
-### API翻译贡献
-
-序号 | 是否完成  | 对应小节名称 | 中文标题  | 贡献者
------ | ------- | ------------- | --- | --- | ---
-1 | 是 |  Global Config | 全局配置 |  @dear-lizhihua |  @dear-lizhihua
-2 | 是 | Global API | 全局API | @dear-lizhihua | @dear-lizhihua
-3 | 是 | Options / Data | 选项 / 数据 | @dear-lizhihua | @dear-lizhihua
-4 | 是 | Options / DOM | 选项 / DOM | @ATLgo | @ATLgo 
-5 | 是 | Options / Lifecycle Hooks | 选项 / 生命周期钩子 | @ATLgo |  @ATLgo 
-6 | 是 | Options / Assets | 选项 / 资源 | @dingyiming | @dingyiming
-7 | x | Options / Misc | 选项 / 杂项 |  |  @dingyiming
-8 | 是 | Instance Properties | 实例属性 | @coolzjy | @coolzjy
-9 | x | Instance Methods / Data | 实例方法 / 数据 | | @dingyiming
-10 | x | Instance Methods / Events | 实例方法 / 事件 |  | @mlyknown
-11 | x |  Instance Methods / Lifecycle | 实例方法 / 生命周期 | | @mlyknown
-12 | x | Directives | 指令|  |  @tingtien 
-13 | 是 | Special Attributes | 特殊元素 | @70data | @70data
-14 | x | Built-In Components | 内置的组件  | | @dear-lizhihua
-15 | 是 | VNode Interface | VNode接口  | @70data | @70data
-16 | 是 | Server-Side Rendering | 服务端渲染| @70data | @70data
+序号 | 对应小节名称 | 中文标题  | 贡献者  | 校对贡献者
+----- | ------------- | --- | --- | --- 
+1 |  Global Config | 全局配置 |  @dear-lizhihua |  
+2 | Global API | 全局API | @dear-lizhihua | 
+3 | Options / Data | 选项 / 数据 | @dear-lizhihua | 
+4 | Options / DOM | 选项 / DOM | @ATLgo | 
+5 | Options / Lifecycle Hooks | 选项 / 生命周期钩子 | @ATLgo | 
+6 | Options / Assets | 选项 / 资源 | @dingyiming | 
+7 | Options / Misc | 选项 / 杂项 | @dingyiming  |  
+8 | Instance Properties | 实例属性 | @coolzjy | 
+9 | Instance Methods / Data | 实例方法 / 数据 | @dingyiming | 
+10 | Instance Methods / Events | 实例方法 / 事件 | @mlyknown  | 
+11 |  Instance Methods / Lifecycle | 实例方法 / 生命周期 | @mlyknown | 
+12 | Directives | 指令|   @dingyiming  | 
+13 | Special Attributes | 特殊元素 | @70data |
+14 | Built-In Components | 内置的组件  | @dear-lizhihua | 
+15 | VNode Interface | VNode接口  | @70data |
+16 | Server-Side Rendering | 服务端渲染| @70data | 
 
 ## 示例翻译
 
 贡献者 ： [lindazhang102](https://github.com/lindazhang102)
-
 
 ## 感谢所有参与翻译的朋友们！
