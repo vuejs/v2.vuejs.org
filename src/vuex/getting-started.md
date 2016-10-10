@@ -47,4 +47,4 @@ console.log(store.state.count) // -> 1
 
 这是一个 [最基本的 Vuex 计数应用](https://jsfiddle.net/yyx990803/n9jmu5v7/) 的例子。
 
-接下来，我们将在更多的细微细节中讨论每个核心思想，让我们从 [State](state.md) 开始吧。
+接下来，我们将在更多的细微细节中讨论每个核心思想，让我们从 [State](state.html) 开始吧。
