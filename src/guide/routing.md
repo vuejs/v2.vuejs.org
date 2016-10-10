@@ -1,7 +1,7 @@
 ---
 title: Routing
 type: guide
-order: 20
+order: 21
 ---
 
 ## Official Router
@@ -10,7 +10,7 @@ For most Single Page Applications, it's recommended to use the officially-suppor
 
 ## Simple Routing From Scratch
 
-If you just need very simple routing, you can do so by dynamically rendering a page-level component like this:
+If you just need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }

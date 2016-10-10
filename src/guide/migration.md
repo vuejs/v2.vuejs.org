@@ -1,7 +1,7 @@
 ---
 title: Migration from Vue 1.x
 type: guide
-order: 24
+order: 25
 ---
 
 ## FAQ
