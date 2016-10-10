@@ -61,7 +61,7 @@ var example2 = new Vue({
   data: {
     name: 'Vue.js'
   },
-  // 在 `methods`对象中定义方法
+  // 在 `methods` 对象中定义方法
   methods: {
     greet: function (event) {
       // `this` 在方法里指当前 Vue 实例
@@ -158,9 +158,9 @@ methods: {
 
 ## 事件修饰符
 
-在事件处理器中经常需要调用 `event.preventDefault()` 或 `event.stopPropagation()`。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。
+在事件处理器中经常需要调用 `event.preventDefault()` 或 `event.stopPropagation()` 。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。
 
-为了解决这个问题，Vue.js 为 `v-on` 提供了 **事件修饰符**。通过点号打头的指令后缀来调用修饰符。
+为了解决这个问题， Vue.js 为 `v-on` 提供了 **事件修饰符**。通过点号打头的指令后缀来调用修饰符。
 
 - `.stop`
 - `.prevent`
@@ -189,7 +189,7 @@ methods: {
 
 ## 按键修饰符
 
-在监听键盘事件时，我们经常需要监测常见的键值。Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符：
+在监听键盘事件时，我们经常需要监测常见的键值。 Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符：
 
 ``` html
 <!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
@@ -233,7 +233,7 @@ Vue.config.keyCodes.f1 = 112
 
 ## 为什么在 HTML 中监听事件?
 
-你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护上的困难。实际上，使用 `v-on` 有几个好处：
+你可能注意到这种事件监听的方式违背了传统理念 “separation of concern” 。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护上的困难。实际上，使用 `v-on` 有几个好处：
 
 1. 扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。
 
