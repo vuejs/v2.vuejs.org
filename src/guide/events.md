@@ -217,13 +217,7 @@ Here's the full list of key modifier aliases:
 - left
 - right
 
-Single letter key aliases are also supported.
-
-``` html
-<input v-on:keyup.v="say('That is the first letter in Vue')">
-```
-
-If necessary, you can even define custom key modifier aliases:
+You can also [define custom key modifier aliases](/api/#keyCodes) via the global `config.keyCodes` object:
 
 ``` js
 // enable v-on:keyup.f1
