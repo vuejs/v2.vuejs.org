@@ -420,7 +420,7 @@ type: api
 
 - **详细:**
 
-  计算属性将被混入到 Vue 实例中。getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
+  计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
 
   <p class="tip">注意，__不应该使用箭头函数来定义计算属性函数__ (例如 `aDouble: () => this.a * 2`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
 
