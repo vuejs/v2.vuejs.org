@@ -4,20 +4,20 @@ type: vuex
 order: 3
 ---
 
-At the center of every Vuex application is the **store**. A "store" is basically a container that holds your application **state**. There are two things that makes a Vuex store different from a plain global object:
+所有 Vuex 应用的中心就是 store（状态存储）。"store" 本质上是一个保存应用状态的容器。这里有两件要点，让 Vuex store 区别于普通全局对象：
 
-1. Vuex stores are reactive. When Vue components retrieve state from it, they will reactively and efficiently update if the store's state changes.
+1. Vuex store 是响应式的。当 Vue 组件从 store 读取状态，如果 store 中的状态更新，它们也会高效地响应更新。
 
-2. You cannot directly mutate the store's state. The only way to change a store's state is by explicitly **committing mutations**. This ensures every state change leaves a track-able record, and enables tooling that helps us better understand our applications.
+2. 你不能直接更改 store 中的状态。更改状态的唯一的方法就是显式 **提交更改 (committing mutations)**。这样可以确保每次状态更改都留有可追踪的记录，并且可以使用工具帮助我们更好地理解我们的应用。
 
-### The Simplest Store
+### 最简单的 Store
 
-> **NOTE:** We will be using ES2015 syntax for code examples for the rest of the docs. If you haven't picked it up, [you should](https://babeljs.io/docs/learn-es2015/)!
+> **NOTE:** 我们将会在以后的示例代码中使用 ES2015 语法。如果你还没有用过，[你应该看看](https://babeljs.io/docs/learn-es2015/)！
 
-After [installing](installation.md) Vuex, let's create a store. It is pretty straightforward - just provide an initial state object, and some mutations:
+[安装](installation.html) Vuex 之后，我们来创建一个 store。这是一个非常易懂的例子 - 只含有一个初始化状态对象，以及一些更改：
 
 ``` js
-// Make sure to call Vue.use(Vuex) first if using a module system
+// 如果使用模块系统，确保之前调用过 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
@@ -31,7 +31,7 @@ const store = new Vuex.Store({
 })
 ```
 
-Now, you can access the state object as `store.state`, and trigger a state change with the `store.commit` method:
+现在，你可以通过 `store.state` 访问状态对象，以及通过 `store.commit` 触发状态的更改：
 
 ``` js
 store.commit('increment')
@@ -39,10 +39,10 @@ store.commit('increment')
 console.log(store.state.count) // -> 1
 ```
 
-Again, the reason we are committing a mutation instead of changing `store.state.count` directly, is because we want to explicitly track it. This simple convention makes your intention more explicit, so that you can reason about state changes in your app better when reading the code. In addition, this gives us the opportunity to implement tools that can log every mutation, take state snapshots, or even perform time travel debugging.
+再次说明，我们提交 mutation 而不是直接更改 `store.state.count`，是想要显式地追踪它。这个简单的转换使你的意图更加明显。当你阅读代码时，可以更好地了解应用中的状态更改。另外，这也让我们有机会去实现一些工具，记录修改日志、保存状态快照、甚至是进行基于时间轴的调试。
 
-Using store state in a component simply involves returning the state within a computed property, because the store state is reactive. Triggering changes simply means committing mutations in component methods.
+因为 store 的状态是响应式的，要在组件中使用 store 的状态，只需在 computed 属性中返回 store 的状态就行。而触发状态改变可以简单的理解为在组件方法中提交 mutation。
 
-Here's an example of the [most basic Vuex counter app](https://jsfiddle.net/yyx990803/n9jmu5v7/).
+这是一个 [最基本的 Vuex 计数应用](https://jsfiddle.net/yyx990803/n9jmu5v7/) 的例子。
 
-Next, we will discuss each core concept in much finer details and let's start with [State](state.md).
+接下来，我们将在更多的细微细节中讨论每个核心思想，让我们从 [State](state.html) 开始吧。
