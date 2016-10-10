@@ -1,14 +1,14 @@
 ---
-title: 重定向和链接
+title: 重定向 和 别名
 type: router
 order: 8
 ---
 
-# Redirect and Alias
+# 重定向 和 别名
 
-### Redirect
+### 重定向
 
-Redirecting is also done in the `routes` configuration. To redirect from `/a` to `/b`:
+重定向也是通过 `routes` 配置来完成，下面例子是从 `/a` 重定向到 `/b`：
 
 ``` js
 const router = new VueRouter({
@@ -18,7 +18,7 @@ const router = new VueRouter({
 })
 ```
 
-The redirect can also be targeting a named route:
+重定向的目标也可以是一个命名的路由：
 
 ``` js
 const router = new VueRouter({
@@ -28,28 +28,28 @@ const router = new VueRouter({
 })
 ```
 
-Or even use a function for dynamic redirecting:
+甚至是一个方法，动态返回重定向目标：
 
 ``` js
 const router = new VueRouter({
   routes: [
     { path: '/a', redirect: to => {
-      // the function receives the target route as the argument
-      // return redirect path/location here.
+      // 方法接收 目标路由 作为参数
+      // return 重定向的 字符串路径/路径对象
     }}
   ]
 })
 ```
 
-For other advanced usage, checkout the [example](https://github.com/vuejs/vue-router/blob/next/examples/redirect/app.js).
+其它高级用法，请参考 [例子](https://github.com/vuejs/vue-router/blob/next/examples/redirect/app.js).
 
-### Alias
+### 别名
 
-A redirect means when the user visits `/a`, and URL will be replaced by `/b`, and then matched as `/b`. But what is an alias?
+『重定向』的意思是，当用户访问 `/a`时，URL 将会被替换成 `/b`，然后匹配路由为 `/b`，那么『别名』又是什么呢？
 
-**An alias of `/a` as `/b` means when the user visits `/b`, the URL remains `/b`, but it will be matched as if the user is visiting `/a`.**
+**`/a` 的别名是 `/b`，意味着，当用户访问 `/b` 时，URL 会保持为 `/b`，但是路由匹配则为 `/a`，就像用户访问 `/a` 一样。**
 
-The above can be expressed in the route configuration as:
+上面对应的路由配置为：
 
 ``` js
 const router = new VueRouter({
@@ -59,6 +59,6 @@ const router = new VueRouter({
 })
 ```
 
-An alias gives you the freedom to map a UI structure to an arbitrary URL, instead of being constrained by the configuration's nesting structure.
+『别名』的功能让你可以自由地将 UI 结构映射到任意的 URL，而不是受限于配置的嵌套路由结构。
 
-For advanced usage, checkout the [example](https://github.com/vuejs/vue-router/blob/next/examples/route-alias/app.js).
+更多高级用法，请查看 [例子](https://github.com/vuejs/vue-router/blob/next/examples/route-alias/app.js).

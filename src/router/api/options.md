@@ -1,23 +1,23 @@
 ---
-title: 路由构造选项
+title: Router 构造配置
 type: router
 order: 19
 ---
 
-# Router Construction Options
+# Router 构造配置
 
 ### routes
 
-- type: `Array<RouteConfig>`
+- 类型: `Array<RouteConfig>`
 
-  Type declaration for `RouteConfig`:
+  `RouteConfig` 的类型定义：
 
   ``` js
   declare type RouteConfig = {
     path: string;
     component?: Component;
-    name?: string; // for named routes
-    components?: { [name: string]: Component }; // for named views
+    name?: string; // for named routes (命名路由)
+    components?: { [name: string]: Component }; // for named views (命名视图组件)
     redirect?: string | Location | Function;
     alias?: string | Array<string>;
     children?: Array<RouteConfig>; // for nested routes
@@ -28,41 +28,41 @@ order: 19
 
 ### mode
 
-- type: `string`
+- 类型: `string`
 
-- default: `"hash" (in browser) | "abstract" (in Node.js)`
+- 默认值: `"hash" (浏览器环境) | "abstract" (Node.js 环境)`
 
-- available values: `"hash" | "history" | "abstract"`
+- 可选值: `"hash" | "history" | "abstract"`
 
-  Configure the router mode.
+  配置路由模式:
 
-  - `hash`: uses the URL hash for routing. Works in all Vue-supported browsers, including those that do not support HTML5 History API.
+  - `hash`: 使用 URL hash 值来作路由。支持所有浏览器，包括不支持 HTML5 History Api 的浏览器。
 
-  - `history`: requires HTML5 History API and server config. See [HTML5 History Mode](../essentials/history.md).
+  - `history`: 依赖 HTML5 History API 和服务器配置。查看 [HTML5 History 模式](../essentials/history-mode.md).
 
-  - `abstract`: works in all JavaScript environments, e.g. server-side with Node.js. **The router will automatically be forced into this mode if no browser API is present.**
+  - `abstract`: 支持所有 JavaScript 运行环境，如 Node.js 服务器端。**如果发现没有浏览器的 API，路由会自动强制进入这个模式。**
 
 ### base
 
-- type: `string`
+- 类型: `string`
 
-- default: `"/"`
+- 默认值: `"/"`
 
-  The base URL of the app. For example, if the entire single page application is served under `/app/`, then `base` should use the value `"/app/"`.
+  应用的基路径。例如，如果整个单页应用服务在 `/app/` 下，然后 `base` 就应该设为 `"/app/"`。
 
 ### linkActiveClass
 
-- type: `string`
+- 类型: `string`
 
-- default: `"router-link-active"`
+- 默认值: `"router-link-active"`
 
-  Globally configure `<router-link>` default active class. Also see [router-link](router-link.md).
+  全局配置 `<router-link>` 的默认『激活 class 类名』。参考 [router-link](router-link.md).
 
 ### scrollBehavior
 
-- type: `Function`
+- 类型: `Function`
 
-  Signature:
+  签名:
 
   ```
   (
@@ -72,4 +72,4 @@ order: 19
   ) => { x: number, y: number } | { selector: string } | ?{}
   ```
 
-  For more details see [Scroll Behavior](../advanced/scroll-behavior.md).
+  更多详情参考 [滚动行为](../advanced/scroll-behavior.md).

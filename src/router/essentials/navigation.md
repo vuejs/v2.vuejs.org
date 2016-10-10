@@ -1,73 +1,73 @@
 ---
-title: 应用导航
+title: 编程式的导航
 type: router
 order: 5
 ---
 
-# Programmatic Navigation
+# 编程式的导航
 
-Aside from using `<router-link>` to create anchor tags for declarative navigation, we can do this programmatically using the router's instance methods.
+除了使用 `<router-link>` 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
 
 #### `router.push(location)`
 
-To navigate to a different URL, use `router.push`. This method pushes a new entry into the history stack, so when the user clicks the browser back button they will be taken to the previous URL.
+想要导航到不同的 URL，则使用 `router.push` 方法。这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
 
-This is the method called internally when you click a `<router-link>`, so clicking `<router-link :to="...">` is the equivalent of calling `router.push(...)`.
+当你点击 `<router-link>` 时，这个方法会在内部调用，所以说，点击 `<router-link :to="...">` 等同于调用 `router.push(...)`。
 
-| Declarative | Programmatic |
+| 声明式 | 编程式 |
 |-------------|--------------|
 | `<router-link :to="...">` | `router.push(...)` |
 
-The argument can be a string path, or a location descriptor object. Examples:
+该方法的参数可以是一个字符串路径，或者一个描述地址的对象。例如：
 
 ``` js
-// literal string
+// 字符串
 router.push('home')
 
-// object
+// 对象
 router.push({ path: 'home' })
 
-// named route
+// 命名的路由
 router.push({ name: 'user', params: { userId: 123 }})
 
-// with query, resulting in /register?plan=private
+// 带查询参数，变成 /register?plan=private
 router.push({ path: 'register', query: { plan: 'private' }})
 ```
 
 #### `router.replace(location)`
 
-It acts like `router.go`, the only difference is that it navigates without pushing a new history entry, as its name suggests - it replaces the current entry.
+跟 `router.push` 很像，唯一的不同就是，它不会向 history 添加新记录，而是跟它的方法名一样 —— 替换掉当前的 history 记录。
 
-| Declarative | Programmatic |
+| 声明式 | 编程式 |
 |-------------|--------------|
 | `<router-link :to="..." replace>` | `router.replace(...)` |
 
 
 #### `router.go(n)`
 
-This method takes a single integer as parameter that indicates by how many steps to go forwards or go backwards in the history stack, similar to `window.history.go(n)`.
+这个方法的参数是一个整数，意思是在 history 记录中向前或者后退多少步，类似 `window.history.go(n)`。
 
-Examples
+例子
 
 ``` js
-// go forward by one record, the same as history.forward()
+// 在浏览器记录中前进一步，等同于 history.forward()
 router.go(1)
 
-// go back by one record, the same as history.back()
+// 后退一步记录，等同于 history.back()
 router.go(-1)
 
-// go forward by 3 records
+// 前进 3 步记录
 router.go(3)
 
-// fails silently if there aren't that many records.
+// 如果 history 记录不够用，那就默默地失败呗
 router.go(-100)
 router.go(100)
 ```
 
-#### History Manipulation
+#### 操作 History
 
-You may have noticed that `router.push`, `router.replace` and `router.go` are counterparts of [`window.history.pushState`, `window.history.replaceState` and `window.history.go`](https://developer.mozilla.org/en-US/docs/Web/API/History), and they do imitate the `window.history` APIs.
+你也许注意到 `router.push`、 `router.replace` 和 `router.go` 跟 [`window.history.pushState`、 `window.history.replaceState` 和 `window.history.go`](https://developer.mozilla.org/en-US/docs/Web/API/History)好像， 实际上它们确实是效仿 `window.history` API 的。
 
-Therefore, if you are already familiar with [Browser History APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API), manipulating history will be super easy with vue-router.
+因此，如果你已经熟悉 [Browser History APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API)，那么在 vue-router 中操作 history 就是超级简单的。
 
-It is worth mentioning that vue-router navigation methods (`push`, `replace`, `go`) work consistently in all router modes (`history`, `hash` and `abstract`).
+还有值得提及的，vue-router 的导航方法 （`push`、 `replace`、 `go`） 在各类路由模式（`history`、 `hash` 和 `abstract`）下表现一致。

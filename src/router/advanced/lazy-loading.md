@@ -1,34 +1,34 @@
 ---
-title: 异步加载
+title: 路由懒加载
 type: router
 order: 15
 ---
 
-# Lazy Loading Routes
+# 路由懒加载
 
-When building apps with a bundler, the JavaScript bundle can become quite large and thus affecting page load time. It would be more efficient if we can split each route's components into a separate chunk, and only load them when the route is visited.
+当打包构建应用时，Javascript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
 
-Combining Vue's [async component feature](http://vuejs.org/guide/components.html#Async-Components) and Webpack's [code splitting feature](https://webpack.github.io/docs/code-splitting.html), it's trivially easy to
-lazy-load route components.
+结合 Vue 的 [异步组件](http://vuejs.org/guide/components.html#Async-Components) 和 Webpack 的 [code splitting feature](https://webpack.github.io/docs/code-splitting.html), 轻松实现路由组件的懒加载。
 
-All we need to do is defining our route components as async components:
+我们要做的就是把路由对应的组件定义成异步组件：
 
 ``` js
 const Foo = resolve => {
-  // require.ensure is Webpack's special syntax for a code-split point.
+  // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+  // （代码分块）
   require.ensure(['./Foo.vue'], () => {
     resolve(require('./Foo.vue'))
   })
 }
 ```
 
-There's also an alternative code-split syntax using AMD style require, so this can be simplified to:
+这里还有另一种代码分块的语法，使用 AMD 风格的 require，于是就更简单了：
 
 ``` js
 const Foo = resolve => require(['./Foo.vue'], resolve)
 ```
 
-Nothing needs to change in the route config, just use `Foo` as usual:
+不需要改变任何路由配置，跟之前一样使用 `Foo`：
 
 ``` js
 const router = new VueRouter({
@@ -38,9 +38,9 @@ const router = new VueRouter({
 })
 ```
 
-### Grouping Components in the Same Chunk
+### 把组件按组分块
 
-Sometimes we may want to group all the components nested under the same route into the same async chunk. To achieve that we need to use [named chunks](https://webpack.github.io/docs/code-splitting.html#named-chunks) by providing a chunk name to `require.ensure` as the 3rd argument:
+有时候我们想把某个路由下的所有组件都打包在同个异步 chunk 中。只需要 [给 chunk 命名](https://webpack.github.io/docs/code-splitting.html#named-chunks)，提供 `require.ensure` 第三个参数作为 chunk 的名称:
 
 ``` js
 const Foo = r => require.ensure([], () => r(require('./Foo.vue')), 'group-foo')
@@ -48,4 +48,4 @@ const Bar = r => require.ensure([], () => r(require('./Bar.vue')), 'group-foo')
 const Baz = r => require.ensure([], () => r(require('./Baz.vue')), 'group-foo')
 ```
 
-Webpack will group any async module with the same chunk name into the same async chunk - this also means we don't need to explicitly list dependencies for `require.ensure` anymore (thus passing an empty array).
+Webpack 将相同 chunk 下的所有异步模块打包到一个异步块里面 —— 这也意味着我们无须明确列出 `require.ensure` 的依赖（传空数组就行）。

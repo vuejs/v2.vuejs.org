@@ -88,7 +88,7 @@ new Vue({
 </script>
 {% endraw %}
 
-当你输入新数值时，就会触发动画。这个是一个不错的演示，但是对于不能直接像数字一样存储的值，比如 CSS 中的 color 的值，通过下面的例子我们来通过 Color.js 实现一个例子：
+当你把数值更新时，就会触发动画。这个是一个不错的演示，但是对于不能直接像数字一样存储的值，比如 CSS 中的 color 的值，通过下面的例子我们来通过 Color.js 实现一个例子：
 
 
 ``` html
@@ -381,7 +381,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete c
 
 ## 通过组件组织过渡
 
-管理太多的状态转换的很快会接近到 Vue 实例或者组件的复杂性，不过，很多动画可以提取到专用的子组件。
+管理太多的状态转换的很快会接近到 Vue 实例或者组件的复杂性，幸好很多的动画可以提取到专用的子组件。
 我们来将之前的示例改写一下：
 
 ``` html
@@ -526,4 +526,10 @@ new Vue({
 {% endraw %}
 
 我们能在组件中结合使用这一节讲到各种过渡策略和 Vue [内建的过渡系统](transitions.html)。总之，对于完成各种过渡动效几乎没有阻碍。
+
+***
+
+> 原文： http://vuejs.org/guide/transitioning-state.html
+
+***
 

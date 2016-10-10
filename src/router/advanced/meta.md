@@ -1,12 +1,12 @@
 ---
-title: Route Meta Fields
+title: 路由元信息
 type: router
 order: 11
 ---
 
-# Route Meta Fields
+# 路由元信息
 
-You can include a `meta` field when defining a route:
+定义路由的时候可以配置 `meta` 字段：
 
 ``` js
 const router = new VueRouter({
@@ -27,31 +27,31 @@ const router = new VueRouter({
 })
 ```
 
-So how do we access this `meta` field?
+那么如何访问这个 `meta` 字段呢？
 
-First, each route object in the `routes` configuration is called a **route record**. Route records may be nested. Therefore when a route is matched, it can potentially match more than one route record.
+首先，我们称呼 `routes` 配置中的每个路由对象为 **路由记录**。路由记录可以是嵌套的，因此，当一个路由匹配成功后，他可能匹配多个路由记录
 
-For example, with the above route config, the URL `/foo/bar` will match both the parent route record and the child route record.
+例如，根据上面的路由配置，`/foo/bar` 这个 URL 将会匹配父路由记录以及子路由记录。
 
-All route records matched by a route are exposed on the `$route` object (and also route objects in navigation guards) as the `$route.matched` Array. Therefore, we will need to iterate over `$route.matched` to check for meta fields in route records.
+一个路由匹配到的所有路由记录会暴露为 `$route` 对象（还有在导航钩子中的 route 对象）的 `$route.matched` 数组。因此，我们需要遍历 `$route.matched` 来检查路由记录中的 `meta` 字段。
 
-An example use case is checking for a meta field in the global navigation guard:
+下面例子展示在全局导航钩子中检查 meta 字段：
 
 ``` js
-router.beforeEach((route, redirect, next) => {
-  if (route.matched.some(record => record.meta.requiresAuth)) {
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     if (!auth.loggedIn()) {
-      redirect({
+      next({
         path: '/login',
-        query: { redirect: route.fullPath }
+        query: { redirect: to.fullPath }
       })
     } else {
       next()
     }
   } else {
-    next()
+    next() // 确保一定要调用 next()
   }
 })
 ```

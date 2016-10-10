@@ -6,55 +6,56 @@ order: 16
 
 # `<router-link>`
 
-`<router-link>` is the component for enabling user navigation in a router-enabled app. The target location is specified with the `to` prop. It renders as an `<a>` tag with correct `href` by default, but can be configured with the `tag` prop. In addition, the link automatically gets an active CSS class when the target route is active.
+`<router-link>` 组件支持用户在具有路由功能的应用中（点击）导航。
+通过 `to` 属性指定目标地址，默认渲染成带有正确链接的 `<a>` 标签，可以通过配置 `tag` 属性生成别的标签.。另外，当目标路由成功激活时，链接元素自动设置一个表示激活的 CSS 类名。
 
-`<router-link>` is preferred over hard-coded `<a href="...">` for the following reasons:
+`<router-link>` 比起写死的 `<a href="...">` 会好一些，理由如下：
 
-- It works the same way in both HTML5 history mode and hash mode, so if you ever decide to switch mode, or when the router falls back to hash mode in IE9, nothing needs to be changed.
+- 无论是 HTML5 history 模式还是 hash 模式，它的表现行为一致，所以，当你要切换路由模式，或者在 IE9 降级使用 hash 模式，无须作任何变动。
 
-- In HTML5 history mode, `router-link` will intercept the click event so that the browser doesn't try to reload the page.
+- 在 HTML5 history 模式下，`router-link`  会拦截点击事件，让浏览器不在重新加载页面。
 
-- When you are using the `base` option in HTML5 history mode, you don't need to include it in `to` prop's URLs.
+- 当你在 HTML5 history 模式下使用 `base` 选项之后，所有的 `to` 属性都不需要写（基路径）了。
 
 ### Props
 
 - **to**
 
-  - type: `string | Location`
+  - 类型: `string | Location`
 
   - required
 
-  Denotes the target route of the link. When clicked, the value of the `to` prop will be passed to `router.push()` internally, so the value can be either a string or a location descriptor object.
+  表示目标路由的链接。当被点击后，内部会立刻把 `to` 的值传到 `router.push()`，所以这个值可以是一个字符串或者是描述目标位置的对象。
 
   ``` html
-  <!-- literal string -->
+  <!-- 字符串 -->
   <router-link to="home">Home</router-link>
   <!-- renders to -->
   <a href="home">Home</a>
 
-  <!-- javascript expression using v-bind -->
+  <!-- 使用 v-bind 的 JS 表达式 -->
   <router-link v-bind:to="'home'">Home</router-link>
 
-  <!-- Omitting v-bind is fine, just as binding any other prop -->
+  <!-- 不写 v-bind 也可以，就像绑定别的属性一样 -->
   <router-link :to="'home'">Home</router-link>
 
-  <!-- same as above -->
+  <!-- 同上 -->
   <router-link :to="{ path: 'home' }">Home</router-link>
 
-  <!-- named route -->
+  <!-- 命名的路由 -->
   <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
 
-  <!-- with query, resulting in /register?plan=private -->
+  <!-- 带查询参数，下面的结果为 /register?plan=private -->
   <router-link :to="{ path: 'register', query: { plan: 'private' }}">Register</router-link>
   ```
 
 - **replace**
 
-  - type: `boolean`
+  - 类型: `boolean`
 
-  - default: `false`
+  - 默认值: `false`
 
-  Setting `replace` prop will call `router.replace()` instead of `router.push()` when clicked, so the navigation will not leave a history record.
+  设置 `replace` 属性的话，当点击时，会调用 `router.replace()` 而不是 `router.push()`，于是导航后不会留下 history 记录。
 
   ``` html
   <router-link :to="{ path: '/abc'}" replace></router-link>
@@ -62,11 +63,12 @@ order: 16
 
 - **append**
 
-  - type: `boolean`
+  - 类型: `boolean`
 
-  - default: `false`
+  - 默认值: `false`
 
-  Setting `append` prop always appends the relative path to the current path. For example, assuming we are navigating from `/a` to a relative link `b`, without `append` we will end up at `/b`, but with `append` we will end up at `/a/b`.
+
+  设置 `append` 属性后，则在当前（相对）路径前添加基路径。例如，我们从 `/a` 导航到一个相对路径 `b`，如果没有配置 `append`，则路径为 `/b`，如果配了，则为 `/a/b`
 
   ``` html
   <router-link :to="{ path: 'relative/path'}" append></router-link>
@@ -74,11 +76,12 @@ order: 16
 
 - **tag**
 
-  - type: `string`
+  - 类型: `string`
 
-  - default: `"a"`
+  - 默认值: `"a"`
 
-  Sometimes we want `<router-link>` to render as another tag, e.g `<li>`. Then we can use `tag` prop to specify which tag to render to, and it will still listen to click events for navigation.
+  有时候想要  `<router-link>` 渲染成某种标签，例如 `<li>`。
+  于是我们使用 `tag` prop 类指定何种标签，同样它还是会监听点击，触发导航。 
 
   ``` html
   <router-link to="/foo" tag="li">foo</router-link>
@@ -88,32 +91,35 @@ order: 16
 
 - **active-class**
 
-  - type: `string`
+  - 类型: `string`
 
-  - default: `"router-link-active"`
+  - 默认值: `"router-link-active"`
 
-  Configure the active CSS class applied when the link is active. Note the default value can also be configured globally via the `linkActiveClass` router constructor option.
+  设置 链接激活时使用的 CSS 类名。默认值可以通过路由的构造选项 `linkActiveClass` 来全局配置。
 
 - **exact**
 
-  - type: `boolean`
+  - 类型: `boolean`
 
-  - default: `false`
+  - 默认值: `false`
 
-  The default active class matching behavior is **inclusive match**. For example, `<router-link to="/a">` will get this class applied as long as the current path starts with `/a`.
+  "是否激活" 默认类名的依据是 **inclusive match** （全包含匹配）。
+  举个例子，如果当前的路径是 `/a` 开头的，那么 `<router-link to="/a">` 也会被设置 CSS 类名。
 
-  One consequence of this is that `<router-link to="/">` will be active for every route! To force the link into "exact match mode", use the `exact` prop:
+
+  按照这个规则，`<router-link to="/">` 将会点亮各个路由！想要链接使用 "exact 匹配模式"，则使用 `exact` 属性：
+
 
   ``` html
   <!-- this link will only be active at / -->
   <router-link to="/" exact>
   ```
 
-  Checkout more examples explaining active link class [live](http://jsfiddle.net/fnlCtrl/dokbyypq/).
+  查看更多关于激活链接类名的例子 [可运行](http://jsfiddle.net/fnlCtrl/dokbyypq/).
 
 ### Applying Active Class to Outer Element
 
-Sometimes we may want the active class to be applied to an outer element rather than the `<a>` tag itself, in that case, you can render that outer element using `<router-link>` and wrap the raw `<a>` tag inside:
+有时候我们要让 "激活 class" 应用在外层元素，而不是 `<a>` 标签本身，那么可以用 `<router-link>` 渲染外层元素，包裹着内层的原生 `<a>` 标签：
 
 ``` html
 <router-link tag="li" to="/foo">
@@ -121,4 +127,4 @@ Sometimes we may want the active class to be applied to an outer element rather 
 </router-link>
 ```
 
-In this case the `<a>` will be the actual link (and will get the correct `href`), but the active class will be applied to the outer `<li>`.
+在这种情况下，`<a>` 将作为真实的链接（它会获得正确的 `href` 的），而 "激活 class" 则设置到外层的 `<li>`。
