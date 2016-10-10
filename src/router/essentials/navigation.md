@@ -4,8 +4,6 @@ type: router
 order: 5
 ---
 
-# 编程式的导航
-
 除了使用 `<router-link>` 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
 
 #### `router.push(location)`

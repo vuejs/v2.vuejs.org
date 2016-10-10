@@ -39,7 +39,7 @@ new Vue({
 
 ## 整合第三方路由
 
-如果有非常喜欢的第三方路由，如[Page.js](https://github.com/visionmedia/page.js)或者 [Director](https://github.com/flatiron/director), 整合[很简单](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). 这有个 [复杂示例](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) 用了Page.js.
+如果有非常喜欢的第三方路由，如[Page.js](https://github.com/visionmedia/page.js)或者 [Director](https://github.com/flatiron/director), 整合[很简单](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs)。 这有个用了Page.js的[复杂示例](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) 。
 
 ***
 

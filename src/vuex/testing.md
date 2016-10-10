@@ -4,8 +4,6 @@ type: vuex
 order: 13
 ---
 
-# Testing
-
 The main parts we want to unit test in Vuex are mutations and actions.
 
 ### Testing Mutations

@@ -4,8 +4,6 @@ type: router
 order: 18
 ---
 
-# 路由信息对象
-
 一个 **route object（路由信息对象）** 表示当前激活的路由的状态信息，包含了当前 URL 解析得到的信息，还有 URL 匹配到的 **route records（路由记录）**。
 
 

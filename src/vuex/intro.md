@@ -4,8 +4,6 @@ type: vuex
 order: 2
 ---
 
-# Vuex 是什么？
-
 Vuex 是一个专门为 Vue.js 应用设计的 **状态管理模型 + 库**。它为应用内的所有组件提供集中式存储服务，其中的规则确保状态只能按预期方式变更。它可以与 Vue 官方[开发工具扩展(devtools extension)](https://github.com/vuejs/vue-devtools) 集成，提供高级特征，比如 零配置时空旅行般（基于时间轴）调试，以及状态快照 导出/导入。
 
 ### 什么是”状态管理模型“？

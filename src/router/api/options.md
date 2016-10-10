@@ -4,8 +4,6 @@ type: router
 order: 19
 ---
 
-# Router 构造配置
-
 ### routes
 
 - 类型: `Array<RouteConfig>`

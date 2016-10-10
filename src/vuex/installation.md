@@ -4,8 +4,6 @@ type: vuex
 order: 1
 ---
 
-# 安装
-
 ### 直接下载 / CDN
 
 [https://unpkg.com/vuex](https://unpkg.com/vuex)

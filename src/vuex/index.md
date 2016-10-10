@@ -4,8 +4,6 @@ type: vuex
 order: 0
 ---
 
-# Vuex
-
 > 注意： 这是 vuex@2.x 文档。
 
 - [查看 1.0 文档？](https://github.com/vuejs/vuex/tree/1.0/docs)
