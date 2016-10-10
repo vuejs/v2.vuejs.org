@@ -53,9 +53,9 @@ Estas palavras podem ser mantidas no inglês
 - [x] Template Syntax (@vitorarjol)
 - [ ] Computed Properties and Watchers (@danielschmitz)
 - [x] Class and Style Bindings (@gidenilson)
-- [ ] Conditional Rendering
+- [x] Conditional Rendering (@gidenilson)
 - [ ] List Rendering (@ErickPetru)
-- [ ] Event Handling
+- [ ] Event Handling (@gidenilson)
 - [ ] Form Input Bindings
 - [ ] Components
 - [ ] Advanced
