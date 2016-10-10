@@ -86,10 +86,14 @@ type: api
 - **Usage:**
 
   ``` js
-  Vue.config.keyCodes = { esc: 27 }
+  Vue.config.keyCodes = {
+    v: 86,
+    f1: 112,
+    mediaPlayPause: 179
+  } 
   ```
 
-  Define custom key aliases for v-on.
+  Define custom key alias(es) for v-on.
 
 ## Global API
 
