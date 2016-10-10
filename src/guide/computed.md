@@ -1,12 +1,12 @@
 ---
-title: Computed Properties and Watchers
+title: Propriedades calculadas e observadores
 type: guide
 order: 5
 ---
 
-## Computed Properties
+## Propriedades calculadas
 
-In-template expressions are very convenient, but they are really only meant for simple operations. Putting too much logic into your templates can make them bloated and hard to maintain. For example:
+Expressões dentro de templates são convenientes, mas elas deveriam ser utilizadas somente para operações. Templates são destinados para descrever a estrutura da sua view. Colocar muita lógica nos seus templates pode fazer que com eles fiquem inchados e com que a sua manutenção fique mais complicada. Por exemplo:
 
 ``` html
 <div id="example">
@@ -14,16 +14,16 @@ In-template expressions are very convenient, but they are really only meant for 
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
+Neste ponto, o template não é mais tão simples e declarativo. Você tem que olhá-lo por alguns segundos antes de entender que ele exibe a palavra `message`na ordem reversa. O problema é agravado quando se deseja incluir uma mensagem na ordem reversa em mais algum lugar do template.
 
-That's why for any complex logic, you should use a **computed property**.
+É por isso que, para qualquer lógica mais complexa, você deve usar uma **propriedade calculada** (computed properties, no inglês).
 
-### Basic Example
+### Exemplo Básico
 
 ``` html
 <div id="example">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>Mensagem original: "{{ message }}"</p>
+  <p>Mensagem ao contrário: "{{ reversedMessage }}"</p>
 </div>
 ```
 
@@ -34,21 +34,21 @@ var vm = new Vue({
     message: 'Hello'
   },
   computed: {
-    // a computed getter
+    // um getter calculado (computed getter)
     reversedMessage: function () {
-      // `this` points to the vm instance
+      // `this` aponta para a instância vm
       return this.message.split('').reverse().join('')
     }
   }
 })
 ```
 
-Result:
+Resultado:
 
 {% raw %}
 <div id="example" class="demo">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>Mensagem Original: "{{ message }}"</p>
+  <p>Mensagem ao contrário: "{{ reversedMessage }}"</p>
 </div>
 <script>
 var vm = new Vue({
@@ -65,7 +65,9 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
+Aqui nós declaramos uma propriedade calculada `reversedMessage`. A função
+
+Here we have declared a computed property `reversedMessage`. A função que fornecemos será usada como uma função getter para a propriedade `vm.reversedMessage`.
 
 ``` js
 console.log(vm.reversedMessage) // -> 'olleH'
@@ -73,7 +75,7 @@ vm.message = 'Goodbye'
 console.log(vm.reversedMessage) // -> 'eybdooG'
 ```
 
-You can open the console and play with the example vm yourself. The value of `vm.reversedMessage` is always dependent on the value of `vm.message`.
+Pode-se abrir o console e testar o exemplo você mesmo. O valor de `vm.reversedMessage` sempre dependerá do valor de `vm.message`
 
 You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function is pure and has no side effects, which makes it easy to test and reason about.
 

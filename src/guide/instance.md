@@ -73,7 +73,9 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
-<p class="tip">Note que __você não deve usar arrow functions em uma propriedade de instância ou callback__ (ex: `vm.$watch('a', newVal => this.myMethod())`). A razão são as arrow functions que se ligam ao contexto superior, então `this`  não será a instância Vue como você espere, e `this.myMethod` será indefinida.</p>
+<p class="tip">
+Não use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) em uma propriedade de instância ou callback (ex: `vm.$watch('a', newVal => this.myMethod())`). Como as arrow functions estão vinculadas ao contexto pai, então `this` não será a instância Vue como você espera, e `this.myMethod` será indefinida.
+</p>
 
 Consulte a [API](/api) para a lista completa de propriedades e métodos.
 
