@@ -6,19 +6,18 @@ order: 10
 
 # Plugins
 
-Vuex stores accept the `plugins` option that exposes hooks for each mutation. A Vuex plugin is simply a function that receives the store as the only argument:
+Vuex 的 store 接收 `plugins` 选项，这个选项暴露出每个 mutation 的钩子。一个 Vuex 的插件就是一个简单的方法，接收 sotre 作为唯一参数：
 
 ``` js
 const myPlugin = store => {
-  // called when the store is initialized
+  // 当 store 在被初始化完成时被调用
   store.subscribe((mutation, state) => {
-    // called after every mutation.
-    // The mutation comes in the format of { type, payload }.
+    // mutation 之后被调用
+    // mutation 的格式为 {type, payload}。
   })
 }
 ```
-
-And can be used like this:
+然后像这样使用：
 
 ``` js
 const store = new Vuex.Store({
@@ -27,11 +26,11 @@ const store = new Vuex.Store({
 })
 ```
 
-### Committing Mutations Inside Plugins
+### 在插件内提交 Mutations
 
-Plugins are not allowed to directly mutate state - similar to your components, they can only trigger changes by committing mutations.
+插件不能直接修改状态 - 这就像你的组件，它们只能被 mutations 来触发改变。
 
-By committing mutations, a plugin can be used to sync a data source to the store. For example, to sync a websocket data source to the store (this is just a contrived example, in reality the `createPlugin` function can take some additional options for more complex tasks):
+通过提交 mutations，插件可以用来同步数据源到 store。例如， 为了同步 websocket 数据源到 store (这只是为说明用法的例子，在实际中，`createPlugin` 方法会附加更多的可选项，来完成复杂的任务)。
 
 ``` js
 export default function createWebSocketPlugin (socket) {
@@ -58,9 +57,9 @@ const store = new Vuex.Store({
 })
 ```
 
-### Taking State Snapshots
+### 生成状态快照
 
-Sometimes a plugin may want to receive "snapshots" of the state, and also compare the post-mutation state with pre-mutation state. To achieve that, you will need to perform a deep-copy on the state object:
+有时候插件想获取状态 “快照” 和状态的改变前后的变化。为了实现这些功能，需要对状态对象进行深拷贝：
 
 ``` js
 const myPluginWithSnapshot = store => {
@@ -68,15 +67,15 @@ const myPluginWithSnapshot = store => {
   store.subscribe((mutation, state) => {
     let nextState = _.cloneDeep(state)
 
-    // compare prevState and nextState...
+    // 对比 prevState 和 nextState...
 
-    // save state for next mutation
+    // 保存状态，用于下一次 mutation
     prevState = nextState
   })
 }
 ```
 
-**Plugins that take state snapshots should be used only during development.** When using Webpack or Browserify, we can let our build tools handle that for us:
+** 生成状态快照的插件只能在开发阶段使用，使用 Webpack 或 Browserify，让构建工具帮我们处理：
 
 ``` js
 const store = new Vuex.Store({
@@ -87,13 +86,13 @@ const store = new Vuex.Store({
 })
 ```
 
-The plugin will be used by default. For production, you will need [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin) for Webpack or [envify](https://github.com/hughsk/envify) for Browserify to convert the value of `process.env.NODE_ENV !== 'production'` to `false` for the final build.
+插件默认会被起用。为了发布产品，你需要用 Webpack 的 [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin) 或者 Browserify 的 [envify](https://github.com/hughsk/envify) 来转换 `process.env.NODE_ENV !== 'production'` 的值为 `false`。
 
-### Built-in Logger Plugin
+### 内置 Logger 插件
 
-> If you are using [vue-devtools](https://github.com/vuejs/vue-devtools) you probably don't need this.
+> 如果你正在使用 [vue-devtools](https://github.com/vuejs/vue-devtools)，你可能不需要。
 
-Vuex comes with a logger plugin for common debugging usage:
+Vuex 带来一个日志插件用于一般的调试:
 
 ``` js
 import createLogger from 'vuex/dist/logger'
@@ -103,24 +102,24 @@ const store = new Vuex.Store({
 })
 ```
 
-The `createLogger` function takes a few options:
+`createLogger` 方法有几个配置项：
 
 ``` js
 const logger = createLogger({
-  collapsed: false, // auto-expand logged mutations
+  collapsed: false, // 自动展开记录 mutation
   transformer (state) {
-    // transform the state before logging it.
-    // for example return only a specific sub-tree
+    // 在记录之前前进行转换
+    // 例如，只返回指定的子树
     return state.subTree
   },
   mutationTransformer (mutation) {
-    // mutations are logged in the format of { type, payload }
-    // we can format it any way we want.
+    // mutation 格式 { type, payload }
+    // 我们可以按照想要的方式进行格式化
     return mutation.type
   }
 })
 ```
 
-The logger file can also be included directly via a `<script>` tag, and will expose the `createVuexLogger` function globally.
+日志插件还可以直接通过 `<script>` 标签, 然后它会提供全局方法 `createVuexLogger` 。
 
-Note the logger plugin takes state snapshots, so use it only during development.
+要注意，logger 插件会生成状态快照，所以仅在开发环境使用。
