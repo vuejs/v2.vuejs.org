@@ -51,7 +51,7 @@ var store = {
 
 Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how are they triggered. When something goes wrong, we'll also now have a log of what happened leading up to the bug.
 
-In additon, each instance/component can still own and manage its own private state:
+In addition, each instance/component can still own and manage its own private state:
 
 ``` js
 var vmA = new Vue({

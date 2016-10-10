@@ -85,7 +85,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Mutiple checkboxes, bound to the same Array:
+Multiple checkboxes, bound to the same Array:
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">

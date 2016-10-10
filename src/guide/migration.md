@@ -290,7 +290,7 @@ Props are now always one-way down. To produce side effects in the parent scope, 
 
 - [Custom component events](components.html#Custom-Events)
 - [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state managment](state-management.html)
+- [Global state management](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
@@ -305,7 +305,7 @@ Props are now always one-way down. To produce side effects in the parent scope, 
 
 - [Custom component events](components.html#Custom-Events)
 - [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state managment](state-management.html)
+- [Global state management](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
