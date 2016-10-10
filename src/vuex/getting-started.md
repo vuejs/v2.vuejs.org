@@ -4,8 +4,6 @@ type: vuex
 order: 3
 ---
 
-# 起步
-
 所有 Vuex 应用的中心就是 store（状态存储）。"store" 本质上是一个保存应用状态的容器。这里有两件要点，让 Vuex store 区别于普通全局对象：
 
 1. Vuex store 是响应式的。当 Vue 组件从 store 读取状态，如果 store 中的状态更新，它们也会高效地响应更新。
