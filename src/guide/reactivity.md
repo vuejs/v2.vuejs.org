@@ -54,7 +54,7 @@ this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 也有一些数组相关的问题，之前已经在[列表渲染](/guide/list.html#Caveats)中讲过。
 
 ## 声明响应式属性
-由于 Vue 不允许动态添加顶级响应式属性，这意味着你必须初始化声明的所有顶级响应式前期数据属性，哪怕是有空值的实例：
+由于 Vue 不允许动态添加顶级响应式属性，这意味着你必须在前期，声明所有的顶级响应式数据属性，哪怕是有空值的实例：
 ``` js
 var vm = new Vue({
   data: {
