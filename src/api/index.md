@@ -741,7 +741,7 @@ type: api
 
 - **详细:**
 
-  指定实例的父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
+  指定已创建的实例之父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
 
   <p class="tip">同时使用 `$parent` 和 `$children` 有冲突 - 他们作为同一个入口 。更推荐用 props 和 events 实现父子组件通信</p>
 
@@ -751,7 +751,7 @@ type: api
 
 - **详细:**
   
-  `mixins` 选项接受一个数组作为混合对象。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。如：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。
+  `mixins` 选项接受一个混合对象的数组。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。举例：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。
   Mixin钩子提供他们被调用的顺序,在调用组件的自己的钩子之前被调用。
 
 - **示例:**
@@ -789,7 +789,7 @@ type: api
 - **详细:**
 
   
-  允许声明扩展另一个组件(可以是一个简单的选择对象或构造函数),而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
+  允许声明扩展另一个组件(可以是一个简单的选项对象或构造函数),而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
 
   这和 `mixins` 类似，区别在于,组件的选项需要比源组件被扩展有更高的优先级。
 
@@ -866,7 +866,7 @@ type: api
 
 - **详细:**
 
-  用于当前 Vue 实例的初始化选项。当选项中需要自定义属性时会有用处：
+  用于当前 Vue 实例的初始化选项。当选项中您需要自定义属性时会有用处：
 
   ``` js
   new Vue({
@@ -895,7 +895,7 @@ type: api
 
 - **详细:**
 
-  当前组件树的根 Vue 实例。如果当前实例没有父实例，属性值将会是其自身。
+  当前组件树的根 Vue 实例。如果当前实例没有父实例，此实例将会是其自已。
 
 ### vm.$children
 
@@ -915,7 +915,7 @@ type: api
 
 - **详细:**
 
-  用来访问被 [slot 分发](/guide/components.html#Content-Distribution-with-Slots)的内容。每个[具名 slot](/guide/components.html#Named-Slots) 有其响应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在一个具名 slot 中的节点。
+  用来访问被 [slot 分发](/guide/components.html#Content-Distribution-with-Slots)的内容。每个[具名 slot](/guide/components.html#Named-Slots) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在一个具名 slot 中的节点。
 
   在使用 [render 函数](/guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
