@@ -1,5 +1,5 @@
 ---
-title: 'Transitions: Entering, Leaving, and Lists'
+title: 'Transition Effects'
 type: guide
 order: 12
 ---

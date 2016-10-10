@@ -8,7 +8,9 @@
   </div>
 <% } %>
 <div class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type === 'guide' ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>">
-    <%- partial('partials/ad') %>
+    <% if (page.type) { %>
+      <%- partial('partials/ad') %>
+    <% } %>
     <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
     <%- page.content %>
     <% if (page.type === 'guide') { %>
