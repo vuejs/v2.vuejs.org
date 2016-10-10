@@ -16,7 +16,7 @@ order: 3
 
 > **NOTE:** 我们将会在以后的示例代码中使用 ES2015 语法。如果你还没有用过，[你应该看看](https://babeljs.io/docs/learn-es2015/)！
 
-[安装](installation.md) Vuex 之后，我们来创建一个 store。这是一个非常易懂的例子 - 只含有一个初始化状态对象，以及一些更改：
+[安装](installation.html) Vuex 之后，我们来创建一个 store。这是一个非常易懂的例子 - 只含有一个初始化状态对象，以及一些更改：
 
 ``` js
 // 如果使用模块系统，确保之前调用过 Vue.use(Vuex)
