@@ -105,7 +105,7 @@ No React, tudo é somente JavaScript, o que soa muito simples e elegante - até 
 
 No React, todos os componentes expressam sua interface com funções `render` usando JSX, uma sintaxe declarativa inspirada em XML, embutida dentro do JavaScript. Aqui está um exemplo, [conferido pela comunidade React](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
 
-``` jsx
+```
 render () {
   let { items } = this.props
 
@@ -139,7 +139,7 @@ No Vue, também temos [render functions](render-function.html) e até mesmo [sup
 
 Em seu lugar, oferecemos *templates* como uma alternativa mais simples:
 
-``` html
+```html
 <template>
   <div class="list-container">
     <ul v-if="items.length">
@@ -176,7 +176,7 @@ A menos que distribua componentes por vários arquivos (por exemplo, com [CSS Mo
 
 Por outro lado, Vue proporciona acesso completo ao CSS com [single-file components](single-file-components.html):
 
-``` html
+```html
 <style scoped>
   @media (min-width: 250px) {
     .list-container:hover {
@@ -212,7 +212,7 @@ React é conhecido por sua curva de aprendizado. Antes que você possa realmente
 
 Enquanto Vue escala ascendentemente tão bem quanto, se não até melhor que o React, ele também é capaz de reduzir a escala tão bem quanto jQuery. É isso mesmo - tudo que você precisa fazer é colocar uma única *tag script* na página:
 
-``` html
+```html
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 ```
 
