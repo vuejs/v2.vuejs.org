@@ -4,27 +4,27 @@ type: vuex
 order: 2
 ---
 
-# What is Vuex?
+# Vuex 是什么？
 
-Vuex is a **state management pattern + library** for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the state can only be mutated in a predictable fashion. It also integrates with Vue's official [devtools extension](https://github.com/vuejs/vue-devtools) to provide advanced features such as zero-config time-travel debugging and state snapshot export / import.
+Vuex 是一个专门为 Vue.js 应用设计的 **状态管理模型 + 库**。它为应用内的所有组件提供集中式存储服务，其中的规则确保状态只能按预期方式变更。它可以与 Vue 官方[开发工具扩展(devtools extension)](https://github.com/vuejs/vue-devtools) 集成，提供高级特征，比如 零配置时空旅行般（基于时间轴）调试，以及状态快照 导出/导入。
 
-### What is a "State Management Pattern"?
+### 什么是”状态管理模型“？
 
-Let's start with a simple Vue counter app:
+让我们从一个简单的 Vue 计数器应用开始：
 
 ``` js
 new Vue({
-  // state
+  // state (状态)
   data () {
     return {
       count: 0
     }
   },
-  // view
+  // view (视图)
   template: `
     <div>{{ count }}</div>
   `,
-  // actions
+  // actions (动作)
   methods: {
     increment () {
       this.count++
@@ -33,37 +33,38 @@ new Vue({
 })
 ```
 
-It is a self-contained app with the following parts:
+这是一个含有以下部分的自包含( self-contained )应用： 
 
-- The **state**, which is the source of truth that drives our app;
-- The **view**, which is just a declarative mapping of the **state**;
-- The **actions**, which are the possible ways the state could change in reaction to user inputs from the **view**.
+- **state (状态)**，驱动我们应用的真实的源；
+- **view (视图)**，对应着 **状态** 的声明式映射；
+- **actions (动作)**，用户在 **视图** 上的输入引起状态的更改的可能方式。
 
-This is an extremely simple representation of the concept of "one-way data flow":
+这是一个非常简单的“单向数据流”思想的体现：
 
 <p style="text-align: center; margin: 2em">
   <img style="max-width:450px;" src="./images/flow.png">
 </p>
 
-However, the simplicity quickly breaks down when we have **multiple components that share common state**:
+不管怎样，当我们有**多组件共享公共状态**时，简单快速地分解如下：
 
-- Multiple views may depend on the same piece of state.
-- Actions from different views may need to mutate the same piece of state.
+- 多视图可能依赖于同一份状态。
+- 来自不同视图的动作可能需要变更同一份状态。
 
-For problem one, passing props can be tedious for deeply nested components, and simply doesn't work for sibling components. For problem two, we often find ourselves resorting to solutions such as reaching for direct parent/child instance references or trying to mutate and synchronize multiple copies of the state via events. Both of these patterns are brittle and quickly leads to unmaintainable code.
+对于问题一，在深层嵌套组件间传递属性过于冗长，并且不能简单地在同级别的组件间传递。对于问题二，我们常常采取这样的解决方案：直接引用 父/子 实例，又或是通过事件来修改和同步多份状态副本。这样的模型是脆弱的，代码很快会变得不可维护。
 
-So why don't we extract the shared state out of the components, and manage it in a global singleton? With this, our component tree becomes a big "view", and any component can access the state or trigger actions, no matter where they are in the tree!
+所以我们为什么不从多个组件中把共享状态提取出来并作为全局单件管理呢？这样的话，我们的组件树就变成了一个大的”视图“，树中的任意一个组件，不管它们在哪个位置，都可以访问状态或者触发动作！
 
-In addition, by defining and separating the concepts involved in state management and enforcing certain rules, we also give our code more structure and maintainability.
+另外，通过定义和分离状态管理中的概念，强制使用某些规则，使得代码更结构化和高可维护性。
 
-This is the basic idea behind Vuex, inspired by [Flux](https://facebook.github.io/flux/docs/overview.html), [Redux](http://redux.js.org/) and [The Elm Architecture](https://guide.elm-lang.org/architecture/). Unlike the other patterns, Vuex is also a library implementation tailored specifically for Vue.js to take advantage of its granular reactivity system for efficient updates.
+这是 Vuex 背后的基本思想，受到了 [Flux](https://facebook.github.io/flux/docs/overview.html)，[Redux](http://redux.js.org/) 和 [The Elm Architecture](https://guide.elm-lang.org/architecture/)的启发。不像其他模型，Vuex 也是一个专门为 Vue.js 设计的库，充分利用了它微妙的响应式机制，从而实现高效更新。
 
 ![vuex](./images/vuex.png)
 
-### When Should I Use It?
+### 什么时候应该使用?
 
-Although Vuex helps us deal with shared state management, it also comes with the cost of more concepts and boilerplate. It's a trade-off between short term and long term productivity.
+尽管 Vuex 帮助我们处理共享状态管理，但是也带来了更多的思考和样板文件。这是一个短期效益和长期效益的权衡。
 
-If you've never built a large-scale SPA and jump right into Vuex, it may feel verbose and daunting. That's perfectly normal - if your app is simple, you will most likely be fine without Vuex. A simple [global event bus](http://vuejs.org/guide/components.html#Non-Parent-Child-Communication) may be all you need. But if you are building a medium-to-large-scale SPA, chances are you have run into situations that make you think about how to better handle state outside of your Vue components, and Vuex will be natural next step for you. There's a good quote from Dan Abramov, the author of Redux:
+如果你没有开发过大型的单页应用(SPA)就立刻上 Vuex，可能会觉得繁琐然后排斥，这是很正常的 —— 如果是个简单的应用，大多数情况下，不用 Vuex 还好，你要的可能就是个简单的 [全局事件总线(global event bus)](../guide/components.html#非父子组件通信)。不过，如果你构建的是一个中到大型单页应用，当你在考虑如何更好的在 Vue 组件外处理状态时，Vuex 自然就是你的下一步选择。Redux 的作者有一句话说的不错：
 
-> Flux libraries are like glasses: you’ll know when you need them.
+> 原文：Flux libraries are like glasses: you’ll know when you need them.
+> 译文：Flux 库就像眼镜：当你需要它们的时候你会懂的。
