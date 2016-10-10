@@ -4,9 +4,11 @@ type: vuex
 order: 8
 ---
 
-Due to using a single state tree, all state of our application is contained inside one big object. However, as our application grows in scale, the store can get really bloated.
+# Modules
 
-To help with that, Vuex allows us to divide our store into **modules**. Each module can contain its own state, mutations, actions, getters, and even nested modules - it's fractal all the way down:
+由于使用了单一状态树，应用的所有状态都包含在一个大对象内。但是，随着我们应用规模的不断增长，这个Store变得非常臃肿。
+
+为了解决这个问题，Vuex 允许我们把 store 分 module（模块）。每一个模块包含各自的状态、mutation、action 和 getter，甚至是嵌套模块， 如下就是它的组织方式：
 
 ``` js
 const moduleA = {
@@ -33,16 +35,16 @@ store.state.a // -> moduleA's state
 store.state.b // -> moduleB's state
 ```
 
-### Module Local State
+### 模块本地状态
 
-Inside a module's mutations and getters, The first argument received will be **the module's local state**.
+模块的 mutations 和 getters方法第一个接收参数是**模块的本地状态**。
 
 ``` js
 const moduleA = {
   state: { count: 0 },
   mutations: {
     increment: (state) {
-      // state is the local module state
+      // state 是模块本地的状态。
       state.count++
     }
   },
@@ -55,7 +57,7 @@ const moduleA = {
 }
 ```
 
-Similarly, inside module actions, `context.state` will expose the local state, and root state will be exposed as `context.rootState`:
+相似地，在模块的 actions 中，`context.state` 暴露的是本地状态， `context.rootState`暴露的才是根状态。
 
 ``` js
 const moduleA = {
@@ -70,7 +72,7 @@ const moduleA = {
 }
 ```
 
-Also, inside module getters, the root state will be exposed as their 3rd argument:
+在模块的 getters 内，根状态也会作为第三个参数暴露。
 
 ``` js
 const moduleA = {
@@ -83,15 +85,15 @@ const moduleA = {
 }
 ```
 
-### Namespacing
+### 命名空间
 
-Note that actions, mutations and getters inside modules are still registered under the **global namespace** - this allows multiple modules to react to the same mutation/action type. You can namespace the module assets yourself to avoid name clashing by prefixing or suffixing their names. And you probably should if you are writing a reusable Vuex module that will be used in unknown environments. For example, we want to create a `todos` module:
+要注意，模块内的 actions、mutations 以及 getters 依然注册在**全局命名空间**内 —— 这就会让多个模块响应同一种 mutation/action 类型。你可以在模块的名称中加入前缀或者后缀来设定命名空间，从而避免命名冲突。如果你的 Vuex 模块是一个可复用的，执行环境也未知的，那你就应该这么干了。距离，我们想要创建一个 `todos` 模块：
 
 ``` js
 // types.js
 
-// define names of getters, actions and mutations as constants
-// and they are prefixed by the module name `todos`
+// 定义  getter、 action 和 mutation 的常量名称
+// 并且在模块名称上加上 `todos` 前缀 
 export const DONE_COUNT = 'todos/DONE_COUNT'
 export const FETCH_ALL = 'todos/FETCH_ALL'
 export const TOGGLE_DONE = 'todos/TOGGLE_DONE'
@@ -101,7 +103,7 @@ export const TOGGLE_DONE = 'todos/TOGGLE_DONE'
 // modules/todos.js
 import * as types from '../types'
 
-// define getters, actions and mutations using prefixed names
+// 用带前缀的名称来定义 getters, actions and mutations 
 const todosModule = {
   state: { todos: [] },
 
@@ -125,9 +127,9 @@ const todosModule = {
 }
 ```
 
-### Dynamic Module Registration
+### 注册动态模块
 
-You can register a module **after** the store has been created with the `store.registerModule` method:
+你可以用 `store.registerModule` 方法在 store 创建**之后**注册一个模块：
 
 ``` js
 store.registerModule('myModule', {
@@ -135,8 +137,8 @@ store.registerModule('myModule', {
 })
 ```
 
-The module's state will be exposed as `store.state.myModule`.
+模块的 `store.state.myModule` 暴露为模块的状态。
 
-Dynamic module registration makes it possible for other Vue plugins to also leverage Vuex for state management by attaching a module to the application's store. For example, the [`vuex-router-sync`](https://github.com/vuejs/vuex-router-sync) library integrates vue-router with vuex by managing the application's route state in a dynamically attached module.
+其他的 Vue 插件可以为应用的 store 附加一个模块，然后通过动态注册就可以使用 Vuex 的状态管理功能了。例如，[`vuex-router-sync`](https://github.com/vuejs/vuex-router-sync) 库，通过在一个动态注册的模块中管理应用的路由状态，从而将 vue-router 和 vuex 集成。
 
-You can also remove a dynamically registered module with `store.unregisterModule(moduleName)`. Note you cannot remove static modules (declared at store creation) with this method.
+你也能用 `store.unregisterModule(moduleName)` 移除动态注册过的模块。但是你不能用这个方法移除静态的模块（也就是在 store 创建的时候声明的模块）。

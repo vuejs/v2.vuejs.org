@@ -4,6 +4,8 @@ type: vuex
 order: 11
 ---
 
+# 严格模式
+
 要启用严格模式，只需在创建 Vuex store 的时候简单地传入 `strict: true`。
 
 ``` js
