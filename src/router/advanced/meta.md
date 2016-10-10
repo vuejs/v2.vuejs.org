@@ -4,8 +4,6 @@ type: router
 order: 11
 ---
 
-# 路由元信息
-
 定义路由的时候可以配置 `meta` 字段：
 
 ``` js

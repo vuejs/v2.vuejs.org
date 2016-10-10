@@ -4,7 +4,6 @@ type: vuex
 order: 12
 ---
 
-# Form Handling
 
 When using Vuex in strict mode, it could be a bit tricky to use `v-model` on a piece of state that belongs to Vuex:
 

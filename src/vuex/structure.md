@@ -4,8 +4,6 @@ type: vuex
 order: 9
 ---
 
-# Application Structure
-
 Vuex doesn't really restrict how you structure your code. Rather, it enforces a set of high-level principles:
 
 1. Application-level state is centralized in the store.

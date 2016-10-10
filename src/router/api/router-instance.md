@@ -4,8 +4,6 @@ type: router
 order: 20
 ---
 
-# Router 实例
-
 ### 属性
 
 #### router.app
