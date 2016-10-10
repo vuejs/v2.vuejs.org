@@ -1,5 +1,5 @@
 ---
-title: 热加载
+title: 热重载
 type: vuex
 order: 14
 ---
@@ -45,4 +45,4 @@ if (module.hot) {
 }
 ```
 
-查看[热加载的例子](https://github.com/vuejs/vuex/tree/dev/examples/counter-hot) 来开始使用热加载
+查看[热重载的例子](https://github.com/vuejs/vuex/tree/dev/examples/counter-hot) 来开始使用热重载
