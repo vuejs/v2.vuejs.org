@@ -55,7 +55,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] Class and Style Bindings (@gidenilson)
 - [x] Conditional Rendering (@gidenilson)
 - [ ] List Rendering (@ErickPetru)
-- [ ] Event Handling 
+- [ ] Event Handling (@gidenilson)
 - [ ] Form Input Bindings
 - [ ] Components
 - [ ] Advanced
