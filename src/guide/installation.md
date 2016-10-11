@@ -23,35 +23,38 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实�
 <p class="tip">开发环境不要用最小压缩版，不然就失去了错误提示和警告!</p>
 
 <div id="downloads">
-<a class="button" href="http://rc.vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
+<a class="button" href="http://vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
-<a class="button" href="http://rc.vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
+<a class="button" href="http://vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
 </div>
 
 ### CDN
 
-Recommended: [unpkg](https://unpkg.com/vue/dist/vue.js), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [unpkg.com/vue/](https://unpkg.com/vue/).
 
-Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), but these two services take some time to sync so the latest release may not be available yet.
+推荐：[unpkg](https://unpkg.com/vue/dist/vue.js), 会保持和 npm 发布的最新的版本一致。可以在 [unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包资源。
+
+也可以从 [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取，不过这两个服务版本更新可能略滞后。
 
 ## NPM
 
-在用 Vue.js 构建大型应用时推荐使用 NPM 安装，NPM 能很好地和诸如 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
+
+在用 Vue.js 构建大型应用时推荐使用 NPM 安装， NPM 能很好地和诸如 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。 Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
+
 
 ``` bash
 # 最新稳定版
 $ npm install vue
 ```
 
-### Standalone vs. Runtime-only Build
+### 独立构建 vs 运行时构建
 
-There are two builds available, the standalone build and the runtime-only build.
+有两种构建方式，独立构建和运行构建。
 
-- The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
+- 独立构建包括编译和支持 `template` 选项。 **它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。**
 
-- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
+- 运行时构建不包括模板编译，不支持 `template` 选项。运行时构建，可以用 `render` 选项，但它只在单文件组件中起作用，因为单文件组件的模板是在构建时预编译到 `render` 函数中，运行时构建只有独立构建大小的30%，只有 16Kb min+gzip大小。
 
-By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your webpack config:
+默认 NPM 包导出的是 **运行时** 构建。为了使用独立构建，在 webpack 配置中添加下面的别名：
 
 ``` js
 resolve: {
@@ -61,15 +64,16 @@ resolve: {
 }
 ```
 
-对于Browserify,可以用 [aliasify](https://github.com/benbria/aliasify) 
+对于Browserify，可以用 [aliasify](https://github.com/benbria/aliasify)
 
-<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
+<p class="tip">不要用 `import Vue from 'vue/dist/vue.js'` - 用一些工具或第三方库引入 Vue ，这可能会导致应用程序在同一时间加载运行时和独立构建并造成错误。</p>
 
-### CSP environments
+### CSP 环境
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.
+有些环境，如 Google Chrome Apps ，强制应用内容安全策略 (CSP) ，不能使用 new Function() 对表达式求值。这时可以用 CSP 兼容版本。独立的构建取决于该功能编译模板，所以无法使用这些环境。
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+
+另一方面，运行时构建的是完全兼容 CSP 的。当通过 [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) 或者 [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) 构建时，在 CSP 环境中模板将被完美预编译到 `render` 函数中。
 
 ## 命令行工具
 
@@ -78,9 +82,8 @@ Vue.js 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，�
 ``` bash
 # 全局安装 vue-cli
 $ npm install --global vue-cli
-# 创建一个基于 "webpack" 模板的新项目
-# !!要做的：这个模板还不存在
-$ vue init webpack-2.0 my-project
+# 创建一个基于 webpack 模板的新项目
+$  vue init webpack my-project
 # 安装依赖，走你
 $ cd my-project
 $ npm install
@@ -89,7 +92,7 @@ $ npm run dev
 
 ## 开发版本
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**重要**: 在发布后构建的文件在 Github 仓库的 `/dist` 文件夹。为了使用 Github 上 Vue 最新的资源，你得自己构建。 
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -107,10 +110,10 @@ $ bower install vue
 
 ## AMD 模块加载器
 
-独立下载版本或通过 Bower 安装的版本已用 UMD包装，因此它们可以直接用作 AMD 模块。
+独立下载版本或通过 Bower 安装的版本已用 UMD 包装，因此它们可以直接用作 AMD 模块。
 
 ***
 
-> 原文：http://rc.vuejs.org/guide/installation.html
+> 原文：http://vuejs.org/guide/installation.html
 
 ***

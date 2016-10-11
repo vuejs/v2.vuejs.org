@@ -6,7 +6,7 @@ order: 2
 
 ## Vue.js 是什么
 
-Vue.js（读音 /vjuː/, 类似于 **view**）是一个构建用户界面的渐进式框架。与其他单层框架（ monolithic frameworks）不同的是，Vue 被设计成从底层向上可以被增量式的采用。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。 
+Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **先进框架**。与其他单层框架（ monolithic frameworks）不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。 
 
 Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
 
@@ -18,7 +18,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**�
 
 ## 声明式渲染
 
-Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将数据渲染进DOM的系统：
+Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将数据渲染进 DOM 的系统：
 
 ``` html
 <div id="app">
@@ -26,7 +26,7 @@ Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将�
 </div>
 ```
 ``` js
-new Vue({
+var app = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue.js!'
@@ -47,20 +47,22 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-我们已经生成了我们的第一个 Vue 应用！看起来这跟单单渲染一个字符串模板非常类似，但是 Vue.js 在背后做了大量工作。现在数据和 DOM 已经被绑定在一起，所有的元素都是**响应式的**。我们如何知道?打开你的浏览器的控制台，并修改 `app.message`，你将看到上例相应地更新。
+我们已经生成了我们的第一个 Vue 应用！看起来这跟单单渲染一个字符串模板非常类似，但是 Vue.js 在背后做了大量工作。现在数据和 DOM 已经被绑定在一起，所有的元素都是**响应式的**。我们如何知道？打开你的浏览器的控制台，并修改 `app.message`，你将看到上例相应地更新。
 
 除了绑定插入的文本内容，我们还可以采用这样的方式绑定 DOM 元素属性：
 
 ``` html
 <div id="app-2">
-  <span v-bind:id="id">Inspect me</span>
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds to see my dynamically bound title!
+  </span>
 </div>
 ```
 ``` js
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    id: 'inspect-me'
+    message: 'You loaded this page on ' + new Date()
   }
 })
 ```
@@ -80,9 +82,9 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-这里我们遇到新东西。你看到的 `v-bind` 特性被称为**指令**。指令带有前缀 `v-`，以指示它们是 Vue.js 提供的特殊特性。并且如你所想象的，它们会对绑定的目标元素添加响应式的特殊行为。这个指令的简单含义是说：将该元素的 id 属性绑定到 Vue 实例的 id 属性上。
+这里我们遇到点新东西。你看到的 `v-bind` 属性被称为**指令**。指令带有前缀 `v-`，以表示它们是 Vue.js 提供的特殊属性。可能你已经猜到了，它们会在渲染过的 DOM 上应用特殊的响应式行为。这个指令的简单含义是说：将这个元素节点的 `title` 属性和 Vue 实例的 `message` 属性绑定到一起。
 
-用浏览器的开发者工具去监测以上元素 - 你会发现 这个元素的 id 为 `inspect-me`。是的，如果你在控制台里更改 `app2.id`，那么该元素的 id 也会随之更新。
+你再次打开浏览器的控制台输入 `app2.message = 'some new message'`，你就会再一次看到这个绑定了`title`属性的HTML已经进行了更新。
 
 ## 条件与循环
 
@@ -117,7 +119,7 @@ var app3 = new Vue({
 
 继续在控制台设置 `app3.seen = false`，你会发现 “Now you see me” 消失了。
 
-这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构** 到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入/删除元素时自动应用[过渡效果](transitions.html)。
+这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构**到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入/删除元素时自动应用[过渡效果](transitions.html)。
 
 也有一些其它指令，每个都有特殊的功能。例如， `v-for` 指令可以绑定数据到数据来渲染一个列表：
 
@@ -314,7 +316,7 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-这只是一个人为的例子，但是我们已经将我们的应用分割成了两小的单元，子元素通过 `props` 接口实现了与父亲元素很好的解耦。我们现在可以在不影响到父亲应用的基础上，进一步为我们的 `todo` 组件改进更多复杂的模板和逻辑。
+这只是一个人为的例子，但是我们已经将我们的应用分割成了两小的单元，子元素通过 `props` 接口实现了与父亲元素很好的解耦。我们现在可以在不影响到父应用的基础上，进一步为我们的 `todo` 组件改进更多复杂的模板和逻辑。
 
 在一个大型应用中，为了使得开发过程可控，有必要将应用整体分割成一个个的组件。在[后面的教程](/guide/components.html)中我们将详述组件，不过这里有一个（假想）的例子，看看使用了组件的应用模板是什么样的：
 
@@ -339,3 +341,9 @@ var app7 = new Vue({
 ## 准备好探索更广阔的世界了？
 
 我们刚才简单介绍了 Vue.js 核心的一些最基本的特征 - 本指南的其余部分将用更详尽的篇幅去描述其他的一些高级特性，所以一定要阅读完所有的内容哦！
+
+***
+
+> 原文：http://vuejs.org/guide/index.html
+
+***

@@ -6,7 +6,7 @@ order: 17
 
 ## 基础
 
-混合是一种灵活的分布式复用 Vue 组件的方式。混合对象可以包含任意组件选项。以混合方式使用组件时，所有混合选项将被混入该组件本身的选项。
+混合是一种灵活的分布式复用 Vue 组件的方式。混合对象可以包含任意组件选项。以组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。
 
 例子：
 
@@ -126,7 +126,7 @@ var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 的混合策略里找到:
+更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 1.x的混合策略里找到:
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed
@@ -140,3 +140,9 @@ Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
   }
 }
 ```
+
+***
+
+> 原文： http://vuejs.org/guide/mixins.html
+
+***

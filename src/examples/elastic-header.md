@@ -1,5 +1,5 @@
 ---
-title: Elastic Header
+title: 具有伸缩性的 Header
 type: examples
 order: 7
 ---

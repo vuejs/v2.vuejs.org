@@ -1,7 +1,7 @@
 ---
 title: 更新日志
-type: changelog
-order: 0
+type: more
+order: 1
 ---
 
 [更新日志](https://github.com/vuejs/vue/releases)
