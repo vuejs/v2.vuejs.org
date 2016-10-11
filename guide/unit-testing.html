@@ -25,8 +25,7 @@
 </script>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
-        <div id="mobile-bar" >
+    <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
@@ -60,7 +59,7 @@
 </div>
 
         
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 
                     
     <div class="sidebar">
@@ -381,7 +380,9 @@
 </div>
 
     
-    <h1>Unit Testing</h1>
+    
+      <h1>Unit Testing</h1>
+    
     <h2 id="Setup-and-Tooling"><a href="#Setup-and-Tooling" class="headerlink" title="Setup and Tooling"></a>Setup and Tooling</h2><p>Anything compatible with a module-based build system will work, but if you’re looking for a specific recommendation, try the <a href="http://karma-runner.github.io" target="_blank" rel="external">Karma</a> test runner. It has a lot of community plugins, including support for <a href="https://github.com/webpack/karma-webpack" target="_blank" rel="external">Webpack</a> and <a href="https://github.com/Nikku/karma-browserify" target="_blank" rel="external">Browserify</a>. For detailed setup, please refer to each project’s respective documentation, though these example Karma configurations for <a href="https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js" target="_blank" rel="external">Webpack</a> and <a href="https://github.com/vuejs/vueify-example/blob/master/karma.conf.js" target="_blank" rel="external">Browserify</a> may help you get started.</p>
 <h2 id="Simple-Assertions"><a href="#Simple-Assertions" class="headerlink" title="Simple Assertions"></a>Simple Assertions</h2><p>In terms of code structure for testing, you don’t have to do anything special in your components to make them testable. Just export the raw options:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    data () &#123;</div><div class="line">      <span class="keyword">return</span> &#123;</div><div class="line">        message: <span class="string">'hello!'</span></div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    created () &#123;</div><div class="line">      <span class="keyword">this</span>.message = <span class="string">'bye!'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>

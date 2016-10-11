@@ -95,6 +95,14 @@ body {
   background-color: #fff;
   margin: 0;
 }
+body.docs {
+  padding-top: 61px;
+}
+@media screen and (max-width: 900px) {
+  body.docs {
+    padding-top: 0;
+  }
+}
 a {
   text-decoration: none;
   color: #34495e;
@@ -315,9 +323,18 @@ a.button.white {
 }
 #header {
   background-color: #fff;
-  padding: 25px 60px;
+  height: $heading-inner-height;
+  padding: 10px 60px;
   position: relative;
   z-index: 2;
+}
+body.docs #header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+body.docs #nav {
+  position: fixed;
 }
 #nav {
   list-style-type: none;
@@ -325,7 +342,7 @@ a.button.white {
   padding: 0;
   position: absolute;
   right: 60px;
-  top: 25px;
+  top: 10px;
   height: 40px;
   line-height: 40px;
 }
@@ -468,7 +485,7 @@ ul#demo li,
 ul.demo li {
   margin-left: 1.5em;
 }
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 900px) {
   #demo,
   .demo {
     margin-left: 0;
@@ -553,10 +570,10 @@ ul.demo li {
 .sidebar {
   position: absolute;
   z-index: 10;
-  top: 0;
+  top: 61px;
   left: 60px;
   bottom: 0;
-  padding: 2.2em 0;
+  padding: 40px 0;
   width: 260px;
   margin-right: 20px;
   overflow-x: hidden;
@@ -653,6 +670,10 @@ ul.demo li {
   max-width: 600px;
   margin: 0 auto;
 }
+.content.api > a:first-of-type > h2 {
+  margin-top: 0;
+  padding-top: 0;
+}
 .content.api ul {
   padding-left: 1.25em;
   line-height: 1.4em;
@@ -687,21 +708,31 @@ ul.demo li {
 .content h1 {
   margin: 0 0 1em;
 }
+.content h2:before,
+.content h3:before {
+  content: '';
+  display: block;
+  margin-top: -91px;
+  height: 91px;
+  visibility: hidden;
+}
 .content h2 {
-  margin: 2em 0 0.8em;
+  margin: 45px 0 0.8em;
   padding-bottom: 0.7em;
   border-bottom: 1px solid #ddd;
+  z-index: -1;
 }
 .content h3 {
-  margin: 3em 0 1.2em;
+  margin: 52px 0 1.2em;
   position: relative;
+  z-index: -1;
 }
-.content h3:before {
+.content h3:after {
   content: "#";
   color: #42b983;
   position: absolute;
   left: -0.7em;
-  top: -2px;
+  bottom: -2px;
   font-size: 1.2em;
   font-weight: bold;
 }
@@ -778,9 +809,6 @@ ul.demo li {
 #main.fix-sidebar .sidebar {
   position: fixed;
 }
-#donate {
-  margin-top: 15px;
-}
 @media screen and (max-width: 1300px) {
   .content.with-sidebar {
     margin-left: 290px;
@@ -824,6 +852,14 @@ ul.demo li {
   }
   .content.with-sidebar {
     margin: auto;
+  }
+  .content h2:before,
+  .content h3:before {
+    content: '';
+    display: block;
+    margin-top: -70px;
+    height: 70px;
+    visibility: hidden;
   }
   .footer {
     margin-left: 0;

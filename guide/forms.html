@@ -25,8 +25,7 @@
 </script>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
-        <div id="mobile-bar" >
+    <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
@@ -60,7 +59,7 @@
 </div>
 
         
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 
                     
     <div class="sidebar">
@@ -381,7 +380,9 @@
 </div>
 
     
-    <h1>Form Input Bindings</h1>
+    
+      <h1>Form Input Bindings</h1>
+    
     <h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>You can use the <code>v-model</code> directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, <code>v-model</code> is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.</p>
 <p class="tip"><code>v-model</code> doesn’t care about the initial value provided to an input or a textarea. It will always treat the Vue instance data as the source of truth.</p>
 

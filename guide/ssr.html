@@ -25,8 +25,7 @@
 </script>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
-        <div id="mobile-bar" >
+    <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
@@ -60,7 +59,7 @@
 </div>
 
         
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 
                     
     <div class="sidebar">
@@ -381,7 +380,9 @@
 </div>
 
     
-    <h1>Server-Side Rendering</h1>
+    
+      <h1>Server-Side Rendering</h1>
+    
     <h2 id="Do-You-Need-SSR"><a href="#Do-You-Need-SSR" class="headerlink" title="Do You Need SSR?"></a>Do You Need SSR?</h2><p>Before diving into SSR, let’s explore what it actually does for you and when you might need it.</p>
 <h3 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h3><p>Google and Bing can index synchronous JavaScript applications just fine. <em>Synchronous</em> being the key word there. If your app starts with a loading spinner, then fetches content via Ajax, the crawler will not wait for you to finish.</p>
 <p>This means if you have content fetched asynchronously on pages where SEO is important, SSR might be necessary.</p>

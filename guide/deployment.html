@@ -25,8 +25,7 @@
 </script>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
-        <div id="mobile-bar" >
+    <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
@@ -60,7 +59,7 @@
 </div>
 
         
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 
                     
     <div class="sidebar">
@@ -381,7 +380,9 @@
 </div>
 
     
-    <h1>Deploying For Production</h1>
+    
+      <h1>Deploying For Production</h1>
+    
     <h2 id="Stripping-Out-Warnings"><a href="#Stripping-Out-Warnings" class="headerlink" title="Stripping Out Warnings"></a>Stripping Out Warnings</h2><p>The minified standalone build of Vue has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Webpack or Browserify, you will need some additional configuration to achieve this.</p>
 <h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>Use Webpack’s <a href="http://webpack.github.io/docs/list-of-plugins.html#defineplugin" target="_blank" rel="external">DefinePlugin</a> to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">      <span class="string">'process.env'</span>: &#123;</div><div class="line">        NODE_ENV: <span class="string">'"production"'</span></div><div class="line">      &#125;</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">      compress: &#123;</div><div class="line">        warnings: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>

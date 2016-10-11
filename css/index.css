@@ -95,6 +95,14 @@ body {
   background-color: #fff;
   margin: 0;
 }
+body.docs {
+  padding-top: 61px;
+}
+@media screen and (max-width: 900px) {
+  body.docs {
+    padding-top: 0;
+  }
+}
 a {
   text-decoration: none;
   color: #34495e;
@@ -315,9 +323,18 @@ a.button.white {
 }
 #header {
   background-color: #fff;
-  padding: 25px 60px;
+  height: $heading-inner-height;
+  padding: 10px 60px;
   position: relative;
   z-index: 2;
+}
+body.docs #header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+body.docs #nav {
+  position: fixed;
 }
 #nav {
   list-style-type: none;
@@ -325,7 +342,7 @@ a.button.white {
   padding: 0;
   position: absolute;
   right: 60px;
-  top: 25px;
+  top: 10px;
   height: 40px;
   line-height: 40px;
 }
@@ -445,10 +462,10 @@ a.button.white {
 .sidebar {
   position: absolute;
   z-index: 10;
-  top: 0;
+  top: 61px;
   left: 60px;
   bottom: 0;
-  padding: 2.2em 0;
+  padding: 40px 0;
   width: 260px;
   margin-right: 20px;
   overflow-x: hidden;

@@ -25,8 +25,7 @@
 </script>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
-        <div id="mobile-bar" >
+    <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
@@ -60,7 +59,7 @@
 </div>
 
         
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 
                     
     <div class="sidebar">
@@ -381,7 +380,9 @@
 </div>
 
     
-    <h1>Components</h1>
+    
+      <h1>Components</h1>
+    
     <h2 id="What-are-Components"><a href="#What-are-Components" class="headerlink" title="What are Components?"></a>What are Components?</h2><p>Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue’s compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special <code>is</code> attribute.</p>
 <h2 id="Using-Components"><a href="#Using-Components" class="headerlink" title="Using Components"></a>Using Components</h2><h3 id="Registration"><a href="#Registration" class="headerlink" title="Registration"></a>Registration</h3><p>We’ve learned in the previous sections that we can create a new Vue instance with:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#some-element'</span>,</div><div class="line">  <span class="comment">// options</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>

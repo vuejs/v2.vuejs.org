@@ -25,8 +25,7 @@
 </script>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
-        <div id="mobile-bar" >
+    <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
@@ -60,7 +59,7 @@
 </div>
 
         
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 
                     
     <div class="sidebar">
@@ -381,7 +380,9 @@
 </div>
 
     
-    <h1>Routing</h1>
+    
+      <h1>Routing</h1>
+    
     <h2 id="Official-Router"><a href="#Official-Router" class="headerlink" title="Official Router"></a>Official Router</h2><p>For most Single Page Applications, it’s recommended to use the officially-supported <a href="https://github.com/vuejs/vue-router" target="_blank" rel="external">vue-router library</a>. For more details, see vue-router’s <a href="http://vuejs.github.io/vue-router/" target="_blank" rel="external">documentation</a>.</p>
 <h2 id="Simple-Routing-From-Scratch"><a href="#Simple-Routing-From-Scratch" class="headerlink" title="Simple Routing From Scratch"></a>Simple Routing From Scratch</h2><p>If you just need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> NotFound = &#123; template: <span class="string">'&lt;p&gt;Page not found&lt;/p&gt;'</span> &#125;</div><div class="line"><span class="keyword">const</span> Home = &#123; template: <span class="string">'&lt;p&gt;home page&lt;/p&gt;'</span> &#125;</div><div class="line"><span class="keyword">const</span> About = &#123; template: <span class="string">'&lt;p&gt;about page&lt;/p&gt;'</span> &#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes = &#123;</div><div class="line">  <span class="string">'/'</span>: Home,</div><div class="line">  <span class="string">'/about'</span>: About</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  data: &#123;</div><div class="line">    currentRoute: <span class="built_in">window</span>.location.pathname</div><div class="line">  &#125;,</div><div class="line">  computed: &#123;</div><div class="line">    ViewComponent () &#123;</div><div class="line">      <span class="keyword">return</span> routes[<span class="keyword">this</span>.currentRoute] || NotFound</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  render (h) &#123; <span class="keyword">return</span> h(<span class="keyword">this</span>.ViewComponent) &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>

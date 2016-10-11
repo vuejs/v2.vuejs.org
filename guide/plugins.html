@@ -25,8 +25,7 @@
 </script>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
-        <div id="mobile-bar" >
+    <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
@@ -60,7 +59,7 @@
 </div>
 
         
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 
                     
     <div class="sidebar">
@@ -381,7 +380,9 @@
 </div>
 
     
-    <h1>Plugins</h1>
+    
+      <h1>Plugins</h1>
+    
     <h2 id="Writing-a-Plugin"><a href="#Writing-a-Plugin" class="headerlink" title="Writing a Plugin"></a>Writing a Plugin</h2><p>Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:</p>
 <ol>
 <li><p>Add some global methods or properties. e.g. <a href="https://github.com/vuejs/vue-element" target="_blank" rel="external">vue-element</a></p>

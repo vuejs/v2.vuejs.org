@@ -25,8 +25,7 @@
 </script>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
-        <div id="mobile-bar" >
+    <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
@@ -60,7 +59,7 @@
 </div>
 
         
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 
                     
     <div class="sidebar">
@@ -381,7 +380,9 @@
 </div>
 
     
-    <h1>Installation</h1>
+    
+      <h1>Installation</h1>
+    
     <h3 id="Compatibility-Note"><a href="#Compatibility-Note" class="headerlink" title="Compatibility Note"></a>Compatibility Note</h3><p>Vue does <strong>not</strong> support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all <a href="http://caniuse.com/#feat=es5" target="_blank" rel="external">ECMAScript 5 compliant browsers</a>.</p>
 <h3 id="Release-Notes"><a href="#Release-Notes" class="headerlink" title="Release Notes"></a>Release Notes</h3><p>Detailed release notes for each version are available on <a href="https://github.com/vuejs/vue/releases" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Standalone"><a href="#Standalone" class="headerlink" title="Standalone"></a>Standalone</h2><p>Simply download and include with a script tag. <code>Vue</code> will be registered as a global variable.</p>
