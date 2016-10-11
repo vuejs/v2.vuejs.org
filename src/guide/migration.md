@@ -908,7 +908,7 @@ Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US
 computed: {
   filteredUsers: function () {
     return this.users.filter(function (user) {
-      return user.name.indexOf(this.searchQuery)
+      return user.name.indexOf(this.searchQuery) !== -1
     })
   }
 }
