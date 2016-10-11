@@ -9,6 +9,12 @@ body
     color $medium
     background-color white
     margin 0
+    &.docs
+        padding-top: $header-height
+
+@media screen and (max-width: 900px)
+    body.docs
+        padding-top: 0
 
 a
     text-decoration none
@@ -101,7 +107,7 @@ a.button
 #main
     position relative
     z-index 1
-    padding 70px 60px 30px
+    padding 0 60px 30px
     overflow-x hidden
 
 #ad

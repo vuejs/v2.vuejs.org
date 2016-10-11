@@ -124,12 +124,9 @@
       // make links clickable
       allHeaders.forEach(makeHeaderClickable)
 
-      // init smooth scroll
       smoothScroll.init({
         speed: 400,
-        offset: window.innerWidth > 720
-          ? 40
-          : 58
+        offset: 0
       })
     }
 
@@ -137,15 +134,9 @@
     window.addEventListener('scroll', updateSidebar)
     window.addEventListener('resize', updateSidebar)
 
-    function updateSidebar () {
+    function updateSidebar (event) {
       var doc = document.documentElement
       var top = doc && doc.scrollTop || document.body.scrollTop
-      var headerHeight = header.offsetHeight
-      if (top > headerHeight) {
-        main.className = 'fix-sidebar'
-      } else {
-        main.className = ''
-      }
       if (animating || !allHeaders) return
       var last
       for (var i = 0; i < allHeaders.length; i++) {
@@ -158,7 +149,7 @@
         }
       }
       if (last)
-      setActive(last.id)
+      setActive(last.id, true)
     }
 
     function makeLink (h) {
@@ -194,7 +185,7 @@
       return container
     }
 
-    function setActive (id) {
+    function setActive (id, shouldScrollIntoView) {
       var previousActive = sidebar.querySelector('.section-link.active')
       var currentActive = typeof id === 'string'
         ? sidebar.querySelector('.section-link[href="#' + id + '"]')
@@ -202,6 +193,22 @@
       if (currentActive !== previousActive) {
         if (previousActive) previousActive.classList.remove('active')
         currentActive.classList.add('active')
+        if (shouldScrollIntoView) {
+          var currentPageOffset = currentPageAnchor.offsetTop - 8
+          var currentActiveOffset = currentActive.offsetTop + currentActive.parentNode.clientHeight
+          var sidebarHeight = sidebar.clientHeight
+          var currentActiveIsInView = (
+            currentActive.offsetTop >= sidebar.scrollTop &&
+            currentActiveOffset <= sidebar.scrollTop + sidebarHeight
+          )
+          var linkNotFurtherThanSidebarHeight = currentActiveOffset - currentPageOffset < sidebarHeight
+          var newScrollTop = currentActiveIsInView
+            ? sidebar.scrollTop
+            : linkNotFurtherThanSidebarHeight
+              ? currentPageOffset
+              : currentActiveOffset - sidebarHeight
+          sidebar.scrollTop = newScrollTop
+        }
       }
     }
 
