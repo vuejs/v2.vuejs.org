@@ -74,6 +74,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Migration from Vue 1.x
 - [ ] Migration from Vue Router 0.7.x
 - [x] Comparison with Other Frameworks (@ErickPetru)
+- [ ] Deployment
 
 **API**
 - [ ] Global Config
