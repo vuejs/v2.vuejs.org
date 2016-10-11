@@ -8,6 +8,45 @@ order: 26
 
 <p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
 
+## Router Initialization
+
+### `router.start` <sup>deprecated</sup>
+
+There is no longer a special API to initialize an app with Vue Router. That means instead of:
+
+``` js
+router.start({
+  template: '<router-view></router-view>'
+}, '#app')
+```
+
+You'll just pass a router property to a Vue instance:
+
+``` js
+new Vue({
+  el: '#app',
+  router: router,
+  template: '<router-view></router-view>'
+})
+```
+
+Or, if you're using the runtime-only build of Vue:
+
+``` js
+new Vue({
+  el: '#app',
+  router: router,
+  render: h => h('router-view')
+})
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
+</div>
+{% endraw %}
+
 ## Route Definitions
 
 ### `router.map` <sup>deprecated</sup>
