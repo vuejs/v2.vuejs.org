@@ -388,6 +388,18 @@
 </blockquote>
 <p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
 
+<h2 id="Router-Initialization"><a href="#Router-Initialization" class="headerlink" title="Router Initialization"></a>Router Initialization</h2><h3 id="router-start-deprecated"><a href="#router-start-deprecated" class="headerlink" title="router.start deprecated"></a><code>router.start</code> <sup>deprecated</sup></h3><p>There is no longer a special API to initialize an app with Vue Router. That means instead of:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.start(&#123;</div><div class="line">  template: <span class="string">'&lt;router-view&gt;&lt;/router-view&gt;'</span></div><div class="line">&#125;, <span class="string">'#app'</span>)</div></pre></td></tr></table></figure>
+<p>You’ll just pass a router property to a Vue instance:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  router: router,</div><div class="line">  template: <span class="string">'&lt;router-view&gt;&lt;/router-view&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>Or, if you’re using the runtime-only build of Vue:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  router: router,</div><div class="line">  render: h =&gt; h(<span class="string">'router-view'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
+</div>
+
 <h2 id="Route-Definitions"><a href="#Route-Definitions" class="headerlink" title="Route Definitions"></a>Route Definitions</h2><h3 id="router-map-deprecated"><a href="#router-map-deprecated" class="headerlink" title="router.map deprecated"></a><code>router.map</code> <sup>deprecated</sup></h3><p>Routes are now defined as an array on a <a href="http://router.vuejs.org/en/essentials/getting-started.html#javascript" target="_blank" rel="external"><code>routes</code> option</a> at router instantiation. So these routes for example:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.map(&#123;</div><div class="line">  <span class="string">'/foo'</span>: &#123;</div><div class="line">    component: Foo</div><div class="line">  &#125;,</div><div class="line">  <span class="string">'/bar'</span>: &#123;</div><div class="line">    component: Bar</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Will instead be defined with:</p>
