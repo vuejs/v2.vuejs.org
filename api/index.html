@@ -110,10 +110,17 @@
 
 
 <div class="content api with-sidebar ">
-    <div id="ad">
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+    
+      <div id="ad">
+  <span>Sponsored By</span><br>
+  <a href="http://www.thedifferenceengine.io/" target="_blank"
+    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
+    <img src="/images/tde.png">
+  </a>
+  <!-- <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script> -->
 </div>
 
+    
     <h1></h1>
     <h2 id="Global-Config"><a href="#Global-Config" class="headerlink" title="Global Config"></a>Global Config</h2><p><code>Vue.config</code> is an object containing Vue’s global configurations. You can modify its properties listed below before bootstrapping your application:</p>
 <h3 id="silent"><a href="#silent" class="headerlink" title="silent"></a>silent</h3><ul>
@@ -157,6 +164,9 @@
 <li><p><strong>Usage:</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.config.errorHandler = <span class="function"><span class="keyword">function</span> (<span class="params">err, vm</span>) </span>&#123;</div><div class="line">  <span class="comment">// handle error</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.</p>
+<blockquote>
+<p><a href="https://sentry.io" target="_blank" rel="external">Sentry</a>, an error tracking service, provides <a href="https://sentry.io/for/vue/" target="_blank" rel="external">official integration</a> using this option.</p>
+</blockquote>
 </li>
 </ul>
 <h3 id="keyCodes"><a href="#keyCodes" class="headerlink" title="keyCodes"></a>keyCodes</h3><ul>
@@ -165,8 +175,8 @@
 <li><p><strong>Default:</strong> <code>{}</code></p>
 </li>
 <li><p><strong>Usage:</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.config.keyCodes = &#123; esc: <span class="number">27</span> &#125;</div></pre></td></tr></table></figure>
-<p>Define custom key aliases for v-on.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.config.keyCodes = &#123;</div><div class="line">  v: <span class="number">86</span>,</div><div class="line">  f1: <span class="number">112</span>,</div><div class="line">  mediaPlayPause: <span class="number">179</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Define custom key alias(es) for v-on.</p>
 </li>
 </ul>
 <h2 id="Global-API"><a href="#Global-API" class="headerlink" title="Global API"></a>Global API</h2><h3 id="Vue-extend">Vue.extend( options )</h3>

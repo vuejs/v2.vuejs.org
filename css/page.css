@@ -208,6 +208,7 @@ a.button.white {
 }
 #ad {
   width: 125px;
+  text-align: center;
   position: fixed;
   z-index: 99;
   bottom: 10px;
@@ -218,10 +219,12 @@ a.button.white {
   font-size: 13px;
 }
 #ad a {
+  display: inline-block;
   color: #7f8c8d;
   font-weight: normal;
 }
 #ad span {
+  color: #7f8c8d;
   display: inline-block;
   margin-bottom: 5px;
 }
@@ -455,6 +458,11 @@ a.button.white {
 #demo p:last-child,
 .demo p:last-child {
   margin-bottom: 0;
+}
+#demo textarea,
+.demo textarea {
+  width: 100%;
+  resize: vertical;
 }
 ul#demo li,
 ul.demo li {
@@ -780,33 +788,14 @@ ul.demo li {
   #ad {
     z-index: 7;
     position: relative;
-    width: 100%;
     padding: 0;
     bottom: 0;
     right: 0;
-    margin: 0 0 15px -6px;
-  }
-  #ad .carbon-wrap,
-  #ad .carbon-img,
-  #ad .carbon-text,
-  #ad .carbon-poweredby {
-    display: inline-block;
-    vertical-align: top;
-  }
-  #ad .carbon-text {
-    width: 140px;
-    margin-left: 15px;
-  }
-  #ad .carbon-poweredby {
-    position: absolute;
-    bottom: 12px;
-    left: 140px;
+    float: right;
+    margin: 0 0 20px 30px;
   }
 }
 @media screen and (max-width: 900px) {
-  #ad {
-    width: 100%;
-  }
   body {
     -webkit-text-size-adjust: none;
     font-size: 14px;

@@ -208,6 +208,7 @@ a.button.white {
 }
 #ad {
   width: 125px;
+  text-align: center;
   position: fixed;
   z-index: 99;
   bottom: 10px;
@@ -218,10 +219,12 @@ a.button.white {
   font-size: 13px;
 }
 #ad a {
+  display: inline-block;
   color: #7f8c8d;
   font-weight: normal;
 }
 #ad span {
+  color: #7f8c8d;
   display: inline-block;
   margin-bottom: 5px;
 }
@@ -663,6 +666,14 @@ body {
 }
 #sponsors img:hover {
   filter: none;
+}
+#sponsors a.vip {
+  display: block;
+  margin: 30px auto 15px;
+  width: 200px;
+}
+#sponsors a.vip img {
+  width: 200px;
 }
 #sponsors .become-sponsor {
   margin-top: 40px;

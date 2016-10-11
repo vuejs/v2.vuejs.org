@@ -213,7 +213,7 @@
                 
                 
                 <li>
-                    <a href="/guide/transitions.html" class="sidebar-link">Transitions: Entering, Leaving, and Lists</a>
+                    <a href="/guide/transitions.html" class="sidebar-link">Transition Effects</a>
                 </li>
             
                 
@@ -277,6 +277,15 @@
                 
                 <li>
                     <a href="/guide/single-file-components.html" class="sidebar-link">Single File Components</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/deployment.html" class="sidebar-link">Deploying For Production</a>
                 </li>
             
                 
@@ -361,10 +370,17 @@
 
 
 <div class="content guide with-sidebar state-management-guide">
-    <div id="ad">
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+    
+      <div id="ad">
+  <span>Sponsored By</span><br>
+  <a href="http://www.thedifferenceengine.io/" target="_blank"
+    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
+    <img src="/images/tde.png">
+  </a>
+  <!-- <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script> -->
 </div>
 
+    
     <h1>State Management</h1>
     <h2 id="Official-Flux-Like-Implementation"><a href="#Official-Flux-Like-Implementation" class="headerlink" title="Official Flux-Like Implementation"></a>Official Flux-Like Implementation</h2><p>Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers <a href="https://github.com/vuejs/vuex" target="_blank" rel="external">vuex</a>: our own Elm-inspired state management library. It even integrates into <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="external">vue-devtools</a>, providing zero-setup access to time travel.</p>
 <h3 id="Information-for-React-Developers"><a href="#Information-for-React-Developers" class="headerlink" title="Information for React Developers"></a>Information for React Developers</h3><p>If you’re coming from React, you may be wondering how vuex compares to <a href="https://github.com/reactjs/redux" target="_blank" rel="external">redux</a>, the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via some <a href="https://github.com/egoist/revue" target="_blank" rel="external">simple bindings</a>. Vuex is different in that it <em>knows</em> it’s in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.</p>

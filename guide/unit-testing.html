@@ -213,7 +213,7 @@
                 
                 
                 <li>
-                    <a href="/guide/transitions.html" class="sidebar-link">Transitions: Entering, Leaving, and Lists</a>
+                    <a href="/guide/transitions.html" class="sidebar-link">Transition Effects</a>
                 </li>
             
                 
@@ -277,6 +277,15 @@
                 
                 <li>
                     <a href="/guide/single-file-components.html" class="sidebar-link">Single File Components</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/deployment.html" class="sidebar-link">Deploying For Production</a>
                 </li>
             
                 
@@ -361,10 +370,17 @@
 
 
 <div class="content guide with-sidebar unit-testing-guide">
-    <div id="ad">
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+    
+      <div id="ad">
+  <span>Sponsored By</span><br>
+  <a href="http://www.thedifferenceengine.io/" target="_blank"
+    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
+    <img src="/images/tde.png">
+  </a>
+  <!-- <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script> -->
 </div>
 
+    
     <h1>Unit Testing</h1>
     <h2 id="Setup-and-Tooling"><a href="#Setup-and-Tooling" class="headerlink" title="Setup and Tooling"></a>Setup and Tooling</h2><p>Anything compatible with a module-based build system will work, but if you’re looking for a specific recommendation, try the <a href="http://karma-runner.github.io" target="_blank" rel="external">Karma</a> test runner. It has a lot of community plugins, including support for <a href="https://github.com/webpack/karma-webpack" target="_blank" rel="external">Webpack</a> and <a href="https://github.com/Nikku/karma-browserify" target="_blank" rel="external">Browserify</a>. For detailed setup, please refer to each project’s respective documentation, though these example Karma configurations for <a href="https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js" target="_blank" rel="external">Webpack</a> and <a href="https://github.com/vuejs/vueify-example/blob/master/karma.conf.js" target="_blank" rel="external">Browserify</a> may help you get started.</p>
 <h2 id="Simple-Assertions"><a href="#Simple-Assertions" class="headerlink" title="Simple Assertions"></a>Simple Assertions</h2><p>In terms of code structure for testing, you don’t have to do anything special in your components to make them testable. Just export the raw options:</p>

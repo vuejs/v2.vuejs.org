@@ -213,7 +213,7 @@
                 
                 
                 <li>
-                    <a href="/guide/transitions.html" class="sidebar-link">Transitions: Entering, Leaving, and Lists</a>
+                    <a href="/guide/transitions.html" class="sidebar-link">Transition Effects</a>
                 </li>
             
                 
@@ -277,6 +277,15 @@
                 
                 <li>
                     <a href="/guide/single-file-components.html" class="sidebar-link">Single File Components</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/deployment.html" class="sidebar-link">Deploying For Production</a>
                 </li>
             
                 
@@ -361,10 +370,17 @@
 
 
 <div class="content guide with-sidebar instance-guide">
-    <div id="ad">
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+    
+      <div id="ad">
+  <span>Sponsored By</span><br>
+  <a href="http://www.thedifferenceengine.io/" target="_blank"
+    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
+    <img src="/images/tde.png">
+  </a>
+  <!-- <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script> -->
 </div>
 
+    
     <h1>The Vue Instance</h1>
     <h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p>Every Vue vm is bootstrapped by creating a <strong>root Vue instance</strong> with the <code>Vue</code> constructor function:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="comment">// options</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -378,7 +394,7 @@
 <p>It should be noted that only these proxied properties are <strong>reactive</strong>. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.</p>
 <p>In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with <code>$</code> to differentiate them from proxied data properties. For example:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> data = &#123; a: <span class="number">1</span> &#125;</div><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#example'</span>,</div><div class="line">  data: data</div><div class="line">&#125;)</div><div class="line"></div><div class="line">vm.$data === data <span class="comment">// -&gt; true</span></div><div class="line">vm.$el === <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>) <span class="comment">// -&gt; true</span></div><div class="line"></div><div class="line"><span class="comment">// $watch is an instance method</span></div><div class="line">vm.$watch(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">newVal, oldVal</span>) </span>&#123;</div><div class="line">  <span class="comment">// this callback will be called when `vm.a` changes</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p class="tip">Note that <strong>you should not use arrow functions on an instance property or callback</strong> (e.g. <code>vm.$watch(&#39;a&#39;, newVal =&gt; this.myMethod())</code>). The reason is arrow functions bind the parent context, so <code>this</code> will not be the Vue instance as you expect and <code>this.myMethod</code> will be undefined.</p>
+<p class="tip">Don’t use <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">arrow functions</a> on an instance property or callback (e.g. <code>vm.$watch(&#39;a&#39;, newVal =&gt; this.myMethod())</code>). As arrow functions are bound to the parent context, <code>this</code> will not be the Vue instance as you’d expect and <code>this.myMethod</code> will be undefined.</p>
 
 <p>Consult the <a href="/api">API reference</a> for the full list of instance properties and methods.</p>
 <h2 id="Instance-Lifecycle-Hooks"><a href="#Instance-Lifecycle-Hooks" class="headerlink" title="Instance Lifecycle Hooks"></a>Instance Lifecycle Hooks</h2><p>Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it will also invoke some <strong>lifecycle hooks</strong>, which give us the opportunity to execute custom logic. For example, the <code>created</code> hook is called after the instance is created:</p>

@@ -213,7 +213,7 @@
                 
                 
                 <li>
-                    <a href="/guide/transitions.html" class="sidebar-link">Transitions: Entering, Leaving, and Lists</a>
+                    <a href="/guide/transitions.html" class="sidebar-link">Transition Effects</a>
                 </li>
             
                 
@@ -277,6 +277,15 @@
                 
                 <li>
                     <a href="/guide/single-file-components.html" class="sidebar-link current">Single File Components</a>
+                </li>
+            
+                
+                
+                
+                
+                
+                <li>
+                    <a href="/guide/deployment.html" class="sidebar-link">Deploying For Production</a>
                 </li>
             
                 
@@ -361,10 +370,17 @@
 
 
 <div class="content guide with-sidebar single-file-components-guide">
-    <div id="ad">
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+    
+      <div id="ad">
+  <span>Sponsored By</span><br>
+  <a href="http://www.thedifferenceengine.io/" target="_blank"
+    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
+    <img src="/images/tde.png">
+  </a>
+  <!-- <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script> -->
 </div>
 
+    
     <h1>Single File Components</h1>
     <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>In many Vue projects, global components will be defined using <code>Vue.component</code>, followed by <code>new Vue({ el: &#39;#container &#39;})</code> to target a container element in the body of every page.</p>
 <p>This can work very well for small to medium-sized projects, where JavaScript is only used to enhance certain views. In more complex projects however, or when your frontend is entirely driven by JavaScript, these disadvantages become apparent:</p>
@@ -398,18 +414,6 @@
 <p>The template uses <a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>, a module bundler that takes a number of “modules” and then bundle them into your final application. To learn more about Webpack itself, <a href="https://www.youtube.com/watch?v=WQue1AN93YU" target="_blank" rel="external">this video</a> offers a good intro. Once you get past the basics, you might also want to check out <a href="https://egghead.io/courses/using-webpack-for-production-javascript-applications" target="_blank" rel="external">this advanced Webpack course on Egghead.io</a>.</p>
 <p>In Webpack, each module can be transformed by a “loader” before included into the bundle, and Vue offers the <a href="https://github.com/vuejs/vue-loader" target="_blank" rel="external">vue-loader</a> plugin to take care of translating <code>.vue</code> single-file components. The <a href="https://github.com/vuejs-templates/webpack-simple" target="_blank" rel="external">webpack-simple</a> template has already set up everything for you, but if you’d like to learn more about how <code>.vue</code> components work with Webpack, you can read <a href="https://vue-loader.vuejs.org" target="_blank" rel="external">the docs for vue-loader</a>.</p>
 <h3 id="For-Advanced-Users"><a href="#For-Advanced-Users" class="headerlink" title="For Advanced Users"></a>For Advanced Users</h3><p>Whether you prefer Webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing <a href="https://github.com/vuejs-templates" target="_blank" rel="external">github.com/vuejs-templates</a>, picking a template that’s right for you, then following the instructions in the README to generate a new project with <a href="https://github.com/vuejs/vue-cli" target="_blank" rel="external">vue-cli</a>.</p>
-<h2 id="Deploying-for-Production"><a href="#Deploying-for-Production" class="headerlink" title="Deploying for Production"></a>Deploying for Production</h2><p>The minified standalone build of Vue has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Webpack or Browserify, you will need some additional configuration to achieve this.</p>
-<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>Use Webpack’s <a href="http://webpack.github.io/docs/list-of-plugins.html#defineplugin" target="_blank" rel="external">DefinePlugin</a> to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">      <span class="string">'process.env'</span>: &#123;</div><div class="line">        NODE_ENV: <span class="string">'"production"'</span></div><div class="line">      &#125;</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">      compress: &#123;</div><div class="line">        warnings: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Browserify"><a href="#Browserify" class="headerlink" title="Browserify"></a>Browserify</h3><ul>
-<li>Run your bundling command with <code>NODE_ENV</code> set to <code>&quot;production&quot;</code>. This tells <code>vueify</code> to avoid including hot-reload and development related code.</li>
-<li>Apply a global <a href="https://github.com/hughsk/envify" target="_blank" rel="external">envify</a> transform to your bundle. This allows the minifier to strip out all the warnings in Vue’s source code wrapped in env variable conditional blocks. For example:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">NODE_ENV=production browserify -g envify <span class="_">-e</span> main.js | uglifyjs -c -m &gt; build.js</div></pre></td></tr></table></figure>
-<ul>
-<li>To extract styles to a separate css file use a extract-css plugin which is included in vueify.</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] <span class="_">-e</span> main.js | uglifyjs -c -m &gt; build.js</div></pre></td></tr></table></figure>
 
     
       <div class="guide-links">
@@ -417,7 +421,7 @@
           <span>← <a href="/guide/plugins.html">Plugins</a></span>
         
         
-          <span style="float:right"><a href="/guide/routing.html">Routing</a> →</span>
+          <span style="float:right"><a href="/guide/deployment.html">Deploying For Production</a> →</span>
         
       </div>
     
