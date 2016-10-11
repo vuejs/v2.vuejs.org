@@ -3,18 +3,22 @@ $header-height = 40px
 #header
     background-color #fff
     padding 25px 60px
-    position fixed
+    position relative
     z-index 2
-    width 100%
-    top 0px
-    left 0
-    height 40px
+
+body.docs
+    #header
+        position fixed
+        width 100%
+        top 0
+    #nav
+        position fixed
 
 #nav
     list-style-type none
     margin 0
     padding 0
-    position fixed
+    position absolute
     right 60px
     top 25px
     height $header-height
@@ -54,7 +58,6 @@ $header-height = 40px
     color $dark
     font-family $logo-font
     font-weight 500
-    position fixed
     img
         vertical-align middle
         margin-right 6px
