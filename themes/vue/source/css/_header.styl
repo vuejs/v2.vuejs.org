@@ -2,7 +2,8 @@ $header-height = 40px
 
 #header
     background-color #fff
-    padding 25px 60px
+    height: $heading-inner-height
+    padding $heading-padding-vertical 60px
     position relative
     z-index 2
 
@@ -20,7 +21,7 @@ body.docs
     padding 0
     position absolute
     right 60px
-    top 25px
+    top $heading-padding-vertical
     height $header-height
     line-height $header-height
     .break
