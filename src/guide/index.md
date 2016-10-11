@@ -6,7 +6,7 @@ order: 2
 
 ## Vue.js 是什么
 
-Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **先进框架**。与其他单层框架（ monolithic frameworks）不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。 
+Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **先进框架**。与其他单层框架（ monolithic frameworks）不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。
 
 Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
 
@@ -26,7 +26,7 @@ Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将�
 </div>
 ```
 ``` js
-new Vue({
+var app = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue.js!'
@@ -283,7 +283,8 @@ Vue.component('todo', {
     <todo v-for="todo in todos" v-bind:todo="todo"></todo>
   </ol>
 </div>
-``` 
+```
+
 ``` js
 var app7 = new Vue({
   el: '#app-7',
@@ -316,7 +317,7 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-这只是一个人为的例子，但是我们已经将我们的应用分割成了两小的单元，子元素通过 `props` 接口实现了与父亲元素很好的解耦。我们现在可以在不影响到父应用的基础上，进一步为我们的 `todo` 组件改进更多复杂的模板和逻辑。
+这只是一个人为的例子，但是我们已经将我们的应用分割成了两个更小的单元，子元素通过 `props` 接口实现了与父亲元素很好的解耦。我们现在可以在不影响到父应用的基础上，进一步为我们的 `todo` 组件改进更多复杂的模板和逻辑。
 
 在一个大型应用中，为了使得开发过程可控，有必要将应用整体分割成一个个的组件。在[后面的教程](/guide/components.html)中我们将详述组件，不过这里有一个（假想）的例子，看看使用了组件的应用模板是什么样的：
 
