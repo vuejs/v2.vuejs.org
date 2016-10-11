@@ -77,18 +77,18 @@ console.log(vm.reversedMessage) // -> 'eybdooG'
 
 Pode-se abrir o console e testar o exemplo você mesmo. O valor de `vm.reversedMessage` sempre dependerá do valor de `vm.message`
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function is pure and has no side effects, which makes it easy to test and reason about.
+Você pode relacionar as propriedades calculadas em templates como se fosse uma propriedade normal. Vue sabe que `vm.reversedMessage` depende de `vm.message`, então ele irá atualizar qualquer relação que dependa de `vm.reversedMessage` quando `vm.message` for alterado. E a melhor parte é que nós criamos esta relação de dependência de forma declarativa: A variável calculada é pura e não tem efeitos colaterais, o que torna fácil fazer testes e relações.
 
-### Computed Caching vs Methods
+### Cache das variáveis calculadas versus métodos
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+Você deve ter notado que podemos alcançar o mesmo resultado chamando um método:
 
 ``` html
 <p>Reversed message: "{{ reverseMessage() }}"</p>
 ```
 
 ``` js
-// in component
+// no componente
 methods: {
   reverseMessage: function () {
     return this.message.split('').reverse().join('')
@@ -96,9 +96,9 @@ methods: {
 }
 ```
 
-Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on its dependencies.** A computed property will only re-evaluate when some of its dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+Ao invés de uma propriedade calculada, nós podemos definir a mesma funcionalidade como um método. Para o resultado final, as duas abordagens possuem o mesmo resultado. Entretanto, a diferença é que **propriedades calculadas são cacheadas baseadas em suas dependências**. Uma propriedade calculada somente será re-calculada quando alguma de suas dependências for alterada. Isso significa que enquanto `message` não tiver alterações, múltiplos acessos a propriedade calculada `reversedMessage` irão retornar o último valor calculado sem executar a função novamente.
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+Isto significa que a seguinte propriedade calculada nunca será alterada, porque `Date.now()` nao faz parte da dependência reativa do Vue.
 
 ``` js
 computed: {
@@ -108,9 +108,11 @@ computed: {
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+Em comparação, a chamada a função de um método sempre será executada, sempre quando for chamada.
 
-Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+Porque nós preciamos de cachear? Imagine que uma propriedade computada extensa chamada **A**, na qual requer um loop através de um enorme Array e realizando vários cálculos. Então podemos ter outras propriedades computadas que por sua vez dependam de **A** também. Sem o cache, estaremos executando **A** mais vezes que o necessário. Nos casos em que você não necessita de cache, use métodos 
+
+Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use métodos.
 
 ### Computed vs Watched Property
 
