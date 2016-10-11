@@ -134,7 +134,7 @@
     window.addEventListener('scroll', updateSidebar)
     window.addEventListener('resize', updateSidebar)
 
-    function updateSidebar (event) {
+    function updateSidebar () {
       var doc = document.documentElement
       var top = doc && doc.scrollTop || document.body.scrollTop
       if (animating || !allHeaders) return
