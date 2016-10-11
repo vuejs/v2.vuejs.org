@@ -56,7 +56,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] Conditional Rendering (@gidenilson)
 - [ ] List Rendering (@ErickPetru)
 - [x] Event Handling (@gidenilson)
-- [ ] Form Input Bindings
+- [x] Form Input Bindings(@gidenilson)
 - [ ] Components
 - [ ] Advanced
 - [ ] Transitions: Entering, Leaving, and Lists
