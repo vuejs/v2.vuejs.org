@@ -173,7 +173,7 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para 'v-o
 <form v-on:submit.prevent="onSubmit"></form>
 
 <!-- modifiers can be chained -->
-<a v-on:click.stop.prevent="doThat">
+<a v-on:click.stop.prevent="doThat"></a>
 
 <!-- just the modifier -->
 <form v-on:submit.prevent></form>

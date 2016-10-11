@@ -77,6 +77,8 @@ type: api
 
   Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
 
+  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+
 ### keyCodes
 
 - **Type:** `{ [key: string]: number }`
@@ -90,7 +92,7 @@ type: api
     v: 86,
     f1: 112,
     mediaPlayPause: 179
-  } 
+  }
   ```
 
   Define custom key alias(es) for v-on.
