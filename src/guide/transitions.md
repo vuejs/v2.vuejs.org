@@ -1,5 +1,5 @@
 ---
-title: 'Transitions: Entering, Leaving, and Lists'
+title: 'Transition Effects'
 type: guide
 order: 12
 ---
@@ -1468,7 +1468,7 @@ Vue.component('my-special-transition', {
     <transition\
       name="very-special-transition"\
       mode="out-in"\
-      v-on:before-enter="beforEnter"\
+      v-on:before-enter="beforeEnter"\
       v-on:after-enter="afterEnter"\
     >\
       <slot></slot>\

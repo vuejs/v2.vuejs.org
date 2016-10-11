@@ -1,12 +1,14 @@
 ---
-title: Conditional Rendering
+title: Renderização Condicional
 type: guide
 order: 7
 ---
 
+
+
 ## v-if
 
-In string templates, for example Handlebars, we would write a conditional block like this:
+Em string templates, Handlebars por exemplo, escreveríamos um bloco condicional como este:
 
 ``` html
 <!-- Handlebars template -->
@@ -15,13 +17,13 @@ In string templates, for example Handlebars, we would write a conditional block 
 {{/if}}
 ```
 
-In Vue, we use the `v-if` directive to achieve the same:
+No Vue, usamos a diretiva `v-if` para conseguir o mesmo:
 
 ``` html
 <h1 v-if="ok">Yes</h1>
 ```
 
-It is also possible to add an "else" block with `v-else`:
+Também é possível adicionar um bloco "else" com `v-else`:
 
 ``` html
 <h1 v-if="ok">Yes</h1>
@@ -30,7 +32,7 @@ It is also possible to add an "else" block with `v-else`:
 
 ### Template v-if
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+Como `v-if` é uma diretiva, precisa ser anexado a um único elemento. Mas e se quisermos alternar entre mais de um elemento? Neste caso podemos usar `v-if` em um elemento `<template>`, que serve como um invólucro invisível. O resultado final processado não incluirá o elemento `<template>`.
 
 ``` html
 <template v-if="ok">
@@ -42,7 +44,7 @@ Because `v-if` is a directive, it has to be attached to a single element. But wh
 
 ### v-else
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+Você pode usar a diretiva `v-else` para indicar um "bloco else" para `v-if`:
 
 ``` html
 <div v-if="Math.random() > 0.5">
@@ -53,26 +55,26 @@ You can use the `v-else` directive to indicate an "else block" for `v-if`:
 </div>
 ```
 
-The `v-else` element must immediately follow the `v-if` element - otherwise it will not be recognized.
+O elemento `v-else` deve seguir imediatamente o `v-if` - caso contrário `v-else` não será reconhecido.
 
 ## v-show
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+Outra opção para mostrar condicionalmente um elemento é a diretiva `v-show`. O que é basicamente o mesmo.
 
 ``` html
 <h1 v-show="ok">Hello!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` simply toggles the `display` CSS property of the element.
+A diferença é que um elemento com `v-show` sempre será renderizado e incluído no DOM; `v-show` simplesmente alterna a propriedade CSS `display` do elemento.
 
-<p class="tip">Note that `v-show` doesn't support the `<template>` syntax, nor does it work with `v-else`.</p>
+<p class="tip">Observe que `v-show` não oferece suporte a sintaxe de   `<template>`, nem funciona com `v-else`.</p>
 
 ## v-if vs. v-show
 
-`v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+`v-if` é a renderização condicional "real", pois garante que event listeners e  componentes child dentro do bloco condicional sejam devidamente destruídos e recriados durante a alternância.
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+`v-if` também é **preguiçoso**: se a condição for false na renderização inicial, `v-if` não fará nada - o bloco condicional não vai ser processado até que a condição se torne verdadeira pela primeira vez.
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with just simple CSS-based toggling.
+Em comparação, `v-show` é muito mais simples - o elemento é sempre processado independentemente da condição inicial, a visibilidade do elemento se basea simplesmente na alteração do CSS.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+De um modo geral, `v-if` tem um custo maior de alternância, enquanto `v-show` tem um custo maior na renderização inicial. Então prefira `v-show`, se você precisa alternar alguma coisa muito frequentemente; e prefira `v-if` se é mais improvável que a condição mude em tempo de execução.

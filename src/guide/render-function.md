@@ -162,6 +162,20 @@ Importante observar: assim como `v-bind:class` e `v-bind:style` têm tratamento 
   nativeOn: {
     click: this.nativeClickHandler
   },
+  // Diretivas customizadas. Veja que como o bind de 
+  // oldValue não pode ser setado, o Vue contina continua mantendo
+  // o valor dele para você
+  directives: [
+    {
+      name: 'my-custom-directive', 
+      value: '2'
+      expression: '1 + 1',
+      arg: 'foo',
+      modifiers: {
+        bar: true
+      }
+    }
+  ],
   // O nome do slot (se o elemento for filho de um componente)
   slot: 'name-of-slot'
   // Outras propriedades especiais no primeiro nível
@@ -232,7 +246,6 @@ Se você realmente quiser duplicar o mesmo elemento ou componente várias vezes,
 
 ``` js
 render: function (createElement) {
-  var myParagraph =
   return createElement('div',
     Array.apply(null, { length: 20 }).map(function () {
       return createElement('p', 'oi')

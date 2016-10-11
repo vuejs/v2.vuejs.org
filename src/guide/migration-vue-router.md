@@ -1,7 +1,7 @@
 ---
 title: Migration from Vue Router 0.7.x
 type: guide
-order: 25
+order: 26
 ---
 
 > Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](http://router.vuejs.org/en/).
@@ -351,7 +351,7 @@ This option is no longer necessary now that Vue's transition system has explicit
 
 ### `suppressTransitionError` <sup>deprecated</sup>
 
-Removed due to hooks simplification. If you really must supress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
+Removed due to hooks simplification. If you really must suppress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
 
 {% raw %}
 <div class="upgrade-path">
@@ -465,7 +465,7 @@ methods: {
       .then(function (response) {
         this.posts = response.data.posts
       })
-      .catch(funciton (error) {
+      .catch(function (error) {
         this.fetchError = error
       })
   }

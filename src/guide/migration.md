@@ -1,7 +1,7 @@
 ---
 title: Migration from Vue 1.x
 type: guide
-order: 24
+order: 25
 ---
 
 ## FAQ
@@ -290,7 +290,7 @@ Props are now always one-way down. To produce side effects in the parent scope, 
 
 - [Custom component events](components.html#Custom-Events)
 - [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state managment](state-management.html)
+- [Global state management](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
@@ -305,7 +305,7 @@ Props are now always one-way down. To produce side effects in the parent scope, 
 
 - [Custom component events](components.html#Custom-Events)
 - [Custom input components](components.html#Form-Input-Components-using-Custom-Events) (using component events)
-- [Global state managment](state-management.html)
+- [Global state management](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
@@ -908,7 +908,7 @@ Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US
 computed: {
   filteredUsers: function () {
     return this.users.filter(function (user) {
-      return user.name.indexOf(this.searchQuery)
+      return user.name.indexOf(this.searchQuery) !== -1
     })
   }
 }

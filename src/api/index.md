@@ -77,6 +77,8 @@ type: api
 
   Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
 
+  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+
 ### keyCodes
 
 - **Type:** `{ [key: string]: number }`
@@ -86,10 +88,14 @@ type: api
 - **Usage:**
 
   ``` js
-  Vue.config.keyCodes = { esc: 27 }
+  Vue.config.keyCodes = {
+    v: 86,
+    f1: 112,
+    mediaPlayPause: 179
+  }
   ```
 
-  Define custom key aliases for v-on.
+  Define custom key alias(es) for v-on.
 
 ## Global API
 
@@ -779,7 +785,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the Vue devtool, unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
 
 ### extends
 

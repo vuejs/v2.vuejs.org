@@ -52,11 +52,11 @@ Estas palavras podem ser mantidas no inglês
 - [x] The Vue Instance (@danielschmitz)
 - [x] Template Syntax (@vitorarjol)
 - [ ] Computed Properties and Watchers (@danielschmitz)
-- [ ] Class and Style Bindings
-- [ ] Conditional Rendering
+- [x] Class and Style Bindings (@gidenilson)
+- [x] Conditional Rendering (@gidenilson)
 - [ ] List Rendering (@ErickPetru)
-- [ ] Event Handling
-- [ ] Form Input Bindings
+- [x] Event Handling (@gidenilson)
+- [x] Form Input Bindings(@gidenilson)
 - [ ] Components
 - [ ] Advanced
 - [ ] Transitions: Entering, Leaving, and Lists
@@ -67,13 +67,14 @@ Estas palavras podem ser mantidas no inglês
 - [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
 - [ ] Single File Components
-- [ ] Routing
+- [ ] Routing (@natanaelphp)
 - [ ] State Management
 - [ ] Unit Testing
 - [ ] Server-Side Rendering
 - [ ] Migration from Vue 1.x
 - [ ] Migration from Vue Router 0.7.x
 - [x] Comparison with Other Frameworks (@ErickPetru)
+- [ ] Deployment
 
 **API**
 - [ ] Global Config

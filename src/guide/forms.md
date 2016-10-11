@@ -36,7 +36,7 @@ new Vue({
 
 ``` html
 <span>Multiline message is:</span>
-<p>{{ message }}</p>
+<p style="white-space: pre">{{ message }}</p>
 <br>
 <textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
@@ -85,7 +85,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Mutiple checkboxes, bound to the same Array:
+Multiple checkboxes, bound to the same Array:
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">

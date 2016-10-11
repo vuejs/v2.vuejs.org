@@ -1,7 +1,7 @@
 ---
 title: Server-Side Rendering
 type: guide
-order: 23
+order: 24
 ---
 
 ## Do You Need SSR?
