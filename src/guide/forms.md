@@ -333,7 +333,7 @@ vm.selected.number // -> 123
 
 ### `.lazy`
 
-在默认情况下， `v-model` 在 `input` 事件中同步输入框值与数据，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
+在默认情况下， `v-model` 在 `input` 事件中同步输入框的值与数据，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
 
 ``` html
 <!-- 在 "change" 而不是 "input" 事件中更新 -->
@@ -350,15 +350,6 @@ vm.selected.number // -> 123
 ```
 
 这通常很有用，因为在 `type="number"` 时 HTML 中输入的值也总是会返回字符串类型。
-
-### `.trim`
-
-如果想让用户的输入内容自动去掉起始和结尾的空格。可以添加 `trim` 修饰符给 `v-model` 来处理输入值：
-
-``` html
-<input v-model.trim="msg">
-```
-
 
 
 ### `.trim`
