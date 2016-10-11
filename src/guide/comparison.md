@@ -164,7 +164,7 @@ JSX的渲染功能有一些优势：
 
 还没有结束。Vue拥抱HTML，而不是用JavaScript重塑它。在模板内，Vue也允许你用预处理器比如Pub（原名 Jade） 。
 
-React 生态也有一个[项目](https://wix.github.io/react-templates/)允许你写摸吧，但是有一些缺点：
+React 生态也有一个[项目](https://wix.github.io/react-templates/)允许你写模板，但是有一些缺点：
 
 - 功能远没有 Vue 模板系统的丰富。
 - 需要从组件文件中分离出HTML代码。
@@ -172,7 +172,7 @@ React 生态也有一个[项目](https://wix.github.io/react-templates/)允许�
 
 #### CSS的组件作用域
 
-除非你把组件分布在多个文件上(例如 [CSS Modules](https://github.com/gajus/react-css-modules)),要不作用域内的CSS就会暴警告。非常简单的CSS还可以工作，但是稍微复杂点的，比如悬停状态、媒体查询、伪类选择符要么会被修改要么就不能用。
+除非你把组件分布在多个文件上(例如 [CSS Modules](https://github.com/gajus/react-css-modules)),要不作用域内的CSS就会报警告。非常简单的CSS还可以工作，但是稍微复杂点的，比如悬停状态、媒体查询、伪类选择符要么会被修改要么就不能用。
 
 Vue让你可以完全访问[ 单文件组件 ](single-file-components.html)。
 
@@ -210,7 +210,7 @@ Vue和React都提供了强大的路由来应对对于大型应用。React社区�
 
 React学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 ES2015，因为许多示例用的是这些语法。你需要学习构建系统，虽然你可以在技术上可以用 Babel Standalone 来编译代码，但是不推荐用于生产。
 
-Vue样扩大后就像React，缩小后就像 Jquery。你需要做的就是把如下标签放到页面就行：
+Vue扩大后就像React，缩小后就像 Jquery。你需要做的就是把如下标签放到页面就行：
 
 
 `<script src="https://unpkg.com/vue/dist/vue.js"></script>`
@@ -229,11 +229,11 @@ ReactNative能使你用相同的组件模型编写有本地渲染能力的APP（
 
 ### MobX
 
-Mobx 在 React 社区很流行，实际上在Vue也采用了几乎相同的反应系统。在有限程度上，React + Mobx 也可以被认为是更繁琐的 Vue，所以如果你习惯组合使用它们，那么选择 Vue 会更合理。
+Mobx 在 React 社区很流行，实际上Vue也采用了几乎相同的反应系统。在有限程度上，React + Mobx 也可以被认为是更繁琐的 Vue，所以如果你习惯组合使用它们，那么选择 Vue 会更合理。
 
 ## Angular 1
 
-Vue的一些语法和Angular的很相似（例如 `v-if` vs  `ng-if`）。因为Angular是Vue早期开发的灵感来源。然而，Augular中存在许多问题，在Vue中已经得到解决。
+Vue的一些语法和Angular的很相似（例如 `v-if` vs  `ng-if`）。因为Angular是Vue早期开发的灵感来源。然而，Augular中存在的许多问题，在Vue中已经得到解决。
 
 ### 复杂性
 
@@ -246,7 +246,7 @@ Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方�
 
 ### 数据绑定
 
-Angular 1 使用双向绑定，Vue在不同组件间强制适用单向数据流。这使应用中的数据流清晰易懂。
+Angular 1 使用双向绑定，Vue在不同组件间强制使用单向数据流。这使应用中的数据流清晰易懂。
 
 ### 指令与组件
 
@@ -299,7 +299,7 @@ Ember 是一个全能框架。它提供大量的约定，一旦你熟悉了它�
 
 * Vue 的模板语法可以用全功能的 JavaScript 表达式，而 Handlebars 的语法和帮助函数语法相比之下非常受限。
 
-* 在性能上，Vue 甩开 Ember 几条街，即使是 Ember2.0 的最新Glimmer引擎。Vue自动批量更新，Ember 当性能关键处需要手动管理。
+* 在性能上，Vue 甩开 Ember 几条街，即使是 Ember2.0 的最新Glimmer引擎。Vue自动批量更新，Ember 在性能关键处需要手动管理。
 
 ## Knockout
 
@@ -315,7 +315,7 @@ Polymer 是另一个由谷歌赞助的项目，事实上也是Vue的一个灵感
  
 在 Polymer 1.0版本中，为了弥补性能，团队非常有限的使用数据绑定系统。例如，在Ploymer中支持的唯一表达式只有布尔值否定和单一的方法的调用，它的computed方法的实现也不是很灵活。
 
-Polymer 自定义的元素是用HTML文件来创建的，这回限制你的普通的JavaScript/CSS（和被现代浏览器普遍支持的语言特性）。相比之下，Vue的单文件允许你非常容易的使用ES2015和你想用的Css的预编译处理器。
+Polymer 自定义的元素是用HTML文件来创建的，这会限制你的普通的JavaScript/CSS（和被现代浏览器普遍支持的语言特性）。相比之下，Vue的单文件允许你非常容易的使用ES2015和你想用的CSS的预编译处理器。
 
 当部署到生产环境的时候，Polymer建议使用HTML Imports加载所有资源。而这要求服务器和客户端都支持Http 2.0协议，且浏览器实现了标准。这是否可行就取决于你的目标用户和部署环境了。如果状况不佳，你必须用Vulcanizer工具来来打包Polymer元素。在这方面，Vue 可以结合异步组件的特性和Webpack的代码分割特性来实现懒加载（lazy-loaded）。这同时确保了对旧浏览器的兼容且又能更快加载。 
 
