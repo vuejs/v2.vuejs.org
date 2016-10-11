@@ -51,7 +51,7 @@ NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o buil
 
 ## Tracking Runtime Errors
 
-If a runtime error occurs during a component's render, it will be passed to the global `Vue.config.errorHandler` config function is it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
+If a runtime error occurs during a component's render, it will be passed to the global `Vue.config.errorHandler` config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
 
 ## Extracting CSS
 
