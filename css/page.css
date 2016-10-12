@@ -806,6 +806,11 @@ ul.demo li {
 #main.fix-sidebar .sidebar {
   position: fixed;
 }
+@media screen and (min-width: 1400px) {
+  #header {
+    background-color: rgba(255,255,255,0.4);
+  }
+}
 @media screen and (max-width: 1300px) {
   .content.with-sidebar {
     margin-left: 290px;
