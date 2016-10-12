@@ -548,23 +548,20 @@ ul.demo li {
 .sponsors-page a {
   margin: 10px 20px;
 }
-.migration-guide h3 > sup,
-.migration-vue-router-guide h3 > sup {
+.content.guide[class*="migration"] h2 > sup,
+.content.guide[class*="migration"] h3 > sup {
   margin-left: 0.3em;
   color: #b9465c;
 }
-.migration-guide .upgrade-path,
-.migration-vue-router-guide .upgrade-path {
+.content.guide[class*="migration"] .upgrade-path {
   padding: 2em;
   background: rgba(73,195,140,0.1);
   border-radius: 2px;
 }
-.migration-guide .upgrade-path > h4,
-.migration-vue-router-guide .upgrade-path > h4 {
+.content.guide[class*="migration"] .upgrade-path > h4 {
   margin-top: 0;
 }
-.migration-guide .upgrade-path > p:last-child,
-.migration-vue-router-guide .upgrade-path > p:last-child {
+.content.guide[class*="migration"] .upgrade-path > p:last-child {
   margin-bottom: 0;
 }
 .sidebar {

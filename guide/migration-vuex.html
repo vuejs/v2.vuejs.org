@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Plugins - vue.js</title>
+        <title>Migration from Vuex 0.6.x to 1.0 - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -266,7 +266,7 @@
                 
                 
                 <li>
-                    <a href="/guide/plugins.html" class="sidebar-link current">Plugins</a>
+                    <a href="/guide/plugins.html" class="sidebar-link">Plugins</a>
                 </li>
             
                 
@@ -349,7 +349,7 @@
                 
                 
                 <li>
-                    <a href="/guide/migration-vuex.html" class="sidebar-link">Migration from Vuex 0.6.x to 1.0</a>
+                    <a href="/guide/migration-vuex.html" class="sidebar-link current">Migration from Vuex 0.6.x to 1.0</a>
                 </li>
             
                 
@@ -377,7 +377,7 @@
 </div>
 
 
-<div class="content guide with-sidebar plugins-guide">
+<div class="content guide with-sidebar migration-vuex-guide">
     
       <div id="ad">
   <span>Sponsored By</span><br>
@@ -390,45 +390,65 @@
 
     
     
-      <h1>Plugins</h1>
+      <h1>Migration from Vuex 0.6.x to 1.0</h1>
     
-    <h2 id="Writing-a-Plugin"><a href="#Writing-a-Plugin" class="headerlink" title="Writing a Plugin"></a>Writing a Plugin</h2><p>Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:</p>
-<ol>
-<li><p>Add some global methods or properties. e.g. <a href="https://github.com/vuejs/vue-element" target="_blank" rel="external">vue-element</a></p>
-</li>
-<li><p>Add one or more global assets: directives/filters/transitions etc. e.g. <a href="https://github.com/vuejs/vue-touch" target="_blank" rel="external">vue-touch</a></p>
-</li>
-<li><p>Add some component options by global mixin. e.g. <a href="https://github.com/vuejs/vuex" target="_blank" rel="external">vuex</a></p>
-</li>
-<li><p>Add some Vue instance methods by attaching them to Vue.prototype.</p>
-</li>
-<li><p>A library that provides an API of its own, while at the same time injecting some combination of the above. e.g. <a href="https://github.com/vuejs/vue-router" target="_blank" rel="external">vue-router</a></p>
-</li>
-</ol>
-<p>A Vue.js plugin should expose an <code>install</code> method. The method will be called with the <code>Vue</code> constructor as the first argument, along with possible options:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">MyPlugin.install = <span class="function"><span class="keyword">function</span> (<span class="params">Vue, options</span>) </span>&#123;</div><div class="line">  <span class="comment">// 1. add global method or property</span></div><div class="line">  Vue.myGlobalMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// something logic ...</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 2. add a global asset</span></div><div class="line">  Vue.directive(<span class="string">'my-directive'</span>, &#123;</div><div class="line">    bind (el, binding, vnode, oldVnode) &#123;</div><div class="line">      <span class="comment">// something logic ...</span></div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">  &#125;)</div><div class="line"></div><div class="line">  <span class="comment">// 3. inject some component options</span></div><div class="line">  Vue.mixin(&#123;</div><div class="line">    created: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// something logic ...</span></div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">  &#125;)</div><div class="line"></div><div class="line">  <span class="comment">// 4. add an instance method</span></div><div class="line">  Vue.prototype.$myMethod = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</div><div class="line">    <span class="comment">// something logic ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Using-a-Plugin"><a href="#Using-a-Plugin" class="headerlink" title="Using a Plugin"></a>Using a Plugin</h2><p>Use plugins by calling the <code>Vue.use()</code> global method:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// calls `MyPlugin.install(Vue)`</span></div><div class="line">Vue.use(MyPlugin)</div></pre></td></tr></table></figure>
-<p>You can optionally pass in some options:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.use(MyPlugin, &#123; someOption: <span class="literal">true</span> &#125;)</div></pre></td></tr></table></figure>
-<p><code>Vue.use</code> automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.</p>
-<p>Some plugins provided by Vue.js official plugins such as <code>vue-router</code> automatically calls <code>Vue.use()</code> if <code>Vue</code> is available as a global variable. However in a module environment such as CommonJS, you always need to call <code>Vue.use()</code> explicitly:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// When using CommonJS via Browserify or Webpack</span></div><div class="line"><span class="keyword">var</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"><span class="keyword">var</span> VueRouter = <span class="built_in">require</span>(<span class="string">'vue-router'</span>)</div><div class="line"></div><div class="line"><span class="comment">// Don't forget to call this</span></div><div class="line">Vue.use(VueRouter)</div></pre></td></tr></table></figure>
-<p>Checkout <a href="https://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="external">awesome-vue</a> for a huge collection of community-contributed plugins and libraries.</p>
+    <blockquote>
+<p>Vuex 2.0 is released, but this guide only covers the migration to 1.0? Is that a typo? Also, it looks like Vuex 1.0 and 2.0 were released simultaneously. What’s going on? Which one should I use and what’s compatible with Vue 2.0?</p>
+</blockquote>
+<p>Both Vuex 1.0 and 2.0:</p>
+<ul>
+<li>fully support both Vue 1.0 and 2.0</li>
+<li>will be maintained for the forseeable future</li>
+</ul>
+<p>They have slightly different target users however.</p>
+<p><strong>Vuex 2.0</strong> is a radical redesign and simplification of the API, for those who are starting new projects or want to be on the cutting edge of client-side state management. <strong>It is not covered by this migration guide</strong>, so you should check out <a href="https://vuex.vuejs.org/en/index.html" target="_blank" rel="external">the Vuex 2.0 docs</a> if you’d like to learn more about it.</p>
+<p><strong>Vuex 1.0</strong> is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who just want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see <a href="https://github.com/vuejs/vuex/tree/1.0/docs/en" target="_blank" rel="external">the Vuex 1.0 docs</a>.</p>
+<p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
+
+<h2 id="store-watch-with-String-Property-Path-deprecated"><a href="#store-watch-with-String-Property-Path-deprecated" class="headerlink" title="store.watch with String Property Path deprecated"></a><code>store.watch</code> with String Property Path <sup>deprecated</sup></h2><p><code>store.watch</code> now only accept functions. So for example, you would have to replace:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">store.watch(<span class="string">'user.notifications'</span>, callback)</div></pre></td></tr></table></figure>
+<p>with:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">store.watch(</div><div class="line">  <span class="comment">// When the returned result changes...</span></div><div class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> state.user.notifications</div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// Run this callback</span></div><div class="line">  callback</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>This gives you more complete control over the reactive properties you’d like to watch.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>store.watch</code> with a string as the first argument.</p>
+</div>
+
+<h2 id="Store’s-Event-Emitter-deprecated"><a href="#Store’s-Event-Emitter-deprecated" class="headerlink" title="Store’s Event Emitter deprecated"></a>Store’s Event Emitter <sup>deprecated</sup></h2><p>The store instance no longer exposes the event emitter interface (<code>on</code>, <code>off</code>, <code>emit</code>). If you were previously using the store as a global event bus, <a href="http://vuejs.org/guide/migration.html#dispatch-and-broadcast-deprecated">see this section</a> for migration instructions.</p>
+<p>Instead of using this interface to watch events emitted by the store itself (e.g. <code>store.on(&#39;mutation&#39;, callback)</code>), a new method <code>store.subscribe</code> is introduced. Typical usage inside a plugin would be:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> myPlugin = store =&gt; &#123;</div><div class="line">  store.subscribe(<span class="function"><span class="keyword">function</span> (<span class="params">mutation, state</span>) </span>&#123;</div><div class="line">    <span class="comment">// Do something...</span></div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>See example <a href="https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md" target="_blank" rel="external">the plugins docs</a> for more info.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>store.on</code>, <code>store.off</code>, and <code>store.emit</code>.</p>
+</div>
+
+<h2 id="Middlewares-deprecated"><a href="#Middlewares-deprecated" class="headerlink" title="Middlewares deprecated"></a>Middlewares <sup>deprecated</sup></h2><p>Middlewares are replaced by plugins. A plugin is simply a function that receives the store as the only argument, and can listen to the mutation event on the store:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> myPlugins = store =&gt; &#123;</div><div class="line">  store.subscribe(<span class="string">'mutation'</span>, (mutation, state) =&gt; &#123;</div><div class="line">    <span class="comment">// Do something...</span></div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>For more details, see <a href="https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md" target="_blank" rel="external">the plugins docs</a>.</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>middlewares</code> option on a store.</p>
+</div>
+
 
     
       <div class="guide-links">
         
-          <span>← <a href="/guide/mixins.html">Mixins</a></span>
+          <span>← <a href="/guide/migration-vue-router.html">Migration from Vue Router 0.7.x</a></span>
         
         
-          <span style="float:right"><a href="/guide/single-file-components.html">Single File Components</a> →</span>
+          <span style="float:right"><a href="/guide/comparison.html">Comparison with Other Frameworks</a> →</span>
         
       </div>
     
     <div class="footer">
       Caught a mistake or want to contribute to the documentation?
-      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/guide/plugins.md" target="_blank">
+      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/guide/migration-vuex.md" target="_blank">
         Edit this page on Github!
       </a>
     </div>
