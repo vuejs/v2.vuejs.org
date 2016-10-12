@@ -638,7 +638,6 @@ bus.$emit('id-selected', 1)
 ```
 ``` js
 // 在组件 B 创建的钩子中监听事件
->>>>>>> cuiyongjian-2.0-cn
 bus.$on('id-selected', function (id) {
   // ...
 })
