@@ -1635,13 +1635,13 @@ type: api
 
 ### component
 
-- **特性：**
+- **Props：**
   - `is` - string | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
 - **用法：**
 
-  渲染一个“元组件”为动态组件。依 `is` 的值决定哪个组件被渲染。
+  渲染一个“元组件”为动态组件。依 `is` 的值, 来决定哪个组件被渲染。
 
   ```html
   <!-- 动态组件由 vm 实例的属性值 `componentId` 控制 -->
@@ -1655,7 +1655,7 @@ type: api
 
 ### transition
 
-- **特性：**
+- **Props：**
   - `name` - string, 用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为`.fade-enter`，`.fade-enter-active`等。默认类名为 `"v"`
   - `appear` - boolean, 是否在初始渲染时使用过渡。默认为 `false`。
   - `css` - boolean, 是否使用 CSS 过渡类。默认为 `true`。如果设置为 `false`，将只通过组件事件触发注册的 JavaScript 钩子。
@@ -1718,7 +1718,7 @@ type: api
 
 ### transition-group
 
-- **特性：**
+- **Props：**
   - `tag` - string, 默认为 `span`
   - `move-class` - 覆盖移动过渡期间应用的 CSS 类。
   - 除了 `mode`，其他特性和 `<transition>` 相同。
@@ -1780,15 +1780,14 @@ type: api
 
 ### slot
 
-- **特性：**
+- **Props：**
   - `name` - string, 用于命名插槽。
 
 - **Usage:**
 
   `<slot>` 元素作为组件模板之中的内容分发插槽。 `<slot>` 元素自身将被替换。
 
-  详细用法，请参考下面 guide 部分的链接。
-  For detailed usage, see the guide section linked below.
+  详细用法，请参考下面教程的链接。
 
 - **另见：** [使用Slots分发内容](/guide/components.html#使用Slots分发内容)
 
