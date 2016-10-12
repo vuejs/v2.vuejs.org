@@ -568,9 +568,9 @@ ul.demo li {
   position: absolute;
   z-index: 10;
   top: 61px;
-  left: 60px;
+  left: 0;
   bottom: 0;
-  padding: 40px 0;
+  padding: 40px 0 30px 60px;
   width: 260px;
   margin-right: 20px;
   overflow-x: hidden;
@@ -659,7 +659,7 @@ ul.demo li {
   }
 }
 #header {
-  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+  box-shadow: 0 0 1px rgba(0,0,0,0.25);
 }
 .content {
   position: relative;
