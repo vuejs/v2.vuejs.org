@@ -1364,7 +1364,7 @@ type: api
   - `.stop` - 调用 `event.stopPropagation()`。
   - `.prevent` - 调用 `event.preventDefault()`。
   - `.capture` - 添加事件侦听器时使用 capture 模式。
-  - `.self` - only trigger handler if event was dispatched from this element.
+  - `.self` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
   - `.{keyCode | keyAlias}` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
   - `.native` - 监听组件根元素的原生事件。
 
