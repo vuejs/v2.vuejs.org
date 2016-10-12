@@ -95,7 +95,7 @@ computed: mapState([
 
 ### 对象扩展运算符
 
-注意，`mapState` 返回一个对象。我们如何使用 mapState 合并其他局部的计算属性呢？通常地，为了将多个对象合并为一个对象，再传入这个合并好的最终对象到 `computed` 属性去，我们不得不使用一个工具函数来实现。然而有了[对象扩展运算符](https://github.com/sebmarkbage/ecmascript-rest-spread)（ECMAScript标准提案 stage-3），我们就能够让语法变得简洁起来：
+注意，`mapState` 返回一个对象。我们如何使用 mapState 合并其他局部的计算属性呢？通常地，为了将多个对象合并为一个对象，再把这个合并好的最终对象传入到 `computed` 属性去，我们不得不使用一个工具函数来实现。然而有了[对象扩展运算符](https://github.com/sebmarkbage/ecmascript-rest-spread)（ECMAScript 标准提案 stage-3），我们就能够让语法变得简洁起来：
 
 ``` js
 computed: {
