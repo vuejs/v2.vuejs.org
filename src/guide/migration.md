@@ -1384,7 +1384,7 @@ vm.$el.remove()
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>找到<code>vm.$remove</code>.。如有遗漏，请参考<strong>控制台错误信息</strong>。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>找到<code>vm.$remove</code>。如有遗漏，请参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 

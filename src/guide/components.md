@@ -29,7 +29,7 @@ Vue.component('my-component', {
 })
 ```
 
-<p class="tip">对于自定义标签名字， Vue.js 不强制要求遵循 W3C 规则（小写，并且包含一个短杠），尽管遵循这个规则比较好。</p>
+<p class="tip">对于自定义标签名，Vue.js 不强制要求遵循 [W3C规则](https://www.w3.org/TR/custom-elements/#concepts) （小写，并且包含一个短杠），尽管遵循这个规则比较好。</p>
 
 组件在注册之后，便可以在父实例的模块中以自定义元素 `<my-component></my-component>` 的形式使用。要确保在初始化根实例 **之前** 注册了组件：
 
@@ -83,7 +83,7 @@ var Child = {
 new Vue({
   // ...
   components: {
-    // <my-component> will only be available in parent's template
+    // <my-component> 将只在父模板可用
     'my-component': Child
   }
 })
@@ -228,16 +228,16 @@ new Vue({
 
 ### 使用Props传递数据
 
-**组件实例的作用域是孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
+组件实例的作用域是**孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
 
-prop 是父组件用来传递消息的一个自定义属性。子组件需要显式地用 [`props` 选项](/api/#props) 声明 props ：
+prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 [`props` 选项](/api/#props) 声明 “prop”：
 
 ``` js
 Vue.component('child', {
   // 声明 props
   props: ['message'],
-  // 就像 data 一样， prop 也可以用在模板内
-  // and is also made available in the vm as this.message
+  // 就像 data 一样, prop 可以用在模板内
+  // 同样也可以在 vm 实例中像 “this.message” 这样使用
   template: '<span>{{ message }}</span>'
 })
 ```
@@ -333,7 +333,7 @@ new Vue({
 初学者常犯的一个错误是使用字面量语法传递数值:
 
 ``` html
-<!-- 传递一个字符串"1" -->
+<!-- 传递了一个字符串"1" -->
 <comp some-prop="1"></comp>
 ```
 
@@ -346,9 +346,9 @@ new Vue({
 
 ### 单向数据流
 
-prop 是单向绑定：当父组件的属性变化时，将传导给子组件，但是反过来不会。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解。
+prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解.
 
-另外，每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你不应该在子组件内部改变 prop 。如果你这么做了， Vue 会在控制台给出警告。
+另外，每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你**不应该**在子组件内部改变 prop 。如果你这么做了，Vue 会在控制台给出警告。
 
 通常有两种改变 prop 的情况：
 
@@ -362,18 +362,18 @@ prop 是单向绑定：当父组件的属性变化时，将传导给子组件，
 
 2. 定义一个基于 prop 值的计算属性。
 
-<p class="tip">注意在 JavaScript 中对象和数组是通过引用传递的，如果 prop 是一个对象或数组，在子组件内部改变它**会**影响父组件的状态。</p>
+<p class="tip">注意在 JavaScript 中对象和数组是通过引用传递的，如果 prop 是一个对象或数组，在子组件内部改变它**会影响**父组件的状态。</p>
 
 ### Prop 验证
 
-组件可以为 props 指定验证要求。如果未指定要求， Vue 会发出警告。当组件给其他人使用时这很有用。
+组件可以为 props 指定验证要求。如果未指定验证要求，Vue会发出警告。当组件给其他人使用时这很有用。
 
 prop 是一个对象而不是字符串数组时，它包含验证要求:
 
 ``` js
 Vue.component('example', {
   props: {
-    // 基础类型检测 (`null` 意思是任何类型都可以)
+    // 基础类型检测 （`null` 意思是任何类型都可以）
     propA: Number,
     // 多种类型
     propB: [String, Number],
@@ -428,7 +428,7 @@ Vue.component('example', {
 - 使用 `$on(eventName)` 监听事件
 - 使用 `$emit(eventName)` 触发事件
 
-另外，父组件可以在模版中监听子组件直接使用 `v-on` 发出的事件。
+另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
 
 下面是一个例子:
 
@@ -504,7 +504,7 @@ new Vue({
 </script>
 {% endraw %}
 
-在本例中，子组件仍然和它外部完全解耦合了。它所做的只是将父组件可能会关心的发生在它内部的事情告知给父组件了。
+在本例中，子组件已经和它外部完全解耦了。它所做的只是触发一个父组件关心的内部事件。
 
 #### 给组件绑定原生事件
 
@@ -516,7 +516,7 @@ new Vue({
 
 ### 使用自定义事件的表单输入组件
 
-也可以用 `v-model` 来创建自定义表单输入。记住：
+自定义事件也可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。记住，表单控件进行数据绑定时的语法：
 
 ``` html
 <input v-model="something">
@@ -528,7 +528,7 @@ new Vue({
 <input v-bind:value="something" v-on:input="something = $event.target.value">
 ```
 
-在组件中使用时，它相当于下面的简写：
+所以在组件中使用时, 它相当于下面的简写：
 
 ``` html
 <input v-bind:value="something" v-on:input="something = arguments[0]">
@@ -617,7 +617,7 @@ new Vue({
 </script>
 {% endraw %}
 
-这个接口不仅仅可以用来联系组件内部的表单输入，也很容易集成你自己写的输入类型。想象一下：
+这个接口不仅仅可以用来连接组件内部的表单输入，也很容易集成你自己创造的输入类型。想象一下：
 
 ``` html
 <voice-recognizer v-model="question"></voice-recognizer>
@@ -633,11 +633,11 @@ new Vue({
 var bus = new Vue()
 ```
 ``` js
-// 组件 A 的方法
+// 触发组件 A 中的事件
 bus.$emit('id-selected', 1)
 ```
 ``` js
-// 组件 B 创建的钩子
+// 在组件 B 创建的钩子中监听事件
 bus.$on('id-selected', function (id) {
   // ...
 })
@@ -705,7 +705,7 @@ Vue.component('child-component', {
 
 ### 单个 Slot
 
-父组件的内容将被**抛弃**，除非子组件模板包含 `<slot>` 。如果子组件模板只有一个没有特性的 slot ，父组件的整个内容将插到 slot 所在的地方并替换它。
+父组件的内容将被**抛弃**，除非子组件模板包含 `<slot>` 。如果子组件模板只有一个没有特性的 slot，父组件整个内容片段 将插到 slot 所在的 DOM 位置并替换掉 slot 标签。
 
 `<slot>` 标签的内容视为**回退内容**。回退内容在子组件的作用域内编译，当宿主元素为空并且没有内容供插入时显示这个回退内容。
 
@@ -938,7 +938,7 @@ Vue.component(
 
 ### 组件命名约定
 
-当定义组件时(或者 props )，可以使用 kebab-case ， camelCase 或 TitleCase 。 Vue 不关心这个。
+当注册组件时（或者 props ），可以使用 kebab-case ，camelCase ，或 TitleCase 。Vue 不关心这个。
 
 ``` js
 // 在组件定义中
@@ -950,7 +950,7 @@ components: {
 }
 ```
 
-在 HTML 模版中，请使用 kebab-case 形式:
+在 HTML 模版中，请使用 kebab-case形式：
 
 ``` html
 <!-- 在HTML模版中始终使用 kebab-case -->
@@ -962,19 +962,19 @@ components: {
 当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味即使是在模版中，引用、组件和 prop 可以使用 camelCase 、 PascalCase 或者 kebab-case：
 
 ``` html
-<!-- 在字符串模版中用你想用! -->
+<!-- 在字符串模版中可以用任何你喜欢的方式! -->
 <my-component></my-component>
 <myComponent></myComponent>
 <MyComponent></MyComponent>
 ```
 
-如果组件未经 `slot` 元素传递内容,你甚至可以在组件名后使用 `/` 使其自闭和：
+如果组件未经 `slot` 元素传递内容，你甚至可以在组件名后使用 `/` 使其自闭和：
 
 ``` html
 <my-component/>
 ```
 
-当然，这只在字符串模版中有效。因为自闭和的自定义元素是无效的 HTML ，浏览器原生的解析器也无法识别它。
+当然，这只在字符串模版中有效。因为自闭的自定义元素是无效的 HTML ，浏览器原生的解析器也无法识别它。
 
 ### 递归组件
 
@@ -985,7 +985,7 @@ name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (也就是使用 `v-if` )。当使用 `Vue.component()` 全局注册一个组件时，组件 ID 自动设置为组件的 `name` 选项。
+上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 false )。当使用 `Vue.component()` 全局注册一个组件时，全局的组件 ID 自动设置为该组件的 `name` 选项。
 
 ### 内联模版
 
@@ -1002,7 +1002,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 ### X-Templates
 
-另一种定义模版的方式是在 javascript 标签里使用 `text/x-template` 类型，并且指定一个id。例如:
+另一种定义模版的方式是在 JavaScript 标签里使用 `text/x-template` 类型, 并且指定一个id。例如:
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -1016,11 +1016,11 @@ Vue.component('hello-world', {
 })
 ```
 
-这在有很多模版或者小的应用中有用，否则应该避免使用,因为它将模版和组件的其他定义隔离了。
+这在有很多模版或者小的应用中有用，否则应该避免使用，因为它将模版和组件的其他定义隔离了。
 
 ### Cheap Static Components with `v-once`
 
-尽管在 Vue 中渲染 HTML 很快，不过当组件中包含**大量**静态内容时, 可以考虑使用 `v-once` 将渲染结果缓存起来，就像这样:
+尽管在 Vue 中渲染 HTML 很快，不过当组件中包含**大量**静态内容时, 可以考虑使用 `v-once` 将渲染结果缓存起来, 就像这样:
 
 ``` js
 Vue.component('terms-of-service', {

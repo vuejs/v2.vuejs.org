@@ -20,7 +20,7 @@ Vue.js 使用了基于 HTML 的模版语法，允许开发者声明式地将 DOM
 <span>Message: {{ msg }}</span>
 ```
 
-Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无论合适绑定的数据对象上 `msg` 属性发生了改变，插值处的内容都会更新。
+Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无论何时，绑定的数据对象上 `msg` 属性发生了改变，插值处的内容都会更新。
 
 通过使用 [v-once 指令](/api/#v-once)，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上所有的数据绑定：
 
@@ -79,8 +79,6 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](/api/#v-bind
 ```
 
 <p class="tip">模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 `Math` 和 `Date` 。你不应该在模板表达式中试图访问用户定义的全局变量。</p>
-
-<p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
 
 ### 过滤器
 
