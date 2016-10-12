@@ -401,7 +401,7 @@ body.docs #nav {
   background-color: #fff;
   z-index: 9;
   display: none;
-  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+  box-shadow: 0 0 2px rgba(0,0,0,0.25);
 }
 #mobile-bar .menu-button {
   position: absolute;
