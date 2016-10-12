@@ -1,6 +1,6 @@
 ---
 title: 导航钩子
-type: router
+type: vue-router
 order: 10
 ---
 

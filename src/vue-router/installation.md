@@ -1,6 +1,6 @@
 ---
 title: 安装
-type: router
+type: vue-router
 order: 1
 ---
 

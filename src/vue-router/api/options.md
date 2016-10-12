@@ -1,6 +1,6 @@
 ---
 title: Router 构造配置
-type: router
+type: vue-router
 order: 19
 ---
 

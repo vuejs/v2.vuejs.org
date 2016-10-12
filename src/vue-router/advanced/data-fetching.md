@@ -1,6 +1,6 @@
 ---
 title: 数据获取
-type: router
+type: vue-router
 order: 13
 ---
 

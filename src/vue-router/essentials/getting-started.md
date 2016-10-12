@@ -1,6 +1,6 @@
 ---
 title: 起步
-type: router
+type: vue-router
 order: 2
 ---
 

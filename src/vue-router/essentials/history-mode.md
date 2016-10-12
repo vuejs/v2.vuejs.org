@@ -1,6 +1,6 @@
 ---
 title: HTML5 History 模式
-type: router
+type: vue-router
 order: 9
 ---
 

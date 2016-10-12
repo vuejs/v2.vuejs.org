@@ -1,6 +1,6 @@
 ---
 title: 命名视图
-type: router
+type: vue-router
 order: 7
 ---
 

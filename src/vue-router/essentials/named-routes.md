@@ -1,6 +1,6 @@
 ---
 title: 命名路由
-type: router
+type: vue-router
 order: 6
 ---
 

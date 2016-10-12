@@ -1,6 +1,6 @@
 ---
 title: Router 实例
-type: router
+type: vue-router
 order: 20
 ---
 
