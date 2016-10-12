@@ -1322,7 +1322,7 @@ type: api
 
 - **用法：**
 
-  基于源数据将元素或模板块重复数次。指令的值必须使用特定语法 `alias in expression` ，为当前遍历的元素提供别名：
+  基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 `alias in expression` ，为当前遍历的元素提供别名：
 
   ``` html
   <div v-for="item in items">
