@@ -1436,13 +1436,13 @@ type: api
 
 - **用法：**
 
-  动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。
+  动态地绑定一个或多个特性，或一个组件 prop 到表达式。
 
-  在绑定 `class` 或 `style` 属性时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
+  在绑定 `class` 或 `style` 特性时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
 
   在绑定 prop 时，prop 必须在子组件中声明。可以用修饰符指定不同的绑定类型。
 
-  没有参数时，可以绑定到一个包含 name-value 的对象。注意此时 `class` 和 `style` 绑定不支持数组和对象。
+  没有参数时，可以绑定到一个包含键值对的对象。注意此时 `class` 和 `style` 绑定不支持数组和对象。
 
 - **示例：**
 
@@ -1462,7 +1462,7 @@ type: api
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- 绑定一个对象属性 -->
+  <!-- 绑定一个有属性的对象 -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
   <!-- 通过 prop 修饰符绑定 DOM 属性 -->
