@@ -1240,7 +1240,7 @@ type: api
 
 - **详细：**
 
-  更新元素的 `textContent`。如果要更新 `textContent` 部分，需要使用 `{% raw %}{{ Mustache }}{% endraw %}` 插值。
+  更新元素的 `textContent`。如果要更新部分的 `textContent` ，需要使用 `{% raw %}{{ Mustache }}{% endraw %}` 插值。
 
 - **示例：**
 
@@ -1259,7 +1259,7 @@ type: api
 - **详细：**
 
 
-  更新元素的 `innerHTML` 。**注意：内容按普通  HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新思考通过是否通过使用组件来替代。
+  更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新思考通过是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
   
@@ -1278,7 +1278,7 @@ type: api
 
   根据表达式的值的真假条件渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 `<template>` ，将提出它的内容作为条件块。
 
-  该指令在条件变化时触发改变。
+  当条件变化时该指令触发过渡效果。
 
 - **另见** [条件渲染 - v-if](/guide/conditional.html)
 
