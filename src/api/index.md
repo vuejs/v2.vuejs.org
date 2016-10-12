@@ -1288,9 +1288,9 @@ type: api
 
 - **用法：**
 
-  根据表达式的值的真假切换元素的 display CSS 属性，如果有过渡将触发它。
+  根据表达式之真假值，切换元素的 display CSS 属性。
 
-  该指令在条件变化时触发改变。
+  当条件变化时该指令触发过渡效果。
 
 - **另见：** [条件渲染 - v-show](/guide/conditional.html#v-show)
 
