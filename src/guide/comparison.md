@@ -91,7 +91,7 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 #### 开发中
 
-显然，在生产环境中的性能是最重要的，目前为止我们所具体讨论的便是针对于此环境。但开发过程中的表现也不容小视。不错的是用 Vue 和 React 开发大多数应用的速度都是足够快的。
+显然，在生产环境中的性能是至关重要的，目前为止我们所具体讨论的便是针对此环境。但开发过程中的表现也不容小视。不错的是用 Vue 和 React 开发大多数应用的速度都是足够快的。
 
 然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
 
@@ -106,16 +106,16 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 在 React 中，所有的组件的渲染功能都依靠 JSX。JSX 是使用 XML 语法编写 Javascript 的一种语法糖。这有一个[通过React社区审核过的例子](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684)：
 
 ``` jsx
-    render () {
+  render () {
 	    let { items } = this.props
 	
 	    let children
 	    if ( items.length > 0 ) {
 	        children = (
 	            <ul>
-	              {items.map( item =>
-	                <li key={item.id}>{item.name}</li>
-	              )}
+	                {items.map( item =>
+	                    <li key={item.id}>{item.name}</li>
+	                )}
 	            </ul>
 	        )
 	    } else {
@@ -132,7 +132,7 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 JSX 的渲染功能有下面这些优势：
 
-- 你可以使用完整的编程语言 JavaScript 的功能来构建你的视图页面。
+- 你可以使用完整的编程语言 JavaScript 功能来构建你的视图页面。
 - 工具对 JSX 的支持相比于现有可用的其他 Vue 模板还是比较先进的（比如，linting、类型检查、编辑器的自动完成）。
 
 在 Vue 中，由于有时需要用这些功能，我们也提供了[渲染功能](render-function.html) 并且[支持了 JSX](render-function.html#JSX)。然而，对于大多数组件来说，渲染功能是不推荐使用了。
@@ -240,8 +240,7 @@ Vue 的一些语法和 Angular 的很相似（例如 `v-if` vs `ng-if`）。因�
 ### 灵活性和模块化
 
 Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方式组织应用程序，而不是在任何时候都必须遵循 Angular 1 制定的规则，这让 Vue 能适用于各种项目。我们知道把决定权交给你是非常必要的。
-这也就是为什么我们提供[Webpack template](https://github.com/vuejs-templates/webpack)，让你可以用几分钟，去选择是否启用高级特性，比如热模块加载、linting、
-CSS 提取等等。
+这也就是为什么我们提供[Webpack template](https://github.com/vuejs-templates/webpack)，让你可以用几分钟，去选择是否启用高级特性，比如热模块加载、linting、CSS 提取等等。
 
 ### 数据绑定
 
