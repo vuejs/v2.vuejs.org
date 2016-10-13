@@ -213,8 +213,6 @@ new Vue({
 </script>
 {% endraw %}
 
-The `el` option also requires a function value when used in a component instance, for exactly the same reason.
-
 ### Composing Components
 
 Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component's code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.
