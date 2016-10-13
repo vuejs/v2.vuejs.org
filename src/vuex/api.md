@@ -12,62 +12,62 @@ import Vuex from 'vuex'
 const store = new Vuex.Store({ ...options })
 ```
 
-### Vuex.Store Constructor Options
+### Vuex.Store 构造选项
 
 - **state**
 
-  - type: `Object`
+  - 类型： `Object`
 
-    The root state object for the Vuex store.
+    Vuex store 的根state对象。
 
     [Details](state.md)
 
 - **mutations**
 
-  - type: `{ [type: string]: Function }`
+  - 类型： `{ [type: string]: Function }`
 
-    Register mutations on the store. The handler function always receives `state` as the first argument (will be module local state if defined in a module), and receives a second `payload` argument if there is one.
+    在 store 上注册 mutation，Handler function总是接收 state 作为第一个参数（如果定义在模块中，则作为模块的本地状态），如果有则接收 payload 作为第二个参数。
 
-    [Details](mutations.md)
+    [详细介绍](mutations.md)
 
 - **actions**
 
-  - type: `{ [type: string]: Function }`
+  - 类型： `{ [type: string]: Function }`
 
-    Register actions on the store. The handler function receives a `context` object that exposes the following properties:
+    在 store 上注册 action。Handler function接收一个 context 对象，这个对象提供以下属性：
 
     ``` js
     {
-      state,     // same as store.state, or local state if in modules
-      rootState, // same as store.state, only in modules
-      commit,    // same as store.commit
-      dispatch,  // same as store.dispatch
-      getters    // same as store.getters
+      state,     // 等同于 store.state，如果在模块中则是本地状态
+      rootState, // 等同于 store.state，模块中才有
+      commit,    // 等同于 store.commit
+      dispatch,  // 等同于 store.dispatch
+      getters    // 等同于 store.getters
     }
     ```
 
-    [Details](actions.md)
+    [详细介绍](actions.md)
 
 - **getters**
 
-  - type: `{ [key: string]: Function }`
+  - 类型： `{ [key: string]: Function }`
 
-    Register getters on the store. The getter function receives the following arguments:
+    在 store 上注册 getter，getter 方法接收一下参数：
     
     ```
-    state,     // will be module local state if defined in a module.
-    getters,   // same as store.getters
-    rootState  // same as store.state
+    state,     // 如果在模块中定义则为模块的本地状态
+    getters,   // 等同于 store.getters
+    rootState  // 等同于 store.state
     ```
-    Registered getters are exposed on `store.getters`.
+    注册的 getter 被暴露在 store.getters。
 
-    [Details](getters.md)
+    [详细介绍](getters.md)
 
 - **modules**
 
-  - type: `Object`
+  - 类型： `Object`
 
-    An object containing sub modules to be merged into the store, in the shape of:
+    包含了子模块的对象，会被合并到 store，形如：
 
     ``` js
     {
@@ -82,64 +82,64 @@ const store = new Vuex.Store({ ...options })
     }
     ```
 
-    Each module can contain `state` and `mutations` similar to the root options. A module's state will be attached to the store's root state using the module's key. A module's mutations and getters will only receives the module's local state as the first argument instead of the root state, and module actions' `context.state` will also point to the local state.
+    每个模块可以包含 state 和 mutations，就像根模块的配置。一个模块的状态使用模块的 key 附加到 store 的根状态上。模块的 mutation 和 getter 将接收 module 的本地状态作为第一个参数，而不是根状态，并且模块 action 的 context.state 也指向本地状态。
 
-    [Details](modules.md)
+    [详细介绍](modules.md)
 
 - **plugins**
 
-  - type: `Array<Function>`
+  - 类型： `Array<Function>`
 
-    An array of plugin functions to be applied to the store. The plugin simply receives the store as the only argument and can either listen to mutations (for outbound data persistence, logging, or debugging) or dispatch mutations (for inbound data e.g. websockets or observables).
+    一个插件方法的数组被应用于 store 上。这些插件直接接收 store 作为唯一参数，也可以监听 mutation（用于外部地数据持久化、记录或调试）或者提交 mutation （用于内部数据，例如 websocket 或 某些观察者）。
 
-    [Details](plugins.md)
+    [详细介绍](plugins.md)
 
 - **strict**
 
-  - type: `Boolean`
-  - default: `false`
+  - 类型： `Boolean`
+  - 默认值： `false`
 
-    Force the Vuex store into strict mode. In strict mode any mutations to Vuex state outside of mutation handlers will throw an Error.
+    强制 Vuex store 进入严格模式，在严格模式下，在 mutation 处理器以外修改 Vuex state 则会抛出错误。
 
-    [Details](strict.md)
+    [详细介绍](strict.md)
 
 ### Vuex.Store Instance Properties
 
 - **state**
 
-  - type: `Object`
+  - 类型： `Object`
 
     The root state. Read only.
 
 - **getters**
 
-  - type: `Object`
+  - 类型： `Object`
 
-    Exposes registered getters. Read only.
+    暴露注册的 getter，只读。
 
-### Vuex.Store Instance Methods
+### Vuex.Store 实例方法
 
-- **`commit(type: string, payload?: any) | commit(mutation: Object)`**
+- **`commit(类型： string, payload?: any) | commit(mutation: Object)`**
 
-  Commit a mutation. [Details](mutations.md)
+  提交一个 mutation. [详细介绍](mutations.md)
 
 - **`dispatch(type: string, payload?: any) | dispatch(action: Object)`**
 
-  Dispatch an action. Returns the return value of the triggered action handler, or a Promise if multiple handlers are triggered. [Details](actions.md)
+  分发一个 action。返回 action 方法的返回值，如果多个处理器被触发，那么返回一个 Pormise。[详细介绍](actions.md)
 
 - **`replaceState(state: Object)`**
 
-  Replace the store's root state. Use this only for state hydration / time-travel purposes.
+  替换 store 的根状态，仅用于调试 state。
 
 - **`watch(getter: Function, cb: Function, options?: Object)`**
 
-  Reactively watch a getter function's return value, and call the callback when the value changes. The getter receives the store's state as the only argument. Accepts an optional options object that takes the same options as Vue's `vm.$watch` method.
+  响应式的监测一个 getter 方法的返回值，当值改变时调用回调。getter 接收 store 的 state 作为唯一参数。接收类似 vm.$watch 方法的参数的可选对象。
 
-  To stop watching, call the returned handle function.
+  要停止检测，调用该方法的返回值 （watch 的返回值是个方法）。
 
 - **`subscribe(handler: Function)`**
 
-  Subscribe to store mutations. The `handler` is called after every mutaiton and receives the mutation descriptor and post-mutation state as arguments:
+  订阅（注册监听） store 的 mutation。handler 会再每个 mutation 完成后调用，接收 mutation 的描述对象和 经过 mutation 后的状态作为参数：
 
   ``` js
   store.subscribe((mutation, state) => {
@@ -148,34 +148,34 @@ const store = new Vuex.Store({ ...options })
   })
   ```
 
-  Most commonly used in plugins. [Details](plugins.md)
+  这是插件中常见的用法。 [详细介绍](plugins.md)
 
 - **`registerModule(path: string | Array<string>, module: Module)`**
 
-  Register a dynamic module. [Details](modules.md#dynamic-module-registration)
+  注册一个动态模块。 [详细介绍](modules.md#dynamic-module-registration)
 
 - **`unregisterModule(path: string | Array<string>)`**
 
-  Unregister a dynamic module. [Details](modules.md#dynamic-module-registration)
+  注销一个动态模块。 [详细介绍](modules.md#dynamic-module-registration)
 
 - **`hotUpdate(newOptions: Object)`**
 
-  Hot swap new actions and mutations. [Details](hot-reload.md)
+  热加载新的 action 和 mutation。 [详细介绍](hot-reload.md)
 
-### Component Binding Helpers
+### 组件绑定助手
 
 - **`mapState(map: Array<string> | Object): Object`**
 
-  Create component computed options that return the sub tree of the Vuex store. [Defails](state.md#the-mapstate-helper)
+  创建一个组件的计算属性选项，该选项会返回 Vuex store 的子树   Create component computed options that return the sub tree of the Vuex store. [详细介绍](state.md#the-mapstate-helper)
 
 - **`mapGetters(map: Array<string> | Object): Object`**
 
-  Create component computed options that return the evaluated value of a getter. [Details](getters.md#the-mapgetters-helper)
+  创建一个组件的计算属性选项，该选项会返回 getter的计算后的值。 [详细介绍](getters.md#the-mapgetters-helper)
 
 - **`mapActions(map: Array<string> | Object): Object`**
 
-  Create component methods options that dispatch an action. [Details](actions.md#dispatching-actions-in-components)
+  创建一个组件的methods选项，该选项返回一个 action。 [详细介绍](actions.md#dispatching-actions-in-components)
 
 - **`mapMutations(map: Array<string> | Object): Object`**
 
-  Create component methods options that commit a mutation. [Details](mutations.md#commiting-mutations-in-components)
+  创建一个组件的methods选项，该选项提交一个 mutation。 [详细介绍](mutations.md#commiting-mutations-in-components)
