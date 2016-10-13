@@ -200,6 +200,44 @@ alias: ['/manage', '/administer', '/administrate']
 </div>
 {% endraw %}
 
+### Arbitrary Route Properties
+
+Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:
+
+``` js
+'/admin': {
+  component: AdminPanel,
+  requiresAuth: true
+}
+```
+
+Then you would now update it to:
+
+``` js
+{
+  path: '/admin',
+  component: AdminPanel,
+  meta: {
+    requiresAuth: true
+  }
+}
+```
+
+Then when later accessing this property on a route, you will still go through meta. For example:
+
+``` js
+if (route.meta.requiresAuth) {
+  // ...
+}
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of arbitrary route properties not scoped under meta.</p>
+</div>
+{% endraw %}
+
 ## Route Matching
 
 Route matching now uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) under the hood, making it much more flexible than previously.
