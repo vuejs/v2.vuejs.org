@@ -966,7 +966,7 @@ components: {
 <MyComponent></MyComponent>
 ```
 
-如果组件未经 `slot` 元素传递内容，你甚至可以在组件名后使用 `/` 使其自闭和：
+如果组件未经 `slot` 元素传递内容，你甚至可以在组件名后使用 `/` 使其自闭合：
 
 ``` html
 <my-component/>
