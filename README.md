@@ -123,7 +123,7 @@
 
 序号 | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
 ----- | ------- | ------------- | --- | --- 
-24 | migration.md | 1.x迁移 |  [harrytospring](https://github.com/harrytospring) | 
+24 | migration.md | 1.x 迁移 |  [harrytospring](https://github.com/harrytospring) | 
 27 | migration-vue-router.md | vue-router 0.7.x 迁移 | [forzajuve10](https://github.com/forzajuve10) | 
 
 ### Meta  更多
