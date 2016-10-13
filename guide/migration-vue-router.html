@@ -430,11 +430,11 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.on</code> being called.</p>
 </div>
 
-<h3 id="subroutes-deprecated"><a href="#subroutes-deprecated" class="headerlink" title="subroutes deprecated"></a><code>subroutes</code> <sup>deprecated</sup></h3><p><a href="http://router.vuejs.org/en/essentials/nested-routes.html" target="_blank" rel="external">Renamed to <code>children</code></a> for consistency within Vue and with other routing libraries.</p>
+<h3 id="subRoutes-deprecated"><a href="#subRoutes-deprecated" class="headerlink" title="subRoutes deprecated"></a><code>subRoutes</code> <sup>deprecated</sup></h3><p><a href="http://router.vuejs.org/en/essentials/nested-routes.html" target="_blank" rel="external">Renamed to <code>children</code></a> for consistency within Vue and with other routing libraries.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>subroutes</code> option.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>subRoutes</code> option.</p>
 </div>
 
 <h3 id="router-redirect-deprecated"><a href="#router-redirect-deprecated" class="headerlink" title="router.redirect deprecated"></a><code>router.redirect</code> <sup>deprecated</sup></h3><p>This is now an <a href="http://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="external">option on route definitions</a>. So for example, you will update:</p>
@@ -457,6 +457,18 @@
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.alias</code> being called.</p>
+</div>
+
+<h3 id="Arbitrary-Route-Properties"><a href="#Arbitrary-Route-Properties" class="headerlink" title="Arbitrary Route Properties"></a>Arbitrary Route Properties</h3><p>Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="string">'/admin'</span>: &#123;</div><div class="line">  component: AdminPanel,</div><div class="line">  requiresAuth: <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Then you would now update it to:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  path: <span class="string">'/admin'</span>,</div><div class="line">  component: AdminPanel,</div><div class="line">  meta: &#123;</div><div class="line">    requiresAuth: <span class="literal">true</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Then when later accessing this property on a route, you will still go through meta. For example:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (route.meta.requiresAuth) &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of arbitrary route properties not scoped under meta.</p>
 </div>
 
 <h2 id="Route-Matching"><a href="#Route-Matching" class="headerlink" title="Route Matching"></a>Route Matching</h2><p>Route matching now uses <a href="https://github.com/pillarjs/path-to-regexp" target="_blank" rel="external">path-to-regexp</a> under the hood, making it much more flexible than previously.</p>
