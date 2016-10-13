@@ -62,7 +62,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] List Rendering (@ErickPetru)
 - [x] Event Handling (@gidenilson)
 - [x] Form Input Bindings(@gidenilson)
-- [ ] Components
+- [ ] Components (@danielschmitz)
 - [ ] Advanced
 - [ ] Transitions: Entering, Leaving, and Lists
 - [ ] Transitioning State
