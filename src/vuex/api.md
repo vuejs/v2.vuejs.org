@@ -18,7 +18,7 @@ const store = new Vuex.Store({ ...options })
 
   - 类型： `Object`
 
-    Vuex store 的根状态对象。
+    Vuex store 的根state对象。
 
     [Details](state.md)
 
@@ -26,15 +26,15 @@ const store = new Vuex.Store({ ...options })
 
   - 类型： `{ [type: string]: Function }`
 
-    在 store 上注册 mutation，处理器方法总是接收 state 作为第一个参数（如果定义在模块中，则作为模块的本地状态），如果有则接收 payload 作为第二个参数。
+    在 store 上注册 mutation，Handler function总是接收 state 作为第一个参数（如果定义在模块中，则作为模块的本地状态），如果有则接收 payload 作为第二个参数。
 
     [详细介绍](mutations.md)
 
 - **actions**
 
-  - 类型： `{ [类型： string]: Function }`
+  - 类型： `{ [type: string]: Function }`
 
-    在 store 上注册 action。处理器方法接收一个 context 对象，提供一下属性：
+    在 store 上注册 action。Handler function接收一个 context 对象，这个对象提供以下属性：
 
     ``` js
     {
@@ -59,7 +59,7 @@ const store = new Vuex.Store({ ...options })
     getters,   // 等同于 store.getters
     rootState  // 等同于 store.state
     ```
-    注册的 getter 暴露在 store.getters。
+    注册的 getter 被暴露在 store.getters。
 
     [详细介绍](getters.md)
 
@@ -67,7 +67,7 @@ const store = new Vuex.Store({ ...options })
 
   - 类型： `Object`
 
-    包含了子模块的对象，会被融合到 store，大概长这样：
+    包含了子模块的对象，会被合并到 store，形如：
 
     ``` js
     {
@@ -82,7 +82,7 @@ const store = new Vuex.Store({ ...options })
     }
     ```
 
-    就像根模块的配置，每个模块包含 state 和 mutations，模块的状态使用模块的 key 关联到 store 的根状态。模块的 mutation 和 getter 将接收 module 的本地状态作为第一个参数，而不是根状态，并且模块 action 的 context.state 同样指向本地状态。
+    每个模块可以包含 state 和 mutations，就像根模块的配置。一个模块的状态使用模块的 key 附加到 store 的根状态上。模块的 mutation 和 getter 将接收 module 的本地状态作为第一个参数，而不是根状态，并且模块 action 的 context.state 也指向本地状态。
 
     [详细介绍](modules.md)
 
@@ -90,7 +90,7 @@ const store = new Vuex.Store({ ...options })
 
   - 类型： `Array<Function>`
 
-    一个数组，包含应用在 store 上的插件方法。这些插件直接接收 store 作为唯一参数，可以监听 mutation（用于外部地数据持久化、记录或调试）或者提交 mutation （用于内部数据，例如 websocket 或 某些观察者）。
+    一个插件方法的数组被应用于 store 上。这些插件直接接收 store 作为唯一参数，也可以监听 mutation（用于外部地数据持久化、记录或调试）或者提交 mutation （用于内部数据，例如 websocket 或 某些观察者）。
 
     [详细介绍](plugins.md)
 
@@ -133,7 +133,7 @@ const store = new Vuex.Store({ ...options })
 
 - **`watch(getter: Function, cb: Function, options?: Object)`**
 
-  响应式的监测一个 getter 方法的返回值，当值改变时调用回调。getter 接收 store 的状态作为唯一参数。接收一个可选的对象参数表示 Vue 的 vm.$watch 方法的参数。
+  响应式的监测一个 getter 方法的返回值，当值改变时调用回调。getter 接收 store 的 state 作为唯一参数。接收类似 vm.$watch 方法的参数的可选对象。
 
   要停止检测，调用该方法的返回值 （watch 的返回值是个方法）。
 
@@ -152,15 +152,15 @@ const store = new Vuex.Store({ ...options })
 
 - **`registerModule(path: string | Array<string>, module: Module)`**
 
-  动态注册一个模块。 [详细介绍](modules.md#dynamic-module-registration)
+  注册一个动态模块。 [详细介绍](modules.md#dynamic-module-registration)
 
 - **`unregisterModule(path: string | Array<string>)`**
 
-  移除一个注册的模块。 [详细介绍](modules.md#dynamic-module-registration)
+  注销一个动态模块。 [详细介绍](modules.md#dynamic-module-registration)
 
 - **`hotUpdate(newOptions: Object)`**
 
-  移除一个注册的模块。 [详细介绍](hot-reload.md)
+  热加载新的 action 和 mutation。 [详细介绍](hot-reload.md)
 
 ### 组件绑定助手
 
