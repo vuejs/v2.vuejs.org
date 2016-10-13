@@ -10,27 +10,27 @@
 - [发布网址：vuefe.cn](http://vuefe.cn/)
 - [翻译仓库](https://github.com/vuefe/vuejs.org)，中文翻译分支 2.0-cn
 - [基础指引](https://github.com/vuefe/vuejs.org/wiki/%E5%85%B3%E4%BA%8E%E7%BF%BB%E8%AF%91---%E5%9F%BA%E7%A1%80%E6%8C%87%E5%BC%95)
-- 参与API翻译：https://github.com/vuefe/vuejs.org/issues/44
+- 参与API校对：https://github.com/vuefe/vuejs.org/issues/44
 - 参与Guide校对：https://github.com/vuefe/vuejs.org/issues/77
 - 提出建议：https://github.com/vuefe/vuejs.org/issues/48
 - 如果你看到错别字、漏译、错译，请直接提交 pr
     （[帮助](https://help.github.com/articles/using-pull-requests/)）。
-- 如果你看到网站问题，或者创建一个 issue，或者直接提交 pr。
+- 如果你看到网站问题，或者创建一个 issue ，或者直接提交 pr 。
 - 如果你对已有翻译有异议，建议创建一个 issue 讨论。
 - 如果你想修改英文内容，请去 [vuejs.org 项目][vuejs.org]。
 - 如果你想求教 Vue.js 使用问题，请去[论坛][forum]。
 - 如果你遇到 Vue.js 的问题，请去 [vue 项目][vue]，
-    创建 issue 并提供演示。可以在 JSBin, JSFiddle, Codepen 等网站创建演示。
+    创建 issue 并提供演示。可以在 JSBin ，JSFiddle ， Codepen 等网站创建演示。
 
 ### 翻译要求
 
 - 保持一致，清晰
 -  汉字，字母，数字等之间以一个空格隔开。
 -  中文使用中文符号，英文使用英文符号。
-- 专有词注意大小写，如 HTML，CSS，JavaScript。
+- 专有词注意大小写，如 HTML ，CSS ，JavaScript 。
 - 术语与已有译文保持一致，如果有异议请先在 issue 中讨论。
 - 代码只翻译注释。
-- 标题会转化为链接，文档其它地方可能会用到，所以标题应尽量简短，
+- 标题会转化为链接，文档其它地方可能会用到，所以标题应尽量简短。
     在修改标题时搜索一下它是否还用在其它地方。
     同样的，在修改文档内链接时也应搜索一下。
 - 校对后对应修改提交合并请求
@@ -57,7 +57,7 @@
 
 - getter
 - setter
-- prop（指API时）
+- prop（指 API 时）
 
 ### 认领说明
 
@@ -94,7 +94,7 @@
 2 | index.md |  介绍 | [hijiangtao](https://github.com/hijiangtao) | 
 3 | instance.md | 实例 |  [dingyiming](https://github.com/dingyiming) |
 4 | syntax.md  | 模板语法 | [daix6](https://github.com/daix6) | 
-5 | computed.md | 计算属 性 |  [dingyiming](https://github.com/dingyiming) | 
+5 | computed.md | 计算属性 |  [dingyiming](https://github.com/dingyiming) | 
 6 | class-and-style.md | Class 与 Style 绑定 | [595074187](https://github.com/595074187) | 
 7 | conditional.md  | 条件渲染 | [dingyiming](https://github.com/dingyiming) | 
 8 | list.md |  列表渲染 | [tingtien](https://github.com/tingtien) | 
@@ -106,7 +106,7 @@
 
 序号 | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
 ----- | ------------- | --- | --- | --- 
-12 | transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/hilongjw) | 
+12 | transitions.md | 过渡：进入，离开，和列表 | [awe](https://github.com/hilongjw) | 
 13 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/hilongjw) | 
 14 | render-function.md |  Render 函数 |  [awe](https://github.com/hilongjw) | 
 15 | reactivity.md |  深入响应式原理 | [veaba](https://github.com/veaba) | 
@@ -123,7 +123,7 @@
 
 序号 | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
 ----- | ------- | ------------- | --- | --- 
-24 | migration.md | 1.x迁移 |  [harrytospring](https://github.com/harrytospring) | 
+24 | migration.md | 1.x 迁移 |  [harrytospring](https://github.com/harrytospring) | 
 27 | migration-vue-router.md | vue-router 0.7.x 迁移 | [forzajuve10](https://github.com/forzajuve10) | 
 
 ### Meta  更多
@@ -131,14 +131,14 @@
 序号 | 对应文档文件名 | 中文标题 | 贡献者 | 校对贡献者
 ----- | ------- | ------------- | --- | --- 
 25 |  comparison.md |   对比其他框架 |  [yongbolv](https://github.com/yongbolv) | 
-26 |  join.md |  加入Vue.js社区 | [daix6](https://github.com/daix6) | 
+26 |  join.md |  加入 Vue.js 社区 | [daix6](https://github.com/daix6) | 
 
 ## API翻译（已全部完成）贡献
 
 序号 | 对应小节名称 | 中文标题  | 贡献者  | 校对贡献者
 ----- | ------------- | --- | --- | --- 
 1 |  Global Config | 全局配置 |  @dear-lizhihua |  
-2 | Global API | 全局API | @dear-lizhihua | 
+2 | Global API | 全局 API | @dear-lizhihua | 
 3 | Options / Data | 选项 / 数据 | @dear-lizhihua | 
 4 | Options / DOM | 选项 / DOM | @ATLgo | 
 5 | Options / Lifecycle Hooks | 选项 / 生命周期钩子 | @ATLgo | 
@@ -151,7 +151,7 @@
 12 | Directives | 指令|   @dingyiming  | 
 13 | Special Attributes | 特殊元素 | @70data |
 14 | Built-In Components | 内置的组件  | @dear-lizhihua | 
-15 | VNode Interface | VNode接口  | @70data |
+15 | VNode Interface | VNode 接口  | @70data |
 16 | Server-Side Rendering | 服务端渲染| @70data | 
 
 ## 示例翻译
