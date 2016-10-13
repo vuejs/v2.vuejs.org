@@ -269,12 +269,12 @@ The `<a>` will be the actual link (and will get the correct href), but the activ
 
 ### `router.go`
 
-[Renamed to `router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) for consistency with terminology used in the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API).
+For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.go</code> being called.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.go</code> being used where <code>router.push</code> should be used instead.</p>
 </div>
 {% endraw %}
 
