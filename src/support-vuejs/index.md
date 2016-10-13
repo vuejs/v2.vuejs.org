@@ -10,10 +10,6 @@
   <span>Donate via PayPal (one time)</span>
 </a>
 
-<a href="javascript:;" id="donate">
-  <img src="/images/weixinpay.png">
-  <span>微信打赏</span>
-</a>
 
 ## 当前特级赞助商
 
@@ -50,9 +46,5 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。不过，如�
 
 目前我在寻找全职开发 Vue.js 的机会。如果你是企业经营者，并且使用 Vue.js 来开发核心产品，我也可以做顾问。[在 Twitter 上联系我。](https://twitter.com/youyuxi)
 
-<div id="qrcode" class="hidden">
-  <h2>微信扫一扫，支持 Vue.js :)</h2>
-  <img src="/images/qrcode.png">
-</div>
 
 <script src="/js/money.js"></script>
