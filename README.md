@@ -66,7 +66,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Custom Directives
 - [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
-- [ ] Single File Components
+- [ ] Single File Components (@ErickPetru)
 - [ ] Routing (@natanaelphp)
 - [ ] State Management
 - [ ] Unit Testing
