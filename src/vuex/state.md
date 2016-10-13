@@ -61,7 +61,7 @@ const Counter = {
 
 ### `mapState` 工具
 
-当一个组件需要引用了 store 的多个 state 属性或 getter 函数，声明列举出所有计算属性会变得重复且繁琐。对此，在我们需要生成 computed 所需的很多个 getter 函数时，使用 `mapState` 工具可以帮我们节省一些键盘按键(^_^)：
+当一个组件需要引用 store 的多个 state 属性或 getter 函数时，声明列举出所有计算属性会变得重复且繁琐。为了解决这个问题，我们可以使用 `mapState` 工具，它为我们生成 computed 所需的很多个 getter 函数，帮助我们节省一些键盘按键(^_^)：
 
 ``` js
 // vuex 提供了独立的构建工具函数 Vuex.mapState
@@ -88,14 +88,14 @@ export default {
 
 ``` js
 computed: mapState([
-  // 映射 store.this.count 到 state.count
+  // 映射 state.count 到 store.this.count
   'count'
 ])
 ```
 
 ### 对象扩展运算符
 
-注意，`mapState` 返回一个对象。我们如何使用 mapState 合并其他局部的计算属性呢？通常地，为了将多个对象合并为一个对象，再把这个合并好的最终对象传入到 `computed` 属性去，我们不得不使用一个工具函数来实现。然而有了[对象扩展运算符](https://github.com/sebmarkbage/ecmascript-rest-spread)（ECMAScript 标准提案 stage-3），我们就能够让语法变得简洁起来：
+注意，`mapState` 返回一个对象。我们如何使用 mapState 合并其他局部的计算属性呢？通常地，为了将多个对象合并为一个对象，再把这个合并好的最终对象传入到 `computed` 属性去，我们不得不使用一个工具函数来实现。然而有了[对象扩展运算符](https://github.com/sebmarkbage/ecmascript-rest-spread)（ECMAScript 提案 stage-3），我们可以大大简化语法：
 
 ``` js
 computed: {
@@ -109,4 +109,4 @@ computed: {
 
 ### 组件仍然可以具有局部状态
 
-使用 Vuex 并不意味你应该把 **所有** 状态都放在 Vuex 中去管理。尽管把更多的状态放到 Vuex 管理，会让状态变化变得更加清晰和可调试，但有时也能使代码变得冗余和不直观。如果某部分状态严格属于一个单独的组件，那就只把这部分状态作为局部状态就好了。你应该权衡利弊，做适应 App 的开发需求的决策。
+使用 Vuex 并不意味你应该把 **所有** 状态都放在 Vuex 中去管理。尽管把更多的状态放到 Vuex 管理，会让状态变化变得更加清晰和可调试，但有时也能使代码变得冗余和不直观。如果某部分状态严格属于一个单独的组件，那就只把这部分状态作为局部状态就好了。你应该权衡利弊，做适合您的 App 开发需求的决策。
