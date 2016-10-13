@@ -488,11 +488,11 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>v-link-active</code> directive.</p>
 </div>
 
-<h2 id="Programmatic-Navigation"><a href="#Programmatic-Navigation" class="headerlink" title="Programmatic Navigation"></a>Programmatic Navigation</h2><h3 id="router-go"><a href="#router-go" class="headerlink" title="router.go"></a><code>router.go</code></h3><p><a href="http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation" target="_blank" rel="external">Renamed to <code>router.push</code></a> for consistency with terminology used in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="external">HTML5 History API</a>.</p>
+<h2 id="Programmatic-Navigation"><a href="#Programmatic-Navigation" class="headerlink" title="Programmatic Navigation"></a>Programmatic Navigation</h2><h3 id="router-go"><a href="#router-go" class="headerlink" title="router.go"></a><code>router.go</code></h3><p>For consistency with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="external">HTML5 History API</a>, <code>router.go</code> is now only used for <a href="https://router.vuejs.org/en/essentials/navigation.html#routergon" target="_blank" rel="external">back/forward navigation</a>, while <a href="http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation" target="_blank" rel="external"><code>router.push</code></a> is used to navigate to a specific page.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.go</code> being called.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.go</code> being used where <code>router.push</code> should be used instead.</p>
 </div>
 
 <h2 id="Router-Options-Modes"><a href="#Router-Options-Modes" class="headerlink" title="Router Options: Modes"></a>Router Options: Modes</h2><h3 id="hashbang-false-deprecated"><a href="#hashbang-false-deprecated" class="headerlink" title="hashbang: false deprecated"></a><code>hashbang: false</code> <sup>deprecated</sup></h3><p>Hashbangs are no longer required for Google to crawl a URL, so they are no longer the default (or even an option) for the hash strategy.</p>
