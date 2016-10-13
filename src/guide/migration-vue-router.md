@@ -130,14 +130,14 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
-### `subroutes` <sup>deprecated</sup>
+### `subRoutes` <sup>deprecated</sup>
 
 [Renamed to `children`](http://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subroutes</code> option.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subRoutes</code> option.</p>
 </div>
 {% endraw %}
 
