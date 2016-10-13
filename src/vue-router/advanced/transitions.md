@@ -1,6 +1,6 @@
 ---
 title: 过渡动效
-type: router
+type: vue-router
 order: 12
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: 编程式的导航
-type: router
+type: vue-router
 order: 5
 ---
 

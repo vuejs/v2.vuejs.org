@@ -1,6 +1,6 @@
 ---
 title: router-link
-type: router
+type: vue-router
 order: 16
 ---
 

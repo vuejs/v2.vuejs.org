@@ -1,6 +1,6 @@
 ---
 title: 动态路由匹配
-type: router
+type: vue-router
 order: 3
 ---
 

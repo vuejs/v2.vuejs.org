@@ -1,6 +1,6 @@
 ---
 title: 路由元信息
-type: router
+type: vue-router
 order: 11
 ---
 

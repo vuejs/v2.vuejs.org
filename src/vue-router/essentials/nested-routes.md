@@ -1,6 +1,6 @@
 ---
 title: 嵌套路由
-type: router
+type: vue-router
 order: 4
 ---
 

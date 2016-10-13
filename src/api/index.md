@@ -1114,7 +1114,7 @@ type: api
 
 - **用法：**
 
-  监听一个自定义事件，但是只触发一次，在第一次触发之后删除监听器。
+  监听一个自定义事件，但是只触发一次，在第一次触发之移除除监听器。
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
@@ -1124,13 +1124,13 @@ type: api
 
 - **用法：**
 
-  删除事件监听器。
+  移除事件监听器。
 
-  - 如果没有参数，则删除所有的事件监听器；
+  - 如果没有提供参数，则移除所有的事件监听器；
 
-  - 如果只提供了事件，则删除这个事件所有的监听器；
+  - 如果只提供了事件，则移除该事件所有的监听器；
 
-  - 如果同时提供了事件与回调，则只删除这个回调。
+  - 如果同时提供了事件与回调，则只移除这个回调的监听器。
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
@@ -1152,9 +1152,9 @@ type: api
 
 - **用法：**
 
-  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素或片断。可以使用 `vm.$mount()` 手动地挂载一个未挂载的实例。
+  如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素。可以使用 `vm.$mount()` 手动地挂载一个未挂载的实例。
 
-  如果没有 `elementOrSelector` 参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
+  如果没有提供 `elementOrSelector` 参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
 
   这个方法返回实例自身，因而可以链式调用其它实例方法。
 
@@ -1226,7 +1226,7 @@ type: api
 
   完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器。
 
-  在 `beforeDestroy` 和 `destroyed` 之间触发。
+  触发 beforeDestroy 和 destroyed 的钩子。
 
   <p class="tip">在大多数场景中你不应该调用这个方法。最好使用 `v-if` 和 `v-for` 指令以数据驱动的方式控制子组件的生命周期。</p>
 
@@ -1240,7 +1240,7 @@ type: api
 
 - **详细：**
 
-  更新元素的 `textContent`。如果要更新 `textContent` 部分，需要使用 `{% raw %}{{ Mustache }}{% endraw %}` 插值。
+  更新元素的 `textContent`。如果要更新部分的 `textContent` ，需要使用 `{% raw %}{{ Mustache }}{% endraw %}` 插值。
 
 - **示例：**
 
@@ -1259,7 +1259,7 @@ type: api
 - **详细：**
 
 
-  更新元素的 `innerHTML` 。**注意：内容按普通  HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新思考通过是否通过使用组件来替代。
+  更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新思考通过是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
   
@@ -1278,7 +1278,7 @@ type: api
 
   根据表达式的值的真假条件渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 `<template>` ，将提出它的内容作为条件块。
 
-  该指令在条件变化时触发改变。
+  当条件变化时该指令触发过渡效果。
 
 - **另见** [条件渲染 - v-if](/guide/conditional.html)
 
@@ -1288,9 +1288,9 @@ type: api
 
 - **用法：**
 
-  根据表达式的值的真假切换元素的 display CSS 属性，如果有过渡将触发它。
+  根据表达式之真假值，切换元素的 display CSS 属性。
 
-  该指令在条件变化时触发改变。
+  当条件变化时该指令触发过渡效果。
 
 - **另见：** [条件渲染 - v-show](/guide/conditional.html#v-show)
 
@@ -1322,7 +1322,7 @@ type: api
 
 - **用法：**
 
-  基于源数据将元素或模板块重复数次。指令的值必须使用特定语法 `alias in expression` ，为当前遍历的元素提供别名：
+  基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 `alias in expression` ，为当前遍历的元素提供别名：
 
   ``` html
   <div v-for="item in items">
@@ -1364,7 +1364,7 @@ type: api
   - `.stop` - 调用 `event.stopPropagation()`。
   - `.prevent` - 调用 `event.preventDefault()`。
   - `.capture` - 添加事件侦听器时使用 capture 模式。
-  - `.self` - only trigger handler if event was dispatched from this element.
+  - `.self` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
   - `.{keyCode | keyAlias}` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
   - `.native` - 监听组件根元素的原生事件。
 
@@ -1436,13 +1436,13 @@ type: api
 
 - **用法：**
 
-  动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。
+  动态地绑定一个或多个特性，或一个组件 prop 到表达式。
 
-  在绑定 `class` 或 `style` 属性时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
+  在绑定 `class` 或 `style` 特性时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
 
   在绑定 prop 时，prop 必须在子组件中声明。可以用修饰符指定不同的绑定类型。
 
-  没有参数时，可以绑定到一个包含 name-value 的对象。注意此时 `class` 和 `style` 绑定不支持数组和对象。
+  没有参数时，可以绑定到一个包含键值对的对象。注意此时 `class` 和 `style` 绑定不支持数组和对象。
 
 - **示例：**
 
@@ -1462,7 +1462,7 @@ type: api
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- 绑定一个对象属性 -->
+  <!-- 绑定一个有属性的对象 -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
   <!-- 通过 prop 修饰符绑定 DOM 属性 -->
@@ -1576,7 +1576,7 @@ type: api
 
   `key` 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素。
 
-  相同公共父元素的子元素必须有**独特的key**。重复的key会造成渲染错误。
+  有相同父元素的子元素必须有**独特的key**。重复的key会造成渲染错误。
 
   最常见的用例是结合 `v-for`:
 
@@ -1588,8 +1588,8 @@ type: api
 
   它也可以用于强制替换元素/组件而不是重复使用它。当你遇到如下场景时它可能会很有用:
 
-  - 正确的触发组件的生命周期hooks
-  - 触发转换
+  - 正确的触发组件的生命周期钩子
+  - 触发过渡
 
   例如:
 
@@ -1635,13 +1635,13 @@ type: api
 
 ### component
 
-- **特性：**
+- **Props：**
   - `is` - string | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
 - **用法：**
 
-  动态渲染一个“元组件”。实际由 `is` 属性决定哪个渲染组件。
+  渲染一个“元组件”为动态组件。依 `is` 的值, 来决定哪个组件被渲染。
 
   ```html
   <!-- 动态组件由 vm 实例的属性值 `componentId` 控制 -->
@@ -1655,7 +1655,7 @@ type: api
 
 ### transition
 
-- **特性：**
+- **Props：**
   - `name` - string, 用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为`.fade-enter`，`.fade-enter-active`等。默认类名为 `"v"`
   - `appear` - boolean, 是否在初始渲染时使用过渡。默认为 `false`。
   - `css` - boolean, 是否使用 CSS 过渡类。默认为 `true`。如果设置为 `false`，将只通过组件事件触发注册的 JavaScript 钩子。
@@ -1718,7 +1718,7 @@ type: api
 
 ### transition-group
 
-- **特性：**
+- **Props：**
   - `tag` - string, 默认为 `span`
   - `move-class` - 覆盖移动过渡期间应用的 CSS 类。
   - 除了 `mode`，其他特性和 `<transition>` 相同。
@@ -1780,15 +1780,14 @@ type: api
 
 ### slot
 
-- **特性：**
+- **Props：**
   - `name` - string, 用于命名插槽。
 
 - **Usage:**
 
   `<slot>` 元素作为组件模板之中的内容分发插槽。 `<slot>` 元素自身将被替换。
 
-  详细用法，请参考下面 guide 部分的链接。
-  For detailed usage, see the guide section linked below.
+  详细用法，请参考下面教程的链接。
 
 - **另见：** [使用Slots分发内容](/guide/components.html#使用Slots分发内容)
 

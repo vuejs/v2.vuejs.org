@@ -1,6 +1,6 @@
 ---
 title: 路由信息对象
-type: router
+type: vue-router
 order: 18
 ---
 
