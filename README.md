@@ -69,7 +69,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Single File Components
 - [ ] Routing (@natanaelphp)
 - [ ] State Management
-- [ ] Unit Testing
+- [x] Unit Testing (@capaci)
 - [ ] Server-Side Rendering
 - [ ] Migration from Vue 1.x
 - [ ] Migration from Vue Router 0.7.x
