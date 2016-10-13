@@ -530,20 +530,22 @@ data: function () {
 },
 watch: {
   '$route': function () {
-    this.isLoading = true
-    this.fetchData().then(() => {
-      this.isLoading = false
+    var self = this
+    self.isLoading = true
+    self.fetchData().then(function () {
+      self.isLoading = false
     })
   }
 },
 methods: {
   fetchData: function () {
+    var self = this
     return axios.get('/api/posts')
       .then(function (response) {
-        this.posts = response.data.posts
+        self.posts = response.data.posts
       })
       .catch(function (error) {
-        this.fetchError = error
+        self.fetchError = error
       })
   }
 }
