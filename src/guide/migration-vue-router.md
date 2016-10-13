@@ -6,8 +6,6 @@ order: 26
 
 > Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](http://router.vuejs.org/en/).
 
-<p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
-
 ## Router Initialization
 
 ### `router.start` <sup>deprecated</sup>
