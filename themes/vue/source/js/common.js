@@ -5,6 +5,30 @@
   if (PAGE_TYPE) {
     initVersionSelect()
     initSubHeaders()
+    initApiSpecLinks()
+  }
+
+  function initApiSpecLinks () {
+    var apiContent = document.querySelector('.content.api')
+    if (apiContent) {
+      var apiTitles = [].slice.call(apiContent.querySelectorAll('h3'))
+      apiTitles.forEach(function (titleNode) {
+        var ulNode = titleNode.parentNode.nextSibling
+        if (ulNode.tagName !== 'UL') {
+          ulNode = ulNode.nextSibling
+        }
+        if (ulNode.tagName === 'UL') {
+          var specNode = document.createElement('li')
+          var specLink = createSourceSearchPath(titleNode.textContent)
+          specNode.innerHTML = '<a href="' + specLink + '" target="_blank">Source</a>'
+          ulNode.appendChild(specNode)
+        }
+      })
+    }
+
+    function createSourceSearchPath(query) {
+      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent(query) + '+&type=Code'
+    }
   }
 
   /**
