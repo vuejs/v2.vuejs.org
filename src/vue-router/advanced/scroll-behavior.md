@@ -1,6 +1,6 @@
 ---
 title: 滚动行为
-type: router
+type: vue-router
 order: 14
 ---
 

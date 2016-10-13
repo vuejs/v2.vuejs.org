@@ -1,6 +1,6 @@
 ---
 title: 目录
-type: router
+type: vue-router
 order: 0
 ---
 

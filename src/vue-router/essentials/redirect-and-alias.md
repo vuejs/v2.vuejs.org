@@ -1,6 +1,6 @@
 ---
 title: 重定向 和 别名
-type: router
+type: vue-router
 order: 8
 ---
 

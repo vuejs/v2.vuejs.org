@@ -1,6 +1,6 @@
 ---
 title: 对组件注入
-type: router
+type: vue-router
 order: 21
 ---
 

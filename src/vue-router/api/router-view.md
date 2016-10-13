@@ -1,6 +1,6 @@
 ---
 title: router-view
-type: router
+type: vue-router
 order: 17
 ---
 
