@@ -83,12 +83,12 @@ new Vue({
 </style>
 {% endraw %}
 
-元素封装成过渡组件之后，遇到插入或删除，Vue 将
+元素封装成过渡组件之后，在遇到插入或删除时，Vue 将
 
 
 1. 自动嗅探目标元素是否有 CSS 过渡或动画，并在合适时添加/删除 CSS 类名。
 
-2. 如果设置了过渡的 [JavaScript 钩子函数](#JavaScript-Hooks)，会在相应的阶段调用它们。
+2. 如果过渡组件设置了过渡的 [JavaScript 钩子函数](#JavaScript-Hooks)，会在相应的阶段调用钩子函数。
 
 3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，与 Vue，和Vue的 `nextTick` 概念不同)
 
@@ -108,9 +108,9 @@ new Vue({
 
 ![Transition Diagram](/images/transition.png)
 
-对于这些 `在 enter/leave 过渡中切换的类名`，`v-` 是这些类名的前缀。使用 `<name="my-transition>"` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
+对于这些在 `enter/leave` 过渡中切换的类名，`v-` 是这些类名的前缀。使用 `<name="my-transition>"` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
 
-`v-enter-active` and `v-leave-active` 可以控制 进入/离开 过渡的不同阶段，在下面章节会有个示例说明。
+`v-enter-active` 和 `v-leave-active` 可以控制 进入/离开 过渡的不同阶段，在下面章节会有个示例说明。
 
 ### CSS 过渡
 
@@ -392,9 +392,9 @@ new Vue({
 
 ### 同时使用 Transitions 和 Animations
 
-Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可以是 `transitionend` 或 `animationend` 的，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别类型并设置监听。
+Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可以是 `transitionend` 或 `animationend` ，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别类型并设置监听。
 
-但是，在一些场景中，你需要给同一个元素同时设置两种过渡动效，比如 animation 很快的被触发并完成了，而 transition 效果还没结束。在这种情况中，你就需要使用 `type` 特性并设置 `animation` 或 `transition` 来明确声明你需要 Vue 监听的类型。
+但是，在一些场景中，你需要给同一个元素同时设置两种过渡动效，比如 `animation` 很快的被触发并完成了，而 `transition` 效果还没结束。在这种情况中，你就需要使用 `type` 特性并设置 `animation` 或 `transition` 来明确声明你需要 Vue 监听的类型。
 
 ### JavaScript 钩子
 
@@ -427,7 +427,7 @@ methods: {
     // ...
   },
   // 此回调函数是可选项的设置
-  // 与 CSS结合 时使用
+  // 与 CSS 结合时使用
   enter: function (el, done) {
     // ...
     done()
@@ -447,7 +447,7 @@ methods: {
     // ...
   },
   // 此回调函数是可选项的设置
-  // 与 CSS结合 时使用
+  // 与 CSS 结合时使用
   leave: function (el, done) {
     // ...
     done()
@@ -462,9 +462,9 @@ methods: {
 }
 ```
 
-这些钩子函数可以结合 CSS transitions/animations 使用，也可以单独使用。
+这些钩子函数可以结合 CSS `transitions/animations` 使用，也可以单独使用。
 
-<p class="tip">当只用 JavaScript 过渡的时候 ** 在 `enter` 和 `leave` 中，回调函数 `done` 是必须的 **。 否则，它们会被同步调用，过渡会立即完成。</p>
+<p class="tip">当只用 JavaScript 过渡的时候， ** 在 `enter` 和 `leave` 中，回调函数 `done` 是必须的 **。 否则，它们会被同步调用，过渡会立即完成。</p>
 
 <p class="tip">推荐对于仅使用 JavaScript 过渡的元素添加 `v-bind:css="false"`，Vue 会跳过 CSS 的检测。这也可以避免过渡过程中 CSS 的影响。</p>
 
