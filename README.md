@@ -30,8 +30,6 @@ $ hexo server
 
 ### Palavras padronizadas
 
-- Computed Properties = Propriedades Computadas
-- Watchers = Observadores
 - *Computed Properties* = Propriedades Computadas
 - *Watchers* = Observadores
 - *Single-File Components* = Componentes Single-File
@@ -76,10 +74,9 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Custom Directives
 - [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
-- [ ] Single File Components (@ErickPetru)
 - [x] Single File Components (@ErickPetru)
 - [ ] Routing (@natanaelphp)
-- [ ] State Management
+- [ ] State Management (@ErickPetru)
 - [x] Unit Testing (@capaci)
 - [ ] Server-Side Rendering
 - [ ] Migration from Vue 1.x
