@@ -1,5 +1,5 @@
 ---
-title: '过渡: 进入, 离开, 和 列表'
+title: 过渡效果
 type: guide
 order: 12
 ---

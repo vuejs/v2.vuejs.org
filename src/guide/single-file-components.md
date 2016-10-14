@@ -55,50 +55,6 @@ order: 19
 
 无论你更钟情 Webpack 或是 Browserify，我们为简单的和更复杂的项目都提供了一些文档模板。我们建议浏览 [github.com/vuejs-templates](https://github.com/vuejs-templates)，找到你需要的部分，然后参考 README 中的说明，使用 [vue-cli](https://github.com/vuejs/vue-cli) 工具生成新的项目。
 
-## 生产环境配置
-
-为了更小的文件体积，Vue 的压缩版本(minified standalone build)已经为你移除了所有的警告，但是在使用 Webpack 或是 Browserify 这样的工具构建 Vue.js 应用时，需要添加一些配置。
-
-### Webpack
-
-使用 Webpack 的 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) 指定当前环境为生产环境，使得警告块在 UglifyJS 压缩代码过程中被自动丢弃。配置实例:
-
-``` js
-var webpack = require('webpack')
-
-module.exports = {
-  // ...
-  plugins: [
-    // ...
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  ]
-}
-```
-
-### Browserify
-
-- 将 `NODE_ENV` 设置为 `"production"`，然后运行打包命令， `vueify` 会自动避免打包 热重载 和 相关开发代码。
-- 应用全局 [envify](https://github.com/hughsk/envify) 转换到你的 bundle 中。这样压缩工具就能从从环境变量条件块中移除所有警告信息的 Vue 源代码，例如：
-
-``` bash
-NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
-```
-
-- 使用 vueify 中的 extract-css 插件提取 样式(styles) 到一个独立的 css 文件中。
-
-``` bash
-NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] -e main.js | uglifyjs -c -m > build.js
-```
-
 ***
 
 > 原文： http://vuejs.org/guide/single-file-components.html

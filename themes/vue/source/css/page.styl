@@ -7,83 +7,86 @@
 @import "_sidebar"
 
 #header
-    box-shadow 0 0 4px rgba(0,0,0,.25)
-    .menu-button
-        position absolute
-        width 24px
-        height 24px
-        top 8px
-        left 12px
-        background url(../images/menu.png) center center no-repeat
-        background-size 24px
-    .logo
-        position absolute
-        width 30px
-        height 30px
-        background url(../images/logo.png) center center no-repeat
-        top 5px
-        left 50%
-        margin-left -15px
-        background-size 30px
+    box-shadow 0 0 1px rgba(0,0,0,.25)
+    transition background-color .3s ease-in-out
+// 合并后
+//     .menu-button
+//         position absolute
+//         width 24px
+//         height 24px
+//         top 8px
+//         left 12px
+//         background url(../images/menu.png) center center no-repeat
+//         background-size 24px
+//     .logo
+//         position absolute
+//         width 30px
+//         height 30px
+//         background url(../images/logo.png) center center no-repeat
+//         top 5px
+//         left 50%
+//         margin-left -15px
+//         background-size 30px
 
-.sidebar
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    padding: 2.2em 0;
-    padding-left: 1.5em;
-    width: 260px;
-    margin-right: 20px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling touch
-    -ms-overflow-style none
-    h2
-        margin-top .2em
-    ul
-        list-style-type none
-        margin 0
-        line-height 1.8em
-        padding-left 1em
-    .version-select
-        vertical-align middle
-        margin-left 5px
-    .menu-root
-        padding-left 0
-    .menu-sub
-        font-size .85em
-    .sidebar-link
-        color $light
-        &.current
-            font-weight 400
-            color $green
-        &.new
-            &:after
-                content "NEW"
-                display inline-block
-                font-size 10px
-                font-weight 400
-                color #fff
-                background-color $green
-                line-height 14px
-                padding 0 4px
-                border-radius 3px
-                margin-left 5px
-                vertical-align middle
-                position relative
-                top -1px
-        &:hover
-            border-bottom 2px solid $green
-    .section-link
-        &.active
-            font-weight 400
-            color $green
-    .main-menu
-        margin-bottom 20px
-        display none
-        padding-left 0
+// .sidebar
+//     position: absolute;
+//     z-index: 10;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     padding: 2.2em 0;
+//     padding-left: 1.5em;
+//     width: 260px;
+//     margin-right: 20px;
+//     overflow-x: hidden;
+//     overflow-y: auto;
+//     -webkit-overflow-scrolling touch
+//     -ms-overflow-style none
+//     h2
+//         margin-top .2em
+//     ul
+//         list-style-type none
+//         margin 0
+//         line-height 1.8em
+//         padding-left 1em
+//     .version-select
+//         vertical-align middle
+//         margin-left 5px
+//     .menu-root
+//         padding-left 0
+//     .menu-sub
+//         font-size .85em
+//     .sidebar-link
+//         color $light
+//         &.current
+//             font-weight 400
+//             color $green
+//         &.new
+//             &:after
+//                 content "NEW"
+//                 display inline-block
+//                 font-size 10px
+//                 font-weight 400
+//                 color #fff
+//                 background-color $green
+//                 line-height 14px
+//                 padding 0 4px
+//                 border-radius 3px
+//                 margin-left 5px
+//                 vertical-align middle
+//                 position relative
+//                 top -1px
+//         &:hover
+//             border-bottom 2px solid $green
+//     .section-link
+//         &.active
+//             font-weight 400
+//             color $green
+//     .main-menu
+//         margin-bottom 20px
+//         display none
+//         padding-left 0
+
 
 .content
     position relative
@@ -91,6 +94,9 @@
     max-width 800px
     margin 0 auto
     &.api
+        > a:first-of-type > h2
+            margin-top 0
+            padding-top: 0
         ul
             padding-left 1.25em
             line-height 1.4em
@@ -117,19 +123,28 @@
         margin-left 20px
     h1
         margin 0 0 1em
+    h2, h3
+        &:before
+            content ''
+            display block
+            margin-top -1 * $heading-link-padding-top
+            height $heading-link-padding-top
+            visibility hidden
     h2
-        margin 2em 0 .8em
+        margin $h2-margin-top 0 .8em
         padding-bottom .7em
         border-bottom 1px solid $border
+        z-index: -1
     h3
-        margin 3em 0 1.2em
+        margin $h3-margin-top 0 1.2em
         position relative
-        &:before
+        z-index: -1
+        &:after
             content "#"
             color $green
             position absolute
             left -0.7em
-            top -2px
+            bottom -2px
             font-size 1.2em
             font-weight bold
     figure, p, ul, ol
@@ -193,8 +208,9 @@
     .sidebar
         position fixed
 
-#donate
-    margin-top 15px
+@media screen and (min-width: 1360px)
+    #header
+        background-color rgba(255,255,255,.4)
 
 @media screen and (max-width: 1500px)
     .content.with-sidebar
@@ -202,25 +218,23 @@
     #ad
         z-index 7
         position relative
-        width 100%
         padding 0
         bottom 0
         right 0
-        margin 0 0 15px -6px
-        .carbon-wrap, .carbon-img, .carbon-text, .carbon-poweredby
-            display inline-block
-            vertical-align top
-        .carbon-text
-            width 140px
-            margin-left 15px
-        .carbon-poweredby
-            position absolute
-            bottom 12px
-            left 140px
+        float right
+        margin 0 0 20px 30px
+        // .carbon-wrap, .carbon-img, .carbon-text, .carbon-poweredby
+        //     display inline-block
+        //     vertical-align top
+        // .carbon-text
+        //     width 140px
+        //     margin-left 15px
+        // .carbon-poweredby
+        //     position absolute
+        //     bottom 12px
+        //     left 140px
 
 @media screen and (max-width: 900px)
-    #ad
-        width 100%
     body
         -webkit-text-size-adjust none
         font-size 14px
@@ -241,6 +255,13 @@
     .content
         &.with-sidebar
             margin auto
+        h2, h3
+            &:before
+                content ''
+                display block
+                margin-top -1 * $mobile-heading-link-padding-top
+                height $mobile-heading-link-padding-top
+                visibility hidden
     .footer
         margin-left 0
         text-align center

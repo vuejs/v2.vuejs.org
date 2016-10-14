@@ -77,6 +77,8 @@ type: api
 
   指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
 
+  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+
 ### keyCodes
 
 - **类型：** `{ [key: string]: number }`
@@ -86,10 +88,14 @@ type: api
 - **用法：**
 
   ``` js
-  Vue.config.keyCodes = { esc: 27 }
+  Vue.config.keyCodes = {
+    v: 86,
+    f1: 112,
+    mediaPlayPause: 179
+  }
   ```
 
-  自定义 v-on 键位别名。
+  给 v-on 自定义键位别名。
 
 ## 全局 API
 
@@ -1173,7 +1179,7 @@ type: api
 
   // 或者，在文档之外渲染并且随后挂载
   var component = new MyComponent().$mount()
-  document.getElementById('app').appendChild(vm.$el)
+  document.getElementById('app').appendChild(component.$el)
   ```
 
 - **另见：**

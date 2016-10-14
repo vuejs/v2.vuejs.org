@@ -1,7 +1,7 @@
 ---
 title: 服务端渲染
 type: guide
-order: 23
+order: 24
 ---
 
 ## 需要服务端渲染（SSR）吗？
