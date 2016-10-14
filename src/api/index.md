@@ -562,7 +562,7 @@ type: api
 
   - **详细：**
 
-    一个可替换的字符串模板允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
+    字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
 
     如果组件是一个函数组件，Render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
 
@@ -579,7 +579,7 @@ type: api
 
 - **详细：**
 
-  发生在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前。
+  在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用。
 
 - **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
@@ -589,7 +589,7 @@ type: api
 
 - **详细：**
 
-  发生在实例已经创建完成之后。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
+  实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
 
 - **另见：** [生命周期图示](/guide/instance.html#Lifecycle-Diagram)
 
@@ -705,7 +705,7 @@ type: api
 
 - **详细:**
 
-一个 用于 Vue 实例 的带 hash 的指令。
+包含 Vue 实例可用指令的哈希表。
 
 - **另见:**
   - [自定义指令](/guide/custom-directive.html)
@@ -717,7 +717,7 @@ type: api
 
 - **详细:**
 
-一个 用于 Vue 实例 的带 hash 的过滤器。
+包含 Vue 实例可用过滤器的哈希表。
 
 - **另见:**
   - [`Vue.filter`](#Vue-filter)
@@ -728,7 +728,7 @@ type: api
 
 - **详细:**
 
-一个 用于 Vue 实例 的带 hash 的组件。
+包含 Vue 实例可用组件的哈希表。
 
 - **另见:**
   - [组件](/guide/components.html)
