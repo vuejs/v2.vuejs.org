@@ -63,16 +63,16 @@
 - [ ] 我xx `1`
 ```
 
-  - 完成后，打钩表示完成，并附带 发起的合并请求链接
-     - [x] 我校对 + `文档序号 ` +  https://github.com/vuefe/vuejs.org/pull/65  (发起的合并请求链接)
+  - 完成后，打钩表示完成，并附带发起的合并请求链接
+     - [x] 我校对 + `文档序号 ` +  https://github.com/vuefe/vuejs.org/pull/65 (发起的合并请求链接)
 
 - markdown语法 - 示例
 
 ```markdown
-- [x] 我xx + `1 ` https://github.com/vuefe/vuejs.org/pull/65  (发起的合并请求链接)
+- [x] 我xx + `1 ` https://github.com/vuefe/vuejs.org/pull/65 (发起的合并请求链接)
 ```
 
-- 支持多人协作翻译，冲突可以解决，认领过的，如果你觉着他太慢，可以再次认领，加速翻译，知道大家都是牺牲业余时间来贡献，所以慢也是可以理解的，慢就需要大家一起帮帮忙了！谢谢。
+- 支持多人协作翻译，冲突可以解决，认领过的，如果你觉着他/她太慢，可以再次认领，加速翻译，知道大家都是牺牲业余时间来贡献，所以慢也是可以理解的，慢就需要大家一起帮帮忙了！谢谢。
 
 
 ## Guide 翻译（已全部完成）贡献 
@@ -91,7 +91,7 @@
 8 | list.md |  列表渲染 | [tingtien](https://github.com/tingtien) | 
 9 | events.md | 事件处理器 | [dingyiming](https://github.com/dingyiming) | 
 10 | forms.md  | 表单控件绑定 | [dingyiming](https://github.com/dingyiming) | 
-11 | components.md |  组件 | [ezreally](https://github.com/ezreally) | 
+11 | components.md | 组件 | [ezreally](https://github.com/ezreally) | 
 
 ### Advanced  进阶
 
@@ -99,11 +99,11 @@
 ----- | ------------- | --- | --- | --- 
 12 | transitions.md | 过渡：进入，离开，和列表 | [awe](https://github.com/hilongjw) | 
 13 | transitioning-state.md | 过渡状态 |  [awe](https://github.com/hilongjw) | 
-14 | render-function.md |  Render 函数 |  [awe](https://github.com/hilongjw) | 
-15 | reactivity.md |  深入响应式原理 | [veaba](https://github.com/veaba) | 
+14 | render-function.md | Render 函数 |  [awe](https://github.com/hilongjw) | 
+15 | reactivity.md | 深入响应式原理 | [veaba](https://github.com/veaba) | 
 16 | custom-directive.md |  自定义指令 | [harrytospring](https://github.com/harrytospring) | 
-17 | mixins.md |  混合 |  [harrytospring](https://github.com/harrytospring) | 
-18 | plugins.md |  插件 | [hgcoder](https://github.com/hgcoder) | 
+17 | mixins.md | 混合 |  [harrytospring](https://github.com/harrytospring) | 
+18 | plugins.md | 插件 | [hgcoder](https://github.com/hgcoder) | 
 19 | single-file-components.md |  单文件组件 | [ATLgo](https://github.com/ATLgo) | 
 20 | routing.md | 路由 | [dingyiming](https://github.com/dingyiming) | 
 21 | state-management.md |  状态管理 | [dear-lizhihua](https://github.com/dear-lizhihua) | 
