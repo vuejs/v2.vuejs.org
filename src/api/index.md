@@ -562,7 +562,7 @@ type: api
 
   - **详细：**
 
-    一个可替换的字符串模板允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
+    字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
 
     如果组件是一个函数组件，Render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
 
