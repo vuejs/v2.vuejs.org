@@ -173,7 +173,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 <form v-on:submit.prevent="onSubmit"></form>
 
 <!-- modifiers can be chained -->
-<a v-on:click.stop.prevent="doThat">
+<a v-on:click.stop.prevent="doThat"></a>
 
 <!-- just the modifier -->
 <form v-on:submit.prevent></form>
@@ -217,13 +217,7 @@ Here's the full list of key modifier aliases:
 - left
 - right
 
-Single letter key aliases are also supported.
-
-``` html
-<input v-on:keyup.v="say('That is the first letter in Vue')">
-```
-
-If necessary, you can even define custom key modifier aliases:
+You can also [define custom key modifier aliases](/api/#keyCodes) via the global `config.keyCodes` object:
 
 ``` js
 // enable v-on:keyup.f1

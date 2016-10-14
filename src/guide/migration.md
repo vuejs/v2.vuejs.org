@@ -1,7 +1,7 @@
 ---
 title: Migration from Vue 1.x
 type: guide
-order: 24
+order: 25
 ---
 
 ## FAQ
@@ -907,8 +907,9 @@ Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US
 ``` js
 computed: {
   filteredUsers: function () {
-    return this.users.filter(function (user) {
-      return user.name.indexOf(this.searchQuery)
+    var self = this
+    return self.users.filter(function (user) {
+      return user.name.indexOf(self.searchQuery) !== -1
     })
   }
 }
@@ -917,8 +918,9 @@ computed: {
 JavaScript's native `.filter` can also manage much more complex filtering operations, because you have access to the full power of JavaScript within computed properties. For example, if you wanted to find all active users and case-insensitively match against both their name and email:
 
 ``` js
-this.users.filter(function (user) {
-  var searchRegex = new RegExp(this.searchQuery, 'i')
+var self = this
+self.users.filter(function (user) {
+  var searchRegex = new RegExp(self.searchQuery, 'i')
   return user.isActive && (
     searchRegex.test(user.name) ||
     searchRegex.test(user.email)
@@ -1034,7 +1036,7 @@ For a very naive implementation, you could just do something like this:
 '$' + price.toFixed(2)
 ```
 
-In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixed(2)` rounds up to `0.4`, but `0.045` rounds down to `0.4`). To work around these issues, you can use the [`accounting`](http://openexchangerates.github.io/accounting.js/) library to more reliably format currencies.
+In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixed(2)` rounds up to `0.04`, but `0.045` rounds down to `0.04`). To work around these issues, you can use the [`accounting`](http://openexchangerates.github.io/accounting.js/) library to more reliably format currencies.
 
 {% raw %}
 <div class="upgrade-path">

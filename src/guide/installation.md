@@ -56,7 +56,7 @@ By default, the NPM package exports the **runtime-only** build. To use the stand
 ``` js
 resolve: {
   alias: {
-    vue: 'vue/dist/vue.js'
+    'vue$': 'vue/dist/vue.js'
   }
 }
 ```
