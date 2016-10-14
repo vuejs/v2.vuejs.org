@@ -121,7 +121,7 @@ new Vue({
 
 ## 指令
 
-指令（Directives）是带有 `v-` 前缀的特殊属性。指令属性的值预期是**单一 JavaScript 表达式**（除了 `v-for`，之后再讨论）。指令的职责就是当其表达式的值改变时响应地将某些行为应用到 DOM 上。让我们回顾一下在介绍里的例子：
+指令（Directives）是带有 `v-` 前缀的特殊属性。指令属性的值预期是**单一 JavaScript 表达式**（除了 `v-for`，之后再讨论）。指令的职责就是当其表达式的值改变时相应地将某些行为应用到 DOM 上。让我们回顾一下在介绍里的例子：
 
 ``` html
 <p v-if="seen">Now you see me</p>
@@ -149,13 +149,13 @@ new Vue({
 
 ### 修饰符
 
-修饰符（Modifiers）是以半角句号 `.` 指明的特殊后缀，用于指出一个指定应该以特殊方式绑定。例如，`.prevent` 装饰符告诉 `v-on` 指令对于触发的事件调用 `event.preventDefault()`：
+修饰符（Modifiers）是以半角句号 `.` 指明的特殊后缀，用于指出一个指定应该以特殊方式绑定。例如，`.prevent` 修饰符告诉 `v-on` 指令对于触发的事件调用 `event.preventDefault()`：
 
 ``` html
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-之后当我们更深入地了解 `v-on` 与 `v-model`时，会看到更多装饰符的使用。
+之后当我们更深入地了解 `v-on` 与 `v-model`时，会看到更多修饰符的使用。
 
 ## 缩写
 
