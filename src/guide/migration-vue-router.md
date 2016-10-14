@@ -1,13 +1,51 @@
 ---
 title: 从Vue Router 0.7.x迁移
 type: guide
-order: 25
+order: 26
 ---
 
 > 只有Vue Router 2与Vue 2是相互兼容的，所以如果你需要更新Vue,你也需要更新Vue Router。这也就是我们在主文档中将迁移路径的内容添加进来的原因。
 如果想要进一步了解新Vue Router的使用详情，请移步 [Vue Router docs](http://router.vuejs.org/en/).
 
-<p class="tip">以下的弃用名单应该相对完整，但是迁移助手会不定期更新以保证赶上更新的进度.</p>
+
+## Router Initialization
+
+### `router.start` <sup>deprecated</sup>
+
+There is no longer a special API to initialize an app with Vue Router. That means instead of:
+
+``` js
+router.start({
+  template: '<router-view></router-view>'
+}, '#app')
+```
+
+You'll just pass a router property to a Vue instance:
+
+``` js
+new Vue({
+  el: '#app',
+  router: router,
+  template: '<router-view></router-view>'
+})
+```
+
+Or, if you're using the runtime-only build of Vue:
+
+``` js
+new Vue({
+  el: '#app',
+  router: router,
+  render: h => h('router-view')
+})
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
+</div>
+{% endraw %}
 
 ## Route 定义
 
@@ -92,14 +130,14 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
-### `subroutes` <sup>弃用</sup>
+### `subRoutes` <sup>弃用</sup>
 
 [重命名为`children`](http://router.vuejs.org/en/essentials/nested-routes.html)出于与Vue以及其他路由库的一致性考虑.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级路径</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找示例<code>subroutes</code>的选项.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找示例 <code>subRoutes</code> 的选项。</p>
 </div>
 {% endraw %}
 
@@ -159,6 +197,44 @@ alias: ['/manage', '/administer', '/administrate']
 <div class="upgrade-path">
   <h4>升级路径</h4>
   <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找示例<code>router.alias</code>的调用.</p>
+</div>
+{% endraw %}
+
+### Arbitrary Route Properties
+
+Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:
+
+``` js
+'/admin': {
+  component: AdminPanel,
+  requiresAuth: true
+}
+```
+
+Then you would now update it to:
+
+``` js
+{
+  path: '/admin',
+  component: AdminPanel,
+  meta: {
+    requiresAuth: true
+  }
+}
+```
+
+Then when later accessing this property on a route, you will still go through meta. For example:
+
+``` js
+if (route.meta.requiresAuth) {
+  // ...
+}
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of arbitrary route properties not scoped under meta.</p>
 </div>
 {% endraw %}
 
@@ -232,12 +308,12 @@ alias: ['/manage', '/administer', '/administrate']
 
 ### `router.go`
 
-[重命名为`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) 出于在[HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API)与语使用的一致性原则.
+为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为 [后退/前进导航](https://router.vuejs.org/en/essentials/navigation.html#routergon)，[`router.push` ](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级路径</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令去寻找<code>router.go</code>指令被调用的示例</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令，寻找 <code>router.go</code> 和 <code>router.push</code> 指令被调用的示例</p>
 </div>
 {% endraw %}
 
@@ -456,20 +532,22 @@ data: function () {
 },
 watch: {
   '$route': function () {
-    this.isLoading = true
-    this.fetchData().then(() => {
-      this.isLoading = false
+    var self = this
+    self.isLoading = true
+    self.fetchData().then(function () {
+      self.isLoading = false
     })
   }
 },
 methods: {
   fetchData: function () {
+    var self = this
     return axios.get('/api/posts')
       .then(function (response) {
-        this.posts = response.data.posts
+        self.posts = response.data.posts
       })
       .catch(function (error) {
-        this.fetchError = error
+        self.fetchError = error
       })
   }
 }

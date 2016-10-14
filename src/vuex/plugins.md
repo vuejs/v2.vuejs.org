@@ -118,6 +118,6 @@ const logger = createLogger({
 })
 ```
 
-日志插件还可以直接通过 `<script>` 标签, 然后它会提供全局方法 `createVuexLogger` 。
+日志插件还可以直接通过 `<script>` 标签，然后它会提供全局方法 `createVuexLogger` 。
 
 要注意，logger 插件会生成状态快照，所以仅在开发环境使用。

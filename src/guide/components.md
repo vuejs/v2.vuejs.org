@@ -93,7 +93,7 @@ new Vue({
 
 ### DOM 模版解析说明
 
-当使用 DOM 作为模版时 (例如，将 `el` 选项挂载到一个已存在的元素上), 你会受到 HTML 的一些限制, 因为 Vue 只有在浏览器解析 HTML 后才能检索模版。尤其像这些元素 `<ul>` ， `<ol>`， `<table>` ， `<select>` 限制了能被它包裹的元素， `<option>` 只能出现在其它元素内部。
+当使用 DOM 作为模版时 (例如，将 `el` 选项挂载到一个已存在的元素上), 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析 HTML 后才能检索模版。尤其像这些元素 `<ul>` ， `<ol>`， `<table>` ， `<select>` 限制了能被它包裹的元素， `<option>` 只能出现在其它元素内部。
 
 在自定义组件中使用这些受限制的元素时会导致一些问题，例如：
 
@@ -132,7 +132,7 @@ Vue.component('my-component', {
 })
 ```
 
-那么 Vue 会在控制台发出警告, 告诉你在组件中 `data` 必须是一个函数。最好理解这种规则的存在意义。
+那么 Vue 会在控制台发出警告，告诉你在组件中 `data` 必须是一个函数。最好理解这种规则的存在意义。
 
 ``` html
 <div id="example-2">
@@ -212,11 +212,11 @@ new Vue({
 </script>
 {% endraw %}
 
-### 组合组件
+### 构成组件
 
 组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模版中使用了组件 B 。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。
 
-在 Vue.js 中，父子组件的关系可以总结为 **props down, events up** 。父组件通过 **props** 向下传递数据给子组件, 子组件通过 **events** 给父组件发送消息。看看它们是怎么工作的。
+在 Vue.js 中，父子组件的关系可以总结为 **props down, events up** 。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 给父组件发送消息。看看它们是怎么工作的。
 
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
@@ -234,7 +234,7 @@ prop 是父组件用来传递数据的一个自定义属性。子组件需要显
 Vue.component('child', {
   // 声明 props
   props: ['message'],
-  // 就像 data 一样, prop 可以用在模板内
+  // 就像 data 一样，prop 可以用在模板内
   // 同样也可以在 vm 实例中像 “this.message” 这样使用
   template: '<span>{{ message }}</span>'
 })
@@ -417,7 +417,7 @@ Vue.component('example', {
 
 ## 自定义事件
 
-父组件可以使用 props 给子组件传递数据, 那么反过来呢？该自定义事件出场了！
+父组件可以使用 props 给子组件传递数据，那么反过来呢？该自定义事件出场了！
 
 ### 使用 `v-on` 绑定自定义事件
 
@@ -526,7 +526,7 @@ new Vue({
 <input v-bind:value="something" v-on:input="something = $event.target.value">
 ```
 
-所以在组件中使用时, 它相当于下面的简写：
+所以在组件中使用时，它相当于下面的简写：
 
 ``` html
 <input v-bind:value="something" v-on:input="something = arguments[0]">
@@ -1000,7 +1000,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 ### X-Templates
 
-另一种定义模版的方式是在 JavaScript 标签里使用 `text/x-template` 类型, 并且指定一个id。例如:
+另一种定义模版的方式是在 JavaScript 标签里使用 `text/x-template` 类型，并且指定一个id。例如:
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -1018,7 +1018,7 @@ Vue.component('hello-world', {
 
 ### Cheap Static Components with `v-once`
 
-尽管在 Vue 中渲染 HTML 很快，不过当组件中包含**大量**静态内容时, 可以考虑使用 `v-once` 将渲染结果缓存起来, 就像这样:
+尽管在 Vue 中渲染 HTML 很快，不过当组件中包含**大量**静态内容时，可以考虑使用 `v-once` 将渲染结果缓存起来，就像这样:
 
 ``` js
 Vue.component('terms-of-service', {

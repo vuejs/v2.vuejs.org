@@ -1,7 +1,7 @@
 ---
 title: 从 Vue1.x 迁移
 type: guide
-order: 24
+order: 25
 ---
 
 ## FAQ
@@ -344,7 +344,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 
 ### `v-bind` 真/假值
 
-在2.0中使用 `v-bind` 时, 只有 `null`, `undefined` , 和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
+在2.0中使用 `v-bind` 时，只有 `null`, `undefined` , 和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
 
 对于枚举属性，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
 
@@ -906,8 +906,9 @@ computed: {
 ``` js
 computed: {
   filteredUsers: function () {
-    return this.users.filter(function (user) {
-      return user.name.indexOf(this.searchQuery)
+    var self = this
+    return self.users.filter(function (user) {
+      return user.name.indexOf(self.searchQuery) !== -1
     })
   }
 }
@@ -916,8 +917,9 @@ computed: {
 js原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有js方法。比如，想要通过匹配用户名字和电子邮箱地址（不区分大小写）找到用户：
 
 ``` js
-this.users.filter(function (user) {
-  var searchRegex = new RegExp(this.searchQuery, 'i')
+var self = this
+self.users.filter(function (user) {
+  var searchRegex = new RegExp(self.searchQuery, 'i')
   return user.isActive && (
     searchRegex.test(user.name) ||
     searchRegex.test(user.email)
@@ -1033,7 +1035,7 @@ function pluralizeKnife (count) {
 '$' + price.toFixed(2)
 ```
 
-大多数情况下，仍然会有奇怪的现象(比如 `0.035.toFixed(2)` 向上舍入得到 `0.4`,但是 `0.045` 向下舍入却也得到 `0.4`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多货币格式化。
+大多数情况下，仍然会有奇怪的现象(比如 `0.035.toFixed(2)` 向上取舍得到 `0.4`,但是 `0.045` 向下取舍却也得到 `0.4`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多可靠的货币格式化。
 
 {% raw %}
 <div class="upgrade-path">

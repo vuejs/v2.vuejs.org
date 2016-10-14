@@ -7,7 +7,7 @@
 ### 参与：
 
 - 加群参与 `427447379` 
-- 发布网址：[vuefe.cn](http://vuefe.cn/)
+- [发布网址：vuefe.cn](http://vuefe.cn/)
 - [翻译仓库](https://github.com/vuefe/vuejs.org)，中文翻译分支 2.0-cn
 - [基础指引](https://github.com/vuefe/vuejs.org/issues/25)
 - 参与API校对：https://github.com/vuefe/vuejs.org/issues/44

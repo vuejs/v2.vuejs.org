@@ -1,5 +1,5 @@
 ---
-title: '过渡: 进入, 离开, 和 列表'
+title: 过渡效果
 type: guide
 order: 12
 ---
@@ -14,7 +14,7 @@ Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用�
 - 在过渡钩子函数中使用 JavaScript 直接操作 DOM
 - 可以配合使用第三方 JavaScript 动画库，如 Velocity.js
 
-在这里, 我们只会讲到进入、离开和列表的过渡， 你也可以看下一节的 [管理过渡状态](transitioning-state.html).
+在这里，我们只会讲到进入、离开和列表的过渡， 你也可以看下一节的 [管理过渡状态](transitioning-state.html).
 
 ## 单元素/组件的过渡
 
