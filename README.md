@@ -32,6 +32,11 @@ $ hexo server
 
 - Computed Properties = Propriedades Computadas
 - Watchers = Observadores
+- *Computed Properties* = Propriedades Computadas
+- *Watchers* = Observadores
+- *Single-File Components* = Componentes Single-File
+- *Custom Elements* = Elementos Personalizados
+- *Performance* = Desempenho
 
 ## Palavras reservadas
 
