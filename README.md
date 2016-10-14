@@ -72,6 +72,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
 - [ ] Single File Components (@ErickPetru)
+- [x] Single File Components (@ErickPetru)
 - [ ] Routing (@natanaelphp)
 - [ ] State Management
 - [x] Unit Testing (@capaci)
