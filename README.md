@@ -54,7 +54,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Computed Properties and Watchers (@danielschmitz)
 - [x] Class and Style Bindings (@gidenilson)
 - [x] Conditional Rendering (@gidenilson)
-- [ ] List Rendering (@ErickPetru)
+- [x] List Rendering (@ErickPetru)
 - [x] Event Handling (@gidenilson)
 - [x] Form Input Bindings(@gidenilson)
 - [ ] Components
