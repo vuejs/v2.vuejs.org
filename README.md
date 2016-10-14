@@ -70,7 +70,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Transitions: Entering, Leaving, and Lists
 - [ ] Transitioning State
 - [x] Render Functions (@jbruni)
-- [ ] Reactivity in Depth
+- [x] Reactivity in Depth (@gidenilson)
 - [ ] Custom Directives
 - [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
