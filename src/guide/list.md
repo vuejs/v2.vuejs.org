@@ -106,7 +106,7 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-你也可以用 `of` 替代 `in` 作为分隔符, 所以它是最接近 JavaScript 迭代器的语法：
+你也可以用 `of` 替代 `in` 作为分隔符，所以它是最接近 JavaScript 迭代器的语法：
 
 ``` html
 <div v-for="item of items"></div>
@@ -379,10 +379,10 @@ example1.items = example1.items.filter(function (item) {
 
 由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
 
-1. 当你直接设置一个项的索引时, 例如： `vm.items[indexOfItem] = newValue`
-2. 当你修改数组的长度时, 例如： `vm.items.length = newLength`
+1. 当你直接设置一个项的索引时，例如： `vm.items[indexOfItem] = newValue`
+2. 当你修改数组的长度时，例如： `vm.items.length = newLength`
 
-为了避免第一种情况, 以下两种方式将达到像 `vm.items[indexOfItem] = newValue` 的效果， 同时也将触发状态更新:
+为了避免第一种情况，以下两种方式将达到像 `vm.items[indexOfItem] = newValue` 的效果， 同时也将触发状态更新:
 
 ``` js
 // Vue.set
@@ -393,7 +393,7 @@ Vue.set(example1.items, indexOfItem, newValue)
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
-避免第二种情况, 使用 `splice`:
+避免第二种情况，使用 `splice`:
 
 ``` js
 example1.items.splice(newLength)
@@ -422,7 +422,7 @@ computed: {
 }
 ```
 
-此外, 你也可以只使用一种方法计算 (例如： 嵌套在 `v-for` 里循环)，但是性能是低效的:
+此外，你也可以只使用一种方法计算 (例如： 嵌套在 `v-for` 里循环)，但是性能是低效的:
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>

@@ -313,7 +313,7 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级路径</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令, 寻找 <code>router.go</code> 和 <code>router.push</code> 指令被调用的示例</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>命令，寻找 <code>router.go</code> 和 <code>router.push</code> 指令被调用的示例</p>
 </div>
 {% endraw %}
 
