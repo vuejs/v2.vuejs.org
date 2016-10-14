@@ -28,6 +28,11 @@ $ hexo server
 - Não faça PRs para o vuejs/master
 - Não faça PULL ou MERGE de vuejs/master, deixe isso para o @danielschmitz
 
+### Palavras padronizadas
+
+- Computed Properties = Propriedades Computadas
+- Watchers = Observadores
+
 ## Palavras reservadas
 
 Estas palavras podem ser mantidas no inglês
@@ -51,13 +56,13 @@ Estas palavras podem ser mantidas no inglês
 - [x] Introduction (@ErickPetru)
 - [x] The Vue Instance (@danielschmitz)
 - [x] Template Syntax (@vitorarjol)
-- [ ] Computed Properties and Watchers (@danielschmitz)
+- [x] Computed Properties and Watchers (@danielschmitz)
 - [x] Class and Style Bindings (@gidenilson)
 - [x] Conditional Rendering (@gidenilson)
 - [x] List Rendering (@ErickPetru)
 - [x] Event Handling (@gidenilson)
 - [x] Form Input Bindings(@gidenilson)
-- [ ] Components
+- [ ] Components (@danielschmitz)
 - [ ] Advanced
 - [ ] Transitions: Entering, Leaving, and Lists
 - [ ] Transitioning State

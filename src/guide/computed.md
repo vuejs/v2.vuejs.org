@@ -1,5 +1,5 @@
 ---
-title: Props Computadas e Observadores
+title: Propriedades Computadas e Observadores
 type: guide
 order: 5
 ---
@@ -112,11 +112,13 @@ Em comparação, a chamada a função de um método sempre será executada, semp
 
 Porque nós preciamos de cachear? Imagine que uma propriedade computada extensa chamada **A**, na qual requer um loop através de um enorme Array e realizando vários cálculos. Então podemos ter outras propriedades computadas que por sua vez dependam de **A** também. Sem o cache, estaremos executando **A** mais vezes que o necessário. Nos casos em que você não necessita de cache, use métodos
 
-Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use métodos.
+Então podemos ter outras propriedades computadas que por sua vez dependam de **A**. Sem cache, estaríamos executando **A** quantas vezes fossem necessárias.
+Nos casos em que você não precisa deseja usar cache, use métodos.
 
-### Computed vs Watched Property
+### Propriedades Computadas vs Observadores
 
-Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue oferece uma forma mais genérica para observar e reagir as mudanças de dados em uma instância do Vue: **propriedades observadas** (observers). 
+Quando tem-se alguns dados que necessitam mudar com base na alteração de outros dados, é tentador usar de forma excessiva o `watch` - especialmente se você está vindo do AngularJS. No entanto, muitas vezes é melhor usar uma propriedade computada em vez do callback `watch`. Considere este exemplo:
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -141,7 +143,7 @@ var vm = new Vue({
 })
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+O código acima é imperativo e repetitivo. Compare-o com uma versão com propriedades computadas:
 
 ``` js
 var vm = new Vue({
@@ -158,11 +160,11 @@ var vm = new Vue({
 })
 ```
 
-Much better, isn't it?
+NMuito melhor, não é mesmo ?
 
-### Computed Setter
+### Setter computado
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+Propriedades computadas são por padrão *getter-only* (somente retornam um valor, somente um get), mas você pode também fornecer um *set* quando precisar dele:
 
 ``` js
 // ...
@@ -183,18 +185,18 @@ computed: {
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+Quando você executa `vm.fullName = 'John Doe'`, o setter será chamado and vm.firstName` e `vm.lastName` serão atualizados corretamente.
 
-## Watchers
+## Watchers (observadores)
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+Enquanto propriedades computadas são mais adequadas na maioria dos casos, há momentos em que um observador customizado é necessário. É por isso que o Vue fornece uma maneira mais genérica para reagir a alterações de dados através da opção `watch`. Isto é mais útil quando você precisa executar operações assíncronas ou operações complexas para responder a uma alteração de dados.
 
-For example:
+Por exemplo:
 
 ``` html
 <div id="watch-example">
   <p>
-    Ask a yes/no question:
+    Fazer uma pergunta sim / não:
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -202,10 +204,10 @@ For example:
 ```
 
 ``` html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to just use what you're familiar with. -->
+<!-- Como já existe um rico ecossistema de bibliotecas ajax    -->
+<!-- e coleções de métodos utilitários com o mesmo propósito geral,  -->
+<!-- o núcleo Vue permanece pequeno por não reinventá-los. Isto também -->
+<!-- lhe dá a liberdade de usar apenas o que você está familiarizado. -->
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script>
@@ -213,41 +215,41 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: 'Eu não posso lhe dar uma resposta até que você faça uma pergunta!'
   },
   watch: {
-    // whenever question changes, this function will run
+    // sempre que a pergunta muda, essa função será executada
     question: function (newQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = 'Esperando você parar de escrever ...'
       this.getAnswer()
     }
   },
   methods: {
-    // _.debounce is a function provided by lodash to limit how
-    // often a particularly expensive operation can be run.
-    // In this case, we want to limit how often we access
-    // yesno.wtf/api, waiting until the user has completely
-    // finished typing before making the ajax request. To learn
-    // more about the _.debounce function (and its cousin
-    // _.throttle), visit: https://lodash.com/docs#debounce
+    // _.debounce é uma função fornecida pelo lodash para limitar como 
+    // a frequência de uma operação complexa pode ser executada
+    // Neste caso, queremos limitar a frequencia com que acessamos 
+    // a api yesno.wtf., esperando que o usuário termine completamente
+    // a digitação antes de realizar achamada ajax. Para aprender
+    // mais sobre a função _.debounce (e seu primo 
+    // _.throttle), visite: https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
         var vm = this
         if (this.question.indexOf('?') === -1) {
-          vm.answer = 'Questions usually contain a question mark. ;-)'
+          vm.answer = 'Perguntas geralmente contêm um ponto de interrogação. ;-)'
           return
         }
-        vm.answer = 'Thinking...'
+        vm.answer = 'Pensando...'
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
           .catch(function (error) {
-            vm.answer = 'Error! Could not reach the API. ' + error
+            vm.answer = 'Erro! Não pode executar a API. ' + error
           })
       },
-      // This is the number of milliseconds we wait for the
-      // user to stop typing.
+      // Este é o número de milissegundos aguardados após o usuário 
+      // parar de digitar
       500
     )
   }
@@ -255,12 +257,12 @@ var watchExampleVM = new Vue({
 </script>
 ```
 
-Result:
+Resultado:
 
 {% raw %}
 <div id="watch-example" class="demo">
   <p>
-    Ask a yes/no question:
+    Fazer uma pergunta sim / não:
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -272,11 +274,11 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: 'Eu não posso lhe dar uma resposta até que você faça uma pergunta!'
   },
   watch: {
     question: function (newQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = 'Esperando você parar de escrever ...'
       this.getAnswer()
     }
   },
@@ -285,16 +287,16 @@ var watchExampleVM = new Vue({
       function () {
         var vm = this
         if (this.question.indexOf('?') === -1) {
-          vm.answer = 'Questions usually contain a question mark. ;-)'
+          vm.answer = 'Perguntas geralmente contêm um ponto de interrogação. ;-)'
           return
         }
-        vm.answer = 'Thinking...'
+        vm.answer = 'Pesando...'
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
           .catch(function (error) {
-            vm.answer = 'Error! Could not reach the API. ' + error
+            vm.answer = 'Erro! Não pode executar a API. ' + error
           })
       },
       500
@@ -304,6 +306,6 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
+neste cado, usando a opção `watch`, nos permite realizar uma operação assíncrona (acessar uma API), limitar a frequência com que se realiza essa operação, e definir os estados intermediários até que se obtenha a resposta final. Nada disso é possível com uma propriedade computada.
 
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](/api/#vm-watch).
+Além da opção `watch`, vcê também pode usar a [API vm.$watch](/api/#vm-watch).

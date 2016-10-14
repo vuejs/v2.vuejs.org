@@ -56,7 +56,7 @@ Por padrão, o NPM exporta a versão de build **runtime-only**. Para usar a vers
 ``` js
 resolve: {
   alias: {
-    vue: 'vue/dist/vue.js'
+    'vue$': 'vue/dist/vue.js'
   }
 }
 ```

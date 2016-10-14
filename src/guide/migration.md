@@ -907,8 +907,9 @@ Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US
 ``` js
 computed: {
   filteredUsers: function () {
-    return this.users.filter(function (user) {
-      return user.name.indexOf(this.searchQuery) !== -1
+    var self = this
+    return self.users.filter(function (user) {
+      return user.name.indexOf(self.searchQuery) !== -1
     })
   }
 }
@@ -917,8 +918,9 @@ computed: {
 JavaScript's native `.filter` can also manage much more complex filtering operations, because you have access to the full power of JavaScript within computed properties. For example, if you wanted to find all active users and case-insensitively match against both their name and email:
 
 ``` js
-this.users.filter(function (user) {
-  var searchRegex = new RegExp(this.searchQuery, 'i')
+var self = this
+self.users.filter(function (user) {
+  var searchRegex = new RegExp(self.searchQuery, 'i')
   return user.isActive && (
     searchRegex.test(user.name) ||
     searchRegex.test(user.email)
