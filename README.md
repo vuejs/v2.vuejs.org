@@ -15,7 +15,7 @@
 - 如果你对已有翻译有异议，建议创建一个 issue 讨论。
 - 如果你想修改英文内容，请去 [vuejs.org 项目](http://vuejs.org/)。
 - 如果你想求教 Vue.js 使用问题，请去[论坛](http://forum.vuejs.org/)。
-- 如果你遇到 Vue.js 的问题，请去 [vue 项目](https://github.com/vuejs/vuejs.org)，创建 issue 并提供演示。
+- 如果你遇到 Vue.js 的问题，请去 [vue 项目](https://github.com/vuejs/vuejs.org)，创建 issue 并提供演示。<br />
   可以在 JSBin ， JSFiddle ， Codepen 等网站创建演示。
 
 ### 翻译要求
@@ -26,8 +26,8 @@
 - 专有词注意大小写，如 HTML ，CSS ， JavaScript 。
 - 术语与已有译文保持一致，如果有异议请先在 issue 中讨论。
 - 代码只翻译注释。
-- 标题会转化为链接，文档其它地方可能会用到，所以标题应尽量简短。
-  在修改标题时搜索一下它是否还用在其它地方。
+- 标题会转化为链接，文档其它地方可能会用到，所以标题应尽量简短。<br />
+  在修改标题时搜索一下它是否还用在其它地方。<br />
   同样的，在修改文档内链接时也应搜索一下。
 - 校对后对应修改提交合并请求
 
@@ -78,7 +78,7 @@
 ## 翻译进度
 
 ## Guide
-翻译已完成
+翻译已完成 <br />
 新增更新 待翻译 https://github.com/vuefe/vuejs.org/issues/190
 
 ### API
