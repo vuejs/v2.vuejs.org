@@ -105,7 +105,7 @@ store.commit({
 
 2. 向对象添加新的属性时，你应该这样做：
 
-  - 使用 `Vue.set(obj, 'newProp', 123)`, 或 -
+  - 使用 `Vue.set(obj, 'newProp', 123)`
 
   - 用新的对象替换该对象。例如，使用 stage-2 [对象扩展语法](https://github.com/sebmarkbage/ecmascript-rest-spread) 我们可以这样写：
 
