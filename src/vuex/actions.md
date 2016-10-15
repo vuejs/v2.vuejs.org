@@ -4,12 +4,12 @@ type: vuex
 order: 7
 ---
 
-Actions are similar to mutations, the difference being that:
+action 和 mutation 类似，区别在于：
 
-- Instead of mutating the state, actions commit mutations.
-- Actions can contain arbitrary asynchronous operations.
+- action 不改变状态，只提交(commit) mutation。
+- action 可以包含任意异步操作。
 
-Let's register a simple action:
+让我们注册一个简单的 action：
 
 ``` js
 const store = new Vuex.Store({
@@ -29,9 +29,9 @@ const store = new Vuex.Store({
 })
 ```
 
-Action handlers receive a context object which exposes the same set of methods/properties on the store instance, so you can call `context.commit` to commit a mutation, or access the state and getters via `context.state` and `context.getters`. We will see why this context object is not the store instance itself when we introduce [Modules](modules.md) later.
+Action 处理函数接收一个上下文对象(context object)，该对象提供了跟 store 实例相同的方法/属性，因此你可以调用 `context.commit` 提交一个 mutation，或者通过 `context.state` 和 `context.getters` 访问 state 和 getters。稍后我们会介绍 [Modules](modules.html)，我们将看到为什么上下文对象 (context object) 不是 store 实例自身。
 
-In practice, we often use ES2015 [argument destructuring](https://github.com/lukehoban/es6features#destructuring) to simplify the code a bit (especially when we need to call `commit` multiple times):
+在实践中，我们经常用到 ES2015 [参数解构](https://github.com/lukehoban/es6features#destructuring) 来简化代码（特别是我们要多次调用 `commit` 的时候）：
 
 ``` js
 actions: {
@@ -41,15 +41,15 @@ actions: {
 }
 ```
 
-### Dispatching Actions
+### 分发(Dispatch) Actions
 
-Actions are triggered with the `store.dispatch` method:
+使用 `store.dispatch` 方法触发 action。
 
 ``` js
 store.dispatch('increment')
 ```
 
-This may look dumb at first sight: if we want to increment the count, why don't we just call `store.commit('increment')` directly? Well, remember that **mutations must be synchronous**? Actions don't. We can perform **asynchronous** operations inside an action:
+这看起来很蠢：如果我们想增加 count，为什么我们不直接调用 `store.commit('increment')`？回想起**mutation 必须是同步函数** 了吗？action 可以不是同步函数。我们可以在 action 回调函数中执行 **异步操作**：
 
 ``` js
 actions: {
@@ -61,48 +61,47 @@ actions: {
 }
 ```
 
-Actions support the same payload format and object-style dispatch:
+action 同样支持 payload 格式和对象风格的 dispatch：
 
 ``` js
-// dispatch with a payload
+// dispatch 传入 payload
 store.dispatch('incrementAsync', {
   amount: 10
 })
 
-// dispatch with an object
+// dispatch 传入一个对象
 store.dispatch({
   type: 'incrementAsync',
   amount: 10
 })
 ```
 
-A more practical example of real-world actions would be an action to checkout a shopping cart, which involves **calling an async API** and **committing multiple mutations**:
+日常生活行为中，更实际的例子是购物车结帐，涉及**调用异步 API**和**分发多重 mutations**：
 
 ``` js
 actions: {
   checkout ({ commit, state }, payload) {
-    // save the items currently in the cart
+    // 把当前购物车的商品备份起来
     const savedCartItems = [...state.cart.added]
-    // send out checkout request, and optimistically
-    // clear the cart
+    // 发送结帐请求，并愉快地清空购物车
     commit(types.CHECKOUT_REQUEST)
-    // the shop API accepts a success callback and a failure callback
+    // 购物 API 接收一个成功回调和一个失败回调
     shop.buyProducts(
       products,
-      // handle success
+      // 成功操作
       () => commit(types.CHECKOUT_SUCCESS),
-      // handle failure
+      // 失败操作
       () => commit(types.CHECKOUT_FAILURE, savedCartItems)
     )
   }
 }
 ```
 
-Note we are performing a flow of asynchronous operations, and recording the side effects (state mutations) of the action by committing them.
+注意，我们执行的是一个异步操作的流程，并通过提交 action 来记录其副作用（状态变化）。
 
-### Dispatching Actions in Components
+### 组件中分发 Action
 
-You can dispatch actions in components with `this.$store.dispatch('xxx')`, or use the `mapActions` helper which maps component methods to `store.dispatch` calls (requires root `store` injection):
+使用 `this.$store.dispatch('xxx')`（需要根组件中注入 `store` ）在组件中分发 action，使用 `mapActions` 工具函数，映射组件方法到调用 `store.dispatch`：
 
 ``` js
 import { mapActions } from 'vuex'
@@ -111,7 +110,7 @@ export default {
   // ...
   methods: {
     ...mapActions([
-      'increment' // map this.increment() to this.$store.dispatch('increment')
+      'increment' // 映射 this.increment() 到 this.$store.dispatch('increment')
     ]),
     ...mapActions({
       add: 'increment' // map this.add() to this.$store.dispatch('increment')
@@ -120,11 +119,11 @@ export default {
 }
 ```
 
-### Composing Actions
+### 组合多个 Action
 
-Actions are often asynchronous, so how do we know when an action is done? And more importantly, how can we compose multiple actions together to handle more complex async flows?
+Action 通常是异步的，所以我们如何知道一个 action 何时完成？更重要的是，我们如何组合多个 action 一起操作复杂的异步流程？
 
-The first thing to know is that `store.dispatch` returns the value returned by the triggered action handler, so you can return a Promise in an action:
+第一件事是知道 `store.dispatch` 返回『action 回调函数被触发后的返回值』，所以你可以在 action 中返回一个 Promise 对象。
 
 ``` js
 actions: {
@@ -139,7 +138,7 @@ actions: {
 }
 ```
 
-Now you can do:
+现在你可以这么做：
 
 ``` js
 store.dispatch('actionA').then(() => {
@@ -147,7 +146,7 @@ store.dispatch('actionA').then(() => {
 })
 ```
 
-And also in another action:
+然后在另一个 action ：
 
 ``` js
 actions: {
@@ -160,20 +159,20 @@ actions: {
 }
 ```
 
-Finally, if we make use of [async / await](https://tc39.github.io/ecmascript-asyncawait/), a JavaScript feature landing very soon, we can compose our actions like this:
+最后，如果我们使用 [async / await](https://tc39.github.io/ecmascript-asyncawait/)，很快落地的 JavaScript 特性，我们可以这样组合我们的 action：
 
 ``` js
-// assuming getData() and getOtherData() return Promises
+// 假定 getData() and getOtherData() 返回的是 Promise
 
 actions: {
   async actionA ({ commit }) {
     commit('gotData', await getData())
   },
   async actionB ({ dispatch, commit }) {
-    await dispatch('actionA') // wait for actionA to finish
+    await dispatch('actionA') // 等待 actionA 结束
     commit('gotOtherData', await getOtherData())
   }
 }
 ```
 
-> It's possible for a `store.dispatch` to trigger multiple action handlers in different modules. In such a case the returned value will be a Promise that resolves when all triggered handlers have been resolved.
+> `store.dispatch` 可能会在不同模块中，触发多个 action 回调函数。在这种情况下，返回值是一个 Promise 对象，该对象在所有被触发的回调都 resolve 之后自己再 resolve。
