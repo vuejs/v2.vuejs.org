@@ -43,7 +43,7 @@ NPM é o método de instalação recomendada para aplicações em larga escala c
 $ npm install vue
 ```
 
-### Execução Standalone vs. Runtime-only 
+### Execução Standalone vs. Runtime-only
 
 Existem dois tipos de builds disponíveis, a *standalone* e a *runtime-olny*.
 
@@ -63,9 +63,9 @@ resolve: {
 
 Para o Browserify, pode-se usar o [aliasify](https://github.com/benbria/aliasify) para alcançar o mesmo resultado.
 
-<p class="tip">Não faça `import Vue from 'vue/dist/vue.js'` - uma vez que algumas ferramentas ou bibliotecas de terceiros podem importar o vue de outra forma, fazendo com que a aplicação carregue os dois modos, runtime e standalone, ocasionando em erros.</p>
+<p class="tip">Não faça `import Vue from 'vue/dist/vue.js'` - uma vez que algumas ferramentas ou bibliotecas de terceiros podem importar o vue de outra forma, fazendo com que a aplicação carregue os dois modos, runtime e standalone, ocasionando erros.</p>
 
-### Ambientes CSP 
+### Ambientes CSP
 
 Em alguns ambientes, tais como o Google Chrome Apps, é necessário cumprir a `Content Security Policy` (CSP), no qual proíbe o uso do `new Function()` para avaliar expressões. A versão *standalone* depende desta funcionalidade para compilar os templates, então este recurso é inviável nestes ambientes.
 
@@ -73,12 +73,12 @@ Por outro lado, a versão *runtime-only* é 100% compatível com CSP. Quando usa
 
 ## CLI
 
-Vue.js provê um  [CLI oficial](https://github.com/vuejs/vue-cli) para rapidamente construir aplicações chamadas de *Single Page Applications*. Ele inclui uma série de funcionalidades e configurações prontas para uso, para o desenvolvimento de aplicações frontend. Leva somente alguns poucos minutos para se obter uma aplicação pronta para ser executada, inclusive com hot-reload, lint ao salvar, e uma build pronta para o servidor de produção. 
+Vue.js provê um  [CLI oficial](https://github.com/vuejs/vue-cli) para rapidamente construir aplicações chamadas de *Single Page Applications*. Ele inclui uma série de funcionalidades e configurações prontas para uso, para o desenvolvimento de aplicações frontend. Leva somente alguns poucos minutos para se obter uma aplicação pronta para ser executada, inclusive com hot-reload, lint ao salvar, e uma build pronta para o servidor de produção.
 
 ``` bash
 # instakar vue-cli
 $ npm install --global vue-cli
-# cria um novo projeto com o template "webpack" 
+# cria um novo projeto com o template "webpack"
 $ vue init webpack my-project
 # instalar as dependências e executar!
 $ cd my-project
@@ -106,4 +106,4 @@ $ bower install vue
 
 ## AMD Module Loaders
 
-A versão standalone ou a versão instalada via Bower são compilados com UMD, então podem ser usados diretamente como um módulo AMD. 
+A versão standalone ou a versão instalada via Bower são compilados com UMD, então podem ser usados diretamente como um módulo AMD.
