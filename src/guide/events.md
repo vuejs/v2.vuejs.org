@@ -175,7 +175,7 @@ methods: {
 <form v-on:submit.prevent="onSubmit"></form>
 
 <!-- 修饰符可以串联  -->
-<a v-on:click.stop.prevent="doThat">
+<a v-on:click.stop.prevent="doThat"></a>
 
 <!-- 只有修饰符 -->
 <form v-on:submit.prevent></form>
@@ -218,16 +218,10 @@ methods: {
 - left
 - right
 
-同样支持单字母按键别名。
-
-``` html
-<input v-on:keyup.v="say('That is the first letter in Vue')">
-```
-
-在必要时，甚至可以自定义按键别名:
+可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](/api/#keyCodes)：
 
 ``` js
-// 可以使用 @keyup.f1
+// 可以使用 v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
 

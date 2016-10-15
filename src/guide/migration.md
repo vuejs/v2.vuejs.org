@@ -1,7 +1,7 @@
 ---
 title: 从 Vue1.x 迁移
 type: guide
-order: 24
+order: 25
 ---
 
 ## FAQ
@@ -16,7 +16,7 @@ order: 24
 
 2. 然后，看看侧边栏给出的关于这一页的内容。如果你发现有的地方有影响，而该工具没有给出提示的，请检查并解决一下该项。
 
-3. 如果有测试的话，测试一边看看还有什么问题。如果没有测试的话，打开app，随机翻一下，看一下有什么报错或者警告信息。
+3. 如果有测试的话，测试一边看看还有什么问题。如果没有测试的话，打开 app，随机翻一下，看一下有什么报错或者警告信息。
 
 4. 至此，你的 app 基本已经迁移完毕了。如果你有更多想了解的，可以阅读一下本节剩下的部分。
 
@@ -34,7 +34,7 @@ order: 24
 
 只有 Vue-Router 2 是可编译的，可以遵循  [Vue-Router 迁移路径](migration-vue-router.html) 来处理。幸运地是， 大多数应用不含有许多路由代码，所以迁移不用超过一小时。
 
-对于 Vuex， 甚至 0.8 版本和 Vue 2 一起都是可以编译的，所以不必强制更新。 促使你立即更新的理由是 Vuex 2 有更先进的功能，比如模块和减少的样板文件。
+对于 Vuex ， 甚至 0.8 版本和 Vue 2 一起都是可以编译的，所以不必强制更新。 促使你立即更新的理由是 Vuex 2 有更先进的功能，比如模块和减少的样板文件。
 
 ## 模板
 
@@ -89,7 +89,7 @@ order: 24
 
 ### `attached` <sup>弃用</sup>
 
-依赖其它钩子使用自定义的dom内部方法，例如：
+依赖其它钩子使用自定义的 dom 内部方法，例如：
 
 ``` js
 attached: function () {
@@ -241,7 +241,7 @@ mounted: function () {
 
 ### `coerce` Prop的参数 <sup>弃用</sup>
 
-如果需要检查prop的值，创建一个内部的computed值，而不再在props内部去定义，例如：
+如果需要检查 prop 的值，创建一个内部的 computed 值，而不再在 props 内部去定义，例如：
 
 ``` js
 props: {
@@ -285,10 +285,10 @@ computed: {
 
 ### `twoWay` Prop 的参数 <sup>弃用</sup>
 
-Props现在只能单项传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
+Props 现在只能单项传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
 - [自定义组件事件](components.html#Custom-Events)
-- [自定义输入组件](components.html#Form-Input-Components-using-Custom-Events) (using component events)
+- [自定义输入组件](components.html#Form-Input-Components-using-Custom-Events) (使用组件事件)
 - [全局状态管理](state-management.html)
 
 {% raw %}
@@ -300,7 +300,7 @@ Props现在只能单项传递。为了对父组件产生反向影响，子组件
 
 ### `v-bind` 的 `.once`和`.sync` 修饰符 <sup>弃用</sup>
 
-Props现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
+Props 现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
 - [自定义组件事件](components.html#Custom-Events)
 - [自定义输入组件](components.html#Form-Input-Components-using-Custom-Events) (使用组件事件)
@@ -315,9 +315,9 @@ Props现在只能单向传递。为了对父组件产生反向影响，子组件
 
 ### 修改 Props <sup>弃用</sup>
 
-组件内修改prop是反模式（不推荐的）的。比如，先申明一个prop，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变prop的值。根据渲染机制，当父组件重新渲染时，子组件的内部prop值也将被覆盖。
+组件内修改 prop 是反模式（不推荐的）的。比如，先声明一个 prop ，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变 prop 的值。根据渲染机制，当父组件重新渲染时，子组件的内部 prop 值也将被覆盖。
 
-大多数情况下，改变prop值可以用以下选项代替：
+大多数情况下，改变 prop 值可以用以下选项代替：
 
 - 通过 data 属性，用prop去设置一个data属性的默认值。
 - 通过 computed 属性。
@@ -344,7 +344,7 @@ Props现在只能单向传递。为了对父组件产生反向影响，子组件
 
 ### `v-bind` 真/假值
 
-在2.0中使用 `v-bind` 时, 只有 `null`, `undefined`, 和 `false`被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
+在2.0中使用 `v-bind` 时，只有 `null`, `undefined` , 和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
 
 对于枚举属性，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
 
@@ -475,7 +475,7 @@ new Vue({
 })
 ```
 
-这种方式的另外一个优点是：当包裹函数执行时间与延时时间相当时，将会等待较长时间。比如，当给出搜索建议时，要等待用户输入停止一段时间后才给出建议，这个体验非常差。其实，这时候更适合用__throttling__函数。因为现在你可以自由的使用类似lodash之类的库，所以很快就可以用throttling重构项目。
+这种方式的另外一个优点是：当包裹函数执行时间与延时时间相当时，将会等待较长时间。比如，当给出搜索建议时，要等待用户输入停止一段时间后才给出建议，这个体验非常差。其实，这时候更适合用 __throttling__ 函数。因为现在你可以自由的使用类似 lodash 之类的库，所以很快就可以用 throttling 重构项目。
 
 {% raw %}
 <div class="upgrade-path">
@@ -509,7 +509,7 @@ new Vue({
 
 ### 使用内联 `value`的`v-model`  <sup>弃用</sup>
 
-`v-model` 不再以内联 `value` 方式初始化的初值了，显然他将以实例的data相应的属性作为真正的初值。
+`v-model` 不再以内联 `value` 方式初始化的初值了，显然他将以实例的 data 相应的属性作为真正的初值。
 
 这意味着以下元素：
 
@@ -525,7 +525,7 @@ data: {
 }
 ```
 
-将渲染model为 'bar' 而不是 'foo'。同样，对 `<textarea>` 已有的值来说：
+将渲染 model 为 'bar' 而不是 'foo' 。同样，对 `<textarea>` 已有的值来说：
 
 ``` html
 <textarea v-model="text">
@@ -550,7 +550,7 @@ data: {
 <input v-for="str in strings" v-model="str">
 ```
 
-因为 `<input>` 将被编译成类似下面的js代码：
+因为 `<input>` 将被编译成类似下面的 js 代码：
 
 ``` js
 strings.map(function (str) {
@@ -609,14 +609,14 @@ strings.map(function (str) {
 <p v-for="item in items" ref="items"></p>
 ```
 
-和 1.x 中不同， `$refs` 不是响应的,因为它们在渲染过程中注册/更新。只有监听变化并重复渲染才能使它们响应。 because they're registered/updated during the render process itself. Making them reactive would require duplicate renders for every change.
+和 1.x 中不同， `$refs` 不是响应的，因为它们在渲染过程中注册/更新。只有监听变化并重复渲染才能使它们响应。
 
 另一方面，设计`$refs`主要是提供给 js 程序访问的，并不建议在模板中过度依赖使用它。因为这意味着在实例之外去访问实例状态，违背了 Vue 数据驱动的思想。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>v-el</code> and <code>v-ref</code>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找出实例中的 <code>v-el</code> 和 <code>v-ref</code>.</p>
 </div>
 {% endraw %}
 
@@ -649,8 +649,8 @@ strings.map(function (str) {
 
 显要的改变有如下几点：
 
-- 指令不再拥有实例。意思是，在指令的钩子函数中不再拥有实例的`this`。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过`el`来访问实例。
-- 类似 `acceptStatement`， `deep`， `priority`等都已被弃用。为了替换`双向`指令，见 [示例](#Two-Way-Filters-deprecated)。
+- 指令不再拥有实例。意思是，在指令的钩子函数中不再拥有实例的 `this` 。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过 `el` 来访问实例。
+- 类似 `acceptStatement` ，`deep` ， `priority` 等都已被弃用。为了替换`双向`指令，见 [示例](#Two-Way-Filters-deprecated)。
 - 现在有些钩子的意义和以前不一样了，并且多了两个钩子函数。
 
 幸运的是，新钩子更加简单，更加容易掌握。详见 [自定义指令指南](custom-directive.html)。
@@ -658,7 +658,7 @@ strings.map(function (str) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到定义指令的地方。在helper 工具会把这些地方标记出来，因为很有可能这些地方需要重构。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到定义指令的地方。在 helper 工具会把这些地方标记出来，因为很有可能这些地方需要重构。</p>
 </div>
 {% endraw %}
 
@@ -680,8 +680,8 @@ to just:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the `.literal` modifier on a directive.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到实例中使用 `.literal` 修饰符的地方。</p>
 </div>
 {% endraw %}
 
@@ -694,7 +694,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到使用 <code>transition</code> 属性的地方。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到使用 <code>transition</code> 属性的地方。</p>
 </div>
 {% endraw %}
 
@@ -711,12 +711,12 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 
 ### 过渡的 `stagger` 参数 <sup>弃用</sup>
 
-如果希望在列表渲染中使用渐近过渡，可以通过设置元素的`data-index` （或类似属性）来控制时间。 请参考[这个例子](transitions.html#Staggering-List-Transitions)。
+如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` （或类似属性）来控制时间。 请参考[这个例子](transitions.html#Staggering-List-Transitions)。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到使用 <code>transition</code> 属性的地方。升级期间，你可以“过渡”到新的过渡策略。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到使用 <code>transition</code> 属性的地方。升级期间，你可以“过渡”到新的过渡策略。</p>
 </div>
 {% endraw %}
 
@@ -737,7 +737,7 @@ Vue.config.keyCodes.f1 = 112
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到过时的<code>keyCode</code>配置</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到过时的 <code>keyCode</code> 配置</p>
 </div>
 {% endraw %}
 
@@ -906,8 +906,9 @@ computed: {
 ``` js
 computed: {
   filteredUsers: function () {
-    return this.users.filter(function (user) {
-      return user.name.indexOf(this.searchQuery)
+    var self = this
+    return self.users.filter(function (user) {
+      return user.name.indexOf(self.searchQuery) !== -1
     })
   }
 }
@@ -916,8 +917,9 @@ computed: {
 js原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有js方法。比如，想要通过匹配用户名字和电子邮箱地址（不区分大小写）找到用户：
 
 ``` js
-this.users.filter(function (user) {
-  var searchRegex = new RegExp(this.searchQuery, 'i')
+var self = this
+self.users.filter(function (user) {
+  var searchRegex = new RegExp(self.searchQuery, 'i')
   return user.isActive && (
     searchRegex.test(user.name) ||
     searchRegex.test(user.email)
@@ -1033,7 +1035,7 @@ function pluralizeKnife (count) {
 '$' + price.toFixed(2)
 ```
 
-大多数情况下，仍然会有奇怪的现象(比如 `0.035.toFixed(2)` 向上舍入得到 `0.4`,但是 `0.045` 向下舍入却也得到 `0.4`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多货币格式化。
+大多数情况下，仍然会有奇怪的现象(比如 `0.035.toFixed(2)` 向上取舍得到 `0.04`,但是 `0.045` 向下取舍却也得到 `0.04`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多可靠的货币格式化。
 
 {% raw %}
 <div class="upgrade-path">

@@ -1,7 +1,7 @@
 ---
 title: 路由
 type: guide
-order: 20
+order: 21
 ---
 
 ## 官方路由
@@ -10,7 +10,7 @@ order: 20
 
 ## 从零开始简单的路由
 
-如果需要非常简单的路由，可以动态渲染一个页面级的组件像这样：
+如果只需要非常简单的路由而不需要引入整个路由库，可以动态渲染一个页面级的组件像这样：
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }

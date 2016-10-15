@@ -7,7 +7,6 @@ order: 0
 ## 目前任务
 
 - [vue 2.0 - Guide 翻译校对 （进度 / 认领）](https://github.com/vuefe/vuejs.org/issues/77)
-- [vue 2.0 - API 翻译校对 （进度 / 认领）](https://github.com/vuefe/vuejs.org/issues/119)
 - [vuex 2.0 - 文档翻译 （进度 / 认领）](https://github.com/vuefe/vuejs.org/issues/124)
 
 ## Guide 翻译贡献

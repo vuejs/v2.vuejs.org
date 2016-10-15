@@ -13,7 +13,7 @@ order: 1
 
 > 参与请阅读 [翻译规范](https://github.com/vuefe/vuejs.org/wiki/%E7%BF%BB%E8%AF%91%E8%A7%84%E8%8C%83)
 
-- 加群参与 `42744737` 
+- 加群参与 `427447379` 
 - [发布网址：vuefe.cn](http://vuefe.cn/)
 - [翻译仓库](https://github.com/vuefe/vuejs.org) ，中文翻译分支 2.0-cn
 - [基础指引](https://github.com/vuefe/vuejs.org/wiki/%E5%85%B3%E4%BA%8E%E7%BF%BB%E8%AF%91---%E5%9F%BA%E7%A1%80%E6%8C%87%E5%BC%95)

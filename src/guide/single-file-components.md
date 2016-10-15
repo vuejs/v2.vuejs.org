@@ -45,7 +45,7 @@ order: 19
 
 - **Modern JavaScript with ES2015/16**: 阅读 Babel 的 [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). 你不需要立刻记住每一个方法，但是你可以保留这个页面以便后期参考。
 
-在你花一些时日了解这些资源之后，我们建议你参考 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 。只要遵循指示，你就能很快的运行一个用到 `.vue` 组件, ES2015 和  热重载( hot-reloading ) 的Vue项目!
+在你花一些时日了解这些资源之后，我们建议你参考 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 。只要遵循指示，你就能很快的运行一个用到 `.vue` 组件，ES2015 和  热重载( hot-reloading ) 的Vue项目!
 
 这个模板使用 [Webpack](https://webpack.github.io/)，一个能将多个模块打包成最终应用的模块打包工具。 [这个视频](https://www.youtube.com/watch?v=WQue1AN93YU) 介绍了Webpack的更多相关信息。 学习了这些基础知识后， 你可能想看看 [这个在 Egghead.io上的 高级 Webpack 课程](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
 
@@ -54,50 +54,6 @@ order: 19
 ### 针对高级用户
 
 无论你更钟情 Webpack 或是 Browserify，我们为简单的和更复杂的项目都提供了一些文档模板。我们建议浏览 [github.com/vuejs-templates](https://github.com/vuejs-templates)，找到你需要的部分，然后参考 README 中的说明，使用 [vue-cli](https://github.com/vuejs/vue-cli) 工具生成新的项目。
-
-## 生产环境配置
-
-为了更小的文件体积，Vue 的压缩版本(minified standalone build)已经为你移除了所有的警告，但是在使用 Webpack 或是 Browserify 这样的工具构建 Vue.js 应用时，需要添加一些配置。
-
-### Webpack
-
-使用 Webpack 的 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) 指定当前环境为生产环境，使得警告块在 UglifyJS 压缩代码过程中被自动丢弃。配置实例:
-
-``` js
-var webpack = require('webpack')
-
-module.exports = {
-  // ...
-  plugins: [
-    // ...
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  ]
-}
-```
-
-### Browserify
-
-- 将 `NODE_ENV` 设置为 `"production"`，然后运行打包命令， `vueify` 会自动避免打包 热重载 和 相关开发代码。
-- 应用全局 [envify](https://github.com/hughsk/envify) 转换到你的 bundle 中。这样压缩工具就能从从环境变量条件块中移除所有警告信息的 Vue 源代码，例如：
-
-``` bash
-NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
-```
-
-- 使用 vueify 中的 extract-css 插件提取 样式(styles) 到一个独立的 css 文件中。
-
-``` bash
-NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] -e main.js | uglifyjs -c -m > build.js
-```
 
 ***
 

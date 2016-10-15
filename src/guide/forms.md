@@ -36,7 +36,7 @@ new Vue({
 
 ``` html
 <span>Multiline message is:</span>
-<p>{{ message }}</p>
+<p style="white-space: pre">{{ message }}</p>
 <br>
 <textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
