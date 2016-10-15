@@ -1035,7 +1035,7 @@ function pluralizeKnife (count) {
 '$' + price.toFixed(2)
 ```
 
-大多数情况下，仍然会有奇怪的现象(比如 `0.035.toFixed(2)` 向上取舍得到 `0.4`,但是 `0.045` 向下取舍却也得到 `0.4`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多可靠的货币格式化。
+大多数情况下，仍然会有奇怪的现象(比如 `0.035.toFixed(2)` 向上取舍得到 `0.4`,但是 `0.045` 向下取舍却也得到 `0.04`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多可靠的货币格式化。
 
 {% raw %}
 <div class="upgrade-path">
