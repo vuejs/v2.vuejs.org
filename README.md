@@ -88,7 +88,7 @@
 翻译已完成
 
 ### Vuex 2.0
-翻译中
+翻译中 https://github.com/vuefe/vuejs.org/issues/124
 
 
 ## 参与翻译&校对成员名单
