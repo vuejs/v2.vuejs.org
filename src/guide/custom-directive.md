@@ -63,7 +63,7 @@ A directive definition object can provide several hook functions (all optional):
 
 - `update`: called whenever the bound element's containing component is updated. The directive's value may or may not have changed. You can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
 
-- `componentUpdated`: called after the containing component has completed an update cycle.
+- `componentUpdated`: called after the containing component has completed an update cycle. In practice, if you rely on the containing component children you need to use `componentUpdated` instead of `update`.
 
 - `unbind`: called only once, when the directive is unbound from the element.
 
