@@ -95,4 +95,4 @@
 ## 参与翻译&校对成员名单
 https://github.com/vuefe/vuejs.org/issues/192
 
-## 感谢所有参与翻译的朋友们！
+### 感谢所有参与翻译的朋友们！
