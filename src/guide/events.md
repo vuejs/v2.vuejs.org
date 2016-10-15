@@ -221,7 +221,7 @@ methods: {
 可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](/api/#keyCodes)：
 
 ``` js
-// 可以使用 @keyup.f1
+// 可以使用 v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
 
