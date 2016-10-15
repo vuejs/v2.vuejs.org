@@ -77,7 +77,7 @@
 
 ## 翻译进度
 
-## Guide
+### Guide
 翻译已完成 <br />
 新增更新 待翻译 https://github.com/vuefe/vuejs.org/issues/190
 
@@ -89,6 +89,7 @@
 
 ### Vuex 2.0
 翻译中 https://github.com/vuefe/vuejs.org/issues/124
+
 
 
 ## 参与翻译&校对成员名单
