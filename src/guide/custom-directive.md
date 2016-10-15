@@ -61,9 +61,9 @@ A directive definition object can provide several hook functions (all optional):
 
 - `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not necessarily in-document).
 
-- `update`: called whenever the bound element's containing component is updated. The directive's value may or may not have changed. You can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
+- `update`: called after the containing component has updated, __but possibly before its children have updated__. The directive's value may or may not have changed, but you can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
 
-- `componentUpdated`: called after the containing component has completed an update cycle.
+- `componentUpdated`: called after the containing component __and its children__ have updated.
 
 - `unbind`: called only once, when the directive is unbound from the element.
 
