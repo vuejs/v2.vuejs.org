@@ -17,14 +17,14 @@
         <%- partial('partials/ga') %>
         <script src="/js/vue.js"></script>
     </head>
-    <body>
+    <body class="<%- isIndex ? '' : 'docs' -%>">
         <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
         <%- partial('partials/header') %>
         <% if (!isIndex) { %>
-            <div id="main">
+            <div id="main" class="fix-sidebar">
                 <% if (page.blog_index) { %>
                     <%- partial('partials/blog') %>
                 <% } else { %>

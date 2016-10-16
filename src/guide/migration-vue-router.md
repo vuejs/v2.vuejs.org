@@ -1,12 +1,49 @@
 ---
 title: Migration from Vue Router 0.7.x
 type: guide
-order: 25
+order: 26
 ---
 
 > Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](http://router.vuejs.org/en/).
 
-<p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
+## Router Initialization
+
+### `router.start` <sup>deprecated</sup>
+
+There is no longer a special API to initialize an app with Vue Router. That means instead of:
+
+``` js
+router.start({
+  template: '<router-view></router-view>'
+}, '#app')
+```
+
+You'll just pass a router property to a Vue instance:
+
+``` js
+new Vue({
+  el: '#app',
+  router: router,
+  template: '<router-view></router-view>'
+})
+```
+
+Or, if you're using the runtime-only build of Vue:
+
+``` js
+new Vue({
+  el: '#app',
+  router: router,
+  render: h => h('router-view')
+})
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
+</div>
+{% endraw %}
 
 ## Route Definitions
 
@@ -91,14 +128,14 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
-### `subroutes` <sup>deprecated</sup>
+### `subRoutes` <sup>deprecated</sup>
 
 [Renamed to `children`](http://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subroutes</code> option.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subRoutes</code> option.</p>
 </div>
 {% endraw %}
 
@@ -158,6 +195,44 @@ alias: ['/manage', '/administer', '/administrate']
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.alias</code> being called.</p>
+</div>
+{% endraw %}
+
+### Arbitrary Route Properties
+
+Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:
+
+``` js
+'/admin': {
+  component: AdminPanel,
+  requiresAuth: true
+}
+```
+
+Then you would now update it to:
+
+``` js
+{
+  path: '/admin',
+  component: AdminPanel,
+  meta: {
+    requiresAuth: true
+  }
+}
+```
+
+Then when later accessing this property on a route, you will still go through meta. For example:
+
+``` js
+if (route.meta.requiresAuth) {
+  // ...
+}
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of arbitrary route properties not scoped under meta.</p>
 </div>
 {% endraw %}
 
@@ -230,12 +305,12 @@ The `<a>` will be the actual link (and will get the correct href), but the activ
 
 ### `router.go`
 
-[Renamed to `router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) for consistency with terminology used in the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API).
+For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.go</code> being called.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.go</code> being used where <code>router.push</code> should be used instead.</p>
 </div>
 {% endraw %}
 
@@ -453,20 +528,22 @@ data: function () {
 },
 watch: {
   '$route': function () {
-    this.isLoading = true
-    this.fetchData().then(() => {
-      this.isLoading = false
+    var self = this
+    self.isLoading = true
+    self.fetchData().then(function () {
+      self.isLoading = false
     })
   }
 },
 methods: {
   fetchData: function () {
+    var self = this
     return axios.get('/api/posts')
       .then(function (response) {
-        this.posts = response.data.posts
+        self.posts = response.data.posts
       })
       .catch(function (error) {
-        this.fetchError = error
+        self.fetchError = error
       })
   }
 }

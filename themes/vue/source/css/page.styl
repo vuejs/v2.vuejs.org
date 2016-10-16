@@ -7,7 +7,8 @@
 @import "_sidebar"
 
 #header
-    box-shadow 0 0 4px rgba(0,0,0,.25)
+    box-shadow 0 0 1px rgba(0,0,0,.25)
+    transition background-color .3s ease-in-out
 
 .content
     position relative
@@ -15,6 +16,9 @@
     max-width 600px
     margin 0 auto
     &.api
+        > a:first-of-type > h2
+            margin-top 0
+            padding-top: 0
         ul
             padding-left 1.25em
             line-height 1.4em
@@ -41,19 +45,28 @@
         margin-left 20px
     h1
         margin 0 0 1em
+    h2, h3
+        &:before
+            content ''
+            display block
+            margin-top -1 * $heading-link-padding-top
+            height $heading-link-padding-top
+            visibility hidden
     h2
-        margin 2em 0 .8em
+        margin $h2-margin-top 0 .8em
         padding-bottom .7em
         border-bottom 1px solid $border
+        z-index: -1
     h3
-        margin 3em 0 1.2em
+        margin $h3-margin-top 0 1.2em
         position relative
-        &:before
+        z-index: -1
+        &:after
             content "#"
             color $green
             position absolute
             left -0.7em
-            top -2px
+            bottom -2px
             font-size 1.2em
             font-weight bold
     figure, p, ul, ol
@@ -117,8 +130,9 @@
     .sidebar
         position fixed
 
-#donate
-    margin-top 15px
+@media screen and (min-width: 1360px)
+    #header
+        background-color rgba(255,255,255,.4)
 
 @media screen and (max-width: 1300px)
     .content.with-sidebar
@@ -126,25 +140,23 @@
     #ad
         z-index 7
         position relative
-        width 100%
         padding 0
         bottom 0
         right 0
-        margin 0 0 15px -6px
-        .carbon-wrap, .carbon-img, .carbon-text, .carbon-poweredby
-            display inline-block
-            vertical-align top
-        .carbon-text
-            width 140px
-            margin-left 15px
-        .carbon-poweredby
-            position absolute
-            bottom 12px
-            left 140px
+        float right
+        margin 0 0 20px 30px
+        // .carbon-wrap, .carbon-img, .carbon-text, .carbon-poweredby
+        //     display inline-block
+        //     vertical-align top
+        // .carbon-text
+        //     width 140px
+        //     margin-left 15px
+        // .carbon-poweredby
+        //     position absolute
+        //     bottom 12px
+        //     left 140px
 
 @media screen and (max-width: 900px)
-    #ad
-        width 100%
     body
         -webkit-text-size-adjust none
         font-size 14px
@@ -165,6 +177,13 @@
     .content
         &.with-sidebar
             margin auto
+        h2, h3
+            &:before
+                content ''
+                display block
+                margin-top -1 * $mobile-heading-link-padding-top
+                height $mobile-heading-link-padding-top
+                visibility hidden
     .footer
         margin-left 0
         text-align center

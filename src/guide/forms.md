@@ -1,16 +1,17 @@
 ---
-title: Form Input Bindings
+title: Input Bindings em Formulários
 type: guide
 order: 10
 ---
 
-## Basic Usage
+## Uso Básico
 
-You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+Você pode usar a diretiva `v-model` para criar two-way data bindings em elementos input e textarea de formulários.
+Ele automaticamente busca a maneira correta de atualizar o elemento com base no tipo de entrada. Embora um pouco mágico, `v-model` é essencialmente sintaxe açucar para atualização de dados com eventos de entrada do usuário, além de cuidados especiais para alguns casos do edge.
 
-<p class="tip">`v-model` doesn't care about the initial value provided to an input or a textarea. It will always treat the Vue instance data as the source of truth.</p>
+<p class="tip">`v-model` não se importa com o valor inicial fornecido para um input ou um textarea. Ele sempre vai tratar os dados de instância do Vue como a fonte da verdade.</p>
 
-### Text
+### Texto
 
 ``` html
 <input v-model="message" placeholder="edit me">
@@ -32,7 +33,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Multiline text
+### Texto com múltiplas linhas
 
 ``` html
 <span>Multiline message is:</span>
@@ -59,12 +60,12 @@ new Vue({
 
 
 {% raw %}
-<p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
+<p class="tip">Interpolação em textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) não funciona. Em vez disso use <code>v-model</code>.</p>
 {% endraw %}
 
 ### Checkbox
 
-Single checkbox, boolean value:
+Checkbox único, valor boleano:
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -85,7 +86,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Multiple checkboxes, bound to the same Array:
+Múltiplos checkboxes, associados ao mesmo Array:
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
@@ -162,7 +163,7 @@ new Vue({
 
 ### Select
 
-Single select:
+Select único:
 
 ``` html
 <select v-model="selected">
@@ -191,7 +192,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Multiple select (bound to Array):
+Select múltiplo (ligados a um array):
 
 ``` html
 <select v-model="selected" multiple>
@@ -222,7 +223,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Dynamic options rendered with `v-for`:
+Options dinamicamente renderizados com `v-for`:
 
 ``` html
 <select v-model="selected">
@@ -271,7 +272,8 @@ new Vue({
 
 ## Value Bindings
 
-For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+Para radio, checkbox e select options, os binding values do `v-model` são normalmente strings estáticas (ou boleano para checkbox):
+
 
 ``` html
 <!-- `picked` is a string "a" when checked -->
@@ -286,7 +288,7 @@ For radio, checkbox and select options, the `v-model` binding values are usually
 </select>
 ```
 
-But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
+Mas às vezes podemos querer vincular o valor de uma propriedade dinâmica na instância do Vue. Podemos usar 'v-bind' para alcançar esse objectivo. Além disso, usando 'v-bind' nos permite vincular o valor de inputs para valores de sequências non-string.
 
 ### Checkbox
 
@@ -331,11 +333,12 @@ typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
 
-## Modifiers
+## Modificadores
 
 ### `.lazy`
 
-By default, `v-model` syncs the input with the data after each `input` event. You can add the `lazy` modifier to instead sync after `change` events:
+
+Por padrão, `v-model` sincroniza o imput com os dados após cada evento `input`. Adicionando o modificador `lazy` a sincronização ocorrerá somente após o evento `change`:
 
 ``` html
 <!-- synced after "change" instead of "input" -->
@@ -344,17 +347,18 @@ By default, `v-model` syncs the input with the data after each `input` event. Yo
 
 ### `.number`
 
-If you want user input to be automatically typecast as a number, you can add the `number` modifier to your `v-model` managed inputs:
+Se você quer que a entrada do usuário seja tipificada como um número, isso pode ser feito adicionando o modificador `number` ao `v-model` do input:
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string.
+Isso é bastante útil, porque mesmo com `type="number"`, o valor HTML retornado é sempre uma string.
 
 ### `.trim`
 
-If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
+Se você que que a entrada do usuário seja automaticamente isenta de espaços no início e no fim, você pode adicionar o modificador `trim` ao `v-model` do input:
+
 
 ```html
 <input v-model.trim="msg">
