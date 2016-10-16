@@ -420,9 +420,9 @@ new Vue({
 </li>
 <li><p><code>inserted</code>: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not necessarily in-document).</p>
 </li>
-<li><p><code>update</code>: called whenever the bound element’s containing component is updated. The directive’s value may or may not have changed. You can skip unnecessary updates by comparing the binding’s current and old values (see below on hook arguments).</p>
+<li><p><code>update</code>: called after the containing component has updated, <strong>but possibly before its children have updated</strong>. The directive’s value may or may not have changed, but you can skip unnecessary updates by comparing the binding’s current and old values (see below on hook arguments).</p>
 </li>
-<li><p><code>componentUpdated</code>: called after the containing component has completed an update cycle.</p>
+<li><p><code>componentUpdated</code>: called after the containing component <strong>and its children</strong> have updated.</p>
 </li>
 <li><p><code>unbind</code>: called only once, when the directive is unbound from the element.</p>
 </li>
