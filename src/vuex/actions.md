@@ -41,7 +41,7 @@ actions: {
 }
 ```
 
-### 分发(Dispatch) Actions
+### 分发(Dispatch) Action
 
 使用 `store.dispatch` 方法触发 action。
 
