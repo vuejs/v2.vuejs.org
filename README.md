@@ -66,7 +66,6 @@ Estas palavras podem ser mantidas no inglês
 - [x] Event Handling (@gidenilson)
 - [x] Form Input Bindings(@gidenilson)
 - [ ] Components (@danielschmitz)
-- [ ] Advanced
 - [ ] Transitions: Entering, Leaving, and Lists
 - [ ] Transitioning State
 - [x] Render Functions (@jbruni)
@@ -76,7 +75,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] Plugins (@jbruni)
 - [x] Single File Components (@ErickPetru)
 - [ ] Routing (@natanaelphp)
-- [ ] State Management (@ErickPetru)
+- [x] State Management (@ErickPetru)
 - [x] Unit Testing (@capaci)
 - [ ] Server-Side Rendering
 - [ ] Migration from Vue 1.x
