@@ -1,5 +1,5 @@
 ---
-title: 从Vue Router 0.7.x迁移
+title: 从 Vue Router 0.7.x 迁移
 type: guide
 order: 26
 ---

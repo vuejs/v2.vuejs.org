@@ -166,7 +166,7 @@ const store = new Vuex.Store({ ...options })
 
 - **`mapState(map: Array<string> | Object): Object`**
 
-  创建一个组件的计算属性选项，该选项会返回 Vuex store 的子树   Create component computed options that return the sub tree of the Vuex store. [详细介绍](state.md#the-mapstate-helper)
+  创建一个组件的计算属性选项，该选项会返回 Vuex store 的子树。 [详细介绍](state.md#the-mapstate-helper)
 
 - **`mapGetters(map: Array<string> | Object): Object`**
 
