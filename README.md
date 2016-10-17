@@ -79,13 +79,12 @@
 
 ### Guide
 翻译已完成 <br />
-新增更新 待翻译 https://github.com/vuefe/vuejs.org/issues/190
 
 ### API
-翻译已完成
+翻译已完成 <br />
 
 ### Examples
-翻译已完成
+翻译已完成 <br />
 
 ### Vuex 2.0
 翻译中 https://github.com/vuefe/vuejs.org/issues/124
