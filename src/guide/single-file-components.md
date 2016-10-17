@@ -1,56 +1,56 @@
 ---
-title: Single File Components
+title: Componentes Single-File
 type: guide
 order: 19
 ---
 
-## Introduction
+## Introdução
 
-In many Vue projects, global components will be defined using `Vue.component`, followed by `new Vue({ el: '#container '})` to target a container element in the body of every page.
+Em muitos projetos Vue, componentes globais serão definidos com `Vue.component`, seguidos por `new Vue({ el: '#container '})` para atingir um *container* no corpo de cada página.
 
-This can work very well for small to medium-sized projects, where JavaScript is only used to enhance certain views. In more complex projects however, or when your frontend is entirely driven by JavaScript, these disadvantages become apparent:
+Isto pode funcionar bem em projetos pequenos e médios, onde o JavaScript só é utilizado para incrementar certas interfaces. No entanto, em projetos mais complexos ou quando o *frontend* é totalmente dirijido pelo JavaScript, tais desvantagens se tornam aparentes:
 
-- **Global definitions** force unique names for every component
-- **String templates** lack syntax highlighting and require ugly slashes for multiline HTML
-- **No CSS support** means that while HTML and JavaScript are modularized into components, CSS is conspicuously left out
-- **No build step** restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and Babel
+- **Definições globais** forçam nomes únicos para cada componente
+- **Templates com Strings** não têm *syntax highlighting* e são difíceis de ler em múltiplas linhas
+- **Sem suporte ao CSS**, enquanto HTML e JavaScript são modularizados em componentes, CSS é notavelmente deixado de fora
+- **Sem processamento no build**, ou seja, nos restringindo a HTML e JavaScript ES5, ao invés de preprocessadores como Pug (anteriormente Jade) e Babel
 
-All of these are solved by **single-file components** with a `.vue` extension, made possible with build tools such as Webpack or Browserify.
+Tudo isso é resolvido através dos **Componentes Single-File** com a extensão `.vue`, possibilitados graças a ferramentas de *build* como Webpack ou Browserify.
 
-Here's a simple example of a file we'll call `Hello.vue`:
+Aqui está um simples exemplos de um arquivo que chamaremos de `Hello.vue`:
 
 <img src="/images/vue-component.png" style="display: block; margin: 30px auto">
 
-Now we get:
+Agora nós obtivemos:
 
-- [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#syntax-highlighting)
-- [CommonJS modules](https://webpack.github.io/docs/commonjs.html)
-- [Component-scoped CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+- [Syntax highlighting completo](https://github.com/vuejs/awesome-vue#syntax-highlighting)
+- [Modularização com CommonJS](https://webpack.github.io/docs/commonjs.html)
+- [Escopo de CSS por componente](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
-As promised, we can also use preprocessors such as Jade, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
+Como prometido, podemos também utilizar pré-processadores como Pug (Jade), Babel (com módulos ES2015+) e Stylus para componentes mais limpos e mais ricos em recursos.
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-These specific languages are just examples. You could just as easily use Buble, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive.
+Estas linguagens específicas são meros exemplos. Poderíamos tão facilmente usar Buble, TypeScript, SCSS, PostCSS - ou qualquer outro que acreditarmos nos tornar mais produtivos.
 
 <!-- TODO: include CSS modules once it's supported in vue-loader 9.x -->
 
-## Getting Started
+## Primeiros Passos
 
-### For Users New to Module Build Systems in JavaScript
+### Não Acostumado a Sistemas de Build
 
-With `.vue` components, we're entering the realm of advanced JavaScript applications. That means learning to use a few additional tools if you haven't already:
+Com componentes `.vue`, estamos entrando no reino das aplicações JavaScript avançadas. Significa aprender a utilizar algumas ferramentas adicionais se ainda não teve oportunidade:
 
-- **Node Package Manager (NPM)**: Read the [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) through section _10: Uninstalling global packages_.
+- **Node Package Manager (NPM)**: Leia o guia [Getting Started](https://docs.npmjs.com/getting-started/what-is-npm) do NPM até a seção _10: Uninstalling global packages_.
 
-- **Modern JavaScript with ES2015/16**: Read through Babel's [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). You don't have to memorize every feature right now, but keep this page as a reference you can come back to.
+- **JavaScript moderno com ES2015/16**: Leia o guia [Learn ES2015](https://babeljs.io/docs/learn-es2015/) do Babel. Não é necessário memorizar cada recurso agora, mas mantenha esta página como referência.
 
-After you've taken a day to dive into these resources, we recommend checking out the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template. Follow the instructions and you should have a Vue project with `.vue` components, ES2015 and hot-reloading running in no time!
+Depois que tiver tirado um dia para mergulhar nestes tópicos, recomendamos que dê uma olhada no modelo de projeto [webpack-simple](https://github.com/vuejs-templates/webpack-simple). Seguindo as instruções, você terá em mãos um projeto Vue com componentes `.vue`, ES2015 e `hot-reloading` (recompilação e atualização em tempo real ao salvar o código), tudo rodando em pouquíssimo tempo!
 
-The template uses [Webpack](https://webpack.github.io/), a module bundler that takes a number of "modules" and then bundle them into your final application. To learn more about Webpack itself, [this video](https://www.youtube.com/watch?v=WQue1AN93YU) offers a good intro. Once you get past the basics, you might also want to check out [this advanced Webpack course on Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
+Este modelo de projeto utiliza o [Webpack](https://webpack.github.io/), um "empacotador de módulos" (*module bundler*), que pega vários módulos (arquivos JavaScript diversos) e então os combina em uma aplicação final. Para aprender mais sobre o próprio Webpack, [este vídeo](https://www.youtube.com/watch?v=WQue1AN93YU) pode ser uma boa introdução. Depois que você passar do básico, talvez queira conferir este [curso avançado de Webpack em Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
 
-In Webpack, each module can be transformed by a "loader" before included into the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with Webpack, you can read [the docs for vue-loader](https://vue-loader.vuejs.org).
+No Webpack, cada módulo pode ser transformado por um plugin "carregador" (*loader*) antes de ser incluído no pacote. Para isso, Vue oferece o plugin [vue-loader](https://github.com/vuejs/vue-loader), responsável por cuidar da transformação dos arquivos `.vue` em JavaScript carregável pelo empacotador. O modelo de projeto [webpack-simple](https://github.com/vuejs-templates/webpack-simple) já possui tudo configurado para você, mas se estiver interessado em entender mais a fundo como os componentes `.vue` funcionam com o Webpack, sugerimos que leia a [documentação do vue-loader](https://vue-loader.vuejs.org).
 
-### For Advanced Users
+### Usuário Avançado de Sistemas de Build
 
-Whether you prefer Webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
+Independetemente de sua preferência por Webpack ou por Browserify, temos modelos de projeto documentados para ambos, tanto para projetos simples ou mais complexos. Recomendados que vasculhe o repositório [github.com/vuejs-templates](https://github.com/vuejs-templates), escolhendo o *template* que considerar mais adequado para o seu caso, seguindo as instruções de cada README para gerar um novo projeto com ajuda da ferramenta [vue-cli](https://github.com/vuejs/vue-cli).

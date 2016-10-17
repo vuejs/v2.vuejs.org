@@ -1176,7 +1176,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   // or, render off-document and append afterwards:
   var component = new MyComponent().$mount()
-  document.getElementById('app').appendChild(vm.$el)
+  document.getElementById('app').appendChild(component.$el)
   ```
 
 - **See also:**

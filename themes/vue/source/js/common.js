@@ -202,7 +202,9 @@
         if (previousActive) previousActive.classList.remove('active')
         currentActive.classList.add('active')
         if (shouldScrollIntoView) {
-          var currentPageOffset = currentPageAnchor.offsetTop - 8
+          var currentPageOffset = currentPageAnchor
+            ? currentPageAnchor.offsetTop - 8
+            : 0
           var currentActiveOffset = currentActive.offsetTop + currentActive.parentNode.clientHeight
           var sidebarHeight = sidebar.clientHeight
           var currentActiveIsInView = (

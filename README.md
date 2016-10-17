@@ -28,6 +28,14 @@ $ hexo server
 - Não faça PRs para o vuejs/master
 - Não faça PULL ou MERGE de vuejs/master, deixe isso para o @danielschmitz
 
+### Palavras padronizadas
+
+- *Computed Properties* = Propriedades Computadas
+- *Watchers* = Observadores
+- *Single-File Components* = Componentes Single-File
+- *Custom Elements* = Elementos Personalizados
+- *Performance* = Desempenho
+
 ## Palavras reservadas
 
 Estas palavras podem ser mantidas no inglês
@@ -51,28 +59,28 @@ Estas palavras podem ser mantidas no inglês
 - [x] Introduction (@ErickPetru)
 - [x] The Vue Instance (@danielschmitz)
 - [x] Template Syntax (@vitorarjol)
-- [ ] Computed Properties and Watchers (@danielschmitz)
+- [x] Computed Properties and Watchers (@danielschmitz)
 - [x] Class and Style Bindings (@gidenilson)
 - [x] Conditional Rendering (@gidenilson)
-- [ ] List Rendering (@ErickPetru)
+- [x] List Rendering (@ErickPetru)
 - [x] Event Handling (@gidenilson)
 - [x] Form Input Bindings(@gidenilson)
-- [ ] Components
-- [ ] Advanced
+- [ ] Components (@danielschmitz)
 - [ ] Transitions: Entering, Leaving, and Lists
 - [ ] Transitioning State
 - [x] Render Functions (@jbruni)
-- [ ] Reactivity in Depth
+- [x] Reactivity in Depth (@gidenilson)
 - [ ] Custom Directives
 - [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
-- [ ] Single File Components
+- [x] Single File Components (@ErickPetru)
 - [ ] Routing (@natanaelphp)
-- [ ] State Management
-- [ ] Unit Testing
-- [ ] Server-Side Rendering
+- [x] State Management (@ErickPetru)
+- [x] Unit Testing (@capaci)
+- [ ] Server-Side Rendering (@ErickPetru)
 - [ ] Migration from Vue 1.x
 - [ ] Migration from Vue Router 0.7.x
+- [x] Migration from Vuex 0.6.x to 1.0 (@ErickPetru)
 - [x] Comparison with Other Frameworks (@ErickPetru)
 - [ ] Deployment
 
