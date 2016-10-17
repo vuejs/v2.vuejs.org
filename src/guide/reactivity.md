@@ -1,24 +1,24 @@
 ---
-title: Reactivity in Depth
+title: Reatividada em Profundidade
 type: guide
 order: 15
 ---
 
-We've covered most of the basics - now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
+Cobrimos a maioria das noções básicas - agora é hora de dar um mergulho profundo! Uma das características mais distintas do Vue é o sistema de reatividade não obstrutivo. Modelos são simplesmente objetos JavaScript. Quando você os modifica, a exibição é visualização é atualizada. Isso torna o gerenciamento de estado muito simples e intuitivo, mas também é importante entender como isso funciona para evitar algumas armadilhas comuns. Nesta seção, vamos cavar alguns dos detalhes de baixo nível do sistema de reatividade do Vue.
 
-## How Changes Are Tracked
+## Como as Alterções são Monitoradas
 
-When you pass a plain JavaScript object to a Vue instance as its `data` option, Vue will walk through all of its properties and convert them to getter/setters using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue doesn't support IE8 and below.
+Quando você passar um objeto JavaScript simples para uma instância do Vue, como a opção `data`, o Vue irá percorrer todas as suas propriedades e convertê-las para getter/setters usando [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). Esta é uma característica un-shimmable encontrada somente a partir do ES5, razão pela qual o Vue não suporta o IE8 e versões anteriores.
 
-The getter/setters are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format getter/setters differently when converted data objects are logged, so you may want to install [vue-devtools](https://github.com/vuejs/vue-devtools) for a more inspection-friendly interface.
+Os getter/setters são invisíveis para o usuário, mas debaixo do capô, eles permitem ao Vue executar o rastreamento de dependência e notificações de alteração quando propriedades são acessadas ou modificadas. Uma ressalva é que consoles de browsers formatam getter/setters diferentemente quando alteram objetos de dados, então você pode querer instalar o [vue-devtools] (https://github.com/vuejs/vue-devtools)  para uma ter interface mais amigável para inspeção.
 
-Every component instance has a corresponding **watcher** instance, which records any properties "touched" during the component's render as dependencies. Later on when a dependency's setter is triggered, it notifies the watcher, which in turn causes the component to re-render.
+Cada instância de componente tem um observador de instância, **watcher**, correspondente, que registra todas as propriedades "tocadas" durante a renderização do componente e depedências. Mais tarde, quando o setter de uma dependência é acionado, ele notifica o watcher que então faz com que o componente seja re-renderizado.
 
 ![Reactivity Cycle](/images/data.png)
 
-## Change Detection Caveats
+## Resalva sobre a detecção de alterações
 
-Due to the limitations of modern JavaScript (and the abandonment of `Object.observe`), Vue **cannot detect property addition or deletion**. Since Vue performs the getter/setter conversion process during instance initialization, a property must be present in the `data` object in order for Vue to convert it and make it reactive. For example:
+Devido às limitações do JavaScript moderno (e ao abandono do `Object.observe`), o Vue **não pode detectar adicão ou exclusão**. O Vue executa o processo de conversão de getter/setter na inicialização da instância; uma propriedade deve estar presente no objeto `data` nesse momento para que o Vue faça sua conversão e o torne reativo. Por exemplo:
 
 ``` js
 var vm = new Vue({
@@ -32,30 +32,30 @@ vm.b = 2
 // `vm.b` is NOT reactive
 ```
 
-Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method:
+O Vue não permite adicionar dinamicamente novas propriedades reativas para uma instância já criada. No entanto, é possível adicionar propriedades reativas a um objeto utilizando o método `Vue.set(object, key, value)`:
 
 ``` js
 Vue.set(vm.someObject, 'b', 2)
 ```
 
-You can also use the `vm.$set` instance method, which is just an alias to the global `Vue.set`:
+Você pode também usar o método de instância `vm.$set` que é simplesmente um atalho para o método global `Vue.set`:
 
 ``` js
 this.$set(this.someObject, 'b', 2)
 ```
 
-Sometimes you may want to assign a number of properties to an existing object, for example using `Object.assign()` or `_.extend()`. However, new properties added to the object will not trigger changes. In such cases, create a fresh object with properties from both the original object and the mixin object:
+Às vezes você pode querer atribuir uma série de propriedades a um objeto existente, por exemplo, usando `Object.assign()` ou `_.extend()`. No entanto, novas propriedades adicionadas ao objeto não acionaram mudanças. Em tais casos, crie um novo objeto com as propriedades do objeto original e junte a um objeto vazio:
 
 ``` js
-// instead of `Object.assign(this.someObject, { a: 1, b: 2 })`
+// ao invés de `Object.assign(this.someObject, { a: 1, b: 2 })`
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
-There are also a few array-related caveats, which were discussed earlier in the [list rendering section](/guide/list.html#Caveats).
+Existem também algumas ressalvas relacionadas com arrays, que foram discutidas anteriormente na [seçao sobre renderização de listas](/guide/list.html#Caveats).
 
-## Declaring Reactive Properties
+## Declarando Propriedades Reativas
 
-Since Vue doesn't allow dynamically adding root-level reactive properties, this means you have to initialize you instances by declaring all root-level reactive data properties upfront, even just with an empty value:
+Como o Vue não permite adicionar dinamicamente Propriedades reativas de nível root, isso significa que você tem inicializar a instância declarando todas as propriedades de nível root com dados iniciais, apenas um valor vazio:
 
 ``` js
 var vm = new Vue({
@@ -69,15 +69,16 @@ var vm = new Vue({
 vm.message = 'Hello!'
 ```
 
-If you don't declare `message` in the data option, Vue will warn you that the render function is trying to access a property that doesn't exist.
+Se a propriedade `message` não for declarada em `data`, o Vue irá avisar que a função de renderização está tentando acessar uma propriedade que não existe.
 
-There are technical reasons behind this restriction - it eliminates a class of edge cases in the dependency tracking system, and also makes Vue instances play nicer with type checking systems. But there is also an important consideration in terms of code maintainability: the `data` object is like the schema for your component's state. Declaring all reactive properties upfront makes the component code easier to understand when revisited later or read by another developer.
+Há razões técnicas por trás dessa restrição - it eliminates a class of edge cases in the dependency tracking system, and also makes Vue instances play nicer with type checking systems. Mas há também uma consideração importante em termos de capacidade de manutenção do código: O objeto `data` é como o esquema para o estado do seu componente. Declarar todas as propriedades reativas antecipadamente faz o código do componente mais fácil de entender quando revisitado posteriormente ou lido por outro desenvolvedor.
 
-## Async Update Queue
+## Fila de atualização assíncrona
 
-In case you haven't noticed yet, Vue performs DOM updates **asynchronously**. Whenever a data change is observed, it will open a queue and buffer all the data changes that happen in the same event loop. If the same watcher is triggered multiple times, it will be pushed into the queue only once. This buffered de-duplication is important in avoiding unnecessary calculations and DOM manipulations. Then, in the next event loop "tick", Vue flushes the queue and performs the actual (already de-duped) work. Internally Vue tries native `Promise.then` and `MutationObserver` for the asynchronous queuing and falls back to `setTimeout(fn, 0)`.
+Caso você não tenha notado ainda, o Vue executa atualizações de DOM **assincronamente**. Sempre que uma alteração de dados é observada, serão abertos uma fila e o buffer de todas as alterações de dados que acontecem no mesmo event loop. Se o mesmo observador é acionado várias vezes, ele será empurrado na fila de uma só vez. Esta ação é importante para evitar cálculos e manipulações do DOM desnecessários. Então, no próximo ciclo de eventos "tick", o Vue libera a fila e executa o trabalho atual. Internamente, Vue tenta utilizar os nativos `Promise.then` e `MutationObserver` para o enfileiramento de mensagens assíncronas e volta para `setTimeout (fn, 0)`.
 
-For example, when you set `vm.someData = 'new value'`, the component will not re-render immediately. It will update in the next "tick", when the queue is flushed. Most of the time we don't need to care about this, but it can be tricky when you want to do something that depends on the post-update DOM state. Although Vue.js generally encourages developers to think in a "data-driven" fashion and avoid touching the DOM directly, sometimes it might be necessary to get your hands dirty. In order to wait until Vue.js has finished updating the DOM after a data change, you can use `Vue.nextTick(callback)` immediately after the data is changed. The callback will be called after the DOM has been updated. For example:
+
+Por exemplo, quando você define `vm.someData = 'new value'`, o componente não será renderizado imediatamente. Ele será atualizado no próximo "tick", quando a file for liberada. Na maioria das vezes não precisamos nos preocupar com isso, mas a situação pode se complicar quando você quer fazer algo que depende do estado do DOM pós-atualização. Embora o Vue.js geralmente encoraje os desenvolvedores a pensar de uma forma de "data-driven" e evitar tocar o DOM diretamente, às vezes pode ser necessário sujar as mãos. Para aguardar até que o Vue.js tenha terminado de atualizar o DOM após uma alteração de dados, você pode usar o `Vue.nextTick(callback)` imediatamente após a alteração dos dados. A função callback será chamada após o DOM ser atualizado. Por exemplo:
 
 ``` html
 <div id="example">{{ message }}</div>
@@ -97,7 +98,7 @@ Vue.nextTick(function () {
 })
 ```
 
-There is also the `vm.$nextTick()` instance method, which is especially handy inside components, because it doesn't need global `Vue` and its callback's `this` context will be automatically bound to the current Vue instance:
+Há também o método de instância de `vm.$nextTick()`, que é especialmente útil no interior de componentes, porque não precisa da variável global `Vue` e o contexto do `this` do seu callback será automaticamente ligado à instância atual do Vue:
 
 ``` js
 Vue.component('example', {
