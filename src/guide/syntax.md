@@ -4,11 +4,11 @@ type: guide
 order: 4
 ---
 
-O Vue.js utiliza uma sintaxe de templates baseada em HTML que permite que você vincule declarativamente o DOM renderizado aos dados da instância Vue. Todos os templates do Vue.js são compostos por HTML válido que pode ser compilado por navegadores compatíveis com as especificações e também com compiladores HTML.
+O Vue.js utiliza uma sintaxe de templates baseada em HTML que permite que você vincule declarativamente o DOM renderizado aos dados da instância Vue. Todos os templates do Vue.js são compostos por HTML válido que pode ser compilado por navegadores compatíveis com as especificações e também por compiladores HTML.
 
-Internamente, o Vue compila dos templates dentro de funções de renderização do DOM. Combinado com o sistema de reatividade, o Vue é capaz de identificar a menor quantidade possível de componentes para serem re-renderizados e aplica o mínimo possível de manipulações do DOM ao perceber uma mudança no estado da aplicação.
+Internamente, o Vue compila os templates dentro de funções de renderização do DOM. Combinado com o sistema de reatividade, o Vue é capaz de identificar a menor quantidade possível de componentes para serem re-renderizados e aplica o mínimo possível de manipulações do DOM ao perceber uma mudança no estado da aplicação.
 
-Se você é familiarizado com os conceitos do Virtual DOM mas prefere o poder "puro" do Javascript, você também pode [escrever funções de renderização diretamente](/guide/render-function.html) ao invés de utilizar templates, além de contar com suporte opcional para JSX.
+Se você é familiarizado com os conceitos do Virtual DOM mas prefere o poder "puro" do JavaScript, você também pode [escrever funções de renderização diretamente](/guide/render-function.html) ao invés de utilizar templates, além de contar com suporte opcional para JSX.
 
 ## Interpolações
 
@@ -38,11 +38,11 @@ As chaves duplas interpretam os dados como texto simples, e não html. Para que 
 
 Os conteúdos são inseridos como HTML simples - todos data bindings são ignorados. Note que você não pode utilizar a diretiva `v-html` para compor templates parciais, porque o Vue não possui uma engine baseada em templates no formato de string. Ao invés disso, os componentes são a maneira sugerida para a composição e reutilização de componentes de UI.
 
-<p class="tip">Renderizar html dinâmico sem preocauções pode ser muito perigoso porque pode levar à [ataques XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilize a interpolação de HTML apenas em conteúdo que você confia e **nunca** em conteúdo enviado por seus usuários.</p>
+<p class="tip">Renderizar html dinâmico sem preocauções pode ser muito perigoso porque pode levar à [ataques XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilize a interpolação de HTML apenas em conteúdos que você confia e **nunca** em conteúdos enviados por seus usuários.</p>
 
 ### Atributos
 
-Chaves duplas (mustaches) não podem ser utilizados dentro de atributos HTML. Para isso, utilize a [diretiva v-bind](/api/#v-bind):
+Chaves duplas (mustaches) não podem ser utilizadas dentro de atributos HTML. Para isso, utilize a [diretiva v-bind](/api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
@@ -54,9 +54,9 @@ Isso também funciona com atributos booleanos - o atributo será removido se a c
 <button v-bind:disabled="someDynamicCondition">Botão</button>
 ```
 
-### Utilizando Expressões Javascript
+### Utilizando Expressões JavaScript
 
-Até aqui nós apenas vinculamos propriedades simples em nossos templates. Mas o Vue.js suporta todo o poder das expressões Javascript dentro de todos data bindings:
+Até aqui nós apenas vinculamos propriedades simples em nossos templates. Mas o Vue.js suporta todo o poder das expressões JavaScript dentro de todos data bindings:
 
 ``` html
 {{ number + 1 }}
@@ -68,7 +68,7 @@ Até aqui nós apenas vinculamos propriedades simples em nossos templates. Mas o
 <div v-bind:id="'list-' + id"></div>
 ```
 
-Essas expressões serão compiladas como Javascript no escopo data da instância do Vue. A única restrição é que cada binding pode conter **apenas uma expressão**, então o código a seguir **NÃO** funcionará:
+Essas expressões serão compiladas como JavaScript no escopo data da instância do Vue. A única restrição é que cada binding pode conter **apenas uma expressão**, então o código a seguir **NÃO** funcionará:
 
 ``` html
 <!-- isso é uma atribuição, e não uma expressão: -->
@@ -111,7 +111,7 @@ Filtros podem ser encadeados:
 {{ message | filterA | filterB }}
 ```
 
-Filtros são funções Javascript, então eles podem aceitar parâmetros:
+Filtros são funções JavaScript, então eles podem aceitar parâmetros:
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
@@ -121,7 +121,7 @@ Aqui, a string simples `'arg1'` será passada para o filtro como o segundo parâ
 
 ## Diretivas
 
-Diretivas são atributos especiais com o prefixo `v-`. Espera-se que os valores atribuídos às diretivas sejam **uma simples expressão Javascript** (com a excessão para o `v-for`, que será discutido posteriormente). O trabalho de uma diretiva é aplicar efeitos colaterais ao DOM reativamente, ou seja, quando o valor de sua expressão é modificado. Vamos revisar o simples exemplo que vimos na introdução:
+Diretivas são atributos especiais com o prefixo `v-`. Espera-se que os valores atribuídos às diretivas sejam **uma simples expressão JavaScript** (com a excessão para o `v-for`, que será discutido posteriormente). O trabalho de uma diretiva é aplicar efeitos colaterais ao DOM reativamente, ou seja, quando o valor de sua expressão é modificado. Vamos revisar o simples exemplo que vimos na introdução:
 
 ``` html
 <p v-if="seen">Agora você me vê</p>
@@ -139,7 +139,7 @@ Algumas diretivas podem aceitar um "parâmetro", denotado pelo símbolo de dois 
 
 Aqui `href` é o parâmetro, que dirá para a diretiva `v-bind` para vincular o atributo `href` do elemento ao valor da expressão `url`.
 
-Outro simples exemplo é a diretiva `v-on`, que observa os eventos do DOM:
+Outro simples exemplo é a diretiva `v-on`, que observa eventos do DOM:
 
 ``` html
 <a v-on:click="doSomething">
@@ -149,7 +149,7 @@ Aqui o valor é o nome do evento que ela está ouvindo/observando. Nós iremos f
 
 ### Modificadores
 
-Modificadores são sufixos especiais denotados por um ponto, que indica que aquela diretiva deve ser vinculada de uma maneira especial. Por exemplo, o modificador `.prevent` indica para a diretiva `v-on` chamar a função `event.preventDefault()` quando esse evento for disparado:
+Modificadores são sufixos especiais denotados por um ponto, que indicam que aquela diretiva deve ser vinculada de uma maneira especial. Por exemplo, o modificador `.prevent` indica para a diretiva `v-on` chamar a função `event.preventDefault()` quando esse evento for disparado:
 
 ``` html
 <form v-on:submit.prevent="onSubmit"></form>
@@ -182,4 +182,4 @@ O prefixo `v-` serve como uma dica visual para identificar atributos específico
 <a @click="doSomething"></a>
 ```
 
-Essa abreviação pode parecer um pouco diferente do formato normal do HTML, mas os caracteres `:` e `@` são válidos para nomes de atributos em todos os navegadores que o Vue.js funciona. Além disso, eles não aparecem no código renderizado. Essa sintaxe é totalmente opcional, mas você provavelmente vai apreciar seu uso quando utilizar mais frequentemente.
+Essas abreviações podem parecer um pouco diferentes do formato normal do HTML, mas os caracteres `:` e `@` são válidos para nomes de atributos em todos os navegadores que o Vue.js funciona. Além disso, eles não aparecem no código renderizado. Essa sintaxe é totalmente opcional, mas você provavelmente vai apreciar seu uso quando utilizar mais frequentemente.

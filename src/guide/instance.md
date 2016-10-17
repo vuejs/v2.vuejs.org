@@ -18,7 +18,7 @@ Embora não seja estritamente associado com o [padrão MVVM](https://en.wikipedi
 
 Quando você criar uma instância do Vue, é necessário repassar um **objeto** que contém opções para dados, elementos, métodos, ciclos de vida e mais. A lista completa de opções pode ser encontrada na [API](/api).
 
-o construtor `Vue` pode ser estendido para a criação de **contrutores de componentes** reutilizáveis com opções pré definidas:
+O construtor `Vue` pode ser estendido para a criação de **contrutores de componentes** reutilizáveis com opções pré definidas:
 
 ``` js
 var MyComponent = Vue.extend({
@@ -26,11 +26,11 @@ var MyComponent = Vue.extend({
 })
 
 // todas as instâncias de `MyComponent` são criadas com
-// as definições pré definidas pelas opções 
+// as definições pré definidas pelas opções
 var myComponentInstance = new MyComponent()
 ```
 
-Embora seja possível criar instâncias repetidamente, na maioria das vezes é recomendado compô-los declarativamente em templates com elementos customizáveis. Vamos falar sobre [o sistema de componentes](components.html) com mais detalhes depois. Por enquanto, você precisa apenas saber que todos os componentes Vue são essencialmente extensões da instância Vue.
+Embora seja possível criar instâncias repetidamente, na maioria das vezes é recomendado compô-las declarativamente em templates com elementos customizáveis. Vamos falar sobre [o sistema de componentes](components.html) com mais detalhes depois. Por enquanto, você precisa apenas saber que todos os componentes Vue são essencialmente extensões da instância Vue.
 
 ## Propriedades e Métodos
 
@@ -81,7 +81,7 @@ Consulte a [API](/api) para a lista completa de propriedades e métodos.
 
 ## Ciclo de vida da instância
 
-Cada instância Vue passa por uma série de etapas na sua inicialização - por exemplo, é necessário configurar o observador do data, compilar o template, montar a instância na DOM, e atualizar a DOM quando os dados forem alterados. 
+Cada instância Vue passa por uma série de etapas na sua inicialização - por exemplo, é necessário configurar o observador do data, compilar o template, montar a instância na DOM, e atualizar a DOM quando os dados forem alterados.
 
 Ao longo do caminho, Vue irá também invocar alguns **lifecycle hooks**, no qual lhe dá algumas oportunidades para executar uma lógica customizada. Por exemplo, `created` é chamado após a instancia do Vue ser criada:
 
@@ -99,9 +99,7 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-Existem outros hooks no qual serão chamados em diferentes etapas do ciclo de vida, como por exemplo `mounted`, `updated`, e `destroyed`. Todos os ciclos de vida são chamados com o seu `this` no contexto da instância Vue sendo invocada. 
-
-Aluns usuários podem se questionar se o conceito de "controllers" está presente no mundo Vue, e a resposta é: não existem controllers. Sua lógica personalizada para um componente deverá fazer parte destes hooks do ciclo de vida. 
+Existem outros hooks no qual serão chamados em diferentes etapas do ciclo de vida, como por exemplo `mounted`, `updated`, e `destroyed`. Todos os ciclos de vida são chamados com o seu `this` no contexto da instância Vue sendo invocada. Alguns usuários podem se questionar se o conceito de "controllers" está presente no mundo Vue, e a resposta é: não existem controllers. Sua lógica personalizada para um componente deverá fazer parte destes hooks do ciclo de vida.
 
 ## Diagrama do ciclo de vida
 

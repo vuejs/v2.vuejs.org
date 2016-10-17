@@ -1,37 +1,39 @@
 ---
-title: Components
+title: Componentes
 type: guide
 order: 11
 ---
 
-## What are Components?
+## O que são componentes?
 
-Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue's compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special `is` attribute.
+Os componentes são um dos recursos mais poderosos do Vue. Eles lhe ajudam a estender os elementos HTML para encapsular um código de forma reusável. Em um alto nível, componentes são elementos personalizados que o Vue compila e anexa a sua instância. Em alguns casos, eles podem aparecer como um HTML nativo que estende do atributo especial `is`
 
-## Using Components
+## Usando Componentes
 
-### Registration
+### Registro
 
-We've learned in the previous sections that we can create a new Vue instance with:
+Nós aprendemos nas seções anteriores que podemos criar uma nova instância do Vue com:
 
 ``` js
 new Vue({
   el: '#some-element',
-  // options
+  // opções
 })
 ```
 
-To register a global component, you can use `Vue.component(tagName, options)`. For example:
+Para registrar um componente global, você pode usar `Vue.component(tagName, options)`. Por exemplo:
+
 
 ``` js
 Vue.component('my-component', {
-  // options
+  // opções
 })
 ```
 
-<p class="tip">Note that Vue does not enforce the [W3C rules](http://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
+<p class="tip">Note que o Vue não segue as regras da [W3C](http://www.w3.org/TR/custom-elements/#concepts) para tags customizadas (letras minúsculas, precisa ter um hífen) embora seguir essa convenção seja considerada uma boa prática</p>
 
-Once registered, a component can be used in an instance's template as a custom element, `<my-component></my-component>`. Make sure the component is registered **before** you instantiate the root Vue instance. Here's the full example:
+Uma vez registrado, um componente pode ser usado em uma instância como um elemento customizado `<my-component></my-component>`. Tenha certeza que o elemento é registrado **antes** de ser instanciado na raiz do Vue. Aqui está um exemplo completo:
+
 
 ``` html
 <div id="example">
@@ -40,22 +42,22 @@ Once registered, a component can be used in an instance's template as a custom e
 ```
 
 ``` js
-// register
+// registro
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<div>Um elemento customizado!</div>'
 })
 
-// create a root instance
+// cria a instância raiz
 new Vue({
   el: '#example'
 })
 ```
 
-Which will render:
+No qual irá renderizar:
 
 ``` html
 <div id="example">
-  <div>A custom component!</div>
+  <div>Um elemento customizado!</div>
 </div>
 ```
 
@@ -65,7 +67,7 @@ Which will render:
 </div>
 <script>
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<div>Um elemento customizado!</div>'
 })
 new Vue({ el: '#example' })
 </script>

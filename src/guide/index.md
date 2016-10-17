@@ -6,7 +6,7 @@ order: 2
 
 ## O que é Vue.js?
 
-Vue (pronuncia-se /vjuː/, como **view**, em inglês) é um **framework progressivo** para a construção de interfaces de usuário. Ao contrário de outros frameworks monolíticos, Vue foi projetado desde sua concepção para ser adotável incrementalmente. A biblioteca principal é focada exclusivamente na camada visual (*view layer*), sendo muito fácil escolher e integrar com outras bibliotecas ou projetos existentes. Por outro lado, Vue também é perfeitamente capaz de dar poder a sofiticadas SPA (Single-Page Applications) quando usado em conjunto com [ferramentas modernas](single-file-components.html) e [bibliotecas adicionais](https://github.com/vuejs/awesome-vue#libraries--plugins).
+Vue (pronuncia-se /vjuː/, como **view**, em inglês) é um **framework progressivo** para a construção de interfaces de usuário. Ao contrário de outros frameworks monolíticos, Vue foi projetado desde sua concepção para ser adotável incrementalmente. A biblioteca principal é focada exclusivamente na camada visual (*view layer*), sendo muito fácil escolher e integrar com outras bibliotecas ou projetos existentes. Por outro lado, Vue também é perfeitamente capaz de dar poder a sofisticadas SPA (Single-Page Applications) quando usado em conjunto com [ferramentas modernas](single-file-components.html) e [bibliotecas adicionais](https://github.com/vuejs/awesome-vue#libraries--plugins).
 
 Se você é um desenvolvedor *frontend* experiente e quer saber como Vue se compara a outras bibliotecas/frameworks, confira a [Comparação com Outros Frameworks](comparison.html).
 
@@ -45,9 +45,9 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-Nós acabamos de criar nosso primeiro aplicativo Vue! Isso parece muito similar a simplesmente renderizar uma *template string*, mas Vue fez bastante trabalho por debaixo dos panos. Os dados e o DOM estão agora interligados e tudo se tornou **reativo**. Como podemos ter certeza? Apenas abra o console JavaScript de seu navegador e coloque um valor diferente em `app.message`. Você verá o exemplo renderizado acima se atualizando apropriadamente.
+Nós acabamos de criar nosso primeiro aplicativo Vue! Isso parece muito similar a simplesmente renderizar uma *template string*, mas Vue fez bastante trabalho por debaixo dos panos. Os dados e o DOM estão agora interligados e tudo se tornou **reativo**. Como podemos ter certeza? Apenas abra o console JavaScript de seu navegador e coloque um valor diferente em `app.message`. Você verá o exemplo renderizado acima se atualizando consequentemente.
 
-Adicionalmente, além de interpolação de texto, podemos interligar atributos de elementos:
+Além de interpolação de texto, podemos interligar atributos de elementos:
 
 ``` html
 <div id="app-2">
@@ -212,7 +212,7 @@ var app5 = new Vue({
 
 Note que no método nós simplesmente atualizamos o estado de nossa aplicação sem tocar no DOM - todas as manipulações do documento são tratadas pelo Vue, o código que você escreve é focado na lógica fundamental.
 
-Vue também provê a diretiva `v-model`, que torna a interligação de mão dupla (*two-way binding*) entre a caixa de texto e o estado da aplicação uma moleza:
+Vue também provê a diretiva `v-model`, que torna a interligação de mão dupla (*two-way binding*) entre a caixa de texto e o estado da aplicação, uma moleza:
 
 ``` html
 <div id="app-6">
@@ -270,7 +270,7 @@ Agora você pode compor com isto no *template* de outro componente:
 </ul>
 ```
 
-Mas certamente isto renderizaria o mesmo texto em cada item, o que não é lá muito interessante. Nós devemos passar dados do escopo superior (*parent*) para os componentes filhos. Vamos modificar a definição do componente para fazê-lo aceitar uma [prop](/guide/components.html#Props):
+Mas certamente isto renderizaria o mesmo texto em cada item, o que não é lá muito interessante. Nós devemos passar os dados do escopo superior (*parent*) para os componentes filhos. Vamos modificar a definição do componente para fazê-lo aceitar uma [prop](/guide/components.html#Props):
 
 ``` js
 Vue.component('todo-item', {
@@ -331,7 +331,7 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-Este é apenas um exemplo fictício, mas nós conseguimos separar nossa aplicação em duas pequenas unidades, sendo que o componente filho está razoavelmente bem desacoplado do componente pai graças à funcionalidade de propriedades. É possível melhor ainda mais nosso componente `<todo-item>` com *template* e lógica mais complexos sem afetar a aplicação pai.
+Este é apenas um exemplo fictício, mas nós conseguimos separar nossa aplicação em duas pequenas unidades, sendo que o componente filho está razoavelmente bem desacoplado do componente pai graças à funcionalidade de propriedades. Agora podemos melhorar ainda mais nosso componente `<todo-item>` com *template* e lógica mais complexos sem afetar a aplicação pai.
 
 Em uma aplicação grande, é essencial dividir todo o aplicativo em componentes para tornar o desenvolvimento gerenciável. Falaremos mais sobre componentes [futuramente neste guia](/guide/components.html), mas aqui está um exemplo (imaginário) da aparência que o *template* de um aplicativo poderia ter com o uso de componentes:
 
@@ -349,7 +349,7 @@ Em uma aplicação grande, é essencial dividir todo o aplicativo em componentes
 
 Você pode ter notado como componentes Vue são similares aos **Elementos Customizados**, os quais fazem parte da [Especificação de Web Components](http://www.w3.org/wiki/WebComponents/). Isto ocorre pois a sintaxe de componentes Vue foi vagamente modelada a partir da especificação. Por exemplo, eles implementam a [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) e o atributo especial `is`. Entretanto, existem diferenças marcantes:
 
-1. A Especificação de Web Components ainda é um rascunho (*draft status*), não estando nativamente implementada em todos os navegadores. Em comparação, componentes Vue não requerem qualquer tipo de *polyfill* e funcionam consistentemente em todos os navegadores suportados (IE9 e superiores). Quando necessário, componentes Vue também podem ser envolvidos dentro de um elemento customizado nativo.
+1. A Especificação de Web Components ainda é um rascunho (*draft status*), não está nativamente implementada em todos os navegadores. Em comparação, componentes Vue não requerem qualquer tipo de *polyfill* e funcionam consistentemente em todos os navegadores suportados (IE9 e superiores). Quando necessário, componentes Vue também podem ser envolvidos dentro de um elemento customizado nativo.
 
 2. Componentes Vue oferecem importantes recursos não disponíveis em elementos customizados tradicionais, mais notavelmente: fluxo de dados entre componentes, comunicação com eventos customizados e integração com ferramentas para *build*.
 
