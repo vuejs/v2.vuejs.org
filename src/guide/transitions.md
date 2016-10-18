@@ -1084,7 +1084,7 @@ This class is mostly useful for specifying the transition timing and easing curv
 
 ``` js
 new Vue({
-  el: '#list-move-demo',
+  el: '#flip-list-demo',
   data: {
     items: [1,2,3,4,5,6,7,8,9]
   },
