@@ -1336,8 +1336,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   ``` html
   <div v-for="(item, index) in items"></div>
-  <div v-for="(key, val) in object"></div>
-  <div v-for="(key, val, index) in object"></div>
+  <div v-for="(val, key) in object"></div>
+  <div v-for="(val, key, index) in object"></div>
   ```
 
   The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
