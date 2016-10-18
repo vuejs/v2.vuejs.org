@@ -1340,8 +1340,8 @@ type: api
 
   ``` html
   <div v-for="(item, index) in items"></div>
-  <div v-for="(key, val) in object"></div>
-  <div v-for="(key, val, index) in object"></div>
+  <div v-for="(val, key) in object"></div>
+  <div v-for="(val, key, index) in object"></div>
   ```
 
   `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素,您需要提供一个 `key` 的特殊属性:
