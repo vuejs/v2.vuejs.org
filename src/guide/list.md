@@ -361,7 +361,7 @@ Vue 包含一组观察数组的突变方法，所以它们也将会触发视图�
 - `sort()`
 - `reverse()`
 
-你打开控制台，然后用前面例子的 `items` 数组调用突变方法：`example1.items.push({ measage: 'Baz' })` 。
+你打开控制台，然后用前面例子的 `items` 数组调用突变方法：`example1.items.push({ message: 'Baz' })` 。
 
 ### 重塑数组
 
