@@ -227,7 +227,7 @@ Vue.config.keyCodes.f1 = 112
 
 ## 为什么在 HTML 中监听事件?
 
-你可能注意到这种事件监听的方式违背了传统理念 “separation of concern” 。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护上的困难。实际上，使用 `v-on` 有几个好处：
+你可能注意到这种事件监听的方式违背了关注点分离（separation of concern）传统理念。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护上的困难。实际上，使用 `v-on` 有几个好处：
 
 1. 扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。
 
