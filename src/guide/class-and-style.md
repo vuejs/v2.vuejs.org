@@ -4,7 +4,7 @@ type: guide
 order: 6
 ---
 
-Uma necessidade comum de data binding é manipular uma lista de classe dos elementos e seus estilos inline.Uma vez que ambos são atributos, podemos usar v-bind para lidar com eles: Precisamos calcular uma string final com nossas expressões.  No entanto, mexer com concatenação é irritante e propenso a erros. Por esta razão, Vue fornece aprimoramentos especiais quando `v-bind` é usado com `class` e `style`. Além de strings as expressões também podem avaliar objetos ou arrays.
+Uma necessidade comum de data binding é manipular uma lista de classe dos elementos e seus estilos inline. Uma vez que ambos são atributos, podemos usar v-bind para lidar com eles: Precisamos calcular uma string final com nossas expressões. No entanto, mexer com concatenação é irritante e propenso a erros. Por esta razão, Vue fornece aprimoramentos especiais quando `v-bind` é usado com `class` e `style`. Além de strings as expressões também podem avaliar objetos ou arrays.
 
 ## Binding em Classes HTML
 
@@ -16,7 +16,7 @@ Podemos passar um objeto para `v-bind:class` para alternar classes dinamicamente
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-A sintaxe acima significa que a presença da classe  `active` será determinada pela [veracidade](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) dos dados da propriedade de `isActive`.
+A sintaxe acima significa que a presença da classe `active` será determinada pela [veracidade](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) dos dados da propriedade de `isActive`.
 
 Você pode ter múltiplas classes alternadas por ter mais campos no objeto. Além disso, a diretiva `v-bind:class` também pode co-existir com um atributo de classe ' simples'. Veja o exemplo:
 
@@ -103,7 +103,7 @@ Se você preferir também alternar entre uma classe na lista condicionalmente, f
 <div v-bind:class="[isActive ? activeClass : '', errorClass]">
 ```
 
-Isso semple aplicará `errorClass`, mas somente aplicará `activeClass`  quando `isActive` for `true`.
+Isso semple aplicará `errorClass`, mas somente aplicará `activeClass` quando `isActive` for `true`.
 
 No entanto, isso pode ser um tanto verboso se você tiver várias classes condicionais.Por isso também é possível usar a sintaxe de objeto dentro da sintaxe de array:
 

@@ -12,8 +12,8 @@ Por exemplo:
 
 ``` html
 <div id="example-1">
-  <button v-on:click="counter += 1">Add 1</button>
-  <p>The button above has been clicked {{ counter }} times.</p>
+  <button v-on:click="counter += 1">Adiciona 1</button>
+  <p>O botão acima foi clicado {{ counter }} vezes.</p>
 </div>
 ```
 ``` js
@@ -29,8 +29,8 @@ Resultado:
 
 {% raw %}
 <div id="example-1" class="demo">
-  <button v-on:click="counter += 1">Add 1</button>
-  <p>The button above has been clicked {{ counter }} times.</p>
+  <button v-on:click="counter += 1">Adiciona 1</button>
+  <p>O botão acima foi clicado {{ counter }} vezes.</p>
 </div>
 <script>
 var example1 = new Vue({
@@ -50,8 +50,8 @@ Por exemplo:
 
 ``` html
 <div id="example-2">
-  <!-- `greet` is the name of a method defined below -->
-  <button v-on:click="greet">Greet</button>
+  <!-- `greet` é o nome de um método definido abaixo -->
+  <button v-on:click="greet">Cumprimentar</button>
 </div>
 ```
 
@@ -61,26 +61,26 @@ var example2 = new Vue({
   data: {
     name: 'Vue.js'
   },
-  // define methods under the `methods` object
+  // define métodos dentro do objeto `methods`
   methods: {
     greet: function (event) {
-      // `this` inside methods points to the Vue instance
-      alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
+      // `this` dentro de métodos aponta para a instância Vue
+      alert('Olá ' + this.name + '!')
+      // `event` é o evento DOM nativo
       alert(event.target.tagName)
     }
   }
 })
 
-// you can invoke methods in JavaScript too
-example2.greet() // -> 'Hello Vue.js!'
+// você pode invocar métodos no JavaScript também
+example2.greet() // -> 'Olá Vue.js!'
 ```
 
 Resultado:
 
 {% raw %}
 <div id="example-2" class="demo">
-  <button v-on:click="greet">Greet</button>
+  <button v-on:click="greet">Cumprimentar</button>
 </div>
 <script>
 var example2 = new Vue({
@@ -90,7 +90,7 @@ var example2 = new Vue({
   },
   methods: {
     greet: function (event) {
-      alert('Hello ' + this.name + '!')
+      alert('Olá ' + this.name + '!')
       alert(event.target.tagName)
     }
   }
@@ -104,8 +104,8 @@ Em vez de fazer uma ligação ao nome de um método, também podemos usar métod
 
 ``` html
 <div id="example-3">
-  <button v-on:click="say('hi')">Say hi</button>
-  <button v-on:click="say('what')">Say what</button>
+  <button v-on:click="say('oi')">Diga oi</button>
+  <button v-on:click="say('que')">Diga que</button>
 </div>
 ```
 ``` js
@@ -122,8 +122,8 @@ new Vue({
 Resultado:
 {% raw %}
 <div id="example-3" class="demo">
-  <button v-on:click="say('hi')">Say hi</button>
-  <button v-on:click="say('what')">Say what</button>
+  <button v-on:click="say('oi')">Diga oi</button>
+  <button v-on:click="say('que')">Diga que</button>
 </div>
 <script>
 new Vue({
@@ -140,14 +140,14 @@ new Vue({
 Às vezes, também precisamos acessar o evento original do DOM  em um manipulador com declaração inline. Você pode passá-lo em um método usando a variável especial `$event`:
 
 ``` html
-<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">Enviar</button>
 ```
 
 ``` js
 // ...
 methods: {
   warn: function (message, event) {
-    // now we have access to the native event
+    // agora temos acesso ao evento nativo
     if (event) event.preventDefault()
     alert(message)
   }
@@ -166,23 +166,23 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para 'v-o
 - `.self`
 
 ``` html
-<!-- the click event's propagation will be stopped -->
+<!-- a propagação do evento clique será interrompida -->
 <a v-on:click.stop="doThis"></a>
 
-<!-- the submit event will no longer reload the page -->
+<!-- o evento submit deixará de recarregar a página -->
 <form v-on:submit.prevent="onSubmit"></form>
 
-<!-- modifiers can be chained -->
+<!-- modificadores podem ser encadeadas -->
 <a v-on:click.stop.prevent="doThat"></a>
 
-<!-- just the modifier -->
+<!-- apenas o modificador -->
 <form v-on:submit.prevent></form>
 
-<!-- use capture mode when adding the event listener -->
+<!-- usar modo de captura ao adicionar o event listener -->
 <div v-on:click.capture="doThis">...</div>
 
-<!-- only trigger handler if event.target is the element itself -->
-<!-- i.e. not from a child element -->
+<!-- só aciona o manipulador se event.target é o próprio elemento -->
+<!-- isto é, não a partir de um elemento filho -->
 <div v-on:click.self="doThat">...</div>
 ```
 
@@ -191,17 +191,17 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para 'v-o
 Quando escutamos eventos do teclado, precisamos muitas vezes verificar se há códigos de teclas comuns. O Vue também permite a adição de modificadores de tecla para 'v-on' quando escuta  eventos de tecla:
 
 ``` html
-<!-- only call vm.submit() when the keyCode is 13 -->
+<!-- só chama vm.submit() quando o keyCode é 13 -->
 <input v-on:keyup.13="submit">
 ```
 
 Lembrar o código de todas as teclas é uma chatice, então o Vue fornece aliases para as teclas mais comumente usadas:
 
 ``` html
-<!-- same as above -->
+<!-- igual o acima -->
 <input v-on:keyup.enter="submit">
 
-<!-- also works for shorthand -->
+<!-- também funciona com abreviações -->
 <input @keyup.enter="submit">
 ```
 
@@ -221,13 +221,13 @@ Aliases de tecla única também são suportados.
 
 
 ``` html
-<input v-on:keyup.v="say('That is the first letter in Vue')">
+<input v-on:keyup.v="say('Essa é a primeira letra de Vue')">
 ```
 
 Se necessário, você pode até mesmo definir aliases personalizados para modificadores de tecla:
 
 ``` js
-// enable v-on:keyup.f1
+// Permitir v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
 

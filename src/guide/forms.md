@@ -6,22 +6,21 @@ order: 10
 
 ## Uso Básico
 
-Você pode usar a diretiva `v-model` para criar two-way data bindings em elementos input e textarea de formulários.
-Ele automaticamente busca a maneira correta de atualizar o elemento com base no tipo de entrada. Embora um pouco mágico, `v-model` é essencialmente sintaxe açucar para atualização de dados com eventos de entrada do usuário, além de cuidados especiais para alguns casos do edge.
+Você pode usar a diretiva `v-model` para criar two-way data bindings em elementos input e textarea de formulários. Ele automaticamente busca a maneira correta de atualizar o elemento com base no tipo de entrada. Embora um pouco mágico, `v-model` é essencialmente syntax sugar para atualização de dados com eventos de entrada do usuário, além de cuidados especiais para alguns casos do edge.
 
-<p class="tip">`v-model` não se importa com o valor inicial fornecido para um input ou um textarea. Ele sempre vai tratar os dados de instância do Vue como a fonte da verdade.</p>
+<p class="tip">`v-model` não se importa com o valor inicial fornecido para um input ou um textarea. Ele sempre vai tratar os dados de instância do Vue como a fonte verdadeira.</p>
 
 ### Texto
 
 ``` html
-<input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+<input v-model="message" placeholder="Me edite">
+<p>A mensagem é: {{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
-  <p>Message is: {{ message }}</p>
+  <input v-model="message" placeholder="Me edite">
+  <p>A mensagem é: {{ message }}</p>
 </div>
 <script>
 new Vue({
@@ -36,17 +35,17 @@ new Vue({
 ### Texto com múltiplas linhas
 
 ``` html
-<span>Multiline message is:</span>
+<span>A mensagem com múltiplas linhas é:</span>
 <p style="white-space: pre">{{ message }}</p>
 <br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="message" placeholder="Adicione múltiplas linhas"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Message is:</span>
+  <span>A mensagem com múltiplas linhas é:</span>
   <p style="white-space: pre">{{ message }}</p><br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <textarea v-model="message" placeholder="Adicione múltiplas linhas"></textarea>
 </div>
 <script>
 new Vue({
@@ -58,10 +57,7 @@ new Vue({
 </script>
 {% endraw %}
 
-
-{% raw %}
 <p class="tip">Interpolação em textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) não funciona. Em vez disso use <code>v-model</code>.</p>
-{% endraw %}
 
 ### Checkbox
 
@@ -96,7 +92,7 @@ Múltiplos checkboxes, associados ao mesmo Array:
 <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
 <label for="mike">Mike</label>
 <br>
-<span>Checked names: {{ checkedNames }}</span>
+<span>Nomes assinalados: {{ checkedNames }}</span>
 ```
 
 ``` js
@@ -117,7 +113,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>Nomes assinalados: {{ checkedNames }}</span>
 </div>
 <script>
 new Vue({
@@ -133,23 +129,23 @@ new Vue({
 
 
 ``` html
-<input type="radio" id="one" value="One" v-model="picked">
-<label for="one">One</label>
+<input type="radio" id="one" value="Um" v-model="picked">
+<label for="one">Um</label>
 <br>
-<input type="radio" id="two" value="Two" v-model="picked">
-<label for="two">Two</label>
+<input type="radio" id="two" value="Dois" v-model="picked">
+<label for="two">Dois</label>
 <br>
-<span>Picked: {{ picked }}</span>
+<span>Escolhido: {{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
-  <input type="radio" id="one" value="One" v-model="picked">
-  <label for="one">One</label>
+  <input type="radio" id="one" value="Um" v-model="picked">
+  <label for="one">Um</label>
   <br>
-  <input type="radio" id="two" value="Two" v-model="picked">
-  <label for="two">Two</label>
+  <input type="radio" id="two" value="Dois" v-model="picked">
+  <label for="two">Dois</label>
   <br>
-  <span>Picked: {{ picked }}</span>
+  <span>Escolhido: {{ picked }}</span>
 </div>
 <script>
 new Vue({
@@ -171,7 +167,7 @@ Select único:
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Selecionado: {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-5" class="demo">
@@ -180,7 +176,7 @@ Select único:
     <option>B</option>
     <option>C</option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Selecionado: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -201,7 +197,7 @@ Select múltiplo (ligados a um array):
   <option>C</option>
 </select>
 <br>
-<span>Selected: {{ selected }}</span>
+<span>Selecionados: {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
@@ -211,7 +207,7 @@ Select múltiplo (ligados a um array):
     <option>C</option>
   </select>
   <br>
-  <span>Selected: {{ selected }}</span>
+  <span>Selecionados: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -231,7 +227,7 @@ Options dinamicamente renderizados com `v-for`:
     {{ option.text }}
   </option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Selecionado: {{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -239,9 +235,9 @@ new Vue({
   data: {
     selected: 'A',
     options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
+      { text: 'Um', value: 'A' },
+      { text: 'Dois', value: 'B' },
+      { text: 'Três', value: 'C' }
     ]
   }
 })
@@ -253,7 +249,7 @@ new Vue({
       {{ option.text }}
     </option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Selecionado: {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -261,9 +257,9 @@ new Vue({
   data: {
     selected: 'A',
     options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
+      { text: 'Um', value: 'A' },
+      { text: 'Dois', value: 'B' },
+      { text: 'Três', value: 'C' }
     ]
   }
 })
@@ -276,13 +272,13 @@ Para radio, checkbox e select options, os binding values do `v-model` são norma
 
 
 ``` html
-<!-- `picked` is a string "a" when checked -->
+<!-- `picked` é uma string "a" quando assinalado -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` is either true or false -->
+<!-- `toggle` é verdadeiro ou falso -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when selected -->
+<!-- `selected` é uma string "abc" quando assinalado -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
@@ -301,9 +297,9 @@ Mas às vezes podemos querer vincular o valor de uma propriedade dinâmica na in
 ```
 
 ``` js
-// when checked:
+// quando está assinalado:
 vm.toggle === vm.a
-// when unchecked:
+// quando não está assinalado:
 vm.toggle === vm.b
 ```
 
@@ -314,7 +310,7 @@ vm.toggle === vm.b
 ```
 
 ``` js
-// when checked:
+// quando está assinalado:
 vm.pick === vm.a
 ```
 
@@ -322,13 +318,13 @@ vm.pick === vm.a
 
 ``` html
 <select v-model="selected">
-  <!-- inline object literal -->
+  <!-- Objeto literal inline -->
   <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
 
 ``` js
-// when selected:
+// quando está assinalado:
 typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
@@ -338,10 +334,10 @@ vm.selected.number // -> 123
 ### `.lazy`
 
 
-Por padrão, `v-model` sincroniza o imput com os dados após cada evento `input`. Adicionando o modificador `lazy` a sincronização ocorrerá somente após o evento `change`:
+Por padrão, `v-model` sincroniza o input com os dados após cada evento de `input`. Adicionando o modificador `lazy` a sincronização ocorrerá somente após o evento `change`:
 
 ``` html
-<!-- synced after "change" instead of "input" -->
+<!-- sincronizado depois do "change" ao invés de "input" -->
 <input v-model.lazy="msg" >
 ```
 
