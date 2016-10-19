@@ -265,9 +265,8 @@ Now you can compose it in another component's template:
 <ul>
   <!--
   Create an instance of the todo-item component
-  for each todo in a todos array
   -->
-  <todo-item v-for="todo in todos"></todo-item>
+  <todo-item></todo-item>
 </ul>
 ```
 
