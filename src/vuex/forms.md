@@ -11,7 +11,7 @@ order: 12
 ```
 
 
-假设 `obj` 计算的属中返回一个对象，在用户输入时，`v-modle`会尝试直接修改`obj.message`。在严格模式下，因为修改不在Vuex mutation handler中执行,将会抛出一个错误。
+假设 `obj` 计算的属中返回一个对象，在用户输入时，`v-model`会尝试直接修改`obj.message`。在严格模式下，因为修改不在Vuex mutation handler中执行,将会抛出一个错误。
 
 用“Vuex思维”去处理是给`<input>`绑定value（值），然后帧听`<input>`或`change`事件，并在回调中调用action：
 
@@ -45,7 +45,7 @@ mutations: {
 
 ### 双向计算属性
 
-必须承认，上述比`v-modle`+本机状态(local state)啰嗦得多，以及从`v-modle`中弃用了一些有用的功能。使用 setter 双向计算属性的另一种方法：
+必须承认，上述比`v-model`+本机状态(local state)啰嗦得多，以及从`v-model`中弃用了一些有用的功能。使用 setter 双向计算属性的另一种方法：
 
 ``` js
 // ...
