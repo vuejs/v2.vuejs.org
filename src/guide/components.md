@@ -994,8 +994,10 @@ When the `inline-template` special attribute is present on a child component, th
 
 ``` html
 <my-component inline-template>
-  <p>These are compiled as the component's own template.</p>
-  <p>Not parent's transclusion content.</p>
+  <div>
+    <p>These are compiled as the component's own template.</p>
+    <p>Not parent's transclusion content.</p>
+  </div>  
 </my-component>
 ```
 
