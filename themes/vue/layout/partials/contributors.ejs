@@ -3,7 +3,7 @@
 <ul class="contributors">
   <a v-for="item in list"
     class="contributor"
-    :href="'https://github.com/' + item.github">
+    :href="'https://github.com/' + item.github" target="_blank">
     <img class="contributor__img" :src="'https://github.com/' + item.github + '.png?size=64'" />
     <p v-text="item.github" style="margin: 0;"></p>
   </a>
