@@ -8,6 +8,9 @@ order: 0
 
 - [vue 2.0 - Guide 翻译校对 （进度 / 认领）](https://github.com/vuefe/vuejs.org/issues/77)
 - [vuex 2.0 - 文档翻译 （进度 / 认领）](https://github.com/vuefe/vuejs.org/issues/124)
+- [webpack2 中文文档翻译（进度 / 认领）](https://github.com/vuefe/webpack.js.org/issues/2)
+
+
 
 ## Guide 翻译贡献
 
@@ -15,7 +18,7 @@ order: 0
 
 序号 | 对应文档文件名 | 中文标题 | 翻译贡献者 | 校对主要贡献者
 ----- | ------------- | --- | --- | --- | --- | ---
-1 |  installation.md | 安装 | [dingyiming](https://github.com/dingyiming) | [ATLgo](https://github.com/ATLgo) [70data](https://github.com/70data)
+1 |  installation.md | 安装 | [dingyiming](https://github.com/dingyiming)  | [ATLgo](https://github.com/ATLgo) [70data](https://github.com/70data)
 2 |  index.md |  介绍 | [hijiangtao](https://github.com/hijiangtao) | [70data](https://github.com/70data) [ATLgo](https://github.com/ATLgo)
 3 |  instance.md | 实例 | [dingyiming](https://github.com/dingyiming) | [70data](https://github.com/70data) [ATLgo](https://github.com/ATLgo)
 4 |  syntax.md  | 模板语法 | [daix6](https://github.com/daix6) | [70data](https://github.com/70data)
@@ -31,9 +34,9 @@ order: 0
 
 序号 | 对应文档文件名 | 中文标题 | 翻译贡献者 | 校对主要贡献者
 ----- | ------------- | --- | --- | --- | ---
-12 |  transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/awe) | [bhnddowinf](https://github.com/bhnddowinf) [StoneQI](https://github.com/StoneQI)
-13 |  transitioning-state.md | 过渡状态 | [awe](https://github.com/awe) | [bhnddowinf](https://github.com/bhnddowinf)
-14 |  render-function.md |  Render 函数 | [awe](https://github.com/awe) | [bhnddowinf](https://github.com/bhnddowinf)
+12 |  transitions.md | 过渡: 进入, 离开, 和 列表 | [awe](https://github.com/hilongjw) | [bhnddowinf](https://github.com/bhnddowinf) [StoneQI](https://github.com/StoneQI)
+13 |  transitioning-state.md | 过渡状态 | [awe](https://github.com/hilongjw) | [bhnddowinf](https://github.com/bhnddowinf)
+14 |  render-function.md |  Render 函数 | [awe](https://github.com/hilongjw) | [bhnddowinf](https://github.com/bhnddowinf)
 15 |  reactivity.md |  深入响应式原理 | [veaba](https://github.com/veaba) | [yangzj1992](https://github.com/yangzj1992)
 16 |  custom-directive.md |  自定义指令 | [harrytospring](https://github.com/harrytospring) | [yangzj1992](https://github.com/yangzj1992)
 17 |  mixins.md |  混合 | [harrytospring](https://github.com/harrytospring) | [bhnddowinf](https://github.com/bhnddowinf)
