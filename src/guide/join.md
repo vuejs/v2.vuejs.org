@@ -26,7 +26,7 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这是你�
 
 ### 贡献代码
 
-和所有的项目一样，贡献代码是有规范的。为了保证我们能尽快地帮助你解决问题或者接受你的 pull requests，请先阅读这份[贡献指南](https://github.com/vuejs/vue/blob/dev/CONTRIBUTING.md)。
+和所有的项目一样，贡献代码是有规范的。为了保证我们能尽快地帮助你解决问题或者接受你的 pull requests，请先阅读这份[贡献指南](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md)。
 
 阅读之后，你应该已经准备好向 Vue 的核心仓库贡献代码了：
 

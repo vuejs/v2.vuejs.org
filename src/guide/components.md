@@ -991,8 +991,10 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 ``` html
 <my-component inline-template>
-  <p>These are compiled as the component's own template.</p>
-  <p>Not parent's transclusion content.</p>
+  <div>
+    <p>These are compiled as the component's own template.</p>
+    <p>Not parent's transclusion content.</p>
+  </div>  
 </my-component>
 ```
 
