@@ -82,7 +82,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Migration from Vue Router 0.7.x
 - [x] Migration from Vuex 0.6.x to 1.0 (@ErickPetru)
 - [x] Comparison with Other Frameworks (@ErickPetru)
-- [ ] Deployment (@vitorarjol)
+- [x] Deployment (@vitorarjol)
 
 **API**
 - [ ] Global Config
