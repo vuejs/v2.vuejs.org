@@ -258,7 +258,7 @@ Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
 ```
-
+Make sure the component is registered before you instantiate the root Vue instance.
 Now you can compose it in another component's template:
 
 ``` html
