@@ -25,7 +25,7 @@ Now we'll answer both what the community can do for and what you can do for the 
 
 ### Contribute Code
 
-As with any project, there are rules to contributing. To ensure that we can help you or accept your pull request as quickly as possible, please read [the contributing guide](https://github.com/vuejs/vue/blob/dev/CONTRIBUTING.md).
+As with any project, there are rules to contributing. To ensure that we can help you or accept your pull request as quickly as possible, please read [the contributing guide](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
 
 After that, you'll be ready to contribute to Vue's core repositories:
 
