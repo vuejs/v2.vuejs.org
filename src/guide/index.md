@@ -262,7 +262,10 @@ Vue.component('todo', {
 
 ``` html
 <ul>
-  <todo v-for="todo in todos"></todo>
+  <!--
+  Create an instance of the todo-item component
+  -->
+  <todo-item></todo-item>
 </ul>
 ```
 

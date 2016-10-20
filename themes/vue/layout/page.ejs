@@ -8,11 +8,11 @@
   </div>
 <% } %>
 <div class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type === 'guide' ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>">
-    <% if (page.type) { %>
-      <%- partial('partials/ad') %>
-    <% } %>
     <% if (page.title.trim()) { %>
       <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
+    <% } %>
+    <% if (page.type === 'about') { %>
+    <%- partial('partials/contributors') %>
     <% } %>
     <%- page.content %>
     <% if (page.type === 'guide') { %>

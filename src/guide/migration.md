@@ -1,5 +1,5 @@
 ---
-title: 从 Vue1.x 迁移
+title: 从 Vue 1.x 迁移
 type: guide
 order: 25
 ---
@@ -228,7 +228,7 @@ mounted: function () {
 
 ### `v-for` 排序值
 
-显然 `v-for="number in 10"` 将使得 `number` 从0到9迭代，现在变成了从1到10.
+显然 `v-for="number in 10"` 将使得 `number` 从0到9迭代，现在变成了从1到10。
 
 {% raw %}
 <div class="upgrade-path">
@@ -331,7 +331,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 
 ### 根实例的 Props <sup>弃用</sup>
 
-对于一个根实例来说 (比如：用 `new Vue({ ... })` 创建的实例)，只能用 `propsData` 而不是 `props`.
+对于一个根实例来说 (比如：用 `new Vue({ ... })` 创建的实例)，只能用 `propsData` 而不是 `props` 。
 
 {% raw %}
 <div class="upgrade-path">
@@ -616,7 +616,7 @@ strings.map(function (str) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找出实例中的 <code>v-el</code> 和 <code>v-ref</code>.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找出实例中的 <code>v-el</code> 和 <code>v-ref</code> 。</p>
 </div>
 {% endraw %}
 
@@ -672,7 +672,7 @@ strings.map(function (str) {
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
-to just:
+只是：
 
 ``` html
 <p v-my-directive="'foo bar baz'"></p>
@@ -700,7 +700,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 
 ### 可复用的过渡 `Vue.transition` <sup>弃用</sup>
 
-在新的过渡系统中，可以[通过模板复用过渡效果](http://rc.vuejs.org/guide/transitions.html#Reusable-Transitions).
+在新的过渡系统中，可以[通过模板复用过渡效果](http://rc.vuejs.org/guide/transitions.html#Reusable-Transitions)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -818,7 +818,7 @@ methods: {
 }
 ```
 
-在简单的情况下这样做可以代替 `$dispatch` 和 `$broadcast`，但是对于大多数复杂情况，更推荐使用一个专用的状态管理层如：[Vuex](https://github.com/vuejs/vuex).
+在简单的情况下这样做可以代替 `$dispatch` 和 `$broadcast`，但是对于大多数复杂情况，更推荐使用一个专用的状态管理层如：[Vuex](https://github.com/vuejs/vuex) 。
 
 {% raw %}
 <div class="upgrade-path">
@@ -935,7 +935,7 @@ self.users.filter(function (user) {
 <p v-for="user in users | orderBy 'name'">{{ user.name }}</p>
 ```
 
-而是在 computed 属性中使用 [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (or possibly [`sortBy`](https://lodash.com/docs/4.15.0#sortBy))：
+而是在 computed 属性中使用 [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (或者可能是 [`sortBy`](https://lodash.com/docs/4.15.0#sortBy))：
 
 ``` html
 <p v-for="user in orderedUsers">{{ user.name }}</p>
@@ -958,7 +958,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到指令中使用的过滤器。如果有些没找到，看看<strong>控制台错误信息</strong>.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到指令中使用的过滤器。如果有些没找到，看看<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
@@ -979,13 +979,13 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到老式的调用符号，如果有遗漏，请看<strong>控制台错误信息</strong>.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到老式的调用符号，如果有遗漏，请看<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
 ### 内置文本过滤器 <sup>弃用</sup>
 
-尽管插入文本内部的过滤器依然有效，但是所有内置过滤器已经移除了。取代的是，推荐在每个区域使用更专业的库来解决。(比如用 [`date-fns`](https://date-fns.org/) 来格式化日期，用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 来格式化货币).
+尽管插入文本内部的过滤器依然有效，但是所有内置过滤器已经移除了。取代的是，推荐在每个区域使用更专业的库来解决。(比如用 [`date-fns`](https://date-fns.org/) 来格式化日期，用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 来格式化货币)。
 
 对于每个内置过滤器，我们大概总结了下该怎么替换。代码示例可能写在自定义 helper 函数，方法或计算属性中。
 
@@ -1101,12 +1101,12 @@ You may notice that:
 
 ### `slot` 样式参数 <sup>弃用</sup>
 
-通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容 ：[render functions](render-function.html).
+通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容 ：[render functions](render-function.html) 。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到选择slots标签CSS选择器(例如： <code>[slot="my-slot-name"]</code>).</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到选择slots标签CSS选择器(例如： <code>[slot="my-slot-name"]</code>) 。</p>
 </div>
 {% endraw %}
 
@@ -1131,7 +1131,7 @@ You may notice that:
 </keep-alive>
 ```
 
-<p class="tip">当 `<keep-alive>`含有不同子组件时，应该分别影响到每一个子组件。不仅是第一个而是所有的子组件都将被忽略。</p>
+<p class="tip">当 `<keep-alive>` 含有不同子组件时，应该分别影响到每一个子组件。不仅是第一个而是所有的子组件都将被忽略。</p>
 
 和 `<transition>`一起使用时，确保把内容包裹在内：
 
@@ -1150,7 +1150,7 @@ You may notice that:
 </div>
 {% endraw %}
 
-## 计算插值//todaymark
+## 计算插值todaymark
 
 ### 属性内部的计算插值 <sup>弃用</sup>
 
@@ -1200,7 +1200,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 
 ### 单次绑定<sup>弃用</sup>
 
-单次绑定 (`{% raw %}{{* foo }}{% endraw %}`) 已经弃用取代的是 [`v-once` directive](/api/#v-once).
+单次绑定 (`{% raw %}{{* foo }}{% endraw %}`) 已经弃用取代的是 [`v-once` directive](/api/#v-once) 。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1226,7 +1226,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 
 ### `vm.$set`
 
-曾经的 `vm.$set` 方法已经弃用，现在这样写： [`Vue.set`](/api/#Vue-set).
+曾经的 `vm.$set` 方法已经弃用，现在这样写： [`Vue.set`](/api/#Vue-set) 。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1291,12 +1291,12 @@ methods: {
 
 ### Vue实例上的`Vue.set` 和 `Vue.delete`<sup>弃用</sup>
 
-Vue.set 和 Vue.delete在实例上将不再起作用。现在都强制在实例的data选项中声明所有顶级响应值。如果删除实例属性或实例`$data`上的某个值，直接将它设置为null即可。
+Vue.set 和 Vue.delete 在实例上将不再起作用。现在都强制在实例的data选项中声明所有顶级响应值。如果删除实例属性或实例`$data`上的某个值，直接将它设置为null即可。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到实例中的 <code>Vue.set</code> 或 <code>Vue.delete</code> 。如有遗漏请参考<strong>控制台错误信息</strong>.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到实例中的 <code>Vue.set</code> 或 <code>Vue.delete</code> 。如有遗漏请参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
@@ -1307,7 +1307,7 @@ Vue.set 和 Vue.delete在实例上将不再起作用。现在都强制在实例�
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到覆盖 <code>vm.$data</code>的位置。如有遗漏请参考<strong>控制台警告信息</strong>。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到覆盖 <code>vm.$data</code >的位置。如有遗漏请参考<strong>控制台警告信息</strong>。</p>
 </div>
 {% endraw %}
 
@@ -1318,7 +1318,7 @@ Vue.set 和 Vue.delete在实例上将不再起作用。现在都强制在实例�
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>工具找到<code>vm.$get</code>。如有遗漏请参考 <strong>控制台错误信息</strong>。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a>工具找到 <code>vm.$get</code> 的位置。如有遗漏请参考 <strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
@@ -1335,7 +1335,7 @@ myElement.appendChild(vm.$el)
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到 <code>vm.$appendTo</code>。如果有遗漏可以参考<strong>控制台错误信息</strong>。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到 <code>vm.$appendTo</code> 的位置。如果有遗漏可以参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
@@ -1371,7 +1371,7 @@ myElement.parentNode.appendChild(vm.$el)
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到<code>vm.$after</code>。如有遗漏，请参考<strong>控制台错误信息</strong>.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 找到 <code>vm.$after</code> 的位置。如有遗漏，请参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
@@ -1398,8 +1398,8 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$eval</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到使用 <code>vm.$eval</code> 的位置。如有遗漏请参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
@@ -1486,7 +1486,7 @@ Async is now required for rendering performance.
 
 ### `Vue.config.delimiters` <sup>弃用</sup>
 
-以 [模板选项](/api/#delimiters)的方式使用。这样可以 可以在使用自定义分隔符时避免影响第三方模板。
+以 [模板选项](/api/#delimiters)的方式使用。这样可以在使用自定义分隔符时避免影响第三方模板。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1497,12 +1497,12 @@ Async is now required for rendering performance.
 
 ### `Vue.config.unsafeDelimiters` <sup>弃用</sup>
 
-HTML interpolation [替换为 `v-html`](#HTML-Interpolation-deprecated).
+HTML 插入 [替换为 `v-html`](#HTML-Interpolation-deprecated).
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到 <code>Vue.config.unsafeDelimiters</code>。然后 helper 工具也会找到HTML插入的实例，可以用`v-HTML`来替换。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到 <code>Vue.config.unsafeDelimiters</code>。然后 helper 工具也会找到HTML插入的实例，可以用`v-html`来替换。</p>
 </div>
 {% endraw %}
 
