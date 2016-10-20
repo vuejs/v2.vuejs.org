@@ -87,7 +87,12 @@
 翻译已完成 <br />
 
 ### Vuex 2.0
-翻译中 https://github.com/vuefe/vuejs.org/issues/124
+翻译已完成 <br />
+校对中 <br />
+
+### webpack2
+翻译中 [webpack.js.org](https://github.com/vuefe/webpack.js.org) <br />
+
 
 
 
