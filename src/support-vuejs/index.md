@@ -2,15 +2,15 @@
 
 <a href="https://www.patreon.com/evanyou" target="_blank">
   <img style="width:120px" src="https://s3.amazonaws.com/patreon_public_assets/toolbox/patreon.png">
-  <span>Support Vue.js on Patreon (recurring pledge)</span>
+  <span>Поддержите Vue.js на Patreon (регулярный взнос)</span>
 </a>
 
 <a href="https://www.paypal.me/evanyou" target="_blank">
   <img style="width:120px" src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png">
-  <span>Donate via PayPal (one time)</span>
+  <span>Пожертвовать через PayPal (однократно)</span>
 </a>
 
-## Current premium sponsors:
+## Текущие премиальные спонсоры:
 
 <p style="text-align: center; padding-top: 30px; margin-bottom: 0"><a href="http://www.thedifferenceengine.io/"><img src="/images/tde.png" style="width: 300px"></a></p>
 
@@ -38,11 +38,11 @@
   </a>
 </p>
 
-Vue.js is an MIT licensed open source project and completely free to use.
-However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development by [pledging on Patreon](https://www.patreon.com/evanyou) or [donating on PayPal](https://www.paypal.me/evanyou).
+Vue.js является программным продуктом с открытым исходным кодом, распространяемым по лицензии MIT полностью бесплатно.
+Однако, стабильная поддержка проекта и разработка новых фич требует усилий, невозможных без должной финансовой поддержки. Вы можете поддержать разработку Vue.js [повторяющимся взносом на Patreon](https://www.patreon.com/evanyou) или [пожертвованием на PayPal](https://www.paypal.me/evanyou).
 
-If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: **it ensures the project that your product relies on stays healthy and actively maintained.** It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
+Если вы являеетесь владельцем бизнеса и используете Vue в продукте, приносящем доход, спонсирование разработки Vue имеет смысл с точки зрения пользы для бизнеса: **это гарантирует, что проект, на который полагается ваш продукт остаётся здоровым и активно поддерживаемым.** Это также повышает вашу видимость в сообществе Vue и облегчает привлечение Vue-разработчиков.
 
-If you are a business that is building core products using Vue.js, I am also open to conversations regarding custom sponsorship / consulting arrangements. [Get in touch on Twitter](https://twitter.com/youyuxi).
+Если вы представляете бизнес, создающий свои основные продукты с помощью Vue.js, я также открыт к общению на предмет особых условий спонсорской поддержки или консалтинговых соглашений. [Связитесь со мной в Twitter](https://twitter.com/youyuxi).
 
-If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while :)
+Если вы — индивидуальный разработчик и вам нравится продуктивное использование Vue, рассматривайте пожертвование как символ признательности — как если бы вы угощали меня кофе время от времени :)
