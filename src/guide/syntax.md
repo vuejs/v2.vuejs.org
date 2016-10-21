@@ -159,7 +159,7 @@ new Vue({
 
 ## 缩写
 
-`v-` 前缀可作为一种模板中标识 Vue 特性的视觉暗示。当你使用 Vue.js 为现有的标记添加动态行为时，它会很有用，但对于一些频繁使用的指令来说略显冗余。同时，当搭建 Vue.js 管理所有模板的 [SPA](https://en.wikipedia.org/wiki/Single-page_application) 时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为两个最为常用的指令提供了特别的缩写：
+`v-` 前缀在模板中是作为一个标示 Vue 特殊属性的明显标识。当你使用 Vue.js 为现有的标记添加动态行为时，它会很有用，但对于一些经常使用的指令来说有点繁琐。同时，当搭建 Vue.js 管理所有模板的 [SPA](https://en.wikipedia.org/wiki/Single-page_application) 时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为两个最为常用的指令提供了特别的缩写：
 
 ### `v-bind` 缩写
 
