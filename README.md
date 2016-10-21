@@ -4,10 +4,8 @@
 
 ## 镜像站点
 
-### 阿里云
-http://vue.70data.net/
-### LeanCloud
-https://vuefe.leanapp.cn/
+### 阿里云   http://vue.70data.net/
+### LeanCloud   https://vuefe.leanapp.cn/
 
 ## 贡献要求
 
