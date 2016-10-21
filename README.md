@@ -2,6 +2,13 @@
 
 > 欢迎大家一起参与校对工作 
 
+## 镜像站点
+
+### 阿里云
+http://vue.70data.net/
+### LeanCloud
+https://vuefe.leanapp.cn/
+
 ## 贡献要求
 
 ### 参与：
