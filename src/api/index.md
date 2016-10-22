@@ -272,11 +272,11 @@ type: api
 
 - **Использование:**
 
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+  Устанавливает плагин Vue.js. Если плагин определён как объект, он должен содержать публичный метод `install`. Если плагин сам является функцией, он будет воспринят как метод install. Упомянутый метод будет вызван с Vue в качестве аргумента.
 
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+  При многократном вызове этого метода с одним и тем же плагином, плагин будет установлен только однажды.  
 
-- **См. также:** [Plugins](/guide/plugins.html)
+- **См. также:** [Плагины](/guide/plugins.html)
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
@@ -285,9 +285,9 @@ type: api
 
 - **Использование:**
 
-  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+  Применяет миксин глобально, оказывая влияние на все созданные впоследствии экземпляры Vue. Это может быть использовано авторами плагинов для инъекции пользовательского поведения в компоненты. **Не рекомендуется к использованию в коде приложений**.  
 
-- **См. также:** [Global Mixins](/guide/mixins.html#Global-Mixin)
+- **См. также:** [Глобальные Миксины](/guide/mixins.html#Global-Mixin)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
@@ -296,7 +296,7 @@ type: api
 
 - **Использование:**
 
-  Compiles a template string into a render function. **Only available in the standalone build.**
+  Компилирует строковой шаблон в render-функцию. **Доступно только в автономной сборке.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -310,43 +310,43 @@ type: api
   })
   ```
 
-- **См. также:** [Render Functions](/guide/render-function.html)
+- **См. также:** [Render-Функции](/guide/render-function.html)
 
-## Options / Data
+## Опции / Data
 
 ### data
 
 - **Тип:** `Object | Function`
 
-- **Restriction:** Only accepts `Function` when used in a component definition.
+- **Ограничение:** Принимает только `Function` когда используется при определении компонентов.
 
-- **Details:**
+- **Подробности:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
+  Объект данных для экземпляра Vue. Vue рекурсивно конвертирует поля этого объекта в геттеры/сеттеры чтобы сделать его "реактивным". **Объект должен быть простым**: нативные объекты, такие как объекты API браузера и свойства прототипа игнорируются. Упрощённо, правило состоит в том чтобы данные были просто данными — наблюдение за обладающими собственным зависящим от состояния поведением не рекомендуется.
+  
+  Однажды начав наблюдение, вы не сможете больше добавлять реактивные свойства к корневому объекту данных. По этой причине рекоммендуется определять все реактивные свойства корневого уровня заранее, до создания экземпляра.
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  После того как экземпляр был создан, доступ к оригиналу объекта данных может быть получен как `vm.$data`. Экземпляр Vue также проксирует все свойства, обнаруженные в объекте data, так что `vm.a` будет эквивалентно `vm.$data.a`.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  Свойства, названия которых начинается с `_` или `$` **не** проксируются из-за возможных конфликтов со внутренними свойствами и методами API Vue. Доступ к таким свойствам возможен только через `vm.$data._property`.  
 
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  При определении **компонента**, `data` должна быть определена как функция, возвращающая объект для инициализации, так как будет создано множество экземпляров компонента, используя одно и то же определение. Если бы мы всё так же использовали для `data` простой объект, **ссылку на него** получили бы все созданные экземпляры! При использовании функции для `data`, при каждом создании нового экземпляра мы можем попросту вызвать эту функцию и вернуть свежую копию данных для инициализации.
+  
+  При необходимости полная копия оригинального объекта может быть получена при передаче `vm.$data` как аргумента в `JSON.parse(JSON.stringify(...))`.
 
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
-
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
-
-- **Example:**
+- **Пример:**
 
   ``` js
   var data = { a: 1 }
 
-  // direct instance creation
+  // прямое создание экземпляра
   var vm = new Vue({
     data: data
   })
   vm.a // -> 1
   vm.$data === data // -> true
 
-  // must use function when in Vue.extend()
+  // при использовании Vue.extend() необходимо использование функции
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -354,7 +354,7 @@ type: api
   })
   ```
 
-  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
+  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции в параметре `data`__ (напр. `data: () => { return { a: this.myProp }}`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.myProp` окажется неопределенным.</p>
 
 - **См. также:** [Подробно о Реактивности](/guide/reactivity.html)
 
@@ -362,24 +362,24 @@ type: api
 
 - **Тип:** `Array<string> | Object`
 
-- **Details:**
+- **Подробности:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Список или хэш аттрибутов, по которым разрешено получение данных от родительского компонента. Допустима простая форма записи на основе массивов и альтертанивный объектный синтаксис, позволяющий расширенное конфигурирование, такое как проверка типов, пользовательская валидация и указание значений по умолчанию.
 
-- **Example:**
+- **Пример:**
 
   ``` js
-  // simple syntax
+  // простая форма записи
   Vue.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // объектный синтаксис, с указанием правил валидации
   Vue.component('props-demo-advanced', {
     props: {
-      // just type check
+      // только проверка типа
       height: Number,
-      // type check plus other validations
+      // проверка типа плюс другие правила валидации
       age: {
         type: Number,
         default: 0,
@@ -392,7 +392,7 @@ type: api
   })
   ```
 
-- **См. также:** [Props](/guide/components.html#Props)
+- **См. также:** [Параметры Компонентов](/guide/components.html#Props)
 
 ### propsData
 
@@ -400,11 +400,11 @@ type: api
 
 - **Restriction:** only respected in instance creation via `new`.
 
-- **Details:**
+- **Подробности:**
 
   Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
 
-- **Example:**
+- **Пример:**
 
   ``` js
   var Comp = Vue.extend({
@@ -423,7 +423,7 @@ type: api
 
 - **Тип:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Details:**
+- **Подробности:**
 
   Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
 
@@ -431,7 +431,7 @@ type: api
 
   Computed properties are cached, and only re-computed on reactive dependency changes.
 
-- **Example:**
+- **Пример:**
 
   ```js
   var vm = new Vue({
@@ -465,13 +465,13 @@ type: api
 
 - **Тип:** `{ [key: string]: Function }`
 
-- **Details:**
+- **Подробности:**
 
   Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
 
   <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
 
-- **Example:**
+- **Пример:**
 
   ```js
   var vm = new Vue({
@@ -492,11 +492,11 @@ type: api
 
 - **Тип:** `{ [key: string]: string | Function | Object }`
 
-- **Details:**
+- **Подробности:**
 
   An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
 
-- **Example:**
+- **Пример:**
 
   ``` js
   var vm = new Vue({
@@ -533,7 +533,7 @@ type: api
 
 - **Restriction:** only respected in instance creation via `new`.
 
-- **Details:**
+- **Подробности:**
 
   Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
 
@@ -549,7 +549,7 @@ type: api
 
 - **Тип:** `string`
 
-- **Details:**
+- **Подробности:**
 
   A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
 
@@ -565,14 +565,14 @@ type: api
 
   - **Тип:** `Function`
 
-  - **Details:**
+  - **Подробности:**
 
     An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
 
   - **См. также:**
-    - [Render Functions](/guide/render-function)
+    - [Render-Функции](/guide/render-function)
 
 ## Options / Lifecycle Hooks
 
@@ -582,7 +582,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
 
@@ -592,7 +592,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
 
@@ -602,7 +602,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called right before the mounting begins: the `render` function is about to be called for the first time.
 
@@ -614,7 +614,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
 
@@ -626,7 +626,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called when the data changes, before the virtual DOM is re-rendered and patched.
 
@@ -640,7 +640,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called after a data change causes the virtual DOM to be re-rendered and patched.
 
@@ -654,7 +654,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called when a kept-alive component is activated.
 
@@ -668,7 +668,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called when a kept-alive component is deactivated.
 
@@ -682,7 +682,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
 
@@ -694,7 +694,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Function`
 
-- **Details:**
+- **Подробности:**
 
   Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
 
@@ -708,7 +708,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Object`
 
-- **Details:**
+- **Подробности:**
 
   A hash of directives to be made available to the Vue instance.
 
@@ -720,7 +720,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Object`
 
-- **Details:**
+- **Подробности:**
 
   A hash of filters to be made available to the Vue instance.
 
@@ -731,7 +731,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Object`
 
-- **Details:**
+- **Подробности:**
 
   A hash of components to be made available to the Vue instance.
 
@@ -744,7 +744,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Vue instance`
 
-- **Details:**
+- **Подробности:**
 
   Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
 
@@ -754,13 +754,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Array<Object>`
 
-- **Details:**
+- **Подробности:**
 
   The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
   Mixin hooks are called in the order they are provided, and called before the component's own hooks.
 
-- **Example:**
+- **Пример:**
 
   ``` js
   var mixin = {
@@ -782,7 +782,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Restriction:** only respected when used as a component option.
 
-- **Details:**
+- **Подробности:**
 
   Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
 
@@ -792,13 +792,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Object | Function`
 
-- **Details:**
+- **Подробности:**
 
   Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
 
   This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
 
-- **Example:**
+- **Пример:**
 
   ``` js
   var CompA = { ... }
@@ -816,11 +816,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **По умолчанию:** `["{{", "}}"]`
 
-- **Details:**
+- **Подробности:**
 
   Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
 
-- **Example:**
+- **Пример:**
 
   ``` js
   new Vue({
@@ -834,7 +834,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `boolean`
 
-- **Details:**
+- **Подробности:**
 
   Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
 
@@ -846,7 +846,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `Object`
 
-- **Details:**
+- **Подробности:**
 
   The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
 
@@ -858,7 +858,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Read only**
 
-- **Details:**
+- **Подробности:**
 
   The root DOM element that the Vue instance is managing.
 
@@ -868,7 +868,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Read only**
 
-- **Details:**
+- **Подробности:**
 
   The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
 
@@ -887,7 +887,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Read only**
 
-- **Details:**
+- **Подробности:**
 
   The parent instance, if the current instance has one.
 
@@ -897,7 +897,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Read only**
 
-- **Details:**
+- **Подробности:**
 
   The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
 
@@ -907,7 +907,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Read only**
 
-- **Details:**
+- **Подробности:**
 
   The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
 
@@ -917,13 +917,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Read only**
 
-- **Details:**
+- **Подробности:**
 
   Used to access content [distributed by slots](/guide/components.html#Content-Distribution-with-Slots). Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
 
   Accessing `vm.$slots` is most useful when writing a component with a [render function](/guide/render-function.html).
 
-- **Example:**
+- **Пример:**
 
   ```html
   <blog-post>
@@ -959,7 +959,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **См. также:**
   - [`<slot>` Component](#slot)
   - [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions](/guide/render-function.html)
+  - [Render-Функции](/guide/render-function.html)
 
 ### vm.$refs
 
@@ -967,7 +967,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Read only**
 
-- **Details:**
+- **Подробности:**
 
   An object that holds child components that have `ref` registered.
 
@@ -981,7 +981,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Read only**
 
-- **Details:**
+- **Подробности:**
 
   Whether the current Vue instance is running on the server.
 
@@ -1006,7 +1006,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
 
-- **Example:**
+- **Пример:**
 
   ``` js
   // keypath
@@ -1100,7 +1100,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
 
-- **Example:**
+- **Пример:**
 
   ``` js
   vm.$on('test', function (msg) {
@@ -1162,7 +1162,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   The method returns the instance itself so you can chain other instance methods after it.
 
-- **Example:**
+- **Пример:**
 
   ``` js
   var MyComponent = Vue.extend({
@@ -1199,7 +1199,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
 
-- **Example:**
+- **Пример:**
 
   ``` js
   new Vue({
@@ -1242,11 +1242,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `string`
 
-- **Details:**
+- **Подробности:**
 
   Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
 
-- **Example:**
+- **Пример:**
 
   ```html
   <span v-text="msg"></span>
@@ -1260,13 +1260,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `string`
 
-- **Details:**
+- **Подробности:**
 
   Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
 
   <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
 
-- **Example:**
+- **Пример:**
 
   ```html
   <div v-html="html"></div>
@@ -1379,7 +1379,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
 
-- **Example:**
+- **Пример:**
 
   ```html
   <!-- method handler -->
@@ -1447,7 +1447,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
 
-- **Example:**
+- **Пример:**
 
   ```html
   <!-- bind an attribute -->
@@ -1513,7 +1513,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
 
-- **Example:**
+- **Пример:**
 
   ```html
   <span v-pre>{{ this will not be compiled }}</span>
@@ -1527,7 +1527,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
 
-- **Example:**
+- **Пример:**
 
   ```css
   [v-cloak] {
@@ -1547,7 +1547,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Does not expect expression**
 
-- **Details:**
+- **Подробности:**
 
   Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
 

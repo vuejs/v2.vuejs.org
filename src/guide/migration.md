@@ -1102,7 +1102,7 @@ It is no longer supported to have `<slot>`s with the same name in the same templ
 
 ### `slot` Attribute Styling <sup>deprecated</sup>
 
-Content inserted via named `<slot>` no longer preserves the `slot` attribute. Use a wrapper element to style them, or for advanced use cases, modify the inserted content programmatically using [render functions](render-function.html).
+Content inserted via named `<slot>` no longer preserves the `slot` attribute. Use a wrapper element to style them, or for advanced use cases, modify the inserted content programmatically using [Render-Функции](render-function.html).
 
 {% raw %}
 <div class="upgrade-path">
