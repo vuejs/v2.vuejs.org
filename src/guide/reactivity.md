@@ -55,7 +55,7 @@ There are also a few array-related caveats, which were discussed earlier in the 
 
 ## Declaring Reactive Properties
 
-Since Vue doesn't allow dynamically adding root-level reactive properties, this means you have to initialize you instances by declaring all root-level reactive data properties upfront, even just with an empty value:
+Since Vue doesn't allow dynamically adding root-level reactive properties, you have to initialize Vue instances by declaring all root-level reactive data properties upfront, even just with an empty value:
 
 ``` js
 var vm = new Vue({
