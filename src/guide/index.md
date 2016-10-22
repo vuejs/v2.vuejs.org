@@ -258,7 +258,7 @@ Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
 ```
-Make sure the component is registered before you instantiate the root Vue instance.
+
 Now you can compose it in another component's template:
 
 ``` html
@@ -296,6 +296,10 @@ Now we can pass the todo into each repeated component using `v-bind`:
 </div>
 ```
 ``` js
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
 var app7 = new Vue({
   el: '#app-7',
   data: {
