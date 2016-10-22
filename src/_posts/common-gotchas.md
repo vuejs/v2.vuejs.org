@@ -15,7 +15,7 @@ Most of the time, when you change a Vue instance's data, the view updates. But t
 
 2. When you modify an Array by directly setting an index (e.g. `arr[0] = val`) or modifying its `length` property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method `arr.$set(index, value)` which is just syntax sugar for `arr.splice(index, 1, value)`.
 
-Further reading: [Reactivity in Depth](/guide/reactivity.html) and [Array Change Detection](http://vuejs.org/guide/list.html#Array-Change-Detection).
+Further reading: [Подробно о Реактивности](/guide/reactivity.html) and [Array Change Detection](http://vuejs.org/guide/list.html#Array-Change-Detection).
 
 ### When is the DOM updated?
 

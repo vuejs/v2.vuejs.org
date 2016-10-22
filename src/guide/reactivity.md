@@ -1,5 +1,5 @@
 ---
-title: Reactivity in Depth
+title: Подробно о Реактивности
 type: guide
 order: 15
 ---

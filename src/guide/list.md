@@ -211,9 +211,9 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### Components and v-for
+### Компоненты и v-for
 
-> This section assumes knowledge of [Components](/guide/components.html). Feel free to skip it and come back later.
+> Эта секция подразумевает знакомство с [Компонентами](/guide/components.html). Feel free to skip it and come back later.
 
 You can directly use `v-for` on a custom component, like any normal element:
 

@@ -97,7 +97,7 @@ type: api
 
   Определяет пользовательский алиас(ы) для директивы v-on.
 
-## Global API
+## Глобальное API
 
 <h3 id="Vue-extend">Vue.extend( options )</h3>
 
@@ -106,9 +106,9 @@ type: api
 
 - **Использование:**
 
-  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
+  Создаёт "подкласс" базового конструктора Vue. Параметром должен быть объект, содержащий опции компонента.  
 
-  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
+  Внимание: при использовании с `Vue.extend()` опция `data` должна быть определена как функция.  
 
   ``` html
   <div id="mount-point"></div>
@@ -126,17 +126,17 @@ type: api
       }
     }
   })
-  // create an instance of Profile and mount it on an element
+  // создаёт экземпляр Profile и монтирует его к элементу DOM
   new Profile().$mount('#mount-point')
   ```
 
-  Will result in:
+  Результатом будет:
 
   ``` html
   <p>Walter White aka Heisenberg</p>
   ```
 
-- **См. также:** [Components](/guide/components.html)
+- **См. также:** [Компоненты](/guide/components.html)
 
 <h3 id="Vue-nextTick">Vue.nextTick( callback, [context] )</h3>
 
@@ -146,14 +146,15 @@ type: api
 
 - **Использование:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+  Откладывает выполнение callback-функции до следующего цикла обновления DOM. Используйте непосредственно после того как изменяете какие-либо данные чтобы подождать обновления DOM.
+  
 
   ``` js
   // modify data
   vm.msg = 'Hello'
-  // DOM not updated yet
+  // DOM ещё не обновлён
   Vue.nextTick(function () {
-    // DOM updated
+    // теперь DOM обновлён
   })
   ```
 
@@ -166,15 +167,15 @@ type: api
   - `{string} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Returns:** установленное значение.
 
 - **Использование:**
 
-  Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
+  Устанавливает значение поля объекта. Если объект является реактивным, удостоверится что поле будет создано как реактивное и запустит обновления view. Главным образом используется для обхода ограничения, из-за которого Vue не может детектировать добавление полей неявно.
 
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
+  **Обратите внимание что объект не может быть экземпляром Vue или корневым объектом data экземпляра Vue.**
 
-- **См. также:** [Reactivity in Depth](/guide/reactivity.html)
+- **См. также:** [Подробно о Реактивности](/guide/reactivity.html)
 
 <h3 id="Vue-delete">Vue.delete( object, key )</h3>
 
@@ -184,11 +185,11 @@ type: api
 
 - **Использование:**
 
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+  Удаляет поле объекта. Если объект является реактивным, удостоверится что удаление запустит обновления view. Главным образом используется для обхода ограничения, из-за которого Vue не может детектировать удаления полей неявно, хотя вам в ряд ли часто понадобится использовать эту возможность.
 
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
+  **Обратите внимание что объект не может быть экземпляром Vue или корневым объектом data экземпляра Vue.**
 
-- **См. также:** [Reactivity in Depth](/guide/reactivity.html)
+- **См. также:** [Подробно о Реактивности](/guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
@@ -198,10 +199,10 @@ type: api
 
 - **Использование:**
 
-  Register or retrieve a global directive.
+  Регистрирует или получает глобальную директиву.  
 
   ``` js
-  // register
+  // регистрация
   Vue.directive('my-directive', {
     bind: function () {},
     inserted: function () {},
@@ -210,16 +211,16 @@ type: api
     unbind: function () {}
   })
 
-  // register (simple function directive)
+  // регистрация (директива в виде простой функции)
   Vue.directive('my-directive', function () {
-    // this will be called as `bind` and `update`
+    // эта функция будет вызвана как `bind` и `update`
   })
 
-  // getter, return the directive definition if registered
+  // геттер, вернёт определение директивы, если она зарегистрирована  
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **См. также:** [Custom Directives](/guide/custom-directive.html)
+- **См. также:** [Пользовательские Директивы](/guide/custom-directive.html)
 
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
@@ -229,15 +230,15 @@ type: api
 
 - **Использование:**
 
-  Register or retrieve a global filter.
+  Регистрирует или получает глобальный фильтр.
 
   ``` js
-  // register
+  // регистрация
   Vue.filter('my-filter', function (value) {
     // return processed value
   })
 
-  // getter, return the filter if registered
+  // геттер, вернёт фильтр если он зарегистрирован
   var myFilter = Vue.filter('my-filter')
   ```
 
@@ -249,20 +250,20 @@ type: api
 
 - **Использование:**
 
-  Register or retrieve a global component.
+  Регистрирует или получает глобальный компонент
 
   ``` js
-  // register an extended constructor
+  // регистрирует расширенный конструктор
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // register an options object (automatically call Vue.extend)
+  // регистрирует объект опций (Vue.extend будет вызвана автоматически)
   Vue.component('my-component', { /* ... */ })
 
-  // retrieve a registered component (always return constructor)
+  // получает зарегистрированный компонент (всегда вернёт конструктор)
   var MyComponent = Vue.component('my-component')
   ```
 
-- **См. также:** [Components](/guide/components.html)
+- **См. также:** [Компоненты](/guide/components.html)
 
 <h3 id="Vue-use">Vue.use( plugin )</h3>
 
@@ -355,7 +356,7 @@ type: api
 
   <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
 
-- **См. также:** [Reactivity in Depth](/guide/reactivity.html)
+- **См. также:** [Подробно о Реактивности](/guide/reactivity.html)
 
 ### props
 
@@ -660,8 +661,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   **This hook is not called during server-side rendering.**
 
 - **См. также:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
+  - [Built-in Компоненты - keep-alive](#keep-alive)
+  - [Dynamic Компоненты - keep-alive](/guide/components.html#keep-alive)
 
 ### deactivated
 
@@ -674,8 +675,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   **This hook is not called during server-side rendering.**
 
 - **См. также:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
+  - [Built-in Компоненты - keep-alive](#keep-alive)
+  - [Dynamic Компоненты - keep-alive](/guide/components.html#keep-alive)
 
 ### beforeDestroy
 
@@ -712,7 +713,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   A hash of directives to be made available to the Vue instance.
 
 - **См. также:**
-  - [Custom Directives](/guide/custom-directive.html)
+  - [Пользовательские Директивы](/guide/custom-directive.html)
   - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
 
 ### filters
@@ -735,7 +736,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   A hash of components to be made available to the Vue instance.
 
 - **См. также:**
-  - [Components](/guide/components.html)
+  - [Компоненты](/guide/components.html)
 
 ## Options / Misc
 
@@ -837,7 +838,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
 
-- **См. также:** [Functional Components](/guide/render-function.html#Functional-Components)
+- **См. также:** [Functional Компоненты](/guide/render-function.html#Functional-Компоненты)
 
 ## Instance Properties
 
@@ -1423,7 +1424,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **См. также:**
   - [Methods and Event Handling](/guide/events.html)
-  - [Components - Custom Events](/guide/components.html#Custom-Events)
+  - [Компоненты - Custom Events](/guide/components.html#Custom-Events)
 
 ### v-bind
 
@@ -1479,7 +1480,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **См. также:**
   - [Class and Style Bindings](/guide/class-and-style.html)
-  - [Components - Component Props](/guide/components.html#Props)
+  - [Компоненты - Component Props](/guide/components.html#Props)
 
 ### v-model
 
@@ -1502,7 +1503,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **См. также:**
   - [Form Input Bindings](/guide/forms.html)
-  - [Components - Form Input Components using Custom Events](/guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [Компоненты - Form Input Компоненты using Custom Events](/guide/components.html#Form-Input-Компоненты-using-Custom-Events)
 
 ### v-pre
 
@@ -1568,7 +1569,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **См. также:**
   - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
-  - [Components - Cheap Static Components with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
+  - [Компоненты - Cheap Static Компоненты with v-once](/guide/components.html#Cheap-Static-Компоненты-with-v-once)
 
 ## Special Attributes
 
@@ -1633,7 +1634,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **См. также:** [Named Slots](/guide/components.html#Named-Slots)
 
-## Built-In Components
+## Built-In Компоненты
 
 ### component
 
@@ -1654,7 +1655,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <component :is="$options.components.child"></component>
   ```
 
-- **См. также:** [Dynamic Components](/guide/components.html#Dynamic-Components)
+- **См. также:** [Dynamic Компоненты](/guide/components.html#Dynamic-Компоненты)
 
 ### transition
 
@@ -1779,7 +1780,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
-- **См. также:** [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
+- **См. также:** [Dynamic Компоненты - keep-alive](/guide/components.html#keep-alive)
 
 ### slot
 

@@ -646,7 +646,7 @@ You can use:
 </div>
 {% endraw %}
 
-## Custom Directives
+## Пользовательские Директивы
 
 Directives have a greatly reduced scope of responsibility: they are now only used for applying low-level direct DOM manipulations. In most cases, you should prefer using components as the main code-reuse abstraction.
 
@@ -656,7 +656,7 @@ Some of the most notable differences include:
 - Options such as `acceptStatement`, `deep`, `priority`, etc are all deprecated. To replace `twoWay` directives, see [this example](#Two-Way-Filters-deprecated).
 - Some of the current hooks have different behavior and there are also a couple new hooks.
 
-Fortunately, since the new directives are much simpler, you can master them more easily. Read the new [Custom Directives guide](custom-directive.html) to learn more.
+Fortunately, since the new directives are much simpler, you can master them more easily. Read the new [Пользовательские Директивы guide](custom-directive.html) to learn more.
 
 {% raw %}
 <div class="upgrade-path">
