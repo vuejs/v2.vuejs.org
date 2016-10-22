@@ -101,7 +101,7 @@ type: api
 
 <h3 id="Vue-extend">Vue.extend( options )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Object} options`
 
 - **Использование:**
@@ -140,7 +140,7 @@ type: api
 
 <h3 id="Vue-nextTick">Vue.nextTick( callback, [context] )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Function} callback`
   - `{Object} [context]`
 
@@ -161,7 +161,7 @@ type: api
 
 <h3 id="Vue-set">Vue.set( object, key, value )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Object} object`
   - `{string} key`
   - `{any} value`
@@ -178,7 +178,7 @@ type: api
 
 <h3 id="Vue-delete">Vue.delete( object, key )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Object} object`
   - `{string} key`
 
@@ -192,7 +192,7 @@ type: api
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
@@ -223,7 +223,7 @@ type: api
 
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string} id`
   - `{Function} [definition]`
 
@@ -243,7 +243,7 @@ type: api
 
 <h3 id="Vue-component">Vue.component( id, [definition] )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
@@ -266,7 +266,7 @@ type: api
 
 <h3 id="Vue-use">Vue.use( plugin )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Object | Function} plugin`
 
 - **Использование:**
@@ -279,7 +279,7 @@ type: api
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Object} mixin`
 
 - **Использование:**
@@ -290,7 +290,7 @@ type: api
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string} template`
 
 - **Использование:**
@@ -990,7 +990,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string | Function} expOrFn`
   - `{Function} callback`
   - `{Object} [options]`
@@ -1062,7 +1062,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-set">vm.$set( object, key, value )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Object} object`
   - `{string} key`
   - `{any} value`
@@ -1077,7 +1077,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-delete">vm.$delete( object, key )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Object} object`
   - `{string} key`
 
@@ -1091,7 +1091,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string} event`
   - `{Function} callback`
 
@@ -1111,7 +1111,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-once">vm.$once( event, callback )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string} event`
   - `{Function} callback`
 
@@ -1121,7 +1121,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string} [event]`
   - `{Function} [callback]`
 
@@ -1137,7 +1137,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{string} event`
   - `[...args]`
 
@@ -1147,7 +1147,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
@@ -1191,7 +1191,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
 
-- **Arguments:**
+- **Аргументы:**
   - `{Function} callback`
 
 - **Использование:**
