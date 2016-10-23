@@ -427,7 +427,7 @@ type: api
 
   Содержит вычисляемые свойства, которые будут подмешаны к экземпляру Vue. Контекст `this` всех геттеров и сеттеров привязывается к экземпляру Vue автоматически.
 
-  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении вычисляемых свойств__ (напр. `aDouble: () => this.a * 2`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.myProp` окажется неопределенным.</p>
+  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении вычисляемых свойств__ (напр. `aDouble: () => this.a * 2`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.a` окажется неопределенным.</p>
 
   Вычисляемые свойства кэшируются и повторно вычисляются только при изменении реактивных зависимостей.
 
@@ -469,7 +469,7 @@ type: api
 
   Методы, которые будут подмешаны к экземпляру Vue. Вы можете получить доступ к этим методам непосредственно через экземпляр VM, или использовать их в выражениях директив. Контекст `this` всех методов привязывается к экземпляру Vue автоматически.
 
-  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении методов__ (напр. `plus: () => this.a++`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.myProp` окажется неопределенным.</p>
+  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении методов__ (напр. `plus: () => this.a++`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.a` окажется неопределенным.</p>
 
 - **Пример:**
 
@@ -521,31 +521,29 @@ type: api
   vm.a = 2 // -> new: 2, old: 1
   ```
 
-  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении наблюдателей__ (напр. `searchQuery: newValue => this.updateAutocomplete(newValue)`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.myProp` окажется неопределенным.</p>
-
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении наблюдателей__ (напр. `searchQuery: newValue => this.updateAutocomplete(newValue)`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.updateAutocomplete` окажется неопределенным.</p>
 
 - **См. также:** [Instance Methods - vm.$watch](#vm-watch)
 
-## Options / DOM
+## Опции / DOM
 
 ### el
 
 - **Тип:** `string | HTMLElement`
 
-- **Ограничение:** only respected in instance creation via `new`.
+- **Ограничение:** используется только при создании экземпляра через `new`.
 
 - **Подробности:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  Указывает, на какой существующий элемент DOM будет смонтирован экземпляр Vue. Может быть строковым CSS-селектором или собственно экземпляром HTMLElement.
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  После монтирования экземпляра, разрешённый элемент будет доступен как `vm.$el`.
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  Если эта опция указана при создании экземпляра, компиляция будет начата незамедлительно. В противном случае для ручного старта компиляции будет необходимо явно вызвать `vm.$mount()`.
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip">Указанный элемент служит исключительно точкой монтирования. В отличии от Vue 1.x, он будет заменен сгенерированным Vue DOM во всех случаях. По этой причине монтирование в корневые элементы `<html>` или `<body>` не рекоммендуется.</p>
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ### template
 
@@ -553,15 +551,15 @@ type: api
 
 - **Подробности:**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Строковый шаблон, который будет использован как разметка для экземпляра Vue. Этот шаблон **заменит** элемент в точке монтирования. Вся уже существующая разметка внутри точки монтирования будет проигнорирована, за исключением случаев наличия слотов дистрибьюции контента в шаблоне.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Если строка начинается с `#`, она будет использована как querySelector, а в качестве строкового шаблона будет использован innerHTML элемента с указанным id. Это позволяет использовать распространённый трюк с `<script type="x-template">` для включения шаблонов.
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip">С позиций безопасности, вы должны всегда использовать только те шаблоны Vue, которым можете доверять. Никогда не используйте в качестве шаблона данные, вводимые пользователем.</p>
 
 - **См. также:**
-  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution](/guide/components.html#Content-Distribution-with-Slots)
+  - [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
+  - [Дистрибьюция Контента](/guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
@@ -569,16 +567,16 @@ type: api
 
   - **Подробности:**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    Альтернатива строковым шаблонам, позволяющая задействовать все алгоритмические возможности JavaScript. Render-функция получает первым аргументом метод `createElement`, используемый для создания `VNode`-ов.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    Если компонент является функциональным, также передаётся второй параметр `context`, дающий доступ к контекстным данным, так как функциональные компоненты не имеют экземпляров.
 
   - **См. также:**
     - [Render-Функции](/guide/render-function)
 
-## Options / Lifecycle Hooks
+## Опции / Хуки Жизненного Цикла
 
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.
+Контекст `this` всех хуков автоматически привязывается к экземпляру, что даёт доступ к данным, вычисляемым свойствам и методам. Это значит, что __вам не следует использовать arrow-функции для определения методов жизненного цикла__ (напр. `created: () => this.fetchTodos()`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.fetchTodos` окажется неопределенным.
 
 ### beforeCreate
 
@@ -586,9 +584,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+  Вызывается синхронно сразу после инициализации экземпляра, до настройки наблюдения за данными и механизмов наблюдателей/событий.
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
@@ -596,9 +594,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Вызывается синхронно сразу после создания экземпляра. На этом этапе экземпляр закончил обработку опций, что означает что все нижеперечисленное уже работает: наблюдение за данными, вычисляемые свойства, методы, функции обратного вызова наблюдателей и событий. Однако, фаза монтирования ещё не была начата, и свойство `$el` ещё не будет доступно.
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
@@ -606,11 +604,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Вызывается перед началом монтирования: сразу перед первым вызовом функции `render`.  
 
-  **This hook is not called during server-side rendering.**
+  **При рендеринге на стороне сервера этот хук не вызывается.**
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
@@ -618,11 +616,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Вызывается сразу после того как экземпляр был смонтирован, а `el` — заменено новосозданным `vm.$el`. Если корневой экземпляр смонтирован на in-document элемент, `vm.$el` будет также in-document элементом к моменту вызова `mounted`.
 
-  **This hook is not called during server-side rendering.**
+  **При рендеринге на стороне сервера этот хук не вызывается.**
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
@@ -630,13 +628,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  Вызывается при изменении данных, перед ререндерингом и обновлением virtual DOM.
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
+  В этом хуке можно дополнительно изменять состояние, и это не вызовет повторного ререндеринга.  
 
-  **This hook is not called during server-side rendering.**
+  **При рендеринге на стороне сервера этот хук не вызывается.**
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
@@ -644,13 +642,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Вызывается после того как virtual DOM был обновлён вследствие изменения данных.
 
-  The component's DOM will be in updated state when this hook is called, so you can perform DOM-dependent operations in this hook. However, in most cases you should avoid changing state in this hook, because it may lead to an infinite update loop.
+  DOM компонента будет находиться в обновлённом состоянии к моменту вызова этого хука, что позволяет выполнять здесь операции, имеющие зависимость от DOM. Однако, в большинстве случаев следует избегать изменения состояния в этом хуке, поскольку это может привести к бесконечному циклу обновления.  
 
-  **This hook is not called during server-side rendering.**
+  **При рендеринге на стороне сервера этот хук не вызывается.**
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
@@ -658,13 +656,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when a kept-alive component is activated.
+  Вызывается при активации keep-alive компонента.  
 
-  **This hook is not called during server-side rendering.**
+  **При рендеринге на стороне сервера этот хук не вызывается.**
 
 - **См. также:**
   - [Built-in Компоненты - keep-alive](#keep-alive)
-  - [Dynamic Компоненты - keep-alive](/guide/components.html#keep-alive)
+  - [Динамические Компоненты - keep-alive](/guide/components.html#keep-alive)
 
 ### deactivated
 
@@ -672,13 +670,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called when a kept-alive component is deactivated.
+  Вызывается после деактивации keep-alive компонента.
 
-  **This hook is not called during server-side rendering.**
+  **При рендеринге на стороне сервера этот хук не вызывается.**
 
 - **См. также:**
   - [Built-in Компоненты - keep-alive](#keep-alive)
-  - [Dynamic Компоненты - keep-alive](/guide/components.html#keep-alive)
+  - [Динамические Компоненты - keep-alive](/guide/components.html#keep-alive)
 
 ### beforeDestroy
 
@@ -686,11 +684,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  Вызывается непосредственно перед уничтожением экземпляра Vue. На этом этапе экземпляр всё ещё полностью функционален.  
 
-  **This hook is not called during server-side rendering.**
+  **При рендеринге на стороне сервера этот хук не вызывается.**
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
@@ -698,13 +696,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Вызывается после уничтожения экземпляра Vue. К моменту вызова этого хука, все директивы экземпляра Vue уже отвязаны, все слушатели событий — удалены, все дочерние экземпляры Vue — также уничтожены.
 
-  **This hook is not called during server-side rendering.**
+  **При рендеринге на стороне сервера этот хук не вызывается.**
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
-## Options / Assets
+## Опции / Assets
 
 ### directives
 
@@ -712,11 +710,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  A hash of directives to be made available to the Vue instance.
+  Хэш директив которые будут доступны экземпляру Vue.
 
 - **См. также:**
   - [Пользовательские Директивы](/guide/custom-directive.html)
-  - [Assets Naming Convention](/guide/components.html#Assets-Naming-Convention)
+  - [Соглашение по Именованию Asset'ов](/guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
@@ -724,7 +722,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  A hash of filters to be made available to the Vue instance.
+  Хэш фильтров которые будут доступны экземпляру Vue.
 
 - **См. также:**
   - [`Vue.filter`](#Vue-filter)
@@ -735,12 +733,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  A hash of components to be made available to the Vue instance.
+  Хэш компонентов которые будут доступны экземпляру Vue.
 
 - **См. также:**
   - [Компоненты](/guide/components.html)
 
-## Options / Misc
+## Options / Разное
 
 ### parent
 
@@ -748,7 +746,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Подробности:**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  Указывает родительский экземпляр для создаваемого. Устанавливает отношение "родитель-ребёнок" между ними. Родительский элемент будет доступен для дочернего через `this.$parent`, а дочерний элемент будет дабавлен в массив `$children` родителя.  
 
   <p class="tip">Use `$parent` and `$children` sparringly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
 
@@ -1183,7 +1181,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 
 - **См. также:**
-  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+  - [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
   - [Server-Side Rendering](/guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
@@ -1236,7 +1234,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
 
-- **См. также:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
 ## Directives
 
@@ -1657,7 +1655,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <component :is="$options.components.child"></component>
   ```
 
-- **См. также:** [Dynamic Компоненты](/guide/components.html#Dynamic-Компоненты)
+- **См. также:** [Динамические Компоненты](/guide/components.html#Dynamic-Компоненты)
 
 ### transition
 
@@ -1782,7 +1780,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
-- **См. также:** [Dynamic Компоненты - keep-alive](/guide/components.html#keep-alive)
+- **См. также:** [Динамические Компоненты - keep-alive](/guide/components.html#keep-alive)
 
 ### slot
 
