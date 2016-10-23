@@ -88,7 +88,7 @@ Vue.js allows you to define filters that can be used to apply common text format
 {{ message | capitalize }}
 ```
 
-<p class="tip">Vue 2.x filters can only be used inside mustache bindings. To achieve the same behavior inside directive bindings, you should use [Computed properties](/guide/computed.html) instead.</p>
+<p class="tip">Vue 2.x filters can only be used inside mustache bindings. To achieve the same behavior inside directive bindings, you should use [Вычисляемые Свойства](/guide/computed.html) instead.</p>
 
 The filter function always receives the expression's value as the first argument.
 

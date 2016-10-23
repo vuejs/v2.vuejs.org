@@ -398,11 +398,11 @@ type: api
 
 - **Тип:** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Ограничение:** учитывается только при создании экземпляра через `new`.
 
 - **Подробности:**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  Передаёт параметры компоненту при его создании. В основном предназначено для облегчения тестирования.
 
 - **Пример:**
 
@@ -425,11 +425,11 @@ type: api
 
 - **Подробности:**
 
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+  Содержит вычисляемые свойства, которые будут подмешаны к экземпляру Vue. Контекст `this` всех геттеров и сеттеров привязывается к экземпляру Vue автоматически.
 
-  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении вычисляемых свойств__ (напр. `aDouble: () => this.a * 2`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.myProp` окажется неопределенным.</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes.
+  Вычисляемые свойства кэшируются и повторно вычисляются только при изменении реактивных зависимостей.
 
 - **Пример:**
 
@@ -437,11 +437,11 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only, just need a function
+      // только получение данных, достаточно простой функции
       aDouble: function () {
         return this.a * 2
       },
-      // both get and set
+      // и получение и установка
       aPlus: {
         get: function () {
           return this.a + 1
@@ -459,7 +459,7 @@ type: api
   ```
 
 - **См. также:**
-  - [Computed Properties](/guide/computed.html)
+  - [Вычисляемые Свойства](/guide/computed.html)
 
 ### methods
 
@@ -467,9 +467,9 @@ type: api
 
 - **Подробности:**
 
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+  Методы, которые будут подмешаны к экземпляру Vue. Вы можете получить доступ к этим методам непосредственно через экземпляр VM, или использовать их в выражениях директив. Контекст `this` всех методов привязывается к экземпляру Vue автоматически.
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении методов__ (напр. `plus: () => this.a++`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.myProp` окажется неопределенным.</p>
 
 - **Пример:**
 
@@ -486,7 +486,7 @@ type: api
   vm.a // 2
   ```
 
-- **См. также:** [Methods and Event Handling](/guide/events.html)
+- **См. также:** [Методы и Обработка Событий](/guide/events.html)
 
 ### watch
 
@@ -494,7 +494,7 @@ type: api
 
 - **Подробности:**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+  Объект, ключи которого — выражения для наблюдения, а значения — соответствующие функции обратного вызова. Значения также могут строками с именами методов, или объектами, содержащими дополнительные опции. Экземпляр Vue вызовет `$watch()` для каждой записи при создании экземпляра.
 
 - **Пример:**
 
@@ -509,9 +509,9 @@ type: api
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
-      // string method name
+      // строка с именем метода
       b: 'someMethod',
-      // deep watcher
+      // глубокий наблюдатель
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
@@ -520,6 +520,8 @@ type: api
   })
   vm.a = 2 // -> new: 2, old: 1
   ```
+
+  <p class="tip">Обратите внимание, что __вам не стоит использовать arrow-функции при определении наблюдателей__ (напр. `searchQuery: newValue => this.updateAutocomplete(newValue)`). Причина в том, что arrow-функции связываются с родительским контекстом, и таким образом `this` не будет указывать на экземпляр Vue (что ожидается), и `this.myProp` окажется неопределенным.</p>
 
   <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
 
@@ -531,7 +533,7 @@ type: api
 
 - **Тип:** `string | HTMLElement`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Ограничение:** only respected in instance creation via `new`.
 
 - **Подробности:**
 
@@ -780,7 +782,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Тип:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **Ограничение:** only respected when used as a component option.
 
 - **Подробности:**
 
@@ -1301,7 +1303,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Does not expect expression**
 
-- **Restriction:** previous sibling element must have `v-if`.
+- **Ограничение:** previous sibling element must have `v-if`.
 
 - **Использование:**
 
@@ -1423,7 +1425,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 
 - **См. также:**
-  - [Methods and Event Handling](/guide/events.html)
+  - [Методы и Обработка Событий](/guide/events.html)
   - [Компоненты - Custom Events](/guide/components.html#Custom-Events)
 
 ### v-bind
