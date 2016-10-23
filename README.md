@@ -77,7 +77,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Routing (@natanaelphp)
 - [x] State Management (@ErickPetru)
 - [x] Unit Testing (@capaci)
-- [ ] Server-Side Rendering (@ErickPetru)
+- [x] Server-Side Rendering (@ErickPetru)
 - [ ] Migration from Vue 1.x
 - [ ] Migration from Vue Router 0.7.x
 - [x] Migration from Vuex 0.6.x to 1.0 (@ErickPetru)
