@@ -1,79 +1,79 @@
 ---
-title: Server-Side Rendering
+title: Renderização Server-Side
 type: guide
 order: 24
 ---
 
-## Do You Need SSR?
+## Você Precisa de SSR?
 
-Before diving into SSR, let's explore what it actually does for you and when you might need it.
+Antes de mergulhar no SSR (sigla para o inglês *Server-Side Rendering*), é interessante explorar o que isso efetivamente faz por você e quando você pode precisar dele.
 
 ### SEO
 
-Google and Bing can index synchronous JavaScript applications just fine. _Synchronous_ being the key word there. If your app starts with a loading spinner, then fetches content via Ajax, the crawler will not wait for you to finish.
+Google e Bing podem indexar aplicações JavaScript síncronas sem problemas. _Síncrono_ é a palavra chave aqui. Se sua aplicação inicia com um ícone de carregamento e então busca o conteúdo por Ajax, o robô de indexação não vai esperar a requisição terminar.
 
-This means if you have content fetched asynchronously on pages where SEO is important, SSR might be necessary.
+Isso significa que, se você tem conteúdo carregado dinamicamente em páginas onde SEO é importante, SSR pode ser necessário.
 
-### Clients with a Slow Internet
+### Clientes com Internet Lenta
 
-Users might come to your site from a remote area with slow Internet - or just with a bad cell connection. In these cases, you'll want to minimize the number and size of requests necessary for users to see basic content.
+Usuários talvez visitem seu site a partir de uma área remota com Internet lenta - ou simplesmente com uma conexão móvel ruim. Nestes casos, você irá querer minimizar o número e o tamanho das requisições necessárias para os usuários verem o conteúdo básico.
 
-You can use [Webpack's code splitting](https://webpack.github.io/docs/code-splitting.html) to avoid forcing users to download your entire application to view a single page, but it still won't be as performant as downloading a single, pre-rendered HTML file.
+É possível usar [code splitting do Webpack](https://webpack.github.io/docs/code-splitting.html) para evitar forçar os usuários a baixarem sua aplicação inteira simplesmente para visualizar uma página individual, mas isto ainda não seria tão performático quando baixar um simples arquivo HTML pré-renderizado.
 
-### Clients with an Old (or Simply No) JavaScript Engine
+### Clientes com Motor JavaScript Antigo (Ou Nulo)
 
-For some demographics or areas of the world, using a computer from 1998 to access the Internet might be the only option. While Vue only works with IE9+, you may still want to deliver basic content to those on older browsers - or to hipster hackers using [Lynx](http://lynx.browser.org/) in the terminal.
+Para algumas regiões demográficas e áreas do mundo, utilizar um computador de 1998 para acessar a Internet pode ser a única opção. Uma vez que o Vue só é suportado a partir do IE9, você pode querer entregar conteúdo básico para aqueles usuários presos a navegadores antigos - ou para *hackers hipsters* usando [Lynx](http://lynx.browser.org/) no terminal.
 
-### SSR vs Prerendering
+### SSR vs Pré-renderização
 
-If you're only investigating SSR to improve the SEO of a handful of marketing pages (e.g. `/`, `/about`, `/contact`, etc), then you probably want __prerendering__ instead. Rather than using a web server to compile HTML on-the-fly, prerendering simply generates static HTML files for specific routes at build time. The advantage is setting up prerendering is much simpler and allows you to keep your frontend as a fully static site.
+Se você está investigando SSR para melhorar o SEO de algumas páginas de *marketing* (por exemplo, `/`, `/sobre`, `/contato`, etc), então você provavelmente vai querer utilizar pré-renderização no seu lugar. Ao invés de usar um servidor Web para compilar HTML em tempo real, a pré-renderização simplesmente gera arquivos HTML estáticos para rotas específicas durante a compilação da aplicação. A vantagem é que a configuração de pré-renderização é muito mais simples e permite manter seu *frontend* como um site totalmente estático.
 
-If you're using Webpack, you can easily add prerendering with the [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). It's been extensively tested with Vue apps - and in fact, the creator is a member of the Vue core team.
+Se você estiver usando Webpack, é possível obter isto facilmente com o [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). Ele tem sido extensivamente testado em aplicações Vue - e, de fato, o criador inclusive é membro da equipe principal do Vue.
 
-## Hello World
+## Olá Mundo
 
-If you've gotten this far, you're ready to see SSR in action. It sounds complex, but a simple node script demoing the feature requires only 3 steps:
+Se chegou até aqui, está pronto para ver SSR em ação. Soa complexo, mas um script Node simples demonstrando a funcionalidade requer apenas 3 passos:
 
 ``` js
-// Step 1: Create a Vue instance
+// Passo 1: Criar uma instância Vue
 var Vue = require('vue')
 var app = new Vue({
   render: function (h) {
-    return h('p', 'hello world')
+    return h('p', 'Olá Mundo')
   }
 })
 
-// Step 2: Create a renderer
+// Passo 2: Criar um renderizador
 var renderer = require('vue-server-renderer').createRenderer()
 
-// Step 3: Render the Vue instance to HTML
+// Passo 3: Renderizar a instância Vue como HTML
 renderer.renderToString(app, function (error, html) {
   if (error) throw error
   console.log(html)
-  // => <p server-rendered="true">hello world</p>
+  // => <p server-rendered="true">Olá Mundo</p>
 })
 ```
 
-Not so scary, right? Of course, this example is much simpler than most applications. We don't yet have to worry about:
+Não é tão assustador, certo? É claro que este exemplo é muito mais simples do que a maioria das aplicações. Ainda não tivemos que nos preocupar com:
 
-- A Web Server
-- Response Streaming
-- Component Caching
-- A Build Process
-- Routing
-- Vuex State Hydration
+- Um Servidor Web
+- Streaming de Resposta
+- Cache de Componentes
+- Um Processo de Build
+- Roteamento
+- Hidratação de Estado Vuex
 
-In the rest of this guide, we'll walk through how to work with some of these features. Once you understand the basics, we'll then direct you to more detailed documentation and advanced examples to help you handle edge cases.
+No restante deste guia, vamos falar sobre como lidar com algumas destas características. Depois de entender o básico, lhe encaminharemos para uma documentação mais detalhada e para exemplos avançados que irão ajudá-lo a lidar com casos extremos.
 
-## Simple SSR with the Express Web Server
+## SSR Simples com Servidor Web Express
 
-It's kind of a stretch to call it "server-side rendering" when we don't actually have a web server, so let's fix that. We'll build a very simple SSR app, using only ES5 and without any build step or Vue plugins.
+É meio forçado chamar algo de "renderização do lado do servidor" quando na verdade não temos um servidor Web, então vamos consertar isso. Construiremos um aplicativo SSR muito simples, usando apenas ES5 e sem qualquer etapa de compilação ou plugins Vue.
 
-We'll start off with an app that just tells the user how many seconds they've been on the page:
+Vamos começar apenas dizendo ao usuário por quantos segundos ele esteve na página:
 
 ``` js
 new Vue({
-  template: '<div>You have been here for {{ counter }} seconds.</div>',
+  template: '<div>Você esteve aqui por {{ counter }}s.</div>',
   data: {
     counter: 0
   },
@@ -86,26 +86,26 @@ new Vue({
 })
 ```
 
-To adapt this for SSR, there are a few modifications we'll have to make, so that it will work both in the browser and within node:
+Para adaptá-lo para SSR, existem algumas modificações que precisaremos fazer, para que funcione tanto no navegador quanto no servidor Node:
 
-- When in the browser, add an instance of our app to the global context (i.e. `window`), so that we can mount it.
-- When in node, export a factory function so that we can create a fresh instance of the app for every request.
+- Quando estiver no navegador, coloque uma instância do aplicativo no contexto global (ou seja, `window`), para que possamos montá-lo no documento.
+- Quando estiver no Node, exporte uma função *factory* para que possamos criar uma nova instância do aplicativo a cada requisição.
 
-Accomplishing this requires a little boilerplate:
+Atender estes passos requer um pouco de código estrutural:
 
 ``` js
 // assets/app.js
 (function () { 'use strict'
   var createApp = function () {
-    // ---------------------
-    // BEGIN NORMAL APP CODE
-    // ---------------------
+    // ------------------------------
+    // INÍCIO DO CÓDIGO NORMAL DO APP
+    // ------------------------------
 
-    // Main Vue instance must be returned and have a root
-    // node with the id "app", so that the client-side
-    // version can take over once it loads.
+    // A instância Vue principal deve ser retornada e possuir
+    // um nó principal com o id "app", para que a versão client-side
+    // possa tomar conta dele assim que carregar.
     return new Vue({
-      template: '<div id="app">You have been here for {{ counter }} seconds.</div>',
+      template: '<div id="app">Você esteve aqui por {{ counter }}s.</div>',
       data: {
         counter: 0
       },
@@ -117,9 +117,9 @@ Accomplishing this requires a little boilerplate:
       }
     })
 
-    // -------------------
-    // END NORMAL APP CODE
-    // -------------------
+    // -------------------------------
+    // TÉRMINO DO CÓDIGO NORMAL DO APP
+    // -------------------------------
   }
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = createApp
@@ -129,14 +129,14 @@ Accomplishing this requires a little boilerplate:
 }).call(this)
 ```
 
-Now that we have our application code, let's put together an `index.html` file:
+Agora que temos o código de nossa aplicação, vamos criar um arquivo `index.html`:
 
 ``` html
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Vue App</title>
+  <title>Meu App Vue</title>
   <script src="/assets/vue.js"></script>
 </head>
 <body>
@@ -147,9 +147,9 @@ Now that we have our application code, let's put together an `index.html` file:
 </html>
 ```
 
-As long as the referenced `assets` directory contains the `app.js` file we created earlier, as well as a `vue.js` file with Vue, we should now have a working single-page application!
+Se o diretório `assets` realmente contém o arquivo `app.js` criado anteriormente, assim como um arquivo `vue.js` com o Vue, devemos ter uma aplicação *single-page* funcionando!
 
-Then to get it working with server-side rendering, there's just one more step - the web server:
+Então, para a renderização pelo servidor funcionar, só há mais um passo - o servidor Web:
 
 ``` js
 // server.js
@@ -158,103 +158,103 @@ Then to get it working with server-side rendering, there's just one more step - 
 var fs = require('fs')
 var path = require('path')
 
-// Define global Vue for server-side app.js
+// Define um objeto Vue global para o app.js server-side
 global.Vue = require('vue')
 
-// Get the HTML layout
+// Obtém o layout HTML básico
 var layout = fs.readFileSync('./index.html', 'utf8')
 
-// Create a renderer
+// Cria um renderizador
 var renderer = require('vue-server-renderer').createRenderer()
 
-// Create an express server
+// Cria um servidor Express
 var express = require('express')
 var server = express()
 
-// Serve files from the assets directory
+// Serve estaticamente os arquivos do diretório assets
 server.use('/assets', express.static(
   path.resolve(__dirname, 'assets')
 ))
 
-// Handle all GET requests
+// Intercepta todas as requisições GET
 server.get('*', function (request, response) {
-  // Render our Vue app to a string
+  // Renderiza nosso aplicativo Vue como uma String
   renderer.renderToString(
-    // Create an app instance
+    // Cria uma instância do app para renderizar
     require('./assets/app')(),
-    // Handle the rendered result
+    // Manipula o resultado renderizado
     function (error, html) {
-      // If an error occurred while rendering...
+      // Se ocorreu alguma erro enquanto processava...
       if (error) {
-        // Log the error in the console
+        // Registra o erro no console
         console.error(error)
-        // Tell the client something went wrong
+        // Informa o cliente que algo errado aconteceu
         return response
           .status(500)
           .send('Server Error')
       }
-      // Send the layout with the rendered app's HTML
+      // Senão, envia o layout renderizado injetado no HTML carregado
       response.send(layout.replace('<div id="app"></div>', html))
     }
   )
 })
 
-// Listen on port 5000
+// Levanta o servidor Express criado, escutando na porta 5000
 server.listen(5000, function (error) {
   if (error) throw error
-  console.log('Server is running at localhost:5000')
+  console.log('Servidor executando em localhost:5000')
 })
 ```
 
-And that's it! Here's [the full application](https://github.com/chrisvfritz/vue-ssr-demo-simple), in case you'd like to clone it and experiment further. Once you have it running locally, you can confirm that server-side rendering really is working by right-clicking on the page and selecting `View Page Source` (or similar). You should see this in the body:
+É isso! Aqui está [a aplicação completa](https://github.com/erickpetru/vue-ssr-demo-simple), caso queira clonar e experimentar mais. Assim que estiver com ela executando localmente, é possível confirmar que a renderização pelo lado do servidor está realmente funcionando ao clicar com o botão direito na página e selecionar `Exibir código fonte da página` (ou algo similar). Você deve ver isso no `body`:
 
 ``` html
-<div id="app" server-rendered="true">You have been here for 0 seconds&period;</div>
+<div id="app" server-rendered="true">Você esteve aqui por 0s&period;</div>
 ```
 
-instead of:
+Ao invés de simplesmente:
 
 ``` html
 <div id="app"></div>
 ```
 
-## Response Streaming
+## Streaming de Resposta
 
-Vue also supports rendering to a __stream__, which is preferred for web servers that support streaming. This allows HTML to be written to the response _as it's generated_, rather than all at once at the end. The result is requests are served faster, with no downsides!
+Vue também suporta renderizar em um __stream__, ideal em servidores que suportam *streaming*. Isto permite que o HTML seja escrito na resposta _enquanto é gerado_, ao invés de uma vez só no final. O resultado são requisições servidas mais rapidamente, sem nenhuma desvantagem.
 
-To adapt our app from the previous section for streaming, we can simply replace the `server.get('*', ...)` block with the following:
+Para adaptar nosso aplicativo da seção anterior para *streaming*, simplesmente trocamos o conteúdo do bloco `server.get('*', ...)` pelo seguinte:
 
 ``` js
-// Split the layout into two sections of HTML
+// Quebra o layout em duas seções de HTML
 var layoutSections = layout.split('<div id="app"></div>')
 var preAppHTML = layoutSections[0]
 var postAppHTML = layoutSections[1]
 
-// Handle all GET requests
+// Intercepta todas as requisições GET
 server.get('*', function (request, response) {
-  // Render our Vue app to a stream
+  // Renderiza nosso aplicativo Vue como um Stream
   var stream = renderer.renderToStream(require('./assets/app')())
 
-  // Write the pre-app HTML to the response
+  // Escreve o HTML antes do app na resposta
   response.write(preAppHTML)
 
-  // Whenever new chunks are rendered...
+  // Sempre que novos pedaços são renderizados...
   stream.on('data', function (chunk) {
-    // Write the chunk to the response
+    // Escreve o novo pedaço na resposta
     response.write(chunk)
   })
 
-  // When all chunks are rendered...
+  // Quando todos os pedaços estiverem renderizados...
   stream.on('end', function () {
-    // Write the post-app HTML to the response
+    // Escreve o HTML após o app na resposta
     response.end(postAppHTML)
   })
 
-  // If an error occurs while rendering...
+  // Se ocorrer algum erro enquanto está processando...
   stream.on('error', function (error) {
-    // Log the error in the console
+    // Registra o erro no console
     console.error(error)
-    // Tell the client something went wrong
+    // Informa o cliente que algo errado aconteceu
     return response
       .status(500)
       .send('Server Error')
@@ -262,25 +262,25 @@ server.get('*', function (request, response) {
 })
 ```
 
-As you can see, it's not much more complicated than the previous version, even if streams may be conceptually new to you. We just:
+Como você pode ver, não é muito mais complicado que a seção anterior, mesmo que o conceito de *streams* seja novo para você. Nós apenas:
 
-1. Set up the stream
-2. Write the HTML that comes before the app to the response
-3. Write the app HTML to the response as it becomes available
-4. Write the HTML that comes after the app to the response and end it
-5. Handle any errors
+1. Configuramos o *stream*
+2. Escrevemos o HTML antes do app Vue na resposta
+3. Escrevemos o HTML do app Vue na resposta quando ele se torna disponível
+4. Escrevemos o HTML após o app Vue na resposta e encerramos ela
+5. Interceptamos quaisquer erros
 
-## Component Caching
+## Cache de Componentes
 
-Vue's SSR is very fast by default, but you can further improve performance by caching rendered components. This should be considered an advanced feature however, as caching the wrong components (or the right components with the wrong key) could lead to misrendering your app. Specifically:
+SSR no Vue é bem rápido por padrão, mas você pode melhorar ainda mais o desempenho ao colocar em cache os componentes renderizados. Isto deve ser considerado um recurso avançado, já que fazer cache dos componentes errados (ou os certos, mas com as chaves erradas) poderia acabar por estragar a renderização de seu aplicativo. Especificamente:
 
-<p class="tip">You should not cache a component containing child components that rely on global state (e.g. from a vuex store). If you do, those child components (and in fact, the entire sub-tree) will be cached as well. Be especially wary with components that accept slots/children.</p>
+<p class="tip">Você não deveria fazer  cache de um componente cujos componentes filhos dependem de estado global (por exemplo, do vuex). Se fizer, estes componentes filhos (e de fato, toda a árvore de componentes) também serão colocados em cache. Seja especialmente cauteloso com componentes que aceitam slots/filhos.</p>
 
-### Setup
+### Configuração
 
-With that warning out of the way, here's how you cache components.
+Com este aviso dado, aqui vai como colocamos componentes em cache.
 
-First, you'll need to provide your renderer with a [cache object](https://www.npmjs.com/package/vue-server-renderer#cache). Here's a simple example using [lru-cache](https://github.com/isaacs/node-lru-cache):
+Primeiramente, você precisará fornecer ao renderizador um [objeto de cache](https://www.npmjs.com/package/vue-server-renderer#cache). Aqui está um exemplo simples com [lru-cache](https://github.com/isaacs/node-lru-cache):
 
 ``` js
 var createRenderer = require('vue-server-renderer').createRenderer
@@ -291,14 +291,14 @@ var renderer = createRenderer({
 })
 ```
 
-That will cache up to 1000 unique renders. For other configurations that more closely align to memory usage, see [the lru-cache options](https://github.com/isaacs/node-lru-cache#options).
+Isto irá colocar em cache até 1000 renderizações únicas. Para outras configurações que se alinham melhor a necessidades de uso de memória, veja as [opções do lru-cache](https://github.com/isaacs/node-lru-cache#options).
 
-Then for components you want to cache, you must provide them with:
+Então, para os componentes que quer fazer cache, você deve oferecer a eles:
 
-- a unique `name`
-- a `serverCacheKey` function, returning a unique key scoped to the component
+- um valor exclusivo para o atributo `name`
+- uma função `serverCacheKey`, retornando uma chave única para o escopo do componente
 
-For example:
+Por exemplo:
 
 ``` js
 Vue.component({
@@ -311,19 +311,19 @@ Vue.component({
 })
 ```
 
-### Ideal Components for Caching
+### Componentes Ideais para Cache
 
-Any "pure" component can be safely cached - that is, any component that is guaranteed to generate the same HTML given the same props. Common examples of these include:
+Qualquer componente "puro" pode ficar em cache com segurança - isto é, qualquer componente em que é garantido sempre gerar o mesmo HTML a partir das mesmas propriedades. Exemplos comuns incluem:
 
-- Static components (i.e. they always generate the same HTML, so the `serverCacheKey` function can just return `true`)
-- List item components (when part of large lists, caching these can significantly improve performance)
-- Generic UI components (e.g. buttons, alerts, etc - at least those that accept content through props rather than slots/children)
+- Componentes estáticos (sempre geram o mesmo HTML, então a função `serverCacheKey` pode simplesmente retornar `true`)
+- Componentes de itens de listas (quando fizerem parte de listas grandes, fazer cache deles pode melhorar significativamente o desempenho)
+- Componentes genéricos de UI (como botões, *alerts*, etc - ao menos aqueles que aceitam valores através de props e não slots/filhos)
 
-## Build Process, Routing, and Vuex State Hydration
+## Processo de Build, Roteamento e Hidratação de Estado Vuex
 
-By now, you should understand the fundamental concepts behind server-side rendering. However, as you introduce a build process, routing, and vuex, each introduces its own considerations.
+Neste momento, você deve ter entendido os conceitos fundamentais por trás da renderização pelo lado do servidor. Entretanto, assim que introduzir um processo de *build*, roteamento e/ou gerenciamento de estado com Vuex, cada qual trará suas próprias considerações.
 
-To truly master server-side rendering in complex applications, we recommend a deep dive into the following resources:
+Para se tornar verdadeiramente um mestre em renderização server-side para aplicações complexas, recomendamos que se aprofunde nos seguintes materiais:
 
-- [vue-server-renderer docs](https://www.npmjs.com/package/vue-server-renderer#api): more details on topics covered here, as well as documentation of more advanced topics, such as [preventing cross-request contamination](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) and [adding a separate server build](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
-- [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): the definitive example of integrating all major Vue libraries and concepts in a single application
+- [documentação do vue-server-renderer](https://www.npmjs.com/package/vue-server-renderer#api): mais detalhes nos tópicos cobertos aqui, assim como documentação de tópicos mais avançados, como [prevenir contaminação entre requisições](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) e [adicionar build separado para o servidor](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
+- [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): o exemplo definitivo de integração de todas as bibliotecas principais do Vue e seus conceitos em uma única aplicação

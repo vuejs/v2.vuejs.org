@@ -369,7 +369,7 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-Você pode pensar que isso faria o Vue jogar fora todo o DOM existente e voltar a renderizar toda a lista - por sorte, que não é o caso. Vue implementa algumas heurísticas inteligentes para maximizar o reuso de elementos DOM. Deste modo, substituir um Array por outro contendo objetos sobrepostos é uma operação muito eficiente.
+Você pode pensar que isso faria o Vue jogar fora todo o DOM existente e voltar a renderizar toda a lista - felizmente, que não é o caso. Vue implementa algumas heurísticas inteligentes para maximizar o reuso de elementos DOM. Deste modo, substituir um Array por outro contendo objetos sobrepostos é uma operação muito eficiente.
 
 ### Limitações
 

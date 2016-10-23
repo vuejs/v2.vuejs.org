@@ -65,9 +65,7 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Aqui nós declaramos uma propriedade calculada `reversedMessage`. A função
-
-Here we have declared a computed property `reversedMessage`. A função que fornecemos será usada como uma função getter para a propriedade `vm.reversedMessage`.
+Aqui nós declaramos uma propriedade calculada `reversedMessage`. A função que fornecemos será usada como uma função getter para a propriedade `vm.reversedMessage`.
 
 ``` js
 console.log(vm.reversedMessage) // -> 'olleH'
@@ -112,13 +110,11 @@ Em comparação, a chamada a função de um método sempre será executada, semp
 
 Porque nós preciamos de cachear? Imagine que uma propriedade computada extensa chamada **A**, na qual requer um loop através de um enorme Array e realizando vários cálculos. Então podemos ter outras propriedades computadas que por sua vez dependam de **A** também. Sem o cache, estaremos executando **A** mais vezes que o necessário. Nos casos em que você não necessita de cache, use métodos
 
-Então podemos ter outras propriedades computadas que por sua vez dependam de **A**. Sem cache, estaríamos executando **A** quantas vezes fossem necessárias.
-Nos casos em que você não precisa deseja usar cache, use métodos.
+Então podemos ter outras propriedades computadas que por sua vez dependam de **A**. Sem cache, estaríamos executando **A** quantas vezes fossem necessárias. Nos casos em que você não precisa deseja usar cache, use métodos.
 
 ### Propriedades Computadas vs Observadores
 
-Vue oferece uma forma mais genérica para observar e reagir as mudanças de dados em uma instância do Vue: **propriedades observadas** (observers). 
-Quando tem-se alguns dados que necessitam mudar com base na alteração de outros dados, é tentador usar de forma excessiva o `watch` - especialmente se você está vindo do AngularJS. No entanto, muitas vezes é melhor usar uma propriedade computada em vez do callback `watch`. Considere este exemplo:
+Vue oferece uma forma mais genérica para observar e reagir as mudanças de dados em uma instância do Vue: **propriedades observadas** (observers). Quando se tem alguns dados que necessitam mudar com base na alteração de outros dados, é tentador usar de forma excessiva o `watch` - especialmente se você está vindo do AngularJS. No entanto, muitas vezes é melhor usar uma propriedade computada em vez do callback `watch`. Considere este exemplo:
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -185,7 +181,7 @@ computed: {
 // ...
 ```
 
-Quando você executa `vm.fullName = 'John Doe'`, o setter será chamado and vm.firstName` e `vm.lastName` serão atualizados corretamente.
+Quando você executa `vm.fullName = 'John Doe'`, o setter será chamado and `vm.firstName` e `vm.lastName` serão atualizados corretamente.
 
 ## Watchers (observadores)
 
@@ -225,12 +221,12 @@ var watchExampleVM = new Vue({
     }
   },
   methods: {
-    // _.debounce é uma função fornecida pelo lodash para limitar como 
+    // _.debounce é uma função fornecida pelo lodash para limitar como
     // a frequência de uma operação complexa pode ser executada
-    // Neste caso, queremos limitar a frequencia com que acessamos 
+    // Neste caso, queremos limitar a frequencia com que acessamos
     // a api yesno.wtf., esperando que o usuário termine completamente
     // a digitação antes de realizar achamada ajax. Para aprender
-    // mais sobre a função _.debounce (e seu primo 
+    // mais sobre a função _.debounce (e seu primo
     // _.throttle), visite: https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
@@ -248,7 +244,7 @@ var watchExampleVM = new Vue({
             vm.answer = 'Erro! Não pode executar a API. ' + error
           })
       },
-      // Este é o número de milissegundos aguardados após o usuário 
+      // Este é o número de milissegundos aguardados após o usuário
       // parar de digitar
       500
     )
@@ -306,6 +302,6 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-neste cado, usando a opção `watch`, nos permite realizar uma operação assíncrona (acessar uma API), limitar a frequência com que se realiza essa operação, e definir os estados intermediários até que se obtenha a resposta final. Nada disso é possível com uma propriedade computada.
+Neste caso, usar a opção `watch`, nos permite realizar uma operação assíncrona (acessar uma API), limitar a frequência com que se realiza essa operação, e definir os estados intermediários até que se obtenha a resposta final. Nada disso é possível com uma propriedade computada.
 
-Além da opção `watch`, vcê também pode usar a [API vm.$watch](/api/#vm-watch).
+Além da opção `watch`, você também pode usar a [API vm.$watch](/api/#vm-watch).

@@ -1,16 +1,16 @@
 ---
-title: Deploying For Production
+title: Publicando em Produção
 type: guide
 order: 20
 ---
 
-## Stripping Out Warnings
+## Removendo os Avisos
 
-The minified standalone build of Vue has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Webpack or Browserify, you will need some additional configuration to achieve this.
+A build minificada independente do Vue já possui os avisos removidos para que seu tamanho seja reduzido, mas quando você está utilizando ferramentas como Webpack ou Browserify, você precisará de algumas configurações adicionais para atingir isso.
 
 ### Webpack
 
-Use Webpack's [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:
+Utilize o plugin [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) do Webpack's para indicar um ambiente de produção,  assim os blocos com avisos podem ser removidos pelo UglifyJS durante o processo de minificação. Configuração de Exemplo:
 
 ``` js
 var webpack = require('webpack')
@@ -35,26 +35,26 @@ module.exports = {
 
 ### Browserify
 
-- Run your bundling command with `NODE_ENV` set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
-- Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle. This allows the minifier to strip out all the warnings in Vue's source code wrapped in env variable conditional blocks. For example:
+- Execute seu comando de bundling com a variável `NODE_ENV` como `"production"`. Isso indicará ao `vueify` para evitar a inclusão de códigos de aviso e relacionados ao ambiente de desenvolvimento.
+- Aplique o [envify](https://github.com/hughsk/envify) globalmente para transformar seu bundle. Isso permite que o minifcador remova todos os avisos nos códigos fonte do Vue nos blocos que utilizam a variável condicional. Por exemplo:
 
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-- To extract styles to a separate css file use a extract-css plugin which is included in vueify.
+- Para remover os estilos para um arquivo css separado você pode utilizar o plugin extract-css que já está incluso no vueify.
 
 ``` bash
 NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] -e main.js | uglifyjs -c -m > build.js
 ```
 
-## Tracking Runtime Errors
+## Rastreando Erros em Tempo de Execução
 
-If a runtime error occurs during a component's render, it will be passed to the global `Vue.config.errorHandler` config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
+Se um erro ocorrer durante a execução da renderização de um componente, ele será enviado para a função `Vue.config.errorHandler` global se ela estiver definida. Pode ser uma boa ideia deixar esse hook definido juntamente com um serviço de rastreio de erros como o [Sentry](https://sentry.io), que possui [uma integração oficial](https://sentry.io/for/vue/) para o Vue.
 
-## Extracting CSS
+## Extraindo o CSS
 
-When using [Single-File Components](./single-file-components.html), the `<style>` tags are injected dynamically at runtime during development. In production you may want to extract the styles across all components into a single CSS file. For details on how to achieve this, consult the respective documentation for [vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) and [vueify](https://github.com/vuejs/vueify#css-extraction).
+Ao utilizar [Componentes Single-File](./single-file-components.html), as tags `<style>` são injetadas em tempo de execução durante o desenvolvimento. Em produção você pode preferir extrair os estilos de todos os componentes em um arquivo CSS único. Para detalhes de como utilizar isso, consulte a documentação para o [vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) and [vueify](https://github.com/vuejs/vueify#css-extraction).
 
-The official `webpack` template from `vue-cli` has this already configured out of the box.
+O template `webpack` oficial utilizado pelo `vue-cli` já possui esse item configurado para sua conveniência.
