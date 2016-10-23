@@ -403,8 +403,6 @@
 <p>They have slightly different target users however.</p>
 <p><strong>Vuex 2.0</strong> is a radical redesign and simplification of the API, for those who are starting new projects or want to be on the cutting edge of client-side state management. <strong>It is not covered by this migration guide</strong>, so you should check out <a href="https://vuex.vuejs.org/en/index.html" target="_blank" rel="external">the Vuex 2.0 docs</a> if you’d like to learn more about it.</p>
 <p><strong>Vuex 1.0</strong> is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who just want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see <a href="https://github.com/vuejs/vuex/tree/1.0/docs/en" target="_blank" rel="external">the Vuex 1.0 docs</a>.</p>
-<p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
-
 <h2 id="store-watch-with-String-Property-Path-deprecated"><a href="#store-watch-with-String-Property-Path-deprecated" class="headerlink" title="store.watch with String Property Path deprecated"></a><code>store.watch</code> with String Property Path <sup>deprecated</sup></h2><p><code>store.watch</code> now only accept functions. So for example, you would have to replace:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">store.watch(<span class="string">'user.notifications'</span>, callback)</div></pre></td></tr></table></figure>
 <p>with:</p>
