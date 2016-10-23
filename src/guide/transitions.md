@@ -1,38 +1,38 @@
 ---
-title: 'Transition Effects'
+title: 'Efeitoes de Transição'
 type: guide
 order: 12
 ---
 
-## Overview
+## Introdução
 
-Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:
+Vue provê uma variedade de maneiras de aplicar efeitos de transição quando itens são inseridos, atualizados, ou removidos do DOM. Isso inclui ferramentas para:
 
-- automatically apply classes for CSS transitions and animations
-- integrate 3rd-party CSS animation libraries, such as Animate.css
-- use JavaScript to directly manipulate the DOM during transition hooks
-- integrate 3rd-party JavaScript animation libraries, such as Velocity.js
+- aplicar classes automaticamente para transições e animações CSS
+- integração de bibliotecas de animação CSS de terceiros, como a Animate.css
+- uso de JavaScript para manipular o DOM diretamente durante os hooks de transição
+- integração de bibliotecas de animação JavaScript de terceiros, como a Velocity.js
 
-On this page, we'll only cover entering, leaving, and list transitions, but you can see the next section for [managing state transitions](transitioning-state.html).
+Nesta página nós iremos cobrir apenas transições de entrada, saída e listas, mas você pode ver na próxima seção sobre [transições de mudança de estado](transitioning-state.html).
 
-## Transitioning Single Elements/Components
+## Transições de um Único Elemento ou Componente
 
-Vue provides a `transition` wrapper component, allowing you to add entering/leaving transitions for any element or component in the following contexts:
+Vue disponibiliza um componente *wrapper* chamado `transition`, permitindo que você inclua transições de entrada e saída para qualquer elemento ou componente no seguinte contexto:
 
-- Conditional rendering (using `v-if`)
-- Conditional display (using `v-show`)
-- Dynamic components
-- Component root nodes
+- Renderização (render) condicional (usando `v-if`)
+- Exibição (display) condicional (usando `v-show`)
+- Componentes dinâmicos
+- Nodos raiz de componentes
 
-This is what a very simple example looks like in action:
+É assim que um exemplo muito simples se parece na realidade:
 
 ``` html
 <div id="demo">
   <button v-on:click="show = !show">
-    Toggle
+    Alternar
   </button>
   <transition name="fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">Olá</p>
   </transition>
 </div>
 ```
@@ -58,10 +58,10 @@ new Vue({
 {% raw %}
 <div id="demo">
   <button v-on:click="show = !show">
-    Toggle
+    Alternar
   </button>
   <transition name="demo-transition">
-    <p v-if="show">hello</p>
+    <p v-if="show">Olá</p>
   </transition>
 </div>
 <script>
@@ -82,40 +82,40 @@ new Vue({
 </style>
 {% endraw %}
 
-When an element wrapped in a `transition` component is inserted or removed, this is what happens:
+Quando um elemento envolvido por um componente `transition` é inserido ou removido, isto é o que acontece:
 
-1. Vue will automatically sniff whether the target element has CSS transitions or animations applied. If it does, CSS transition classes will be added/removed at appropriate timings.
+1. Vue irá automaticamente detectar se o elemento alvo tem transições ou animações CSS definidas. Caso haja, as classes de transição CSS serão adicionadas/removidas nos momentos apropriados.
 
-2. If the transition component provided [JavaScript hooks](#JavaScript-Hooks), these hooks will be called at appropriate timings.
+2. Se o componente `transition` conter [ganchos JavaScript](#JavaScript-Hooks), esses ganchos (hooks) serão chamados nos momentos apropriados.
 
-3. If no CSS transitions/animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal will be executed immediately on next frame (Note: this is a browser animation frame, different from Vue's concept of `nextTick`).
+3. Se nenhuma transição/animação CSS for detectada e nenhum gancho JavaScript estiver definido, as operações DOM para inserção e remoção serão executadas imetiadamente no frame seguinte (Nota: isto se refere ao frame de animação do navegador, diferente do `nextTick` do Vue).
 
-### Transition Classes
+### Classes de Transição
 
-There are four classes applied for enter/leave transitions.
+Quatro classes são aplicadas em transições de entrada e saída.
 
 1. `v-enter`: Starting state for enter. Applied before element is inserted, removed after one frame.
 2. `v-enter-active`: Active and ending state for enter. Applied before element is inserted, removed when transition/animation finishes.
 3. `v-leave`: Starting state for leave. Applied when leave transition is triggered, removed after one frame.
 4. `v-leave-active`: Active and ending state for leave. Applied when leave transition is triggered, removed when the transition/animation finishes.
 
-![Transition Diagram](/images/transition.png)
+![Diagrama de Transições](/images/transition.png)
 
-Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter` class would instead be `my-transition-enter`.
+Cada uma dessas classes srá prefixada com o nome (name) da transição. O prefixo `v-` é o padrão (default) quando você usa um elemento `<transition>` sem o atributo `name`. Se você usar `<transition name="my-transition">`, por exemplo, então ao invés da classe se chamar `v-enter` ela se chamará `my-transition-enter`.
 
-`v-enter-active` and `v-leave-active` give you the ability to specify different easing curves for enter/leave transitions, which you'll see an example of in the following section.
+`v-enter-active` e `v-leave-active` dão a você a habilidade de especificar diferentes curvas de suavização (easing) para as transições de entrada/saída, das quais você verá um exemplo na próxima seção.
 
-### CSS Transitions
+### Transições CSS
 
-One of the most common transition types uses CSS transitions. Here's a simple example:
+Um dos tipos mais comuns de efeitos de transição utiliza transições CSS. Aqui está um exemplo simples:
 
 ``` html
 <div id="example-1">
   <button @click="show = !show">
-    Toggle render
+    Alternar renderização
   </button>
   <transition name="slide-fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">Olá</p>
   </transition>
 </div>
 ```
@@ -130,8 +130,8 @@ new Vue({
 ```
 
 ``` css
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
+/* Animações de entrada e saída podem utilizar  */
+/* diferentes funções de duração e tempo.       */
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
@@ -147,10 +147,10 @@ new Vue({
 {% raw %}
 <div id="example-1" class="demo">
   <button @click="show = !show">
-    Toggle
+    Alternar
   </button>
   <transition name="slide-fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">Olá</p>
   </transition>
 </div>
 <script>
@@ -175,17 +175,17 @@ new Vue({
 </style>
 {% endraw %}
 
-### CSS Animations
+### Animações CSS
 
-CSS animations are applied in the same way as CSS transitions, the difference being that `v-enter` is not removed immediately after the element is inserted, but on an `animationend` event.
+Animações CSS são aplicadas do mesmo modo que as transições CSS; a diferença é que `v-enter` não é removido imediatamente após a inserção do elemento, mas em um evento `animationend`.
 
-Here's an example, omitting prefixed CSS rules for the sake of brevity:
+Aqui está um exemplo (omitindo as regras de CSS com prefixos para ser mais sucinto):
 
 ``` html
 <div id="example-2">
-  <button @click="show = !show">Toggle show</button>
+  <button @click="show = !show">Alternar exibição</button>
   <transition name="bounce">
-    <p v-if="show">Look at me!</p>
+    <p v-if="show">Olhe para mim!</p>
   </transition>
 </div>
 ```
@@ -232,9 +232,9 @@ new Vue({
 
 {% raw %}
 <div id="example-2" class="demo">
-  <button @click="show = !show">Toggle show</button>
+  <button @click="show = !show">Alternar exibição</button>
   <transition name="bounce">
-    <p v-show="show">Look at me!</p>
+    <p v-show="show">Olhe para mim!</p>
   </transition>
 </div>
 
@@ -314,32 +314,32 @@ new Vue({
 </script>
 {% endraw %}
 
-### Custom Transition Classes
+### Classes de Transição Customizadas
 
-You can also specify custom transition classes by providing the following attributes:
+Você também pode especificar outros nomes para as classes de transição, através dos seguintes atributos:
 
 - `enter-class`
 - `enter-active-class`
 - `leave-class`
 - `leave-active-class`
 
-These will override the conventional class names. This is especially useful when you want to combine Vue's transition system with an existing CSS animation library, such as [Animate.css](https://daneden.github.io/animate.css/).
+Estes irão sobrescrever os nomes convencionais das classes. Isso é especialmente útil quando você quiser combinar o sistema de transições do Vue com uma biblioteca de animações CSS existente, como a [Animate.css](https://daneden.github.io/animate.css/).
 
-Here's an example:
+Aqui está um exemplo:
 
 ``` html
 <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
 
 <div id="example-3">
   <button @click="show = !show">
-    Toggle render
+    Alternar renderização
   </button>
   <transition
     name="custom-classes-transition"
     enter-active-class="animated tada"
     leave-active-class="animated bounceOutRight"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">saudações</p>
   </transition>
 </div>
 ```
@@ -357,14 +357,14 @@ new Vue({
 <link href="https://unpkg.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
-    Toggle render
+    Alternar renderização
   </button>
   <transition
     name="custom-classes-transition"
     enter-active-class="animated tada"
     leave-active-class="animated bounceOutRight"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">saudações</p>
   </transition>
 </div>
 <script>
@@ -377,15 +377,15 @@ new Vue({
 </script>
 {% endraw %}
 
-### Using Transitions and Animations Together
+### Usando Transições e Animações Simultaneamente
 
-Vue needs to attach event listeners in order to know when a transition has ended. It can either be `transitionend` or `animationend`, depending on the type of CSS rules applied. If you are only using one or the other, Vue can automatically detect the correct type.
+Vue precisa observar determinados eventos para saber que uma transição terminou. Pode ser tanto um evento `transitionend` quanto um `animationend`, dependendo do tipo de regras CSS utilizadas. Se você estiver usando regras somente de um tipo ou de outro, Vue pode detectar automaticamente o evento certo.
 
-However, in some cases you may want to have both on the same element, for example having a CSS animation triggered by Vue, along with a CSS transition effect on hover. In these cases, you will have to explicitly declare the type you want Vue to care about in a `type` attribute, with a value of either `animation` or `transition`.
+Todavia, em alguns casos você pode querer usar ambos os tipos num mesmo elemento, por exemplo tendo uma animação CSS ativada através do Vue, junto com uma efeito de transição CSS usando `hover`. Nestes casos, você precisará declarar explicitamente qual tipo de evento você vai querer que Vue observe através um atributo `type`, com um valor que pode ser ou `animation` ou `transition`.
 
-### JavaScript Hooks
+### Ganchos (Hooks) JavaScript
 
-You can also define JavaScript hooks in attributes:
+Você também pode definir ganchos JavaScript em atributos:
 
 ``` html
 <transition
@@ -407,14 +407,14 @@ You can also define JavaScript hooks in attributes:
 // ...
 methods: {
   // --------
-  // ENTERING
+  // ENTRANDO
   // --------
 
   beforeEnter: function (el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // a função callback "done" é opcional
+  // quando usado em combinação com CSS
   enter: function (el, done) {
     // ...
     done()
@@ -427,14 +427,14 @@ methods: {
   },
 
   // --------
-  // LEAVING
+  // SAINDO
   // --------
 
   beforeLeave: function (el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // a função callback "done" é opcional
+  // quando usado em combinação com CSS
   leave: function (el, done) {
     // ...
     done()
@@ -442,31 +442,31 @@ methods: {
   afterLeave: function (el) {
     // ...
   },
-  // leaveCancelled only available with v-show
+  // leaveCancelled disponível somente com v-show
   leaveCancelled: function (el) {
     // ...
   }
 }
 ```
 
-These hooks can be used in combination with CSS transitions/animations or on their own.
+Estes ganchos podem ser usados em combinação com transições/animações CSS ou por conta própria.
 
-<p class="tip">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, they will be called synchronously and the transition will finish immediately.</p>
+<p class="tip">Quando estiver usando somente transições JavaScript, **as funções de callback `done` são necessárias para os ganchos `enter` e `leave`**. Caso contrário, eles serão chamadas sincronicamente e a transição irá terminar imediatamente.</p>
 
-<p class="tip">It's also a good idea to explicitly add `v-bind:css="false"` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.</p>
+<p class="tip">Também é uma boa ideia explicitamente incluir `v-bind:css="false"` às transições somente JavaScript para que Vue possa pular a detecção CSS. Isso também irá prevenir que regras CSS acidentalmente interfiram com a transição.</p>
 
-Now let's dive into an example. Here's a simple JavaScript transition using Velocity.js:
+Agora vamos mergulhar em um exemplo. Aqui está uma simples transição JavaScript usando Velocity.js:
 
 ``` html
 <!--
-Velocity works very much like jQuery.animate and is
-a great option for JavaScript animations
+Velocity é bastante parecido com jQuery.animate e é
+uma boa opção para animações JavaScript
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="example-4">
   <button @click="show = !show">
-    Toggle
+    Alternar
   </button>
   <transition
     v-on:before-enter="beforeEnter"
@@ -475,7 +475,7 @@ a great option for JavaScript animations
     v-bind:css="false"
   >
     <p v-if="show">
-      Demo
+      Demonstração
     </p>
   </transition>
 </div>
@@ -555,9 +555,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## Transitions on Initial Render
+## Transições na Renderização Inicial
 
-If you also want to apply a transition on the initial render of a node, you can add the `appear` attribute:
+Se você também quiser aplicar uma transição na renderização inicial de um elemento, você pode incluir o atributo `appear`:
 
 ``` html
 <transition appear>
@@ -565,7 +565,7 @@ If you also want to apply a transition on the initial render of a node, you can 
 </transition>
 ```
 
-By default, this will use the transitions specified for entering and leaving. If you'd like however, you can also specify custom CSS classes:
+Por padrão, serão utilizadas as transições especificadas para entrada e saída (*enter* e *leave*). Todavia, se você quiser, você também pode especificar classes CSS customizadas:
 
 ``` html
 <transition
@@ -577,7 +577,7 @@ By default, this will use the transitions specified for entering and leaving. If
 </transition>
 ```
 
-and custom JavaScript hooks:
+e ganchos JavaScript customizados:
 
 ``` html
 <transition
@@ -590,42 +590,42 @@ and custom JavaScript hooks:
 </transition>
 ```
 
-## Transitioning Between Elements
+## Transições Entre Elementos
 
-We discuss [transitioning between components](#Transitioning-Between-Components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:
+Nós discutiremos [transições entre componentes](#Transitioning-Between-Components) adiante, mas você também pode fazer transições entre elementos comuns utilizando `v-if`/`v-else`. Uma das transições entre dois elementos mais comum é entre o container de uma lista e uma mensagem descrevendo uma lista vazia:
 
 ``` html
 <transition>
   <table v-if="items.length > 0">
     <!-- ... -->
   </table>
-  <p v-else>Sorry, no items found.</p>
+  <p v-else>Nenhum item encontrado.</p>
 </transition>
 ```
 
-This works well, but there's one caveat to be aware of:
+Isto functiona, mas há uma ressalva que precisa ser considerada:
 
-<p class="tip">When toggling between elements that have **the same tag name**, you must tell Vue that they are distinct elements by giving them unique `key` attributes. Otherwise, Vue's compiler will only replace the content of the element for efficiency. Even when technically unnecessary though, **it's considered good practice to always key multiple items within a `<transition>` component.**</p>
+<p class="tip">Quando alternando entre elementos que usam **a mesma tag**, você precisa informar Vue que são elementos distintos, colocando atributos `key` únicos aos mesmos. Caso contrário, o compilador do Vue irá somente substituir o conteúdo do elemento, por questão de eficiência. Mesmo quando tecnicamente desnecessário, **é considerado uma boa prática sempre atribuir `key` aos múltiplos itens dentro de um componente `<transition>`.**</p>
 
-For example:
+Por exemplo:
 
 ``` html
 <transition>
   <button v-if="isEditing" key="save">
-    Save
+    Salvar
   </button>
   <button v-else key="edit">
-    Edit
+    Editar
   </button>
 </transition>
 ```
 
-In these cases, you can also use the `key` attribute to transition between different states of the same element. Instead of using `v-if` and `v-else`, the above example could be rewritten as:
+Em casos como este, você também pode usar o atributo `key` para fazer transições entre diferentes estados do mesmo elemento. Ao invés de usar `v-if` e `v-else`, o exemplo acima poderia ser re-escrito assim:
 
 ``` html
 <transition>
   <button v-bind:key="isEditing">
-    {{ isEditing ? 'Save' : 'Edit' }}
+    {{ isEditing ? 'Salvar' : 'Editar' }}
   </button>
 </transition>
 ```
