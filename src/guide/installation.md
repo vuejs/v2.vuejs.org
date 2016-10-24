@@ -64,19 +64,19 @@ resolve: {
 }
 ```
 
-For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
+Для достижения того же эффекта в Browserify можно использовать [aliasify](https://github.com/benbria/aliasify).
 
-<p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
+<p class="tip">НЕ импортируйте Vue через `import Vue from 'vue/dist/vue.js'` - так как некоторые инструменты и сторонние библиотеки могут также импортировать Vue, такая запись может результировать в одновременной загрузке runtime и standalone-версий Vue и привести к ошибкам.</p>
 
-### CSP environments
+### CSP-окружения
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.
+Некоторые окружения, такие как Google Chrome Apps, требуют соблюдения Content Security Policy (CSP), запрещающей использование конструкции `new Function()` для исполнения выражений. Standalone-сборка использует эту возможность для компиляции шаблонов, и потому непригодна к использованию в таких окружениях.
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+С другой стороны, версия runtime-only полностью совместим с CSP. При её использовании с [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) или [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) шаблоны прекомпилируются в `render`-функции, которые прекрасно работают в CSP-окружениях.
 
-## CLI
+## CLI (Интерпретатор Командной Строки)
 
-Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds:
+Vue.js предоставляет [официальный интерпретатор командной строки (CLI)](https://github.com/vuejs/vue-cli) для быстрого создания каркасов амбициозных одностраничных приложений. Он предоставляет полностью готовые к употреблению шаблоны для организации современной frontend-разработки. Для получения работающей конфигурации, включающей hot-reload, линтинг кода при сохранении и готовые к продакшну сборки требуется всего несколько минут.
 
 ``` bash
 # install vue-cli
@@ -89,9 +89,9 @@ $ npm install
 $ npm run dev
 ```
 
-## Dev Build
+## Сборка Dev-версии
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Важное замечание**: файлы сборки в папке `/dist` на GitHub обновляются только при релизах. Для использования версии из новейшего исходного кода с GitHub, вам придётся сделать сборку самостоятельно!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -107,6 +107,6 @@ npm run build
 $ bower install vue
 ```
 
-## AMD Module Loaders
+## Загрузчики AMD-Модулей
 
-The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
+Standalone-версия и версии, устанавливаемые через Bower заворачиваются с помощью UMD, и потому могут быть напрямую использованы как AMD-модули.
