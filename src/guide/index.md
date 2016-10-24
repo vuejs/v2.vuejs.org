@@ -1,6 +1,6 @@
 ---
 title: Введение
-type: guide
+type: руководство
 order: 2
 ---
 

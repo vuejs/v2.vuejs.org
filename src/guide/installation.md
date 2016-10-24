@@ -1,57 +1,60 @@
 ---
-title: Installation
-type: guide
+title: Установка
+type: руководство
 order: 1
 vue_version: 2.0.3
 dev_size: "188.88"
 min_size: "62.54"
 gz_size: "22.86"
+ro_gz_size: "16"
 ---
 
-### Compatibility Note
+### Замечание о Совместимости
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](http://caniuse.com/#feat=es5).
+Vue **не** поддерживает IE8 и ниже, так как использует возможности ECMAScript 5, которые невозможно сэмулировать в IE8. Тем не менее, поддерживаются все [ECMAScript 5 compliant browsers](http://caniuse.com/#feat=es5).
 
-### Release Notes
+### Замечания о Релизе
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+Детальная информация о релизе каждой версии доступна на [GitHub](https://github.com/vuejs/vue/releases).
 
-## Standalone
+## Автономная установка
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Просто скачайте js-файл и подключине как скрипт. `Vue` будет зарегистрирован как глобальная переменная.
 
-<p class="tip">Don't use the minified version during development. You will miss out all the nice warnings for common mistakes!</p>
+<p class="tip">Не используйте минифицированную версию во время разработки. В противном случае вы потеряете возможность использовать удобные предупреждения о типичных ошибках!</p>
 
 <div id="downloads">
-<a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+<a class="button" href="/js/vue.js" download>Версия для Разработки</a><span class="light info">С полными предупреждениями и возможностями отладки</span>
 
-<a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}kb min+gzip</span>
+<a class="button" href="/js/vue.min.js" download>Версия для Продакшна</a><span class="light info">Без предупреждений, {{gz_size}}kb min+gzip</span>
 </div>
 
 ### CDN
 
-Recommended: [unpkg](https://unpkg.com/vue/dist/vue.js), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [unpkg.com/vue/](https://unpkg.com/vue/).
+Рекомендовано: ссылка [unpkg](https://unpkg.com/vue/dist/vue.js) всегда указывает на самую свежую версию Vue, загруженную в npm. Исходный код npm-пакета также доступен по ссылке [unpkg.com/vue/](https://unpkg.com/vue/).
 
-Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), but these two services take some time to sync so the latest release may not be available yet.
+Vue также доступен на [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) и [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), но эти сервисы синхронизируются с npm с некоторой задержкой, из-за чего новейшая версия может быть не всегда доступна.
 
 ## NPM
 
 NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+
+Использование NPM рекомендовано при создании крупных приложений на Vue. Прекрасно работает в паре с инструментами сборки, такими как [Webpack](http://webpack.github.io/) и [Browserify](http://browserify.org/). Vue также имеет инструменты для разработки [Single-File Компонентов](single-file-components.html).
 
 ``` bash
 # latest stable
 $ npm install vue
 ```
 
-### Standalone vs. Runtime-only Build
+### Standalone vs. Runtime-only Версии Сборки
 
-There are two builds available, the standalone build and the runtime-only build.
+Доступны две версии сборки, standalone и runtime-only.
 
-- The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
+- Standalone-сборка включает компилятор и поддерживает опцию `template`. **Кроме того, она опирается на API браузера, и потому не может быть использована для рендеринга на стороне сервера.**
 
-- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
+- Runtime-only-сборка не включает компилятор шаблонов и не поддерживает опцию `template`. При использовании runtime-only-сборки доступна только опция render, но этого достаточно для работы с single-file компонентами, поскольку шаблоны в них прекомпилируются в `render`-функции на этапе сборки. Runtime-only версия приблизительно на 30% легче, чем standalone, и весит всего {{ro_gz_size}}kb min+gzip.
 
-By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your webpack config:
+По умолчанию, NPM-пакет экспортирует сборку **runtime-only**. Для использования standalone-сборки, добавиьте в свою конфигурацию Webpack cследующее:
 
 ``` js
 resolve: {
