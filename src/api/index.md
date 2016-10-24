@@ -1436,43 +1436,43 @@ type: api
 - **Параметр:** `attrOrProp (optional)`
 
 - **Модификаторы:**
-  - `.prop` - Used for binding DOM attributes.
+  - `.prop` - Используется для связывания DOM-аттрибутов.
 
 - **Использование:**
 
-  Dynamically bind one or more attributes, or a component prop to an expression.
+  Динамически связывает один или более аттрибут, или входной параметр компонента с выражением.
 
-  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+  При использовании с аттрибутами `class` и `style` поддерживает дополнительные типы значений, а именно массивы и объекты. См. секцию руководства по ссылке ниже для подробностей.  
 
-  When used for prop binding, the prop must be properly declared in the child component.
-
-  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
+  При использовании для связывания входных атрибутов, сам атрибут необходимо должным образом определить в дочернем компоненте.
+  
+  Если аргумент не указан, может быть использовано для связывания с объектом, содержащим пары имя-значение. Обратите внимания, что в этом случае атрибуты `class` и `style` не поддерживают массивы и объекты.
 
 - **Пример:**
 
   ```html
-  <!-- bind an attribute -->
+  <!-- связывание атрибута -->
   <img v-bind:src="imageSrc">
 
-  <!-- shorthand -->
+  <!-- сокращение -->
   <img :src="imageSrc">
 
-  <!-- class binding -->
+  <!-- связывание css-класса -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]">
 
-  <!-- style binding -->
+  <!-- связывание локального стиля -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
+  <!-- связывание с объектом, содержащим атрибуты -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!-- DOM attribute binding with prop modifier -->
+  <!-- связывание с атрибутами DOM при указании модификатора -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- prop binding. "prop" must be declared in my-component. -->
+  <!-- связывание входного параметра. "prop" должен быть определён в my-component. -->
   <my-component :prop="someThing"></my-component>
 
   <!-- XLink -->
@@ -1480,8 +1480,8 @@ type: api
   ```
 
 - **См. также:**
-  - [Class and Style Bindings](/guide/class-and-style.html)
-  - [Компоненты - Component Props](/guide/components.html#Props)
+  - [Связывание Классов и Стилей](/guide/class-and-style.html)
+  - [Компоненты - Входные Параметры Компонентов](/guide/components.html#Props)
 
 ### v-model
 
@@ -1503,8 +1503,8 @@ type: api
   Create a two-way binding on a form input element or a component. For detailed usage, see guide section linked below.
 
 - **См. также:**
-  - [Form Input Bindings](/guide/forms.html)
-  - [Компоненты - Form Input Компоненты using Пользовательские События](/guide/components.html#Form-Input-Компоненты-using-Custom-Events)
+  - [Связывание Элементов Ввода Форм](/guide/forms.html)
+  - [Компоненты - Компоненты Элементов Ввода Форм c Использованием Пользовательских Событий](/guide/components.html#Form-Input-Components-using-Custom-Events)
 
 ### v-pre
 
@@ -1570,7 +1570,7 @@ type: api
 
 - **См. также:**
   - [Синтаксис Связывания Данных - интерполяции](/guide/syntax.html#Text)
-  - [Компоненты - Cheap Static Компоненты with v-once](/guide/components.html#Cheap-Static-Компоненты-with-v-once)
+  - [Компоненты - Cheap Static Компоненты with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
 
 ## Special Attributes
 
@@ -1656,7 +1656,7 @@ type: api
   <component :is="$options.components.child"></component>
   ```
 
-- **См. также:** [Динамические Компоненты](/guide/components.html#Dynamic-Компоненты)
+- **См. также:** [Динамические Компоненты](/guide/components.html#Dynamic-Components)
 
 ### transition
 
