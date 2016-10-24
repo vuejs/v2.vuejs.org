@@ -43,8 +43,9 @@ new Vue({
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Message is:</span>
-  <p style="white-space: pre">{{ message }}</p><br>
+  <span>Multiline message is:</span>
+  <p style="white-space: pre">{{ message }}</p>
+  <br>
   <textarea v-model="message" placeholder="add multiple lines"></textarea>
 </div>
 <script>

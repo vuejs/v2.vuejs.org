@@ -4,7 +4,7 @@ type: vuex
 order: 10
 ---
 
-Vuex 的 store 接收 `plugins` 选项，这个选项暴露出每个 mutation 的钩子。一个 Vuex 的插件就是一个简单的方法，接收 sotre 作为唯一参数：
+Vuex 的 store 接收 `plugins` 选项，这个选项暴露出每个 mutation 的钩子。一个 Vuex 的插件就是一个简单的方法，接收 store 作为唯一参数：
 
 ``` js
 const myPlugin = store => {

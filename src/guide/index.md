@@ -253,7 +253,7 @@ var app6 = new Vue({
 在 Vue 里，一个组件实质上是一个拥有预定义选项的一个 Vue 实例：
 
 ``` js
-Vue.component('todo', {
+Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
 ```
@@ -289,6 +289,10 @@ Vue.component('todo', {
 ```
 
 ``` js
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
 var app7 = new Vue({
   el: '#app-7',
   data: {

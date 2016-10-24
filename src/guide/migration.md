@@ -747,11 +747,11 @@ Vue.config.keyCodes.f1 = 112
 
 因为基于组件树结构的事件流方式实在是让人难以理解，并且在组件结构扩展的过程中会变得越来越脆弱。这种事件方式确实不太好，我们也不希望在以后让开发者们太痛苦。并且`$dispatch` 和 `$broadcast` 也没有解决兄弟组件间的通信问题。
 
-对于`$dispatch` 和 `$broadcast`最简单的升级方式就是：通过使用事件中心，允许组件自由交流，无论组件处于组件树的哪一层。由于Vue 实例实现了一个事件分发接口，你可以通过实例化一个空的Vue实例来实现这个目的。
+对于`$dispatch` 和 `$broadcast`最简单的升级方式就是：通过使用事件中心，允许组件自由交流，无论组件处于组件树的哪一层。由于 Vue 实例实现了一个事件分发接口，你可以通过实例化一个空的 Vue 实例来实现这个目的。
 
-One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](http://vuejs.org/guide/components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
+这些方法的最常见用途之一是父子组件的相互通信。在这些情况下，你可以使用 [`v-on`监听子组件上 $emit 的变化](http://vuejs.org/guide/components.html#Form-Input-Components-using-Custom-Events)。这可以允许你很方便的添加事件显性。
 
-However, when communicating between distant descendants/ancestors, `$emit` won't help you. Instead, the simplest possible upgrade would be to use a centralized event hub. This has the added benefit of allowing you to communicate between components no matter where they are in the component tree - even between siblings! Because Vue instances implement an event emitter interface, you can actually use an empty Vue instance for this purpose.
+然而，如果是跨多层父子组件通信的话， `$emit` 并没有什么用。相反，用集中式的事件中间件可以做到简单的升级。这会让组件之间的通信非常顺利，即使是兄弟组件。因为 Vue 通过事件发射器接口执行实例，实际上你可以使用一个空的 Vue 实例。
 
 比如，假设我们有个 todo 的应用结构如下：
 
@@ -1475,7 +1475,7 @@ new Vue({
 
 ### `Vue.config.async` <sup>弃用</sup>
 
-Async is now required for rendering performance.
+异步操作现在需要渲染性能的支持。
 
 {% raw %}
 <div class="upgrade-path">
