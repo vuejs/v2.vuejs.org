@@ -756,9 +756,9 @@ type: api
 
 - **Подробности:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  Опция `mixins` принимает массив объектов-примесей. Примеси могут содержать точно такие же опции, как и обычные объекты экземпляров Vue, и они будут слиты с основными опциями по той же логике, что и при использовании `Vue.extend()`. Например, если и примесь и объект оба содержат хук `created`, вызваны будут обе функции.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Хуки примесей вызываются в порядке их определения, перед вызовом собственных хуков компонента.
 
 - **Пример:**
 
@@ -780,13 +780,13 @@ type: api
 
 - **Тип:** `string`
 
-- **Ограничение:** only respected when used as a component option.
+- **Ограничение:** учитывается только при определении компонента.
 
 - **Подробности:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
-
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Позволяет компоненту рекурсивно вызывать самого себя в шаблоне. Обратите внимание что когда компонент регистрируется глобально посредством `Vue.component()`, глобальный ID автоматически устанавливается равным его имени.
+  
+  Другое преимущество указания опции `name` проявляется в отладке. Именованние компонент приводит к более понятным предупреждающим сообщениям. Также, при использовании [vue-devtools](https://github.com/vuejs/vue-devtools) безымянные компоненты отображаются как `<AnonymousComponent>`, что не очень информативно. Указывая опцию `name`, вы получите значительно более информативное дерево компонент.
 
 ### extends
 
@@ -794,16 +794,16 @@ type: api
 
 - **Подробности:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  Позволяет декларативно наследоваться от другого компонента (может быть либо простым объектом, либо конструктором), не используя `Vue.extend`. Главным образом предназначено для облегчения наследования между компонентами, хранимыми в единых файлах.
 
-  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+  Эта функциональность близка к `mixins`, с разницей в том, что собственные опции компонента имеют высший приоритет над опциями компонента, от которого происходит наследование.
 
 - **Пример:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call Vue.extend on either
+  // наследование от CompA без необходимость вызывать Vue.extend ни в том ни в другом
   var CompB = {
     extends: CompA,
     ...
@@ -818,7 +818,7 @@ type: api
 
 - **Подробности:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
+  Изменяет маркеры, выделяющие текст для интерполяции. **Доступно только в автономной сборке.**
 
 - **Пример:**
 
@@ -827,7 +827,7 @@ type: api
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Маркеры в шаблонах изменены на стиль ES6
   ```
 
 ### functional
@@ -836,9 +836,9 @@ type: api
 
 - **Подробности:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+  Превращает компонент в stateless (не имеющий `data`) и instanceless (без контекста `this`). Такие компоненты представляют собой попросту функцию `render`, которая возвращает узлы Virtual DOM, делая рендеринг значительно дешевле.  
 
-- **См. также:** [Functional Компоненты](/guide/render-function.html#Functional-Компоненты)
+- **См. также:** [Функциональные Компоненты](/guide/render-function.html#Functional-Components)
 
 ## Instance Properties
 
@@ -848,29 +848,29 @@ type: api
 
 - **Подробности:**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  Объект данных, над которым экземпляр Vue осуществляет наблюдение. Экземпляр проксирует доступ к объекту данных через это поле.  
 
-- **См. также:** [Options - data](#data)
+- **См. также:** [Опции - data](#data)
 
 ### vm.$el
 
 - **Тип:** `HTMLElement`
 
-- **Read only**
+- **Только для чтения**
 
 - **Подробности:**
 
-  The root DOM element that the Vue instance is managing.
+  Корневой элемент DOM, управляемый экземпляром Vue.
 
 ### vm.$options
 
 - **Тип:** `Object`
 
-- **Read only**
+- **Только для чтения**
 
 - **Подробности:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  Опции инстанциирования, использованные для текущего экземпляра Vue. Полезно, когда вы хотите включить пользовательские свойства в опции:  
 
   ``` js
   new Vue({
@@ -885,43 +885,43 @@ type: api
 
 - **Тип:** `Vue instance`
 
-- **Read only**
+- **Только для чтения**
 
 - **Подробности:**
 
-  The parent instance, if the current instance has one.
+  Родительский экземпляр, если присутствует.
 
 ### vm.$root
 
 - **Тип:** `Vue instance`
 
-- **Read only**
+- **Только для чтения**
 
 - **Подробности:**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  Корневой экземпляр Vue текущего дерева компонентов. Если текущий экземпляр не имеет родителей, значением будет он сам.
 
 ### vm.$children
 
 - **Тип:** `Array<Vue instance>`
 
-- **Read only**
+- **Только для чтения**
 
 - **Подробности:**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  Компоненты, являющиеся прямыми потомками текущего экземпляра. **Обратите внимания, что порядок следования элементов в `$children` не гарантируется, и этот массив не реактивен.** Если вы обнаружите, что пытаетесь использовать `$children` для связывания данных, попробуйте использовать массив и директиву `v-for` для создания дочерних компонент, и используйте этот массив как "источник истины".
 
 ### vm.$slots
 
 - **Тип:** `Object`
 
-- **Read only**
+- **Только для чтения**
 
 - **Подробности:**
 
-  Used to access content [distributed by slots](/guide/components.html#Content-Distribution-with-Slots). Each [named slot](/guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
-
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](/guide/render-function.html).
+  Используется для доступа к контенту, [распространяемому через слоты](/guide/components.html#Content-Distribution-with-Slots). Каждый [именованный слот](/guide/components.html#Named-Slots) имеет собственное соответствующее значение (например, содержимое `slot="foo"` будет находится в `vm.$slots.foo`). Свойство `default` содержит узлы, не включённые в именованные слоты.
+  
+  Использование `vm.$slots` более всего находит своё применение при написании компонентов с [render-функциями](/guide/render-function.html).
 
 - **Пример:**
 
@@ -965,7 +965,7 @@ type: api
 
 - **Тип:** `Object`
 
-- **Read only**
+- **Только для чтения**
 
 - **Подробности:**
 
@@ -979,7 +979,7 @@ type: api
 
 - **Тип:** `boolean`
 
-- **Read only**
+- **Только для чтения**
 
 - **Подробности:**
 
