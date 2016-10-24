@@ -1,11 +1,10 @@
-## vue.js 2.0 中文文档 http://vuefe.cn
+## vue.js 2.0 中文文档 https://vuefe.cn
 
 > 欢迎大家一起参与校对工作 
 
 ## 镜像站点
 
 ### LeanCloud   https://vuefe.leanapp.cn/
-### 阿里云   http://vue.70data.net/
 
 
 ## 贡献要求
@@ -13,9 +12,9 @@
 ### 参与：
 
 - 加群参与 `427447379` 
-- 发布网址 [vuefe.cn](http://vuefe.cn/)
-- 翻译仓库 [中文翻译分支 2.0-cn](https://github.com/vuefe/vuejs.org)
-- [基础指引](https://github.com/vuefe/vuejs.org/issues/25)
+- 发布网址 [vuefe.cn](https://vuefe.cn)
+- 翻译仓库 [中文翻译分支 2.0-cn](https://github.com/vuefe/vuefe.github.io)
+- [基础指引](https://github.com/vuefe/vuefe.github.io/issues/25)
 - 如果你看到错别字、漏译、错译，请直接提交 pr （[帮助](https://help.github.com/articles/using-pull-requests/)）。
 - 如果你看到网站问题，或者创建一个 issue ，或者直接提交 pr 。
 - 如果你对已有翻译有异议，建议创建一个 issue 讨论。
@@ -70,12 +69,12 @@
 ```
 
   - 完成后，打钩表示完成，并附带发起的合并请求链接
-     - [x] 我校对 + `文档序号 ` +  https://github.com/vuefe/vuejs.org/pull/65 (发起的合并请求链接)
+     - [x] 我校对 + `文档序号 ` +  https://github.com/vuefe/vuefe.github.io/pull/65 (发起的合并请求链接)
 
 - markdown语法 - 示例
 
 ```markdown
-- [x] 我xx + `1 ` https://github.com/vuefe/vuejs.org/pull/65 (发起的合并请求链接)
+- [x] 我xx + `1 ` https://github.com/vuefe/vuefe.github.io/pull/65 (发起的合并请求链接)
 ```
 
 - 支持多人协作翻译。已经认领过的翻译，如果你觉着他/她翻译的太慢，可以再次认领，加速翻译。
@@ -97,12 +96,12 @@
 校对中 <br />
 
 ### webpack2
-翻译中 [webpack.js.org](https://github.com/vuefe/webpack.js.org) <br />
+翻译中 [webpack.js.org](https://github.com/vuefe/webpack2) <br />
 
 
 
 
 ## 参与翻译&校对成员名单
-https://github.com/vuefe/vuejs.org/issues/192
+https://github.com/vuefe/vuefe.github.io/issues/192
 
 ### 感谢所有参与翻译的朋友们！

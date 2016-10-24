@@ -97,8 +97,8 @@ markdown:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:vuefe/vuefe.github.io.git
-  branch: master
+  repository: https://github.com/vuefe/vuefe.github.io.git
+  branch: gh-pages
 
 feed:
   type: atom
