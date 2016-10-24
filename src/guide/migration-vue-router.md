@@ -267,6 +267,8 @@ You'll need to update it like this:
 <router-link to="/about">About</router-link>
 ```
 
+Note: `target="_blank"` is not supported on `<router-link>` component, please use `<a>` tags instead.
+
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
