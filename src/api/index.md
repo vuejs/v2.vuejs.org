@@ -158,7 +158,7 @@ type: api
   })
   ```
 
-- **См. также:** [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
+- **См. также:** [Очередь Асинхронных Обновлений](/guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="Vue-set">Vue.set( object, key, value )</h3>
 
@@ -1222,110 +1222,111 @@ type: api
 
 - **См. также:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
+  - [Очередь Асинхронных Обновлений](/guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
 - **Использование:**
+  
+  Полностью уничтожает vm. Очищает связи с другими существующими vm, отвязывает директивы, выключает все слушатели событий.
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
-
-  Triggers the `beforeDestroy` and `destroyed` hooks.
-
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  Вызывает хуки `beforeDestroy` и `destroyed`.
+  
+  <p class="tip">В нормальных вариантах использования вам не придётся вызывать этот метод самим. Предпочтительнее контроллировать жизненный цикл дочерних компонент в data-driven стиле, использую `v-if` и `v-for`.</p>
 
 - **См. также:** [Диаграмма Жизненного Цикла](/guide/instance.html#Lifecycle-Diagram)
 
-## Directives
+## Директивы
 
 ### v-text
 
-- **Expects:** `string`
+- **Ожидает:** `string`
 
 - **Подробности:**
 
-  Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
+  Обновляет `textContent` элемента. Если необходимо обновить часть `textContent`, используйте интерполяцию `{% raw %}{{ Mustache }}{% endraw %}`.
 
 - **Пример:**
 
   ```html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- то же, что -->
   <span>{{msg}}</span>
   ```
 
-- **См. также:** [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
+- **См. также:** [Синтаксис Связывания Данных - интерполяции](/guide/syntax.html#Text)
 
 ### v-html
 
-- **Expects:** `string`
+- **Ожидает:** `string`
 
 - **Подробности:**
+  
+  Обновляет `innerHTML` элемента. **Обратите внимание, что содержимое вставляется как обычный HTML — то есть не компилируется как шаблон Vue**. Если вы обнаружите себя за попытками организации вложенных компонент при помощи `v-html`, попробуйте вместо этого применить компоненты.
 
-  Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
-
-  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+  <p class="tip">Динамический рендеринг произвольного HTML-кода на сайте может быть очень опасным, так как легко приводит к [XSS атакам](https://en.wikipedia.org/wiki/Cross-site_scripting). Используйте `v-html` только на доверенном контенте, и **никогда** — на предоставляемом пользователями.</p>
 
 - **Пример:**
 
   ```html
   <div v-html="html"></div>
   ```
-- **См. также:** [Data Binding Syntax - interpolations](/guide/syntax.html#Raw-HTML)
+- **См. также:** [Синтаксис Связывания Данных - интерполяции](/guide/syntax.html#Raw-HTML)
 
 ### v-if
 
-- **Expects:** `any`
+- **Ожидает:** `any`
 
 - **Использование:**
+  
+  В зависимости от истинности значения указанного выражения, рендерит (или нет) элемент. Элемент и содержащиеся в нём директивы / компоненты уничтожаются и заново создаются при переключениях. Для фиктивного элемента `<template>` в качестве результирующего условного блока используется внутреннее содержимое.
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  Эта директива вызывает transitions при изменении состояния.
 
-  This directive triggers transitions when its condition changes.
-
-- **См. также:** [Conditional Rendering - v-if](/guide/conditional.html)
+- **См. также:** [Условный Рендеринг - v-if](/guide/conditional.html)
 
 ### v-show
 
-- **Expects:** `any`
+- **Ожидает:** `any`
 
 - **Использование:**
 
-  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
+  Переключает CSS-свойство `display` элемента, в зависимости от истинности значения указанного выражения.
 
-  This directive triggers transitions when its condition changes.
+  Эта директива вызывает transitions при изменении состояния.
 
-- **См. также:** [Conditional Rendering - v-show](/guide/conditional.html#v-show)
+
+- **См. также:** [Условный Рендеринг - v-show](/guide/conditional.html#v-show)
 
 ### v-else
 
-- **Does not expect expression**
+- **Не ожидает какого-либо выражения**
 
-- **Ограничение:** previous sibling element must have `v-if`.
+- **Ограничение:** предыдущий элемент должен иметь директиву `v-if`.
 
 - **Использование:**
 
-  Denote the "else block" for `v-if`.
+  Определяет "блок else" для `v-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
-    Now you see me
+    Сейчас меня видно
   </div>
   <div v-else>
-    Now you don't
+    А сейчас — нет
   </div>
   ```
 
 - **См. также:**
-  - [Conditional Rendering - v-else](/guide/conditional.html#v-else)
+  - [Условный Рендеринг - v-else](/guide/conditional.html#v-else)
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string`
+- **Ожидает:** `Array | Object | number | string`
 
 - **Использование:**
 
-  Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  Рендерит элемент или блок шаблона многократно, основываясь на указанных данных. Значение директивы должно следовать особому синтаксису ` alias in expression` чтобы использовать alias для доступа к элементу данной итерации:
 
   ``` html
   <div v-for="item in items">
@@ -1333,15 +1334,15 @@ type: api
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  Альтернативным образом, вы можете также указать алиас для индекса (или ключа, при использовании с Объектами):
 
   ``` html
   <div v-for="(item, index) in items"></div>
   <div v-for="(val, key) in object"></div>
   <div v-for="(val, key, index) in object"></div>
   ```
-
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
+  
+  По умолчанию `v-for` будет пытаться обновить элементы "на месте", не перемещая их. Для явного указания необходимости перемещения, используйте специальный атрибут `key`:
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -1349,17 +1350,17 @@ type: api
   </div>
   ```
 
-  The detailed usage for `v-for` is explained in the guide section linked below.
+  Использование `v-for` подробно описано в нижеуказанной секции Гайда.
 
 - **См. также:**
-  - [List Rendering](/guide/list.html)
+  - [Рендеринг Списков](/guide/list.html)
   - [key](/guide/list.html#key)
 
 ### v-on
 
 - **Shorthand:** `@`
 
-- **Expects:** `Function | Inline Statement`
+- **Ожидает:** `Function | Inline Statement`
 
 - **Argument:** `event (required)`
 
@@ -1430,7 +1431,7 @@ type: api
 
 - **Shorthand:** `:`
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **Ожидает:** `any (with argument) | Object (without argument)`
 
 - **Argument:** `attrOrProp (optional)`
 
@@ -1484,7 +1485,7 @@ type: api
 
 ### v-model
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **Ожидает:** varies based on value of form inputs element or output of components
 
 - **Limited to:**
   - `<input>`
@@ -1568,14 +1569,14 @@ type: api
   ```
 
 - **См. также:**
-  - [Data Binding Syntax - interpolations](/guide/syntax.html#Text)
+  - [Синтаксис Связывания Данных - интерполяции](/guide/syntax.html#Text)
   - [Компоненты - Cheap Static Компоненты with v-once](/guide/components.html#Cheap-Static-Компоненты-with-v-once)
 
 ## Special Attributes
 
 ### key
 
-- **Expects:** `string`
+- **Ожидает:** `string`
 
   The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
 
@@ -1606,7 +1607,7 @@ type: api
 
 ### ref
 
-- **Expects:** `string`
+- **Ожидает:** `string`
 
   `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
 
@@ -1626,7 +1627,7 @@ type: api
 
 ### slot
 
-- **Expects:** `string`
+- **Ожидает:** `string`
 
   Used on content inserted into child components to indicate which named slot the content belongs to.
 
