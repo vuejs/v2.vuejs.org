@@ -1,7 +1,7 @@
 ---
 title: Render 函数
 type: guide
-order: 14
+order: 15
 ---
 
 ## 基础
@@ -164,7 +164,7 @@ createElement(
   // Vue 会为您持续追踨
   directives: [
     {
-      name: 'my-custom-directive', 
+      name: 'my-custom-directive',
       value: '2'
       expression: '1 + 1',
       arg: 'foo',

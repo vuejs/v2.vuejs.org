@@ -44,7 +44,7 @@ type: api
 
   合并策略选项分别接受第一个参数作为父实例，第二个参数为子实例，Vue实例上下文被作为第三个参数传入。
 
-- **参考**： [自定义选项的混合策略](/guide/mixins.html#Custom-Option-Merge-Strategies)
+- **参考：** [自定义选项的混合策略](/guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
