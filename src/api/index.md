@@ -44,7 +44,7 @@ type: api
 
   The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
 
-- **See also**: [Custom Option Merging Strategies](/guide/mixins.html#Custom-Option-Merge-Strategies)
+- **See also:** [Custom Option Merging Strategies](/guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 

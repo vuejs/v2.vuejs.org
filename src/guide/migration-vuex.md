@@ -17,8 +17,6 @@ __Vuex 2.0__ is a radical redesign and simplification of the API, for those who 
 
 __Vuex 1.0__ is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who just want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see [the Vuex 1.0 docs](https://github.com/vuejs/vuex/tree/1.0/docs/en).
 
-<p class="tip">The list of deprecations below should be relatively complete, but the migration helper is still being updated to catch them.</p>
-
 ## `store.watch` with String Property Path <sup>deprecated</sup>
 
 `store.watch` now only accept functions. So for example, you would have to replace:

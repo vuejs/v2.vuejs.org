@@ -1,7 +1,7 @@
 ---
 title: Transitioning State
 type: guide
-order: 13
+order: 14
 ---
 
 Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
