@@ -12,7 +12,7 @@
 ### 参与：
 
 - 加群参与 `427447379` 
-- 发布网址 [vuefe.cn](http://vuefe.cn/)
+- 发布网址 [vuefe.cn](https://vuefe.cn)
 - 翻译仓库 [中文翻译分支 2.0-cn](https://github.com/vuefe/vuefe.github.io)
 - [基础指引](https://github.com/vuefe/vuefe.github.io/issues/25)
 - 如果你看到错别字、漏译、错译，请直接提交 pr （[帮助](https://help.github.com/articles/using-pull-requests/)）。
