@@ -1358,38 +1358,38 @@ type: api
 
 ### v-on
 
-- **Shorthand:** `@`
+- **Сокращение:** `@`
 
 - **Ожидает:** `Function | Inline Statement`
 
-- **Argument:** `event (required)`
+- **Параметр:** `event (указание обязательно)`
 
-- **Modifiers:**
-  - `.stop` - call `event.stopPropagation()`.
-  - `.prevent` - call `event.preventDefault()`.
-  - `.capture` - add event listener in capture mode.
-  - `.self` - only trigger handler if event was dispatched from this element.
-  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
-  - `.native` - listen for a native event on the root element of component.
+- **Модификаторы:**
+  - `.stop` - вызовет `event.stopPropagation()`.
+  - `.prevent` - вызовет `event.preventDefault()`.
+  - `.capture` - добавит слушатель в "capture mode".
+  - `.self` - вызовет обработчик только в случае возникновения события непосредственно на этом элементе.
+  - `.{keyCode | keyAlias}` - вызывает обработчик только при нажатии определённой клавиши.
+  - `.native` - слушать нативное событие на корневом элементе компонента.
 
 - **Использование:**
-
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
-
-  When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
-
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  
+  Прикрепляет к элементу слушателя события. Тип события указывается в параметре. Выражение может быть как именем метода, так и inline-выражением, или вовсе отсутствовать, если указан модификатор(ы).
+  
+  При использовании на обычном элементе, слушает только **нативные события DOM**. При использовании на элементе пользовательского компонента, слушает также **пользовательские события**, эмитируемые этим дочерним компонентом.
+  
+  При слушании нативных событий DOM, метод получает нативное событие единственным аргументом. При использовании inline-выражений, выражение имеет доступ к специальному свойству `$event`: `v-on:click="handle('ok', $event)"`.
 
 - **Пример:**
 
   ```html
-  <!-- method handler -->
+  <!-- обработчик метода -->
   <button v-on:click="doThis"></button>
 
-  <!-- inline statement -->
+  <!-- inline-выражение -->
   <button v-on:click="doThat('hello', $event)"></button>
 
-  <!-- shorthand -->
+  <!-- сокращение -->
   <button @click="doThis"></button>
 
   <!-- stop propagation -->
@@ -1398,44 +1398,44 @@ type: api
   <!-- prevent default -->
   <button @click.prevent="doThis"></button>
 
-  <!-- prevent default without expression -->
+  <!-- prevent default без дополнительных действий -->
   <form @submit.prevent></form>
 
-  <!-- chain modifiers -->
+  <!-- цепочка из модификаторов -->
   <button @click.stop.prevent="doThis"></button>
 
-  <!-- key modifier using keyAlias -->
+  <!-- модификатор клавиши keyAlias -->
   <input @keyup.enter="onEnter">
 
-  <!-- key modifier using keyCode -->
+  <!-- модификатор клавиши keyCode -->
   <input @keyup.13="onEnter">
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  Слушание пользовательских события на дочернем элементе (обработчик вызывается, когда в дочерний элемент эмитирует "my-event"):
 
   ```html
   <my-component @my-event="handleThis"></my-component>
 
-  <!-- inline statement -->
+  <!-- inline-выражение -->
   <my-component @my-event="handleThis(123, $event)"></my-component>
 
-  <!-- native event on component -->
+  <!-- слушать нативное событие в компоненте -->
   <my-component @click.native="onClick"></my-component>
   ```
 
 - **См. также:**
   - [Методы и Обработка Событий](/guide/events.html)
-  - [Компоненты - Custom Events](/guide/components.html#Custom-Events)
+  - [Компоненты - Пользовательские События](/guide/components.html#Custom-Events)
 
 ### v-bind
 
-- **Shorthand:** `:`
+- **Сокращение:** `:`
 
 - **Ожидает:** `any (with argument) | Object (without argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **Параметр:** `attrOrProp (optional)`
 
-- **Modifiers:**
+- **Модификаторы:**
   - `.prop` - Used for binding DOM attributes.
 
 - **Использование:**
@@ -1493,7 +1493,7 @@ type: api
   - `<textarea>`
   - components
 
-- **Modifiers:**
+- **Модификаторы:**
   - [`.lazy`](/guide/forms.html#lazy) - listen to `change` events instead of `input`
   - [`.number`](/guide/forms.html#number) - cast input string to numbers
   - [`.trim`](/guild/forms.html#trim) - trim input
@@ -1504,7 +1504,7 @@ type: api
 
 - **См. также:**
   - [Form Input Bindings](/guide/forms.html)
-  - [Компоненты - Form Input Компоненты using Custom Events](/guide/components.html#Form-Input-Компоненты-using-Custom-Events)
+  - [Компоненты - Form Input Компоненты using Пользовательские События](/guide/components.html#Form-Input-Компоненты-using-Custom-Events)
 
 ### v-pre
 
