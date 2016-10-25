@@ -253,6 +253,7 @@ var app6 = new Vue({
 在 Vue 里，一个组件实质上是一个拥有预定义选项的一个 Vue 实例：
 
 ``` js
+// Define a new component called todo-item
 Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
@@ -272,7 +273,10 @@ Vue.component('todo-item', {
 但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](/guide/components.html#Props) 字段：
 
 ``` js
-Vue.component('todo', {
+Vue.component('todo-item', {
+  // The todo-item component now accepts a
+  // "prop", which is like a custom attribute.
+  // This prop is called todo.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
@@ -283,7 +287,11 @@ Vue.component('todo', {
 ``` html
 <div id="app-7">
   <ol>
-    <todo v-for="todo in todos" v-bind:todo="todo"></todo>
+    <!--
+    Now we provide each todo-item with the todo object
+    it's representing, so that its content can be dynamic
+    -->
+    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
   </ol>
 </div>
 ```
@@ -296,7 +304,11 @@ Vue.component('todo-item', {
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    todos: [/* ... */]
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
   }
 })
 ```
