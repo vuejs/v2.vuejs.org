@@ -4,6 +4,9 @@ type: guide
 order: 9
 ---
 
+<p class="tip">Note : the vue events are **not** native DOM events.</p>
+See more details in the [Custom events](/components.html#Custom-Events) chapter.
+
 ## Listening to Events
 
 We can use the `v-on` directive to listen to DOM events and run some JavaScript when they're triggered.

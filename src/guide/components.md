@@ -421,6 +421,11 @@ When a prop validation fails, Vue will produce a console warning (if using the d
 
 We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue's custom event system comes in.
 
+<p class="tip">Note : the vue events are **not** native DOM events.</p>
+`vm.$emit` is **not** an alias to `document.dispatchEvent(new CustomEvent(eventName, { detail: detail }));`
+
+A custom event sent via `vm.$emit('myCustomEvent', value)` will not get caught by `domElement.addEventListener('myCustomEvent', callback)`.
+
 ### Using `v-on` with Custom Events
 
 Every Vue instance implements an [events interface](/api/#Instance-Methods-Events), which means it can:
