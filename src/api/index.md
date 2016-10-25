@@ -972,7 +972,7 @@ type: api
   Объект, содержащий дочерние компоненты, зарегистрировавшие параметр `ref`.
 
 - **См. также:**
-  - [Ссылки Дочерних Компонентов](/guide/components.html#Child-Component-Refs)
+  - [Ссылки на Дочерние Компоненты](/guide/components.html#Child-Component-Refs)
   - [ref](#ref)
 
 ### vm.$isServer
@@ -1550,19 +1550,19 @@ type: api
 
 - **Подробности:**
 
-  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  **Однократно** рендерит элемент или компонент. При последующих операциях ре-рендеринга элемент/компонент, а также все его потомки будет рассматриваться как статический контент и пропускаться. Это позволяет оптимизировать производительность обновлений.  
 
   ```html
-  <!-- single element -->
-  <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- одиночный элемент -->
+  <span v-once>Это никогда не изменится: {{msg}}</span>
+  <!-- элемент содержит потомков -->
   <div v-once>
     <h1>comment</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
+  <!-- компонент -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- v-for directive -->
+  <!-- директива v-for -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
@@ -1570,19 +1570,19 @@ type: api
 
 - **См. также:**
   - [Синтаксис Связывания Данных - интерполяции](/guide/syntax.html#Text)
-  - [Компоненты - Cheap Static Компоненты with v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
+  - [Компоненты - Дешёвые Статические Компоненты с использованием v-once](/guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## Специальные Аттрибуты
 
 ### key
 
 - **Ожидает:** `string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  Специальный аттрибут `key` главным образом используется алгоритмом работы с virtual DOM Vue как подсказка для определения VNode'ов при сравнении нового и старого списков узлов. Если аттрибут ключа не указан, Vue использует алгоритм, минимизирующий перемещение элементов и старается обновить/повторно использовать элементы того же типа "на местах" максимально насколько это возможно. Если ключ указан, Vue изменяет порядок следования элементов, основываясь на изменении порядка ключей, а элементы, соотвествующие более не используемым ключам всегда удаляются/уничтожаются.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Потомки одного и того же общего родителя должны иметь **уникальные ключи**. Повторяющиеся ключи приведут к ошибкам рендеринга.
 
-  The most common use case is combined with `v-for`:
+  В основном используется в связке с `v-for`:
 
   ``` html
   <ul>
@@ -1590,12 +1590,12 @@ type: api
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  Может также использоваться для принудительной замены элемента/компонента вместо повторого его использования, что может быть полезным, если вы хотите:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Быть уверенны, что все хуки жизненного цикла компонента будут вызваны
+  - Запустить анимации переходов (transitions)
 
-  For example:
+  Например:
 
   ``` html
   <transition>
@@ -1603,27 +1603,27 @@ type: api
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  При изменении `text`, `<span>` всегда будет заменяться целиком, что спровоцирует вызов анимации перехода.
 
 ### ref
 
 - **Ожидает:** `string`
-
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  
+  `ref` используется для регистрации ссылки на элемент или дочерний компонент. Ссылка будет зарегистрирована в объекте `$refs` родительского объекта. При использовании на простом элементе DOM, ссылка будет указывать на этот элемент; при использовании на дочернем компоненте, ссылка будет указывать на инсанс компонента:
 
   ``` html
-  <!-- vm.$refs.p will the DOM node -->
+  <!-- vm.$refs.p будет указывать на элемент DOM -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
+  <!-- vm.$refs.child будет указывать на инстанс ChildComp -->
   <child-comp ref="child"></child-comp>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  При использовании на элементах/компонентах с `v-for`, регистрируется массив ссылок на элементы DOM или инстансы компонентов.
+  
+  Важное замечание о времени регистрации ссылок: поскольку ссылки сами создаются в результате работы render-функции, вы не можете использовать их при первичном рендеринге — на тот момент они ещё не существуют! Кроме того, объект `$refs` не является реактивным, и поэтому не стоит пытаться использовать его в шаблонах для связывания данных.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
-
-- **См. также:** [Ссылки Дочерних Компонентов](/guide/components.html#Child-Component-Refs)
+- **См. также:** [Ссылки на Дочерние Компоненты](/guide/components.html#Child-Component-Refs)
 
 ### slot
 
