@@ -267,7 +267,7 @@ You'll need to update it like this:
 <router-link to="/about">About</router-link>
 ```
 
-Note: `target="_blank"` is not supported on `<router-link>` component, please use `<a>` tags instead.
+Note that `target="_blank"` is not supported on `<router-link>`, so if you need to open a link in a new tab, you have to use `<a>` instead.
 
 {% raw %}
 <div class="upgrade-path">
