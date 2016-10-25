@@ -567,12 +567,14 @@ new Vue({
 </ul>
 <p>In addition, <code>type</code> can also be a custom constructor function and the assertion will be made with an <code>instanceof</code> check.</p>
 <p>When a prop validation fails, Vue will produce a console warning (if using the development build).</p>
-<h2 id="Custom-Events"><a href="#Custom-Events" class="headerlink" title="Custom Events"></a>Custom Events</h2><p>We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where custom events come in.</p>
-<h3 id="Using-v-on-with-Custom-Events"><a href="#Using-v-on-with-Custom-Events" class="headerlink" title="Using v-on with Custom Events"></a>Using <code>v-on</code> with Custom Events</h3><p>Every Vue instance implements the <a href="/api/#Instance-Methods-Events">Events interface</a>, which means it can:</p>
+<h2 id="Custom-Events"><a href="#Custom-Events" class="headerlink" title="Custom Events"></a>Custom Events</h2><p>We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue’s custom event system comes in.</p>
+<h3 id="Using-v-on-with-Custom-Events"><a href="#Using-v-on-with-Custom-Events" class="headerlink" title="Using v-on with Custom Events"></a>Using <code>v-on</code> with Custom Events</h3><p>Every Vue instance implements an <a href="/api/#Instance-Methods-Events">events interface</a>, which means it can:</p>
 <ul>
 <li>Listen to an event using <code>$on(eventName)</code></li>
 <li>Trigger an event using <code>$emit(eventName)</code></li>
 </ul>
+<p class="tip">Note that Vue’s event system is separate from the browser’s <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget" target="_blank" rel="external">EventTarget API</a>. Though they work similarly, <code>$on</code> and <code>$emit</code> are <strong>not</strong> aliases for <code>addEventListener</code> and <code>dispatchEvent</code>.</p>
+
 <p>In addition, a parent component can listen to the events emitted from a child component using <code>v-on</code> directly in the template where the child component is used.</p>
 <p>Here’s an example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"counter-event-example"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; total &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button-counter</span> <span class="attr">v-on:increment</span>=<span class="string">"incrementTotal"</span>&gt;</span><span class="tag">&lt;/<span class="name">button-counter</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button-counter</span> <span class="attr">v-on:increment</span>=<span class="string">"incrementTotal"</span>&gt;</span><span class="tag">&lt;/<span class="name">button-counter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
