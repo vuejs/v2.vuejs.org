@@ -249,7 +249,7 @@ type: api
 
 - **Usage:**
 
-  Register or retrieve a global component.
+  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
 
   ``` js
   // register an extended constructor

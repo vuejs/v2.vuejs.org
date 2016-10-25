@@ -982,11 +982,25 @@ Again, this _only_ works within string templates, as self-closing custom element
 Components can recursively invoke themselves in their own template. However, they can only do so with the `name` option:
 
 ``` js
+name: 'unique-name-of-my-component'
+```
+
+When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+
+``` js
+Vue.component('unique-name-of-my-component', {
+  // ...
+})
+```
+
+If you're not careful, recursive components can also lead to infinite loops:
+
+``` js
 name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be false). When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
 
 ### Inline Templates
 
