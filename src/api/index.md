@@ -1511,8 +1511,8 @@ type: api
 - **Не ожидает выражения**
 
 - **Использование:**
-
-  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+  
+  Пропустить компиляцию для этого элемента и всех его потомков. Вы можете использовать это для отображения необработанных тегов `{{}}`. Пропуск большого количества элементов может также ускорить компиляцию.
 
 - **Пример:**
 
@@ -1526,7 +1526,7 @@ type: api
 
 - **Использование:**
 
-  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+  Эта директива останется на элементе до тех пор пока ассоциированный инстанс Vue не закончит компиляцию. В сочетании с правилами CSS, такими как `[v-clock] { display: none }`, эта директива может быть использована чтобы спрятать нескомпилированные шаблоны до тех пор, пока инстанс Vue не будет готов.  
 
 - **Пример:**
 
@@ -1629,30 +1629,30 @@ type: api
 
 - **Ожидает:** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  Используется в контенте дочерних компонент для указания того, к какому из именованных слотов этот контент принадлежит.
 
-  For detailed usage, see the guide section linked below.
+  См. секцию руководства по ссылке ниже для подробностей.  
 
-- **См. также:** [Named Slots](/guide/components.html#Named-Slots)
+- **См. также:** [Именованные Слоты](/guide/components.html#Named-Slots)
 
 ## Built-In Компоненты
 
 ### component
 
-- **Props:**
+- **Входные Параметры:**
   - `is` - string | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
 - **Использование:**
 
-  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
+  "Метакомпонент" для рендеринга динамических компонентов. Настоящий компонент для рендеринга определяется параметром `is`:
 
   ```html
-  <!-- a dynamic component controlled by -->
-  <!-- the `componentId` property on the vm -->
+  <!-- динамический компонент, контроллируемый -->
+  <!-- свойством `componentId` vm -->
   <component :is="componentId"></component>
 
-  <!-- can also render registered component or component passed as prop -->
+  <!-- может также рендерить зарегистрированный или переданный через параметр компонент -->
   <component :is="$options.components.child"></component>
   ```
 
@@ -1660,12 +1660,12 @@ type: api
 
 ### transition
 
-- **Props:**
-  - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
-  - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
-  - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
-  - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+- **Входные Параметры:**
+  - `name` - string, Используется для автоматической генерации имён CSS-классов для переходов. Например, `name: 'fade'` автоматически раскроется в `.fade-enter`, `.fade-enter-active`, etc. Значение по умолчанию — `"v"`.
+  - `appear` - boolean, Вызывать ли анимацию при первичном рендеринге. По умолчанию `false`.
+  - `css` - boolean, Применять ли CSS-классы. По умолчанию `true`. Если установить в `false`, будут вызываться только хуки JavaScript, зарегистрированные для событий компонента.
+  - `type` - string, Указывает тип ожидаемых событий перехода для определения момента завершения перехода. Доступные значения: `"transition"` и `"animation"`. По умолчанию, автоматически определяется тип, задающий наибольшую продолжительность.
+  - `mode` - string, Управляет временным порядком переходов исчезновения/появления элемента. Доступные режимы `"out-in"` и `"in-out"`; по умолчанию оба процесса происходят одновременно.
   - `enter-class` - string
   - `leave-class` - string
   - `enter-active-class` - string
@@ -1686,20 +1686,20 @@ type: api
 
 - **Использование:**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
+  `<transition>` служит для указания эффектов перехода для **одиночного** элемента/компонента. `<transition>` не порождает дополнительного элемента DOM при рендеринге, а равно и не отображается в иерархии компонентов в инспекторе. Этот компонент просто применяет поведение перехода к своему содержимому.
 
   ```html
-  <!-- simple element -->
+  <!-- простой элемент -->
   <transition>
-    <div v-if="ok">toggled content</div>
+    <div v-if="ok">переключаемое содержимое</div>
   </transition>
 
-  <!-- dynamic component -->
+  <!-- динамический компонент -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
 
-  <!-- event hooking -->
+  <!-- хук на событие -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
       <div v-show="ok">toggled content</div>
@@ -1712,32 +1712,32 @@ type: api
     ...
     methods: {
       transitionComplete: function (el) {
-        // for passed 'el' that DOM element as the argument, something ...
+        // сделать что-то с переданным как el елементом DOM ...
       }
     }
     ...
   }).$mount('#transition-demo')
   ```
 
-- **См. также:** [Transitions: Entering, Leaving, and Lists](/guide/transitions.html)
+- **См. также:** [Анимации Переходов: Появление, Исчезновение, и Списки](/guide/transitions.html)
 
 ### transition-group
 
-- **Props:**
-  - `tag` - string, defaults to `span`.
-  - `move-class` - overwrite CSS class applied during moving transition.
-  - exposes the same props as `<transition>` except `mode`.
+- **Входные Параметры:**
+  - `tag` - string, по умолчанию используется `span`.
+  - `move-class` - переопределяет CSS-класс, применяемый во время анимации перемещения.
+  - те же аттрибуты, что и у `<transition>`, за исключением `mode`.
 
 - **Events:**
-  - exposes the same events as `<transition>`.
+  - те же, что и у `<transition>`.
 
 - **Использование:**
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
+  `<transition-group>` служит as для указания эффектов перехода для **нескольких** элементов/компонентов. `<transition-group>` превращается в реальный элемент DOM. По умолчанию используется тег `<span>`, что может быть изменено параметром `tag`.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
+  Обратите внимание, что каждый потомок `<transition-group>` должен иметь **уникальный ключ**, чтобы анимации работали корректно.
 
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` поддерживает анимации перехода посредством CSS-трансформаций. Когда позиция потомка изменилась после обновления, будет применён указывающий на перемещение CSS-класс (автоматически сгенерированный из аттрибута `name`, или же явно указанный через аттрибут `move-class`). Если свойство CSS `transform` поддерживает анимацию перехода "transition-able" для этого класса, будет произведена гладкая анимация элемента в соответствии с [техникой FLIP](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -1747,31 +1747,31 @@ type: api
   </transition-group>
   ```
 
-- **См. также:** [Transitions: Entering, Leaving, and Lists](/guide/transitions.html)
+- **См. также:** [Анимации Переходов: Появление, Исчезновение, и Списки](/guide/transitions.html)
 
 ### keep-alive
 
 - **Использование:**
 
-  When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
+  Используемая как обёртка для динамических компонентов, `<keep-alive>` кеширует инстансы интерактивных компонентов, не уничтожая их. Так же, как и `<transition>`, `<keep-alive>` является абстрактным компонентом: при рендеринге сама она не превращается в элемент DOM, а равно не показывается и в цепочке родителей компонента.
 
-  When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+  Когда отображение компонента, расположенного внутри `<keep-alive>` переключается, вызываются его хуки жизненного цикла `activated` или `deactivated` соответственно.
 
-  Primarily used with preserve component state or avoid re-rendering.
+  В основном используется для сохранения состояния компонента во избежания повторного рендеринга.
 
   ```html
-  <!-- basic -->
+  <!-- базовый вариант -->
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- multiple conditional children -->
+  <!-- несколько потомков -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with <transition> -->
+  <!-- использование совместно с <transition> -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -1779,27 +1779,27 @@ type: api
   </transition>
   ```
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>` не работает с функциональными компонентами, так как у них отсутсвуют инстансы.</p>
 
 - **См. также:** [Динамические Компоненты - keep-alive](/guide/components.html#keep-alive)
 
 ### slot
 
-- **Props:**
-  - `name` - string, Used for named slot.
+- **Входные Параметры:**
+  - `name` - string, Используется для именования слотов
 
 - **Использование:**
 
-  `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
+  `<slot>` служит гнездом для последующей дистрибуции контента в шаблонах компонентов. Сам элемент `<slot>` при рендеринге заменяется.
 
-  For detailed usage, see the guide section linked below.
+  См. секцию руководства по ссылке ниже для подробностей.
 
-- **См. также:** [Content Distribution with Slots](/guide/components.html#Content-Distribution-with-Slots)
+- **См. также:** [Дистрибьюция Контента посредством Слотов](/guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## Интерфейс VNode
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- Пожалуйста, обратитесь к информации об [объявлении классов VNode](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
-## Server-Side Rendering
+## Рендеринг на стороне сервера
 
-- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- Пожалуйста, обратитесь к [документации пакета vue-server-renderer](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
