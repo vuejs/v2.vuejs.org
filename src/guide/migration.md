@@ -703,7 +703,7 @@ Vue's transition system has changed quite drastically and now uses `<transition>
 
 ### `Vue.transition` for Reusable Transitions <sup>deprecated</sup>
 
-With the new transition system, you can now just [use components for reusable transitions](http://rc.vuejs.org/guide/transitions.html#Reusable-Transitions).
+With the new transition system, you can now just [use components for reusable transitions](/guide/transitions.html#Reusable-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
