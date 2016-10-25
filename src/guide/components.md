@@ -419,14 +419,16 @@ When a prop validation fails, Vue will produce a console warning (if using the d
 
 ## Custom Events
 
-We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where custom events come in.
+We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue's custom event system comes in.
 
 ### Using `v-on` with Custom Events
 
-Every Vue instance implements the [Events interface](/api/#Instance-Methods-Events), which means it can:
+Every Vue instance implements an [events interface](/api/#Instance-Methods-Events), which means it can:
 
 - Listen to an event using `$on(eventName)`
 - Trigger an event using `$emit(eventName)`
+
+<p class="tip">Note that Vue's event system is separate from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
 
 In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
 
