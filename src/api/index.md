@@ -1392,13 +1392,13 @@ type: api
   <!-- сокращение -->
   <button @click="doThis"></button>
 
-  <!-- stop propagation -->
+  <!-- модификатор stop propagation -->
   <button @click.stop="doThis"></button>
 
-  <!-- prevent default -->
+  <!-- модификатор prevent default -->
   <button @click.prevent="doThis"></button>
 
-  <!-- prevent default без дополнительных действий -->
+  <!-- модификатор prevent default без дополнительных действий -->
   <form @submit.prevent></form>
 
   <!-- цепочка из модификаторов -->
@@ -1485,22 +1485,22 @@ type: api
 
 ### v-model
 
-- **Ожидает:** varies based on value of form inputs element or output of components
+- **Ожидает:** варьируется в зависимости от значения элементов форм или выходных данных компонентов
 
-- **Limited to:**
+- **Используется только с:**
   - `<input>`
   - `<select>`
   - `<textarea>`
   - components
 
 - **Модификаторы:**
-  - [`.lazy`](/guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](/guide/forms.html#number) - cast input string to numbers
-  - [`.trim`](/guild/forms.html#trim) - trim input
+  - [`.lazy`](/guide/forms.html#lazy) - слушать события `change`, а не `input`
+  - [`.number`](/guide/forms.html#number) - приводить введённую строку к числу
+  - [`.trim`](/guild/forms.html#trim) - удалять пробелы в начале и в конце введённой строки
 
 - **Использование:**
 
-  Create a two-way binding on a form input element or a component. For detailed usage, see guide section linked below.
+  Двусторонним образом связывает элемент ввода формы или компонент с переменной. См. секцию руководства по ссылке ниже для подробностей.  
 
 - **См. также:**
   - [Связывание Элементов Ввода Форм](/guide/forms.html)
@@ -1508,9 +1508,9 @@ type: api
 
 ### v-pre
 
-- **Does not expect expression**
+- **Не ожидает выражения**
 
-- **Usage**
+- **Использование:**
 
   Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
 
@@ -1522,7 +1522,7 @@ type: api
 
 ### v-cloak
 
-- **Does not expect expression**
+- **Не ожидает выражения**
 
 - **Использование:**
 
@@ -1546,7 +1546,7 @@ type: api
 
 ### v-once
 
-- **Does not expect expression**
+- **Не ожидает выражения**
 
 - **Подробности:**
 
