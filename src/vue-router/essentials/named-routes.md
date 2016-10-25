@@ -21,13 +21,13 @@ const router = new VueRouter({
 要链接到一个命名路由，可以给 `router-link` 的 `to` 属性传一个对象：
 
 ``` html
-<router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
+<router-link :to="{ name: 'user', params: { id: 123 }}">User</router-link>
 ```
 
 这跟代码调用 `router.push()` 是一回事：
 
 ``` js
-router.push({ name: 'user', params: { userId: 123 }})
+router.push({ name: 'user', params: { id: 123 }})
 ```
 
 这两种方式都会把路由导航到 `/user/123` 路径。
