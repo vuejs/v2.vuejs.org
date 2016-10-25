@@ -1508,7 +1508,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Does not expect expression**
 
-- **Usage**
+- **Usage:**
 
   Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
 

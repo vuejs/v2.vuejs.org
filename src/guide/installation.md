@@ -6,6 +6,7 @@ vue_version: 2.0.3
 dev_size: "188.88"
 min_size: "62.54"
 gz_size: "22.86"
+ro_gz_size: "16"
 ---
 
 ### Compatibility Note
@@ -49,9 +50,9 @@ There are two builds available, the standalone build and the runtime-only build.
 
 - The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
 
-- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.
+- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only {{ro_gz_size}}kb min+gzip.
 
-By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your webpack config:
+By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your Webpack config:
 
 ``` js
 resolve: {
