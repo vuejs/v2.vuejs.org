@@ -1,62 +1,62 @@
 ---
-title: Template Syntax
+title: Синтаксис Шаблонов
 type: guide
 order: 4
 ---
 
-Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance's data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
+Vue.js использует основанный на HTML синтаксис, позволяющий декларативно связывать отображаемый DOM и данные инстанса Vue, лежащие в его основе. Все шаблоны Vue.js являются валидным HTML-кодом, проходящим парсинг следующими спецификации парсерами и браузерами.
 
-Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+Внутри, Vue компилирует шаблоны в функции рендеринга Virtual DOM. В сочетании с системой реактивности, Vue способен интеллектуально определить минимально необходимый для ререндеринга набор компонентов и применить минимальное количество манипуляций с DOM при изменении состояния приложения.
 
-If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](/guide/render-function.html) instead of templates, with optional JSX support.
+Если вы знакомы с концепцией Virtual DOM и предпочитаете использовать ничем не ограниченную мощь JavaScript, вы можете также [писать render-функции напрямую](/guide/render-function.html) вместо шаблонов, опционально задействуя JSX.
 
-## Interpolations
+## Интерполяции
 
-### Text
+### Текст
 
-The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
-
-``` html
-<span>Message: {{ msg }}</span>
-```
-
-The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
-
-You can also perform one-time interpolations that do not update on data change by using the [v-once directive](/api/#v-once), but keep in mind this will also affect any binding on the same node:
+Наиболее простой формой связывания данных является текстовая интерполяция с использованием синтаксиса "Mustache" (двойные фигурные скобки):
 
 ``` html
-<span v-once>This will never change: {{ msg }}</span>
+<span>Сообщение: {{ msg }}</span>
 ```
 
-### Raw HTML
+Выражение в фигурных скобках будет заменено значением свойства `msg` соответствующего объекта данных. Кроме того, оно будет обновлено при любом изменении этого свойства.
 
-The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
+Возможно также выполнение однократного интерполирования, которое не обновится при изменении данных — используйте для этой цели [v-once директиву](/api/#v-once), но учтите что это повлияет сразу на все связанные переменные в рамках данного элемента:
+
+``` html
+<span v-once>Это никогда не изменится: {{ msg }}</span>
+```
+
+### Сырой HTML
+
+Значение выражения, обрамлённого двойными фигурными скобками, интепретируется как простой текст, а не как HTML. Если вы хотите вывести HTML, вам понадобится директива `v-html`:
 
 ``` html
 <div v-html="rawHtml"></div>
 ```
 
-The contents are inserted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+Содержимое вставляется как обыкновенный HTML — связывание данных игнорируется. Обратите внимание, что вы не можете использовать `v-html` для вложения шаблонов друг в друга, так как Vue не является движком шаблонов, основывающимся на строках. Напротив, основным предпочтительным элементом являются компоненты, что позволяет достичь целей композиции и повторного использования элементов UI.
 
-<p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
+<p class="tip">Динамический рендеринг проивзольного HTML-кода на вашем сайте может быть крайне опасен, так как он может легко привести к [XSS атакам](https://en.wikipedia.org/wiki/Cross-site_scripting). Используйте интерполяцию HTML только на доверенном, и **никогда** — на пользовательском контенте.</p>
 
-### Attributes
+### Аттрибуты
 
-Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](/api/#v-bind):
+Синтаксис двойных фигурных скобок не работает с HTML-аттрибутами, вместо него используется [директива v-bind](/api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
+С булевыми аттрибутами тоже работает - в случае ложного значения аттрибут будет удалён полностью:
 
 ``` html
-<button v-bind:disabled="someDynamicCondition">Button</button>
+<button v-bind:disabled="someDynamicCondition">Кнопка</button>
 ```
 
-### Using JavaScript Expressions
+### Использование Выражений JavaScript
 
-So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
+До сих пор мы связывались со свойствами в шаблонах только просто по их ключам. Но Vue.js в действительности поддерживает всю мощь выражений JavaScript при связывании данных:
 
 ``` html
 {{ number + 1 }}
@@ -68,29 +68,29 @@ So far we've only been binding to simple property keys in our templates. But Vue
 <div v-bind:id="'list-' + id"></div>
 ```
 
-These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
+Эти выражения будут вычислены как код на JavaScript в области видимости данных соответствующего инстанса Vue. Единственным ограничением является то, что допускается только **одно единственное выражение**, так что код ниже **НЕ** сработает:
 
 ``` html
-<!-- this is a statement, not an expression: -->
+<!-- это не вычисляемое выражение, а определение переменно: -->
 {{ var a = 1 }}
 
-<!-- flow control won't work either, use ternary expressions -->
+<!-- операторы управления потоком выполнения тоже не сработают, используйте условный оператор -->
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
+<p class="tip">Выражения в шаблонах выполняются в "режиме песочницы" и имеют доступ только к белому списку глобальных объектов, таких как `Math` и `Date`. Не пытайтесь получить доступ к пользовательским глобальным объектам внутри используемых в шаблонах выражений.</p>
 
-### Filters
+### Фильтры
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters should be appended to the end of a **mustache interpolation**, denoted by the "pipe" symbol:
+Vue.js позволяет определять фильтры, которые используются для распространённых задач форматирования текста. Фильтры добавляются в конце **выражения текстовой интерполяции** и обозначаются вертикальной чертой:
 
 ``` html
 {{ message | capitalize }}
 ```
 
-<p class="tip">Vue 2.x filters can only be used inside mustache bindings. To achieve the same behavior inside directive bindings, you should use [Вычисляемые Свойства](/guide/computed.html) instead.</p>
+<p class="tip">Во Vue 2.x фильтры могут быть использованы только в выражениях в двойных фигурных скобках. для достижения аналогичного эффекта при связывании в директивах, используйте [Вычисляемые Свойства](/guide/computed.html).</p>
 
-The filter function always receives the expression's value as the first argument.
+Функция-фильтр всегда получает первым аргументом значение вычисленного выражения.
 
 ``` js
 new Vue({
@@ -105,81 +105,83 @@ new Vue({
 })
 ```
 
-Filters can be chained:
+Фильтры можно объединять в цепочки:
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-Filters are JavaScript functions, therefore they can take arguments:
+Фильтры являются JavaScript-функциями, и потому могут принимать параметры:
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+В данном случае строка `'arg1'` будет переданна в фильтр на позиции второго аргумента, а значение выражения `arg2` — как третий аргумент.
 
-## Directives
+## Директивы
 
-Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception for `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
+Директивы — это специальные аттрибуты с префиксом `v-`. В качестве значения этих аттрибутов ожидается **одиночное выражение JavaScript** (за исключением `v-for`, которая будет рассмотрена дальше). Работа директивы состоит в реактивном применении к DOM некоторых побочных эффектов при изменении значения наблюдаемого выражения. Давайте вспомним пример, который мы видели во введении:
 
 ``` html
-<p v-if="seen">Now you see me</p>
+<p v-if="seen">Сейчас меня видно</p>
 ```
 
-Here, the `v-if` directive would remove/insert the `<p>` element based on the truthiness of the value of the expression `seen`.
+В данном случае директива `v-if` удалит/вставит элемент `<p>` в зависимости от истинности значения выражения `seen`.
 
-### Arguments
+### Аргументы
 
-Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
+Некоторые директивы могут принимать "агрумент", указываемый после двоеточия после названия директивы. Например, директива `v-bind`используется для реактивного обновления аттрибутов HTML:
 
 ``` html
 <a v-bind:href="url"></a>
 ```
 
-Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`.
+В данном случае `href` является аргументом, говорящим директиве `v-bind` связать аттрибут `href` элемента со значением выражения `url`.
 
-Another example is the `v-on` directive, which listens to DOM events:
+В качестве другого примера можно привести директиву `v-on`, которая слушает события DOM:
 
 ``` html
 <a v-on:click="doSomething">
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more detail too.
+В данном случае аргументом является название типа событий. На обработке событий мы также подробнее остановимся позднее.
 
-### Modifiers
+### Модификаторы
 
-Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the `.prevent` modifier tells the `v-on` directive to call `event.preventDefault()` on the triggered event:
+Модификаторы — это особые постфиксы, добавляемые после точки, которые указывают, что директива должна быть связана каким-то определённым образом. Например, модификатор `.prevent` говорит директиве `v-on` вызвать `event.preventDefault()` при обработке произошедшего события:
 
 ``` html
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-We will see more use of modifiers later when we take a more thorough look at `v-on` and `v-model`.
+Мы увидим больше примеров применения модификаторов позднее, когда будем более подробно разбирать `v-on` и `v-model`.
 
-## Shorthands
+## Сокращения
 
 The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building an [SPA](https://en.wikipedia.org/wiki/Single-page_application) where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
 
-### `v-bind` Shorthand
+Префикс `v-` служит как визуальное напоминание для обнаружения Vue-специфичных аттрибутов в ваших шаблонах. Это может быть полезно, когда  Vue.js используется для добавления динамического поведения уже существующей размётке, но для часто используемых директив может показаться слишком многословным. В то же время, необходимость в `v-` становится куда менее важной при создании [SPA](https://en.wikipedia.org/wiki/Single-page_application), где Vue.js контроллирует все шаблоны. Поэтому, Vue.js предоставляет специальные сокращения для двух наиболее часто используемых директив, `v-bind` и `v-on`:
+
+### Сокращение `v-bind`
 
 ``` html
-<!-- full syntax -->
+<!-- полный синтаксис -->
 <a v-bind:href="url"></a>
 
-<!-- shorthand -->
+<!-- сокращение -->
 <a :href="url"></a>
 ```
 
 
-### `v-on` Shorthand
+### Сокращение `v-on`
 
 ``` html
-<!-- full syntax -->
+<!-- полный синтаксис -->
 <a v-on:click="doSomething"></a>
 
-<!-- shorthand -->
+<!-- сокращение -->
 <a @click="doSomething"></a>
 ```
 
-They may look a bit different from normal HTML, but `:` and `@` are valid chars for attribute names and all Vue.js supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
+Они можгут выглядеть несколько отлично от обыкновенного HTML-кода, но символы `:` и `@` являются валидными для названий аттрибутов, и все поддерживаемые Vue.js браузеры могут их корректно распарсить. В дополнение, в результирующей размётке они не появятся. Сокращённый синтаксис является полностью необязательным к использованию, но скорее всего вам он понравится, когда вы узнаете больше о его использовании далее.
