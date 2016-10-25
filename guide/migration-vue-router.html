@@ -87,10 +87,8 @@
     </ul>
     <div class="list">
         <div id="donate" style="margin-bottom: 20px">
-            <span class="wrapper" style="width: 110px">
-              <img src="/images/patreon.png">
-              <a href="/support-vuejs">Support Vue.js</a>
-            </span>
+            <img src="/images/patreon.png">
+            <a href="/support-vuejs">Support Vue.js</a>
         </div>
         <h2>
             Guide
@@ -481,6 +479,7 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"'/about'"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>You’ll need to update it like this:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Note that <code>target=&quot;_blank&quot;</code> is not supported on <code>&lt;router-link&gt;</code>, so if you need to open a link in a new tab, you have to use <code>&lt;a&gt;</code> instead.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
