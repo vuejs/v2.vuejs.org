@@ -66,8 +66,8 @@ Estas palavras podem ser mantidas no inglês
 - [x] Event Handling (@gidenilson)
 - [x] Form Input Bindings(@gidenilson)
 - [ ] Components (@danielschmitz)
-- [ ] Transitions: Entering, Leaving, and Lists
-- [ ] Transitioning State
+- [x] Transitions: Entering, Leaving, and Lists (@jbruni, @NicholasPedroso)
+- [ ] Transitioning State (@diegoleme)
 - [x] Render Functions (@jbruni)
 - [x] Reactivity in Depth (@gidenilson)
 - [ ] Custom Directives (@gidenilson)
