@@ -288,7 +288,7 @@
 </ul>
 </li>
 <li><p><strong>Usage:</strong></p>
-<p>Register or retrieve a global component.</p>
+<p>Register or retrieve a global component. Registration also automatically sets the component’s <code>name</code> with the given <code>id</code>.</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// register an extended constructor</span></div><div class="line">Vue.component(<span class="string">'my-component'</span>, Vue.extend(&#123; <span class="comment">/* ... */</span> &#125;))</div><div class="line"></div><div class="line"><span class="comment">// register an options object (automatically call Vue.extend)</span></div><div class="line">Vue.component(<span class="string">'my-component'</span>, &#123; <span class="comment">/* ... */</span> &#125;)</div><div class="line"></div><div class="line"><span class="comment">// retrieve a registered component (always return constructor)</span></div><div class="line"><span class="keyword">var</span> MyComponent = Vue.component(<span class="string">'my-component'</span>)</div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>See also:</strong> <a href="/guide/components.html">Components</a></p>
