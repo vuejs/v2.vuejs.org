@@ -4,8 +4,19 @@
     <head>
         <title><%- page.title ? page.title + ' - ' : '' %>vue.js</title>
         <meta charset="utf-8">
-        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="description" content="<%- theme.site_description %>">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="<%- page.title ? page.title + ' - ' : '' %>vue.js">
+        <meta property="og:description" content="<%- theme.site_description %>">
+        <meta property="og:image" content="/images/logo.png">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="<%- page.title ? page.title + ' - ' : '' %>vue.js">
+        <meta name="twitter:description" content="<%- theme.site_description %>">
+        <meta name="twitter:image" content="/images/logo.png">
+
         <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
         <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
