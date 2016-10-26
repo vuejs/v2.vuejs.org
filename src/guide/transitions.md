@@ -47,7 +47,7 @@ new Vue({
 ```
 
 ``` css
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active, .fade-leave {
   transition: opacity .5s
 }
 .fade-enter, .fade-leave-active {
