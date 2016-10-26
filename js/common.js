@@ -6,6 +6,7 @@
     initVersionSelect()
     initSubHeaders()
     initApiSpecLinks()
+    initLocationHashFuzzyMatching()
   }
 
   function initApiSpecLinks () {
@@ -28,6 +29,48 @@
 
     function createSourceSearchPath(query) {
       return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent(query) + '+&type=Code'
+    }
+  }
+
+  function initLocationHashFuzzyMatching () {
+    var hash = window.location.hash
+    if (!hash) return
+    var hashTarget = document.getElementById(hash)
+    if (!hashTarget) {
+      var normalizedHash = normalizeHash(hash)
+      var possibleHashes = [].slice.call(document.querySelectorAll('[id]'))
+        .map(function (el) { return el.id })
+      possibleHashes.sort(function (hashA, hashB) {
+        var distanceA = levenshteinDistance(normalizedHash, normalizeHash(hashA))
+        var distanceB = levenshteinDistance(normalizedHash, normalizeHash(hashB))
+        if (distanceA < distanceB) return -1
+        if (distanceA > distanceB) return 1
+        return 0
+      })
+      window.location.hash = possibleHashes[0]
+    }
+
+    function normalizeHash (rawHash) {
+      return rawHash
+        .toLowerCase()
+        .replace(/\-(?:deprecated|removed|replaced|changed|obsolete)$/, '')
+    }
+
+    function levenshteinDistance (a, b) {
+      var m = []
+      if (!(a && b)) return (b || a).length
+      for (let i = 0; i <= b.length; m[i] = [i++]) {}
+      for (let j = 0; j <= a.length; m[0][j] = j++) {}
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          m[i][j] = b.charAt(i - 1) === a.charAt(j - 1)
+            ? m[i - 1][j - 1]
+            : m[i][j] = Math.min(
+              m[i - 1][j - 1] + 1,
+              Math.min(m[i][j - 1] + 1, m[i - 1][j] + 1))
+        }
+      }
+      return m[b.length][a.length]
     }
   }
 
