@@ -829,7 +829,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Type:** `Array<string>`
 
-- **default:** `["{{", "}}"]`
+- **default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
 - **Details:**
 
