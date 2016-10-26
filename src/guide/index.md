@@ -29,7 +29,7 @@ Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将�
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hello Vue!'
   }
 })
 ```
