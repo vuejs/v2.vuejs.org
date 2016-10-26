@@ -1,12 +1,12 @@
 ---
-title: Computed Properties and Watchers
+title: Вычисляемые Свойства и Наблюдатели
 type: guide
 order: 5
 ---
 
-## Computed Properties
+## Вычисляемые Свойства
 
-In-template expressions are very convenient, but they are really only meant for simple operations. Putting too much logic into your templates can make them bloated and hard to maintain. For example:
+Встраиваемые в шаблоны выражения удобны, но в действительности они предназначены только для простых операций. Если раздуть их избыточной логикой, поддерживать их станет тяжело. Например:
 
 ``` html
 <div id="example">
@@ -14,16 +14,16 @@ In-template expressions are very convenient, but they are really only meant for 
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
+Шаблон больше не выглядит простым и декларативным. Для того чтобы понять, что он всего лишь отображает `message` задом наперёд, приходится некоторое время вглядываться в код. Ещё сильнее проблема усугубляется, если отобразить сообщение задом наперёд потребуется в шаблоне больше одного раза.
 
-That's why for any complex logic, you should use a **computed property**.
+Поэтому для любой сложной логики стоит использовать **вычисляемые свойства**.
 
-### Basic Example
+### Простой Пример
 
 ``` html
 <div id="example">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>Изначальное сообщение: "{{ message }}"</p>
+  <p>Вычисленное сообщение задом наперёд: "{{ reversedMessage }}"</p>
 </div>
 ```
 
@@ -34,21 +34,21 @@ var vm = new Vue({
     message: 'Hello'
   },
   computed: {
-    // a computed getter
+    // геттер вычисляемого значения
     reversedMessage: function () {
-      // `this` points to the vm instance
+      // `this` указывает на инстанс vm
       return this.message.split('').reverse().join('')
     }
   }
 })
 ```
 
-Result:
+Результат:
 
 {% raw %}
 <div id="example" class="demo">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>Изначальное сообщение: "{{ message }}"</p>
+  <p>Вычисленное сообщение задом наперёд: "{{ reversedMessage }}"</p>
 </div>
 <script>
 var vm = new Vue({
@@ -65,7 +65,7 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
+Здесь мы определили вычисляемое свойство `reversedMessage`. Написанная нами функция будет использоваться как геттер для свойства `vm.reversedMessage`:
 
 ``` js
 console.log(vm.reversedMessage) // -> 'olleH'
@@ -73,20 +73,20 @@ vm.message = 'Goodbye'
 console.log(vm.reversedMessage) // -> 'eybdooG'
 ```
 
-You can open the console and play with the example vm yourself. The value of `vm.reversedMessage` is always dependent on the value of `vm.message`.
+Вы можете открыть консоль и поиграть с примером сами. Значение `vm.reversedMessage` всегда зависит от значения `vm.message`.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function is pure and has no side effects, which makes it easy to test and reason about.
+В шаблонах вы можете привязываться к вычислимым свойствам ровно таким же образом, как и к обычным. Vue в курсе, что `vm.reversedMessage` зависит от `vm.message`, так что при обновлении `vm.message` обновятся и все элементы, зависящие от `vm.reversedMessage`. Приятнее всего то, что это отношение зависимости мы указали декларативно: геттер вычисляемого свойства является чистой функцией (pure function) и не имеет побочных эффектов, что упрощает как рассуждения, так и тестирование.
 
-### Computed Caching vs Methods
+### Кеширование Вычисляемых Свойств vs Методы
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+Вы могли заметить, что тот же результат мог быть достигнут с использованием метода:
 
 ``` html
-<p>Reversed message: "{{ reverseMessage() }}"</p>
+<p>Сообщение задом наперёд: "{{ reverseMessage() }}"</p>
 ```
 
 ``` js
-// in component
+// в компоненте
 methods: {
   reverseMessage: function () {
     return this.message.split('').reverse().join('')
@@ -94,9 +94,9 @@ methods: {
 }
 ```
 
-Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on its dependencies.** A computed property will only re-evaluate when some of its dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+Вместо вычисляемого свойства, мы можем определить ту же самую функцию в качестве метода. С точки зрения конечного результата, оба подхода действительно делают одно и то же. Однако, разница состоит в том, что **вычисляемые свойства кешируются, основываясь на своих зависимостях**. Вычисляемое свойство будет пересчитано только тогда, когда изменится одна из его зависимостей. Поэтому, покуда `message` остаётся неизменным, многократное использование вычисляемого свойства `reversedMessage` будет незамедлительно возвращать единожды уже вычисленное ранее значение, не пытаясь запустить функцию вновь.
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+Кроме того, это означает что нижеследующее вычисляемое значение никогда не обновится, так как `Date.now()` не является реактивной зависимостью:
 
 ``` js
 computed: {
@@ -106,13 +106,13 @@ computed: {
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+Использование метода, напротив, **всегда** запускает функцию, когда бы ни случился ре-рендеринг.
 
-Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+Зачем нужно кеширование? Представьте, что у нас есть дорогое вычислимое свойство **A**, требующее цикла по огромногому массиву и выполняющее множество вычислений. А ещё пусть будут другие вычисляемые свойства, в свою очередь зависящие от **A**. Без кеширования, геттер **A** будет запускаться куда чаще необходимого! В тех же случаях, когда кеширования хочется избежать — используйте методы.
 
-### Computed vs Watched Property
+### Вычисляемые vs Наблюдаемые Свойства
 
-Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue также предоставляет более обобщённый способ наблюдения и реагирования на изменения данных в инстансе: **наблюдаемые свойства**. Когда у вас есть данные, которые должны быть обновлены в зависимости от состояния других данных, возникает соблазн избыточного использования `watch` — особенно если вы привыкли использовать AngularJS. Однако, часто лучшей идеей будет использование вычисляемых свойств вместо императивного указания функции обратного вызова для `watch`. Рассмотрим пример:
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -137,7 +137,7 @@ var vm = new Vue({
 })
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+Код выше — императивный и избыточный. Сравните с версией с использованием вычисляемого свойства:
 
 ``` js
 var vm = new Vue({
@@ -154,11 +154,11 @@ var vm = new Vue({
 })
 ```
 
-Much better, isn't it?
+Намного лучше, не правда ли?
 
-### Computed Setter
+### Сеттеры Вычисляемых Свойств
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+По умолчанию вычисляемые свойства работают только на чтение, но в случае необходимости вы можете также указать и сеттер:
 
 ``` js
 // ...
@@ -179,18 +179,18 @@ computed: {
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+Теперь запись `vm.fullName = 'John Doe'` вызовет сеттер, и `vm.firstName` и `vm.lastName` будут соответствующим образом обновлены.
 
-## Watchers
+## Наблюдатели
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+Хотя в большинстве случаев лучше использовать вычисляемые свойства, иногда пользовательские наблюдатели всё же необходимы. Поэтому Vue предоставляет более общий подход для реагирования на изменения в данных, посредством опции `watch`. Полезнее всего эта возможность становится для дорогих или асинхронных операций.
 
 For example:
 
 ``` html
 <div id="watch-example">
   <p>
-    Ask a yes/no question:
+    Задайте вопрос, на который можно ответить "да" или "нет":
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -198,10 +198,10 @@ For example:
 ```
 
 ``` html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to just use what you're familiar with. -->
+<!-- Поскольку уже существует обширная экосистема ajax-библиотек  -->
+<!-- и библиотек функций общего назначения, ядро Vue может        -->
+<!-- оставаться маленьким и не изобретать их заново. Кроме того   -->
+<!-- это позволяет вам использовать только знакомые инструменты. -->
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script>
@@ -209,41 +209,39 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: 'Пока вы не зададите вопрос я не могу ответить!'
   },
   watch: {
-    // whenever question changes, this function will run
+    // эта функция запускается при любом изменении вопроса
     question: function (newQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = 'Ожидаю, когда вы закончите печатать...'
       this.getAnswer()
     }
   },
-  methods: {
-    // _.debounce is a function provided by lodash to limit how
-    // often a particularly expensive operation can be run.
-    // In this case, we want to limit how often we access
-    // yesno.wtf/api, waiting until the user has completely
-    // finished typing before making the ajax request. To learn
-    // more about the _.debounce function (and its cousin
-    // _.throttle), visit: https://lodash.com/docs#debounce
+  methods: {   
+    // _.debounce — это функция из lodash, позволяющая ограничить
+    // то, насколько часто может выполняться определённая операция.
+    // В данном случае, мы хотим ограничить частоту обращений к yesno.wtf/api,
+    // дожидаясь завершения печати вопроса перед тем как послать ajax-запрос.
+    // Чтобы узнать больше о функции _.debounce (и её родственнице _.throttle),
+    // посетите https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
         var vm = this
         if (this.question.indexOf('?') === -1) {
-          vm.answer = 'Questions usually contain a question mark. ;-)'
+          vm.answer = 'Вопросы обычно заканчиваются вопросительным знаком. ;-)'
           return
         }
-        vm.answer = 'Thinking...'
+        vm.answer = 'Думаю...'
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
           .catch(function (error) {
-            vm.answer = 'Error! Could not reach the API. ' + error
+            vm.answer = 'Ошибка! Не могу связаться с API. ' + error
           })
       },
-      // This is the number of milliseconds we wait for the
-      // user to stop typing.
+      // Это — количество миллисекунд, после которого мы считаем, что пользователь прекратил печатать
       500
     )
   }
@@ -251,7 +249,7 @@ var watchExampleVM = new Vue({
 </script>
 ```
 
-Result:
+Результат:
 
 {% raw %}
 <div id="watch-example" class="demo">
@@ -268,11 +266,11 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: 'Пока вы не зададите вопрос я не могу ответить!'
   },
   watch: {
     question: function (newQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = 'Ожидаю, когда вы закончите печатать...'
       this.getAnswer()
     }
   },
@@ -281,16 +279,16 @@ var watchExampleVM = new Vue({
       function () {
         var vm = this
         if (this.question.indexOf('?') === -1) {
-          vm.answer = 'Questions usually contain a question mark. ;-)'
+          vm.answer = 'Вопросы обычно заканчиваются вопросительным знаком. ;-)'
           return
         }
-        vm.answer = 'Thinking...'
+        vm.answer = 'Думаю...'
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
           .catch(function (error) {
-            vm.answer = 'Error! Could not reach the API. ' + error
+            vm.answer = 'Ошибка! Не могу связаться с API. ' + error
           })
       },
       500
@@ -300,6 +298,6 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
+В данном случае, применение опции `watch` позволяет нам выполнять асинхронную операцию (обращение к API), ограничивать частоту выполнения этой операции и устанавливать промежуточные состояния до получения окончательного ответа. Ничего из этого не удалось бы достичь при использовании вычисляемых свойств.
 
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](/api/#vm-watch).
+В дополнение к опции `watch`вы можете также использовать [vm.$watch API](/api/#vm-watch) в императивном стиле.
