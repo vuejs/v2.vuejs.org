@@ -79,6 +79,22 @@ type: api
 
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
 
+### ignoredElements
+
+- **Type:** `Array<string>`
+
+- **Default:** `[]`
+
+- **Usage:**
+
+  ``` js
+  Vue.config.ignoredElements = [
+    'my-custom-web-component', 'another-web-component'
+  ]
+  ```
+
+  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+
 ### keyCodes
 
 - **Type:** `{ [key: string]: number }`
