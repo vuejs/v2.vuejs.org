@@ -184,8 +184,6 @@ computed: {
 
 现在在调用 `vm.fullName = 'John Doe'` 时， setter 会被调用， `vm.firstName` 和 `vm.lastName` 也会有相应更新。
 
-关于计算属性背后的原理和技术细节详见[计算属性的奥秘](http://rc.vuejs.org/guide/reactivity.html#Inside-Computed-Properties)。
-
 ## 观察 Watchers
 
 当计算属性使用在大多数场景下时，有时候也很需要一个自定义的 watcher 。这是为什么 Vue 提供一个更通用的方法通过 `watch` 的设置，来反应数据的变化。在你想要执行异步操作或需要响应不断变化昂贵的数据操作时这很有用。
