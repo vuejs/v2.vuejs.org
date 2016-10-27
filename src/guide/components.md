@@ -660,7 +660,7 @@ bus.$on('id-selected', function (id) {
 
 2. `<app>` 组件很可能有它自己的模版。
 
-为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个处理称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API ，参照了当前 [Web组件规范草稿](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
+为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个处理称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API ，参照了当前 [Web组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
 
 ### 编译作用域
 
@@ -994,7 +994,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
   <div>
     <p>These are compiled as the component's own template.</p>
     <p>Not parent's transclusion content.</p>
-  </div>  
+  </div>
 </my-component>
 ```
 
