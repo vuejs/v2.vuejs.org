@@ -8,7 +8,7 @@ order: 26
 
 ## Router Initialization
 
-### `router.start` <sup>deprecated</sup>
+### `router.start` <sup>replaced</sup>
 
 There is no longer a special API to initialize an app with Vue Router. That means instead of:
 
@@ -47,7 +47,7 @@ new Vue({
 
 ## Route Definitions
 
-### `router.map` <sup>deprecated</sup>
+### `router.map` <sup>replaced</sup>
 
 Routes are now defined as an array on a [`routes` option](http://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
 
@@ -82,7 +82,7 @@ The array syntax allows more predictable route matching, since iterating over an
 </div>
 {% endraw %}
 
-### `router.on` <sup>deprecated</sup>
+### `router.on` <sup>removed</sup>
 
 If you need to programmatically generate routes when starting up your app, you can do so by dynamically pushing definitions to a routes array. For example:
 
@@ -128,7 +128,7 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
-### `subRoutes` <sup>deprecated</sup>
+### `subRoutes` <sup>renamed</sup>
 
 [Renamed to `children`](http://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
 
@@ -139,7 +139,7 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
-### `router.redirect` <sup>deprecated</sup>
+### `router.redirect` <sup>replaced</sup>
 
 This is now an [option on route definitions](http://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
 
@@ -165,7 +165,7 @@ to a definition like below in your `routes` configuration:
 </div>
 {% endraw %}
 
-### `router.alias` <sup>deprecated</sup>
+### `router.alias` <sup>replaced</sup>
 
 This is now an [option on the definition for the route](http://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
 
@@ -198,7 +198,7 @@ alias: ['/manage', '/administer', '/administrate']
 </div>
 {% endraw %}
 
-### Arbitrary Route Properties
+### Arbitrary Route Properties <sup>replaced</sup>
 
 Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:
 
@@ -240,20 +240,20 @@ if (route.meta.requiresAuth) {
 
 Route matching now uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) under the hood, making it much more flexible than previously.
 
-### One or More Named Parameters
+### One or More Named Parameters <sup>changed</sup>
 
 The syntax has changed slightly, so `/category/*tags` for example, should be updated to `/category/:tags+`.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the deprecated route syntax.</p>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete route syntax.</p>
 </div>
 {% endraw %}
 
 ## Links
 
-### `v-link` <sup>deprecated</sup>
+### `v-link` <sup>replaced</sup>
 
 The `v-link` directive has been replaced with a new [`<router-link>` component](http://router.vuejs.org/en/api/router-link.html), as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:
 
@@ -276,9 +276,9 @@ Note that `target="_blank"` is not supported on `<router-link>`, so if you need 
 </div>
 {% endraw %}
 
-### `v-link-active` <sup>deprecated</sup>
+### `v-link-active` <sup>replaced</sup>
 
-The `v-link-active` directive has also been deprecated in favor of specifying a separate tag on [the `<router-link>` component](http://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
+The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](http://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
 
 ``` html
 <li v-link-active>
@@ -305,7 +305,7 @@ The `<a>` will be the actual link (and will get the correct href), but the activ
 
 ## Programmatic Navigation
 
-### `router.go`
+### `router.go` <sup>changed</sup>
 
 For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
 
@@ -318,7 +318,7 @@ For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US
 
 ## Router Options: Modes
 
-### `hashbang: false` <sup>deprecated</sup>
+### `hashbang: false` <sup>removed</sup>
 
 Hashbangs are no longer required for Google to crawl a URL, so they are no longer the default (or even an option) for the hash strategy.
 
@@ -329,7 +329,7 @@ Hashbangs are no longer required for Google to crawl a URL, so they are no longe
 </div>
 {% endraw %}
 
-### `history: true` <sup>deprecated</sup>
+### `history: true` <sup>replaced</sup>
 
 All routing mode options have been condensed into a single [`mode` option](http://router.vuejs.org/en/api/options.html#mode). Update:
 
@@ -354,7 +354,7 @@ var router = new VueRouter({
 </div>
 {% endraw %}
 
-### `abstract: true` <sup>deprecated</sup>
+### `abstract: true` <sup>replaced</sup>
 
 All routing mode options have been condensed into a single [`mode` option](http://router.vuejs.org/en/api/options.html#mode). Update:
 
@@ -381,7 +381,7 @@ var router = new VueRouter({
 
 ## Route Options: Misc
 
-### `saveScrollPosition` <sup>deprecated</sup>
+### `saveScrollPosition` <sup>replaced</sup>
 
 This has been replaced with a [`scrollBehavior` option](http://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:
 
@@ -404,7 +404,7 @@ scrollBehavior: function (to, from, savedPosition) {
 </div>
 {% endraw %}
 
-### `root` <sup>deprecated</sup>
+### `root` <sup>renamed</sup>
 
 Renamed to `base` for consistency with [the HTML `<base>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).
 
@@ -415,7 +415,7 @@ Renamed to `base` for consistency with [the HTML `<base>` element](https://devel
 </div>
 {% endraw %}
 
-### `transitionOnLoad` <sup>deprecated</sup>
+### `transitionOnLoad` <sup>removed</sup>
 
 This option is no longer necessary now that Vue's transition system has explicit [`appear` transition control](transitions.html#Transitions-on-Initial-Render).
 
@@ -426,7 +426,7 @@ This option is no longer necessary now that Vue's transition system has explicit
 </div>
 {% endraw %}
 
-### `suppressTransitionError` <sup>deprecated</sup>
+### `suppressTransitionError` <sup>removed</sup>
 
 Removed due to hooks simplification. If you really must suppress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
 
@@ -439,7 +439,7 @@ Removed due to hooks simplification. If you really must suppress transition erro
 
 ## Route Hooks
 
-### `activate` <sup>deprecated</sup>
+### `activate` <sup>replaced</sup>
 
 Use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
 
@@ -450,7 +450,7 @@ Use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.h
 </div>
 {% endraw %}
 
-### `canActivate` <sup>deprecated</sup>
+### `canActivate` <sup>replaced</sup>
 
 Use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) in the route instead.
 
@@ -461,7 +461,7 @@ Use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#p
 </div>
 {% endraw %}
 
-### `deactivate` <sup>deprecated</sup>
+### `deactivate` <sup>removed</sup>
 
 Use the component's [`beforeDestroy`](/api/#beforeDestroy) or [`destroyed`](/api/#destroyed) hooks instead.
 
@@ -472,7 +472,7 @@ Use the component's [`beforeDestroy`](/api/#beforeDestroy) or [`destroyed`](/api
 </div>
 {% endraw %}
 
-### `canDeactivate` <sup>deprecated</sup>
+### `canDeactivate` <sup>replaced</sup>
 
 Use [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
 
@@ -483,7 +483,7 @@ Use [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.h
 </div>
 {% endraw %}
 
-### `canReuse: false` <sup>deprecated</sup>
+### `canReuse: false` <sup>removed</sup>
 
 There's no longer a use case for this in the new Vue Router.
 
@@ -494,9 +494,9 @@ There's no longer a use case for this in the new Vue Router.
 </div>
 {% endraw %}
 
-### `data` <sup>deprecated</sup>
+### `data` <sup>replaced</sup>
 
-The `$route` property is reactive, so you can just use a watcher to react to route changes, like this:
+The `$route` property is now reactive, so you can just use a watcher to react to route changes, like this:
 
 ``` js
 watch: {
@@ -516,7 +516,7 @@ methods: {
 </div>
 {% endraw %}
 
-### `$loadingRouteData` <sup>deprecated</sup>
+### `$loadingRouteData` <sup>removed</sup>
 
 Define your own property (e.g. `isLoading`), then update the loading state in a watcher on the route. For example, if fetching data with [axios](https://github.com/mzabriskie/axios):
 
