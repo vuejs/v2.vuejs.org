@@ -70,7 +70,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Transitioning State (@diegoleme)
 - [x] Render Functions (@jbruni)
 - [x] Reactivity in Depth (@gidenilson)
-- [ ] Custom Directives (@gidenilson)
+- [x] Custom Directives (@gidenilson)
 - [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
 - [x] Single File Components (@ErickPetru)
