@@ -17,7 +17,7 @@ __Vuex 2.0__ is a radical redesign and simplification of the API, for those who 
 
 __Vuex 1.0__ is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who just want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see [the Vuex 1.0 docs](https://github.com/vuejs/vuex/tree/1.0/docs/en).
 
-## `store.watch` with String Property Path <sup>deprecated</sup>
+## `store.watch` with String Property Path <sup>replaced</sup>
 
 `store.watch` now only accept functions. So for example, you would have to replace:
 
@@ -47,9 +47,9 @@ This gives you more complete control over the reactive properties you'd like to 
 </div>
 {% endraw %}
 
-## Store's Event Emitter <sup>deprecated</sup>
+## Store's Event Emitter <sup>removed</sup>
 
-The store instance no longer exposes the event emitter interface (`on`, `off`, `emit`). If you were previously using the store as a global event bus, [see this section](http://vuejs.org/guide/migration.html#dispatch-and-broadcast-deprecated) for migration instructions.
+The store instance no longer exposes the event emitter interface (`on`, `off`, `emit`). If you were previously using the store as a global event bus, [see this section](http://vuejs.org/guide/migration.html#dispatch-and-broadcast-removed) for migration instructions.
 
 Instead of using this interface to watch events emitted by the store itself (e.g. `store.on('mutation', callback)`), a new method `store.subscribe` is introduced. Typical usage inside a plugin would be:
 
@@ -71,7 +71,7 @@ See example [the plugins docs](https://github.com/vuejs/vuex/blob/1.0/docs/en/pl
 </div>
 {% endraw %}
 
-## Middlewares <sup>deprecated</sup>
+## Middlewares <sup>replaced</sup>
 
 Middlewares are replaced by plugins. A plugin is simply a function that receives the store as the only argument, and can listen to the mutation event on the store:
 

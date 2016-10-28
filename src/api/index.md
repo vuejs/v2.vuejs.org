@@ -79,6 +79,22 @@ type: api
 
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
 
+### ignoredElements
+
+- **Type:** `Array<string>`
+
+- **Default:** `[]`
+
+- **Usage:**
+
+  ``` js
+  Vue.config.ignoredElements = [
+    'my-custom-web-component', 'another-web-component'
+  ]
+  ```
+
+  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+
 ### keyCodes
 
 - **Type:** `{ [key: string]: number }`
@@ -249,7 +265,7 @@ type: api
 
 - **Usage:**
 
-  Register or retrieve a global component.
+  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
 
   ``` js
   // register an extended constructor
@@ -813,7 +829,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Type:** `Array<string>`
 
-- **default:** `["{{", "}}"]`
+- **default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
 - **Details:**
 
@@ -1508,7 +1524,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Does not expect expression**
 
-- **Usage**
+- **Usage:**
 
   Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
 
