@@ -88,7 +88,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Global Config
 - [ ] Global API
 - [ ] Options / Data
-- [ ] Options / DOM
+- [x] Options / DOM (@guilherme-dev)
 - [ ] Options / Lifecycle Hooks
 - [ ] Options / Misc
 - [ ] Instance Properties
