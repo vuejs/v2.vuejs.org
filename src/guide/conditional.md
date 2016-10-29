@@ -28,7 +28,7 @@ order: 7
 <h1 v-else>No</h1>
 ```
 
-## template v-if
+### template v-if
 
 因为 `v-if` 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 `<template>` 元素当做包装元素，并在上面使用 `v-if`，最终的渲染结果不会包含它。
 
@@ -40,20 +40,7 @@ order: 7
 </template>
 ```
 
-## v-show
-
-另一个根据条件展示元素的选项是 `v-show` 指令。用法大体上一样：
-
-``` html
-<h1 v-show="ok">Hello!</h1>
-```
-
-不同的是有 `v-show` 的元素会始终渲染并保持在 DOM 中。`v-show` 是简单的切换元素的 CSS 属性 `display` 。
-
-<p class="tip">注意 `v-show` 不支持 `<template>` 语法。</p>
-
-
-## v-else
+### v-else
 
 可以用 `v-else` 指令给 `v-if` 或 `v-show` 添加一个 "else" 块：
 
@@ -68,27 +55,22 @@ order: 7
 
 `v-else` 元素必须紧跟在 `v-if` 或 `v-show` 元素的后面——否则它不能被识别。
 
-### 组件警告
+### v-show
 
-将 `v-show` 用在组件上时，因为指令的优先级 `v-else` 会出现问题。因此不要这样做：
+另一个根据条件展示元素的选项是 `v-show` 指令。用法大体上一样：
 
-```html
-<custom-component v-show="condition"></custom-component>
-<p v-else>这可能也是一个组件</p>
+``` html
+<h1 v-show="ok">Hello!</h1>
 ```
 
-用另一个 `v-show` 替换 `v-else`：
+不同的是有 `v-show` 的元素会始终渲染并保持在 DOM 中。`v-show` 是简单的切换元素的 CSS 属性 `display` 。
 
-```html
-<custom-component v-show="condition"></custom-component>
-<p v-show="!condition">这可能也是一个组件</p>
-```
+<p class="tip">注意 `v-show` 不支持 `<template>` 语法。</p>
 
-这样就可以达到 `v-if` 的效果。
 
 ## v-if vs. v-show
 
-在切换 `v-if` 块时， Vue.js 有一个局部编译/卸载的过程，因为 `v-if` 之中的模板也可能包括数据绑定或子组件。 `v-if` 是真实的条件渲染，因为它会确保条件块在切换当中适当地销毁与重建条件块内的事件监听器和子组件。
+`v-if` 是真实的条件渲染，因为它会确保条件块在切换当中适当地销毁与重建条件块内的事件监听器和子组件。
 
 `v-if` 也是**惰性的**：如果在初始渲染时条件为假，则什么也不做——在条件第一次变为真时才开始局部编译（编译会被缓存起来）。
 
