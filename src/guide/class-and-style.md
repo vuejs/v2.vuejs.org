@@ -4,7 +4,7 @@ type: guide
 order: 6
 ---
 
-数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是 attribute ，我们可以用` v-bind` 处理它们：只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在 `v-bind ` 用于 ` class ` 和 `style ` 时， Vue.js 专门增强了它。表达式的结果类型除了字符串之外，还可以是对象或数组。
+数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是属性 ，我们可以用` v-bind` 处理它们：只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在 `v-bind ` 用于 ` class ` 和 `style ` 时， Vue.js 专门增强了它。表达式的结果类型除了字符串之外，还可以是对象或数组。
 
 ## 绑定 HTML Class
 
@@ -15,11 +15,9 @@ order: 6
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
 ```
-上面的语法表示 class`active` 的更新将取决于数据属性 `isActive` 是否为 [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 。
+上面的语法表示 class`active` 的更新将取决于数据属性 `isActive` 是否为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 。
 
-我们可以传给 v-bind:class 一个对象，以动态地切换 class 。注意 v-bind:class 指令可以与普通的 class 特性共存
-
-我们也可以在对象中传入多个属性用来动态切换多个 class 。注意 `v-bind:class` 指令可以与普通的 class 特性共存。如下模板:
+我们也可以在对象中传入更多属性用来动态切换多个 class 。此外， `v-bind:class` 指令可以与普通的 class 属性共存。如下模板:
 
 ``` html
 <div class="static"
@@ -42,7 +40,7 @@ data: {
 <div class="static active"></div>
 ```
 
-当 `isActive` 或者 `hasError` 变化时，class列表将相应地更新。例如，如果 `hasError` 的值为 `true` ， class列表将变为 `"static active text-danger"`。
+当 `isActive` 或者 `hasError` 变化时，class 列表将相应地更新。例如，如果 `hasError` 的值为 `true` ， class列表将变为 `"static active text-danger"`。
 
 你也可以直接绑定数据里的一个对象：
 
@@ -57,7 +55,7 @@ data: {
   }
 }
 ```
-渲染的结果和上面一样。我们也可以在这里绑定一个返回对象的[计算属性](computed.html)。这是一个常用且强大的模式：
+渲染的结果和上面一样。我们也可以在这里绑定返回对象的[计算属性](computed.html)。这是一个常用且强大的模式：
 
 
 ``` html
