@@ -33,7 +33,7 @@ vm.b = 2
 // `vm.b` 是非响应的
 ```
 
-Vue 不允许动态地将新的顶级响应属性添加到已经创建的实例上。然而它可能使用 `Vue.set(object, key, value)` 方法将响应属性添加到嵌套的对象上：
+Vue 不允许在已经创建的实例上动态添加新的根级响应式属性（root-level reactive properties）。然而它可以使用 `Vue.set(object, key, value)` 方法将响应属性添加到嵌套的对象上：
 
 ``` js
 Vue.set(vm.someObject, 'b', 2)
