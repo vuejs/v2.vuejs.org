@@ -89,7 +89,7 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Global API
 - [ ] Options / Data
 - [x] Options / DOM (@guilherme-dev)
-- [ ] Options / Lifecycle Hooks
+- [x] Options / Lifecycle Hooks (@guilherme-dev)
 - [ ] Options / Misc
 - [ ] Instance Properties
 - [ ] Instance Methods / Data
