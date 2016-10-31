@@ -15,9 +15,7 @@
 <p style="text-align: center; padding-top: 30px; margin-bottom: 0"><a href="http://www.thedifferenceengine.io/"><img src="/images/tde.png" style="width: 300px"></a></p>
 
 <p style="text-align: center; margin-top: 0; margin-bottom: 60px" class="sponsors-page">
-  <a href="https://itunescn.com">
-    <img src="/images/itunescn.png">
-  </a><a href="https://jsfiddle.net">
+  <a href="https://jsfiddle.net">
     <img src="/images/jsfiddle.png">
   </a><a href="https://laravel.com">
     <img src="/images/laravel.png">
@@ -35,6 +33,10 @@
     <img src="/images/trisoft.png">
   </a><a href="http://actualize.co" target="_blank" style="width:180px">
     <img src="/images/actualize.png" style="width:180px">
+  </a><a href="https://www.2mhost.com/" target="_blank">
+    <img src="/images/2mhost.png">
+  </a><a href="https://vuejobs.com/?ref_source=vue" target="_blank" style="position:relative;top:6px">
+    <img src="/images/vuejobs.png">
   </a>
 </p>
 
