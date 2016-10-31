@@ -35,7 +35,7 @@
     <img src="/images/actualize.png" style="width:180px">
   </a><a href="https://www.2mhost.com/" target="_blank">
     <img src="/images/2mhost.png">
-  </a><a href="https://vuejobs.com/?ref_source=vue" target="_blank" style="position:relative;top:6px">
+  </a><a href="https://vuejsjob.com/?ref=vuejs" target="_blank" style="position:relative;top:6px">
     <img src="/images/vuejobs.png">
   </a>
 </p>
