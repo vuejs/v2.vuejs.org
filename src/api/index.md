@@ -524,182 +524,184 @@ type: api
 
 - **See also:** [Instance Methods - vm.$watch](#vm-watch)
 
-## Options / DOM
+## Opções / DOM
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Tipo:** `string | HTMLElement`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restrição:** respeitado apenas em criação de instância via `new`.
 
-- **Details:**
+- **Detalhes:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  Fornece um elemento existente do DOM para a instância Vue montar. Pode ser um seletor CSS ou um próprio HTMLElement.
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  Após a instância ser montada, o elemento gerado poderá ser acessado utilizando `vm.$el`.
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  Se essa opção estiver disponível na instanciação, a instância irá compilar imediatamente; caso contrário, o usuário terá que chamar explicitamente `vm.$mount()` para iniciar manualmente a compilação.
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip">O elemento fornecido serve meramente como um ponto de montagem. Diferentemente do Vue 1.x, o elemento montado será substituído pelo Vue-generated DOM em todos os casos. Portanto, não é recomendado montar a instância raiz em `<html>` ou `<body>`.</p> 
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ### template
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Details:**
+- **Detalhes:**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Um string template para ser usado como marcação para a instância Vue. O template irá **substituir** o elemento montado. Qualquer marcação existente dentro do elemento montado será ignorada, a menos que slots de destribuição de conteúdo estejam presentes no template.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Se a string começa com `#` ela será usada como um querySelector e usará o innerHTML do elemento selecionado como template string. Isto permite o uso do comum `<script type="x-template">` truque para incluir templates.
+  
+  <p class="tip">De uma perspective de segurança, você devia usar apenas Vue templates que você pode confiar. Nunca use conteúdo gerado pelo usuário como seu template.</p>
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
-
-- **See also:**
-  - [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution](/guide/components.html#Content-Distribution-with-Slots)
+- **Ver também:**
+  - [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
+  - [Distribuição de Conteúdo](/guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
-  - **Type:** `Function`
+  - **Tipo:** `Function`
 
-  - **Details:**
+  - **Detalhes:**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    Uma alternativa aos string templates que lhe permite aproveitar o completo poder pragmático do JavaScript. A função render recebe um método `createElement` como seu primeiro argumento usado para criar `VNode`s.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    Se o componente é um componente funcional, a função render também recebe um argumento extra `context`, que fornece acesso à dado contextual uma vez que componentes funcionais são instance-less.
 
-  - **See also:**
-    - [Render Functions](/guide/render-function)
+  - **Ver também:**
+    - [Funções render](/guide/render-function)
 
-## Options / Lifecycle Hooks
+## Opções / Lifecycle Hooks
 
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.
+Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculados à instância, assim você pode acessar dados, propriedades computadas e métodos. Isso significa que __você não deve usar uma arrow function para definir um método lifecycle__ (e.g. `created: () => this.fetchTodos()`). Isto porque arrow functions vinculam o contexto pai, assim `this` não será a instância Vue como você espera e `this.fetchTodos` será `undefined`.
 
 ### beforeCreate
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+  Invocado sincronicamente logo após a instância ser inicializada, antes da observação de dados e configuração event/watcher.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Invocado sincronicamente após a instância ser criada. Neste ponto, a instância finalizou o processamento das opções, o que significa que  foi configurado:  observação de dados, propriedades computadas, metodos, watch/event callbacks. Entretanto, a fase de montagem não foi iniciada, e a propriedade `$el` não estará disponível ainda.
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Invocado logo antes da montagem começar: a função `render` está prestes a ser invocada pela primeira vez.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook não é invocado durante a renderização server-side.**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Invocado logo após a instância ter sido montada onde `el` é substituído pelo recente criado `vm.$el`. Se a instância raiz é montada em um elemento in-document, `vm.$el` também será in-document quando `mounted` é invocada.
+ 
+  **Este hook não é invocado durante a renderização server-side.**
 
-  **This hook is not called during server-side rendering.**
-
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  Invocado quando os dados mudam, antes do virtual DOM ser re-renderizado e atualizado.
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
+  Você pode realizar mais mudanças de estado neste hook e elas não irão disparar re-renders adicionais.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook não é invocado durante a renderização server-side.**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Invocado após a mudança de dados fazer o virtual DOM ser re-renderizado e atualizado.
 
-  The component's DOM will be in updated state when this hook is called, so you can perform DOM-dependent operations in this hook. However, in most cases you should avoid changing state in this hook, because it may lead to an infinite update loop.
+  O DOM do componente estará no estado `updated` quando este hook for invocado, assim você pode realizar operações DOM-dependent neste hook.
+  Entretanto, na maioria dos casos você deveria evitar mudar o estado deste hook, pois isso pode ocasionar um update loop infinito.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook não é invocado durante a renderização server-side.**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called when a kept-alive component is activated.
+  Invocado quando um componente kept-alive é ativado.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook não é invocado durante a renderização server-side.**
 
-- **See also:**
+- **Ver também:**
   - [Built-in Components - keep-alive](#keep-alive)
   - [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
 
 ### deactivated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called when a kept-alive component is deactivated.
+  Invocado quando um componente kept-alive é desativado.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook não é invocado durante a renderização server-side.**
 
-- **See also:**
+- **Ver também:**
   - [Built-in Components - keep-alive](#keep-alive)
   - [Dynamic Components - keep-alive](/guide/components.html#keep-alive)
 
 ### beforeDestroy
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  Invocado logo antes da instância Vue ser destruída. Neste ponto a instância ainda é completamente funcional.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook não é invocado durante a renderização server-side.**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalhes:**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Invocado após a instância Vue ter sido destruída. Quando este hook é invocado, todas as diretivas da instância Vue já foram desvinculadas, todos os event listeners foram removidos, e todas as instâncias Vue filhas também foram destruídas.
 
-  **This hook is not called during server-side rendering.**
 
-- **See also:** [Lifecycle Diagram](/guide/instance.html#Lifecycle-Diagram)
+  **Este hook não é invocado durante a renderização server-side.**
+
+- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 
 ## Options / Assets
 
@@ -1336,8 +1338,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   ``` html
   <div v-for="(item, index) in items"></div>
-  <div v-for="(key, val) in object"></div>
-  <div v-for="(key, val, index) in object"></div>
+  <div v-for="(val, key) in object"></div>
+  <div v-for="(val, key, index) in object"></div>
   ```
 
   The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:

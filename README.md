@@ -65,16 +65,16 @@ Estas palavras podem ser mantidas no inglês
 - [x] List Rendering (@ErickPetru)
 - [x] Event Handling (@gidenilson)
 - [x] Form Input Bindings(@gidenilson)
-- [ ] Components (@danielschmitz)
+- [ ] Components (@NicholasPedroso)
 - [x] Transitions: Entering, Leaving, and Lists (@jbruni, @NicholasPedroso)
 - [ ] Transitioning State (@diegoleme)
 - [x] Render Functions (@jbruni)
 - [x] Reactivity in Depth (@gidenilson)
-- [ ] Custom Directives (@gidenilson)
+- [x] Custom Directives (@gidenilson)
 - [x] Mixins (@jbruni)
 - [x] Plugins (@jbruni)
 - [x] Single File Components (@ErickPetru)
-- [ ] Routing (@natanaelphp)
+- [X] Routing (@natanaelphp)
 - [x] State Management (@ErickPetru)
 - [x] Unit Testing (@capaci)
 - [x] Server-Side Rendering (@ErickPetru)
@@ -88,8 +88,8 @@ Estas palavras podem ser mantidas no inglês
 - [ ] Global Config
 - [ ] Global API
 - [ ] Options / Data
-- [ ] Options / DOM
-- [ ] Options / Lifecycle Hooks
+- [x] Options / DOM (@guilherme-dev)
+- [x] Options / Lifecycle Hooks (@guilherme-dev)
 - [ ] Options / Misc
 - [ ] Instance Properties
 - [ ] Instance Methods / Data
