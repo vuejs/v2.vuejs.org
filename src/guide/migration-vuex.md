@@ -19,7 +19,7 @@ __Vuex 1.0__ é majoritariamente retro-compatível, exigindo poucas mudanças pa
 
 <p class="tip">A lista de depreciações abaixo deve estar relativamente completa, mas a ferramenta auxiliar de migração ainda está sendo atualizada para abordá-las.</p>
 
-## `store.watch` com Propriedade String <sup>deprecated</sup>
+## `store.watch` com Propriedade String <sup>obsoleto</sup>
 
 `store.watch` agora aceita apenas funções. Por exemplo, você teria que substituir:
 
@@ -49,9 +49,9 @@ Isto oferece controle mais completo sobre propriedades reativas que você quer d
 </div>
 {% endraw %}
 
-## Emição de Eventos no Store <sup>deprecated</sup>
+## Emição de Eventos no Store <sup>obsoleto</sup>
 
-A instância do *store* não expõe mais a interface de emição de eventos (`on`, `off`, `emit`). Se você esteve usando o *store* como um *global event bus*, [veja esta seção](http://vuejs.org/guide/migration.html#dispatch-and-broadcast-deprecated) para instruções de migração.
+A instância do *store* não expõe mais a interface de emição de eventos (`on`, `off`, `emit`). Se você esteve usando o *store* como um *global event bus*, [veja esta seção](http://vuejs.org/guide/migration.html#dispatch-and-broadcast-obsoleto) para instruções de migração.
 
 Ao invés de usar esta interface para observar eventos emitidos pelo próprio *store* (por exemplo, `store.on('mutation', callback)`), um novo método `store.subscribe` foi introduzido. O cenário de uso típico dentro de um plugin seria:
 
@@ -72,7 +72,7 @@ Veja o exemplo na [documentação de plugins](https://github.com/vuejs/vuex/blob
 </div>
 {% endraw %}
 
-## Middlewares <sup>deprecated</sup>
+## Middlewares <sup>obsoleto</sup>
 
 Middlewares foram substituídos por plugins. Um plugin é simplesmente uma função que recebe o *store* como seu único argumento, podendo então se subscrever ao evento de mutação ocorrida nele:
 
