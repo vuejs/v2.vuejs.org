@@ -111,6 +111,62 @@ However, this can be a bit verbose if you have multiple conditional classes. Tha
 <div v-bind:class="[{ active: isActive }, errorClass]">
 ```
 
+### Components and class
+
+> This section assumes knowledge of [Components](/guide/components.html). Feel free to skip it and come back later.
+
+You can directly use `v-bind:class` or `class` on a custom component, like any normal element. All the class passed down will be merged to the root element together.
+
+
+``` html
+<my-component v-bind:class="{ active: isActive }"></my-component>
+```
+
+``` js
+Vue.component('my-component', {
+  data: function () {
+    return { isFocus: true }  
+  },
+  template: '<div v-bind:class="{ focus: isFocus }"></div>'
+});
+
+new Vue({
+  data: { isActive: true },
+  template: '<my-component v-bind:class="{ active: isActive }"></my-component>'
+});
+
+```
+
+The class value will automatically merged to the `my-component` component's root element.
+
+It will render:
+
+
+``` html
+<div class="focus active"></div>
+```
+
+Here is an example using dynamic component with class.
+
+```js
+const vm = new Vue({
+  el: '#app',
+  data: {
+    view: 'test'
+  },
+  template: `<component :is="view" class="animal"></component>`,
+  components: {
+    'bird': {
+      template: '<div class="bird"></div>'
+    },
+    'cat': {
+      template: '<div class="cat"></div>'
+    }
+  }
+});
+```
+
+
 ## Binding Inline Styles
 
 ### Object Syntax
