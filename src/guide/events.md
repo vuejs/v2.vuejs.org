@@ -8,7 +8,7 @@ order: 9
 
 可以用 `v-on` 指令监听 DOM 事件来触发一些 JavaScript 代码。
 
-示例:
+示例：
 
 ``` html
 <div id="example-1">
@@ -25,7 +25,7 @@ var example1 = new Vue({
 })
 ```
 
-结果:
+结果：
 
 {% raw %}
 <div id="example-1" class="demo">
@@ -46,7 +46,7 @@ var example1 = new Vue({
 
 许多事件处理的逻辑都很复杂，所以直接把 JavaScript 代码写在 `v-on` 指令中是不可行的。因此 `v-on` 可以接收一个定义的方法来调用。
 
-示例:
+示例：
 
 ``` html
 <div id="example-2">
@@ -76,7 +76,7 @@ var example2 = new Vue({
 example2.greet() // -> 'Hello Vue.js!'
 ```
 
-结果:
+结果：
 
 {% raw %}
 <div id="example-2" class="demo">
@@ -119,7 +119,7 @@ new Vue({
 })
 ```
 
-结果:
+结果：
 
 {% raw %}
 <div id="example-3" class="demo">
@@ -158,9 +158,9 @@ methods: {
 
 ## 事件修饰符
 
-在事件处理器中经常需要调用 `event.preventDefault()` 或 `event.stopPropagation()` 。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。
+在事件处理程序中调用 `event.preventDefault()` 或 `event.stopPropagation()` 是非常常见的需求。尽管我们可以在 methods 中轻松实现这点，但更好的方式是：methods 只有纯粹的数据逻辑，而不是去处理 DOM 事件细节。
 
-为了解决这个问题， Vue.js 为 `v-on` 提供了 **事件修饰符**。通过点号打头的指令后缀来调用修饰符。
+为了解决这个问题， Vue.js 为 `v-on` 提供了 **事件修饰符**。通过由点(.)表示的指令后缀来调用修饰符。
 
 - `.stop`
 - `.prevent`
@@ -180,7 +180,7 @@ methods: {
 <!-- 只有修饰符 -->
 <form v-on:submit.prevent></form>
 
-<!-- 添加事件侦听器时使用 capture 模式 -->
+<!-- 添加事件侦听器时使用时间捕获模式 -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->

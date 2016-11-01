@@ -6,7 +6,7 @@ order: 2
 
 ## Vue.js 是什么
 
-Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **渐进式框架**。与其他重量级不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。
+Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **渐进式框架**。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。
 
 Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
 
@@ -14,7 +14,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**�
 
 ## 起步
 
-尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](//jsfiddle.net/chrisvfritz/4tpzm3e1/)。请在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
+尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。请在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
 
 ## 声明式渲染
 
@@ -29,7 +29,7 @@ Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将�
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hello Vue!'
   }
 })
 ```
@@ -253,6 +253,7 @@ var app6 = new Vue({
 在 Vue 里，一个组件实质上是一个拥有预定义选项的一个 Vue 实例：
 
 ``` js
+// Define a new component called todo-item
 Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
@@ -272,7 +273,10 @@ Vue.component('todo-item', {
 但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](/guide/components.html#Props) 字段：
 
 ``` js
-Vue.component('todo', {
+Vue.component('todo-item', {
+  // The todo-item component now accepts a
+  // "prop", which is like a custom attribute.
+  // This prop is called todo.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
@@ -283,7 +287,11 @@ Vue.component('todo', {
 ``` html
 <div id="app-7">
   <ol>
-    <todo v-for="todo in todos" v-bind:todo="todo"></todo>
+    <!--
+    Now we provide each todo-item with the todo object
+    it's representing, so that its content can be dynamic
+    -->
+    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
   </ol>
 </div>
 ```
@@ -296,7 +304,11 @@ Vue.component('todo-item', {
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    todos: [/* ... */]
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
   }
 })
 ```

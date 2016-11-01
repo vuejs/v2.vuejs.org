@@ -12,7 +12,7 @@ order: 25
 
 > 怎么开始做项目迁移？
 
-1. 就从运行 [migration helper](https://github.com/vuejs/vue-migration-helper) 这个工具开始吧。我们非常谨慎地把一个高级 Vue 开发工具简化并重新编译成了一个命令行工具。当这个工具发现了一个弃用的用法之后，就会给出通知和建议，并附上关于详细信息的链接。
+1. 从运行 [migration helper](https://github.com/vuejs/vue-migration-helper) 这个工具开始。我们非常谨慎地把一个高级 Vue 开发工具简化并重新编译成了一个命令行工具。当这个工具发现了一个弃用的用法之后，就会给出通知和建议，并附上关于详细信息的链接。
 
 2. 然后，看看侧边栏给出的关于这一页的内容。如果你发现有的地方有影响，而该工具没有给出提示的，请检查并解决一下该项。
 
@@ -38,7 +38,7 @@ order: 25
 
 ## 模板
 
-### 片段实例 <sup>弃用</sup>
+### 片段实例 <sup>移除</sup>
 
 每个组件有且仅有一个根节点。不再支持片段实例，如果你有这样的模板：
 
@@ -65,7 +65,7 @@ order: 25
 
 ## 生命周期钩子
 
-### `beforeCompile` <sup>弃用</sup>
+### `beforeCompile` <sup>移除</sup>
 
 用 `created` 钩子来代替。
 
@@ -76,7 +76,7 @@ order: 25
 </div>
 {% endraw %}
 
-### `compiled` <sup>弃用</sup>
+### `compiled` <sup>替换</sup>
 
 用 `mounted` 钩子来代替。
 
@@ -87,7 +87,7 @@ order: 25
 </div>
 {% endraw %}
 
-### `attached` <sup>弃用</sup>
+### `attached` <sup>移除</sup>
 
 依赖其它钩子使用自定义的 dom 内部方法，例如：
 
@@ -114,7 +114,7 @@ mounted: function () {
 </div>
 {% endraw %}
 
-### `detached` <sup>弃用</sup>
+### `detached` <sup>移除</sup>
 
 用自定义的 dom 内部的其他钩子代替，例如：
 
@@ -141,7 +141,7 @@ destroyed: function () {
 </div>
 {% endraw %}
 
-### `init` <sup>弃用</sup>
+### `init` <sup>换名</sup>
 
 用新的 `beforeCreate` 钩子代替，他们本质上是一样的。为了与其他生命周期的钩子命名保持一致性，所以重新命名了这个钩子。
 
@@ -152,7 +152,7 @@ destroyed: function () {
 </div>
 {% endraw %}
 
-### `ready` <sup>弃用</sup>
+### `ready` <sup>替换</sup>
 
 使用新的 `mounted` 钩子代替，应该注意的是，通过使用 `mounted` 钩子，并不能保证该实例已经插入文档。所以还应该在钩子函数中包含 `Vue.nextTick`/`vm.$nextTick` 例如：
 
@@ -173,7 +173,7 @@ mounted: function () {
 
 ## `v-for`
 
-### `v-for` 数组参数的顺序
+### `v-for` 数组参数的顺序 <sup>改变</sup>
 
 当含有 `index` 时，以前传递的参数顺序是：`(index, value)`。现在变成了：`(value, index)` ，这样可以与js的新数组方法：`forEach`，`map` 保持一致。
 
@@ -184,18 +184,18 @@ mounted: function () {
 </div>
 {% endraw %}
 
-### `v-for` 对象参数的顺序
+### `v-for` 对象参数的顺序 <sup>改变</sup>
 
 当包含 `key` 时，对象的参数顺序是 `(key, value)`。现在改为了 `(value, key)`，这样可以和通用的对象迭代器（比如 lodash 的迭代器）保持一致。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
+  <h4>升级方式</h4>
   <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 来找到使用弃用参数顺序的实例。注意，该工具将不会标记以 <code>name</code> 或者 <code>property</code> 来命名 key 参数。</p>
 </div>
 {% endraw %}
 
-### `$index` and `$key` <sup>弃用</sup>
+### `$index` and `$key` <sup>移除</sup>
 
 隐式申明的 `$index` 的 `$key` 两个变量在新版里面已经弃用了，取代的是在 `v-for` 中显式地申明。这可以使无经验的 Vue 开发者更好地理解代码，同样也可以使得在处理嵌套循环时更加清晰。
 {% raw %}
@@ -205,7 +205,7 @@ mounted: function () {
 </div>
 {% endraw %}
 
-### `track-by` <sup>弃用</sup>
+### `track-by` <sup>替换</sup>
 
 `track-by` 被 `key`取代，和其他参数一样，如果没有 `v-bind`或者`:` 前缀，它将被作为一个字符串。大多数情况下， 我们想要能够动态绑定完整的表达式，而不是一个 key。例如：
 
@@ -226,7 +226,7 @@ mounted: function () {
 </div>
 {% endraw %}
 
-### `v-for` 排序值
+### `v-for` 排序值 <sup>改变</sup>
 
 显然 `v-for="number in 10"` 将使得 `number` 从0到9迭代，现在变成了从1到10。
 
@@ -239,7 +239,7 @@ mounted: function () {
 
 ## Props
 
-### `coerce` Prop的参数 <sup>弃用</sup>
+### `coerce` Prop的参数 <sup>移除</sup>
 
 如果需要检查 prop 的值，创建一个内部的 computed 值，而不再在 props 内部去定义，例如：
 
@@ -283,7 +283,7 @@ computed: {
 </div>
 {% endraw %}
 
-### `twoWay` Prop 的参数 <sup>弃用</sup>
+### `twoWay` Prop 的参数 <sup>移除</sup>
 
 Props 现在只能单项传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
@@ -298,7 +298,7 @@ Props 现在只能单项传递。为了对父组件产生反向影响，子组�
 </div>
 {% endraw %}
 
-### `v-bind` 的 `.once`和`.sync` 修饰符 <sup>弃用</sup>
+### `v-bind` 的 `.once`和`.sync` 修饰符 <sup>移除</sup>
 
 Props 现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
@@ -329,7 +329,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 </div>
 {% endraw %}
 
-### 根实例的 Props <sup>弃用</sup>
+### 根实例的 Props <sup>替换</sup>
 
 对于一个根实例来说 (比如：用 `new Vue({ ... })` 创建的实例)，只能用 `propsData` 而不是 `props` 。
 
@@ -342,7 +342,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 
 ## Built-In 指令
 
-### `v-bind` 真/假值
+### `v-bind` 真/假值 <sup>改变</sup>
 
 在2.0中使用 `v-bind` 时，只有 `null`, `undefined` , 和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
 
@@ -357,7 +357,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 </div>
 {% endraw %}
 
-### 用 `v-on` 监听原生事件
+### 用 `v-on` 监听原生事件 <sup>改变</sup>
 
   现在在组件上使用 `v-on` 只会监听自定义事件（组件用 `$emit` 触发的事件）。如果要监听根元素的原生事件，可以使用 `.native` 修饰符，比如：
 
@@ -372,7 +372,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 </div>
 {% endraw %}
 
-### 带有 `debounce` 的 `v-model`<sup>弃用</sup>
+### 带有 `debounce` 的 `v-model`<sup>移除</sup>
 
 Debouncing 曾经被用来控制 Ajax 请求及其它高耗任务的频率。 Vue 中`v-model`的 `debounce` 属性参数使得在一些简单情况下非常容易实现这种控制。但实际上，这是控制了 __状态更新__ 的频率，而不是控制高耗时任务本身。这是个微小的差别，但是会随着应用增长而显现出局限性。
 
@@ -484,7 +484,7 @@ new Vue({
 </div>
 {% endraw %}
 
-### 使用 `lazy` 或者 `number` 参数的 `v-model` 。 <sup>弃用</sup>
+### 使用 `lazy` 或者 `number` 参数的 `v-model` 。 <sup>替换</sup>
 
 `lazy` 和 `number` 参数现在以修饰符的形式使用，这样看起来更加清晰，而不是这样：
 
@@ -507,7 +507,7 @@ new Vue({
 </div>
 {% endraw %}
 
-### 使用内联 `value`的`v-model`  <sup>弃用</sup>
+### 使用内联 `value`的`v-model`  <sup>移除</sup>
 
 `v-model` 不再以内联 `value` 方式初始化的初值了，显然他将以实例的 data 相应的属性作为真正的初值。
 
@@ -542,7 +542,7 @@ data: {
 </div>
 {% endraw %}
 
-### `v-model` with `v-for` Iterated Primitive Values <sup>弃用</sup>
+### `v-model` with `v-for` Iterated Primitive Values <sup>移除</sup>
 
 像这样的写法将失效：
 
@@ -573,7 +573,7 @@ strings.map(function (str) {
 </div>
 {% endraw %}
 
-### 带有 `!important` 的`v-bind:style`  <sup>弃用</sup>
+### 带有 `!important` 的`v-bind:style`  <sup>移除</sup>
 
 这样写将失效：
 
@@ -594,7 +594,7 @@ strings.map(function (str) {
 </div>
 {% endraw %}
 
-### `v-el` 和`v-ref` <sup>弃用</sup>
+### `v-el` 和`v-ref` <sup>替换</sup>
 
 简单起见， `v-el` 和 `v-ref` 合并为一个 `ref` 属性了，可以在组件实例中通过 `$refs` 来调用。这意味着 `v-el:my-element` 将写成这样： `ref="myElement"`， `v-ref:my-component` 变成了这样： `ref="myComponent"`。绑定在一般元素上时，`ref` 指DOM元素，绑定在组件上时，`ref` 为一组件实例。
 因为 `v-ref` 不再是一个指令了而是一个特殊的属性，它也可以被动态定义了。这样在和`v-for` 结合的时候是很有用的：
@@ -620,7 +620,7 @@ strings.map(function (str) {
 </div>
 {% endraw %}
 
-### `v-show`后面使用`v-else` <sup>弃用</sup>
+### `v-show`后面使用`v-else` <sup>移除</sup>
 
 `v-else` 不能再跟在 `v-show`后面使用。请在`v-if`的否定分支中使用`v-show`来代替。例如：
 
@@ -643,7 +643,7 @@ strings.map(function (str) {
 </div>
 {% endraw %}
 
-## 自定义指令
+## 自定义指令 <sup>简化</sup>
 
 在新版中，指令的使用范围已经大大减小了：现在指令仅仅被用于低级的 DOM 操作。大多数情况下，最好是把模板作为代码复用的抽象层。
 
@@ -662,7 +662,7 @@ strings.map(function (str) {
 </div>
 {% endraw %}
 
-### 指令 `.literal` 修饰符 <sup>弃用</sup>
+### 指令 `.literal` 修饰符 <sup>移除</sup>
 
 `.literal` 修饰符已经被移除，为了获取一样的功能，可以简单地提供字符串修饰符作为值。
 
@@ -687,7 +687,7 @@ strings.map(function (str) {
 
 ## 过渡
 
-### `transition` 参数 <sup>弃用</sup>
+### `transition` 参数 <sup>替换</sup>
 
 Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和 `<transition-group>` 来包裹元素实现过渡效果，而不再使用 `transition` 属性。详见 [Transitions guide](transitions.html)。
 
@@ -698,9 +698,9 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 </div>
 {% endraw %}
 
-### 可复用的过渡 `Vue.transition` <sup>弃用</sup>
+### 可复用的过渡 `Vue.transition` <sup>替换</sup>
 
-在新的过渡系统中，可以[通过模板复用过渡效果](http://rc.vuejs.org/guide/transitions.html#Reusable-Transitions)。
+在新的过渡系统中，可以[通过模板复用过渡效果](/guide/transitions.html#Reusable-Transitions)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -709,7 +709,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 </div>
 {% endraw %}
 
-### 过渡的 `stagger` 参数 <sup>弃用</sup>
+### 过渡的 `stagger` 参数 <sup>移除</sup>
 
 如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` （或类似属性）来控制时间。 请参考[这个例子](transitions.html#Staggering-List-Transitions)。
 
@@ -722,11 +722,11 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 
 ## 事件
 
-### `events` 选项 <sup>弃用</sup>
+### `events` 选项 <sup>移除</sup>
 
 `events` 选项被弃用。事件处理器现在在 `created` 钩子中被注册。参考详细示例 [`$dispatch` and `$broadcast` 迁移指南](#dispatch-and-broadcast-deprecated)
 
-### `Vue.directive('on').keyCodes` <sup>弃用</sup>
+### `Vue.directive('on').keyCodes` <sup>替换</sup>
 
 新的简明配置 `keyCodes` 的方式是通过 `Vue.config.keyCodes`例如：
 
@@ -741,7 +741,7 @@ Vue.config.keyCodes.f1 = 112
 </div>
 {% endraw %}
 
-### `$dispatch` 和 `$broadcast` <sup>弃用</sup>
+### `$dispatch` 和 `$broadcast` <sup>替换</sup>
 
 `$dispatch` 和 `$broadcast` 已经被弃用。请使用更多简明清晰的组件间通信和更好的状态管理方案，如：[Vuex](https://github.com/vuejs/vuex).
 
@@ -829,7 +829,7 @@ methods: {
 
 ## 过滤器
 
-### 插入文本之外的过滤器 <sup>弃用</sup>
+### 插入文本之外的过滤器 <sup>移除</sup>
 
 现在过滤器只能用在插入文本中 (`{% raw %}{{ }}{% endraw %}` tags)。我们发现在指令（如：`v-model`， `v-on`等）中使用过滤器使事情变得更复杂。像`v-for` 这样的列表过滤器最好把处理逻辑作为一个计算属性放在js里面，这样就可以在整个模板中复用。
 
@@ -865,7 +865,7 @@ methods: {
 }
 ```
 
-这种写法的更多优点详见： [the example here with `v-model`](#v-model-with-debounce-deprecated).
+这种写法的更多优点详见： [`v-model` 示例](#v-model-with-debounce-removed).
 
 #### 替换 `limitBy` 过滤器
 
@@ -962,7 +962,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 </div>
 {% endraw %}
 
-### 过滤器参数符号
+### 过滤器参数符号 <sup>改变</sup>
 
 现在过滤器参数形式可以更好地与js函数调用方式一致，因此不用再用空格分隔参数：
 
@@ -983,7 +983,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 </div>
 {% endraw %}
 
-### 内置文本过滤器 <sup>弃用</sup>
+### 内置文本过滤器 <sup>移除</sup>
 
 尽管插入文本内部的过滤器依然有效，但是所有内置过滤器已经移除了。取代的是，推荐在每个区域使用更专业的库来解决。(比如用 [`date-fns`](https://date-fns.org/) 来格式化日期，用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 来格式化货币)。
 
@@ -1040,11 +1040,11 @@ function pluralizeKnife (count) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到舍弃的过滤器。如果有些遗漏，请参考<strong>控制台错误信息</strong>.</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> 工具找到舍弃的过滤器。如果有些遗漏，请参考<strong>控制台错误信息</strong>。</p>
 </div>
 {% endraw %}
 
-### Two-Way Filters <sup>deprecated</sup>
+### Two-Way Filters <sup>replaced</sup>
 
 Some users have enjoyed using two-way filters with `v-model` to create interesting inputs with very little code. While _seemingly_ simple however, two-way filters can also hide a great deal of complexity - and even encourage poor UX by delaying state updates. Instead, components wrapping an input are recommended as a more explicit and feature-rich way of creating custom inputs.
 
@@ -1088,7 +1088,7 @@ You may notice that:
 
 ## Slots
 
-### 重名的 Slots <sup>弃用</sup>
+### 重名的 Slots <sup>移除</sup>
 
 同一模板中的重名 `<slot>` 已经弃用。当一个 slot 已经被渲染过了，那么就不能在同一模板其它地方被再次渲染了。如果要在不同位置渲染同一内容，可一用prop来传递。
 
@@ -1099,7 +1099,7 @@ You may notice that:
 </div>
 {% endraw %}
 
-### `slot` 样式参数 <sup>弃用</sup>
+### `slot` 样式参数 <sup>移除</sup>
 
 通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容 ：[render functions](render-function.html) 。
 
@@ -1112,7 +1112,7 @@ You may notice that:
 
 ## 特殊属性
 
-### `keep-alive` 属性 <sup>弃用</sup>
+### `keep-alive` 属性 <sup>替换</sup>
 
 `keep-alive` 不再是一个特殊属性而是一个包裹组件，类似于  `<transition>`比如：
 
@@ -1152,7 +1152,7 @@ You may notice that:
 
 ## 计算插值todaymark
 
-### 属性内部的计算插值 <sup>弃用</sup>
+### 属性内部的计算插值 <sup>移除</sup>
 
 属性内部的计算插值已经不能再使用了：
 
@@ -1187,7 +1187,7 @@ computed: {
 </div>
 {% endraw %}
 
-### HTML 计算插值 <sup>deprecated</sup>
+### HTML 计算插值 <sup>移除</sup>
 
 HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代的是 [`v-html` 指令](/api/#v-html).
 
@@ -1198,7 +1198,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 </div>
 {% endraw %}
 
-### 单次绑定<sup>弃用</sup>
+### 单次绑定<sup>替换</sup>
 
 单次绑定 (`{% raw %}{{* foo }}{% endraw %}`) 已经弃用取代的是 [`v-once` directive](/api/#v-once) 。
 
@@ -1211,7 +1211,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 
 ## 响应
 
-### `vm.$watch`
+### `vm.$watch` <sup>changed</sup>
 
 通过 `vm.$watch`创建的观察器现在将在组件渲染时被激活。这样可以让你在组件渲染前更新状态，不用做不必要的更新。比如可以通过观察组件的prop变化来更新组件本身的值。
 
@@ -1224,9 +1224,9 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 </div>
 {% endraw %}
 
-### `vm.$set`
+### `vm.$set` <sup>改变</sup>
 
-曾经的 `vm.$set` 方法已经弃用，现在这样写： [`Vue.set`](/api/#Vue-set) 。
+ `vm.$set` 只是 [`Vue.set`](/api/#Vue-set) 的别名。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1235,9 +1235,9 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 </div>
 {% endraw %}
 
-### `vm.$delete`
+### `vm.$delete` <sup>改变</sup>
 
-曾经的 `vm.$delete` 方法已经弃用，现在这样写： [`Vue.delete`](/api/#Vue-delete)
+`vm.$delete` 现在只是： [`Vue.delete`](/api/#Vue-delete) 别名。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1248,9 +1248,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 
 ### `Array.prototype.$set`  <sup>弃用</sup>
 
-用 Vue.set 代替
-
-(console error, migration helper)
+用 `Vue.set` 代替
 
 {% raw %}
 <div class="upgrade-path">
@@ -1259,7 +1257,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经弃用，取代�
 </div>
 {% endraw %}
 
-### `Array.prototype.$remove` <sup>弃用</sup>
+### `Array.prototype.$remove` <sup>移除</sup>
 
 用 `Array.prototype.splice` 代替，例如：
 
@@ -1289,9 +1287,9 @@ methods: {
 </div>
 {% endraw %}
 
-### Vue实例上的`Vue.set` 和 `Vue.delete`<sup>弃用</sup>
+### Vue实例上的`Vue.set` 和 `Vue.delete`<sup>移除</sup>
 
-Vue.set 和 Vue.delete 在实例上将不再起作用。现在都强制在实例的data选项中声明所有顶级响应值。如果删除实例属性或实例`$data`上的某个值，直接将它设置为null即可。
+`Vue.set` 和 `Vue.delete` 在实例上将不再起作用。现在都强制在实例的data选项中声明所有顶级响应值。如果删除实例属性或实例`$data`上的某个值，直接将它设置为null即可。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1300,7 +1298,7 @@ Vue.set 和 Vue.delete 在实例上将不再起作用。现在都强制在实例
 </div>
 {% endraw %}
 
-### 替换 `vm.$data` <sup>弃用</sup>
+### 替换 `vm.$data` <sup>移除</sup>
 
 现在禁止替换实例的 $data。这样防止了响应系统的一些极端情况并且让组件状态更加可控可预测（特别是对于存在类型检查的系统）。
 
@@ -1311,7 +1309,7 @@ Vue.set 和 Vue.delete 在实例上将不再起作用。现在都强制在实例
 </div>
 {% endraw %}
 
-### `vm.$get` <sup>弃用</sup>
+### `vm.$get` <sup>移除</sup>
 
 可以直接取回响应数据。
 
@@ -1324,7 +1322,7 @@ Vue.set 和 Vue.delete 在实例上将不再起作用。现在都强制在实例
 
 ## 围绕 DOM 的实例方法
 
-### `vm.$appendTo` <sup>弃用</sup>
+### `vm.$appendTo` <sup>移除</sup>
 
 使用 DOM 原生方法:
 
@@ -1339,7 +1337,7 @@ myElement.appendChild(vm.$el)
 </div>
 {% endraw %}
 
-### `vm.$before` <sup>弃用</sup>
+### `vm.$before` <sup>移除</sup>
 
 使用 DOM 原生方法：
 
@@ -1354,7 +1352,7 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 </div>
 {% endraw %}
 
-### `vm.$after` <sup>弃用</sup>
+### `vm.$after` <sup>移除</sup>
 
 使用 DOM 原生方法：
 
@@ -1375,7 +1373,7 @@ myElement.parentNode.appendChild(vm.$el)
 </div>
 {% endraw %}
 
-### `vm.$remove` <sup>弃用</sup>
+### `vm.$remove` <sup>移除</sup>
 
 使用 DOM 原生方法：
 
@@ -1392,7 +1390,7 @@ vm.$el.remove()
 
 ## 底层实例方法
 
-### `vm.$eval` <sup>弃用</sup>
+### `vm.$eval` <sup>移除</sup>
 
 尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 [the forum](http://forum.vuejs.org/)。
 
@@ -1403,7 +1401,7 @@ vm.$el.remove()
 </div>
 {% endraw %}
 
-### `vm.$interpolate` <sup>弃用</sup>
+### `vm.$interpolate` <sup>移除</sup>
 
 尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 [the forum](http://forum.vuejs.org/)。
 
@@ -1414,7 +1412,7 @@ vm.$el.remove()
 </div>
 {% endraw %}
 
-### `vm.$log` <sup>弃用</sup>
+### `vm.$log` <sup>移除</sup>
 
 请使用 [Vue Devtools](https://github.com/vuejs/vue-devtools) 感受最佳debug体验。
 
@@ -1427,7 +1425,7 @@ vm.$el.remove()
 
 ## 实例 DOM 选项
 
-### `replace: false` <sup>弃用</sup>
+### `replace: false` <sup>移除</sup>
 
 现在组件总是会替换掉他们被绑定的元素。为了模仿`replace: false`的行为，可以用一个和将要替换元素类似的元素将根组件包裹起来：
 
@@ -1462,7 +1460,7 @@ new Vue({
 
 ## 全局配置
 
-### `Vue.config.debug` <sup>弃用</sup>
+### `Vue.config.debug` <sup>移除</sup>
 
 不再需要，因为警告信息将默认在堆栈信息里输出。
 
@@ -1473,7 +1471,7 @@ new Vue({
 </div>
 {% endraw %}
 
-### `Vue.config.async` <sup>弃用</sup>
+### `Vue.config.async` <sup>移除</sup>
 
 异步操作现在需要渲染性能的支持。
 
@@ -1484,7 +1482,7 @@ new Vue({
 </div>
 {% endraw %}
 
-### `Vue.config.delimiters` <sup>弃用</sup>
+### `Vue.config.delimiters` <sup>替换</sup>
 
 以 [模板选项](/api/#delimiters)的方式使用。这样可以在使用自定义分隔符时避免影响第三方模板。
 
@@ -1495,9 +1493,9 @@ new Vue({
 </div>
 {% endraw %}
 
-### `Vue.config.unsafeDelimiters` <sup>弃用</sup>
+### `Vue.config.unsafeDelimiters` <sup>移除</sup>
 
-HTML 插入 [替换为 `v-html`](#HTML-Interpolation-deprecated).
+HTML 插入 [替换为 `v-html`](#HTML-Interpolation-removed).
 
 {% raw %}
 <div class="upgrade-path">
@@ -1506,9 +1504,9 @@ HTML 插入 [替换为 `v-html`](#HTML-Interpolation-deprecated).
 </div>
 {% endraw %}
 
-## Global API
+## 全局 API
 
-### `Vue.extend` with `el` <sup>弃用</sup>
+### 带 `el` 的 `Vue.extend` <sup>移除</sup>
 
 el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
@@ -1519,7 +1517,7 @@ el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 </div>
 {% endraw %}
 
-### `Vue.elementDirective` <sup>弃用</sup>
+### `Vue.elementDirective` <sup>移除</sup>
 
 用组件来代替
 
@@ -1530,9 +1528,9 @@ el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 </div>
 {% endraw %}
 
-### `Vue.partial` <sup>弃用</sup>
+### `Vue.partial` <sup>移除</sup>
 
-Partials have been deprecated in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to simply use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](http://vuejs.org/guide/components.html#Dynamic-Components).
+Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to simply use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](http://vuejs.org/guide/components.html#Dynamic-Components).
 
 If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, just like partials. This makes rendering extremely fast.
 

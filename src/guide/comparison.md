@@ -284,7 +284,7 @@ Vue 相比于 Angular 2 则更加灵活，Vue 官方提供了构建工具来协�
 
 开始使用 Vue，你使用的是熟悉的 HTML、符合 ES5 规则的 JavaScript（也就是纯 JavaScript）。有了这些基本的技能，你可以快速地掌握它([指南](/guide))并投入开发 。
 
-Angular 2 的学习曲线是非常陡峭的。即使不包括 TypeScript，它的[开始指南](https://angular.io/docs/js/latest/quickstart.html)中所用的就有 ES2015 标准的 JavaScript，18个 NPM 依赖包，4 个文件和超过 3 千多字的介绍，这一切都是为了完成个 Hello World。而[Vue's Hello World](index.html#Hello-World)就非常简单。甚至我们并不用花费一整个页面去介绍它。
+Angular 2 的学习曲线是非常陡峭的。即使不包括 TypeScript，它的[开始指南](https://angular.io/docs/js/latest/quickstart.html)中所用的就有 ES2015 标准的 JavaScript，18个 NPM 依赖包，4 个文件和超过 3 千多字的介绍，这一切都是为了完成个 Hello World。而[Vue's Hello World](https://jsfiddle.net/chrisvfritz/50wL7mdz/)就非常简单。甚至我们并不用花费一整个页面去介绍它。
 
 ## Ember
 
@@ -327,7 +327,6 @@ Riot 2.0 提供了一个类似于基于组件的开发模型（在 Riot 中称�
 - 更多成熟工具的支持。Vue 提供官方支持[Webpack](https://github.com/vuejs/vue-loader)、[Browserify](https://github.com/vuejs/vueify)和[SystemJS](https://github.com/vuejs/systemjs-plugin-vue)，而 Riot 是依靠社区来建立集成系统。
 - [过渡效果系统](transitions.html)。Riot 现在还没有提供。
 - 更好的性能。Riot [尽管声称](https://github.com/vuejs/vuejs.org/issues/346)其使用了虚拟 DOM，但实际上用的还是脏检查机制，因此和 Angular 1 患有相同的性能问题。
-
 
 ***
 

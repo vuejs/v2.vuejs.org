@@ -4,8 +4,6 @@ type: vuex
 order: 8
 ---
 
-# Modules
-
 由于使用了单一状态树，应用的所有状态都包含在一个大对象内。但是，随着我们应用规模的不断增长，这个Store变得非常臃肿。
 
 为了解决这个问题，Vuex 允许我们把 store 分 module（模块）。每一个模块包含各自的状态、mutation、action 和 getter，甚至是嵌套模块， 如下就是它的组织方式：
