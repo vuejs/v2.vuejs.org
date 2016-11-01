@@ -79,6 +79,22 @@ type: api
 
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
 
+### ignoredElements
+
+- **Type:** `Array<string>`
+
+- **Default:** `[]`
+
+- **Usage:**
+
+  ``` js
+  Vue.config.ignoredElements = [
+    'my-custom-web-component', 'another-web-component'
+  ]
+  ```
+
+  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+
 ### keyCodes
 
 - **类型：** `{ [key: string]: number }`
@@ -249,7 +265,7 @@ type: api
 
 - **用法：**
 
-  注册或获取全局组件。
+  注册或获取全局组件。注册自动用给的 `id` 做组件名称。
 
   ``` js
   // 注册组件，传入一个扩展过的构造器
@@ -815,7 +831,7 @@ type: api
 
 - **类型:** `Array<string>`
 
-- **默认值:** `["{{", "}}"]`
+- **默认值:** `{% raw %}["{{", "}}"]{% endraw %}`
 
 - **详细:**
 

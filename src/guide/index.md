@@ -14,7 +14,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**�
 
 ## 起步
 
-尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](//jsfiddle.net/chrisvfritz/4tpzm3e1/)。请在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
+尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。请在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
 
 ## 声明式渲染
 

@@ -426,6 +426,8 @@ Vue.component('example', {
 - 使用 `$on(eventName)` 监听事件
 - 使用 `$emit(eventName)` 触发事件
 
+<p class="tip">Note that Vue's event system is separate from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
+
 另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
 
 下面是一个例子：
@@ -979,11 +981,25 @@ components: {
 组件在它的模板内可以递归地调用自己，不过，只有当它有 name 选项时才可以：
 
 ``` js
+name: 'unique-name-of-my-component'
+```
+
+When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+
+``` js
+Vue.component('unique-name-of-my-component', {
+  // ...
+})
+```
+
+If you're not careful, recursive components can also lead to infinite loops:
+
+``` js
 name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 false )。当使用 `Vue.component()` 全局注册一个组件时，全局的组件 ID 自动设置为该组件的 `name` 选项。
+上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
 
 ### 内联模版
 

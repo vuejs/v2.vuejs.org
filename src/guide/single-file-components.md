@@ -55,6 +55,8 @@ order: 19
 
 无论你更钟情 Webpack 或是 Browserify，我们为简单的和更复杂的项目都提供了一些文档模板。我们建议浏览 [github.com/vuejs-templates](https://github.com/vuejs-templates)，找到你需要的部分，然后参考 README 中的说明，使用 [vue-cli](https://github.com/vuejs/vue-cli) 工具生成新的项目。
 
+Webpack 中，每个模块在构建前被加载器转变，Vue 官方插件 [vue-loader](https://github.com/vuejs/vue-loader) 用来转变 `.vue` 单文件组件。 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 模板已经准备好了一切， 如果要更多了解 `.vue` 如何和 Webpack 配合工作， 请看 [vue-loader 文档](https://vue-loader.vuejs.org)
+
 ***
 
 > 原文： http://vuejs.org/guide/single-file-components.html
