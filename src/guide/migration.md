@@ -770,7 +770,7 @@ Todos
 var eventHub = new Vue()
 ```
 
-然后再组件中，可以使用 `$emit`, `$on`, `$off` 分别来分发、监听、取消监听事件：
+然后在组件中，可以使用 `$emit`, `$on`, `$off` 分别来分发、监听、取消监听事件：
 
 ``` js
 // NewTodoInput
