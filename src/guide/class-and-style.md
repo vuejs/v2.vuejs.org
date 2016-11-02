@@ -111,61 +111,43 @@ However, this can be a bit verbose if you have multiple conditional classes. Tha
 <div v-bind:class="[{ active: isActive }, errorClass]">
 ```
 
-### Components and class
+### With Components
 
-> This section assumes knowledge of [Components](/guide/components.html). Feel free to skip it and come back later.
+> This section assumes knowledge of [Vue Components](components.html). Feel free to skip it and come back later.
 
-You can directly use `v-bind:class` or `class` on a custom component, like any normal element. All the class passed down will be merged to the root element together.
+When you use the `class` attribute on a custom component, those classes will be added to the component's root element. Existing classes on this element will not be overwritten.
 
+For example, if you declare this component:
+
+``` js
+Vue.component('my-component', {
+  template: '<p class="foo bar">Hi</p>'
+})
+```
+
+Then add some classes when using it:
+
+``` html
+<my-component class="baz boo"></my-component>
+```
+
+The rendered HTML will be:
+
+``` html
+<p class="foo bar baz boo">Hi</p>
+```
+
+The same is true for class bindings:
 
 ``` html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-``` js
-Vue.component('my-component', {
-  data: function () {
-    return { isFocus: true }  
-  },
-  template: '<div v-bind:class="{ focus: isFocus }"></div>'
-});
-
-new Vue({
-  data: { isActive: true },
-  template: '<my-component v-bind:class="{ active: isActive }"></my-component>'
-});
-
-```
-
-The class value will automatically merged to the `my-component` component's root element.
-
-It will render:
-
+When `isActive` is truthy, the rendered HTML will be:
 
 ``` html
-<div class="focus active"></div>
+<div class="foo bar active"></div>
 ```
-
-Here is an example using dynamic component with class.
-
-```js
-const vm = new Vue({
-  el: '#app',
-  data: {
-    view: 'test'
-  },
-  template: `<component :is="view" class="animal"></component>`,
-  components: {
-    'bird': {
-      template: '<div class="bird"></div>'
-    },
-    'cat': {
-      template: '<div class="cat"></div>'
-    }
-  }
-});
-```
-
 
 ## Binding Inline Styles
 
