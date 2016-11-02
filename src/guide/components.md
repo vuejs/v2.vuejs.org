@@ -984,7 +984,7 @@ components: {
 name: 'unique-name-of-my-component'
 ```
 
-When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+当你利用`Vue.component`全局注册了一个组件, 全局的ID作为组件的 `name` 选项，被自动设置.
 
 ``` js
 Vue.component('unique-name-of-my-component', {
@@ -992,7 +992,7 @@ Vue.component('unique-name-of-my-component', {
 })
 ```
 
-If you're not careful, recursive components can also lead to infinite loops:
+如果你不谨慎, 递归组件可能导致死循环:
 
 ``` js
 name: 'stack-overflow',
