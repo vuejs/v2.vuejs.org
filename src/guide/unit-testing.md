@@ -6,11 +6,11 @@ order: 23
 
 ## 配置和工具
 
-任何兼容基于模块的构建系统都可以正常使用，但如果你需要一个具体的建议，可以使用[Karma](http://karma-runner.github.io)进行自动化测试。它有很多社区版的插件，包括对[Webpack](https://github.com/webpack/karma-webpack)和[Browserify](https://github.com/Nikku/karma-browserify)的支持。更多详细的安装步骤，请参考各项目的安装文档，通过这些Karma配置的例子可以快速帮助你上手（[Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js)配置，[Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js)配置）。 
+任何兼容基于模块的构建系统都可以正常使用，但如果你需要一个具体的建议，可以使用 [Karma](http://karma-runner.github.io) 进行自动化测试。它有很多社区版的插件，包括对 [Webpack](https://github.com/webpack/karma-webpack) 和 [Browserify](https://github.com/Nikku/karma-browserify) 的支持。更多详细的安装步骤，请参考各项目的安装文档，通过这些 Karma 配置的例子可以快速帮助你上手（[Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) 配置，[Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) 配置）。 
 
 ## 简单的断言
 
-在测试的代码结构方面，你不必在你的组件中做任何特殊的事情使它们可测试。主要导出原始设置就可以了：
+在测试的代码结构方面，你不必为了可测试在你的组件中做任何特殊的操作。只要导出原始设置就可以了：
 
 ``` html
 <template>
@@ -31,14 +31,14 @@ order: 23
 </script>
 ```
 
-当测试的组件时，所要做的就是导入对象和Vue然后使用许多常见的断言：
+当测试的组件时，所要做的就是导入对象和 Vue 然后使用许多常见的断言：
 
 ``` js
-// 导入Vue.js和组件，进行测试
+// 导入 Vue.js 和组件，进行测试
 import Vue from 'vue'
 import MyComponent from 'path/to/MyComponent.vue'
 
-// 这里是一些Jasmine 2.0的测试，你也可以使用你喜欢的任何断言库或测试工具。
+// 这里是一些 Jasmine 2.0 的测试，你也可以使用你喜欢的任何断言库或测试工具。
 
 describe('MyComponent', () => {
   // 检查原始组件选项
@@ -70,7 +70,7 @@ describe('MyComponent', () => {
 
 ## 编写可被测试的组件
 
-很多组件的渲染输出由它的props决定。事实上，如果一个组件的渲染输出完全取决于它的props，那么它会让测试变得简单，就好像断言不同参数的纯函数的返回值。看下面这个例子:
+很多组件的渲染输出由它的 props 决定。事实上，如果一个组件的渲染输出完全取决于它的 props，那么它会让测试变得简单，就好像断言不同参数的纯函数的返回值。看下面这个例子:
 
 ``` html
 <template>
@@ -84,7 +84,7 @@ describe('MyComponent', () => {
 </script>
 ```
 
-你可以在不同的props中，通过 `propsData` 选项断言它的渲染输出:
+你可以在不同的 props 中，通过 `propsData` 选项断言它的渲染输出:
 
 ``` js
 import Vue from 'vue'
@@ -110,17 +110,17 @@ describe('MyComponent', () => {
 })
 ```
 
-## 主张异步更新
+## 断言异步更新
 
-由于Vue进行[异步更新DOM](/guide/reactivity.html#Async-Update-Queue)的情况，一些依赖DOM更新结果的断言必须在` Vue nexttick `回调中进行：
+由于 Vue 进行 [异步更新DOM](/guide/reactivity.html#Async-Update-Queue) 的情况，一些依赖DOM更新结果的断言必须在 ` Vue nexttick ` 回调中进行：
 
 ``` js
-// 在状态更新后检查生成的HTML
+// 在状态更新后检查生成的 HTML
 it('updates the rendered message when vm.message updates', done => {
   const vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
 
-  // 在状态改变后和断言DOM更新前等待一刻
+  // 在状态改变后和断言 DOM 更新前等待一刻
   Vue.nextTick(() => {
     expect(vm.$el.textContent).toBe('foo')
     done()
@@ -128,7 +128,7 @@ it('updates the rendered message when vm.message updates', done => {
 })
 ```
 
-我们计划做一个通用的测试工具集，让不同策略的渲染输出(例如忽略子组件的基本渲染)和断言变得更简单。
+我们计划做一个通用的测试工具集，让不同策略的渲染输出（例如忽略子组件的基本渲染）和断言变得更简单。
 
 ***
 
