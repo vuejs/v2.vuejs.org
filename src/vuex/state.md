@@ -88,7 +88,7 @@ export default {
 
 ``` js
 computed: mapState([
-  // 映射 state.count 到 store.this.count
+  // 映射 this.count 到 store.state.count
   'count'
 ])
 ```
