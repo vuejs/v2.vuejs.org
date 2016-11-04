@@ -97,7 +97,7 @@ markdown:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: 
+  repository: git@github.com:vuejs/cn.vuejs.org.git
 
 feed:
   type: atom
