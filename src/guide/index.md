@@ -14,7 +14,13 @@ Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**�
 
 ## 起步
 
-尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。请在浏览器新标签页中打开它，跟着我们查看一些基础示例。如果你喜欢用包管理器下载/安装，查看[安装](/guide/installation.html)教程。
+尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着我们学习一些基础示例。或者你也可以创建一个本地的 `.html` 文件，然后引入 Vue:
+
+``` html
+<script src="https://unpkg.com/vue/dist/vue.js">
+```
+
+你可以查看[安装指南](/guide/installation.html)来了解其他安装 Vue 的选项。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是对 Node.js 构建工具不够了解的同学。
 
 ## 声明式渲染
 
