@@ -357,7 +357,7 @@ There are usually two cases where it's tempting to mutate a prop:
 
 The proper answer to these use cases are:
 
-1. Define a local data property that uses the prop's initial value as its initial value;
+1. Define a local data property (e.g. inside `created` lifecycle hook) that uses the prop's initial value as its initial value;
 
 2. Define a computed property that is computed from the prop's value.
 
