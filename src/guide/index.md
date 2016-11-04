@@ -12,7 +12,15 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 ## Getting Started
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. If you prefer downloading / installing from a package manager, check out the [Installation](/guide/installation.html) page.
+<p class="tip">The official guide assumes intermediate level front-end knowledge of HTML, CSS and JavaScript. If you are totally new to front-end development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+
+The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can simply create an `.html` file and include Vue with:
+
+``` html
+<script src="https://unpkg.com/vue/dist/vue.js">
+```
+
+The [Installation](/guide/installation.html) page provides more options of installing Vue. Note that we **do not** recommend beginners to start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
 
 ## Declarative Rendering
 
