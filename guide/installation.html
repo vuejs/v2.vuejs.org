@@ -62,6 +62,7 @@
     <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
     <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
     <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+    <li><a href="https://vuejsjob.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
   </ul>
 </li>
 
@@ -91,6 +92,7 @@
     <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
     <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
     <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+    <li><a href="https://vuejsjob.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
   </ul>
 </li>
 
@@ -412,7 +414,8 @@
 <p>Also available on <a href="//cdn.jsdelivr.net/vue/2.0.3/vue.js">jsdelivr</a> or <a href="//cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js">cdnjs</a>, but these two services take some time to sync so the latest release may not be available yet.</p>
 <h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><p>NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as <a href="http://webpack.github.io/" target="_blank" rel="external">Webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>. Vue also provides accompanying tools for authoring <a href="single-file-components.html">Single File Components</a>.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># latest stable</span></div><div class="line">$ npm install vue</div></pre></td></tr></table></figure>
-<h3 id="Standalone-vs-Runtime-only-Build"><a href="#Standalone-vs-Runtime-only-Build" class="headerlink" title="Standalone vs. Runtime-only Build"></a>Standalone vs. Runtime-only Build</h3><p>There are two builds available, the standalone build and the runtime-only build.</p>
+<h3 id="Standalone-vs-Runtime-only-Build"><a href="#Standalone-vs-Runtime-only-Build" class="headerlink" title="Standalone vs. Runtime-only Build"></a>Standalone vs. Runtime-only Build</h3><p>There are two builds available, the standalone build and the runtime-only build. The difference being that the former includes the <strong>template compiler</strong> and the latter does not.</p>
+<p>The template compiler is responsible for compiling Vue template strings into pure JavaScript render functions. If you want to use the <code>template</code> option, then you need the compiler.</p>
 <ul>
 <li><p>The standalone build includes the compiler and supports the <code>template</code> option. <strong>It also relies on the presence of browser APIs so you cannot use it for server-side rendering.</strong></p>
 </li>
@@ -428,6 +431,8 @@
 <p>On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with <a href="https://github.com/vuejs-templates/webpack-simple" target="_blank" rel="external">Webpack + vue-loader</a> or <a href="https://github.com/vuejs-templates/browserify-simple" target="_blank" rel="external">Browserify + vueify</a>, your templates will be precompiled into <code>render</code> functions which work perfectly in CSP environments.</p>
 <h2 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h2><p>Vue.js provides an <a href="https://github.com/vuejs/vue-cli" target="_blank" rel="external">official CLI</a> for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># install vue-cli</span></div><div class="line">$ npm install --global vue-cli</div><div class="line"><span class="comment"># create a new project using the "webpack" template</span></div><div class="line">$ vue init webpack my-project</div><div class="line"><span class="comment"># install dependencies and go!</span></div><div class="line">$ <span class="built_in">cd</span> my-project</div><div class="line">$ npm install</div><div class="line">$ npm run dev</div></pre></td></tr></table></figure>
+<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through the <a href="/guide">guide</a> without any build tools before using the CLI.</p>
+
 <h2 id="Dev-Build"><a href="#Dev-Build" class="headerlink" title="Dev Build"></a>Dev Build</h2><p><strong>Important</strong>: the built files in GitHub’s <code>/dist</code> folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/vuejs/vue.git node_modules/vue</div><div class="line"><span class="built_in">cd</span> node_modules/vue</div><div class="line">npm install</div><div class="line">npm run build</div></pre></td></tr></table></figure>
 <h2 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h2><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># latest stable</span></div><div class="line">$ bower install vue</div></pre></td></tr></table></figure>
