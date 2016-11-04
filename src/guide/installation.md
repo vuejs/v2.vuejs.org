@@ -3,9 +3,9 @@ title: Installation
 type: guide
 order: 1
 vue_version: 2.0.3
-dev_size: "188.88"
-min_size: "62.54"
-gz_size: "22.86"
+dev_size: "189.59"
+min_size: "63.48"
+gz_size: "23.27"
 ro_gz_size: "16"
 ---
 
