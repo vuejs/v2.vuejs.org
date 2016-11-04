@@ -180,7 +180,7 @@ methods: {
 <!-- 只有修饰符 -->
 <form v-on:submit.prevent></form>
 
-<!-- 添加事件侦听器时使用时间捕获模式 -->
+<!-- 添加事件侦听器时使用事件捕获模式 -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
