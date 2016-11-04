@@ -357,9 +357,25 @@ There are usually two cases where it's tempting to mutate a prop:
 
 The proper answer to these use cases are:
 
-1. Define a local data property that uses the prop's initial value as its initial value;
+1. Define a local data property that uses the prop's initial value as its initial value:
 
-2. Define a computed property that is computed from the prop's value.
+  ``` js
+  props: ['initialCounter'],
+  data: function () {
+    return { counter: this.initialCounter }
+  }
+  ```
+
+2. Define a computed property that is computed from the prop's value:
+
+  ``` js
+  props: ['size'],
+  computed: {
+    normalizedSize: function () {
+      return this.size.trim().toLowerCase()
+    }
+  }
+  ```
 
 <p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
 
@@ -1013,7 +1029,7 @@ When the `inline-template` special attribute is present on a child component, th
   <div>
     <p>These are compiled as the component's own template.</p>
     <p>Not parent's transclusion content.</p>
-  </div>  
+  </div>
 </my-component>
 ```
 
