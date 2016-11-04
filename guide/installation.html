@@ -419,7 +419,7 @@
 <ul>
 <li><p>The standalone build includes the compiler and supports the <code>template</code> option. <strong>It also relies on the presence of browser APIs so you cannot use it for server-side rendering.</strong></p>
 </li>
-<li><p>The runtime-only build does not include the template compiler, and does not support the <code>template</code> option. You can only use the <code>render</code> option when using the runtime-only build, but it works with single-file components, because single-file components’ templates are pre-compiled into <code>render</code> functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only undefinedkb min+gzip.</p>
+<li><p>The runtime-only build does not include the template compiler, and does not support the <code>template</code> option. You can only use the <code>render</code> option when using the runtime-only build, but it works with single-file components, because single-file components’ templates are pre-compiled into <code>render</code> functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16kb min+gzip.</p>
 </li>
 </ul>
 <p>By default, the NPM package exports the <strong>runtime-only</strong> build. To use the standalone build, add the following alias to your Webpack config:</p>
