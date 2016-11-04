@@ -2,11 +2,11 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.0.3
-dev_size: "188.88"
-min_size: "62.54"
-gz_size: "22.86"
-ro_gz_size: "16"
+vue_version: 2.0.4
+dev_size: "194.35"
+min_size: "64.25"
+gz_size: "23.56"
+ro_gz_size: "undefined"
 ---
 
 ### 兼容性
