@@ -217,7 +217,7 @@ Here's the full list of key modifier aliases:
 - left
 - right
 
-You can also [define custom key modifier aliases](/api/#keyCodes) via the global `config.keyCodes` object:
+You can also [define custom key modifier aliases](../api/#keyCodes) via the global `config.keyCodes` object:
 
 ``` js
 // enable v-on:keyup.f1

@@ -113,7 +113,7 @@ describe('MyComponent', () => {
 
 ## Asserting Asynchronous Updates
 
-Since Vue [performs DOM updates asynchronously](/guide/reactivity.html#Async-Update-Queue), assertions on DOM updates resulting from state change will have to be made in a `Vue.nextTick` callback:
+Since Vue [performs DOM updates asynchronously](reactivity.html#Async-Update-Queue), assertions on DOM updates resulting from state change will have to be made in a `Vue.nextTick` callback:
 
 ``` js
 // Inspect the generated HTML after a state update

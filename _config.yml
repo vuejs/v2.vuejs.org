@@ -103,3 +103,47 @@ feed:
   type: atom
   path: atom.xml
   limit: 20
+
+alias:
+  api/index.html: v2/api/index.html
+  guide/class-and-style.html: v2/guide/class-and-style.html
+  guide/comparison.html: v2/guide/comparison.html
+  guide/components.html: v2/guide/components.html
+  guide/computed.html: v2/guide/computed.html
+  guide/conditional.html: v2/guide/conditional.html
+  guide/custom-directive.html: v2/guide/custom-directive.html
+  guide/deployment.html: v2/guide/deployment.html
+  guide/events.html: v2/guide/events.html
+  guide/forms.html: v2/guide/forms.html
+  guide/index.html: v2/guide/index.html
+  guide/installation.html: v2/guide/installation.html
+  guide/instance.html: v2/guide/instance.html
+  guide/join.html: v2/guide/join.html
+  guide/list.html: v2/guide/list.html
+  guide/migration-vue-router.html: v2/guide/migration-vue-router.html
+  guide/migration-vuex.html: v2/guide/migration-vuex.html
+  guide/migration.html: v2/guide/migration.html
+  guide/mixins.html: v2/guide/mixins.html
+  guide/plugins.html: v2/guide/plugins.html
+  guide/reactivity.html: v2/guide/reactivity.html
+  guide/render-function.html: v2/guide/render-function.html
+  guide/routing.html: v2/guide/routing.html
+  guide/single-file-components.html: v2/guide/single-file-components.html
+  guide/ssr.html: v2/guide/ssr.html
+  guide/state-management.html: v2/guide/state-management.html
+  guide/syntax.html: v2/guide/syntax.html
+  guide/transitioning-state.html: v2/guide/transitioning-state.html
+  guide/transitions.html: v2/guide/transitions.html
+  guide/unit-testing.html: v2/guide/unit-testing.html
+  examples/commits.html: v2/examples/commits.html
+  examples/elastic-header.html: v2/examples/elastic-header.html
+  examples/firebase.html: v2/examples/firebase.html
+  examples/grid-component.html: v2/examples/grid-component.html
+  examples/hackernews.html: v2/examples/hackernews.html
+  examples/index.html: v2/examples/index.html
+  examples/modal.html: v2/examples/modal.html
+  examples/select2.html: v2/examples/select2.html
+  examples/svg.html: v2/examples/svg.html
+  examples/todomvc.html: v2/examples/todomvc.html
+  examples/tree-view.html: v2/examples/tree-view.html
+

@@ -703,7 +703,7 @@ Vue's transition system has changed quite drastically and now uses `<transition>
 
 ### `Vue.transition` for Reusable Transitions <sup>replaced</sup>
 
-With the new transition system, you can now just [use components for reusable transitions](/guide/transitions.html#Reusable-Transitions).
+With the new transition system, you can now just [use components for reusable transitions](transitions.html#Reusable-Transitions).
 
 {% raw %}
 <div class="upgrade-path">
@@ -750,7 +750,7 @@ Vue.config.keyCodes.f1 = 112
 
 The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It simply doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
 
-One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](http://vuejs.org/guide/components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
+One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
 
 However, when communicating between distant descendants/ancestors, `$emit` won't help you. Instead, the simplest possible upgrade would be to use a centralized event hub. This has the added benefit of allowing you to communicate between components no matter where they are in the component tree - even between siblings! Because Vue instances implement an event emitter interface, you can actually use an empty Vue instance for this purpose.
 
@@ -1190,7 +1190,7 @@ computed: {
 
 ### HTML Interpolation <sup>removed</sup>
 
-HTML interpolations (`{% raw %}{{{ foo }}}{% endraw %}`) have been removed in favor of the [`v-html` directive](/api/#v-html).
+HTML interpolations (`{% raw %}{{{ foo }}}{% endraw %}`) have been removed in favor of the [`v-html` directive](../api/#v-html).
 
 {% raw %}
 <div class="upgrade-path">
@@ -1201,7 +1201,7 @@ HTML interpolations (`{% raw %}{{{ foo }}}{% endraw %}`) have been removed in fa
 
 ### One-Time Bindings <sup>replaced</sup>
 
-One time bindings (`{% raw %}{{* foo }}{% endraw %}`) have been replaced by the new [`v-once` directive](/api/#v-once).
+One time bindings (`{% raw %}{{* foo }}{% endraw %}`) have been replaced by the new [`v-once` directive](../api/#v-once).
 
 {% raw %}
 <div class="upgrade-path">
@@ -1227,7 +1227,7 @@ If you were previously relying on `vm.$watch` to do something with the DOM after
 
 ### `vm.$set` <sup>changed</sup>
 
-`vm.$set` is now just an alias for [`Vue.set`](/api/#Vue-set).
+`vm.$set` is now just an alias for [`Vue.set`](../api/#Vue-set).
 
 {% raw %}
 <div class="upgrade-path">
@@ -1238,7 +1238,7 @@ If you were previously relying on `vm.$watch` to do something with the DOM after
 
 ### `vm.$delete` <sup>changed</sup>
 
-`vm.$delete` is now just an alias for [`Vue.delete`](/api/#Vue-delete).
+`vm.$delete` is now just an alias for [`Vue.delete`](../api/#Vue-delete).
 
 {% raw %}
 <div class="upgrade-path">
@@ -1485,7 +1485,7 @@ Async is now required for rendering performance.
 
 ### `Vue.config.delimiters` <sup>replaced</sup>
 
-This has been reworked as a [component-level option](/api/#delimiters). This allows you to use alternative delimiters within your app without breaking 3rd-party components.
+This has been reworked as a [component-level option](../api/#delimiters). This allows you to use alternative delimiters within your app without breaking 3rd-party components.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1531,7 +1531,7 @@ Use components instead.
 
 ### `Vue.partial` <sup>removed</sup>
 
-Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to simply use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](http://vuejs.org/guide/components.html#Dynamic-Components).
+Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to simply use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](components.html#Dynamic-Components).
 
 If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, just like partials. This makes rendering extremely fast.
 

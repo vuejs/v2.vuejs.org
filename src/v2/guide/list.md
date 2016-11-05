@@ -213,7 +213,7 @@ new Vue({ el: '#range' })
 
 ### Components and v-for
 
-> This section assumes knowledge of [Components](/guide/components.html). Feel free to skip it and come back later.
+> This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
 
 You can directly use `v-for` on a custom component, like any normal element:
 

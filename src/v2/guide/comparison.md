@@ -216,7 +216,7 @@ While Vue scales up just as well as, if not better than React, it also scales do
 
 Then you can start writing Vue code and even ship the minified version to production without feeling guilty or having to worry about performance problems.
 
-Since you don't need to know about JSX, ES2015, or build systems to get started with Vue, it also typically takes developers less than a day reading [the guide](/guide) to learn enough to build non-trivial applications.
+Since you don't need to know about JSX, ES2015, or build systems to get started with Vue, it also typically takes developers less than a day reading [the guide](./) to learn enough to build non-trivial applications.
 
 ### Native Rendering
 
@@ -280,7 +280,7 @@ Vue is much less opinionated than Angular 2, offering official support for a var
 
 ### Learning Curve
 
-To get started with Vue, all you need is familiarity with HTML and ES5 JavaScript (i.e. plain JavaScript). With these basic skills, you can start building non-trivial applications within less than a day of reading [the guide](/guide).
+To get started with Vue, all you need is familiarity with HTML and ES5 JavaScript (i.e. plain JavaScript). With these basic skills, you can start building non-trivial applications within less than a day of reading [the guide](./).
 
 Angular 2's learning curve is much steeper. Even without TypeScript, their [Quickstart guide](https://angular.io/docs/js/latest/quickstart.html) starts out with an app that uses ES2015 JavaScript, NPM with 18 dependencies, 4 files, and over 3,000 words to explain it all - just to say Hello World. It's an understatement to say that [Vue's Hello World](https://jsfiddle.net/chrisvfritz/50wL7mdz/) is considerably simpler. It's so trivial in fact, that we don't even dedicate a whole page in the guide to it.
 
