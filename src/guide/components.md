@@ -534,7 +534,7 @@ There may be times when you want to listen for a native event on the root elemen
 
 ### Form Input Components using Custom Events
 
-This strategy can also be used to create custom form inputs that work with `v-model`. Remember:
+Custom events can also be used to create custom inputs that work with `v-model`. Remember:
 
 ``` html
 <input v-model="something">
@@ -557,85 +557,85 @@ So for a component to work with `v-model`, it must:
 - accept a `value` prop
 - emit an `input` event with the new value
 
-Let's see it in action:
+Let's see it in action with a very simple currency input:
 
 ``` html
-<div id="v-model-example">
-  <p>{{ message }}</p>
-  <my-input
-    label="Message"
-    v-model="message"
-  ></my-input>
-</div>
+<currency-input v-model="price"></currency-input>
 ```
 
 ``` js
-Vue.component('my-input', {
+Vue.component('currency-input', {
   template: '\
-    <div class="form-group">\
-      <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
-    </div>\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
   ',
-  props: ['value', 'label'],
-  data: function () {
-    return {
-      randomId: 'input-' + Math.random()
-    }
-  },
+  props: ['value'],
   methods: {
-    onInput: function (event) {
-      this.$emit('input', event.target.value)
+    // Instead of updating the value directly, this
+    // method is used to format and place constraints
+    // on the input's value
+    updateValue: function (value) {
+      var formattedValue = value
+        // Remove whitespace on either side
+        .trim()
+        // Shorten to 2 decimal places
+        .slice(0, value.indexOf('.') + 3)
+      // If the value was not already normalized,
+      // manually override it to conform
+      if (formattedValue !== value) {
+        this.$refs.input.value = formattedValue
+      }
+      // Emit the number value through the input event
+      this.$emit('input', Number(formattedValue))
     }
-  },
-})
-
-new Vue({
-  el: '#v-model-example',
-  data: {
-    message: 'hello'
   }
 })
 ```
 
 {% raw %}
-<div id="v-model-example" class="demo">
-  <p>{{ message }}</p>
-  <my-input
-    label="Message"
-    v-model="message"
-  ></my-input>
+<div id="currency-input-example" class="demo">
+  <currency-input v-model="price"></currency-input>
 </div>
 <script>
-Vue.component('my-input', {
+Vue.component('currency-input', {
   template: '\
-    <div class="form-group">\
-      <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
-    </div>\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
   ',
-  props: ['value', 'label'],
-  data: function () {
-    return {
-      randomId: 'input-' + Math.random()
-    }
-  },
+  props: ['value'],
   methods: {
-    onInput: function (event) {
-      this.$emit('input', event.target.value)
+    updateValue: function (value) {
+      var formattedValue = value
+        .trim()
+        .slice(0, value.indexOf('.') + 3)
+      if (formattedValue !== value) {
+        this.$refs.input.value = formattedValue
+      }
+      this.$emit('input', Number(formattedValue))
     }
-  },
-})
-new Vue({
-  el: '#v-model-example',
-  data: {
-    message: 'hello'
   }
 })
+new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
 
-This interface can be used not only to connect with form inputs inside a component, but also to easily integrate input types that you invent yourself. Imagine these possibilities:
+The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+The events interface can also be used to create more unusual inputs. For example, imagine these possibilities:
 
 ``` html
 <voice-recognizer v-model="question"></voice-recognizer>
