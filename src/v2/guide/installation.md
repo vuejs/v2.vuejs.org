@@ -2,10 +2,10 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 2.0.3
-dev_size: "188.88"
-min_size: "62.54"
-gz_size: "22.86"
+vue_version: 2.0.5
+dev_size: "194.65"
+min_size: "64.28"
+gz_size: "23.55"
 ro_gz_size: "16"
 ---
 
@@ -46,7 +46,9 @@ $ npm install vue
 
 ### Standalone vs. Runtime-only Build
 
-There are two builds available, the standalone build and the runtime-only build.
+There are two builds available, the standalone build and the runtime-only build. The difference being that the former includes the **template compiler** and the latter does not.
+
+The template compiler is responsible for compiling Vue template strings into pure JavaScript render functions. If you want to use the `template` option, then you need the compiler.
 
 - The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
 
@@ -86,6 +88,8 @@ $ cd my-project
 $ npm install
 $ npm run dev
 ```
+
+<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
 ## Dev Build
 

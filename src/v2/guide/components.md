@@ -229,7 +229,7 @@ In Vue.js, the parent-child component relationship can be summarized as **props 
 
 Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
 
-A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](/api/#props):
+A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](../api/#props):
 
 ``` js
 Vue.component('child', {
@@ -357,9 +357,25 @@ There are usually two cases where it's tempting to mutate a prop:
 
 The proper answer to these use cases are:
 
-1. Define a local data property that uses the prop's initial value as its initial value;
+1. Define a local data property that uses the prop's initial value as its initial value:
 
-2. Define a computed property that is computed from the prop's value.
+  ``` js
+  props: ['initialCounter'],
+  data: function () {
+    return { counter: this.initialCounter }
+  }
+  ```
+
+2. Define a computed property that is computed from the prop's value:
+
+  ``` js
+  props: ['size'],
+  computed: {
+    normalizedSize: function () {
+      return this.size.trim().toLowerCase()
+    }
+  }
+  ```
 
 <p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
 
@@ -423,7 +439,7 @@ We have learned that the parent can pass data down to the child using props, but
 
 ### Using `v-on` with Custom Events
 
-Every Vue instance implements an [events interface](/api/#Instance-Methods-Events), which means it can:
+Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
 
 - Listen to an event using `$on(eventName)`
 - Trigger an event using `$emit(eventName)`
@@ -518,7 +534,7 @@ There may be times when you want to listen for a native event on the root elemen
 
 ### Form Input Components using Custom Events
 
-This strategy can also be used to create custom form inputs that work with `v-model`. Remember:
+Custom events can also be used to create custom inputs that work with `v-model`. Remember:
 
 ``` html
 <input v-model="something">
@@ -541,85 +557,85 @@ So for a component to work with `v-model`, it must:
 - accept a `value` prop
 - emit an `input` event with the new value
 
-Let's see it in action:
+Let's see it in action with a very simple currency input:
 
 ``` html
-<div id="v-model-example">
-  <p>{{ message }}</p>
-  <my-input
-    label="Message"
-    v-model="message"
-  ></my-input>
-</div>
+<currency-input v-model="price"></currency-input>
 ```
 
 ``` js
-Vue.component('my-input', {
+Vue.component('currency-input', {
   template: '\
-    <div class="form-group">\
-      <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
-    </div>\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
   ',
-  props: ['value', 'label'],
-  data: function () {
-    return {
-      randomId: 'input-' + Math.random()
-    }
-  },
+  props: ['value'],
   methods: {
-    onInput: function (event) {
-      this.$emit('input', event.target.value)
+    // Instead of updating the value directly, this
+    // method is used to format and place constraints
+    // on the input's value
+    updateValue: function (value) {
+      var formattedValue = value
+        // Remove whitespace on either side
+        .trim()
+        // Shorten to 2 decimal places
+        .slice(0, value.indexOf('.') + 3)
+      // If the value was not already normalized,
+      // manually override it to conform
+      if (formattedValue !== value) {
+        this.$refs.input.value = formattedValue
+      }
+      // Emit the number value through the input event
+      this.$emit('input', Number(formattedValue))
     }
-  },
-})
-
-new Vue({
-  el: '#v-model-example',
-  data: {
-    message: 'hello'
   }
 })
 ```
 
 {% raw %}
-<div id="v-model-example" class="demo">
-  <p>{{ message }}</p>
-  <my-input
-    label="Message"
-    v-model="message"
-  ></my-input>
+<div id="currency-input-example" class="demo">
+  <currency-input v-model="price"></currency-input>
 </div>
 <script>
-Vue.component('my-input', {
+Vue.component('currency-input', {
   template: '\
-    <div class="form-group">\
-      <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
-    </div>\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
   ',
-  props: ['value', 'label'],
-  data: function () {
-    return {
-      randomId: 'input-' + Math.random()
-    }
-  },
+  props: ['value'],
   methods: {
-    onInput: function (event) {
-      this.$emit('input', event.target.value)
+    updateValue: function (value) {
+      var formattedValue = value
+        .trim()
+        .slice(0, value.indexOf('.') + 3)
+      if (formattedValue !== value) {
+        this.$refs.input.value = formattedValue
+      }
+      this.$emit('input', Number(formattedValue))
     }
-  },
-})
-new Vue({
-  el: '#v-model-example',
-  data: {
-    message: 'hello'
   }
 })
+new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
 
-This interface can be used not only to connect with form inputs inside a component, but also to easily integrate input types that you invent yourself. Imagine these possibilities:
+The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+The events interface can also be used to create more unusual inputs. For example, imagine these possibilities:
 
 ``` html
 <voice-recognizer v-model="question"></voice-recognizer>
@@ -645,7 +661,7 @@ bus.$on('id-selected', function (id) {
 })
 ```
 
-In more complex cases, you should consider employing a dedicated [state-management pattern](/guide/state-management.html).
+In more complex cases, you should consider employing a dedicated [state-management pattern](state-management.html).
 
 ## Content Distribution with Slots
 
@@ -853,7 +869,7 @@ If you want to keep the switched-out components in memory so that you can preser
 </keep-alive>
 ```
 
-Check out more details on `<keep-alive>` in the [API reference](/api/#keep-alive).
+Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
 
 ## Misc
 
@@ -1013,7 +1029,7 @@ When the `inline-template` special attribute is present on a child component, th
   <div>
     <p>These are compiled as the component's own template.</p>
     <p>Not parent's transclusion content.</p>
-  </div>  
+  </div>
 </my-component>
 ```
 

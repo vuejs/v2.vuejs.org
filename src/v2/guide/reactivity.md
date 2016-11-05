@@ -51,7 +51,7 @@ Sometimes you may want to assign a number of properties to an existing object, f
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
-There are also a few array-related caveats, which were discussed earlier in the [list rendering section](/guide/list.html#Caveats).
+There are also a few array-related caveats, which were discussed earlier in the [list rendering section](list.html#Caveats).
 
 ## Declaring Reactive Properties
 
