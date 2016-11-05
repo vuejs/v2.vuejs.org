@@ -52,7 +52,7 @@ this.$set(this.someObject,'b',2)
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
-也有一些数组相关的问题，之前已经在[列表渲染](/guide/list.html#Caveats)中讲过。
+也有一些数组相关的问题，之前已经在[列表渲染](list.html#Caveats)中讲过。
 
 
 由于 Vue 不允许动态添加根级响应式属性，所以你必须在初始化实例前声明根级响应式属性，哪怕只是一个空值:

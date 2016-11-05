@@ -21,8 +21,6 @@ React 和 Vue 有许多相似之处，它们都有：
 
 React社区为我们准确进行平衡的考量提供了[非常积极地帮助](https://github.com/vuejs/vuejs.org/issues/364)，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨的花费时间来贡献专业知识，帮助我们完善这篇文档，最后我们对最终结果[都十分满意](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740)。
 
-有了上面这些内容，我们希望你能对下面这两个库的比较内容的公正性感到放心。
-
 ### 性能简介
 
 到目前为止，针对现实情况的测试中，Vue 的性能是优于 React 的。如果你对此表示怀疑，请继续阅读。我们会解释为什么会这样（并且会提供一个与 React 团队共同约定的比较基准）。
@@ -32,12 +30,11 @@ React社区为我们准确进行平衡的考量提供了[非常积极地帮助](
 在渲染用户界面的时候，DOM 的操作成本是最高的，不幸的是没有库可以让这些原始操作变得更快。
 我们能做到的最好效果就是：
 
-1. 尽量减少 DOM 操作。Vue 和 React 都使用虚拟 DOM 来实现，并且两者工作的效果一样好。
-2. 尽量减少除 DOM 操作以外的其他操作。这是 Vue 和 React 所不同的地方。
+1. Minimize the number of necessary DOM mutations. Both React and Vue use virtual DOM abstractions to accomplish this and both implementations work about equally well.
 
-在 React 中，我们设定渲染一个元素的额外开销是 1，而平均渲染一个组件的开销是 2。那么在 Vue 中，一个元素的开销更像是 0.1，但是平均组件的开销将会是 4，这是由于我们需要设定响应系统所导致的。
+2. Add as little overhead (pure JavaScript computations) as possible on top of those DOM manipulations. This is an area where Vue and React differ.
 
-这意味着：在典型的应用中，由于需要渲染的元素比组件的数量是更多的，因此 Vue 的性能表现将会远优于 React。然而，在极端情况下，比如每个组件只渲染一个元素，Vue 就会通常更慢一些。当然接下来还有其他的原因。
+The JavaScript overhead is directly related to the mechanisms of computing the necessary DOM operations. Both Vue and React utilizes Virtual DOM to achieve that, but Vue's Virtual DOM implementation (a fork of [snabbdom](https://github.com/snabbdom/snabbdom)) is much lighter-weight and thus introduces less overhead than React's.
 
 Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，没有实例化的，因此会花费更少的开销。当这些都用于关键性能的场景时，Vue 将会更快。为了证明这点，我们建立了一个简单的[参照项目](https://github.com/chrisvfritz/vue-render-performance-comparisons)，它负责渲染 10,000 个列表项 100 次。我们鼓励你基于此去尝试运行一下。然而在实际上，由于浏览器和硬件的差异甚至 JavaScript 引擎的不同，结果都会相应有所不同。
 
@@ -85,7 +82,9 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 #### 更新性能
 
-在 React 中，你需要在处处去实现 `shouldComponentUpdate`，并且用不可变数据结构才能实现最优化的渲染。在 Vue 中，组件的依赖被自动追踪，所以当这些依赖项变动时，它才会更新。唯一需要注意的可能需要进一步优化的一点是在长列表中，需要在每项上添加一个 `key` 属性。
+In React, when a component's state changes, it triggers the re-render of the entire component sub-tree, starting at that component as root. 
+
+To avoid unnecessary re-renders of child components, you need to implement `shouldComponentUpdate` everywhere and use immutable data structures. In Vue, a component's dependencies are automatically tracked during its render, so the system knows precisely which components actually need to re-render.
 
 这意味着，未经优化的 Vue 相比未经优化的 React 要快的多。由于 Vue 改进过渲染性能，甚至全面优化过的 React 通常也会慢于开箱即用的 Vue。
 
@@ -95,11 +94,14 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
 
+Both Vue and React remain fast enough in development for most normal applications. However, when prototyping high frame-rate data visualizations or animations, we've seen cases of Vue handling 10 frames per second in development while React dropping to about 1 frame per second.
+
 这是由于 React 有大量的检查机制，这会让它提供许多有用的警告和错误提示信息。我们同样认为这些是很重要的，但是我们在实现这些检查时，也更加密切地关注了性能方面。
 
 ### HTML & CSS
 
 在 React 中，它们都是 JavaScript 编写的，听起来这十分简单和优雅。然而不幸的事实是，JavaScript 内的 HTML 和 CSS 会产生很多痛点。在 Vue 中我们采用 Web 技术并在其上进行扩展。接下来将通过一些实例向你展示这意味的是什么。
+
 
 #### JSX vs Templates
 
@@ -164,11 +166,12 @@ JSX 的渲染功能有下面这些优势：
 
 这还没有结束。Vue 拥抱 HTML，而不是用 JavaScript 去重塑它。在模板内，Vue 也允许你用预处理器比如 Pug（原名 Jade）。
 
-React 生态也有一个[项目](https://wix.github.io/react-templates/)允许你写模板，但是存在一些缺点：
-
-- 功能远没有 Vue 模板系统丰富。
-- 需要从组件文件中分离出 HTML 代码。
-- 这是个第三方库，而非官方支持，可能未来核心库更新就不再支持。
+``` pug
+div.list-container
+  ul(v-if="items.length")
+    li(v-for="item in items") {{ item.name }}
+  p(v-else) No items found.
+```
 
 #### CSS 的组件作用域
 
@@ -186,7 +189,7 @@ React 生态也有一个[项目](https://wix.github.io/react-templates/)允许�
 	</style>
 ```
 
-这个可选 `scoped` 属性会自动添加一个唯一的属性（比如 `data-v-1`）为组件内 CSS 指定作用域，编译的时候 `.list-container:hover` 会被编译成类似 `.list-container[data-v-1]:hover`。
+这个可选 `scoped` 属性会自动添加一个唯一的属性（比如 `data-v-21e5b78`）为组件内 CSS 指定作用域，编译的时候 `.list-container:hover` 会被编译成类似 `.list-container[data-v-21e5b78]:hover`。
 
 最后，就像 HTML 一样，你可以选择自己偏爱的 CSS 预处理器编写 CSS。这可以让你围绕设计为中心展开工作，而不是引入专门的库来增加你应用的体积和复杂度。
 
@@ -217,7 +220,7 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 
 然后你就可以编写 Vue 代码并应用到生产中，你只要用 min 版 Vue 文件替换掉就不用担心其他的性能问题。
 
-由于起步阶段不需学 JSX，ES2015 以及构建系统，所以开发者只需不到一天的时间阅读[指南](http://vuejs.org/guide/)就可以建立简单的应用程序。
+由于起步阶段不需学 JSX，ES2015 以及构建系统，所以开发者只需不到一天的时间阅读[指南](./)就可以建立简单的应用程序。
 
 ### 本地渲染
 
@@ -282,7 +285,7 @@ Vue 相比于 Angular 2 则更加灵活，Vue 官方提供了构建工具来协�
 
 ### 学习曲线
 
-开始使用 Vue，你使用的是熟悉的 HTML、符合 ES5 规则的 JavaScript（也就是纯 JavaScript）。有了这些基本的技能，你可以快速地掌握它([指南](/guide))并投入开发 。
+开始使用 Vue，你使用的是熟悉的 HTML、符合 ES5 规则的 JavaScript（也就是纯 JavaScript）。有了这些基本的技能，你可以快速地掌握它([指南](./))并投入开发 。
 
 Angular 2 的学习曲线是非常陡峭的。即使不包括 TypeScript，它的[开始指南](https://angular.io/docs/js/latest/quickstart.html)中所用的就有 ES2015 标准的 JavaScript，18个 NPM 依赖包，4 个文件和超过 3 千多字的介绍，这一切都是为了完成个 Hello World。而[Vue's Hello World](https://jsfiddle.net/chrisvfritz/50wL7mdz/)就非常简单。甚至我们并不用花费一整个页面去介绍它。
 

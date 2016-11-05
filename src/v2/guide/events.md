@@ -218,7 +218,7 @@ methods: {
 - left
 - right
 
-可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](/api/#keyCodes)：
+可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](../api/#keyCodes)：
 
 ``` js
 // 可以使用 v-on:keyup.f1

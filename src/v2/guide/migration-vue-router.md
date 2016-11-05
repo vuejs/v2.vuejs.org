@@ -467,7 +467,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `deactivate` <sup>移除</sup>
 
-使用[`beforeDestroy`](/api/#beforeDestroy) 或者 [`destroyed`](/api/#destroyed) 钩子作为替代。
+使用[`beforeDestroy`](../api/#beforeDestroy) 或者 [`destroyed`](../api/#destroyed) 钩子作为替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -555,8 +555,6 @@ methods: {
   }
 }
 ```
-
-
 
 
 ***

@@ -228,7 +228,7 @@ new Vue({
 
 组件实例的作用域是**孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
 
-prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 [`props` 选项](/api/#props) 声明 “prop”：
+prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 [`props` 选项](../api/#props) 声明 “prop”：
 
 ``` js
 Vue.component('child', {
@@ -358,7 +358,23 @@ prop 是单向绑定的：当父组件的属性变化时，将传导给子组件
 
 1. 定义一个局部 data 属性，并将 prop 的初始值作为局部数据的初始值。
 
+  ``` js
+  props: ['initialCounter'],
+  data: function () {
+    return { counter: this.initialCounter }
+  }
+  ```
+
 2. 定义一个 computed 属性，此属性从 prop 的值计算得出。
+
+  ``` js
+  props: ['size'],
+  computed: {
+    normalizedSize: function () {
+      return this.size.trim().toLowerCase()
+    }
+  }
+  ```
 
 <p class="tip">注意在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它**会影响**父组件的状态。</p>
 
@@ -421,7 +437,7 @@ Vue.component('example', {
 
 ### 使用 `v-on` 绑定自定义事件
 
-每个 Vue 实例都实现了[事件接口(Events interface)](/api/#Instance-Methods-Events)，即：
+每个 Vue 实例都实现了[事件接口(Events interface)](../api/#Instance-Methods-Events)，即：
 
 - 使用 `$on(eventName)` 监听事件
 - 使用 `$emit(eventName)` 触发事件
@@ -516,7 +532,7 @@ new Vue({
 
 ### 使用自定义事件的表单输入组件
 
-自定义事件也可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。牢记，表单控件进行数据绑定时的语法：
+自定义事件也可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。牢记：
 
 ``` html
 <input v-model="something">
@@ -539,83 +555,83 @@ new Vue({
 - 接受一个 `value` 属性
 - 在有新的 value 时触发 `input` 事件
 
-实战看看：
+一个非常简单的货币输入：
 
 ``` html
-<div id="v-model-example">
-  <p>{{ message }}</p>
-  <my-input
-    label="Message"
-    v-model="message"
-  ></my-input>
-</div>
+<currency-input v-model="price"></currency-input>
 ```
 
 ``` js
-Vue.component('my-input', {
+Vue.component('currency-input', {
   template: '\
-    <div class="form-group">\
-      <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
-    </div>\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
   ',
-  props: ['value', 'label'],
-  data: function () {
-    return {
-      randomId: 'input-' + Math.random()
-    }
-  },
+  props: ['value'],
   methods: {
-    onInput: function (event) {
-      this.$emit('input', event.target.value)
+    // Instead of updating the value directly, this
+    // method is used to format and place constraints
+    // on the input's value
+    updateValue: function (value) {
+      var formattedValue = value
+        // Remove whitespace on either side
+        .trim()
+        // Shorten to 2 decimal places
+        .slice(0, value.indexOf('.') + 3)
+      // If the value was not already normalized,
+      // manually override it to conform
+      if (formattedValue !== value) {
+        this.$refs.input.value = formattedValue
+      }
+      // Emit the number value through the input event
+      this.$emit('input', Number(formattedValue))
     }
-  },
-})
-
-new Vue({
-  el: '#v-model-example',
-  data: {
-    message: 'hello'
   }
 })
 ```
 
 {% raw %}
-<div id="v-model-example" class="demo">
-  <p>{{ message }}</p>
-  <my-input
-    label="Message"
-    v-model="message"
-  ></my-input>
+<div id="currency-input-example" class="demo">
+  <currency-input v-model="price"></currency-input>
 </div>
 <script>
-Vue.component('my-input', {
+Vue.component('currency-input', {
   template: '\
-    <div class="form-group">\
-      <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
-    </div>\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
   ',
-  props: ['value', 'label'],
-  data: function () {
-    return {
-      randomId: 'input-' + Math.random()
-    }
-  },
+  props: ['value'],
   methods: {
-    onInput: function (event) {
-      this.$emit('input', event.target.value)
+    updateValue: function (value) {
+      var formattedValue = value
+        .trim()
+        .slice(0, value.indexOf('.') + 3)
+      if (formattedValue !== value) {
+        this.$refs.input.value = formattedValue
+      }
+      this.$emit('input', Number(formattedValue))
     }
-  },
-})
-new Vue({
-  el: '#v-model-example',
-  data: {
-    message: 'hello'
   }
 })
+new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
+
+The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 这个接口不仅仅可以用来连接组件内部的表单输入，也很容易集成你自己创造的输入类型。想象一下：
 
@@ -643,7 +659,7 @@ bus.$on('id-selected', function (id) {
 })
 ```
 
-在更多复杂的情况下，你应该考虑使用专门的 [状态管理模式](/guide/state-management.html).
+在更多复杂的情况下，你应该考虑使用专门的 [状态管理模式](state-management.html).
 
 ## 使用 Slots 分发内容
 
@@ -850,7 +866,7 @@ var vm = new Vue({
 </keep-alive>
 ```
 
-在[API 参考](/api/#keep-alive)查看更多 `<keep-alive>` 的细节。
+在[API 参考](../api/#keep-alive)查看更多 `<keep-alive>` 的细节。
 
 ## 杂项
 

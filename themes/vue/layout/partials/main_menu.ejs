@@ -1,9 +1,14 @@
-<li><a href="/guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">教程</a></li>
-<li><a href="/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
+<li>
+  <form id="search-form">
+    <input type="text" id="search-query-<%- context %>" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/v2/guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">教程</a></li>
+<li><a href="/v2/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
 <li><a href="/about/" class="nav-link<%- page.path.match(/about/) ? ' current' : '' %>">参与贡献</a></li>
 <li><a href="https://router.vuejs.org/zh-cn/index.html" target="_blank">vue-router</a></li>
 <li><a href="/vuex/" class="nav-link<%- page.path.match(/vuex/) ? ' current' : '' %>">vuex</a></li>
-<li><a href="/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">示例</a></li>
+<li><a href="/v2/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">示例</a></li>
 <li><a href="https://webpack.vuefe.cn" target="_blank">webpack</a></li>
 <li><a href="/more/" class="nav-link<%- page.path.match(/more/) ? ' current' : '' %>">更多</a></li>
 <%- partial('partials/community_dropdown') %>
