@@ -631,7 +631,7 @@ new Vue({
 <p>In this example, it’s important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.</p>
 <h4 id="Binding-Native-Events-to-Components"><a href="#Binding-Native-Events-to-Components" class="headerlink" title="Binding Native Events to Components"></a>Binding Native Events to Components</h4><p>There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the <code>.native</code> modifier for <code>v-on</code>. For example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-on:click.native</span>=<span class="string">"doTheThing"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="Form-Input-Components-using-Custom-Events"><a href="#Form-Input-Components-using-Custom-Events" class="headerlink" title="Form Input Components using Custom Events"></a>Form Input Components using Custom Events</h3><p>This strategy can also be used to create custom form inputs that work with <code>v-model</code>. Remember:</p>
+<h3 id="Form-Input-Components-using-Custom-Events"><a href="#Form-Input-Components-using-Custom-Events" class="headerlink" title="Form Input Components using Custom Events"></a>Form Input Components using Custom Events</h3><p>Custom events can also be used to create custom inputs that work with <code>v-model</code>. Remember:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"something"</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>is just syntactic sugar for:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-bind:value</span>=<span class="string">"something"</span> <span class="attr">v-on:input</span>=<span class="string">"something = $event.target.value"</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -642,43 +642,45 @@ new Vue({
 <li>accept a <code>value</code> prop</li>
 <li>emit an <code>input</code> event with the new value</li>
 </ul>
-<p>Let’s see it in action:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"v-model-example"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">my-input</span></span></div><div class="line">    <span class="attr">label</span>=<span class="string">"Message"</span></div><div class="line">    <span class="attr">v-model</span>=<span class="string">"message"</span></div><div class="line">  &gt;<span class="tag">&lt;/<span class="name">my-input</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'my-input'</span>, &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">'\</span></div><div class="line">    &lt;div class="form-group"&gt;\</div><div class="line">      &lt;label v-bind:for="randomId"&gt;&#123;&#123; label &#125;&#125;:&lt;/label&gt;\</div><div class="line">      &lt;input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput"&gt;\</div><div class="line">    &lt;/div&gt;\</div><div class="line">  ',</div><div class="line">  <span class="attr">props</span>: [<span class="string">'value'</span>, <span class="string">'label'</span>],</div><div class="line">  <span class="attr">data</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">randomId</span>: <span class="string">'input-'</span> + <span class="built_in">Math</span>.random()</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">onInput</span>: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'input'</span>, event.target.value)</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#v-model-example'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">message</span>: <span class="string">'hello'</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>Let’s see it in action with a very simple currency input:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">currency-input</span> <span class="attr">v-model</span>=<span class="string">"price"</span>&gt;</span><span class="tag">&lt;/<span class="name">currency-input</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'currency-input'</span>, &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">'\</span></div><div class="line">    &lt;span&gt;\</div><div class="line">      $\</div><div class="line">      &lt;input\</div><div class="line">        ref="input"\</div><div class="line">        v-bind:value="value"\</div><div class="line">        v-on:input="updateValue($event.target.value)"\</div><div class="line">      &gt;\</div><div class="line">    &lt;/span&gt;\</div><div class="line">  ',</div><div class="line">  <span class="attr">props</span>: [<span class="string">'value'</span>],</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="comment">// Instead of updating the value directly, this</span></div><div class="line">    <span class="comment">// method is used to format and place constraints</span></div><div class="line">    <span class="comment">// on the input's value</span></div><div class="line">    updateValue: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> formattedValue = value</div><div class="line">        <span class="comment">// Remove whitespace on either side</span></div><div class="line">        .trim()</div><div class="line">        <span class="comment">// Shorten to 2 decimal places</span></div><div class="line">        .slice(<span class="number">0</span>, value.indexOf(<span class="string">'.'</span>) + <span class="number">3</span>)</div><div class="line">      <span class="comment">// If the value was not already normalized,</span></div><div class="line">      <span class="comment">// manually override it to conform</span></div><div class="line">      <span class="keyword">if</span> (formattedValue !== value) &#123;</div><div class="line">        <span class="keyword">this</span>.$refs.input.value = formattedValue</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// Emit the number value through the input event</span></div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'input'</span>, <span class="built_in">Number</span>(formattedValue))</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
-<div id="v-model-example" class="demo">
-  <p>{{ message }}</p>
-  <my-input label="Message" v-model="message"></my-input>
+<div id="currency-input-example" class="demo">
+  <currency-input v-model="price"></currency-input>
 </div>
 <script>
-Vue.component('my-input', {
+Vue.component('currency-input', {
   template: '\
-    <div class="form-group">\
-      <label v-bind:for="randomId">{{ label }}:</label>\
-      <input v-bind:id="randomId" v-bind:value="value" v-on:input="onInput">\
-    </div>\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
   ',
-  props: ['value', 'label'],
-  data: function () {
-    return {
-      randomId: 'input-' + Math.random()
-    }
-  },
+  props: ['value'],
   methods: {
-    onInput: function (event) {
-      this.$emit('input', event.target.value)
+    updateValue: function (value) {
+      var formattedValue = value
+        .trim()
+        .slice(0, value.indexOf('.') + 3)
+      if (formattedValue !== value) {
+        this.$refs.input.value = formattedValue
+      }
+      this.$emit('input', Number(formattedValue))
     }
-  },
-})
-new Vue({
-  el: '#v-model-example',
-  data: {
-    message: 'hello'
   }
 })
+new Vue({ el: '#currency-input-example' })
 </script>
 
-<p>This interface can be used not only to connect with form inputs inside a component, but also to easily integrate input types that you invent yourself. Imagine these possibilities:</p>
+<p>The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here’s a more robust currency filter:</p>
+<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>The events interface can also be used to create more unusual inputs. For example, imagine these possibilities:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">voice-recognizer</span> <span class="attr">v-model</span>=<span class="string">"question"</span>&gt;</span><span class="tag">&lt;/<span class="name">voice-recognizer</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">webcam-gesture-reader</span> <span class="attr">v-model</span>=<span class="string">"gesture"</span>&gt;</span><span class="tag">&lt;/<span class="name">webcam-gesture-reader</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">webcam-retinal-scanner</span> <span class="attr">v-model</span>=<span class="string">"retinalImage"</span>&gt;</span><span class="tag">&lt;/<span class="name">webcam-retinal-scanner</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="Non-Parent-Child-Communication"><a href="#Non-Parent-Child-Communication" class="headerlink" title="Non Parent-Child Communication"></a>Non Parent-Child Communication</h3><p>Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> bus = <span class="keyword">new</span> Vue()</div></pre></td></tr></table></figure>
