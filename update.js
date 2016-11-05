@@ -1,7 +1,7 @@
 var fs = require('fs')
 var version = require('../vue/package.json').version
 var themeconfPath = 'themes/vue/_config.yml'
-var installPath = 'src/guide/installation.md'
+var installPath = 'src/v2/guide/installation.md'
 var themeconfig = fs.readFileSync(themeconfPath, 'utf-8')
 var installation = fs.readFileSync(installPath, 'utf-8')
 
@@ -13,7 +13,8 @@ fs.writeFileSync(
 var sizes = {
   dev: 'vue.js',
   min: 'vue.min.js',
-  gz: 'vue.min.js.gz'
+  gz: 'vue.min.js.gz',
+  ro_gz: 'vue.common.min.js.gz'
 }
 
 for (var file in sizes) {
