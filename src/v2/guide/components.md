@@ -229,7 +229,7 @@ In Vue.js, the parent-child component relationship can be summarized as **props 
 
 Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
 
-A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](/api/#props):
+A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](../api/#props):
 
 ``` js
 Vue.component('child', {
@@ -439,7 +439,7 @@ We have learned that the parent can pass data down to the child using props, but
 
 ### Using `v-on` with Custom Events
 
-Every Vue instance implements an [events interface](/api/#Instance-Methods-Events), which means it can:
+Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
 
 - Listen to an event using `$on(eventName)`
 - Trigger an event using `$emit(eventName)`
@@ -661,7 +661,7 @@ bus.$on('id-selected', function (id) {
 })
 ```
 
-In more complex cases, you should consider employing a dedicated [state-management pattern](/guide/state-management.html).
+In more complex cases, you should consider employing a dedicated [state-management pattern](state-management.html).
 
 ## Content Distribution with Slots
 
@@ -869,7 +869,7 @@ If you want to keep the switched-out components in memory so that you can preser
 </keep-alive>
 ```
 
-Check out more details on `<keep-alive>` in the [API reference](/api/#keep-alive).
+Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
 
 ## Misc
 

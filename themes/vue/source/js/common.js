@@ -101,7 +101,7 @@
     // version select
     document.querySelector('.version-select').addEventListener('change', function (e) {
       var version = e.target.value
-      var section = window.location.pathname.match(/\/(\w+?)\//)[1]
+      var section = window.location.pathname.match(/\/v\d\/(\w+?)\//)[1]
       if (version === 'SELF') return
       window.location.assign(
         'http://' +

@@ -8,7 +8,7 @@ Vue.js uses an HTML-based template syntax that allows you to declaratively bind 
 
 Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
 
-If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](/guide/render-function.html) instead of templates, with optional JSX support.
+If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](render-function.html) instead of templates, with optional JSX support.
 
 ## Interpolations
 
@@ -22,7 +22,7 @@ The most basic form of data binding is text interpolation using the "Mustache" s
 
 The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
 
-You can also perform one-time interpolations that do not update on data change by using the [v-once directive](/api/#v-once), but keep in mind this will also affect any binding on the same node:
+You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any binding on the same node:
 
 ``` html
 <span v-once>This will never change: {{ msg }}</span>
@@ -42,7 +42,7 @@ The contents are inserted as plain HTML - data bindings are ignored. Note that y
 
 ### Attributes
 
-Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](/api/#v-bind):
+Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
@@ -88,7 +88,7 @@ Vue.js allows you to define filters that can be used to apply common text format
 {{ message | capitalize }}
 ```
 
-<p class="tip">Vue 2.x filters can only be used inside mustache bindings. To achieve the same behavior inside directive bindings, you should use [Computed properties](/guide/computed.html) instead.</p>
+<p class="tip">Vue 2.x filters can only be used inside mustache bindings. To achieve the same behavior inside directive bindings, you should use [Computed properties](computed.html) instead.</p>
 
 The filter function always receives the expression's value as the first argument.
 
