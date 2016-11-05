@@ -7,7 +7,6 @@ dev_size: "194.65"
 min_size: "64.28"
 gz_size: "23.55"
 ro_gz_size: "16.39"
----
 
 ### 兼容性
 
@@ -51,6 +50,8 @@ $ npm install vue
 
 有两种构建方式，独立构建和运行构建。它们的区别在于前者包含**模板编译器**而后者不包含。
 
+模板编译用于编译 Vue 模板字符串成纯 JavaScript 渲染函数。如果你想用 `template` 选项， 你需要编译。
+
 模板编译器的职责是将模板字符串编译为纯 JavaScript 的渲染函数。如果你想要在组件中使用 `template` 选项，你就需要编译器。
 
 - 独立构建包含模板编译器并支持 `template` 选项。 **它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。**
@@ -92,6 +93,7 @@ $ cd my-project
 $ npm install
 $ npm run dev
 ```
+<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
 <p class="tip">CLI 默认了用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读[指南](/guide/)，熟悉 Vue 本身之后再研究 CLI。</p>
 
