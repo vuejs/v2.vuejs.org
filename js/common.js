@@ -1,6 +1,5 @@
 (function () {
 
-  initSearch()
   initMobileMenu()
   if (PAGE_TYPE) {
     initVersionSelect()
@@ -72,25 +71,6 @@
       }
       return m[b.length][a.length]
     }
-  }
-
-  /**
-   * Swiftype search box
-   */
-
-  function initSearch () {
-    [
-      '#search-query-nav',
-      '#search-query-sidebar'
-    ].forEach(function (selector) {
-      if (!document.querySelector(selector)) return
-      docsearch({
-        appId: 'BH4D9OD16A',
-        apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-        indexName: 'vuejs',
-        inputSelector: selector
-      })
-    })
   }
 
   /**
