@@ -8,7 +8,7 @@ Vue.js 使用了基于 HTML 的模版语法，允许开发者声明式地将 DOM
 
 在底层的实现上， Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。
 
-如果你熟悉虚拟 DOM 并且偏爱 JavaScript 的原始力量，你也可以不用模板，[直接写渲染（render）函数](/guide/render-function.html)，使用可选的 JSX 语法。
+如果你熟悉虚拟 DOM 并且偏爱 JavaScript 的原始力量，你也可以不用模板，[直接写渲染（render）函数](render-function.html)，使用可选的 JSX 语法。
 
 ## 插值
 
@@ -22,7 +22,7 @@ Vue.js 使用了基于 HTML 的模版语法，允许开发者声明式地将 DOM
 
 Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无论何时，绑定的数据对象上 `msg` 属性发生了改变，插值处的内容都会更新。
 
-通过使用 [v-once 指令](/api/#v-once)，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上所有的数据绑定：
+通过使用 [v-once 指令](../api/#v-once)，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上所有的数据绑定：
 
 ``` html
 <span v-once>This will never change: {{ msg }}</span>
@@ -42,7 +42,7 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 
 ### 属性
 
-Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](/api/#v-bind)：
+Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bind)：
 
 ``` html
 <div v-bind:id="dynamicId"></div>
@@ -88,7 +88,7 @@ Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。�
 {{ message | capitalize }}
 ```
 
-<p class="tip">Vue 2.x 中，过滤器只能在 mustache 绑定中使用。为了在指令绑定中实现同样的行为，你应该使用[计算属性](/guide/computed.html)。</p>
+<p class="tip">Vue 2.x 中，过滤器只能在 mustache 绑定中使用。为了在指令绑定中实现同样的行为，你应该使用[计算属性](computed.html)。</p>
 
 过滤器函数总接受表达式的值作为第一个参数。
 

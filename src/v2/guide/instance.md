@@ -16,7 +16,7 @@ var vm = new Vue({
 
 虽然没有完全遵循 [MVVM 模式](https://en.wikipedia.org/wiki/Model_View_ViewModel)， Vue 的设计无疑受到了它的启发。因此在文档中经常会使用 `vm` 这个变量名表示 Vue 实例。
 
-在实例化 Vue 时，需要传入一个**选项对象**，它可以包含数据、模板、挂载元素、方法、生命周期钩子等选项。全部的选项可以在 [API 文档](/api)中查看。
+在实例化 Vue 时，需要传入一个**选项对象**，它可以包含数据、模板、挂载元素、方法、生命周期钩子等选项。全部的选项可以在 [API 文档](../api)中查看。
 
 可以扩展 `Vue` 构造器，从而用预定义选项创建可复用的**组件构造器**：
 
@@ -75,7 +75,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 <p class="tip">注意，不要在实例属性或者回调函数中（如 `vm.$watch('a', newVal => this.myMethod())`）使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)。因为箭头函数绑定父上下文，所以 `this` 不会像预想的一样是 Vue 实例，而是 `this.myMethod` 未被定义。</p>
 
-实例属性和方法的完整列表中查阅 [API 参考](/api)。
+实例属性和方法的完整列表中查阅 [API 参考](../api)。
 
 ## 实例生命周期
 

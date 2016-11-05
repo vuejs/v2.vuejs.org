@@ -112,7 +112,7 @@ describe('MyComponent', () => {
 
 ## 断言异步更新
 
-由于 Vue 进行 [异步更新DOM](/guide/reactivity.html#Async-Update-Queue) 的情况，一些依赖DOM更新结果的断言必须在 ` Vue nexttick ` 回调中进行：
+由于 Vue 进行 [异步更新DOM](reactivity.html#Async-Update-Queue) 的情况，一些依赖DOM更新结果的断言必须在 ` Vue.nextTick ` 回调中进行：
 
 ``` js
 // 在状态更新后检查生成的 HTML
