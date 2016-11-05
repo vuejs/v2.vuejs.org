@@ -1,7 +1,7 @@
 var fs = require('fs')
 var version = require('../vue/package.json').version
 var themeconfPath = 'themes/vue/_config.yml'
-var installPath = 'src/v2/guide/installation.md'
+var installPath = 'src/guide/installation.md'
 var themeconfig = fs.readFileSync(themeconfPath, 'utf-8')
 var installation = fs.readFileSync(installPath, 'utf-8')
 
