@@ -76,9 +76,9 @@ vm.message = 'Hello!'
 
 ## 异步更新队列
 
-你应该注意到 Vue 执行 DOM 更新是**异步的**，只要观察到数据变化，Vue 就开始一个队列，将同一事件循环内所有的数据变化缓存起来。如果一个 watcher 被多次触发，只会推入一次到队列中。然后，在接下来的事件循环中，Vue 刷新队列并仅执行必要的 DOM 更新。Vue在内部尝试利用原生的`Promise.then`和`MutationObserver`来调用异步队列，如果执行环境不兼容，会采用`setTimeout(fn, 0)`代替。
+你应该注意到 Vue 执行 DOM 更新是**异步的**，只要观察到数据变化，Vue 就开始一个队列，将同一事件循环内所有的数据变化缓存起来。如果一个 watcher 被多次触发，只会推入一次到队列中。然后，在接下来的事件循环中，Vue 刷新队列并仅执行必要的 DOM 更新。Vue 在内部尝试利用原生的 `Promise.then` 和 `MutationObserver` 来调用异步队列，如果执行环境不兼容，会采用 `setTimeout(fn, 0)` 代替。
 
-例如，当你设置 `vm.someData = 'new value'`，该组件不会马上被重新渲染。当刷新队列时，这个组件会在下一次事件循环清空队列时更新。我们基本不用关心这个过程，但是如果你想在 DOM 状态更新后做点什么，这就可能会有些棘手。一般来讲，Vue 鼓励开发者沿着数据驱动的思路，尽量避免直接接触 DOM，但是有时我们确实要这么做。为了在数据变化之后等待 Vue 完成更新 DOM，可以在数据变化之后立即使用 `Vue.nextTick(callback)`。这样回调在 DOM 更新完成后就会调用。例如：
+例如，当你设置 `vm.someData = 'new value'` ，该组件不会马上被重新渲染。当刷新队列时，这个组件会在下一次事件循环清空队列时更新。我们基本不用关心这个过程，但是如果你想在 DOM 状态更新后做点什么，这就可能会有些棘手。一般来讲， Vue 鼓励开发者沿着数据驱动的思路，尽量避免直接接触 DOM，但是有时我们确实要这么做。为了在数据变化之后等待 Vue 完成更新 DOM ，可以在数据变化之后立即使用 `Vue.nextTick(callback)` 。这样回调在 DOM 更新完成后就会调用。例如：
 
 ```html
 <div id="example">{{message}}</div>
@@ -96,7 +96,7 @@ Vue.nextTick(function () {
   vm.$el.textContent === 'new message' // true
 })
 ```
-`vm.$nextTick()` 这个实例方法在组件内使用特别方便，因为它不需要全局 `Vue`，它的回调 `this` 将自动绑定到当前的 Vue 实例上：
+`vm.$nextTick()` 这个实例方法在组件内使用特别方便，因为它不需要全局 `Vue` ，它的回调 `this` 将自动绑定到当前的 Vue 实例上：
 ``` js
 Vue.component('example', {
   template: '<span>{{ message }}</span>',
