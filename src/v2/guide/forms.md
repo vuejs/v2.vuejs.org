@@ -294,7 +294,8 @@ new Vue({
   type="checkbox"
   v-model="toggle"
   v-bind:true-value="a"
-  v-bind:false-value="b">
+  v-bind:false-value="b"
+>
 ```
 
 ``` js
@@ -360,6 +361,13 @@ vm.selected.number // -> 123
 ```html
 <input v-model.trim="msg">
 ```
+
+## `v-model` with Components
+
+> If you're not yet familiar with Vue's components, just skip this for now.
+
+HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
+
 
 ***
 

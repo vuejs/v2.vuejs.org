@@ -2,10 +2,10 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.0.3
-dev_size: "188.88"
-min_size: "62.54"
-gz_size: "22.86"
+vue_version: 2.0.5
+dev_size: "194.65"
+min_size: "64.28"
+gz_size: "23.55"
 ro_gz_size: "16"
 ---
 
@@ -49,7 +49,9 @@ $ npm install vue
 
 ### 独立构建 vs 运行时构建
 
-有两种构建方式，独立构建和运行构建。
+有两种构建方式，独立构建和运行构建。The difference being that the former includes the **template compiler** and the latter does not.
+
+The template compiler is responsible for compiling Vue template strings into pure JavaScript render functions. If you want to use the `template` option, then you need the compiler.
 
 - 独立构建包括编译和支持 `template` 选项。 **它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。**
 
@@ -90,6 +92,7 @@ $ cd my-project
 $ npm install
 $ npm run dev
 ```
+<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
 ## 开发版本
 

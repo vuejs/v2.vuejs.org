@@ -180,7 +180,7 @@ methods: {
 <!-- 只有修饰符 -->
 <form v-on:submit.prevent></form>
 
-<!-- 添加事件侦听器时使用时间捕获模式 -->
+<!-- 添加事件侦听器时使用事件捕获模式 -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
@@ -218,7 +218,7 @@ methods: {
 - left
 - right
 
-可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](/api/#keyCodes)：
+可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](../api/#keyCodes)：
 
 ``` js
 // 可以使用 v-on:keyup.f1

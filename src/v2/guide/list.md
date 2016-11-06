@@ -213,7 +213,7 @@ new Vue({ el: '#range' })
 
 ### 组件 和 v-for
 
-> 了解组件相关知识，查看 [组件](/guide/components.html) 。
+> 了解组件相关知识，查看 [组件](components.html) 。Feel free to skip it and come back later.
 
 在自定义组件里，你可以像任何普通元素一样用 `v-for` 。
 
@@ -365,7 +365,7 @@ Vue 包含一组观察数组的变异方法，所以它们也将会触发视图�
 
 ### 重塑数组
 
-变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()`, `slice()` 。这些不会改变原始数组，但总是返回一个新数组。当使用用非变异方法时，可以用新数组替换旧数组：
+变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()`, `slice()` 。这些不会改变原始数组，但总是返回一个新数组。当使用非变异方法时，可以用新数组替换旧数组：
 
 ``` js
 example1.items = example1.items.filter(function (item) {
