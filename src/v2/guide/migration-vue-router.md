@@ -463,7 +463,7 @@ Use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#p
 
 ### `deactivate` <sup>removed</sup>
 
-Use the component's [`beforeDestroy`](/api/#beforeDestroy) or [`destroyed`](/api/#destroyed) hooks instead.
+Use the component's [`beforeDestroy`](../api/#beforeDestroy) or [`destroyed`](../api/#destroyed) hooks instead.
 
 {% raw %}
 <div class="upgrade-path">

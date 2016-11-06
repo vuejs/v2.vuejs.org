@@ -49,7 +49,7 @@ This gives you more complete control over the reactive properties you'd like to 
 
 ## Store's Event Emitter <sup>removed</sup>
 
-The store instance no longer exposes the event emitter interface (`on`, `off`, `emit`). If you were previously using the store as a global event bus, [see this section](http://vuejs.org/guide/migration.html#dispatch-and-broadcast-removed) for migration instructions.
+The store instance no longer exposes the event emitter interface (`on`, `off`, `emit`). If you were previously using the store as a global event bus, [see this section](migration.html#dispatch-and-broadcast-removed) for migration instructions.
 
 Instead of using this interface to watch events emitted by the store itself (e.g. `store.on('mutation', callback)`), a new method `store.subscribe` is introduced. Typical usage inside a plugin would be:
 

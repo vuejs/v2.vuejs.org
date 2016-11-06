@@ -16,7 +16,7 @@ var vm = new Vue({
 
 Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was no doubt inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instances.
 
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](/api).
+When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](../api).
 
 The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
 
@@ -75,7 +75,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 <p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an instance property or callback (e.g. `vm.$watch('a', newVal => this.myMethod())`). As arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect and `this.myMethod` will be undefined.</p>
 
-Consult the [API reference](/api) for the full list of instance properties and methods.
+Consult the [API reference](../api) for the full list of instance properties and methods.
 
 ## Instance Lifecycle Hooks
 
