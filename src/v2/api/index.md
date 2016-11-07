@@ -1017,7 +1017,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Usage:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression can be a single keypath or any valid binding expressions.
+  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
 
 <p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
 
@@ -1026,11 +1026,6 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ``` js
   // keypath
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
-  })
-
-  // expression
-  vm.$watch('a + b', function (newVal, oldVal) {
     // do something
   })
 
