@@ -13,7 +13,8 @@ fs.writeFileSync(
 var sizes = {
   dev: 'vue.js',
   min: 'vue.min.js',
-  gz: 'vue.min.js.gz'
+  gz: 'vue.min.js.gz',
+  ro_gz: 'vue.common.min.js.gz'
 }
 
 for (var file in sizes) {
