@@ -146,7 +146,7 @@ The same is true for class bindings:
 When `isActive` is truthy, the rendered HTML will be:
 
 ``` html
-<div class="foo bar active"></div>
+<p class="foo bar active"></p>
 ```
 
 ## Binding Inline Styles
