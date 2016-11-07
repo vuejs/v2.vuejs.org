@@ -93,7 +93,6 @@
 
 ### Vuex 2.0
 翻译已完成 <br />
-校对中 <br />
 
 ### webpack2
 翻译中 [webpack.js.org](https://github.com/vuefe/webpack2) <br />
