@@ -272,9 +272,7 @@ Vue.component('todo-item', {
 
 ``` html
 <ul>
-  <!--
-  Create an instance of the todo-item component
-  -->
+  <!-- Create an instance of the todo-item component -->
   <todo-item></todo-item>
 </ul>
 ```
@@ -296,11 +294,9 @@ Vue.component('todo-item', {
 ``` html
 <div id="app-7">
   <ol>
-    <!--
-    Now we provide each todo-item with the todo object
-    it's representing, so that its content can be dynamic
-    -->
-    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
+    <!-- Now we provide each todo-item with the todo object    -->
+    <!-- it's representing, so that its content can be dynamic -->
+    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
   </ol>
 </div>
 ```
@@ -310,13 +306,14 @@ Vue.component('todo-item', {
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
+
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+    groceryList: [
+      { text: 'Vegetables' },
+      { text: 'Cheese' },
+      { text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
@@ -324,7 +321,7 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
+    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
   </ol>
 </div>
 <script>
@@ -335,10 +332,10 @@ Vue.component('todo-item', {
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+    groceryList: [
+      { text: 'Vegetables' },
+      { text: 'Cheese' },
+      { text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
