@@ -1020,6 +1020,28 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
 
+When using [single file components](single-file-components.html) and recursion between two of them, you may need to lazy-load your recursive component:
+
+``` js
+// MyComponent.vue
+export default {
+  template: '<stack-overflow></stack-overflow>'
+}
+
+// StackOverflow.vue
+export default {
+  template: '<my-component></my-component>',
+  beforeCreate () {
+    this.$options.components.StackOverflow = require('./MyComponent.vue')
+  }
+}
+
+// App.vue
+export default {
+  template: '<my-component></my-component>'
+}
+```
+
 ### Inline Templates
 
 When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
