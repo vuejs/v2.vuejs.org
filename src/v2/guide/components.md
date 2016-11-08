@@ -1020,19 +1020,22 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
 
-When using [single file components](single-file-components.html) and recursion between two of them, you may need to lazy-load your recursive component:
+When using [single file components](single-file-components.html) and recursion between two of them, you may need to lazy-load your recursive component, in order to achieve this you should load your recursive components inside the `beforeCreate()` lifecycle step 
 
 ``` js
 // MyComponent.vue
 export default {
-  template: '<stack-overflow></stack-overflow>'
+  template: '<stack-overflow></stack-overflow>',
+  beforeCreate () {
+    this.$options.components.StackOverflow = require('./StackOverflow.vue')
+  }
 }
 
 // StackOverflow.vue
 export default {
   template: '<my-component></my-component>',
   beforeCreate () {
-    this.$options.components.StackOverflow = require('./MyComponent.vue')
+    this.$options.components.MyComponent = require('./MyComponent.vue')
   }
 }
 
