@@ -1025,6 +1025,7 @@ When using [single file components](single-file-components.html) and recursion b
 ``` js
 // MyComponent.vue
 export default {
+  name: 'my-component',
   template: '<stack-overflow></stack-overflow>',
   beforeCreate () {
     this.$options.components.StackOverflow = require('./StackOverflow.vue')
@@ -1033,6 +1034,7 @@ export default {
 
 // StackOverflow.vue
 export default {
+  name: 'stack-overflow',
   template: '<my-component></my-component>',
   beforeCreate () {
     this.$options.components.MyComponent = require('./MyComponent.vue')
