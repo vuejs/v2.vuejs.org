@@ -81,11 +81,11 @@ type: api
 
 ### ignoredElements
 
-- **Type:** `Array<string>`
+- **类型:** `Array<string>`
 
-- **Default:** `[]`
+- **默认值:** `[]`
 
-- **Usage:**
+- **用法:**
 
   ``` js
   Vue.config.ignoredElements = [
@@ -93,7 +93,7 @@ type: api
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  须使 Vue 忽略在 Vue 之外的自定义元素 (e.g., 使用了 Web Components APIs)。否则，它会假设你忘记注册全局组件或者拼错了组件名称，从而抛出一个关于 `Unknown custom element` 的警告。
 
 ### keyCodes
 
