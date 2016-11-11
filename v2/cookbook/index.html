@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>TodoMVC - vue.js</title>
+        <title>Introduction - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <meta property="og:type" content="article">
-        <meta property="og:title" content="TodoMVC - vue.js">
+        <meta property="og:title" content="Introduction - vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta property="og:image" content="https://vuejs.org/images/logo.png">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="TodoMVC - vue.js">
+        <meta name="twitter:title" content="Introduction - vue.js">
         <meta name="twitter:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
@@ -27,7 +27,7 @@
 
         <!-- this needs to be loaded before guide's inline scripts -->
         <script src="/js/vue.js"></script>
-        <script>window.PAGE_TYPE = "examples"</script>
+        <script>window.PAGE_TYPE = "cookbook"</script>
     </head>
     <body class="docs">        <div id="mobile-bar" >
             <a class="menu-button"></a>
@@ -46,7 +46,7 @@
 </li>
 <li><a href="/v2/guide/" class="nav-link">Guide</a></li>
 <li><a href="/v2/api/" class="nav-link">API</a></li>
-<li><a href="/v2/examples/" class="nav-link current">Examples</a></li>
+<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
 <li><a href="https://medium.com/the-vue-point" target="_blank" class="nav-link">Blog</a></li>
 <li class="nav-dropdown-container">
   <a class="nav-link">Community</a><span class="arrow"></span>
@@ -76,7 +76,7 @@
 </li>
 <li><a href="/v2/guide/" class="nav-link">Guide</a></li>
 <li><a href="/v2/api/" class="nav-link">API</a></li>
-<li><a href="/v2/examples/" class="nav-link current">Examples</a></li>
+<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
 <li><a href="https://medium.com/the-vue-point" target="_blank" class="nav-link">Blog</a></li>
 <li class="nav-dropdown-container">
   <a class="nav-link">Community</a><span class="arrow"></span>
@@ -97,14 +97,7 @@
             <a href="/support-vuejs">Support Vue.js</a>
         </div>
         <h2>
-            Examples
-            
-                <select class="version-select">
-                    <option value="SELF" selected>2.0</option>
-                    <option value="v1">1.0</option>
-                    <option value="012">0.12</option>
-                    <option value="011">0.11</option>
-                </select>
+            Cookbook
             
         </h2>
         <ul class="menu-root">
@@ -112,87 +105,42 @@
                 
                 
                 
+                    
+                    <!-- Move cookbook sections here once they have -->
+                    <!-- at least one recipe -->
+                
                 <li>
-                    <a href="/v2/examples/index.html" class="sidebar-link">Markdown Editor</a>
+                    <a href="/v2/cookbook/index.html" class="sidebar-link current">Introduction</a>
                 </li>
             
                 
                 
                 
-                <li>
-                    <a href="/v2/examples/commits.html" class="sidebar-link">GitHub Commits</a>
-                </li>
-            
-                
-                
-                
-                <li>
-                    <a href="/v2/examples/firebase.html" class="sidebar-link">Firebase + Validation</a>
-                </li>
-            
-                
-                
+                    
+                      <li><h3>Vue Instance</h3></li>
+                    
+                    <!-- Move cookbook sections here once they have -->
+                    <!-- at least one recipe -->
                 
                 <li>
-                    <a href="/v2/examples/grid-component.html" class="sidebar-link">Grid Component</a>
+                    <a href="/v2/cookbook/adding-instance-properties.html" class="sidebar-link">Adding Instance Properties</a>
                 </li>
             
-                
-                
-                
-                <li>
-                    <a href="/v2/examples/tree-view.html" class="sidebar-link">Tree View</a>
-                </li>
             
-                
-                
-                
-                <li>
-                    <a href="/v2/examples/svg.html" class="sidebar-link">SVG Graph</a>
-                </li>
-            
-                
-                
-                
-                <li>
-                    <a href="/v2/examples/modal.html" class="sidebar-link">Modal Component</a>
-                </li>
-            
-                
-                
-                
-                <li>
-                    <a href="/v2/examples/elastic-header.html" class="sidebar-link">Elastic Header</a>
-                </li>
-            
-                
-                
-                
-                <li>
-                    <a href="/v2/examples/select2.html" class="sidebar-link">Wrapper Component</a>
-                </li>
-            
-                
-                
-                
-                <li>
-                    <a href="/v2/examples/todomvc.html" class="sidebar-link current">TodoMVC</a>
-                </li>
-            
-                
-                
-                
-                <li>
-                    <a href="/v2/examples/hackernews.html" class="sidebar-link">HackerNews Clone</a>
-                </li>
-            
+                <li><h3>Components</h3></li>
+                <li><h4>Form Inputs</h4></li>
+                <li><h4>3rd-Party Integrations</h4></li>
+                <li><h3>Transitions</h3></li>
+                <li><h3>Directives</h3></li>
+                <li><h3>Vue Router</h3></li>
+                <li><h3>Vuex</h3></li>
             
         </ul>
     </div>
 </div>
 
 
-<div class="content examples with-sidebar ">
+<div class="content cookbook with-sidebar ">
     
       <div id="ad">
   <span>Sponsored By</span><br>
@@ -205,19 +153,47 @@
 
     
     
-      <h1>TodoMVC Example</h1>
+      <h1>Introduction</h1>
     
-    <blockquote>
-<p>This is a fully spec-compliant TodoMVC implementation in under 120 effective lines of JavaScript (excluding comments and blank lines).</p>
-</blockquote>
-<p class="tip">Note that if your web browser is configured to block 3rd-party data/cookies, the example below will not work, as the <code>localStorage</code> data will fail to be saved from JSFiddle. You’ll have to click on <code>Edit in JSFiddle</code> to see the live result.</p>
+    <h2 id="WORK-IN-PROGRESS"><a href="#WORK-IN-PROGRESS" class="headerlink" title="WORK IN PROGRESS"></a>WORK IN PROGRESS</h2><p class="tip">This cookbook is still in its very early stages. At this point, we will not be linking to it from anywhere else. Pages may be removed or reorganized at any time. Even the goals and overall format are still in flux.</p>
 
-<iframe width="100%" height="500" src="https://jsfiddle.net/yyx990803/4dr2fLb7/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<h2 id="The-Cookbook-vs-the-Guide"><a href="#The-Cookbook-vs-the-Guide" class="headerlink" title="The Cookbook vs the Guide"></a>The Cookbook vs the Guide</h2><p>How is the cookbook different from the guide? Why is this necessary?</p>
+<ul>
+<li><p><strong>Greater Focus</strong>: In the guide, we’re essentially telling a story. Each section builds on and assumes knowledge from each previous section. In the cookbook, each recipe can and should stand on its own. This means recipes can focus on one specific aspect of Vue, rather than having to give a general overview.</p>
+</li>
+<li><p><strong>Greater Depth</strong>: To avoid making the guide too long, we try to include only the simplest possible examples to help you understand each feature. Then we move on. In the cookbook, we can include more complex examples, combining features in interesting ways. Each recipe can also be as long and detailed as it needs to be, in order to fully explore its niche.</p>
+</li>
+<li><p><strong>Teaching JavaScript</strong>: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won’t explain how <code>Array.prototype.filter</code> works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.</p>
+</li>
+<li><p><strong>Exploring the Ecosystem</strong>: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don’t explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.</p>
+</li>
+</ul>
+<h2 id="Guidelines-for-Recipes"><a href="#Guidelines-for-Recipes" class="headerlink" title="Guidelines for Recipes"></a>Guidelines for Recipes</h2><p>Recipes should generally:</p>
+<blockquote>
+<ol>
+<li><p>Solve a specific, common problem</p>
+</li>
+<li><p>Start with the simplest possible example</p>
+</li>
+<li><p>Introduce complexities one at a time</p>
+</li>
+<li><p>Link to other docs, rather than re-explaining concepts</p>
+</li>
+<li><p>Describe the problem, rather than assuming familiarity</p>
+</li>
+<li><p>Explain the process, rather than just the end result</p>
+</li>
+<li><p>Explain the pros and cons of your strategy, including when it is and isn’t appropriate</p>
+</li>
+<li><p>Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe</p>
+</li>
+</ol>
+</blockquote>
 
     
     <div class="footer">
       Caught a mistake or want to contribute to the documentation?
-      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/todomvc.md" target="_blank">
+      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/cookbook/index.md" target="_blank">
         Edit this page on Github!
       </a>
     </div>
