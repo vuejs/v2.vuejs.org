@@ -213,7 +213,7 @@ new Vue({ el: '#range' })
 
 ### 组件 和 v-for
 
-> 了解组件相关知识，查看 [组件](components.html) 。Feel free to skip it and come back later.
+> 了解组件相关知识，查看 [组件](components.html) 。完全可以先跳过它，以后再回来查看。
 
 在自定义组件里，你可以像任何普通元素一样用 `v-for` 。
 
