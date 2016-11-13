@@ -761,7 +761,7 @@ Vue.component('child-component', {
 </div>
 ```
 
-### 具名Slots
+### 具名 Slot
 
 `<slot>` 元素可以用一个特殊的属性 `name` 来配置如何分发内容。多个 slot 可以有不同的名字。具名 slot 将匹配内容片段中有对应 `slot` 特性的元素。
 
