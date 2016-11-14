@@ -110,7 +110,7 @@ Both Vue and React remain fast enough in development for most normal application
 ``` jsx
   render () {
 	    let { items } = this.props
-	
+
 	    let children
 	    if ( items.length > 0 ) {
 	        children = (
@@ -123,7 +123,7 @@ Both Vue and React remain fast enough in development for most normal application
 	    } else {
 	        children = <p>No items found.</p>
 	    }
-	
+
 	    return (
 	        <div className = 'list-container'>
 	            {children}
@@ -243,7 +243,7 @@ Vue 的一些语法和 Angular 的很相似（例如 `v-if` vs `ng-if`）。因�
 ### 灵活性和模块化
 
 Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方式组织应用程序，而不是在任何时候都必须遵循 Angular 1 制定的规则，这让 Vue 能适用于各种项目。我们知道把决定权交给你是非常必要的。
-这也就是为什么我们提供[Webpack template](https://github.com/vuejs-templates/webpack)，让你可以用几分钟，去选择是否启用高级特性，比如热模块加载、linting、CSS 提取等等。
+这也就是为什么我们提供 [Webpack template](https://github.com/vuejs-templates/webpack)，让你可以用几分钟，去选择是否启用高级特性，比如热模块加载、linting、CSS 提取等等。
 
 ### 数据绑定
 
@@ -251,7 +251,7 @@ Angular 1 使用双向绑定，Vue 在不同组件间强制使用单向数据流
 
 ### 指令与组件
 
-在 Vue 中指令和组件分得更清晰。指令只封装 DOM 操作，而组件代表一个自给自足的独立单元 —— 有自己的视图和数据逻辑。在 Angular 中两者有不少相混的地方。 
+在 Vue 中指令和组件分得更清晰。指令只封装 DOM 操作，而组件代表一个自给自足的独立单元 —— 有自己的视图和数据逻辑。在 Angular 中两者有不少相混的地方。
 
 ### 性能
 
@@ -312,12 +312,12 @@ Knockout 是 MVVM 领域内的先驱，并且追踪依赖。它的响应系统�
 ## Polymer
 
 Polymer 是另一个由谷歌赞助的项目，事实上也是 Vue 的一个灵感来源。Vue 的组件可以粗略的类比于 Polymer 的自定义元素，并且两者具有相似的开发风格。最大的不同之处在于，Polymer 是基于最新版的 Web Components 标准之上，并且需要重量级的 polyfills 来帮助工作（性能下降），浏览器本身并不支持这些功能。相比而言，Vue 在支持到 IE9 的情况下并不需要依赖 polyfills 来工作，。
- 
+
 在 Polymer 1.0 版本中，为了弥补性能，团队非常有限的使用数据绑定系统。例如，在 Polymer 中唯一支持的表达式只有布尔值否定和单一的方法调用，它的 computed 方法的实现也并不是很灵活。
 
 Polymer 自定义的元素是用 HTML 文件来创建的，这会限制使用 JavaScript/CSS（和被现代浏览器普遍支持的语言特性）。相比之下，Vue 的单文件组件允许你非常容易的使用 ES2015 和你想用的 CSS 预编译处理器。
 
-在部署生产环境时，Polymer 建议使用 HTML Imports 加载所有资源。而这要求服务器和客户端都支持 Http 2.0 协议，并且浏览器实现了此标准。这是否可行就取决于你的目标用户和部署环境了。如果状况不佳，你必须用 Vulcanizer 工具来打包 Polymer 元素。而在这方面，Vue 可以结合异步组件的特性和 Webpack 的代码分割特性来实现懒加载（lazy-loaded）。这同时确保了对旧浏览器的兼容且又能更快加载。 
+在部署生产环境时，Polymer 建议使用 HTML Imports 加载所有资源。而这要求服务器和客户端都支持 Http 2.0 协议，并且浏览器实现了此标准。这是否可行就取决于你的目标用户和部署环境了。如果状况不佳，你必须用 Vulcanizer 工具来打包 Polymer 元素。而在这方面，Vue 可以结合异步组件的特性和 Webpack 的代码分割特性来实现懒加载（lazy-loaded）。这同时确保了对旧浏览器的兼容且又能更快加载。
 
 而 Vue 和 Web Component 标准进行深层次的整合也是完全可行的，比如使用 Custom Elements、Shadow DOM 的样式封装。然而在我们做出严肃的实现承诺之前，我们目前仍在等待相关标准成熟，进而再广泛应用于主流的浏览器中。
 
