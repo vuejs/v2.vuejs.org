@@ -1621,7 +1621,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
 
   ``` html
-  <!-- vm.$refs.p will the DOM node -->
+  <!-- vm.$refs.p will be the DOM node -->
   <p ref="p">hello</p>
 
   <!-- vm.$refs.child will be the child comp instance -->
