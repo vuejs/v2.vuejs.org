@@ -6,7 +6,7 @@ order: 15
 
 ## Basics
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render  function**, a closer-to-the-compiler alternative to templates.
+Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
 
 Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
 
