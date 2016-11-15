@@ -144,7 +144,7 @@ Vue.component('my-component', {
 当 `isActive` 是 true 时, 渲染的 HTML 将会是：
 
 ``` html
-<div class="foo bar active"></div>
+<p class="foo bar active"></p>
 ```
 
 ## 绑定内联样式

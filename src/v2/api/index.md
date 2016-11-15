@@ -1628,7 +1628,7 @@ type: api
   `ref` 被用来给元素或子组件注册引用信息。引用信息会根据父组件的 `$refs` 对象进行注册。如果在普通的DOM元素上使用，引用信息就是元素; 如果用在子组件上，引用信息就是组件实例:
 
   ``` html
-  <!-- vm.$refs.p will the DOM node -->
+  <!-- vm.$refs.p will be the DOM node -->
   <p ref="p">hello</p>
 
   <!-- vm.$refs.child will be the child comp instance -->
