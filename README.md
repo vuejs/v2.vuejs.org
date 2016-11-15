@@ -104,3 +104,13 @@
 https://github.com/vuefe/vuefe.github.io/issues/192
 
 ### 感谢所有参与翻译的朋友们！
+
+## Developing
+
+Start a dev server at `localhost:4000`:
+
+```
+$ npm install -g hexo-cli
+$ npm install
+$ hexo server
+```

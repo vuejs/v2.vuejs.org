@@ -629,7 +629,7 @@ new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
 
-The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+上面的实现方式太过理想化了。 比如，用户甚至可以输入多个小数点或句号 - 呸！因此我们需要一个更有意义的例子，下面是一个更加完善的货币过滤器：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
