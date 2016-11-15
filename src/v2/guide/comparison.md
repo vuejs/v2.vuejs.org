@@ -186,6 +186,8 @@ Vue on the other hand, gives you full access to CSS within [single-file componen
 
 The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `data-v-21e5b78`) to elements and compiling `.list-container:hover` to something like `.list-container[data-v-21e5b78]:hover`.
 
+If you are already familiar with CSS Modules, Vue single file components also have [first-class support for it](http://vue-loader.vuejs.org/en/features/css-modules.html).
+
 Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors (or post-processors) you'd like, allowing you to leverage existing libraries in those ecosystems. You can also perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
 
 ### Scale

@@ -99,7 +99,8 @@
 
   function initVersionSelect () {
     // version select
-    document.querySelector('.version-select').addEventListener('change', function (e) {
+    var versionSelect = document.querySelector('.version-select')
+    versionSelect && versionSelect.addEventListener('change', function (e) {
       var version = e.target.value
       var section = window.location.pathname.match(/\/v\d\/(\w+?)\//)[1]
       if (version === 'SELF') return

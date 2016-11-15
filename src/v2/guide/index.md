@@ -270,10 +270,10 @@ Vue.component('todo-item', {
 Now you can compose it in another component's template:
 
 ``` html
-<ul>
+<ol>
   <!-- Create an instance of the todo-item component -->
   <todo-item></todo-item>
-</ul>
+</ol>
 ```
 
 But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
