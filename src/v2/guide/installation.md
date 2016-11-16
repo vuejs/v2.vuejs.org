@@ -71,7 +71,7 @@ resolve: {
 
 对于Browserify，可以用 [aliasify](https://github.com/benbria/aliasify)
 
-<p class="tip">不要用 `import Vue from 'vue/dist/vue.js'` - 用一些工具或第三方库引入 Vue ，这可能会导致应用程序在同一时间加载运行时和独立构建并造成错误。</p>
+<p class="tip">不要用 `import Vue from 'vue/dist/vue.js'` - 由于一些工具或第三方库也会引入 Vue，这可能会导致应用程序同时加载了运行时构建和独立构建而造成错误。</p>
 
 ### CSP 环境
 
