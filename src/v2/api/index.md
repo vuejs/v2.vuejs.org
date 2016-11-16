@@ -1505,7 +1505,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **Modifiers:**
   - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
   - [`.number`](../guide/forms.html#number) - cast input string to numbers
-  - [`.trim`](/guild/forms.html#trim) - trim input
+  - [`.trim`](../guide/forms.html#trim) - trim input
 
 - **Usage:**
 
