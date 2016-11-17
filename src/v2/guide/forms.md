@@ -362,12 +362,11 @@ vm.selected.number // -> 123
 <input v-model.trim="msg">
 ```
 
-## `v-model` with Components
+## `v-model` 与组件
 
-> If you're not yet familiar with Vue's components, just skip this for now.
+> 如果你对组件还不熟悉，跳过这里即可。
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
-
+HTML 的内置 input 类型可能不会总是能满足你的需求。幸运的是, Vue 的组件系统允许你创建一个具有自定义行为的并且可重用的 inputs 。这些 inputs 甚至可以与 `v-model` 一起使用!想了解更多，阅读组件文档中的 [自定义inputs](components.html#Form-Input-Components-using-Custom-Events)。
 
 ***
 

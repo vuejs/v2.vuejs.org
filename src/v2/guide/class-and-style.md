@@ -109,13 +109,13 @@ data: {
 <div v-bind:class="[{ active: isActive }, errorClass]">
 ```
 
-### With Components
+### 用在组件上
 
-> This section assumes knowledge of [Vue Components](components.html). Feel free to skip it and come back later.
+> 这个章节假设你已经对 [Vue 组件](components.html) 有一定的了解。当然你也可以跳过这里，稍后再回过头来看。
 
-When you use the `class` attribute on a custom component, those classes will be added to the component's root element. Existing classes on this element will not be overwritten.
+当你在一个定制的组件上用到 `class` 属性的时候，这些类将被添加到根元素上面，这个元素上已经存在的类不会被覆盖。
 
-For example, if you declare this component:
+例如，如果你声明了这个组件:
 
 ``` js
 Vue.component('my-component', {
@@ -123,25 +123,25 @@ Vue.component('my-component', {
 })
 ```
 
-Then add some classes when using it:
+然后在使用它的时候添加一些类:
 
 ``` html
 <my-component class="baz boo"></my-component>
 ```
 
-The rendered HTML will be:
+HTML 最终将被渲染成为:
 
 ``` html
 <p class="foo bar baz boo">Hi</p>
 ```
 
-The same is true for class bindings:
+同样的适用于绑定 HTML class :
 
 ``` html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-When `isActive` is truthy, the rendered HTML will be:
+当 `isActive` 为 true 的时候，HTML 将被渲染成为:
 
 ``` html
 <div class="foo bar active"></div>
@@ -197,4 +197,3 @@ data: {
 > 原文：http://vuejs.org/guide/class-and-style.html
 
 ***
-
