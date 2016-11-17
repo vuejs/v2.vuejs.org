@@ -129,7 +129,7 @@ Vue.component('my-component', {
 <my-component class="baz boo"></my-component>
 ```
 
-HTML最终将被渲染成为:
+HTML 最终将被渲染成为:
 
 ``` html
 <p class="foo bar baz boo">Hi</p>
