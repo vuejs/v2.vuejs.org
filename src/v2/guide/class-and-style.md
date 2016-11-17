@@ -112,7 +112,7 @@ data: {
 ### 和组件一起使用
 
 > 这个部分假设你已经有了对于[Vue组件](components.html)的一些了解。尽管跳过这段好了，过会儿再回来看也是可以的。
-当你在一个定制的组件上用到`class`属性的时候，这些类将被添加到跟元素上面，例如，如果你声明了这个组件:
+当你在一个定制的组件上用到`class`属性的时候，这些类将被添加到根元素上面，例如，如果你声明了这个组件:
 
 ``` js
 Vue.component('my-component', {
@@ -120,7 +120,7 @@ Vue.component('my-component', {
 })
 ```
 
-然后在使用它的时候添加一些类，
+然后在使用它的时候添加一些类:
 
 ``` html
 <my-component class="baz boo"></my-component>
