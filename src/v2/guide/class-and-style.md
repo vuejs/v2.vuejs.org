@@ -109,11 +109,11 @@ data: {
 <div v-bind:class="[{ active: isActive }, errorClass]">
 ```
 
-### 和组件一起使用
+### 用在组件上
 
-> 这个部分假设你已经有了对于[Vue组件](components.html)的一些了解。尽管跳过这段好了，过会儿再回来看也是可以的。
+> 这个章节假设你已经对 [Vue 组件](components.html)有一定的了解。当然你也可以跳过这里，稍后再回过头来看。
 
-当你在一个定制的组件上用到`class`属性的时候，这些类将被添加到根元素上面，这个元素上已经存在的类不会被覆盖。
+当你在一个定制的组件上用到 `class` 属性的时候，这些类将被添加到根元素上面，这个元素上已经存在的类不会被覆盖。
 
 例如，如果你声明了这个组件:
 
@@ -135,13 +135,13 @@ HTML最终将被渲染成为:
 <p class="foo bar baz boo">Hi</p>
 ```
 
-同样的适用于绑定HTML class:
+同样的适用于绑定 HTML class :
 
 ``` html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-当`isActive`为true的时候，HTML将被渲染成为:
+当 `isActive` 为 true 的时候，HTML 将被渲染成为:
 
 ``` html
 <div class="foo bar active"></div>
