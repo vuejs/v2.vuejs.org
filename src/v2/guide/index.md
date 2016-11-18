@@ -14,13 +14,46 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 <p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can simply create an `.html` file and include Vue with:
+The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can simply create an `.html` file and copy paste the following code:
 
-``` html
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+```html   
+<head>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+  <div id="app">
+        <p>{{ message }}</p>
+  </div>
+
+  <script>
+      var vm = new Vue({
+          el: '#app',
+          data: {
+              message: 'Hello'
+          }
+      })
+  </script>
+</body>
 ```
 
 The [Installation](installation.html) page provides more options of installing Vue. Note that we **do not** recommend beginners to start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+
+<p class="tip">When using Vue with a language which uses {{ }} as it's templating syntax, use this code to change the templating syntax of Vue</p>
+
+
+```js
+var vm = new Vue({
+    el: '#app',
+    delimiters: ['${', '}'],
+    data: {
+        message: 'Hello'
+    }
+})
+```
+
+After doing this, you'd use `${}` in the html like  `<p>${message}</p>`.
 
 ## Declarative Rendering
 
