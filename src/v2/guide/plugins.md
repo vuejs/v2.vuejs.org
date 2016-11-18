@@ -44,7 +44,7 @@ MyPlugin.install = function (Vue, options) {
     ...
   })
 
-  // 4. 添加事例方法
+  // 4. 添加实例方法
   Vue.prototype.$myMethod = function (options) {
     // 逻辑...
   }
