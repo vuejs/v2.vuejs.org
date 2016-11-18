@@ -77,7 +77,6 @@ If you're feeling lazy though, below are the numbers from one run in Chrome 52 o
       <td>343ms</td>
       <td>453ms</td>
     </tr>
-    </tr>
   </tbody>
 </table>
 {% endraw %}
