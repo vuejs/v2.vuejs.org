@@ -31,7 +31,7 @@ As promised, we can also use preprocessors such as Jade, Babel (with ES2015 modu
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-These specific languages are just examples. You could just as easily use Buble, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive.
+These specific languages are just examples. You could just as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive.
 
 <!-- TODO: include CSS modules once it's supported in vue-loader 9.x -->
 
