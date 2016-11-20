@@ -361,7 +361,7 @@ Vue 包含一组观察数组的变异方法，所以它们也将会触发视图�
 - `sort()`
 - `reverse()`
 
-你打开控制台，然后用前面例子的 `items` 数组调用突变方法：`example1.items.push({ message: 'Baz' })` 。
+你打开控制台，然后用前面例子的 `items` 数组调用变异方法：`example1.items.push({ message: 'Baz' })` 。
 
 ### 重塑数组
 
@@ -422,7 +422,7 @@ computed: {
 }
 ```
 
-或者，您也可以使用在计算属性是不可行的 method 方法 (例如，在嵌套 `v-for` 循环中)：
+或者，您也可以在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中)使用 method 方法：
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
