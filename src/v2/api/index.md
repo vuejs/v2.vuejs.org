@@ -1493,7 +1493,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **Argument:** `attrOrProp (optional)`
 
 - **Modifiers:**
-  - `.prop` - Used for binding DOM attributes.
+  - `.prop` - Bind as a DOM property instead of an attribute. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
 
 - **Usage:**
 
@@ -1535,6 +1536,14 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
+
+  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+
+  ``` html
+  <svg :view-box.camel="viewBox"></svg>
+  ```
+
+  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
 
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
