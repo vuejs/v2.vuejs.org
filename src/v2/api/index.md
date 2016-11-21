@@ -928,13 +928,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$slots
 
-- **Type:** `Object`
+- **Type:** `{ [name: string]: ?Array<VNode> }`
 
 - **Read only**
 
 - **Details:**
 
-  Used to access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
 
   Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
 
@@ -972,9 +972,28 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 
 - **See also:**
-  - [`<slot>` Component](#slot)
+  - [`<slot>` Component](#slot-1)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions](../guide/render-function.html)
+  - [Render Functions: Slots](../guide/render-function.html#Slots)
+
+### vm.$scopedSlots
+
+> New in 2.1.0
+
+- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+
+- **Read only**
+
+- **Details:**
+
+  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+
+  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+
+- **See also:**
+  - [`<slot>` Component](#slot-1)
+  - [Scoped Slots](../guide/components.html#Scoped-Slots)
+  - [Render Functions: Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 

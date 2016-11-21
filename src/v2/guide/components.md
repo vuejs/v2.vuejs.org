@@ -818,6 +818,67 @@ The rendered result will be:
 
 The content distribution API is a very useful mechanism when designing components that are meant to be composed together.
 
+### Scoped Slots
+
+> New in 2.1.0
+
+A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+
+In a child component, simply pass data into a slot as if you are passing props to a component:
+
+``` html
+<div class="child">
+  <slot text="hello from child"></slot>
+</div>
+```
+
+In the parent, a `<template>` element with a special attribute `scope` indicates that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+
+``` html
+<div class="parent">
+  <child>
+    <template scope="props">
+      <span>hello from parent</span>
+      <span>{{ props.text }}</span>
+    </template>
+  </child>
+</div>
+```
+
+If we render the above, the output will be:
+
+``` html
+<div class="parent">
+  <div class="child">
+    <span>hello from parent</span>
+    <span>hello from child</span>
+  </div>
+</div>
+```
+
+A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
+
+``` html
+<my-awesome-list :items="items">
+  <!-- scoped slot can be named too -->
+  <template slot="item" scope="props">
+    <li class="my-fancy-item">{{ props.text }}</li>
+  </template>
+</my-awesome-list>
+```
+
+And the template for the list component:
+
+``` html
+<ul>
+  <slot name="item"
+    v-for="item in items"
+    :text="item.text">
+    <!-- fallback content here -->
+  </slot>
+</ul>
+```
+
 ## Dynamic Components
 
 You can use the same mount point and dynamically switch between multiple components using the reserved `<component>` element and dynamically bind to its `is` attribute:

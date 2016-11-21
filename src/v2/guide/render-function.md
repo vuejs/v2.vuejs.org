@@ -174,6 +174,11 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
+  // Scoped slots in the form of
+  // { name: props => VNode | Array<VNode> }
+  scopedSlots: {
+    default: props => h('span', props.text)
+  },
   // The name of a slot if the child of a component
   slot: 'name-of-slot'
   // Other special top-level properties
@@ -254,6 +259,8 @@ render: function (createElement) {
 
 ## Replacing Template Features with Plain JavaScript
 
+### `v-if` and `v-for`
+
 Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
 
 ``` html
@@ -274,6 +281,70 @@ render: function (createElement) {
   } else {
     return createElement('p', 'No items found.')
   }
+}
+```
+
+### `v-model`
+
+There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+
+``` js
+render: function (createElement) {
+  var self = this
+  return createElement('input', {
+    domProps: {
+      value: self.value
+    },
+    on: {
+      input: function (e) {
+        self.value = e.target.value
+      }
+    }
+  })
+}
+```
+
+This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+
+### Slots
+
+You can access static slot contents as Arrays of VNodes from [`this.$slots`](http://vuejs.org/v2/api/#vm-slots):
+
+``` js
+render: function (createElement) {
+  // <div><slot></slot></div>
+  return createElement('div', this.$slots.default)
+}
+```
+
+And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots):
+
+``` js
+render: function (createElement) {
+  // <div><slot :text="msg"></slot></div>
+  return createElement('div', [
+    this.$scopedSlots.default({
+      text: this.msg
+    })
+  ])
+}
+```
+
+To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+
+``` js
+render (createElement) {
+  return createElement('div', [
+    createElement('child', {
+      // pass scopedSlots in the data object
+      // in the form of { name: props => VNode | Array<VNode> }
+      scopedSlots: {
+        default: function (props) {
+          return h('span', props.text)
+        }
+      }
+    })
+  ])
 }
 ```
 
