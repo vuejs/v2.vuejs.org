@@ -154,10 +154,10 @@ type: api
 
 - **See also:** [Components](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( callback, [context] )</h3>
+<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
 
 - **Arguments:**
-  - `{Function} callback`
+  - `{Function} [callback]`
   - `{Object} [context]`
 
 - **Usage:**
@@ -172,6 +172,8 @@ type: api
     // DOM updated
   })
   ```
+
+  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
@@ -1219,14 +1221,16 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
-<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
+<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
 - **Arguments:**
-  - `{Function} callback`
+  - `{Function} [callback]`
 
 - **Usage:**
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+
+  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **Example:**
 
