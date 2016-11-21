@@ -1779,6 +1779,10 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### keep-alive
 
+- **Props:**
+  - `include` - string or RegExp. Only components matched by this will be cached.
+  - `exclude` - string or RegExp. Any component matched by this will not be cached.
+
 - **Usage:**
 
   When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
@@ -1806,6 +1810,26 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     </keep-alive>
   </transition>
   ```
+
+- **`include` and `exclude`**
+
+  > New in 2.1.0
+
+  The `include` and `exclude` props allow components to be conditionally cached. Both props can either be a comma-delimited string or a RegExp:
+
+  ``` html
+  <!-- comma-delimited string -->
+  <keep-alive include="a,b">
+    <component :is="view"></component>
+  </keep-alive>
+
+  <!-- regex (use v-bind) -->
+  <keep-alive :include="/a|b/">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
+
+  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
 
   <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
