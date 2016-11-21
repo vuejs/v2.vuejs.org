@@ -316,7 +316,7 @@ new Vue({
   }
 })
 ```
-<p class="tip">将 `h` 作为 `createElement` 的别名是一个通用惯例，你会发现在 Vue 生态系统中，实际上必须用到 JSX，如果在作用域中 `h` 失去作用， 在应用中会触发报错。</p>
+<p class="tip">将 `h` 作为 `createElement` 的别名是 Vue 生态系统中的一个通用惯例，实际上也是 JSX 所要求的，如果在作用域中 `h` 失去作用， 在应用中会触发报错。</p>
 
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
 
