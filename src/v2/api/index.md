@@ -1302,18 +1302,6 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 - **See also:** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
 
-### v-if
-
-- **Expects:** `any`
-
-- **Usage:**
-
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
-
-  This directive triggers transitions when its condition changes.
-
-- **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
-
 ### v-show
 
 - **Expects:** `any`
@@ -1326,15 +1314,27 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
 
+### v-if
+
+- **Expects:** `any`
+
+- **Usage:**
+
+  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+
+  This directive triggers transitions when its condition changes.
+
+- **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
+
 ### v-else
 
 - **Does not expect expression**
 
-- **Restriction:** previous sibling element must have `v-if`.
+- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
 
 - **Usage:**
 
-  Denote the "else block" for `v-if`.
+  Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1347,6 +1347,35 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:**
   - [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+
+### v-else-if
+
+> New in 2.1.0
+
+- **Expects:** `any`
+
+- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+
+- **Usage:**
+
+  Denote the "else if block" for `v-if`. Can be chained.
+
+  ```html
+  <div v-if="type === 'A'">
+    A
+  </div>
+  <div v-else-if="type === 'B'">
+    B
+  </div>
+  <div v-else-if="type === 'C'">
+    C
+  </div>
+  <div v-else>
+    Not A/B/C
+  </div>
+  ```
+
+- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
