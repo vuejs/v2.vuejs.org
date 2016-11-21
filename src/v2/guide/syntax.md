@@ -80,45 +80,6 @@ These expressions will be evaluated as JavaScript in the data scope of the owner
 
 <p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
 
-### Filters
-
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters should be appended to the end of a **mustache interpolation**, denoted by the "pipe" symbol:
-
-``` html
-{{ message | capitalize }}
-```
-
-<p class="tip">Vue 2.x filters can only be used inside mustache bindings. To achieve the same behavior inside directive bindings, you should use [Computed properties](computed.html) instead.</p>
-
-The filter function always receives the expression's value as the first argument.
-
-``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  }
-})
-```
-
-Filters can be chained:
-
-``` html
-{{ message | filterA | filterB }}
-```
-
-Filters are JavaScript functions, therefore they can take arguments:
-
-``` html
-{{ message | filterA('arg1', arg2) }}
-```
-
-Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
-
 ## Directives
 
 Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception for `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
@@ -156,6 +117,49 @@ Modifiers are special postfixes denoted by a dot, which indicate that a directiv
 ```
 
 We will see more use of modifiers later when we take a more thorough look at `v-on` and `v-model`.
+
+## Filters
+
+Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions**. Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+
+``` html
+<!-- in mustaches -->
+{{ message | capitalize }}
+
+<!-- in v-bind -->
+<div v-bind:id="rawId | formatId"></div>
+```
+
+<p class="tip">Vue 2.x filters can only be used inside mustache interpolations and `v-bind` expressions (the latter supported since 2.1.0), because filters are primarily designed for text transformation purposes. For more complex data transforms in other directives, you should use [Computed properties](computed.html) instead.</p>
+
+The filter function always receives the expression's value as the first argument.
+
+``` js
+new Vue({
+  // ...
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  }
+})
+```
+
+Filters can be chained:
+
+``` html
+{{ message | filterA | filterB }}
+```
+
+Filters are JavaScript functions, therefore they can take arguments:
+
+``` html
+{{ message | filterA('arg1', arg2) }}
+```
+
+Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
 
 ## Shorthands
 
