@@ -422,7 +422,7 @@ computed: {
 }
 ```
 
-或者，您也可以在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中)使用 method 方法：
+或者，您也可以在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 使用 method 方法：
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
