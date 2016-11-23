@@ -59,6 +59,16 @@
   </ul>
 </li>
 
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">vue-router</a></li>
+    <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">vuex</a></li>
+    <li><a href="https://github.com/vuejs/vue-cli" class="nav-link" target="_blank">vue-cli</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">awesome-vue</a></li>
+  </ul>
+</li>
+
 
   </ul>
 </div>
@@ -89,13 +99,29 @@
   </ul>
 </li>
 
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">vue-router</a></li>
+    <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">vuex</a></li>
+    <li><a href="https://github.com/vuejs/vue-cli" class="nav-link" target="_blank">vue-cli</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">awesome-vue</a></li>
+  </ul>
+</li>
+
 
     </ul>
     <div class="list">
-        <div id="donate" style="margin-bottom: 20px">
-            <img src="/images/patreon.png">
-            <a href="/support-vuejs">Support Vue.js</a>
+        <div class="main-sponsor">
+            <span>Sponsored By</span><br>
+            <a href="http://www.thedifferenceengine.io/" target="_blank"
+                style="background-color: #f3f3f3; padding: 10px 0">
+                <img src="/images/tde.png">
+            </a>
         </div>
+        <a class="become-backer" href="/support-vuejs">
+            Become a Backer
+        </a>
         <h2>
             Guide
             
@@ -474,12 +500,12 @@
 <div class="content guide with-sidebar installation-guide">
     
       <div id="ad">
-  <span>Sponsored By</span><br>
+  <!-- <span>Sponsored By</span><br>
   <a href="http://www.thedifferenceengine.io/" target="_blank"
     style="background-color: rgba(0,0,0,.85); padding: 10px 0">
     <img src="/images/tde.png">
-  </a>
-  <!-- <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script> -->
+  </a> -->
+  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
 </div>
 
     
@@ -491,10 +517,10 @@
 <h2 id="Standalone"><a href="#Standalone" class="headerlink" title="Standalone"></a>Standalone</h2><p>Simply download and include with a script tag. <code>Vue</code> will be registered as a global variable.</p>
 <p class="tip">Don’t use the minified version during development. You will miss out all the nice warnings for common mistakes!</p>
 
-<div id="downloads"><br><a class="button" href="/js/vue.js" download="">Development Version</a><span class="light info">With full warnings and debug mode</span><br><br><a class="button" href="/js/vue.min.js" download="">Production Version</a><span class="light info">Warnings stripped, 23.55kb min+gzip</span><br></div>
+<div id="downloads"><br><a class="button" href="/js/vue.js" download="">Development Version</a><span class="light info">With full warnings and debug mode</span><br><br><a class="button" href="/js/vue.min.js" download="">Production Version</a><span class="light info">Warnings stripped, 24.83kb min+gzip</span><br></div>
 
 <h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>Recommended: <a href="https://unpkg.com/vue/dist/vue.js" target="_blank" rel="external">unpkg</a>, which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at <a href="https://unpkg.com/vue/" target="_blank" rel="external">unpkg.com/vue/</a>.</p>
-<p>Also available on <a href="//cdn.jsdelivr.net/vue/2.0.5/vue.js">jsdelivr</a> or <a href="//cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js">cdnjs</a>, but these two services take some time to sync so the latest release may not be available yet.</p>
+<p>Also available on <a href="//cdn.jsdelivr.net/vue/2.1.0/vue.js">jsdelivr</a> or <a href="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.0/vue.js">cdnjs</a>, but these two services take some time to sync so the latest release may not be available yet.</p>
 <h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><p>NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as <a href="http://webpack.github.io/" target="_blank" rel="external">Webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>. Vue also provides accompanying tools for authoring <a href="single-file-components.html">Single File Components</a>.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># latest stable</span></div><div class="line">$ npm install vue</div></pre></td></tr></table></figure>
 <h3 id="Standalone-vs-Runtime-only-Build"><a href="#Standalone-vs-Runtime-only-Build" class="headerlink" title="Standalone vs. Runtime-only Build"></a>Standalone vs. Runtime-only Build</h3><p>There are two builds available, the standalone build and the runtime-only build. The difference being that the former includes the <strong>template compiler</strong> and the latter does not.</p>
@@ -502,7 +528,7 @@
 <ul>
 <li><p>The standalone build includes the compiler and supports the <code>template</code> option. <strong>It also relies on the presence of browser APIs so you cannot use it for server-side rendering.</strong></p>
 </li>
-<li><p>The runtime-only build does not include the template compiler, and does not support the <code>template</code> option. You can only use the <code>render</code> option when using the runtime-only build, but it works with single-file components, because single-file components’ templates are pre-compiled into <code>render</code> functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 16.39kb min+gzip.</p>
+<li><p>The runtime-only build does not include the template compiler, and does not support the <code>template</code> option. You can only use the <code>render</code> option when using the runtime-only build, but it works with single-file components, because single-file components’ templates are pre-compiled into <code>render</code> functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 17.12kb min+gzip.</p>
 </li>
 </ul>
 <p>By default, the NPM package exports the <strong>runtime-only</strong> build. To use the standalone build, add the following alias to your Webpack config:</p>
