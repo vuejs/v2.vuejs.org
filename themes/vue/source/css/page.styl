@@ -68,10 +68,17 @@
             bottom -2px
             font-size 1.2em
             font-weight bold
-    figure, p, ul, ol
+    figure
         margin 1.2em 0
     p, ul, ol
         line-height 1.6em
+        // HACK: Create area underneath paragraphs
+        // and lists that will be on top of heading
+        // anchors, for easier text highlighting.
+        margin 1.2em 0 -1.2em
+        padding-bottom 1.2em
+        position relative
+        z-index: 1
     ul, ol
         padding-left 1.5em
     a
