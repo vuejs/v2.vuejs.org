@@ -6,9 +6,8 @@ order: 15
 
 ## 基础
 
-Vue 推荐使用在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这就是 ** render 函数**，它比 template 更接近编译器。
-
-让我们先深入一个使用 `render` 函数的简单例子，假设你想生成一个带锚链接的标题：
+<<<<<<< HEAD
+Vue 推荐使用在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这就是 **render 函数**，它比 template 更接近编译器。
 
 
 ``` html
@@ -172,6 +171,11 @@ createElement(
       }
     }
   ],
+  // Scoped slots in the form of
+  // { name: props => VNode | Array<VNode> }
+  scopedSlots: {
+    default: props => h('span', props.text)
+  },
   // 如果子组件有定义 slot 的名称
   slot: 'name-of-slot'
   // 其他特殊顶层属性
@@ -252,6 +256,8 @@ render: function (createElement) {
 
 ## 使用 JavaScript 代替模板功能
 
+### `v-if` and `v-for`
+
 无论什么都可以使用原生的 JavaScript 来实现，Vue 的 render 函数不会提供专用的 API。比如， template 中的 `v-if` 和 `v-for`:
 
 ``` html
@@ -271,6 +277,70 @@ render: function (createElement) {
   } else {
     return createElement('p', 'No items found.')
   }
+}
+```
+
+### `v-model`
+
+There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+
+``` js
+render: function (createElement) {
+  var self = this
+  return createElement('input', {
+    domProps: {
+      value: self.value
+    },
+    on: {
+      input: function (e) {
+        self.value = e.target.value
+      }
+    }
+  })
+}
+```
+
+This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+
+### Slots
+
+You can access static slot contents as Arrays of VNodes from [`this.$slots`](http://vuejs.org/v2/api/#vm-slots):
+
+``` js
+render: function (createElement) {
+  // <div><slot></slot></div>
+  return createElement('div', this.$slots.default)
+}
+```
+
+And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots):
+
+``` js
+render: function (createElement) {
+  // <div><slot :text="msg"></slot></div>
+  return createElement('div', [
+    this.$scopedSlots.default({
+      text: this.msg
+    })
+  ])
+}
+```
+
+To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+
+``` js
+render (createElement) {
+  return createElement('div', [
+    createElement('child', {
+      // pass scopedSlots in the data object
+      // in the form of { name: props => VNode | Array<VNode> }
+      scopedSlots: {
+        default: function (props) {
+          return h('span', props.text)
+        }
+      }
+    })
+  ])
 }
 ```
 

@@ -815,6 +815,68 @@ Vue.component('child-component', {
 
 在组合组件时，内容分发 API 是非常有用的机制。
 
+
+### Scoped Slots
+
+> New in 2.1.0
+
+A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+
+In a child component, simply pass data into a slot as if you are passing props to a component:
+
+``` html
+<div class="child">
+  <slot text="hello from child"></slot>
+</div>
+```
+
+In the parent, a `<template>` element with a special attribute `scope` indicates that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+
+``` html
+<div class="parent">
+  <child>
+    <template scope="props">
+      <span>hello from parent</span>
+      <span>{{ props.text }}</span>
+    </template>
+  </child>
+</div>
+```
+
+If we render the above, the output will be:
+
+``` html
+<div class="parent">
+  <div class="child">
+    <span>hello from parent</span>
+    <span>hello from child</span>
+  </div>
+</div>
+```
+
+A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
+
+``` html
+<my-awesome-list :items="items">
+  <!-- scoped slot can be named too -->
+  <template slot="item" scope="props">
+    <li class="my-fancy-item">{{ props.text }}</li>
+  </template>
+</my-awesome-list>
+```
+
+And the template for the list component:
+
+``` html
+<ul>
+  <slot name="item"
+    v-for="item in items"
+    :text="item.text">
+    <!-- fallback content here -->
+  </slot>
+</ul>
+```
+
 ## 动态组件
 
 多个组件可以使用同一个挂载点，然后动态地在它们之间切换。使用保留的 `<component>` 元素，动态地绑定到它的 `is` 特性：
@@ -959,9 +1021,11 @@ Vue.component(
 ``` js
 // 在组件定义中
 components: {
-  // 使用 camelCase 形式注册
+  // 使用 kebab-case 形式注册
   'kebab-cased-component': { /* ... */ },
+  // register using camelCase
   'camelCasedComponent': { /* ... */ },
+  // register using TitleCase
   'TitleCasedComponent': { /* ... */ }
 }
 ```
@@ -975,7 +1039,7 @@ components: {
 <title-cased-component></title-cased-component>
 ```
 
-当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 PascalCase 或者 kebab-case 来引用你的组件和 prop：
+当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 TitleCase 或者 kebab-case 来引用：
 
 ``` html
 <!-- 在字符串模版中可以用任何你喜欢的方式! -->
@@ -1016,6 +1080,49 @@ template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
 上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
+
+
+### Circular References Between Components
+
+Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+
+``` html
+<p>
+  <span>{{ folder.name }}</span>
+  <tree-folder-contents :children="folder.children"/>
+</p>
+```
+
+Then a `tree-folder-contents` component with this template:
+
+``` html
+<ul>
+  <li v-for="child in children">
+    <tree-folder v-if="child.children" :folder="child"/>
+    <span v-else>{{ child.name }}</span>
+  </li>
+</ul>
+```
+
+When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+
+However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+
+```
+Failed to mount component: template or render function not defined.
+```
+
+To explain what's happening, I'll call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+
+In our case, I'll make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+
+``` js
+beforeCreate: function () {
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+}
+```
+
+Problem solved!
 
 ### 内联模版
 

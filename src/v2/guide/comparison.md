@@ -75,7 +75,6 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
       <td>343ms</td>
       <td>453ms</td>
     </tr>
-    </tr>
   </tbody>
 </table>
 {% endraw %}
@@ -92,9 +91,9 @@ To avoid unnecessary re-renders of child components, you need to implement `shou
 
 显然，在生产环境中的性能是至关重要的，目前为止我们所具体讨论的便是针对此环境。但开发过程中的表现也不容小视。不错的是用 Vue 和 React 开发大多数应用的速度都是足够快的。
 
-然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
+当性能在生产中性能是直接与终端用户体验相关的更重要的指标时，表现在开发中仍然很重要,因为它是与开发相关经验
 
-Both Vue and React remain fast enough in development for most normal applications. However, when prototyping high frame-rate data visualizations or animations, we've seen cases of Vue handling 10 frames per second in development while React dropping to about 1 frame per second.
+然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
 
 这是由于 React 有大量的检查机制，这会让它提供许多有用的警告和错误提示信息。我们同样认为这些是很重要的，但是我们在实现这些检查时，也更加密切地关注了性能方面。
 

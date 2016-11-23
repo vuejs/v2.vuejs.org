@@ -154,10 +154,10 @@ type: api
 
 - **参考：** [组件](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( callback, [context] )</h3>
+<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
 
 - **参数：**
-  - `{Function} callback`
+  - `{Function} [callback]`
   - `{Object} [context]`
 
 - **用法：**
@@ -172,6 +172,8 @@ type: api
     // DOM 更新了
   })
   ```
+
+  > 2.1.0新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
 - **参考：** [异步更新队列](../guide/reactivity.html#Async-Update-Queue)
 
@@ -934,13 +936,13 @@ type: api
 
 ### vm.$slots
 
-- **类型:** `Object`
+- **类型：** `{ [name: string]: ?Array<VNode> }`
 
 - **只读**
 
 - **详细:**
 
-  用来访问被 [slot 分发](../guide/components.html#Content-Distribution-with-Slots)的内容。每个[具名 slot](../guide/components.html#Named-Slots) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在一个具名 slot 中的节点。
+  用来访问被 [slot 分发](../guide/components.html#Content-Distribution-with-Slots)的内容。每个[具名 slot](../guide/components.html#Named-Slots) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
 
   在使用 [render 函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -978,21 +980,41 @@ type: api
   ```
 
 - **参考：**
-  - [`<slot>` 组件](#slot)
+  - [`<slot>` 组件](#slot-1)
   - [使用 Slots 进行内容分发](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render 函数](../guide/render-function.html)
+  - [Render 函数](../guide/render-function.html#Slots)
 
-### vm.$refs
+### vm.$scopedSlots
 
-- **类型:** `Object`
+> 2.1.0新增
+
+- **类型：** `{ [name: string]: props => VNode | Array<VNode> }`
 
 - **只读**
 
-- **详细:**
+- **详细：**
+
+  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+
+  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+
+- **参考：**
+  - [`<slot>` 组件](#slot-1)
+  - [Scoped Slots](../guide/components.html#Scoped-Slots)
+  - [Render 函数](../guide/render-function.html#Slots)
+
+
+### vm.$refs
+
+- **类型：** `Object`
+
+- **只读**
+
+- **详细：**
 
   一个对象，其中包含了所有拥有 `ref` 注册的子组件。
 
-- **另见:**
+- **另见：**
   - [子组件引用](../guide/components.html#Child-Component-Refs)
   - [ref](#ref)
 
@@ -1206,14 +1228,17 @@ type: api
 
   迫使Vue实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
 
-<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
+<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
 - **参数：**
-  - `{Function} callback`
+  - `{Function} [callback]`
 
 - **用法：**
 
   将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 Vue.nextTick 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
+
+
+ > 2.1.0新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
 - **示例：**
 
@@ -1290,18 +1315,6 @@ type: api
   ```
 - **参考：** [数据绑定语法 - 插值](../guide/syntax.html#Raw-HTML)
 
-### v-if
-
-- **类型：** `any`
-
-- **用法：**
-
-  根据表达式的值的真假条件渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 `<template>` ，将提出它的内容作为条件块。
-
-  当条件变化时该指令触发过渡效果。
-
-- **参考：** [条件渲染 - v-if](../guide/conditional.html)
-
 ### v-show
 
 - **类型：** `any`
@@ -1314,15 +1327,27 @@ type: api
 
 - **参考：** [条件渲染 - v-show](../guide/conditional.html#v-show)
 
+### v-if
+
+- **类型：** `any`
+
+- **用法：**
+
+  根据表达式的值的真假条件渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 `<template>` ，将提出它的内容作为条件块。
+
+  当条件变化时该指令触发过渡效果。
+
+- **参考：** [条件渲染 - v-if](../guide/conditional.html)
+
 ### v-else
 
 - **不需要表达式**
 
-- **限制：** 前一兄弟元素必须有 `v-if`。
+- **限制：** 前一兄弟元素必须有 `v-if` 或 `v-else-if`。
 
 - **用法：**
 
-  为 `v-if` 添加 “else 块”。
+  为 `v-if` 或者 `v-else-if` 添加 “else 块”。
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1335,6 +1360,35 @@ type: api
 
 - **参考：**
   - [条件渲染 - v-else](../guide/conditional.html#v-else)
+
+### v-else-if
+
+> 2.1.0新增
+
+- **Expects:** `any`
+
+- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+
+- **Usage:**
+
+  Denote the "else if block" for `v-if`. Can be chained.
+
+  ```html
+  <div v-if="type === 'A'">
+    A
+  </div>
+  <div v-else-if="type === 'B'">
+    B
+  </div>
+  <div v-else-if="type === 'C'">
+    C
+  </div>
+  <div v-else>
+    Not A/B/C
+  </div>
+  ```
+
+- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
@@ -1452,7 +1506,8 @@ type: api
 - **参数：** `attrOrProp (optional)`
 
 - **修饰符：**
-  - `.prop` - 被用于绑定 DOM 属性。
+  - `.prop` - 被用于绑定 DOM 属性。([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
 
 - **用法：**
 
@@ -1495,6 +1550,14 @@ type: api
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
+  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+
+  ``` html
+  <svg :view-box.camel="viewBox"></svg>
+  ```
+
+  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+
 - **参考：**
   - [Class 与 Style 绑定](../guide/class-and-style.html)
   - [组件 - 组件 Props](../guide/components.html#Props)
@@ -1512,7 +1575,7 @@ type: api
 - **修饰符：**
   - [`.lazy`](../guide/forms.html#lazy) - 取代 `input` 监听 `change` 事件 
   - [`.number`](../guide/forms.html#number) - 输入字符串转为数字
-  - [`.trim`](../guild/forms.html#trim) - 输入首尾空格过滤
+  - [`.trim`](../guide/forms.html#trim) - 输入首尾空格过滤
 
 - **用法：**
 
@@ -1766,6 +1829,10 @@ type: api
 
 ### keep-alive
 
+- **Props:**
+  - `include` - string or RegExp. Only components matched by this will be cached.
+  - `exclude` - string or RegExp. Any component matched by this will not be cached.
+
 - **用法：**
 
   `<keep-alive>` 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。和 `<transition>` 相似，`<keep-alive>` 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。
@@ -1793,6 +1860,26 @@ type: api
     </keep-alive>
   </transition>
   ```
+
+- **`include` and `exclude`**
+
+  > New in 2.1.0
+
+  The `include` and `exclude` props allow components to be conditionally cached. Both props can either be a comma-delimited string or a RegExp:
+
+  ``` html
+  <!-- comma-delimited string -->
+  <keep-alive include="a,b">
+    <component :is="view"></component>
+  </keep-alive>
+
+  <!-- regex (use v-bind) -->
+  <keep-alive :include="/a|b/">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
+
+  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
 
   <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
