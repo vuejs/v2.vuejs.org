@@ -994,7 +994,38 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
+The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you.
+
+Using this convention, you can move the logic of your application into the object that is being resolved. A full example of an async component might look like the following:
+
+```html
+<async-example message="Done!"></async-example>
+```
+
+```js
+Vue.component('async-example', function(resolve, reject) {
+  // our template is a remote HTML partial
+  fetch('/async.html')
+    .then(function(res) {
+      return res.text();
+    }).then(function(template) {
+      resolve({
+        props: ['message'],
+        data: function() {
+          return {
+            time: Date.now()
+          };
+        },
+        template: template,
+        created: function() {
+          console.log('component is ready.')
+        }
+      });
+    }).catch(reject);
+})
+```
+
+One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
