@@ -700,16 +700,17 @@ ul.demo li {
   font-size: 1.2em;
   font-weight: bold;
 }
-.content figure,
-.content p,
-.content ul,
-.content ol {
+.content figure {
   margin: 1.2em 0;
 }
 .content p,
 .content ul,
 .content ol {
   line-height: 1.6em;
+  margin: 1.2em 0 -1.2em;
+  padding-bottom: 1.2em;
+  position: relative;
+  z-index: 1;
 }
 .content ul,
 .content ol {
