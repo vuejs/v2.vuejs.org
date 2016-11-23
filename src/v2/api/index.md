@@ -154,10 +154,10 @@ type: api
 
 - **See also:** [Components](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( callback, [context] )</h3>
+<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
 
 - **Arguments:**
-  - `{Function} callback`
+  - `{Function} [callback]`
   - `{Object} [context]`
 
 - **Usage:**
@@ -172,6 +172,8 @@ type: api
     // DOM updated
   })
   ```
+
+  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
@@ -928,13 +930,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$slots
 
-- **Type:** `Object`
+- **Type:** `{ [name: string]: ?Array<VNode> }`
 
 - **Read only**
 
 - **Details:**
 
-  Used to access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
 
   Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
 
@@ -972,9 +974,28 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 
 - **See also:**
-  - [`<slot>` Component](#slot)
+  - [`<slot>` Component](#slot-1)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions](../guide/render-function.html)
+  - [Render Functions: Slots](../guide/render-function.html#Slots)
+
+### vm.$scopedSlots
+
+> New in 2.1.0
+
+- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+
+- **Read only**
+
+- **Details:**
+
+  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+
+  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+
+- **See also:**
+  - [`<slot>` Component](#slot-1)
+  - [Scoped Slots](../guide/components.html#Scoped-Slots)
+  - [Render Functions: Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
@@ -1200,14 +1221,16 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
-<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
+<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
 - **Arguments:**
-  - `{Function} callback`
+  - `{Function} [callback]`
 
 - **Usage:**
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+
+  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **Example:**
 
@@ -1283,18 +1306,6 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 - **See also:** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
 
-### v-if
-
-- **Expects:** `any`
-
-- **Usage:**
-
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
-
-  This directive triggers transitions when its condition changes.
-
-- **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
-
 ### v-show
 
 - **Expects:** `any`
@@ -1307,15 +1318,27 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
 
+### v-if
+
+- **Expects:** `any`
+
+- **Usage:**
+
+  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+
+  This directive triggers transitions when its condition changes.
+
+- **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
+
 ### v-else
 
 - **Does not expect expression**
 
-- **Restriction:** previous sibling element must have `v-if`.
+- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
 
 - **Usage:**
 
-  Denote the "else block" for `v-if`.
+  Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1328,6 +1351,35 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:**
   - [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+
+### v-else-if
+
+> New in 2.1.0
+
+- **Expects:** `any`
+
+- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+
+- **Usage:**
+
+  Denote the "else if block" for `v-if`. Can be chained.
+
+  ```html
+  <div v-if="type === 'A'">
+    A
+  </div>
+  <div v-else-if="type === 'B'">
+    B
+  </div>
+  <div v-else-if="type === 'C'">
+    C
+  </div>
+  <div v-else>
+    Not A/B/C
+  </div>
+  ```
+
+- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
@@ -1445,7 +1497,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **Argument:** `attrOrProp (optional)`
 
 - **Modifiers:**
-  - `.prop` - Used for binding DOM attributes.
+  - `.prop` - Bind as a DOM property instead of an attribute. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
 
 - **Usage:**
 
@@ -1488,6 +1541,14 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
+  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+
+  ``` html
+  <svg :view-box.camel="viewBox"></svg>
+  ```
+
+  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
   - [Components - Component Props](../guide/components.html#Props)
@@ -1505,7 +1566,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **Modifiers:**
   - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
   - [`.number`](../guide/forms.html#number) - cast input string to numbers
-  - [`.trim`](/guild/forms.html#trim) - trim input
+  - [`.trim`](../guide/forms.html#trim) - trim input
 
 - **Usage:**
 
@@ -1760,6 +1821,10 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### keep-alive
 
+- **Props:**
+  - `include` - string or RegExp. Only components matched by this will be cached.
+  - `exclude` - string or RegExp. Any component matched by this will not be cached.
+
 - **Usage:**
 
   When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
@@ -1787,6 +1852,26 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     </keep-alive>
   </transition>
   ```
+
+- **`include` and `exclude`**
+
+  > New in 2.1.0
+
+  The `include` and `exclude` props allow components to be conditionally cached. Both props can either be a comma-delimited string or a RegExp:
+
+  ``` html
+  <!-- comma-delimited string -->
+  <keep-alive include="a,b">
+    <component :is="view"></component>
+  </keep-alive>
+
+  <!-- regex (use v-bind) -->
+  <keep-alive :include="/a|b/">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
+
+  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
 
   <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 

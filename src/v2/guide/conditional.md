@@ -53,7 +53,30 @@ You can use the `v-else` directive to indicate an "else block" for `v-if`:
 </div>
 ```
 
-The `v-else` element must immediately follow the `v-if` element - otherwise it will not be recognized.
+A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+
+### v-else-if
+
+> New in 2.1.0
+
+The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+
+```html
+<div v-if="type === 'A'">
+  A
+</div>
+<div v-else-if="type === 'B'">
+  B
+</div>
+<div v-else-if="type === 'C'">
+  C
+</div>
+<div v-else>
+  Not A/B/C
+</div>
+```
+
+Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
 
 ## v-show
 

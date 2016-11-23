@@ -207,15 +207,15 @@ Remembering all the keyCodes is a hassle, so Vue provides aliases for the most c
 
 Here's the full list of key modifier aliases:
 
-- enter
-- tab
-- delete (captures both "Delete" and "Backspace" keys)
-- esc
-- space
-- up
-- down
-- left
-- right
+- `.enter`
+- `.tab`
+- `.delete` (captures both "Delete" and "Backspace" keys)
+- `.esc`
+- `.space`
+- `.up`
+- `.down`
+- `.left`
+- `.right`
 
 You can also [define custom key modifier aliases](../api/#keyCodes) via the global `config.keyCodes` object:
 
@@ -223,6 +223,17 @@ You can also [define custom key modifier aliases](../api/#keyCodes) via the glob
 // enable v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
+
+## Mouse Event Modifiers
+
+> New in 2.1.0
+
+You can use the following modifiers to trigger mouse event listeners only when the corresponding key is pressed:
+
+- `.ctrl`
+- `.alt`
+- `.shift`
+- `.meta`
 
 ## Why Listeners in HTML?
 

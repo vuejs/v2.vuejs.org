@@ -77,7 +77,6 @@ If you're feeling lazy though, below are the numbers from one run in Chrome 52 o
       <td>343ms</td>
       <td>453ms</td>
     </tr>
-    </tr>
   </tbody>
 </table>
 {% endraw %}
@@ -90,7 +89,7 @@ This means updates in unoptimized Vue will be much faster than unoptimized React
 
 #### In Development
 
-While performance in production is the more important metrics as it is directly associated with end-user experience, performance in development still matters because it is associated with the developer experience.
+While performance in production is the more important metric as it is directly associated with end-user experience, performance in development still matters because it is associated with the developer experience.
 
 Both Vue and React remain fast enough in development for most normal applications. However, when prototyping high frame-rate data visualizations or animations, we've seen cases of Vue handling 10 frames per second in development while React dropping to about 1 frame per second.
 

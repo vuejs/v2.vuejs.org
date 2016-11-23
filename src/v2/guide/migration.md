@@ -866,7 +866,7 @@ methods: {
 }
 ```
 
-For more on the advantages of this strategy, see [the example here with `v-model`](#v-model-with-debounce-removed).
+For more on the advantages of this strategy, see [the example here with `v-model`](#debounce-Param-Attribute-for-v-model-removed).
 
 #### Replacing the `limitBy` Filter
 
