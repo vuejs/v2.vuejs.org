@@ -258,7 +258,8 @@ a.button.white {
 #nav .nav-dropdown-container:hover .nav-dropdown {
   display: block;
 }
-#nav .nav-dropdown-container.ecosystem {
+#nav .nav-dropdown-container.ecosystem,
+#nav .nav-dropdown-container.language {
   margin-left: 20px;
 }
 #nav .nav-dropdown {
@@ -414,7 +415,7 @@ body.docs #nav {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 #demo h1,
 .demo h1 {
@@ -426,6 +427,7 @@ body.docs #nav {
 #demo ol,
 .demo ol {
   padding-left: 1.5em;
+  padding-bottom: 0.2em !important;
 }
 #demo ul:first-child,
 .demo ul:first-child,
@@ -447,6 +449,11 @@ body.docs #nav {
 .demo li.done {
   color: #7f8c8d;
   text-decoration: line-through;
+}
+#demo p,
+.demo p {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 #demo p:first-child,
 .demo p:first-child {

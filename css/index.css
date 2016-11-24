@@ -258,7 +258,8 @@ a.button.white {
 #nav .nav-dropdown-container:hover .nav-dropdown {
   display: block;
 }
-#nav .nav-dropdown-container.ecosystem {
+#nav .nav-dropdown-container.ecosystem,
+#nav .nav-dropdown-container.language {
   margin-left: 20px;
 }
 #nav .nav-dropdown {
