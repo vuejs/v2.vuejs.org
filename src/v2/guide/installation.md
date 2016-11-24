@@ -64,7 +64,13 @@ resolve: {
 }
 ```
 
-For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
+For Browserify, you can add an alias to your package.json:
+
+``` js
+"browser": {
+  "vue": "vue/dist/vue.common"
+},
+```
 
 <p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
 
