@@ -2,11 +2,11 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 2.1.0
-dev_size: "205.39"
-min_size: "67.76"
-gz_size: "24.83"
-ro_gz_size: "17.12"
+vue_version: 2.1.3
+dev_size: "206.14"
+min_size: "67.60"
+gz_size: "24.72"
+ro_gz_size: "17.14"
 ---
 
 ### Compatibility Note
@@ -59,12 +59,18 @@ By default, the NPM package exports the **runtime-only** build. To use the stand
 ``` js
 resolve: {
   alias: {
-    'vue$': 'vue/dist/vue.js'
+    'vue$': 'vue/dist/vue.common.js'
   }
 }
 ```
 
-For Browserify, you can use [aliasify](https://github.com/benbria/aliasify) to achieve the same.
+For Browserify, you can add an alias to your package.json:
+
+``` js
+"browser": {
+  "vue": "vue/dist/vue.common"
+},
+```
 
 <p class="tip">Do NOT do `import Vue from 'vue/dist/vue.js'` - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
 
