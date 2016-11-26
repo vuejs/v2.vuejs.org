@@ -79,7 +79,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] Unit Testing (@capaci)
 - [x] Server-Side Rendering (@ErickPetru)
 - [ ] Migration from Vue 1.x
-- [ ] Migration from Vue Router 0.7.x (@ErickPetru)
+- [x] Migration from Vue Router 0.7.x (@ErickPetru)
 - [x] Migration from Vuex 0.6.x to 1.0 (@ErickPetru)
 - [x] Comparison with Other Frameworks (@ErickPetru)
 - [x] Deployment (@vitorarjol)
