@@ -102,7 +102,7 @@ describe('MyComponent', () => {
   it('render correctly with different props', () => {
     expect(getRenderedText(MyComponent, {
       msg: 'Hello'
-    })).toBe('Hello')
+    })).to.eql('Hello')
 
     expect(getRenderedText(MyComponent, {
       msg: 'Bye'
