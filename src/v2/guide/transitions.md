@@ -108,7 +108,7 @@ new Vue({
 
 ![Transition Diagram](/images/transition.png)
 
-对于这些在 `enter/leave` 过渡中切换的类名，`v-` 是这些类名的前缀。使用 `<name="my-transition>"` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
+对于这些在 `enter/leave` 过渡中切换的类名，`v-` 是这些类名的前缀。使用 `<transition name="my-transition">` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
 
 `v-enter-active` 和 `v-leave-active` 可以控制 进入/离开 过渡的不同阶段，在下面章节会有个示例说明。
 
