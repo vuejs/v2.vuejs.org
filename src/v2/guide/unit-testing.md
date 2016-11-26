@@ -64,7 +64,7 @@ describe('MyComponent', () => {
   it('renders the correct message', () => {
     const Ctor = Vue.extend(MyComponent)
     const vm = new Ctor().$mount()
-    expect(vm.$el.textContent).toBe('bye!')
+    expect(vm.$el.textContent).to.eql('bye!')
   })
 })
 ```
