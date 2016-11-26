@@ -123,7 +123,7 @@ it('updates the rendered message when vm.message updates', done => {
 
   // wait a "tick" after state change before asserting DOM updates
   Vue.nextTick(() => {
-    expect(vm.$el.textContent).toBe('foo')
+    expect(vm.$el.textContent).to.eql('foo')
     done()
   })
 })
