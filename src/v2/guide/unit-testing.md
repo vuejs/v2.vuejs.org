@@ -49,7 +49,7 @@ describe('MyComponent', () => {
   // Evaluate the results of functions in
   // the raw component options
   it('sets the correct default data', () => {
-    expect(typeof MyComponent.data).toBe('function')
+    expect(MyComponent.data).to.be.a('function')
     const defaultData = MyComponent.data()
     expect(defaultData.message).to.eql('hello!')
   })
