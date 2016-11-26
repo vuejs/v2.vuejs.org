@@ -57,7 +57,7 @@ describe('MyComponent', () => {
   // Inspect the component instance on mount
   it('correctly sets the message when created', () => {
     const vm = new Vue(MyComponent).$mount()
-    expect(vm.message).toBe('bye!')
+    expect(vm.message).to.eql('bye!')
   })
 
   // Mount an instance and inspect the render output
