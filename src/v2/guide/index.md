@@ -6,7 +6,7 @@ order: 2
 
 ## Vue.js 是什么
 
-Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **渐进式框架**。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和[Vue生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。
+Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **渐进式框架**。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和 [Vue 生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。
 
 Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
 
@@ -14,15 +14,16 @@ Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**�
 
 ## 起步
 
-<p class="tip">The official guide assumes intermediate level front-end knowledge of HTML, CSS and JavaScript. If you are totally new to front-end development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">官方指南假设你已有 HTML、CSS 和 JavaScript 中级前端知识。如果你是全新的前端开发者，将框架作为你的第一步可能不是最好的主意——掌握好基础知识再来！之前有其他框架的使用经验是有帮助的，但不是必需的。</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can simply create an `.html` file and include Vue with:
+尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着我们学习一些基础示例。或者你也可以创建一个本地的 `.html` 文件，然后通过如下方式引入 Vue:
 
 ``` html
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note that we **do not** recommend beginners to start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+你可以查看[安装指南](/guide/installation.html)来了解其他安装 Vue 的选项。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是对 Node.js 构建工具不够了解的同学。
+
 
 ## 声明式渲染
 
@@ -129,7 +130,7 @@ var app3 = new Vue({
 
 这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构**到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入/删除元素时自动应用[过渡效果](transitions.html)。
 
-也有一些其它指令，每个都有特殊的功能。例如， `v-for` 指令可以绑定数据到数据来渲染一个列表：
+也有一些其它指令，每个都有特殊的功能。例如， `v-for` 指令可以绑定数据到数组来渲染一个列表：
 
 ``` html
 <div id="app-4">
@@ -270,12 +271,10 @@ Vue.component('todo-item', {
 现在你可以另一个组件模板中写入它：
 
 ``` html
-<ul>
-  <!--
-  Create an instance of the todo-item component
-  -->
+<ol>
+  <!-- Create an instance of the todo-item component -->
   <todo-item></todo-item>
-</ul>
+</ol>
 ```
 
 但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](components.html#Props) 字段：
@@ -295,11 +294,9 @@ Vue.component('todo-item', {
 ``` html
 <div id="app-7">
   <ol>
-    <!--
-    Now we provide each todo-item with the todo object
-    it's representing, so that its content can be dynamic
-    -->
-    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
+    <!-- Now we provide each todo-item with the todo object    -->
+    <!-- it's representing, so that its content can be dynamic -->
+    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
   </ol>
 </div>
 ```
@@ -309,13 +306,14 @@ Vue.component('todo-item', {
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
+
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+    groceryList: [
+      { text: 'Vegetables' },
+      { text: 'Cheese' },
+      { text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
@@ -323,7 +321,7 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
+    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
   </ol>
 </div>
 <script>
@@ -334,10 +332,10 @@ Vue.component('todo-item', {
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+    groceryList: [
+      { text: 'Vegetables' },
+      { text: 'Cheese' },
+      { text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })

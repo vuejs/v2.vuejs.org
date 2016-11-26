@@ -42,7 +42,7 @@ order: 7
 
 ### v-else
 
-可以用 `v-else` 指令给 `v-if` 或 `v-show` 添加一个 "else" 块：
+可以用 `v-else` 指令给 `v-if` 添加一个 "else" 块：
 
 ``` html
 <div v-if="Math.random() > 0.5">
@@ -53,7 +53,30 @@ order: 7
 </div>
 ```
 
-`v-else` 元素必须紧跟在 `v-if` 或 `v-show` 元素的后面——否则它不能被识别。
+`v-else` 元素必须紧跟在 `v-if` 元素或者 `v-else-if`的后面——否则它不能被识别。
+
+### v-else-if
+
+> 2.1.0 新增
+
+The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+
+```html
+<div v-if="type === 'A'">
+  A
+</div>
+<div v-else-if="type === 'B'">
+  B
+</div>
+<div v-else-if="type === 'C'">
+  C
+</div>
+<div v-else>
+  Not A/B/C
+</div>
+```
+
+Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
 
 ### v-show
 

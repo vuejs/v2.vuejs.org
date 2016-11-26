@@ -23,30 +23,32 @@
 
 <div id="highlights">
   <div class="inner">
-    <div class="point">
-      <h2>性能</h2>
-      <p>
-        16kb min+gzip 运行大小<br>
-        超快速的虚拟DOM<br>
-        最少优化
-      </p>
-    </div>
 
-    <div class="point">
-      <h2>通用</h2>
-      <p>依赖功能丰富的最简核心, 持续发展的生态系统。</p>
-    </div>
 
     <div class="point">
       <h2>易用</h2>
       <p>已经会了HTML,CSS,JavaScript？即刻阅读指南开始构建应用！</p>
+    </div>
+
+    <div class="point">
+      <h2>灵活</h2>
+      <p>简单小巧的核心，渐进式技术栈，足以应付任何规模的应用。</p>
+    </div>    
+
+    <div class="point">
+      <h2>性能</h2>
+      <p>
+        17kb min+gzip 运行大小<br>
+        超快虚拟 DOM <br>
+        最省心的优化
+      </p>
     </div>
   </div>
 </div>
 
 <div id="sponsors">
   <div class="inner">
-    <h3>PROUDLY SPONSORED BY</h3>
+    <h3>赞助者</h3>
     <%- partial('partials/sponsors') %>
     <br>
     <a class="become-sponsor button white" href="/support-vuejs/">成为赞助者</a>
@@ -58,7 +60,6 @@
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You
 </div>
 
-<script src="/js/common.js"></script>
 <script>
 var topScrolled = false
 window.addEventListener('scroll', function () {

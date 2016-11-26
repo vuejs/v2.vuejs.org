@@ -80,44 +80,6 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bi
 
 <p class="tip">模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 `Math` 和 `Date` 。你不应该在模板表达式中试图访问用户定义的全局变量。</p>
 
-### 过滤器
-
-Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。过滤器应该被添加在 **mustache 插值**的尾部，由“管道符”指示：
-
-``` html
-{{ message | capitalize }}
-```
-
-<p class="tip">Vue 2.x 中，过滤器只能在 mustache 绑定中使用。为了在指令绑定中实现同样的行为，你应该使用[计算属性](computed.html)。</p>
-
-过滤器函数总接受表达式的值作为第一个参数。
-
-``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  }
-})
-```
-
-过滤器可以串联：
-
-``` html
-{{ message | filterA | filterB }}
-```
-
-过滤器是 JavaScript 函数，因此可以接受参数：
-
-``` html
-{{ message | filterA('arg1', arg2) }}
-```
-
-这里，字符串 `'arg1'` 将传给过滤器作为第二个参数， `arg2` 表达式的值将被求值然后传给过滤器作为第三个参数。
 
 ## 指令
 
@@ -156,6 +118,60 @@ new Vue({
 ```
 
 之后当我们更深入地了解 `v-on` 与 `v-model`时，会看到更多修饰符的使用。
+
+## Filters
+
+Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions**. Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+
+### 过滤器
+
+Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。过滤器应该被添加在 **mustache 插值**的尾部，由“管道符”指示：
+
+``` html
+{{ message | capitalize }}
+```
+
+
+``` html
+<!-- in mustaches -->
+{{ message | capitalize }}
+
+<!-- in v-bind -->
+<div v-bind:id="rawId | formatId"></div>
+```
+
+<p class="tip">Vue 2.x 中，过滤器只能在 mustache 绑定和 `v-bind` 表达式（从 2.1.0 开始支持）中使用，因为过滤器设计目的就是用于文本转换。为了在其他指令中实现更复杂的数据变换，你应该使用[计算属性](computed.html)。</p>
+
+过滤器函数总接受表达式的值作为第一个参数。
+
+
+``` js
+new Vue({
+  // ...
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  }
+})
+```
+
+过滤器可以串联：
+
+``` html
+{{ message | filterA | filterB }}
+```
+
+过滤器是 JavaScript 函数，因此可以接受参数：
+
+``` html
+{{ message | filterA('arg1', arg2) }}
+```
+
+
+这里，字符串 `'arg1'` 将传给过滤器作为第二个参数， `arg2` 表达式的值将被求值然后传给过滤器作为第三个参数。
 
 ## 缩写
 

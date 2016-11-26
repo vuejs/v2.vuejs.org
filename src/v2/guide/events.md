@@ -208,15 +208,15 @@ methods: {
 
 全部的按键别名：
 
-- enter
-- tab
-- delete (捕获 “删除” 和 “退格” 键)
-- esc
-- space
-- up
-- down
-- left
-- right
+- `.enter`
+- `.tab`
+- `.delete` (捕获 “删除” 和 “退格” 键)
+- `.esc`
+- `.space`
+- `.up`
+- `.down`
+- `.left`
+- `.right`
 
 可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](../api/#keyCodes)：
 
@@ -224,6 +224,17 @@ methods: {
 // 可以使用 v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
+
+## 鼠标事件修饰符
+
+> 2.1.0 新增
+
+可以用如下修饰符在相应按键响应时进行鼠标事件监听
+
+- `.ctrl`
+- `.alt`
+- `.shift`
+- `.meta`
 
 ## 为什么在 HTML 中监听事件?
 

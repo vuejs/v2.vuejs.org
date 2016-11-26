@@ -222,13 +222,13 @@ new Vue({
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
 </p>
 
-## Props
+## Prop
 
-### 使用Props传递数据
+### 使用 Prop 传递数据
 
 组件实例的作用域是**孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
 
-prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 [`props` 选项](../api/#props) 声明 “prop”：
+prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 [`props` 选项](../api/#props)声明 “prop”：
 
 ``` js
 Vue.component('child', {
@@ -284,7 +284,7 @@ Vue.component('child', {
 
 再次说明，如果你使用字符串模版，不用在意这些限制。
 
-### 动态 Props
+### 动态 Prop
 
 类似于用 `v-bind` 绑定 HTML 特性到一个表达式，也可以用 `v-bind` 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件：
 
@@ -575,21 +575,18 @@ Vue.component('currency-input', {
   ',
   props: ['value'],
   methods: {
-    // Instead of updating the value directly, this
-    // method is used to format and place constraints
-    // on the input's value
+    // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
     updateValue: function (value) {
       var formattedValue = value
-        // Remove whitespace on either side
+        // 删除两侧的空格符
         .trim()
-        // Shorten to 2 decimal places
+        // 保留 2 小数位
         .slice(0, value.indexOf('.') + 3)
-      // If the value was not already normalized,
-      // manually override it to conform
+      // 如果值不统一，手动覆盖以保持一致
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // Emit the number value through the input event
+      // 通过 input 事件发出数值
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -629,7 +626,7 @@ new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
 
-The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+上面的实现方式太过理想化了。 比如，用户甚至可以输入多个小数点或句号 - 哦哦！因此我们需要一个更有意义的例子，下面是一个更加完善的货币过滤器：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -661,7 +658,7 @@ bus.$on('id-selected', function (id) {
 
 在更多复杂的情况下，你应该考虑使用专门的 [状态管理模式](state-management.html).
 
-## 使用 Slots 分发内容
+## 使用 Slot 分发内容
 
 在使用组件时，常常要像这样组合它们：
 
@@ -678,7 +675,7 @@ bus.$on('id-selected', function (id) {
 
 2. `<app>` 组件很可能有它自己的模版。
 
-为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API ，参照了当前 [Web组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
+为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API ，参照了当前 [Web 组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
 
 ### 编译作用域
 
@@ -729,9 +726,9 @@ Vue.component('child-component', {
 
 ``` html
 <div>
-  <h2>I'm the child title</h2>
+  <h2>我是子组件的标题</h2>
   <slot>
-    如果没有分发内容则显示我。
+    只有在没有要分发的内容时才会显示。
   </slot>
 </div>
 ```
@@ -740,10 +737,10 @@ Vue.component('child-component', {
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>我是父组件的标题</h1>
   <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <p>这是一些初始内容</p>
+    <p>这是更多的初始内容</p>
   </my-component>
 </div>
 ```
@@ -752,16 +749,16 @@ Vue.component('child-component', {
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>我是父组件的标题</h1>
   <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <h2>我是子组件的标题</h2>
+    <p>这是一些初始内容</p>
+    <p>这是更多的初始内容</p>
   </div>
 </div>
 ```
 
-### 具名Slots
+### 具名 Slot
 
 `<slot>` 元素可以用一个特殊的属性 `name` 来配置如何分发内容。多个 slot 可以有不同的名字。具名 slot 将匹配内容片段中有对应 `slot` 特性的元素。
 
@@ -787,12 +784,12 @@ Vue.component('child-component', {
 
 ``` html
 <app-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">这里可能是一个页面标题</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>主要内容的一个段落。</p>
+  <p>另一个主要段落。</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">这里有一些联系信息</p>
 </app-layout>
 ```
 
@@ -801,19 +798,81 @@ Vue.component('child-component', {
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>这里可能是一个页面标题</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>主要内容的一个段落。</p>
+    <p>另一个主要段落。</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>这里有一些联系信息</p>
   </footer>
 </div>
 ```
 
 在组合组件时，内容分发 API 是非常有用的机制。
+
+
+### 作用域插槽
+
+> 2.1.0 新增
+
+作用域插槽是一种特殊类型的插槽，用作使用一个（能够传递数据到）可重用模板替换已渲染元素。
+
+在子组件中，只需将数据传递到插槽，就像你将 prop 传递给组件一样：
+
+``` html
+<div class="child">
+  <slot text="hello from child"></slot>
+</div>
+```
+
+在父级中，具有特殊属性 `scope` 的 `<template>` 元素，表示它是作用域插槽的模板。`scope` 的值对应一个临时变量名，此变量接收从子组件中传递的 prop 对象：
+
+``` html
+<div class="parent">
+  <child>
+    <template scope="props">
+      <span>hello from parent</span>
+      <span>{{ props.text }}</span>
+    </template>
+  </child>
+</div>
+```
+
+如果我们渲染以上结果，得到的输出会是：
+
+``` html
+<div class="parent">
+  <div class="child">
+    <span>hello from parent</span>
+    <span>hello from child</span>
+  </div>
+</div>
+```
+
+作用域插槽更具代表性的用例是列表组件，允许组件自定义应该如何渲染列表每一项：
+
+``` html
+<my-awesome-list :items="items">
+  <!-- 作用域插槽也可以在这里命名 -->
+  <template slot="item" scope="props">
+    <li class="my-fancy-item">{{ props.text }}</li>
+  </template>
+</my-awesome-list>
+```
+
+列表组件的模板：
+
+``` html
+<ul>
+  <slot name="item"
+    v-for="item in items"
+    :text="item.text">
+    <!-- fallback content here -->
+  </slot>
+</ul>
+```
 
 ## 动态组件
 
@@ -959,9 +1018,11 @@ Vue.component(
 ``` js
 // 在组件定义中
 components: {
-  // 使用 camelCase 形式注册
+  // 使用 kebab-case 形式注册
   'kebab-cased-component': { /* ... */ },
+  // register using camelCase
   'camelCasedComponent': { /* ... */ },
+  // register using TitleCase
   'TitleCasedComponent': { /* ... */ }
 }
 ```
@@ -975,7 +1036,7 @@ components: {
 <title-cased-component></title-cased-component>
 ```
 
-当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 PascalCase 或者 kebab-case 来引用你的组件和 prop：
+当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 TitleCase 或者 kebab-case 来引用：
 
 ``` html
 <!-- 在字符串模版中可以用任何你喜欢的方式! -->
@@ -1016,6 +1077,49 @@ template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
 上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
+
+
+### Circular References Between Components
+
+Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+
+``` html
+<p>
+  <span>{{ folder.name }}</span>
+  <tree-folder-contents :children="folder.children"/>
+</p>
+```
+
+Then a `tree-folder-contents` component with this template:
+
+``` html
+<ul>
+  <li v-for="child in children">
+    <tree-folder v-if="child.children" :folder="child"/>
+    <span v-else>{{ child.name }}</span>
+  </li>
+</ul>
+```
+
+When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+
+However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+
+```
+Failed to mount component: template or render function not defined.
+```
+
+To explain what's happening, I'll call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+
+In our case, I'll make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+
+``` js
+beforeCreate: function () {
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+}
+```
+
+Problem solved!
 
 ### 内联模版
 

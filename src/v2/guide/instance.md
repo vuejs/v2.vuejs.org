@@ -79,6 +79,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 ## 实例生命周期
 
+每个 Vue 实例在被创建之前都要经过一系列的初始化过程。例如，实例需要配置数据观测(data observer)、编译模版、挂载实例到 DOM ，然后在数据变化时更新 DOM 。在这个过程中，实例也会调用一些 **生命周期钩子** ，这就给我们提供了执行自定义逻辑的机会。例如，`created` 这个钩子在实例被创建之后被调用：
 
 ``` js
 var vm = new Vue({
@@ -109,6 +110,3 @@ var vm = new Vue({
 > 原文： http://vuejs.org/guide/instance.html
 
 ***
-
-
-

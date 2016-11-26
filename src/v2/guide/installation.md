@@ -2,16 +2,16 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.0.5
-dev_size: "194.65"
-min_size: "64.28"
-gz_size: "23.55"
-ro_gz_size: "16"
+vue_version: 2.1.0
+dev_size: "205.39"
+min_size: "67.76"
+gz_size: "24.83"
+ro_gz_size: "17.12"
 ---
 
 ### 兼容性
 
-Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实现的 ECMAScript 5 特性。 Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
+Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
 
 ### 更新日志
 
@@ -49,13 +49,15 @@ $ npm install vue
 
 ### 独立构建 vs 运行时构建
 
-有两种构建方式，独立构建和运行构建。The difference being that the former includes the **template compiler** and the latter does not.
+有两种构建方式，独立构建和运行构建。它们的区别在于前者包含**模板编译器**而后者不包含。
 
-The template compiler is responsible for compiling Vue template strings into pure JavaScript render functions. If you want to use the `template` option, then you need the compiler.
+模板编译用于编译 Vue 模板字符串成纯 JavaScript 渲染函数。如果你想用 `template` 选项， 你需要编译。
 
-- 独立构建包括编译和支持 `template` 选项。 **它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。**
+模板编译器的职责是将模板字符串编译为纯 JavaScript 的渲染函数。如果你想要在组件中使用 `template` 选项，你就需要编译器。
 
-- 运行时构建不包括模板编译，不支持 `template` 选项。运行时构建，可以用 `render` 选项，但它只在单文件组件中起作用，因为单文件组件的模板是在构建时预编译到 `render` 函数中，运行时构建只有独立构建大小的30%，只有  {{ro_gz_size}} Kb min+gzip大小。
+- 独立构建包含模板编译器并支持 `template` 选项。 **它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。**
+
+- 运行时构建不包含模板编译器，因此不支持 `template` 选项，只能用 `render` 选项，但即使使用运行时构建，在单文件组件中也依然可以写模板，因为单文件组件的模板会在构建时预编译为 `render` 函数。运行时构建比独立构建要轻量30%，只有  {{ro_gz_size}} Kb min+gzip大小。
 
 默认 NPM 包导出的是 **运行时** 构建。为了使用独立构建，在 webpack 配置中添加下面的别名：
 
@@ -69,7 +71,7 @@ resolve: {
 
 对于Browserify，可以用 [aliasify](https://github.com/benbria/aliasify)
 
-<p class="tip">不要用 `import Vue from 'vue/dist/vue.js'` - 用一些工具或第三方库引入 Vue ，这可能会导致应用程序在同一时间加载运行时和独立构建并造成错误。</p>
+<p class="tip">不要用 `import Vue from 'vue/dist/vue.js'` - 由于一些工具或第三方库也会引入 Vue，这可能会导致应用程序同时加载了运行时构建和独立构建而造成错误。</p>
 
 ### CSP 环境
 
@@ -80,13 +82,13 @@ resolve: {
 
 ## 命令行工具
 
-Vue.js 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需一分钟即可启动带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
+Vue.js 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
 
 ``` bash
 # 全局安装 vue-cli
 $ npm install --global vue-cli
 # 创建一个基于 webpack 模板的新项目
-$  vue init webpack my-project
+$ vue init webpack my-project
 # 安装依赖，走你
 $ cd my-project
 $ npm install
@@ -94,9 +96,13 @@ $ npm run dev
 ```
 <p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
+<p class="tip">CLI 默认了用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读[指南](/guide/)，熟悉 Vue 本身之后再研究 CLI。</p>
+
+<p class="tip">对于大陆用户，建议将 npm 的注册表源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。</p>
+
 ## 开发版本
 
-**重要**: 在发布后构建的文件在 Github 仓库的 `/dist` 文件夹。为了使用 Github 上 Vue 最新的资源，你得自己构建。 
+**重要**: Github 仓库的 `/dist` 文件夹只有在新版本发布时才会更新。如果想要使用 Github 上 Vue 最新的源码，你需要自己构建。
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
