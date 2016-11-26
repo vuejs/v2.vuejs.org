@@ -222,9 +222,9 @@ new Vue({
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
 </p>
 
-## Props
+## Prop
 
-### 使用Props传递数据
+### 使用 Prop 传递数据
 
 组件实例的作用域是**孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
 
@@ -284,7 +284,7 @@ Vue.component('child', {
 
 再次说明，如果你使用字符串模版，不用在意这些限制。
 
-### 动态 Props
+### 动态 Prop
 
 类似于用 `v-bind` 绑定 HTML 特性到一个表达式，也可以用 `v-bind` 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件：
 
@@ -575,21 +575,18 @@ Vue.component('currency-input', {
   ',
   props: ['value'],
   methods: {
-    // Instead of updating the value directly, this
-    // method is used to format and place constraints
-    // on the input's value
+    // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
     updateValue: function (value) {
       var formattedValue = value
-        // Remove whitespace on either side
+        // 删除两侧的空格符
         .trim()
-        // Shorten to 2 decimal places
+        // 保留 2 小数位
         .slice(0, value.indexOf('.') + 3)
-      // If the value was not already normalized,
-      // manually override it to conform
+      // 如果值不统一，手动覆盖以保持一致
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // Emit the number value through the input event
+      // 通过 input 事件发出数值
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -629,7 +626,7 @@ new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
 
-上面的实现方式太过理想化了。 比如，用户甚至可以输入多个小数点或句号 - 呸！因此我们需要一个更有意义的例子，下面是一个更加完善的货币过滤器：
+上面的实现方式太过理想化了。 比如，用户甚至可以输入多个小数点或句号 - 哦哦！因此我们需要一个更有意义的例子，下面是一个更加完善的货币过滤器：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -661,7 +658,7 @@ bus.$on('id-selected', function (id) {
 
 在更多复杂的情况下，你应该考虑使用专门的 [状态管理模式](state-management.html).
 
-## 使用 Slots 分发内容
+## 使用 Slot 分发内容
 
 在使用组件时，常常要像这样组合它们：
 
@@ -678,7 +675,7 @@ bus.$on('id-selected', function (id) {
 
 2. `<app>` 组件很可能有它自己的模版。
 
-为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API ，参照了当前 [Web组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
+为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API ，参照了当前 [Web 组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
 
 ### 编译作用域
 
@@ -729,9 +726,9 @@ Vue.component('child-component', {
 
 ``` html
 <div>
-  <h2>I'm the child title</h2>
+  <h2>我是子组件的标题</h2>
   <slot>
-    如果没有分发内容则显示我。
+    只有在没有要分发的内容时才会显示。
   </slot>
 </div>
 ```
@@ -740,10 +737,10 @@ Vue.component('child-component', {
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>我是父组件的标题</h1>
   <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <p>这是一些初始内容</p>
+    <p>这是更多的初始内容</p>
   </my-component>
 </div>
 ```
@@ -752,11 +749,11 @@ Vue.component('child-component', {
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>我是父组件的标题</h1>
   <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <h2>我是子组件的标题</h2>
+    <p>这是一些初始内容</p>
+    <p>这是更多的初始内容</p>
   </div>
 </div>
 ```
@@ -787,12 +784,12 @@ Vue.component('child-component', {
 
 ``` html
 <app-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">这里可能是一个页面标题</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>主要内容的一个段落。</p>
+  <p>另一个主要段落。</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">这里有一些联系信息</p>
 </app-layout>
 ```
 
@@ -801,14 +798,14 @@ Vue.component('child-component', {
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>这里可能是一个页面标题</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>主要内容的一个段落。</p>
+    <p>另一个主要段落。</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>这里有一些联系信息</p>
   </footer>
 </div>
 ```
@@ -816,13 +813,13 @@ Vue.component('child-component', {
 在组合组件时，内容分发 API 是非常有用的机制。
 
 
-### Scoped Slots
+### 作用域插槽
 
-> New in 2.1.0
+> 2.1.0 新增
 
-A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+作用域插槽是一种特殊类型的插槽，用作使用一个（能够传递数据到）可重用模板替换已渲染元素。
 
-In a child component, simply pass data into a slot as if you are passing props to a component:
+在子组件中，只需将数据传递到插槽，就像你将 prop 传递给组件一样：
 
 ``` html
 <div class="child">
@@ -830,7 +827,7 @@ In a child component, simply pass data into a slot as if you are passing props t
 </div>
 ```
 
-In the parent, a `<template>` element with a special attribute `scope` indicates that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+在父级中，具有特殊属性 `scope` 的 `<template>` 元素，表示它是作用域插槽的模板。`scope` 的值对应一个临时变量名，此变量接收从子组件中传递的 prop 对象：
 
 ``` html
 <div class="parent">
@@ -843,7 +840,7 @@ In the parent, a `<template>` element with a special attribute `scope` indicates
 </div>
 ```
 
-If we render the above, the output will be:
+如果我们渲染以上结果，得到的输出会是：
 
 ``` html
 <div class="parent">
@@ -854,18 +851,18 @@ If we render the above, the output will be:
 </div>
 ```
 
-A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
+作用域插槽更具代表性的用例是列表组件，允许组件自定义应该如何渲染列表每一项：
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- scoped slot can be named too -->
+  <!-- 作用域插槽也可以在这里命名 -->
   <template slot="item" scope="props">
     <li class="my-fancy-item">{{ props.text }}</li>
   </template>
 </my-awesome-list>
 ```
 
-And the template for the list component:
+列表组件的模板：
 
 ``` html
 <ul>
