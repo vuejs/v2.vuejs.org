@@ -43,7 +43,7 @@ import MyComponent from 'path/to/MyComponent.vue'
 describe('MyComponent', () => {
   // Inspect the raw component options
   it('has a created hook', () => {
-    expect(typeof MyComponent.created).toBe('function')
+    expect(MyComponent.created).to.be.a('function')
   })
 
   // Evaluate the results of functions in
