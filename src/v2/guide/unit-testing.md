@@ -106,7 +106,7 @@ describe('MyComponent', () => {
 
     expect(getRenderedText(MyComponent, {
       msg: 'Bye'
-    })).toBe('Bye')
+    })).to.eql('Bye')
   })
 })
 ```
