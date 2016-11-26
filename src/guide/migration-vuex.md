@@ -17,7 +17,7 @@ __Vuex 2.0__ é um *redesign* radical incluindo uma simplificação da API, para
 
 __Vuex 1.0__ é majoritariamente retro-compatível, exigindo poucas mudanças para a migração. É recomendado para aqueles com grande base de códigos-fonte ou que desejam uma migração suave em pequenos passos até o Vue 2.0. Este guia é dedicado a facilitar o processo, mas só inclui notas de migração. Para o guia de uso completo, visite a [documentação do Vuex 1.0](https://github.com/vuejs/vuex/tree/1.0/docs/en).
 
-<p class="tip">A lista de depreciações abaixo deve estar relativamente completa, mas a ferramenta auxiliar de migração ainda está sendo atualizada para abordá-las.</p>
+<p class="tip">A lista de depreciações abaixo deve estar relativamente completa, mas a ferramenta de migração ainda está sendo atualizada para abordá-las.</p>
 
 ## `store.watch` com Propriedade String <sup>obsoleto</sup>
 
@@ -45,7 +45,7 @@ Isto oferece controle mais completo sobre propriedades reativas que você quer d
 {% raw %}
 <div class="upgrade-path">
   <h4>Caminho para Atualização</h4>
-  <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta auxiliar de migração</a> para encontrar casos de <code>store.watch</code> com Strings em seu primeiro parâmetro.</p>
+  <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos de <code>store.watch</code> com Strings em seu primeiro parâmetro.</p>
 </div>
 {% endraw %}
 
@@ -68,7 +68,7 @@ Veja o exemplo na [documentação de plugins](https://github.com/vuejs/vuex/blob
 {% raw %}
 <div class="upgrade-path">
   <h4>Caminho para Atualização</h4>
-  <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta auxiliar de migração</a> para encontrar casos de <code>store.on</code>, <code>store.off</code> e <code>store.emit</code>.</p>
+  <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos de <code>store.on</code>, <code>store.off</code> e <code>store.emit</code>.</p>
 </div>
 {% endraw %}
 
@@ -89,6 +89,6 @@ Para mais detalhes, veja a [documentação de plugins](https://github.com/vuejs/
 {% raw %}
 <div class="upgrade-path">
   <h4>Caminho para Atualização</h4>
-  <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta auxiliar de migração</a> para encontrar casos onde foi feita a utilização de <code>middlewares</code> em um <i>store</i>.</p>
+  <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos onde foi feita a utilização de <code>middlewares</code> em um <i>store</i>.</p>
 </div>
 {% endraw %}
