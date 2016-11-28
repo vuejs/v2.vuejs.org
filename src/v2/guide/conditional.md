@@ -4,7 +4,7 @@ type: guide
 order: 7
 ---
 
-## v-if
+## `v-if`
 
 在字符串模板中，如 Handlebars ，我们得像这样写一个条件块：
 
@@ -28,7 +28,7 @@ order: 7
 <h1 v-else>No</h1>
 ```
 
-### template v-if
+### `<template>` 中 `v-if` 条件组 
 
 因为 `v-if` 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 `<template>` 元素当做包装元素，并在上面使用 `v-if`，最终的渲染结果不会包含它。
 
@@ -40,7 +40,7 @@ order: 7
 </template>
 ```
 
-### v-else
+### `v-else`
 
 可以用 `v-else` 指令给 `v-if` 添加一个 "else" 块：
 
@@ -55,7 +55,7 @@ order: 7
 
 `v-else` 元素必须紧跟在 `v-if` 元素或者 `v-else-if`的后面——否则它不能被识别。
 
-### v-else-if
+### `v-else-if`
 
 > 2.1.0 新增
 
@@ -78,7 +78,101 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. 
 
 Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
 
-### v-show
+### Controlling Reusable Elements with `key`
+
+Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
+
+``` html
+<template v-if="loginType === 'username'">
+  <label>Username</label>
+  <input placeholder="Enter your username">
+</template>
+<template v-else>
+  <label>Email</label>
+  <input placeholder="Enter your email address">
+</template>
+```
+
+Then switching the `loginType` in the code above will not erase what the user has already entered. Since both templates use the same elements, the `<input>` is not replaced - just its `placeholder`.
+
+Check it out for yourself by entering some text in the input, then pressing the toggle button:
+
+{% raw %}
+<div id="no-key-example" class="demo">
+  <div>
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter your username">
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Enter your email address">
+    </template>
+  </div>
+  <button @click="toggleLoginType">Toggle login type</button>
+</div>
+<script>
+new Vue({
+  el: '#no-key-example',
+  data: {
+    loginType: 'username'
+  },
+  methods: {
+    toggleLoginType: function () {
+      return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+    }
+  }
+})
+</script>
+{% endraw %}
+
+This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Just add a `key` attribute with unique values:
+
+``` html
+<template v-if="loginType === 'username'">
+  <label>Username</label>
+  <input placeholder="Enter your username" key="username-input">
+</template>
+<template v-else>
+  <label>Email</label>
+  <input placeholder="Enter your email address" key="email-input">
+</template>
+```
+
+Now those inputs will be rendered from scratch each time you toggle. See for yourself:
+
+{% raw %}
+<div id="key-example" class="demo">
+  <div>
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Enter your email address" key="email-input">
+    </template>
+  </div>
+  <button @click="toggleLoginType">Toggle login type</button>
+</div>
+<script>
+new Vue({
+  el: '#key-example',
+  data: {
+    loginType: 'username'
+  },
+  methods: {
+    toggleLoginType: function () {
+      return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+    }
+  }
+})
+</script>
+{% endraw %}
+
+Note that the `<label>` elements are still efficiently re-used, because they don't have `key` attributes.
+
+## `v-show`
 
 另一个根据条件展示元素的选项是 `v-show` 指令。用法大体上一样：
 
@@ -91,7 +185,7 @@ Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a
 <p class="tip">注意 `v-show` 不支持 `<template>` 语法。</p>
 
 
-## v-if vs. v-show
+## `v-if` vs `v-show`
 
 `v-if` 是真实的条件渲染，因为它会确保条件块在切换当中适当地销毁与重建条件块内的事件监听器和子组件。
 

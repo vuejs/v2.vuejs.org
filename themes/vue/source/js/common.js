@@ -215,12 +215,21 @@
       var text = h.textContent.replace(/\(.*\)$/, '')
       link.innerHTML =
         '<a class="section-link" data-scroll href="#' + h.id + '">' +
-        text +
+          htmlEscape(text) +
         '</a>'
       return link
     }
 
-    function collectH3s(h) {
+    function htmlEscape (text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+    }
+
+    function collectH3s (h) {
       var h3s = []
       var next = h.nextSibling
       while (next && next.tagName !== 'H2') {

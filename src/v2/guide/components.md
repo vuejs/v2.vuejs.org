@@ -547,7 +547,7 @@ new Vue({
 所以在组件中使用时，它相当于下面的简写：
 
 ``` html
-<input v-bind:value="something" v-on:input="something = arguments[0]">
+<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
 ```
 
 所以要让组件的 `v-model` 生效，它必须：
@@ -982,6 +982,7 @@ var child = parent.$refs.profile
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
+    // Pass the component definition to the resolve callback
     resolve({
       template: '<div>I am async!</div>'
     })

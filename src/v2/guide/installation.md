@@ -2,11 +2,11 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.1.0
-dev_size: "205.39"
-min_size: "67.76"
-gz_size: "24.83"
-ro_gz_size: "17.12"
+vue_version: 2.1.3
+dev_size: "206.14"
+min_size: "67.60"
+gz_size: "24.72"
+ro_gz_size: "17.14"
 ---
 
 ### 兼容性
@@ -64,14 +64,18 @@ $ npm install vue
 ``` js
 resolve: {
   alias: {
-    'vue$': 'vue/dist/vue.js'
+    'vue$': 'vue/dist/vue.common.js'
   }
 }
 ```
 
-对于Browserify，可以用 [aliasify](https://github.com/benbria/aliasify)
+对于Browserify，可以添加一个别名到 package.json 中：
 
-<p class="tip">不要用 `import Vue from 'vue/dist/vue.js'` - 由于一些工具或第三方库也会引入 Vue，这可能会导致应用程序同时加载了运行时构建和独立构建而造成错误。</p>
+``` js
+"browser": {
+  "vue": "vue/dist/vue.common"
+},
+```
 
 ### CSP 环境
 
