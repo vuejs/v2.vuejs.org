@@ -224,7 +224,7 @@ You can also [define custom key modifier aliases](../api/#keyCodes) via the glob
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Modifier Key Modifiers
+## Modifier Keys
 
 > New in 2.1.0
 
