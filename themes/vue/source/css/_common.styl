@@ -150,13 +150,18 @@ a.button
         &:hover
             .nav-dropdown
                 display block
-        &.ecosystem, &.language
+        &.language
             margin-left 20px
+        .arrow
+            pointer-events none
     .nav-dropdown
         display none
+        box-sizing border-box
+        max-height "calc(100vh - %s)" % $header-height
+        overflow-y scroll
         position absolute
         top 100%
-        left 0
+        right -15px
         background-color #fff
         padding 10px 0
         border 1px solid #ddd
@@ -168,11 +173,24 @@ a.button
             line-height 1.8em
             margin 0
             display block
+            > ul
+                padding-left: 0
+            &:first-child
+                h4
+                    margin-top 0
+                    padding-top: 0
+                    border-top: 0
+        a, h4
+            padding 0 24px 0 20px
+        h4
+            // text-transform uppercase
+            margin .45em 0 0
+            padding-top: .45em
+            border-top: 1px solid #eee
         a
-            color $light
+            color lighten($dark, 10%)
             font-size .9em
             display block
-            padding 0 24px 0 20px
             &:hover
                 color $green
     .arrow
