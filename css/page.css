@@ -258,15 +258,20 @@ a.button.white {
 #nav .nav-dropdown-container:hover .nav-dropdown {
   display: block;
 }
-#nav .nav-dropdown-container.ecosystem,
 #nav .nav-dropdown-container.language {
   margin-left: 20px;
 }
+#nav .nav-dropdown-container .arrow {
+  pointer-events: none;
+}
 #nav .nav-dropdown {
   display: none;
+  box-sizing: border-box;
+  max-height: calc(100vh - 61px);
+  overflow-y: scroll;
   position: absolute;
   top: 100%;
-  left: 0;
+  right: -15px;
   background-color: #fff;
   padding: 10px 0;
   border: 1px solid #ddd;
@@ -280,11 +285,27 @@ a.button.white {
   margin: 0;
   display: block;
 }
+#nav .nav-dropdown li > ul {
+  padding-left: 0;
+}
+#nav .nav-dropdown li:first-child h4 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+#nav .nav-dropdown a,
+#nav .nav-dropdown h4 {
+  padding: 0 24px 0 20px;
+}
+#nav .nav-dropdown h4 {
+  margin: 0.45em 0 0;
+  padding-top: 0.45em;
+  border-top: 1px solid #eee;
+}
 #nav .nav-dropdown a {
-  color: #7f8c8d;
+  color: #3a5169;
   font-size: 0.9em;
   display: block;
-  padding: 0 24px 0 20px;
 }
 #nav .nav-dropdown a:hover {
   color: #42b983;
@@ -603,6 +624,10 @@ ul.demo li {
   padding: 4px 0;
   text-align: center;
   margin-bottom: 20px;
+}
+.sidebar .nav-dropdown h4 {
+  font-weight: normal;
+  margin: 0;
 }
 @media screen and (max-width: 900px) {
   .sidebar {
