@@ -178,13 +178,17 @@ a.button
             &:first-child
                 h4
                     margin-top 0
+                    padding-top: 0
+                    border-top: 0
         a, h4
             padding 0 24px 0 20px
         h4
-            font-weight normal
-            margin: 7px 0 0
+            // text-transform uppercase
+            margin .45em 0 0
+            padding-top: .45em
+            border-top: 1px solid #eee
         a
-            color $light
+            color lighten($dark, 10%)
             font-size .9em
             display block
             &:hover
