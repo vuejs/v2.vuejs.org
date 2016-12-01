@@ -11,6 +11,7 @@ Vue의 최소화된 독립 실행 형 빌드는 이미 작은 파일 크기에 �
 ### Webpack
 
 배포 환경을 인지하기 위해 Webpack의 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin)을 사용하여 최소화 중에 UglifyJS에 의해 경고 블록을 자동으로 삭제할 수 있습니다.
+
 구성 예 :
 
 ``` js
