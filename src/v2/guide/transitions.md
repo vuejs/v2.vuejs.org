@@ -1,5 +1,5 @@
 ---
-title: 'Transition Effects'
+title: Transition Effects
 type: guide
 order: 13
 ---
