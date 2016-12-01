@@ -1518,6 +1518,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- shorthand -->
   <img :src="imageSrc">
+  <img v-bind:src="'/storage/userimages/' + item.imagefile">
 
   <!-- class binding -->
   <div :class="{ red: isRed }"></div>
