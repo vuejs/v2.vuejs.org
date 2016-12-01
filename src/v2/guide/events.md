@@ -4,16 +4,16 @@ type: guide
 order: 9
 ---
 
-## Listening to Events
+## 이벤트 청취
 
-We can use the `v-on` directive to listen to DOM events and run some JavaScript when they're triggered.
+`v-on` 지시문을 사용하여 DOM 이벤트를 듣고 트리거 될 때 JavaScript를 실행할 수 있습니다.
 
-For example:
+예제:
 
 ``` html
 <div id="example-1">
   <button v-on:click="counter += 1">Add 1</button>
-  <p>The button above has been clicked {{ counter }} times.</p>
+  <p>위 버튼을 클릭한 횟수는 {{ counter }} 번 입니다.</p>
 </div>
 ```
 ``` js
@@ -30,7 +30,7 @@ Result:
 {% raw %}
 <div id="example-1" class="demo">
   <button v-on:click="counter += 1">Add 1</button>
-  <p>The button above has been clicked {{ counter }} times.</p>
+  <p>위 버튼을 클릭한 횟수는 {{ counter }} 번 입니다.</p>
 </div>
 <script>
 var example1 = new Vue({
@@ -42,15 +42,15 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Method Event Handlers
+## 메소드 이벤트 핸들러
 
-The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the `v-on` attribute simply isn't feasible. That's why `v-on` can also accept the name of a method you'd like to call.
+많은 이벤트 핸들러의 로직은 더 복잡할 것이므로, JavaScript를 `v-on` 속성 값으로 보관하는 것은 간단하지 않습니다. 이 때문에 `v-on`이 호출하고자 하는 메소드의 이름을 받는 이유입니다.
 
-For example:
+예제:
 
 ``` html
 <div id="example-2">
-  <!-- `greet` is the name of a method defined below -->
+  <!-- `greet`는 메소드 이름으로 아래에 정의되어 있습니다 -->
   <button v-on:click="greet">Greet</button>
 </div>
 ```
@@ -61,22 +61,22 @@ var example2 = new Vue({
   data: {
     name: 'Vue.js'
   },
-  // define methods under the `methods` object
+  // 메소드는 `methods` 객체 안에 정의합니다
   methods: {
     greet: function (event) {
-      // `this` inside methods points to the Vue instance
+      // 메소드 안에서 사용하는 `this` 는 Vue 인스턴스를 가리킵니다
       alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
+      // `event` 는 네이티브 DOM 이벤트입니다
       alert(event.target.tagName)
     }
   }
 })
 
-// you can invoke methods in JavaScript too
+// 또한 JavaScript를 이용해서 메소드를 호출할 수 있습니다.
 example2.greet() // -> 'Hello Vue.js!'
 ```
 
-Result:
+결과
 
 {% raw %}
 <div id="example-2" class="demo">
@@ -98,9 +98,9 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-## Methods in Inline Handlers
+## 인라인 메소드 핸들러
 
-Instead of binding directly to a method name, we can also use methods in an inline JavaScript statement:
+메소드 이름을 직접 바인딩 하는 대신 인라인 JavaScript 구문에 메소드를 사용할 수도 있습니다.
 
 ``` html
 <div id="example-3">
@@ -119,7 +119,8 @@ new Vue({
 })
 ```
 
-Result:
+결과:
+
 {% raw %}
 <div id="example-3" class="demo">
   <button v-on:click="say('hi')">Say hi</button>
@@ -137,7 +138,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special `$event` variable:
+때로 인라인 명령문 핸들러에서 원본 DOM 이벤트에 액세스 해야할 수도 있습니다. 특별한 `$event` 변수를 사용해 메소드에 전달할 수도 있습니다.
 
 ``` html
 <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
@@ -147,18 +148,18 @@ Sometimes we also need to access the original DOM event in an inline statement h
 // ...
 methods: {
   warn: function (message, event) {
-    // now we have access to the native event
+    // 이제 네이티브 이벤트에 액세스 할 수 있습니다
     if (event) event.preventDefault()
     alert(message)
   }
 }
 ```
 
-## Event Modifiers
+## 이벤트 수식어
 
-It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
+이벤트 핸들러 내부에서 `event.preventDefault()` 또는 `event.stopPropagation()`를 호출하는 것은 매우 보편적인 일입니다. 메소드 내에서 쉽게 이 작업을 할 수 있지만, DOM 이벤트 세부 사항을 처리하는 대신 데이터 로직에 대한 메소드만 사용할 수 있으면 더 좋을 것입니다.
 
-To address this problem, Vue provides **event modifiers** for `v-on`. Recall that modifiers are directive postfixes denoted by a dot.
+이 문제를 해결하기 위해, Vue는 `v-on` 이벤트에 **이벤트 수식어** 를 제공합니다. 수식어는 점으로 표시된 접미사 입니다.
 
 - `.stop`
 - `.prevent`
@@ -166,50 +167,51 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 - `.self`
 
 ``` html
-<!-- the click event's propagation will be stopped -->
+<!-- 클릭 이벤트 전파가 중단됩니다 -->
 <a v-on:click.stop="doThis"></a>
 
-<!-- the submit event will no longer reload the page -->
+<!-- 제출 이벤트가 페이지를 다시 로드 하지 않습니다 -->
 <form v-on:submit.prevent="onSubmit"></form>
 
-<!-- modifiers can be chained -->
+<!-- 수식어는 체이닝 가능합니다 -->
 <a v-on:click.stop.prevent="doThat"></a>
 
-<!-- just the modifier -->
+<!-- 단순히 수식어만 사용할 수 있습니다 -->
 <form v-on:submit.prevent></form>
 
-<!-- use capture mode when adding the event listener -->
+<!-- 이벤트 리스너를 추가할 때 캡처모드를 사용합니다 -->
 <div v-on:click.capture="doThis">...</div>
 
-<!-- only trigger handler if event.target is the element itself -->
-<!-- i.e. not from a child element -->
+
+<!-- event.target이 엘리먼트 자체인 경우에만 트리거를 처리합니다 -->
+<!-- 자식 엘리먼트에서는 안됩니다 -->
 <div v-on:click.self="doThat">...</div>
 ```
 
-## Key Modifiers
+## 키 수식어
 
-When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for `v-on` when listening for key events:
+키보드 이벤트를 청취할 때, 종종 공통 키 코드를 확인해야 합니다. Vue는 키 이벤트를 수신할 때 `v-on`에 대한 키 수식어를 추가할 수 있습니다.
 
 ``` html
-<!-- only call vm.submit() when the keyCode is 13 -->
+<!-- keyCode가 13일 때만 vm.submit()을 호출합니다 -->
 <input v-on:keyup.13="submit">
 ```
 
-Remembering all the keyCodes is a hassle, so Vue provides aliases for the most commonly used keys:
+모든 keyCode들을 기억하는 것은 번거롭기 때문에 Vue는 가장 일반적으로 사용되는 키의 별칭을 제공합니다.
 
 ``` html
-<!-- same as above -->
+<!-- 위와 같습니다 -->
 <input v-on:keyup.enter="submit">
 
-<!-- also works for shorthand -->
+<!-- 약어 사용도 가능합니다 -->
 <input @keyup.enter="submit">
 ```
 
-Here's the full list of key modifier aliases:
+키 수식어 별칭의 전체 목록입니다.
 
 - `.enter`
 - `.tab`
-- `.delete` (captures both "Delete" and "Backspace" keys)
+- `.delete` ("Delete" 와 "Backspace" 키 모두를 캡처합니다)
 - `.esc`
 - `.space`
 - `.up`
@@ -217,27 +219,27 @@ Here's the full list of key modifier aliases:
 - `.left`
 - `.right`
 
-You can also [define custom key modifier aliases](../api/#keyCodes) via the global `config.keyCodes` object:
+또한 전역 `config.keyCodes` 객체를 통해 [사용자 지정 키 수식어 별칭을 지정할 수 있습니다.](../api/#keyCodes)
 
 ``` js
-// enable v-on:keyup.f1
+// v-on:keyup.f1 이 가능합니다
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Modifier Keys
+## 수식어 키 목록
 
-> New in 2.1.0
+> 2.1.0에 새로 추가되었습니다.
 
-You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
+다음 수식어를 사용해 해당 수식어 키가 눌러진 경우에만 마우스 또는 키보드 이벤트 리스너를 트리거 할 수 있습니다.
 
 - `.ctrl`
 - `.alt`
 - `.shift`
 - `.meta`
 
-> Note: On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.
+> 참고 : 매킨토시 키보드에서 meta는 command 키 입니다 (⌘). Windows 키보드에서 meta는 windows 키 (⊞) 입니다. Sun Microsystems 키보드에서 meta는 단색의 다이아몬드 (◆)로 표시됩니다. 특정 키보드의 경우, 특히 MIT 및 Lisp 시스템 키보드와 Knight 키보드, space-cadet 키보드와 같은 제품에는 "META" 레이블이 지정됩니다. Symbolics 키보드에서 메타는 "META" 또는 "Meta"로 표시됩니다.
 
-For example:
+예제:
 
 ```html
 <!-- Alt + C -->
@@ -247,12 +249,12 @@ For example:
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-## Why Listeners in HTML?
+## 왜 HTML로 된 리스너 입니까
 
-You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
+이 모든 이벤트 청취 접근 방법이 "우려 사항 분리" ("separation of concerns")에 대한 오래된 규칙을 어긴다고 생각할 수 있습니다. 모든 뷰 핸들러 함수와 표현식은 현재 뷰 처리 하는 ViewModel에 엄격히 바인딩 되기 때문에 유지보수가 어렵지 않습니다. 실제로 `v-on`을 사용하면 몇가지 이점이 있습니다.
 
-1. It's easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
+1. HTML 템플릿을 간단히 하여 JavaScript 코드 내에서 핸들러 함수 구현을 찾는 것이 더 쉽습니다.
 
-2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
+2. JavaScript에서 이벤트 리스너를 수동으로 연결할 필요가 없으므로 ViewModel 코드는 순수 로직과 DOM이 필요하지 않습니다. 이렇게 하면 테스트가 쉬워집니다.
 
-3. When a ViewModel is destroyed, all event listeners are automatically removed. You don't need to worry about cleaning it up yourself.
+3. ViewModel이 파기되면 모든 이벤트 리스너가 자동으로 제거 됩니다. 이벤트 제거에 대한 걱정이 필요 없어집니다
