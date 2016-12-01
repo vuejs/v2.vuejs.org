@@ -1570,7 +1570,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Usage:**
 
-  Create a two-way binding on a form input element or a component. For detailed usage, see guide section linked below.
+  Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
 
 - **See also:**
   - [Form Input Bindings](../guide/forms.html)

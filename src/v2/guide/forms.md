@@ -10,6 +10,8 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
 
 <p class="tip">`v-model` doesn't care about the initial value provided to an input or a textarea. It will always treat the Vue instance data as the source of truth.</p>
 
+<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+
 ### Text
 
 ``` html
@@ -337,7 +339,7 @@ vm.selected.number // -> 123
 
 ### `.lazy`
 
-By default, `v-model` syncs the input with the data after each `input` event. You can add the `lazy` modifier to instead sync after `change` events:
+By default, `v-model` syncs the input with the data after each `input` event (with the exception of IME composition as [stated above](#vmodel-ime-tip)). You can add the `lazy` modifier to instead sync after `change` events:
 
 ``` html
 <!-- synced after "change" instead of "input" -->

@@ -224,16 +224,28 @@ You can also [define custom key modifier aliases](../api/#keyCodes) via the glob
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Mouse Event Modifiers
+## Modifier Keys
 
 > New in 2.1.0
 
-You can use the following modifiers to trigger mouse event listeners only when the corresponding key is pressed:
+You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
 
 - `.ctrl`
 - `.alt`
 - `.shift`
 - `.meta`
+
+> Note: On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.
+
+For example:
+
+```html
+<!-- Alt + C -->
+<input @keyup.alt.67="clear">
+
+<!-- Ctrl + Click -->
+<div @click.ctrl="doSomething">Do something</div>
+```
 
 ## Why Listeners in HTML?
 
