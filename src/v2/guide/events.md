@@ -257,39 +257,6 @@ For example:
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-## Specify Modifiers in Render Function Event Registration
-
-In [render functions](render-function.html), event handlers are nested under "on", though event modifiers such as `.stop`, `.prevent`, `.self` and key modifiers such as `.enter` in `v-on:keyup.enter` or `67` in `v-on:keyup.67` and modifier keys are not supported.
-
-You'll have to manually add codes in the very beginning of your event handler:
-
-| Modifier | Code to Add |
-| ------ | ------ |
-| `.stop` | `event.stopPropagation()` |
-| `.prevent` | `event.preventDefault()` |
-| `.self` | `if(event.target !== event.currentTarget) return` |
-| `.ctrl` (`.alt`, `.shift`, `.meta`) | `if(!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, `metaKey` accordingly) |
-
-Or check the `event.keyCode` in the handler.
-
-Vue has a syntactic sugar by special prefixes for event name to support `.capture` and `.once` modifiers in rendering functions.
-
-| Modifier(s) | Prefix |
-| ------ | ------ |
-| `.capture` | `!` |
-| `.once` | `~` |
-| `.capture.once` or `.once.capture` | `~!` |
-
-Examples:
-
-```javascript
-on: {
-  '!click': this.doThisInCapturingMode,
-  '~keyup': this.doThisOnce,
-  `~!mouseover`: this.doThisOnceInCapturingMode
-}
-```
-
 ## Why Listeners in HTML?
 
 You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
