@@ -764,6 +764,37 @@ ul.demo li {
 .content iframe {
   margin: 1em 0;
 }
+.content > table {
+  border: 1px solid #ddd;
+  margin: 1.2em auto;
+  padding: 1em;
+  border-collapse: collapse;
+}
+.content > table td,
+.content > table th {
+  line-height: 1.6em;
+  padding: 0.5em;
+  border: none;
+}
+.content > table td:first-child,
+.content > table th:first-child {
+  padding-left: 1.4em;
+}
+.content > table td:last-child,
+.content > table th:last-child {
+  padding-right: 1.4em;
+}
+.content > table th {
+  padding-top: 0.85em;
+  padding-bottom: 0.85em;
+  text-align: left;
+}
+.content > table tbody tr:nth-child(2n - 1) {
+  background-color: #fdfdfd;
+}
+.content > table tbody tr:last-child td {
+  padding-bottom: 1.2em;
+}
 .content p.tip {
   padding: 12px 24px 12px 30px;
   margin: 2em 0;

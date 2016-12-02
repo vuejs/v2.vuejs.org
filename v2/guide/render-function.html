@@ -571,8 +571,66 @@
 <p>This could be rewritten with JavaScript’s <code>if</code>/<code>else</code> and <code>map</code> in a render function:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.items.length) &#123;</div><div class="line">    <span class="keyword">return</span> createElement(<span class="string">'ul'</span>, <span class="keyword">this</span>.items.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> createElement(<span class="string">'li'</span>, item.name)</div><div class="line">    &#125;))</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> createElement(<span class="string">'p'</span>, <span class="string">'No items found.'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a><code>v-model</code></h3><p>There is no direct <code>v-model</code> counterpart in render functions - you will have to implement the logic yourself:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span></div><div class="line">  <span class="keyword">return</span> createElement(<span class="string">'input'</span>, &#123;</div><div class="line">    <span class="attr">domProps</span>: &#123;</div><div class="line">      <span class="attr">value</span>: self.value</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">on</span>: &#123;</div><div class="line">      <span class="attr">input</span>: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        self.value = e.target.value</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span></div><div class="line">  <span class="keyword">return</span> createElement(<span class="string">'input'</span>, &#123;</div><div class="line">    <span class="attr">domProps</span>: &#123;</div><div class="line">      <span class="attr">value</span>: self.value</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">on</span>: &#123;</div><div class="line">      <span class="attr">input</span>: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">        self.value = event.target.value</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to <code>v-model</code>.</p>
+<h3 id="Event-amp-Key-Modifiers"><a href="#Event-amp-Key-Modifiers" class="headerlink" title="Event &amp; Key Modifiers"></a>Event &amp; Key Modifiers</h3><p>For the <code>.capture</code> and <code>.once</code> event modifiers, Vue offers prefixes that can be used with <code>on</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Modifier(s)</th>
+<th>Prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.capture</code></td>
+<td><code>!</code></td>
+</tr>
+<tr>
+<td><code>.once</code></td>
+<td><code>~</code></td>
+</tr>
+<tr>
+<td><code>.capture.once</code> or<br><code>.once.capture</code></td>
+<td><code>~!</code></td>
+</tr>
+</tbody>
+</table>
+<p>For example:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">on: &#123;</div><div class="line">  <span class="string">'!click'</span>: <span class="keyword">this</span>.doThisInCapturingMode,</div><div class="line">  <span class="string">'~keyup'</span>: <span class="keyword">this</span>.doThisOnce,</div><div class="line">  <span class="string">`~!mouseover`</span>: <span class="keyword">this</span>.doThisOnceInCapturingMode</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>For all other event and key modifiers, no proprietary prefix is necessary, because you can simply use event methods in the handler:</p>
+<table>
+<thead>
+<tr>
+<th>Modifier(s)</th>
+<th>Equivalent in Handler</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.stop</code></td>
+<td><code>event.stopPropagation()</code></td>
+</tr>
+<tr>
+<td><code>.prevent</code></td>
+<td><code>event.preventDefault()</code></td>
+</tr>
+<tr>
+<td><code>.self</code></td>
+<td><code>if (event.target !== event.currentTarget) return</code></td>
+</tr>
+<tr>
+<td>Keys:<br><code>.enter</code>, <code>.13</code></td>
+<td><code>if (event.keyCode !== 13) return</code> (change <code>13</code> to <a href="keycode.info">another key code</a> for other key modifiers)</td>
+</tr>
+<tr>
+<td>Modifiers Keys:<br><code>.ctrl</code>, <code>.alt</code>, <code>.shift</code>, <code>.meta</code></td>
+<td><code>if (!event.ctrlKey) return</code> (change <code>ctrlKey</code> to <code>altKey</code>, <code>shiftKey</code>, or <code>metaKey</code>, respectively)</td>
+</tr>
+</tbody>
+</table>
+<p>Here’s an example with all of these modifiers used together:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">on: &#123;</div><div class="line">  <span class="attr">keyup</span>: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="comment">// Abort if the element emitting the event is not</span></div><div class="line">    <span class="comment">// the element the event is bound to</span></div><div class="line">    <span class="keyword">if</span> (event.target !== event.currentTarget) <span class="keyword">return</span></div><div class="line">    <span class="comment">// Abort if the key that went up is not the enter</span></div><div class="line">    <span class="comment">// key (13) and the shift key was not held down</span></div><div class="line">    <span class="comment">// at the same time</span></div><div class="line">    <span class="keyword">if</span> (!event.shiftKey || event.keyCode !== <span class="number">13</span>) <span class="keyword">return</span></div><div class="line">    <span class="comment">// Stop event propagation</span></div><div class="line">    event.stopPropagation()</div><div class="line">    <span class="comment">// Prevent the default keyup handler for this element</span></div><div class="line">    event.preventDefault()</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Slots"><a href="#Slots" class="headerlink" title="Slots"></a>Slots</h3><p>You can access static slot contents as Arrays of VNodes from <a href="http://vuejs.org/v2/api/#vm-slots"><code>this.$slots</code></a>:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">render: <span class="function"><span class="keyword">function</span> (<span class="params">createElement</span>) </span>&#123;</div><div class="line">  <span class="comment">// &lt;div&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;</span></div><div class="line">  <span class="keyword">return</span> createElement(<span class="string">'div'</span>, <span class="keyword">this</span>.$slots.default)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>And access scoped slots as functions that return VNodes from <a href="http://vuejs.org/v2/api/#vm-scopedSlots"><code>this.$scopedSlots</code></a>:</p>

@@ -244,12 +244,12 @@
 </li>
 </ul>
 <h3 id="keyCodes"><a href="#keyCodes" class="headerlink" title="keyCodes"></a>keyCodes</h3><ul>
-<li><p><strong>Type:</strong> <code>{ [key: string]: number }</code></p>
+<li><p><strong>Type:</strong> <code>{ [key: string]: number | Array&lt;number&gt; }</code></p>
 </li>
 <li><p><strong>Default:</strong> <code>{}</code></p>
 </li>
 <li><p><strong>Usage:</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.config.keyCodes = &#123;</div><div class="line">  <span class="attr">v</span>: <span class="number">86</span>,</div><div class="line">  <span class="attr">f1</span>: <span class="number">112</span>,</div><div class="line">  <span class="attr">mediaPlayPause</span>: <span class="number">179</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.config.keyCodes = &#123;</div><div class="line">  <span class="attr">v</span>: <span class="number">86</span>,</div><div class="line">  <span class="attr">f1</span>: <span class="number">112</span>,</div><div class="line">  <span class="attr">mediaPlayPause</span>: <span class="number">179</span>,</div><div class="line">  <span class="attr">up</span>: [<span class="number">38</span>, <span class="number">87</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Define custom key alias(es) for v-on.</p>
 </li>
 </ul>
