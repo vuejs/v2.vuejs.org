@@ -112,7 +112,7 @@ type: api
   }
   ```
 
-  Define custom key alias(es) for v-on. 
+  Define custom key alias(es) for v-on.
 
 ## Global API
 
