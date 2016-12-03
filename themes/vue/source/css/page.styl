@@ -93,6 +93,29 @@
             margin-left 0
     iframe
         margin 1em 0
+    > table
+        border 1px solid $border
+        margin 1.2em auto
+        padding: 1em
+        border-collapse collapse
+        td, th
+            line-height 1.6em
+            padding .5em
+            border none
+            &:first-child
+                padding-left: 1.4em
+            &:last-child
+                padding-right: 1.4em
+        th
+            padding-top: .85em
+            padding-bottom .85em
+            text-align left
+        tbody
+            tr:nth-child(2n - 1)
+                background-color #fdfdfd
+            tr:last-child
+                td
+                    padding-bottom: 1.2em
     p.tip
         padding 12px 24px 12px 30px
         margin 2em 0
