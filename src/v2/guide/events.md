@@ -189,16 +189,16 @@ methods: {
 <div v-on:click.self="doThat">...</div>
 ```
 
-## 키 수식어
-
-> 2.1.4에 새로 추가됨
+> New in 2.1.4
 
 ``` html
-<!-- 클릭 이벤트는 최대 한번만 트리거 됩니다. -->
+<!-- the click event will be triggered at most once -->
 <a v-on:click.once="doThis"></a>
 ```
 
-네이티브 DOM 이벤트에 독점적인 다른 수식어와 달리,`.once` 수식어는 [컴포넌트 이벤트](components.html#Using-v-on-with-Custom-Events)에서도 사용할 수 있습니다. 아직 컴포넌트에 대해 읽지 않았다면 지금 당장은 걱정하지 마십시오.
+Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components.html#Using-v-on-with-Custom-Events). If you haven't read about components yet, don't worry about this for now.
+
+## Key Modifiers
 
 키보드 이벤트를 청취할 때, 종종 공통 키 코드를 확인해야 합니다. Vue는 키 이벤트를 수신할 때 `v-on`에 대한 키 수식어를 추가할 수 있습니다.
 

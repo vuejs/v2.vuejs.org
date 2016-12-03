@@ -97,7 +97,7 @@ type: api
 
 ### keyCodes
 
-- **형태:** `{ [key: string]: number | Array<number> }`
+- **Type:** `{ [key: string]: number | Array<number> }`
 
 - **기본값:** `{}`
 
