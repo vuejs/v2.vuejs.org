@@ -6,9 +6,9 @@ order: 8
 
 ## `v-for`
 
-`v-for` 지시문을 사용하여 배열을 기반으로 리스트를 렌더링 할 수 있습니다. `v-for` 지시문은 `item in items` 형태로 특별한 문법이 필요합니다. 여기서 `items`는 원본 데이터 배열이고 `item`은 반복되는 배열 엘리먼트의 **별칭** 입니다.
+We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
 
-### 기본 사용방법
+### Basic Usage
 
 ``` html
 <ul id="example-1">
@@ -30,7 +30,7 @@ var example1 = new Vue({
 })
 ```
 
-결과:
+Result:
 
 {% raw %}
 <ul id="example-1" class="demo">
@@ -56,7 +56,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-`v-for` 블록 안에는 부모 범위 속성에 대한 모든 권한이 있습니다. `v-for`는 또한 현재 항목의 인덱스에 대한 두 번째 전달인자 옵션을 제공합니다.
+Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
 
 ``` html
 <ul id="example-2">
@@ -106,7 +106,7 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-`in` 대신에 `of`를 구분자로 사용할 수 있습니다. 그래서 JavaScript의 이터레이터에 대한 자바스크립트 구문과 유사합니다.
+You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
 
 ``` html
 <div v-for="item of items"></div>
