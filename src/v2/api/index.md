@@ -1519,6 +1519,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- shorthand -->
   <img :src="imageSrc">
+  
+  <!-- with inline string concatenation -->
+  <img :src="'/path/to/images/' + fileName">
 
   <!-- class binding -->
   <div :class="{ red: isRed }"></div>
