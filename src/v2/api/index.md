@@ -568,7 +568,8 @@ type: api
 
 - **详细：**
 
-  一个字符串模板作为 Vue 实例的标识使用。模板将会 **替换** 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 slot。
+  一个字符串模板作为 Vue 实例的标识使用。模板将会 **替换** 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 
+  。
 
   如果值以 `#` 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用 `<script type="x-template">` 包含模板。
 
@@ -968,8 +969,8 @@ type: api
       var body   = this.$slots.default
       var footer = this.$slots.footer
       return createElement('div', [
-        createElement('header', header)
-        createElement('main', body)
+        createElement('header', header),
+        createElement('main', body),
         createElement('footer', footer)
       ])
     }
