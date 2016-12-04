@@ -4,11 +4,11 @@ type: guide
 order: 15
 ---
 
-## Basics
+## 기본
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+Vue는 템플릿을 사용하여 대다수의 경우 HTML을 작성할 것을 권장합니다. 그러나 JavaScript가 완전히 필요한 상황이 있습니다. 바로 여기에서 템플릿에 더 가까운 컴파일러인 **render 함수** 를 사용할 수 있습니다.
 
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
+`render` 함수가 실용적 일 수있는 간단한 예제를 살펴 보겠습니다. 링크를 포함한 헤더를 생성한다고 가정한 예제 입니다.
 
 ``` html
 <h1>
@@ -18,13 +18,13 @@ Let's dive into a simple example where a `render` function would be practical. S
 </h1>
 ```
 
-For the HTML above, you decide you want this component interface:
+위의 HTML의 경우이 컴포넌트 인터페이스가 필요하다고 결정합니다.
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-When you get started with a component that just generates a heading based on the `level` prop, you quickly arrive at this:
+`level` prop를 기반으로 방금 제목을 생성하는 컴포넌트를 이용하면 다음과 같이 빠르게 만들 수 있습니다.
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -63,16 +63,16 @@ Vue.component('anchored-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element. The whole thing is also wrapped in a useless `div` because components must contain exactly one root node.
+이 템플릿은 별로 좋지 않습니다. 이것은 장황하지는 않지만 모든 표제 수준에 대해`<slot> </slot>`을 복제하고 있으며 앵커 요소를 추가 할 때도 똑같이해야합니다. 컴포넌트는 정확히 하나의 루트 노드를 포함해야하기 때문에 쓸모없는 `div`로 싸여 있습니다.
 
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+템플릿은 대부분의 컴포넌트에서 훌륭하게 작동하지만 분명하지는 않습니다. 이제 `render` 함수로 다시 작성해 봅니다.
 
 ``` js
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // 태그 이름
+      this.$slots.default // 자식의 배열
     )
   },
   props: {
@@ -84,29 +84,29 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#vm-slots) before diving into render functions.**
+훨씬 간단 합니다! 이 코드는 더 짧지만 Vue 인스턴스 속성에 더 익숙해야합니다. 이 경우 `anchored-heading` 안에 `Hello world!`와 같이 `slot` 속성 없이 자식을 패스 할 때 그 자식들은 `$ slots.default` 에있는 컴포넌트 인스턴스에 저장된다는 것을 알아야합니다. 아직 구현하지 않았다면 **render 함수로 들어가기 전에 [instance properties API](../api/#vm-slots)를 읽는 것이 좋습니다.**
 
-## `createElement` Arguments
+## `createElement` 전달인자
 
-The second thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+두 번째로 익숙해 져야 할 것은 `createElement` 함수에서 템플릿 기능을 사용하는 방법입니다. 다음은 `createElement`가 받아들이는 인수들입니다.
 
 ``` js
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // HTML 태그 이름, 컴포넌트 옵션 또는 함수 중
+  // 하나를 반환하는 함수입니다. 필수 사항.
   'div',
 
   // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // 템플릿에서 사용할 속성에 해당하는 데이터 객체입니다
+  // 데이터 객체입니다. 선택 사항.
   {
-    // (see details in the next section below)
+    // (아래 다음 섹션에 자세히 설명되어 있습니다.)
   },
 
   // {String | Array}
-  // Children VNodes. Optional.
+  // VNode 자식들. 선택 사항.
   [
     createElement('h1', 'hello world'),
     createElement(MyComponent, {
@@ -119,50 +119,48 @@ createElement(
 )
 ```
 
-### The Data Object In-Depth
+### 데이터 객체 깊이 알아 보기
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects.
+한가지주의해야 할 점은 `v-bind:class` 와 `v-bind:style`가 템플릿에서 특별한 대우를 받는 것과 비슷하게, VNode 데이터 객체에 최상위 필드가 있습니다.
 
 ``` js
 {
-  // Same API as `v-bind:class`
+  // `v-bind:class` 와 같음
   'class': {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`
+  // `v-bind:style` 와 같음
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // Normal HTML attributes
+  // 일반 HTML 속성
   attrs: {
     id: 'foo'
   },
-  // Component props
+  // 컴포넌트 props
   props: {
     myProp: 'bar'
   },
-  // DOM properties
+  // DOM 속성
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under "on", though
-  // modifiers such as in v-on:keyup.enter are not
-  // supported. You'll have to manually check the
-  // keyCode in the handler instead.
+  // v-on:keyup.enter와 같은 수정자가 지원되지 않으나
+  // 이벤트 핸들러는 "on" 아래에 중첩됩니다.
+  // 수동으로 핸들러에서 keyCode를 확인해야 합니다.
   on: {
     click: this.clickHandler
   },
-  // For components only. Allows you to listen to
-  // native events, rather than events emitted from
-  // the component using vm.$emit.
+  // 컴포넌트 전용.
+  // vm.$emit를 사용하여 컴포넌트에서 발생하는 이벤트가 아닌
+  // 기본 이벤트를 받을 수 있게 합니다.
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the binding's
-  // oldValue cannot be set, as Vue keeps track
-  // of it for you.
+  // 사용자 지정 지시문.
+  // Vue는 이를 관리하기 때문에 바인딩의 oldValue는 설정할 수 없습니다.
   directives: [
     {
       name: 'my-custom-directive',
@@ -174,22 +172,22 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
-  // Scoped slots in the form of
-  // { name: props => VNode | Array<VNode> }
+  // 범위 지정 슬롯. 형식은
+  // { name: props => VNode | Array<VNode> } 입니다.
   scopedSlots: {
     default: props => h('span', props.text)
   },
-  // The name of a slot if the child of a component
+  // 컴포넌트의 자식인 경우 슬롯의 이름입니다.
   slot: 'name-of-slot'
-  // Other special top-level properties
+  // 기타 최고 레벨 속성
   key: 'myKey',
   ref: 'myRef'
 }
 ```
 
-### Complete Example
+### 전체 예제
 
-With this knowledge, we can now finish the component we started:
+이 지식과 함께 이제 컴포넌트를 마칠 수 있습니다.
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -202,7 +200,7 @@ var getChildrenTextContent = function (children) {
 
 Vue.component('anchored-heading', {
   render: function (createElement) {
-    // create kebabCase id
+    // kebabCase id를 만듭니다.
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
@@ -229,23 +227,23 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### Constraints
+### 제약사항
 
-#### VNodes Must Be Unique
+#### VNodes는 고유해야 합니다
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+컴포넌트 트리의 모든 VNode는 고유 해야 합니다. 아래 예제는 다음 렌더링 함수가 유효하지 않음을 의미합니다.
 
 ``` js
 render: function (createElement) {
   var myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
-    // Yikes - duplicate VNodes!
+    // 이런 - Vnode가 중복입니다!
     myParagraphVNode, myParagraphVNode
   ])
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+동일한 엘리먼트 / 컴포넌트를 여러 번 복제하려는 경우 팩토리 기능을 사용하여 여러 번 반복 할 수 있습니다. 예를 들어, 다음 렌더링 함수는 20 개의 동일한 p태그를 렌더링하는 완벽하게 가능한 방법입니다.
 
 ``` js
 render: function (createElement) {
@@ -257,11 +255,11 @@ render: function (createElement) {
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## 템플릿 기능을 일반 JavaScript로 변경하기
 
-### `v-if` and `v-for`
+### `v-if` 와 `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
+일반 자바 스크립트를 사용할 수 있는 환경이면 어디든지 Vue 렌더링 함수는 한가지 방법만을 제공하지는 않습니다. 예를 들어,`v-if`와`v-for`를 사용하는 템플릿에서 :
 
 ``` html
 <ul v-if="items.length">
@@ -270,7 +268,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 <p v-else>No items found.</p>
 ```
 
-This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
+이것은 render 함수에서 `if` /`else` 와 `map`을 사용하여 재 작성 될 수 있습니다.
 
 ``` js
 render: function (createElement) {
@@ -286,7 +284,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+렌더 함수에는 직접적인 'v-model` 대응되는 것이 없습니다. 직접 구현해야합니다.
 
 ``` js
 render: function (createElement) {
@@ -304,19 +302,19 @@ render: function (createElement) {
 }
 ```
 
-This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+이것은 더 깊은 수준으로 건드려야 하지만 `v-model`에 비해 상호 작용에 대한 세부 사항을 훨씬 더 많이 제어 할 수 있습니다.
 
-### Event & Key Modifiers
+### 이벤트 및 키 수정자
 
-For the `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+`.capture` 와 `.once` 이벤트 수정자를 위해, Vue는 `on` 과 함께 사용할 수있는 접두사를 제공합니다.
 
-| Modifier(s) | Prefix |
+| 수정자| 접두어 |
 | ------ | ------ |
 | `.capture` | `!` |
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |
 
-For example:
+예제
 
 ```javascript
 on: {
@@ -326,9 +324,9 @@ on: {
 }
 ```
 
-For all other event and key modifiers, no proprietary prefix is necessary, because you can simply use event methods in the handler:
+다른 모든 이벤트 및 키 수정자의 경우 처리기에서 이벤트 메서드를 간단하게 사용할 수 있으므로 고유한 접두사는 필요하지 않습니다.
 
-| Modifier(s) | Equivalent in Handler |
+| 수정자 | 동등한 핸들러 |
 | ------ | ------ |
 | `.stop` | `event.stopPropagation()` |
 | `.prevent` | `event.preventDefault()` |
@@ -336,21 +334,21 @@ For all other event and key modifiers, no proprietary prefix is necessary, becau
 | Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
 | Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
 
-Here's an example with all of these modifiers used together:
+다음은 위의 수정자들이 사용된 예제 입니다.
 
 ```javascript
 on: {
   keyup: function (event) {
-    // Abort if the element emitting the event is not
-    // the element the event is bound to
+    // 이벤트를 내보내는 요소가 이벤트가 바인딩 된 요소가 아닌 경우
+    // 중단합니다.
     if (event.target !== event.currentTarget) return
-    // Abort if the key that went up is not the enter
-    // key (13) and the shift key was not held down
-    // at the same time
+    // 키보드에서 뗀 키가 Enter키 (13)이 아니며
+    // Shift키가 동시에 눌러지지 않은 경우
+    // 중단합니다.
     if (!event.shiftKey || event.keyCode !== 13) return
-    // Stop event propagation
+    // 전파를 멈춥니다.
     event.stopPropagation()
-    // Prevent the default keyup handler for this element
+    // 엘리먼트 기본 동작을 방지합니다.
     event.preventDefault()
     // ...
   }
@@ -359,7 +357,7 @@ on: {
 
 ### Slots
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](http://vuejs.org/v2/api/#vm-slots):
+[`this.$slots`](http://vuejs.org/v2/api/#vm-slots) 에서 정적 슬롯 내용을  VNodes의 배열로 접근할 수 있습니다.
 
 ``` js
 render: function (createElement) {
@@ -368,7 +366,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots):
+또한 특정 범위를 가지는 슬롯 [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots)에서 VNode를 반환하는 함수로 접근할 수 있습니다.
 
 ``` js
 render: function (createElement) {
@@ -381,14 +379,14 @@ render: function (createElement) {
 }
 ```
 
-To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+범위 함수 슬롯을 렌더링 함수를 사용하여 하위 컴포넌트로 전달하려면 VNode 데이터에서 `scopedSlots` 필드를 사용하십시오.
 
 ``` js
 render (createElement) {
   return createElement('div', [
     createElement('child', {
-      // pass scopedSlots in the data object
-      // in the form of { name: props => VNode | Array<VNode> }
+      // 데이터 객체의 scopedSlots를 다음 형식으로 전달합니다
+      // { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
           return h('span', props.text)
@@ -401,7 +399,7 @@ render (createElement) {
 
 ## JSX
 
-If you're writing a lot of `render` functions, it might feel painful to write something like this:
+`render` 함수를 많이 작성하면 다음과 같이 작성하는 것이 고통스럽게 느껴질 수 있습니다.
 
 ``` js
 createElement(
@@ -416,7 +414,7 @@ createElement(
 )
 ```
 
-Especially when the template version is so simple in comparison:
+템플릿 버전이 아래 처럼 너무 간단한 경우에 특히 더 그럴 것 입니다.
 
 ``` html
 <anchored-heading :level="1">
@@ -424,7 +422,7 @@ Especially when the template version is so simple in comparison:
 </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+그래서 Vue와 JSX를 함께 사용하기 위해 [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx)를 이용할 수 있습니다.
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -441,15 +439,15 @@ new Vue({
 })
 ```
 
-<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. If `h` is not available in the scope, your app will throw an error.</p>
+<p class="tip">`createElement`를 `h` 별칭을 이용하는 것은 Vue 생태계에서 볼 수 있는 공통된 관습이며 실제로 JSX에 필요합니다. 사용하는 범위에서 `h`를 사용할 수 없다면, 앱은 오류를 발생시킵니다.</p>
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
+JSX가 JavaScript에 매핑되는 방법에 대한 [자세한 내용](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)을 확인하세요.
 
-## Functional Components
+## 함수형 컴포넌트
 
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's just a function with some props.
+앞에 작성한 anchor를 가지는 heading 컴포넌트는 비교적 간단합니다. 어떤 상태도 없고 전달된 상태를 감시하며 라이프사이클 관련 메소드도 없습니다. 실제로 단지 props를 가지는 기능일 뿐입니다.
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
+이와 같은 경우, 컴포넌트를 `함수형 또는 기능적`으로 표시할 수 있습니다. 즉, 컴포넌트가 상태가 없고(`data` 없음) 인스턴스 화 되지 않은 경우(`this` 컨텍스트가 없음)를 말합니다. **함수형 컴포넌트** 는 다음과 같습니다.
 
 ``` js
 Vue.component('my-component', {
@@ -466,22 +464,22 @@ Vue.component('my-component', {
 })
 ```
 
-Everything the component needs is passed through `context`, which is an object containing:
+컴포넌트에 필요한 모든 것은 `context`를 통해 전달됩니다. 이 객체는 다음을 포함하는 객체 입니다.
 
-- `props`: An object of the provided props
-- `children`: An array of the VNode children
-- `slots`: A function returning a slots object
-- `data`: The entire data object passed to the component
-- `parent`: A reference to the parent component
+- `props`: 전달받은 props에 대한 객체
+- `children`: VNode 자식의 배열
+- `slots`: 슬롯 객체를 반환하는 함수
+- `data`: 컴포넌트에 전달된 전체 데이터 객체
+- `parent`: 상위 컴포넌트에 대한 참조
 
-After adding `functional: true`, updating the render function of our anchored heading component would simply require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+`functional:true`를 추가한 후 anchor를 가지는 heading 컴포넌트의 렌더 함수를 업데이트 하는 것은 단순히 `context` 전달인자를 추가하고 `this.$slots.default`를 `context.children`으로 갱신한 다음 `this.level`을 `context.props.level`로 갱신하면 됩니다.
 
-Since functional components are just functions, they're much cheaper to render. They're also very useful as wrapper components. For example, when you need to:
+함수형 컴포넌트는 단지 기능일 뿐이므로 렌더링하는데 훨씬 리소스를 적게 필요합니다. 또한 래퍼 컴포넌트로서도 유용합니다. 예를 들어,
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+- 프로그래밍적으로 기능을 위임할 여러 구성요소 중 하나를 선택하십시오.
+- 하위 컴포넌트에 전달하기 전에 자식 컴포넌트 또는 props를 조작합니다.
 
-Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
+여기에 `smart-list` 컴포넌트 예제는 전달된 props에 따라 더 구체적인 컴포넌트에 위임하는 예제 입니다.
 
 ``` js
 var EmptyList = { /* ... */ }
@@ -520,7 +518,7 @@ Vue.component('smart-list', {
 
 ### `slots()` vs `children`
 
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+왜 `slots()`와 `children`을 모두 사용해야하는지 궁금할 수 있습니다. `slots().default`는 `children`과 같지 않나요? 어떤 경우에는 그렇습니다. 그러나 다음 자식들과 함께 함수형 컴포넌트를 가지고 있다면 어떻게 될까요?
 
 ``` html
 <my-functional-component>
@@ -531,11 +529,11 @@ You may wonder why we need both `slots()` and `children`. Wouldn't `slots().defa
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
+이 컴포넌트의 경우 `children`은 두개의 단락을 제공할 것이고 `slots().default`는 오직 두번째 단락을 반환합니다. 따라서 `children`과 `slots()`을 모두 사용하면 컴포넌트가 슬롯 시스템에 대해 알고 있는지 또는 단순하게 `children`을 전달하여 다른 컴포넌트에 책임을 위임할 지 선택할 수 있습니다.
 
-## Template Compilation
+## 템플릿 컴파일
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Vue의 템플릿이 실제로 함수를 렌더링 하기 위해 컴파일 되는 것을 알고 싶을 것입니다. 이는 일반적으로 알 필요가 없는 내부 구현 사항이지만 특정 템플릿 기능을 컴파일 하는 방법을 보고 싶다면 흥미로울 수 있습니다. 다음은 `Vue.compile`을 사용해 템플릿 문자열을 실시간 컴파일 하는데 사용되는 데모 입니다.
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">
