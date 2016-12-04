@@ -333,7 +333,7 @@ For all other event and key modifiers, no proprietary prefix is necessary, becau
 | `.stop` | `event.stopPropagation()` |
 | `.prevent` | `event.preventDefault()` |
 | `.self` | `if (event.target !== event.currentTarget) return` |
-| Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](keycode.info) for other key modifiers) |
+| Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
 | Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
 
 Here's an example with all of these modifiers used together:

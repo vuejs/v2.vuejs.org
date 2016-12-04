@@ -1514,6 +1514,9 @@ type: api
 
   <!-- 약어 -->
   <img :src="imageSrc">
+  
+  <!-- with inline string concatenation -->
+  <img :src="'/path/to/images/' + fileName">
 
   <!-- 클래스 바인딩 -->
   <div :class="{ red: isRed }"></div>
