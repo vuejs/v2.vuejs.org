@@ -962,8 +962,8 @@ type: api
       var body   = this.$slots.default
       var footer = this.$slots.footer
       return createElement('div', [
-        createElement('header', header)
-        createElement('main', body)
+        createElement('header', header),
+        createElement('main', body),
         createElement('footer', footer)
       ])
     }
