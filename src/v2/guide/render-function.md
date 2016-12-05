@@ -95,7 +95,7 @@ Vue.component('anchored-heading', {
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // 一个 HTML 标签，组件设置，或一个函数
+  // 一个 HTML 标签，组件选项，或一个函数
   // 必须 Return 上述其中一个
   'div',
 
