@@ -44,7 +44,7 @@ var store = {
   },
   clearMessageAction () {
     this.debug && console.log('clearMessageAction triggered')
-    this.state.message = 'action B triggered'
+    this.state.message = 'clearMessageAction triggered'
   }
 }
 ```
