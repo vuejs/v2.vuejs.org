@@ -23,7 +23,7 @@ var example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
-      {message: 'foo' },
+      {message: 'Foo' },
       {message: 'Bar' }
     ]
   }
