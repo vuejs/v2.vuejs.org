@@ -1,5 +1,5 @@
 ---
-title: Conditional Rendering
+title: 조건부 렌더링
 type: guide
 order: 7
 ---
@@ -30,7 +30,7 @@ Vue에서는 `v-if` 지시문을 사용하여 같은 결과를 얻을 수 있습
 
 ### `<template>`에 `v-if`을 갖는 조건부 그룹 만들기
 
-`v-if`는 지시문이기 때문에 하나의 엘리먼트에 추가해야합니다. 하지만 하나 이상의 요소를 전환하려면 어떻게 해야할까요? 이 경우 우리는 보이지 않는 래퍼 역할을 하는 `<template>` 엘리먼트에 `v-if`를 사용할 수 있습니다. 최종 렌더링 결과에는 `<template>` 엘리먼트가 포함되지 않습니다.
+`v-if`는 지시문이기 때문에 하나의 엘리먼트에 추가해야합니다. 하지만 하나 이상의 엘리먼트를 전환하려면 어떻게 해야할까요? 이 경우 우리는 보이지 않는 래퍼 역할을 하는 `<template>` 엘리먼트에 `v-if`를 사용할 수 있습니다. 최종 렌더링 결과에는 `<template>` 엘리먼트가 포함되지 않습니다.
 
 ``` html
 <template v-if="ok">
@@ -49,7 +49,7 @@ Vue에서는 `v-if` 지시문을 사용하여 같은 결과를 얻을 수 있습
   이제 나를 볼 수 있어요
 </div>
 <div v-else>
-  이제는 안되요
+  이제는 안보입니다
 </div>
 ```
 
@@ -126,7 +126,7 @@ new Vue({
 </script>
 {% endraw %}
 
-이것은 항상 바람직하지는 않습니다. 때문에 "이 두 요소는 완전히 별개이므로 다시 사용하지 마십시오."라고 알리는 방법을 제공합니다. 유일한 값으로 `key` 속성을 추가하십시오.
+이것은 항상 바람직하지는 않습니다. 때문에 "이 두 엘리먼트는 완전히 별개이므로 다시 사용하지 마십시오."라고 알리는 방법을 제공합니다. 유일한 값으로 `key` 속성을 추가하십시오.
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -139,7 +139,7 @@ new Vue({
 </template>
 ```
 
-Now those inputs will be rendered from scratch each time you toggle. See for yourself:
+이제 전환 할 때마다 입력이 처음부터 렌더링됩니다. 직접 확인해보세요.
 
 {% raw %}
 <div id="key-example" class="demo">
