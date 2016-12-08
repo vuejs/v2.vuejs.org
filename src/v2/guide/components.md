@@ -1,12 +1,12 @@
 ---
-title: Components
+title: 컴포넌트
 type: guide
 order: 11
 ---
 
 ## 컴포넌트가 무엇인가요?
 
-컴포넌트는 Vue의 가장 강력한 기능 중 하나입니다. 기본 HTML 엘리먼트를 확장하여 재사용 가능한 코드를 캡슐화하는 데 도움이됩니다. 상위 수준에서 컴포넌트는 Vue의 컴파일러에 의해 동작이 추가된 사용자 지정 엘리먼트입니다. 경우에 따라 특별한 `is` 속성으로 확장 된 원시 HTML 요소로 나타날 수도 있습니다.
+컴포넌트는 Vue의 가장 강력한 기능 중 하나입니다. 기본 HTML 엘리먼트를 확장하여 재사용 가능한 코드를 캡슐화하는 데 도움이됩니다. 상위 수준에서 컴포넌트는 Vue의 컴파일러에 의해 동작이 추가된 사용자 지정 엘리먼트입니다. 경우에 따라 특별한 `is` 속성으로 확장 된 원시 HTML 엘리먼트로 나타날 수도 있습니다.
 
 ## 컴포넌트 사용하기
 
@@ -31,7 +31,7 @@ Vue.component('my-component', {
 
 <p class="tip">Vue는 사용자 지정 태그 이름에 대해 [W3C 규칙](http://www.w3.org/TR/custom-elements/#concepts)을 적용하지 않습니다 (모두 소문자이어야 하고 하이픈을 포함해야합니다). 그러나 이 규칙을 따르는 것이 좋습니다.</p>
 
-일단 등록되면, 컴포넌트는 인스턴스의 템플릿에서 커스텀 요소,`<my-component></my-component>`로 사용할 수 있습니다. 루트 Vue 인스턴스를 인스턴스화하기 **전에** 컴포넌트가 등록되어 있는지 확인하십시오. 전체 예제는 다음과 같습니다.
+일단 등록되면, 컴포넌트는 인스턴스의 템플릿에서 커스텀 엘리먼트,`<my-component></my-component>`로 사용할 수 있습니다. 루트 Vue 인스턴스를 인스턴스화하기 **전에** 컴포넌트가 등록되어 있는지 확인하십시오. 전체 예제는 다음과 같습니다.
 
 ``` html
 <div id="example">
@@ -42,7 +42,7 @@ Vue.component('my-component', {
 ``` js
 // 등록
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<div>사용자 정의 컴포넌트 입니다!</div>'
 })
 
 // 루트 인스턴스 생성
@@ -55,7 +55,7 @@ new Vue({
 
 ``` html
 <div id="example">
-  <div>A custom component!</div>
+  <div>사용자 정의 컴포넌트 입니다!</div>
 </div>
 ```
 
@@ -65,7 +65,7 @@ new Vue({
 </div>
 <script>
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<div>사용자 정의 컴포넌트 입니다!</div>'
 })
 new Vue({ el: '#example' })
 </script>
@@ -77,7 +77,7 @@ new Vue({ el: '#example' })
 
 ``` js
 var Child = {
-  template: '<div>A custom component!</div>'
+  template: '<div>사용자 정의 컴포넌트 입니다!</div>'
 }
 
 new Vue({
@@ -93,7 +93,7 @@ new Vue({
 
 ### DOM 템플릿 구문 분석 경고
 
-DOM을 템플릿으로 사용할 때 (예 : `el` 옵션을 사용하여 기존 콘텐츠가 있는 엘리먼트를 마운트하는 경우), Vue는 템플릿 콘텐츠만 가져올 수 있기 때문에 HTML이 작동하는 방식에 고유한 몇 가지 제한 사항이 적용됩니다. 이는 브라우저가 구문 분석하고 정규화한 후에 작동합니다. 가장 중요한 것은`<ul>`,`<ol>`,`<table>`과`<select>`와 같은 일부 요소는 그 안에 어떤 요소가 나타날 수 있는지에 대한 제한을 가지고 있으며,`<option>` 특정 다른 요소 안에 만 나타날 수 있습니다.
+DOM을 템플릿으로 사용할 때 (예 : `el` 옵션을 사용하여 기존 콘텐츠가 있는 엘리먼트를 마운트하는 경우), Vue는 템플릿 콘텐츠만 가져올 수 있기 때문에 HTML이 작동하는 방식에 고유한 몇 가지 제한 사항이 적용됩니다. 이는 브라우저가 구문 분석과 정규화한 후에 작동합니다. 가장 중요한 것은`<ul>`,`<ol>`,`<table>`과`<select>`와 같은 일부 엘리먼트는 그 안에 어떤 엘리먼트가 나타날 수 있는지에 대한 제한을 가지고 있으며,`<option>`과 같이 특정 다른 엘리먼트 안에만 나타날 수 있습니다.
 
 이러한 제한이 있는 엘리먼트가 있는 사용자 지정 컴포넌트를 사용하면 다음과 같은 문제가 발생할 수 있습니다.
 
@@ -121,7 +121,7 @@ DOM을 템플릿으로 사용할 때 (예 : `el` 옵션을 사용하여 기존 �
 
 ### `data` 는 반드시 함수여야합니다.
 
-Vue 생성자에 사용할 수 있는 대부분의 옵션은 컴포넌트에서 사용할 수 있습니다. 한가지 특별한 경우가 있습니다. `data` 는 함수여야 합니다. 실제로, 당신이 이를 사용하는 경우에:
+Vue 생성자에 사용할 수 있는 대부분의 옵션은 컴포넌트에서 사용할 수 있습니다. 한가지 특별한 경우가 있습니다. `data` 는 함수여야 합니다. 실제로 이를 사용하는 경우에:
 
 ``` js
 Vue.component('my-component', {
@@ -217,7 +217,6 @@ new Vue({
 
 컴포넌트는 부모-자식 관계에서 가장 일반적으로 함께 사용하기 위한 것입니다. 컴포넌트 A는 자체 템플릿에서 컴포넌트 B를 사용할 수 있습니다. 그들은 필연적으로 서로 의사 소통이 필요합니다. 부모는 자식에게 데이터를 전달해야 할 수도 있으며, 자식은 자신에게 일어난 일을 부모에게 알릴 필요가 있습니다. 그러나 부모와 자식이 명확하게 정의된 인터페이스를 통해 가능한한 분리된 상태로 유지하는 것도 매우 중요합니다. 이렇게하면 각 컴포넌트의 코드를 상대적으로 격리 할 수 있도록 작성하고 추론할 수 있으므로 유지 관리가 쉽고 잠재적으로 쉽게 재사용 할 수 있습니다.
 
-In Vue.js, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
 Vue.js에서 부모-자식 컴포넌트 관계는 **props는 아래로, events 위로** 라고로 요약 할 수 있습니다. 부모는 **props** 를 통해 자식에게 데이터를 전달하고 자식은 **events** 를 통해 부모에게 메시지를 보냅니다. 어떠헥 작동하는지 보겠습니다.
 
 <p style="text-align: center">
@@ -230,7 +229,7 @@ Vue.js에서 부모-자식 컴포넌트 관계는 **props는 아래로, events �
 
 모든 컴포넌트 인스턴스에는 자체 **격리 된 범위** 가 있습니다. 즉, 하위 컴포넌트의 템플릿에서 상위 데이터를 직접 참조 할 수 없으며 그렇게 해서는 안됩니다. 데이터는 [`props` 옵션](../api/#props) 을 사용하여 하위 컴포넌트로 전달 될 수 있습니다.
 
-소품은 상위 구성 요소의 정보를 전달하기위한 사용자 지정 특성입니다. 하위 컴포넌트는`props` 옵션을 사용하여 수신 할 것으로 기대되는 소포를 명시 적으로 선언해야합니다
+소품은 상위 컴포넌트의 정보를 전달하기위한 사용자 지정 특성입니다. 하위 컴포넌트는`props` 옵션을 사용하여 수신 할 것으로 기대되는 소포를 명시 적으로 선언해야합니다
 
 ``` js
 Vue.component('child', {
@@ -245,14 +244,14 @@ Vue.component('child', {
 그런 다음 일반 문자열을 다음과 같이 전달할 수 있습니다.
 
 ``` html
-<child message="hello!"></child>
+<child message="안녕하세요!"></child>
 ```
 
 결과:
 
 {% raw %}
 <div id="prop-example-1" class="demo">
-  <child message="hello!"></child>
+  <child message="안녕하세요!"></child>
 </div>
 <script>
 new Vue({
@@ -281,7 +280,7 @@ Vue.component('child', {
 
 ``` html
 <!-- HTML는 kebab-case -->
-<child my-message="hello!"></child>
+<child my-message="안녕하세요!"></child>
 ```
 
 문자열 템플릿을 사용하는 경우에도 이 제한이 적용되지 않습니다.
@@ -316,7 +315,7 @@ Vue.component('child', {
 new Vue({
   el: '#demo-2',
   data: {
-    parentMsg: 'Message from parent'
+    parentMsg: '부모로부터 전달 받은 메시지'
   },
   components: {
     child: {
@@ -348,7 +347,7 @@ new Vue({
 
 모든 props는 하위 속성과 상위 속성 사이의 **단방향** 바인딩을 형성합니다. 상위 속성이 업데이트되면 하위로 흐르게 되지만 그 반대는 안됩니다. 이렇게하면 하위 컴포넌트가 실수로 상위 상태로 변경되는 것을 **방지할 수** 있습니다. 이로 인해 앱의 데이터 흐름을 추론하기가 더 어려워 질 수 있습니다.
 
-또한 상위 구성 요소가 업데이트 될 때마다 하위 구성 요소의 모든 소품이 최신 값으로 새로 고쳐집니다. 즉, 하위 구성 요소 내부에서 소품을 변형하려고 시도하면 안됩니다. 그렇게하면 Vue가 콘솔에서 경고합니다.
+또한 상위 컴포넌트가 업데이트 될 때마다 하위 컴포넌트의 모든 소품이 최신 값으로 새로 고쳐집니다. 즉, 하위 컴포넌트 내부에서 소품을 변형하려고 시도하면 안됩니다. 그렇게하면 Vue가 콘솔에서 경고합니다.
 
 일반적으로 prop을 변경시키고 싶은 유혹을 불러 일으킬 수있는 두 가지 경우가 있습니다.
 
@@ -680,7 +679,7 @@ bus.$on('id-selected', function (id) {
 
 2. `<app>` 컴포넌트에는 자체 템플릿이 있을 가능성이 큽니다.
 
-위 구성으로 작동하도록 하려면 부모 "content"와 컴포넌트의 자체 템플릿을 섞는 방법이 필요합니다. 이것은 **콘텐츠 배포** (또는 Angular에 익숙한 경우 "transclusion") 프로세스입니다. Vue.js는 현재 [웹 구성 요소 사양 초안](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)을 모델로 한 콘텐츠 배포 API를 구현하며 원본 콘텐츠의 배포판 역할을하기 위해 특수한 `<slot>` 요소를 사용합니다.
+위 구성으로 작동하도록 하려면 부모 "content"와 컴포넌트의 자체 템플릿을 섞는 방법이 필요합니다. 이것은 **콘텐츠 배포** (또는 Angular에 익숙한 경우 "transclusion") 프로세스입니다. Vue.js는 현재 [웹 컴포넌트 사양 초안](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)을 모델로 한 콘텐츠 배포 API를 구현하며 원본 콘텐츠의 배포판 역할을하기 위해 특수한 `<slot>` 엘리먼트를 사용합니다.
 
 ### 범위 컴파일
 
@@ -731,10 +730,9 @@ Vue.component('child-component', {
 
 ``` html
 <div>
-  <h2>I'm the child title</h2>
+  <h2>나는 자식 컴포넌트의 제목입니다</h2>
   <slot>
-    This will only be displayed if there is no content
-    to be distributed.
+    제공된 컨텐츠가 없는 경우에만 보실 수 있습니다.
   </slot>
 </div>
 ```
@@ -743,23 +741,23 @@ Vue.component('child-component', {
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>나는 부모 컴포넌트의 제목입니다</h1>
   <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <p>이것은 원본 컨텐츠 입니다.</p>
+    <p>이것은 원본 중 추가 컨텐츠 입니다</p>
   </my-component>
 </div>
 ```
 
-The rendered result will be:
+아래처럼 렌더링 됩니다.
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>나는 부모 컴포넌트의 제목입니다</h1>
   <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <h2>나는 자식 컴포넌트의 제목 입니다</h2>
+    <p>이것은 원본 컨텐츠 입니다.</p>
+    <p>이것은 원본 중 추가 컨텐츠 입니다</p>
   </div>
 </div>
 ```
@@ -790,12 +788,12 @@ The rendered result will be:
 
 ``` html
 <app-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">여기에 페이지 제목이 위치합니다</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>메인 컨텐츠의 단락입니다.</p>
+  <p>하나 더 있습니다.</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">여기에 연락처 정보입니다.</p>
 </app-layout>
 ```
 
@@ -804,14 +802,14 @@ The rendered result will be:
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>여기에 페이지 제목이 위치합니다</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>메인 컨텐츠의 단락입니다.</p>
+    <p>하나 더 있습니다.</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>여기에 연락처 정보입니다.</p>
   </footer>
 </div>
 ```
@@ -936,7 +934,7 @@ var vm = new Vue({
 
 ### 재사용 가능한 컴포넌트 제작하기
 
-컴포넌트를 작성할 때 나중에 다른 곳에서 다시 사용할 것인지에 대한 여부를 명심하는 것이 좋습니다. 일회용 컴포넌트가 단단히 결합 되어도 상관 없지만 재사용 가능한 구성 요소는 깨끗한 공용 인터페이스를 정의 해야하며 사용된 컨텍스트에 대한 가정을 하지 않아야합니다.
+컴포넌트를 작성할 때 나중에 다른 곳에서 다시 사용할 것인지에 대한 여부를 명심하는 것이 좋습니다. 일회용 컴포넌트가 단단히 결합 되어도 상관 없지만 재사용 가능한 컴포넌트는 깨끗한 공용 인터페이스를 정의 해야하며 사용된 컨텍스트에 대한 가정을 하지 않아야합니다.
 
 Vue 컴포넌트의 API는 prop, 이벤트 및 슬롯의 세 부분으로 나뉩니다.
 
@@ -1056,7 +1054,7 @@ HTML 템플릿 내에서 kebab-case와 동등한 것을 사용해야합니다.
 <my-component/>
 ```
 
-다시 말하지만, 이것은 자기 닫는 사용자 정의 요소가 유효한 HTML이 아니므로 문자열 템플릿내에서만 작동하며 브라우저의 기본 파서는 이를 이해하지 못합니다.
+다시 말하지만, 이것은 자기 닫는 사용자 정의 엘리먼트가 유효한 HTML이 아니므로 문자열 템플릿내에서만 작동하며 브라우저의 기본 파서는 이를 이해하지 못합니다.
 
 ### 재귀 컴포넌트
 
@@ -1081,7 +1079,7 @@ name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-위와 같은 구성 요소는 "최대 스택 크기 초과" 오류가 발생하므로 재귀 호출이 조건부 (즉, 마지막에 `false`가 될 `v-if` 를 사용하세요)인지 확인하십시오.
+위와 같은 컴포넌트는 "최대 스택 크기 초과" 오류가 발생하므로 재귀 호출이 조건부 (즉, 마지막에 `false`가 될 `v-if` 를 사용하세요)인지 확인하십시오.
 
 ### 컴포넌트 사이의 순환 참조
 
@@ -1107,10 +1105,10 @@ Finder나 파일 탐색기와 같이 파일 디렉토리 트리를 작성한다�
 
 자세히 살펴보면이 컴포넌트가 실제로 렌더링 트리에서 서로의 자식 및 조상인 패러독스라는 것을 알 수 있습니다! `Vue.component`를 이용해 전역으로 컴포넌트 등록할 때, 이 패러독스는 자동으로 해결됩니다. 그런 경우에 처해있으면 한번 읽어보세요.
 
-그러나 __module system__ 을 사용하여 컴포넌트를 필요로하거나 가져오는 경우. Webpack 또는 Browserify를 통해 오류가 발생합니다.
+그러나 __모듈 시스템__ 을 사용하여 컴포넌트를 필요로하거나 가져오는 경우. Webpack 또는 Browserify를 통해 오류가 발생합니다.
 
 ```
-구성 요소를 마운트하지 못했습니다 : 템플릿 또는 렌더링 함수가 정의되지 않았습니다.
+컴포넌트를 마운트하지 못했습니다 : 템플릿 또는 렌더링 함수가 정의되지 않았습니다.
 ```
 
 무슨 일이 일어나고 있는지 설명하기 위해 모듈 A와 B를 호출 할 것입니다. 모듈 시스템은 A가 필요합니다 하지만 A는 B를 우선적으로 필요로 합니다 게다가 B는 A를 필요로 하는 것을 알 수 있습니다. 먼저 서로 다른 컴포넌트를 해결하지 않고 두 컴포넌트를 완전히 해결하는 방법을 알지 못합니다. 이를 해결하려면 모듈 시스템에 "A는 B를 필요로 하나 B를 __먼저__ 해결할 필요가 없습니다."라고 말할 수있는 지점을 제공해야합니다.
@@ -1132,17 +1130,17 @@ beforeCreate: function () {
 ``` html
 <my-component inline-template>
   <div>
-    <p>These are compiled as the component's own template.</p>
-    <p>Not parent's transclusion content.</p>
+    <p>이것은 컴포넌트의 자체 템플릿으로 컴파일됩니다.</p>
+    <p>부모가 만들어낸 내용이 아닙니다.</p>
   </div>
 </my-component>
 ```
 
-그러나, `inline-template` 은 템플릿의 범위를 추론하기 더 어렵게 만듭니다. 가장 좋은 방법은 `template` 옵션을 사용하거나`.vue` 파일의`template` 요소를 사용하여 컴포넌트 내부에 템플릿을 정의하는 것입니다.
+그러나, `inline-template` 은 템플릿의 범위를 추론하기 더 어렵게 만듭니다. 가장 좋은 방법은 `template` 옵션을 사용하거나`.vue` 파일의`template` 엘리먼트를 사용하여 컴포넌트 내부에 템플릿을 정의하는 것입니다.
 
 ### X-Templates
 
-템플리트를 정의하는 또 다른 방법은 `text/x-template` 유형의 스크립트 요소 내부에 ID로 템플릿을 참조하는 것입니다. 예:
+템플리트를 정의하는 또 다른 방법은 `text/x-template` 유형의 스크립트 엘리먼트 내부에 ID로 템플릿을 참조하는 것입니다. 예:
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -1160,7 +1158,7 @@ Vue.component('hello-world', {
 
 ### `v-once` 를 이용한 비용이 적게드는 정적 컴포넌트
 
-일반 HTML 요소를 렌더링하는 것은 Vue에서 매우 빠르지만 가끔 정적 콘텐츠가 **많이** 포함 된 컴포넌트가 있을 수 있습니다. 이런 경우,`v-once` 지시문을 루트 요소에 추가함으로써 캐시가 한번만 실행되도록 할 수 있습니다.
+일반 HTML 엘리먼트를 렌더링하는 것은 Vue에서 매우 빠르지만 가끔 정적 콘텐츠가 **많이** 포함 된 컴포넌트가 있을 수 있습니다. 이런 경우,`v-once` 지시문을 루트 엘리먼트에 추가함으로써 캐시가 한번만 실행되도록 할 수 있습니다.
 
 ``` js
 Vue.component('terms-of-service', {
