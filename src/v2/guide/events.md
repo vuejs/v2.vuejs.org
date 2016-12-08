@@ -1,5 +1,5 @@
 ---
-title: Event Handling
+title: 이벤트 핸들링
 type: guide
 order: 9
 ---
@@ -196,7 +196,7 @@ methods: {
 <a v-on:click.once="doThis"></a>
 ```
 
-네이티브 DOM 이벤트에 독점적인 다른 수식어와 달리,`.once` 수식어는 [컴포넌트 이벤트](components.html#Using-v-on-with-Custom-Events)에서도 사용할 수 있습니다. 아직 컴포넌트에 대해 읽지 않았다면 지금 당장은 걱정하지 마십시오.
+네이티브 DOM 이벤트에 독점적인 다른 수식어와 달리,`.once` 수식어는 [컴포넌트 이벤트](components.html#Using-v-on-with-Custom-Events)에서도 사용할 수 있습니다. 아직 컴포넌트에 대해 읽지 않았더라도 지금 당장은 걱정하지 마십시오.
 
 ## 키 수식어
 
@@ -259,9 +259,9 @@ Vue.config.keyCodes.f1 = 112
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-## 왜 HTML로 된 리스너 입니까
+## 왜 HTML로 된 리스너를 사용합니까
 
-이 모든 이벤트 청취 접근 방법이 "우려 사항 분리" ("separation of concerns")에 대한 오래된 규칙을 어긴다고 생각할 수 있습니다. 모든 뷰 핸들러 함수와 표현식은 현재 뷰 처리 하는 ViewModel에 엄격히 바인딩 되기 때문에 유지보수가 어렵지 않습니다. 실제로 `v-on`을 사용하면 몇가지 이점이 있습니다.
+이 모든 이벤트 청취 접근 방법이 우려 사항 분리("separation of concerns")에 대한 오래된 규칙을 어긴다고 생각할 수 있습니다. 모든 뷰 핸들러 함수와 표현식은 현재 뷰 처리 하는 ViewModel에 엄격히 바인딩 되기 때문에 유지보수가 어렵지 않습니다. 실제로 `v-on`을 사용하면 몇가지 이점이 있습니다.
 
 1. HTML 템플릿을 간단히 하여 JavaScript 코드 내에서 핸들러 함수 구현을 찾는 것이 더 쉽습니다.
 
