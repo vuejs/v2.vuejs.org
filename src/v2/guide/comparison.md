@@ -270,7 +270,7 @@ Angular 2는 완전히 새로운 프레임 워크이기 때문에 별도의 섹�
 
 Angular 1은 소규모 응용 프로그램에 사용할 수 있지만 Angular 2는 대규모 응용 프로그램을 쉽게 사용할 수 있도록 초점을 이동했습니다. 이 중 일부는 TypeScript를 거의 필요로하므로 Java 및 C #과 같은 언어의 타입 안전성을 원하는 개발자에게 매우 유용 할 수 있습니다.
 
-Vue is also well-suited to [enterprise environments](https://github.com/vuejs/awesome-vue#enterprise-usage) and can even be used with TypeScript via our [official typings](https://github.com/vuejs/vue/tree/dev/types) and [official decorator](https://github.com/vuejs/vue-class-component), though it's definitely optional in our case.
+Vue는 [엔터프라이즈 환경](https://github.com/vuejs/awesome-vue#enterprise-usage)에도 매우 적합하며 [공식 Typings](https://github.com/vuejs/vue/tree/dev/types) 및 [공식 decorator](https://github.com/vuejs/vue/tree/dev/types)를 통해 TypeScript와 함께 사용할 수도 있습니다.
 
 ### 규모와 성능
 
@@ -324,7 +324,8 @@ Vue와 사용자 정의 엘리먼트 및 Shadow DOM 스타일 캡슐화와 같�
 
 Riot 2.0은 작고 아름답게 디자인 된 API를 사용하여 유사한 구성 요소 기반 개발 모델 (Riot에서 "태그"라고 함)을 제공합니다. Riot과 Vue는 디자인 철학에 많은 부분을 공유합니다. 그러나 Vue는 Riot보다 약간 무겁지만 몇 가지 중요한 이점을 제공합니다.
 
-- [Transition effect system](transitions.html). Riot has none.
-- A far more powerful router. Riot’s routing API is extremely minimal.
-- Better performance. Riot [traverses a DOM tree](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) rather than using a virtual DOM, so suffers from the same performance issues as Angular 1.
-- More mature tooling support. Vue provides official support for [Webpack](https://github.com/vuejs/vue-loader) and [Browserify](https://github.com/vuejs/vueify), while Riot relies on community support for build system integration.
+- [전환 효과 시스템](transitions.html). Riot에는 아무 것도 없습니다.
+- 훨씬 강력한 라우터. Riot의 라우팅 API는 극히 약합니다.
+- 더 나은 성능. 가상 DOM을 사용하는 것보다 Riot은 [DOM 트리 순회](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding)를 하므로 앵귤러 1과 동일한 성능 문제가 있습니다.
+- 보다 성숙한 툴링 지원. Vue는 [Webpack](https://github.com/vuejs/vue-loader) 및 [Browserify](https://github.com/vuejs/vueify)에 대한 공식 지원을 제공하지만 Riot은 빌드 시스템에 대한 커뮤니티 지원에 의존합니다. 완성.
+- 보다 성숙한 툴링 지원됩니다. Vue는 [Webpack](https://github.com/vuejs/vue-loader)및 [Browserify](https://github.com/vuejs/vueify)에 대한 공식 지원을 제공하지만 Riot는 빌드 시스템 통합에 대한 커뮤니티 지원에 의존합니다.
