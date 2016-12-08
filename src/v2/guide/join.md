@@ -12,9 +12,9 @@ Vue의 커뮤니티는 엄청나게 빠르게 성장하고 있습니다. 이 글
 
 ### 지원 받기
 
-- [Forum](http://forum.vuejs.org/): Vue와 그 생태계에 대해 질문하고 답변을 얻는 가장 좋은 곳 입니다.
-- [Gitter Channel](https://gitter.im/vuejs/vue): 개발자간 채팅 할 수 있는 장소입니다. 여기서도 질문 할 수 있지만 실제로 토론을 진행 중이므로 더 나은 플랫폼입니다.
-- [Github](https://github.com/vuejs): 보고 할 버그가 있거나 요청할 기능이 있다면 GitHub 이슈가 필요합니다. 또한 풀 리퀘스트 요청을 환영합니다!
+- [Forum](http://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
+- [Gitter Channel](https://gitter.im/vuejs/vue): A place for devs to meet and chat. You can ask questions here too, but the forum is the better platform, since the discussions are threaded.
+- [Github](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
 
 ### 생태계 둘러보기
 
