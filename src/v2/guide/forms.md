@@ -1,5 +1,5 @@
 ---
-title: Form Input Bindings
+title: 폼 입력 바인딩
 type: guide
 order: 10
 ---
@@ -17,13 +17,13 @@ order: 10
 ### 문자열
 
 ``` html
-<input v-model="message" placeholder="edit me">
+<input v-model="message" placeholder="여기를 수정해보세요">
 <p>메시지: {{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
+  <input v-model="message" placeholder="여기를 수정해보세요">
   <p>메시지: {{ message }}</p>
 </div>
 <script>
@@ -39,18 +39,18 @@ new Vue({
 ### 여러줄을 가진 문장
 
 ``` html
-<span>Multiline message is:</span>
+<span>여러 줄을 가지는 메시지:</span>
 <p style="white-space: pre">{{ message }}</p>
 <br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="message" placeholder="여러줄을 입력해보세요"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Multiline message is:</span>
+  <span>여러 줄을 가지는 메시지:</span>
   <p style="white-space: pre">{{ message }}</p>
   <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <textarea v-model="message" placeholder="여러줄을 입력해보세요"></textarea>
 </div>
 <script>
 new Vue({
@@ -62,9 +62,8 @@ new Vue({
 </script>
 {% endraw %}
 
-
 {% raw %}
-<p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
+<p class="tip">텍스트 영역의 보간 (<code>&lt;textarea&gt;{{ text }}&lt;/textarea&gt;</code>)은 작동하지 않습니다. 대신 <code>v-model</code>를 사용하십시오.</p>
 {% endraw %}
 
 ### 체크박스
@@ -100,7 +99,7 @@ new Vue({
 <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
 <label for="mike">Mike</label>
 <br>
-<span>Checked names: {{ checkedNames }}</span>
+<span>체크한 이름: {{ checkedNames }}</span>
 ```
 
 ``` js
@@ -121,7 +120,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>체크한 이름: {{ checkedNames }}</span>
 </div>
 <script>
 new Vue({
@@ -143,7 +142,7 @@ new Vue({
 <input type="radio" id="two" value="Two" v-model="picked">
 <label for="two">Two</label>
 <br>
-<span>Picked: {{ picked }}</span>
+<span>선택: {{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
@@ -175,7 +174,7 @@ new Vue({
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>선택함: {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-5" class="demo">
@@ -370,5 +369,4 @@ vm.selected.number // -> 123
 
 > Vue의 컴포넌트에 익숙하지 않으면 지금은 보지 않아도 괜찮습니다.
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
 HTML의 기본 제공 input 유형이 항상 사용자의 요구를 만족시킬 수는 없습니다. 다행히 Vue 컴포넌트를 사용하면 완전히 사용자 정의 된 동작으로 재사용 가능한 input을 만들 수 있습니다. 이 input은 `v-model`에도 작동합니다! 자세한 컴포넌트 가이드의 [사용자 정의 입력](components.html#Form-Input-Components-using-Custom-Events)을 참조하십시오.
