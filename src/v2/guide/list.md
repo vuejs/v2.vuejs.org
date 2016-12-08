@@ -1,5 +1,5 @@
 ---
-title: List Rendering
+title: 리스트 렌더링
 type: guide
 order: 8
 ---
@@ -79,7 +79,7 @@ var example2 = new Vue({
 })
 ```
 
-Result:
+결과:
 
 {% raw%}
 <ul id="example-2" class="demo">
@@ -151,7 +151,7 @@ new Vue({
 })
 ```
 
-Result:
+결과:
 
 {% raw %}
 <ul id="repeat-object" class="demo">
@@ -201,7 +201,7 @@ new Vue({
 </div>
 ```
 
-Result:
+결과:
 
 {% raw %}
 <div id="range" class="demo">
@@ -214,7 +214,7 @@ new Vue({ el: '#range' })
 
 ### 컴포넌트와 v-for
 
-> 이 섹션에서는 [Components](components.html)에 대한 지식이 있다고 가정합니다. 나중에 읽어도 좋습니다.
+> 이 섹션에서는 [컴포넌트](components.html)에 대한 지식이 있다고 가정합니다. 나중에 읽어도 좋습니다.
 
 일반 엘리먼트 처럼 사용자 정의 컴포넌트에서 `v-for`를 직접 사용할 수 있습니다.
 
@@ -367,7 +367,7 @@ Vue는 감시중인 배열의 변이 메소드를 래핑하여 뷰 갱신을 트
 
 ### 배열 대체
 
-이름에서 알 수 있듯 변이 메소드는 호출된 원본 배열을 변형합니다. 이와 비교하여 변형을 하지 않는 방법도 있습니다. 바로 `filter()`, `concat()` 와 `slice()` 입니다. 이 방법을 사용하면 원본 배열을 변형하지 않지만 **항상 새 배열을 반환합니다.** 변형이 없는 방법으로 작업할 때 이전 배열을 새 배열로 바꿀 수 있습니다.
+이름에서 알 수 있듯 변이 메소드는 호출된 원본 배열을 변형합니다. 이와 비교하여 변형을 하지 않는 방법도 있습니다. 바로 `filter()`, `concat()` 와 `slice()` 입니다. 이 방법을 사용하면 원본 배열을 변형하지 않고 **항상 새 배열을 반환합니다.** 변형이 없는 방법으로 작업할 때 이전 배열을 새 배열로 바꿀 수 있습니다.
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -379,7 +379,6 @@ example1.items = example1.items.filter(function (item) {
 
 ### 주의 사항
 
-Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
 JavaScript의 제한으로 인해 Vue는 배열에 대해 다음과 같은 변경 사항을 감지할수 **없습니다.**
 
 1. 인덱스로 배열에 있는 항목을 직접 설정하는 경우, 예: `vm.items[indexOfItem] = newValue`
