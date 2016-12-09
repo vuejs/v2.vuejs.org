@@ -1,10 +1,10 @@
-# vuejs.org
+# kr.vuejs.org
 
-This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
+이 문서는 [hexo](http://hexo.io/)로 만들었습니다. 마크다운으로 작성된 문서는 `src`에 있습니다. 언제든지 이슈가 있으면 풀 리퀘스트를 보내주세요!
 
-## Developing
+## 개발 방법
 
-Start a dev server at `localhost:4000`:
+개발 서버 주소는 `localhost:4000` :
 
 ```
 $ npm install -g hexo-cli
