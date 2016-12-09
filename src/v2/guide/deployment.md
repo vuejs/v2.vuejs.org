@@ -1,5 +1,5 @@
 ---
-title: Deploying For Production
+title: 프로덕션으로 배포하기
 type: guide
 order: 20
 ---
@@ -56,8 +56,6 @@ NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o buil
 구성 요소의 렌더링 중에 런타임 오류가 발생하면 전역 `Vue.config.errorHandler` config 함수가 전달되면 전달됩니다. 이 훅을 [Sentry](https://sentry.io)와 같은 오류 추적 서비스와 함께 사용하면 좋습니다. Vue 를 위한[공식 통합](https://sentry.io/for/vue)을 제공합니다.
 
 ## Extracting CSS
-
-When using [Single-File Components](./single-file-components.html), the `<style>` tags are injected dynamically at runtime during development. In production you may want to extract the styles across all components into a single CSS file. For details on how to achieve this, consult the respective documentation for [vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) and [vueify](https://github.com/vuejs/vueify#css-extraction).
 
 [Single-File Components](./ single-file-components.html)을 사용하는 경우 개발 중에 런타임에`<style>`태그가 동적으로 삽입됩니다. 프로덕션에서는 모든 구성 요소의 스타일을 단일 CSS 파일로 추출 할 수 있습니다. 이에 대한 자세한 내용은 [vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) 및 [vueify](https://github.com/vuejs/vueify#css-extraction)을 확인하십시오.
 
