@@ -186,8 +186,6 @@ div.list-container
 
 옵션인 `scoped` 애트리뷰트는 엘리먼트에 유일한 애트리뷰트 (예 : `data-v-21e5b78`)를 추가하고 `.list-container:hover` 를 `.list-container[data-v-21e5b78]:hover`로 컴파일 합니다.
 
-If you are already familiar with CSS Modules, Vue single file components also have [first-class support for it](http://vue-loader.vuejs.org/en/features/css-modules.html).
-
 이미 CSS 모듈에 익숙하다면, Vue 단일 파일 컴포넌트에도 [1급 클래스](http://vue-loader.vuejs.org/en/features/css-modules.html)이 있습니다.
 
 마지막으로, HTML과 마찬가지로 원하는 프리 프로세서 (또는 포스트 프로세서)를 사용하여 CSS를 작성하여 해당 생태계의 기존 라이브러리를 활용할 수 있습니다. 또한 빌드 프로세스 동안 색상 조작과 같은 디자인 중심의 작업을 수행 할 수 있습니다. 특수 JavaScript 라이브러리를 가져 오지 않으면 빌드 크기와 응용 프로그램의 복잡성이 증가합니다.
