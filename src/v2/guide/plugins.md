@@ -1,5 +1,5 @@
 ---
-title: Plugins
+title: 플러그인
 type: guide
 order: 18
 ---
