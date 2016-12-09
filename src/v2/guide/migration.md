@@ -58,8 +58,8 @@ Vuex는 버전 0.8도 Vue 2와 호환되므로 업그레이드하지 않아도�
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about multiple root elements in a template.</p>
+  <h4>업그레이드 방법</h4>
+  <p>업그레이드 후 엔드 투 엔드 테스트 스위트 또는 앱을 실행하고 템플릿의 여러 루트 엘리먼트에 대한 <strong>콘솔 경고</strong>를 찾습니다.</p>
 </div>
 {% endraw %}
 
@@ -71,8 +71,8 @@ Vuex는 버전 0.8도 Vue 2와 호환되므로 업그레이드하지 않아도�
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이 훅의 모든 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -82,8 +82,8 @@ Vuex는 버전 0.8도 Vue 2와 호환되므로 업그레이드하지 않아도�
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이 훅의 모든 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -109,8 +109,8 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이 훅의 모든 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -136,8 +136,8 @@ destroyed: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이 훅의 모든 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -147,8 +147,8 @@ destroyed: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이 훅의 모든 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -166,8 +166,8 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이 훅의 모든 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -179,8 +179,8 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your index arguments something unusual like <code>position</code> or <code>num</code>, the helper will not flag them.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 더 이상 사용되지 않는 전달인자를 찾으십시오. <code>position</code> 또는 <code>num</code>과 같이 인덱스 인수의 이름을 비정상적으로 지정하면 도우미가 플래그를 지정하지 않습니다.</p>
 </div>
 {% endraw %}
 
@@ -190,8 +190,8 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your key arguments something like <code>name</code> or <code>property</code>, the helper will not flag them.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 더 이상 사용되지 않는 전달인자를 찾으십시오. 키 인수의 이름을 <code>name</code> 또는 <code>property </code>와 같이 지정하면 도우미가 플래그를 지정하지 않습니다.</p>
 </div>
 {% endraw %}
 
@@ -201,8 +201,8 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of these removed variables. If you miss any, you should also see <strong>console errors</strong> such as: <code>Uncaught ReferenceError: $index is not defined</code></p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 제거 된 변수를 찾으십시오. </p>
 </div>
 {% endraw %}
 
@@ -214,7 +214,7 @@ mounted: function () {
 <div v-for="item in items" track-by="id">
 ```
 
-You would now write:
+이제 이렇게 쓸 수 있습니다.
 
 ``` html
 <div v-for="item in items" v-bind:key="item.id">
@@ -222,8 +222,8 @@ You would now write:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>track-by</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>track-by</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -233,8 +233,8 @@ You would now write:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Search your codebase for the regex <code>/\w+ in \d+/</code>. Wherever it appears in a <code>v-for</code>, check to see if you may be affected.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 정규 표현식 <code>/\w+ in \d+/</code>을 검색하십시오. <code>v-for</code>에 나타날 때마다 영향을받을 수 있는지 확인하십시오.</p>
 </div>
 {% endraw %}
 
@@ -279,8 +279,8 @@ computed: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>coerce</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미 </a>를 실행하여 <code>coerce</code> 옵션의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -289,13 +289,13 @@ computed: {
 props는 항상 단방향입니다. 상위 범위에서 사이드이펙트를 생성하려면 컴포넌트가 암묵적 바인딩에 의존하지 않고 이벤트를 명시적으로 내보내야합니다. 자세한 내용은 다음을 참조하십시오.
 
 - [사용자 정의 컴포넌트 이벤트](components.html#Custom-Events)
-- [사용자 정의 입력 컴포넌트](components.html#Form-Input-Components-using-Custom-Events) (using component events)
+- [사용자 정의 입력 컴포넌트](components.html#Form-Input-Components-using-Custom-Events) (컴포넌트 이벤트를 사용하세요)
 - [전역 상태 관리](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>twoWay</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper"> 마이그레이션 도우미 </a>를 실행하여 <code>twoWay</code> 옵션의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -304,21 +304,21 @@ props는 항상 단방향입니다. 상위 범위에서 사이드이펙트를 �
 props는 항상 단방향입니다. 상위 범위에서 사이드이펙트를 생성하려면 컴포넌트가 암묵적 바인딩에 의존하지 않고 이벤트를 명시적으로 내보내야합니다. 자세한 내용은 다음을 참조하십시오.
 
 - [사용자 정의 컴포넌트 이벤트](components.html#Custom-Events)
-- [사용자 정의 입력 컴포넌트](components.html#Form-Input-Components-using-Custom-Events) (using component events)
+- [사용자 정의 입력 컴포넌트](components.html#Form-Input-Components-using-Custom-Events) (컴포넌트 이벤트를 사용하세요)
 - [전역 상태 관리](state-management.html)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>.once</code> and <code>.sync</code> modifiers.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper"> 마이그레이션 도우미 </a>를 실행하여 <code>.once</code> 및 <code>.sync</code> 수정자에 대한 예를 찾아봅니다.
 </div>
 {% endraw %}
 
 ### Prop 변이 <sup>사용안함</sup>
 
+props 변이의 대부분의 사용 방법은 다음 옵션 중 하나로 대체 할 수 있습니다.
 
-Most use cases of mutating a prop can be replaced by one of these options:
-props를 지역적 변경 시키는 것은 이제 안티 패턴입니다. prop을 선언하고 컴포넌트에 `this.myProp= 'someOtherValue'`를 설정하십시오. 새로운 렌더링 메커니즘으로 인해 부모 컴포넌트가 다시 렌더링 될 때마다 하위 컴포넌트의 로컬 변경 사항을 덮어 씁니다.
+props를 지역적 변경 시키는 것은 이제 안티 패턴입니다. prop을 선언하고 컴포넌트에 `this.myProp = 'someOtherValue'`를 설정하십시오. 새로운 렌더링 메커니즘으로 인해 부모 컴포넌트가 다시 렌더링 될 때마다 하위 컴포넌트의 로컬 변경 사항을 덮어 씁니다.
 
 prop 변이의 대부분의 사용 사례는 다음 중 하나로 대체 할 수 있습니다.
 
@@ -327,8 +327,8 @@ prop 변이의 대부분의 사용 사례는 다음 중 하나로 대체 할 수
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about prop mutations.</p>
+  <h4>업그레이드 방법</h4>
+  <p>업그레이드 후 엔드 투 엔드 테스트 스위트 또는 앱을 실행하고 소품 변이에 대한 <strong>console warnings</strong>를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -338,8 +338,8 @@ prop 변이의 대부분의 사용 사례는 다음 중 하나로 대체 할 수
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that props passed to root instances are no longer working.</p>
+  <h4>업그레이드 방법</h4>
+  <p>보유하고있는 엔드 투 엔드 테스트 스위트를 실행하십시오. <strong>실패한 테스트 </strong>는 루트 인스턴스로 전달 된 prop가 더 이상 작동하지 않는다는 사실을 알려줍니다.</p>
 </div>
 {% endraw %}
 
@@ -351,12 +351,12 @@ prop 변이의 대부분의 사용 사례는 다음 중 하나로 대체 할 수
 
 열거된 속성의 경우 위의 위조 된 값 외에도`'false'` 문자열은 `attr="false"` 로 렌더링됩니다.
 
-<p class="tip">Note that for other directives (e.g. `v-if` and `v-show`), JavaScript's normal truthiness still applies.</p>
+<p class="tip">다른 지시어 (예: `v-if` 및`v-show`)의 경우 JavaScript의 일반적인 참 거짓이 여전히 적용됩니다.</p>
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>업그레이드 방법</h4>
+  <p>보유하고 있는 엔드 투 엔드 테스트 스위트를 실행하십시오. <strong>실패한 테스트</strong>는 이 변경의 영향을 받을 수 있는 앱의 모든 부분을 알려줍니다.</p>
 </div>
 {% endraw %}
 
@@ -370,8 +370,8 @@ prop 변이의 대부분의 사용 사례는 다음 중 하나로 대체 할 수
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
+  <h4>업그레이드 방법</h4>
+  <p>보유하고 있는 엔드 투 엔드 테스트 스위트를 실행하십시오. <strong>실패한 테스트</strong>는이 변경의 영향을 받을 수 있는 앱의 모든 부분을 알려줍니다.</p>
 </div>
 {% endraw %}
 
@@ -429,10 +429,9 @@ new Vue({
 
 ``` html
 <!--
-By using the debounce function from lodash or another dedicated
-utility library, we know the specific debounce implementation we
-use will be best-in-class - and we can use it ANYWHERE. Not just
-in our template.
+lodash 또는 다른 유틸리티 라이브러리의 debounce 기능을 사용하여
+우리가 사용하는 특정 debounce 가장 좋은 사례인 것을 알 수 있습니다.
+이 템플릿 에서뿐만 아니라 어디에서나 사용할 수 있습니다.
 -->
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
 <div id="debounce-search-demo">
@@ -467,7 +466,7 @@ new Vue({
     }
   },
   methods: {
-    // This is where the debounce actually belongs.
+    // debounce가 실제로 작동하는 곳 입니다.
     expensiveOperation: _.debounce(function () {
       this.isCalculating = true
       setTimeout(function () {
@@ -483,8 +482,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>debounce</code> attribute.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여the <code>debounce</code> attribute.</p>
 </div>
 {% endraw %}
 
@@ -506,8 +505,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the these param attributes.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper"> 마이그레이션 도우미 </a>를 실행하여 이러한 매개 변수 속성의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -541,8 +540,8 @@ data: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about inline value attributes with <code>v-model</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>업그레이드 후 엔드 투 엔드 테스트 스위트 또는 앱을 실행하고 <code>v-model</code>을 사용하여 인라인 값 속성에 대한 <strong>console warnings</ strong>를 찾습니다.</p>
 </div>
 {% endraw %}
 
@@ -572,7 +571,7 @@ strings.map(function (str) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
+  <h4>업그레이드 방법</h4>
   <p>Run your test suite, if you have one. The <strong>failed tests</strong> should alert to you to any parts of your app that may be affected by this change.</p>
 </div>
 {% endraw %}
@@ -593,8 +592,8 @@ strings.map(function (str) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of style bindings with <code>!important</code> in objects.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여style bindings with <code>!important</code> in objects.</p>
 </div>
 {% endraw %}
 
@@ -620,8 +619,8 @@ strings.map(function (str) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>v-el</code> and <code>v-ref</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>v-el</code> and <code>v-ref</code>.</p>
 </div>
 {% endraw %}
 
@@ -643,8 +642,8 @@ You can use:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-else</code> with <code>v-show</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여the <code>v-else</code> with <code>v-show</code>.</p>
 </div>
 {% endraw %}
 
@@ -662,14 +661,14 @@ You can use:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of defined directives. The helper will flag all of them, as it's likely in most cases that you'll want to refactor to a component.</p>
+  <h4>업그레이드 방법</h4>
+  <p>
+  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 정의 된 지시문의 예를 찾으십시오. 도우미는 모든 엘리먼트에 플래그를 지정합니다. 대부분의 경우 엘리먼트로 리팩토링하려는 경우가 많기 때문입니다.</p>
 </div>
 {% endraw %}
 
 ### 지시문 `.literal` 수정자 <sup>제거됨</sup>
 
-The `.literal` modifier has been removed, as the same can be easily achieved by just providing a string literal as the value.
 `.literal` 수정자는 제거되었습니다. 문자열 리터럴을 값으로 제공하는 것만으로 쉽게 달성 할 수 있습니다.
 
 예를 들어 다음을 변경 할 수 있습니다.
@@ -678,7 +677,7 @@ The `.literal` modifier has been removed, as the same can be easily achieved by 
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
-to just:
+는 단순히
 
 ```html
 <p v-my-directive="'foo bar baz'"></p>
@@ -686,8 +685,8 @@ to just:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the `.literal` modifier on a directive.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 `.literal` 수정자의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -699,8 +698,8 @@ Vue의 전환 시스템은 상당히 크게 변경되어 이제 `transition` 속
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>transition</code> 속성의 예를 찾으십시오..</p>
 </div>
 {% endraw %}
 
@@ -710,8 +709,8 @@ Vue의 전환 시스템은 상당히 크게 변경되어 이제 `transition` 속
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.transition</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>Vue.transition</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -721,8 +720,8 @@ Vue의 전환 시스템은 상당히 크게 변경되어 이제 `transition` 속
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute. During your update, you can transition (pun very much intended) to the new staggering strategy as well.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여the <code>transition</code> 속성의 예를 찾으십시오. 업데이트 하는 동안, 전환이 매우 요동칠 수 있습니다.</p>
 </div>
 {% endraw %}
 
@@ -742,8 +741,8 @@ Vue.config.keyCodes.f1 = 112
 ```
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the the old <code>keyCode</code> configuration syntax.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이전<code>keyCode</code> 구성 문법의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -774,7 +773,7 @@ Todos
 var eventHub = new Vue()
 ```
 
-Then in our components, we can use `$emit`, `$on`, `$off` to emit events, listen for events, and clean up event listeners, respectively:
+그런 다음 우리의 컴포넌트에서 `$emit`, `$on`, `$off` 를 사용하여 이벤트를 내보내고, 이벤트를 수신하고, 이벤트 리스너를 각각 정리할 수 있습니다.
 
 ``` js
 // NewTodoInput
@@ -825,8 +824,8 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>$dispatch</code> and <code>$broadcast</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>$dispatch</code> and <code>$broadcast</code>.</p>
 </div>
 {% endraw %}
 
@@ -960,8 +959,8 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters being used inside directives. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 지시문 내에서 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
 </div>
 {% endraw %}
 
@@ -981,8 +980,8 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the old filter syntax. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이전 필터 구문의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
 </div>
 {% endraw %}
 
@@ -994,7 +993,7 @@ Vue에 내장 된 텍스트 필터 각각에 대해 아래에서 어떻게 대�
 
 #### `json` 필터 변경
 
-You actually don't need to for debugging anymore, as Vue will nicely format output for you automatically, whether it's a string, number, array, or plain object. If you want the exact same functionality as JavaScript's `JSON.stringify` though, then you can use that in a method or computed property.
+Vue는 문자열, 숫자, 배열 또는 일반 객체 등 사용자가 자동으로 출력 형식을 지정하기 때문에 실제로는 더 이상 디버깅 할 필요가 없습니다. 그래도 JavaScript의 `JSON.stringify`와 동일한 기능을 원한다면 메소드나 계산 된 속성에서 사용할 수 있습니다.
 
 #### `capitalize` 필터 변경
 
@@ -1042,8 +1041,8 @@ function pluralizeKnife (count) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete text filters. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 오래된 텍스트 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
 </div>
 {% endraw %}
 
@@ -1084,8 +1083,9 @@ Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters used in directives like <code>v-model</code>. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>
+  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-model</code>과 같은 지시문에 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
 </div>
 {% endraw %}
 
@@ -1097,8 +1097,8 @@ Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about duplicate slots <code>v-model</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>업그레이드 후 엔드 투 엔드 테스트 스위트 또는 앱을 실행하고 중복 슬롯 <code>v-model</code>에 대한 <strong>console warnings</strong>를 찾습니다.</p>
 </div>
 {% endraw %}
 
@@ -1108,8 +1108,8 @@ Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find CSS selectors targeting named slots (e.g. <code>[slot="my-slot-name"]</code>).</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 명명된 슬롯을 대상으로하는 CSS 선택자를 찾습니다 (예 : <code>[slot="my-slot-name"]</code>).</p>
 </div>
 {% endraw %}
 
@@ -1117,7 +1117,9 @@ Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저
 
 ### `keep-alive` 속성 <sup>대체</sup>
 
-`keep-alive`는 더 이상 특별한 속성이 아니라 `<transition>`과 비슷한 래퍼 컴포넌트입니다. 예 :
+`keep-alive`는 더 이상 특별한 속성이 아니라 `<transition>`과 비슷한 래퍼 컴포넌트입니다.
+
+예:
 
 ``` html
 <keep-alive>
@@ -1148,8 +1150,8 @@ Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find <code>keep-alive</code> attributes.</p>
+  <h4>업그레이드 방법</h4>
+  <p><code>keep-alive</code> 속성을 찾으려면 코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하십시오.</p>
 </div>
 {% endraw %}
 
@@ -1185,8 +1187,8 @@ computed: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of interpolation used within attributes.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 속성 내에서 사용되는 보간 예제를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -1196,8 +1198,8 @@ HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-ht
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find HTML interpolations.</p>
+  <h4>업그레이드 방법</h4>
+  <p>HTML 보간법을 찾으려면 코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하십시오.</p>
 </div>
 {% endraw %}
 
@@ -1207,8 +1209,8 @@ HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-ht
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find one-time bindings.</p>
+  <h4>업그레이드 방법</h4>
+  <p>일회성 바인딩을 찾으려면 코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하십시오.</p>
 </div>
 {% endraw %}
 
@@ -1216,14 +1218,14 @@ HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-ht
 
 ### `vm.$watch` <sup>변경</sup>
 
-`vm. $ watch`를 통해 생성된 감시자는 이제 연결된 컴포넌트가 재 렌더링되기 전에 시작됩니다. 이렇게 하면 컴포넌트가 다시 렌더링되기 전에 상태를 추가로 업데이트하여 불필요한 업데이트를 피할 수 있습니다. 예를 들어, prop이 보이면 컴포넌트 prop를 보고 컴포넌트의 자체 데이터를 업데이트 할 수 있습니다.
+`vm.$watch`를 통해 생성된 감시자는 이제 연결된 컴포넌트가 재 렌더링되기 전에 시작됩니다. 이렇게 하면 컴포넌트가 다시 렌더링되기 전에 상태를 추가로 업데이트하여 불필요한 업데이트를 피할 수 있습니다. 예를 들어, prop이 보이면 컴포넌트 prop를 보고 컴포넌트의 자체 데이터를 업데이트 할 수 있습니다.
 
 이전에 컴포넌트 업데이트 후에 DOM을 사용하여 `vm.$watch`에 의존 하고 있었다면, 대신 `updated` 라이프 사이클 훅에서 그렇게 할 수 있습니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that a watcher was relying on the old behavior.</p>
+  <h4>업그레이드 방법</h4>
+  <p>보유하고있는 엔드 투 엔드 테스트 스위트를 실행하십시오. <strong>실패한 테스트</strong>는 감지사가 이전 동작을 사용하고 있다는 사실을 알려줍니다.</p>
 </div>
 {% endraw %}
 
@@ -1233,8 +1235,8 @@ HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-ht
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete usage.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 이전 사용법의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -1244,8 +1246,8 @@ HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-ht
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete usage.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper"> 마이그레이션 도우미 </a>를 실행하여 이전 사용법의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -1255,8 +1257,8 @@ HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-ht
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>.$set</code> on an array. If you miss any, you should see <strong>console errors</strong> from the missing method.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 배열에서 <code>.$set</code>의 예를 찾으십시오. 누락 된 경우 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1285,8 +1287,8 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>.$remove</code> on an array. If you miss any, you should see <strong>console errors</strong> from the missing method.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 배열에서 <code>.$remove</ code>의 예를 찾으십시오. 누락 된 경우 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1296,8 +1298,8 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.set</code> or <code>Vue.delete</code> on a Vue instance. If you miss any, they'll trigger <strong>console warnings</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>Vue.set</code> 또는 <code>Vue.delete</code>를 참조하십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1307,8 +1309,8 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of overwriting <code>vm.$data</code>. If you miss any, <strong>console warnings</strong> will be emitted.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>vm.$data</ code>를 덮어 쓴 예를 찾으십시오. 빠뜨리면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1318,8 +1320,8 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$get</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper"> 마이그레이션 도우미 </a>를 실행하여 <code>vm.$get</code>의 예를 찾으십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1335,8 +1337,8 @@ myElement.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$appendTo</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>vm.$appendTo</code>의 예를 찾으십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1350,8 +1352,8 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$before</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>vm.$before</code>의 예를 찾으십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1371,8 +1373,9 @@ myElement.parentNode.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$after</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>
+  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>vm.$after</code>의 예를 찾으십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1386,8 +1389,8 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$remove</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>vm.$remove</code>의 예를 찾으십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1399,8 +1402,8 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$eval</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>vm.$eval</code>의 예를 찾으십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1410,8 +1413,8 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$interpolate</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>vm.$interpolate</code>의 예를 찾으십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1421,8 +1424,8 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$log</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper"> 마이그레이션 도우미 </a>를 실행하여 <code>vm.$log</code>의 예를 찾으십시오. 무엇이든 놓치면 <strong>console errors</strong>가 표시됩니다.</p>
 </div>
 {% endraw %}
 
@@ -1456,8 +1459,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>replace: false</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>replace: false</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -1469,8 +1472,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.debug</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>Vue.config.debug</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -1480,8 +1483,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.async</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>Vue.config.async</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -1491,8 +1494,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.delimiters</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>Vue.config.delimiters</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -1502,8 +1505,8 @@ HTML 보간은 [제거 되고 `v-html`를 사용합니다](#HTML-Interpolation-r
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.config.unsafeDelimiters</code>. After this, the helper will also find instances of HTML interpolation so that you can replace them with `v-html`.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>Vue.config.unsafeDelimiters</code>의 예를 찾으십시오. 그런 다음 도우미는 HTML 보간의 인스턴스를 찾아 `v-html`로 대체 할 수 있습니다.</p>
 </div>
 {% endraw %}
 
@@ -1515,8 +1518,8 @@ el 옵션은 `Vue.extend` 에서 더 이상 사용할 수 없습니다. 인스�
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about the <code>el</code> option with <code>Vue.extend</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>업그레이드 후 엔드 투 엔드 테스트 스위트 또는 앱을 실행하고 <code>Vue.extend</code>를 사용하여 <code>el</code> 옵션에 대한 <strong>console errors</strong>를 찾습니다.</p>
 </div>
 {% endraw %}
 
@@ -1526,18 +1529,12 @@ el 옵션은 `Vue.extend` 에서 더 이상 사용할 수 없습니다. 인스�
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.elementDirective</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>Vue.elementDirective</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
 ### `Vue.partial` <sup>제거됨</sup>
-
-Partials have been removed in favor of more explicit data flow between components, using props. Unless you're using a partial in a performance-critical area, the recommendation is to simply use a [normal component](components.html) instead. If you were dynamically binding the `name` of a partial, you can use a [dynamic component](components.html#Dynamic-Components).
-
-If you happen to be using partials in a performance-critical part of your app, then you should upgrade to [functional components](render-function.html#Functional-Components). They must be in a plain JS/JSX file (rather than in a `.vue` file) and are stateless and instanceless, just like partials. This makes rendering extremely fast.
-
-A benefit of functional components over partials is that they can be much more dynamic, because they grant you access to the full power of JavaScript. There is a cost to this power however. If you've never used a component framework with render functions before, they may take a bit longer to learn.
 
 컴포넌트 간의 더 명확한 데이터 흐름을 위해 파셜이 제거되었습니다. 성능이 중요한 영역에서 파셜을 사용하지 않는한, 대신 [일반 컴포넌트](components.html)를 사용하는 것이 좋습니다. 동적으로 파셜의 `name`  바인딩하는 경우 [동적 구성 요소](components.html#Dynamic-Components)를 사용할 수 있습니다.
 
@@ -1547,7 +1544,7 @@ A benefit of functional components over partials is that they can be much more d
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.partial</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>Vue.partial</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
