@@ -1,5 +1,5 @@
 ---
-title: Single File Components
+title: 단일 파일 컴포넌트
 type: guide
 order: 19
 ---
@@ -16,7 +16,8 @@ order: 19
 - **빌드 단계 없음** Pug (이전의 Jade) 및 Babel과 같은 전처리기가 아닌 HTML 및 ES5 JavaScript로 제한됩니다.
 
 위 모든 것들은 Webpack 또는 Browserify와 같은 빌드 도구를 이용해 `.vue` 확장자를 가진 **단일 파일 컴포넌트** 로 해결 됩니다.
-Here's a simple example of a file we'll call `Hello.vue`:
+
+다음은 `Hello.vue` 파일의 간단한 예입니다.
 
 <img src="/images/vue-component.png" style="display: block; margin: 30px auto">
 
@@ -51,7 +52,5 @@ Here's a simple example of a file we'll call `Hello.vue`:
 Webpack에서 각 모듈은 번들에 포함되기 전에 "loader"에 의해 변형될 수 있으며 Vue는 [vue-loader](https://github.com/vuejs/vue-loader) 플러그인을 제공하여 `.vue` 단일 파일 컴포넌트를 처리합니다. [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 템플릿은 이미 모든 것을 설정 되어 있지만 `.vue` 컴포넌트 작동 방식을 알고 싶다면 [vue-loader 문서](https://vue-loader.vuejs.org)를 읽으시면 됩니다.
 
 ### 고급 사용자를 위한 내용
-
-Whether you prefer Webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
 
 Webpack 또는 Browserify 중 어느 것을 선호하든, 우리는 단순하거나 복잡한 프로젝트를 위한 템플릿을 문서화했습니다. [github.com/vuejs-templates](https://github.com/vuejs-templates)에서 원하는 템플릿을 선택한 다음 README의 지침에 따라 [vue- cli](https://github.com/vuejs/vue-cli) 새 프로젝트를 시작하세요.
