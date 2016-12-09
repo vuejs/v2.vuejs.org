@@ -1,5 +1,5 @@
 ---
-title: Migration from Vue 1.x
+title: Vue 1.x에서 마이그레이션
 type: guide
 order: 25
 ---
