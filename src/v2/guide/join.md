@@ -1,5 +1,5 @@
 ---
-title: Join the Vue.js Community!
+title: Vue.js 커뮤니티에 참여하세요!
 type: guide
 order: 29
 ---
