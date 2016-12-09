@@ -1,5 +1,5 @@
 ---
-title: Mixins
+title: 믹스인
 type: guide
 order: 17
 ---
