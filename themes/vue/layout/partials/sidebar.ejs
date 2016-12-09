@@ -4,14 +4,14 @@
     </ul>
     <div class="list">
         <div class="main-sponsor">
-            <span>Sponsored By</span><br>
+            <span>지원을 받고 있습니다.</span><br>
             <a href="http://www.thedifferenceengine.io/" target="_blank"
                 style="background-color: #f3f3f3; padding: 10px 0">
                 <img src="/images/tde.png">
             </a>
         </div>
         <a class="become-backer" href="/support-vuejs">
-            Become a Backer
+            후원하기
         </a>
         <h2>
             <%- type === 'api' ? 'API' : (type.charAt(0).toUpperCase() + type.slice(1)) %>
@@ -29,16 +29,16 @@
                 <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
                 <% if (type === 'guide') { %>
                     <% if (fileName === 'installation') { %>
-                      <li><h3>Essentials</h3></li>
+                      <li><h3>필수</h3></li>
                     <% } %>
                     <% if (fileName === 'reactivity') { %>
-                      <li><h3>Advanced</h3></li>
+                      <li><h3>고급</h3></li>
                     <% } %>
                     <% if (fileName === 'migration') { %>
-                      <li><h3>Migrating</h3></li>
+                      <li><h3>이전 방법</h3></li>
                     <% } %>
                     <% if (fileName === 'comparison') { %>
-                      <li><h3>Meta</h3></li>
+                      <li><h3>기타</h3></li>
                     <% } %>
                 <% } %>
                 <% if (type === 'cookbook') { %>
@@ -53,11 +53,11 @@
                 </li>
             <% }) %>
             <% if (type === 'cookbook') { %>
-                <li><h3>Components</h3></li>
-                <li><h4>Form Inputs</h4></li>
-                <li><h4>3rd-Party Integrations</h4></li>
-                <li><h3>Transitions</h3></li>
-                <li><h3>Directives</h3></li>
+                <li><h3>컴포넌트</h3></li>
+                <li><h4>폼 입력</h4></li>
+                <li><h4>써드파티 통합</h4></li>
+                <li><h3>전환</h3></li>
+                <li><h3>지시문</h3></li>
                 <li><h3>Vue Router</h3></li>
                 <li><h3>Vuex</h3></li>
             <% } %>
