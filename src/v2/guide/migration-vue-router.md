@@ -41,7 +41,7 @@ new Vue({
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 호출되는 <code>router.start</code>의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 호출되는 <code>router.start</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -78,7 +78,7 @@ var router = new VueRouter({
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>router.map</code>가 호출되는 의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.map</code>가 호출되는 의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -124,7 +124,7 @@ router.match = createMatcher(
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>router.on</code>가 호출되는지 확인하십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.on</code>가 호출되는지 확인하십시오.</p>
 </div>
 {% endraw %}
 
@@ -135,7 +135,7 @@ Vue 및 다른 라우팅 라이브러리와의 일관성을 위해 [자식으로
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>subRoutes</code> 옵션의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>subRoutes</code> 옵션의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -161,7 +161,7 @@ router.redirect({
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>router.redirect</code>가 호출되는지 확인하십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.redirect</code>가 호출되는지 확인하십시오.</p>
 </div>
 {% endraw %}
 
@@ -194,7 +194,7 @@ alias: ['/manage', '/administer', '/administrate']
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>router.alias</code>가 호출되는지 확인하십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.alias</code>가 호출되는지 확인하십시오.</p>
 </div>
 {% endraw %}
 
@@ -232,7 +232,7 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 메타에서 범위가 지정되지 않은 임의의 경로 속성의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 메타에서 범위가 지정되지 않은 임의의 경로 속성의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -247,7 +247,7 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 더 이상 사용되지 않는 경로 구문의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 더 이상 사용되지 않는 경로 구문의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -272,7 +272,7 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>v-link</code> 지시문의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link</code> 지시문의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -299,7 +299,7 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>v-link-active</code> 지시문의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link-active</code> 지시문의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -312,7 +312,7 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>router.go</code>를 사용하고 있고 <code>router.push</code>가 대신 사용되야 하는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.go</code>를 사용하고 있고 <code>router.push</code>가 대신 사용되야 하는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -325,7 +325,7 @@ Hashbang은 더 이상 Google이 URL을 크롤링하는 데 필요하지 않으�
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>hashbang: false</code> 옵션을 사용하는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>hashbang: false</code> 옵션을 사용하는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -350,7 +350,7 @@ var router = new VueRouter({
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>history: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>history: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -375,7 +375,7 @@ var router = new VueRouter({
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>abstract: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>abstract: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -400,7 +400,7 @@ scrollBehavior: function (to, from, savedPosition) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>saveScrollPosition: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>saveScrollPosition: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -411,7 +411,7 @@ scrollBehavior: function (to, from, savedPosition) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>root</code> 옵션이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>root</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -422,7 +422,7 @@ Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.htm
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>transitionOnLoad: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>transitionOnLoad: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -433,7 +433,7 @@ Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.htm
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>suppressTransitionError: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>suppressTransitionError: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -446,7 +446,7 @@ Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.htm
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>beforeRouteEnter</code> 훅이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>beforeRouteEnter</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -457,7 +457,7 @@ Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.htm
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>canActivate</code> 훅이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>canActivate</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -468,7 +468,7 @@ Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.htm
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>deactivate</code> 훅이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>deactivate</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -479,7 +479,7 @@ Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.htm
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>canDeactivate</code> 훅이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>canDeactivate</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -490,7 +490,7 @@ Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.htm
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>canReuse: false</code> 옵션이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>canReuse: false</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -512,7 +512,7 @@ methods: {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>data</code> 훅이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>data</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
@@ -554,6 +554,6 @@ methods: {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">이전 도우미</a>를 실행하여 <code>$loadingRouteData</code> 메타 속성이 사용되는 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>$loadingRouteData</code> 메타 속성이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
