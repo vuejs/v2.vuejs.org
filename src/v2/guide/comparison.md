@@ -1,5 +1,5 @@
 ---
-title: Comparison with Other Frameworks
+title: 다른 프레임워크와의 비교
 type: guide
 order: 28
 ---
