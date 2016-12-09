@@ -1,5 +1,5 @@
 ---
-title: Transition Effects
+title: 전환 효과
 type: guide
 order: 13
 ---
@@ -13,7 +13,7 @@ Vue는 항목이 DOM에 삽입, 갱신 또는 제거 될 때 전환 효과를 �
 - 전환 훅 중에 JavaScript를 사용하여 DOM을 직접 조작
 - Velocity.js와 같은 써드파티 JavaScript 애니메이션 라이브러리 통합
 
-이 페이지에서는 진입, 진출 및 목록 전환만 다루지 만 다음 섹션에서는 [전환 상태 관리](transitioning-state.html)를 볼 수 있습니다.
+이 페이지에서는 진입, 진출 및 목록 전환만 다루지만 다음 섹션에서는 [전환 상태 관리](transitioning-state.html)를 볼 수 있습니다.
 
 ## 단일 엘리먼트 / 컴포넌트 전환
 
@@ -88,7 +88,7 @@ new Vue({
 
 2. 전환 컴포넌트가 [JavaScript 훅](#JavaScript-Hooks)를 제공하면 이러한 훅은 적절한 타이밍에 호출됩니다.
 
-3. CSS 전환 / 애니메이션이 감지되지 않고 JavaScript 훅이 제공되지 않으면 삽입 또는 제거를 위한 DOM 작업이 다음 프레임에서 즉시 실행됩니다 (참고: 이는 Vue의 `nextTick` 개념과는 다른 브라우저 애니메이션 프레임입니다).
+3. CSS 전환 / 애니메이션이 감지되지 않고 JavaScript 훅이 제공 되지 않으면 삽입 또는 제거를 위한 DOM 작업이 다음 프레임에서 즉시 실행됩니다 (참고: 이는 Vue의 `nextTick` 개념과는 다른 브라우저 애니메이션 프레임입니다).
 
 ### 전환 클래스
 
@@ -323,7 +323,7 @@ new Vue({
 - `leave-class`
 - `leave-active-class`
 
-이것들은 원본 클래스 명을 오버라이드(override) 합니다. 이는 Vue의 전환 시스템을 [Animate.css](https://daneden.github.io/animate.css/)와 같은 기존 CSS 애니메이션 라이브러리와 결합하려는 경우 특히 유용합니다.
+이것들은 원본 클래스 명을 오버라이드 합니다. 이는 Vue의 전환 시스템을 [Animate.css](https://daneden.github.io/animate.css/)와 같은 기존 CSS 애니메이션 라이브러리와 결합하려는 경우 특히 유용합니다.
 
 예제 입니다.
 
@@ -381,7 +381,7 @@ new Vue({
 
 Vue는 전환이 종료 된 시점을 알기 위해 이벤트 리스너를 연결해야합니다. 적용된 CSS 규칙의 유형에 따라 `transitionend` 또는 `animationend` 가 될 수 있습니다. 둘 중 하나만 사용하는 경우 Vue는 올바른 유형을 자동으로 감지 할 수 있습니다.
 
-그러나 어떤 경우에는 동일한 엘리먼트(예: Vue에 의해 트리거 된 CSS 애니메이션)와 함께 호버에 대한 CSS 전환 효과를 둘 다 가질 수도 있습니다. 이러한 경우,`type` 속성에서 Vue가 지켜볼 타입을 명시적으로 선언해야합니다. 값은 `animation` 또는 `transition` 입니다.
+그러나 어떤 경우에는 동일한 엘리먼트 (예: Vue에 의해 트리거 된 CSS 애니메이션)와 함께 호버에 대한 CSS 전환 효과를 둘 다 가질 수도 있습니다. 이러한 경우,`type` 속성에서 Vue가 지켜 볼 타입을 명시적으로 선언해야 합니다. 값은 `animation` 또는 `transition` 입니다.
 
 ### JavaScript 훅
 
@@ -456,10 +456,8 @@ methods: {
 이제 예를 들어 보겠습니다. 다음은 Velocity.js를 사용한 간단한 JavaScript 전환입니다.
 
 ``` html
-<!--
-Velocity는 jQuery.animate와 매우 비슷하게 동작하며
-JavaScript 애니메이션의 훌륭한 옵션입니다.
--->
+<!-- Velocity는 jQuery.animate와 매우 비슷하게 동작하며 -->
+<!-- JavaScript 애니메이션의 훌륭한 옵션입니다. -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="example-4">
@@ -590,7 +588,7 @@ new Vue({
 
 ## 엘리먼트 간 전환
 
-[컴포넌트 사이의 전환](#Transitioning-Between-Components)에 대해서는 나중에 설명하지만 `v-if` /`v-else` 를 사용하여 원시 엘리먼트 사이를 전환 할 수도 있습니다. 가장 일반적인 두 엘리먼트 전환 중 하나는 목록 컨테이너와 빈 목록을 설명하는 메시지 사이에 사용됩니다.
+[컴포넌트 사이의 전환](#Transitioning-Between-Components)에 대해서는 나중에 설명하지만 `v-if` /`v-else` 를 사용하여 원본 엘리먼트 사이를 전환 할 수도 있습니다. 가장 일반적인 두 엘리먼트 전환 중 하나는 목록 컨테이너와 빈 목록을 설명하는 메시지 사이에 사용됩니다.
 
 ``` html
 <transition>
@@ -601,7 +599,7 @@ new Vue({
 </transition>
 ```
 
-이것은 잘 작동하지만 주의해야할 한 가지주의 사항이 있습니다.
+이것은 잘 작동하지만 주의해야할 한 가지 주의 사항이 있습니다.
 
 <p class="tip">**동일한 태그 이름** 을 가진 엘리먼트 사이를 전환할 때, Vue에 고유 한 `key` 속성을 부여함으로써 별개의 엘리먼트임을 말해야합니다. 그렇지 않으면 Vue의 컴파일러는 효율성을 위해 엘리먼트의 내용만 바꿉니다. 기술적으로 불필요한 경우 라하더라도 **여러 항목을 항상 `<transition>` 컴포넌트에 키핑하는 것이 좋습니다.**</p>
 
@@ -700,8 +698,7 @@ new Vue({
 </style>
 {% endraw %}
 
-As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
-"on"버튼과 "off"버튼 사이를 전환 할 때 두 버튼이 렌더링됩니다 - 다른 전환이 진행되는 동안 하나의 전환이 전환됩니다. 이것은 '<transition>'의 기본 동작입니다 - 들어오고 나가는 것이 동시에 발생합니다.
+"on"버튼과 "off"버튼 사이를 전환 할 때 두 버튼이 렌더링됩니다 - 다른 전환이 진행되는 동안 하나의 전환이 전환됩니다. 이것은 `<transition>`의 기본 동작입니다 - 들어오고 나가는 것이 동시에 발생합니다.
 
 전환 항목이 절대적으로 서로의 위에 놓일 때처럼 때로는 위 기능이 훌륭합니다.
 
@@ -961,7 +958,7 @@ new Vue({
 
 그렇다면`v-for`를 사용하여 동시에 렌더링 하고자 하는 항목의 전체 목록이 있는 경우는 어떨까요? 이 경우 우리는`<transition-group>` 컴포넌트를 사용할 것이다. 예를 들어보기 전에 이 컴포넌트에 대해 알아야 할 몇 가지 중요한 사항이 있습니다.
 - `<transition>` 와 달리, 실제 요소 인 `<span>`을 렌더링합니다. `tag` 속성으로 렌더링 된 요소를 변경할 수 있습니다.
-- 엘리먼트의 내부 구현은 **항상 필요합니다** 고유 한 `key` 속성을 갖습니다
+- 엘리먼트의 내부 구현은 **항상 필요합니다** 고유한 `key` 속성을 갖습니다
 
 ### 리스트의 진입 / 진출 전환
 
@@ -1470,8 +1467,7 @@ Vue.component('my-special-transition', {
       v-on:after-enter="afterEnter"\
     >\
       <slot></slot>\
-    </transition>\
-  ',
+    </transition>\',
   methods: {
     beforeEnter: function (el) {
       // ...
@@ -1650,4 +1646,4 @@ new Vue({
 </script>
 {% endraw %}
 
-마지막으로, 동적 전환을 만드는 궁극적인 방법은 사용되는 전환의 특성을 변경하기 위해 props을 수락하는 컴포넌트를 사용하는 것입니다. 그것은 별로인 것 처럼 들리지만, 유일한 한계는 실제로 당신의 상상력입니다.
+마지막으로, 동적 전환을 만드는 궁극적인 방법은 사용되는 전환의 특성을 변경하기 위해 props을 받는 컴포넌트를 사용하는 것입니다. 별로인 것 처럼 들리지만, 유일한 한계는 실제로 당신의 상상력에 있습니다.
