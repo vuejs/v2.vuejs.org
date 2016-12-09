@@ -589,7 +589,7 @@ type: api
     如果组件是一个函数组件，Render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
 
   - **参考：**
-    - [Render 函数](../guide/render-function)
+    - [Render 函数](../guide/render-function.html)
 
 ## 选项 / 生命周期钩子
 
@@ -774,7 +774,7 @@ type: api
 - **类型:** `Array<Object>`
 
 - **详细:**
-  
+
   `mixins` 选项接受一个混合对象的数组。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。举例：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。
   Mixin钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。
 
@@ -803,7 +803,7 @@ type: api
 - **详细:**
 
   允许组件模板递归地调用自身。注意，组件在全局用 `Vue.component()` 注册时，全局 ID 自动作为组件的 name。
-  
+
   指定 `name` 选项的另一个好处是便于调试。有名字的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools), 未命名组件将显示成 `<AnonymousComponent>`, 这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
 
 ### extends
@@ -1281,7 +1281,7 @@ type: api
   更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新考虑通过是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
-  
+
 - **示例：**
 
   ```html
@@ -1509,9 +1509,9 @@ type: api
   - components
 
 - **修饰符：**
-  - [`.lazy`](../guide/forms.html#lazy) - 取代 `input` 监听 `change` 事件 
+  - [`.lazy`](../guide/forms.html#lazy) - 取代 `input` 监听 `change` 事件
   - [`.number`](../guide/forms.html#number) - 输入字符串转为数字
-  - [`.trim`](../guild/forms.html#trim) - 输入首尾空格过滤
+  - [`.trim`](../guide/forms.html#trim) - 输入首尾空格过滤
 
 - **用法：**
 
