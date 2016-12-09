@@ -1,5 +1,5 @@
 ---
-title: Transitioning State
+title: 트렌지션 상태
 type: guide
 order: 14
 ---
@@ -398,7 +398,7 @@ function generatePoints (stats) {
 ``` js
 // 이 복잡한 트위닝 로직은 이제 응용 프로그램에서
 // 애니메이션을 적용하려는 숫자 사이에서 재사용 할 수 있습니다.
-// 또한 구성 요소는보다 동적인 전환 및 복잡한 전환 전략을
+// 또한 컴포넌트는보다 동적인 전환 및 복잡한 전환 전략을
 // 구성할 수 있는 깨끗한 인터페이스를 제공합니다.
 Vue.component('animated-integer', {
   template: '<span>{{ tweeningValue }}</span>',
