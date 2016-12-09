@@ -1,5 +1,5 @@
 ---
-title: Render Functions
+title: 렌더 함수
 type: guide
 order: 15
 ---
@@ -63,7 +63,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-이 템플릿은 별로 좋지 않습니다. 이것은 장황하지는 않지만 모든 표제 수준에 대해`<slot> </slot>`을 복제하고 있으며 앵커 요소를 추가 할 때도 똑같이해야합니다. 컴포넌트는 정확히 하나의 루트 노드를 포함해야하기 때문에 쓸모없는 `div`로 싸여 있습니다.
+이 템플릿은 별로 좋지 않습니다. 이것은 장황하지는 않지만 모든 헤딩 수준에 대해`<slot> </slot>`을 중복으로 가지고 있으며 앵커 엘리먼트를 추가 할 때도 똑같이 해야합니다. 컴포넌트는 정확히 하나의 루트 노드를 포함해야하기 때문에 쓸모없는 `div`로 싸여 있습니다.
 
 템플릿은 대부분의 컴포넌트에서 훌륭하게 작동하지만 분명하지는 않습니다. 이제 `render` 함수로 다시 작성해 봅니다.
 
@@ -121,7 +121,7 @@ createElement(
 
 ### 데이터 객체 깊이 알아 보기
 
-한가지주의해야 할 점은 `v-bind:class` 와 `v-bind:style`가 템플릿에서 특별한 대우를 받는 것과 비슷하게, VNode 데이터 객체에 최상위 필드가 있습니다.
+한가지 주의 해야 할 점은 `v-bind:class` 와 `v-bind:style`가 템플릿에서 특별한 대우를 받는 것과 비슷하게, VNode 데이터 객체에 최상위 필드가 있습니다.
 
 ``` js
 {
@@ -284,7 +284,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-렌더 함수에는 직접적인 'v-model` 대응되는 것이 없습니다. 직접 구현해야합니다.
+렌더 함수에는 직접적으로 `v-model`에 대응되는 것이 없습니다. 직접 구현해야합니다.
 
 ``` js
 render: function (createElement) {
@@ -312,7 +312,7 @@ render: function (createElement) {
 | ------ | ------ |
 | `.capture` | `!` |
 | `.once` | `~` |
-| `.capture.once` or<br>`.once.capture` | `~!` |
+| `.capture.once` 또는<br>`.once.capture` | `~!` |
 
 예제
 
@@ -331,8 +331,8 @@ on: {
 | `.stop` | `event.stopPropagation()` |
 | `.prevent` | `event.preventDefault()` |
 | `.self` | `if (event.target !== event.currentTarget) return` |
-| Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
-| Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
+| 키:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (`13`을 다른 키 수정자의 [다른 키 코드](http://keycode.info/)로 변경합니다.) |
+| Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (`ctrlKey`를 `altKey`, `shiftKey` 또는 `metaKey`로 각각 변경하십시오.) |
 
 다음은 위의 수정자들이 사용된 예제 입니다.
 
@@ -452,12 +452,12 @@ JSX가 JavaScript에 매핑되는 방법에 대한 [자세한 내용](https://gi
 ``` js
 Vue.component('my-component', {
   functional: true,
-  // To compensate for the lack of an instance,
-  // we are now provided a 2nd context argument.
+  // 인스턴스의 부족함을 보완하기 위해
+  // 이제 2번째에 컨텍스트 인수가 제공됩니다.
   render: function (createElement, context) {
     // ...
   },
-  // Props are optional
+  // Props는 선택사항입니다.
   props: {
     // ...
   }
@@ -476,7 +476,7 @@ Vue.component('my-component', {
 
 함수형 컴포넌트는 단지 기능일 뿐이므로 렌더링하는데 훨씬 리소스를 적게 필요합니다. 또한 래퍼 컴포넌트로서도 유용합니다. 예를 들어,
 
-- 프로그래밍적으로 기능을 위임할 여러 구성요소 중 하나를 선택하십시오.
+- 프로그래밍적으로 기능을 위임할 여러 컴포넌트 중 하나를 선택하십시오.
 - 하위 컴포넌트에 전달하기 전에 자식 컴포넌트 또는 props를 조작합니다.
 
 여기에 `smart-list` 컴포넌트 예제는 전달된 props에 따라 더 구체적인 컴포넌트에 위임하는 예제 입니다.
@@ -518,7 +518,7 @@ Vue.component('smart-list', {
 
 ### `slots()` vs `children`
 
-왜 `slots()`와 `children`을 모두 사용해야하는지 궁금할 수 있습니다. `slots().default`는 `children`과 같지 않나요? 어떤 경우에는 그렇습니다. 그러나 다음 자식들과 함께 함수형 컴포넌트를 가지고 있다면 어떻게 될까요?
+왜 `slots()`와 `children`을 모두 사용 해야 하는지 궁금할 수 있습니다. `slots().default`는 `children`과 같지 않나요? 어떤 경우에는 그렇습니다. 그러나 다음 자식들과 함께 함수형 컴포넌트를 가지고 있다면 어떻게 될까요?
 
 ``` html
 <my-functional-component>
