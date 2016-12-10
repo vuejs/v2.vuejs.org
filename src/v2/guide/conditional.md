@@ -59,7 +59,7 @@ order: 7
 
 > 2.1.0 新增
 
-The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+`v-else-if`，如名称所示，用作 `v-if` 的 `else-if` 块。可以链式的多次使用：
 
 ```html
 <div v-if="type === 'A'">
@@ -76,11 +76,11 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. 
 </div>
 ```
 
-Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+与 `v-else` 相似,，`v-else-if` 必须跟在 `v-if` 或者 `v-else-if`之后。
 
-### Controlling Reusable Elements with `key`
+### 使用 `key` 控制元素的可重用
 
-Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
+Vue 尝试尽可能高效的渲染元素，通常会重用已有元素而不是从头开始渲染。这么做除了使 Vue 更快之外还可以得到一些好处。如下例，当允许用户在不同的登录方式之间切换:
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -93,9 +93,9 @@ Vue tries to render elements as efficiently as possible, often re-using them ins
 </template>
 ```
 
-Then switching the `loginType` in the code above will not erase what the user has already entered. Since both templates use the same elements, the `<input>` is not replaced - just its `placeholder`.
+在代码中切换 `loginType` 不会删除用户已经输入的内容，两个模版由于使用了相同的元素，`<input>` 会被重用，仅仅是替换了他们的 `placeholder`。
 
-Check it out for yourself by entering some text in the input, then pressing the toggle button:
+自己动手试一试,输入一些文本，然后点击 「Toggle login type」 进行切换
 
 {% raw %}
 <div id="no-key-example" class="demo">
@@ -126,7 +126,7 @@ new Vue({
 </script>
 {% endraw %}
 
-This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Just add a `key` attribute with unique values:
+这样也不总是复合实际需求，所以 Vue 提供一种方式让你可以自己决定是否要重用元素。你要做的是添加一个属性 `key` ，`key` 必须带有唯一的值。
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -139,7 +139,7 @@ This isn't always desirable though, so Vue offers a way for you to say, "These t
 </template>
 ```
 
-Now those inputs will be rendered from scratch each time you toggle. See for yourself:
+现在输入文本将会在每次切换时重新渲染。自动动手试一试。
 
 {% raw %}
 <div id="key-example" class="demo">
@@ -170,7 +170,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Note that the `<label>` elements are still efficiently re-used, because they don't have `key` attributes.
+注意, `<label>` 元素仍然会被重用，因为没有被添加了 `key` 属性。
 
 ## `v-show`
 
