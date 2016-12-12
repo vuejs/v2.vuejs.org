@@ -40,6 +40,8 @@ export default {
 
 You can see all available types on the corresponding repository ([here are Vue's types](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)).
 
+<p class="tip">The declaration files of Vue requires `--lib DOM,ES2015` as compiler option. So you need to pass the option via `tsc` command or `tsconfig.json`. For more details of compiler options, please see [Compiler Options · TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html)</p>
+
 ## vue-class-component and Decorators
 
 Sometimes it would be verbose to write components with TypeScript. For example, you may need to declare component properties and methods explicitly and annotate the type to component options while it is initialized in `data` hook:
