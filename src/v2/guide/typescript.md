@@ -4,6 +4,8 @@ type: guide
 order: 25
 ---
 
+If you develop a large application, using a language having static type checking would be helpful. If your code seems to cause unexpected behavior, it provides useful errors before you run it on browsers. You can easily use [TypeScript](https://www.typescriptlang.org/) (one of popular AltJS having static type checking) with Vue since Vue officially provides its declaration files.
+
 ## Official Declaration Files
 
 There are official declaration files for Vue, vue-router and vuex. You do not have to use external tools like `typings` to use them since they are published via npm. You can install Vue's declarations with `npm install vue`. Then, all declarations can be imported with `import` statement.
