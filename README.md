@@ -11,3 +11,9 @@ $ npm install -g hexo-cli
 $ npm install
 $ hexo server
 ```
+
+## 기타 한국어 번역 페이지
+
+- [Vuex](https://vuex.vuejs.org/kr/), [저장소](https://github.com/ChangJoo-Park/vuex)
+- [Vue-Router](https://router.vuejs.org/kr/), [저장소](https://github.com/ChangJoo-Park/vue-router)
+
