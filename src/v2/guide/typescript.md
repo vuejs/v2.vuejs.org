@@ -4,7 +4,7 @@ type: guide
 order: 25
 ---
 
-If you develop a large application, using a language having static type checking would be helpful. If your code seems to cause unexpected behavior, it provides useful errors before you run it on browsers. You can easily use [TypeScript](https://www.typescriptlang.org/) (one of popular AltJS having static type checking) with Vue since Vue officially provides its declaration files.
+If you develop a large application, using a language having static type checking would be helpful. For example, if you have typos in your code, it provides useful errors before you run it on browsers. You can easily use [TypeScript](https://www.typescriptlang.org/) (one of popular AltJS having static type checking) with Vue since Vue officially provides its declaration files.
 
 ## Official Declaration Files
 
@@ -18,12 +18,15 @@ Example of component definition with TypeScript:
 // against the other AltJS and module bundlers
 import Vue = require('vue')
 
+// or we can also write like following:
+// import * as Vue from 'vue'
+
 Vue.component('my-component', {
   template: '<div>A custom component!</div>'
 })
 ```
 
-Note that `Vue` is already typed, so all methods, properties and parameters will be type checked. For example, if you typo `template` option, TypeScript compiler will print an error message on a compile time.
+Note that `Vue` is already typed, so all methods, properties and parameters will be type checked. For example, if you have a typo in `template` option, TypeScript compiler will print an error message on a compile time.
 
 If you want to use Vue's types explicitly, they belong to the `Vue` object. In case you create a component on a separated file (e.g. [single file component](single-file-components.html)), you can annotate a type with the component option object:
 
@@ -40,7 +43,7 @@ export default {
 
 You can see all available types on the corresponding repository ([here are Vue's types](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)).
 
-<p class="tip">The declaration files of Vue requires `--lib DOM,ES2015` as compiler option. So you need to pass the option via `tsc` command or `tsconfig.json`. For more details of compiler options, please see [Compiler Options · TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html)</p>
+<p class="tip">The declaration files of Vue requires `--lib DOM,ES2015.Promise` as compiler option. So you need to pass the option via `tsc` command or `tsconfig.json`. For more details of compiler options, please see [Compiler Options · TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html)</p>
 
 ## vue-class-component and Decorators
 
@@ -88,7 +91,7 @@ import Component from 'vue-class-component'
   // all component options are allowed in here
   template: '<button @click="onClick">Click!</button>'
 })
-export default MyComponent extends Vue {
+export default class MyComponent extends Vue {
   // initial data can be declared as class instance properties
   message: string = 'Hello!'
 
