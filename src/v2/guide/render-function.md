@@ -177,7 +177,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   // Scoped slots in the form of
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
-    default: props => h('span', props.text)
+    default: props => createElement('span', props.text)
   },
   // The name of a slot if the child of a component
   slot: 'name-of-slot'
