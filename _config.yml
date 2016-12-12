@@ -12,7 +12,7 @@ language: zh-CN
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://vuefe.cn
+url: https://cn.vuejs.org
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -97,7 +97,7 @@ markdown:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/vuefe/vuefe.github.io.git
+  repository: git@github.com:vuejs/cn.vuejs.org.git
   branch: gh-pages
 
 feed:
