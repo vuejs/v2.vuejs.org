@@ -290,7 +290,7 @@ Angular 2의 학습 곡선은 훨씬 가파릅니다. TypeScript가 없어도 [�
 
 Ember는 높은 찬사를 받도록 고안된 완전한 기능의 프레임 워크입니다. 그것은 많은 기존의 관행을 제공하며, 일단 익숙해지면 생산성을 높일 수 있습니다. 그러나 이는 학습 곡선이 높고 유연성이 떨어지는 것을 의미합니다. 함께 작동하는 느슨하게 결합 된 도구 집합을 사용하여 독창적인 프레임 워크와 라이브러리를 선택하려고 하면 트레이드 오프가 있습니다. 후자는 더 많은 자유를 제공하지만 더 많은 구조 결정을 요구합니다.
 
-즉, Vue 코어와 Ember의 [templating](https://guides.emberjs.com/v2.7.0/templates/handlebars-basics/) 및 [객체 모델](https://guides.emberjs.com/v2.7.0/object-model/) 레이어을 더 잘 비교할 수 있습니다.
+That said, it would probably make a better comparison between Vue core and Ember's [templating](https://guides.emberjs.com/v2.10.0/templates/handlebars-basics/) and [object model](https://guides.emberjs.com/v2.10.0/object-model/) layers:
 
 - Vue는 일반 JavaScript 객체 및 완전 자동 계산 된 속성에 대해 눈에 띄지 않는 반응을 제공합니다. Ember에서는 Ember Objects의 모든 것을 랩핑하고 계산 된 속성의 종속성을 수동으로 선언해야합니다.
 

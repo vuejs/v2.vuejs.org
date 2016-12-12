@@ -389,7 +389,7 @@ render (createElement) {
       // { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
-          return h('span', props.text)
+          return createElement('span', props.text)
         }
       }
     })

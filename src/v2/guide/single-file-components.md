@@ -47,7 +47,11 @@ order: 19
 위 내용을 얻으려면 하루정도 걸립니다. 이 후에 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 을 확인하는 것을 추천합니다. 설명을 따라 가면 `.vue` 컴포넌트, ES2015 및 핫 리로드가 포함된 Vue 프로젝트를 즉시 사용할 수 있게 됩니다.
 
 
+<<<<<<< HEAD
 템플릿은 여러 모듈을 가져와 최종 응용프로그램에 묶는 모듈 번들러인 [Webpack](https://webpack.github.io/)을 사용합니다. Webpack 자체에 대한 자세한 내용을 보려면 [이 동영상](https://www.youtube.com/watch?v=WQue1AN93YU)에서 좋은 소개를 볼 수 있습니다. 일단 기본을 익히면 [Egghead.io의 고급 Webpack 코스](https://egghead.io/courses/using-webpack-for-production-javascript-applications)를 확인하십시오.
+=======
+The template uses [Webpack](https://webpack.github.io/), a module bundler that takes a number of "modules" and then bundles them into your final application. To learn more about Webpack itself, [this video](https://www.youtube.com/watch?v=WQue1AN93YU) offers a good intro. Once you get past the basics, you might also want to check out [this advanced Webpack course on Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
+>>>>>>> vuejs/master
 
 Webpack에서 각 모듈은 번들에 포함되기 전에 "loader"에 의해 변형될 수 있으며 Vue는 [vue-loader](https://github.com/vuejs/vue-loader) 플러그인을 제공하여 `.vue` 단일 파일 컴포넌트를 처리합니다. [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 템플릿은 이미 모든 것을 설정 되어 있지만 `.vue` 컴포넌트 작동 방식을 알고 싶다면 [vue-loader 문서](https://vue-loader.vuejs.org)를 읽으시면 됩니다.
 
