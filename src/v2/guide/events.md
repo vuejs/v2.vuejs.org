@@ -166,6 +166,7 @@ methods: {
 - `.prevent`
 - `.capture`
 - `.self`
+- `.once`
 
 ``` html
 <!-- 阻止单击事件冒泡 -->
@@ -186,6 +187,15 @@ methods: {
 <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
 <div v-on:click.self="doThat">...</div>
 ```
+
+> 2.1.4 新增
+
+``` html
+<!-- the click event will be triggered at most once -->
+<a v-on:click.once="doThis"></a>
+```
+
+Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components.html#Using-v-on-with-Custom-Events). If you haven't read about components yet, don't worry about this for now.
 
 ## 按键修饰符
 
@@ -225,16 +235,28 @@ methods: {
 Vue.config.keyCodes.f1 = 112
 ```
 
-## 鼠标事件修饰符
+## 按键修饰符
 
 > 2.1.0 新增
 
-可以用如下修饰符在相应按键响应时进行鼠标事件监听
+可以用如下修饰符开启鼠标或键盘事件监听，使在按键按下时发生响应。
 
 - `.ctrl`
 - `.alt`
 - `.shift`
 - `.meta`
+
+> Note: On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.
+
+For example:
+
+```html
+<!-- Alt + C -->
+<input @keyup.alt.67="clear">
+
+<!-- Ctrl + Click -->
+<div @click.ctrl="doSomething">Do something</div>
+```
 
 ## 为什么在 HTML 中监听事件?
 

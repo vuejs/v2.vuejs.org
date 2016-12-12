@@ -97,7 +97,7 @@ type: api
 
 ### keyCodes
 
-- **类型：** `{ [key: string]: number }`
+- **类型：** `{ [key: string]: number | Array<number> }`
 
 - **默认值：** `{}`
 
@@ -107,7 +107,8 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    mediaPlayPause: 179
+    mediaPlayPause: 179,
+    up: [38, 87]
   }
   ```
 
@@ -971,8 +972,8 @@ type: api
       var body   = this.$slots.default
       var footer = this.$slots.footer
       return createElement('div', [
-        createElement('header', header)
-        createElement('main', body)
+        createElement('header', header),
+        createElement('main', body),
         createElement('footer', footer)
       ])
     }
@@ -1527,6 +1528,9 @@ type: api
 
   <!-- 缩写 -->
   <img :src="imageSrc">
+  
+  <!-- with inline string concatenation -->
+  <img :src="'/path/to/images/' + fileName">
 
   <!-- class 绑定 -->
   <div :class="{ red: isRed }"></div>

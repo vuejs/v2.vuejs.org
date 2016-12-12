@@ -272,7 +272,7 @@ Vue 则根本没有这个问题，因为它使用基于依赖追踪的观察系�
 
 Angular 1 面向的是较小的应用程序，Angular 2 已转移焦点，面向的是大型企业应用。在这一点上 TypeScript 经常会被引用，它对那些喜欢用 Java 或者 C# 等类型安全的语言的人是非常有用的。
 
-Vue 也十分适合制作[企业应用](https://github.com/vuejs/awesome-vue#enterprise-usage)，你也可以通过使用[官方类型](https://github.com/vuejs/vue/tree/dev/types)或[用户贡献的装饰器](https://github.com/itsFrank/vue-typescript)来支持 TypeScript，这完全是自由可选的。
+Vue 也十分适合制作[企业应用](https://github.com/vuejs/awesome-vue#enterprise-usage)，你也可以通过使用[官方类型](https://github.com/vuejs/vue/tree/dev/types)或[官方装饰器](https://github.com/itsFrank/vue-typescript)来支持 TypeScript，这完全可由你的方案来定。
 
 ### 大小和性能
 
@@ -294,7 +294,7 @@ Angular 2 的学习曲线是非常陡峭的。即使不包括 TypeScript，它�
 
 Ember 是一个全能框架。它提供了大量的约定，一旦你熟悉了它们，开发会变得很高效。不过，这也意味着学习曲线较高，而且并不灵活。这意味着在框架和库（加上一系列松散耦合的工具）之间做权衡选择。后者会更自由，但是也要求你做更多架构上的决定。
 
-也就是说，我们最好比较的是 Vue 内核和 Ember 的[模板](https://guides.emberjs.com/v2.7.0/templates/handlebars-basics/)与[数据模型](https://guides.emberjs.com/v2.7.0/object-model/)层：
+也就是说，我们最好比较的是 Vue 内核和 Ember 的[模板](https://guides.emberjs.com/v2.10.0/templates/handlebars-basics/)与[数据模型](https://guides.emberjs.com/v2.10.0/object-model/)层：
 
 * Vue 在普通 JavaScript 对象上建立响应，提供自动化的计算属性。在 Ember 中需要将所有东西放在 Ember 对象内，并且手工为计算属性声明依赖。
 
@@ -326,11 +326,10 @@ Polymer 自定义的元素是用 HTML 文件来创建的，这会限制使用 Ja
 
 Riot 2.0 提供了一个类似于基于组件的开发模型（在 Riot 中称之为 Tag），它提供了小巧精美的 API。Riot 和 Vue 在设计理念上可能有许多相似处。尽管相比 Riot ，Vue 要显得重一点，Vue 还是有很多显著优势的：
 
-- 根据真实条件来渲染，Riot 根据是否有分支简单显示或隐藏所有内容。
-- 功能更加强大的路由机制，Riot 的路由功能的 API 是极少的。
-- 更多成熟工具的支持。Vue 提供官方支持[Webpack](https://github.com/vuejs/vue-loader)、[Browserify](https://github.com/vuejs/vueify)和[SystemJS](https://github.com/vuejs/systemjs-plugin-vue)，而 Riot 是依靠社区来建立集成系统。
 - [过渡效果系统](transitions.html)。Riot 现在还没有提供。
-- 更好的性能。Riot [尽管声称](https://github.com/vuejs/vuejs.org/issues/346)其使用了虚拟 DOM，但实际上用的还是脏检查机制，因此和 Angular 1 患有相同的性能问题。
+-功能更加强大的路由机制，Riot 的路由功能的 API 是极少的。
+- 更好的性能。Riot 使用了 [遍历 DOM 树](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) 而不是虚拟 DOM，但实际上用的还是脏检查机制，因此和 Angular 1 患有相同的性能问题。
+- 更多成熟工具的支持。Vue 提供官方支持[Webpack](https://github.com/vuejs/vue-loader) 和 [Browserify](https://github.com/vuejs/vueify)，而 Riot 是依靠社区来建立集成系统。
 
 ***
 

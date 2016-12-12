@@ -148,7 +148,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-active {
-  padding-left: 10px;
+  transform: translateX(10px);
   opacity: 0;
 }
 ```
@@ -178,7 +178,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-active {
-  padding-left: 10px;
+  transform: translateX(10px);
   opacity: 0;
 }
 </style>
