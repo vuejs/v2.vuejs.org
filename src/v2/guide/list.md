@@ -23,7 +23,7 @@ var example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
-      {message: 'foo' },
+      {message: 'Foo' },
       {message: 'Bar' }
     ]
   }
@@ -331,7 +331,7 @@ new Vue({
 
 ## key
 
-当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，而不是移动 DOM 元素来匹配数据项的顺序， Vue 将简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
+当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，Vue将不是移动 DOM 元素来匹配数据项的顺序，  而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
 
 这个默认的模式是有效的，但是只适用于不依赖子组件状态或临时 DOM 状态（例如：表单输入值）的列表渲染输出。
 
@@ -361,7 +361,7 @@ Vue 包含一组观察数组的变异方法，所以它们也将会触发视图�
 - `sort()`
 - `reverse()`
 
-你打开控制台，然后用前面例子的 `items` 数组调用突变方法：`example1.items.push({ message: 'Baz' })` 。
+你打开控制台，然后用前面例子的 `items` 数组调用变异方法：`example1.items.push({ message: 'Baz' })` 。
 
 ### 重塑数组
 
@@ -422,7 +422,7 @@ computed: {
 }
 ```
 
-或者，您也可以使用在计算属性是不可行的 method 方法 (例如，在嵌套 `v-for` 循环中)：
+或者，您也可以在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 使用 method 方法：
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
