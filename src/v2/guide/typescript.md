@@ -4,7 +4,7 @@ type: guide
 order: 25
 ---
 
-If you develop a large application, using a language having static type checking would be helpful. For example, if you have typos in your code, it provides useful errors before you run it on browsers. You can easily use [TypeScript](https://www.typescriptlang.org/) (one of popular AltJS having static type checking) with Vue since Vue officially provides its declaration files.
+If you develop a large application, using a language having static type checking would be helpful. If you have unexpected mistakes in your code, it provides useful errors before you run it on browsers. You can easily use [TypeScript](https://www.typescriptlang.org/) (one of popular AltJS having static type checking) with Vue since Vue officially provides its declaration files.
 
 ## Official Declaration Files
 
