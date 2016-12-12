@@ -10,7 +10,7 @@ order: 10
 
 <p class="tip"> `v-model` 并不关心表单控件初始化所生成的值。因为它会选择 Vue 实例数据来作为具体的值。</p>
 
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">对于需要[输入法编辑器](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95)的语言（中文、日文、韩文等），要注意的是，在 IME 字母组合窗口输入时 `v-model` 并不会更新。如果你想在此期间满足更新需求，请使用 `input` 事件。</p>
 
 ### 文本
 
@@ -364,11 +364,11 @@ vm.selected.number // -> 123
 <input v-model.trim="msg">
 ```
 
-## `v-model` 与组件
+## 在组件中使用 `v-model`
 
-> 如果你还不熟悉Vue的组件，跳过这里即可。
+> 如果你还不熟悉 Vue 组件，现在先跳过此处。
 
-HTML 内建的 input 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 input 类型，这些 input 类型甚至可以和 `v-model` 一起使用！要了解更多，请参阅[自定义 input 类型](components.html#Form-Input-Components-using-Custom-Events)
+HTML 内置的输入框类型并不能满足需求。幸运的是，Vue 组件允许使用完全自定义的行为来构建可重用的输入框。这些输入框甚至可以使用 `v-model`！想要了解更多信息，请阅读组件指南中[自定义输入](components.html#使用自定义事件的表单输入组件)。
 
 ***
 
