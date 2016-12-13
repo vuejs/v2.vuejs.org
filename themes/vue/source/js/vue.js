@@ -1,5 +1,5 @@
 /*!
- * Vue.js v2.1.5
+ * Vue.js v2.1.6
  * (c) 2014-2016 Evan You
  * Released under the MIT License.
  */
@@ -1376,50 +1376,50 @@ function isBooleanType (fn) {
 
 
 var util = Object.freeze({
-	defineReactive: defineReactive$$1,
-	_toString: _toString,
-	toNumber: toNumber,
-	makeMap: makeMap,
-	isBuiltInTag: isBuiltInTag,
-	remove: remove$1,
-	hasOwn: hasOwn,
-	isPrimitive: isPrimitive,
-	cached: cached,
-	camelize: camelize,
-	capitalize: capitalize,
-	hyphenate: hyphenate,
-	bind: bind$1,
-	toArray: toArray,
-	extend: extend,
-	isObject: isObject,
-	isPlainObject: isPlainObject,
-	toObject: toObject,
-	noop: noop,
-	no: no,
-	identity: identity,
-	genStaticKeys: genStaticKeys,
-	looseEqual: looseEqual,
-	looseIndexOf: looseIndexOf,
-	isReserved: isReserved,
-	def: def,
-	parsePath: parsePath,
-	hasProto: hasProto,
-	inBrowser: inBrowser,
-	UA: UA,
-	isIE: isIE,
-	isIE9: isIE9,
-	isEdge: isEdge,
-	isAndroid: isAndroid,
-	isIOS: isIOS,
-	isServerRendering: isServerRendering,
-	devtools: devtools,
-	nextTick: nextTick,
-	get _Set () { return _Set; },
-	mergeOptions: mergeOptions,
-	resolveAsset: resolveAsset,
-	get warn () { return warn; },
-	get formatComponentName () { return formatComponentName; },
-	validateProp: validateProp
+  defineReactive: defineReactive$$1,
+  _toString: _toString,
+  toNumber: toNumber,
+  makeMap: makeMap,
+  isBuiltInTag: isBuiltInTag,
+  remove: remove$1,
+  hasOwn: hasOwn,
+  isPrimitive: isPrimitive,
+  cached: cached,
+  camelize: camelize,
+  capitalize: capitalize,
+  hyphenate: hyphenate,
+  bind: bind$1,
+  toArray: toArray,
+  extend: extend,
+  isObject: isObject,
+  isPlainObject: isPlainObject,
+  toObject: toObject,
+  noop: noop,
+  no: no,
+  identity: identity,
+  genStaticKeys: genStaticKeys,
+  looseEqual: looseEqual,
+  looseIndexOf: looseIndexOf,
+  isReserved: isReserved,
+  def: def,
+  parsePath: parsePath,
+  hasProto: hasProto,
+  inBrowser: inBrowser,
+  UA: UA,
+  isIE: isIE,
+  isIE9: isIE9,
+  isEdge: isEdge,
+  isAndroid: isAndroid,
+  isIOS: isIOS,
+  isServerRendering: isServerRendering,
+  devtools: devtools,
+  nextTick: nextTick,
+  get _Set () { return _Set; },
+  mergeOptions: mergeOptions,
+  resolveAsset: resolveAsset,
+  get warn () { return warn; },
+  get formatComponentName () { return formatComponentName; },
+  validateProp: validateProp
 });
 
 /* not type checking this file because flow doesn't play well with Proxy */
@@ -2766,7 +2766,7 @@ function normalizeArrayChildren (children, nestedIndex) {
   var i, c, last;
   for (i = 0; i < children.length; i++) {
     c = children[i];
-    if (c == null) { continue }
+    if (c == null || typeof c === 'boolean') { continue }
     last = res[res.length - 1];
     //  nested
     if (Array.isArray(c)) {
@@ -3587,7 +3587,7 @@ Object.defineProperty(Vue$3.prototype, '$isServer', {
   get: isServerRendering
 });
 
-Vue$3.version = '2.1.5';
+Vue$3.version = '2.1.6';
 
 /*  */
 
@@ -3724,7 +3724,7 @@ var isHTMLTag = makeMap(
 // this map is intentionally selective, only covering SVG elements that may
 // contain child elements.
 var isSVG = makeMap(
-  'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font,' +
+  'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,' +
   'font-face,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
   'polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view',
   true
@@ -3851,18 +3851,18 @@ function setAttribute (node, key, val) {
 
 
 var nodeOps = Object.freeze({
-	createElement: createElement$1,
-	createElementNS: createElementNS,
-	createTextNode: createTextNode,
-	createComment: createComment,
-	insertBefore: insertBefore,
-	removeChild: removeChild,
-	appendChild: appendChild,
-	parentNode: parentNode,
-	nextSibling: nextSibling,
-	tagName: tagName,
-	setTextContent: setTextContent,
-	setAttribute: setAttribute
+  createElement: createElement$1,
+  createElementNS: createElementNS,
+  createTextNode: createTextNode,
+  createComment: createComment,
+  insertBefore: insertBefore,
+  removeChild: removeChild,
+  appendChild: appendChild,
+  parentNode: parentNode,
+  nextSibling: nextSibling,
+  tagName: tagName,
+  setTextContent: setTextContent,
+  setAttribute: setAttribute
 });
 
 /*  */
@@ -7698,12 +7698,16 @@ function genChildren (el, checkSkip) {
 function canSkipNormalization (children) {
   for (var i = 0; i < children.length; i++) {
     var el = children[i];
-    if (el.for || el.tag === 'template' || el.tag === 'slot' ||
-      (el.if && el.ifConditions.some(function (c) { return c.tag === 'template'; }))) {
+    if (needsNormalization(el) ||
+        (el.if && el.ifConditions.some(function (c) { return needsNormalization(c.block); }))) {
       return false
     }
   }
   return true
+}
+
+function needsNormalization (el) {
+  return el.for || el.tag === 'template' || el.tag === 'slot'
 }
 
 function genNode (node) {
