@@ -2,7 +2,7 @@
 
 > 欢迎大家一起参与校对工作 
 
-> 贡献者： https://vuefe.cn
+> 镜像站： https://vuefe.cn
 
 > 贡献者： https://vuefe.cn/about
 
