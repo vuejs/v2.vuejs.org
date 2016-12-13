@@ -12,7 +12,6 @@ order: 28
 
 ## React
 
-React and Vue share many similarities. They both:
 React와 Vue는 많은 공통점을 공유합니다. 둘 다,
 
 - 가상 DOM을 활용합니다.
