@@ -4,6 +4,8 @@ type: cookbook
 order: 0
 ---
 
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
+
 ## WORK IN PROGRESS
 
 <p class="tip">This cookbook is still in its very early stages. At this point, we will not be linking to it from anywhere else. Pages may be removed or reorganized at any time. Even the goals and overall format are still in flux.</p>
