@@ -298,7 +298,7 @@ That said, it would probably make a better comparison between Vue core and Ember
 - Performance-wise, Vue outperforms Ember by a fair margin, even after the latest Glimmer engine update in Ember 2.0. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
 
 ## Backbone
-Backbone's use of models and collections makes working work json data a breeze. Backbone pairs well with Laravel's eloquent nested json data. Missing a baked in 2-way binding however they are easy to implement using event listeners. Also requires a lot of scaffolding to get up and running.
+Backbone's use of models and collections makes working with json data a breeze. Backbone pairs well with Laravel's eloquent nested json data. Missing a baked in 2-way binding however they are easy to implement using event listeners. Also requires a lot of scaffolding to get up and running.
 
 ## Knockout
 
