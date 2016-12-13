@@ -49,7 +49,7 @@ var store = {
 }
 ```
 
-Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how are they triggered. Now when something goes wrong, we'll also have a log of what happened leading up to the bug.
+store의 상태를 변경시키는 모든 조치는 store 자체에 들어 있습니다. 이러한 유형의 중앙 집중식 상태 관리는 어떤 유형의 돌연변이가 발생할 수 있는지, 어떻게 유발되는지를보다 쉽게 이해할 수있게 합니다. 무언가가 잘못 될 경우 버그에 이르는 일에 대한 로그가 생성됩니다.
 
 또한 각 인스턴스 / 컴포넌트는 여전히 자체적으로 비공개 상태를 가지고 관리할 수 있습니다.
 
