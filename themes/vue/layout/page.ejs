@@ -12,7 +12,7 @@
       <%- partial('partials/ad') %>
     <% } %>
     <% if (page.title.trim()) { %>
-      <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
+      <h1><%- page.title %><%- page.type === 'examples' ? ' Exemple' : '' %></h1>
     <% } %>
     <%- page.content %>
     <% if (page.type === 'guide') { %>
@@ -27,7 +27,6 @@
     <% } %>
     <div class="footer">
       Une erreur dans cette page ? Envie de contribuer à la traduction ?
-      Caught a mistake or want to contribute to the documentation?
       <a href="https://github.com/vuejs-fr/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
         Éditez cette page sur Github !
       </a>
