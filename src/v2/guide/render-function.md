@@ -175,7 +175,7 @@ createElement(
   // 범위 지정 슬롯. 형식은
   // { name: props => VNode | Array<VNode> } 입니다.
   scopedSlots: {
-    default: props => h('span', props.text)
+    default: props => createElement('span', props.text)
   },
   // 컴포넌트의 자식인 경우 슬롯의 이름입니다.
   slot: 'name-of-slot'

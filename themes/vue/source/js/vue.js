@@ -1,5 +1,5 @@
 /*!
- * Vue.js v2.1.4
+ * Vue.js v2.1.5
  * (c) 2014-2016 Evan You
  * Released under the MIT License.
  */
@@ -1187,11 +1187,14 @@ function resolveAsset (
     return
   }
   var assets = options[type];
-  var res = assets[id] ||
-    // camelCase ID
-    assets[camelize(id)] ||
-    // Pascal Case ID
-    assets[capitalize(camelize(id))];
+  // check local registration variations first
+  if (hasOwn(assets, id)) { return assets[id] }
+  var camelizedId = camelize(id);
+  if (hasOwn(assets, camelizedId)) { return assets[camelizedId] }
+  var PascalCaseId = capitalize(camelizedId);
+  if (hasOwn(assets, PascalCaseId)) { return assets[PascalCaseId] }
+  // fallback to prototype chain
+  var res = assets[id] || assets[camelizedId] || assets[PascalCaseId];
   if ("development" !== 'production' && warnMissing && !res) {
     warn(
       'Failed to resolve ' + type.slice(0, -1) + ': ' + id,
@@ -3584,7 +3587,7 @@ Object.defineProperty(Vue$3.prototype, '$isServer', {
   get: isServerRendering
 });
 
-Vue$3.version = '2.1.4';
+Vue$3.version = '2.1.5';
 
 /*  */
 
@@ -4420,7 +4423,7 @@ function createPatchFunction (backend) {
     if (vnode.tag) {
       return (
         vnode.tag.indexOf('vue-component') === 0 ||
-        vnode.tag.toLowerCase() === node.tagName.toLowerCase()
+        vnode.tag.toLowerCase() === (node.tagName && node.tagName.toLowerCase())
       )
     } else {
       return _toString(vnode.text) === node.data
@@ -4643,6 +4646,7 @@ function updateAttrs (oldVnode, vnode) {
     }
   }
   // #4391: in IE9, setting type can reset value for input[type=radio]
+  /* istanbul ignore if */
   if (isIE9 && attrs.value !== oldAttrs.value) {
     setAttr(elm, 'value', attrs.value);
   }
