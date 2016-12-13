@@ -869,7 +869,7 @@ Vue.component('child-component', {
   <slot name="item"
     v-for="item in items"
     :text="item.text">
-    <!-- fallback content here -->
+    <!-- 这里是备用内容 -->
   </slot>
 </ul>
 ```
@@ -977,7 +977,7 @@ var child = parent.$refs.profile
 
 ### 异步组件
 
-在大型应用中，我们可能需要将应用拆分为多个小模块，按需从服务器下载。为了让事情更简单， Vue.js 允许将组件定义为一个工厂函数，动态地解析组件的定义。Vue.js 只在组件需要渲染时触发工厂函数，并且把结果缓存起来，用于后面的再次渲染。例如：
+在大型应用程序中，我们可能需要将应用拆分为更小的模块，并且只在实际需要时才从服务器加载组件。为了让异步按需加载组件这件事变得简单，Vue.js 允许将组件定义为一个异步解析组件定义的工厂函数。Vue.js 只在组件实际需要渲染时触发工厂函数，并将缓存结果，用于将来再次渲染。例如：
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
@@ -990,18 +990,16 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-工厂函数接收一个 `resolve` 回调，在收到从服务器下载的组件定义时调用。也可以调用 `reject(reason)` 指示加载失败。这里 `setTimeout` 只是为了演示。怎么获取组件完全由你决定。推荐配合使用 ：[Webpack 的代码分割功能](http://webpack.github.io/docs/code-splitting.html)：
+工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [Webpack 代码分割功能](http://webpack.github.io/docs/code-splitting.html)来使用异步组件：
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // 这个特殊的 require 语法告诉 webpack
-  // 自动将编译后的代码分割成不同的块，
-  // 这些块将通过 Ajax 请求自动下载。
+  // 这个特殊的 require 语法将指示 webpack 自动将构建的代码，拆分成通过 Ajax 请求加载的 bundle。
   require(['./my-async-component'], resolve)
 })
 ```
 
-你可以使用 Webpack 2 + ES2015 的语法返回一个 `Promise` resolve 函数：
+可以在 resolve 函数中返回一个 `Promise`，所以使用 Webpack 2 + ES2015 语法后你可以这么做：
 
 ``` js
 Vue.component(
@@ -1010,7 +1008,7 @@ Vue.component(
 )
 ```
 
-<p class="tip">如果你是 <strong>Browserify</strong> 用户,可能就无法使用异步组件了,它的作者已经[表明](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) Browserify 是不支持异步加载的。Browserify 社区发现 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，可能有助于已存在的复杂应用。对于其他场景，我们推荐简单实用 Webpack 构建，一流的异步支持</p>
+<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 Webpack 所内置的一流异步支持。</p>
 
 ### 组件命名约定
 

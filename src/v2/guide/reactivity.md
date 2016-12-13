@@ -108,9 +108,9 @@ Vue.component('example', {
   methods: {
     updateMessage: function () {
       this.message = 'updated'
-      console.log(this.$el.textContent) // => '没有更新'
+      console.log(this.$el.textContent) // => 'not updated'
       this.$nextTick(function () {
-        console.log(this.$el.textContent) // => '更新完成'
+        console.log(this.$el.textContent) // => 'updated'
       })
     }
   }
