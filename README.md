@@ -85,7 +85,7 @@ Estas palavras podem ser mantidas no inglês
 - [x] Deployment (@vitorarjol)
 
 **API**
-- [ ] Global Config (@theus)
+- [x] Global Config (@theus)
 - [ ] Global API
 - [ ] Options / Data
 - [x] Options / DOM (@guilherme-dev)
