@@ -1086,7 +1086,7 @@ A component like the above will result in a "max stack size exceeded" error, so 
 
 ### Circular References Between Components
 
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component and a `tree-folder-contents` component :
+Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component and a `tree-folder-contents` component:
 
 ``` html
 <template id="tree-folder">
