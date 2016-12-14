@@ -1,34 +1,30 @@
 ---
-title: TypeScript
+title: TypeScript Support
 type: guide
 order: 25
 ---
 
-If you develop a large application, using a language having static type checking would be helpful. If you have unexpected mistakes in your code, it provides useful errors before you run it on browsers. You can easily use [TypeScript](https://www.typescriptlang.org/) (one of popular AltJS having static type checking) with Vue since Vue officially provides its declaration files.
-
 ## Official Declaration Files
 
-There are official declaration files for Vue, vue-router and vuex. You do not have to use external tools like `typings` to use them since they are published via npm. You can install Vue's declarations with `npm install vue`. Then, all declarations can be imported with `import` statement.
+A strong type system can help prevent many potential runtime errors, especially as applications grow. That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also [for Vue Router](https://github.com/vuejs/vue-router/tree/dev/types) and [for Vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
 
-Example of component definition with TypeScript:
+Since these are [published on NPM](https://unpkg.com/vue/types/), you don't even need external tools like `Typings`, as declarations are automatically imported with Vue. That means all you need is a simple:
 
 ``` ts
-// we cannot write `import Vue from 'vue'` in TypeScript
-// because of the difference of module resolution strategy
-// against the other AltJS and module bundlers
 import Vue = require('vue')
-
-// or we can also write like following:
-// import * as Vue from 'vue'
-
-Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
-})
 ```
 
-Note that `Vue` is already typed, so all methods, properties and parameters will be type checked. For example, if you have a typo in `template` option, TypeScript compiler will print an error message on a compile time.
+Then all methods, properties, and parameters will be type checked. For example, if you misspell the `template` component option as `tempate` (missing the `l`), the TypeScript compiler will print an error message at compile time. If you're using an editor that can lint TypeScript, such as [Visual Studio Code](https://code.visualstudio.com/), you'll even be able to catch these errors before compilation:
 
-If you want to use Vue's types explicitly, they belong to the `Vue` object. In case you create a component on a separated file (e.g. [single file component](single-file-components.html)), you can annotate a type with the component option object:
+![TypeScript Type Error in Visual Studio Code](/images/typescript-type-error.png)
+
+### Compilation Options
+
+Vue's declaration files require the `--lib DOM,ES2015.Promise` [compiler option](https://www.typescriptlang.org/docs/handbook/compiler-options.html). You can pass this option to the `tsc` command or add the equivalent to a `tsconfig.json` file.
+
+### Accessing Vue's Type Declarations
+
+If you want to annotate your own code with Vue's types, you can access them on Vue's exported object. For example, to annotate an exported component options object (e.g. in a `.vue` file):
 
 ``` ts
 import Vue = require('vue')
@@ -36,23 +32,17 @@ import Vue = require('vue')
 export default {
   props: ['message'],
   template: '<span>{{ message }}</span>'
-
-// annotate ComponentOptions with `as` operator
 } as Vue.ComponentOptions<Vue>
 ```
 
-You can see all available types on the corresponding repository ([here are Vue's types](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)).
+## Class-Style Vue Components
 
-<p class="tip">The declaration files of Vue requires `--lib DOM,ES2015.Promise` as compiler option. So you need to pass the option via `tsc` command or `tsconfig.json`. For more details of compiler options, please see [Compiler Options · TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html)</p>
-
-## vue-class-component and Decorators
-
-Sometimes it would be verbose to write components with TypeScript. For example, you may need to declare component properties and methods explicitly and annotate the type to component options while it is initialized in `data` hook:
+Vue component options can easily be annotated with types:
 
 ``` ts
 import Vue = require('vue')
 
-// declare the component type
+// Declare the component's type
 interface MyComponent extends Vue {
   message: string
   onClick (): void
@@ -61,47 +51,48 @@ interface MyComponent extends Vue {
 export default {
   template: '<button @click="onClick">Click!</button>',
   data: function () {
-    // initialize component data
-    // TypeScript cannot infer the data type
     return {
       message: 'Hello!'
     }
   },
   methods: {
     onClick: function () {
-      // `this` is declarated as MyComponent
+      // TypeScript knows that `this` is of type MyComponent
+      // and that `this.message` will be a string
       window.alert(this.message)
     }
   }
-
-// annotate MyComponent type explicitly
+// We need to explicitly annotate the exported options object
+// with the MyComponent type
 } as Vue.ComponentOptions<MyComponent>
 ```
 
-This is because TypeScript cannot infer the component type from the Vue API. To avoid unnecessary type annotation, we can use [vue-class-component](https://github.com/vuejs/vue-class-component). vue-class-component let us write a component like a native JavaScript class. For example, if we write the above component with vue-class-component:
+Unfortunately, there are a few limitations here:
+
+- __TypeScript can't infer all types from Vue's API.__ For example, it doesn't know that the `message` property returned in our `data` function will be added to the `MyComponent` instance. That means if we assigned a number or boolean value to `message`, linters and compilers wouldn't be able to raise an error, complaining that it should be a string.
+
+- Because of the previous limitation, __annotating types like this can be verbose__. The only reason we have to manually declare `message` as a string is because TypeScript can't infer the type in this case.
+
+Fortunately, [vue-class-component](https://github.com/vuejs/vue-class-component) can solve both of these problems. It's an official companion library that allows you to declare components as native JavaScript classes, with a `@Component` decorator. As an example, let's rewrite the above component:
 
 ``` ts
 import Vue = require('vue')
 import Component from 'vue-class-component'
 
-// ECMAScript Decorator syntax
-// @Component indicates the class will be
-// defined as a Vue component
+// The @Component decorator indicates the class is a Vue component
 @Component({
-  // all component options are allowed in here
+  // All component options are allowed in here
   template: '<button @click="onClick">Click!</button>'
 })
 export default class MyComponent extends Vue {
-  // initial data can be declared as class instance properties
+  // Initial data can be declared as instance properties
   message: string = 'Hello!'
 
-  // component methods can be declared as class instance methods
+  // Component methods can be declared as instance methods
   onClick (): void {
     window.alert(this.message)
   }
 }
 ```
 
-With vue-class-component, the Vue component's data and methods can be declared by the class syntax. So that TypeScript infers their types without explicit interface declarations.
-
-If you want to extend the functionallity of vue-class-component for your use cases, you can make additional decorators for class components by using the `createDecorator` helper (See [the README of vue-class-component](https://github.com/vuejs/vue-class-component#create-custom-decorators)).
+With this syntax alternative, our component definition is not only shorter, but TypeScript can also infer the types of `message` and `onClick` without explicit interface declarations. This strategy even allows you to handle types for computed properties, lifecycle hooks, and render functions. For full usage details, see [the vue-class-component docs](https://github.com/vuejs/vue-class-component#vue-class-component).
