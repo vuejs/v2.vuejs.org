@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Event Handling - vue.js</title>
+        <title>TypeScript Support - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <meta property="og:type" content="article">
-        <meta property="og:title" content="Event Handling - vue.js">
+        <meta property="og:title" content="TypeScript Support - vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta property="og:image" content="https://vuejs.org/images/logo.png">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Event Handling - vue.js">
+        <meta name="twitter:title" content="TypeScript Support - vue.js">
         <meta name="twitter:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
@@ -278,7 +278,7 @@
                 
                 
                 <li>
-                    <a href="/v2/guide/events.html" class="sidebar-link current">Event Handling</a>
+                    <a href="/v2/guide/events.html" class="sidebar-link">Event Handling</a>
                 </li>
             
                 
@@ -472,7 +472,7 @@
                 
                 
                 <li>
-                    <a href="/v2/guide/typescript.html" class="sidebar-link">TypeScript Support</a>
+                    <a href="/v2/guide/typescript.html" class="sidebar-link current">TypeScript Support</a>
                 </li>
             
                 
@@ -545,7 +545,7 @@
 </div>
 
 
-<div class="content guide with-sidebar events-guide">
+<div class="content guide with-sidebar typescript-guide">
     
       <div id="ad">
   <!-- <span>Sponsored By</span><br>
@@ -558,144 +558,42 @@
 
     
     
-      <h1>Event Handling</h1>
+      <h1>TypeScript Support</h1>
     
-    <h2 id="Listening-to-Events"><a href="#Listening-to-Events" class="headerlink" title="Listening to Events"></a>Listening to Events</h2><p>We can use the <code>v-on</code> directive to listen to DOM events and run some JavaScript when they’re triggered.</p>
-<p>For example:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-1"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"counter += 1"</span>&gt;</span>Add 1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>The button above has been clicked &#123;&#123; counter &#125;&#125; times.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#example-1'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">counter</span>: <span class="number">0</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>Result:</p>
-
-<div id="example-1" class="demo">
-  <button v-on:click="counter += 1">Add 1</button>
-  <p>The button above has been clicked {{ counter }} times.</p>
-</div>
-<script>
-var example1 = new Vue({
-  el: '#example-1',
-  data: {
-    counter: 0
-  }
-})
-</script>
-
-<h2 id="Method-Event-Handlers"><a href="#Method-Event-Handlers" class="headerlink" title="Method Event Handlers"></a>Method Event Handlers</h2><p>The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the <code>v-on</code> attribute simply isn’t feasible. That’s why <code>v-on</code> can also accept the name of a method you’d like to call.</p>
-<p>For example:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-2"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- `greet` is the name of a method defined below --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"greet"</span>&gt;</span>Greet<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> example2 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#example-2'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Vue.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// define methods under the `methods` object</span></div><div class="line">  methods: &#123;</div><div class="line">    <span class="attr">greet</span>: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">      <span class="comment">// `this` inside methods points to the Vue instance</span></div><div class="line">      alert(<span class="string">'Hello '</span> + <span class="keyword">this</span>.name + <span class="string">'!'</span>)</div><div class="line">      <span class="comment">// `event` is the native DOM event</span></div><div class="line">      alert(event.target.tagName)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// you can invoke methods in JavaScript too</span></div><div class="line">example2.greet() <span class="comment">// -&gt; 'Hello Vue.js!'</span></div></pre></td></tr></table></figure>
-<p>Result:</p>
-
-<div id="example-2" class="demo">
-  <button v-on:click="greet">Greet</button>
-</div>
-<script>
-var example2 = new Vue({
-  el: '#example-2',
-  data: {
-    name: 'Vue.js'
-  },
-  methods: {
-    greet: function (event) {
-      alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
-    }
-  }
-})
-</script>
-
-<h2 id="Methods-in-Inline-Handlers"><a href="#Methods-in-Inline-Handlers" class="headerlink" title="Methods in Inline Handlers"></a>Methods in Inline Handlers</h2><p>Instead of binding directly to a method name, we can also use methods in an inline JavaScript statement:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-3"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"say('hi')"</span>&gt;</span>Say hi<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"say('what')"</span>&gt;</span>Say what<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#example-3'</span>,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">say</span>: <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</div><div class="line">      alert(message)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>Result:<br>
-<div id="example-3" class="demo">
-  <button v-on:click="say('hi')">Say hi</button>
-  <button v-on:click="say('what')">Say what</button>
-</div>
-<script>
-new Vue({
-  el: '#example-3',
-  methods: {
-    say: function (message) {
-      alert(message)
-    }
-  }
-})
-</script>
-</p>
-<p>Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special <code>$event</code> variable:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"warn('Form cannot be submitted yet.', $event)"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line">methods: &#123;</div><div class="line">  <span class="attr">warn</span>: <span class="function"><span class="keyword">function</span> (<span class="params">message, event</span>) </span>&#123;</div><div class="line">    <span class="comment">// now we have access to the native event</span></div><div class="line">    <span class="keyword">if</span> (event) event.preventDefault()</div><div class="line">    alert(message)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Event-Modifiers"><a href="#Event-Modifiers" class="headerlink" title="Event Modifiers"></a>Event Modifiers</h2><p>It is a very common need to call <code>event.preventDefault()</code> or <code>event.stopPropagation()</code> inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.</p>
-<p>To address this problem, Vue provides <strong>event modifiers</strong> for <code>v-on</code>. Recall that modifiers are directive postfixes denoted by a dot.</p>
+    <h2 id="Official-Declaration-Files"><a href="#Official-Declaration-Files" class="headerlink" title="Official Declaration Files"></a>Official Declaration Files</h2><p>A static type system can help prevent many potential runtime errors, especially as applications grow. That’s why Vue ships with <a href="https://github.com/vuejs/vue/tree/dev/types" target="_blank" rel="external">official type declarations</a> for <a href="https://www.typescriptlang.org/" target="_blank" rel="external">TypeScript</a> - not only in Vue core, but also <a href="https://github.com/vuejs/vue-router/tree/dev/types" target="_blank" rel="external">for Vue Router</a> and <a href="https://github.com/vuejs/vuex/tree/dev/types" target="_blank" rel="external">for Vuex</a> as well.</p>
+<p>Since these are <a href="https://unpkg.com/vue/types/" target="_blank" rel="external">published on NPM</a>, you don’t even need external tools like <code>Typings</code>, as declarations are automatically imported with Vue. That means all you need is a simple:</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div></pre></td></tr></table></figure>
+<p>Then all methods, properties, and parameters will be type checked. For example, if you misspell the <code>template</code> component option as <code>tempate</code> (missing the <code>l</code>), the TypeScript compiler will print an error message at compile time. If you’re using an editor that can lint TypeScript, such as <a href="https://code.visualstudio.com/" target="_blank" rel="external">Visual Studio Code</a>, you’ll even be able to catch these errors before compilation:</p>
+<p><img src="/images/typescript-type-error.png" alt="TypeScript Type Error in Visual Studio Code"></p>
+<h3 id="Compilation-Options"><a href="#Compilation-Options" class="headerlink" title="Compilation Options"></a>Compilation Options</h3><p>Vue’s declaration files require the <code>--lib DOM,ES2015.Promise</code> <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank" rel="external">compiler option</a>. You can pass this option to the <code>tsc</code> command or add the equivalent to a <code>tsconfig.json</code> file.</p>
+<h3 id="Accessing-Vue’s-Type-Declarations"><a href="#Accessing-Vue’s-Type-Declarations" class="headerlink" title="Accessing Vue’s Type Declarations"></a>Accessing Vue’s Type Declarations</h3><p>If you want to annotate your own code with Vue’s types, you can access them on Vue’s exported object. For example, to annotate an exported component options object (e.g. in a <code>.vue</code> file):</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  props: [<span class="string">'message'</span>],</div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125; as Vue.ComponentOptions&lt;Vue&gt;</div></pre></td></tr></table></figure>
+<h2 id="Class-Style-Vue-Components"><a href="#Class-Style-Vue-Components" class="headerlink" title="Class-Style Vue Components"></a>Class-Style Vue Components</h2><p>Vue component options can easily be annotated with types:</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"></div><div class="line"><span class="comment">// Declare the component's type</span></div><div class="line"><span class="keyword">interface</span> MyComponent <span class="keyword">extends</span> Vue &#123;</div><div class="line">  message: <span class="built_in">string</span></div><div class="line">  onClick (): <span class="built_in">void</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  template: <span class="string">'&lt;button @click="onClick"&gt;Click!&lt;/button&gt;'</span>,</div><div class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      message: <span class="string">'Hello!'</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    onClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// TypeScript knows that `this` is of type MyComponent</span></div><div class="line">      <span class="comment">// and that `this.message` will be a string</span></div><div class="line">      <span class="built_in">window</span>.alert(<span class="keyword">this</span>.message)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="comment">// We need to explicitly annotate the exported options object</span></div><div class="line"><span class="comment">// with the MyComponent type</span></div><div class="line">&#125; as Vue.ComponentOptions&lt;MyComponent&gt;</div></pre></td></tr></table></figure>
+<p>Unfortunately, there are a few limitations here:</p>
 <ul>
-<li><code>.stop</code></li>
-<li><code>.prevent</code></li>
-<li><code>.capture</code></li>
-<li><code>.self</code></li>
-<li><code>.once</code></li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- the click event's propagation will be stopped --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- the submit event will no longer reload the page --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- modifiers can be chained --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop.prevent</span>=<span class="string">"doThat"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- just the modifier --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- use capture mode when adding the event listener --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.capture</span>=<span class="string">"doThis"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- only trigger handler if event.target is the element itself --&gt;</span></div><div class="line"><span class="comment">&lt;!-- i.e. not from a child element --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>New in 2.1.4</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- the click event will be triggered at most once --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Unlike the other modifiers, which are exclusive to native DOM events, the <code>.once</code> modifier can also be used on <a href="components.html#Using-v-on-with-Custom-Events">component events</a>. If you haven’t read about components yet, don’t worry about this for now.</p>
-<h2 id="Key-Modifiers"><a href="#Key-Modifiers" class="headerlink" title="Key Modifiers"></a>Key Modifiers</h2><p>When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for <code>v-on</code> when listening for key events:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- only call vm.submit() when the keyCode is 13 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.13</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Remembering all the keyCodes is a hassle, so Vue provides aliases for the most commonly used keys:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- same as above --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.enter</span>=<span class="string">"submit"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- also works for shorthand --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.enter</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Here’s the full list of key modifier aliases:</p>
-<ul>
-<li><code>.enter</code></li>
-<li><code>.tab</code></li>
-<li><code>.delete</code> (captures both “Delete” and “Backspace” keys)</li>
-<li><code>.esc</code></li>
-<li><code>.space</code></li>
-<li><code>.up</code></li>
-<li><code>.down</code></li>
-<li><code>.left</code></li>
-<li><code>.right</code></li>
-</ul>
-<p>You can also <a href="../api/#keyCodes">define custom key modifier aliases</a> via the global <code>config.keyCodes</code> object:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// enable v-on:keyup.f1</span></div><div class="line">Vue.config.keyCodes.f1 = <span class="number">112</span></div></pre></td></tr></table></figure>
-<h2 id="Modifier-Keys"><a href="#Modifier-Keys" class="headerlink" title="Modifier Keys"></a>Modifier Keys</h2><blockquote>
-<p>New in 2.1.0</p>
-</blockquote>
-<p>You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:</p>
-<ul>
-<li><code>.ctrl</code></li>
-<li><code>.alt</code></li>
-<li><code>.shift</code></li>
-<li><code>.meta</code></li>
-</ul>
-<blockquote>
-<p>Note: On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.</p>
-</blockquote>
-<p>For example:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Alt + C --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.alt.67</span>=<span class="string">"clear"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- Ctrl + Click --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click.ctrl</span>=<span class="string">"doSomething"</span>&gt;</span>Do something<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="Why-Listeners-in-HTML"><a href="#Why-Listeners-in-HTML" class="headerlink" title="Why Listeners in HTML?"></a>Why Listeners in HTML?</h2><p>You might be concerned that this whole event listening approach violates the good old rules about “separation of concerns”. Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that’s handling the current view, it won’t cause any maintenance difficulty. In fact, there are several benefits in using <code>v-on</code>:</p>
-<ol>
-<li><p>It’s easier to locate the handler function implementations within your JS code by simply skimming the HTML template.</p>
+<li><p><strong>TypeScript can’t infer all types from Vue’s API.</strong> For example, it doesn’t know that the <code>message</code> property returned in our <code>data</code> function will be added to the <code>MyComponent</code> instance. That means if we assigned a number or boolean value to <code>message</code>, linters and compilers wouldn’t be able to raise an error, complaining that it should be a string.</p>
 </li>
-<li><p>Since you don’t have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.</p>
+<li><p>Because of the previous limitation, <strong>annotating types like this can be verbose</strong>. The only reason we have to manually declare <code>message</code> as a string is because TypeScript can’t infer the type in this case.</p>
 </li>
-<li><p>When a ViewModel is destroyed, all event listeners are automatically removed. You don’t need to worry about cleaning it up yourself.</p>
-</li>
-</ol>
+</ul>
+<p>Fortunately, <a href="https://github.com/vuejs/vue-class-component" target="_blank" rel="external">vue-class-component</a> can solve both of these problems. It’s an official companion library that allows you to declare components as native JavaScript classes, with a <code>@Component</code> decorator. As an example, let’s rewrite the above component:</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"><span class="keyword">import</span> Component from <span class="string">'vue-class-component'</span></div><div class="line"></div><div class="line"><span class="comment">// The @Component decorator indicates the class is a Vue component</span></div><div class="line">@Component(&#123;</div><div class="line">  <span class="comment">// All component options are allowed in here</span></div><div class="line">  template: <span class="string">'&lt;button @click="onClick"&gt;Click!&lt;/button&gt;'</span></div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> MyComponent extends Vue &#123;</div><div class="line">  <span class="comment">// Initial data can be declared as instance properties</span></div><div class="line">  message: <span class="built_in">string</span> = <span class="string">'Hello!'</span></div><div class="line"></div><div class="line">  <span class="comment">// Component methods can be declared as instance methods</span></div><div class="line">  onClick (): <span class="built_in">void</span> &#123;</div><div class="line">    <span class="built_in">window</span>.alert(<span class="keyword">this</span>.message)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>With this syntax alternative, our component definition is not only shorter, but TypeScript can also infer the types of <code>message</code> and <code>onClick</code> without explicit interface declarations. This strategy even allows you to handle types for computed properties, lifecycle hooks, and render functions. For full usage details, see <a href="https://github.com/vuejs/vue-class-component#vue-class-component" target="_blank" rel="external">the vue-class-component docs</a>.</p>
 
     
       <div class="guide-links">
         
-          <span>← <a href="/v2/guide/list.html">List Rendering</a></span>
+          <span>← <a href="/v2/guide/ssr.html">Server-Side Rendering</a></span>
         
         
-          <span style="float:right"><a href="/v2/guide/forms.html">Form Input Bindings</a> →</span>
+          <span style="float:right"><a href="/v2/guide/migration.html">Migration from Vue 1.x</a> →</span>
         
       </div>
     
     <div class="footer">
       Caught a mistake or want to contribute to the documentation?
-      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/guide/events.md" target="_blank">
+      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/guide/typescript.md" target="_blank">
         Edit this page on Github!
       </a>
     </div>
