@@ -325,7 +325,7 @@ Polymer 自定义的元素是在 HTML 文件中创建的，这限制了 JavaScri
 Riot 2.0 提供了一个类似于基于组件的开发模型（在 Riot 中称之为 Tag），它提供了小巧精美的 API。Riot 和 Vue 在设计理念上可能有许多相似处。尽管相比 Riot ，Vue 要显得重一点，Vue 还是有很多显著优势的：
 
 - [过渡效果系统](transitions.html)。Riot 现在还没有提供。
-- 功能更加强大的路由机制。Riot 的路由非常轻量。
+- 功能更加强大的路由机制。Riot 路由的 API 非常轻量。
 - 更好的性能。Riot 使用了[遍历 DOM 树](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding)而不是 Virtual DOM，但实际上用的还是脏检查机制，因此和 Angular 1 患有相同的性能问题。
 - 更多成熟工具的支持。Vue 提供官方的 [Webpack](https://github.com/vuejs/vue-loader) 和 [Browserify](https://github.com/vuejs/vueify) 支持，而 Riot 依赖社区支持来构建系统集成。
 
