@@ -2,31 +2,31 @@
 type: api
 ---
 
-## Global Config
+## Configuração Global
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` é um objeto contendo a configuração global do Vue. Você pode modificar suas propriedades listadas abaixo antes de iniciar sua aplicação:
 
 ### silent
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Padrão:** `false`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Suprime todos os logs e avisos do Vue.
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipo:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Padrão:** `{}`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -39,53 +39,51 @@ type: api
 
   // Profile.options._my_option = 2
   ```
+  Define opções de mesclagem customizadas.
 
-  Define custom merging strategies for options.
+  A estratégia de mesclagem recebe o valor da opção definida no pai e nas instâncias filhas como o primeiro e segundo argumento, repectivamente. O contexto da instância Vue é passado como o terceiro argumento.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
-
-- **See also**: [Custom Option Merging Strategies](/guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Veja também**: [Estratégias de Mesclagem de Opções Customizadas](/guide/mixins.html#Estrategias-de-Mesclagem-de-Opcoes-Customizadas)
 
 ### devtools
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **Padrão:** `true` (`false` em builds de produção)
 
-- **Usage:**
+- **Uso:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // tenha certeza de setar isso imediatamente síncrono após o carregamento do Vue
   Vue.config.devtools = true
   ```
-
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  Configure se deseja permitir a inspeção do [vue-devtools](https://github.com/vuejs/vue-devtools). O valor padrão dessa opção é `true` em builds de desenvolvimento e `false` em builds de produção. Você pode setar `true` para habilitar a inspeção em builds de produção.
 
 ### errorHandler
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Default:** Error is thrown in place
+- **Padrão:** Os erros são lançados
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm) {
-    // handle error
+    // manuseia o erro
   }
   ```
 
-  Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
+  Atribui um manipulador para errors não detectados durante a renderização do componente e dos observadores. O manipulador é chamado com o erro e a instância Vue.
 
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > [Sentry](https://sentry.io), um serviço de rastreamento de erro, fornece [integração oficial](https://sentry.io/for/vue/) usando essa opção.
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number }`
+- **Tipo:** `{ [key: string]: number }`
 
-- **Default:** `{}`
+- **Padrão:** `{}`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.keyCodes = {
@@ -95,7 +93,7 @@ type: api
   }
   ```
 
-  Define custom key alias(es) for v-on.
+  Define atalhos customizados de teclas para o v-on
 
 ## Global API
 
