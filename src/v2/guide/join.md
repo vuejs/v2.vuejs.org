@@ -4,9 +4,7 @@ type: guide
 order: 30
 ---
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
-
-Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
 
 Now we'll answer both what the community can do for and what you can do for the community.
 
