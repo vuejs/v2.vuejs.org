@@ -4,6 +4,8 @@ type: guide
 order: 7
 ---
 
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
+
 ## `v-if`
 
 <p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>In string templates, for example Handlebars, we would write a conditional block like this:

@@ -4,6 +4,8 @@ type: guide
 order: 25
 ---
 
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
+
 ## Official Declaration Files
 
 <p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>A static type system can help prevent many potential runtime errors, especially as applications grow. That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also [for Vue Router](https://github.com/vuejs/vue-router/tree/dev/types) and [for Vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
