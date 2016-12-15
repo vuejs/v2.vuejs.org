@@ -173,7 +173,7 @@ createElement(
   // Scoped slots in the form of
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
-    default: props => h('span', props.text)
+    default: props => createElement('span', props.text)
   },
   // 如果子组件有定义 slot 的名称
   slot: 'name-of-slot'
