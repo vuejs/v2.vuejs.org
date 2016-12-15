@@ -1078,9 +1078,9 @@ template: '<div><stack-overflow></stack-overflow></div>'
 上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
 
 
-### Circular References Between Components
+### 组件的循环引用
 
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+你要构造一个文件树，像是 Mac 的 Finder 或是 Windows 的 资源管理器。你有一个 `tree-folder` 组件包含下面的模版：
 
 ``` html
 <p>
@@ -1089,7 +1089,7 @@ Let's say you're building a file directory tree, like in Finder or File Explorer
 </p>
 ```
 
-Then a `tree-folder-contents` component with this template:
+一个 `tree-folder-contents` 组件包含下面的模版：
 
 ``` html
 <ul>
@@ -1100,17 +1100,17 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+仔细观察，你会看到组件互相依赖，这是矛盾的！当你使用 `Vue.component` 全局注册组件后，Vue 会为你解决这个矛盾。
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+然而，如果你使用模块化工具 Webpack 或者 Browserify，通过 requiring/importing 导入组件的话，你会看到一个错误：
 
 ```
 Failed to mount component: template or render function not defined.
 ```
 
-To explain what's happening, I'll call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+为了解释这是如何产生的，下面我称组件为 A 和 B。模块化工具看到依赖 A，但是首先 A 依赖 B，但是 B 又依赖 A，A 又 依赖 B，如此形成了一个死循环，不知道通过先不解析另一个来解决问题，为了修复这个问题，我们需要给模块化工具一个切入点，我们可以告诉它，A 依赖 B,但是不用先解析 B。
 
-In our case, I'll make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+在我们的例子中，`tree-folder` 组件为切入点。我们知道创造矛盾的是 `tree-folder-contents` 组件，所以我在组件的生命周期钩子 `beforeCreate` 中注册它：
 
 ``` js
 beforeCreate: function () {
@@ -1118,7 +1118,7 @@ beforeCreate: function () {
 }
 ```
 
-Problem solved!
+问题解决！
 
 ### 内联模版
 
