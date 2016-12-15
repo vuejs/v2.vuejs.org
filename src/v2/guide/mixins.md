@@ -38,14 +38,14 @@ var component = new Component() // -> "hello from mixin!"
 ``` js
 var mixin = {
   created: function () {
-    console.log('mixin hook called')
+    console.log('混合对象的钩子被调用')
   }
 }
 
 new Vue({
   mixins: [mixin],
   created: function () {
-    console.log('component hook called')
+    console.log('组件钩子被调用')
   }
 })
 
