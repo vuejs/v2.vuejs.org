@@ -1100,7 +1100,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 </ul>
 ```
 
-仔细观察，你会看到组件互相依赖，这是矛盾的！当你使用 `Vue.component` 全局注册组件后，Vue 会为你解决这个矛盾。
+仔细观察，你会看到组件互相依赖，这是矛盾的！当你使用 `Vue.component` 全局注册组件后，Vue 会自动解决这个问题。
 
 然而，如果你使用模块化工具 Webpack 或者 Browserify，通过 requiring/importing 导入组件的话，你会看到一个错误：
 
@@ -1110,7 +1110,7 @@ Failed to mount component: template or render function not defined.
 
 为了解释这是如何产生的，下面我称组件为 A 和 B。模块化工具看到依赖 A，但是首先 A 依赖 B，但是 B 又依赖 A，A 又 依赖 B，如此形成了一个死循环，不知道通过先不解析另一个来解决问题，为了修复这个问题，我们需要给模块化工具一个切入点，我们可以告诉它，A 依赖 B,但是不用先解析 B。
 
-在我们的例子中，`tree-folder` 组件为切入点。我们知道创造矛盾的是 `tree-folder-contents` 组件，所以我在组件的生命周期钩子 `beforeCreate` 中注册它：
+在我们的例子中，`tree-folder` 组件为切入点。我们知道制造矛盾的是 `tree-folder-contents` 组件，所以我在组件的生命周期钩子 `beforeCreate` 中注册它：
 
 ``` js
 beforeCreate: function () {
