@@ -2,6 +2,8 @@
 
 이 문서는 [hexo](http://hexo.io/)로 만들었습니다. 마크다운으로 작성된 문서는 `src`에 있습니다. 언제든지 이슈가 있으면 풀 리퀘스트를 보내주세요!
 
+[![Build Status](https://travis-ci.org/vuejs-kr/kr.vuejs.org.svg?branch=master)](https://travis-ci.org/vuejs-kr/kr.vuejs.org)
+
 ## 한국어 사용자 모임
 
 [Vue.js 한국어 사용자 Gitter 채팅방](https://gitter.im/vuejs-kr/vuejs-kr?utm_source=share-link&utm_medium=link&utm_campaign=share-link) 을 열었습니다.
