@@ -1,4 +1,4 @@
-(function () {
+(function() {
 
   initMobileMenu()
   if (PAGE_TYPE) {
@@ -8,11 +8,11 @@
     initLocationHashFuzzyMatching()
   }
 
-  function initApiSpecLinks () {
+  function initApiSpecLinks() {
     var apiContent = document.querySelector('.content.api')
     if (apiContent) {
       var apiTitles = [].slice.call(apiContent.querySelectorAll('h3'))
-      apiTitles.forEach(function (titleNode) {
+      apiTitles.forEach(function(titleNode) {
         var ulNode = titleNode.parentNode.nextSibling
         if (ulNode.tagName !== 'UL') {
           ulNode = ulNode.nextSibling
@@ -31,15 +31,17 @@
     }
   }
 
-  function initLocationHashFuzzyMatching () {
+  function initLocationHashFuzzyMatching() {
     var hash = window.location.hash
     if (!hash) return
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
       var possibleHashes = [].slice.call(document.querySelectorAll('[id]'))
-        .map(function (el) { return el.id })
-      possibleHashes.sort(function (hashA, hashB) {
+        .map(function(el) {
+          return el.id
+        })
+      possibleHashes.sort(function(hashA, hashB) {
         var distanceA = levenshteinDistance(normalizedHash, normalizeHash(hashA))
         var distanceB = levenshteinDistance(normalizedHash, normalizeHash(hashB))
         if (distanceA < distanceB) return -1
@@ -49,13 +51,13 @@
       window.location.hash = possibleHashes[0]
     }
 
-    function normalizeHash (rawHash) {
+    function normalizeHash(rawHash) {
       return rawHash
         .toLowerCase()
         .replace(/\-(?:deprecated|removed|replaced|changed|obsolete)$/, '')
     }
 
-    function levenshteinDistance (a, b) {
+    function levenshteinDistance(a, b) {
       var m = []
       if (!(a && b)) return (b || a).length
       for (var i = 0; i <= b.length; m[i] = [i++]) {}
@@ -77,16 +79,16 @@
    * Mobile burger menu button for toggling sidebar
    */
 
-  function initMobileMenu () {
+  function initMobileMenu() {
     var mobileBar = document.getElementById('mobile-bar')
     var sidebar = document.querySelector('.sidebar')
     var menuButton = mobileBar.querySelector('.menu-button')
 
-    menuButton.addEventListener('click', function () {
+    menuButton.addEventListener('click', function() {
       sidebar.classList.toggle('open')
     })
 
-    document.body.addEventListener('click', function (e) {
+    document.body.addEventListener('click', function(e) {
       if (e.target !== menuButton && !sidebar.contains(e.target)) {
         sidebar.classList.remove('open')
       }
@@ -97,7 +99,7 @@
    * Doc version select
    */
 
-  function initVersionSelect () {
+  function initVersionSelect() {
     // version select
     var versionSelect = document.querySelector('.version-select')
     versionSelect && versionSelect.addEventListener('change', function (e) {
@@ -117,7 +119,7 @@
    * Sub headers in sidebar
    */
 
-  function initSubHeaders () {
+  function initSubHeaders() {
     var each = [].forEach
     var main = document.getElementById('main')
     var header = document.getElementById('header')
@@ -139,7 +141,7 @@
       }
       var headers = content.querySelectorAll('h2')
       if (headers.length) {
-        each.call(headers, function (h) {
+        each.call(headers, function(h) {
           sectionContainer.appendChild(makeLink(h))
           var h3s = collectH3s(h)
           allHeaders.push(h)
@@ -150,20 +152,20 @@
         })
       } else {
         headers = content.querySelectorAll('h3')
-        each.call(headers, function (h) {
+        each.call(headers, function(h) {
           sectionContainer.appendChild(makeLink(h))
           allHeaders.push(h)
         })
       }
 
       var animating = false
-      sectionContainer.addEventListener('click', function (e) {
+      sectionContainer.addEventListener('click', function(e) {
         e.preventDefault()
         if (e.target.classList.contains('section-link')) {
           sidebar.classList.remove('open')
           setActive(e.target)
           animating = true
-          setTimeout(function () {
+          setTimeout(function() {
             animating = false
           }, 400)
         }
@@ -179,10 +181,10 @@
     }
 
     var hoveredOverSidebar = false
-    sidebar.addEventListener('mouseover', function () {
+    sidebar.addEventListener('mouseover', function() {
       hoveredOverSidebar = true
     })
-    sidebar.addEventListener('mouseleave', function () {
+    sidebar.addEventListener('mouseleave', function() {
       hoveredOverSidebar = false
     })
 
@@ -190,7 +192,7 @@
     window.addEventListener('scroll', updateSidebar)
     window.addEventListener('resize', updateSidebar)
 
-    function updateSidebar () {
+    function updateSidebar() {
       var doc = document.documentElement
       var top = doc && doc.scrollTop || document.body.scrollTop
       if (animating || !allHeaders) return
@@ -205,10 +207,10 @@
         }
       }
       if (last)
-      setActive(last.id, !hoveredOverSidebar)
+        setActive(last.id, !hoveredOverSidebar)
     }
 
-    function makeLink (h) {
+    function makeLink(h) {
       var link = document.createElement('li')
       var text = h.textContent.replace(/\(.*\)$/, '')
       link.innerHTML =
@@ -239,29 +241,29 @@
       return h3s
     }
 
-    function makeSubLinks (h3s, small) {
+    function makeSubLinks(h3s, small) {
       var container = document.createElement('ul')
       if (small) {
         container.className = 'menu-sub'
       }
-      h3s.forEach(function (h) {
+      h3s.forEach(function(h) {
         container.appendChild(makeLink(h))
       })
       return container
     }
 
-    function setActive (id, shouldScrollIntoView) {
+    function setActive(id, shouldScrollIntoView) {
       var previousActive = sidebar.querySelector('.section-link.active')
-      var currentActive = typeof id === 'string'
-        ? sidebar.querySelector('.section-link[href="#' + id + '"]')
-        : id
+      var currentActive = typeof id === 'string' ?
+        sidebar.querySelector('.section-link[href="#' + id + '"]') :
+        id
       if (currentActive !== previousActive) {
         if (previousActive) previousActive.classList.remove('active')
         currentActive.classList.add('active')
         if (shouldScrollIntoView) {
-          var currentPageOffset = currentPageAnchor
-            ? currentPageAnchor.offsetTop - 8
-            : 0
+          var currentPageOffset = currentPageAnchor ?
+            currentPageAnchor.offsetTop - 8 :
+            0
           var currentActiveOffset = currentActive.offsetTop + currentActive.parentNode.clientHeight
           var sidebarHeight = sidebar.clientHeight
           var currentActiveIsInView = (
@@ -269,17 +271,17 @@
             currentActiveOffset <= sidebar.scrollTop + sidebarHeight
           )
           var linkNotFurtherThanSidebarHeight = currentActiveOffset - currentPageOffset < sidebarHeight
-          var newScrollTop = currentActiveIsInView
-            ? sidebar.scrollTop
-            : linkNotFurtherThanSidebarHeight
-              ? currentPageOffset
-              : currentActiveOffset - sidebarHeight
+          var newScrollTop = currentActiveIsInView ?
+            sidebar.scrollTop :
+            linkNotFurtherThanSidebarHeight ?
+            currentPageOffset :
+            currentActiveOffset - sidebarHeight
           sidebar.scrollTop = newScrollTop
         }
       }
     }
 
-    function makeHeaderClickable (link) {
+    function makeHeaderClickable(link) {
       var wrapper = document.createElement('a')
       wrapper.href = '#' + link.id
       wrapper.setAttribute('data-scroll', '')

@@ -4,7 +4,7 @@ type: examples
 order: 9
 ---
 
-> This is a fully spec-compliant TodoMVC implementation in under 120 effective lines of JavaScript (excluding comments and blank lines).
+> 本例是一个完全和规范一致的 TodoMVC 实现，只用了 120 行有效的 JavaScript（不包含注释和空行）。
 
 <p class="tip">Note that if your web browser is configured to block 3rd-party data/cookies, the example below will not work, as the `localStorage` data will fail to be saved from JSFiddle. You'll have to click on `Edit in JSFiddle` to see the live result.</p>
 
