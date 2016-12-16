@@ -8,7 +8,7 @@ type: api
 
 ### silent
 
-- **형태:** `boolean`
+- **타입:** `boolean`
 
 - **기본값:** `false`
 
@@ -22,7 +22,7 @@ type: api
 
 ### optionMergeStrategies
 
-- **형태:** `{ [key: string]: Function }`
+- **타입:** `{ [key: string]: Function }`
 
 - **기본값:** `{}`
 
@@ -48,7 +48,7 @@ type: api
 
 ### devtools
 
-- **형태:** `boolean`
+- **타입:** `boolean`
 
 - **기본값:** `true` (`false` in production builds)
 
@@ -63,7 +63,7 @@ type: api
 
 ### errorHandler
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **기본값:** 오류 발생 시점의 오류
 
@@ -81,7 +81,7 @@ type: api
 
 ### ignoredElements
 
-- **형태:** `Array<string>`
+- **타입:** `Array<string>`
 
 - **기본값:** `[]`
 
@@ -97,7 +97,7 @@ type: api
 
 ### keyCodes
 
-- **형태:** `{ [key: string]: number | Array<number> }`
+- **타입:** `{ [key: string]: number | Array<number> }`
 
 - **기본값:** `{}`
 
@@ -334,7 +334,7 @@ type: api
 
 ### data
 
-- **형태:** `Object | Function`
+- **타입:** `Object | Function`
 
 - **제한:** 컴포넌트에서 사용될 때만 `함수`를 승인합니다.
 
@@ -376,7 +376,7 @@ type: api
 
 ### props
 
-- **형태:** `Array<string> | Object`
+- **타입:** `Array<string> | Object`
 
 - **상세:**
 
@@ -412,7 +412,7 @@ type: api
 
 ### propsData
 
-- **형태:** `{ [key: string]: any }`
+- **타입:** `{ [key: string]: any }`
 
 - **제한:** `new`를 이용한 인스턴스 생성때만 사용됩니다.
 
@@ -437,7 +437,7 @@ type: api
 
 ### computed
 
-- **형태:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **타입:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
 - **상세:**
 
@@ -479,7 +479,7 @@ type: api
 
 ### methods
 
-- **형태:** `{ [key: string]: Function }`
+- **타입:** `{ [key: string]: Function }`
 
 - **상세:**
 
@@ -506,7 +506,7 @@ type: api
 
 ### watch
 
-- **형태:** `{ [key: string]: string | Function | Object }`
+- **타입:** `{ [key: string]: string | Function | Object }`
 
 - **상세:**
 
@@ -545,7 +545,7 @@ type: api
 
 ### el
 
-- **형태:** `string | HTMLElement`
+- **타입:** `string | HTMLElement`
 
 - **제한:** `new`를 이용한 인스턴스 생성때만 사용됩니다.
 
@@ -563,7 +563,7 @@ type: api
 
 ### template
 
-- **형태:** `string`
+- **타입:** `string`
 
 - **상세:**
 
@@ -579,7 +579,7 @@ type: api
 
 ### render
 
-  - **형태:** `Function`
+  - **타입:** `Function`
 
   - **상세:**
 
@@ -596,7 +596,7 @@ type: api
 
 ### beforeCreate
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -606,7 +606,7 @@ type: api
 
 ### created
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -616,7 +616,7 @@ type: api
 
 ### beforeMount
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -628,7 +628,7 @@ type: api
 
 ### mounted
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -640,7 +640,7 @@ type: api
 
 ### beforeUpdate
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -653,7 +653,7 @@ type: api
 
 ### updated
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -667,7 +667,7 @@ type: api
 
 ### activated
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -681,7 +681,7 @@ type: api
 
 ### deactivated
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -695,7 +695,7 @@ type: api
 
 ### beforeDestroy
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -707,7 +707,7 @@ type: api
 
 ### destroyed
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -721,7 +721,7 @@ type: api
 
 ### directives
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **상세:**
 
@@ -733,7 +733,7 @@ type: api
 
 ### filters
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **상세:**
 
@@ -744,7 +744,7 @@ type: api
 
 ### components
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **상세:**
 
@@ -757,7 +757,7 @@ type: api
 
 ### parent
 
-- **형태:** `Vue instance`
+- **타입:** `Vue instance`
 
 - **상세:**
 
@@ -767,7 +767,7 @@ type: api
 
 ### mixins
 
-- **형태:** `Array<Object>`
+- **타입:** `Array<Object>`
 
 - **상세:**
 
@@ -793,7 +793,7 @@ type: api
 
 ### name
 
-- **형태:** `string`
+- **타입:** `string`
 
 - **제한:** 컴포넌트 옵션으로 사용될 때만 사용할 수 있습니다.
 
@@ -805,7 +805,7 @@ type: api
 
 ### extends
 
-- **형태:** `Object | Function`
+- **타입:** `Object | Function`
 
 - **상세:**
 
@@ -827,7 +827,7 @@ type: api
 
 ### delimiters
 
-- **형태:** `Array<string>`
+- **타입:** `Array<string>`
 
 - **기본값:** `{% raw %}["{{", "}}"]{% endraw %}`
 
@@ -847,7 +847,7 @@ type: api
 
 ### functional
 
-- **형태:** `boolean`
+- **타입:** `boolean`
 
 - **상세:**
 
@@ -859,7 +859,7 @@ type: api
 
 ### vm.$data
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **상세:**
 
@@ -869,7 +869,7 @@ type: api
 
 ### vm.$el
 
-- **형태:** `HTMLElement`
+- **타입:** `HTMLElement`
 
 - **읽기 전용**
 
@@ -879,7 +879,7 @@ type: api
 
 ### vm.$options
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **읽기 전용**
 
@@ -898,7 +898,7 @@ type: api
 
 ### vm.$parent
 
-- **형태:** `Vue instance`
+- **타입:** `Vue instance`
 
 - **읽기 전용**
 
@@ -908,7 +908,7 @@ type: api
 
 ### vm.$root
 
-- **형태:** `Vue instance`
+- **타입:** `Vue instance`
 
 - **읽기 전용**
 
@@ -917,7 +917,7 @@ type: api
   현재 컴포넌트 트리의 루트 Vue 인스턴스입니다. 현재 인스턴스에 부모가 없으면 이 값이 그 자체로 사용됩니다.
 ### vm.$children
 
-- **형태:** `Array<Vue instance>`
+- **타입:** `Array<Vue instance>`
 
 - **읽기 전용**
 
@@ -927,7 +927,7 @@ type: api
 
 ### vm.$slots
 
-- **형태:** `{ [name: string]: ?Array<VNode> }`
+- **타입:** `{ [name: string]: ?Array<VNode> }`
 
 - **읽기 전용**
 
@@ -979,7 +979,7 @@ type: api
 
 > 2.1.0의 새로운 기능
 
-- **형태:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **타입:** `{ [name: string]: props => VNode | Array<VNode> }`
 
 - **읽기 전용**
 
@@ -996,7 +996,7 @@ type: api
 
 ### vm.$refs
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **읽기 전용**
 
@@ -1010,7 +1010,7 @@ type: api
 
 ### vm.$isServer
 
-- **형태:** `boolean`
+- **타입:** `boolean`
 
 - **읽기 전용**
 
