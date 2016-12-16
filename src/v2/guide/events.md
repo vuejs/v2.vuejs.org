@@ -25,7 +25,7 @@ var example1 = new Vue({
 })
 ```
 
-Result:
+결과:
 
 {% raw %}
 <div id="example-1" class="demo">
@@ -76,7 +76,7 @@ var example2 = new Vue({
 example2.greet() // -> 'Hello Vue.js!'
 ```
 
-결과
+결과:
 
 {% raw %}
 <div id="example-2" class="demo">
@@ -267,4 +267,4 @@ Vue.config.keyCodes.f1 = 112
 
 2. JavaScript에서 이벤트 리스너를 수동으로 연결할 필요가 없으므로 ViewModel 코드는 순수 로직과 DOM이 필요하지 않습니다. 이렇게 하면 테스트가 쉬워집니다.
 
-3. ViewModel이 파기되면 모든 이벤트 리스너가 자동으로 제거 됩니다. 이벤트 제거에 대한 걱정이 필요 없어집니다
+3. ViewModel이 파기되면 모든 이벤트 리스너가 자동으로 제거 됩니다. 이벤트 제거에 대한 걱정이 필요 없어집니다.
