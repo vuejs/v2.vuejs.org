@@ -139,7 +139,7 @@ new Vue({
 </template>
 ```
 
-现在输入文本将会在每次切换时重新渲染。自动动手试一试。
+现在输入文本将会在每次切换时重新渲染。自己动手试一试。
 
 {% raw %}
 <div id="key-example" class="demo">

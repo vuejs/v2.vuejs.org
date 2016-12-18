@@ -27,6 +27,17 @@
         <!-- this needs to be loaded before guide's inline scripts -->
         <script src="/js/vue.js"></script>
         <script>window.PAGE_TYPE = "<%- page.type %>"</script>
+
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ebacf70d9d85cfb235c83d600113ee3e";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
     </head>
     <body class="<%- isIndex ? '' : 'docs' -%>">
         <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
