@@ -1,13 +1,13 @@
 @import "_common"
 @import "_header"
 @import "_demo"
-@import "_search"
 @import "_sponsor"
 @import "_migration"
 @import "_sidebar"
 
 #header
-    box-shadow 0 0 4px rgba(0,0,0,.25)
+    box-shadow 0 0 1px rgba(0,0,0,.25)
+    transition background-color .3s ease-in-out
 
 .content
     position relative
@@ -15,6 +15,9 @@
     max-width 600px
     margin 0 auto
     &.api
+        > a:first-of-type > h2
+            margin-top 0
+            padding-top: 0
         ul
             padding-left 1.25em
             line-height 1.4em
@@ -41,25 +44,41 @@
         margin-left 20px
     h1
         margin 0 0 1em
+    h2, h3
+        &:before
+            content ''
+            display block
+            margin-top -1 * $heading-link-padding-top
+            height $heading-link-padding-top
+            visibility hidden
     h2
-        margin 2em 0 .8em
+        margin $h2-margin-top 0 .8em
         padding-bottom .7em
         border-bottom 1px solid $border
+        z-index: -1
     h3
-        margin 3em 0 1.2em
+        margin $h3-margin-top 0 1.2em
         position relative
-        &:before
+        z-index: -1
+        &:after
             content "#"
             color $green
             position absolute
             left -0.7em
-            top -2px
+            bottom -2px
             font-size 1.2em
             font-weight bold
-    figure, p, ul, ol
+    figure
         margin 1.2em 0
     p, ul, ol
         line-height 1.6em
+        // HACK: Create area underneath paragraphs
+        // and lists that will be on top of heading
+        // anchors, for easier text highlighting.
+        margin 1.2em 0 -1.2em
+        padding-bottom 1.2em
+        position relative
+        z-index: 1
     ul, ol
         padding-left 1.5em
     a
@@ -74,6 +93,25 @@
             margin-left 0
     iframe
         margin 1em 0
+    > table
+        border 2px solid $white
+        margin 1.2em auto
+        padding: 1em
+        td, th
+            line-height 1.6em
+            padding .5em 1.4em
+            border none
+        td
+            background-color: lighten($codebg, 60%)
+        th
+            background-color: $green
+            color: #fff
+            padding-top: .85em
+            padding-bottom .85em
+            text-align left
+        tbody
+            code
+                background-color #efefef
     p.tip
         padding 12px 24px 12px 30px
         margin 2em 0
@@ -99,6 +137,9 @@
             font-family $logo-font
             font-size 14px
 
+        code
+            background-color #efefef
+
         em
             color $medium
 
@@ -117,8 +158,9 @@
     .sidebar
         position fixed
 
-#donate
-    margin-top 15px
+@media screen and (min-width: 1590px)
+    #header
+        background-color rgba(255,255,255,.4)
 
 @media screen and (max-width: 1300px)
     .content.with-sidebar
@@ -126,25 +168,13 @@
     #ad
         z-index 7
         position relative
-        width 100%
         padding 0
         bottom 0
         right 0
-        margin 0 0 15px -6px
-        .carbon-wrap, .carbon-img, .carbon-text, .carbon-poweredby
-            display inline-block
-            vertical-align top
-        .carbon-text
-            width 140px
-            margin-left 15px
-        .carbon-poweredby
-            position absolute
-            bottom 12px
-            left 140px
+        float right
+        padding 0 0 20px 30px
 
 @media screen and (max-width: 900px)
-    #ad
-        width 100%
     body
         -webkit-text-size-adjust none
         font-size 14px
@@ -165,6 +195,13 @@
     .content
         &.with-sidebar
             margin auto
+        h2, h3
+            &:before
+                content ''
+                display block
+                margin-top -1 * $mobile-heading-link-padding-top
+                height $mobile-heading-link-padding-top
+                visibility hidden
     .footer
         margin-left 0
         text-align center
