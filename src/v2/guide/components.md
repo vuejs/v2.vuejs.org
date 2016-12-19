@@ -1078,9 +1078,9 @@ template: '<div><stack-overflow></stack-overflow></div>'
 上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
 
 
-### 组件的循环引用
+### 组件之间的循环引用
 
-你要构造一个文件树，像是 Mac 的 Finder 或是 Windows 的 资源管理器。你有一个 `tree-folder` 组件包含下面的模版：
+假设您正在构建一个文件目录树，像是 Mac 下的 Finder 或是 Windows 下的文件资源管理器。您可能有一个使用此模板的 `tree-folder` 组件：
 
 ``` html
 <p>
@@ -1089,7 +1089,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 </p>
 ```
 
-一个 `tree-folder-contents` 组件包含下面的模版：
+然后有一个使用此模板的 `tree-folder-contents` 组件：
 
 ``` html
 <ul>
@@ -1100,17 +1100,18 @@ template: '<div><stack-overflow></stack-overflow></div>'
 </ul>
 ```
 
-仔细观察，你会看到组件互相依赖，这是矛盾的！当你使用 `Vue.component` 全局注册组件后，Vue 会自动解决这个问题。
+仔细观察后，你就会发现：在渲染树中，这些组件实际上都是彼此的后代和祖先，这是矛盾且相悖的！当使用 `Vue.component` 全局注册组件后，这个问题会自动解决。如果以上已经解决你的问题，你可以在这里停止阅读。
 
-然而，如果你使用模块化工具 Webpack 或者 Browserify，通过 requiring/importing 导入组件的话，你会看到一个错误：
+然而，如果你使用了模块系统（例如通过 Webpack 或 Browserify 等模块化工具），并通过 require/import 导入组件的话，你就会看到一个错误：
 
 ```
 Failed to mount component: template or render function not defined.
+无法挂载组件：模板或 render 函数未定义。
 ```
 
-为了解释这是如何产生的，下面我称组件为 A 和 B。模块化工具看到依赖 A，但是首先 A 依赖 B，但是 B 又依赖 A，A 又 依赖 B，如此形成了一个死循环，不知道通过先不解析另一个来解决问题，为了修复这个问题，我们需要给模块化工具一个切入点，我们可以告诉它，A 依赖 B,但是不用先解析 B。
+为了解释这是如何产生的，我将称我们的组件为 A 和 B。模块系统看到它需要导入 A，但是首先 A 需要导入 B，但是 B 又需要导入 A，A 又需要导入 B，等等，如此形成了一个死循环，模块系统并不知道在先不解析一个组件的情况下，如何解析另一个组件。为了修复这个问题，我们需要给模块系统一个切入点，我们可以告诉它，A 需要导入 B，但是没有必要先解析 B。
 
-在我们的例子中，`tree-folder` 组件为切入点。我们知道制造矛盾的是 `tree-folder-contents` 组件，所以我在组件的生命周期钩子 `beforeCreate` 中注册它：
+在我们的例子中，将 `tree-folder` 组件做为切入起点。我们知道制造矛盾的是 `tree-folder-contents` 子组件，所以我们在 `tree-folder` 组件的生命周期钩子函数 `beforeCreate` 中去注册 `tree-folder-contents` 组件：
 
 ``` js
 beforeCreate: function () {
@@ -1118,7 +1119,7 @@ beforeCreate: function () {
 }
 ```
 
-问题解决！
+这样问题就解决了！
 
 ### 内联模版
 
