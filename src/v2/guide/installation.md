@@ -47,10 +47,11 @@ $ npm install vue
 ### 독립 실행형 vs. 런타임 전용 빌드
 
 There are two builds available:
+두가지 빌드를 사용할 수 있습니다.
 
-- `vue.common.js` - the standalone build - includes the template compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.** The template compiler is responsible for compiling Vue template strings into pure JavaScript render functions. If you want to use the `template` option, then you need the compiler. The `Vuex` store requires the standalone build as well.
+- `vue.common.js` - 독립 실행 형 빌드 - 템플릿 컴파일러를 포함하고 `template` 옵션을 지원합니다. **또한 브라우저 API의 존재 여부에 의존하므로 서버 측 렌더링에 사용할 수 없습니다.** 템플릿 컴파일러는 Vue 템플릿 문자열을 순수 JavaScript 렌더링 함수로 컴파일해야합니다. `template` 옵션을 사용하려면, 컴파일러가 필요합니다. `Vuex` 저장소는 독립형 빌드도 필요합니다.
 
-- `vue.js` - the runtime-only build - does not include the template compiler, and does not support the `template` option. You can use the `render` option when using the runtime-only build, but it only works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only {{ro_gz_size}}kb min+gzip.
+- `vue.js` - (런타임 전용 빌드)는 템플릿 컴파일러를 포함하지 않고 `template` 옵션을 지원하지 않습니다. 런타임 전용 빌드를 사용할 때 `render` 옵션을 사용할 수 있으나, 단일 파일 컴포넌트의 템플릿은 빌드 단계에서 `render` 함수로 사전에 컴파일되기 때문에 단일 파일 컴포넌트에서만 작동합니다. 런타임 전용 빌드는 독립 실행 형 빌드보다 약 30% 가벼우며 {{ro_gz_size}}kb min+gzip 정도 밖에 안됩니다.
 
 기본적으로 NPM 패키지는 **런타임 전용** 빌드입니다. 독립 실행형 빌드를 사용하려면 Webpack 구성에 다음과 같은 별칭을 추가합니다.
 
