@@ -4,6 +4,6 @@ type: examples
 order: 2
 ---
 
-> Cet exemple utilise [Firebase](https://firebase.google.com/) comme serveur de données persistantes et de synchronisation clientes en temps réel (vous pouvez essayer cela en ouvrant de multiples onglets dans votre navigateur). Il réalise également une validation instantanée en utilisant les propriétés calculées et appel des transitions CSS quand des éléments sont ajoutés/supprimés.
+> Cet exemple utilise [Firebase](https://firebase.google.com/) comme serveur de données persistantes et de synchronisation clientes en temps réel (vous pouvez essayer cela en ouvrant de multiples onglets dans votre navigateur). Il réalise également une validation instantanée en utilisant les propriétés calculées et appelle des transitions CSS quand des éléments sont ajoutés/supprimés.
 
 <iframe width="100%" height="500" src="https://jsfiddle.net/chrisvfritz/pyLbpzzx/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
