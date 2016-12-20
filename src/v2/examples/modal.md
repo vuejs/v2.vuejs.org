@@ -1,5 +1,5 @@
 ---
-title: Composant d'une fenêtre modale
+title: Composant fenêtre modale
 type: examples
 order: 6
 ---
