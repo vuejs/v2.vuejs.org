@@ -93,7 +93,7 @@ var vm = new Vue({
     message: '123'
   }
 })
-vm.message = 'new message' // 대이터 변경
+vm.message = 'new message' // 데이터  변경
 vm.$el.textContent === 'new message' // false
 Vue.nextTick(function () {
   vm.$el.textContent === 'new message' // true
