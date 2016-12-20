@@ -46,13 +46,11 @@ $ npm install vue
 
 ### Standalone vs. Runtime-only Build
 
-There are two builds available, the standalone build and the runtime-only build. The difference being that the former includes the **template compiler** and the latter does not.
+There are two builds available:
 
-The template compiler is responsible for compiling Vue template strings into pure JavaScript render functions. If you want to use the `template` option, then you need the compiler.
+- `vue.common.js` - the standalone build - includes the template compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.** The template compiler is responsible for compiling Vue template strings into pure JavaScript render functions. If you want to use the `template` option, then you need the compiler. The `Vuex` store requires the standalone build as well.
 
-- The standalone build includes the compiler and supports the `template` option. **It also relies on the presence of browser APIs so you cannot use it for server-side rendering.**
-
-- The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only {{ro_gz_size}}kb min+gzip.
+- `vue.js` - the runtime-only build - does not include the template compiler, and does not support the `template` option. You can use the `render` option when using the runtime-only build, but it only works with single-file components, because single-file components' templates are pre-compiled into `render` functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only {{ro_gz_size}}kb min+gzip.
 
 By default, the NPM package exports the **runtime-only** build. To use the standalone build, add the following alias to your Webpack config:
 
