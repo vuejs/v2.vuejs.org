@@ -1,9 +1,9 @@
 ---
-title: Modal Component
+title: Composant d'une fenêtre modale
 type: examples
 order: 6
 ---
 
-> Features used: component, prop passing, content insertion, transitions.
+Fonctionnalités utilisées : composant, passage par attribut, insertion de contenu, transitions.
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><iframe width="100%" height="500" src="https://jsfiddle.net/yyx990803/mwLbw11k/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="500" src="https://jsfiddle.net/yyx990803/mwLbw11k/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
