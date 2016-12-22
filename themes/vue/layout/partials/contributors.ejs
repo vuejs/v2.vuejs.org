@@ -1,0 +1,173 @@
+<div id="contributors">
+<a href="https://github.com/vuejs/cn.vuejs.org/graphs/contributors">cn.vuejs.org 贡献者</a>
+<p>共 <span style="color:#e66;font-size:28px;" v-text="list.length "></span> 人参与贡献，排名不分先后，<a href="https://github.com/vuefe/vuefe.github.io/issues/192">如有遗漏，请告知</a></p>
+<ul class="contributors">
+  <a v-for="item in list"
+    class="contributor"
+    :href="'https://github.com/' + item.github" target="_blank">
+    <img class="contributor__img" :src="'https://github.com/' + item.github + '.png?size=64'" />
+    <p v-text="item.github" style="margin: 0;"></p>
+  </a>
+</ul>
+</div>
+
+<style>
+.contributor {
+  display: inline-block;
+  margin: 10px 15px;
+  text-align: center;
+}
+.contributor__img {
+  width: 64px;
+  height: 64px;
+  border-radius: 64px;
+}
+</style>
+
+
+<script>
+new Vue({
+  el: "#contributors",
+  data: function() {
+    return {
+      list: [
+        {
+          github: 'dingyiming'
+        },{
+          github: '70data'
+        },{
+          github: 'bhnddowinf'
+        },{
+          github: 'dear-lizhihua'
+        },{
+          github: 'hilongjw'
+        },{
+          github: 'hijiangtao'
+        },{
+          github: 'ATLgo'
+        },{
+          github: 'daix6'
+        },{
+          github: 'hgcoder'
+        },{
+          github: 'yangzj1992'
+        },{
+          github: 'veaba'
+        },{
+          github: 'tingtien'
+        },{
+          github: 'ezreally'
+        },{
+          github: 'cuiyongjian'
+        },{
+          github: 'StoneQI'
+        },{
+          github: 'harrytospring'
+        },{
+          github: 'lindazhang102'
+        },{
+          github: '595074187'
+        },{
+          github: 'zhouzihanntu'
+        },{
+          github: 'mlyknown'
+        },{
+          github: 'yongbolv'
+        },{
+          github: 'yizhixiaolongxia'
+        },{
+          github: 'forzajuve10'
+        },{
+          github: 'coolzjy'
+        },{
+          github: 'tuxiantian'
+        },{
+          github: 'showonne'
+        },{
+          github: 'Luoxinfang'
+        },{
+          github: 'xie-qianyue'
+        },{
+          github: 'rocklau'
+        },{
+          github: 'shoglory'
+        },{
+          github: 'viko16'
+        },{
+          github: 'panzj'
+        },{
+          github: '	Creabine'
+        },{
+          github: 'shupande'
+        },{
+          github: 'ShangXinbo'
+        },{
+          github: 'swust-xiaoj'
+        },{
+          github: 'lichunqiang'
+        },{
+          github: 'athena0304'
+        },{
+          github: 'zhouxinyong'
+        },{
+          github: 'LightCi'
+        },{
+          github: 'MrZhang123'
+        },{
+          github: 'XyinM'
+        },{
+          github: 'homfen'
+        },{
+          github: 'sleelily'
+        },{
+          github: 'varHarrie'
+        },{
+          github: 'fytriht'
+        },{
+          github: 'yuzhiquan'
+        },{
+          github: 'LeoSpark'
+        },{
+          github: 'liyahui'
+        },{
+          github: '477800969'
+        },{
+          github: 'skiy'
+        },{
+          github: 'green-mike'
+        },{
+          github: 'G-Bruin'
+        },{
+          github: 'geekingin'
+        },{
+          github: 'amingguazi'
+        },{
+          github: 'NangeGao'
+        },{
+          github: 'Byss1'
+        },{
+          github: 'bringtree'
+        },{
+          github: 'lihengming'
+        },{
+          github: 'iHelin'
+        },{
+          github: 'kiyonlin'
+        },{
+          github: 'xqin'
+        },{
+          github: 'zp1996'
+        },{
+          github: 'ZHKO1'
+        },{
+          github: 'Peter-WF'
+        },{
+          github: 'ZoeyYoung'
+        },{
+          github: 'think2011'
+        },
+      ]
+    };
+  }
+})
+</script>
