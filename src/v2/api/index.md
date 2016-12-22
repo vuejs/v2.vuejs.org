@@ -763,7 +763,7 @@ type: api
 
   작성 할 인스턴스의 상위 인스턴스를 지정해야 합니다. 부모-자식 관계를 설정합니다. 부모는 자식에 대해 `this.$parent`로 접근할 수 있고 자식은 부모의 `$children`배열로 추가 됩니다.
 
-<p class="tip">`$parent`와 `$children`은 적당히 사용해야합니다. 대부분 escape-hatch로 사용합니다. 부모와 자식 간 의사소통은 props와 이벤트 사용을 권장합니다.</p>
+  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
 
 ### mixins
 
