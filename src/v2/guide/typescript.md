@@ -6,7 +6,7 @@ order: 25
 
 ## 官方的声明文件
 
-静态类型系统可以帮助防止许多潜在的运行时错误，特别是随着应用程序的增长. 这就是为什么Vue使用 [TypeScript](https://www.typescriptlang.org/) 的正式类型声明 - 不仅在Vue-core，也为 [Vue-router](https://github.com/vuejs/vue/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vue/tree/dev/types)。
+静态类型系统可以帮助防止许多潜在的运行时错误，特别是随着应用程序的增长. 这就是为什么Vue使用带 [TypeScript](https://www.typescriptlang.org/) 的官方的类型声明 - 不仅是用在Vue-core，也用在 [Vue-router](https://github.com/vuejs/vue/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vue/tree/dev/types)。
 
 由于这些[声明文件](https://unpkg.com/vue/types/)是在 NPM 上发布的，你甚至不需要像 `Typings` 这样的外部工具，因为声明是用Vue自动导入的。 这意味着你需要的是简单的引入 Vue:
 
@@ -14,7 +14,7 @@ order: 25
 import Vue = require('vue')
 ```
 
-然后所有的方法，属性和参数将被检查类型。 例如，如果拼写 `template` 组件选项为t empate（缺少 l ）， TypeScript 编译器将在编译时打印一条错误消息。 如果你使用可以验证TypeScript的编辑器，如 [Visual Studio Code](https://code.visualstudio.com/)，你甚至可以在编译之前捕获这些错误：
+然后所有的方法，属性和参数将被检查类型。 例如，如果拼写 `template` 组件选项为 tempate（缺少 l ）， TypeScript 编译器将在编译时打印一条错误消息。 如果你使用可以验证TypeScript的编辑器，如 [Visual Studio Code](https://code.visualstudio.com/)，你甚至可以在编译之前捕获这些错误：
 
 
 ![TypeScript Type Error in Visual Studio Code](/images/typescript-type-error.png)
