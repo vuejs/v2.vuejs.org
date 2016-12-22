@@ -4,29 +4,28 @@ type: guide
 order: 25
 ---
 
-## 官方声明文件
+## 官方的声明文件
 
-静态类型系统可以帮助防止许多潜在的运行时错误，特别是随着应用程序的增长. 这就是为什么Vue与TypeScript的正式类型声明 - 不仅在Vue核心，也为Vue路由器和Vuex。
+静态类型系统可以帮助防止许多潜在的运行时错误，特别是随着应用程序的增长. 这就是为什么Vue使用 [TypeScript](https://www.typescriptlang.org/) 的正式类型声明 - 不仅在Vue-core，也为 [Vue-router](https://github.com/vuejs/vue/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vue/tree/dev/types)。
 
-That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also [for Vue Router](https://github.com/vuejs/vue-router/tree/dev/types) and [for Vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
-
-Since these are [published on NPM](https://unpkg.com/vue/types/), you don't even need external tools like `Typings`, as declarations are automatically imported with Vue. That means all you need is a simple:
+由于这些[声明文件](https://unpkg.com/vue/types/)是在 NPM 上发布的，你甚至不需要像 `Typings` 这样的外部工具，因为声明是用Vue自动导入的。 这意味着你需要的是简单的引入 Vue:
 
 ``` ts
 import Vue = require('vue')
 ```
 
-Then all methods, properties, and parameters will be type checked. For example, if you misspell the `template` component option as `tempate` (missing the `l`), the TypeScript compiler will print an error message at compile time. If you're using an editor that can lint TypeScript, such as [Visual Studio Code](https://code.visualstudio.com/), you'll even be able to catch these errors before compilation:
+然后所有的方法，属性和参数将被检查类型。 例如，如果拼写 `template` 组件选项为t empate（缺少 l ）， TypeScript 编译器将在编译时打印一条错误消息。 如果你使用可以验证TypeScript的编辑器，如 [Visual Studio Code](https://code.visualstudio.com/)，你甚至可以在编译之前捕获这些错误：
+
 
 ![TypeScript Type Error in Visual Studio Code](/images/typescript-type-error.png)
 
-### Compilation Options
+### 编译选项
 
-Vue's declaration files require the `--lib DOM,ES2015.Promise` [compiler option](https://www.typescriptlang.org/docs/handbook/compiler-options.html). You can pass this option to the `tsc` command or add the equivalent to a `tsconfig.json` file.
+Vue的声明文件需要 `--lib DOM,ES2015.Promise` [编译选项](https://www.typescriptlang.org/docs/handbook/compiler-options.html)。 您可以将此选项传递到 `tsc` 命令或将等效内容添加到 `tsconfig.json` 文件。
 
-### Accessing Vue's Type Declarations
+### 访问Vue的类型声明
 
-If you want to annotate your own code with Vue's types, you can access them on Vue's exported object. For example, to annotate an exported component options object (e.g. in a `.vue` file):
+如果你想注释自己的代码与Vue的类型,您可以访问在Vue的出口对象。例如,注释一个组件的选择对象(例如在一个 `vue` 文件):
 
 ``` ts
 import Vue = require('vue')
@@ -37,9 +36,9 @@ export default {
 } as Vue.ComponentOptions<Vue>
 ```
 
-## Class-Style Vue Components
+## 类-样式Vue组件
 
-Vue component options can easily be annotated with types:
+Vue 组件选项可以很容易地注释类型:
 
 ``` ts
 import Vue = require('vue')
@@ -69,13 +68,14 @@ export default {
 } as Vue.ComponentOptions<MyComponent>
 ```
 
-Unfortunately, there are a few limitations here:
+不幸的是,这里有一些限制：
 
-- __TypeScript can't infer all types from Vue's API.__ For example, it doesn't know that the `message` property returned in our `data` function will be added to the `MyComponent` instance. That means if we assigned a number or boolean value to `message`, linters and compilers wouldn't be able to raise an error, complaining that it should be a string.
+- __TypeScript 不能从 Vue 推断出所有类型的 API。__例如,它不知道 `data` 返回的  `message` 属性将被添加到 `MyComponent` 实例。这意味着如果我们指定一个数字或布尔值信息,验证器和编译器不能抛出一个错误,提示它应该是一个字符串。
 
-- Because of the previous limitation, __annotating types like this can be verbose__. The only reason we have to manually declare `message` as a string is because TypeScript can't infer the type in this case.
 
-Fortunately, [vue-class-component](https://github.com/vuejs/vue-class-component) can solve both of these problems. It's an official companion library that allows you to declare components as native JavaScript classes, with a `@Component` decorator. As an example, let's rewrite the above component:
+- 因为之前的限制,__这样可以详细的注释类型__。我们不得不手动声明 `message` 作为字符串的唯一原因,是因为 `TypeScript` 不能推断类型。
+
+幸运的是, [vue-class-component](https://github.com/vuejs/vue-class-component) 可以解决这两个问题。这是一个官方的库,允许您用 @component 装饰器，像原生 JavaScript 类那样声明组件库。让我们重写上述组件作为一个示例:
 
 ``` ts
 import Vue = require('vue')
@@ -97,4 +97,5 @@ export default class MyComponent extends Vue {
 }
 ```
 
-With this syntax alternative, our component definition is not only shorter, but TypeScript can also infer the types of `message` and `onClick` without explicit interface declarations. This strategy even allows you to handle types for computed properties, lifecycle hooks, and render functions. For full usage details, see [the vue-class-component docs](https://github.com/vuejs/vue-class-component#vue-class-component).
+由于这种语法的替代,我们的组件定义不仅更短,而且 `TypeScript` 也可以推断出 `message` 和 `onClick` 的类型没有显式接口声明。这种策略甚至允许您处理类型为计算属性,生命周期钩子和渲染功能。完整的使用细节,请参阅[vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component)文档。
+
