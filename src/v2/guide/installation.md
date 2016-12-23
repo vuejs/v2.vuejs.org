@@ -17,7 +17,7 @@ Vue ne supporte **pas** IE8 et les versions antérieures, car il utilise des fon
 
 Les notes de version détaillées pour chaque version sont disponibles sur [GitHub](https://github.com/vuejs/vue/releases).
 
-## Autonome
+## Standalone
 
 Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera déclaré comme une variable globale.
 
@@ -96,11 +96,11 @@ $ npm install
 $ npm run dev
 ```
 
-<p class="tip">Utiliser le CLI présuppose des connaissances en Node.js et les outils de build associés. Si vous êtes nouveau sur Vue ou les outils de build front-end, nous vous recommandons fortement de parcourir <a href="./">le guide</a> sans aucuns outils de build avant d'utiliser le CLI.</p>
+<p class="tip">Utiliser la CLI nécessite des connaissances préalables en Node.js et les outils de build associés. Si vous êtes nouveau sur Vue ou les outils de build front-end, nous vous recommandons fortement de parcourir <a href="./">le guide</a> sans aucun outil de build avant d'utiliser l'interface CLI.</p>
 
 ## Build de développement
 
-**Important**: les fichiers générés dans le dossier `/dist` sur GitHub sont seulement pris en compte pendant la releases. Pour utiliser la dernière version du code source de Vue sur GitHub, vous devrez le construire vous-même !
+**Important**: les fichiers générés dans le dossier `/dist` sur GitHub sont seulement vérifiés lors des releases. Pour utiliser la dernière version du code source de Vue sur GitHub, vous aurez à lancer le build vous-même !
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -118,4 +118,4 @@ $ bower install vue
 
 ## Chargeurs de module AMD
 
-Les téléchargements seuls ou les versions installées via Bower sont encapsulés selon UMD ce qui permet de directement les utiliser sous forme de module AMD.
+Les versions standalone ou installées via Bower sont encapsulés selon UMD ce qui permet de directement les utiliser sous forme de module AMD.
