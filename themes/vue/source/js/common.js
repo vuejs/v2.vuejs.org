@@ -109,8 +109,8 @@
       window.location.assign(
         'http://' +
         version +
-        (version && '.') +
-        'vuejs.org/' + section + '/'
+        (version && '-') +
+        'cn.vuejs.org/' + section + '/'
       )
     })
   }
