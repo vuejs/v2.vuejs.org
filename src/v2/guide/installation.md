@@ -37,7 +37,7 @@ Recommandé: [unpkg](https://unpkg.com/vue/dist/vue.js), qui reflète la derniè
 
 ## NPM
 
-NPM est la méthode d'installation recommandée lors du développement d'applications à grande échelle avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [Webpack](http://webpack.github.io/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
+NPM est la méthode d'installation recommandée lors du développement d'applications à grande échelle avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [Webpack](http://webpack.github.io/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Monopage](single-file-components.html).
 
 ``` bash
 # latest stable
@@ -52,7 +52,7 @@ Le compilateur de template se charge de compiler les chaînes littérales de tem
 
 - Le build standalone inclut le compilateur et supporte l'option `template`. **Il s'appuie également sur les APIs navigateurs, ce qui signifie que vous ne pouvez pas l'utiliser pour du rendu côté serveur.**
 
-- Le build runtime n'inclut pas le compitateur de template, et ne supporte pas l'option `template`. Vous pouvez seulement utiliser l'option `render` quand vous utilisez le build runtime, mais il fonctionne avec des composants mono-fichier, car les templates de composants mono-fichier sont pré-compilés dans `render` pendant l'étape de build. Le build runtime est à peu près 30% plus léger que le build standalone, l'amenant seulement à {{ro_gz_size}}ko min+gzip.
+- Le build runtime n'inclut pas le compitateur de template, et ne supporte pas l'option `template`. Vous pouvez seulement utiliser l'option `render` quand vous utilisez le build runtime, mais il fonctionne avec des composants monopage, car les templates de composants monopage sont pré-compilés dans `render` pendant l'étape de build. Le build runtime est à peu près 30% plus léger que le build standalone, l'amenant seulement à {{ro_gz_size}}ko min+gzip.
 
 Par défaut, c'est le build **runtime** qui est exporté par le package NPM. Pour utiliser le build standalone, il faut ajouter l'alias suivant dans la configuration Webpack :
 
@@ -83,12 +83,12 @@ D'un autre côté, le build runtime respecte pleinement CSP. Quand vous utilisez
 
 ## CLI
 
-Vue.js offre une [interface en ligne de commande officielle](https://github.com/vuejs/vue-cli) pour mettre rapidement en place les bases d'Applications Mono-fichier ambitieuses. Il offre une série de builds pré-configurés pour un workflow Front-end moderne. Cela ne prends que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des builds prêt pour la production :
+Vue.js offre une [interface en ligne de commande officielle](https://github.com/vuejs/vue-cli) pour mettre rapidement en place les bases d'Applications Monopage ambitieuses. Il offre une série de builds pré-configurés pour un workflow Front-end moderne. Cela ne prends que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des builds prêt pour la production :
 
 ``` bash
 # installer vue-cli
 $ npm install --global vue-cli
-# créer un nouveau projet en utilisant le template « webpack »
+# créer un nouveau projet en utilisant le template "webpack"
 $ vue init webpack my-project
 # installer les dépendances et go !
 $ cd my-project
