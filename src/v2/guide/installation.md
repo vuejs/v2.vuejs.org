@@ -11,7 +11,7 @@ ro_gz_size: "17.67"
 
 ### Compatibilité
 
-Vue ne supporte **pas** IE8 et les versions antérieures, car il utilise des fonctionnalités ECMAScript 5 qui sont inconcevables avec IE8. Cela dit, Vue supporte tous les [navigateurs compatibles ECMAScript 5](http://caniuse.com/#feat=es5).
+Vue ne supporte **pas** IE8 et les versions antérieures, car il utilise des fonctionnalités ECMAScript 5 qui ne peuvent pas être émulées sur IE8. Cela dit, Vue supporte tous les [navigateurs compatibles ECMAScript 5](http://caniuse.com/#feat=es5).
 
 ### Notes de version
 
@@ -19,9 +19,9 @@ Les notes de version détaillées pour chaque version sont disponibles sur [GitH
 
 ## Autonome
 
-Il suffit de télécharger et d'inclure une balise script. `Vue` sera déclaré comme une variable globale.
+Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera déclaré comme une variable globale.
 
-<p class="tip">N'utilisez pas la version minifiée pendant le développement car vous ne bénéficierez pas des avertissements pour les erreurs courantes !</p>
+<p class="tip">N'utilisez pas la version minifiée pendant le développement car vous ne bénéficieriez alors pas des avertissements pour les erreurs courantes !</p>
 
 <div id="downloads">
 <a class="button" href="./js/vue.js" download>Version de développement</a><span class="light info">Avec tous les avertissements et le mode de débogage</span>
@@ -31,30 +31,30 @@ Il suffit de télécharger et d'inclure une balise script. `Vue` sera déclaré 
 
 ### CDN
 
-Recommandé: [unpkg](https://unpkg.com/vue/dist/vue.js), qui reflète la dernière version aussitôt qu'elle est publiée sur npm. Vous pouvez également parcourir la source du package npm à [unpkg.com/vue/](https://unpkg.com/vue/).
+Recommandé: [unpkg](https://unpkg.com/vue/dist/vue.js), qui reflète la dernière version aussitôt qu'elle est publiée sur NPM. Vous pouvez également parcourir la source du package NPM sur [unpkg.com/vue/](https://unpkg.com/vue/).
 
 Également disponible sur [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) ou [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mais ces deux services mettent du temps à se synchroniser ce qui signifie que la dernière version peut ne pas être encore disponible.
 
 ## NPM
 
-NPM est la méthode d'installation recommandée lors du développement d'applications à grande échelle avec Vue. Il s'associe bien avec des modules d'empaquetage comme [Webpack](http://webpack.github.io/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Monofichier](single-file-components.html).
+NPM est la méthode d'installation recommandée lors du développement d'applications à grande échelle avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [Webpack](http://webpack.github.io/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
 
 ``` bash
 # latest stable
 $ npm install vue
 ```
 
-### Autonomie vs. Minimum utile
+### Standalone vs. Runtime
 
-Il y a deux builds disponibles, le build autonome (dit *standalone*) et le build minimal (dit *runtime-only*). La différence vient du fait que le premier inclut le **compilateur de template** alors que le second ne l'inclut pas.
+Il y a deux builds disponibles le build standalone et le build runtime. La différence vient du fait que le premier inclut le **compilateur de template** alors que le second ne l'inclut pas.
 
 Le compilateur de template se charge de compiler les chaînes littérales de template Vue en pure fonction de rendu JavaScript. Si vous souhaitez utiliser l'option `template`, alors vous aurez besoin du compilateur.
 
-- Le build autonome inclut le compilateur et supporte l'option `template`. **Il s'appuie également sur les APIs navigateurs, ce qui signifie que vous ne pouvez pas l'utiliser pour du rendu côté serveur.**
+- Le build standalone inclut le compilateur et supporte l'option `template`. **Il s'appuie également sur les APIs navigateurs, ce qui signifie que vous ne pouvez pas l'utiliser pour du rendu côté serveur.**
 
-- Le build minimal n'inclut pas le compitateur de template, et ne supporte pas l'option `template`. Vous pouvez seulement utiliser l'option `render` quand vous utilisez le build minimal, mais il fonctionne avec des composants monofichier, car les templates de composants monofichier sont pré-compilés dans `render` pendant l'étape de build. Le build minimal est à peu près 30% plus léger que le build autonome, l'amenant seulement à {{ro_gz_size}}ko min+gzip.
+- Le build runtime n'inclut pas le compitateur de template, et ne supporte pas l'option `template`. Vous pouvez seulement utiliser l'option `render` quand vous utilisez le build runtime, mais il fonctionne avec des composants mono-fichier, car les templates de composants mono-fichier sont pré-compilés dans `render` pendant l'étape de build. Le build runtime est à peu près 30% plus léger que le build standalone, l'amenant seulement à {{ro_gz_size}}ko min+gzip.
 
-Par défaut, c'est le build **minimal** qui est exporté par le package NPM. Pour utiliser le build autonome, il faut ajouter l'alias suivant dans la configuration Webpack :
+Par défaut, c'est le build **runtime** qui est exporté par le package NPM. Pour utiliser le build standalone, il faut ajouter l'alias suivant dans la configuration Webpack :
 
 ``` js
 resolve: {
@@ -64,7 +64,7 @@ resolve: {
 }
 ```
 
-Pour Browserify, vous pouvez ajouter l'alias dans votre package.json :
+Pour Browserify, vous pouvez ajouter un alias dans votre package.json :
 
 ``` js
 "browser": {
@@ -73,17 +73,17 @@ Pour Browserify, vous pouvez ajouter l'alias dans votre package.json :
 ```
 
 <p class="tip">Ne faites PAS `import Vue from 'vue/dist/vue.js'` — 
-bien que certains outils ou bibliothèques tierces peuvent également importer vue, cela peut forcer l'app à charger conjointement le build minimal et autonome en même temps et mener à des erreurs.</p>
+en effet, certains outils ou bibliothèques tierces peuvent également importer Vue, ce qui peut forcer l'app à charger conjointement les builds runtime et standalone et mener à des erreurs.</p>
 
 ### Environnements CSP
 
-Certains environnements, tels que les Applications de Google Chrome, font respecter la politique de sécurité de contenu (Content Security Policy - CSP), qui ne permet pas l'utilisation de `new Function()` pour évaluer les expressions. Le build autonome a besoin de cette fonctionnalité pour compiler les templates, elle n'est donc pas utilisable dans ces environnements.
+Certains environnements, tels que les Applications de Google Chrome, font respecter la politique de sécurité de contenu (Content Security Policy - CSP), qui ne permet pas l'utilisation de `new Function()` pour évaluer les expressions. Le build standalone a besoin de cette fonctionnalité pour compiler les templates, elle n'est donc pas utilisable dans ces environnements.
 
-D'un autre côté, le build minimal respecte pleinement CSP. Quand vous utilisez le build minimal avec [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) ou [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), vos templates vont être pré-compilé dans les fonctions `render` qui fonctionnent parfaitement dans des environnements CSP.
+D'un autre côté, le build runtime respecte pleinement CSP. Quand vous utilisez le build runtime avec [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) ou [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), vos templates vont être pré-compilé dans les fonctions `render` qui fonctionnent parfaitement dans des environnements CSP.
 
 ## CLI
 
-Vue.js offre une [interface en ligne de commande officielle](https://github.com/vuejs/vue-cli) pour mettre rapidement en place les bases d'Applications Monofichier ambitieuses. Il offre une série de builds pré-configurés pour un workflow Front-end moderne. Cela ne prends que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des builds prêt pour la production :
+Vue.js offre une [interface en ligne de commande officielle](https://github.com/vuejs/vue-cli) pour mettre rapidement en place les bases d'Applications Mono-fichier ambitieuses. Il offre une série de builds pré-configurés pour un workflow Front-end moderne. Cela ne prends que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des builds prêt pour la production :
 
 ``` bash
 # installer vue-cli
