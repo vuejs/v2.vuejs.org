@@ -14,7 +14,7 @@ var vm = new Vue({
 })
 ```
 
-[MVVM 패턴](https://en.wikipedia.org/wiki/Model_View_ViewModel)과 강한 관련이 없더라도 Vue의 디자인은 이에 영향을 받았음을 부인할 수 없습니다. 컨벤션으로 Vue 인스턴스를 참조하기 위해 종종 변수 `vm`(ViewModel의 약자)를 사용합니다.
+Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instances.
 
 Vue 인스턴스를 인스턴스화 할 때는 데이터, 템플릿, 마운트할 엘리먼트, 메소드, 라이프사이클 콜백 등의 옵션을 포함 할 수있는 **options 객체** 를 전달 해야합니다. 전체 옵션 목록은 [API reference](../ api)에서 찾을 수 있습니다.
 

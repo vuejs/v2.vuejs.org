@@ -177,7 +177,8 @@ createElement(
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // 컴포넌트의 자식인 경우 슬롯의 이름입니다.
+  // The name of the slot, if this component is the
+  // child of another component
   slot: 'name-of-slot'
   // 기타 최고 레벨 속성
   key: 'myKey',
