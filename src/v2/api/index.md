@@ -1328,6 +1328,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
 
   This directive triggers transitions when its condition changes.
+  
+  <p class="tip">When used together with v-for, v-for has a higher priority than v-if. Check this <a href="../guide/list.html#V-for-and-v-if">link</a> for details.</p>
 
 - **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
 
@@ -1411,7 +1413,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     {{ item.text }}
   </div>
   ```
-
+  
+  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. Check this <a href="../guide/list.html#V-for-and-v-if">link</a> for details.</a></p>
+  
   The detailed usage for `v-for` is explained in the guide section linked below.
 
 - **See also:**

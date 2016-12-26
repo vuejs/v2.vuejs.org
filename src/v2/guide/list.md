@@ -329,7 +329,63 @@ new Vue({
 </script>
 {% endraw %}
 
-## key
+### V-for and v-if
+
+In Vue.js template, v-for has a higher priority than v-if when they exists in the same node.
+
+Suppose the example code bellow: 
+
+```html
+<div v-for="item in list" v-if="item"><div>true</div></div>
+<div v-for="item2 in list2" v-else><div>{{ item2 }}</div></div>
+```
+
+```js
+list: [0, false, 1],
+list2: [4, 5, 6]
+```
+
+
+Because v-for has higher priority than v-if, Vue.js will loop item in the list first. If item is true, it will output `true`, else it will loop list2 and output the items of it.
+
+So the result of the above example code will be:
+ 
+```html
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>true
+</div>
+```
+
+Let's see a complicated example.
+
+```html
+<div v-for="item in list" v-if="item"><div>true</div></div>
+<div v-for="item2 in list2" v-else-if="item === false"><div>{{ item2 }}</div></div>
+<div v-else><div>else</div></div>
+```
+
+```js
+list: [0, false, 1],
+list2: [4, 5, 6]
+```
+
+The result be:
+ 
+```html
+<div>else</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>true</div>
+```
+
+
+## Key
 
 When Vue.js is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
 
