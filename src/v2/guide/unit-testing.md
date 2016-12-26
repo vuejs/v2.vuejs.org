@@ -43,35 +43,35 @@ import MyComponent from 'path/to/MyComponent.vue'
 describe('MyComponent', () => {
   // Inspect the raw component options
   it('has a created hook', () => {
-    expect(typeof MyComponent.created).toBe('function')
+    expect(MyComponent.created).to.be.a('function')
   })
 
   // Evaluate the results of functions in
   // the raw component options
   it('sets the correct default data', () => {
-    expect(typeof MyComponent.data).toBe('function')
+    expect(MyComponent.data).to.be.a('function')
     const defaultData = MyComponent.data()
-    expect(defaultData.message).toBe('hello!')
+    expect(defaultData.message).to.eql('hello!')
   })
 
   // Inspect the component instance on mount
   it('correctly sets the message when created', () => {
     const vm = new Vue(MyComponent).$mount()
-    expect(vm.message).toBe('bye!')
+    expect(vm.message).to.eql('bye!')
   })
 
   // Mount an instance and inspect the render output
   it('renders the correct message', () => {
     const Ctor = Vue.extend(MyComponent)
     const vm = new Ctor().$mount()
-    expect(vm.$el.textContent).toBe('bye!')
+    expect(vm.$el.textContent).to.eql('bye!')
   })
 })
 ```
 
 ## Writing Testable Components
 
-A lot of components' render output are primarily determined by the props they receive. In fact, if a component's render output solely depends on its props, it becomes quite straightforward to test, similar to asserting the return value of a pure function with different arguments. Take an contrived example:
+A lot of components's render output are primarily determined by the props they receive. In fact, if a component's render output solely depends on its props, it becomes quite straightforward to test, similar to asserting the return value of a pure function with different arguments. Take an contrived example:
 
 ``` html
 <template>
@@ -102,11 +102,11 @@ describe('MyComponent', () => {
   it('render correctly with different props', () => {
     expect(getRenderedText(MyComponent, {
       msg: 'Hello'
-    })).toBe('Hello')
+    })).to.eql('Hello')
 
     expect(getRenderedText(MyComponent, {
       msg: 'Bye'
-    })).toBe('Bye')
+    })).to.eql('Bye')
   })
 })
 ```
@@ -123,7 +123,7 @@ it('updates the rendered message when vm.message updates', done => {
 
   // wait a "tick" after state change before asserting DOM updates
   Vue.nextTick(() => {
-    expect(vm.$el.textContent).toBe('foo')
+    expect(vm.$el.textContent).to.eql('foo')
     done()
   })
 })
