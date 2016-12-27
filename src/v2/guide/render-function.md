@@ -175,7 +175,8 @@ createElement(
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // 如果子组件有定义 slot 的名称
+  // The name of the slot, if this component is the
+  // child of another component
   slot: 'name-of-slot'
   // 其他特殊顶层属性
   key: 'myKey',
