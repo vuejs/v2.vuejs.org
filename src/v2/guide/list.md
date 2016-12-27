@@ -336,13 +336,20 @@ In Vue.js template, v-for has a higher priority than v-if when they exists in th
 Suppose the example code bellow: 
 
 ```html
-<div v-for="item in list" v-if="item"><div>true</div></div>
-<div v-for="item2 in list2" v-else><div>{{ item2 }}</div></div>
+<div id="v-for-if"  class="demo">
+  <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
+  <div v-for="item2 in list2" v-else><div>{{ item2 }}</div></div>
+</div>
 ```
 
 ```js
-list: [0, false, 1],
-list2: [4, 5, 6]
+new Vue({
+  el: '#v-for-if',
+  data: {
+    list: [0, false, 1],
+    list2: [4, 5, 6]    
+  }
+})
 ```
 
 
@@ -350,40 +357,60 @@ Because v-for has higher priority than v-if, Vue.js will loop item in the list f
 
 So the result of the above example code will be:
  
+{% raw %}
+<div id="v-for-if" class="demo">
+  <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
+  <div v-for="item2 in list2" v-else><div>{{ item2 }}</div></div>
+</div>
+<script>
+new Vue({
+  el: '#v-for-if',
+  data: {
+    list: [0, false, 1],
+    list2: [4, 5, 6]    
+  }
+})
+</script>
+{% endraw %} 
+
+Let's see a complicated example. This example shows the case that v-for, v-if, v-else-if and v-else used together.
+
 ```html
-<div>4</div>
-<div>5</div>
-<div>6</div>
-<div>4</div>
-<div>5</div>
-<div>6</div>
-<div>true
+<div id="v-for-if-complicated" class="demo">
+  <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
+  <div v-for="item2 in list2" v-else-if="item === false"><div>{{ item2 }}</div></div>
+  <div v-else><div>else</div></div>
 </div>
 ```
 
-Let's see a complicated example.
-
-```html
-<div v-for="item in list" v-if="item"><div>true</div></div>
-<div v-for="item2 in list2" v-else-if="item === false"><div>{{ item2 }}</div></div>
-<div v-else><div>else</div></div>
-```
-
 ```js
-list: [0, false, 1],
-list2: [4, 5, 6]
+new Vue({
+  el: '#v-for-if-complicated',
+  data: {
+    list: [0, false, 1],
+    list2: [4, 5, 6]    
+  }
+})
 ```
 
 The result be:
  
-```html
-<div>else</div>
-<div>4</div>
-<div>5</div>
-<div>6</div>
-<div>true</div>
-```
-
+{% raw %}
+<div id="v-for-if-complicated" class="demo">
+  <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
+  <div v-for="item2 in list2" v-else-if="item === false"><div>{{ item2 }}</div></div>
+  <div v-else><div>else</div></div>
+</div>
+<script>
+new Vue({
+  el: '#v-for-if-complicated',
+  data: {
+    list: [0, false, 1],
+    list2: [4, 5, 6]    
+  }
+})
+</script>
+{% endraw %} 
 
 ## Key
 
