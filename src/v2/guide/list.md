@@ -393,7 +393,7 @@ new Vue({
 })
 ```
 
-The result be:
+Result:
  
 {% raw %}
 <div id="v-for-if-complicated" class="demo">
