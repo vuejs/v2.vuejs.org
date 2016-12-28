@@ -1833,8 +1833,8 @@ type: api
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp. Only components matched by this will be cached.
-  - `exclude` - string or RegExp. Any component matched by this will not be cached.
+  - `include` - 字符串或正则。 匹配的组件会被缓存。
+  - `exclude` - 字符串或正则。 匹配的组件不会被缓存。
 
 - **用法：**
 
@@ -1866,9 +1866,9 @@ type: api
 
 - **`include` and `exclude`**
 
-  > New in 2.1.0
+  > 2.1.0 新增
 
-  The `include` and `exclude` props allow components to be conditionally cached. Both props can either be a comma-delimited string or a RegExp:
+  `include` 和 `exclude` 允许通过条件控制组件的缓存，它们可以用逗号隔开的字符串或是正则来进行设置：
 
   ``` html
   <!-- comma-delimited string -->
@@ -1882,7 +1882,7 @@ type: api
   </keep-alive>
   ```
 
-  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
+  首先检查组件的 `name` 选项，如果没有 `name`，再检查本地注册名（父组件 `components` 选项）。匿名组件不会被匹配。
 
   <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
