@@ -76,7 +76,7 @@ DOM 안의 템플릿 또는 JavaScript 안의 템플릿 문자열을 사용하�
 
 이를 적용하려면 해당 빌드 도구 문서를 참조하십시오.
 
-- [Webpack + vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
+- [Webpack + vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack 템플릿은 이미 이 설정이 되어 있습니다)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
 - [Rollup + rollup-plugin-vue](https://github.com/znck/rollup-plugin-vue#options)
 
