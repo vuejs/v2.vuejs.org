@@ -379,7 +379,7 @@ example1.items = example1.items.filter(function (item) {
 
 由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
 
-1. 当你直接设置一个项的索引时，例如： `vm.items[indexOfItem] = newValue`
+1. 当你利用索引直接设置一个项时，例如： `vm.items[indexOfItem] = newValue`
 2. 当你修改数组的长度时，例如： `vm.items.length = newLength`
 
 为了避免第一种情况，以下两种方式将达到像 `vm.items[indexOfItem] = newValue` 的效果， 同时也将触发状态更新：
@@ -422,7 +422,7 @@ computed: {
 }
 ```
 
-或者，您也可以在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 使用 method 方法：
+或者，你也可以在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 使用 method 方法：
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
