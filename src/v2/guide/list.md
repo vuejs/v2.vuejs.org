@@ -353,7 +353,7 @@ new Vue({
 ```
 
 
-Because v-for has higher priority than v-if, Vue.js will loop item in the list first. If item is true, it will output `true`, else it will loop list2 and output the items of it.
+Because v-for has higher priority than v-if, Vue.js will loop item in the list first. If item is true, it will output `item` value, else it will loop list2 and output the items of it.
 
 So the result of the above example code will be:
  
