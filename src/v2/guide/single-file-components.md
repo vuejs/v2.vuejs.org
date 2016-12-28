@@ -31,9 +31,22 @@ As promised, we can also use preprocessors such as Jade, Babel (with ES2015 modu
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-These specific languages are just examples. You could just as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive.
+These specific languages are just examples. You could just as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
 
-<!-- TODO: include CSS modules once it's supported in vue-loader 9.x -->
+### What About Separation of Concerns?
+
+One important thing to note is that **separation of concerns is not equal to separation of file types.** In modern UI development, we have found that instead of dividing the codebase into three huge layers that interweaves with one another, it makes much more sense to divide them into loosely-coupled components and compose them. Inside a component, its template, logic and styles are inherently coupled, and collocating them actually makes the component more cohesive and maintainable.
+
+Even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files:
+
+``` html
+<!-- my-component.vue -->
+<template>
+  <div>This will be pre-compiled</div>
+</template>
+<script src="./my-component.js"></script>
+<style src="./my-component.css"></style>
+```
 
 ## Getting Started
 
