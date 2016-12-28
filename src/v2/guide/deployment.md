@@ -1,69 +1,85 @@
 ---
-title: Single File Components
+title: 프로덕션 배포 팁
 type: guide
-order: 19
+order: 20
 ---
 
-## Introduction
+## 프로덕션 모드를 켜세요
 
-In many Vue projects, global components will be defined using `Vue.component`, followed by `new Vue({ el: '#container' })` to target a container element in the body of every page.
+개발 과정에서 Vue는 일반적인 오류 및 함정을 해결하는 데 도움이 되는 많은 경고를 제공합니다. 그러나 이러한 경고 문자열은 프로덕션에서는 쓸모 없으며 앱의 페이로드 크기를 키웁니다. 또한 이러한 경고 검사 중 일부는 프로덕션 모드에서 피할 수 있는 런타임 비용이 적습니다.
 
-This can work very well for small to medium-sized projects, where JavaScript is only used to enhance certain views. In more complex projects however, or when your frontend is entirely driven by JavaScript, these disadvantages become apparent:
+### 빌드 도구를 사용하지 않는 경우
 
-- **Global definitions** force unique names for every component
-- **String templates** lack syntax highlighting and require ugly slashes for multiline HTML
-- **No CSS support** means that while HTML and JavaScript are modularized into components, CSS is conspicuously left out
-- **No build step** restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and Babel
+독립 실행 형 빌드를 사용하는 경우 (즉, 빌드 도구 없이 스크립트 태그를 통해 Vue를 직접 포함하는 경우) 프로덕션 환경을 위해 축소 버전(`vue.min.js`)을 사용해야합니다.
 
-All of these are solved by **single-file components** with a `.vue` extension, made possible with build tools such as Webpack or Browserify.
+### 빌드 도구를 사용하는 경우
 
-Here's a simple example of a file we'll call `Hello.vue`:
+Webpack이나 Browserify와 같은 빌드 툴을 사용할 때, 프로덕션 모드는 Vue의 소스 코드 안에있는 `process.env.NODE_ENV`에 의해 결정 될 것이며, 기본적으로 개발 모드가 될 것입니다. 두 빌드 도구 모두 이 변수를 덮어 쓸 수있는 방법을 제공하여 Vue의 프로덕션 모드를 사용할 수있게하고 빌드하는 동안 minifier가 경고를 제거합니다. 모든 `vue-cli` 템플릿에는 다음과 같은 것들이 미리 설정 되어 있습니다. 그러나 어떻게 실행되는지는 유용합니다.
 
-<img src="/images/vue-component.png" style="display: block; margin: 30px auto">
+#### Webpack
 
-Now we get:
+프로덕션 환경을 알리기 위해 Webpack의[DefinePlugin] (http://webpack.github.io/docs/list-of-plugins.html#defineplugin)을 사용하여 최소화 중에 UglifyJS에 의해 경고 블록이 자동으로 삭제 될 수 있도록합니다.
 
-- [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#syntax-highlighting)
-- [CommonJS modules](https://webpack.github.io/docs/commonjs.html)
-- [Component-scoped CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+설정 예제:
 
-As promised, we can also use preprocessors such as Jade, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
-<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
+``` js
+var webpack = require('webpack')
 
-These specific languages are just examples. You could just as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
-
-### What About Separation of Concerns?
-
-One important thing to note is that **separation of concerns is not equal to separation of file types.** In modern UI development, we have found that instead of dividing the codebase into three huge layers that interweaves with one another, it makes much more sense to divide them into loosely-coupled components and compose them. Inside a component, its template, logic and styles are inherently coupled, and collocating them actually makes the component more cohesive and maintainable.
-
-Even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files:
-
-``` html
-<!-- my-component.vue -->
-<template>
-  <div>This will be pre-compiled</div>
-</template>
-<script src="./my-component.js"></script>
-<style src="./my-component.css"></style>
+module.exports = {
+  // ...
+  plugins: [
+    // ...
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    })
+  ]
+}
 ```
 
-## Getting Started
+#### Browserify
 
-### For Users New to Module Build Systems in JavaScript
+- `"production "`으로 설정된 실제 `NODE_ENV` 환경 변수로 번들링 명령을 실행하십시오. 이렇게 하면 핫 리로드 및 개발 관련 코드가 포함되지 않도록 `vueify`에 알립니다.
 
-With `.vue` components, we're entering the realm of advanced JavaScript applications. That means learning to use a few additional tools if you haven't already:
+- 번들에 전역 [envify](https://github.com/hughsk/envify) 변형을 적용하십시오. 이렇게하면 minifier가 env 변수 조건부 블록에 래핑 된 Vue 소스 코드의 모든 경고를 제거 할 수 있습니다.
 
-- **Node Package Manager (NPM)**: Read the [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) through section _10: Uninstalling global packages_.
+  ``` bash
+  NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
+  ```
 
-- **Modern JavaScript with ES2015/16**: Read through Babel's [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). You don't have to memorize every feature right now, but keep this page as a reference you can come back to.
+#### Rollup
 
-After you've taken a day to dive into these resources, we recommend checking out the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template. Follow the instructions and you should have a Vue project with `.vue` components, ES2015 and hot-reloading running in no time!
+[rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)을 사용하세요.
 
-The template uses [Webpack](https://webpack.github.io/), a module bundler that takes a number of "modules" and then bundles them into your final application. To learn more about Webpack itself, [this video](https://www.youtube.com/watch?v=WQue1AN93YU) offers a good intro. Once you get past the basics, you might also want to check out [this advanced Webpack course on Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
+``` js
+const replace = require('rollup-plugin-replace')
 
-In Webpack, each module can be transformed by a "loader" before being included in the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with Webpack, you can read [the docs for vue-loader](https://vue-loader.vuejs.org).
+rollup({
+  // ...
+  plugins: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify( 'production' )
+    })
+  ]
+}).then(...)
+```
 
-### For Advanced Users
+## 사전 컴파일한 템플릿
 
-Whether you prefer Webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
+DOM 안의 템플릿 또는 JavaScript 안의 템플릿 문자열을 사용하면 템플릿에서 렌더 함수로의 컴파일이 즉시 수행됩니다. 일반적으로 대부분의 경우 속도가 빠르지만 애플리케이션이 성능에 민감한 경우에는 사용하지 않는 것이 가장 좋습니다. 템플릿을 미리 컴파일하는 가장 쉬운 방법은 [단일 파일 컴포넌트](./ single-file-components.html)를 사용하는 것입니다. 관련 빌드 설정은 자동으로 사전 컴파일을 수행하므로 내장 코드에 원시 템플릿 문자열 대신 이미 컴파일 된 렌더링 함수가 포함되어 있습니다.
+
+## 컴포넌트의 CSS 추출하기
+
+단일 파일 컴포넌트를 사용할 때, 컴포넌트 내부의 CSS는 JavaScript를 통해 `<style>`태그로 동적으로 삽입됩니다. 런타임 비용이 적고, 서버 측 렌더링을 사용하는 경우 "스타일이없는 내용의 깜빡임"이 발생합니다. CSS를 모든 컴포넌트에서 동일한 파일로 추출하고 이러한 문제를 피하고 CSS 축소 및 캐싱을 향상시킵니다.
+
+이를 적용하려면 해당 빌드 도구 문서를 참조하십시오.
+
+- [Webpack + vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
+- [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
+- [Rollup + rollup-plugin-vue](https://github.com/znck/rollup-plugin-vue#options)
+
+## 런타임 에러 추적하기
+
+구성 요소의 렌더링 중에 런타임 오류가 발생하면 전역 `Vue.config.errorHandler` config 함수로 전달됩니다. 이 훅을 [공식적인 통합](https://sentry.io/for/vue/)을 제공하는 [Sentry](https://sentry.io)와 같은 오류 추적 서비스와 함께 활용하면 좋습니다.
