@@ -1,116 +1,69 @@
 ---
-<<<<<<< HEAD
-title: 프로덕션으로 배포하기
-=======
-title: Production Deployment Tips
->>>>>>> vuejs/master
+title: Single File Components
 type: guide
-order: 20
+order: 19
 ---
 
-<<<<<<< HEAD
-## 경고 제거하기
+## Introduction
 
-Vue의 최소화된 독립 실행 형 빌드는 이미 작은 파일 크기에 대한 모든 경고를 제거했지만 Webpack 또는 Browserify와 같은 도구를 사용하는 경우이를 수행하기 위해 몇 가지 추가 구성이 필요합니다.
-=======
-## Turn on Production Mode
+In many Vue projects, global components will be defined using `Vue.component`, followed by `new Vue({ el: '#container' })` to target a container element in the body of every page.
 
-During development, Vue provides a lot of warnings to help you with common errors and pitfalls. However, these warning strings become useless in production and bloat your app's payload size. In addition, some of these warning checks have small runtime costs that can be avoided in production mode.
->>>>>>> vuejs/master
+This can work very well for small to medium-sized projects, where JavaScript is only used to enhance certain views. In more complex projects however, or when your frontend is entirely driven by JavaScript, these disadvantages become apparent:
 
-### Without Build Tools
+- **Global definitions** force unique names for every component
+- **String templates** lack syntax highlighting and require ugly slashes for multiline HTML
+- **No CSS support** means that while HTML and JavaScript are modularized into components, CSS is conspicuously left out
+- **No build step** restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and Babel
 
-If you are using the standalone build, i.e. directly including Vue via a script tag without a build tool, make sure to use the minified version (`vue.min.js`) for production.
+All of these are solved by **single-file components** with a `.vue` extension, made possible with build tools such as Webpack or Browserify.
 
-### With Build Tools
+Here's a simple example of a file we'll call `Hello.vue`:
 
-When using a build tool like Webpack or Browserify, the production mode will be determined by `process.env.NODE_ENV` inside Vue's source code, and it will be in development mode by default. Both build tools provide ways to overwrite this variable to enable Vue's production mode, and warnings will be stripped by minifiers during the build. All `vue-cli` templates have these pre-configured for you, but it would be beneficial to know how it is done:
+<img src="/images/vue-component.png" style="display: block; margin: 30px auto">
 
-#### Webpack
+Now we get:
 
-배포 환경을 인지하기 위해 Webpack의 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin)을 사용하여 최소화 중에 UglifyJS에 의해 경고 블록을 자동으로 삭제할 수 있습니다.
+- [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#syntax-highlighting)
+- [CommonJS modules](https://webpack.github.io/docs/commonjs.html)
+- [Component-scoped CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
-구성 예 :
+As promised, we can also use preprocessors such as Jade, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
-``` js
-var webpack = require('webpack')
+<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-module.exports = {
-  // ...
-  plugins: [
-    // ...
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    })
-  ]
-}
+These specific languages are just examples. You could just as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
+
+### What About Separation of Concerns?
+
+One important thing to note is that **separation of concerns is not equal to separation of file types.** In modern UI development, we have found that instead of dividing the codebase into three huge layers that interweaves with one another, it makes much more sense to divide them into loosely-coupled components and compose them. Inside a component, its template, logic and styles are inherently coupled, and collocating them actually makes the component more cohesive and maintainable.
+
+Even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files:
+
+``` html
+<!-- my-component.vue -->
+<template>
+  <div>This will be pre-compiled</div>
+</template>
+<script src="./my-component.js"></script>
+<style src="./my-component.css"></style>
 ```
 
-#### Browserify
+## Getting Started
 
-- Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
+### For Users New to Module Build Systems in JavaScript
 
-<<<<<<< HEAD
--`NODE_ENV`가 `"production"`으로 설정하여 번들링 명령을 실행하십시오. 이렇게하면 핫 리로드 및 개발 관련 코드가 포함되지 않도록 `vueify`에 알립니다.
-- 번들에 전역 [envify](https://github.com/hughsk/envify) 변형을 적용하십시오. 이렇게하면 minifier가 env 변수 조건부 블록에 래핑 된 Vue 소스 코드의 모든 경고를 제거 할 수 있습니다.
-예 :
-=======
-- Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle. This allows the minifier to strip out all the warnings in Vue's source code wrapped in env variable conditional blocks. For example:
+With `.vue` components, we're entering the realm of advanced JavaScript applications. That means learning to use a few additional tools if you haven't already:
 
-  ``` bash
-  NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
-  ```
->>>>>>> vuejs/master
+- **Node Package Manager (NPM)**: Read the [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) through section _10: Uninstalling global packages_.
 
-#### Rollup
+- **Modern JavaScript with ES2015/16**: Read through Babel's [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). You don't have to memorize every feature right now, but keep this page as a reference you can come back to.
 
-<<<<<<< HEAD
-- 별도의 CSS 파일에 스타일을 추출하려면 vueify에 포함 된 extract-css 플러그인을 사용하십시오.
-=======
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
->>>>>>> vuejs/master
+After you've taken a day to dive into these resources, we recommend checking out the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template. Follow the instructions and you should have a Vue project with `.vue` components, ES2015 and hot-reloading running in no time!
 
-``` js
-const replace = require('rollup-plugin-replace')
+The template uses [Webpack](https://webpack.github.io/), a module bundler that takes a number of "modules" and then bundles them into your final application. To learn more about Webpack itself, [this video](https://www.youtube.com/watch?v=WQue1AN93YU) offers a good intro. Once you get past the basics, you might also want to check out [this advanced Webpack course on Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
 
-rollup({
-  // ...
-  plugins: [
-    replace({
-      'process.env.NODE_ENV': JSON.stringify( 'production' )
-    })
-  ]
-}).then(...)
-```
+In Webpack, each module can be transformed by a "loader" before being included in the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with Webpack, you can read [the docs for vue-loader](https://vue-loader.vuejs.org).
 
-<<<<<<< HEAD
-## 런타임 에러 추적
+### For Advanced Users
 
-구성 요소의 렌더링 중에 런타임 오류가 발생하면 전역 `Vue.config.errorHandler` config 함수가 전달되면 전달됩니다. 이 훅을 [Sentry](https://sentry.io)와 같은 오류 추적 서비스와 함께 사용하면 좋습니다. Vue 를 위한[공식 통합](https://sentry.io/for/vue)을 제공합니다.
-=======
-## Pre-Compiling Templates
-
-When using in-DOM templates or in-JavaScript template strings, the template-to-render-function compilation is performed on the fly. This is usually fast enough in most cases, but is best avoided if your application is performance-sensitive. The easiest way to pre-compile templates is using [Single-File Components](./single-file-components.html) - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.
->>>>>>> vuejs/master
-
-## Extracting Component CSS
-
-<<<<<<< HEAD
-[Single-File Components](./ single-file-components.html)을 사용하는 경우 개발 중에 런타임에`<style>`태그가 동적으로 삽입됩니다. 프로덕션에서는 모든 구성 요소의 스타일을 단일 CSS 파일로 추출 할 수 있습니다. 이에 대한 자세한 내용은 [vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) 및 [vueify](https://github.com/vuejs/vueify#css-extraction)을 확인하십시오.
-
-`vue-cli`의 공식 `webpack` 템플릿에는 이미 구성되어 있습니다.
-=======
-When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file and avoid these issues, and also result in better CSS minification and caching.
-
-Refer to the respective build tool documentations to see how it's done:
-
-- [Webpack + vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
-- [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
-- [Rollup + rollup-plugin-vue](https://github.com/znck/rollup-plugin-vue#options)
-
-## Tracking Runtime Errors
-
-If a runtime error occurs during a component's render, it will be passed to the global `Vue.config.errorHandler` config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
->>>>>>> vuejs/master
+Whether you prefer Webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
