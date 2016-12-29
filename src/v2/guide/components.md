@@ -1,37 +1,37 @@
 ---
-title: Components
+title: 组件
 type: guide
 order: 11
 ---
 
-## What are Components?
+## 什么是组件？
 
-Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue's compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special `is` attribute.
+组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。
 
-## Using Components
+## 使用组件
 
-### Registration
+### 注册
 
-We've learned in the previous sections that we can create a new Vue instance with:
+之前说过，我们可以通过以下方式创建一个 Vue 实例：
 
 ``` js
 new Vue({
   el: '#some-element',
-  // options
+  // 选项
 })
 ```
 
-To register a global component, you can use `Vue.component(tagName, options)`. For example:
+要注册一个全局组件，你可以使用 `Vue.component(tagName, options)`。 例如：
 
 ``` js
 Vue.component('my-component', {
-  // options
+  // 选项
 })
 ```
 
-<p class="tip">Note that Vue does not enforce the [W3C rules](http://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
+<p class="tip">对于自定义标签名，Vue.js 不强制要求遵循 [W3C规则](https://www.w3.org/TR/custom-elements/#concepts) （小写，并且包含一个短杠），尽管遵循这个规则比较好。</p>
 
-Once registered, a component can be used in an instance's template as a custom element, `<my-component></my-component>`. Make sure the component is registered **before** you instantiate the root Vue instance. Here's the full example:
+组件在注册之后，便可以在父实例的模块中以自定义元素 `<my-component></my-component>` 的形式使用。要确保在初始化根实例 **之前** 注册了组件：
 
 ``` html
 <div id="example">
@@ -40,18 +40,18 @@ Once registered, a component can be used in an instance's template as a custom e
 ```
 
 ``` js
-// register
+// 注册
 Vue.component('my-component', {
   template: '<div>A custom component!</div>'
 })
 
-// create a root instance
+// 创建根实例
 new Vue({
   el: '#example'
 })
 ```
 
-Which will render:
+渲染为：
 
 ``` html
 <div id="example">
@@ -71,9 +71,9 @@ new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-### Local Registration
+### 局部注册
 
-You don't have to register every component globally. You can make a component available only in the scope of another instance/component by registering it with the `components` instance option:
+不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用：
 
 ``` js
 var Child = {
@@ -83,19 +83,19 @@ var Child = {
 new Vue({
   // ...
   components: {
-    // <my-component> will only be available in parent's template
+    // <my-component> 将只在父模板可用
     'my-component': Child
   }
 })
 ```
 
-The same encapsulation applies for other registerable Vue features, such as directives.
+这种封装也适用于其它可注册的 Vue 功能，如指令。
 
-### DOM Template Parsing Caveats
+### DOM 模版解析说明
 
-When using the DOM as your template (e.g. using the `el` option to mount an element with existing content), you will be subject to some restrictions that are inherent to how HTML works, because Vue can only retrieve the template content **after** the browser has parsed and normalized it. Most notably, some elements such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<option>` can only appear inside certain other elements.
+当使用 DOM 作为模版时（例如，将 `el` 选项挂载到一个已存在的元素上）, 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模版内容。尤其像这些元素 `<ul>` ， `<ol>`， `<table>` ， `<select>` 限制了能被它包裹的元素， `<option>` 只能出现在其它元素内部。
 
-This will lead to issues when using custom components with elements that have such restrictions, for example:
+在自定义组件中使用这些受限制的元素时会导致一些问题，例如：
 
 ``` html
 <table>
@@ -103,7 +103,7 @@ This will lead to issues when using custom components with elements that have su
 </table>
 ```
 
-The custom component `<my-row>` will be hoisted out as invalid content, thus causing errors in the eventual rendered output. A workaround is to use the `is` special attribute:
+自定义组件 `<my-row>` 被认为是无效的内容，因此在渲染的时候会导致错误。变通的方案是使用特殊的 `is` 属性：
 
 ``` html
 <table>
@@ -111,17 +111,17 @@ The custom component `<my-row>` will be hoisted out as invalid content, thus cau
 </table>
 ```
 
-**It should be noted that these limitations do not apply if you are using string templates from one of the following sources**:
+**应当注意，如果您使用来自以下来源之一的字符串模板，这些限制将不适用：**
 
 - `<script type="text/x-template">`
-- JavaScript inline template strings
-- `.vue` components
+- JavaScript内联模版字符串
+- `.vue` 组件
 
-Therefore, prefer using string templates whenever possible.
+因此，有必要的话请使用字符串模版。
 
-### `data` Must Be a Function
+### `data` 必须是函数
 
-Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be function. In fact, if you try this:
+使用组件时，大多数可以传入到 Vue 构造器中的选项可以在注册组件时使用，有一个例外： `data` 必须是函数。 实际上，如果你这么做：
 
 ``` js
 Vue.component('my-component', {
@@ -132,7 +132,7 @@ Vue.component('my-component', {
 })
 ```
 
-Then Vue will halt and emit warnings in the console, telling you that `data` must be a function for component instances. It's good to understand why the rules exist though, so let's cheat.
+那么 Vue 会在控制台发出警告，告诉你在组件中 `data` 必须是一个函数。最好理解这种规则的存在意义。
 
 ``` html
 <div id="example-2">
@@ -147,9 +147,8 @@ var data = { counter: 0 }
 
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  // data is technically a function, so Vue won't
-  // complain, but we return the same object
-  // reference for each component instance
+  // data 是一个函数，因此 Vue 不会警告，
+  // 但是我们为每一个组件返回了同一个对象引用
   data: function () {
     return data
   }
@@ -180,7 +179,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Since all three component instances share the same `data` object, incrementing one counter increments them all! Ouch. Let's fix this by instead returning a fresh data object:
+由于这三个组件共享了同一个 `data` ， 因此增加一个 counter 会影响所有组件！我们可以通过为每个组件返回新的 data 对象来解决这个问题：
 
 ``` js
 data: function () {
@@ -190,7 +189,7 @@ data: function () {
 }
 ```
 
-Now all our counters each have their own internal state:
+现在每个 counter 都有它自己内部的状态了：
 
 {% raw %}
 <div id="example-2-5" class="demo">
@@ -213,41 +212,41 @@ new Vue({
 </script>
 {% endraw %}
 
-### Composing Components
+### 构成组件
 
-Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component's code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.
+组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模版中使用了组件 B 。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。
 
-In Vue.js, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
+在 Vue.js 中，父子组件的关系可以总结为 **props down, events up** 。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 给父组件发送消息。看看它们是怎么工作的。
 
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
 </p>
 
-## Props
+## Prop
 
-### Passing Data with Props
+### 使用 Prop 传递数据
 
-Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
+组件实例的作用域是**孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
 
-A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](../api/#props):
+prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 [`props` 选项](../api/#props)声明 “prop”：
 
 ``` js
 Vue.component('child', {
-  // declare the props
+  // 声明 props
   props: ['message'],
-  // just like data, the prop can be used inside templates
-  // and is also made available in the vm as this.message
+  // 就像 data 一样，prop 可以用在模板内
+  // 同样也可以在 vm 实例中像 “this.message” 这样使用
   template: '<span>{{ message }}</span>'
 })
 ```
 
-Then we can pass a plain string to it like so:
+然后向它传入一个普通字符串：
 
 ``` html
 <child message="hello!"></child>
 ```
 
-Result:
+结果：
 
 {% raw %}
 <div id="prop-example-1" class="demo">
@@ -268,7 +267,7 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML attributes are case-insensitive, so when using non-string templates, camelCased prop names need to use their kebab-case (hyphen-delimited) equivalents:
+HTML 特性不区分大小写。当使用非字符串模版时，prop的名字形式会从 camelCase 转为 kebab-case（短横线隔开）：
 
 ``` js
 Vue.component('child', {
@@ -283,11 +282,11 @@ Vue.component('child', {
 <child my-message="hello!"></child>
 ```
 
-Again, if you're using string templates, then this limitation does not apply.
+再次说明，如果你使用字符串模版，不用在意这些限制。
 
-### Dynamic Props
+### 动态 Prop
 
-Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
+类似于用 `v-bind` 绑定 HTML 特性到一个表达式，也可以用 `v-bind` 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件：
 
 ``` html
 <div>
@@ -297,13 +296,13 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-It's often simpler to use the shorthand syntax for `v-bind`:
+使用 `v-bind` 的缩写语法通常更简单：
 
 ``` html
 <child :my-message="parentMsg"></child>
 ```
 
-Result:
+结果：
 
 {% raw %}
 <div id="demo-2" class="demo">
@@ -327,37 +326,37 @@ new Vue({
 </script>
 {% endraw %}
 
-### Literal vs Dynamic
+### 字面量语法 vs 动态语法
 
-A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
+初学者常犯的一个错误是使用字面量语法传递数值：
 
 ``` html
-<!-- this passes down a plain string "1" -->
+<!-- 传递了一个字符串"1" -->
 <comp some-prop="1"></comp>
 ```
 
-However, since this is a literal prop, its value is passed down as a plain string `"1"` instead of an actual number. If we want to pass down an actual JavaScript number, we need to use `v-bind` so that its value is evaluated as a JavaScript expression:
+因为它是一个字面 prop ，它的值以字符串 `"1"` 而不是以实际的数字传下去。如果想传递一个实际的 JavaScript 数字，需要使用 `v-bind` ，从而让它的值被当作 JavaScript 表达式计算：
 
 ``` html
-<!-- this passes down an actual number -->
+<!-- 传递实际的数字 -->
 <comp v-bind:some-prop="1"></comp>
 ```
 
-### One-Way Data Flow
+### 单向数据流
 
-All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about.
+prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解。
 
-In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
+另外，每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你**不应该**在子组件内部改变 prop 。如果你这么做了，Vue 会在控制台给出警告。
 
-There are usually two cases where it's tempting to mutate a prop:
+通常有两种改变 prop 的情况：
 
-1. The prop is used to only pass in an initial value, the child component simply wants to use it as a local data property afterwards;
+1. prop 作为初始值传入，子组件之后只是将它的初始值作为本地数据的初始值使用；
 
-2. The prop is passed in as a raw value that needs to be transformed.
+2. prop 作为需要被转变的原始值传入。
 
-The proper answer to these use cases are:
+更确切的说这两种情况是：
 
-1. Define a local data property that uses the prop's initial value as its initial value:
+1. 定义一个局部 data 属性，并将 prop 的初始值作为局部数据的初始值。
 
   ``` js
   props: ['initialCounter'],
@@ -366,7 +365,7 @@ The proper answer to these use cases are:
   }
   ```
 
-2. Define a computed property that is computed from the prop's value:
+2. 定义一个 computed 属性，此属性从 prop 的值计算得出。
 
   ``` js
   props: ['size'],
@@ -377,40 +376,39 @@ The proper answer to these use cases are:
   }
   ```
 
-<p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
+<p class="tip">注意在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它**会影响**父组件的状态。</p>
 
-### Prop Validation
+### Prop 验证
 
-It is possible for a component to specify requirements for the props it is receiving. If a requirement is not met, Vue will emit warnings. This is especially useful when you are authoring a component that is intended to be used by others.
+组件可以为 props 指定验证要求。如果未指定验证要求，Vue 会发出警告。当组件给其他人使用时这很有用。
 
-Instead of defining the props as an array of strings, you can use an object with validation requirements:
+prop 是一个对象而不是字符串数组时，它包含验证要求：
 
 ``` js
 Vue.component('example', {
   props: {
-    // basic type check (`null` means accept any type)
+    // 基础类型检测 （`null` 意思是任何类型都可以）
     propA: Number,
-    // multiple possible types
+    // 多种类型
     propB: [String, Number],
-    // a required string
+    // 必传且是字符串
     propC: {
       type: String,
       required: true
     },
-    // a number with default value
+    // 数字，有默认值
     propD: {
       type: Number,
       default: 100
     },
-    // object/array defaults should be returned from a
-    // factory function
+    // 数组／对象的默认值应当由一个工厂函数返回
     propE: {
       type: Object,
       default: function () {
         return { message: 'hello' }
       }
     },
-    // custom validator function
+    // 自定义验证函数
     propF: {
       validator: function (value) {
         return value > 10
@@ -420,7 +418,7 @@ Vue.component('example', {
 })
 ```
 
-The `type` can be one of the following native constructors:
+`type` 可以是下面原生构造器：
 
 - String
 - Number
@@ -429,28 +427,30 @@ The `type` can be one of the following native constructors:
 - Object
 - Array
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
+`type` 也可以是一个自定义构造器，使用 `instanceof` 检测。
 
-When a prop validation fails, Vue will produce a console warning (if using the development build).
+当 prop 验证失败了，如果使用的是开发版本会抛出一条警告。
 
-## Custom Events
+## 自定义事件
 
-We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue's custom event system comes in.
+我们知道，父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，应该怎样做？那就是自定义事件！
 
-### Using `v-on` with Custom Events
+### 使用 `v-on` 绑定自定义事件
 
-Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
+每个 Vue 实例都实现了[事件接口(Events interface)](../api/#Instance-Methods-Events)，即：
 
-- Listen to an event using `$on(eventName)`
-- Trigger an event using `$emit(eventName)`
+- 使用 `$on(eventName)` 监听事件
+- 使用 `$emit(eventName)` 触发事件
 
-<p class="tip">Note that Vue's event system is separate from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
+<p class="tip">Vue的事件系统分离自浏览器的[EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)。尽管它们的运行类似，但是`$on` 和 `$emit` __不是__`addEventListener` 和 `dispatchEvent` 的别名。</p>
 
-In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
+另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
 
 <p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
 
-Here's an example:
+<p class="tip">不要使用 `$on` 监听子组件事件触发。必须在模板中直接用 `v-on`, 和下面的例子一样。</p>
+
+下面是一个例子：
 
 ``` html
 <div id="counter-event-example">
@@ -524,42 +524,42 @@ new Vue({
 </script>
 {% endraw %}
 
-In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
+在本例中，子组件已经和它外部完全解耦了。它所做的只是触发一个父组件关心的内部事件。
 
-#### Binding Native Events to Components
+#### 给组件绑定原生事件
 
-There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`. For example:
+有时候，你可能想在某个组件的根元素上监听一个原生事件。可以使用 `.native` 修饰 `v-on` 。例如：
 
 ``` html
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
-### Form Input Components using Custom Events
+### 使用自定义事件的表单输入组件
 
-Custom events can also be used to create custom inputs that work with `v-model`. Remember:
+自定义事件也可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。牢记：
 
 ``` html
 <input v-model="something">
 ```
 
-is just syntactic sugar for:
+仅仅是一个语法糖：
 
 ``` html
 <input v-bind:value="something" v-on:input="something = $event.target.value">
 ```
 
-When used with a component, this simplifies to:
+所以在组件中使用时，它相当于下面的简写：
 
 ``` html
 <custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
 ```
 
-So for a component to work with `v-model`, it must:
+所以要让组件的 `v-model` 生效，它必须：
 
-- accept a `value` prop
-- emit an `input` event with the new value
+- 接受一个 `value` 属性
+- 在有新的 value 时触发 `input` 事件
 
-Let's see it in action with a very simple currency input:
+一个非常简单的货币输入：
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -579,21 +579,18 @@ Vue.component('currency-input', {
   ',
   props: ['value'],
   methods: {
-    // Instead of updating the value directly, this
-    // method is used to format and place constraints
-    // on the input's value
+    // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
     updateValue: function (value) {
       var formattedValue = value
-        // Remove whitespace on either side
+        // 删除两侧的空格符
         .trim()
-        // Shorten to 2 decimal places
+        // 保留 2 小数位
         .slice(0, value.indexOf('.') + 3)
-      // If the value was not already normalized,
-      // manually override it to conform
+      // 如果值不统一，手动覆盖以保持一致
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // Emit the number value through the input event
+      // 通过 input 事件发出数值
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -633,11 +630,11 @@ new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
 
-The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+上面的实现方式太过理想化了。 比如，用户甚至可以输入多个小数点或句号 - 哦哦！因此我们需要一个更有意义的例子，下面是一个更加完善的货币过滤器：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-The events interface can also be used to create more unusual inputs. For example, imagine these possibilities:
+这个接口不仅仅可以用来连接组件内部的表单输入，也很容易集成你自己创造的输入类型。想象一下：
 
 ``` html
 <voice-recognizer v-model="question"></voice-recognizer>
@@ -645,29 +642,29 @@ The events interface can also be used to create more unusual inputs. For example
 <webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
 ```
 
-### Non Parent-Child Communication
+### 非父子组件通信
 
-Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:
+有时候非父子关系的组件也需要通信。在简单的场景下，使用一个空的 Vue 实例作为中央事件总线：
 
 ``` js
 var bus = new Vue()
 ```
 ``` js
-// in component A's method
+// 触发组件 A 中的事件
 bus.$emit('id-selected', 1)
 ```
 ``` js
-// in component B's created hook
+// 在组件 B 创建的钩子中监听事件
 bus.$on('id-selected', function (id) {
   // ...
 })
 ```
 
-In more complex cases, you should consider employing a dedicated [state-management pattern](state-management.html).
+在更多复杂的情况下，你应该考虑使用专门的 [状态管理模式](state-management.html).
 
-## Content Distribution with Slots
+## 使用 Slot 分发内容
 
-When using components, it is often desired to compose them like this:
+在使用组件时，常常要像这样组合它们：
 
 ``` html
 <app>
@@ -676,17 +673,17 @@ When using components, it is often desired to compose them like this:
 </app>
 ```
 
-There are two things to note here:
+注意两点：
 
-1. The `<app>` component does not know what content may be present inside its mount target. It is decided by whatever parent component that is using `<app>`.
+1. `<app>` 组件不知道它的挂载点会有什么内容。挂载点的内容是由`<app>`的父组件决定的。
 
-2. The `<app>` component very likely has its own template.
+2. `<app>` 组件很可能有它自己的模版。
 
-To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
+为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API ，参照了当前 [Web 组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
 
-### Compilation Scope
+### 编译作用域
 
-Before we dig into the API, let's first clarify which scope the contents are compiled in. Imagine a template like this:
+在深入内容分发 API 之前，我们先明确内容的编译作用域。假定模板为：
 
 ``` html
 <child-component>
@@ -694,24 +691,24 @@ Before we dig into the API, let's first clarify which scope the contents are com
 </child-component>
 ```
 
-Should the `message` be bound to the parent's data or the child data? The answer is the parent. A simple rule of thumb for component scope is:
+`message` 应该绑定到父组件的数据，还是绑定到子组件的数据？答案是父组件。组件作用域简单地说是：
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in child scope.
+父组件模板的内容在父组件作用域内编译；子组件模板的内容在子组件作用域内编译。
 
-A common mistake is trying to bind a directive to a child property/method in the parent template:
+一个常见错误是试图在父组件模板内将一个指令绑定到子组件的属性/方法：
 
 ``` html
-<!-- does NOT work -->
+<!-- 无效 -->
 <child-component v-show="someChildProperty"></child-component>
 ```
 
-Assuming `someChildProperty` is a property on the child component, the example above would not work. The parent's template is not aware of the state of a child component.
+假定 `someChildProperty` 是子组件的属性，上例不会如预期那样工作。父组件模板不应该知道子组件的状态。
 
-If you need to bind child-scope directives on a component root node, you should do so in the child component's own template:
+如果要绑定子组件内的指令到一个组件的根节点，应当在它的模板内这么做：
 
 ``` js
 Vue.component('child-component', {
-  // this does work, because we are in the right scope
+  // 有效，因为是在正确的作用域内
   template: '<div v-show="someChildProperty">Child</div>',
   data: function () {
     return {
@@ -721,58 +718,57 @@ Vue.component('child-component', {
 })
 ```
 
-Similarly, distributed content will be compiled in the parent scope.
+类似地，分发内容是在父组件作用域内编译。
 
-### Single Slot
+### 单个 Slot
 
-Parent content will be **discarded** unless the child component template contains at least one `<slot>` outlet. When there is only one slot with no attributes, the entire content fragment will be inserted at its position in the DOM, replacing the slot itself.
+除非子组件模板包含至少一个 `<slot>` 插口，否则父组件的内容将会被**丢弃**。当子组件模板只有一个没有属性的 slot 时，父组件整个内容片段将插入到 slot 所在的 DOM 位置，并替换掉 slot 标签本身。
 
-Anything originally inside the `<slot>` tags is considered **fallback content**. Fallback content is compiled in the child scope and will only be displayed if the hosting element is empty and has no content to be inserted.
+最初在 `<slot>` 标签中的任何内容都被视为**备用内容**。备用内容在子组件的作用域内编译，并且只有在宿主元素为空，且没有要插入的内容时才显示备用内容。
 
-Suppose we have a component called `my-component` with the following template:
+假定 `my-component` 组件有下面模板：
 
 ``` html
 <div>
-  <h2>I'm the child title</h2>
+  <h2>我是子组件的标题</h2>
   <slot>
-    This will only be displayed if there is no content
-    to be distributed.
+    只有在没有要分发的内容时才会显示。
   </slot>
 </div>
 ```
 
-And a parent that uses the component:
+父组件模版：
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>我是父组件的标题</h1>
   <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <p>这是一些初始内容</p>
+    <p>这是更多的初始内容</p>
   </my-component>
 </div>
 ```
 
-The rendered result will be:
+渲染结果：
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>我是父组件的标题</h1>
   <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <h2>我是子组件的标题</h2>
+    <p>这是一些初始内容</p>
+    <p>这是更多的初始内容</p>
   </div>
 </div>
 ```
 
-### Named Slots
+### 具名 Slot
 
-`<slot>` elements have a special attribute, `name`, which can be used to further customize how content should be distributed. You can have multiple slots with different names. A named slot will match any element that has a corresponding `slot` attribute in the content fragment.
+`<slot>` 元素可以用一个特殊的属性 `name` 来配置如何分发内容。多个 slot 可以有不同的名字。具名 slot 将匹配内容片段中有对应 `slot` 特性的元素。
 
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. If there is no default slot, unmatched content will be discarded.
+仍然可以有一个匿名 slot ，它是**默认 slot** ，作为找不到匹配的内容片段的备用插槽。如果没有默认的 slot ，这些找不到匹配的内容片段将被抛弃。
 
-For example, suppose we have an `app-layout` component with the following template:
+例如，假定我们有一个 `app-layout` 组件，它的模板为：
 
 ``` html
 <div class="container">
@@ -788,45 +784,46 @@ For example, suppose we have an `app-layout` component with the following templa
 </div>
 ```
 
-Parent markup:
+父组件模版：
 
 ``` html
 <app-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">这里可能是一个页面标题</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>主要内容的一个段落。</p>
+  <p>另一个主要段落。</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">这里有一些联系信息</p>
 </app-layout>
 ```
 
-The rendered result will be:
+渲染结果为：
 
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>这里可能是一个页面标题</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>主要内容的一个段落。</p>
+    <p>另一个主要段落。</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>这里有一些联系信息</p>
   </footer>
 </div>
 ```
 
-The content distribution API is a very useful mechanism when designing components that are meant to be composed together.
+在组合组件时，内容分发 API 是非常有用的机制。
 
-### Scoped Slots
 
-> New in 2.1.0
+### 作用域插槽
 
-A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+> 2.1.0 新增
 
-In a child component, simply pass data into a slot as if you are passing props to a component:
+作用域插槽是一种特殊类型的插槽，用作使用一个（能够传递数据到）可重用模板替换已渲染元素。
+
+在子组件中，只需将数据传递到插槽，就像你将 prop 传递给组件一样：
 
 ``` html
 <div class="child">
@@ -834,7 +831,7 @@ In a child component, simply pass data into a slot as if you are passing props t
 </div>
 ```
 
-In the parent, a `<template>` element with a special attribute `scope` indicates that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+在父级中，具有特殊属性 `scope` 的 `<template>` 元素，表示它是作用域插槽的模板。`scope` 的值对应一个临时变量名，此变量接收从子组件中传递的 prop 对象：
 
 ``` html
 <div class="parent">
@@ -847,7 +844,7 @@ In the parent, a `<template>` element with a special attribute `scope` indicates
 </div>
 ```
 
-If we render the above, the output will be:
+如果我们渲染以上结果，得到的输出会是：
 
 ``` html
 <div class="parent">
@@ -858,32 +855,32 @@ If we render the above, the output will be:
 </div>
 ```
 
-A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
+作用域插槽更具代表性的用例是列表组件，允许组件自定义应该如何渲染列表每一项：
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- scoped slot can be named too -->
+  <!-- 作用域插槽也可以在这里命名 -->
   <template slot="item" scope="props">
     <li class="my-fancy-item">{{ props.text }}</li>
   </template>
 </my-awesome-list>
 ```
 
-And the template for the list component:
+列表组件的模板：
 
 ``` html
 <ul>
   <slot name="item"
     v-for="item in items"
     :text="item.text">
-    <!-- fallback content here -->
+    <!-- 这里是备用内容 -->
   </slot>
 </ul>
 ```
 
-## Dynamic Components
+## 动态组件
 
-You can use the same mount point and dynamically switch between multiple components using the reserved `<component>` element and dynamically bind to its `is` attribute:
+多个组件可以使用同一个挂载点，然后动态地在它们之间切换。使用保留的 `<component>` 元素，动态地绑定到它的 `is` 特性：
 
 ``` js
 var vm = new Vue({
@@ -901,11 +898,11 @@ var vm = new Vue({
 
 ``` html
 <component v-bind:is="currentView">
-  <!-- component changes when vm.currentView changes! -->
+  <!-- 组件在 vm.currentview 变化时改变！ -->
 </component>
 ```
 
-If you prefer, you can also bind directly to component objects:
+也可以直接绑定到组件对象上：
 
 ``` js
 var Home = {
@@ -922,33 +919,33 @@ var vm = new Vue({
 
 ### `keep-alive`
 
-If you want to keep the switched-out components in memory so that you can preserve their state or avoid re-rendering, you can wrap a dynamic component in a `<keep-alive>` element:
+如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个 `keep-alive` 指令参数：
 
 ``` html
 <keep-alive>
   <component :is="currentView">
-    <!-- inactive components will be cached! -->
+    <!-- 非活动组件将被缓存！ -->
   </component>
 </keep-alive>
 ```
 
-Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
+在[API 参考](../api/#keep-alive)查看更多 `<keep-alive>` 的细节。
 
-## Misc
+## 杂项
 
-### Authoring Reusable Components
+### 编写可复用组件
 
-When authoring components, it's good to keep in mind whether you intend to reuse it somewhere else later. It's OK for one-off components to be tightly coupled, but reusable components should define a clean public interface and make no assumptions about the context it's used in.
+在编写组件时，记住是否要复用组件有好处。一次性组件跟其它组件紧密耦合没关系，但是可复用组件应当定义一个清晰的公开接口。
 
-The API for a Vue component comes in three parts - props, events, and slots:
+Vue 组件的 API 来自三部分 - props, events 和 slots ：
 
-- **Props** allow the external environment to pass data into the component
+- **Props** 允许外部环境传递数据给组件
 
-- **Events** allow the component to trigger side effects in the external environment
+- **Events** 允许组件触发外部环境的副作用
 
-- **Slots** allow the external environment to compose the component with extra content.
+- **Slots** 允许外部环境将额外的内容组合在组件中。
 
-With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
+使用 `v-bind` 和 `v-on` 的简写语法，模板的缩进清楚且简洁：
 
 ``` html
 <my-component
@@ -962,9 +959,9 @@ With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can b
 </my-component>
 ```
 
-### Child Component Refs
+### 子组件索引
 
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
+尽管有 props 和 events ，但是有时仍然需要在 JavaScript 中直接访问子组件。为此可以使用 `ref` 为子组件指定一个索引 ID 。例如：
 
 ``` html
 <div id="parent">
@@ -974,17 +971,17 @@ Despite the existence of props and events, sometimes you might still need to dir
 
 ``` js
 var parent = new Vue({ el: '#parent' })
-// access child component instance
+// 访问子组件
 var child = parent.$refs.profile
 ```
 
-When `ref` is used together with `v-for`, the ref you get will be an array or an object containing the child components mirroring the data source.
+当 `ref` 和 `v-for` 一起使用时， ref 是一个数组或对象，包含相应的子组件。
 
-<p class="tip">`$refs` are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using `$refs` in templates or computed properties.</p>
+<p class="tip">`$refs` 只在组件渲染完成后才填充，并且它是非响应式的。它仅仅作为一个直接访问子组件的应急方案——应当避免在模版或计算属性中使用 `$refs` 。</p>
 
-### Async Components
+### 异步组件
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's actually needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component actually needs to be rendered and will cache the result for future re-renders. For example:
+在大型应用程序中，我们可能需要将应用拆分为更小的模块，并且只在实际需要时才从服务器加载组件。为了让异步按需加载组件这件事变得简单，Vue.js 允许将组件定义为一个异步解析组件定义的工厂函数。Vue.js 只在组件实际需要渲染时触发工厂函数，并将缓存结果，用于将来再次渲染。例如：
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
@@ -997,18 +994,16 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
+工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [Webpack 代码分割功能](http://webpack.github.io/docs/code-splitting.html)来使用异步组件：
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
-  // automatically split your built code into bundles which
-  // are loaded over Ajax requests.
+  // 这个特殊的 require 语法将指示 webpack 自动将构建的代码，拆分成通过 Ajax 请求加载的 bundle。
   require(['./my-async-component'], resolve)
 })
 ```
 
-You can also return a `Promise` in the resolve function, so with Webpack 2 + ES2015 syntax you can do:
+可以在 resolve 函数中返回一个 `Promise`，所以使用 Webpack 2 + ES2015 语法后你可以这么做：
 
 ``` js
 Vue.component(
@@ -1017,16 +1012,16 @@ Vue.component(
 )
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
+<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 Webpack 所内置的一流异步支持。</p>
 
-### Component Naming Conventions
+### 组件命名约定
 
-When registering components (or props), you can use kebab-case, camelCase, or TitleCase. Vue doesn't care.
+当注册组件（或者 props）时，可以使用 kebab-case ，camelCase ，或 TitleCase 。Vue 不关心这个。
 
 ``` js
-// in a component definition
+// 在组件定义中
 components: {
-  // register using kebab-case
+  // 使用 kebab-case 形式注册
   'kebab-cased-component': { /* ... */ },
   // register using camelCase
   'camelCasedComponent': { /* ... */ },
@@ -1035,41 +1030,41 @@ components: {
 }
 ```
 
-Within HTML templates though, you have to use the kebab-case equivalents:
+在 HTML 模版中，请使用 kebab-case 形式：
 
 ``` html
-<!-- alway use kebab-case in HTML templates -->
+<!-- 在HTML模版中始终使用 kebab-case -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <title-cased-component></title-cased-component>
 ```
 
-When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you reference your components and props using camelCase, TitleCase, or kebab-case:
+当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 TitleCase 或者 kebab-case 来引用：
 
 ``` html
-<!-- use whatever you want in string templates! -->
+<!-- 在字符串模版中可以用任何你喜欢的方式! -->
 <my-component></my-component>
 <myComponent></myComponent>
 <MyComponent></MyComponent>
 ```
 
-If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
+如果组件未经 `slot` 元素传递内容，你甚至可以在组件名后使用 `/` 使其自闭合：
 
 ``` html
 <my-component/>
 ```
 
-Again, this _only_ works within string templates, as self-closing custom elements are not valid HTML and your browser's native parser will not understand them.
+当然，这只在字符串模版中有效。因为自闭的自定义元素是无效的 HTML ，浏览器原生的解析器也无法识别它。
 
-### Recursive Components
+### 递归组件
 
-Components can recursively invoke themselves in their own template. However, they can only do so with the `name` option:
+组件在它的模板内可以递归地调用自己，不过，只有当它有 name 选项时才可以：
 
 ``` js
 name: 'unique-name-of-my-component'
 ```
 
-When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+当你利用`Vue.component`全局注册了一个组件, 全局的ID作为组件的 `name` 选项，被自动设置.
 
 ``` js
 Vue.component('unique-name-of-my-component', {
@@ -1077,18 +1072,19 @@ Vue.component('unique-name-of-my-component', {
 })
 ```
 
-If you're not careful, recursive components can also lead to infinite loops:
+如果你不谨慎, 递归组件可能导致死循环:
 
 ``` js
 name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
+上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
 
-### Circular References Between Components
 
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+### 组件之间的循环引用
+
+假设您正在构建一个文件目录树，像是 Mac 下的 Finder 或是 Windows 下的文件资源管理器。您可能有一个使用此模板的 `tree-folder` 组件：
 
 ``` html
 <p>
@@ -1097,7 +1093,7 @@ Let's say you're building a file directory tree, like in Finder or File Explorer
 </p>
 ```
 
-Then a `tree-folder-contents` component with this template:
+然后有一个使用此模板的 `tree-folder-contents` 组件：
 
 ``` html
 <ul>
@@ -1108,17 +1104,18 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+仔细观察后，你就会发现：在渲染树中，这些组件实际上都是彼此的后代和祖先，这是矛盾且相悖的！当使用 `Vue.component` 全局注册组件后，这个问题会自动解决。如果以上已经解决你的问题，你可以在这里停止阅读。
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+然而，如果你使用了模块系统（例如通过 Webpack 或 Browserify 等模块化工具），并通过 require/import 导入组件的话，你就会看到一个错误：
 
 ```
 Failed to mount component: template or render function not defined.
+无法挂载组件：模板或 render 函数未定义。
 ```
 
-To explain what's happening, I'll call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+为了解释这是如何产生的，我将称我们的组件为 A 和 B。模块系统看到它需要导入 A，但是首先 A 需要导入 B，但是 B 又需要导入 A，A 又需要导入 B，等等，如此形成了一个死循环，模块系统并不知道在先不解析一个组件的情况下，如何解析另一个组件。为了修复这个问题，我们需要给模块系统一个切入点，我们可以告诉它，A 需要导入 B，但是没有必要先解析 B。
 
-In our case, I'll make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+在我们的例子中，将 `tree-folder` 组件做为切入起点。我们知道制造矛盾的是 `tree-folder-contents` 子组件，所以我们在 `tree-folder` 组件的生命周期钩子函数 `beforeCreate` 中去注册 `tree-folder-contents` 组件：
 
 ``` js
 beforeCreate: function () {
@@ -1126,11 +1123,11 @@ beforeCreate: function () {
 }
 ```
 
-Problem solved!
+这样问题就解决了！
 
-### Inline Templates
+### 内联模版
 
-When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
+如果子组件有 inline-template 特性，组件将把它的内容当作它的模板，而不是把它当作分发内容。这让模板更灵活。
 
 ``` html
 <my-component inline-template>
@@ -1141,11 +1138,11 @@ When the `inline-template` special attribute is present on a child component, th
 </my-component>
 ```
 
-However, `inline-template` makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the `template` option or in a `template` element in a `.vue` file.
+但是 inline-template 让模板的作用域难以理解。最佳实践是使用 template 选项在组件内定义模板或者在 `.vue` 文件中使用 `template` 元素。
 
 ### X-Templates
 
-Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+另一种定义模版的方式是在 JavaScript 标签里使用 `text/x-template` 类型，并且指定一个id。例如：
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -1159,11 +1156,11 @@ Vue.component('hello-world', {
 })
 ```
 
-These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.
+这在有很多模版或者小的应用中有用，否则应该避免使用，因为它将模版和组件的其他定义隔离了。
 
-### Cheap Static Components with `v-once`
+### 使用 `v-once` 的低开销静态组件
 
-Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
+尽管在 Vue 中渲染 HTML 很快，不过当组件中包含**大量**静态内容时，可以考虑使用 `v-once` 将渲染结果缓存起来，就像这样：
 
 ``` js
 Vue.component('terms-of-service', {
@@ -1175,3 +1172,9 @@ Vue.component('terms-of-service', {
   '
 })
 ```
+
+***
+
+> 原文：http://vuejs.org/guide/components.html
+
+***

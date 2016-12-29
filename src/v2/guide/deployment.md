@@ -1,5 +1,5 @@
 ---
-title: Production Deployment Tips
+title: 生产环境部署
 type: guide
 order: 20
 ---
@@ -7,6 +7,7 @@ order: 20
 ## Turn on Production Mode
 
 During development, Vue provides a lot of warnings to help you with common errors and pitfalls. However, these warning strings become useless in production and bloat your app's payload size. In addition, some of these warning checks have small runtime costs that can be avoided in production mode.
+
 
 ### Without Build Tools
 
@@ -18,7 +19,7 @@ When using a build tool like Webpack or Browserify, the production mode will be 
 
 #### Webpack
 
-Use Webpack's [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:
+使用 Webpack 的 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除代码块内的警告语句。例如配置：
 
 ``` js
 var webpack = require('webpack')
@@ -38,9 +39,10 @@ module.exports = {
 
 #### Browserify
 
-- Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
+- 运行打包命令，设置 `NODE_ENV` 为 `"production"`。等于告诉 `vueify` 避免引入热重载和开发相关代码。
 
-- Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle. This allows the minifier to strip out all the warnings in Vue's source code wrapped in env variable conditional blocks. For example:
+- 使用一个全局 [envify](https://github.com/hughsk/envify) 转换你的 bundle 文件。这可以精简掉包含在 Vue 源码中所有环境变量条件相关代码块内的警告语句。例如：
+
 
   ``` bash
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
@@ -48,7 +50,8 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+使用 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -67,9 +70,10 @@ rollup({
 
 When using in-DOM templates or in-JavaScript template strings, the template-to-render-function compilation is performed on the fly. This is usually fast enough in most cases, but is best avoided if your application is performance-sensitive. The easiest way to pre-compile templates is using [Single-File Components](./single-file-components.html) - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.
 
-## Extracting Component CSS
+## 提取 CSS
 
-When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file and avoid these issues, and also result in better CSS minification and caching.
+使用[单文件组件](./single-file-components.html)时，`<style>` 标签在开发运行过程中会被动态实时注入。This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file and avoid these issues, and also result in better CSS minification and caching.
+
 
 Refer to the respective build tool documentations to see how it's done:
 
@@ -77,6 +81,8 @@ Refer to the respective build tool documentations to see how it's done:
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
 - [Rollup + rollup-plugin-vue](https://github.com/znck/rollup-plugin-vue#options)
 
-## Tracking Runtime Errors
+## 跟踪运行时错误
 
-If a runtime error occurs during a component's render, it will be passed to the global `Vue.config.errorHandler` config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
+如果在组件渲染时出现运行错误，错误将会被传递至全局 `Vue.config.errorHandler` 配置函数（如果已设置）。利用这个钩子函数和错误跟踪服务（如 [Sentry](https://sentry.io)，它为 Vue 提供[官方集成](https://sentry.io/for/vue/)），可能是个不错的主意。
+
+

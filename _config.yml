@@ -3,16 +3,16 @@
 ## Source: https://github.com/tommy351/hexo/
 
 # Site
-title: Vue.js
-subtitle:
-description: "The Progressive JavaScript Framework"
+title: Vue.js v2 中文文档
+subtitle: Vue.js v2.0 中文文档 vuefe.cn
+description: "Vue.js v2.0 中文文档 vuefe.cn vuefe.com"
 author: Evan You
 email:
-language:
+language: zh-CN
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://vuejs.org
+url: https://vuefe.cn
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -95,9 +95,10 @@ markdown:
 
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
-deploy:
-  type: git
-  repository: git@github.com:vuejs/vuejs.org.git
+# deploy:
+#   type: git
+#   repository: git@github.com:vuejs/cn.vuejs.org.git
+#   branch: gh-pages
 
 feed:
   type: atom

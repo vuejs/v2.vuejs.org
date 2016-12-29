@@ -1,36 +1,36 @@
 ---
-title: Conditional Rendering
+title: 条件渲染
 type: guide
 order: 7
 ---
 
 ## `v-if`
 
-In string templates, for example Handlebars, we would write a conditional block like this:
+在字符串模板中，如 Handlebars ，我们得像这样写一个条件块：
 
 ``` html
-<!-- Handlebars template -->
+<!-- Handlebars 模板 -->
 {{#if ok}}
   <h1>Yes</h1>
 {{/if}}
 ```
 
-In Vue, we use the `v-if` directive to achieve the same:
+在 Vue.js ，我们使用 `v-if` 指令实现同样的功能：
 
 ``` html
 <h1 v-if="ok">Yes</h1>
 ```
 
-It is also possible to add an "else" block with `v-else`:
+也可以用 `v-else` 添加一个 "else" 块：
 
 ``` html
 <h1 v-if="ok">Yes</h1>
 <h1 v-else>No</h1>
 ```
 
-### Conditional Groups with `v-if` on `<template>`
+### `<template>` 中 `v-if` 条件组 
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+因为 `v-if` 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 `<template>` 元素当做包装元素，并在上面使用 `v-if`，最终的渲染结果不会包含它。
 
 ``` html
 <template v-if="ok">
@@ -42,24 +42,24 @@ Because `v-if` is a directive, it has to be attached to a single element. But wh
 
 ### `v-else`
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+可以用 `v-else` 指令给 `v-if` 添加一个 "else" 块：
 
 ``` html
 <div v-if="Math.random() > 0.5">
-  Now you see me
+  Sorry
 </div>
 <div v-else>
-  Now you don't
+  Not sorry
 </div>
 ```
 
-A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+`v-else` 元素必须紧跟在 `v-if` 元素或者 `v-else-if`的后面——否则它不能被识别。
 
 ### `v-else-if`
 
-> New in 2.1.0
+> 2.1.0 新增
 
-The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+`v-else-if`，顾名思义，用作 `v-if` 的 `else-if` 块。可以链式的多次使用：
 
 ```html
 <div v-if="type === 'A'">
@@ -76,11 +76,11 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. 
 </div>
 ```
 
-Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+与 `v-else` 相似，`v-else-if` 必须跟在 `v-if` 或者 `v-else-if`之后。
 
-### Controlling Reusable Elements with `key`
+### 使用 `key` 控制元素的可重用
 
-Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
+Vue 尝试尽可能高效的渲染元素，通常会复用已有元素而不是从头开始渲染。这么做除了使 Vue 更快之外还可以得到一些好处。如下例，当允许用户在不同的登录方式之间切换:
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -93,9 +93,9 @@ Vue tries to render elements as efficiently as possible, often re-using them ins
 </template>
 ```
 
-Then switching the `loginType` in the code above will not erase what the user has already entered. Since both templates use the same elements, the `<input>` is not replaced - just its `placeholder`.
+在代码中切换 `loginType` 不会删除用户已经输入的内容，两个模版由于使用了相同的元素，`<input>` 会被复用，仅仅是替换了他们的 `placeholder`。
 
-Check it out for yourself by entering some text in the input, then pressing the toggle button:
+自己动手试一试,输入一些文本，然后点击 「Toggle login type」 进行切换
 
 {% raw %}
 <div id="no-key-example" class="demo">
@@ -126,7 +126,7 @@ new Vue({
 </script>
 {% endraw %}
 
-This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Just add a `key` attribute with unique values:
+这样也不总是符合实际需求，所以 Vue 提供一种方式让你可以自己决定是否要复用元素。你要做的是添加一个属性 `key` ，`key` 必须带有唯一的值。
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -139,7 +139,7 @@ This isn't always desirable though, so Vue offers a way for you to say, "These t
 </template>
 ```
 
-Now those inputs will be rendered from scratch each time you toggle. See for yourself:
+现在输入文本将会在每次切换时重新渲染。自己动手试一试。
 
 {% raw %}
 <div id="key-example" class="demo">
@@ -170,26 +170,34 @@ new Vue({
 </script>
 {% endraw %}
 
-Note that the `<label>` elements are still efficiently re-used, because they don't have `key` attributes.
+注意, `<label>` 元素仍然会被复用，因为没有被添加了 `key` 属性。
 
 ## `v-show`
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+另一个根据条件展示元素的选项是 `v-show` 指令。用法大体上一样：
 
 ``` html
 <h1 v-show="ok">Hello!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` simply toggles the `display` CSS property of the element.
+不同的是有 `v-show` 的元素会始终渲染并保持在 DOM 中。`v-show` 是简单的切换元素的 CSS 属性 `display` 。
 
-<p class="tip">Note that `v-show` doesn't support the `<template>` syntax, nor does it work with `v-else`.</p>
+<p class="tip">注意 `v-show` 不支持 `<template>` 语法。</p>
+
 
 ## `v-if` vs `v-show`
 
-`v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+`v-if` 是真实的条件渲染，因为它会确保条件块在切换当中适当地销毁与重建条件块内的事件监听器和子组件。
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+`v-if` 也是**惰性的**：如果在初始渲染时条件为假，则什么也不做——在条件第一次变为真时才开始局部编译（编译会被缓存起来）。
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with just simple CSS-based toggling.
+相比之下， `v-show` 简单得多——元素始终被编译并保留，只是简单地基于 CSS 切换。
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+一般来说， `v-if` 有更高的切换消耗而 `v-show` 有更高的初始渲染消耗。因此，如果需要频繁切换使用 `v-show` 较好，如果在运行时条件不大可能改变则使用 `v-if` 较好。
+
+
+***
+
+> 原文：http://vuejs.org/guide/conditional.html
+
+***

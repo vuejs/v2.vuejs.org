@@ -1,24 +1,24 @@
 ---
-title: Computed Properties and Watchers
+title: 计算属性
 type: guide
 order: 5
 ---
 
-## Computed Properties
+## 计算属性
 
-In-template expressions are very convenient, but they are really only meant for simple operations. Putting too much logic into your templates can make them bloated and hard to maintain. For example:
+在模板中绑定表达式是非常便利的，但是它们实际上只用于简单的操作。在模板中放入太多的逻辑会让模板过重且难以维护。例如：
 
-``` html
+```html
 <div id="example">
   {{ message.split('').reverse().join('') }}
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
+在这种情况下，模板不再简单和清晰。在实现反向显示 `message` 之前，你应该确认它。这个问题在你不止一次反向显示 message 的时候变得更加糟糕。
 
-That's why for any complex logic, you should use a **computed property**.
+这就是为什么任何复杂逻辑，你都应当使用**计算属性**。
 
-### Basic Example
+### 基础例子
 
 ``` html
 <div id="example">
@@ -43,10 +43,10 @@ var vm = new Vue({
 })
 ```
 
-Result:
+结果：
 
 {% raw %}
-<div id="example" class="demo">
+<div id="example">
   <p>Original message: "{{ message }}"</p>
   <p>Computed reversed message: "{{ reversedMessage }}"</p>
 </div>
@@ -57,7 +57,9 @@ var vm = new Vue({
     message: 'Hello'
   },
   computed: {
+    // a computed getter
     reversedMessage: function () {
+      // `this` points to the vm instance
       return this.message.split('').reverse().join('')
     }
   }
@@ -65,7 +67,8 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
+
+这里我们声明了一个计算属性 `reversedMessage` 。我们提供的函数将用作属性 `vm.reversedMessage` 的 getter 。
 
 ``` js
 console.log(vm.reversedMessage) // -> 'olleH'
@@ -73,13 +76,13 @@ vm.message = 'Goodbye'
 console.log(vm.reversedMessage) // -> 'eybdooG'
 ```
 
-You can open the console and play with the example vm yourself. The value of `vm.reversedMessage` is always dependent on the value of `vm.message`.
+你可以打开浏览器的控制台，修改 vm 。 `vm.reversedMessage` 的值始终取决于 `vm.message` 的值。
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function is pure and has no side effects, which makes it easy to test and reason about.
+你可以像绑定普通属性一样在模板中绑定计算属性。 Vue 知道 `vm.reversedMessage` 依赖于 `vm.message` ，因此当 `vm.message` 发生改变时，依赖于 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们是声明式地创建这种依赖关系：计算属性的 getter 是干净无副作用的，因此也是易于测试和理解的。
 
-### Computed Caching vs Methods
+### 计算缓存 vs Methods
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+你可能已经注意到我们可以通过调用表达式中的method来达到同样的效果：
 
 ``` html
 <p>Reversed message: "{{ reverseMessage() }}"</p>
@@ -94,9 +97,9 @@ methods: {
 }
 ```
 
-Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their dependencies.** A computed property will only re-evaluate when some of its dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+不经过计算属性，我们可以在 method 中定义一个相同的函数来替代它。对于最终的结果，两种方式确实是相同的。然而，不同的是**计算属性是基于它的依赖缓存**。计算属性只有在它的相关依赖发生改变时才会重新取值。这就意味着只要 `message` 没有发生改变，多次访问 `reversedMessage` 计算属性会立即返回之前的计算结果，而不必再次执行函数。
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+这也同样意味着如下计算属性将不会更新，因为 `Date.now()` 不是响应式依赖：
 
 ``` js
 computed: {
@@ -106,13 +109,13 @@ computed: {
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+相比而言，每当重新渲染的时候，method 调用**总会**执行函数。
 
-Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+我们为什么需要缓存？假设我们有一个重要的计算属性 **A** ，这个计算属性需要一个巨大的数组遍历和做大量的计算。然后我们可能有其他的计算属性依赖于 **A** 。如果没有缓存，我们将不可避免的多次执行 **A** 的 getter ！如果你不希望有缓存，请用 method 替代。
 
-### Computed vs Watched Property
+### 计算属性 vs Watched Property
 
-Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue.js 提供了一个方法 `$watch` ，它用于观察 Vue 实例上的数据变动。当一些数据需要根据其它数据变化时， `$watch` 很诱人 —— 特别是如果你来自 AngularJS 。不过，通常更好的办法是使用计算属性而不是一个命令式的 `$watch` 回调。思考下面例子：
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -137,7 +140,7 @@ var vm = new Vue({
 })
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+上面代码是命令式的和重复的。跟计算属性对比：
 
 ``` js
 var vm = new Vue({
@@ -154,11 +157,11 @@ var vm = new Vue({
 })
 ```
 
-Much better, isn't it?
+这样更好，不是吗？
 
-### Computed Setter
+### 计算 setter
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：
 
 ``` js
 // ...
@@ -179,15 +182,15 @@ computed: {
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+现在在运行 `vm.fullName = 'John Doe'` 时， setter 会被调用， `vm.firstName` 和 `vm.lastName` 也会被对应更新。
 
-## Watchers
+## 观察 Watchers
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher 。这是为什么 Vue 提供一个更通用的方法通过 `watch` 选项，来响应数据的变化。当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的。
 
-For example:
+例如：
 
-``` html
+```html
 <div id="watch-example">
   <p>
     Ask a yes/no question:
@@ -197,7 +200,7 @@ For example:
 </div>
 ```
 
-``` html
+```html
 <!-- Since there is already a rich ecosystem of ajax libraries    -->
 <!-- and collections of general-purpose utility methods, Vue core -->
 <!-- is able to remain small by not reinventing them. This also   -->
@@ -212,20 +215,18 @@ var watchExampleVM = new Vue({
     answer: 'I cannot give you an answer until you ask a question!'
   },
   watch: {
-    // whenever question changes, this function will run
+    // 如果 question 发生改变，这个函数就会运行
     question: function (newQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
     }
   },
   methods: {
-    // _.debounce is a function provided by lodash to limit how
-    // often a particularly expensive operation can be run.
-    // In this case, we want to limit how often we access
-    // yesno.wtf/api, waiting until the user has completely
-    // finished typing before making the ajax request. To learn
-    // more about the _.debounce function (and its cousin
-    // _.throttle), visit: https://lodash.com/docs#debounce
+    // _.debounce 是一个通过 lodash 限制操作频率的函数。
+    // 在这个例子中，我们希望限制访问yesno.wtf/api的频率
+    // ajax请求直到用户输入完毕才会发出
+    // 学习更多关于 _.debounce function (and its cousin
+    // _.throttle), 参考: https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
         var vm = this
@@ -242,8 +243,7 @@ var watchExampleVM = new Vue({
             vm.answer = 'Error! Could not reach the API. ' + error
           })
       },
-      // This is the number of milliseconds we wait for the
-      // user to stop typing.
+      // 这是我们为用户停止输入等待的毫秒数
       500
     )
   }
@@ -251,10 +251,11 @@ var watchExampleVM = new Vue({
 </script>
 ```
 
-Result:
+
+结果：
 
 {% raw %}
-<div id="watch-example" class="demo">
+<div id="watch-example">
   <p>
     Ask a yes/no question:
     <input v-model="question">
@@ -271,6 +272,7 @@ var watchExampleVM = new Vue({
     answer: 'I cannot give you an answer until you ask a question!'
   },
   watch: {
+    // 如果 question 发生改变，这个函数就会运行
     question: function (newQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
@@ -293,6 +295,7 @@ var watchExampleVM = new Vue({
             vm.answer = 'Error! Could not reach the API. ' + error
           })
       },
+      // 这是我们为用户停止输入等待的毫秒数
       500
     )
   }
@@ -300,6 +303,13 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
+在这个示例中，使用 `watch` 选项允许我们执行异步操作（访问一个 API），限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这是计算属性无法做到的。
 
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](../api/#vm-watch).
+除了 `watch` 选项之外，您还可以使用 [vm.$watch API](../api/#vm-watch) 命令。
+
+***
+
+> 原文：http://vuejs.org/guide/computed.html
+
+***
+

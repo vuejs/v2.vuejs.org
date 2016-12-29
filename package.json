@@ -1,11 +1,12 @@
 {
-  "name": "vuejs.org",
+  "name": "cn.vuejs.org",
   "version": "1.0.18",
   "private": true,
   "hexo": {
     "version": "3.2.2"
   },
   "dependencies": {
+    "hexo-browsersync": "^0.2.0",
     "hexo": "^3.2.2",
     "hexo-deployer-git": "0.1.0",
     "hexo-generator-alias": "git+https://github.com/chrisvfritz/vuejs.org-hexo-generator-alias.git",
