@@ -446,10 +446,6 @@ Vue.component('example', {
 
 另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
 
-<p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
-
-<p class="tip">不要使用 `$on` 监听子组件事件触发。必须在模板中直接用 `v-on`, 和下面的例子一样。</p>
-
 下面是一个例子：
 
 ``` html
