@@ -448,13 +448,10 @@ prop 유효성 검사가 실패하면 Vue는 콘솔 경고를 생성합니다(�
 
 또한, 부모 컴포넌트는 자식 컴포넌트가 사용되는 템플릿에서 직접 `v-on` 을 사용하여 자식 컴포넌트에서 보내진 이벤트를 들을 수 있습니다.
 
-<<<<<<< HEAD
-예제 입니다.
-=======
-<p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
 
-Here's an example:
->>>>>>> vuejs/master
+<p class="tip">`$on`은 자식에서 호출한 이벤트는 감지하지 않습니다. `v-on`을 템플릿에 반드시 지정해야 합니다. 아래의 예제를 보십시오.</p>
+
+예제:
 
 ``` html
 <div id="counter-event-example">
