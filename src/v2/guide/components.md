@@ -448,6 +448,8 @@ Every Vue instance implements an [events interface](../api/#Instance-Methods-Eve
 
 In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
 
+<p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
+
 Here's an example:
 
 ``` html
