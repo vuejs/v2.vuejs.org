@@ -1433,6 +1433,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `.self` - only trigger handler if event was dispatched from this element.
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
   - `.native` - listen for a native event on the root element of component.
+  - `.once` - trigger handler at most once.
 
 - **Usage:**
 
@@ -1471,6 +1472,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- key modifier using keyCode -->
   <input @keyup.13="onEnter">
+  
+  <!-- the click event will be triggered at most once -->
+  <button v-on:click.once="doThis"></button>
   ```
 
   Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
