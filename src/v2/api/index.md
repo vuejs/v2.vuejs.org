@@ -766,7 +766,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
 
-  <p class="tip">Use `$parent` and `$children` sparringly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
 
 ### mixins
 
@@ -966,8 +966,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
       var body   = this.$slots.default
       var footer = this.$slots.footer
       return createElement('div', [
-        createElement('header', header)
-        createElement('main', body)
+        createElement('header', header),
+        createElement('main', body),
         createElement('footer', footer)
       ])
     }
@@ -1519,6 +1519,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- shorthand -->
   <img :src="imageSrc">
+  
+  <!-- with inline string concatenation -->
+  <img :src="'/path/to/images/' + fileName">
 
   <!-- class binding -->
   <div :class="{ red: isRed }"></div>

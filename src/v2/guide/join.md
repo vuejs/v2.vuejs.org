@@ -1,7 +1,7 @@
 ---
 title: Join the Vue.js Community!
 type: guide
-order: 29
+order: 30
 ---
 
 Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
@@ -12,7 +12,7 @@ Now we'll answer both what the community can do for and what you can do for the 
 
 ### Get Support
 
-- [Forum](http://forum.vuejs.org/): THE best place to ask questions and get answers about Vue and its ecosystem.
+- [Forum](http://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
 - [Gitter Channel](https://gitter.im/vuejs/vue): A place for devs to meet and chat. You can ask questions here too, but the forum is the better platform, since the discussions are threaded.
 - [Github](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
 

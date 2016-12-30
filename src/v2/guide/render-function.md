@@ -177,9 +177,10 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   // Scoped slots in the form of
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
-    default: props => h('span', props.text)
+    default: props => createElement('span', props.text)
   },
-  // The name of a slot if the child of a component
+  // The name of the slot, if this component is the
+  // child of another component
   slot: 'name-of-slot'
   // Other special top-level properties
   key: 'myKey',
@@ -296,8 +297,8 @@ render: function (createElement) {
       value: self.value
     },
     on: {
-      input: function (e) {
-        self.value = e.target.value
+      input: function (event) {
+        self.value = event.target.value
       }
     }
   })
@@ -305,6 +306,57 @@ render: function (createElement) {
 ```
 
 This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+
+### Event & Key Modifiers
+
+For the `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+
+| Modifier(s) | Prefix |
+| ------ | ------ |
+| `.capture` | `!` |
+| `.once` | `~` |
+| `.capture.once` or<br>`.once.capture` | `~!` |
+
+For example:
+
+```javascript
+on: {
+  '!click': this.doThisInCapturingMode,
+  '~keyup': this.doThisOnce,
+  `~!mouseover`: this.doThisOnceInCapturingMode
+}
+```
+
+For all other event and key modifiers, no proprietary prefix is necessary, because you can simply use event methods in the handler:
+
+| Modifier(s) | Equivalent in Handler |
+| ------ | ------ |
+| `.stop` | `event.stopPropagation()` |
+| `.prevent` | `event.preventDefault()` |
+| `.self` | `if (event.target !== event.currentTarget) return` |
+| Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
+| Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
+
+Here's an example with all of these modifiers used together:
+
+```javascript
+on: {
+  keyup: function (event) {
+    // Abort if the element emitting the event is not
+    // the element the event is bound to
+    if (event.target !== event.currentTarget) return
+    // Abort if the key that went up is not the enter
+    // key (13) and the shift key was not held down
+    // at the same time
+    if (!event.shiftKey || event.keyCode !== 13) return
+    // Stop event propagation
+    event.stopPropagation()
+    // Prevent the default keyup handler for this element
+    event.preventDefault()
+    // ...
+  }
+}
+```
 
 ### Slots
 
@@ -340,7 +392,7 @@ render (createElement) {
       // in the form of { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
-          return h('span', props.text)
+          return createElement('span', props.text)
         }
       }
     })
