@@ -132,3 +132,45 @@ Vue.directive('clickoutside', {
   }
 })
 ```
+## Argument: Using different event types.
+
+So far, your directive will only listen for `click` events. But there might be situations where we want to listen to other events, like `doubleclick` or `mousedown`.
+
+For this, we can use an argument on our directive. This is what this looks like in our HTML:
+```html
+<modal v-clickoutside:dblclick="handler">
+
+</modal>
+```
+
+To use the argument in our directive, we only have to change the first argument of our `addEventListener()` and `removeEventListener()` calls to use the argument, if present:
+
+```JavaScript
+bind(el, binding) {
+  // ...
+  const eventName = binding.arg || 'click'
+  document.addEventListener(eventName, /*...*/)
+}
+
+unbind(el, binding) {
+  // ...
+  const eventName = binding.arg || 'click'
+  document.removeEventListener(eventName, /*...*/)
+}
+```
+
+## Limitations
+
+#### Doesn't work with v-show
+
+`v-show` does not remove the element from the DOM, so `unbind()` is not triggered when `v-show` hides an element. This means that our clickoutside event is still active even if your modal is not visible, and would still fire for each click outside of the modal (which now, is basically *everywhere*)
+
+#### No inline expressions
+
+We can't use an inline expression instead of a handler function. The following will **not** work, because it will be run immediatly, not on `click`:
+
+```html
+<modal v-clickoutside="showModal= false">
+
+</modal>
+```
