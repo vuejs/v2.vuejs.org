@@ -412,7 +412,7 @@
                 
                 
                 <li>
-                    <a href="/v2/guide/deployment.html" class="sidebar-link">Deploying For Production</a>
+                    <a href="/v2/guide/deployment.html" class="sidebar-link">Production Deployment Tips</a>
                 </li>
             
                 
@@ -748,6 +748,8 @@ new Vue({
 <p class="tip">Note that Vue’s event system is separate from the browser’s <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget" target="_blank" rel="external">EventTarget API</a>. Though they work similarly, <code>$on</code> and <code>$emit</code> are <strong>not</strong> aliases for <code>addEventListener</code> and <code>dispatchEvent</code>.</p>
 
 <p>In addition, a parent component can listen to the events emitted from a child component using <code>v-on</code> directly in the template where the child component is used.</p>
+<p class="tip">You cannot use <code>$on</code> to listen to events emitted by children. You must use <code>v-on</code> directly in the template, as in the example below.</p>
+
 <p>Here’s an example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"counter-event-example"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; total &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button-counter</span> <span class="attr">v-on:increment</span>=<span class="string">"incrementTotal"</span>&gt;</span><span class="tag">&lt;/<span class="name">button-counter</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button-counter</span> <span class="attr">v-on:increment</span>=<span class="string">"incrementTotal"</span>&gt;</span><span class="tag">&lt;/<span class="name">button-counter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'button-counter'</span>, &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">'&lt;button v-on:click="increment"&gt;&#123;&#123; counter &#125;&#125;&lt;/button&gt;'</span>,</div><div class="line">  <span class="attr">data</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">counter</span>: <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">increment</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.counter += <span class="number">1</span></div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'increment'</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#counter-event-example'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">total</span>: <span class="number">0</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">incrementTotal</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.total += <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -831,7 +833,10 @@ Vue.component('currency-input', {
     }
   }
 })
-new Vue({ el: '#currency-input-example' })
+new Vue({
+  el: '#currency-input-example',
+  data: { price: '' }
+})
 </script>
 
 <p>The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here’s a more robust currency filter:</p>

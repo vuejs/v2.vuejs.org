@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Deploying For Production - vue.js</title>
+        <title>Production Deployment Tips - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <meta property="og:type" content="article">
-        <meta property="og:title" content="Deploying For Production - vue.js">
+        <meta property="og:title" content="Production Deployment Tips - vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta property="og:image" content="https://vuejs.org/images/logo.png">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Deploying For Production - vue.js">
+        <meta name="twitter:title" content="Production Deployment Tips - vue.js">
         <meta name="twitter:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
@@ -412,7 +412,7 @@
                 
                 
                 <li>
-                    <a href="/v2/guide/deployment.html" class="sidebar-link current">Deploying For Production</a>
+                    <a href="/v2/guide/deployment.html" class="sidebar-link current">Production Deployment Tips</a>
                 </li>
             
                 
@@ -558,23 +558,31 @@
 
     
     
-      <h1>Deploying For Production</h1>
+      <h1>Production Deployment Tips</h1>
     
-    <h2 id="Stripping-Out-Warnings"><a href="#Stripping-Out-Warnings" class="headerlink" title="Stripping Out Warnings"></a>Stripping Out Warnings</h2><p>The minified standalone build of Vue has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Webpack or Browserify, you will need some additional configuration to achieve this.</p>
-<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>Use Webpack’s <a href="http://webpack.github.io/docs/list-of-plugins.html#defineplugin" target="_blank" rel="external">DefinePlugin</a> to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">      <span class="string">'process.env'</span>: &#123;</div><div class="line">        <span class="attr">NODE_ENV</span>: <span class="string">'"production"'</span></div><div class="line">      &#125;</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">      <span class="attr">compress</span>: &#123;</div><div class="line">        <span class="attr">warnings</span>: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Browserify"><a href="#Browserify" class="headerlink" title="Browserify"></a>Browserify</h3><ul>
-<li>Run your bundling command with <code>NODE_ENV</code> set to <code>&quot;production&quot;</code>. This tells <code>vueify</code> to avoid including hot-reload and development related code.</li>
-<li>Apply a global <a href="https://github.com/hughsk/envify" target="_blank" rel="external">envify</a> transform to your bundle. This allows the minifier to strip out all the warnings in Vue’s source code wrapped in env variable conditional blocks. For example:</li>
-</ul>
+    <h2 id="Turn-on-Production-Mode"><a href="#Turn-on-Production-Mode" class="headerlink" title="Turn on Production Mode"></a>Turn on Production Mode</h2><p>During development, Vue provides a lot of warnings to help you with common errors and pitfalls. However, these warning strings become useless in production and bloat your app’s payload size. In addition, some of these warning checks have small runtime costs that can be avoided in production mode.</p>
+<h3 id="Without-Build-Tools"><a href="#Without-Build-Tools" class="headerlink" title="Without Build Tools"></a>Without Build Tools</h3><p>If you are using the standalone build, i.e. directly including Vue via a script tag without a build tool, make sure to use the minified version (<code>vue.min.js</code>) for production.</p>
+<h3 id="With-Build-Tools"><a href="#With-Build-Tools" class="headerlink" title="With Build Tools"></a>With Build Tools</h3><p>When using a build tool like Webpack or Browserify, the production mode will be determined by <code>process.env.NODE_ENV</code> inside Vue’s source code, and it will be in development mode by default. Both build tools provide ways to overwrite this variable to enable Vue’s production mode, and warnings will be stripped by minifiers during the build. All <code>vue-cli</code> templates have these pre-configured for you, but it would be beneficial to know how it is done:</p>
+<h4 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h4><p>Use Webpack’s <a href="http://webpack.github.io/docs/list-of-plugins.html#defineplugin" target="_blank" rel="external">DefinePlugin</a> to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">      <span class="string">'process.env'</span>: &#123;</div><div class="line">        <span class="attr">NODE_ENV</span>: <span class="string">'"production"'</span></div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Browserify"><a href="#Browserify" class="headerlink" title="Browserify"></a>Browserify</h4><ul>
+<li><p>Run your bundling command with the actual <code>NODE_ENV</code> environment variable set to <code>&quot;production&quot;</code>. This tells <code>vueify</code> to avoid including hot-reload and development related code.</p>
+</li>
+<li><p>Apply a global <a href="https://github.com/hughsk/envify" target="_blank" rel="external">envify</a> transform to your bundle. This allows the minifier to strip out all the warnings in Vue’s source code wrapped in env variable conditional blocks. For example:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">NODE_ENV=production browserify -g envify <span class="_">-e</span> main.js | uglifyjs -c -m &gt; build.js</div></pre></td></tr></table></figure>
-<ul>
-<li>To extract styles to a separate css file use a extract-css plugin which is included in vueify.</li>
+</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] <span class="_">-e</span> main.js | uglifyjs -c -m &gt; build.js</div></pre></td></tr></table></figure>
+<h4 id="Rollup"><a href="#Rollup" class="headerlink" title="Rollup"></a>Rollup</h4><p>Use <a href="https://github.com/rollup/rollup-plugin-replace" target="_blank" rel="external">rollup-plugin-replace</a>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> replace = <span class="built_in">require</span>(<span class="string">'rollup-plugin-replace'</span>)</div><div class="line"></div><div class="line">rollup(&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    replace(&#123;</div><div class="line">      <span class="string">'process.env.NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify( <span class="string">'production'</span> )</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;).then(...)</div></pre></td></tr></table></figure>
+<h2 id="Pre-Compiling-Templates"><a href="#Pre-Compiling-Templates" class="headerlink" title="Pre-Compiling Templates"></a>Pre-Compiling Templates</h2><p>When using in-DOM templates or in-JavaScript template strings, the template-to-render-function compilation is performed on the fly. This is usually fast enough in most cases, but is best avoided if your application is performance-sensitive. The easiest way to pre-compile templates is using <a href="./single-file-components.html">Single-File Components</a> - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.</p>
+<h2 id="Extracting-Component-CSS"><a href="#Extracting-Component-CSS" class="headerlink" title="Extracting Component CSS"></a>Extracting Component CSS</h2><p>When using Single-File Components, the CSS inside components are injected dynamically as <code>&lt;style&gt;</code> tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a “flash of unstyled content”. Extracting the CSS across all components into the same file and avoid these issues, and also result in better CSS minification and caching.</p>
+<p>Refer to the respective build tool documentations to see how it’s done:</p>
+<ul>
+<li><a href="http://vue-loader.vuejs.org/en/configurations/extract-css.html" target="_blank" rel="external">Webpack + vue-loader</a> (the <code>vue-cli</code> webpack template has this pre-configured)</li>
+<li><a href="https://github.com/vuejs/vueify#css-extraction" target="_blank" rel="external">Browserify + vueify</a></li>
+<li><a href="https://github.com/znck/rollup-plugin-vue#options" target="_blank" rel="external">Rollup + rollup-plugin-vue</a></li>
+</ul>
 <h2 id="Tracking-Runtime-Errors"><a href="#Tracking-Runtime-Errors" class="headerlink" title="Tracking Runtime Errors"></a>Tracking Runtime Errors</h2><p>If a runtime error occurs during a component’s render, it will be passed to the global <code>Vue.config.errorHandler</code> config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like <a href="https://sentry.io" target="_blank" rel="external">Sentry</a>, which provides <a href="https://sentry.io/for/vue/" target="_blank" rel="external">an official integration</a> for Vue.</p>
-<h2 id="Extracting-CSS"><a href="#Extracting-CSS" class="headerlink" title="Extracting CSS"></a>Extracting CSS</h2><p>When using <a href="./single-file-components.html">Single-File Components</a>, the <code>&lt;style&gt;</code> tags are injected dynamically at runtime during development. In production you may want to extract the styles across all components into a single CSS file. For details on how to achieve this, consult the respective documentation for <a href="http://vue-loader.vuejs.org/en/configurations/extract-css.html" target="_blank" rel="external">vue-loader</a> and <a href="https://github.com/vuejs/vueify#css-extraction" target="_blank" rel="external">vueify</a>.</p>
-<p>The official <code>webpack</code> template from <code>vue-cli</code> has this already configured out of the box.</p>
 
     
       <div class="guide-links">

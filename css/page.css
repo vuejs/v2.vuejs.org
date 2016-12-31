@@ -748,6 +748,7 @@ ul.demo li {
 .content ul,
 .content ol {
   padding-left: 1.5em;
+  position: inherit;
 }
 .content a {
   color: #42b983;

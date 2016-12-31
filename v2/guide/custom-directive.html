@@ -412,7 +412,7 @@
                 
                 
                 <li>
-                    <a href="/v2/guide/deployment.html" class="sidebar-link">Deploying For Production</a>
+                    <a href="/v2/guide/deployment.html" class="sidebar-link">Production Deployment Tips</a>
                 </li>
             
                 
@@ -576,7 +576,7 @@ new Vue({
 })
 </script>
 
-<p>When the page loads, that element gains focus. In fact, if you haven’t clicked on anything else since visiting this page, the input above should be focused now. Now let’s build the directive that accomplishes this:</p>
+<p>When the page loads, that element gains focus (note: autofocus doesn’t work on mobile Safari). In fact, if you haven’t clicked on anything else since visiting this page, the input above should be focused now. Now let’s build the directive that accomplishes this:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Register a global custom directive called v-focus</span></div><div class="line">Vue.directive(<span class="string">'focus'</span>, &#123;</div><div class="line">  <span class="comment">// When the bound element is inserted into the DOM...</span></div><div class="line">  inserted: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// Focus the element</span></div><div class="line">    el.focus()</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>If you want to register a directive locally instead, components also accept a <code>directives</code> option:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">directives: &#123;</div><div class="line">  <span class="attr">focus</span>: &#123;</div><div class="line">    <span class="comment">// directive definition</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
