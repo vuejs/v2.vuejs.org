@@ -329,87 +329,27 @@ new Vue({
 </script>
 {% endraw %}
 
-### `v-for` and `v-if`
+### `v-for` with `v-if`
 
-In Vue template, `v-for` has a higher priority than `v-if` when they exists in the same node.
+When they exists on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only _some_ items, like below:
 
-Suppose the example code bellow:
-
-```html
-<div id="v-for-if"  class="demo">
-  <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
-  <div v-for="item2 in list2" v-else><div>{{ item2 }}</div></div>
-</div>
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
 ```
 
-```js
-new Vue({
-  el: '#v-for-if',
-  data: {
-    list: [0, false, 1],
-    list2: [4, 5, 6]
-  }
-})
+The above only renders the todos that are not complete.
+
+If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+
+``` html
+<ul v-if="shouldRenderTodos">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
 ```
-
-Because `v-for` has higher priority than `v-if`, Vue will loop item in the list first. If item is true, it will output `item` value, else it will loop list2 and output the items of it.
-
-So the result of the above example code will be:
-
-{% raw %}
-<div id="v-for-if" class="demo">
-  <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
-  <div v-for="item2 in list2" v-else><div>{{ item2 }}</div></div>
-</div>
-<script>
-new Vue({
-  el: '#v-for-if',
-  data: {
-    list: [0, false, 1],
-    list2: [4, 5, 6]
-  }
-})
-</script>
-{% endraw %}
-
-Let's see a complicated example. This example shows the case that v-for, v-if, v-else-if and v-else used together.
-
-```html
-<div id="v-for-if-complicated" class="demo">
-  <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
-  <div v-for="item2 in list2" v-else-if="item === false"><div>{{ item2 }}</div></div>
-  <div v-else><div>else</div></div>
-</div>
-```
-
-```js
-new Vue({
-  el: '#v-for-if-complicated',
-  data: {
-    list: [0, false, 1],
-    list2: [4, 5, 6]
-  }
-})
-```
-
-Result:
-
-{% raw %}
-<div id="v-for-if-complicated" class="demo">
-  <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
-  <div v-for="item2 in list2" v-else-if="item === false"><div>{{ item2 }}</div></div>
-  <div v-else><div>else</div></div>
-</div>
-<script>
-new Vue({
-  el: '#v-for-if-complicated',
-  data: {
-    list: [0, false, 1],
-    list2: [4, 5, 6]
-  }
-})
-</script>
-{% endraw %}
 
 ## `key`
 
