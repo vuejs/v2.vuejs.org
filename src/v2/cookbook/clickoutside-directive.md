@@ -6,18 +6,20 @@ order: 2.1
 
 ## What we are building
 
-Many UI elements require to have to clicks that happen outside of them. Common usecases are:
+Many UI elements need to react to clicks that happen *outside* of them. Common usecases are:
 
 * Modals
 * Dropdown menus
 * Popovers
 * Image Lightboxes
 
-We will build a small [Custom Directive](https://vuejs.org/v2/guide/custom-directive.html) that we can use in any component that needs this behaviour. One such component is the [modal example](https://vuejs.org/v2/examples/modal.html) from the Vue.js Website, so we will use this as a base component to demonstrate the usage of our new custom directive.
+We will build a small [Custom Directive](https://vuejs.org/v2/guide/custom-directive.html) that we can use in any component in need of this behaviour. One such component is the [modal example](https://vuejs.org/v2/examples/modal.html) from the Vue.js website, so we will use this as a base component to demonstrate the usage of our new directive.
 
-The result will look like this:
+> If you haven't already read the our Vue.js Guide about custom directives, we recommend you change this now. [Click here](../guide/custom-directive.html) to got to the relevant section in the guide.
 
-``` html
+Ready? Great. So this is what the endresult of our efforts will look like:
+
+```html
 <modal v-clickoutside="handler">
   <!--  
     "handler" should be a method in your component.
@@ -26,36 +28,46 @@ The result will look like this:
 </modal>
 ```
 
-## Starting simple
+## bind(): Adding the desired behavior
 
-The basic functionality is easy enough to achive. We register a new directive with Vue, and use
-the `bind()` hook to register an event listener on the document:
+The basic functionality is easy enough to achive. We register a new directive with Vue, and use the `bind()` hook to register an event listener on the document:
 
-```JavaScript
+```javascript
 Vue.directive('clickoutside', {
   bind(el, binding) {
-    const handler = binding.value // this gives us the "handler" function the component passed to the directive.
-    document.addEventListener('click', function(event) {
-      const target = event.target
-      if (!el.contains(target) && el === target) {
-        handler(event)
-      }
-    })
+    // get the "handler" function that gets passed to the directive.
+    const handler = binding.value
+    // some error checking
+    if (typof handler !== 'functionality') {
+      console.warn('[vue-clickoutside]: bind value must be a function.')
+      return
+    }
+
+    setTimeout(function() {
+      document.addEventListener('click', function(event) {
+        const target = event.target
+        // check weither the click happened outside of el
+        if (!el.contains(target) && el !== target) {
+          handler(event)
+        }
+      })
+    }, 0)
   }
 })
 ```
 
-So what happened here? When the directive is bound to the element we defined it on, its `bind()` hook is called.
+So what happened here?
 
-In this hook, we add an Event listener to the document, which will call the handler of the component on click.
+* When the directive is bound to the element, its `bind()` hook is called.
+* In this hook, we add an Event listener to the document, which will call the handler of the component for *any* click happening on our page.
+* We use `setTimeout()` because if we didn't, then a `click` event from a button that is responsible to make our modal appear could trigger our directive's handler immediatly, and we don't want that, of course.
+* And to make sure that this handler is only called when the click actually happened outside of out element `el`, we first check that the event's target wasn't `el` or one of its child nodes.
 
-And to make sure that this handler is only called when the click actually happened outside of out element `el`, we first weither the event's target was `el` or one of its child nodes.
+## unbind(): Cleaning up after ourselves
 
-## Cleaning up after ourselves: Removing the Listener
+Our directive does the job, but it still has a flaw: We have no mechanism in place to remove the listener again if `el` is removed from the DOM. This is problematic because the usual usecase of our directive on a `<modal>`will be to close a modal, for example, so our directive will be gone after this too - and so should the listener.
 
-Our directive does the job, but it still has a flaw: We have no mechanism in place to remove the listener again if `el` is removed from the DOM. This is problematic because the usual usecase of our directive on a `<modal>`will be to close a modal, for example, so the listener should be gone after that, too.
-
-We can correct that with the `unbind()` hook, but there's a catch we have to work around: since directives don't have instances, we can't save the handler method on it. To solve this challenge, we have two possibilities: we can either cache the hander on the element, or we can use a ES6 [Map](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Map). Using the latter is much cleaner, but requires a polyfill for older browsers. We will show you both ways here.
+We can correct that with the `unbind()` hook, but there's a catch we have to work around: since directives don't have instances, we can't save the handler method on it. To solve this challenge, we have two possibilities: we can either cache the hander on the element, or we can use a ES6 [Map](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Map). Using the latter is much cleaner because we don't have to touch the element, but requires a polyfill for older browsers. We will show you both ways here.
 
 #### Saving the handler on the element
 
@@ -67,7 +79,7 @@ Vue.directive('clickoutside', {
     // create a named function for the handler
     function handler(event) {
       const target = event.target
-      if (!el.contains(target) && el === target) {
+      if (!el.contains(target) && el !== target) {
         handler(event)
       }
     }
@@ -75,7 +87,9 @@ Vue.directive('clickoutside', {
     // and save it in a property on the element
     el.__vueClickOutside__ = handler
 
-    document.addEventListener('click', handler)
+    setTimeout(function() {
+      document.addEventListener('click', handler)
+    }, 0)
   },
 
   unbind(el) {
@@ -91,10 +105,13 @@ Vue.directive('clickoutside', {
 })
 ```
 
-#### Using a Map() to cache the handler
+#### Using a ES6 Map to cache the handler
 
 ```JavaScript
 
+// we create the map outside of the directive,
+// because we only need one.
+// We don't have to create one for each instance of our directive.
 var handlerCache = new Map()
 
 Vue.directive('clickoutside', {
