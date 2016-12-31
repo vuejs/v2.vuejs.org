@@ -190,7 +190,7 @@ And another for the index:
 
 <p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
 
-### Range v-for
+### Range `v-for`
 
 `v-for` can also take an integer. In this case it will repeat the template that many times.
 
@@ -211,7 +211,7 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### Components and v-for
+### Components and `v-for`
 
 > This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
 
