@@ -1329,7 +1329,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   This directive triggers transitions when its condition changes.
   
-  <p class="tip">When used together with v-for, v-for has a higher priority than v-if. Check this <a href="../guide/list.html#V-for-and-v-if">link</a> for details.</p>
+  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. Check the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.</p>
 
 - **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
 
@@ -1414,7 +1414,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
   
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. Check this <a href="../guide/list.html#V-for-and-v-if">link</a> for details.</a></p>
+  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. Check the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.</p>
   
   The detailed usage for `v-for` is explained in the guide section linked below.
 
