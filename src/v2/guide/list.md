@@ -112,7 +112,7 @@ You can also use `of` as the delimiter instead of `in`, so that it is closer to 
 <div v-for="item of items"></div>
 ```
 
-### Template v-for
+### Template `v-for`
 
 Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
 
@@ -125,7 +125,7 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-### Object v-for
+### Object `v-for`
 
 You can also use `v-for` to iterate through the properties of an object.
 
@@ -142,9 +142,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -163,9 +163,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -329,11 +329,11 @@ new Vue({
 </script>
 {% endraw %}
 
-### V-for and v-if
+### `v-for` and `v-if`
 
-In Vue.js template, v-for has a higher priority than v-if when they exists in the same node.
+In Vue.js template, `v-for` has a higher priority than `v-if` when they exists in the same node.
 
-Suppose the example code bellow: 
+Suppose the example code bellow:
 
 ```html
 <div id="v-for-if"  class="demo">
@@ -347,16 +347,15 @@ new Vue({
   el: '#v-for-if',
   data: {
     list: [0, false, 1],
-    list2: [4, 5, 6]    
+    list2: [4, 5, 6]
   }
 })
 ```
 
-
-Because v-for has higher priority than v-if, Vue.js will loop item in the list first. If item is true, it will output `item` value, else it will loop list2 and output the items of it.
+Because `v-for` has higher priority than `v-if`, Vue.js will loop item in the list first. If item is true, it will output `item` value, else it will loop list2 and output the items of it.
 
 So the result of the above example code will be:
- 
+
 {% raw %}
 <div id="v-for-if" class="demo">
   <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
@@ -367,11 +366,11 @@ new Vue({
   el: '#v-for-if',
   data: {
     list: [0, false, 1],
-    list2: [4, 5, 6]    
+    list2: [4, 5, 6]
   }
 })
 </script>
-{% endraw %} 
+{% endraw %}
 
 Let's see a complicated example. This example shows the case that v-for, v-if, v-else-if and v-else used together.
 
@@ -388,13 +387,13 @@ new Vue({
   el: '#v-for-if-complicated',
   data: {
     list: [0, false, 1],
-    list2: [4, 5, 6]    
+    list2: [4, 5, 6]
   }
 })
 ```
 
 Result:
- 
+
 {% raw %}
 <div id="v-for-if-complicated" class="demo">
   <div v-for="item in list" v-if="item"><div>{{ item }}</div></div>
@@ -406,11 +405,11 @@ new Vue({
   el: '#v-for-if-complicated',
   data: {
     list: [0, false, 1],
-    list2: [4, 5, 6]    
+    list2: [4, 5, 6]
   }
 })
 </script>
-{% endraw %} 
+{% endraw %}
 
 ## Key
 
