@@ -159,6 +159,11 @@ unbind(el, binding) {
 }
 ```
 
+## The Final Result
+
+<iframe width="100%" height="500" src="https://jsfiddle.net/Linusborg/g5sh3rcu/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<script async src="//"></script>
+
 ## Limitations
 
 #### Doesn't work with v-show
