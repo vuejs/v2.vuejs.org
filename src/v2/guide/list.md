@@ -331,7 +331,7 @@ new Vue({
 
 ### `v-for` and `v-if`
 
-In Vue.js template, `v-for` has a higher priority than `v-if` when they exists in the same node.
+In Vue template, `v-for` has a higher priority than `v-if` when they exists in the same node.
 
 Suppose the example code bellow:
 
@@ -352,7 +352,7 @@ new Vue({
 })
 ```
 
-Because `v-for` has higher priority than `v-if`, Vue.js will loop item in the list first. If item is true, it will output `item` value, else it will loop list2 and output the items of it.
+Because `v-for` has higher priority than `v-if`, Vue will loop item in the list first. If item is true, it will output `item` value, else it will loop list2 and output the items of it.
 
 So the result of the above example code will be:
 
@@ -411,9 +411,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## Key
+## `key`
 
-When Vue.js is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
+When Vue is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
 
 This default mode is efficient, but only suitable **when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
 
