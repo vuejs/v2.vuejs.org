@@ -1,7 +1,7 @@
 ---
 title: A clickoutside directive
 type: cookbook
-order: 1.2
+order: 2.1
 ---
 
 ## What we are building
