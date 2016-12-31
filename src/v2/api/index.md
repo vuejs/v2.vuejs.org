@@ -1337,7 +1337,10 @@ type: api
 
   当条件变化时该指令触发过渡效果。
 
+  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+
 - **参考：** [条件渲染 - v-if](../guide/conditional.html)
+
 
 ### v-else
 
@@ -1420,7 +1423,10 @@ type: api
   </div>
   ```
 
+  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+
   `v-for` 的详细用法可以通过以下链接查看教程详细说明。
+
 
 - **参考：**
   - [列表渲染](../guide/list.html)
@@ -1440,7 +1446,7 @@ type: api
   - `.capture` - 添加事件侦听器时使用 capture 模式。
   - `.self` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
   - `.{keyCode | keyAlias}` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
-  - `.native` - 监听组件根元素的原生事件。
+  - `.once` - 触发一次。
 
 - **用法：**
 
@@ -1479,6 +1485,9 @@ type: api
 
   <!-- 键修饰符，键代码 -->
   <input @keyup.13="onEnter">
+
+  <!-- the click event will be triggered at most once -->
+  <button v-on:click.once="doThis"></button>
   ```
 
   在子组件上监听自定义事件（当子组件触发 “my-event” 时将调用事件处理器）：
@@ -1527,7 +1536,7 @@ type: api
 
   <!-- 缩写 -->
   <img :src="imageSrc">
-  
+
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
 
