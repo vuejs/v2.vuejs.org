@@ -1,4 +1,4 @@
-## vue.js 2.0 中文文档 https://cn.vuejs.org
+## vue.js 2.0 中文文档 https://vuefe.cn
 
 > 欢迎大家一起参与校对工作 
 
