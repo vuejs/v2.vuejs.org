@@ -343,8 +343,7 @@ new Vue({
 
 위의 경우에만 완료되지 않은 todo가 렌더링 됩니다.
 
-
-If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+대신 루프의 실행을 조건부로 건너뛰는 것이 목적이면 `v-if`를 래퍼 엘리먼트로 옮기면(또는 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)사용) 됩니다.
 
 ``` html
 <ul v-if="shouldRenderTodos">
