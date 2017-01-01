@@ -24,8 +24,7 @@ new Vue({
 </script>
 {% endraw %}
 
-When the page loads, that element gains focus (note: autofocus doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
-
+페이지가 로드되면 해당 엘리먼트는 포커스를 얻습니다. 사실, 이 페이지를 방문한 이후 다른것을 클릭하지 않았다면 이 input 엘리먼트에 포커스가 되어 있어야 합니다.(참고: 모바일 사파리에서는 작동하지 않습니다.) 이제 이 작업을 수행하는 지시문을 작성하겠습니다.
 
 ``` js
 // 전역 사용자 정의 지시문 v-focus 등록
