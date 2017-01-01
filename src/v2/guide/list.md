@@ -190,7 +190,7 @@ new Vue({
 
 <p class="tip">在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
 
-### 整数迭代 v-for 
+### 范围 `v-for` 
 
 `v-for` 也可以取整数。在这种情况下，它将重复多次模板。
 
@@ -211,7 +211,7 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### 组件 和 v-for
+### 组件 和 `v-for`
 
 > 了解组件相关知识，查看 [组件](components.html) 。完全可以先跳过它，以后再回来查看。
 
