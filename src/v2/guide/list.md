@@ -113,7 +113,7 @@ var example2 = new Vue({
 <div v-for="item of items"></div>
 ```
 
-### v-for 템플릿
+### Template `v-for`
 
 템플릿 `v-if`와 마찬가지로, `v-for`와 함께 `<template>` 태그를 사용하여 여러 엘리먼트의 블럭을 렌더링 할 수 있습니다. 예를 들어,
 
@@ -126,7 +126,7 @@ var example2 = new Vue({
 </ul>
 ```
 
-### v-for 객체
+### Object `v-for`
 
 `v-for`를 사용하여 객체의 속성을 반복할 수도 있습니다.
 
@@ -143,9 +143,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -164,9 +164,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -191,7 +191,7 @@ new Vue({
 
 <p class="tip">객체를 반복할 때 순서는 `Object.keys()`의 키 나열 순서에 따라 결정됩니다. 이 순서는 JavaScript 엔진 구현간에 **일관적이지는 않습니다.**</p>
 
-### v-for 범위
+### Range `v-for`
 
 `v-for`는 정수를 사용할 수 있습니다. 이 경우 템플릿을 여러번 반복 합니다.
 
@@ -212,7 +212,8 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### 컴포넌트와 v-for
+### Components and `v-for`
+
 
 > 이 섹션에서는 [컴포넌트](components.html)에 대한 지식이 있다고 가정합니다. 나중에 읽어도 좋습니다.
 
@@ -330,8 +331,34 @@ new Vue({
 </script>
 {% endraw %}
 
-## key
+### `v-for` with `v-if`
 
+<<<<<<< HEAD
+=======
+When they exists on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only _some_ items, like below:
+
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+```
+
+The above only renders the todos that are not complete.
+
+If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+
+``` html
+<ul v-if="shouldRenderTodos">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+```
+
+## `key`
+
+When Vue is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
+>>>>>>> vuejs/master
 
 Vue.js가 `v-for`로 렌더링 된 엘리먼트 목록을 갱신할 때, 기본적으로 "in-place patch" 전략이 사용됩니다. 데이터 항목의 순서가 변경된 경우 항목의 순서와 일치하도록 DOM 요소를 이동하는 대신 Vue는 각 요소를 적절한 위치에 패치하고 특정 색인에서 렌더링 할 내용을 반영하는지 확인합니다. 이것은 Vue 1.x의 `track-by=$index`의 동작과 유사합니다.
 

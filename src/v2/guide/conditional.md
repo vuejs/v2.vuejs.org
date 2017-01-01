@@ -192,4 +192,12 @@ new Vue({
 
 비교해보면, `v-show`는 훨씬 단순합니다. CSS 기반 토글만으로 초기 조건에 관계 없이 엘리먼트가 항상 렌더링 됩니다.
 
+<<<<<<< HEAD
 일반적으로 `v-if`는 토글 비용이 높고 `v-show`는 초기 렌더링 비용이 더 높습니다. 매우 자주 바꾸기를 원한다면 `v-show`를, 런타임 시 조건이 바뀌지 않으면 `v-if`를 권장합니다.
+=======
+Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+
+## `v-if` with `v-for`
+
+When used together with `v-for`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.
+>>>>>>> vuejs/master

@@ -1323,6 +1323,8 @@ type: api
 
   조건이 변경될 때 전환이 호출 됩니다.
 
+<p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
+
 - **참고:** [조건부 렌더링 - v-if](../guide/conditional.html)
 
 ### v-else
@@ -1407,7 +1409,10 @@ type: api
   </div>
   ```
 
-  `v-for`에 대한 자세한 사용법은 아래 링크된 가이드에서 설명합니다.
+<p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
+
+`v-for`에 대한 자세한 사용법은 아래 링크된 가이드에서 설명합니다.
+
 
 - **참고:**
   - [리스트 렌더링](../guide/list.html)
@@ -1425,9 +1430,10 @@ type: api
   - `.stop` - `event.stopPropagation()` 을 호출합니다.
   - `.prevent` - `event.preventDefault()` 을 호출합니다.
   - `.capture` - 캡처 모드에서 이벤트 리스너를 추가합니다.
-  - `.self` - 이벤트가 이 엘리먼트에서 전달된 경우에만 트리거를 처리합니다
-  - `.{keyCode | keyAlias}` - 특정 키에 대해서만 트리거를 처리합니다.
+  - `.self` - 이벤트가 이 엘리먼트에서 전달된 경우에만 처리 됩니다
+  - `.{keyCode | keyAlias}` - 특정 키에 대해서만 처리 됩니다.
   - `.native` - 컴포넌트의 루트 엘리먼트에서 네이티브 이벤트를 수신합니다.
+  - `.once` - 단 한번만 처리됩니다.
 
 - **사용방법:**
 
@@ -1466,6 +1472,9 @@ type: api
 
   <!-- 키 코드를 이용한 키 입력 수식어 -->
   <input @keyup.13="onEnter">
+
+  <!-- the click event will be triggered at most once -->
+  <button v-on:click.once="doThis"></button>
   ```
 
   하위 컴포넌트에서 사용자 지정 이벤트를 수신합니다. (자식에서 "my-event"가 생성될 때 처리기가 호출 됩니다.)

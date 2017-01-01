@@ -156,7 +156,7 @@ Vue.component('my-component', {
 
 ### 객체 구문
 
-`v-bind:style` 객체 구문은 매우 직설적입니다. JavaScript 객체를 제외하고 CSS와 거의 비슷합니다. CSS 속성 이름에는 camelCase또는 kebab-case를 사용할 수 있습니다.
+The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
