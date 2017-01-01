@@ -77,7 +77,7 @@ type: api
 
   컴포넌트 렌더링 또는 감시자에 catch 되지 않은 오류에 대한 핸들러를 할당합니다. 핸들러는 오류와 Vue 인스턴스와 함께 호출됩니다.
 
-  > [Sentry](https://sentry.io), 오류 추적 서비스입니다, [공식 사용 설명서](https://sentry.io/for/vue/) 를 제공합니다.
+  > 오류 추적 서비스인 [Sentry](https://sentry.io)에서 [공식 사용 설명서](https://sentry.io/for/vue/) 를 제공합니다.
 
 ### ignoredElements
 
@@ -1899,7 +1899,7 @@ type: api
 
 - **참고:** [Slot을 이용한 컨텐트 배포](../guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## VNode 인터페이스
 
 - [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)를 참조하십시오.
 
