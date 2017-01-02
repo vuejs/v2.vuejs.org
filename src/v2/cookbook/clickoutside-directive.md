@@ -77,7 +77,7 @@ Vue.directive('clickoutside', {
     const handler = binding.value
 
     // create a named function for the handler
-    function handler(event) {
+    function wrappedHandler(event) {
       const target = event.target
       if (!el.contains(target) && el !== target) {
         handler(event)
@@ -85,10 +85,10 @@ Vue.directive('clickoutside', {
     }
 
     // and save it in a property on the element
-    el.__vueClickOutside__ = handler
+    el.__vueClickOutside__ = wrappedHandler
 
     setTimeout(function() {
-      document.addEventListener('click', handler)
+      document.addEventListener('click', wrappedHandler)
     }, 0)
   },
 
@@ -117,8 +117,8 @@ var handlerCache = new Map()
 Vue.directive('clickoutside', {
   bind(el, binding) {
     // ...
-    // el.__vueClickOutside__ = handler
-    handlerCache.set(el, handler)
+    // el.__vueClickOutside__ = wrappedHandler
+    handlerCache.set(el, wrappedHandler)
     // ...
   },
   unbind(el) {
