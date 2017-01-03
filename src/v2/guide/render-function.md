@@ -259,7 +259,7 @@ render: function (createElement) {
 
 ### `v-if` 와 `v-for`
 
-일반 자바스크립트를 사용할 수 있는 환경이면 어디든지 Vue 렌더링 함수는 한가지 방법만을 제공하지는 않습니다. 예를 들어,`v-if`와`v-for`를 사용하는 템플릿에서 :
+일반 JavaScript를 사용할 수 있는 환경이면 어디든지 Vue 렌더링 함수는 한가지 방법만을 제공하지는 않습니다. 예를 들어,`v-if`와`v-for`를 사용하는 템플릿에서 :
 
 ``` html
 <ul v-if="items.length">
