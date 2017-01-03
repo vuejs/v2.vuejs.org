@@ -325,4 +325,5 @@ Vue.component({
 
 복잡한 응용 프로그램에서 서버 사이드 렌더링을 마스터하려면 다음 자료를 자세히 살펴보는 것이 좋습니다.
 
-- [vue-server-renderer docs](https://www.npmjs.com/package/vue-server-renderer#api) : 여기에서 다루는 주제에 대한 자세한 내용은 물론 고급 주제에 대한 문서화 [교차 요청에 따른 위험 방지](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) 및 [별도의 서버 빌드 추가](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle) [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): 모든 주요 Vue 라이브러리와 개념을 하나의 응용 프로그램으로 통합하는 단일 애플리케이션
+- [vue-server-renderer docs](https://www.npmjs.com/package/vue-server-renderer#api): 여기에서 언급 한 내용에 대한 자세한 설명과 더불어 [교차 요청에 따른 위험 방지](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) 및 [별도의 서버 빌드 추가](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle) 등 응용적인 주제를 소개하고 있습니다.
+- [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): Vue의 주요 라이브러리와 개념을 응용 프로그램으로 정리 한 예제입니다.
