@@ -46,7 +46,6 @@ $ npm install vue
 
 ### 독립 실행형 vs. 런타임 전용 빌드
 
-There are two builds available:
 두가지 빌드를 사용할 수 있습니다.
 
 - `vue.common.js` - 독립 실행 형 빌드 - 템플릿 컴파일러를 포함하고 `template` 옵션을 지원합니다. **또한 브라우저 API의 존재 여부에 의존하므로 서버 측 렌더링에 사용할 수 없습니다.** 템플릿 컴파일러는 Vue 템플릿 문자열을 순수 JavaScript 렌더링 함수로 컴파일해야합니다. `template` 옵션을 사용하려면, 컴파일러가 필요합니다. `Vuex` 저장소는 독립형 빌드도 필요합니다.
