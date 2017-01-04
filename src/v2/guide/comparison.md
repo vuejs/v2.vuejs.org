@@ -36,7 +36,7 @@ UI를 렌더링 할 때 일반적으로 DOM을 조작하는 것이 가장 비용
 
 2. DOM 처리에 가능한 적은 오버헤드(순수 JavaScript 계산)을 추가 했습니다. 이 것은 Vue와 React의 차이점 입니다.
 
-JavaScript의 오버헤드는 필요한 DOM 작업을 계산하는 메커니즘과 직접적으로 관련이 있습니다. Vue와 React 모두 가상 DOM을 사용하여 이를 구현하지만 Vue의 가상 DOM 구현([snabbdom]((https://github.com/snabbdom/snabbdom)의 포크)은 훨씬 가벼우므로 React보다 더 적은 오버 헤드가 발생합니다.
+JavaScript의 오버헤드는 필요한 DOM 작업을 계산하는 메커니즘과 직접적으로 관련이 있습니다. Vue와 React 모두 가상 DOM을 사용하여 이를 구현하지만 Vue의 가상 DOM 구현([snabbdom](https://github.com/snabbdom/snabbdom)의 포크)은 훨씬 가벼우므로 React보다 더 적은 오버 헤드가 발생합니다.
 
 Vue와 React 모두 상태가 없고 및 인스턴스가 없는 컴포넌트를 제공하므로 오버 헤드가 적습니다. 이러한 성능이 중요한 상황에서 사용되면 Vue가 다시 한 번 더 빠릅니다. 이를 입증하기 위해 우리는 10,000 개의 목록 항목을 100 번 렌더링하는 간단한 [벤치 마크 프로젝트](https://github.com/chrisvfritz/vue-render-performance-comparisons)를 만들었습니다. 결과는 하드웨어와 사용되는 브라우저에 따라 다르므로 실제로 시도해 보는 것이 좋습니다. 실제로는 JavaScript 엔진의 특성으로 인해 실행간에 차이는 있습니다.
 
