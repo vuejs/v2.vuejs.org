@@ -267,7 +267,7 @@ Angular 2는 완전히 새로운 프레임 워크이기 때문에 별도의 섹�
 
 Angular 1은 소규모 응용 프로그램에 사용할 수 있지만 Angular 2는 대규모 응용 프로그램을 쉽게 사용할 수 있도록 초점을 이동했습니다. 이 중 일부는 TypeScript를 거의 필요로하므로 Java 및 C #과 같은 언어의 타입 안전성을 원하는 개발자에게 매우 유용 할 수 있습니다.
 
-Vue는 [엔터프라이즈 환경](https://github.com/vuejs/awesome-vue#enterprise-usage)에도 매우 적합하며 [공식 Typings](https://github.com/vuejs/vue/tree/dev/types) 및 [공식 decorator](https://github.com/vuejs/vue/tree/dev/types)를 통해 TypeScript와 함께 사용할 수도 있습니다.
+Vue는 [엔터프라이즈 환경](https://github.com/vuejs/awesome-vue#enterprise-usage)에도 매우 적합하며 [공식 Typings](https://github.com/vuejs/vue/tree/dev/types) 및 [공식 decorator](https://github.com/vuejs/vue-class-component)를 통해 TypeScript와 함께 사용할 수도 있습니다.
 
 ### 규모와 성능
 
