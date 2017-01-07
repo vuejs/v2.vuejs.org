@@ -328,10 +328,10 @@ You can also specify custom transition classes by providing the following attrib
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class` (> 2.1.8 only)
+- `enter-to-class` (>= 2.1.8 only)
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class` (> 2.1.8 only)
+- `leave-to-class` (>= 2.1.8 only)
 
 These will override the conventional class names. This is especially useful when you want to combine Vue's transition system with an existing CSS animation library, such as [Animate.css](https://daneden.github.io/animate.css/).
 
