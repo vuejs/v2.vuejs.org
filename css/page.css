@@ -425,7 +425,8 @@ body.docs #nav {
   background-size: 30px;
 }
 #demo,
-.demo {
+.demo,
+.content .demo {
   border: 1px solid #eee;
   border-radius: 2px;
   padding: 25px 35px;
@@ -440,53 +441,66 @@ body.docs #nav {
   overflow-x: auto;
 }
 #demo h1,
-.demo h1 {
+.demo h1,
+.content .demo h1 {
   margin: 0 0 0.5em;
   font-size: 1.8em;
 }
 #demo ul,
 .demo ul,
+.content .demo ul,
 #demo ol,
-.demo ol {
+.demo ol,
+.content .demo ol {
   padding-left: 1.5em;
   padding-bottom: 0.2em !important;
 }
 #demo ul:first-child,
 .demo ul:first-child,
+.content .demo ul:first-child,
 #demo ol:first-child,
-.demo ol:first-child {
+.demo ol:first-child,
+.content .demo ol:first-child {
   margin-top: 0;
 }
 #demo ul:last-child,
 .demo ul:last-child,
+.content .demo ul:last-child,
 #demo ol:last-child,
-.demo ol:last-child {
+.demo ol:last-child,
+.content .demo ol:last-child {
   margin-bottom: 0;
 }
 #demo li,
-.demo li {
+.demo li,
+.content .demo li {
   color: #34495e;
 }
 #demo li.done,
-.demo li.done {
+.demo li.done,
+.content .demo li.done {
   color: #7f8c8d;
   text-decoration: line-through;
 }
 #demo p,
-.demo p {
+.demo p,
+.content .demo p {
   margin: 0 !important;
   padding: 0 !important;
 }
 #demo p:first-child,
-.demo p:first-child {
+.demo p:first-child,
+.content .demo p:first-child {
   margin-top: 0;
 }
 #demo p:last-child,
-.demo p:last-child {
+.demo p:last-child,
+.content .demo p:last-child {
   margin-bottom: 0;
 }
 #demo textarea,
-.demo textarea {
+.demo textarea,
+.content .demo textarea {
   width: 100%;
   resize: vertical;
 }
