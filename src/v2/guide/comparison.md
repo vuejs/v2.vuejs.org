@@ -24,7 +24,7 @@ React와 Vue는 많은 공통점을 공유합니다. 둘 다,
 
 React 팀의 Dan Abramov 덕분에 React 커뮤니티는 [이러한 균형을 이루는데 도움](https://github.com/vuejs/vuejs.org/issues/364)이 되었습니다. 그는 우리가 최종 결과에 대해 [모두 만족할 때까지](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740)이 문서를 수정하는 데 도움이되는 시간과 상당한 전문성을 지극히 관대했습니다.
 
-### 성능 프로필
+### 성능 분석
 
 지금까지 테스트 한 모든 실제 시나리오에서 Vue는 React보다 월등히 우수합니다. 놀라셨다면, 더 읽어보십시오. 우리는 왜 그런지(그리고 심지어는 React 팀과 협력하여 개발 된 벤치 마크를 포함시켰습니다.)를 분석 할 것입니다.
 
