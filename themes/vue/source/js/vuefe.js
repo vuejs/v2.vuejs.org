@@ -1,3 +1,5 @@
+var store = window.localStorage;
+
 var funcGetSelectText = function(){
   var txt = '';
   if(document.selection){
@@ -14,14 +16,18 @@ container.onmouseup = function(){
   if(txt)
   {
   console.log('vuefe.cn : ' + txt);
+   axios.post('https://vuefecom.leanapp.cn/api/words/who', {
+      token: store.vuefecom_tempToken,
+      word: txt
+    })
+    .then(function(res) {
+    });
   }
 }
-
 
 /**
  * vuefe.com auto signup
  */
-var store = window.localStorage;
 
 var autoSignUp = function() {
   if (!store.vuefecom_ip || !store.vuefecom_tempToken) {
