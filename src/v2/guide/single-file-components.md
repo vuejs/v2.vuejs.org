@@ -10,7 +10,7 @@ Dans la plupart des projets Vue, des composants globaux seront définis en utili
 
 Cela fonctionnera très bien pour des petits projets ou des projets de taille moyenne, pour lesquels Javascript est utilisé uniquement pour améliorer certains templates. Cependant, pour des projets plus complexes, ou bien quand votre front-end est entièrement généré par Javascript, des inconvénients vont se manifester :
 
-- **Les définitions globales** force à avoir un nom unique pour chacun des composants
+- **Les définitions globales** forcent à avoir un nom unique pour chacun des composants
 - **Les templates sous forme de chaîne de caractères** ne bénéficient pas de la coloration syntaxique du html et requiert l'usage de slashes disgracieux pour le multilignes.
 - **Le css non supporté** ne nous permet pas d'injecter du css dans nos composants, seulement du Javascript et du html
 - **L'absence d'étape de build** ne nous permet pas d'utiliser des preprocesseurs tels que Babel ou Pug (précédemment Jade).
