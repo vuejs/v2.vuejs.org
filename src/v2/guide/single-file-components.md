@@ -6,9 +6,6 @@ order: 19
 
 ## Introduction
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>In many Vue projects, global components will be defined using `Vue.component`, followed by `new Vue({ el: '#container' })` to target a container element in the body of every page.
-
-
 Cela pourra très bien fonctionner pour des petits projets ou des projets de taille moyenne, pour lesquels Javascript est utilisé uniquement pour améliorer certains templates. Cependant, pour des projets plus complexes, ou bien quand votre front-end est entièrement généré par Javascript, des inconvénients vont se manifester :
 
 - **Les définitions globales** force à avoir un nom unique pour chacun des composants
