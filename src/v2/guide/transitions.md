@@ -339,10 +339,10 @@ new Vue({
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class` (> 2.1.8 only)
+- `enter-to-class` (>= 2.1.8 only)
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class` (> 2.1.8 only)
+- `leave-to-class` (>= 2.1.8 only)
 
 他们的优先级高于普通的类名，这对于 Vue 的过渡系统和其他第三方 CSS 动画库，如 [Animate.css](https://daneden.github.io/animate.css/) 结合使用十分有用。
 
