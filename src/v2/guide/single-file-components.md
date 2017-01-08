@@ -6,7 +6,9 @@ order: 19
 
 ## Introduction
 
-Cela pourra très bien fonctionner pour des petits projets ou des projets de taille moyenne, pour lesquels Javascript est utilisé uniquement pour améliorer certains templates. Cependant, pour des projets plus complexes, ou bien quand votre front-end est entièrement généré par Javascript, des inconvénients vont se manifester :
+Dans la plupart des projets Vue, des composants globaux seront définis en utilisant `Vue.component`, suivi par `new Vue({ el: '#container' })` pour cibler un élément conteneur dans le body de chaque page.
+
+Cela fonctionnera très bien pour des petits projets ou des projets de taille moyenne, pour lesquels Javascript est utilisé uniquement pour améliorer certains templates. Cependant, pour des projets plus complexes, ou bien quand votre front-end est entièrement généré par Javascript, des inconvénients vont se manifester :
 
 - **Les définitions globales** force à avoir un nom unique pour chacun des composants
 - **Les templates sous forme de chaîne de caractères** ne bénéficient pas de la coloration syntaxique du html et requiert l'usage de slashes disgracieux pour le multilignes.
