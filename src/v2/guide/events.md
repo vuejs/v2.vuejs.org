@@ -191,11 +191,12 @@ methods: {
 > 2.1.4 新增
 
 ``` html
-<!-- the click event will be triggered at most once -->
+<!-- 点击事件将只会触发一次 -->
 <a v-on:click.once="doThis"></a>
 ```
 
-Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components.html#Using-v-on-with-Custom-Events). If you haven't read about components yet, don't worry about this for now.
+不像其它只能对原生的dom事件起作用的修饰符， '.once'修饰符还能被用到自定义的[组件事件](components.html#Using-v-on-with-Custom-Events)上. 如果你还没有阅读关于组件的文档，现在大可不必担心。
+
 
 ## 按键修饰符
 
