@@ -1011,7 +1011,7 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-You can also return a `Promise` in the resolve function, so with Webpack 2 + ES2015 syntax you can do:
+You can also return a `Promise` in the factory function, so with Webpack 2 + ES2015 syntax you can do:
 
 ``` js
 Vue.component(
