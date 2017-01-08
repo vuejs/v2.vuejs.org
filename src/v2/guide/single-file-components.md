@@ -1,5 +1,5 @@
 ---
-title: Single File Components
+title: Les composants monofichier
 type: guide
 order: 19
 ---
