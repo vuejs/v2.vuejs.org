@@ -52,21 +52,21 @@ Si vous n'aimez pas l'idée des composants monofichier, vous pouvez toujours tir
 
 ## Bien commencer
 
-### Pour les utilisateurs qui ne connaissent les systemes de modules en Javascript
+### Pour les utilisateurs qui ne connaissent pas les systemes de modules en Javascript
 
-Avec les composants `.vue`, nous entrons de plain-pied dans les domaines des applications Javascripts avancées. Cela implique d'apprendre à utiliser quelques nouveaux outils si vous ne les connaissez pas déjà :
+Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des applications Javascript avancées. Cela implique d'apprendre à utiliser quelques nouveaux outils si vous ne les connaissez pas déjà :
 
 - **Node Package Manager (NPM)**: Lisez le [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) section _10: Uninstalling global packages_.
 
-- **Modern JavaScript with ES2015/16**: Lisez le guide Babel [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). Vous n'avez pas besoin de mémoriser chacune des fonctionnalités, mais gardez cette page en référence pour pouvoir y revenir quand vous en aurez besoin.
+- **Modern JavaScript with ES2015/16**: Lisez le guide Babel [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). Vous n'avez pas besoin de mémoriser chacune des fonctionnalités maintenant, mais gardez cette page en référence pour pouvoir y revenir.
 
-Une fois que vous aurez pris une journée pour vous familiariser avec ces ressources, nous vous recommandons d'essayer le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple). Suivez les instructions et vous devriez avoir en un clin d'oeil un projet Vue avec des composants `.vue` , ES2015 et du hot-reloading.
+Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple). Suivez les instructions et vous devriez avoir en un clin d'oeil un projet Vue avec des composants `.vue` , ES2015 et du hot-reloading !
 
-Ce template de projet utilise [Webpack](https://webpack.github.io/), un packager qui rassemble vos différents "modules" pour créer votre fichier d'application final. Pour en apprendre plus sur Webpack, [cette vidéo](https://www.youtube.com/watch?v=WQue1AN93YU) est une bonne introduction. Une fois que vous aurez les bases, vous pourrez aussi parcourir [ce cours sur Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
+Ce template de projet utilise [Webpack](https://webpack.github.io/), un empaqueteur de modules qui prend des "modules" et les empaquette dans votre application finale. Pour en apprendre plus sur Webpack, [cette vidéo](https://www.youtube.com/watch?v=WQue1AN93YU) est une bonne introduction. Une fois que vous aurez les bases, vous pourrez aussi parcourir [ce cours sur Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
 
-Dans Webpack, chaque module peut être transformé par un "loader" avant d'être inclus dans le bundle, et Vue propose le plugin [vue-loader](https://github.com/vuejs/vue-loader) pour traduire les composants monofichier `.vue`. Le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple) configure tout pour vous, mais si vous souhaitez en apprendre plus sur le fonctionnement des composants `.vue` avec Webpack, vous pouvez lire [la documentation pour vue-loader](https://vue-loader.vuejs.org).
+Dans Webpack, chaque module peut être transformé par un "loader" avant d'être inclus dans le paquet, et Vue offre le plugin [vue-loader](https://github.com/vuejs/vue-loader) pour traduire les composants monofichier `.vue`. Le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple) a déjà tout configuré pour vous, mais si vous souhaitez en apprendre plus sur le fonctionnement des composants `.vue` avec Webpack, vous pouvez lire [la documentation de vue-loader](https://vue-loader.vuejs.org).
 
 ### Pour les utilisateurs avancés
 
-Que vous préfériez Webpack ou Browserify, nous avons des templates pour les projets simples comme pour les projets complexes. Nous vous invitons à explorer [github.com/vuejs-templates](https://github.com/vuejs-templates), choisir un template qui vous convient et suivre les instructions du README pour générer un nouveau projet avec [vue-cli](https://github.com/vuejs/vue-cli).
+Que vous préfériez Webpack ou Browserify, nous avons des templates documentés à la fois pour les projets simples et les projets plus complexes. Nous vous recommandans d'explorer [github.com/vuejs-templates](https://github.com/vuejs-templates), choisir un template qui vous convient et suivre les instructions du README pour générer un nouveau projet avec [vue-cli](https://github.com/vuejs/vue-cli).
 
