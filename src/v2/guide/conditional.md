@@ -197,7 +197,7 @@ new Vue({
 
 ## `v-if` with `v-for`
 
-When used together with `v-for`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.
+当与`v-for`一起使用时，`v-for`具有比`v-if`更高的优先级。 相关的详细信息，请参阅<a href="../guide/list.html#V-for-and-v-if">列表渲染指南</a>。
 
 ***
 
