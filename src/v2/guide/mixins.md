@@ -90,7 +90,7 @@ Notez que les mêmes stratégies de fusion sont utilisée par `Vue.extend()`.
 
 ## Mixin global
 
-Vous pouvez aussi appliquer un mixin de manière globale. A utiliser avec beaucoup de prudence ! Une fois que vous appliquez un mixin globalement, il modifiera **toutes** les instances de vues créees ensuite. Bien utilisé, cela permet d'injecter de la logique dans des options custom :
+Vous pouvez aussi appliquer un mixin de manière globale. A utiliser avec prudence ! Une fois que vous appliquez un mixin globalement, il modifiera **toutes** les instances de vues créees ensuite. Bien utilisé, cela peut être exploité pour injecter de la logique pour des options custom :
 
 ``` js
 // injection d'une fonction pour l'option custom `myOption`
