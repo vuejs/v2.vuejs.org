@@ -68,5 +68,5 @@ Dans Webpack, chaque module peut être transformé par un "loader" avant d'être
 
 ### Pour les utilisateurs avancés
 
-Que vous préfériez Webpack ou Browserify, nous avons des templates documentés à la fois pour les projets simples et les projets plus complexes. Nous vous recommandans d'explorer [github.com/vuejs-templates](https://github.com/vuejs-templates), choisir un template qui vous convient et suivre les instructions du README pour générer un nouveau projet avec [vue-cli](https://github.com/vuejs/vue-cli).
+Que vous préfériez Webpack ou Browserify, nous avons des templates documentés à la fois pour les projets simples et les projets plus complexes. Nous vous recommandans d'explorer [github.com/vuejs-templates](https://github.com/vuejs-templates), de choisir un template qui vous convient et de suivre les instructions du README pour générer un nouveau projet avec [vue-cli](https://github.com/vuejs/vue-cli).
 
