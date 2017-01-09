@@ -6,8 +6,6 @@ order: 3
 
 ## Constructeur
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
-
 Chaque Vue vm est initialisée en créant une **instance racine de Vue** avec le constructeur de la fonction `Vue`
 
 ``` js
