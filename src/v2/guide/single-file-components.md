@@ -36,9 +36,9 @@ Ces languages spécifiques ne sont que des exemples; vous pourriez tout aussi ai
 
 ### Qu'en est-il de la séparation des responsabilités ?
 
-Une chose importante à souligner est que **la séparation des responsabilités n'est pas égal à la séparation des fichiers**. Dans le développement des interfaces utilisateurs modernes, nous avons constaté que plutôt que de diviser tout notre code en trois grosses couches distinctes, il était plus intuitif de le diviser en petits composants découplés, puis de composer notre interface en les combinant. Au sein d'un même composant, son template, sa logique et ses styles sont interdépendants, et les regrouper rend le composant plus cohérent et facile à maintenir.
+Une chose importante à souligner est que **la séparation des responsabilités n'est pas identique à la séparation des fichiers**. Dans le développement des interfaces utilisateurs modernes, nous avons constaté que plutôt que de diviser tout notre code en trois grosses couches distinctes inter-dépendantes, il était plus intuitif de le diviser en petits composants faiblement couplés, et de les combiner. Au sein d'un composant, son template, sa logique et ses styles sont intrinsèquement couplés, et les réunir rend en réalité le composant plus cohérent et facile à maintenir.
 
-Si toutefois vous n'aimez vraiment pas l'idée des composants monofichier, vous pouvez toujours mettre à profit le hot-reloading et la pre-compilation pour mettre le css et le javascript dans des fichiers séparés.
+Si vous n'aimez pas l'idée des composants monofichier, vous pouvez toujours tirer parti du hot-reloading et la pre-compilation pour mettre le css et le javascript dans des fichiers séparés.
 
 
 ``` html
