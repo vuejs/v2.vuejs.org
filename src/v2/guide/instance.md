@@ -30,7 +30,7 @@ var MyComponent = Vue.extend({
 var myComponentInstance = new MyComponent()
 ```
 
-Bien qu'il soit possible de créer des instances étendues de manière impérative, la plupart du temps il est recommandé de les composer de manière déclarative dans les templates en tant qu'éléments custom. Nous parlerons du [système de composants](components.html) en détail plus loin.
+Bien qu'il soit possible de créer des instances étendues de manière impérative, la plupart du temps il est recommandé de les composer de manière déclarative dans les templates en tant qu'éléments personnalisés. Nous parlerons du [système de composants](components.html) en détail plus loin.
 Pour le moment, vous avez juste besoin de savoir que tous les composants de Vue sont fondamentalement des instances de Vue étendues. 
 
 ## Propriétés et méthodes
