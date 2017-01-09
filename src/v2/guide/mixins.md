@@ -6,8 +6,6 @@ order: 17
 
 ## Bases
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
-
 Les mixins offrent une manière flexible de créer des fonctionnalités réutilisables par les composants de Vue. Un objet mixin peut contenir toute option valide pour un composant. Quand un composant utilise un mixin, toutes les options du mixin seront "fusionnées" avec les options du composant.
 
 Exemple:
