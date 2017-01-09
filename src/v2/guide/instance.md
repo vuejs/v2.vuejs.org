@@ -91,7 +91,7 @@ var vm = new Vue({
     a: 1
   },
   created: function () {
-    // `this` référence l'instance de vm
+    // `this` référence à l'instance de vm
     console.log('a is: ' + this.a)
   }
 })
