@@ -277,7 +277,7 @@ Vue.component('todo-item', {
 </ol>
 ```
 
-但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](components.html#Props) 字段：
+但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个[属性](components.html#Props)字段：
 
 ``` js
 Vue.component('todo-item', {
