@@ -109,11 +109,11 @@ new Vue({
 // -> "hello!"
 ```
 
-<p class="tip">Utilisez les mixins globaux avec beaucoup de prudence et de modération, parce qu'ils affectent chacune des Vue créees, y compris celles des librairies tierces. La plupart du temps, vous devriez uniquement vous en servir pour la gestion des options custom comme dans l'exemple ci-dessus. C'est aussi une bonne idée d'en faire des [Plugins](plugins.html) pour éviter de les appliquer plusieurs fois par erreur. </p>
+<p class="tip">Utilisez les mixins globaux prudemment et rarement, parce qu'ils affectent chacune des Vue créees, y compris celles des librairies tierces. Dans la plupart des cas, vous devriez uniquement vous en servir pour la gestion des options custom comme illustré dans l'exemple ci-dessus. C'est aussi une bonne idée de les encapsuler dans des [Plugins](plugins.html) pour éviter de les appliquer plusieurs fois par erreur. </p>
 
 ## Stratégie de fusion des options custom
 
-Quand les options custom sont fusionnées, elles utilisent la stratégie par défaut, qui est d'écraser la valeur pré-existante. Si vous souhaitez appliquer une logique custom pour la fusion, vous devez attacher une nouvelle fonction à `Vue.config.optionMergeStrategies`:
+Quand les options custom sont fusionnées, elles utilisent la stratégie par défaut, qui est simplement d'écraser la valeur existante. Si vous souhaitez appliquer une stratégie de fusion custom pour une option custom, vous devez attacher une nouvelle fonction à `Vue.config.optionMergeStrategies`:
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -128,7 +128,7 @@ var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-A exemple plus avancé peut être trouvé dans la stratégie de fusion de [Vuex](https://github.com/vuejs/vuex) 1.x:
+Un exemple plus avancé peut être trouvé dans la stratégie de fusion de [Vuex](https://github.com/vuejs/vuex) 1.x:
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed
