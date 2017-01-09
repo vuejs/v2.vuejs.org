@@ -6,17 +6,17 @@ order: 19
 
 ## Introduction
 
-Dans la plupart des projets Vue, des composants globaux seront définis en utilisant `Vue.component`, suivi par `new Vue({ el: '#container' })` pour cibler un élément conteneur dans le body de chaque page.
+Dans beaucoup de projets Vue, des composants globaux seront définis en utilisant `Vue.component`, suivi de `new Vue({ el: '#container' })` pour cibler un élément container dans le corps de chaque page.
 
-Cela fonctionnera très bien pour des petits projets ou des projets de taille moyenne, pour lesquels Javascript est utilisé uniquement pour améliorer certains templates. Cependant, pour des projets plus complexes, ou bien quand votre front-end est entièrement généré par Javascript, des inconvénients vont se manifester :
+Cela fonctionnera très bien pour des petits projets ou des projets de taille moyenne, pour lesquels Javascript est utilisé uniquement pour améliorer certains templates. Cependant, pour des projets plus complexes, ou bien quand votre front-end est entièrement généré par Javascript, des désavantages se manifestent :
 
-- **Les définitions globales** forcent à avoir un nom unique pour chacun des composants
-- **Les templates sous forme de chaîne de caractères** ne bénéficient pas de la coloration syntaxique du html et requiert l'usage de slashes disgracieux pour le multilignes.
-- **Le css non supporté** ne nous permet pas d'injecter du css dans nos composants, seulement du Javascript et du html
-- **L'absence d'étape de build** ne nous permet pas d'utiliser des preprocesseurs tels que Babel ou Pug (précédemment Jade).
+- **Les définitions globales** forcent à avoir un nom unique pour chaque composant
+- **Les templates sous forme de chaîne de caractères** ne bénéficient pas de la coloration syntaxique et requiert l'usage de slashes disgracieux pour le HTML multilignes.
+- **L'absence de support pour le css** signifie que le css ne peut pas être modularisé comme HTML et Javascript
+- **L'absence d'étape de build** nous restreint au HTML et à Javascript ES5, sans pouvoir utiliser des preprocesseurs tels que Babel ou Pug (précédemment Jade).
 
 
-Tous ces désavantages disparaissent en utilisant les composants monofichier avec une extension `.vue`, dont l'existence est rendue possible grâce aux outils de build tels que Webpack ou Browserify.
+Tous ces désavantages sont résolus par les composants monofichier avec une extension `.vue`, rendus possibles par les outils de build tels que Webpack ou Browserify.
 
 Voici un exemple simple de fichier que nous appellerons `Hello.vue` :
 
@@ -26,13 +26,13 @@ Maintenant nous avons :
 
 - [Une coloration syntaxique complète](https://github.com/vuejs/awesome-vue#syntax-highlighting)
 - [Des modules CommonJS](https://webpack.github.io/docs/commonjs.html)
-- [Du css avec portée limitée au composant](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+- [Du css à la portée limitée au composant](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
-Et comme promis, nous pouvons maintenant utiliser des preprocesseurs tels que Jade, Babel (avec les modules ES2015), et Stylus pour obtenir des composants plus lisibles et avec plus de fonctionnalités.
+Et comme promis, nous pouvons aussi utiliser des preprocesseurs tels que Jade, Babel (avec les modules ES2015), et Stylus pour obtenir des composants plus lisibles et plus riches en fonctionnalités.
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-Ces languages spécifiques ne sont que des exemples; vous pourriez tout aussi aisément utiliser Bublé, Typescript, SCSS, PostCSS - ou tout autre preprocesseur qui vous rend plus productif. Du fait de l'utilisation de Webpack avec le loader `vue-loader`, vous obtenez en même temps un outil de premier choix pour les modules CSS.
+Ces languages spécifiques ne sont que des exemples; vous pourriez tout aussi aisément utiliser Bublé, Typescript, SCSS, PostCSS - ou tout autre preprocesseur qui vous aide à être productif. Si vous utilisez Webpack avec `vue-loader`, vous aurez aussi un outil de premier choix pour les modules CSS.
 
 ### Qu'en est-il de la séparation des responsabilités ?
 
