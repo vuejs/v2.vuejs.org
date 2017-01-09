@@ -1,5 +1,5 @@
 ---
-title: Routeur
+title: Routage
 type: guide
 order: 21
 ---
@@ -35,9 +35,9 @@ new Vue({
   render (h) { return h(this.ViewComponent) }
 })
 ```
-Combiné à l'API d'historique d'HTML5, vous pouvez construire un routeur client basique mais parfaitement fonctionnel.
+Combiné à l'API HTML5 History, vous pouvez construire un routeur client basique mais parfaitement fonctionnel.
 Pour en voir une démonstration, faites un checkout [de cette application d'exemple](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
 
 ## Intégrer des routeurs tierce-partie
 
-Si il y a un routeur tierce-partie que vous préférez utiliser, tel que [Page.js](https://github.com/visionmedia/page.js) ou [Director](https://github.com/flatiron/director),  l'intégration est [tout aussi simple](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Voici [un exemple complet](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) qui utilise Page.js.
+S'il y a un routeur tierce-partie que vous préférez utiliser, tel que [Page.js](https://github.com/visionmedia/page.js) ou [Director](https://github.com/flatiron/director),  l'intégration est [tout aussi simple](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Voici [un exemple complet](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) qui utilise Page.js.
