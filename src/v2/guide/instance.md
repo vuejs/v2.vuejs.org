@@ -14,9 +14,9 @@ var vm = new Vue({
 })
 ```
 
-Bien que n'étant pas strictement associée au patron d'architecture [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), La conception de Vue s'en est en partie inspirée. Par convetion, nous utilisons souvent la variable `vm` (abréviation pour ViewModel) pour faire référence à nos instances de Vue.
+Bien que n'étant pas strictement associée au patron d'architecture [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), la conception de Vue s'en est en partie inspirée. Par convention, nous utilisons souvent la variable `vm` (abréviation pour ViewModel) pour faire référence à nos instances de Vue.
 
-Quand vous créez une instance de Vue, vous devez passer un **objet d'options** qui contient les options pour les data, le template, l'element de montage, les methodes, les fonctions de retour du cycle de vie etc... La liste des options peut être trouvée [dans la documentation de l'API](../api).
+Quand vous créez une instance de Vue, vous devez passer un **objet d'options** qui contient les options pour les données, le template, l'element de montage, les méthodes, les fonctions de retour du cycle de vie etc... La liste des options peut être trouvée [dans la documentation de l'API](../api).
 
 Le constructeur de `Vue` peut être étendu pour créer des **constructeurs de composants** réutilisables avec des options prédéfinies.
 
@@ -25,7 +25,7 @@ var MyComponent = Vue.extend({
   // options d'extension
 })
 
-// toutes les isntances de `MyComponent` sont créees avec
+// toutes les instances de `MyComponent` sont créees avec
 // les options d'extension prédéfinies
 var myComponentInstance = new MyComponent()
 ```
@@ -35,7 +35,7 @@ Pour le moment, vous avez juste besoin de savoir que tous les composants de Vue 
 
 ## Propriétés et méthodes
 
-Chaque instance de vue **reflète ( ou référence  )** toutes les propriétés contenues dans son objet "data"
+Chaque instance de vue **"proxifie"** toutes les propriétés contenues dans son objet "data"
 
 
 ``` js
@@ -46,7 +46,7 @@ var vm = new Vue({
 
 vm.a === data.a // -> true
 
-// affecter la propriété affecte également la donnée originale
+// assigner la propriété affecte également la donnée originale
 vm.a = 2
 data.a // -> 2
 
@@ -55,9 +55,9 @@ data.a = 3
 vm.a // -> 3
 ```
 
-Soulignons que seuls ces propriétés reflétées sont réactives. Si vous attachez une nouvelle propriété à l'instance après sa création, elle ne déclenchera aucune mise à jour de la vue. Nous parlerons plus loin du système de réactivité en détail.
+Soulignons que seuls ces propriétés proxifiées sont réactives. Si vous attachez une nouvelle propriété à l'instance après sa création, elle ne déclenchera aucune mise à jour de la vue. Nous parlerons plus loin du système de réactivité en détail.
 
-En plus des propriétés de data, les instances de Vue exposent de nombreuses méthodes et propriétés utiles. Ces propriétés et méthodes sont préfixées par `$` pour les différencier des propriétés reflétées de data. Par exemple :
+En plus des propriétés de data, les instances de Vue exposent de nombreuses méthodes et propriétés utiles. Ces propriétés et méthodes sont préfixées par `$` pour les différencier des propriétés proxifiées de data. Par exemple :
 
 ``` js
 var data = { a: 1 }
@@ -71,7 +71,7 @@ vm.$el === document.getElementById('example') // -> true
 
 // $watch est une méthode de l'instance
 vm.$watch('a', function (newVal, oldVal) {
-  // cette fonction de retour sera appellée quand `vm.a` changera
+  // cette fonction de retour sera appelée quand `vm.a` changera
 })
 ```
 
@@ -83,7 +83,7 @@ Consultez [l'API](../api) pour une liste complète des propriétés et méthodes
 
 ## Les hooks de cycles de vie d'une instance
 
-Chaque instance de vue traverse une série d'étapes d'initialisations au moment de sa création - par exemple, elle doit mettre en place l'observation des data, compiler le template, monter l'instance sur le DOM et mettre à jour le DOM quand les data changent. En cours de route, elle va aussi invoquer des **hooks de cycles de vie**, qui nous donnent l'opportunité d'exécuter de la logique custom. Par exemple, le hook `created` est appelé après que l'instance sera créee.
+Chaque instance de vue traverse une série d'étapes d'initialisation au moment de sa création - par exemple, elle doit mettre en place l'observation des données, compiler le template, monter l'instance sur le DOM et mettre à jour le DOM quand les données changent. En cours de route, elle va aussi invoquer des **hooks de cycles de vie**, qui nous donnent l'opportunité d'exécuter une logique personnalisée. Par exemple, le hook `created` est appelé une fois l'instance créee.
 
 ``` js
 var vm = new Vue({
@@ -98,7 +98,7 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-Il y aussi d'autres hook qui seront appelés à différentes étapes d'un cycle de vie d'une instance, par exemple `mounted`, `updated`et `destroyed`. Tous ces hooks de cycles de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoquent. Vous vous êtes peut-être demandé où se trouvait le concept de 'controleur' dans le monde de Vue et la réponse est : il n'y pas de controleurs. Votre logique custom pour un composant sera partagée entre ces différents cycles de vie.
+Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple `mounted`, `updated`et `destroyed`. Tous ces hooks de cycles de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de 'contrôleur' dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces hooks de cycle de vie.
 
 ## Diagramme de cycles de vie
 
