@@ -1,16 +1,16 @@
 ---
-title: Routing
+title: Routeur
 type: guide
 order: 21
 ---
 
-## Official Router
+## Routeur officiel
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](http://vuejs.github.io/vue-router/).
+Pour la plupart des applications monopages, il est recommandé d'utiliser la librairie officiellement supportée [vue-router](https://github.com/vuejs/vue-router). Pour plus de détails, voir la [documentation de vue-router](http://vuejs.github.io/vue-router/).
 
-## Simple Routing From Scratch
+## Un routeur simple en partant de zéro
 
-If you just need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
+Si vous avez simplement besoin d'un routage très simple et ne souhaitez pas ajouter une librairie riche en fonctionnalités, vous pouvez le faire en déclenchant dynamiquement le rendu d'un composant de page de cette manière :
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }
@@ -35,9 +35,9 @@ new Vue({
   render (h) { return h(this.ViewComponent) }
 })
 ```
+Combiné à l'API d'historique d'HTML5, vous pouvez construire un routeur client basique mais parfaitement fonctionnel.
+Pour en voir une démonstration, faites un checkout [de cette application d'exemple](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
 
-Combined with the HTML5 History API, you can build a very basic but fully-functional client-side router. To see that in practice, check out [this example app](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
+## Intégrer des routeurs tierce-partie
 
-## Integrating 3rd-Party Routers
-
-If there's a 3rd-party router you prefer to use, such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director), integration is [similarly easy](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Here's a [complete example](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) using Page.js.
+Si il y a un routeur tierce-partie que vous préférez utiliser, tel que [Page.js](https://github.com/visionmedia/page.js) ou [Director](https://github.com/flatiron/director),  l'intégration est [tout aussi simple](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Voici [un exemple complet](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) qui utilise Page.js.
