@@ -327,3 +327,7 @@ Vue.component({
 
 - [vue-server-renderer docs](https://www.npmjs.com/package/vue-server-renderer#api): 여기에서 언급 한 내용에 대한 자세한 설명과 더불어 [교차 요청에 따른 위험 방지](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) 및 [별도의 서버 빌드 추가](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle) 등 응용적인 주제를 소개하고 있습니다.
 - [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): Vue의 주요 라이브러리와 개념을 응용 프로그램으로 정리 한 예제입니다.
+
+## Nuxt.js
+
+배포 준비 완료 상태의 서버측 렌더링을 사용하는 애플리케이션을 올바르게 구성하는 것은 어려운 작업입니다. 다행히 이 모든 것을보다 쉽게하기 위한 훌륭한 커뮤니티 프로젝트가 있습니다. [Nuxt.js](https://nuxtjs.org/)입니다. Nuxt.js는 Vue 생태계 위에 만들어진 상위 수준의 로, 범용 Vue 애플리케이션을 작성하는 데 매우 간소화 된 개발 환경을 제공합니다. 더 나아가 정적 사이트 생성기(단일 파일 Vue 컴포넌트로 작성된 페이지 포함)로 사용할 수도 있습니다. 한번 시도해보세요
