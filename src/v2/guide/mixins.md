@@ -55,7 +55,7 @@ new Vue({
 // -> "component hook called"
 ```
 
-Pour les options qui s'attendent à recevoir un objet, telles que `methods`, `components` et `directives`, les valeurs seront fusionnées au sein du même objet. Les options du composant auront la priorité en cas de confit sur les clef d'un de ces objets.
+Les options qui attendent un objet, par exemple `methods`, `components` et `directives`, seront fusionnées dans le même objet. Les options du composant auront la priorité en cas de confit sur les clef d'un de ces objets.
 
 ``` js
 var mixin = {
