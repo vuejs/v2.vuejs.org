@@ -6,7 +6,7 @@ order: 17
 
 ## Bases
 
-Les mixins offrent une manière flexible de créer des fonctionnalités réutilisables par les composants de Vue. Un objet mixin peut contenir toute option valide pour un composant. Quand un composant utilise un mixin, toutes les options du mixin seront "fusionnées" avec les options du composant.
+Les mixins offrent une manière flexible de créer des fonctionnalités réutilisables pour les composants de Vue. Un objet mixin peut contenir toute option valide pour un composant. Quand un composant utilise un mixin, toutes les options du mixin seront "fusionnées" avec les options du composant.
 
 Exemple:
 
@@ -53,7 +53,7 @@ new Vue({
 // -> "component hook called"
 ```
 
-Les options qui attendent un objet, par exemple `methods`, `components` et `directives`, seront fusionnées dans le même objet. Les options du composant auront la priorité en cas de confit sur les clef d'un de ces objets.
+Les options qui attendent un objet, par exemple `methods`, `components` et `directives`, seront fusionnées dans le même objet. Les options du composant auront la priorité en cas de conflit sur une ou plusieurs clés de ces objets.
 
 ``` js
 var mixin = {
@@ -84,14 +84,14 @@ vm.bar() // -> "bar"
 vm.conflicting() // -> "from self"
 ```
 
-Notez que les mêmes stratégies de fusion sont utilisée par `Vue.extend()`.
+Notez que les mêmes stratégies de fusion sont utilisées par `Vue.extend()`.
 
 ## Mixin global
 
-Vous pouvez aussi appliquer un mixin de manière globale. A utiliser avec prudence ! Une fois que vous appliquez un mixin globalement, il modifiera **toutes** les instances de vues créees ensuite. Bien utilisé, cela peut être exploité pour injecter de la logique pour des options custom :
+Vous pouvez aussi appliquer un mixin de manière globale. À utiliser avec prudence ! Une fois que vous appliquez un mixin globalement, il modifiera **toutes** les instances de vues créées ensuite. Bien utilisé, cela peut être exploité pour injecter une logique de traitement pour des options personnalisées :
 
 ``` js
-// injection d'une fonction pour l'option custom `myOption`
+// injection d'une fonction pour l'option personnalisée `myOption`
 Vue.mixin({
   created: function () {
     var myOption = this.$options.myOption
@@ -107,11 +107,11 @@ new Vue({
 // -> "hello!"
 ```
 
-<p class="tip">Utilisez les mixins globaux prudemment et rarement, parce qu'ils affectent chacune des Vue créees, y compris celles des librairies tierces. Dans la plupart des cas, vous devriez uniquement vous en servir pour la gestion des options custom comme illustré dans l'exemple ci-dessus. C'est aussi une bonne idée de les encapsuler dans des [Plugins](plugins.html) pour éviter de les appliquer plusieurs fois par erreur. </p>
+<p class="tip">Utilisez les mixins globaux prudemment et rarement, parce qu'ils affectent chacune des Vue créées, y compris celles des librairies tierces. Dans la plupart des cas, vous devriez uniquement vous en servir pour la gestion des options personnalisées comme illustré dans l'exemple ci-dessus. C'est aussi une bonne idée de les encapsuler dans des [Plugins](plugins.html) pour éviter de les appliquer plusieurs fois par erreur. </p>
 
-## Stratégie de fusion des options custom
+## Stratégie de fusion des options personnalisées
 
-Quand les options custom sont fusionnées, elles utilisent la stratégie par défaut, qui est simplement d'écraser la valeur existante. Si vous souhaitez appliquer une stratégie de fusion custom pour une option custom, vous devez attacher une nouvelle fonction à `Vue.config.optionMergeStrategies`:
+Quand les options personnalisées sont fusionnées, elles utilisent la stratégie par défaut, qui est simplement d'écraser la valeur existante. Si vous souhaitez appliquer une logique personnalisée pour la fusion d'une option personnalisée, vous devez attacher une nouvelle fonction à `Vue.config.optionMergeStrategies`:
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
