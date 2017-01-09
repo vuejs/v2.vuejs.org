@@ -1009,7 +1009,11 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
+<<<<<<< HEAD
 resolve 함수에서 `Promise`를 반환할 수도 있습니다. 그래서 Webpack 2 + ES2015 구문을 사용하면 다음을 할 수 있습니다 :
+=======
+You can also return a `Promise` in the factory function, so with Webpack 2 + ES2015 syntax you can do:
+>>>>>>> vuejs/master
 
 ``` js
 Vue.component(
