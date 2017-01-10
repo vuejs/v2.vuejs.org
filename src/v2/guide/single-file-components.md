@@ -6,7 +6,7 @@ order: 19
 
 ## Introduction
 
-Dans beaucoup de projets Vue, des composants globaux seront définis en utilisant `Vue.component`, suivi de `new Vue({ el: '#conteneur' })` pour cibler un élément conteneur dans le corps de chaque page.
+Dans beaucoup de projets Vue, des composants globaux seront définis en utilisant `Vue.component`, suivi de `new Vue({ el: '#container' })` pour cibler un élément conteneur dans le corps de chaque page.
 
 Cela peut très bien fonctionner pour des petits projets ou des projets de taille moyenne, pour lesquels JavaScript est utilisé uniquement pour améliorer certains vues. Cependant, pour des projets plus complexes, ou bien quand votre front-end est entièrement généré par JavaScript, des désavantages se manifestent :
 
@@ -16,7 +16,7 @@ Cela peut très bien fonctionner pour des petits projets ou des projets de taill
 - **L'absence d'étape de build** nous restreint au HTML et à JavaScript ES5, sans pouvoir utiliser des préprocesseurs tels que Babel ou Pug (précédemment Jade).
 
 
-Tous ces désavantages sont résolus par les composants monofichiers avec une extension `.vue`, rendus possibles par les outils de build tels que Webpack ou Browserify.
+Tous ces désavantages sont résolus par les **composants monofichiers** avec une extension `.vue`, rendus possibles par les outils de build tels que Webpack ou Browserify.
 
 Voici un exemple simple de fichier que nous appellerons `Hello.vue` :
 
@@ -28,7 +28,7 @@ Maintenant nous avons :
 - [Des modules CommonJS](https://webpack.github.io/docs/commonjs.html)
 - [Du CSS à la portée limitée au composant](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
-Et comme promis, nous pouvons aussi utiliser des préprocesseurs tels que Jade, Babel (avec les modules ES2015), et Stylus pour obtenir des composants plus lisibles et plus riches en fonctionnalités.
+Et comme promis, nous pouvons aussi utiliser des préprocesseurs tels que Pug, Babel (avec les modules ES2015), et Stylus pour obtenir des composants plus lisibles et plus riches en fonctionnalités.
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
@@ -56,7 +56,7 @@ Si vous n'aimez pas l'idée des composants monofichiers, vous pouvez toujours ti
 
 Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des applications JavaScript avancées. Cela implique d'apprendre à utiliser quelques nouveaux outils si vous ne les connaissez pas déjà :
 
-- **Node Package Manager (NPM)**: Lisez le [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) section _10: Uninstalling global packages_.
+- **Node Package Manager (NPM)**: Lisez le guide NPM [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) section _10: Uninstalling global packages_.
 
 - **JavaScript moderne avec ES2015/16**: Lisez le guide Babel [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). Vous n'avez pas besoin de mémoriser chacune des fonctionnalités maintenant, mais gardez cette page en référence pour pouvoir y revenir.
 
