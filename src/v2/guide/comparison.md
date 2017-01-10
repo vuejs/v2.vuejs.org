@@ -203,11 +203,7 @@ div.list-container
 - 단일 페이지 응용 프로그램을 작성한다고 가정하는 단일 템플릿 만 제공하며, Vue는 다양한 목적을 위해 다양한 템플릿를 제공하고 시스템을 빌드합니다.
 - 사용자 정의 템플릿에서 프로젝트를 생성 할 수 없으며 사전 정의 된 규칙을 사용하는 엔터프라이즈 환경에 특히 유용 할 수 있습니다.
 
-<<<<<<< HEAD
 이러한 제한 사항 중 상당수는 create-react-app 팀이 의도적으로 설계 한 결정이며 이점이 있습니다. 예를 들어, 프로젝트의 요구가 매우 간단하고 빌드 프로세스를 사용자 정의하기 위해 "추출"할 필요가없는 한,이를 종속으로 업데이트 할 수 있습니다. 여기에서 [다른 철학](https://github.com/facebookincubator/create-react-app#philosophy)에 대해 더 많이 읽을 수 있습니다.
-=======
-It's important to note though that many of these limitations are intentional design decisions made by the create-react-app team and they do have their advantages. For example, as long as your project's needs are very simple and you never need to "eject" to customize your build process, you'll be able to update it as a dependency. You can read more about the [differing philosophy here](https://github.com/facebookincubator/create-react-app#philosophy).
->>>>>>> vuejs/master
 
 #### 규모 축소
 
