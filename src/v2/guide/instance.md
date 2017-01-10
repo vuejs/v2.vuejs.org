@@ -35,7 +35,7 @@ Pour le moment, vous avez juste besoin de savoir que tous les composants de Vue 
 
 ## Propriétés et méthodes
 
-Chaque instance de vue **"proxifie"** toutes les propriétés contenues dans son objet "data"
+Chaque instance de vue **"proxifie"** toutes les propriétés contenues dans son objet `data`
 
 
 ``` js
@@ -55,7 +55,7 @@ data.a = 3
 vm.a // -> 3
 ```
 
-Soulignons que seuls ces propriétés proxifiées sont réactives. Si vous attachez une nouvelle propriété à l'instance après sa création, elle ne déclenchera aucune mise à jour de la vue. Nous parlerons plus loin du système de réactivité en détail.
+Soulignons que seuls ces propriétés proxifiées sont **réactives**. Si vous attachez une nouvelle propriété à l'instance après sa création, elle ne déclenchera aucune mise à jour de la vue. Nous parlerons plus loin du système de réactivité en détail.
 
 En plus des propriétés de data, les instances de Vue exposent de nombreuses méthodes et propriétés utiles. Ces propriétés et méthodes sont préfixées par `$` pour les différencier des propriétés proxifiées de data. Par exemple :
 
@@ -98,7 +98,7 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple `mounted`, `updated`et `destroyed`. Tous ces hooks de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de 'contrôleur' dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces hooks de cycle de vie.
+Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple `mounted`, `updated`et `destroyed`. Tous ces hooks de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de "contrôleur" dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces hooks de cycle de vie.
 
 ## Diagramme de cycle de vie
 
