@@ -25,7 +25,7 @@ var MyComponent = Vue.extend({
   // options d'extension
 })
 
-// toutes les instances de `MyComponent` sont créees avec
+// toutes les instances de `MyComponent` sont créées avec
 // les options d'extension prédéfinies
 var myComponentInstance = new MyComponent()
 ```
@@ -83,7 +83,7 @@ Consultez [l'API](../api) pour une liste complète des propriétés et méthodes
 
 ## Les hooks de cycle de vie d'une instance
 
-Chaque instance de vue traverse une série d'étapes d'initialisation au moment de sa création - par exemple, elle doit mettre en place l'observation des données, compiler le template, monter l'instance sur le DOM et mettre à jour le DOM quand les données changent. En cours de route, elle va aussi invoquer des **hooks de cycle de vie**, qui nous donnent l'opportunité d'exécuter une logique personnalisée. Par exemple, le hook `created` est appelé une fois l'instance créee.
+Chaque instance de vue traverse une série d'étapes d'initialisation au moment de sa création - par exemple, elle doit mettre en place l'observation des données, compiler le template, monter l'instance sur le DOM et mettre à jour le DOM quand les données changent. En cours de route, elle va aussi invoquer des **hooks de cycle de vie**, qui nous donnent l'opportunité d'exécuter une logique personnalisée. Par exemple, le hook `created` est appelé une fois l'instance créée.
 
 ``` js
 var vm = new Vue({
