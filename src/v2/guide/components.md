@@ -1002,7 +1002,7 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-可以在 resolve 函数中返回一个 `Promise`，所以使用 Webpack 2 + ES2015 语法后你可以这么做：
+可以在工厂函数中返回一个 `Promise`，所以使用 Webpack 2 + ES2015 语法后你可以这么做：
 
 ``` js
 Vue.component(
