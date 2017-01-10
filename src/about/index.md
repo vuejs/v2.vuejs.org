@@ -1,7 +1,7 @@
 ---
 title: 贡献者
 type: about
-order: 0
+order: 1
 ---
 
 ## Guide 翻译贡献
