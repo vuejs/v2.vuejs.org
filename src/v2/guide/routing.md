@@ -6,11 +6,11 @@ order: 21
 
 ## Routeur officiel
 
-Pour la plupart des applications monopages, il est recommandé d'utiliser la librairie officiellement supportée [vue-router](https://github.com/vuejs/vue-router). Pour plus de détails, voir la [documentation de vue-router](http://vuejs.github.io/vue-router/).
+Pour la plupart des applications monopages, il est recommandé d'utiliser la bibliothèque officiellement supportée [vue-router](https://github.com/vuejs/vue-router). Pour plus de détails, voir la [documentation de vue-router](http://vuejs.github.io/vue-router/).
 
-## Un routeur simple en partant de zéro
+## Du routage simple en partant de zéro
 
-Si vous avez simplement besoin d'un routage très simple et ne souhaitez pas ajouter une librairie riche en fonctionnalités, vous pouvez le faire en déclenchant dynamiquement le rendu d'un composant de page de cette manière :
+Si vous avez simplement besoin d'un routage très simple et ne souhaitez pas ajouter une bibliothèque riche en fonctionnalités, vous pouvez le faire en déclenchant dynamiquement le rendu d'un composant de page de cette manière :
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }
