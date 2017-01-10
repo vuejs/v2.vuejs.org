@@ -1,6 +1,6 @@
 # fr.vuejs.org
 
-Ce site est assemblé avec [hexo](http://hexo.io/). Le contenu du Site est écrit au format Markdown et se trouve dans `src`. Les Pull requests son les bienvenues !
+Ce site est assemblé avec [hexo](http://hexo.io/). Le contenu du Site est écrit au format Markdown et se trouve dans `src`. Les Pull requests sont les bienvenues !
 
 ## Développement
 
