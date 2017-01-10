@@ -15,13 +15,13 @@ container.onmouseup = function(){
   var txt = funcGetSelectText();
   if(txt)
   {
-  console.log('vuefe.cn : ' + txt);
-   axios.post('https://vuefecom.leanapp.cn/api/words/who', {
-      token: store.vuefecom_tempToken,
-      word: txt
-    })
-    .then(function(res) {
-    });
+  // console.log('vuefe.cn : ' + txt);
+  //  axios.post('https://vuefecom.leanapp.cn/api/words/who', {
+  //     token: store.vuefecom_tempToken,
+  //     word: txt
+  //   })
+  //   .then(function(res) {
+  //   });
   }
 }
 
@@ -38,8 +38,6 @@ var autoSignUp = function() {
         store.vuefecom_tempToken = res.data.data.tempToken;
       }
     });
-  } else {
-    console.log('已经登录');
   }
 }
 
