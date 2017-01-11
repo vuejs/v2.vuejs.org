@@ -13,7 +13,7 @@ Cela peut très bien fonctionner pour des petits projets ou des projets de taill
 - **Les définitions globales** forcent à avoir un nom unique pour chaque composant
 - **Les templates sous forme de chaînes de caractères** ne bénéficient pas de la coloration syntaxique et requièrent l'usage de slashes disgracieux pour le HTML multiligne.
 - **L'absence de support pour le CSS** signifie que le CSS ne peut pas être modularisé comme HTML et JavaScript
-- **L'absence d'étape de build** nous restreint au HTML et à JavaScript ES5, sans pouvoir utiliser des préprocesseurs tels que Babel ou Pug (précédemment Jade).
+- **L'absence d'étape de build** nous restreint au HTML et à JavaScript ES5, sans pouvoir utiliser des préprocesseurs tels que Babel ou Pug (anciennement Jade).
 
 
 Tous ces désavantages sont résolus par les **composants monofichiers** avec une extension `.vue`, rendus possibles par les outils de build tels que Webpack ou Browserify.
