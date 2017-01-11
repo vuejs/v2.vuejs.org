@@ -339,7 +339,7 @@ new Vue({
 </li>
 ```
 
-以上只渲染不完整（部分）的todos。
+以上只渲染todos里还未完成的部分。
 
 如果相反地，你的意图是按条件跳过循环的执行，你可以将`v-if`放在一个包装元素（或[`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)）里面。 例如：
 
