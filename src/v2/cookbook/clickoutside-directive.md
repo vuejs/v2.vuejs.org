@@ -6,7 +6,7 @@ order: 2.1
 
 ## What we are building
 
-Many UI elements need to react to clicks that happen *outside* of them. Common usecases are:
+Many UI elements need to react to clicks that happen *outside* of them. Common use cases are:
 
 * Modals
 * Dropdown menus
@@ -172,7 +172,7 @@ unbind(el, binding) {
 
 #### No inline expressions
 
-We can't use an inline expression instead of a handler function. The following will **not** work, because it will be run immediatly, not on `click`:
+We can't use an inline expression instead of a handler function. The following will **not** work, because it will be run immediately, not on `click`:
 
 ```html
 <modal v-clickoutside="showModal= false">
