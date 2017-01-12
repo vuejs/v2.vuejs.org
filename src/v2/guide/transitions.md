@@ -596,7 +596,7 @@ and custom JavaScript hooks:
   v-on:before-appear="customBeforeAppearHook"
   v-on:appear="customAppearHook"
   v-on:after-appear="customAfterAppearHook"
-  v-on:appear-cancelled="customAppeaCancelledHook"
+  v-on:appear-cancelled="customAppearCancelledHook"
 >
   <!-- ... -->
 </transition>
