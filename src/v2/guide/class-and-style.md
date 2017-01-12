@@ -4,9 +4,9 @@ type: guide
 order: 6
 ---
 
-Un besoin classique de la **liaison de données**, est de manipuler la *liste des classes* et le *style* d'un élément. Puisque ce sont tous deux des attributs, il est possible d'utiliser `v-bind`  pour les gérer : Il est seulement nécessaire de générer une chaîne de caractère avec notre expression. Cependant, jouer avec des concaténations de chaîne de caractères est ennuyant, et source d'erreur. Pour cette raison, Vue fournit des améliorations spéciales quand `v-bind` est utilisé avec `class` et `style`. En plus des chaînes de caractères, l'expression peut évaluer des objets ou des tableaux.
+Un besoin classique de la liaison de données est la manipulation de la liste des classes d'un élément, ainsi que ses style en ligne. Puisque ce sont tous deux des attributs, il est possible d'utiliser `v-bind`  pour les gérer : Il faut simplement générer une chaîne de caractère avec nos expressions. Cependant, jouer avec des concaténations de chaîne de caractères est fastidieux, et source d'erreur. Pour cette raison, Vue fournit des améliorations spéciales quand `v-bind` est utilisé avec `class` et `style`. En plus des chaînes de caractères, l'expression peut évaluer des objets ou des tableaux.
 
-## Lier l'attribut "class"
+## Liaison de Classes HTML
 
 ### Syntaxe Objet
 
@@ -16,7 +16,7 @@ Il est possible de donner un objet à `v-bind:class` pour permuter les classes a
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-La syntaxe ci-dessus signifie que la présence de la classe `active` sera déterminé par la [véracité](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) de la propriété `isActive`.
+La syntaxe ci-dessus signifie que la classe `active` sera présente si la propriété `isActive` est [évaluée à vrai](https://developer.mozilla.org/fr/docs/Glossaire/Truthy).
 
 Vous pouvez permuter plusieurs classes en ayant plus de champs dans l'objet. De plus, la directive `v-bind:class` peut aussi coexister avec l'attribut `class`. Donc, avec le template suivant :
 
@@ -143,17 +143,17 @@ C'est aussi vrai pour la liaison de classe :
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-Quand `isActive` est vrai, le rendu HTML sera :
+Quand `isActive` est évalué à vrai, le rendu HTML sera :
 
 ``` html
 <p class="foo bar active"></p>
 ```
 
-## Lier l'attribut "style"
+## Liaison de Styles HTML
 
 ### Syntaxe objet
 
-La syntaxe objet pour `v-bind:style` est assez simple - cela ressemble presque à CSS, sauf que c'est un objet Javascript. Vous pouvez utiliser camelCase ou kebab-case (utilisez des apostrophes avec kebab-case) pour les noms des propriétés CSS :
+La syntaxe objet pour `v-bind:style` est assez simple - cela ressemble presque à CSS, sauf que c'est un objet JavaScript. Vous pouvez utiliser camelCase ou kebab-case (utilisez des apostrophes avec kebab-case) pour les noms des propriétés CSS :
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -165,7 +165,7 @@ data: {
 }
 ```
 
-C'est souvent une bonne idée de lier directement à un objet de style, pour que le template soit plus propre :
+C'est souvent une bonne idée de lier directement un objet de style, pour que le template soit plus propre :
 
 ``` html
 <div v-bind:style="styleObject"></div>
@@ -179,7 +179,7 @@ data: {
 }
 ```
 
-Encore une fois, la syntaxe objet est souvent utilisé en conjonction avec des propriétés calculés retournant des objets.
+Encore une fois, la syntaxe objet est souvent utilisée en conjonction avec des propriétées calculées retournant des objets.
 
 ### Syntaxe tableau
 
