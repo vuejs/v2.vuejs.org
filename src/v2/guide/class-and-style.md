@@ -1,5 +1,5 @@
 ---
-title: Liaisons de classes et de Styles
+title: Liaisons de classes et de styles
 type: guide
 order: 6
 ---
