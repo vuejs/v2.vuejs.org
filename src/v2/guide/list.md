@@ -331,7 +331,7 @@ new Vue({
 
 ### `v-for` with `v-if`
 
-When they exists on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only _some_ items, like below:
+当它们共存于同一节点上时，`v-for`具有比`v-if`更高的优先级。 这意味着`v-if`将分别在循环的每次迭代上运行。 当你只想要渲染_某些部分_项的节点时非常有用，如下所示：
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
@@ -339,9 +339,9 @@ When they exists on the same node, `v-for` has a higher priority than `v-if`. Th
 </li>
 ```
 
-The above only renders the todos that are not complete.
+以上只渲染todos里还未完成的部分。
 
-If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+如果相反地，你的意图是按条件跳过循环的执行，你可以将`v-if`放在一个包装元素（或[`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)）里面。 例如：
 
 ``` html
 <ul v-if="shouldRenderTodos">

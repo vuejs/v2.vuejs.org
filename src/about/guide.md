@@ -1,11 +1,8 @@
 ---
 title: 参与指南
 type: about
-order: 1
+order: 3
 ---
-
-> 目前急需校对
-
 
 ## 参与要求
 
