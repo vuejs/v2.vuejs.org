@@ -43,7 +43,7 @@ Le rendu sera :
 
 Quand `isActive` ou `hasError` change, la liste des classes sera mise à jour en conséquence. Par exemple, si `hasError` devient `true`, la liste des classes deviendra `"static active text-danger"`.
 
-L'objet lié n'a pas besoin d'être dans l'attribut :
+L'objet lié n'a pas besoin d'être déclaré dans l'attribut :
 
 ``` html
 <div v-bind:class="classObject"></div>
