@@ -30,13 +30,11 @@ var MyComponent = Vue.extend({
 var myComponentInstance = new MyComponent()
 ```
 
-Bien qu'il soit possible de créer des instances étendues de manière impérative, la plupart du temps il est recommandé de les composer de manière déclarative dans les templates en tant qu'éléments personnalisés. Nous parlerons du [système de composants](components.html) en détail plus loin.
-Pour le moment, vous avez juste besoin de savoir que tous les composants de Vue sont fondamentalement des instances de Vue étendues. 
+Bien qu'il soit possible de créer des instances étendues de manière impérative, la plupart du temps il est recommandé de les composer de manière déclarative dans les templates en tant qu'éléments personnalisés. Nous parlerons du [système de composants](components.html) en détail plus loin. Pour le moment, vous avez juste besoin de savoir que tous les composants de Vue sont fondamentalement des instances de Vue étendues. 
 
 ## Propriétés et méthodes
 
 Chaque instance de vue **"proxifie"** toutes les propriétés contenues dans son objet `data`
-
 
 ``` js
 var data = { a: 1 }
@@ -75,9 +73,7 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
-<p class="tip">
-N'utilisez pas les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) sur une propriété ou fonction de retour d'une instance  (par exemple `vm.$watch('a', newVal => this.myMethod())`). Comme les fonctions fléchées sont liées au contexte parent, `this` ne sera pas l'instance de Vue comme vous pourriez vous y attendre et `this.myMethod` sera indéfini.
-</p>
+<p class="tip">N'utilisez pas les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) sur une propriété ou fonction de retour d'une instance  (par exemple `vm.$watch('a', newVal => this.myMethod())`). Comme les fonctions fléchées sont liées au contexte parent, `this` ne sera pas l'instance de Vue comme vous pourriez vous y attendre et `this.myMethod` sera indéfini.</p>
 
 Consultez [l'API](../api) pour une liste complète des propriétés et méthodes d'une instance. 
 
@@ -103,6 +99,5 @@ Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle d
 ## Diagramme de cycle de vie
 
 Ci-dessous se trouve le diagramme d'un cycle de vie d'une instance. Vous n'avez pas besoin de tout comprendre de A à Z à ce stade, mais ce diagramme pourra vous être utile dans le futur.
-
 
 ![Lifecycle](/images/lifecycle.png)
