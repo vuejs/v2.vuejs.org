@@ -8,12 +8,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <meta property="og:type" content="article">
-        <meta property="og:title" content="vue.js">
+        <meta property="og:title" content="Vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta property="og:image" content="https://vuejs.org/images/logo.png">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="vue.js">
+        <meta name="twitter:title" content="Vue.js">
         <meta name="twitter:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
@@ -1378,23 +1378,29 @@
 <li><code>mode</code> - string, Controls the timing sequence of leaving/entering transitions. Available modes are <code>&quot;out-in&quot;</code> and <code>&quot;in-out&quot;</code>; defaults to simultaneous.</li>
 <li><code>enter-class</code> - string</li>
 <li><code>leave-class</code> - string</li>
+<li><code>appear-class</code> - string</li>
+<li><code>enter-to-class</code> - string</li>
+<li><code>leave-to-class</code> - string</li>
+<li><code>appear-to-class</code> - string</li>
 <li><code>enter-active-class</code> - string</li>
 <li><code>leave-active-class</code> - string</li>
-<li><code>appear-class</code> - string</li>
 <li><code>appear-active-class</code> - string</li>
 </ul>
 </li>
 <li><p><strong>Events:</strong></p>
 <ul>
 <li><code>before-enter</code></li>
-<li><code>enter</code></li>
-<li><code>after-enter</code></li>
 <li><code>before-leave</code></li>
-<li><code>leave</code></li>
-<li><code>after-leave</code></li>
 <li><code>before-appear</code></li>
+<li><code>enter</code></li>
+<li><code>leave</code></li>
 <li><code>appear</code></li>
+<li><code>after-enter</code></li>
+<li><code>after-leave</code></li>
 <li><code>after-appear</code></li>
+<li><code>enter-cancelled</code></li>
+<li><code>leave-cancelled</code> (<code>v-show</code> only)</li>
+<li><code>appear-cancelled</code></li>
 </ul>
 </li>
 <li><p><strong>Usage:</strong></p>

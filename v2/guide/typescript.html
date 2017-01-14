@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>TypeScript Support - Vue.js</title>
+        <title>TypeScript Support — Vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <meta property="og:type" content="article">
-        <meta property="og:title" content="TypeScript Support - vue.js">
+        <meta property="og:title" content="TypeScript Support — Vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta property="og:image" content="https://vuejs.org/images/logo.png">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="TypeScript Support - vue.js">
+        <meta name="twitter:title" content="TypeScript Support — Vue.js">
         <meta name="twitter:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
@@ -576,7 +576,7 @@
 <figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div></pre></td></tr></table></figure>
 <p>Then all methods, properties, and parameters will be type checked. For example, if you misspell the <code>template</code> component option as <code>tempate</code> (missing the <code>l</code>), the TypeScript compiler will print an error message at compile time. If you’re using an editor that can lint TypeScript, such as <a href="https://code.visualstudio.com/" target="_blank" rel="external">Visual Studio Code</a>, you’ll even be able to catch these errors before compilation:</p>
 <p><img src="/images/typescript-type-error.png" alt="TypeScript Type Error in Visual Studio Code"></p>
-<h3 id="Compilation-Options"><a href="#Compilation-Options" class="headerlink" title="Compilation Options"></a>Compilation Options</h3><p>Vue’s declaration files require the <code>--lib DOM,ES2015.Promise</code> <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank" rel="external">compiler option</a>. You can pass this option to the <code>tsc</code> command or add the equivalent to a <code>tsconfig.json</code> file.</p>
+<h3 id="Compilation-Options"><a href="#Compilation-Options" class="headerlink" title="Compilation Options"></a>Compilation Options</h3><p>Vue’s declaration files require the <code>--lib DOM,ES5,ES2015.Promise</code> <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank" rel="external">compiler option</a>. You can pass this option to the <code>tsc</code> command or add the equivalent to a <code>tsconfig.json</code> file.</p>
 <h3 id="Accessing-Vue’s-Type-Declarations"><a href="#Accessing-Vue’s-Type-Declarations" class="headerlink" title="Accessing Vue’s Type Declarations"></a>Accessing Vue’s Type Declarations</h3><p>If you want to annotate your own code with Vue’s types, you can access them on Vue’s exported object. For example, to annotate an exported component options object (e.g. in a <code>.vue</code> file):</p>
 <figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  props: [<span class="string">'message'</span>],</div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125; as Vue.ComponentOptions&lt;Vue&gt;</div></pre></td></tr></table></figure>
 <h2 id="Class-Style-Vue-Components"><a href="#Class-Style-Vue-Components" class="headerlink" title="Class-Style Vue Components"></a>Class-Style Vue Components</h2><p>Vue component options can easily be annotated with types:</p>
