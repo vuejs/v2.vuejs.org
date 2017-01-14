@@ -18,29 +18,29 @@ Translation for this documentation project are currently mantained in separate r
 
 ### Mandarin
 
-* Translation Repo - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
+* Translation Repo — [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
 
 ### Japanese
 
-* Translation Repo - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
+* Translation Repo — [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
 
 ### Russian
 
 Russian translation is maintained by Translation Gang.
 
 * Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
-* Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
+* Primary maintainer — [Grigoriy Beziuk](https://gbezyuk.github.io)
 
 ### Italian
 
-* Translation Repo - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
+* Translation Repo — [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
 
 ### Korean
 
 Korean translation is maintained by Vue.js Korea.
 
-* Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
-* Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
+* Translation Repo — [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
+* Primary maintainer — [ChangJoo Park](https://github.com/ChangJoo-Park)
 
 ### French
 
