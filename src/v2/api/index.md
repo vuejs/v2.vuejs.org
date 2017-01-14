@@ -1748,21 +1748,27 @@ type: api
   - `mode` - string, 트랜지션을 나가거나 들어가는 타이밍 순서를 제어합니다. 사용 가능한 모드는 `"out-in"`과 `"in-out"`입니다. 기본값은 동시에 발생합니다.
   - `enter-class` - string
   - `leave-class` - string
+  - `appear-class` - string
+  - `enter-to-class` - string
+  - `leave-to-class` - string
+  - `appear-to-class` - string
   - `enter-active-class` - string
   - `leave-active-class` - string
-  - `appear-class` - string
   - `appear-active-class` - string
 
 - **이벤트:**
   - `before-enter`
-  - `enter`
-  - `after-enter`
   - `before-leave`
-  - `leave`
-  - `after-leave`
   - `before-appear`
+  - `enter`
+  - `leave`
   - `appear`
+  - `after-enter`
+  - `after-leave`
   - `after-appear`
+  - `enter-cancelled`
+  - `leave-cancelled` (`v-show` only)
+  - `appear-cancelled`
 
 - **사용방법:**
 
