@@ -38,10 +38,9 @@ Russian translation is maintained by Translation Gang.
 ### Korean
 
 Korean translation is maintained by Vue.js Korea.
-한국어 번역은 Vue.js 한국어 사용자 모임에서 관리합니다.
 
 * Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
-* Primary maintainer - [ChangJoo Park(박창주)](https://github.com/ChangJoo-Park)
+* Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
 
 ### Want to help with the translation?
 
