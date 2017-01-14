@@ -11,7 +11,7 @@ Les mixins offrent une manière flexible de créer des fonctionnalités réutili
 Exemple:
 
 ``` js
-// define a mixin object
+// définir un objet mixin
 var myMixin = {
   created: function () {
     this.hello()
