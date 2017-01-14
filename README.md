@@ -39,7 +39,7 @@ La traduction Russe est maintenu par Translation Gang.
 
 À FAIRE : fournir des informations ici
 
-### Vous voulez participer à la traduction ?
+### Voulez-vous participer à la traduction ?
 
 Si vous vous sentez d'attaque pour une traduction seul, forkez simplement ce dépôt, créez un ticket « work-in-progress » pour informer les autres que vous êtes entrain de le traduire, et en avant.
 
