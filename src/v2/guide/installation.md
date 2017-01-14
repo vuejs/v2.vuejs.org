@@ -72,8 +72,7 @@ Pour Browserify, vous pouvez ajouter un alias dans votre package.json :
 },
 ```
 
-<p class="tip">Ne faites PAS `import Vue from 'vue/dist/vue.js'` — 
-en effet, certains outils ou bibliothèques tierces peuvent également importer Vue, ce qui peut forcer l'app à charger conjointement les builds runtime et standalone et mener à des erreurs.</p>
+<p class="tip">Ne faites PAS `import Vue from 'vue/dist/vue.js'` — en effet, certains outils ou bibliothèques tierces peuvent également importer Vue, ce qui peut forcer l'app à charger conjointement les builds runtime et standalone et mener à des erreurs.</p>
 
 ### Environnements CSP
 
