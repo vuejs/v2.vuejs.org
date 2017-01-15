@@ -40,7 +40,7 @@ Russian translation is maintained by Translation Gang.
 
 ### Korean
 
-Korean translation is maintained by Vue.js Korea.
+Korean translation is maintained by [Vue.js Korean User group](https://github.com/vuejs-kr).
 
 * Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
 * Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
