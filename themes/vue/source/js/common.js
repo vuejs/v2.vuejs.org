@@ -37,9 +37,9 @@
   function initLocationHashFuzzyMatching () {
     var hash;
     try {
-		  hash = escapeCharacters( decodeURIComponent( window.location.hash ) )
+      hash = escapeCharacters( decodeURIComponent( window.location.hash ) )
     } catch(e) {
-		  hash = escapeCharacters( window.location.hash )
+      hash = escapeCharacters( window.location.hash )
     }
     if (!hash) return
     var hashTarget = document.getElementById(hash)
