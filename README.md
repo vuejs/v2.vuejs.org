@@ -22,7 +22,10 @@ Translation for this documentation project are currently mantained in separate r
 
 ### Japanese
 
+Japanese translation is maintained by [Vue.js japan user group](https://github.com/vuejs-jp)
+
 * Translation Repo - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
+* Primary maintainer - [kazupon](https://github.com/kazupon)
 
 ### Russian
 
@@ -37,7 +40,7 @@ Russian translation is maintained by Translation Gang.
 
 ### Korean
 
-Korean translation is maintained by Vue.js Korea.
+Korean translation is maintained by [Vue.js Korean User group](https://github.com/vuejs-kr).
 
 * Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
 * Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
