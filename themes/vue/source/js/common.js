@@ -34,6 +34,15 @@
     }
   }
 
+  function escapeCharacters (hash) {
+    // Remove leading hash
+    if (hash.charAt(0) === '#') {
+      hash = hash.substr(1)
+    }
+
+    return '#' + CSS.escape(hash)
+  }
+
   function initLocationHashFuzzyMatching () {
     var hash;
     try {
