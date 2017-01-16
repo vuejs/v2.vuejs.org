@@ -26,7 +26,7 @@ order: 19
 - [CommonJS 模块](https://webpack.github.io/docs/commonjs.html)
 - [组件化的 CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
-正如我们说过的，我们可以使用预处理器来构建简洁和功能更丰富的组件，比如 Jade，Babel (with ES2015 modules)，和 Stylus。
+作为 promise，我们可以使用预处理器来构建简洁和功能更丰富的组件，比如 Pug，Babel (with ES2015 modules)，和 Stylus。
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 

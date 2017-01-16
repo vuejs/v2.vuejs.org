@@ -1758,21 +1758,27 @@ type: api
   - `mode` - string, 控制离开/进入的过渡时间序列。有效的模式有 `"out-in"` 和 `"in-out"`；默认同时生效。
   - `enter-class` - string
   - `leave-class` - string
+  - `appear-class` - string
+  - `enter-to-class` - string
+  - `leave-to-class` - string
+  - `appear-to-class` - string
   - `enter-active-class` - string
   - `leave-active-class` - string
-  - `appear-class` - string
   - `appear-active-class` - string
 
 - **事件：**
   - `before-enter`
-  - `enter`
-  - `after-enter`
   - `before-leave`
-  - `leave`
-  - `after-leave`
   - `before-appear`
+  - `enter`
+  - `leave`
   - `appear`
+  - `after-enter`
+  - `after-leave`
   - `after-appear`
+  - `enter-cancelled`
+  - `leave-cancelled` (`v-show` only)
+  - `appear-cancelled`
 
 - **用法：**
 
