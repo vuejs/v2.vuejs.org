@@ -1040,11 +1040,7 @@ components: {
 HTML 템플릿 내에서 kebab-case와 동등한 것을 사용해야합니다.
 
 ``` html
-<<<<<<< HEAD
 <!-- HTML 템플릿에서 항상 kebab-case 를 사용하세요 -->
-=======
-<!-- always use kebab-case in HTML templates -->
->>>>>>> vuejs/master
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <title-cased-component></title-cased-component>
