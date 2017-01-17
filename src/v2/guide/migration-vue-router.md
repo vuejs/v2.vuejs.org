@@ -269,7 +269,7 @@ if (route.meta.requiresAuth) {
 <router-link to="/about">About</router-link>
 ```
 
-Note that `target="_blank"` is not supported on `<router-link>`, so if you need to open a link in a new tab, you have to use `<a>` instead.
+注意`<router-link>`不支持`target="_blank"`，如果你想要在新标签页打开页面，应该使用`<a>`替代
 
 {% raw %}
 <div class="upgrade-path">
@@ -280,9 +280,7 @@ Note that `target="_blank"` is not supported on `<router-link>`, so if you need 
 
 ### `v-link-active` <sup>替换</sup>
 
-The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](http://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
-
-`v-link-active`也因为指定了一个在[ `<router-link>` 组件](http://router.vuejs.org/en/api/router-link.html)上的 tag 属性而被弃用了。举个例子，你需要更新：
+`v-link-active`也被[ `<router-link>` 组件](http://router.vuejs.org/en/api/router-link.html)上的`tag`属性替代了。举个例子，你需要更新：
 
 ``` html
 <li v-link-active>
