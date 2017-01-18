@@ -228,12 +228,12 @@ var watchExampleVM = new Vue({
     // _.throttle), visit: https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
-        var vm = this
         if (this.question.indexOf('?') === -1) {
-          vm.answer = 'Questions usually contain a question mark. ;-)'
+          this.answer = 'Questions usually contain a question mark. ;-)'
           return
         }
-        vm.answer = 'Thinking...'
+        this.answer = 'Thinking...'
+        var vm = this
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
