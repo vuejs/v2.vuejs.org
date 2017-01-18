@@ -34,8 +34,22 @@
     }
   }
 
+  function escapeCharacters (hash) {
+    // Remove leading hash
+    if (hash.charAt(0) === '#') {
+      hash = hash.substr(1)
+    }
+
+    return '#' + CSS.escape(hash)
+  }
+
   function initLocationHashFuzzyMatching () {
-    var hash = window.location.hash
+    var hash;
+    try {
+      hash = escapeCharacters(decodeURIComponent(window.location.hash))
+    } catch(e) {
+      hash = escapeCharacters(window.location.hash)
+    }
     if (!hash) return
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
