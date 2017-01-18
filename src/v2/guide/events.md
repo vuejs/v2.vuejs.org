@@ -194,9 +194,7 @@ methods: {
 <!-- the click event will be triggered at most once -->
 <a v-on:click.once="doThis"></a>
 ```
-
-Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components.html#Using-v-on-with-Custom-Events). If you haven't read about components yet, don't worry about this for now.
-
+不像其他原生DOM事件独有的修饰器，`.once`修饰器也可以用在组件事件上。如果你还没有阅读组件现在不用关心这个。查看 [组件](components.html) 。
 ## 按键修饰符
 
 在监听键盘事件时，我们经常需要监测常见的键值。 Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符：
@@ -246,9 +244,8 @@ Vue.config.keyCodes.f1 = 112
 - `.shift`
 - `.meta`
 
-> Note: On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.
-
-For example:
+> 注意：在Mac系统键盘上，meta对应命令键 (⌘)。在Windows系统键盘meta对应windows徽标键(⊞)。在Sun操作系统键盘上，meta对应实心宝石键 (◆)。在其他特定键盘上，尤其在MIT和Lisp键盘及其后续，比如Knight键盘，space-cadet键盘，meta被标记为“META”。在Symbolics键盘上，meta被标记为“META” 或者 “Meta”。
+例如:
 
 ```html
 <!-- Alt + C -->
