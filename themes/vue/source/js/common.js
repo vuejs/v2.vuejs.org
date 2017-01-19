@@ -44,13 +44,14 @@
   }
 
   function initLocationHashFuzzyMatching () {
-    var hash;
+    var rawHash = window.location.hash
+    if (!rawHash) return
+    var hash
     try {
-      hash = escapeCharacters(decodeURIComponent(window.location.hash))
+      hash = escapeCharacters(decodeURIComponent(rawHash))
     } catch(e) {
-      hash = escapeCharacters(window.location.hash)
+      hash = escapeCharacters(rawHash)
     }
-    if (!hash) return
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
