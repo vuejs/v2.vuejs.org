@@ -67,7 +67,9 @@ var example2 = new Vue({
       // `this` inside methods points to the Vue instance
       alert('Hello ' + this.name + '!')
       // `event` is the native DOM event
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
@@ -91,7 +93,9 @@ var example2 = new Vue({
   methods: {
     greet: function (event) {
       alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
