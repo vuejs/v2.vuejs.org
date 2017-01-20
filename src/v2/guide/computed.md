@@ -227,18 +227,11 @@ var watchExampleVM = new Vue({
     getAnswer: _.debounce(
       function () {
         if (this.question.indexOf('?') === -1) {
-<<<<<<< HEAD
-          vm.answer = '질문에는 일반적으로 물음표가 포함 됩니다. ;-)'
+          this.answer = '질문에는 일반적으로 물음표가 포함 됩니다. ;-)'
           return
         }
-        vm.answer = '생각중...'
-=======
-          this.answer = 'Questions usually contain a question mark. ;-)'
-          return
-        }
-        this.answer = 'Thinking...'
+        this.answer = '생각중...'
         var vm = this
->>>>>>> vuejs/master
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
