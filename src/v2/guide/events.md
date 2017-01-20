@@ -66,8 +66,15 @@ var example2 = new Vue({
     greet: function (event) {
       // 메소드 안에서 사용하는 `this` 는 Vue 인스턴스를 가리킵니다
       alert('Hello ' + this.name + '!')
+<<<<<<< HEAD
       // `event` 는 네이티브 DOM 이벤트입니다
       alert(event.target.tagName)
+=======
+      // `event` is the native DOM event
+      if (event) {
+        alert(event.target.tagName)
+      }
+>>>>>>> vuejs/master
     }
   }
 })
@@ -91,7 +98,9 @@ var example2 = new Vue({
   methods: {
     greet: function (event) {
       alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })

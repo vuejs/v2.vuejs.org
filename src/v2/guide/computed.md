@@ -75,7 +75,7 @@ console.log(vm.reversedMessage) // -> '가잘'
 
 콘솔을 열고 예제를 직접 해볼 수 있습니다. `vm.reversedMessage`의 값은 항상 `vm.message`의 값에 의존합니다.
 
-일반 속성처럼 템플릿의 계산된 속성에 데이터 바인딩 할 수 있습니다. Vue는 `vm.reversedMessage`가 `vm.message`에 의존하는 것을 알고 있기 때문에 `vm.message`가 바뀔 때 `vm.reversedMessage`에 의존하는 바인딩을 모두 업데이트할 것입니다. 그리고 가장 중요한 것은 우리가 선언적으로 의존 관계를 만들었다는 것입니다. 계산된 getter 함수는 순수하고 부작용이 없어 테스트와 추론하기에 쉬워집니다.
+일반 속성처럼 템플릿의 계산된 속성에 데이터 바인딩 할 수 있습니다. Vue는 `vm.reversedMessage`가 `vm.message`에 의존하는 것을 알고 있기 때문에 `vm.message`가 바뀔 때 `vm.reversedMessage`에 의존하는 바인딩을 모두 업데이트할 것입니다. 그리고 가장 중요한 것은 우리가 선언적으로 의존 관계를 만들었다는 것입니다. 계산된 getter 함수는 사이드 이펙트가 없어 테스트와 추론하기에 쉬워집니다.
 
 ### 계산된 캐싱 vs 메소드
 
@@ -226,12 +226,19 @@ var watchExampleVM = new Vue({
     // 자세한 내용을 보려면 https://lodash.com/docs#debounce 를 방문하세요.
     getAnswer: _.debounce(
       function () {
-        var vm = this
         if (this.question.indexOf('?') === -1) {
+<<<<<<< HEAD
           vm.answer = '질문에는 일반적으로 물음표가 포함 됩니다. ;-)'
           return
         }
         vm.answer = '생각중...'
+=======
+          this.answer = 'Questions usually contain a question mark. ;-)'
+          return
+        }
+        this.answer = 'Thinking...'
+        var vm = this
+>>>>>>> vuejs/master
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
