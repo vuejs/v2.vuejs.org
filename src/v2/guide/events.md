@@ -67,7 +67,9 @@ var example2 = new Vue({
       // `this` 在方法里指当前 Vue 实例
       alert('Hello ' + this.name + '!')
       // `event` 是原生 DOM 事件
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
@@ -91,7 +93,9 @@ var example2 = new Vue({
   methods: {
     greet: function (event) {
       alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
