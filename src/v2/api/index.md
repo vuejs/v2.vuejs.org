@@ -439,7 +439,7 @@ type: api
 
 ### computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **Type:** `{ [key: string]: Function | { get: Function, set: Function, cache: Boolean } }`
 
 - **Details:**
 
@@ -447,7 +447,7 @@ type: api
 
   <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes.
+  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of Vue scope, i.e. not reactive, the computed property will not be updated. In this situation, caching can be turned off by setting `cache: false` option. However, since the dependency is still not reactive, modifying it will not trigger any DOM update.
 
 - **Example:**
 
