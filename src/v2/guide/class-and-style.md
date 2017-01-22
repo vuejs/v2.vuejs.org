@@ -149,7 +149,7 @@ Vue.component('my-component', {
 `isActive`가 참일 때 렌더링 된 HTML은 다음과 같습니다:
 
 ``` html
-<p class="foo bar active"></p>
+<p class="foo bar active">Hi</p>
 ```
 
 ## 인라인 스타일 바인딩
