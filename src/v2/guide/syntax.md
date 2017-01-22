@@ -119,14 +119,9 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bi
 
 之后当我们更深入地了解 `v-on` 与 `v-model`时，会看到更多修饰符的使用。
 
-### 过滤器
+## 过滤器
 
-Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。过滤器应该被添加在 **mustache 插值**的尾部，由“管道符”指示：
-
-``` html
-{{ message | capitalize }}
-```
-
+Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化。过滤器可以用在两个地方：**mustache 插值和 `v-bind` 表达式**。过滤器应该被添加在 JavaScript 表达式的尾部，由“管道”符指示：
 
 ``` html
 <!-- in mustaches -->
