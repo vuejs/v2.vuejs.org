@@ -6,7 +6,7 @@ order: 30
 
 Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
 
-Now we'll answer both what the community can do for and what you can do for the community.
+Now we'll answer both what the community can do for you and what you can do for the community.
 
 ## Resources You'll Enjoy
 
