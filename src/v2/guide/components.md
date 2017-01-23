@@ -563,15 +563,15 @@ new Vue({
 
 ``` js
 Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
+  template: '
+    <span>
+      $
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)"
+      >
+    </span>
   ',
   props: ['value'],
   methods: {
@@ -599,15 +599,15 @@ Vue.component('currency-input', {
 </div>
 <script>
 Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
+  template: '
+    <span>
+      $
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)"
+      >
+    </span>
   ',
   props: ['value'],
   methods: {
@@ -1163,11 +1163,11 @@ Vue.component('hello-world', {
 
 ``` js
 Vue.component('terms-of-service', {
-  template: '\
-    <div v-once>\
-      <h1>Terms of Service</h1>\
-      ... a lot of static content ...\
-    </div>\
+  template: '
+    <div v-once>
+      <h1>Terms of Service</h1>
+      ... a lot of static content ...
+    </div>
   '
 })
 ```
