@@ -441,7 +441,7 @@ type: api
 
 ### computed
 
-- **类型:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **类型：** `{ [key: string]: Function | { get: Function, set: Function, cache: Boolean } }`
 
 - **详细:**
 
@@ -449,7 +449,9 @@ type: api
 
   <p class="tip">注意，__不应该使用箭头函数来定义计算属性函数__ (例如 `aDouble: () => this.a * 2`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
 
-  计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。
+  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will not be updated. In this situation, caching can be turned off by setting `cache: false`. However, since the dependency is still not reactive, modifying it will not trigger a DOM update. 
+  
+  In most situations, `cache: false` will not be an ideal solution. Whenever possible, it's much better to pull external data into the reactivity system. For example, if a computed property depends on the size of the window, you can store this information in `data`, then use the `resize` event to keep the value up-to-date. Now it's reactive!
 
 - **示例:**
 
