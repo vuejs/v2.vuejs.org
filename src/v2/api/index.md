@@ -446,10 +446,10 @@ type: api
   <p class="tip">__계산된 속성을 정의 할 때 화살표 함수를 사용하면 안됩니다.__ 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.a`는 정의되지 않습니다.</p>
 
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will not be updated. In this situation, caching can be turned off by setting `cache: false`. However, since the dependency is still not reactive, modifying it will not trigger a DOM update. 
-  
-  In most situations, `cache: false` will not be an ideal solution. Whenever possible, it's much better to pull external data into the reactivity system. For example, if a computed property depends on the size of the window, you can store this information in `data`, then use the `resize` event to keep the value up-to-date. Now it's reactive!
+  계산된 속성은 캐시 되며 의존하고 있는 반응형 속성이 변경되는 경우 다시 평가됩니다. 특정한 의존성이 인스턴스의 범위를 벗어나는 경우(반응형이지 않은 경우)에 계산된 속성은 갱신되지 않습니다. 이러한 상황에서 `cache: false` 로 캐시를 끌 수 있습니다. 그러나 여전히 반응형 속성을 갖지 않고 있기 때문에 이를 수정하는 경우 DOM 갱신을 발생시키지 않습니다.
 
+  대부분의 상황에서 `cache: false` 를 사용하는 것은 이상적인 방법이 아닙니다. 가능할 때마다 외부 데이터를 반응형 시스템 안으로 가져오는 것이 훨씬 좋습니다. 예를 들어, 계산된 속성이 윈도우 크기에 의존하는 경우 이 정보를 `data` 에 저정한 다음 `resize` 이벤트를 사용하여 데이터를 최신 상태로 유지할 수 있습니다. 이것 또한 반응형입니다!
+  
 - **예제:**
 
   ```js
