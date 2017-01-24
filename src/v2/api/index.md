@@ -437,7 +437,7 @@ type: api
 
 ### computed
 
-- **타입:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **Type:** `{ [key: string]: Function | { get: Function, set: Function, cache: Boolean } }`
 
 - **상세:**
 
@@ -445,7 +445,10 @@ type: api
 
   <p class="tip">__계산된 속성을 정의 할 때 화살표 함수를 사용하면 안됩니다.__ 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.a`는 정의되지 않습니다.</p>
 
-  계산된 속성은 캐시되며, 반응형 종속성이 변경될 때 다시 계산됩니다.
+
+  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will not be updated. In this situation, caching can be turned off by setting `cache: false`. However, since the dependency is still not reactive, modifying it will not trigger a DOM update. 
+  
+  In most situations, `cache: false` will not be an ideal solution. Whenever possible, it's much better to pull external data into the reactivity system. For example, if a computed property depends on the size of the window, you can store this information in `data`, then use the `resize` event to keep the value up-to-date. Now it's reactive!
 
 - **예제:**
 
