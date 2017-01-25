@@ -40,18 +40,17 @@
       hash = hash.substr(1)
     }
 
-    return '#' + CSS.escape(hash)
+    try {
+      hash = decodeURIComponent(rawHash)
+    } catch (e) {}
+
+    return CSS.escape(hash)
   }
 
   function initLocationHashFuzzyMatching () {
     var rawHash = window.location.hash
     if (!rawHash) return
-    var hash
-    try {
-      hash = escapeCharacters(decodeURIComponent(rawHash))
-    } catch(e) {
-      hash = escapeCharacters(rawHash)
-    }
+    var hash = escapeCharacters(rawHash)
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
@@ -64,7 +63,7 @@
         if (distanceA > distanceB) return 1
         return 0
       })
-      window.location.hash = possibleHashes[0]
+      window.location.hash = '#' + possibleHashes[0]
     }
 
     function normalizeHash (rawHash) {
