@@ -144,7 +144,7 @@ HTML 最终将被渲染成为:
 当 `isActive` 为 true 的时候，HTML 将被渲染成为:
 
 ``` html
-<p class="foo bar active"></p>
+<p class="foo bar active">Hi</p>
 ```
 
 ## 绑定内联样式
