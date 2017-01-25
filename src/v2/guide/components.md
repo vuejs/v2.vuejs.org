@@ -267,7 +267,7 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML 特性是不区分大小写。所以，当使用非字符串模版时，camelCased(驼峰)形式的prop 变量名称需要转换为kebab-case(短横线隔开)形式的，(下面html模板中，prop的myMessage就需要转换为my-message)：
+HTML 特性是不区分大小写。所以，当使用非字符串模版时，camelCased (驼峰) 形式的 prop 变量名称需要转换为 kebab-case (短横线隔开) 形式的：
 
 ``` js
 Vue.component('child', {
