@@ -195,7 +195,7 @@ methods: {
 <a v-on:click.once="doThis"></a>
 ```
 
-不像其它只能对原生的dom事件起作用的修饰符， '.once'修饰符还能被用到自定义的[组件事件](components.html#Using-v-on-with-Custom-Events)上. 如果你还没有阅读关于组件的文档，现在大可不必担心。
+不像其它只能对原生的 DOM 事件起作用的修饰符， `.once` 修饰符还能被用到自定义的[组件事件](components.html#Using-v-on-with-Custom-Events)上. 如果你还没有阅读关于组件的文档，现在大可不必担心。
 
 
 ## 按键修饰符
