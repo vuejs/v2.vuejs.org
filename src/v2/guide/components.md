@@ -1080,9 +1080,8 @@ template: '<div><stack-overflow></stack-overflow></div>'
 上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
 
 
-### Circular References Between Components
-
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+### 组件间的循环引用Circular References Between Components
+假设你正在构建一个文件目录树，像在Finder或文件资源管理器中。你可能有一个 `tree-folder`组件:
 
 ``` html
 <p>
@@ -1090,8 +1089,7 @@ Let's say you're building a file directory tree, like in Finder or File Explorer
   <tree-folder-contents :children="folder.children"/>
 </p>
 ```
-
-Then a `tree-folder-contents` component with this template:
+然后 一个`tree-folder-contents`组件：
 
 ``` html
 <ul>
@@ -1103,16 +1101,14 @@ Then a `tree-folder-contents` component with this template:
 ```
 
 When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
-
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+当你仔细看时，你会看到这些组件实际上将是对方组件的子级和父级 — — 一个悖论 ！当注册全局Vue组件时，这一悖论是会自动姐姐。如果那就是你，你读到这里就可以了。
+但是，如果你需要使用模块系统，例如Webpack 或者 Browserify，你会得到一个错误：
 
 ```
 Failed to mount component: template or render function not defined.
 ```
-
-To explain what's happening, I'll call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
-
-In our case, I'll make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+来解释下发生了什么，比如我调用组件 A 和 B。模块系统看到它需要 A，但首先A需要 B，B 需要 A，但 A 需要 B，等等，等等。它卡在一个循环里，在首先加载领一个组件前不知道如何去全部加载任何组件。要解决这个问题，我们需要给模块系统一个点，告诉它，"A最终 需要 B但没必要首先加载B。
+在我们的例子中，我把点放在`tree-folder` 组件中，我们知道引起悖论的子组件是`tree-folder-contents`，所以我们在`beforeCreate` 生命周期钩子中去注册它：
 
 ``` js
 beforeCreate: function () {
@@ -1120,7 +1116,7 @@ beforeCreate: function () {
 }
 ```
 
-Problem solved!
+问题解决了。
 
 ### 内联模版
 
