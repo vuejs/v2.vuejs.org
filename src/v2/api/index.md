@@ -447,8 +447,8 @@ type: api
 
   <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will not be updated. In this situation, caching can be turned off by setting `cache: false`. However, since the dependency is still not reactive, modifying it will not trigger a DOM update. 
-  
+  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will not be updated. In this situation, caching can be turned off by setting `cache: false`. However, since the dependency is still not reactive, modifying it will not trigger a DOM update.
+
   In most situations, `cache: false` will not be an ideal solution. Whenever possible, it's much better to pull external data into the reactivity system. For example, if a computed property depends on the size of the window, you can store this information in `data`, then use the `resize` event to keep the value up-to-date. Now it's reactive!
 
 - **Example:**
@@ -664,7 +664,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Called after a data change causes the virtual DOM to be re-rendered and patched.
 
-  The component's DOM will be in updated state when this hook is called, so you can perform DOM-dependent operations in this hook. However, in most cases you should avoid changing state in this hook, because it may lead to an infinite update loop.
+  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
 
   **This hook is not called during server-side rendering.**
 
