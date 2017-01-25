@@ -34,23 +34,23 @@
     }
   }
 
-  function escapeCharacters (hash) {
+  function parseRawHash (hash) {
     // Remove leading hash
     if (hash.charAt(0) === '#') {
       hash = hash.substr(1)
     }
 
+    // Escape characthers
     try {
-      hash = decodeURIComponent(rawHash)
+      hash = decodeURIComponent(hash)
     } catch (e) {}
-
     return CSS.escape(hash)
   }
 
   function initLocationHashFuzzyMatching () {
     var rawHash = window.location.hash
     if (!rawHash) return
-    var hash = escapeCharacters(rawHash)
+    var hash = parseRawHash(rawHash)
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
@@ -175,7 +175,10 @@
 
       var animating = false
       sectionContainer.addEventListener('click', function (e) {
-        e.preventDefault()
+
+        // Not prevent hashchange for smooth-scroll
+        // e.preventDefault()
+
         if (e.target.classList.contains('section-link')) {
           sidebar.classList.remove('open')
           setActive(e.target)
