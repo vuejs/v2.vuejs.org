@@ -10,7 +10,7 @@ order: 10
 
 <p class="tip"> `v-model` 并不关心表单控件初始化所生成的值。因为它会选择 Vue 实例数据来作为具体的值。</p>
 
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">对于要求 IME （如中文、 日语、 韩语等） 的语言，你会发现那`v-model`不会在 ime 构成中得到更新。如果你也想实现更新，请使用 `input`事件。</p>
 
 ### 文本
 
