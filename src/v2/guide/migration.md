@@ -341,6 +341,37 @@ On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must
 </div>
 {% endraw %}
 
+## Computed properties
+
+### `cache: false` <sup>deprecated</sup>
+
+Caching invalidation of computed properties will be deprecated in the future. This option can be replaced by your component methods.
+
+For example:
+
+``` js
+template: '<p>message: {{ timeMessage }}</p>',
+computed: {
+  timeMessage: {
+    cache: false,
+    get: function () {
+      return Date.now() + this.msg
+    }
+  }
+}
+```
+
+Or with component methods:
+
+``` js
+template: '<p>message: {{ getTimeMessage }}</p>',
+methods: {
+  getTimeMessage: function () {
+    return Date.now() + this.msg
+  }
+}
+```
+
 ## Built-In Directives
 
 ### Truthiness/Falsiness with `v-bind` <sup>changed</sup>
