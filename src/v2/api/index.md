@@ -662,7 +662,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Called after a data change causes the virtual DOM to be re-rendered and patched.
 
-  The component's DOM will be in updated state when this hook is called, so you can perform DOM-dependent operations in this hook. However, in most cases you should avoid changing state in this hook, because it may lead to an infinite update loop.
+  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
 
   **This hook is not called during server-side rendering.**
 
