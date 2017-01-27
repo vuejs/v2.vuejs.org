@@ -341,6 +341,44 @@ On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must
 </div>
 {% endraw %}
 
+## Computed properties
+
+### `cache: false` <sup>deprecated</sup>
+
+Caching invalidation of computed properties will be removed in future major versions of Vue. Replace any uncached computed properties with methods, which will have the same result.
+
+For example:
+
+``` js
+template: '<p>message: {{ timeMessage }}</p>',
+computed: {
+  timeMessage: {
+    cache: false,
+    get: function () {
+      return Date.now() + this.message
+    }
+  }
+}
+```
+
+Or with component methods:
+
+``` js
+template: '<p>message: {{ getTimeMessage }}</p>',
+methods: {
+  getTimeMessage: function () {
+    return Date.now() + this.message
+  }
+}
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+</div>
+{% endraw %}
+
 ## Built-In Directives
 
 ### Truthiness/Falsiness with `v-bind` <sup>changed</sup>
