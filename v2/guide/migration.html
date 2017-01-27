@@ -760,6 +760,17 @@
   <p>Run your end-to-end test suite, if you have one. The <strong>failed tests</strong> should alert to you to the fact that props passed to root instances are no longer working.</p>
 </div>
 
+<h2 id="Computed-properties"><a href="#Computed-properties" class="headerlink" title="Computed properties"></a>Computed properties</h2><h3 id="cache-false-deprecated"><a href="#cache-false-deprecated" class="headerlink" title="cache: false deprecated"></a><code>cache: false</code> <sup>deprecated</sup></h3><p>Caching invalidation of computed properties will be removed in future major versions of Vue. Replace any uncached computed properties with methods, which will have the same result.</p>
+<p>For example:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">template: <span class="string">'&lt;p&gt;message: &#123;&#123; timeMessage &#125;&#125;&lt;/p&gt;'</span>,</div><div class="line"><span class="attr">computed</span>: &#123;</div><div class="line">  <span class="attr">timeMessage</span>: &#123;</div><div class="line">    <span class="attr">cache</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">get</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Date</span>.now() + <span class="keyword">this</span>.message</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Or with component methods:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">template: <span class="string">'&lt;p&gt;message: &#123;&#123; getTimeMessage &#125;&#125;&lt;/p&gt;'</span>,</div><div class="line"><span class="attr">methods</span>: &#123;</div><div class="line">  <span class="attr">getTimeMessage</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Date</span>.now() + <span class="keyword">this</span>.message</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+</div>
+
 <h2 id="Built-In-Directives"><a href="#Built-In-Directives" class="headerlink" title="Built-In Directives"></a>Built-In Directives</h2><h3 id="Truthiness-Falsiness-with-v-bind-changed"><a href="#Truthiness-Falsiness-with-v-bind-changed" class="headerlink" title="Truthiness/Falsiness with v-bind changed"></a>Truthiness/Falsiness with <code>v-bind</code> <sup>changed</sup></h3><p>When used with <code>v-bind</code>, the only falsy values are now: <code>null</code>, <code>undefined</code>, and <code>false</code>. This means <code>0</code> and empty strings will render as truthy. So for example, <code>v-bind:draggable=&quot;&#39;&#39;&quot;</code> will render as <code>draggable=&quot;true&quot;</code>.</p>
 <p>For enumerated attributes, in addition to the falsy values above, the string <code>&quot;false&quot;</code> will also render as <code>attr=&quot;false&quot;</code>.</p>
 <p class="tip">Note that for other directives (e.g. <code>v-if</code> and <code>v-show</code>), JavaScript’s normal truthiness still applies.</p>
@@ -1325,7 +1336,7 @@ new Vue({
             <script src="/js/smooth-scroll.min.js"></script>
         
 
-        <!-- main custom script for sidebars, version selects etc. -->
+        <!-- main custom script for sidebars, version selects etc. -->        
         <script src="/js/css.escape.js"></script>
         <script src="/js/common.js"></script>
 
