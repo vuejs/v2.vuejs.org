@@ -345,7 +345,7 @@ On root Vue instances (i.e. instances created with `new Vue({ ... })`), you must
 
 ### `cache: false` <sup>deprecated</sup>
 
-Caching invalidation of computed properties will be deprecated in the future. This option can be replaced by your component methods.
+Caching invalidation of computed properties will be removed in future major versions of Vue. Replace any uncached computed properties with methods, which will have the same result.
 
 For example:
 
@@ -355,7 +355,7 @@ computed: {
   timeMessage: {
     cache: false,
     get: function () {
-      return Date.now() + this.msg
+      return Date.now() + this.message
     }
   }
 }
@@ -367,10 +367,17 @@ Or with component methods:
 template: '<p>message: {{ getTimeMessage }}</p>',
 methods: {
   getTimeMessage: function () {
-    return Date.now() + this.msg
+    return Date.now() + this.message
   }
 }
 ```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+</div>
+{% endraw %}
 
 ## Built-In Directives
 
