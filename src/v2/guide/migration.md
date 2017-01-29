@@ -340,6 +340,44 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 </div>
 {% endraw %}
 
+## 计算属性
+
+### `cache: false` <sup>弃用</sup>
+
+Caching invalidation of computed properties will be removed in future major versions of Vue. Replace any uncached computed properties with methods, which will have the same result.
+
+For example:
+
+``` js
+template: '<p>message: {{ timeMessage }}</p>',
+computed: {
+  timeMessage: {
+    cache: false,
+    get: function () {
+      return Date.now() + this.message
+    }
+  }
+}
+```
+
+Or with component methods:
+
+``` js
+template: '<p>message: {{ getTimeMessage }}</p>',
+methods: {
+  getTimeMessage: function () {
+    return Date.now() + this.message
+  }
+}
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+</div>
+{% endraw %}
+
 ## Built-In 指令
 
 ### `v-bind` 真/假值 <sup>变更</sup>

@@ -441,7 +441,7 @@ type: api
 
 ### computed
 
-- **类型：** `{ [key: string]: Function | { get: Function, set: Function, cache: Boolean } }`
+- **类型：** `{ [key: string]: Function | { get: Function, set: Function } }`
 
 - **详细:**
 
@@ -449,9 +449,7 @@ type: api
 
   <p class="tip">注意，__不应该使用箭头函数来定义计算属性函数__ (例如 `aDouble: () => this.a * 2`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will not be updated. In this situation, caching can be turned off by setting `cache: false`. However, since the dependency is still not reactive, modifying it will not trigger a DOM update. 
-  
-  In most situations, `cache: false` will not be an ideal solution. Whenever possible, it's much better to pull external data into the reactivity system. For example, if a computed property depends on the size of the window, you can store this information in `data`, then use the `resize` event to keep the value up-to-date. Now it's reactive!
+  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
 
 - **示例:**
 
@@ -668,7 +666,7 @@ type: api
 
   当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。
 
-  **该钩子在服务器端渲染期间不被调用。**
+  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
 
 - **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
 
