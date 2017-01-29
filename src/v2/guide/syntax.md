@@ -127,6 +127,7 @@ Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。�
 {{ message | capitalize }}
 ```
 
+Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化。过滤器可以用在两个地方：**mustache 插值和 `v-bind` 表达式**。过滤器应该被添加在 JavaScript 表达式的尾部，由“管道”符指示：
 
 ``` html
 <!-- in mustaches -->
