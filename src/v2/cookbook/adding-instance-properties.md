@@ -47,7 +47,7 @@ new Vue({
   data: {
     // Uh oh - appName est *aussi* le nom de la
     // propriété d'instance que nous venons de définir!
-    appName: 'Le nom d'une autre app'
+    appName: "Le nom d'une autre app"
   },
   beforeCreate: function () {
     console.log(this.appName)
@@ -160,7 +160,7 @@ var App = Object.freeze({
   name: 'Mon App',
   description: '2.1.4',
   helpers: {
-    // Ceci ets une verison purement fonctionnelle
+    // Ceci est une version purement fonctionnelle
     // de la méthode $reverseText décrite plus haut
     reverseText: function (text) {
       return text.split('').reverse().join('')
