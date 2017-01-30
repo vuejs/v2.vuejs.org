@@ -447,7 +447,7 @@ type: api
 
   <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une propriété calculée__ (exemple: `aDouble: () => this.a * 2`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et `this.a` vaudra `undefined`.</p>
 
-  Les propriétés calculées sont mises en cache, et réévaluées uniquement lorsque leurs dépendances réactives changent.
+  Les propriétés calculées sont mises en cache, et réévaluées uniquement lorsque leurs dépendances réactives changent. Notez que si une certaine dépendance est en dehors de la portée de l'instance (et donc non réactive), la propriété calculée ne sera __pas__ mise à jour.
 
 - **Exemple:**
 
