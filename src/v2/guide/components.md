@@ -1041,7 +1041,7 @@ components: {
 Within HTML templates though, you have to use the kebab-case equivalents:
 
 ``` html
-<!-- alway use kebab-case in HTML templates -->
+<!-- always use kebab-case in HTML templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <title-cased-component></title-cased-component>

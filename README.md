@@ -22,7 +22,10 @@ La traduction pour ce projet de documentation est actuellement maintenu dans des
 
 ### Japonais
 
+La traduction japonaise est maintenue par [Vue.js japan user group](https://github.com/vuejs-jp)
+
 * Dépôt de traduction - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
+* Mainteneur principal - [kazupon](https://github.com/kazupon)
 
 ### Russe
 
@@ -37,7 +40,7 @@ La traduction russe est maintenue par Translation Gang.
 
 ### Coréen
 
-La traduction coréenne est maintenue par Vue.js Korea.
+La traduction coréenne est maintenue par [Vue.js Korean User group](https://github.com/vuejs-kr).
 
 * Dépôt de traduction - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
 * Mainteneur principal - [ChangJoo Park](https://github.com/ChangJoo-Park)

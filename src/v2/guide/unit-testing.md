@@ -99,7 +99,7 @@ function getRenderedText (Component, propsData) {
 }
 
 describe('MyComponent', () => {
-  it('render correctly with different props', () => {
+  it('renders correctly with different props', () => {
     expect(getRenderedText(MyComponent, {
       msg: 'Hello'
     })).toBe('Hello')
