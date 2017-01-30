@@ -39,7 +39,6 @@ Une chose importante à souligner est que **la séparation des préoccupations n
 
 Si vous n'aimez pas l'idée des composants monofichiers, vous pouvez toujours tirer parti du rechargement à chaud et la précompilation pour mettre le CSS et le JavaScript dans des fichiers séparés.
 
-
 ``` html
 <!-- my-component.vue -->
 <template>
@@ -68,4 +67,3 @@ Dans Webpack, chaque module peut être transformé par un "loader" avant d'être
 ### Pour les utilisateurs avancés
 
 Que vous préfériez Webpack ou Browserify, nous avons des templates documentés à la fois pour les projets simples et les projets plus complexes. Nous vous recommandons d'explorer [github.com/vuejs-templates](https://github.com/vuejs-templates), de choisir un template qui vous convient et de suivre les instructions du README pour générer un nouveau projet avec [vue-cli](https://github.com/vuejs/vue-cli).
-

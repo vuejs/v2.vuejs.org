@@ -36,9 +36,10 @@ new Vue({
   watch: {
     number: function(newValue, oldValue) {
       var vm = this
+      var animationFrame
       function animate (time) {
-        requestAnimationFrame(animate)
         TWEEN.update(time)
+        animationFrame = requestAnimationFrame(animate)
       }
       new TWEEN.Tween({ tweeningNumber: oldValue })
         .easing(TWEEN.Easing.Quadratic.Out)
@@ -46,8 +47,11 @@ new Vue({
         .onUpdate(function () {
           vm.animatedNumber = this.tweeningNumber.toFixed(0)
         })
+        .onComplete(function () {
+          cancelAnimationFrame(animationFrame)
+        })
         .start()
-      animate()
+      animationFrame = requestAnimationFrame(animate)
     }
   }
 })
@@ -69,9 +73,10 @@ new Vue({
   watch: {
     number: function(newValue, oldValue) {
       var vm = this
+      var animationFrame
       function animate (time) {
-        requestAnimationFrame(animate)
         TWEEN.update(time)
+        animationFrame = requestAnimationFrame(animate)
       }
       new TWEEN.Tween({ tweeningNumber: oldValue })
         .easing(TWEEN.Easing.Quadratic.Out)
@@ -79,8 +84,11 @@ new Vue({
         .onUpdate(function () {
           vm.animatedNumber = this.tweeningNumber.toFixed(0)
         })
+        .onComplete(function () {
+          cancelAnimationFrame(animationFrame)
+        })
         .start()
-      animate()
+      animationFrame = requestAnimationFrame(animate)
     }
   }
 })
@@ -129,14 +137,18 @@ new Vue({
   },
   watch: {
     color: function () {
+      var animationFrame
       function animate (time) {
-        requestAnimationFrame(animate)
         TWEEN.update(time)
+        animationFrame = requestAnimationFrame(animate)
       }
       new TWEEN.Tween(this.tweenedColor)
         .to(this.color, 750)
+        .onComplete(function () {
+          cancelAnimationFrame(animationFrame)
+        })
         .start()
-      animate()
+      animationFrame = requestAnimationFrame(animate)
     }
   },
   computed: {
@@ -202,14 +214,18 @@ new Vue({
   },
   watch: {
     color: function () {
+      var animationFrame
       function animate (time) {
-        requestAnimationFrame(animate)
         TWEEN.update(time)
+        animationFrame = requestAnimationFrame(animate)
       }
       new TWEEN.Tween(this.tweenedColor)
         .to(this.color, 750)
+        .onComplete(function () {
+          cancelAnimationFrame(animationFrame)
+        })
         .start()
-      animate()
+      animationFrame = requestAnimationFrame(animate)
     }
   },
   computed: {
@@ -425,17 +441,21 @@ Vue.component('animated-integer', {
   methods: {
     tween: function (startValue, endValue) {
       var vm = this
+      var animationFrame
       function animate (time) {
-        requestAnimationFrame(animate)
         TWEEN.update(time)
+        animationFrame = requestAnimationFrame(animate)
       }
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
         .onUpdate(function () {
           vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
+        .onComplete(function () {
+          cancelAnimationFrame(animationFrame)
+        })
         .start()
-      animate()
+      animationFrame = requestAnimationFrame(animate)
     }
   }
 })
@@ -492,17 +512,21 @@ Vue.component('animated-integer', {
   methods: {
     tween: function (startValue, endValue) {
       var vm = this
+      var animationFrame
       function animate (time) {
-        requestAnimationFrame(animate)
         TWEEN.update(time)
+        animationFrame = requestAnimationFrame(animate)
       }
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
         .onUpdate(function () {
           vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
+        .onComplete(function () {
+          cancelAnimationFrame(animationFrame)
+        })
         .start()
-      animate()
+      animationFrame = requestAnimationFrame(animate)
     }
   }
 })

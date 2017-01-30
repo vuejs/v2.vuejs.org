@@ -22,11 +22,14 @@ La traduction pour ce projet de documentation est actuellement maintenu dans des
 
 ### Japonais
 
+La traduction japonaise est maintenue par [Vue.js japan user group](https://github.com/vuejs-jp)
+
 * Dépôt de traduction - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
+* Mainteneur principal - [kazupon](https://github.com/kazupon)
 
 ### Russe
 
-La traduction Russe est maintenu par Translation Gang.
+La traduction russe est maintenue par Translation Gang.
 
 * Dépôt de traduction — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Mainteneur principal - [Grigoriy Beziuk](https://gbezyuk.github.io)
@@ -37,9 +40,18 @@ La traduction Russe est maintenu par Translation Gang.
 
 ### Coréen
 
-À FAIRE : fournir des informations ici
+La traduction coréenne est maintenue par [Vue.js Korean User group](https://github.com/vuejs-kr).
 
-### Vous voulez participer à la traduction ?
+* Dépôt de traduction - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
+* Mainteneur principal - [ChangJoo Park](https://github.com/ChangJoo-Park)
+
+### Français
+
+La traduction française est maintenue par Vuejs-FR.
+
+* Dépôt de traduction — [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
+
+### Voulez-vous participer à la traduction ?
 
 Si vous vous sentez d'attaque pour une traduction seul, forkez simplement ce dépôt, créez un ticket « work-in-progress » pour informer les autres que vous êtes entrain de le traduire, et en avant.
 

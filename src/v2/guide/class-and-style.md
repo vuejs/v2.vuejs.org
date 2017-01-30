@@ -146,7 +146,7 @@ C'est aussi vrai pour la liaison de classe :
 Quand `isActive` est évalué à vrai, le rendu HTML sera :
 
 ``` html
-<p class="foo bar active"></p>
+<p class="foo bar active">Hi</p>
 ```
 
 ## Liaison de Styles HTML
