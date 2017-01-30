@@ -717,7 +717,7 @@ new Vue({
 })
 </script>
 
-<h3 id="v-for-with-v-if"><a href="#v-for-with-v-if" class="headerlink" title="v-for with v-if"></a><code>v-for</code> with <code>v-if</code></h3><p>When they exists on the same node, <code>v-for</code> has a higher priority than <code>v-if</code>. That means the <code>v-if</code> will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only <em>some</em> items, like below:</p>
+<h3 id="v-for-with-v-if"><a href="#v-for-with-v-if" class="headerlink" title="v-for with v-if"></a><code>v-for</code> with <code>v-if</code></h3><p>When they exist on the same node, <code>v-for</code> has a higher priority than <code>v-if</code>. That means the <code>v-if</code> will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only <em>some</em> items, like below:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span> <span class="attr">v-if</span>=<span class="string">"!todo.isComplete"</span>&gt;</span></div><div class="line">  &#123;&#123; todo &#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>The above only renders the todos that are not complete.</p>
 <p>If instead, your intent is to conditionally skip execution of the loop, you can place the <code>v-if</code> on a wrapper element (or <a href="conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt"><code>&lt;template&gt;</code></a>). For example:</p>
