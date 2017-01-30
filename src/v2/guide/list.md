@@ -331,7 +331,7 @@ new Vue({
 
 ### `v-for` with `v-if`
 
-When they exists on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only _some_ items, like below:
+When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only _some_ items, like below:
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
