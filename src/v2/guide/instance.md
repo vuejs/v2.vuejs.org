@@ -80,11 +80,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 ## 인스턴스 라이프사이클 훅
 
-<<<<<<< HEAD
-각 Vue 인스턴스는 데이터 관찰을 설정하고, 템플릿을 컴파일하고, 인스턴스를 DOM에 마운트하고, 데이터가 변경 될 때 DOM을 업데이트해야 할 때 일련의 초기화 단계를 거칩니다. 그 과정에서 사용자 정의 로직을 실행할 수있는 **라이프사이클 훅** 도 호출됩니다. 예를 들어,`created` 훅은 인스턴스가 생성된 후에 호출됩니다:
-=======
-Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the [`created`](../api/#created) hook is called after the instance is created:
->>>>>>> vuejs/master
+각 Vue 인스턴스는 데이터 관찰을 설정하고, 템플릿을 컴파일하고, 인스턴스를 DOM에 마운트하고, 데이터가 변경 될 때 DOM을 업데이트해야 할 때 일련의 초기화 단계를 거칩니다. 그 과정에서 사용자 정의 로직을 실행할 수있는 **라이프사이클 훅** 도 호출됩니다. 예를 들어, [`created`](../api/#created) 훅은 인스턴스가 생성된 후에 호출됩니다:
 
 ``` js
 var vm = new Vue({
