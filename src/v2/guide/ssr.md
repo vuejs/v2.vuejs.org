@@ -18,7 +18,7 @@ This means if you have content fetched asynchronously on pages where SEO is impo
 
 Users might come to your site from a remote area with slow Internet - or just with a bad cell connection. In these cases, you'll want to minimize the number and size of requests necessary for users to see basic content.
 
-You can use [Webpack's code splitting](https://webpack.github.io/docs/code-splitting.html) to avoid forcing users to download your entire application to view a single page, but it still won't be as performant as downloading a single, pre-rendered HTML file.
+You can use [Webpack's code splitting](https://webpack.js.org/guides/code-splitting-require/) to avoid forcing users to download your entire application to view a single page, but it still won't be as performant as downloading a single, pre-rendered HTML file.
 
 ### Clients with an Old (or Simply No) JavaScript Engine
 
