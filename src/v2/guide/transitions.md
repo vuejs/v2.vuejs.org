@@ -983,7 +983,7 @@ So what about for when we have a whole list of items we want to render simultane
 Now let's dive into a simple example, transitioning entering and leaving using the same CSS classes we've used previously:
 
 ``` html
-<div id="list-demo" class="demo">
+<div id="list-demo">
   <button v-on:click="add">Add</button>
   <button v-on:click="remove">Remove</button>
   <transition-group name="list" tag="p">
