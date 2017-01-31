@@ -10,7 +10,7 @@
   <span>Donate via PayPal (one time)</span>
 </a>
 
-<img style="width:120px" src="//jamatto.com/assets/images/root/jamatto_header.png">
+<img style="width:120px" src="https://jamatto.com/assets/images/root/jamatto_header.png">
 <i class="jamatto-donate" jamatto-bid="test-vue-js" jamatto-amounts="0.10 0.20 0.50" jamatto-ccy="USD" ></i>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.jamatto.com/api/js/jamatto.min.js"></script>
