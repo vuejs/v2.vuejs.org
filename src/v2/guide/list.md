@@ -292,7 +292,7 @@ new Vue({
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >
-  <ul>
+  >  <ul>
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
@@ -334,6 +334,7 @@ new Vue({
 ### `v-for`와 `v-if`
 
 같은 노드에 존재할 때, `v-for`는 `v-if`보다 더 높은 우선 순위를 가집니다. 즉,`v-if`는 루프의 각 반복마다 실행될 것입니다. 이는 다음과 같이 _일부_ 항목 만 노드를 렌더링하려는 경우 매우 유용합니다.
+
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">

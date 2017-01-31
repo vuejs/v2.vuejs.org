@@ -343,6 +343,44 @@ prop 변이의 대부분의 사용 사례는 다음 중 하나로 대체 할 수
 </div>
 {% endraw %}
 
+## 계산된 속성
+
+### `cache: false` <sup>사용안함</sup>
+
+계산된 속성의 캐싱 무효화는 향후 주요 버전의 Vue에서 제거 될 예정입니다. 캐시 되지 않은 계산된 속성을 동일한 결과를 갖는 메소드로 대체하십시오.
+
+예제:
+
+``` js
+template: '<p>message: {{ timeMessage }}</p>',
+computed: {
+  timeMessage: {
+    cache: false,
+    get: function () {
+      return Date.now() + this.message
+    }
+  }
+}
+```
+
+또는 컴포넌트 메소드를 사용합니다
+
+``` js
+template: '<p>message: {{ getTimeMessage }}</p>',
+methods: {
+  getTimeMessage: function () {
+    return Date.now() + this.message
+  }
+}
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+</div>
+{% endraw %}
+
 ## 내장 지시문
 
 ### `v-bind`의 참/거짓 <sup>변경</sup>
