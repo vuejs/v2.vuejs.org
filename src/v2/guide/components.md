@@ -999,7 +999,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](http://webpack.github.io/docs/code-splitting.html)과 함께 비동기 컴포넌트를 사용하는 것입니다.
+팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](https://webpack.js.org/guides/code-splitting-require/)과 함께 비동기 컴포넌트를 사용하는 것입니다.
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1015,7 +1015,7 @@ factory 함수에서 `Promise`를 반환할 수도 있습니다. 그래서 Webpa
 ``` js
 Vue.component(
   'async-webpack-example',
-  () => System.import('./my-async-component')
+  () => import('./my-async-component')
 )
 ```
 

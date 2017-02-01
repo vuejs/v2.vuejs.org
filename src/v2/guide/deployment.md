@@ -18,7 +18,7 @@ Webpack이나 Browserify와 같은 빌드 툴을 사용할 때, 프로덕션 모
 
 #### Webpack
 
-프로덕션 환경을 알리기 위해 Webpack의[DefinePlugin] (http://webpack.github.io/docs/list-of-plugins.html#defineplugin)을 사용하여 최소화 중에 UglifyJS에 의해 경고 블록이 자동으로 삭제 될 수 있도록합니다.
+프로덕션 환경을 알리기 위해 Webpack의[DefinePlugin](https://webpack.js.org/plugins/define-plugin/)을 사용하여 최소화 중에 UglifyJS에 의해 경고 블록이 자동으로 삭제 될 수 있도록합니다.
 
 설정 예제:
 
