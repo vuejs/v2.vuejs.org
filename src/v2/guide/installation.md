@@ -37,7 +37,7 @@ Recommandé: [unpkg](https://unpkg.com/vue/dist/vue.js), qui reflète la derniè
 
 ## NPM
 
-NPM est la méthode d'installation recommandée lors du développement d'applications à grande échelle avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [Webpack](http://webpack.github.io/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
+NPM est la méthode d'installation recommandée lors du développement de larges applications avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [Webpack](https://webpack.js.org/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
 
 ``` bash
 # latest stable
