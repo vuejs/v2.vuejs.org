@@ -255,7 +255,7 @@ if (route.meta.requiresAuth) {
 
 ### `v-link` <sup>변경</sup>
 
-`v-link` 지시문은 새로운[`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)로 대체되었습니다.이 일은 이제 Vue 2의 컴포넌트의 책임입니다.
+`v-link` 디렉티브는 새로운[`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)로 대체되었습니다.이 일은 이제 Vue 2의 컴포넌트의 책임입니다.
 
 ``` html
 <a v-link="'/about'">About</a>
@@ -272,13 +272,13 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link</code> 지시문의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link</code> 디렉티브의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
 ### `v-link-active` <sup>변경</sup>
 
-`v-link-active` 지시문은 [`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)의`tag` 속성으로 대체되었습니다. 예를 들어 다음과 같이 업데이트 할 것입니다.
+`v-link-active` 디렉티브는 [`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)의`tag` 속성으로 대체되었습니다. 예를 들어 다음과 같이 업데이트 할 것입니다.
 
 ``` html
 <li v-link-active>
@@ -299,7 +299,7 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link-active</code> 지시문의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link-active</code> 디렉티브의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 

@@ -381,7 +381,7 @@ methods: {
 </div>
 {% endraw %}
 
-## 내장 지시문
+## 내장 디렉티브
 
 ### `v-bind`의 참/거짓 <sup>변경</sup>
 
@@ -639,7 +639,7 @@ strings.map(function (str) {
 
 단순화를 위해,`v-el` 과 `v-ref`는 `ref` 속성으로 병합되었습니다. 이 속성은 `$refs` 를 통해 컴포넌트 인스턴스에서 접근 가능합니다. 이는 `v-el:my-element`가 `ref="myElement"`가되고 `v-ref:my-component`가 `ref="myComponent"`가된다는 것을 의미합니다. 일반 요소에서 사용될 때,`ref`는 DOM 요소가 될 것이고, 컴포넌트에서 사용될 때,`ref`는 컴포넌트 인스턴스가 될 것입니다.
 
-`v-ref`는 더 이상 지시문이 아니며 특별한 속성이기 때문에 동적으로 정의 될 수도 있습니다. 이것은 `v-for`와 함께 사용할 때 특히 유용합니다.
+`v-ref`는 더 이상 디렉티브가 아니며 특별한 속성이기 때문에 동적으로 정의 될 수도 있습니다. 이것은 `v-for`와 함께 사용할 때 특히 유용합니다.
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
@@ -685,27 +685,27 @@ You can use:
 </div>
 {% endraw %}
 
-## 사용자 지정 지시문 <sup>단순화</sup>
+## 사용자 지정 디렉티브 <sup>단순화</sup>
 
 지시어는 책임 범위를 크게 줄였습니다. 이제는 하위 수준의 직접 DOM 조작을 적용하는 경우만 사용됩니다. 대부분의 경우 컴포넌트를 주 코드 재사용 추상화로 사용하는 것이 좋습니다.
 
 가장 주목할만한 차이점은 다음과 같습니다.
 
-- 지시문에 더 이상 인스턴스가 없습니다. 이것은 지시문 훅 안에 `this`가 없다는 것을 의미합니다. 대신 필요한 모든 것을 전달인자로 받습니다. 실제로 훅을 가로채는 상태를 유지해야한다면 `el` 에서 그렇게 할 수 있습니다.
+- 디렉티브에 더 이상 인스턴스가 없습니다. 이것은 디렉티브 훅 안에 `this`가 없다는 것을 의미합니다. 대신 필요한 모든 것을 전달인자로 받습니다. 실제로 훅을 가로채는 상태를 유지해야한다면 `el` 에서 그렇게 할 수 있습니다.
 - `acceptStatement`, `deep`, `priority` 등의 옵션은 모두 제거되었습니다. `twoWay` 지시어를 대체하려면 [이 예제](#Two-Way-Filters-replaced)를 참조하십시오.
 - 현재의 훅 중 일부는 다른 동작을 하며 몇 가지 새로운 후크가 있습니다.
 
-다행스럽게도 새로운 지시문이 훨씬 간단하기 때문에 보다 쉽게 마스터 할 수 있습니다. 자세한 내용은 새로운 [사용자 지정 지시문 가이드](custom-directive.html)를 읽어보십시오.
+다행스럽게도 새로운 디렉티브가 훨씬 간단하기 때문에 보다 쉽게 마스터 할 수 있습니다. 자세한 내용은 새로운 [사용자 지정 디렉티브 가이드](custom-directive.html)를 읽어보십시오.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
   <p>
-  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 정의 된 지시문의 예를 찾으십시오. 도우미는 모든 엘리먼트에 플래그를 지정합니다. 대부분의 경우 엘리먼트로 리팩토링하려는 경우가 많기 때문입니다.</p>
+  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 정의 된 디렉티브의 예를 찾으십시오. 도우미는 모든 엘리먼트에 플래그를 지정합니다. 대부분의 경우 엘리먼트로 리팩토링하려는 경우가 많기 때문입니다.</p>
 </div>
 {% endraw %}
 
-### 지시문 `.literal` 수정자 <sup>제거됨</sup>
+### 디렉티브 `.literal` 수정자 <sup>제거됨</sup>
 
 `.literal` 수정자는 제거되었습니다. 문자열 리터럴을 값으로 제공하는 것만으로 쉽게 달성 할 수 있습니다.
 
@@ -871,9 +871,9 @@ methods: {
 
 ### 외부 텍스트 보간 필터 <sup>제거됨</sup>
 
-이제 필터는 텍스트 보간(`{% raw %}{{ }}{% endraw %}`)태그 내에서만 사용할 수 있습니다. 과거에 우리는`v-model`, `v-on` 등과 같은 지시문 내에서 필터를 사용하는 것이 편리함보다 더 복잡하다는 것을 발견했습니다. `v-for`에 대한 목록 필터링의 경우 논리를 JavaScript로 계산된 속성으로 이동하여 컴포넌트 전체에서 재사용할 수 있습니다.
+이제 필터는 텍스트 보간(`{% raw %}{{ }}{% endraw %}`)태그 내에서만 사용할 수 있습니다. 과거에 우리는`v-model`, `v-on` 등과 같은 디렉티브 내에서 필터를 사용하는 것이 편리함보다 더 복잡하다는 것을 발견했습니다. `v-for`에 대한 목록 필터링의 경우 논리를 JavaScript로 계산된 속성으로 이동하여 컴포넌트 전체에서 재사용할 수 있습니다.
 
-일반적으로 자바 스크립트에서 무언가를 얻을 수 있을 때마다 필터와 같은 특별한 구문을 사용하지 않아도 되므로 동일한 관심사를 처리할 수 있습니다. Vue의 기본 제공 지시문 필터를 대체하는 방법은 다음과 같습니다.
+일반적으로 자바 스크립트에서 무언가를 얻을 수 있을 때마다 필터와 같은 특별한 구문을 사용하지 않아도 되므로 동일한 관심사를 처리할 수 있습니다. Vue의 기본 제공 디렉티브 필터를 대체하는 방법은 다음과 같습니다.
 
 #### `debounce` 필터 변경
 
@@ -998,7 +998,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 지시문 내에서 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 디렉티브 내에서 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
 </div>
 {% endraw %}
 
@@ -1123,7 +1123,7 @@ Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
   <p>
-  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-model</code>과 같은 지시문에 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
+  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-model</code>과 같은 디렉티브에 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
 </div>
 {% endraw %}
 
@@ -1232,7 +1232,7 @@ computed: {
 
 ### HTML 보간 <sup>제거됨</sup>
 
-HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-html` 지시문](../api/#v-html)을 사용하세요.
+HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-html` 디렉티브](../api/#v-html)을 사용하세요.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1243,7 +1243,7 @@ HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-ht
 
 ### 일회용 바인딩 <sup>대체</sup>
 
-일회용 바인딩 (`{% raw %}{{* foo }}{% endraw %}`)은 [`v-once` 지시문](../api/#v-once)으로 변경되었습니다.
+일회용 바인딩 (`{% raw %}{{* foo }}{% endraw %}`)은 [`v-once` 디렉티브](../api/#v-once)으로 변경되었습니다.
 
 {% raw %}
 <div class="upgrade-path">
