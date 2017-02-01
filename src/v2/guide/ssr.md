@@ -18,7 +18,7 @@ order: 24
 
 用户可能在网络比较慢的情况下从远处访问网站 - 或者通过比较差的带宽。 这些情况下，尽量减少页面请求数量，来保证用户尽快看到基本的内容。
 
-可以用 [Webpack的代码拆分](https://webpack.github.io/docs/code-splitting.html) 避免强制用户下载整个单页面应用，但是，这样也远没有下载个单独的预先渲染过的HTML文件性能高。
+可以用 [Webpack的代码拆分](https://doc.webpack-china.org/guides/code-splitting-require/) 避免强制用户下载整个单页面应用，但是，这样也远没有下载个单独的预先渲染过的HTML文件性能高。
 
 ### 客户端运行在老的(或者直接没有)JavaScript引擎上
 

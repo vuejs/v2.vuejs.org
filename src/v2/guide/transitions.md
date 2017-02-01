@@ -1000,7 +1000,7 @@ new Vue({
 现在让我们由一个简单的例子深入，进入和离开的过渡使用之前一样的 CSS 类名。
 
 ``` html
-<div id="list-demo" class="demo">
+<div id="list-demo">
   <button v-on:click="add">Add</button>
   <button v-on:click="remove">Remove</button>
   <transition-group name="list" tag="p">
