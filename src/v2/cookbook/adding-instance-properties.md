@@ -6,13 +6,13 @@ order: 1.1
 
 ## Exemple simple
 
-Il peut y avoir des données/utilitaires que vous aimeriez utiliser dans de nombreux composants, mais vous ne voulez pas [polluer le scope global](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). Dans ces cas-là, vous pouvez les rendre accessibles dans chaque instance Vue en les définissant dans le prototype:
+Il peut y avoir des données/utilitaires que vous aimeriez utiliser dans de nombreux composants, mais vous ne voulez pas [polluer le scope global](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). Dans ces cas-là, vous pouvez les rendre accessibles dans chaque instance Vue en les définissant dans le prototype :
 
 ``` js
 Vue.prototype.$appName = 'Mon App'
 ```
 
-Maintenant, `$appName` sera accessible dans toutes les instances Vue, même avant leur création. Si nous exécutons:
+Maintenant, `$appName` sera accessible dans toutes les instances Vue, même avant leur création. Si nous exécutons :
 
 ``` js
 new Vue({
@@ -22,19 +22,19 @@ new Vue({
 })
 ```
 
-Alors `"Mon App"` sera affiché en console. C'est aussi simple!
+Alors `"Mon App"` sera affiché en console. C'est aussi simple !
 
 ## L'importance de la portée des propriétés d'instances
 
-Il se peut que vous vous demandiez:
+Il se peut que vous vous demandiez :
 
-> "Pourquoi `appName` commence par un `$`? Est-ce important? Qu'est-ce que ça fait?
+> "Pourquoi `appName` commence par un `$` ? Est-ce important ? Qu'est-ce que ça fait ?
 
 Aucune magie n'a lieu ici. `$` est simplement une convention que Vue utilise pour les propriétés qui sont accessibles dans toutes les instances. Cela évite les conflits avec toutes les autres données définies, propriétés calculées ou méthodes.
 
-> "Conflits? Qu'est-ce que ça signifie?"
+> "Conflits ? Qu'est-ce que ça signifie ?"
 
-Une autre bonne question! Si vous faites juste:
+Une autre bonne question ! Si vous faites juste :
 
 ``` js
 Vue.prototype.appName = 'My App'
@@ -46,7 +46,7 @@ Alors qu'est-ce qui sera affiché ci-dessous d'après vous ?
 new Vue({
   data: {
     // Uh oh - appName est *aussi* le nom de la
-    // propriété d'instance que nous venons de définir!
+    // propriété d'instance que nous venons de définir !
     appName: "Le nom d'une autre app"
   },
   beforeCreate: function () {
@@ -60,11 +60,11 @@ new Vue({
 
 Cela sera `"Le nom d'une autre app"`, puis `"Mon App"`, car `this.appName` est écrasé ([en quelques sortes](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) par `data` quand l'instance est créée. Nous limitons la portée des propriétés avec `$` pour éviter ça. Vous pouvez même utiliser votre propre convention si vous préférez, comme `$_appName` ou `ΩappName`, pour en plus prévenir les conflits avec les plugins et les fonctionnalités futures.
 
-## Un exemple en situation réelle: Remplacer Vue Resource avec Axios
+## Un exemple en situation réelle : Remplacer Vue Resource avec Axios
 
 Disons vous remplacez le [maintenant déprécié Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4). Vous aimiez vraiment accéder aux méthodes de requête avec `this.$http` et vous voulez faire la même chose avec Axios à la place.
 
-Tout ce que vous avez à faire est inclure axios dans votre projet:
+Tout ce que vous avez à faire est inclure axios dans votre projet :
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
@@ -76,13 +76,13 @@ Tout ce que vous avez à faire est inclure axios dans votre projet:
 </div>
 ```
 
-Puis assigner `axios` à `Vue.prototype.$http`:
+Puis assigner `axios` à `Vue.prototype.$http` :
 
 ``` js
 Vue.prototype.$http = axios
 ```
 
-Alors vous serez capables d'utiliser des méthodes comme `this.$http.get` dans n'importe quelle instance Vue:
+Alors vous serez capables d'utiliser des méthodes comme `this.$http.get` dans n'importe quelle instance Vue :
 
 ``` js
 new Vue({
@@ -104,7 +104,7 @@ new Vue({
 
 Au cas où vous ne seriez pas au courant, les méthodes ajoutées au prototype en JavaScript obtiennent le contexte de l'instance. Cela signifie qu'elles peuvent utiliser `this` pour accéder aux data, propriétés calculées, méthodes ou toute autre chose définie dans l'instance.
 
-Profitons de ceci dans une méthode `$reverseText`:
+Profitons de ceci dans une méthode `$reverseText` :
 
 ``` js
 Vue.prototype.$reverseText = function (propertyName) {
@@ -123,7 +123,7 @@ new Vue({
 })
 ```
 
-Notez que la liaison du contexte ne fonctionnera __pas__ si vous utiliez une fonction fléchée ES6/2015, puisqu'elles gardent implicitement le contexte parent. Cela signifie que la version avec une fonction fléchée:
+Notez que la liaison du contexte ne fonctionnera __pas__ si vous utiliez une fonction fléchée ES6/2015, puisqu'elles gardent implicitement le contexte parent. Cela signifie que la version avec une fonction fléchée :
 
 ``` js
 Vue.prototype.$reverseText = propertyName => {
@@ -131,7 +131,7 @@ Vue.prototype.$reverseText = propertyName => {
 }
 ```
 
-rejettera une exception:
+rejettera une exception :
 
 ``` log
 Uncaught TypeError: Cannot read property 'split' of undefined
@@ -141,19 +141,19 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 Tant que vous êtes vigilants à la portée des propriétés du prototype, utiliser ce pattern est plutôt sûr - c'est-à-dire, peu probable de produire des bugs.
 
-Cependant, il peut parfois causer de la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exmeple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue!". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque-chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
+Cependant, il peut parfois causer de la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exmeple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue !". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque-chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
 
-__La commodité vient au prix de l'explicité.__ En regardant simplement un composant, il est impossible de dire d'où `$http` vient. Vue lui-même? Un plugin? Un collègue?
+__La commodité vient au prix de l'explicité.__ En regardant simplement un composant, il est impossible de dire d'où `$http` vient. Vue lui-même ? Un plugin ? Un collègue ?
 
-Alors quelles sont les alternatives?
+Alors quelles sont les alternatives ?
 
 ## Patterns Alternatifs
 
 ### Quand ne pas utiliser un système de modules
 
-Dans les applications __sans__ systèmes de modules (ex. via Webpack ou Browserify), il y a un pattern souvent utilisé dans _n'importe quel_ front-end amélioré en JavaScript: un objet global `App`.
+Dans les applications __sans__ systèmes de modules (ex. via Webpack ou Browserify), il y a un pattern souvent utilisé dans _n'importe quel_ front-end amélioré en JavaScript : un objet global `App`.
 
-Si ce que vous voulez ajouter n'a rien à voir avec Vue spécifiquement, cela peut être une bonne alternative à étudier. Voici un exemple:
+Si ce que vous voulez ajouter n'a rien à voir avec Vue spécifiquement, cela peut être une bonne alternative à étudier. Voici un exemple :
 
 ``` js
 var App = Object.freeze({
@@ -171,9 +171,9 @@ var App = Object.freeze({
 
 <p class="tip">Si vous avez levé un sourcil à `Object.freeze`, cela sert à empêcher l'objet d'être modifié dans le futur. Il s'agit essentiellement de rendre toutes ses propriétés constantes, les protégeant de futurs bugs d'état.</p>
 
-Maintenant la source de ces propriétés partagées est bien plus évidente: il y a un objet `App` défini quelque-part dans l'application. Pour le trouver, les développeurs ont seulement besoin de rechercher la référence dans le projet.
+Maintenant la source de ces propriétés partagées est bien plus évidente : il y a un objet `App` défini quelque-part dans l'application. Pour le trouver, les développeurs ont seulement besoin de rechercher la référence dans le projet.
 
-Un autre avantage est que `App` peut maintenant être utilisé _n'importe où_ dans le code, qu'il soit lié à Vue ou non. Cela inclue les valeurs attachées directement aux options des instances, plutôt qu'avoir à entrer dans une fonction pour accéder aux propriétés avec `this`:
+Un autre avantage est que `App` peut maintenant être utilisé _n'importe où_ dans le code, qu'il soit lié à Vue ou non. Cela inclue les valeurs attachées directement aux options des instances, plutôt qu'avoir à entrer dans une fonction pour accéder aux propriétés avec `this` :
 
 ``` js
 new Vue({
