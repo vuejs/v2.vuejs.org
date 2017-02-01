@@ -8,7 +8,7 @@ order: 2
 
 Vue (prononcé /vjuː/, comme le terme anglais **view**) est un **framework évolutif** pour construire des interfaces utilisateurs. À la différence des autres frameworks monolithiques, Vue est conçu pour partir des bases et être progressivement pris en main. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, et il est vraiment simple de l'intégrer avec d'autres bibliothèques ou projets existants. D'un autre côté, Vue est tout à fait capable de propulser des applications web mono-page quand il est couplé avec [des outils modernes](single-file-components.html) et [des bibliothèques officiellement supportées](https://github.com/vuejs/awesome-vue#libraries--plugins).
 
-Si vous êtes un développeur frontend confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques/frameworks, jettez un œil à la [Comparaison avec les autres frameworks](comparison.html).
+Si vous êtes un développeur frontend confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques/frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
 
 ## Pour commencer
 
