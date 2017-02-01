@@ -24,7 +24,7 @@ La page d'[installation](installation.html) vous offre d'autres manière d'insta
 
 ## Rendu déclaratif
 
-Au cœur de Vue.js il y a un système qui va nous permettre de rendre les données déclarativement dans le DOM en utilisant simplement cette syntaxe :
+Au cœur de Vue.js il y a un système qui va nous permettre de faire le rendu des données déclarativement dans le DOM en utilisant simplement cette syntaxe :
 
 ``` html
 <div id="app">
