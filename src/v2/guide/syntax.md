@@ -4,28 +4,31 @@ type: guide
 order: 4
 ---
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance's data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue.js utilise une syntaxe basée sur le HTML vous permettant de lier déclarativement le DOM rendu aux données de l'instance de Vue sous-jacente. Tous les templates de Vue.js sont du HTML valide qui peut être parsé par les navigateurs conformes aux spécifications et les parseurs HTML.
 
-Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer judicieusement le nombre minimum de composants dont il doit re-déclencher le rendu et d'appliquer un nombre minimal de manipulation du DOM lorsque l'état de l'application change. 
 
 If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](render-function.html) instead of templates, with optional JSX support.
+Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance à l'état brut de Javascript, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support de JSX optionnel.
 
 ## Interpolations
 
-### Text
+### Texte
 
 The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
+La forme la plus basique de liaison de donnée est l'interpolation de texte en utilisant la syntaxe "Moustache" (les accolades doubles)
 
 ``` html
 <span>Message: {{ msg }}</span>
 ```
 
-The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
+Le tag moustache sera remplacé par la valeur de la propriété `msg` sur l'objet data correspondant. Il sera également mis à jour à chaque fois que la propriété `msg` de l'objet data changera.
 
 You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any binding on the same node:
+Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors du changement des données en utilisant la directive [v-once directive](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons données présente sur le même noeud:
 
 ``` html
-<span v-once>This will never change: {{ msg }}</span>
+<span v-once>Ceci ne changera jamais: {{ msg }}</span>
 ```
 
 ### Raw HTML
