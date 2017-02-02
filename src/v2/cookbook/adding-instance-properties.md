@@ -137,7 +137,7 @@ rejettera une exception :
 Uncaught TypeError: Cannot read property 'split' of undefined
 ```
 
-## Quand faut-il éviter ce pattern ?
+## Quand éviter ce pattern
 
 Tant que vous êtes vigilants à la portée des propriétés du prototype, utiliser ce pattern est plutôt sûr - c'est-à-dire, peu probable de produire des bugs.
 
