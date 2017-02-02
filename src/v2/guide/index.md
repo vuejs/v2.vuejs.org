@@ -147,7 +147,7 @@ var app4 = new Vue({
     todos: [
       { text: 'Apprendre JavaScript' },
       { text: 'Apprendre Vue' },
-      { text: 'Créer un truc top' }
+      { text: 'Créer quelque chose de génial' }
     ]
   }
 })
@@ -167,7 +167,7 @@ var app4 = new Vue({
     todos: [
       { text: 'Apprendre JavaScript' },
       { text: 'Apprendre Vue' },
-      { text: 'Créer un truc top' }
+      { text: 'Créer quelque chose de génial' }
     ]
   }
 })
