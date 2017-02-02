@@ -24,7 +24,7 @@ Voici un exemple simple de fichier que nous appellerons `Hello.vue` :
 Maintenant nous avons :
 
 - [Une coloration syntaxique complète](https://github.com/vuejs/awesome-vue#syntax-highlighting)
-- [Des modules CommonJS](https://webpack.github.io/docs/commonjs.html)
+- [Des modules CommonJS](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [Du CSS à la portée limitée au composant](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
 Et comme promis, nous pouvons aussi utiliser des préprocesseurs tels que Pug, Babel (avec les modules ES2015), et Stylus pour obtenir des composants plus lisibles et plus riches en fonctionnalités.
@@ -60,7 +60,7 @@ Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des appli
 
 Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple). Suivez les instructions et vous devriez avoir en un clin d'oeil un projet Vue avec des composants `.vue` , ES2015 et le rechargement à chaud !
 
-Ce template de projet utilise [Webpack](https://webpack.github.io/), un empaqueteur de modules qui prend des "modules" et les empaquette dans votre application finale. Pour en apprendre plus sur Webpack, [cette vidéo](https://www.youtube.com/watch?v=WQue1AN93YU) est une bonne introduction. Une fois que vous aurez les bases, vous pourrez aussi parcourir [ce cours sur Egghead.io](https://egghead.io/courses/using-webpack-for-production-JavaScript-applications).
+Ce template de projet utilise [Webpack](https://webpack.js.org/), un empaqueteur de modules qui prend des « modules » et les empaquette dans votre application finale. Pour en apprendre plus sur Webpack, [cette vidéo](https://www.youtube.com/watch?v=WQue1AN93YU) est une bonne introduction. Une fois que vous aurez les bases, vous pourrez aussi parcourir [ce cours Webpack avancé sur Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
 
 Dans Webpack, chaque module peut être transformé par un "loader" avant d'être inclus dans le paquet, et Vue offre le plugin [vue-loader](https://github.com/vuejs/vue-loader) pour traduire les composants monofichiers `.vue`. Le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple) a déjà tout configuré pour vous, mais si vous souhaitez en apprendre plus sur le fonctionnement des composants `.vue` avec Webpack, vous pouvez lire [la documentation de vue-loader](https://vue-loader.vuejs.org).
 
