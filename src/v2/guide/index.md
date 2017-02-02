@@ -174,7 +174,7 @@ var app4 = new Vue({
 </script>
 {% endraw %}
 
-Dans la console, entrez `app4.todos.push({ text: 'Nouvel élément' })`. Vous devriez le voir ajouter à la liste.
+Dans la console, entrez `app4.todos.push({ text: 'Nouvel élément' })`. Vous devriez le voir ajouté à la liste.
 
 ## Gestion des entrées utilisateur
 
@@ -254,7 +254,7 @@ var app6 = new Vue({
 
 ## Composer avec des composants
 
-Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de larges applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interface applicative peuvent être abstraits en un arbre de composants.
+Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de larges applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interface applicative peuvent être abstraites en un arbre de composants.
 
 ![Arbre de composants](/images/components.png)
 
@@ -281,7 +281,7 @@ Mais cela donnerait comme rendu le même texte, ce qui n'est pas vraiment intér
 ``` js
 Vue.component('todo-item', {
   // Le composant todo-item accepte maintenant une
-  // « prop », ceci est comme un attribut personnalisé.
+  // « prop » qui est comme un attribut personnalisé.
   // Cette prop est appelée todo.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
@@ -293,8 +293,8 @@ Maintenant nous pouvons passer la liste dans chaque composant répété en utili
 ``` html
 <div id="app-7">
   <ol>
-    <!-- Maintenant nous fournissons chaque todo-item avec l'objet todo -->
-    <!-- Le contenu est à présent dynamique -->
+    <!-- Maintenant nous fournissons à chaque todo-item l'objet todo qu'il -->
+    <!-- représente de manière à ce que son contenu puisse être dynamique. -->
     <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
   </ol>
 </div>
