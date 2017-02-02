@@ -271,7 +271,7 @@ Maintenant nous pouvons l'insérer dans le template d'un autre composant :
 
 ``` html
 <ol>
-  <!-- Créé une instance du composant todo-list -->
+  <!-- Crée une instance du composant todo-list -->
   <todo-item></todo-item>
 </ol>
 ```
