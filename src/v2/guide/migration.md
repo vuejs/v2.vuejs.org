@@ -658,7 +658,7 @@ strings.map(function (str) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>v-el</code> and <code>v-ref</code>.</p>
+  <p><code>v-el</code>과 <code>v-ref</code>를 찾기 위해 코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하기.</p>
 </div>
 {% endraw %}
 
