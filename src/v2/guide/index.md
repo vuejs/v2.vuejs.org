@@ -53,7 +53,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-Nous venons tout juste de créer notre première application Vue ! Ça ressemble au rendu d'une chaîne de caractères dans un template, mais sous le capot, Vue effectue un réel travail. Les données et le DOM sont maintenant couplés, et tout est à présent **réactif**. Comment s'en rendre compte ? Ouvrez juste la console JavaScript de votre navigateur (là maintenant, sur cette page) et attribuez à `app.message` différentes valeurs. Vous devriez voir le rendu de l'exemple en cours se mettre à jour en concordance.
+Nous venons tout juste de créer notre première application Vue ! Ça ressemble à un simple rendu de template en chaîne de caractères, mais sous le capot, Vue effectue un réel travail. Les données et le DOM sont maintenant couplés, et tout est à présent **réactif**. Comment s'en rendre compte ? Ouvrez juste la console JavaScript de votre navigateur (là maintenant, sur cette page) et attribuez à `app.message` différentes valeurs. Vous devriez voir le rendu de l'exemple en cours se mettre à jour en concordance.
 
 En plus de l'interpolation de texte, nous pouvons également lier les attributs d'un élément comme ceci :
 
