@@ -258,7 +258,7 @@ Le système de composant est un autre concept important de Vue, car c'est une ab
 
 ![Arbre de composants](/images/components.png)
 
-Dans Vue, un composant est essentiellement une instance de Vue avec des options prédéfinies. Déclarer un composant avec Vue est très rapide :
+Dans Vue, un composant est essentiellement une instance de Vue avec des options prédéfinies. Déclarer un composant avec Vue est très simple :
 
 ``` js
 // Définit un nouveau composant appelé todo-item
