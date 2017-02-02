@@ -187,7 +187,7 @@ L'attribut optionnel `scoped` encapsule automatiquement ce CSS dans votre compos
 
 Si vous êtes déjà familier avec les Modules CSS, les fichiers de composants Vue ont également un [support de première classe pour ceux-ci](http://vue-loader.vuejs.org/en/features/css-modules.html).
 
-Enfin, exactement comme en HTML, vous avez également la possibilité d'écrire votre CSS en utilisant les préprocesseurs ou post-processeurs de votre choix, vous permettant de tirer parti des bibliothèques existantes dans ces écosystèmes. Vous pouvez aussi effectuer des opérations centrées sur le design comme la manipulation de couleur durant votre chaîne de "build", au lieu d'importer des bibliothèques JavaScript spécialisées qui vont augmenter le poids de votre "build" et complexifier votre application.
+Enfin, exactement comme en HTML, vous avez également la possibilité d'écrire votre CSS en utilisant les préprocesseurs ou post-processeurs de votre choix, vous permettant de tirer parti des bibliothèques existantes dans ces écosystèmes. Vous pouvez aussi effectuer des opérations centrées sur le design comme la manipulation de couleur durant votre chaîne de *build*, au lieu d'importer des bibliothèques JavaScript spécialisées qui vont augmenter le poids de votre *build* et complexifier votre application.
 
 ### Adaptabilité
 
@@ -277,7 +277,7 @@ Concernant la taille, Angular 2 avec sa compilation en ligne de commande et la m
 
 ### Flexibilité
 
-Vue impose beaucoup moins de choix comparé à Angular 2, offrant un support officiel pour divers systèmes de build, avec aucune restriction sur la manière dont vous devez structurer votre application. Beaucoup de développeurs apprécient cette liberté, quand d'autres préfèrent avoir une unique bonne façon de concevoir une application.
+Vue impose beaucoup moins de choix comparé à Angular 2, offrant un support officiel pour divers systèmes de build, avec aucune restriction sur la manière dont vous devez structurer votre application. Beaucoup de développeurs apprécient cette liberté, quand d'autres préfèrent avoir l'unique « bonne façon » de concevoir une application.
 
 ### Courbe d'apprentissage
 
@@ -315,7 +315,7 @@ Les éléments personnalisés de Polymer sont créés dans des fichiers HTML, ce
 
 Quand vous déployez en production, Polymer recommande de tout charger à la volée avec des imports HTML, en s'appuyant sur l'implémentation dans les navigateurs de la specicification, et du support de HTTP/2 côté client et côté serveur. Cela peut ou non être faisable en fonction de l'audience ciblée ou de l'environnement serveur. Au cas où vous ne souhaiteriez pas cela, vous pouvez utiliser un outil appelé Vulcanizer pour empaqueter vos éléments Polymer. De ce côté, Vue peut combiner ses fonctionnalités de composant asynchrone avec la fonctionnalité de scission de code de Webpack pour facilement découper des parties du *bundle* applicatif afin qu'elles soient chargées à la volée. Cela assure l'entière compatibilité avec les vieux navigateurs en conservant une excellente performance au chargement.
 
-Il est aussi totalement possible d'offrir une intégration profonde entre Vue et les specs des Web Components, Custom Elements, Shadow DOM — Cependant, nous attendons toujours que les specifications mûrissent et soient largement implémentées dans tous les navigateurs majeurs avant de sérieusement nous pencher sur la question.
+Il est aussi totalement possible d'offrir une intégration profonde entre Vue et les specs des Web Components, Custom Elements, Shadow DOM — Cependant, nous attendons toujours que les spécifications mûrissent et soient largement implémentées dans tous les navigateurs majeurs avant de sérieusement nous pencher sur la question.
 
 ## Riot
 
