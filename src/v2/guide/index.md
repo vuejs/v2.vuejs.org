@@ -6,13 +6,13 @@ order: 2
 
 ## Vue.js, qu'est-ce que c'est ?
 
-Vue (prononcé /vjuː/, comme le terme anglais **view**) est un **framework évolutif** pour construire des interfaces utilisateur. À la différence des autres frameworks monolithiques, Vue est conçu pour partir des bases et être progressivement pris en main. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, et il est vraiment simple de l'intégrer avec d'autres bibliothèques ou projets existants. D'un autre côté, Vue est tout à fait capable de faire tourner des applications web monopages quand il est couplé avec [des outils modernes](single-file-components.html) et [des bibliothèques complémentaires](https://github.com/vuejs/awesome-vue#libraries--plugins).
+Vue (prononcé /vjuː/, comme le terme anglais _**view**_) est un **framework évolutif** pour construire des interfaces utilisateur. À la différence des autres frameworks monolithiques, Vue a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, et il est vraiment simple de l'intégrer avec d'autres bibliothèques ou projets existants. D'un autre côté, Vue est tout à fait capable de faire tourner des applications web monopages quand il est couplé avec [des outils modernes](single-file-components.html) et [des bibliothèques complémentaires](https://github.com/vuejs/awesome-vue#libraries--plugins).
 
 Si vous êtes un développeur frontend confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques/frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
 
 ## Pour commencer
 
-<p class="tip">Ce guide officiel présuppose que vous ayez un niveau intermédiaire de connaissance en HTML, CSS et JavaScript. Si vous êtes complètement nouveau dans le développement frontend, ce n'est peut-être pas la solution la plus judicieuse de vous lancer dans un framework pour vos premiers pas — aussi complétez vos bases avant de revenir ! Bien qu'une première expérience avec d'autres frameworks puisse être utile, cela n'est pas obligatoire.</p>
+<p class="tip">Ce guide officiel présuppose que vous ayez un niveau intermédiaire de connaissance en HTML, CSS et JavaScript. Si vous êtes complètement nouveau dans le développement *frontend*, ce n'est peut-être pas la solution la plus judicieuse de vous lancer dans un framework pour vos premiers pas — aussi complétez vos bases avant de revenir ! Bien qu'une première expérience avec d'autres frameworks puisse être utile, cela n'est pas obligatoire.</p>
 
 La manière la plus simple d'essayer Vue.js est d'utiliser [l'exemple Hello World sur JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Si vous le souhaitez, ouvrez-le dans un nouvel onglet afin de suivre pendant que nous parcourons des exemples de base. Vous pouvez aussi simplement créer un fichier `.html` et ajouter Vue avec :
 
@@ -20,7 +20,7 @@ La manière la plus simple d'essayer Vue.js est d'utiliser [l'exemple Hello Worl
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 ```
 
-La page d'[installation](installation.html) vous offre d'autres manières d'installer Vue. Notez que nous **ne** recommandons **pas** aux débutants de commencer avec `vue-cli`, surtout si vous n'êtes pas encore familier avec les outils de build basés sur Node.js.
+La page d'[installation](installation.html) vous offre d'autres manières d'installer Vue. Notez que nous **ne** recommandons **pas** aux débutants de commencer avec `vue-cli`, surtout si vous n'êtes pas encore familier avec les outils de *build* basés sur Node.js.
 
 ## Rendu déclaratif
 
@@ -254,7 +254,7 @@ var app6 = new Vue({
 
 ## Composer avec des composants
 
-Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de larges applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interface applicative peuvent être abstraites en un arbre de composants.
+Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de plus grosses applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interface applicative peuvent être abstraites en un arbre de composants.
 
 ![Arbre de composants](/images/components.png)
 
@@ -342,7 +342,7 @@ var app7 = new Vue({
 
 Ceci n'est qu'un exemple grossier, nous avons réussi à séparer notre application en deux plus petites unités, et chaque enfant est raisonnablement bien découplé de son parent via l'utilisation des props. Nous pouvons maintenant améliorer notre `<todo-item>` avec un template et une logique plus complexes sans affecter l'application parente.
 
-Dans une large application, il est nécessaire de diviser l'application entière en composants afin de rendre le développement plus abordable. Nous parlerons des composants plus précisément [plus tard dans le guide](components.html), mais en attendant voici un exemple (imaginaire) de ce a quoi un template d'application pourrait ressemblé avec des composants :
+Pour une grosse application, il est nécessaire de la diviser entièrement en composants afin de rendre le développement plus abordable. Nous parlerons des composants plus précisément [plus tard dans le guide](components.html), mais en attendant voici un exemple (imaginaire) de ce a quoi un template d'application pourrait ressembler avec des composants :
 
 ``` html
 <div id="app">
@@ -356,11 +356,11 @@ Dans une large application, il est nécessaire de diviser l'application entière
 
 ### Parallèle avec les Custom Elements
 
-Vous avez peut-être remarqué que les composants de Vue sont très similaires aux **Custom Elements**, qui sont une partie de la [spécification des Web Components](http://www.w3.org/wiki/WebComponents/). C'est parce que la syntaxe de Vue est vaguement inspirée de cette spécification. Par exemple, les composants de Vue implémentent l'[API Slot](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) et l'attribut spécial `is`. Cependant, il y a quelques différences clés :
+Vous avez peut-être remarqué que les composants de Vue sont très similaires aux **Custom Elements**, qui sont une partie de la [spécification des Web Components](http://www.w3.org/wiki/WebComponents/). C'est parce que la syntaxe de Vue est vaguement inspirée de cette spécification. Par exemple, les composants de Vue implémentent l'[API Slot](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) et l'attribut spécial `is`. Cependant, il y a quelques différences essentielles :
 
-1. La spécification des Web Components est toujours à l'état de brouillon, et n'est pas implémentée nativement dans tous les navigateurs. En comparaison, les composants de Vue n'ont besoin d'aucun polyfill et fonctionnent de la même manière dans tous les navigateurs supportés (IE9 et supérieurs). Quand cela est nécessaire, les composants de Vue peuvent également être implémentés à l'intérieur d'un élément personnalisé natif.
+1. La spécification des Web Components est toujours à l'état de brouillon, et n'est pas implémentée nativement dans tous les navigateurs. En comparaison, les composants de Vue n'ont besoin d'aucun *polyfill* et fonctionnent de la même manière dans tous les navigateurs supportés (IE9 et supérieurs). Quand cela est nécessaire, les composants de Vue peuvent également être implémentés à l'intérieur d'un élément personnalisé natif.
 
-2. Les composants de Vue fournissent des fonctionnalités importantes qui ne sont pas disponibles dans les éléments personnalisés  standards, notamment le flux de données entre composants, la communication par événements personnalisés et l'intégration avec les outils de build.
+2. Les composants de Vue fournissent des fonctionnalités importantes qui ne sont pas disponibles dans les éléments personnalisés  standards, notamment le flux de données entre composants, la communication par événements personnalisés et l'intégration avec les outils de *build*.
 
 ## Prêt pour la suite ?
 
