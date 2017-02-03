@@ -56,39 +56,40 @@ Cela fonctionne également pour les attributs booléens - l'attribut sera suppri
 
 ### Using JavaScript Expressions
 
-So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
+Jusqu'ici, nous avons seulement lié de simples propriétés dans nos templates. Mais Vue.js supporte en réalité toute la puissance des expression Javascript à l'intérieur de toutes les liaisons de données.
 
 ``` html
 {{ number + 1 }}
 
-{{ ok ? 'YES' : 'NO' }}
+{{ ok ? 'OUI' : 'NON' }}
 
 {{ message.split('').reverse().join('') }}
 
 <div v-bind:id="'list-' + id"></div>
 ```
 
-These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
+Ces expressions seront évaluées en tant que Javascript dans la portée des données de la Vue instance propriétaire. Une restriction est que chacune de ces liaisons ne peut contenir **qu'une seule expression**, donc ce qui suit ne fonctionnera **PAS**
 
 ``` html
-<!-- this is a statement, not an expression: -->
+<!-- ceci est une déclaration, pas une expression: -->
 {{ var a = 1 }}
 
 <!-- flow control won't work either, use ternary expressions -->
+<!-- le contrôle de flux ne marchera pas non plus, utilisez des expressions ternaires -->
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
+<p class="tip">Les expressions de template sont sandboxées et ont seulement accès à une liste blanche de globales telles que `Math` et `Date`. Vous ne devriez pas tenter d'accéder à des variables globales définies par l'utilisateur dans les expressions de template</p>
 
 ## Directives
 
-Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception for `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
+Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs directives sont **une unique expression Javascript** (A l'exception de `v-for`, qui sera discuté plus loin). Le travail d'une directive est d'appliquer réactivement des effets au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
 
 ``` html
-<p v-if="seen">Now you see me</p>
+<p v-if="seen">Maintenant vous me voyez</p>
 ```
 
-Here, the `v-if` directive would remove/insert the `<p>` element based on the truthiness of the value of the expression `seen`.
+Ici, la directive `v-if` enleverait / insererait l'élement `<p>` basé sur l'évaluation à vrai de la valeur de l'expression `seen`.
 
 ### Arguments
 
