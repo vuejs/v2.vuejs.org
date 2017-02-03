@@ -8,14 +8,12 @@ order: 4
 
 Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer judicieusement le nombre minimum de composants dont il doit re-déclencher le rendu et d'appliquer un nombre minimal de manipulation du DOM lorsque l'état de l'application change. 
 
-If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](render-function.html) instead of templates, with optional JSX support.
 Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance à l'état brut de Javascript, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support de JSX optionnel.
 
 ## Interpolations
 
 ### Texte
 
-The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
 La forme la plus basique de liaison de donnée est l'interpolation de texte en utilisant la syntaxe "Moustache" (les accolades doubles)
 
 ``` html
@@ -24,7 +22,6 @@ La forme la plus basique de liaison de donnée est l'interpolation de texte en u
 
 Le tag moustache sera remplacé par la valeur de la propriété `msg` sur l'objet data correspondant. Il sera également mis à jour à chaque fois que la propriété `msg` de l'objet data changera.
 
-You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any binding on the same node:
 Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors du changement des données en utilisant la directive [v-once directive](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons données présente sur le même noeud:
 
 ``` html
@@ -39,19 +36,19 @@ The double mustaches interprets the data as plain text, not HTML. In order to ou
 <div v-html="rawHtml"></div>
 ```
 
-The contents are inserted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+Le contenu sont insérés en tant que HTML - les liaisons de données sont ignorées. Notez que vous ne pouvez pas utiliser `v-html` pour composer des templates partiels, parce que Vue n'est pas un moteur de template basé sur les chaînes de caractères. A la place, les composants sont à préférer en tant qu'unité fondamentale pour la réutilisabilité de l'IU et la composition.
 
-<p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
+<p class="tip"> Générer dynamiquement le rendu d'HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à une [vulnérabilité XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu en provenance d'un utilisateur</p>
 
 ### Attributes
 
-Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](../api/#v-bind):
+Les Moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTML, à la place utilisez une [directive v-bind](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
+Cela fonctionne également pour les attributs booléens - l'attribut sera supprimé si la condition est évaluée à faux :
 
 ``` html
 <button v-bind:disabled="someDynamicCondition">Button</button>
