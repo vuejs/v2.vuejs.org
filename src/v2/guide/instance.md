@@ -77,9 +77,9 @@ vm.$watch('a', function (newVal, oldVal) {
 
 Consultez [l'API](../api) pour une liste complète des propriétés et méthodes d'une instance. 
 
-## Les hooks de cycle de vie d'une instance
+## Les *hooks* de cycle de vie d'une instance
 
-Chaque instance de vue traverse une série d'étapes d'initialisation au moment de sa création - par exemple, elle doit mettre en place l'observation des données, compiler le template, monter l'instance sur le DOM et mettre à jour le DOM quand les données changent. En cours de route, elle va aussi invoquer des **hooks de cycle de vie**, qui nous donnent l'opportunité d'exécuter une logique personnalisée. Par exemple, le hook [`created`](../api/#created) est appelé une fois l'instance créée.
+Chaque instance de vue traverse une série d'étapes d'initialisation au moment de sa création - par exemple, elle doit mettre en place l'observation des données, compiler le template, monter l'instance sur le DOM et mettre à jour le DOM quand les données changent. En cours de route, elle va aussi invoquer des **_hooks_ de cycle de vie**, qui nous donnent l'opportunité d'exécuter une logique personnalisée. Par exemple, le hook [`created`](../api/#created) est appelé une fois l'instance créée.
 
 ``` js
 var vm = new Vue({
@@ -87,7 +87,7 @@ var vm = new Vue({
     a: 1
   },
   created: function () {
-    // `this` référence à l'instance de vm
+    // `this` est une référence à l'instance de vm
     console.log('a is: ' + this.a)
   }
 })
