@@ -313,7 +313,7 @@ Ci-dessous se trouve le diagramme d'un cycle de vie d'une instance. Vous n'avez 
 	<div class="lifecycle--compile-function"><span>Compiler le template en une fonction de rendu</span></div>
 	<div class="lifecycle--compile-template"><span>Compiler le contenu HTML de el en tant que template</span></div>
 	<div class="lifecycle--create-el"><span>Créer vm.$el et remplacer el avec</span></div>
-	<div class="lifecycle--virtual-dom"><span>Nouveau rendu du DOM Virtuel</span></div>
+	<div class="lifecycle--virtual-dom"><span>Re-rendu du DOM Virtuel puis du DOM</span></div>
 	<div class="lifecycle--when-data-change"><span>quand les données changent</span></div>
 	<div class="lifecycle--when-destroy"><span>quand vm.$destroy() est appelé</span></div>
 	<div class="lifecycle--teardown"><span>Démontage des observateurs, composants enfants et écouteurs d'événement</span></div>
