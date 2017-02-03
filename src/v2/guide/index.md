@@ -364,4 +364,4 @@ Vous avez peut-être remarqué que les composants de Vue sont très similaires a
 
 ## Prêt pour la suite ?
 
-Nous venons juste d'introduire brièvement les fonctionnalités les plus basiques du cœur de Vue.js — le reste de ce guide va les traiter plus en détail, ainsi que d'autres fonctionnalités avancées. Donc assurez-vous de le lire jusqu'au bout !
+Nous venons juste d'introduire brièvement les fonctionnalités les plus basiques du cœur de Vue.js — le reste de ce guide va les traiter plus en détail, ainsi que d'autres fonctionnalités avancées. Assurez-vous donc de le lire jusqu'au bout !
