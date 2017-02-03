@@ -8,7 +8,7 @@ order: 2
 
 Vue (prononcé /vjuː/, comme le terme anglais _**view**_) est un **framework évolutif** pour construire des interfaces utilisateur. À la différence des autres frameworks monolithiques, Vue a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, et il est vraiment simple de l'intégrer avec d'autres bibliothèques ou projets existants. D'un autre côté, Vue est tout à fait capable de faire tourner des applications web monopages quand il est couplé avec [des outils modernes](single-file-components.html) et [des bibliothèques complémentaires](https://github.com/vuejs/awesome-vue#libraries--plugins).
 
-Si vous êtes un développeur frontend confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques/frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
+Si vous êtes un développeur *frontend* confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques/frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
 
 ## Pour commencer
 
@@ -356,9 +356,9 @@ Pour une grosse application, il est nécessaire de la diviser entièrement en co
 
 ### Parallèle avec les Custom Elements
 
-Vous avez peut-être remarqué que les composants de Vue sont très similaires aux **Custom Elements**, qui sont une partie de la [spécification des Web Components](http://www.w3.org/wiki/WebComponents/). C'est parce que la syntaxe de Vue est vaguement inspirée de cette spécification. Par exemple, les composants de Vue implémentent l'[API Slot](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) et l'attribut spécial `is`. Cependant, il y a quelques différences essentielles :
+Vous avez peut-être remarqué que les composants de Vue sont très similaires aux **_Custom Elements_**, qui sont une partie de la [spécification des *Web Components*](http://www.w3.org/wiki/WebComponents/). C'est parce que la syntaxe de Vue est vaguement inspirée de cette spécification. Par exemple, les composants de Vue implémentent l'[API Slot](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) et l'attribut spécial `is`. Cependant, il y a quelques différences essentielles :
 
-1. La spécification des Web Components est toujours à l'état de brouillon, et n'est pas implémentée nativement dans tous les navigateurs. En comparaison, les composants de Vue n'ont besoin d'aucun *polyfill* et fonctionnent de la même manière dans tous les navigateurs supportés (IE9 et supérieurs). Quand cela est nécessaire, les composants de Vue peuvent également être implémentés à l'intérieur d'un élément personnalisé natif.
+1. La spécification des *Web Components* est toujours à l'état de brouillon, et n'est pas implémentée nativement dans tous les navigateurs. En comparaison, les composants de Vue n'ont besoin d'aucun *polyfill* et fonctionnent de la même manière dans tous les navigateurs supportés (IE9 et supérieurs). Quand cela est nécessaire, les composants de Vue peuvent également être implémentés à l'intérieur d'un élément personnalisé natif.
 
 2. Les composants de Vue fournissent des fonctionnalités importantes qui ne sont pas disponibles dans les éléments personnalisés  standards, notamment le flux de données entre composants, la communication par événements personnalisés et l'intégration avec les outils de *build*.
 
