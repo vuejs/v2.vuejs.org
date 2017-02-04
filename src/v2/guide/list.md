@@ -235,7 +235,7 @@ new Vue({ el: '#range' })
 
 컴포넌트에 `item`을 자동으로 주입하지 않는 이유는 컴포넌트가 `v-for` 작동 방식과 밀접하게 결합되기 때문입니다. 데이터의 출처를 명시적으로 표현하면 다른 상황에서는 컴포넌트를 재사용할 수 있습니다.
 
-여기 간단한 할일 목록이 예제로 있습니다.
+간단한 할일 목록 예제를 보겠습니다.
 
 ``` html
 <div id="todo-list-example">
@@ -292,7 +292,7 @@ new Vue({
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >
-  >  <ul>
+  <ul>
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
