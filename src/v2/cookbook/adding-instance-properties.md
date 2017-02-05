@@ -6,7 +6,7 @@ order: 1.1
 
 ## Exemple simple
 
-Il peut y avoir des données/utilitaires que vous aimeriez utiliser dans de nombreux composants, mais vous ne voulez pas [polluer le scope global](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). Dans ces cas-là, vous pouvez les rendre accessibles dans chaque instance Vue en les définissant dans le prototype :
+Il peut y avoir des données/utilitaires que vous aimeriez utiliser dans de nombreux composants, mais vous ne voulez pas [polluer la portée globale](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). Dans ces cas-là, vous pouvez les rendre accessibles dans chaque instance Vue en les définissant dans le prototype :
 
 ``` js
 Vue.prototype.$appName = 'Mon App'
@@ -45,7 +45,7 @@ Alors qu'est-ce qui sera affiché ci-dessous d'après vous ?
 ``` js
 new Vue({
   data: {
-    // Uh oh - appName est *aussi* le nom de la
+    // Oups - appName est *aussi* le nom de la
     // propriété d'instance que nous venons de définir !
     appName: "Le nom d'une autre app"
   },
@@ -60,7 +60,7 @@ new Vue({
 
 Cela sera `"Le nom d'une autre app"`, puis `"Mon App"`, car `this.appName` est écrasé ([en quelques sortes](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) par `data` quand l'instance est créée. Nous limitons la portée des propriétés avec `$` pour éviter ça. Vous pouvez même utiliser votre propre convention si vous préférez, comme `$_appName` ou `ΩappName`, pour en plus prévenir les conflits avec les plugins et les fonctionnalités futures.
 
-## Un exemple en situation réelle : Remplacer Vue Resource avec Axios
+## Un exemple en situation réelle : Remplacer Vue Resource par Axios
 
 Disons vous remplacez le [maintenant déprécié Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4). Vous aimiez vraiment accéder aux méthodes de requête avec `this.$http` et vous voulez faire la même chose avec Axios à la place.
 
@@ -100,7 +100,7 @@ new Vue({
 })
 ```
 
-## Le Contexte des Méthodes du Prototype
+## Le contexte des méthodes du prototype
 
 Au cas où vous ne seriez pas au courant, les méthodes ajoutées au prototype en JavaScript obtiennent le contexte de l'instance. Cela signifie qu'elles peuvent utiliser `this` pour accéder aux data, propriétés calculées, méthodes ou toute autre chose définie dans l'instance.
 
@@ -141,7 +141,7 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 Tant que vous êtes vigilants à la portée des propriétés du prototype, utiliser ce pattern est plutôt sûr - c'est-à-dire, peu probable de produire des bugs.
 
-Cependant, il peut parfois causer de la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exmeple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue !". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque-chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
+Cependant, il peut parfois semer la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exemple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue !". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque-chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
 
 __La commodité vient au prix de l'explicité.__ En regardant simplement un composant, il est impossible de dire d'où `$http` vient. Vue lui-même ? Un plugin ? Un collègue ?
 
@@ -151,7 +151,7 @@ Alors quelles sont les alternatives ?
 
 ### Quand ne pas utiliser un système de modules
 
-Dans les applications __sans__ systèmes de modules (ex. via Webpack ou Browserify), il y a un pattern souvent utilisé dans _n'importe quel_ front-end amélioré en JavaScript : un objet global `App`.
+Dans les applications __sans__ systèmes de modules (ex. via Webpack ou Browserify), il y a un pattern souvent utilisé dans _n'importe quel_ *frontend* amélioré en JavaScript : un objet global `App`.
 
 Si ce que vous voulez ajouter n'a rien à voir avec Vue spécifiquement, cela peut être une bonne alternative à étudier. Voici un exemple :
 
@@ -190,4 +190,4 @@ new Vue({
 
 Quand vous avez accès à un système de modules, vous pouvez facilement organiser le code partagé à travers des modules, puis `require`/`import` ces modules partout où ils sont nécessaires. C'est l'exemple parfait de l'explicité, car chaque fichier obtient alors une liste de dépendances. Vous savez _exactement_ d'où vient chacune d'entre elles.
 
-Bien que certainement plus verbeux, cette approche est assurément la plus maintenable, particulièrement quand vous travaillez avec d'autres développeurs et/ou construisez une large application.
+Bien que certainement plus verbeux, cette approche est assurément la plus maintenable, particulièrement quand vous travaillez avec d'autres développeurs et/ou construisez une grosse application.
