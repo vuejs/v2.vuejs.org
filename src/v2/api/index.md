@@ -8,11 +8,11 @@ type: api
 
 ### silent
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Par défaut:** `false`
+- **Par défaut :** `false`
 
-- **Utilisation:**
+- **Utilisation :**
 
   ``` js
   Vue.config.silent = true
@@ -22,11 +22,11 @@ type: api
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Type :** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Par défaut :** `{}`
 
-- **Utilisation:**
+- **Utilisation :**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -42,17 +42,17 @@ type: api
 
   Définit des stratégies personnalisées de fusion pour les options.
 
-  La stratégie de fusion reçoit en arguments la valeur de cette option définie dans le parent et les instances enfant en tant que premier et second argument, respectivement. L'instance Vue est passée en troisième argument.
+  La stratégie de fusion reçoit en arguments la valeur de cette option définie dans le parent et les instances enfants en tant que premier et second argument, respectivement. L'instance de Vue est passée en troisième argument.
 
 - **Voir aussi**: [Stratégies personnalisées de fusion d'options](../guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Par défaut:** `true` (`false` dans les versions de production)
+- **Par défaut :** `true` (`false` dans les versions de production)
 
-- **Utilisation:**
+- **Utilisation :**
 
   ``` js
   // assurez-vous d'assigner ça de manière synchrone immédiatement après avoir chargé Vue
@@ -63,11 +63,11 @@ type: api
 
 ### errorHandler
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Par défaut:** les exceptions ne sont pas interceptées
+- **Par défaut :** les exceptions ne sont pas interceptées
 
-- **Utilisation:**
+- **Utilisation :**
 
   ``` js
   Vue.config.errorHandler = function (err, vm) {
@@ -75,17 +75,17 @@ type: api
   }
   ```
 
-  Définit un gestionnaire pour les erreurs non interceptées pendant le rendu d'un composant et les appels aux observateurs. Ce gestionnaire sera appelé avec comme arguments l'erreur et l'instance Vue associée.
+  Définit un gestionnaire pour les erreurs non interceptées pendant le rendu d'un composant et les appels aux observateurs. Ce gestionnaire sera appelé avec comme arguments l'erreur et l'instance de Vue associée.
 
   > [Sentry](https://sentry.io), un service de traçage d'erreur, fournit une [intégration officielle](https://sentry.io/for/vue/) utilisant cette option.
 
 ### ignoredElements
 
-- **Type:** `Array<string>`
+- **Type :** `Array<string>`
 
-- **Par défaut:** `[]`
+- **Par défaut :** `[]`
 
-- **Utilisation:**
+- **Utilisation :**
 
   ``` js
   Vue.config.ignoredElements = [
@@ -97,11 +97,11 @@ type: api
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number | Array<number> }`
+- **Type :** `{ [key: string]: number | Array<number> }`
 
-- **Par défaut:** `{}`
+- **Par défaut :** `{}`
 
-- **Utilisation:**
+- **Utilisation :**
 
   ``` js
   Vue.config.keyCodes = {
@@ -118,12 +118,12 @@ type: api
 
 <h3 id="Vue-extend">Vue.extend( options )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Object} options`
 
-- **Utilisation:**
+- **Utilisation :**
 
-  Crée une "sous-classe" du constructeur de base Vue. L'argument doit être un objet contenant les options du composant.
+  Crée une « sous-classe » du constructeur de base Vue. L'argument doit être un objet contenant les options du composant.
 
   Le cas spécial à noter ici est l'option `data` - il doit s'agir d'une fonction quand utilisé avec `Vue.extend()`.
 
@@ -147,21 +147,21 @@ type: api
   new Profile().$mount('#mount-point')
   ```
 
-  Cela donnera comme résultat:
+  Cela donnera comme résultat :
 
   ``` html
   <p>Walter White aka Heisenberg</p>
   ```
 
-- **Voir aussi:** [Composants](../guide/components.html)
+- **Voir aussi :** [Composants](../guide/components.html)
 
 <h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Function} [callback]`
   - `{Object} [context]`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Reporte l'exécution du callback au prochain cycle de mise à jour du DOM. Utilisez-le immédiatement après avoir changé des données afin d'attendre la mise à jour du DOM.
 
@@ -176,46 +176,46 @@ type: api
 
   > Nouveauté  de la 2.1.0: retourne une Promise si aucune fonction de callback n'est fournie et si Promise est supporté par l'environnement d'exécution.
 
-- **Voir aussi:** [File de mise à jour asynchrone](../guide/reactivity.html#Async-Update-Queue)
+- **Voir aussi :** [File de mise à jour asynchrone](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="Vue-set">Vue.set( object, key, value )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Object} object`
   - `{string} key`
   - `{any} value`
 
 - **Retourne:** la valeur assignée.
 
-- **Utilisation:**
+- **Utilisation :**
 
   Assigne une propriété à un objet. Si l'objet est réactif, cette méthode s'assure que la propriété est créée en tant que propriété réactive et déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement l'ajout de nouvelles propriétés.
 
-  **Notez que l'objet ne peut pas être une instance Vue, ou l'objet de données à la racine d'une instance Vue.**
+  **Notez que l'objet ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.**
 
-- **Voir aussi:** [Réactivité en détail](../guide/reactivity.html)
+- **Voir aussi :** [Réactivité en détail](../guide/reactivity.html)
 
 <h3 id="Vue-delete">Vue.delete( object, key )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Object} object`
   - `{string} key`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Supprime une propriété d'un objet. Si l'objet est réactif, cette méthode s'assure que la suppression déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement la suppression de propriétés, mais vous devriez rarement en avoir besoin.
 
-**Notez que l'objet ne peut pas être une instance Vue, ou l'objet de données à la racine d'une instance Vue.**
+**Notez que l'objet ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.**
 
-- **Voir aussi:** [Réactivité en détail](../guide/reactivity.html)
+- **Voir aussi :** [Réactivité en détail](../guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string} id`
   - `{Function | Object} [definition]`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Inscrit ou récupère une directive globale.
 
@@ -234,19 +234,19 @@ type: api
     // cette fonction sera appelée comme `bind` et `update` ci-dessus
   })
 
-  // getter, retourne la définition de la directive si inscrite
+  // accesseur, retourne la définition de la directive si inscrite
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **Voir aussi:** [Directives personnalisées](../guide/custom-directive.html)
+- **Voir aussi :** [Directives personnalisées](../guide/custom-directive.html)
 
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string} id`
   - `{Function} [definition]`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Inscrit ou récupère un filtre global.
 
@@ -256,17 +256,17 @@ type: api
     // retourne la valeur modifiée
   })
 
-  // getter, retourne le filtre si inscrit
+  // accesseur, retourne le filtre si inscrit
   var myFilter = Vue.filter('my-filter')
   ```
 
 <h3 id="Vue-component">Vue.component( id, [definition] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string} id`
   - `{Function | Object} [definition]`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Inscrit ou récupère un composant global. L'inscription assigne aussi automatiquement la propriété `name` du composant au paramètre `id` donné.
 
@@ -281,38 +281,38 @@ type: api
   var MyComponent = Vue.component('my-component')
   ```
 
-- **Voir aussi:** [Composants](../guide/components.html).
+- **Voir aussi :** [Composants](../guide/components.html).
 
 <h3 id="Vue-use">Vue.use( plugin )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Object | Function} plugin`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Installe un plugin Vue.js. Si l'argument plugin est de type Object, il doit exposer une méthode  `install`. S'il s'agit d'une fonction, elle sera utilisée comme méthode d'installation. Cette méthode d'installation sera appelée avec Vue en tant qu'argument.
 
   Quand cette méthode est appelée avec le même plugin plusieurs fois, le plugin ne sera installée qu'une seule fois.
 
-- **Voir aussi:** [Plugins](../guide/plugins.html).
+- **Voir aussi :** [Plugins](../guide/plugins.html).
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Object} mixin`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Applique une mixin globale, qui affecte toutes les instances de Vue créées par la suite. Cela peut être utilisé par les créateurs de plugins pour injecter un composant personnalisé dans les composants. **Non recommandé dans le code applicatif**.
 
-- **Voir aussi:** [Mixins globales](../guide/mixins.html#Global-Mixin)
+- **Voir aussi :** [Mixins globales](../guide/mixins.html#Global-Mixin)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string} template`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Compile une string template en une fonction de rendu. **Disponible uniquement sur la version standalone.**
 
@@ -328,31 +328,31 @@ type: api
   })
   ```
 
-- **Voir aussi:** [Fonctions de rendu](../guide/render-function.html)
+- **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
 
 ## Options / Data
 
 ### data
 
-- **Type:** `Object | Function`
+- **Type :** `Object | Function`
 
-- **Restriction:** accepte uniquement une fonction lorsqu'utilisé dans une définition de composant.
+- **Restriction :** accepte uniquement une fonction lorsqu'utilisé dans une définition de composant.
 
-- **Détails:**
+- **Détails :**
 
-  L'objet de données pour l'instance Vue. Vue va de manière récursive convertir ses propriétés en des getter/setters afin de les rendre "réactives". **L'objet doit être un simple objet de base**: les objets natifs tels que les API du navigateur et les propriétés issues du prototype sont ignorées. Une règle d'or est que la donnée doit juste être de la donnée - il n'est pas recommandé d'observer des objets ayant leur propre comportement avec états.
+  L'objet de données pour l'instance de Vue. Vue va de manière récursive convertir ses propriétés en des accesseurs/mutateurs (*getter/setters*) afin de les rendre "réactives". **L'objet doit être un simple objet de base**: les objets natifs tels que les API du navigateur et les propriétés issues du prototype sont ignorées. Une règle d'or est que la donnée doit juste être de la donnée - il n'est pas recommandé d'observer des objets ayant leur propre comportement avec états.
 
   Une fois observé, vous ne pouvez plus ajouter de propriétés réactives à l'objet de données racine. C'est pourquoi il est recommandé de déclarer dès le départ toutes les propriétés réactives à la racine de l'objet de données, avant de créer l'instance.
 
-  Après que l'instance ait été créée, l'objet de données initial peut être accédé via `vm.$data`. L'instance Vue servira également de proxy pour toutes les propriétés trouvées dans l'objet de données, donc `vm.a` sera l'équivalent de `vm.$data.a`.
+  Après que l'instance ait été créée, l'objet de données initial peut être accédé via `vm.$data`. L'instance de Vue servira également de proxy pour toutes les propriétés trouvées dans l'objet de données, donc `vm.a` sera l'équivalent de `vm.$data.a`.
 
-  Les propriétés commençant par `_` ou `$` ne seront **pas** proxyfiées par l'instance Vue car elles pourraient entrer en conflit avec certaines propriétés internes et méthodes d'API de Vue. Vous devrez y accéder via `vm.$data._property`.
+  Les propriétés commençant par `_` ou `$` ne seront **pas** proxyfiées par l'instance de Vue car elles pourraient entrer en conflit avec certaines propriétés internes et méthodes d'API de Vue. Vous devrez y accéder via `vm.$data._property`.
 
   Lors de la définition d'un **composant**, la propriété `data` doit être déclarée en tant que fonction retournant l'objet de données initial, car il y aura plusieurs instances créées utilisant la même définition. Si nous utilisons un objet classique pour `data`, le même objet sera **partagé par référence** à toutes les instances créées! En fournissant une fonction `data` , chaque fois qu'une nouvelle instance est créée, nous l'appelons simplement afin de récupérer une copie fraîche des données initiales.
 
   Si nécessaire, un clône profond de l'objet original peut être obtenu en passant `vm.$data` à travers `JSON.parse(JSON.stringify(...))`.
 
-- **Exemple:**
+- **Exemple :**
 
   ``` js
   var data = { a: 1 }
@@ -364,7 +364,7 @@ type: api
   vm.a // -> 1
   vm.$data === data // -> true
 
-  // data doit être une fonction lorsqu'utilisé dans Vue.extend()
+  // data doit être une fonction lorsqu'utilisée dans Vue.extend()
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -372,19 +372,19 @@ type: api
   })
   ```
 
-  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour la propriété `data`__ (exemple: `data: () => { return { a: this.myProp }}`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et  `this.myProp` vaudra `undefined`.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour la propriété `data`__ (exemple: `data: () => { return { a: this.myProp }}`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et  `this.myProp` vaudra `undefined`.</p>
 
-- **Voir aussi:** [Réactivité en détail](../guide/reactivity.html).
+- **Voir aussi :** [Réactivité en détail](../guide/reactivity.html).
 
 ### props
 
-- **Type:** `Array<string> | Object`
+- **Type :** `Array<string> | Object`
 
-- **Détails:**
+- **Détails :**
 
-  Une liste ou un objet décrivant les attributs exposés par le composant afin de passer des données depuis le composant parent. Ce paramètre a une syntaxe simple basée sur une `Array` et une syntaxe alternative basée sur un `Object` qui permet une configuration avancée telle qu'une vérification de typage, des contrôles de validation personnalisés et des valeurs par défaut.
+  Une liste ou un objet décrivant les attributs exposés par le composant afin de passer des données depuis le composant parent. Ce paramètre a une syntaxe simple basée sur un tableau (`Array`) et une syntaxe alternative basée sur un `Object` qui permet une configuration avancée telle qu'une vérification de typage, des contrôles de validation personnalisés et des valeurs par défaut.
 
-- **Exemple:**
+- **Exemple :**
 
   ``` js
   // syntaxe simple
@@ -410,15 +410,15 @@ type: api
   })
   ```
 
-- **Voir aussi:** [Attributs](../guide/components.html#Props)
+- **Voir aussi :** [Attributs](../guide/components.html#Props)
 
 ### propsData
 
-- **Type:** `{ [key: string]: any }`
+- **Type :** `{ [key: string]: any }`
 
-- **Restriction:** utilisé uniquement si l'instance est créée via `new`.
+- **Restriction :** utilisé uniquement si l'instance est créée via `new`.
 
-- **Détails:**
+- **Détails :**
 
   Passe des valeurs d'attribut à l'instance durant sa création. Cette propriété a pour but principal de faciliter les tests unitaires.
 
@@ -439,27 +439,27 @@ type: api
 
 ### computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **Type :** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Détails:**
+- **Détails :**
 
-  Les propriétés calculées qui seront ajoutées à l'instance Vue. Tous les getters et setters ont leur contexte `this` automatiquement lié à l'instance Vue.
+  Les propriétés calculées qui seront ajoutées à l'instance de Vue. Tous les accesseurs (*getters*) et mutateurs (*setters*) ont leur contexte `this` automatiquement lié à l'instance de Vue.
 
-  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une propriété calculée__ (exemple: `aDouble: () => this.a * 2`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et `this.a` vaudra `undefined`.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une propriété calculée__ (exemple: `aDouble: () => this.a * 2`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.a` vaudra `undefined`.</p>
 
   Les propriétés calculées sont mises en cache, et réévaluées uniquement lorsque leurs dépendances réactives changent. Notez que si une certaine dépendance est en dehors de la portée de l'instance (et donc non réactive), la propriété calculée ne sera __pas__ mise à jour.
 
-- **Exemple:**
+- **Exemple :**
 
   ```js
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // getter uniquement, on a juste besoin d'une fonction
+      // accesseur uniquement, on a juste besoin d'une fonction
       aDouble: function () {
         return this.a * 2
       },
-      // getter et setter à la fois
+      // accesseur et mutateur à la fois
       aPlus: {
         get: function () {
           return this.a + 1
@@ -476,20 +476,20 @@ type: api
   vm.aDouble // -> 4
   ```
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Propriétés calculées](../guide/computed.html)
 
 ### methods
 
-- **Type:** `{ [key: string]: Function }`
+- **Type :** `{ [key: string]: Function }`
 
-- **Détails:**
+- **Détails :**
 
-  Les méthodes qui seront ajoutées à l'instance Vue. Vous pouvez accéder à ces méthodes directement depuis l'instance VM ou les utiliser à travers des expressions de directives. Toutes les méthodes ont leur contexte d'appel `this` automatiquement assigné à l'instance Vue.
+  Les méthodes qui seront ajoutées à l'instance de Vue. Vous pouvez accéder à ces méthodes directement depuis l'instance VM ou les utiliser à travers des expressions de directives. Toutes les méthodes ont leur contexte d'appel `this` automatiquement assigné à l'instance de Vue.
   
-  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une méthode__ (exemple: `plus: () => this.a++`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et `this.a` vaudra `undefined`.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une méthode__ (exemple: `plus: () => this.a++`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.a` vaudra `undefined`.</p>
 
-- **Exemple:**
+- **Exemple :**
 
   ```js
   var vm = new Vue({
@@ -504,17 +504,17 @@ type: api
   vm.a // 2
   ```
 
-- **Voir aussi:** [Méthodes et gestion d'évènements](../guide/events.html)
+- **Voir aussi :** [Méthodes et gestion d'évènements](../guide/events.html)
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object }`
+- **Type :** `{ [key: string]: string | Function | Object }`
 
-- **Détails:**
+- **Détails :**
 
-  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de callback exécutée quand cette expression change. On parle alors d'observateur ou *watcher* pour décrire ce lien. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un objet avec des options avancées. L'instance Vue appelera `$watch()` pour chaque clé de l'objet à l'initialisation.
+  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de callback exécutée quand cette expression change. On parle alors d'observateur ou *watcher* pour décrire ce lien. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un objet avec des options avancées. L'instance de Vue appelera `$watch()` pour chaque clé de l'objet à l'initialisation.
 
-- **Exemple:**
+- **Exemple :**
 
   ``` js
   var vm = new Vue({
@@ -539,21 +539,21 @@ type: api
   vm.a = 2 // -> new: 2, old: 1
   ```
   
-  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un observateur__ (exemple: `searchQuery: newValue => this.updateAutocomplete(newValue)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance Vue et `this.updateAutocomplete` vaudra `undefined`.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un observateur__ (exemple: `searchQuery: newValue => this.updateAutocomplete(newValue)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.updateAutocomplete` vaudra `undefined`.</p>
 
-- **Voir aussi:** [Méthodes d'instance - vm.$watch](#vm-watch)
+- **Voir aussi :** [Méthodes d'instance - vm.$watch](#vm-watch)
 
 ## Options / DOM
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Type :** `string | HTMLElement`
 
-- **Restriction:** uniquement respecté quand l'instance est créée via `new`.
+- **Restriction :** uniquement respecté quand l'instance est créée via `new`.
 
-- **Détails:**
+- **Détails :**
 
-  Fournit à l'instance Vue un élément existant du DOM sur lequel se monter. Cela peut être une `String` représentant un sélecteur CSS ou une référence à un `HTMLElement`.
+  Fournit à l'instance de Vue un élément existant du DOM sur lequel se monter. Cela peut être une `String` représentant un sélecteur CSS ou une référence à un `HTMLElement`.
 
   Une fois l'instance montée, l'élément correspondant sera accessible via `vm.$el`.
 
@@ -561,13 +561,13 @@ type: api
 
   <p class="tip">L'élément fourni sert seulement de point de montage. Contrairement à Vue 1.x, l'élément monté sera remplacé par le DOM généré par Vue dans tous les cas. C'est pourquoi il n'est pas recommandé de monter l'instance racine sur `<html>` ou `<body>`.</p>
 
-- **Voir aussi:** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ### template
 
-- **Type:** `string`
+- **Type :** `string`
 
-- **Détails:**
+- **Détails :**
 
   A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
 
@@ -575,21 +575,21 @@ type: api
 
   <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Content Distribution](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
-  - **Type:** `Function`
+  - **Type :** `Function`
 
-  - **Détails:**
+  - **Détails :**
 
     An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
 
-  - **Voir aussi:**
+  - **Voir aussi :**
     - [Render Functions](../guide/render-function)
 
 ## Options / Lifecycle Hooks
@@ -598,53 +598,53 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### beforeCreate
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called right before the mounting begins: the `render` function is about to be called for the first time.
 
   **This hook is not called during server-side rendering.**
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
 
   **This hook is not called during server-side rendering.**
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called when the data changes, before the virtual DOM is re-rendered and patched.
 
@@ -652,13 +652,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   **This hook is not called during server-side rendering.**
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called after a data change causes the virtual DOM to be re-rendered and patched.
 
@@ -666,103 +666,103 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   **This hook is not called during server-side rendering.**
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called when a kept-alive component is activated.
 
   **This hook is not called during server-side rendering.**
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Built-in Components - keep-alive](#keep-alive)
   - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 
 ### deactivated
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called when a kept-alive component is deactivated.
 
   **This hook is not called during server-side rendering.**
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Built-in Components - keep-alive](#keep-alive)
   - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 
 ### beforeDestroy
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
 
   **This hook is not called during server-side rendering.**
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Détails:**
+- **Détails :**
 
   Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
 
   **This hook is not called during server-side rendering.**
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ## Options / Assets
 
 ### directives
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Détails:**
+- **Détails :**
 
   A hash of directives to be made available to the Vue instance.
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Custom Directives](../guide/custom-directive.html)
   - [Assets Naming Convention](../guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Détails:**
+- **Détails :**
 
   A hash of filters to be made available to the Vue instance.
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [`Vue.filter`](#Vue-filter)
 
 ### components
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Détails:**
+- **Détails :**
 
   A hash of components to be made available to the Vue instance.
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Components](../guide/components.html)
 
 ## Options / Misc
 
 ### parent
 
-- **Type:** `Vue instance`
+- **Type :** `Vue instance`
 
-- **Détails:**
+- **Détails :**
 
   Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
 
@@ -770,9 +770,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### mixins
 
-- **Type:** `Array<Object>`
+- **Type :** `Array<Object>`
 
-- **Détails:**
+- **Détails :**
 
   The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
@@ -792,15 +792,15 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   // -> 2
   ```
 
-- **Voir aussi:** [Mixins](../guide/mixins.html)
+- **Voir aussi :** [Mixins](../guide/mixins.html)
 
 ### name
 
-- **Type:** `string`
+- **Type :** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **Restriction :** only respected when used as a component option.
 
-- **Détails:**
+- **Détails :**
 
   Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
 
@@ -808,9 +808,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### extends
 
-- **Type:** `Object | Function`
+- **Type :** `Object | Function`
 
-- **Détails:**
+- **Détails :**
 
   Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
 
@@ -830,11 +830,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **Type :** `Array<string>`
 
 - **default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **Détails:**
+- **Détails :**
 
   Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
 
@@ -850,43 +850,43 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### functional
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Détails:**
+- **Détails :**
 
   Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
 
-- **Voir aussi:** [Functional Components](../guide/render-function.html#Functional-Components)
+- **Voir aussi :** [Functional Components](../guide/render-function.html#Functional-Components)
 
 ## Instance Properties
 
 ### vm.$data
 
-- **Type:** `Object`
+- **Type :** `Object`
 
-- **Détails:**
+- **Détails :**
 
   The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
 
-- **Voir aussi:** [Options - data](#data)
+- **Voir aussi :** [Options - data](#data)
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **Type :** `HTMLElement`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   The root DOM element that the Vue instance is managing.
 
 ### vm.$options
 
-- **Type:** `Object`
+- **Type :** `Object`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
 
@@ -901,41 +901,41 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$parent
 
-- **Type:** `Vue instance`
+- **Type :** `Vue instance`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   The parent instance, if the current instance has one.
 
 ### vm.$root
 
-- **Type:** `Vue instance`
+- **Type :** `Vue instance`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
 
 ### vm.$children
 
-- **Type:** `Array<Vue instance>`
+- **Type :** `Array<Vue instance>`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
 
 ### vm.$slots
 
-- **Type:** `{ [name: string]: ?Array<VNode> }`
+- **Type :** `{ [name: string]: ?Array<VNode> }`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
 
@@ -974,7 +974,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   })
   ```
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [`<slot>` Component](#slot-1)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
   - [Render Functions: Slots](../guide/render-function.html#Slots)
@@ -983,61 +983,61 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 > New in 2.1.0
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **Type :** `{ [name: string]: props => VNode | Array<VNode> }`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
 
   Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [`<slot>` Component](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
   - [Render Functions: Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
-- **Type:** `Object`
+- **Type :** `Object`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   An object that holds child components that have `ref` registered.
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Child Component Refs](../guide/components.html#Child-Component-Refs)
   - [ref](#ref)
 
 ### vm.$isServer
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
 - **Read only**
 
-- **Détails:**
+- **Détails :**
 
   Whether the current Vue instance is running on the server.
 
-- **Voir aussi:** [Server-Side Rendering](../guide/ssr.html)
+- **Voir aussi :** [Server-Side Rendering](../guide/ssr.html)
 
 ## Instance Methods / Data
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string | Function} expOrFn`
   - `{Function} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **Retourne :** `{Function} unwatch`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
 
@@ -1095,40 +1095,40 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-set">vm.$set( object, key, value )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Object} object`
   - `{string} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Retourne :** the set value.
 
-- **Utilisation:**
+- **Utilisation :**
 
   This is the **alias** of the global `Vue.set`.
 
-- **Voir aussi:** [Vue.set](#Vue-set)
+- **Voir aussi :** [Vue.set](#Vue-set)
 
 <h3 id="vm-delete">vm.$delete( object, key )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Object} object`
   - `{string} key`
 
-- **Utilisation:**
+- **Utilisation :**
 
   This is the **alias** of the global `Vue.delete`.
 
-- **Voir aussi:** [Vue.delete](#Vue-delete)
+- **Voir aussi :** [Vue.delete](#Vue-delete)
 
 ## Instance Methods / Events
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string} event`
   - `{Function} callback`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
 
@@ -1144,21 +1144,21 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-once">vm.$once( event, callback )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string} event`
   - `{Function} callback`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string} [event]`
   - `{Function} [callback]`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Remove event listener(s).
 
@@ -1170,7 +1170,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{string} event`
   - `[...args]`
 
@@ -1180,13 +1180,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **Returns:** `vm` - the instance itself
+- **Retourne :** `vm` - the instance itself
 
-- **Utilisation:**
+- **Utilisation :**
 
   If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
 
@@ -1212,22 +1212,22 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   document.getElementById('app').appendChild(component.$el)
   ```
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Server-Side Rendering](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
-- **Utilisation:**
+- **Utilisation :**
 
   Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
 <h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
-- **Arguments:**
+- **Arguments :**
   - `{Function} [callback]`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
 
@@ -1254,13 +1254,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   })
   ```
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Vue.nextTick](#Vue-nextTick)
   - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
-- **Utilisation:**
+- **Utilisation :**
 
   Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
 
@@ -1268,7 +1268,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
 
-- **Voir aussi:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ## Directives
 
@@ -1276,7 +1276,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `string`
 
-- **Détails:**
+- **Détails :**
 
   Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
 
@@ -1288,13 +1288,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <span>{{msg}}</span>
   ```
 
-- **Voir aussi:** [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
+- **Voir aussi :** [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
 
 ### v-html
 
 - **Expects:** `string`
 
-- **Détails:**
+- **Détails :**
 
   Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
 
@@ -1305,39 +1305,39 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```html
   <div v-html="html"></div>
   ```
-- **Voir aussi:** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
+- **Voir aussi :** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
 - **Expects:** `any`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
 
   This directive triggers transitions when its condition changes.
 
-- **Voir aussi:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
+- **Voir aussi :** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
 - **Expects:** `any`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
 
   This directive triggers transitions when its condition changes.
 
-- **Voir aussi:** [Conditional Rendering - v-if](../guide/conditional.html)
+- **Voir aussi :** [Conditional Rendering - v-if](../guide/conditional.html)
 
 ### v-else
 
 - **Does not expect expression**
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Restriction :** previous sibling element must have `v-if` or `v-else-if`.
 
-- **Utilisation:**
+- **Utilisation :**
 
   Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
 
@@ -1350,7 +1350,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Conditional Rendering - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
@@ -1359,9 +1359,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Expects:** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **Restriction :** previous sibling element must have `v-if` or `v-else-if`.
 
-- **Utilisation:**
+- **Utilisation :**
 
   Denote the "else if block" for `v-if`. Can be chained.
 
@@ -1380,13 +1380,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
 
-- **Voir aussi:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **Voir aussi :** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
 - **Expects:** `Array | Object | number | string`
 
-- **Utilisation:**
+- **Utilisation :**
 
   Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
 
@@ -1414,7 +1414,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   The detailed usage for `v-for` is explained in the guide section linked below.
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [List Rendering](../guide/list.html)
   - [key](../guide/list.html#key)
 
@@ -1434,7 +1434,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
   - `.native` - listen for a native event on the root element of component.
 
-- **Utilisation:**
+- **Utilisation :**
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
 
@@ -1485,7 +1485,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <my-component @click.native="onClick"></my-component>
   ```
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Methods and Event Handling](../guide/events.html)
   - [Components - Custom Events](../guide/components.html#Custom-Events)
 
@@ -1501,7 +1501,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `.prop` - Bind as a DOM property instead of an attribute. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
   - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
 
-- **Utilisation:**
+- **Utilisation :**
 
   Dynamically bind one or more attributes, or a component prop to an expression.
 
@@ -1553,7 +1553,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Class and Style Bindings](../guide/class-and-style.html)
   - [Components - Component Props](../guide/components.html#Props)
 
@@ -1572,11 +1572,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - [`.number`](../guide/forms.html#number) - cast input string to numbers
   - [`.trim`](../guide/forms.html#trim) - trim input
 
-- **Utilisation:**
+- **Utilisation :**
 
   Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Form Input Bindings](../guide/forms.html)
   - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
 
@@ -1584,7 +1584,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Does not expect expression**
 
-- **Utilisation:**
+- **Utilisation :**
 
   Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
 
@@ -1598,7 +1598,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Does not expect expression**
 
-- **Utilisation:**
+- **Utilisation :**
 
   This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
 
@@ -1622,7 +1622,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Does not expect expression**
 
-- **Détails:**
+- **Détails :**
 
   Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
 
@@ -1642,7 +1642,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </ul>
   ```
 
-- **Voir aussi:**
+- **Voir aussi :**
   - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
   - [Components - Cheap Static Components with v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
 
@@ -1697,7 +1697,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
 
-- **Voir aussi:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Voir aussi :** [Child Component Refs](../guide/components.html#Child-Component-Refs)
 
 ### slot
 
@@ -1707,7 +1707,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   For detailed usage, see the guide section linked below.
 
-- **Voir aussi:** [Named Slots](../guide/components.html#Named-Slots)
+- **Voir aussi :** [Named Slots](../guide/components.html#Named-Slots)
 
 ## Built-In Components
 
@@ -1717,7 +1717,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `is` - string | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
-- **Utilisation:**
+- **Utilisation :**
 
   A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
 
@@ -1730,7 +1730,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <component :is="$options.components.child"></component>
   ```
 
-- **Voir aussi:** [Dynamic Components](../guide/components.html#Dynamic-Components)
+- **Voir aussi :** [Dynamic Components](../guide/components.html#Dynamic-Components)
 
 ### transition
 
@@ -1758,7 +1758,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `appear`
   - `after-appear`
 
-- **Utilisation:**
+- **Utilisation :**
 
   `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
 
@@ -1793,7 +1793,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   }).$mount('#transition-demo')
   ```
 
-- **Voir aussi:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Voir aussi :** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
 
 ### transition-group
 
@@ -1805,7 +1805,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **Events:**
   - exposes the same events as `<transition>`.
 
-- **Utilisation:**
+- **Utilisation :**
 
   `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
 
@@ -1821,7 +1821,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </transition-group>
   ```
 
-- **Voir aussi:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Voir aussi :** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
 
 ### keep-alive
 
@@ -1829,7 +1829,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `include` - string or RegExp. Only components matched by this will be cached.
   - `exclude` - string or RegExp. Any component matched by this will not be cached.
 
-- **Utilisation:**
+- **Utilisation :**
 
   When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
 
@@ -1879,20 +1879,20 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
-- **Voir aussi:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Voir aussi :** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
 - **Props:**
   - `name` - string, Used for named slot.
 
-- **Utilisation:**
+- **Utilisation :**
 
   `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
 
   For detailed usage, see the guide section linked below.
 
-- **Voir aussi:** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Voir aussi :** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
 
 ## VNode Interface
 
