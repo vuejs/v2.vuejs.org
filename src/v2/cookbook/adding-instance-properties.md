@@ -147,7 +147,7 @@ __C'est certes plus commode mais moins explicite.__ En regardant simplement un c
 
 Alors quelles sont les alternatives ?
 
-## Patterns Alternatifs
+## *Patterns* Alternatifs
 
 ### Quand ne pas utiliser un système de modules
 
