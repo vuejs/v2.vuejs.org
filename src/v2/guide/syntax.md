@@ -14,15 +14,15 @@ Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez 
 
 ### Texte
 
-La forme la plus basique de liaison de donnée est l'interpolation de texte en utilisant la syntaxe "Moustache" (les accolades doubles)
+La forme de base de la liaison de donnée est l'interpolation de texte en utilisant la syntaxe "Moustache" (les doubes accolades)
 
 ``` html
 <span>Message: {{ msg }}</span>
 ```
 
-Le tag moustache sera remplacé par la valeur de la propriété `msg` sur l'objet data correspondant. Il sera également mis à jour à chaque fois que la propriété `msg` de l'objet data changera.
+Le tag moustache sera remplacé par la valeur de la propriété `msg` sur l'objet data correspondant. Il sera également mis à jour chaque fois que la propriété `msg` de l'objet data changera.
 
-Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors du changement des données en utilisant la directive [v-once directive](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons données présente sur le même noeud:
+Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors de la modification des données en utilisant la directive [v-once directive](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons données présentes sur le même noeud:
 
 ``` html
 <span v-once>Ceci ne changera jamais: {{ msg }}</span>
