@@ -186,4 +186,4 @@ Le préfixe `v-` sert d'indicateur visuel pour identifier les attributs spécifi
 <a @click="faireQuelqueChose"></a>
 ```
 
-Cela peut paraître un peu différent du HTML classique mais `:` et `@` sont des caractères valides pour des noms d'attributs et tous les navigateurs supportés par Vue.js peuvent l'interpréter correctement. De plus, ils n'apparaissent pas dans le balisage final. La syntaxe abrégée est totalement optionnelle, but vous allez probablement l'apprécier quand vous en apprendrez plus sur son usage plus loin.
+Cela peut paraître un peu différent du HTML classique mais `:` et `@` sont des caractères valides pour des noms d'attributs et tous les navigateurs supportés par Vue.js peuvent l'interpréter correctement. De plus, ils n'apparaissent pas dans le balisage final. La syntaxe abrégée est totalement optionnelle, mais vous allez probablement l'apprécier quand vous en apprendrez plus sur son usage plus loin.
