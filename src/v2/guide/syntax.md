@@ -4,7 +4,7 @@ type: guide
 order: 4
 ---
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue.js utilise une syntaxe basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance de Vue sous-jacente. Tous les templates de Vue.js sont du HTML valide qui peut être interprété par les navigateurs conformes aux spécifications et les interpréteurs HTML.
+Vue.js utilise une syntaxe basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance de Vue sous-jacente. Tous les templates de Vue.js sont du HTML valide qui peut être interprété par les navigateurs conformes aux spécifications et les interpréteurs HTML.
 
 Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimum de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimales de manipulations au DOM quand l'état de l'application change. 
 
