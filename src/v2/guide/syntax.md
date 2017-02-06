@@ -45,13 +45,13 @@ Le contenus sont alors insérés en tant que   simple HTML - les liaisons de don
 Les Moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTML, à la place utilisez une [directive v-bind](../api/#v-bind):
 
 ``` html
-<div v-bind:id="dynamicId"></div>
+<div v-bind:id="idDynamique"></div>
 ```
 
-Cela fonctionne également pour les attributs booléens - l'attribut sera supprimé si la condition est évaluée à faux :
+Cela fonctionne également pour les attributs booléens - l'attribut sera retiré si la condition est évaluée à faux :
 
 ``` html
-<button v-bind:disabled="someDynamicCondition">Button</button>
+<button v-bind:disabled="uneConditionDynamique">Button</button>
 ```
 
 ### Using JavaScript Expressions
