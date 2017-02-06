@@ -92,31 +92,31 @@ Ici, la directive `v-if` retirerait / insererait l'élement `<p>` basé sur l'é
 
 ### Arguments
 
-Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
+Certains directives peuvent prend un argument, indiqué par deux petits points après le nom de la directive. Par exemple, la directive `v-bind` est utilisée pour mettre à jour réactivement un attribut HTML :
 
 ``` html
 <a v-bind:href="url"></a>
 ```
 
-Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`.
+Ici `href`est un argument, qui dit à la directive `v-bind` de lier l'attribut `href` de l'élément à la valeur de l'expression `url`
 
-Another example is the `v-on` directive, which listens to DOM events:
+Un autre exemple est la directive `v-on`, qui écoute les évènements du DOM :
 
 ``` html
-<a v-on:click="doSomething">
+<a v-on:click="faireQuelqueChose">
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more detail too.
+Ici l'argument est le nom de l'évènement à écouter. Nous parlerons aussi de la gestion des évènements plus en détail.
 
-### Modifiers
+### Modificateurs
 
-Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the `.prevent` modifier tells the `v-on` directive to call `event.preventDefault()` on the triggered event:
+Les modificateurs sont des suffixes indiqués par un point, qui indique qu'une directivement devrait être lié d'une manière spécifique. Par exemple, le modificateur `.prevent`dit à la directive `v-on` d'appeler `Using JavaScript Expressions` sur l'évènement déclenché.
 
 ``` html
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-We will see more use of modifiers later when we take a more thorough look at `v-on` and `v-model`.
+Nous verrons plus de cas d'utilisations des modificateurs plus loin quand nous porterons un regard plus attentif à `v-on` et `v-model`
 
 ## Filters
 
