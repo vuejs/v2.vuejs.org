@@ -1,12 +1,12 @@
 ---
-title: La syntaxe des templates
+title: La syntaxe de template
 type: guide
 order: 4
 ---
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue.js utilise une syntaxe basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance de Vue sous-jacente. Tous les templates de Vue.js sont du HTML valide qui peut être parsé par les navigateurs conformes aux spécifications et les parseurs HTML.
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue.js utilise une syntaxe basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance de Vue sous-jacente. Tous les templates de Vue.js sont du HTML valide qui peut être interprété par les navigateurs conformes aux spécifications et les interpréteurs HTML.
 
-Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimum de composants dont il faut re-faire le rendu et d'appliquer le nombre minimales de manipulation au DOM quand l'état de l'application change. 
+Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimum de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimales de manipulations au DOM quand l'état de l'application change. 
 
 Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance à l'état brut du Javascript, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support de JSX optionnel.
 
@@ -20,9 +20,9 @@ La forme de base de la liaison de donnée est l'interpolation de texte en utilis
 <span>Message: {{ msg }}</span>
 ```
 
-Le tag moustache sera remplacé par la valeur de la propriété `msg` sur l'objet data correspondant. Il sera également mis à jour chaque fois que la propriété `msg` de l'objet data changera.
+Le tag moustache sera remplacé par la valeur de la propriété `msg` de l'objet data correspondant. Il sera également mis à jour à chaque fois que la propriété `msg` de l'objet data changera.
 
-Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors de la modification des données en utilisant la directive [v-once directive](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons données présentes sur le même noeud:
+Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors de la modification des données en utilisant la [directive v-once](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons de données présentes sur le même noeud:
 
 ``` html
 <span v-once>Ceci ne changera jamais: {{ msg }}</span>
@@ -30,15 +30,15 @@ Vous pouvez également réaliser des interpolations uniques qui ne se mettront p
 
 ### Raw HTML
 
-The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
+Les doubles moustaches interprètent la donnée en tant que texte brut, pas en tant que HTML. Pour afficher réellement du HTML, vous aurez besoin d'utiliser la directive `v-html`
 
 ``` html
 <div v-html="rawHtml"></div>
 ```
 
-Le contenu sont insérés en tant que HTML - les liaisons de données sont ignorées. Notez que vous ne pouvez pas utiliser `v-html` pour composer des templates partiels, parce que Vue n'est pas un moteur de template basé sur les chaînes de caractères. A la place, les composants sont à préférer en tant qu'unité fondamentale pour la réutilisabilité de l'IU et la composition.
+Le contenus sont alors insérés en tant que   simple HTML - les liaisons de données sont ignorées. A noter que vous ne pouvez pas utiliser `v-html` pour composer des fragments de templates, parce que Vue n'est pas un moteur de template basé sur les chaînes de caractères. A la place, les composants sont préférés en tant qu'unité de base pour la réutilisabilité et la composition de l'IU (Interface Utilisateur).
 
-<p class="tip"> Générer dynamiquement le rendu d'HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à une [vulnérabilité XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu en provenance d'un utilisateur</p>
+<p class="tip"> Générer dynamiquement le rendu de HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à une [vulnérabilité XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu en fourni par un utilisateur</p>
 
 ### Attributes
 
