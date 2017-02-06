@@ -28,7 +28,7 @@ Vous pouvez également réaliser des interpolations uniques qui ne se mettront p
 <span v-once>Ceci ne changera jamais: {{ msg }}</span>
 ```
 
-### Raw HTML
+### interpétation du HTML
 
 Les doubles moustaches interprètent la donnée en tant que texte brut, pas en tant que HTML. Pour afficher réellement du HTML, vous aurez besoin d'utiliser la directive `v-html`
 
@@ -36,11 +36,11 @@ Les doubles moustaches interprètent la donnée en tant que texte brut, pas en t
 <div v-html="rawHtml"></div>
 ```
 
-Le contenus sont alors insérés en tant que   simple HTML - les liaisons de données sont ignorées. A noter que vous ne pouvez pas utiliser `v-html` pour composer des fragments de templates, parce que Vue n'est pas un moteur de template basé sur les chaînes de caractères. A la place, les composants sont préférés en tant qu'unité de base pour la réutilisabilité et la composition de l'IU (Interface Utilisateur).
+Le contenus sont alors insérés en tant que simple HTML - les liaisons de données sont ignorées. A noter que vous ne pouvez pas utiliser `v-html` pour composer des fragments de templates, parce que Vue n'est pas un moteur de template basé sur les chaînes de caractères. A la place, les composants sont préférés en tant qu'unité de base pour la réutilisabilité et la composition de l'IU (Interface Utilisateur).
 
 <p class="tip"> Générer dynamiquement le rendu de HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à une [vulnérabilité XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu en fourni par un utilisateur</p>
 
-### Attributes
+### Attributs
 
 Les Moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTML, à la place utilisez une [directive v-bind](../api/#v-bind):
 
@@ -54,12 +54,12 @@ Cela fonctionne également pour les attributs booléens - l'attribut sera retir�
 <button v-bind:disabled="uneConditionDynamique">Button</button>
 ```
 
-### Using JavaScript Expressions
+### Utiliser des expressions Javascript
 
-Jusqu'ici, nous avons seulement lié de simples propriétés dans nos templates. Mais Vue.js supporte en réalité toute la puissance des expression Javascript à l'intérieur de toutes les liaisons de données.
+Jusqu'ici, nous avons seulement lié de simples clefs de propriétés dans nos templates. Mais Vue.js supporte en réalité toute la puissance des expressions Javascript à l'intérieur de toutes les liaisons de données.
 
 ``` html
-{{ number + 1 }}
+{{ nombre + 1 }}
 
 {{ ok ? 'OUI' : 'NON' }}
 
@@ -68,28 +68,27 @@ Jusqu'ici, nous avons seulement lié de simples propriétés dans nos templates.
 <div v-bind:id="'list-' + id"></div>
 ```
 
-Ces expressions seront évaluées en tant que Javascript dans la portée des données de la Vue instance propriétaire. Une restriction est que chacune de ces liaisons ne peut contenir **qu'une seule expression**, donc ce qui suit ne fonctionnera **PAS**
+Ces expressions seront évaluées en tant que Javascript au sein de la portée des données de l'instance de Vue propriétaire. Une restriction est que chacune de ces liaisons ne peut contenir **qu'une seule expression**, donc ce qui suit ne fonctionnera **PAS**
 
 ``` html
 <!-- ceci est une déclaration, pas une expression: -->
 {{ var a = 1 }}
 
-<!-- flow control won't work either, use ternary expressions -->
 <!-- le contrôle de flux ne marchera pas non plus, utilisez des expressions ternaires -->
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">Les expressions de template sont sandboxées et ont seulement accès à une liste blanche de globales telles que `Math` et `Date`. Vous ne devriez pas tenter d'accéder à des variables globales définies par l'utilisateur dans les expressions de template</p>
+<p class="tip">Les expressions de template sont sandboxées et ont seulement accès à une liste blanche de globales telles que `Math` et `Date`. Vous ne devriez pas tenter d'accéder à des variables globales définies par l'utilisateur dans les expressions de template.</p>
 
 ## Directives
 
-Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs directives sont **une unique expression Javascript** (A l'exception de `v-for`, qui sera discuté plus loin). Le travail d'une directive est d'appliquer réactivement des effets au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
+Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs directives sont **une   unique expression Javascript** (A l'exception de `v-for`, qui sera discuté plus loin). Le travail d'une directive est d'appliquer réactivement des effets secondaires au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
 
 ``` html
 <p v-if="seen">Maintenant vous me voyez</p>
 ```
 
-Ici, la directive `v-if` enleverait / insererait l'élement `<p>` basé sur l'évaluation à vrai de la valeur de l'expression `seen`.
+Ici, la directive `v-if` retirerait / insererait l'élement `<p>` basé sur l'évaluation à vrai de la valeur de l'expression `seen`.
 
 ### Arguments
 
