@@ -118,21 +118,21 @@ Les modificateurs sont des suffixes indiqués par un point, qui indique qu'une d
 
 Nous verrons plus de cas d'utilisations des modificateurs plus loin quand nous porterons un regard plus attentif à `v-on` et `v-model`
 
-## Filters
+## Filtres
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions**. Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer des formatages de textes courants. Les filtres sont utilisables à deux endroits : **les interpolations de moustaches et les expressions de v-bind**. Les filtres doivent être ajoutés à la fin de l'expression Javascript, indiqués par le symbole de la barre verticale : 
 
 ``` html
-<!-- in mustaches -->
+<!-- dans les moustaches -->
 {{ message | capitalize }}
 
-<!-- in v-bind -->
+<!-- dans les v-bind -->
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Vue 2.x filters can only be used inside mustache interpolations and `v-bind` expressions (the latter supported since 2.1.0), because filters are primarily designed for text transformation purposes. For more complex data transforms in other directives, you should use [Computed properties](computed.html) instead.</p>
+<p class="tip">Les filtres de Vue 2.x peuvent être seulement utilisés à l'intérieur des interpolations moustaches et des expressions de `v-bind` ( ces dernières étant supportés depuis la 2.1.0) car les filtres ont été conçus à la base dans le but de transformer du texte. Pour des cas plus complexes de transformation de données dans d'autres directives, vous devriez utilisez les [propriétés calculées](computed.html) à la place.</p>
 
-The filter function always receives the expression's value as the first argument.
+La fonction de filtre reçoit toujours la valeur de l'expression comme premier argument.
 
 ``` js
 new Vue({
@@ -147,43 +147,43 @@ new Vue({
 })
 ```
 
-Filters can be chained:
+Les filtres peuvent être enchainés :
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-Filters are JavaScript functions, therefore they can take arguments:
+Les filtres sont des fonctions Javascript et peuvent donc recevoir des arguments :
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+Ici la chaîne de caractères `'arg1'` sera passé au filtre en tant que second argument, and la valeur de l'expression  `arg2` sera évaluée et passée en tant que troisième argument.
 
-## Shorthands
+## Abréviations
 
-The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building an [SPA](https://en.wikipedia.org/wiki/Single-page_application) where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
+Le préfixe `v-` sert d'indicateur visuel pour identifier les attributs spécifiques à Vue dans vos templates. C'est pratique lorsque vous utilisez Vue.js pour appliquer des comportements dynamiques sur un balisage existant, mais peut sembler verbeux pour les directives utilisées fréquemment. Par ailleurs, le besoin pour le préfixe `v-`devient moins important quand vous développez une [application monopage](https://fr.wikipedia.org/wiki/Application_web_monopage) où Vue.js gère tous les templates. C'est pourquoi Vue.js fournit des abréviations pour deux des directives les plus utilisées, `v-bind` et `v-on`:
 
-### `v-bind` Shorthand
+### Abréviation pour `v-bind` 
 
 ``` html
-<!-- full syntax -->
+<!-- syntaxe complète -->
 <a v-bind:href="url"></a>
 
-<!-- shorthand -->
+<!-- abréviation -->
 <a :href="url"></a>
 ```
 
 
-### `v-on` Shorthand
+### Abréviation pour `v-on` 
 
 ``` html
-<!-- full syntax -->
+<!-- syntaxe complète -->
 <a v-on:click="doSomething"></a>
 
-<!-- shorthand -->
-<a @click="doSomething"></a>
+<!-- abréviation -->
+<a @click="faireQuelqueChose"></a>
 ```
 
-They may look a bit different from normal HTML, but `:` and `@` are valid chars for attribute names and all Vue.js supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
+Cela peut paraître un peu différent du HTML classique mais `:` et `@` sont des caractères valides pour des noms d'attributs et tous les navigateurs supportés par Vue.js peuvent l'interpréter correctement. De plus, ils n'apparaissent pas dans le balisage final. La syntaxe abrégée est totalement optionnelle, but vous allez probablement l'apprécier quand vous en apprendrez plus sur son usage plus loin.
