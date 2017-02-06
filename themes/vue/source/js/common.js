@@ -176,13 +176,6 @@
 
       var animating = false
       sectionContainer.addEventListener('click', function (e) {
-<<<<<<< HEAD
-=======
-
-        // Not prevent hashchange for smooth-scroll
-        // e.preventDefault()
-
->>>>>>> vuejs.org-master
         if (e.target.classList.contains('section-link')) {
           sidebar.classList.remove('open')
           setActive(e.target)
