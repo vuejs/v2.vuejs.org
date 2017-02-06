@@ -6,13 +6,13 @@ order: 1.1
 
 ## Exemple simple
 
-Il peut y avoir des données/utilitaires que vous aimeriez utiliser dans de nombreux composants, mais vous ne voulez pas [polluer la portée globale](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). Dans ces cas-là, vous pouvez les rendre accessibles dans chaque instance Vue en les définissant dans le prototype :
+Il peut y avoir des données/utilitaires que vous aimeriez utiliser dans de nombreux composants, mais vous ne voulez pas [polluer la portée globale](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). Dans ces cas-là, vous pouvez les rendre accessibles dans chaque instance de Vue en les définissant dans le prototype :
 
 ``` js
 Vue.prototype.$appName = 'Mon App'
 ```
 
-Maintenant, `$appName` sera accessible dans toutes les instances Vue, même avant leur création. Si nous exécutons :
+Maintenant, `$appName` sera accessible dans toutes les instances de Vue, même avant leur création. Si nous exécutons :
 
 ``` js
 new Vue({
@@ -82,7 +82,7 @@ Puis assigner `axios` à `Vue.prototype.$http` :
 Vue.prototype.$http = axios
 ```
 
-Alors vous serez capables d'utiliser des méthodes comme `this.$http.get` dans n'importe quelle instance Vue :
+Alors vous serez capables d'utiliser des méthodes comme `this.$http.get` dans n'importe quelle instance de Vue :
 
 ``` js
 new Vue({
@@ -131,19 +131,19 @@ Vue.prototype.$reverseText = propertyName => {
 }
 ```
 
-rejettera une exception :
+Rejettera une exception :
 
 ``` log
 Uncaught TypeError: Cannot read property 'split' of undefined
 ```
 
-## Quand éviter ce pattern
+## Quand éviter ce *pattern*
 
-Tant que vous êtes vigilants à la portée des propriétés du prototype, utiliser ce pattern est plutôt sûr - c'est-à-dire, peu probable de produire des bugs.
+Tant que vous êtes vigilants à la portée des propriétés du prototype, utiliser ce *pattern* est plutôt sûr - c'est-à-dire, peu probable de produire des bugs.
 
 Cependant, il peut parfois semer la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exemple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue !". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque-chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
 
-__La commodité vient au prix de l'explicité.__ En regardant simplement un composant, il est impossible de dire d'où `$http` vient. Vue lui-même ? Un plugin ? Un collègue ?
+__C'est certes plus commode mais moins explicite.__ En regardant simplement un composant, il est impossible de dire d'où `$http` vient. Vue lui-même ? Un plugin ? Un collègue ?
 
 Alors quelles sont les alternatives ?
 
@@ -151,7 +151,7 @@ Alors quelles sont les alternatives ?
 
 ### Quand ne pas utiliser un système de modules
 
-Dans les applications __sans__ systèmes de modules (ex. via Webpack ou Browserify), il y a un pattern souvent utilisé dans _n'importe quel_ *frontend* amélioré en JavaScript : un objet global `App`.
+Dans les applications __sans__ systèmes de modules (ex. via Webpack ou Browserify), il y a un *pattern* souvent utilisé dans _n'importe quel_ *frontend* amélioré en JavaScript : un objet global `App`.
 
 Si ce que vous voulez ajouter n'a rien à voir avec Vue spécifiquement, cela peut être une bonne alternative à étudier. Voici un exemple :
 
@@ -188,6 +188,6 @@ new Vue({
 
 ### Quand utiliser un système de modules
 
-Quand vous avez accès à un système de modules, vous pouvez facilement organiser le code partagé à travers des modules, puis `require`/`import` ces modules partout où ils sont nécessaires. C'est l'exemple parfait de l'explicité, car chaque fichier obtient alors une liste de dépendances. Vous savez _exactement_ d'où vient chacune d'entre elles.
+Quand vous avez accès à un système de modules, vous pouvez facilement organiser le code partagé à travers des modules, puis `require`/`import` ces modules partout où ils sont nécessaires. C'est l'approche la plus explicite car chaque fichier obtient alors une liste de dépendances. Vous savez _exactement_ d'où vient chacune d'entre elles.
 
 Bien que certainement plus verbeux, cette approche est assurément la plus maintenable, particulièrement quand vous travaillez avec d'autres développeurs et/ou construisez une grosse application.
