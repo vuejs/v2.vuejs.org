@@ -20,7 +20,7 @@ Then all methods, properties, and parameters will be type checked. For example, 
 
 ### Compilation Options
 
-Vue's declaration files require the `--lib DOM,ES2015.Promise` [compiler option](https://www.typescriptlang.org/docs/handbook/compiler-options.html). You can pass this option to the `tsc` command or add the equivalent to a `tsconfig.json` file.
+Vue's declaration files require the `--lib DOM,ES5,ES2015.Promise` [compiler option](https://www.typescriptlang.org/docs/handbook/compiler-options.html). You can pass this option to the `tsc` command or add the equivalent to a `tsconfig.json` file.
 
 ### Accessing Vue's Type Declarations
 

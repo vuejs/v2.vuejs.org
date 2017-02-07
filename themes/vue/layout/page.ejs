@@ -12,7 +12,7 @@
       <%- partial('partials/ad') %>
     <% } %>
     <% if (page.title.trim()) { %>
-      <h1><%- page.title %><%- page.type === 'examples' ? ' Exemple' : '' %></h1>
+      <h1><%- page.type === 'examples' ? 'Exemple ' : '' %><%- page.title %></h1>
     <% } %>
     <%- page.content %>
     <% if (page.type === 'guide') { %>

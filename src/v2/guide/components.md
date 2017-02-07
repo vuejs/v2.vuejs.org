@@ -448,6 +448,8 @@ Every Vue instance implements an [events interface](../api/#Instance-Methods-Eve
 
 In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
 
+<p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
+
 Here's an example:
 
 ``` html
@@ -627,7 +629,10 @@ Vue.component('currency-input', {
     }
   }
 })
-new Vue({ el: '#currency-input-example' })
+new Vue({
+  el: '#currency-input-example',
+  data: { price: '' }
+})
 </script>
 {% endraw %}
 
@@ -995,7 +1000,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](http://webpack.github.io/docs/code-splitting.html):
+The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting-require/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1006,12 +1011,12 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-You can also return a `Promise` in the resolve function, so with Webpack 2 + ES2015 syntax you can do:
+You can also return a `Promise` in the factory function, so with Webpack 2 + ES2015 syntax you can do:
 
 ``` js
 Vue.component(
   'async-webpack-example',
-  () => System.import('./my-async-component')
+  () => import('./my-async-component')
 )
 ```
 
@@ -1036,7 +1041,7 @@ components: {
 Within HTML templates though, you have to use the kebab-case equivalents:
 
 ``` html
-<!-- alway use kebab-case in HTML templates -->
+<!-- always use kebab-case in HTML templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <title-cased-component></title-cased-component>

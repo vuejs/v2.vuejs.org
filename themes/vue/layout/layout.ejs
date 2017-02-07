@@ -2,55 +2,32 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <base href="http://localhost:4000/">
-        <title><%- page.title ? page.title + ' - ' : '' %>vue.js</title>
+        <title><%- page.title ? page.title + ' — ' : '' %>Vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="<%- theme.site_description %>">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <meta property="og:type" content="article">
-        <meta property="og:title" content="<%- page.title ? page.title + ' - ' : '' %>vue.js">
+        <meta property="og:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
         <meta property="og:description" content="<%- theme.site_description %>">
         <meta property="og:image" content="https://<%- theme.root_domain %>/images/logo.png">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="<%- page.title ? page.title + ' - ' : '' %>vue.js">
+        <meta name="twitter:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
         <meta name="twitter:description" content="<%- theme.site_description %>">
         <meta name="twitter:image" content="https://<%- theme.root_domain %>/images/logo.png">
 
-        <link rel="icon" href="./images/logo.png" type="image/x-icon">
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
 
         <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
 
         <!-- main page styles -->
-        <link rel="stylesheet" href="./<%- isIndex ? 'css/index' : 'css/page' %>.css">
+        <link rel="stylesheet" href="/<%- isIndex ? 'css/index' : 'css/page' %>.css">
 
         <!-- this needs to be loaded before guide's inline scripts -->
-        <script src="./js/vue.js"></script>
+        <script src="/js/vue.js"></script>
         <script>window.PAGE_TYPE = "<%- page.type %>"</script>
-    </head>
-    <body class="<%- isIndex ? '' : 'docs' -%>">
-        <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
-            <a class="menu-button"></a>
-            <a class="logo" href="./"></a>
-        </div>
-        <%- partial('partials/header') %>
-        <% if (!isIndex) { %>
-            <div id="main" class="fix-sidebar">
-                <% if (page.blog_index) { %>
-                    <%- partial('partials/blog') %>
-                <% } else { %>
-                    <%- body %>
-                <% } %>
-            </div>
-            <script src="./js/smooth-scroll.min.js"></script>
-        <% } else { %>
-            <%- body %>
-        <% } %>
-
-        <!-- main custom script for sidebars, version selects etc. -->
-        <script src="./js/common.js"></script>
 
         <!-- ga -->
         <script>
@@ -62,6 +39,29 @@
           ga('create', '<%- theme.google_analytics %>', '<%- theme.root_domain %>');
           ga('send', 'pageview');
         </script>
+    </head>
+    <body class="<%- isIndex ? '' : 'docs' -%>">
+        <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        <%- partial('partials/header') %>
+        <% if (!isIndex) { %>
+            <div id="main" class="fix-sidebar">
+                <% if (page.blog_index) { %>
+                    <%- partial('partials/blog') %>
+                <% } else { %>
+                    <%- body %>
+                <% } %>
+            </div>
+            <script src="/js/smooth-scroll.min.js"></script>
+        <% } else { %>
+            <%- body %>
+        <% } %>
+
+        <!-- main custom script for sidebars, version selects etc. -->        
+        <script src="/js/css.escape.js"></script>
+        <script src="/js/common.js"></script>
 
         <!-- search -->
         <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>

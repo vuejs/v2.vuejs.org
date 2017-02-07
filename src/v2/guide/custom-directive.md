@@ -24,7 +24,7 @@ new Vue({
 </script>
 {% endraw %}
 
-When the page loads, that element gains focus. In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
+When the page loads, that element gains focus (note: autofocus doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
 
 ``` js
 // Register a global custom directive called v-focus

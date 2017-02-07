@@ -662,7 +662,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Called after a data change causes the virtual DOM to be re-rendered and patched.
 
-  The component's DOM will be in updated state when this hook is called, so you can perform DOM-dependent operations in this hook. However, in most cases you should avoid changing state in this hook, because it may lead to an infinite update loop.
+  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
 
   **This hook is not called during server-side rendering.**
 
@@ -1329,6 +1329,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   This directive triggers transitions when its condition changes.
 
+<p class="tip">Quand utilisé avec v-if, v-for a une plus grande priorité par rapport à v-if. Voir le <a href="../guide/list.html#v-for-with-v-if">guide sur le rendu de listes</a> pour plus de détails.</p>
+
 - **Voir aussi :** [Conditional Rendering - v-if](../guide/conditional.html)
 
 ### v-else
@@ -1412,6 +1414,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
 
+  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+
   The detailed usage for `v-for` is explained in the guide section linked below.
 
 - **Voir aussi :**
@@ -1433,6 +1437,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `.self` - only trigger handler if event was dispatched from this element.
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
   - `.native` - listen for a native event on the root element of component.
+  - `.once` - trigger handler at most once.
 
 - **Utilisation :**
 
@@ -1471,6 +1476,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- key modifier using keyCode -->
   <input @keyup.13="onEnter">
+
+  <!-- the click event will be triggered at most once -->
+  <button v-on:click.once="doThis"></button>
   ```
 
   Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
@@ -1519,7 +1527,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- shorthand -->
   <img :src="imageSrc">
-  
+
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
 
@@ -1742,21 +1750,27 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
   - `enter-class` - string
   - `leave-class` - string
+  - `appear-class` - string
+  - `enter-to-class` - string
+  - `leave-to-class` - string
+  - `appear-to-class` - string
   - `enter-active-class` - string
   - `leave-active-class` - string
-  - `appear-class` - string
   - `appear-active-class` - string
 
 - **Events:**
   - `before-enter`
-  - `enter`
-  - `after-enter`
   - `before-leave`
-  - `leave`
-  - `after-leave`
   - `before-appear`
+  - `enter`
+  - `leave`
   - `appear`
+  - `after-enter`
+  - `after-leave`
   - `after-appear`
+  - `enter-cancelled`
+  - `leave-cancelled` (`v-show` only)
+  - `appear-cancelled`
 
 - **Utilisation :**
 
