@@ -24,7 +24,7 @@ order: 19
 이제 우리는 할 수 있습니다:
 
 - [완전한 구문 강조](https://github.com/vuejs/awesome-vue#syntax-highlighting)
-- [CommonJS 모듈](https://webpack.github.io/docs/commonjs.html)
+- [CommonJS 모듈](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [컴포넌트에만 제한된 CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
 약속대로 Jade, Babel (ES2015 모듈을 포함합니다), Stylus와 같은 전처리기를 사용해 더 깨끗하고 기능이 풍부한 컴포넌트를 사용할 수 있습니다.
@@ -59,7 +59,6 @@ order: 19
 - **ES2015/16를 사용하는 최신 JavaScript** : Babel의 [ES2015 교육 가이드](https://babeljs.io/docs/learn-es2015/)를 읽어보세요. 지금 당장 모든 기능을 외울 필요는 없으나 이 페이지는 언제든지 다시 볼 수 있도록 가지고 계세요.
 
 위 내용을 얻으려면 하루정도 걸립니다. 이 후에 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 을 확인하는 것을 추천합니다. 설명을 따라 가면 `.vue` 컴포넌트, ES2015 및 핫 리로드가 포함된 Vue 프로젝트를 즉시 사용할 수 있게 됩니다.
-
 
 템플릿은 여러 "모듈"을 가져와 최종 응용프로그램에 묶는 모듈 번들러인 [Webpack](https://webpack.github.io/)을 사용합니다. Webpack 자체에 대한 자세한 내용을 보려면 [이 동영상](https://www.youtube.com/watch?v=WQue1AN93YU)에서 좋은 소개를 볼 수 있습니다. 일단 기본을 익히면 [Egghead.io의 고급 Webpack 코스](https://egghead.io/courses/using-webpack-for-production-javascript-applications)를 확인하십시오.
 

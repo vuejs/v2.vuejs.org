@@ -33,11 +33,11 @@ Vue는 ECMAScript 5 기능을 사용하기 때문에 IE8 이하 버전을 **지�
 
 추천 : [unpkg](https://unpkg.com/vue/dist/vue.js)는 npm에 올라간 최신 버전을 반영합니다. [unpkg.com/vue/](https://unpkg.com/vue/)에서 npm 패키지의 원본을 찾아 볼 수도 있습니다.
 
-또한 [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) 와 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 를 사용할 수 있으나, 두 서비스는 동기화에 시간이 걸리므로 아직 최신 버전을 사용지 못할 수 있습니다.
+또한 [jsDelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) 와 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 를 사용할 수 있으나, 두 서비스는 동기화에 시간이 걸리므로 아직 최신 버전을 사용지 못할 수 있습니다.
 
 ## NPM
 
-Vue로 대규모 응용 프로그램을 빌드할 때 NPM을 권장합니다. [Webpack](http://webpack.github.io/) 또는 [Browserify](http://browserify.org/)와 같은 모듈 번들러와 잘 작동합니다. Vue는 [단일 파일 컴포넌트](single-file-components.html)를 만들기 위한 도구도 제공합니다.
+Vue로 대규모 응용 프로그램을 빌드할 때 NPM을 권장합니다. [Webpack](https://webpack.js.org/) 또는 [Browserify](http://browserify.org/)와 같은 모듈 번들러와 잘 작동합니다. Vue는 [단일 파일 컴포넌트](single-file-components.html)를 만들기 위한 도구도 제공합니다.
 
 ``` bash
 # 최신 안정화 버전

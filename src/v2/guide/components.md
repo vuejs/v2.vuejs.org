@@ -149,7 +149,7 @@ var data = { counter: 0 }
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
   // 데이터는 기술적으로 함수이므로 Vue는 따지지 않지만
-  // 각 컴포넌트 인스턴스에 대해 동일한 객체 참조를 반환합니다.
+  // 각 컴포넌트 인스턴스에 대해 같은 객체 참조를 반환합니다.
   data: function () {
     return data
   }
@@ -180,7 +180,7 @@ new Vue({
 </script>
 {% endraw %}
 
-이런! 세 개의 컴포넌트 인스턴스가 모두 동일한 `data` 객체를 공유하므로 하나의 카운터를 증가 시키면 모두 증가합니다! 대신 새로운 데이터 객체를 반환하여이 문제를 해결합시다.
+이런! 세 개의 컴포넌트 인스턴스가 모두 같은 `data` 객체를 공유하므로 하나의 카운터를 증가 시키면 모두 증가합니다! 대신 새로운 데이터 객체를 반환하여이 문제를 해결합시다.
 
 ``` js
 data: function () {
@@ -885,7 +885,7 @@ Vue.component('child-component', {
 
 ## 동적 컴포넌트
 
-동일한 마운트 포인트를 사용하고 예약된 `<component>` 엘리먼트를 사용하여 여러 컴포넌트 간에 동적으로 전환하고 `is` 속성에 동적으로 바인드 할 수 있습니다.
+같은 마운트 포인트를 사용하고 예약된 `<component>` 엘리먼트를 사용하여 여러 컴포넌트 간에 동적으로 전환하고 `is` 속성에 동적으로 바인드 할 수 있습니다.
 
 ``` js
 var vm = new Vue({
@@ -999,7 +999,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](http://webpack.github.io/docs/code-splitting.html)과 함께 비동기 컴포넌트를 사용하는 것입니다.
+팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](https://webpack.js.org/guides/code-splitting-require/)과 함께 비동기 컴포넌트를 사용하는 것입니다.
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1015,7 +1015,7 @@ factory 함수에서 `Promise`를 반환할 수도 있습니다. 그래서 Webpa
 ``` js
 Vue.component(
   'async-webpack-example',
-  () => System.import('./my-async-component')
+  () => import('./my-async-component')
 )
 ```
 

@@ -221,13 +221,13 @@ Vue를 시작하기 위해 JSX, ES2015 또는 빌드 시스템에 대해 알 필
 
 ### 네이티브 렌더링
 
-ReactNative를 사용하면 동일한 React 컴포넌트 모델을 사용하여 iOS 및 Android 용 기본 렌더링 애플리케이션을 작성할 수 있습니다. 이것은 개발자로서 여러 플랫폼에서 에 대한 지식을 적용할 수 있다는 점에서 매우 좋습니다. Vue는 Vue를 JavaScript 런타임으로 사용하는 Alibaba Group에서 개발 한 크로스 플랫폼 UI인 [Weex](https://alibaba.github.io/weex/)와 공식 협업을 맺고 있습니다. 즉, Weex를 사용하면 동일한 Vue 컴포넌트 문법을 사용하여 브라우저에서 렌더링할 수 있을 뿐만 아니라 iOS 및 Android에서도 렌더링 할 수있는 컴포넌트를 작성할 수 있습니다!
+ReactNative를 사용하면 같은 React 컴포넌트 모델을 사용하여 iOS 및 Android 용 기본 렌더링 애플리케이션을 작성할 수 있습니다. 이것은 개발자로서 여러 플랫폼에서 에 대한 지식을 적용할 수 있다는 점에서 매우 좋습니다. Vue는 Vue를 JavaScript 런타임으로 사용하는 Alibaba Group에서 개발 한 크로스 플랫폼 UI인 [Weex](https://alibaba.github.io/weex/)와 공식 협업을 맺고 있습니다. 즉, Weex를 사용하면 같은 Vue 컴포넌트 문법을 사용하여 브라우저에서 렌더링할 수 있을 뿐만 아니라 iOS 및 Android에서도 렌더링 할 수있는 컴포넌트를 작성할 수 있습니다!
 
 현재 Weex는 아직 개발 중이며 ReactNative만큼 성숙하고 전투적인 테스트를 거치지는 않았지만 개발은 세계 최대의 전자 상거래 비즈니스의 생산 요구에 의해 주도되고 있고 Vue 팀은 적극적으로 협력 할 것입니다. Weex 팀과 함께 Vue 개발자를위한 원활한 경험을 보장합니다.
 
 ### MobX과 함께
 
-MobX는 React 커뮤니티에서 꽤 유명해졌고 실제로 Vue와 거의 동일한 반응형 시스템을 사용합니다. 제한된 범위 내에서 React + MobX 워크플로우는 좀 더 장황한 Vue로 생각할 수 있습니다. 따라서 이 조합을 사용하고 있고 그것을 즐기고 있다면 Vue로 넘어오는 것이 아마도 다음 단계일 것입니다.
+MobX는 React 커뮤니티에서 꽤 유명해졌고 실제로 Vue와 거의 같은 반응형 시스템을 사용합니다. 제한된 범위 내에서 React + MobX 워크플로우는 좀 더 장황한 Vue로 생각할 수 있습니다. 따라서 이 조합을 사용하고 있고 그것을 즐기고 있다면 Vue로 넘어오는 것이 아마도 다음 단계일 것입니다.
 
 ## Angular 1
 
@@ -323,5 +323,5 @@ Riot 2.0은 작고 아름답게 디자인 된 API를 사용하여 유사한 컴�
 
 - [전환 효과 시스템](transitions.html). Riot에는 아무 것도 없습니다.
 - 훨씬 강력한 라우터. Riot의 라우팅 API는 극히 약합니다.
-- 더 나은 성능. 가상 DOM을 사용하는 것보다 Riot은 [DOM 트리 순회](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding)를 하므로 앵귤러 1과 동일한 성능 문제가 있습니다.
+- 더 나은 성능. 가상 DOM을 사용하는 것보다 Riot은 [DOM 트리 순회](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding)를 하므로 앵귤러 1과 같은 성능 문제가 있습니다.
 - 보다 성숙한 도구 지원. Vue는 [Webpack](https://github.com/vuejs/vue-loader)및 [Browserify](https://github.com/vuejs/vueify)에 대한 공식적으로 지원하지만 Riot는 빌드 시스템 통합을 커뮤니티 지원에 의존합니다.

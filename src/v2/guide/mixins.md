@@ -84,7 +84,7 @@ vm.bar() // -> "bar"
 vm.conflicting() // -> "from self"
 ```
 
-동일한 병합 전략이`Vue.extend()`에서 사용된다는 것에주의하십시오.
+같은 병합 전략이`Vue.extend()`에서 사용된다는 것에주의하십시오.
 
 ## 전역 Mixin
 

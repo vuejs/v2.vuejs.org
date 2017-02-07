@@ -18,7 +18,7 @@ Webpack이나 Browserify와 같은 빌드 툴을 사용할 때, 프로덕션 모
 
 #### Webpack
 
-프로덕션 환경을 알리기 위해 Webpack의[DefinePlugin] (http://webpack.github.io/docs/list-of-plugins.html#defineplugin)을 사용하여 최소화 중에 UglifyJS에 의해 경고 블록이 자동으로 삭제 될 수 있도록합니다.
+프로덕션 환경을 알리기 위해 Webpack의[DefinePlugin](https://webpack.js.org/plugins/define-plugin/)을 사용하여 최소화 중에 UglifyJS에 의해 경고 블록이 자동으로 삭제 될 수 있도록합니다.
 
 설정 예제:
 
@@ -77,7 +77,7 @@ Webpack을 사용하고 JavaScript 및 템플릿 파일을 분리하는 것을 �
 
 ## 컴포넌트의 CSS 추출하기
 
-단일 파일 컴포넌트를 사용할 때, 컴포넌트 내부의 CSS는 JavaScript를 통해 `<style>`태그로 동적으로 삽입됩니다. 런타임 비용이 적고, 서버 측 렌더링을 사용하는 경우 "스타일이없는 내용의 깜빡임"이 발생합니다. CSS를 모든 컴포넌트에서 동일한 파일로 추출하고 이러한 문제를 피하고 CSS 축소 및 캐싱을 향상시킵니다.
+단일 파일 컴포넌트를 사용할 때, 컴포넌트 내부의 CSS는 JavaScript를 통해 `<style>`태그로 동적으로 삽입됩니다. 런타임 비용이 적고, 서버 측 렌더링을 사용하는 경우 "스타일이없는 내용의 깜빡임"이 발생합니다. CSS를 모든 컴포넌트에서 같은 파일로 추출하고 이러한 문제를 피하고 CSS 축소 및 캐싱을 향상시킵니다.
 
 이를 적용하려면 해당 빌드 도구 문서를 참조하십시오.
 
