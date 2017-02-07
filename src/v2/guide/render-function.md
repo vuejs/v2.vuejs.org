@@ -159,7 +159,7 @@ createElement(
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // 사용자 지정 지시문.
+  // 사용자 지정 디렉티브.
   // Vue는 이를 관리하기 때문에 바인딩의 oldValue는 설정할 수 없습니다.
   directives: [
     {
