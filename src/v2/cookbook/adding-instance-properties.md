@@ -58,11 +58,11 @@ new Vue({
 })
 ```
 
-Cela sera `"Le nom d'une autre app"`, puis `"Mon App"`, car `this.appName` est écrasé ([en quelques sortes](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) par `data` quand l'instance est créée. Nous limitons la portée des propriétés avec `$` pour éviter ça. Vous pouvez même utiliser votre propre convention si vous préférez, comme `$_appName` ou `ΩappName`, pour en plus prévenir les conflits avec les plugins et les fonctionnalités futures.
+Cela sera `"Le nom d'une autre app"`, puis `"Mon App"`, car `this.appName` est écrasée ([en quelques sortes](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) par `data` quand l'instance est créée. Nous limitons la portée des propriétés avec `$` pour éviter ça. Vous pouvez même utiliser votre propre convention si vous préférez, comme `$_appName` ou `ΩappName`, pour en plus prévenir les conflits avec les plugins et les fonctionnalités futures.
 
 ## Un exemple en situation réelle : Remplacer Vue Resource par Axios
 
-Disons vous remplacez le [maintenant déprécié Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4). Vous aimiez vraiment accéder aux méthodes de requête avec `this.$http` et vous voulez faire la même chose avec Axios à la place.
+Disons que vous remplacez le [maintenant déprécié Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4) ; vous aimiez vraiment accéder aux méthodes de requête avec `this.$http` et vous voulez faire la même chose avec Axios à la place.
 
 Tout ce que vous avez à faire est inclure axios dans votre projet :
 
@@ -139,7 +139,7 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 ## Quand éviter ce *pattern*
 
-Tant que vous êtes vigilants à la portée des propriétés du prototype, utiliser ce *pattern* est plutôt sûr - c'est-à-dire, peu probable de produire des bugs.
+Tant que vous êtes vigilants sur la portée des propriétés du prototype, utiliser ce *pattern* est plutôt sûr - c'est-à-dire, peu probable de produire des bugs.
 
 Cependant, il peut parfois semer la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exemple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue !". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque-chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
 
