@@ -329,6 +329,23 @@ type: api
   ```
 
 - **See also:** [Render Functions](../guide/render-function.html)
+ 
+
+<h3 id="Vue-version">Vue.version</h3>
+
+- **Details**: Informs the current version of Vue. 
+- **Usage**: Different strategies depending on the version of the Vue
+
+```js
+const version = Number(Vue.version.split('.')[0])
+
+if (version >= 2) {
+// Vue v2+
+} else {
+// Vue v1
+}
+```
+
 
 ## Options / Data
 
