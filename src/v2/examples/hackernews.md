@@ -1,12 +1,12 @@
 ---
-title: HackerNews Clone
+title: Clone de HackerNews
 type: examples
 order: 10
 ---
 
-> This is a HackerNews clone built upon HN's official Firebase API, Vue 2.0 + vue-router + vuex, with server-side rendering.
+> Ceci est un build clone du site HackerNews (HN) utilisant l'API Firebase HN officielle, Vue 2.0 + vue-router + vuex, avec un rendu côté serveur.
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>{% raw %}
+{% raw %}
 <div style="max-width:600px">
   <a href="https://github.com/vuejs/vue-hackernews-2.0" target="_blank">
     <img style="width:100%" src="/images/hn.png">
@@ -14,22 +14,22 @@ order: 10
 </div>
 {% endraw %}
 
-> [Live Demo](https://vue-hn.now.sh/)
-> Note: the demo may need some spin up time if nobody has accessed it for a certain period.
+> [Démo en ligne](https://vue-hn.now.sh/)
+> Note : la démo peut avoir besoin de temps pour se lancer si personne n'y a accédé depuis un certain temps.
 >
 > [[Source](https://github.com/vuejs/vue-hackernews-2.0)]
 
-## Features
+## Fonctionnalités
 
-- Server Side Rendering
-  - Vue + vue-router + vuex working together
-  - Server-side data pre-fetching
-  - Client-side state & DOM hydration
-- Single-file Vue Components
-  - Hot-reload in development
-  - CSS extraction for production
-- Real-time List Updates with FLIP Animation
+- Rendu Côté Serveur
+  - Vue + vue-router + vuex fonctionnant ensemble
+  - Données serveur préchargées
+  - État Client et Hydratation du DOM
+- Composant Vue Monofichier
+  - Rechargement à chaud en développement
+  - Extraction CSS pour la production
+- Mise à jour en temps-réel de liste avec animation de réordonnement.
 
-## Architecture Overview
+## Présentation d'architecture
 
-<img width="973" alt="Hackernew clone architecture overview" src="/images/hn-architecture.png">
+<img width="973" alt="Présentation d'architecture clone Hackernew" src="/images/hn-architecture.png">

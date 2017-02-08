@@ -27,13 +27,30 @@
     }
 
     function createSourceSearchPath(query) {
-      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent(query) + '+&type=Code'
+      query = query
+        .replace(/\([^\)]*?\)/g, '')
+        .replace(/vm\./g, 'Vue.prototype.')
+      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
   }
 
+  function parseRawHash (hash) {
+    // Remove leading hash
+    if (hash.charAt(0) === '#') {
+      hash = hash.substr(1)
+    }
+
+    // Escape characthers
+    try {
+      hash = decodeURIComponent(hash)
+    } catch (e) {}
+    return CSS.escape(hash)
+  }
+
   function initLocationHashFuzzyMatching () {
-    var hash = window.location.hash
-    if (!hash) return
+    var rawHash = window.location.hash
+    if (!rawHash) return
+    var hash = parseRawHash(rawHash)
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
@@ -46,7 +63,7 @@
         if (distanceA > distanceB) return 1
         return 0
       })
-      window.location.hash = possibleHashes[0]
+      window.location.hash = '#' + possibleHashes[0]
     }
 
     function normalizeHash (rawHash) {
@@ -158,7 +175,10 @@
 
       var animating = false
       sectionContainer.addEventListener('click', function (e) {
-        e.preventDefault()
+
+        // Not prevent hashchange for smooth-scroll
+        // e.preventDefault()
+
         if (e.target.classList.contains('section-link')) {
           sidebar.classList.remove('open')
           setActive(e.target)

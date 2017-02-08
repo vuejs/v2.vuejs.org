@@ -1,12 +1,12 @@
 ---
-title: The Vue Instance
+title: L'instance de Vue
 type: guide
 order: 3
 ---
 
-## Constructor
+## Constructeur
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Every Vue vm is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
+Chaque Vue vm est initialisée en créant une **instance racine de Vue** avec le constructeur de la fonction `Vue`
 
 ``` js
 var vm = new Vue({
@@ -14,27 +14,27 @@ var vm = new Vue({
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was no doubt inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instances.
+Bien que n'étant pas strictement associée au patron d'architecture [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), la conception de Vue s'en est en partie inspirée. Par convention, nous utilisons souvent la variable `vm` (abréviation pour ViewModel) pour faire référence à nos instances de Vue.
 
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](../api).
+Quand vous créez une instance de Vue, vous devez passer un **objet d'options** qui contient les options pour les données, le template, l'element de montage, les méthodes, les fonctions de retour du cycle de vie etc... La liste des options peut être trouvée [dans la documentation de l'API](../api).
 
-The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
+Le constructeur de `Vue` peut être étendu pour créer des **constructeurs de composants** réutilisables avec des options prédéfinies.
 
 ``` js
 var MyComponent = Vue.extend({
-  // extension options
+  // options d'extension
 })
 
-// all instances of `MyComponent` are created with
-// the pre-defined extension options
+// toutes les instances de `MyComponent` sont créées avec
+// les options d'extension prédéfinies
 var myComponentInstance = new MyComponent()
 ```
 
-Although it is possible to create extended instances imperatively, most of the time it is recommended to compose them declaratively in templates as custom elements. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
+Bien qu'il soit possible de créer des instances étendues de manière impérative, la plupart du temps il est recommandé de les composer de manière déclarative dans les templates en tant qu'éléments personnalisés. Nous parlerons du [système de composants](components.html) en détail plus loin. Pour le moment, vous avez juste besoin de savoir que tous les composants de Vue sont fondamentalement des instances de Vue étendues. 
 
-## Properties and Methods
+## Propriétés et méthodes
 
-Each Vue instance **proxies** all the properties found in its `data` object:
+Chaque instance de vue **« proxifie »** toutes les propriétés contenues dans son objet `data`
 
 ``` js
 var data = { a: 1 }
@@ -44,18 +44,18 @@ var vm = new Vue({
 
 vm.a === data.a // -> true
 
-// setting the property also affects original data
+// assigner la propriété affecte également la donnée originale
 vm.a = 2
 data.a // -> 2
 
-// ... and vice-versa
+// ... et vice-versa
 data.a = 3
 vm.a // -> 3
 ```
 
-It should be noted that only these proxied properties are **reactive**. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.
+Soulignons que seuls ces propriétés proxifiées sont **réactives**. Si vous attachez une nouvelle propriété à l'instance après sa création, elle ne déclenchera aucune mise à jour de la vue. Nous parlerons plus loin du système de réactivité en détail.
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate them from proxied data properties. For example:
+En plus des propriétés de data, les instances de Vue exposent de nombreuses méthodes et propriétés utiles. Ces propriétés et méthodes sont préfixées par `$` pour les différencier des propriétés proxifiées de data. Par exemple :
 
 ``` js
 var data = { a: 1 }
@@ -67,19 +67,19 @@ var vm = new Vue({
 vm.$data === data // -> true
 vm.$el === document.getElementById('example') // -> true
 
-// $watch is an instance method
+// $watch est une méthode de l'instance
 vm.$watch('a', function (newVal, oldVal) {
-  // this callback will be called when `vm.a` changes
+  // cette fonction de retour sera appelée quand `vm.a` changera
 })
 ```
 
-<p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an instance property or callback (e.g. `vm.$watch('a', newVal => this.myMethod())`). As arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect and `this.myMethod` will be undefined.</p>
+<p class="tip">N'utilisez pas les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) sur une propriété ou fonction de retour d'une instance  (par exemple `vm.$watch('a', newVal => this.myMethod())`). Comme les fonctions fléchées sont liées au contexte parent, `this` ne sera pas l'instance de Vue comme vous pourriez vous y attendre et `this.myMethod` sera indéfini.</p>
 
-Consult the [API reference](../api) for the full list of instance properties and methods.
+Consultez [l'API](../api) pour une liste complète des propriétés et méthodes d'une instance. 
 
-## Instance Lifecycle Hooks
+## Les *hooks* de cycle de vie d'une instance
 
-Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance is created:
+Chaque instance de vue traverse une série d'étapes d'initialisation au moment de sa création - par exemple, elle doit mettre en place l'observation des données, compiler le template, monter l'instance sur le DOM et mettre à jour le DOM quand les données changent. En cours de route, elle va aussi invoquer des **_hooks_ de cycle de vie**, qui nous donnent l'opportunité d'exécuter une logique personnalisée. Par exemple, le hook [`created`](../api/#created) est appelé une fois l'instance créée.
 
 ``` js
 var vm = new Vue({
@@ -87,17 +87,237 @@ var vm = new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
+    // `this` est une référence à l'instance de vm
     console.log('a is: ' + this.a)
   }
 })
 // -> "a is: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, for example `mounted`, `updated`, and `destroyed`. All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. You may have been wondering where the concept of "controllers" lives in the Vue world and the answer is: there are no controllers. Your custom logic for a component would be split among these lifecycle hooks.
+Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple [`mounted`](../api/#mounted), [`updated`](../api/#updated) et [`destroyed`](../api/#destroyed). Tous ces *hooks* de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de « contrôleur » dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces hooks de cycle de vie.
 
-## Lifecycle Diagram
+## Diagramme de cycle de vie
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but this diagram will be helpful in the future.
+Ci-dessous se trouve le diagramme d'un cycle de vie d'une instance. Vous n'avez pas besoin de tout comprendre de A à Z à ce stade, mais ce diagramme pourra vous être utile dans le futur.
 
-![Lifecycle](/images/lifecycle.png)
+<div class="lifecycle">
+	<style scoped>
+		.lifecycle {
+		    position: relative;
+		    font-size: 2vw;
+		    font-weight: bold;
+		    color: #fff;
+		    text-align: center;
+		}
+		@media (min-width: 760px) {
+			.lifecycle {
+		    	font-size: 16px;
+			}
+		}
+		.lifecycle--observe-data,
+		.lifecycle--init-event,
+		.lifecycle--has-el,
+		.lifecycle--has-template,
+		.lifecycle--when-mount,
+		.lifecycle--if-el-yes,
+		.lifecycle--if-el-no,
+		.lifecycle--if-template-yes,
+		.lifecycle--if-template-no,
+		.lifecycle--compile-function,
+		.lifecycle--compile-template,
+		.lifecycle--create-el,
+		.lifecycle--virtual-dom,
+		.lifecycle--when-data-change,
+		.lifecycle--when-destroy,
+		.lifecycle--teardown,
+		.lifecycle--mounted,
+		.lifecycle--destroyed {
+			z-index: 2;
+		    position: absolute; 
+		    transform: translate(-50%, -50%);
+		    background-color: #3ab882;
+		    border-radius: 10px;
+		}
+		.lifecycle--observe-data,
+		.lifecycle--init-event,
+		.lifecycle--compile-function,
+		.lifecycle--compile-template,
+		.lifecycle--create-el,
+		.lifecycle--virtual-dom,
+		.lifecycle--teardown {
+		    background-color: #3ab882;
+		    border-radius: 10px;
+		}
+		.lifecycle--has-el,
+		.lifecycle--has-template {
+		    background-color: #fcb738;
+		    border-radius: 50%;
+		}
+		.lifecycle--mounted,
+		.lifecycle--destroyed {
+		    background-color: #da5961;
+		    border-radius: 50%;
+		}
+		.lifecycle--when-mount,
+		.lifecycle--if-el-yes,
+		.lifecycle--if-el-no,
+		.lifecycle--if-template-yes,
+		.lifecycle--if-template-no,
+		.lifecycle--when-data-change,
+		.lifecycle--when-destroy {
+			color: #8699A3;
+		    background-color: #fff;
+		}
+		.lifecycle--observe-data {
+		    top: 9.7%;
+		    left: 49%;
+		    width: 24.5%;
+		    height: 3.3%;
+		}
+		.lifecycle--init-event {
+		    top: 15.3%;
+		    left: 49%;
+		    width: 24.5%;
+		    height: 2.9%;
+		}
+		.lifecycle--has-el {
+		    top: 23.2%;
+		    left: 49%;
+		    width: 16%;
+		    height: 4%;
+		}
+		.lifecycle--has-template {
+			top: 31.6%;
+			left: 49%;
+			width: 16%;
+			height: 4%;
+		}
+		.lifecycle--when-mount {
+			top: 27%;
+		    left: 77.5%;
+		    width: 18%;
+			height: 4%;
+		}
+		.lifecycle--if-el-yes {
+	        left: 45%;
+		    top: 27.4%;
+		    width: 6%;
+		    height: 1%;
+		}
+		.lifecycle--if-el-no {
+		    top: 22.2%;
+		    left: 70.5%;
+		    width: 6%;
+		    height: 1%;
+		}
+		.lifecycle--if-template-yes {
+	        top: 37.7%;
+		    left: 22.5%;
+		    width: 6%;
+		    height: 1%;
+		}
+		.lifecycle--if-template-no {
+		    top: 37.7%;
+		    left: 75.5%;
+		    width: 6%;
+		    height: 1%;
+		}
+		.lifecycle--compile-function {
+			top: 41.7%;
+		    left: 27%;
+		    width: 24.5%;
+		    height: 5%;
+		}
+		.lifecycle--compile-template {
+			top: 41.7%;
+		    left: 70.5%;
+		    width: 24.5%;
+		    height: 5%;
+		}
+		.lifecycle--create-el {
+			top: 55%;
+		    left: 49%;
+		    width: 24.5%;
+		    height: 5%;
+		}
+		.lifecycle--virtual-dom {
+    		top: 68.5%;
+	        left: 79%;
+    		width: 17%;
+		    height: 5%;
+		}
+		.lifecycle--when-data-change {
+		    top: 63%;
+    		left: 66%;
+    		width: 13%;
+			height: 4%;
+		}
+		.lifecycle--when-destroy {
+			top: 75.2%;
+		    left: 49%;
+		    width: 17%;
+			height: 4%;
+		}
+		.lifecycle--teardown {
+	        top: 85%;
+		    left: 49%;
+    		width: 28%;
+		    height: 5%;
+		}
+		.lifecycle--mounted {
+    		top: 68.3%;
+		    left: 49%;
+	        width: 12%;
+		    height: 5%;
+		}
+		.lifecycle--destroyed {
+		    top: 94%;
+		    left: 49%;
+	        width: 12%;
+		    height: 5%;
+		}
+		.lifecycle--observe-data span,
+		.lifecycle--init-event span,
+		.lifecycle--has-el span,
+		.lifecycle--has-template span,
+		.lifecycle--when-mount span,
+		.lifecycle--if-el-yes span,
+		.lifecycle--if-el-no span,
+		.lifecycle--if-template-yes span,
+		.lifecycle--if-template-no span,
+		.lifecycle--compile-function span,
+		.lifecycle--compile-template span,
+		.lifecycle--create-el span,
+		.lifecycle--virtual-dom span,
+		.lifecycle--when-data-change span,
+		.lifecycle--when-destroy span,
+		.lifecycle--teardown span,
+		.lifecycle--mounted span,
+		.lifecycle--destroyed span {
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+			transform: translate(-50%, -50%);
+			width: 100%;
+		}
+	</style>
+	<div class="lifecycle--observe-data"><span>Observe les données</span></div>
+	<div class="lifecycle--init-event"><span>Initialise les événements</span></div>
+	<div class="lifecycle--has-el"><span>A l'option “el”</span></div>
+	<div class="lifecycle--has-template"><span>A l'option “template”</span></div>
+	<div class="lifecycle--when-mount"><span>quand vm.$mount(el) est appelé</span></div>
+	<div class="lifecycle--if-el-yes"><span>OUI</span></div>
+	<div class="lifecycle--if-el-no"><span>NON</span></div>
+	<div class="lifecycle--if-template-yes"><span>OUI</span></div>
+	<div class="lifecycle--if-template-no"><span>NON</span></div>
+	<div class="lifecycle--compile-function"><span>Compiler le template en une fonction de rendu</span></div>
+	<div class="lifecycle--compile-template"><span>Compiler le contenu HTML de el en tant que template</span></div>
+	<div class="lifecycle--create-el"><span>Créer vm.$el et remplacer el avec</span></div>
+	<div class="lifecycle--virtual-dom"><span>Re-rendu du DOM Virtuel puis du DOM</span></div>
+	<div class="lifecycle--when-data-change"><span>quand les données changent</span></div>
+	<div class="lifecycle--when-destroy"><span>quand vm.$destroy() est appelé</span></div>
+	<div class="lifecycle--teardown"><span>Démontage des observateurs, composants enfants et écouteurs d'événement</span></div>
+	<div class="lifecycle--mounted"><span>Monté</span></div>
+	<div class="lifecycle--destroyed"><span>Détruit</span></div>
+	<p><img src="/images/lifecycle.png" alt="Lifecycle"></p>
+</div>
