@@ -138,6 +138,8 @@ new Vue({
 </script>
 {% endraw %}
 
+Wait!  Shouldn't the value equal the expression if a string is passed, not the argument.
+
 ## Function Shorthand
 
 In many cases, you may want the same behavior on `bind` and `update`, but don't care about the other hooks. For example:
