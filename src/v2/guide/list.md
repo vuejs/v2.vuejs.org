@@ -244,7 +244,7 @@ Here's a complete example of a simple todo list:
   >
   <ul>
     <li
-      id="todo-item"
+      is="todo-item"
       v-for="(todo, index) in todos"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
