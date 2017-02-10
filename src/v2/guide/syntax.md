@@ -56,7 +56,7 @@ Cela fonctionne également pour les attributs booléens - l'attribut sera retir�
 
 ### Utiliser des expressions JavaScript
 
-Jusqu'ici, nous avons seulement lié de simples clés de propriétés dans nos templates. Mais Vue.js supporte en réalité toute la puissance des expressions JavaScript à l'intérieur de toutes les liaisons de données.
+Jusqu'ici, nous avons seulement lié de simples clés de propriétés dans nos templates. Mais Vue.js supporte en réalité toute la puissance des expressions JavaScript à l'intérieur de toutes les liaisons de données :
 
 ``` html
 {{ number + 1 }}
