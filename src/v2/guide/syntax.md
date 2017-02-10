@@ -8,24 +8,24 @@ Vue.js utilise une syntaxe basée sur le HTML qui vous permet de lier déclarati
 
 Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimum de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimales de manipulations au DOM quand l'état de l'application change. 
 
-Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance du Javascript pur, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support de JSX optionnel.
+Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance du JavaScript pur, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support de JSX optionnel.
 
 ## Interpolations
 
 ### Texte
 
-La forme de base de la liaison de donnée est l'interpolation de texte en utilisant la syntaxe "Moustache" (les doubles accolades)
+La forme de base de la liaison de donnée est l'interpolation de texte en utilisant la syntaxe "Mustache" (les doubles accolades)
 
 ``` html
 <span>Message: {{ msg }}</span>
 ```
 
-Le tag moustache sera remplacé par la valeur de la propriété `msg` de l'objet data correspondant. Il sera également mis à jour à chaque fois que la propriété `msg` de l'objet data changera.
+La balise moustache sera remplacée par la valeur de la propriété `msg` de l'objet data correspondant. Elle sera également mis à jour à chaque fois que la propriété `msg` de l'objet data changera.
 
-Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors de la modification des données en utilisant la [directive v-once](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons de données présentes sur le même noeud:
+Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors de la modification des données en utilisant la [directive v-once](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons de données présentes sur le même noeud :
 
 ``` html
-<span v-once>Ceci ne changera jamais: {{ msg }}</span>
+<span v-once>Ceci ne changera jamais : {{ msg }}</span>
 ```
 
 ### Interpétation du HTML
@@ -54,9 +54,9 @@ Cela fonctionne également pour les attributs booléens - l'attribut sera retir�
 <button v-bind:disabled="someDynamicCondition">Button</button>
 ```
 
-### Utiliser des expressions Javascript
+### Utiliser des expressions JavaScript
 
-Jusqu'ici, nous avons seulement lié de simples clés de propriétés dans nos templates. Mais Vue.js supporte en réalité toute la puissance des expressions Javascript à l'intérieur de toutes les liaisons de données.
+Jusqu'ici, nous avons seulement lié de simples clés de propriétés dans nos templates. Mais Vue.js supporte en réalité toute la puissance des expressions JavaScript à l'intérieur de toutes les liaisons de données.
 
 ``` html
 {{ number + 1 }}
@@ -68,7 +68,7 @@ Jusqu'ici, nous avons seulement lié de simples clés de propriétés dans nos t
 <div v-bind:id="'list-' + id"></div>
 ```
 
-Ces expressions seront évaluées en tant que Javascript au sein de la portée des données de l'instance de Vue propriétaire. Une restriction est que chacune de ces liaisons ne peut contenir **qu'une seule expression**, donc ce qui suit ne fonctionnera **PAS**
+Ces expressions seront évaluées en tant que JavaScript au sein de la portée des données de l'instance de Vue propriétaire. Une restriction est que chacune de ces liaisons ne peut contenir **qu'une seule expression**, donc ce qui suit ne fonctionnera **PAS**
 
 ``` html
 <!-- ceci est une déclaration, pas une expression: -->
@@ -82,7 +82,7 @@ Ces expressions seront évaluées en tant que Javascript au sein de la portée d
 
 ## Directives
 
-Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs de directives sont **une   unique expression Javascript** (A l'exception de `v-for`, qui sera discuté plus loin). Le travail d'une directive est d'appliquer réactivement des effets secondaires au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
+Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs de directives sont **une   unique expression JavaScript** (A l'exception de `v-for`, qui sera discuté plus loin). Le travail d'une directive est d'appliquer réactivement des effets secondaires au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
 
 ``` html
 <p v-if="seen">Maintenant vous me voyez</p>
@@ -120,7 +120,7 @@ Nous verrons plus de cas d'utilisations des modificateurs plus loin quand nous p
 
 ## Filtres
 
-Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer des formatages de textes courants. Les filtres sont utilisables à deux endroits : **les interpolations de moustaches et les expressions de v-bind**. Les filtres doivent être ajoutés à la fin de l'expression Javascript, indiqués par le symbole de la barre verticale : 
+Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer des formatages de textes courants. Les filtres sont utilisables à deux endroits : **les interpolations de moustaches et les expressions de v-bind**. Les filtres doivent être ajoutés à la fin de l'expression JavaScript, indiqués par le symbole de la barre verticale : 
 
 ``` html
 <!-- dans les moustaches -->
@@ -130,7 +130,7 @@ Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Les filtres de Vue 2.x peuvent être seulement utilisés à l'intérieur des interpolations de moustaches et des expressions de `v-bind` ( ces dernières étant supportées depuis la 2.1.0) car les filtres ont été conçus à la base dans le but de transformer du texte. Pour des cas plus complexes de transformation de données dans d'autres directives, vous devriez utiliser les [propriétés calculées](computed.html) à la place.</p>
+<p class="tip">Les filtres de Vue 2.x peuvent être seulement utilisés à l'intérieur des interpolations de moustaches et des expressions de `v-bind` (ces dernières étant supportées depuis la 2.1.0) car les filtres ont été conçus à la base dans le but de transformer du texte. Pour des cas plus complexes de transformation de données dans d'autres directives, vous devriez utiliser les [propriétés calculées](computed.html) à la place.</p>
 
 La fonction de filtre reçoit toujours la valeur de l'expression comme premier argument.
 
@@ -153,7 +153,7 @@ Les filtres peuvent être chainés :
 {{ message | filterA | filterB }}
 ```
 
-Les filtres sont des fonctions Javascript et peuvent donc recevoir des arguments :
+Les filtres sont des fonctions JavaScript et peuvent donc recevoir des arguments :
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
