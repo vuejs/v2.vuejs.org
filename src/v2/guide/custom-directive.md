@@ -89,7 +89,7 @@ Directive hooks are passed these arguments:
 An example of a custom directive using some of these properties:
 
 ``` html
-<div id="hook-arguments-example" v-demo:hello.a.b="message"></div>
+<div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
 ```
 
 ``` js
