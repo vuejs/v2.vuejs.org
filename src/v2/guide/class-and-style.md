@@ -19,7 +19,7 @@ order: 6
 
 위 구문은 `active` 클래스의 존재 여부가 데이터 속성 `isActive` 의 [참 속성](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)에 의해 결정되는 것을 의미합니다.
 
-객체에 필드가 더 있으면 여러 클래스를 토글 할 수 있습니다. 또한`v-bind:class` 지시문은 일반 `class` 속성과 공존할 수 있습니다. 그래서 다음과 같은 템플릿이 가능합니다:
+객체에 필드가 더 있으면 여러 클래스를 토글 할 수 있습니다. 또한`v-bind:class` 디렉티브는 일반 `class` 속성과 공존할 수 있습니다. 그래서 다음과 같은 템플릿이 가능합니다:
 
 ``` html
 <div class="static"
