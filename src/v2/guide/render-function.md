@@ -282,7 +282,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+在render函数中，没有提供`v-model`的实现，所以你需要自己实现逻辑：
 
 ``` js
 render: function (createElement) {
@@ -304,7 +304,7 @@ This is the cost of going lower-level, but it also gives you much more control o
 
 ### Event & Key Modifiers
 
-For the `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+对于 `.capture` 和 `.once` 这样的事件修饰符, Vue 提供了用于 `on` 的前缀:
 
 | Modifier(s) | Prefix |
 | ------ | ------ |
@@ -312,7 +312,7 @@ For the `.capture` and `.once` event modifiers, Vue offers prefixes that can be 
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |
 
-For example:
+示例:
 
 ```javascript
 on: {
@@ -322,7 +322,7 @@ on: {
 }
 ```
 
-For all other event and key modifiers, no proprietary prefix is necessary, because you can simply use event methods in the handler:
+对于其他的事件和关键字修饰符, 你可以在处理程序中使用事件方法实现：
 
 | Modifier(s) | Equivalent in Handler |
 | ------ | ------ |
@@ -332,7 +332,7 @@ For all other event and key modifiers, no proprietary prefix is necessary, becau
 | Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
 | Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
 
-Here's an example with all of these modifiers used together:
+这里是所有修饰符一起使用的例子:
 
 ```javascript
 on: {
@@ -355,7 +355,7 @@ on: {
 
 ### Slots
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](http://vuejs.org/v2/api/#vm-slots):
+使用[`this.$slots`](http://vuejs.org/v2/api/#vm-slots)访问静态插槽内容：
 
 ``` js
 render: function (createElement) {
@@ -364,7 +364,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots):
+使用[`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots)访问作用域插槽作为返回VNodes的函数:
 
 ``` js
 render: function (createElement) {
@@ -377,7 +377,7 @@ render: function (createElement) {
 }
 ```
 
-To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+使用render函数传递作用于插槽到子组件，使用VNode数据中的`scopedSlots`关键字：
 
 ``` js
 render (createElement) {
@@ -548,6 +548,7 @@ Vue.component('smart-list', {
     <pre><code>{{ result.render }}</code></pre>
     <label>staticRenderFns:</label>
     <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
+    <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
     <label>Compilation Error:</label>
@@ -560,7 +561,9 @@ new Vue({
   data: {
     templateText: '\
 <div>\n\
-  <h1>I\'m a template!</h1>\n\
+  <header>\n\
+    <h1>I\'m a template!</h1>\n\
+  </header>\n\
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\
@@ -607,7 +610,7 @@ console.error = function (error) {
 }
 #vue-compile-demo textarea {
   width: 100%;
-
+  font-family: monospace;
 }
 </style>
 {% endraw %}

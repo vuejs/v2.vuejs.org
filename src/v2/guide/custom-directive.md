@@ -91,7 +91,7 @@ directives: {
 一个使用了这些参数的自定义钩子样例：
 
 ``` html
-<div id="hook-arguments-example" v-demo:hello.a.b="message"></div>
+<div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
 ```
 
 ``` js
