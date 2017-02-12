@@ -85,7 +85,7 @@ directives: {
 다음 속성 중 일부를 사용하는 사용자 지정 디렉티브의 예제 입니다.
 
 ``` html
-<div id="hook-arguments-example" v-demo:hello.a.b="message"></div>
+<div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
 ```
 
 ``` js

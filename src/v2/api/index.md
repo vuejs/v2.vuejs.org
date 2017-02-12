@@ -329,6 +329,24 @@ type: api
   ```
 
 - **참고:** [렌더 함수](../guide/render-function.html)
+ 
+<h3 id="Vue-version">Vue.version</h3>
+
+- **상세**: 설치된 Vue 버전을 가져올 수 있습니다. 버전을 이용해서 커뮤니티 플러그인과 컴포넌트 또는 버전마다 다른 처리를 하는데 유용하게 사용할 수 있습니다.
+
+- **사용법**:
+
+```js
+var version = Number(Vue.version.split('.')[0])
+
+if (version === 2) {
+  // Vue v2.x.x
+} else if (version === 1) {
+  // Vue v1.x.x
+} else {
+  // 지원하지 않는 버전의 경우..
+}
+```
 
 ## 옵션 / 데이터
 
