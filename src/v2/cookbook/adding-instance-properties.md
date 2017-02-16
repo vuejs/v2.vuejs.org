@@ -113,7 +113,7 @@ Vue.prototype.$reverseText = function (propertyName) {
 
 new Vue({
   data: {
-    message: 'Hello '
+    message: 'Hello'
   },
   created: function () {
     console.log(this.message)    // => "Hello"
