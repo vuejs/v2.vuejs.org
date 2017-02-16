@@ -115,7 +115,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="hook-arguments-example" v-demo:hello.a.b="message" class="demo"></div>
+<div id="hook-arguments-example" v-demo:foo.a.b="message" class="demo"></div>
 <script>
 Vue.directive('demo', {
   bind: function (el, binding, vnode) {
