@@ -820,7 +820,7 @@ Vue.component('child-component', {
 
 > 2.1.0 新增
 
-作用域插槽是一种特殊类型的插槽，用作使用一个（能够传递数据到）可重用模板替换已渲染元素。
+作用域插槽是一种特殊类型的插槽，用作（可以传入数据的）可重用模板,而不是已渲染元素。
 
 在子组件中，只需将数据传递到插槽，就像你将 prop 传递给组件一样：
 
@@ -858,7 +858,7 @@ Vue.component('child-component', {
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- 作用域插槽也可以在这里命名 -->
+  <!-- 作用域插槽也可以被命名 -->
   <template slot="item" scope="props">
     <li class="my-fancy-item">{{ props.text }}</li>
   </template>
