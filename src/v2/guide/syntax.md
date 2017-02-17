@@ -4,9 +4,9 @@ type: guide
 order: 4
 ---
 
-Vue.js utilise une syntaxe basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance de Vue sous-jacente. Tous les templates de Vue.js sont du HTML valide qui peut être interprété par les navigateurs conformes aux spécifications et les interpréteurs HTML.
+Vue.js utilise une syntaxe basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance de Vue sous-jacente. Tous les templates de Vue.js sont du HTML valide qui peut être interprété par les navigateurs et les interpréteurs HTML conformes aux spécifications .
 
-Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimum de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimales de manipulations au DOM quand l'état de l'application change. 
+Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimal de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimales de manipulations au DOM quand l'état de l'application change. 
 
 Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance du JavaScript pur, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support de JSX optionnel.
 
@@ -14,15 +14,15 @@ Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez 
 
 ### Texte
 
-La forme de base de la liaison de donnée est l'interpolation de texte en utilisant la syntaxe "Mustache" (les doubles accolades)
+La forme de base de la liaison de données est l'interpolation de texte en utilisant la syntaxe "Mustache" (les doubles accolades)
 
 ``` html
 <span>Message: {{ msg }}</span>
 ```
 
-La balise moustache sera remplacée par la valeur de la propriété `msg` de l'objet data correspondant. Elle sera également mis à jour à chaque fois que la propriété `msg` de l'objet data changera.
+La balise moustache sera remplacée par la valeur de la propriété `msg` de l'objet data correspondant. Elle sera également mise à jour à chaque fois que la propriété `msg` de l'objet data changera.
 
-Vous pouvez également réaliser des interpolations uniques qui ne se mettront pas à jour lors de la modification des données en utilisant la [directive v-once](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons de données présentes sur le même noeud :
+Vous pouvez également réaliser des interpolations à usage unique (qui ne se mettront pas à jour lors de la modification des données) en utilisant la [directive v-once](../api/#v-once), mais gardez à l'esprit que cela affectera toutes les liaisons de données présentes sur le même noeud :
 
 ``` html
 <span v-once>Ceci ne changera jamais : {{ msg }}</span>
@@ -36,19 +36,19 @@ Les doubles moustaches interprètent la donnée en tant que texte brut, pas en t
 <div v-html="rawHtml"></div>
 ```
 
-Le contenu est alors inséré en tant que HTML classique - les liaisons de données sont ignorées. À noter que vous ne pouvez pas utiliser `v-html` pour composer des fragments de templates, parce que Vue n'est pas un moteur de template basé sur les chaînes de caractères. A la place, les composants sont préférés en tant qu'unité de base pour la réutilisabilité et la composition de l'IU (Interface Utilisateur).
+Le contenu est alors inséré en tant que HTML classique - les liaisons de données sont ignorées. À noter que vous ne pouvez pas utiliser `v-html` pour composer des fragments de templates, parce que Vue n'est pas un moteur de template basé sur les chaînes de caractères. A la place, les composants sont préférés en tant qu'unité fondamentale pour la réutilisabilité et la composition de l'interface Utilisateur.
 
-<p class="tip"> Générer dynamiquement du HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à une [vulnérabilité XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu en provenance d'un utilisateur</p>
+<p class="tip">Générer dynamiquement du HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à des [vulnérabilités XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu en provenance d'un utilisateur</p>
 
 ### Attributs
 
-Les Moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTML, à la place utilisez une [directive v-bind](../api/#v-bind):
+Les moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTML, à la place utilisez une [directive v-bind](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-Cela fonctionne également pour les attributs booléens - l'attribut sera retiré si la condition est évaluée à faux :
+Cela fonctionne également pour les attributs booléens - l'attribut sera retiré si la condition est évaluée fausse :
 
 ``` html
 <button v-bind:disabled="someDynamicCondition">Button</button>
@@ -78,11 +78,11 @@ Ces expressions seront évaluées en tant que JavaScript au sein de la portée d
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">Les expressions de template sont isolées et ont accès seulement à une liste blanche de globales telles que `Math` et `Date`. Vous ne devriez pas tenter d'accéder à des variables globales définies par l'utilisateur dans les expressions de template.</p>
+<p class="tip">Les expressions de template sont isolées et ont seulement accès à une liste blanche de globales telles que `Math` et `Date`. Vous ne devriez pas tenter d'accéder à des variables globales définies par l'utilisateur dans les expressions de template.</p>
 
 ## Directives
 
-Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs de directives sont **une   unique expression JavaScript** (A l'exception de `v-for`, qui sera discuté plus loin). Le travail d'une directive est d'appliquer réactivement des effets secondaires au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
+Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs de directives sont **une unique expression JavaScript** (A l'exception de `v-for`, qui sera discuté plus loin). Le travail d'une directive est d'appliquer réactivement des effets secondaires au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
 
 ``` html
 <p v-if="seen">Maintenant vous me voyez</p>
@@ -92,13 +92,13 @@ Ici, la directive `v-if` retirerait / insererait l'élement `<p>` en se basant s
 
 ### Arguments
 
-Certaines directives peuvent prendre un argument, indiqué par deux petits points après le nom de la directive. Par exemple, la directive `v-bind` est utilisée pour mettre à jour réactivement un attribut HTML :
+Certaines directives peuvent prendre un argument, indiqué par un deux-points après le nom de la directive. Par exemple, la directive `v-bind` est utilisée pour mettre à jour réactivement un attribut HTML :
 
 ``` html
 <a v-bind:href="url"></a>
 ```
 
-Ici `href`est un argument, qui dit à la directive `v-bind` de lier l'attribut `href` de l'élément à la valeur de l'expression `url`
+Ici `href` est un argument, qui dit à la directive `v-bind` de lier l'attribut `href` de l'élément à la valeur de l'expression `url`
 
 Un autre exemple est la directive `v-on`, qui écoute les évènements du DOM :
 
@@ -110,17 +110,17 @@ Ici l'argument est le nom de l'évènement à écouter. Nous parlerons aussi plu
 
 ### Modificateurs
 
-Les modificateurs sont des suffixes indiqués par un point, qui indique qu'une directive devrait être lié d'une manière spécifique. Par exemple, le modificateur `.prevent` dit à la directive `v-on` d'appeler `event.preventDefault()` lorsque l'évènement survient.
+Les modificateurs sont des suffixes spéciaux indiqués par un point, qui indique qu'une directive devrait être liée d'une manière spécifique. Par exemple, le modificateur `.prevent` dit à la directive `v-on` d'appeler `event.preventDefault()` lorsque l'évènement survient.
 
 ``` html
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-Nous verrons plus de cas d'utilisations des modificateurs plus loin quand nous porterons un regard plus attentif sur `v-on` et `v-model`
+Nous verrons plus de cas d'utilisation des modificateurs plus loin quand nous porterons un regard plus attentif sur `v-on` et `v-model`
 
 ## Filtres
 
-Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer des formatages de textes courants. Les filtres sont utilisables à deux endroits : **les interpolations de moustaches et les expressions de v-bind**. Les filtres doivent être ajoutés à la fin de l'expression JavaScript, indiqués par le symbole de la barre verticale : 
+Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer des formatages de textes courants. Les filtres sont utilisables à deux endroits : **les interpolations à moustaches et les expressions de v-bind**. Les filtres doivent être ajoutés à la fin de l'expression JavaScript, indiqués par le symbole de la barre verticale : 
 
 ``` html
 <!-- dans les moustaches -->
@@ -147,7 +147,7 @@ new Vue({
 })
 ```
 
-Les filtres peuvent être chainés :
+Les filtres peuvent être chaînés :
 
 ``` html
 {{ message | filterA | filterB }}
@@ -159,11 +159,11 @@ Les filtres sont des fonctions JavaScript et peuvent donc recevoir des arguments
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Ici la chaîne de caractères `'arg1'` sera passée au filtre en tant que second argument, et la valeur de l'expression  `arg2` sera évaluée et passée en tant que troisième argument.
+Ici la chaîne de caractères `'arg1'` sera passée au filtre en tant que second argument, et la valeur de l'expression `arg2` sera évaluée et passée en tant que troisième argument.
 
 ## Abréviations
 
-Le préfixe `v-` sert d'indicateur visuel pour identifier les attributs spécifiques à Vue dans vos templates. C'est pratique lorsque vous utilisez Vue.js pour appliquer des comportements dynamiques sur un balisage existant, mais peut sembler verbeux pour des directives utilisées fréquemment. Par ailleurs, le besoin pour le préfixe `v-`devient moins important quand vous développez une [application monopage](https://fr.wikipedia.org/wiki/Application_web_monopage) où Vue.js gère tous les templates. C'est pourquoi Vue.js fournit des abréviations pour deux des directives les plus utilisées, `v-bind` et `v-on`:
+Le préfixe `v-` sert d'indicateur visuel pour identifier les attributs spécifiques à Vue dans vos templates. C'est pratique lorsque vous utilisez Vue.js pour appliquer des comportements dynamiques sur un balisage existant, mais peut sembler verbeux pour des directives utilisées fréquemment. Par ailleurs, le besoin d'un préfixe `v-`devient moins important quand vous développez une [application monopage](https://fr.wikipedia.org/wiki/Application_web_monopage) où Vue.js gère tous les templates. C'est pourquoi Vue.js fournit des abréviations pour deux des directives les plus utilisées, `v-bind` et `v-on`:
 
 ### Abréviation pour `v-bind` 
 
