@@ -40,4 +40,4 @@ HTML5 History API와 결합하여 매우 기본적이지만 기능이 완벽한 
 
 ## 써드파티 라우터 목록
 
-써드파티 라우터를 사용하기 위해서, 예를 들어 [Page.js](https://github.com/visionmedia/page.js) 또는 [Director](https://github.com/flatiron/director)는 [쉽습니다.](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs) 여기에 Page.js를 사용하는 [완변한 예제](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs)가 있습니다.
+써드파티 라우터를 사용하기 위해서, 예를 들어 [Page.js](https://github.com/visionmedia/page.js) 또는 [Director](https://github.com/flatiron/director)는 [쉽습니다.](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs) 여기에 Page.js를 사용하는 [완벽한 예제](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs)가 있습니다.
