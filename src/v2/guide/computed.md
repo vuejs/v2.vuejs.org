@@ -6,7 +6,7 @@ order: 5
 
 ## Propriétés calculées
 
-Les expressions dans le template sont très pratiques, mais elles sont uniquement destinées pour des opérations simples. Mettre trop de logique dans vos templates, cela peut les rendre trop verbeux et difficiles à maintenir. Par exemple :
+Les expressions dans le template sont très pratiques, mais elles sont uniquement destinées pour des opérations simples. Mettre trop de logique dans vos templates peut les rendre trop verbeux et difficiles à maintenir. Par exemple :
 
 ``` html
 <div id="example">
@@ -16,7 +16,7 @@ Les expressions dans le template sont très pratiques, mais elles sont uniquemen
 
 À cet endroit, le template n'est ni simple, ni déclaratif. Vous devez le regarder pendant une seconde avant de réaliser qu'il affiche `message` dans le sens inverse. Le problème s'aggrave lorsque vous souhaitez inclure le message inversé plusieurs fois dans votre template.
 
-C'est pourquoi pour des logiques complexes, vous devriez utiliser des **propriétés calculées**.
+C'est pourquoi vous devriez utiliser des **propriétés calculées** pour des logiques complexes.
 
 ### Exemple basique
 
@@ -31,7 +31,7 @@ C'est pourquoi pour des logiques complexes, vous devriez utiliser des **proprié
 var vm = new Vue({
   el: '#example',
   data: {
-    message: 'Hello'
+    message: 'Bonjour'
   },
   computed: {
     // un accesseur calculé
@@ -54,7 +54,7 @@ Résultat :
 var vm = new Vue({
   el: '#example',
   data: {
-    message: 'Hello'
+    message: 'Bonjour'
   },
   computed: {
     reversedMessage: function () {
@@ -68,14 +68,14 @@ var vm = new Vue({
 Ici, nous avons déclaré une propriété calculée `reversedMessage`. La fonction que nous avons fournie sera utilisée comme une fonction accesseur (getter) pour la propriété `vm.reversedMessage` :
 
 ``` js
-console.log(vm.reversedMessage) // -> 'olleH'
-vm.message = 'Goodbye'
-console.log(vm.reversedMessage) // -> 'eybdooG'
+console.log(vm.reversedMessage) // -> 'ruojnoB'
+vm.message = 'Au revoir'
+console.log(vm.reversedMessage) // -> 'riover uA'
 ```
 
 Vous pouvez ouvrir la console et jouer vous-même avec l'exemple de vm. La valeur de `vm.reversedMessage` dépend toujours de la valeur de `vm.message`.
 
-Vous pouvez lier des données aux propriétés calculées dans les templates comme une propriété normale. Vue est au courant que `vm.reversedMessage` dépend de `vm.message`, donc il mettra à jour toutes les liaisons qui dépendent de `vm.reversedMessage` lorsque `vm.message` changera. Et la meilleure chose, c'est que nous avons créé cette relation de dépendance de façon déclarative : la fonction de l'accesseur calculé n'a pas d'effets secondaires, ce qui la rend facile à tester et à raisonner.
+Vous pouvez lier des données aux propriétés calculées dans les templates comme une propriété normale. Vue est au courant que `vm.reversedMessage` dépend de `vm.message`, donc il mettra à jour toutes les liaisons qui dépendent de `vm.reversedMessage` lorsque `vm.message` changera. Et ce qui est encore mieux c'est que nous avons crée cette relation de dépendance de façon déclarative : la fonction de l'accesseur calculé n'a pas d'effets secondaires, ce qui la rend facile à tester et à raisonner.
 
 ### Mise en cache dans `computed` vs `methods`
 
@@ -108,11 +108,11 @@ computed: {
 
 En comparaison, une invocation de méthode exécutera **toujours** la fonction à chaque fois que se produira un re-déclenchement du rendu.
 
-Pourquoi avons-nous besoin de mettre en cache ? Imaginez que nous avons une propriété calculée couteuse **A**, qui exige une boucle dans un énorme tableau et fait beaucoup de calculs. Alors nous pouvons avoir d’autres propriétés calculées qui dépendent à leur tour de **A**. Sans la mise en cache, nous exécuterions l'accesseur de **A** autant de fois que nécessaire ! Dans les cas où vous ne souhaitez pas la mise en cache, utilisez une méthode à la place.
+Pourquoi avons-nous besoin de mettre en cache ? Imaginez que nous avons une propriété calculée couteuse **A**, qui exige une boucle dans un énorme tableau et qui fait beaucoup de calculs. Alors nous pouvons avoir d’autres propriétés calculées qui dépendent à leur tour de **A**. Sans la mise en cache, nous exécuterions l'accesseur de **A** autant de fois que nécessaire ! Dans les cas où vous ne souhaitez pas la mise en cache, utilisez une méthode à la place.
 
 ### Propriétés calculées vs observées
 
-Vue fournit vraiment une façon plus générique d'observer et de réagir aux changements de données sur une instance de Vue : **les propriétés watch**. Quand vous avez des données qu’il faut changer basées sur d’autres données, il est tentant d’abuser de `watch` (surtout si vous venez du monde d'AngularJS). Toutefois, il est souvent préférable d’utiliser une propriété calculée et pas une fonction impérative de retour de `watch`. Considérez cet exemple :
+Vue fournit vraiment une façon plus générique d'observer et de réagir aux changements de données sur une instance de Vue : **les propriétés watch**. Quand vous avez des données qu’il faut changer basées sur d’autres données, il est tentant d’abuser de `watch` (surtout si vous venez du monde d'AngularJS). Toutefois, il est souvent préférable d’utiliser une propriété calculée et pas une fonction de retour impérative de `watch`. Considérez cet exemple :
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -158,7 +158,7 @@ C'est mieux, n'est-ce pas ?
 
 ### Mutateur calculé
 
-Les propriétés calculées ont par défaut un accesseur uniquement, mais vous pouvez également fournir un mutateur (setter) quand vous en avez besoin :
+Les propriétés calculées ont par défaut uniquement un accesseur, mais vous pouvez également fournir un mutateur (setter) quand vous en avez besoin :
 
 ``` js
 // ...
@@ -183,7 +183,7 @@ Maintenant, lorsque vous exécutez `vm.fullName = 'John Doe'`, le mutateur sera 
 
 ## Observateurs
 
-Bien que les propriétés calculées sont plus appropriées dans la plupart des cas, parfois un observateur personnalisé est nécessaire. C'est pour cela que Vue fournit une façon plus générique de réagir aux changements de données à travers l'option `watch`. Ceci est très utile lorsque vous souhaitez exécuter des opérations asynchrones ou coûteuses en réponse aux données changeantes.
+Bien que les propriétés calculées soient plus appropriées dans la plupart des cas, parfois un observateur personnalisé est nécessaire. C'est pour cela que Vue fournit une façon plus générique de réagir aux changements de données à travers l'option `watch`. Ceci est très utile lorsque vous souhaitez exécuter des opérations asynchrones ou coûteuses en réponse aux données changeantes.
 
 Par exemple :
 
