@@ -93,6 +93,18 @@ markdown:
   smartLists: true
   smartypants: true
 
+# Offline
+## Config passed to sw-precache
+## https://github.com/JLHwung/hexo-offline
+offline:
+  maximumFileSizeToCacheInBytes: 10485760
+  staticFileGlobs:
+    - public/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}
+    - public/**/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}
+    - public/manifest.json
+    - public/browserconfig.xml
+  stripPrefix: public
+
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
