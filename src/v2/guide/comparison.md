@@ -107,22 +107,15 @@ In React, all components express their UI within render functions using JSX, a d
 render () {
   let { items } = this.props
 
-  let children
-  if (items.length > 0) {
-    children = (
+  return (
+    <div className='list-container'>
+      {items.length > 0 ?
       <ul>
         {items.map(item =>
           <li key={item.id}>{item.name}</li>
         )}
-      </ul>
-    )
-  } else {
-    children = <p>No items found.</p>
-  }
-
-  return (
-    <div className='list-container'>
-      {children}
+      </ul> :
+      <p>No items found.</p>}
     </div>
   )
 }
