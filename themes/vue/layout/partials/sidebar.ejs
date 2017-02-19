@@ -7,10 +7,10 @@
             <span>Sponsored By</span><br>
             <a href="http://www.thedifferenceengine.io/" target="_blank"
                 style="background-color: #f3f3f3; padding: 10px 0">
-                <img src="/images/tde.png">
+                <img src="<%- url_for("/images/tde.png") %>">
             </a>
         </div>
-        <a class="become-backer" href="/support-vuejs">
+        <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
             Become a Backer
         </a>
         <h2>
@@ -49,7 +49,7 @@
                     <!-- at least one recipe -->
                 <% } %>
                 <li>
-                    <a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
+                    <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
                 </li>
             <% }) %>
             <% if (type === 'cookbook') { %>
