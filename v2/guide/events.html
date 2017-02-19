@@ -686,6 +686,8 @@ new Vue({
 </blockquote>
 <p>For example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Alt + C --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.alt.67</span>=<span class="string">"clear"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- Ctrl + Click --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click.ctrl</span>=<span class="string">"doSomething"</span>&gt;</span>Do something<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p class="tip">Note that modifier keys are different from regular keys and when used with <code>keyup</code> events, they have to be pressed when the event is emitted. In other words, <code>keyup.ctrl</code> will only trigger if you release a key while holding down <code>ctrl</code>. It won’t trigger if you release the <code>ctrl</code> key alone.</p>
+
 <h2 id="Why-Listeners-in-HTML"><a href="#Why-Listeners-in-HTML" class="headerlink" title="Why Listeners in HTML?"></a>Why Listeners in HTML?</h2><p>You might be concerned that this whole event listening approach violates the good old rules about “separation of concerns”. Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that’s handling the current view, it won’t cause any maintenance difficulty. In fact, there are several benefits in using <code>v-on</code>:</p>
 <ol>
 <li><p>It’s easier to locate the handler function implementations within your JS code by simply skimming the HTML template.</p>
