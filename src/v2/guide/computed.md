@@ -201,7 +201,7 @@ Par exemple :
 <!-- Puisqu'il y a déjà un riche écosystème de bibliothèques ajax      -->
 <!-- et de collections de méthodes d'utilité générale, en ne les       -->
 <!-- réinventant pas, la base de Vue peut rester petit. Cela vous      -->
-<!-- donne aussi la liberté d’utiliser tout ce qui vous êtes familier. -->
+<!-- donne aussi la liberté d’utiliser tout ce qui vous est familier. -->
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script>
@@ -232,7 +232,7 @@ var watchExampleVM = new Vue({
           this.answer = 'Les questions contiennent généralement un point d\'interrogation. ;-)'
           return
         }
-        this.answer = 'Je réfléchis ...'
+        this.answer = 'Je réfléchis...'
         var vm = this
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
@@ -284,7 +284,7 @@ var watchExampleVM = new Vue({
           vm.answer = 'Les questions contiennent généralement un point d\'interrogation. ;-)'
           return
         }
-        vm.answer = 'Je réfléchis ...'
+        vm.answer = 'Je réfléchis...'
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
