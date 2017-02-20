@@ -4,17 +4,17 @@ type: guide
 order: 4
 ---
 
-Vue.js utilise une syntaxe basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance de Vue sous-jacente. Tous les templates de Vue.js sont du HTML valide qui peut être interprété par les navigateurs et les interpréteurs HTML conformes aux spécifications .
+Vue.js utilise une syntaxe de template basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance sous-jacente de Vue. Tous les templates de Vue.js sont du HTML valide qui peut être interprété par les navigateurs et les interpréteurs HTML conformes aux spécifications .
 
-Sous le capot, Vue compile les templates en fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimal de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimal de manipulations au DOM quand l'état de l'application change. 
+Sous le capot, Vue compile les templates dans des fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimal de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimal de manipulations au DOM quand l'état de l'application change. 
 
-Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance du JavaScript pur, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support de JSX optionnel.
+Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance du JavaScript pur, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support facultatif de JSX.
 
 ## Interpolations
 
 ### Texte
 
-La forme de base de la liaison de données est l'interpolation de texte en utilisant la syntaxe "Mustache" (les doubles accolades)
+La forme la plus élémentaire de la liaison de données est l'interpolation de texte en utilisant la syntaxe "Mustache" (les doubles accolades)
 
 ``` html
 <span>Message: {{ msg }}</span>
@@ -38,7 +38,7 @@ Les doubles moustaches interprètent la donnée en tant que texte brut, pas en t
 
 Le contenu est alors inséré en tant que HTML classique - les liaisons de données sont ignorées. À noter que vous ne pouvez pas utiliser `v-html` pour composer des fragments de templates, parce que Vue n'est pas un moteur de template basé sur les chaînes de caractères. A la place, les composants sont préférés en tant qu'unité fondamentale pour la réutilisabilité et la composition de l'interface Utilisateur.
 
-<p class="tip">Générer dynamiquement du HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à des [vulnérabilités XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu en provenance d'un utilisateur</p>
+<p class="tip">Générer dynamiquement du HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à des [vulnérabilités XSS](https://fr.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu fourni par utilisateur</p>
 
 ### Attributs
 
@@ -54,7 +54,7 @@ Cela fonctionne également pour les attributs booléens - l'attribut sera retir�
 <button v-bind:disabled="someDynamicCondition">Button</button>
 ```
 
-### Utiliser des expressions JavaScript
+### Utilisation des expressions JavaScript
 
 Jusqu'ici, nous avons seulement lié de simples clés de propriétés dans nos templates. Mais Vue.js supporte en réalité toute la puissance des expressions JavaScript à l'intérieur de toutes les liaisons de données :
 
@@ -68,7 +68,7 @@ Jusqu'ici, nous avons seulement lié de simples clés de propriétés dans nos t
 <div v-bind:id="'list-' + id"></div>
 ```
 
-Ces expressions seront évaluées en tant que JavaScript au sein de la portée des données de l'instance de Vue propriétaire. Une restriction est que chacune de ces liaisons ne peut contenir **qu'une seule expression**, donc ce qui suit ne fonctionnera **PAS**
+Ces expressions seront évaluées en tant que JavaScript au sein de la portée des données de l'instance de Vue propriétaire. Il y a une restriction : chacune de ces liaisons ne peut contenir **qu'une seule expression**, donc ce qui suit **NE** fonctionnera **PAS**
 
 ``` html
 <!-- ceci est une déclaration, pas une expression: -->
@@ -82,23 +82,23 @@ Ces expressions seront évaluées en tant que JavaScript au sein de la portée d
 
 ## Directives
 
-Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs de directives sont **une unique expression JavaScript** (A l'exception de `v-for`, qui sera discuté plus loin). Le travail d'une directive est d'appliquer réactivement des effets secondaires au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
+Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs attendues pour les attributs de directives sont **une unique expression JavaScript** (A l'exception de `v-for`, qui sera expliquée plus loin). Le travail d'une directive est d'appliquer réactivement des effets secondaires au DOM quand la valeur de son expression change. Revenons à l'exemple vu dans l'introduction :
 
 ``` html
 <p v-if="seen">Maintenant vous me voyez</p>
 ```
 
-Ici, la directive `v-if` retirerait / insererait l'élement `<p>` en se basant sur l'évaluation à vrai de la valeur de l'expression `seen`.
+Ici, la directive `v-if` retirerait / insérerait l'élement `<p>` en se basant sur l'évaluation à vrai de la valeur de l'expression `seen`.
 
 ### Arguments
 
-Certaines directives peuvent prendre un argument, indiqué par un deux-points après le nom de la directive. Par exemple, la directive `v-bind` est utilisée pour mettre à jour réactivement un attribut HTML :
+Certaines directives peuvent prendre un "argument", indiqué par un deux-points après le nom de la directive. Par exemple, la directive `v-bind` est utilisée pour mettre à jour réactivement un attribut HTML :
 
 ``` html
 <a v-bind:href="url"></a>
 ```
 
-Ici `href` est un argument, qui dit à la directive `v-bind` de lier l'attribut `href` de l'élément à la valeur de l'expression `url`
+Ici `href` est un argument, qui dit à la directive `v-bind` de lier l'attribut `href` de l'élément à la valeur de l'expression `url`.
 
 Un autre exemple est la directive `v-on`, qui écoute les évènements du DOM :
 
