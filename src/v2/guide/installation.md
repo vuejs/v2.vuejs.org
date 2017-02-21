@@ -52,7 +52,7 @@ Le compilateur de template se charge de compiler les chaînes littérales de tem
 
 - Le *build standalone* inclut le compilateur et supporte l'option `template`. **Il s'appuie également sur les APIs navigateurs, ce qui signifie que vous ne pouvez pas l'utiliser pour du rendu côté serveur.**
 
-- Le *build runtime* n'inclut pas le compitateur de template, et ne supporte pas l'option `template`. Vous pouvez seulement utiliser l'option `render` quand vous utilisez le build runtime, mais il fonctionne avec des composants mono-fichier, car les templates de composants mono-fichier sont pré-compilés dans `render` pendant l'étape de *build*. Le *build runtime* est à peu près 30% plus léger que le *build standalone*, l'amenant seulement à {{ro_gz_size}}ko min+gzip.
+- Le *build runtime* n'inclut pas le compilateur de template, et ne supporte pas l'option `template`. Vous pouvez seulement utiliser l'option `render` quand vous utilisez le build runtime, mais il fonctionne avec des composants mono-fichier, car les templates de composants mono-fichier sont pré-compilés dans `render` pendant l'étape de *build*. Le *build runtime* est à peu près 30% plus léger que le *build standalone*, l'amenant seulement à {{ro_gz_size}}ko min+gzip.
 
 Par défaut, c'est le _build **runtime**_ qui est exporté par le package NPM. Pour utiliser le *build standalone*, il faut ajouter l'alias suivant dans la configuration Webpack :
 

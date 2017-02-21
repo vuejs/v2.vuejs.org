@@ -179,7 +179,7 @@ data: {
 }
 ```
 
-Encore une fois, la syntaxe objet est souvent utilisée en conjonction avec des propriétées calculées retournant des objets.
+Encore une fois, la syntaxe objet est souvent utilisée en conjonction avec des propriétés calculées retournant des objets.
 
 ### Syntaxe tableau
 
