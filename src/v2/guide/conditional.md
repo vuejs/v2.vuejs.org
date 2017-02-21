@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-Dans les templates de chaines, par exemple Handlebars, nous pouvons écrire un bloc conditionnel comme ceci :
+Dans les templates de chaines, par exemple Handlebars, nous pouvons écrire une structure conditionnelle comme ceci :
 
 ``` html
 <!-- Template de Handlebars -->
@@ -21,14 +21,14 @@ Dans Vue, nous utilisons la directive `v-if` pour obtenir la même chose :
 <h1 v-if="ok">Oui</h1>
 ```
 
-Il est également possible d’ajouter un bloc « sinon » avec `v-else` :
+Il est également possible d’ajouter une structure « sinon » avec `v-else` :
 
 ``` html
 <h1 v-if="ok">Oui</h1>
 <h1 v-else>Non</h1>
 ```
 
-### Groupes conditionnels avec `v-if` sur `<template>`
+### Groupes conditionnels avec `v-if` dans un `<template>`
 
 Comme `v-if` est une directive, elle doit être attachée à un seul élément. Mais comment faire si nous voulons permuter plusieurs éléments ? Dans ce cas, nous pouvons utiliser `v-if` sur un élément `<template>`, qui sert d'enveloppe invisible.  Le résultat final rendu n’inclura pas l’élément `<template>`.
 
@@ -42,7 +42,7 @@ Comme `v-if` est une directive, elle doit être attachée à un seul élément. 
 
 ### `v-else`
 
-Vous pouvez utiliser la directive `v-else` pour indiquer un « bloc sinon » pour `v-if` :
+Vous pouvez utiliser la directive `v-else` pour indiquer une « structure sinon » pour `v-if` :
 
 ``` html
 <div v-if="Math.random() > 0.5">
@@ -57,9 +57,9 @@ Un élément `v-else` doit immédiatement suivre un élément `v-if` ou un élé
 
 ### `v-else-if`
 
-> Nouveau dans 2.1.0
+> Nouveau dans la 2.1.0
 
-Le `v-else-if`, comme le nom le suggère, sert comme un « bloc sinon si » pour `v-if`. Il peut également être enchaîné plusieurs fois :
+Le `v-else-if`, comme le nom le suggère, sert comme une « structure sinon si » pour `v-if`. Il peut également être enchaîné plusieurs fois :
 
 ```html
 <div v-if="type === 'A'">
@@ -180,15 +180,15 @@ Une autre option pour afficher conditionnellement un élément est la directive 
 <h1 v-show="ok">Bonjour !</h1>
 ```
 
-La différence est qu'un élément avec `v-show` sera toujours restitué et restera dans le DOM; `v-show` permute simplement la propriété CSS `display` de l'élément.
+La différence est qu'un élément avec `v-show` sera toujours restitué et restera dans le DOM ; `v-show` permute simplement la propriété CSS `display` de l'élément.
 
 <p class="tip">Notez que `v-show` ne prend pas en charge la syntaxe de `<template>` et ne fonctionne pas avec `v-else`.</p>
 
 ## `v-if` vs `v-show`
 
-`v-if` est un « vrai » rendu conditionnel car il garantit que les écouteurs d'événements et les composants enfants à l'intérieur du bloc conditionnel soient correctement détruits et recréés lors des permutations.
+`v-if` est un « vrai » rendu conditionnel car il garantit que les écouteurs d'événements et les composants enfants à l'intérieur de la structure conditionnelle soient correctement détruits et recréés lors des permutations.
 
-`v-if` est également **paresseux** : si la condition est fausse sur le rendu initial, il ne fera rien (le bloc conditionnel sera rendu quand la condition sera vraie pour la première fois).
+`v-if` est également **paresseux** : si la condition est fausse sur le rendu initial, il ne fera rien (la structure conditionnelle sera rendue quand la condition sera vraie pour la première fois).
 
 En comparaison, `v-show` est beaucoup plus simple (l’élément est toujours rendu indépendamment de la condition initiale, avec juste une simple permutation basée sur du CSS).
 
