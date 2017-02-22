@@ -7,14 +7,14 @@
 <div id="hero">
   <div class="inner">
     <div class="left">
-      <img class="hero-logo" src="/images/logo.png">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
     </div><div class="right">
       <h2 class="vue">Vue.js</h2>
       <h1>
         The Progressive<br>JavaScript Framework
       </h1>
       <p>
-        <a class="button" href="/v2/guide/">GET STARTED</a>
+        <a class="button" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
         <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
       </p>
     </div>
@@ -49,7 +49,7 @@
     <h3>PROUDLY SPONSORED BY</h3>
     <%- partial('partials/sponsors') %>
     <br>
-    <a class="become-sponsor button white" href="/support-vuejs/">Become a Backer</a>
+    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">Become a Backer</a>
   </div>
 </div>
 
