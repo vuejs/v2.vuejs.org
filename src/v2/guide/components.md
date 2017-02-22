@@ -569,32 +569,33 @@ Let's see it in action with a very simple currency input:
 Vue.component('currency-input', {
   template: '\
     <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
+      $ <input ref="input" v-model="localValue">\
     </span>\
   ',
   props: ['value'],
-  methods: {
-    // Instead of updating the value directly, this
-    // method is used to format and place constraints
-    // on the input's value
-    updateValue: function (value) {
-      var formattedValue = value
-        // Remove whitespace on either side
-        .trim()
-        // Shorten to 2 decimal places
-        .slice(0, value.indexOf('.') + 3)
-      // If the value was not already normalized,
-      // manually override it to conform
-      if (formattedValue !== value) {
-        this.$refs.input.value = formattedValue
+  computed: {
+    localValue: {
+      get: function() {
+        // localValue always equals to the value property
+        return this.value
+      },
+      // Instead of updating the value directly, this
+      // setter formats and places constraints on the 
+      // input's value
+      set: function(value) {
+        var formattedValue = value
+          // Remove whitespace on either side
+          .trim()
+          // Shorten to 2 decimal places
+          .slice(0, value.indexOf('.') + 3)
+        // If the value was not already normalized,
+        // manually override it to conform
+        if (formattedValue !== value) {
+          this.$refs.input.value = formattedValue
+        }
+        // Emit the number value through the input event
+        this.$emit('input', Number(formattedValue))
       }
-      // Emit the number value through the input event
-      this.$emit('input', Number(formattedValue))
     }
   }
 })
@@ -608,24 +609,24 @@ Vue.component('currency-input', {
 Vue.component('currency-input', {
   template: '\
     <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
+      $ <input ref="input" v-model="localValue">\
     </span>\
   ',
   props: ['value'],
-  methods: {
-    updateValue: function (value) {
-      var formattedValue = value
-        .trim()
-        .slice(0, value.indexOf('.') + 3)
-      if (formattedValue !== value) {
-        this.$refs.input.value = formattedValue
+  computed: {
+    localValue: {
+      get: function() {
+        return this.value
+      },
+      set: function(value) {
+        var formattedValue = value
+          .trim()
+          .slice(0, value.indexOf('.') + 3)
+        if (formattedValue !== value) {
+          this.$refs.input.value = formattedValue
+        }
+        this.$emit('input', Number(formattedValue))
       }
-      this.$emit('input', Number(formattedValue))
     }
   }
 })
@@ -638,7 +639,7 @@ new Vue({
 
 The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
 
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="https://jsfiddle.net/termosa/1oqjojjx/308/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 The events interface can also be used to create more unusual inputs. For example, imagine these possibilities:
 
