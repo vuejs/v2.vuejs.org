@@ -6,7 +6,7 @@ order: 4
 
 Vue.js utilise une syntaxe de template basée sur le HTML qui vous permet de lier déclarativement le DOM rendu aux données de l'instance sous-jacente de Vue. Tous les templates de Vue.js sont du HTML valide qui peut être interprété par les navigateurs et les interpréteurs HTML conformes aux spécifications .
 
-Sous le capot, Vue compile les templates dans des fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimal de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimal de manipulations au DOM quand l'état de l'application change. 
+Sous le capot, Vue compile les templates en des fonctions de rendu de DOM Virtuel. Combiné au système de réactivité, Vue est en mesure de déterminer intelligemment le nombre minimal de composants pour lesquels il faut re-déclencher le rendu et d'appliquer le nombre minimal de manipulations au DOM quand l'état de l'application change. 
 
 Si vous êtes familiers avec les concepts de DOM Virtuel et que vous préférez la puissance du JavaScript pur, vous pouvez aussi [écrire directement des fonctions de rendu](render-function.html) à la place des templates, avec un support facultatif de JSX.
 
