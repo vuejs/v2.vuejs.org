@@ -88,7 +88,7 @@ Les directives sont des attributs spéciaux avec le prefixe `v-`. Les valeurs at
 <p v-if="seen">Maintenant vous me voyez</p>
 ```
 
-Ici, la directive `v-if` retirerait / insérerait l'élement `<p>` en se basant sur l'évaluation à vrai de la valeur de l'expression `seen`.
+Ici, la directive `v-if` retirerait / insérerait l'élement `<p>` selon que l'expression `seen` soit considérée comme fausse / vraie.
 
 ### Arguments
 
