@@ -20,6 +20,11 @@ The easiest way to try out Vue.js is using the [JSFiddle Hello World example](ht
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 ```
 
+If you have installed, include Vue with:
+``` html
+<script src="/path/to/dir/vue.js"></script>
+```
+
 The [Installation](installation.html) page provides more options of installing Vue. Note that we **do not** recommend beginners to start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
 
 ## Declarative Rendering
