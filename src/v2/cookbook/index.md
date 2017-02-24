@@ -4,39 +4,39 @@ type: cookbook
 order: 0
 ---
 
-## WORK IN PROGRESS
+## TRAVAIL EN COURS
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p class="tip">This cookbook is still in its very early stages. At this point, we will not be linking to it from anywhere else. Pages may be removed or reorganized at any time. Even the goals and overall format are still in flux.</p>
+Ce livre de recettes (*cookbook*) en est encore à ses tout débuts. À ce stade, nous ne mettrons nulle part un lien vers celui-ci. Des pages peuvent être supprimées ou réorganisées à tout moment. Même les objectifs et le format global sont encore en mouvement.</p>
 
-## The Cookbook vs the Guide
+## Le *cookbook* versus le guide
 
-How is the cookbook different from the guide? Why is this necessary?
+En quoi le *cookbook* est-il différent du guide ? Pourquoi est-ce nécessaire ?
 
-- __Greater Focus__: In the guide, we're essentially telling a story. Each section builds on and assumes knowledge from each previous section. In the cookbook, each recipe can and should stand on its own. This means recipes can focus on one specific aspect of Vue, rather than having to give a general overview.
+- __Plus focalisé__ : Dans le guide, nous racontons essentiellement une histoire. Chaque section se construit sur la base des précédentes et présume la connaissance de celles-ci. Dans le *cookbook*, chaque recette peut et devrait se suffire à elle-même. Cela signifie que les recettes peuvent se focaliser sur un aspect spécifique de Vue, plutôt que d'avoir à donner un aperçu global.
 
-- __Greater Depth__: To avoid making the guide too long, we try to include only the simplest possible examples to help you understand each feature. Then we move on. In the cookbook, we can include more complex examples, combining features in interesting ways. Each recipe can also be as long and detailed as it needs to be, in order to fully explore its niche.
+- __Plus de profondeur__ : Pour éviter de rendre le guide trop long, nous essayons d'inclure seulement les exemples les plus simples possibles pour vous aider à comprendre chaque fonctionnalité. Puis nous passons à autre chose. Dans le *cookbook*, nous pouvons inclure des exemples plus complexes, combinant les fonctionnalités de façon intéressante. Chaque recette peut être aussi longue et détaillée que besoin, afin de pleinement explorer son sujet.
 
-- __Teaching JavaScript__: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won't explain how `Array.prototype.filter` works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.
+- __Enseigner JavaScript__ : Dans le guide, nous supposons que le lecteur est au moins moyennement familier avec la norme ES5 de JavaScript. Par exemple, nous n'expliquerons pas comment `Array.prototype.filter` fonctionne au sein d'une propriété calculée qui filtre une liste. Dans le *cookbook* en revanche, des fonctionnalités essentielles de JavaScript (y-compris ES6/2015+) peuvent être explorées et expliquées pour montrer comment elles nous aident à construire de meilleures applications Vue.
 
-- __Exploring the Ecosystem__: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
+- __Explorer l'écosystème__ : Pour les fonctionnalités avancées, nous supposons que le lecteur a quelques connaissances sur l'écosystème. Par exemple, si vous voulez utiliser des composants monofichiers avec Webpack, nous n'expliquerons pas comment configurer les parties qui ne concernent pas Vue dans la configuration de Webpack. Dans le *cookbook*, nous avons l'espace suffisant pour explorer plus en profondeur ces bibliothèques de l'écosystème - au moins dans la mesure où cela est universellement utile aux développeurs Vue.
 
-## Guidelines for Recipes
+## Lignes directrices pour les recettes
 
-Recipes should generally:
+Les recettes doivent généralement :
 
-> 1. Solve a specific, common problem
+> 1. Résoudre un problème spécifique et commun
 
-> 2. Start with the simplest possible example
+> 2. Commencer avec l'exemple le plus simple possible
 
-> 3. Introduce complexities one at a time
+> 3. Introduire une complexité à la fois
 
-> 4. Link to other docs, rather than re-explaining concepts
+> 4. Comporter des liens vers d'autres sections de la documentation, plutôt que de réexpliquer les concepts
 
-> 5. Describe the problem, rather than assuming familiarity
+> 5. Décrire le problème plutôt que de supposer que le lecteur est familier avec
 
-> 6. Explain the process, rather than just the end result
+> 6. Expliquer le processus au delà du simple résultat final
 
-> 7. Explain the pros and cons of your strategy, including when it is and isn't appropriate
+> 7. Expliquer le pour et le contre de votre approche, en indiquant dans quels cas elle est apropriée ou non
 
-> 8. Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
+> 8. Mentionner des solutions alternatives si c'est pertinent, mais garder les explications en profondeur pour une autre recette.
 
