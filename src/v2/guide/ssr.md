@@ -208,14 +208,15 @@ server.listen(5000, function (error) {
 이게 다입니다! [전체 애플리케이션](https://github.com/chrisvfritz/vue-ssr-demo-simple)을 클론하여 사용할 수 있습니다. 일단 로컬에서 실행하면 페이지를 마우스 오른쪽 버튼으로 클릭하고 `페이지 소스 보기`(와 유사한) 선택을 하여 서버 측 렌더링이 실제로 작동하는지 확인할 수 있습니다. 당신은 body 에서 이것을 확인해야 합니다.
 
 ``` html
-<div id="app" server-rendered="true">You have been here for 0 seconds&period;</div>
+<div id="app"></div>
 ```
 
 대신에
 
 ``` html
-<div id="app"></div>
+<div id="app" server-rendered="true">You have been here for 0 seconds&period;</div>
 ```
+
 
 ## 응답 스트리밍
 
