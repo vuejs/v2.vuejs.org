@@ -1011,6 +1011,18 @@ Vue.component(
 )
 ```
 
+When using [local registration](https://vuejs.org/v2/guide/components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+
+``` js
+new Vue({
+  // ...
+  components: {
+    'my-component': () => import('./my-async-component')
+  }
+})
+```
+
+
 <p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 Webpack 所内置的一流异步支持。</p>
 
 ### 组件命名约定

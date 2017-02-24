@@ -3,17 +3,9 @@
         <%- partial('partials/main_menu', { context: 'sidebar' }) %>
     </ul>
     <div class="list">
-<!--         <div class="main-sponsor">
-            <span>赞助者</span><br>
-            <a href="http://www.thedifferenceengine.io/" target="_blank"
-                style="background-color: #f3f3f3; padding: 10px 0">
-                <img src="/images/tde.png">
-            </a>
-        </div>
-        <a class="become-backer" href="/support-vuejs">
+        <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
             成为赞助者
-        </a> -->
-        
+        </a>
         <h2>
             <% titles = {api: 'API', examples: '示例', guide: '教程'} %>
             <% if (type !== 'cookbook') { %>
@@ -49,7 +41,7 @@
                     <!-- at least one recipe -->
                 <% } %>
                 <li>
-                    <a href="/<%- p.path %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
+                    <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
                 </li>
             <% }) %>
             <% if (type === 'cookbook') { %>
