@@ -30,7 +30,7 @@ Il est également possible d’ajouter une structure « sinon » avec `v-else` :
 
 ### Groupes conditionnels avec `v-if` dans un `<template>`
 
-Comme `v-if` est une directive, elle doit être attachée à un seul élément. Mais comment faire si nous voulons permuter plusieurs éléments ? Dans ce cas, nous pouvons utiliser `v-if` sur un élément `<template>`, qui sert d'enveloppe invisible.  Le résultat final rendu n’inclura pas l’élément `<template>`.
+Comme `v-if` est une directive, elle doit être attachée à un seul élément. Mais comment faire si nous voulons permuter plusieurs éléments ? Dans ce cas, nous pouvons utiliser `v-if` sur un élément `<template>`, qui sert d'enveloppe invisible. Le résultat final rendu n’inclura pas l’élément `<template>`.
 
 ``` html
 <template v-if="ok">
@@ -126,7 +126,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Ce n’est pas toujours souhaitable cependant, c'est pourquoi Vue vous offre un moyen de dire, « Ces deux éléments sont complètement distincts - ne les réutilise pas. ». Ajoutez juste un attribut `key` avec des valeurs uniques :
+Ce n'est pas toujours souhaitable cependant, c'est pourquoi Vue vous offre un moyen de dire, « Ces deux éléments sont complètement distincts - ne les réutilise pas. ». Ajoutez juste un attribut `key` avec des valeurs uniques :
 
 ``` html
 <template v-if="loginType === 'username'">
