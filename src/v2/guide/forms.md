@@ -10,7 +10,6 @@ Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée b
 
 <p class="tip">`v-model` ne prend pas en compte la valeur initial fourni par un champ ou une zone de texte. Il traitera toujours les données de l'instance de vue comme la source de vérité.</p>
 
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
 <p class="tip" id="vmodel-ime-tip">Pour les languages qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc ...), vous remarquerez que `v-model` ne sera pas mis à jour durant ((l'exécution de la méthode de saisie.))</p>
 
 ### Texte
@@ -35,7 +34,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Text multilignes
+### Texte multiligne
 
 ``` html
 <span>Multiline message is:</span>
@@ -64,11 +63,13 @@ new Vue({
 
 {% raw %}
 <p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
+<p class="tip">Les interpolations sur les textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionneront pas. Utilisez <code>v-model</code> à la place.</p>
 {% endraw %}
 
 ### Checkbox
 
-Single checkbox, boolean value:
+((Checkbox seule, valeur booléenne:))
+
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -89,7 +90,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Multiple checkboxes, bound to the same Array:
+Checkboxes multiple, liées au même Array:
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
@@ -166,7 +167,7 @@ new Vue({
 
 ### Select
 
-Single select:
+Select à choix unique:
 
 ``` html
 <select v-model="selected">
@@ -195,7 +196,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Multiple select (bound to Array):
+Select à choix multiple (lié à Array):
 
 ``` html
 <select v-model="selected" multiple>
@@ -226,7 +227,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Dynamic options rendered with `v-for`:
+Options dynamiques rendues avec `v-for`:
 
 ``` html
 <select v-model="selected">
@@ -274,23 +275,25 @@ new Vue({
 {% endraw %}
 
 ## Value Bindings
+## Liaisons de value
 
 For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+Pour les options de bouton radio, checkbox et select, les valeurs de liaison de `v-model` sont habituellement des chaînes de caractères statiques (ou des booléens pour checkbox):
 
 ``` html
-<!-- `picked` is a string "a" when checked -->
+<!-- `picked` est une chaîne de caractères "a" quand le bouton radio est sélectionné -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` is either true or false -->
+<!-- `toggle` est soit true soit false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when selected -->
+<!-- `selected` est une chaîne de caractères "abc" quand l'option est sélectionnée -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
+Mais parfois nous pouvons souhaiter lier la valeur à une propriété dynamique de l'instance de Vue. Nous pouvons réaliser cela en utilisant `v-bind`. De plus, utiliser `v-bind` nous permet de lier la valeur de l'input à des valeurs qui ne sont pas des chaînes de caractères.
 
 ### Checkbox
 
@@ -321,29 +324,30 @@ vm.toggle === vm.b
 vm.pick === vm.a
 ```
 
-### Select Options
+### Options des select
 
 ``` html
 <select v-model="selected">
-  <!-- inline object literal -->
+  <!-- objet littéral en ligne -->
   <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
 
 ``` js
-// when selected:
+// quand sélectionné :
 typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
 
-## Modifiers
+## Modificateur
 
 ### `.lazy`
 
-By default, `v-model` syncs the input with the data after each `input` event (with the exception of IME composition as [stated above](#vmodel-ime-tip)). You can add the `lazy` modifier to instead sync after `change` events:
+Par défaut, `v-model` synchronise l'input avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place: 
 
 ``` html
 <!-- synced after "change" instead of "input" -->
+<!-- synchronisé après le "change" au lieu du "input" -->
 <input v-model.lazy="msg" >
 ```
 
