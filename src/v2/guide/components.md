@@ -1020,6 +1020,17 @@ Vue.component(
 )
 ```
 
+When using [local registration](https://vuejs.org/v2/guide/components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+
+``` js
+new Vue({
+  // ...
+  components: {
+    'my-component': () => import('./my-async-component')
+  }
+})
+```
+
 <p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
 
 ### Component Naming Conventions
