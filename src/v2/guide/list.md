@@ -6,7 +6,7 @@ order: 8
 
 ## `v-for`
 
-Nous pouvons utiliser la directive `v-for` pour faire le rendu d'une liste d'éléments au sein d'un tableau de données. La directive `v-for` utilise une syntaxe spécifique de la forme `item in items`, où `items` représente la source de donnée du tableau et où `item` est un **alias** représentant l'élément du tableau en cours d'itération :
+Nous pouvons utiliser la directive `v-for` pour faire le rendu d'une liste d'éléments en se basant sur un tableau. La directive `v-for` utilise une syntaxe spécifique de la forme `item in items`, où `items` représente le tableau source des données et où `item` est un **alias** représentant l'élément du tableau en cours d'itération :
 
 ### Utilisation simple
 
@@ -114,7 +114,7 @@ Vous pouvez également utiliser `of` en tant que mot clé à la place de `in` po
 
 ### Template `v-for`
 
-De la même manière qu'avec le template `v-if`, vous pouvez également utiliser la balise `<template>` avec `v-for` pour faire le rendu d'une structure contenant de multiples éléments. Par exemple :
+De la même manière qu'avec `v-if`, vous pouvez également utiliser la balise `<template>` avec `v-for` pour faire le rendu d'une structure contenant de multiples éléments. Par exemple :
 
 ``` html
 <ul>
@@ -213,7 +213,7 @@ new Vue({ el: '#range' })
 
 ### Composants et `v-for`
 
-> Cette partie suppose que vous ayez pris connaissance du contenu de [Composants](components.html). Vous pouvez la passer pour le moment et y revenir plus tard.
+> Cette partie suppose que vous connaissez les [Composants](components.html). Vous pouvez la passer pour le moment et y revenir plus tard.
 
 Vous pouvez directement utiliser `v-for` sur un composant personnalisé, comme sur n'importe quel autre élément standard :
 
@@ -221,7 +221,7 @@ Vous pouvez directement utiliser `v-for` sur un composant personnalisé, comme s
 <my-component v-for="item in items"></my-component>
 ```
 
-Cependant, cela ne passera pas automatiquement les données au composant, et cela car les composants ont leurs propres portées isolées. Dans l'optique de passer les données itérées au composant, nous devons utiliser les props conjointement :
+Cependant, cela ne passera pas automatiquement les données au composant parce que les composants ont leurs propres portées isolées. Pour passer les données itérées au composant, nous devons utiliser les props en plus :
 
 ``` html
 <my-component
@@ -231,9 +231,9 @@ Cependant, cela ne passera pas automatiquement les données au composant, et cel
 </my-component>
 ```
 
-La raison pour ne pas injecter automatiquement `item` dans le composant est que : cela forcerait le composant à être fortement couplé avec l'utilisation de `v-for`. En étant explicite sur la manière dont les données sont injectées nous permettons au composant d'être réutilisable dans d'autres situations.
+La raison pour ne pas injecter automatiquement `item` dans le composant est que cela le rendrait fortement couplé au fonctionnement de `v-for`. Être explicite sur l'endroit d'où proviennent les données rend le composant réutilisable dans d'autres situations.
 
-Voici un exemple complet d'une simple liste de tâches :
+Voici un exemple complet d'une liste de tâches simple :
 
 ``` html
 <div id="todo-list-example">
@@ -331,7 +331,7 @@ new Vue({
 
 ### `v-for` avec `v-if`
 
-Quand ils existent sur le même nœud, `v-for` a une priorité plus élevé que `v-if`. Cela signifie que `v-if` va être exécuté indépendamment sur chaque tour de boucle. Cela est vraiment utile quand vous voulez faire le rendu d'un nœud seulement pour _quelques_ éléments comme ci-dessous :
+Quand ils existent sur le même nœud, `v-for` a une priorité plus élevée que `v-if`. Cela signifie que `v-if` va être exécuté indépendamment à chaque itération de boucle. C'est très utile quand vous voulez faire le rendu de seulement certains noeuds, comme ci-dessous : 
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
@@ -341,7 +341,7 @@ Quand ils existent sur le même nœud, `v-for` a une priorité plus élevé que 
 
 La partie ci-dessus fait uniquement le rendu des tâches qui ne sont pas achevées.
 
-Si au lieu de cela, vous voulez passer conditionnellement l'exécution de la boucle, vous pouvez placer le `v-if` sur l'élément parent (ou sur [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). Par exemple :
+Si votre intention est plutôt de sauter conditionnellement l'exécution de la boucle, vous pouvez placer le `v-if` sur l'élément parent (ou sur [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). Par exemple :
 
 ``` html
 <ul v-if="shouldRenderTodos">
@@ -353,11 +353,11 @@ Si au lieu de cela, vous voulez passer conditionnellement l'exécution de la bou
 
 ## `key`
 
-Quand Vue met à jour une liste d'éléments rendus avec `v-for`, il utilise par défaut une stratégie de « in-place patch ». Si l'ordre des éléments de données a changé, plutôt que de déplacer les éléments du DOM pour concorder avec le nouvel ordre des éléments, Vue va simplement changer chaque élément en place et s'assurer que cela reflète ce qui aurait dû être rendu à cet index en particulier. Cela est un comportement similaire au `track-by="$index"` de Vue 1.x.
+Quand Vue met à jour une liste d'éléments rendus avec `v-for`, il utilise par défaut une stratégie de « modification localisée » (*in-place patch*). Si l'ordre des éléments de données a changé, plutôt que de déplacer les éléments du DOM pour concorder avec le nouvel ordre des éléments, Vue va simplement changer chaque élément en place et s'assurer que cela reflète ce qui aurait dû être rendu à cet index en particulier. Cela est un comportement similaire au `track-by="$index"` de Vue 1.x.
 
-Ce mode par défaut est performant, mais seulement envisageable **quand votre liste de rendu ne s'appuie pas sur l'état d'un composant enfant ou d'un état temporaire du DOM (ex. : les valeurs de champs d'un formulaire)**.
+Ce mode par défaut est performant, mais seulement envisageable **quand le résultat du rendu de votre liste n'est pas lié à l'état d'un composant enfant ou à l'état temporaire du DOM (ex. : les valeurs de champs d'un formulaire)**.
 
-Pour donner à Vue un indice pour permettre à chaque nœud d'être correctement identifié et suivi afin que les élément existant puissent être réutilisés et réordonnés, vous devez fournir une `key` (clé) d'attribut unique pour chaque élément. Une valeur idéale pour `key` serait l'identifiant `id` unique de chaque élément. Cet attribut spécial est en gros l'équivalent du `track-by` de la 1.x, mais il fonctionne comme un attribut, donc vous avez besoin d'utiliser `v-bind` pour le lier aux valeurs dynamiques (un exemple avec l'abréviation de `v-bind`) :
+Pour expliquer à Vue comment suivre l'identité de chaque nœud, afin que les éléments existants puissent être réutilisés et réordonnés, vous devez fournir un attribut unique `key` (clé) pour chaque élément. Une valeur idéale pour `key` serait l'identifiant `id` unique de chaque élément. Cet attribut spécial est en gros l'équivalent du `track-by` de la 1.x, mais il fonctionne comme un attribut, donc vous avez besoin d'utiliser `v-bind` pour le lier à des valeurs dynamiques (en utilisant ici l'abréviation de `v-bind`) :
 
 ``` html
 <div v-for="item in items" :key="item.id">
@@ -365,15 +365,15 @@ Pour donner à Vue un indice pour permettre à chaque nœud d'être correctement
 </div>
 ```
 
-Il est recommandé de fournir une `key` avec `v-for` autant que possible, à moins que le contenu itéré du DOM soit simple ou que vous utilisiez intentionnellement le comportement de base pour un gain de performance.
+Il est recommandé de fournir une `key` avec `v-for` chaque fois que possible, à moins que le contenu itéré du DOM soit simple ou que vous utilisiez intentionnellement le comportement de base pour un gain de performance.
 
 Comme c'est un mécanisme générique pour Vue permettant d’identifier les nœuds, la `key` a également d'autres usages et ne se limite pas seulement à sont utilisation avec `v-for`, comme nous le verrons plus tard dans le guide.
 
 ## Détection de changement dans un tableau
 
-### Méthodes transformantes
+### Méthodes de mutation
 
-Vue surcharge ses tableaux observés avec des méthodes transformantes qui vont également déclencher des mises à jour de vue. Les méthodes additionnelles sont :
+Vue surcharge ses tableaux observés avec des méthodes de mutation qui vont également déclencher des mises à jour de vue. Les méthodes additionnelles sont :
 
 - `push()`
 - `pop()`
@@ -383,11 +383,11 @@ Vue surcharge ses tableaux observés avec des méthodes transformantes qui vont 
 - `sort()`
 - `reverse()`
 
-Vous pouvez ouvrir la console et jouer avec les `items` (éléments) de tableau des exemples précédents en appelant leurs méthodes transformantes. Par exemple : `example1.items.push({ message: 'Baz' })`.
+Vous pouvez ouvrir la console et jouer avec les `items` (éléments) de tableau des exemples précédents en appelant leurs méthodes de mutation. Par exemple : `example1.items.push({ message: 'Baz' })`.
 
 ### Remplacer un tableau
 
-Les méthodes transformantes, comme le nom le suggère, transforment le tableau original sur lesquelles elles sont appelées. En comparaison, il y a aussi des méthodes non transformantes, ex. : `filter()`, `concat()` et `slice()`, qui ne transforment pas le tableau original mais **retourne toujours un nouveau tableau**. Quand vous travaillez avec des méthodes non transformantes, vous pouvez juste remplacer l'ancien tableau par le nouveau :
+Les méthodes de mutation changent le tableau original sur lesquelles elles sont appelées. En comparaison, il y a aussi des méthodes non-mutatives, ex. `filter()`, `concat()` et `slice()`, qui ne changent pas le tableau original mais **retourne toujours un nouveau tableau**. Quand vous travaillez avec des méthodes non-mutatives, vous pouvez juste remplacer l'ancien tableau par le nouveau :
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -395,11 +395,11 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire le rendu de nouveau sur la liste entière ? Par chance, cela n'est pas le cas. Vue implémente plusieurs fonctions heuristiques intelligentes pour optimiser la réutilisation du DOM existant ; ainsi remplacer un tableau par un autre contenant des objets supplémentaires est une opération vraiment efficace.
+Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire le rendu de nouveau sur la liste entière ? Par chance, cela n'est pas le cas. Vue implémente plusieurs fonctions heuristiques intelligentes pour optimiser la réutilisation du DOM existant ; ainsi remplacer un tableau par un autre contenant des objets supplémentaires est une opération très performante.
 
-### Exceptions
+### Limitations
 
-A cause de limitations de JavaScript, Vue **ne peut pas** détecter les changements suivants dans un tableau :
+À cause des limitations du JavaScript, Vue **ne peut pas** détecter les changements suivants dans un tableau :
 
 1. Quand vous affectez directement un élément à un index. Ex. : `vm.items[indexOfItem] = newValue`
 2. Quand vous modifiez la longeur du tableau. Ex. : `vm.items.length = newLength`
@@ -415,7 +415,7 @@ Vue.set(example1.items, indexOfItem, newValue)
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
-Pour régler la seconde exception, vous pouvez également utiliser `splice` :
+Pour gérer la seconde limitation, vous pouvez également utiliser `splice` :
 
 ``` js
 example1.items.splice(newLength)
@@ -423,7 +423,7 @@ example1.items.splice(newLength)
 
 ## Affichage de résultats filtrés/triés
 
-Parfois nous voulons afficher une version filtrée ou triée d'un tableau sans pour autant transformer ou effacer les données originales. Dans ce cas, vous pouvez créer une propriété calculée qui retourne le tableau filtré ou trié.
+Parfois nous voulons afficher une version filtrée ou triée d'un tableau sans pour autant changer ou effacer les données originales. Dans ce cas, vous pouvez créer une propriété calculée qui retourne le tableau filtré ou trié.
 
 Par exemple :
 
