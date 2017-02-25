@@ -301,7 +301,7 @@ Ember는 높은 찬사를 받는 완전한 기능의 프레임워크입니다. �
 
 Knockout은 MVVM 및 의존성 추적의 개척자였으며 반응형 시스템은 Vue의 그것과 매우 유사합니다. [브라우저 지원](http://knockoutjs.com/documentation/browser-support.html)은 IE6에 대한 지원과 함께 모든 것을 고려하여 매우 인상적입니다! Vue는 IE9+ 만 지원합니다.
 
-하지만 시간이 지남에 따라 개발 속도가 느려졌고 나이가 조금 더 줄어들기 시작했습니다. 예를 들어 컴포넌트 시스템에는 라이프 사이클 훅이 전혀 없으며 매우 일반적인 사용 사례이지만 컴포넌트에 자식을 전달하기위한 인터페이스는 [Vue](components.html#Content-Distribution-with-Slots)에 비해 약간 어색함을 느낄 수 있습니다.
+하지만 시간이 지남에 따라 개발 속도가 느려졌고 오래되어 보이기 시작했습니다. 예를 들어 컴포넌트 시스템에는 라이프 사이클 훅이 전혀 없으며 매우 일반적인 사용 사례이지만 컴포넌트에 자식을 전달하기위한 인터페이스는 [Vue](components.html#Content-Distribution-with-Slots)에 비해 약간 어색함을 느낄 수 있습니다.
 
 API 디자인에는 철학적인 차이가 있는 것 같아 호기심이 생긴다면 [단순한 할 일 목록](https://gist.github.com/chrisvfritz/9e5f2d6826af00fcbace7be8f6dccb89)을 어떻게 작성하는지 보여줄 수 있습니다. 분명히 다소 주관적이지만, 많은 사람들은 Vue의 API가 덜 복잡하고 구조가 잘 구성되어 있다고 생각합니다.
 
