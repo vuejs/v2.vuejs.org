@@ -1,18 +1,19 @@
 ---
-title: Form Input Bindings
+title: Liaisons des champs de formulaire
 type: guide
 order: 10
 ---
 
-## Basic Usage
+## Usage basique
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire et les ((textarea|zones de textes multilignes)). Elle choisira automatiquement la bonne manière de mettre à jour l'élément selon le type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ((plus quelques traitements spéciaux pour les cas particuliers)).
 
-<p class="tip">`v-model` doesn't care about the initial value provided to an input or a textarea. It will always treat the Vue instance data as the source of truth.</p>
+<p class="tip">`v-model` ne prend pas en compte la valeur initial fourni par un champ ou une zone de texte. Il traitera toujours les données de l'instance de vue comme la source de vérité.</p>
 
 <p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">Pour les languages qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc ...), vous remarquerez que `v-model` ne sera pas mis à jour durant ((l'exécution de la méthode de saisie.))</p>
 
-### Text
+### Texte
 
 ``` html
 <input v-model="message" placeholder="edit me">
@@ -34,7 +35,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Multiline text
+### Text multilignes
 
 ``` html
 <span>Multiline message is:</span>
