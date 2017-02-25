@@ -11,7 +11,7 @@ ro_gz_size: "18.01"
 
 ### Compatibilité
 
-Vue ne supporte **pas** IE8 et les versions antérieures, car il utilise des fonctionnalités ECMAScript 5 qui ne peuvent pas être émulées sur IE8. Cela dit, Vue supporte tous les [navigateurs compatibles ECMAScript 5](http://caniuse.com/#feat=es5).
+Vue **ne** supporte **pas** IE8 et les versions antérieures, car il utilise des fonctionnalités ECMAScript 5 qui ne peuvent pas être émulées sur IE8. Cela dit, Vue supporte tous les [navigateurs compatibles ECMAScript 5](http://caniuse.com/#feat=es5).
 
 ### Notes de version
 
@@ -31,7 +31,7 @@ Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera d�
 
 ### CDN
 
-Recommandé: [unpkg](https://unpkg.com/vue/dist/vue.js), qui reflète la dernière version aussitôt qu'elle est publiée sur NPM. Vous pouvez également parcourir la source du package NPM sur [unpkg.com/vue/](https://unpkg.com/vue/).
+Recommandé : [unpkg](https://unpkg.com/vue/dist/vue.js), qui reflète la dernière version aussitôt qu'elle est publiée sur NPM. Vous pouvez également parcourir la source du package NPM sur [unpkg.com/vue/](https://unpkg.com/vue/).
 
 Également disponible sur [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) ou [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mais ces deux services mettent du temps à se synchroniser ce qui signifie que la dernière version peut ne pas être encore disponible.
 
@@ -40,7 +40,7 @@ Recommandé: [unpkg](https://unpkg.com/vue/dist/vue.js), qui reflète la derniè
 NPM est la méthode d'installation recommandée lors du développement de grosses applications avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [Webpack](https://webpack.js.org/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
 
 ``` bash
-# latest stable
+# dernière version stable
 $ npm install vue
 ```
 
@@ -72,7 +72,7 @@ Pour Browserify, vous pouvez ajouter un alias dans votre package.json :
 },
 ```
 
-<p class="tip">Ne faites PAS `import Vue from 'vue/dist/vue.js'` — en effet, certains outils ou bibliothèques tierces peuvent également importer Vue, ce qui peut forcer l'app à charger conjointement les *builds runtime* et *standalone* et créer des erreurs.</p>
+<p class="tip">NE faites PAS `import Vue from 'vue/dist/vue.js'` (en effet, certains outils ou bibliothèques tierces peuvent également importer Vue, ce qui peut forcer l'app à charger conjointement les *builds runtime* et *standalone* et créer des erreurs).</p>
 
 ### Environnements CSP
 
@@ -82,7 +82,7 @@ D'un autre côté, le *build runtime* respecte pleinement les CSP. Quand vous ut
 
 ## CLI
 
-Vue.js offre une [interface en ligne de commande officielle](https://github.com/vuejs/vue-cli) pour mettre rapidement en place les bases d'une application monopage ambitieuse. Il offre une série de *builds* pré-configurés pour un *workflow frontend* moderne. Cela ne prends que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des *builds* prêt pour la production :
+Vue.js offre une [interface en ligne de commande officielle](https://github.com/vuejs/vue-cli) pour mettre rapidement en place les bases d'une application monopage ambitieuse. Il offre une série de *builds* pré-configurés pour un *workflow frontend* moderne. Cela ne prend que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des *builds* prêts pour la production :
 
 ``` bash
 # installer vue-cli
@@ -111,10 +111,10 @@ npm run build
 ## Bower
 
 ``` bash
-# latest stable
+# dernière version stable
 $ bower install vue
 ```
 
 ## Chargeurs de module AMD
 
-Les versions *standalone* ou installées via Bower sont encapsulés selon UMD ce qui permet de directement les utiliser sous forme de module AMD.
+Les versions *standalone* ou installées via Bower sont encapsulées selon UMD ce qui permet de directement les utiliser sous forme de module AMD.
