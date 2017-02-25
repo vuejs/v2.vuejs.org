@@ -404,7 +404,7 @@ Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire l
 1. Quand vous affectez directement un élément à un index. Ex. : `vm.items[indexOfItem] = newValue`
 2. Quand vous modifiez la longeur du tableau. Ex. : `vm.items.length = newLength`
 
-Pour contourner la première exception, les deux exemples suivant accomplissent la même chose que `vm.items[indexOfItem] = newValue`, mais vont également déclencher des mises à jour d'états dans le système réactif :
+Pour contourner la première limitation, les deux exemples suivant accomplissent la même chose que `vm.items[indexOfItem] = newValue`, mais vont également déclencher des mises à jour d'états dans le système réactif :
 
 ``` js
 // Vue.set
