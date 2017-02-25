@@ -569,15 +569,15 @@ type: api
 
 - **Détails :**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Un template sous forme de chaîne de caractères qui sera utilisé comme balisage HTML pour l'instance de Vue. Le template viendra **remplacer** l'élément monté. Tout code HTML existant à l'intérieur de l'élément monté sera ignoré, à moins que des emplacements de distribution de contenu (slots) soient présents dans le template.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Si la chaîne de caractères commence par `#`, elle sera évaluée comme `querySelector` et le `innerHTML` de l'élément sélectionné sera utilisé comme template. Cela permet d'utiliser l'astuce du `<script type="x-template">` pour inclure des templates.
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip">D'un point de vue sécurité, vous devriez uniquement utiliser des templates Vue auxquels vous pouvez faire confiance. N'utilisez jamais du contenu généré côté utilisateur comme template.</p>
 
 - **Voir aussi :**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution](../guide/components.html#Content-Distribution-with-Slots)
+  - [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+  - [Distribution de Contenu](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
@@ -585,16 +585,16 @@ type: api
 
   - **Détails :**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    Une alternative aux templates en chaîne de caractères vous permettant d'exploiter toute la puissance programmatique de JavaScript. La fonction de rendu `render` reçoit une méthode `createElement` comme premier argument servant à créer des `VNode`s.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    Si le composant est un composant fonctionnel, la fonction `render` recevra aussi un argument supplémentaire `context`, qui donne accès aux données contextuelles puisque les composants fonctionnels sont sans instance.
 
   - **Voir aussi :**
-    - [Render Functions](../guide/render-function)
+    - [Fonctions de Rendu](../guide/render-function)
 
-## Options / Lifecycle Hooks
+## Options / Hooks du cycle de vie
 
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.
+Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.
 
 ### beforeCreate
 
@@ -602,9 +602,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+  Appelé de manière synchrone juste après que l'instance ait été initialisée, et avant l'observation des données et l'installation des évènements/observateurs.
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
@@ -612,9 +612,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Appelé de manière synchrone après que l'instance ait été créée. À ce stade, l'instance a fini de traiter les options, ce qui signifie que les éléments suivants ont été installés: observation des données, propriétés calculées, méthodes, fonctions de retour des observateurs et évènements. Cependant, la propriété `$el` n'est pas encore disponible.
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
@@ -622,11 +622,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Appelé juste avant que le montage commence: la fonction `render` est sur le point d'être appelée pour la première fois.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
@@ -634,11 +634,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Appelé juste après que l'instance ait été montée, là où `el` est remplacé par le nouvellement créé `vm.$el`. Si l'instance à la racine est montée sur un élément du document, alors `vm.$el` sera aussi dans le document quand `mounted` est appelé.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
@@ -646,13 +646,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  Appelé quand les données changent, avant le nouveau rendu et le patch du DOM virtuel.
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
+  Vous pouvez effectuer d'autres changements d'état dans ce hook et ils ne déclencheront pas de rendus additionnels.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
@@ -660,13 +660,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Appelé après qu'un changement d'une donnée ait causé un nouveau rendu et patch du DOM virtuel.
 
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
+  Le DOM du composant aura été mis à jour quand ce hook est appelé, donc vous pouvez effectuer des opérations dépendantes du DOM ici. Cependant, dans la plupart des cas, vous devriez éviter de changer l'état dans ce hook. Pour réagir à des changements d'état, il vaut généralement mieux utiliser une [propriété calculée](#computed) ou un [observateur](#watch) à la place.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
@@ -674,13 +674,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called when a kept-alive component is activated.
+  Appelé quand un composant gardé en vie (`keep-alive`) est activé.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
 - **Voir aussi :**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+  - [Composants intégrés de base - keep-alive](#keep-alive)
+  - [Composants dynamiques - keep-alive](../guide/components.html#keep-alive)
 
 ### deactivated
 
@@ -688,13 +688,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called when a kept-alive component is deactivated.
+  Appelé quand un composant gardé en vie (`keep-alive`) est désactivé.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
 - **Voir aussi :**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+  - [Composants intégrés de base - keep-alive](#keep-alive)
+  - [Composants dynamiques - keep-alive](../guide/components.html#keep-alive)
 
 ### beforeDestroy
 
@@ -702,11 +702,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  Appelé juste avant qu'une instance de Vue ne soit détruite. À ce stade, l'instance est toujours pleinement fonctionnelle.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
@@ -714,13 +714,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Appelé après qu'une instance de Vue ait été détruite. Quand ce hook est appelé, toutes les directives de l'instance de Vue ont été détachées, tous les écouteurs d'évènements ont été supprimés et toutes les instances de Vue enfants ont également été détruites.
 
-  **This hook is not called during server-side rendering.**
+  **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
-## Options / Assets
+## Options / Ressources
 
 ### directives
 
@@ -728,11 +728,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  A hash of directives to be made available to the Vue instance.
+  Un objet de mappage des directives à mettre à disposition de l'instance de Vue.
 
 - **Voir aussi :**
-  - [Custom Directives](../guide/custom-directive.html)
-  - [Assets Naming Convention](../guide/components.html#Assets-Naming-Convention)
+  - [Directives Personnalisées](../guide/custom-directive.html)
+  - [Convention de Nommage des Ressources](../guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
@@ -740,7 +740,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  A hash of filters to be made available to the Vue instance.
+  Un objet de mappage des filtres à mettre à disposition de l'instance de Vue.
 
 - **Voir aussi :**
   - [`Vue.filter`](#Vue-filter)
@@ -751,12 +751,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  A hash of components to be made available to the Vue instance.
+  Un objet de mappage des composants à mettre à disposition de l'instance de Vue.
 
 - **Voir aussi :**
   - [Components](../guide/components.html)
 
-## Options / Misc
+## Options / Divers
 
 ### parent
 
@@ -764,9 +764,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  Spécifie l'instance parente pour l'instance qui va être crée. Établit une relation parent-enfant entre les deux. Le parent sera accessible via `this.$parent` pour l'enfant, et l'enfant sera ajouté à la liste `$children` du parent.
 
-  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">Utilisez `$parent` et `$children` avec parcimonie - ils servent surtout comme écoutille de secours. Préférez l'utilisation de propriétés et d'évènements pour la communication parent-enfant.</p>
 
 ### mixins
 
@@ -774,9 +774,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  L'option `mixins` accepte une liste d'objets *mixin*. Ces objets *mixin* peuvent contenir des options d'instance tout comme des objets d'instance normaux, et elles seront fusionnées avec les éventuelles options existantes en utilisant la même stratégie de fusion que dans `Vue.extend()`. Par exemple, si votre *mixin* contient un hook `created` et que le composant lui-même en a égélement un, les deux fonctions seront appelées.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Les hooks de *mixin* sont appelés dans l'ordre dans lequel ils sont fournis, et appelés avant les propres hooks du composant.
 
 - **Example:**
 
@@ -798,13 +798,13 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Type :** `string`
 
-- **Restriction :** only respected when used as a component option.
+- **Restriction :** respecté uniquement lorsqu'utilisé comme option du composant.
 
 - **Détails :**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  Permet au composant de s'invoquer lui-même récursivement dans son template. Notez que lorsqu'un composant est déclaré globalement avec `Vue.component()`, l'identifiant global est automatiquement assigné à sa propriété `name`.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Un autre bénéfice du fait de spécifier une option `name` est le débogage. Les composants nommés donnent des messages d'avertissement plus utiles. De plus, lorsque vous inspectez une application via les [vue-devtools](https://github.com/vuejs/vue-devtools), les composants non nommés s'afficheront en tant que `<AnonymousComponent>`, ce qui n'est pas très instructif. En fournissant une option `name`, vous obtiendrez bien plus d'informations dans l'arbre de composants.
 
 ### extends
 
@@ -812,16 +812,16 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  Permet d'étendre déclarativement un autre composant (qui peut être un simple objet d'options ou un constructeur) sans avoir à utiliser `Vue.extend`. C'est destiné en premier lieu à rendre plus facile les extensions entre composants monofichiers.
 
-  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+  Cette option est similaire à `mixins`, la différence étant que les propres options du composant ont la priorité sur celles du composant source à étendre.
 
 - **Example:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call Vue.extend on either
+  // étend CompA sans avoir à appeler Vue.extend sur l'un ou l'autre
   var CompB = {
     extends: CompA,
     ...
@@ -836,7 +836,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
+  Change les délimiteurs d'interpolation de texte. **Cette option est uniquement disponible en version *standalone*.**
 
 - **Example:**
 
@@ -845,7 +845,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Les délimiteurs ont été changés pour suivre le style des templates ES6
   ```
 
 ### functional
@@ -854,9 +854,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Détails :**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+  Rend le composant sans état (pas de propriété `data`) et sans instance (pas de contexte `this`). Il s'agit simplement d'une fonction `render` qui retourne des nœuds virtuels, ce qui réduit fortement les coûts en performance au rendu pour ce type de composants.
 
-- **Voir aussi :** [Functional Components](../guide/render-function.html#Functional-Components)
+- **Voir aussi :** [Composants Fonctionnels](../guide/render-function.html#Functional-Components)
 
 ## Instance Properties
 
@@ -1213,7 +1213,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 
 - **Voir aussi :**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+  - [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
   - [Server-Side Rendering](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
@@ -1268,7 +1268,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
 
-- **Voir aussi :** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
 ## Directives
 
