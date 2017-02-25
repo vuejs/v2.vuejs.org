@@ -188,7 +188,7 @@ Et également un troisième pour l'index :
 </div>
 ```
 
-<p class="tip">Quand vous itérez sur un objet, l'ordre est basé sur l'ordre d'énumération de `Object.keys()` et il **n'**y a **aucune** garantie de consistance à travers toutes les implémentations des moteurs JavaScript.</p>
+<p class="tip">Quand vous itérez sur un objet, l'ordre est basé sur l'ordre d'énumération de `Object.keys()` et il **n'**y a **aucune** garantie de cohérence à travers toutes les implémentations des moteurs JavaScript.</p>
 
 ### `v-for` et nombres
 
