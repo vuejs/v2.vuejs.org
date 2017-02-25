@@ -25,8 +25,6 @@
     <img src="/images/htmlburger.png">
   </a><a href="https://starter.someline.com/" target="_blank">
     <img src="/images/someline.png">
-  </a><a href="http://gold.xitu.io/?utm_source=vuejs&utm_medium=image&utm_content=juejin&utm_campaign=q3_website" target="_blank">
-    <img width="180px" src="/images/juejin.png">
   </a><a href="http://monterail.com/" target="_blank">
     <img src="/images/monterail.png">
   </a><a href="https://www.trisoft.ro/" target="_blank">
@@ -37,6 +35,10 @@
     <img src="/images/2mhost.png">
   </a><a href="https://vuejobs.com/?ref=vuejs" target="_blank" style="position:relative;top:6px">
     <img src="/images/vuejobs.png">
+  </a><a href="https://leanpub.com/vuejs2" target="_blank">
+    <img src="/images/tmvuejs2.png">
+  </a><a href="https://stdlib.com/" target="_blank">
+    <img src="/images/stdlib.png">
   </a>
 </p>
 

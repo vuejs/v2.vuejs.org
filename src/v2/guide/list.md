@@ -112,7 +112,7 @@ You can also use `of` as the delimiter instead of `in`, so that it is closer to 
 <div v-for="item of items"></div>
 ```
 
-### Template v-for
+### Template `v-for`
 
 Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
 
@@ -125,7 +125,7 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-### Object v-for
+### Object `v-for`
 
 You can also use `v-for` to iterate through the properties of an object.
 
@@ -142,9 +142,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -163,9 +163,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -190,7 +190,7 @@ And another for the index:
 
 <p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
 
-### Range v-for
+### Range `v-for`
 
 `v-for` can also take an integer. In this case it will repeat the template that many times.
 
@@ -211,7 +211,7 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### Components and v-for
+### Components and `v-for`
 
 > This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
 
@@ -329,9 +329,31 @@ new Vue({
 </script>
 {% endraw %}
 
-## key
+### `v-for` with `v-if`
 
-When Vue.js is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
+When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This is very useful when you want to render nodes for only _some_ items, like below:
+
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+```
+
+The above only renders the todos that are not complete.
+
+If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+
+``` html
+<ul v-if="shouldRenderTodos">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+```
+
+## `key`
+
+When Vue is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
 
 This default mode is efficient, but only suitable **when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
 

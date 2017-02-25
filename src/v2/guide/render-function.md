@@ -179,7 +179,8 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of a slot if the child of a component
+  // The name of the slot, if this component is the
+  // child of another component
   slot: 'name-of-slot'
   // Other special top-level properties
   key: 'myKey',
