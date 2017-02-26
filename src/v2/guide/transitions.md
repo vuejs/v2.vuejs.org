@@ -393,6 +393,24 @@ Vue needs to attach event listeners in order to know when a transition has ended
 
 However, in some cases you may want to have both on the same element, for example having a CSS animation triggered by Vue, along with a CSS transition effect on hover. In these cases, you will have to explicitly declare the type you want Vue to care about in a `type` attribute, with a value of either `animation` or `transition`.
 
+### Explicit Transition Durations
+
+> New in 2.2.0
+
+In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+
+In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+
+``` html
+<transition :duration="1000">...</transition>
+```
+
+You can also specify separate values for enter and leave durations:
+
+``` html
+<transition :duration="{ enter: 500, leave: 800 }">...</transition>
+```
+
 ### JavaScript Hooks
 
 You can also define JavaScript hooks in attributes:

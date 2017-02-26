@@ -545,16 +545,21 @@ Custom events can also be used to create custom inputs that work with `v-model`.
 is just syntactic sugar for:
 
 ``` html
-<input v-bind:value="something" v-on:input="something = $event.target.value">
+<input
+  v-bind:value="something"
+  v-on:input="something = $event.target.value">
 ```
 
 When used with a component, this simplifies to:
 
 ``` html
-<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
+<custom-input
+  :value="something"
+  @input="value => { something = value }">
+</custom-input>
 ```
 
-So for a component to work with `v-model`, it must:
+So for a component to work with `v-model`, it should (these can be configured in 2.2.0+):
 
 - accept a `value` prop
 - emit an `input` event with the new value
@@ -567,16 +572,15 @@ Let's see it in action with a very simple currency input:
 
 ``` js
 Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
-  ',
+  template: `
+    <span>
+      $
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)">
+    </span>
+  `,
   props: ['value'],
   methods: {
     // Instead of updating the value directly, this
@@ -640,12 +644,38 @@ The implementation above is pretty naive though. For example, users are allowed 
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-The events interface can also be used to create more unusual inputs. For example, imagine these possibilities:
+### Customizing Component `v-model`
+
+> New in 2.2.0
+
+By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
+
+``` js
+Vue.component('my-checkbox', {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    // this allows using the `value` prop for a different purpose
+    value: String
+  },
+  // ...
+})
+```
 
 ``` html
-<voice-recognizer v-model="question"></voice-recognizer>
-<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
-<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+<my-checkbox v-model="foo" value="some value"></my-checkbox>
+```
+
+The above will be equivalent to:
+
+``` html
+<my-checkbox
+  :checked="foo"
+  @change="val => { foo = val }"
+  value="some value">
+</my-checkbox>
 ```
 
 ### Non Parent-Child Communication

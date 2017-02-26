@@ -65,17 +65,21 @@ type: api
 
 - **Type:** `Function`
 
-- **Default:** Error is thrown in place
+- **Default:** `undefined`
 
 - **Usage:**
 
   ``` js
-  Vue.config.errorHandler = function (err, vm) {
+  Vue.config.errorHandler = function (err, vm, type) {
     // handle error
+    // `type` is a Vue-specific error type, e.g. which lifecycle hook
+    // the error was found in. Only available in 2.2.0+
   }
   ```
 
-  Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
+  Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
+
+  > In 2.2.0, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
 
@@ -113,6 +117,30 @@ type: api
   ```
 
   Define custom key alias(es) for v-on.
+
+### performance
+
+> New in 2.2.0
+
+- **Type:** `boolean`
+
+- **Default:** `false`
+
+- **Usage**:
+
+  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool timeline. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+
+### productionTip
+
+> New in 2.2.0
+
+- **Type:** `boolean`
+
+- **Default:** `true`
+
+- **Usage**:
+
+  Set this to `false` to prevent the production tip on Vue startup.
 
 ## Global API
 
@@ -195,17 +223,19 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( object, key )</h3>
+<h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
 - **Arguments:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **Usage:**
 
   Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
 
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
+  > Also works with on Array + index in 2.2.0+.
+
+  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
@@ -329,7 +359,7 @@ type: api
   ```
 
 - **See also:** [Render Functions](../guide/render-function.html)
- 
+
 <h3 id="Vue-version">Vue.version</h3>
 
 - **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
@@ -599,13 +629,41 @@ if (version === 2) {
 
 ### render
 
-  - **Type:** `Function`
+  - **Type:** `(createElement: () => VNode) => VNode`
 
   - **Details:**
 
     An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+
+  - **See also:**
+    - [Render Functions](../guide/render-function)
+
+### renderError
+
+> New in 2.2.0
+
+  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+
+  - **Details:**
+
+    **Only works in development mode.**
+
+    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+
+  - **Example:**
+
+    ``` js
+    new Vue({
+      render (h) {
+        throw new Error('oops')
+      },
+      renderError (h, err) {
+        return h('pre', { style: { color: 'red' }}, err.stack)
+      }
+    }).$mount('#app')
+    ```
 
   - **See also:**
     - [Render Functions](../guide/render-function)
@@ -774,7 +832,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **See also:**
   - [Components](../guide/components.html)
 
-## Options / Misc
+## Options / Composition
 
 ### parent
 
@@ -812,18 +870,6 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Mixins](../guide/mixins.html)
 
-### name
-
-- **Type:** `string`
-
-- **Restriction:** only respected when used as a component option.
-
-- **Details:**
-
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
-
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
-
 ### extends
 
 - **Type:** `Object | Function`
@@ -845,6 +891,77 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     ...
   }
   ```
+
+### provide / inject
+
+> New in 2.2.0
+
+- **Type:**
+  - **provide:** `Object | () => Object`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+
+- **Details:**
+
+  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+
+  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is. If you are familiar with React, this is very similar to React's context feature.
+
+  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object.
+
+  The `inject` options should be either an Array of strings or an object where the keys stand for the local binding name, and the value being the key (string or Symbol) to search for in available injections.
+
+  The provider component must be in the parent chain of the component that wishes to inject the provided properties.
+
+- **Example:**
+
+  ``` js
+  var Provider = {
+    provide: {
+      foo: 'bar'
+    },
+    // ...
+  }
+
+  var Child = {
+    inject: ['foo'],
+    created () {
+      console.log(this.foo) // -> "bar"
+    }
+    // ...
+  }
+  ```
+
+  With ES2015 Symbols, function `provide` and object `inject`:
+  ``` js
+  const s = Symbol()
+
+  const Provider = {
+    provide () {
+      return {
+        [s]: 'foo'
+      }
+    }
+  }
+
+  const Child = {
+    inject: { s },
+    // ...
+  }
+  ```
+
+## Options / Misc
+
+### name
+
+- **Type:** `string`
+
+- **Restriction:** only respected when used as a component option.
+
+- **Details:**
+
+  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+
+  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
 
 ### delimiters
 
@@ -876,6 +993,46 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
 
+### model
+
+> New in 2.2.0
+
+- **Type:** `{ prop?: string, event?: string }`
+
+- **Details:**
+
+  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+
+- **Example:**
+
+  ``` js
+  Vue.component('my-checkbox', {
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
+    props: {
+      // this allows using the `value` prop for a different purpose
+      value: String
+    },
+    // ...
+  })
+  ```
+
+  ``` html
+  <my-checkbox v-model="foo" value="some value"></my-checkbox>
+  ```
+
+  The above will be equivalent to:
+
+  ``` html
+  <my-checkbox
+    :checked="foo"
+    @change="val => { foo = val }"
+    value="some value">
+  </my-checkbox>
+  ```
+
 ## Instance Properties
 
 ### vm.$data
@@ -887,6 +1044,16 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
 
 - **See also:** [Options - data](#data)
+
+### vm.$props
+
+> New in 2.2.0
+
+- **Type:** `Object`
+
+- **Details:**
+
+  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
 
 ### vm.$el
 
@@ -1143,7 +1310,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **Arguments:**
-  - `{string} event`
+  - `{string | Array<string>} event` (array only supported in 2.2.0+)
   - `{Function} callback`
 
 - **Usage:**
@@ -1456,6 +1623,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
   - `.native` - listen for a native event on the root element of component.
   - `.once` - trigger handler at most once.
+  - `.left` - (2.2.0) only trigger handler for left button mouse events.
+  - `.right` - (2.2.0) only trigger handler for right button mouse events.
+  - `.middle` - (2.2.0) only trigger handler for middle button mouse events.
 
 - **Usage:**
 
@@ -1866,6 +2036,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
 
   When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+
+  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
   Primarily used with preserve component state or avoid re-rendering.
 

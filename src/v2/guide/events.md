@@ -263,6 +263,16 @@ For example:
 
 <p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone.</p>
 
+### Mouse Button Modifiers
+
+> New in 2.2.0
+
+- `.left`
+- `.right`
+- `.middle`
+
+These modifiers restrict the handler to events triggered by a specific mouse button.
+
 ## Why Listeners in HTML?
 
 You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
