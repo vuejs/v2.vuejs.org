@@ -1317,7 +1317,7 @@ if (version === 2) {
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **전달인자:**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+  - `{string | Array<string>} event` (객체는 2.2.0버전 이상에서만 지원)
   - `{Function} callback`
 
 - **사용방법:**
@@ -2042,10 +2042,10 @@ if (version === 2) {
 
   동적 컴포넌트를 감싸는 경우 `<keep-alive>`는 비활성 컴포넌트 인스턴스를 파괴하지 않고 캐시합니다. `<transition>`과 비슷하게 `<keep-alive>`는 추상 엘리먼트입니다. DOM 엘리먼트 자체는 렌더링 하지 않고 컴포넌트 부모 체인에는 나타나지 않습니다.
 
-  컴포넌트가 `<keep-alive>`내에서 토글 될 때, `activated`와 `deactivated`라이프사이클 훅이 그에 따라 호출됩니다.
+  컴포넌트가 `<keep-alive>`내에서 토글 될 때, `activated`와 `deactivated` 라이프사이클 훅이 그에 따라 호출됩니다.
 
 
-  > 2.2.0 이상에서는 `<keep-alive>` 트리 안에 있는 모든 중첩 된 컴포넌트에 대해 `activated`와 `deactivated`가 실행됩니다.
+  > 2.2.0 이상에서는 `<keep-alive>` 트리 안에 있는 모든 중첩 된 컴포넌트에서`activated`와 `deactivated`가 실행됩니다.
 
   주로 컴포넌트 상태를 보존하거나 재 렌더링을 피하는데 사용합니다.
 
