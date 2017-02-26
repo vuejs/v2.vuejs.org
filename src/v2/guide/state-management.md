@@ -6,11 +6,11 @@ order: 22
 
 ## 공식 Flux-유사 구현
 
-대규모 응용 프로그램은 여러 컴포넌트에 분산되어있는 여러 상태와 그 상호 작용으로 인해 복잡해집니다. 이 문제를 해결하기 위해 Vue는 Elm에서 영감을 얻은 상태 관리 라이브러리 인 [vuex](https://github.com/vuejs/vuex)를 제공합니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)에 통합되어 설정이 필요 없는 액세스를 제공합니다.
+대규모 응용 프로그램은 여러 컴포넌트에 분산되어있는 여러 상태와 그 상호 작용으로 인해 복잡해집니다. 이 문제를 해결하기 위해 Vue는 Elm에서 영감을 얻은 상태 관리 라이브러리 인 [vuex](https://github.com/vuejs/vuex)를 제공합니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)를 사용한다면 설정에 따로 시간을 보내지 않아도 됩니다.
 
 ### React 개발자를 위한 안내
 
-React에서 온다면, vuex가 그 생태계에서 가장 인기있는 Flux 구현 인 [redux](https://github.com/reactjs/redux)와 어떻게 비교되는지 궁금할 것입니다. Redux는 실제로 뷰 레이어에 무관하므로 어떤 [간단한 바인딩](https://github.com/egoist/revue)을 통해 Vue와 쉽게 사용할 수 있습니다. Vuex는 Vue 앱에 있어 다른 점이 있습니다. 이를 통해 보다 직관적인 API와 향상된 개발 경험을 제공하여 Vue와의 향상된 통합을 할 수 있습니다.
+만약 당신이 React로 부터 왔다면, vuex가 그 생태계에서 가장 인기있는 Flux 구현 인 [redux](https://github.com/reactjs/redux)와 어떻게 비교되는지 궁금할 것입니다. Redux는 실제로 뷰 레이어(view-layer)에 무관하므로 몇 가지 [간단한 바인딩](https://github.com/egoist/revue)을 해준다면 Vue에서도 Redux를 쉽게 사용할 수 있습니다. Vuex가 Redux와 다른 점이라면 Vue app에 대해서 알고 있다는 점입니다. 이를 통해 더 직관적인 API와 향상된 개발경험을 Vue에 통합할 수 있습니다.
 
 ## 간단한 상태 관리 시작하기
 
