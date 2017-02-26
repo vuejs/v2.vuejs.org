@@ -546,17 +546,21 @@ new Vue({
 위 문장은 아래와 같습니다.
 
 ``` html
-<input v-bind:value="something" v-on:input="something = $event.target.value">
+<input
+  v-bind:value="something"
+  v-on:input="something = $event.target.value">
 ```
 
 컴포넌트와 함께 사용하면 다음과 같이 간단해집니다.
 
 ``` html
-<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
+<custom-input
+  :value="something"
+  @input="value => { something = value }">
+</custom-input>
 ```
 
-따라서 `v-model`을 사용하는 컴포넌트는 다음을 수행해야합니다.
-
+따라서 `v-model`을 사용하는 컴포넌트는 (2.2.0버전 이상에서 설정을 조작할 수 있습니다.)
 - `value` prop를 가집니다.
 - 새로운 값으로 `input` 이벤트를 내보냅니다.
 
@@ -568,16 +572,15 @@ new Vue({
 
 ``` js
 Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
-  ',
+  template: `
+    <span>
+      $
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)">
+    </span>
+  `,
   props: ['value'],
   methods: {
     // 값을 직접 업데이트하는 대신 이 메소드를 사용하여
@@ -640,12 +643,41 @@ new Vue({
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-이벤트 인터페이스를 사용하여 더 많은 비정상적인 입력을 생성 할 수도 있습니다. 예를 들어, 다음과 같은 가능성을 상상해보십시오.
+
+
+### 컴포넌트의 `v-model` 사용자 정의
+
+> 2.2.0 버전에서 추가됨
+
+기본적으로 컴포넌트의 `v-model`은 `value`를 보조 변수로 사용하고 `input`을 이벤트로 사용하지만 체크 박스와 라디오 버튼과 같은 일부 입력 타입은 다른 목적으로 `value` 속성을 사용할 수 있습니다. `model` 옵션을 사용하면 다음 경우에 충돌을 피할 수 있습니다:
+
+``` js
+Vue.component('my-checkbox', {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
+    value: String
+  },
+  // ...
+})
+```
 
 ``` html
-<voice-recognizer v-model="question"></voice-recognizer>
-<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
-<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+<my-checkbox v-model="foo" value="some value"></my-checkbox>
+```
+
+아래와 같습니다
+
+
+``` html
+<my-checkbox
+  :checked="foo"
+  @change="val => { foo = val }"
+  value="some value">
+</my-checkbox>
 ```
 
 ### 비 부모-자식간 통신

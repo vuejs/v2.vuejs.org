@@ -65,17 +65,22 @@ type: api
 
 - **타입:** `Function`
 
-- **기본값:** 오류 발생 시점의 오류
+- **기본값:** `undefined`
 
 - **사용방법:**
 
   ``` js
-  Vue.config.errorHandler = function (err, vm) {
-    // 오류 처리
+  Vue.config.errorHandler = function (err, vm, type) {
+    // 에러 핸들링
+    // `type`은 Vue의 에러 타입입니다. 예: 라이프사이클 훅
+    // 2.2.0+ 이상에서 사용할 수 있습니다
   }
   ```
+  컴포넌트 렌더 함수 및 감시자 중에 잡히지 않은 오류에 대한 핸들러를 할당합니다. 핸들러는 오류 및 Vue 인스턴스와 함께 호출됩니다.
 
-  컴포넌트 렌더링 또는 감시자에 catch 되지 않은 오류에 대한 핸들러를 할당합니다. 핸들러는 오류와 Vue 인스턴스와 함께 호출됩니다.
+  > 2.2.0에서 이 훅은 컴포넌트 라이프사이클 훅의 오류를 캡처합니다. 또한, 이 훅이 `undefined`일 때, 캡쳐 된 에러는 어플리케이션을 실행 불능으로 만드는 대신에 `console.error` 로그를 출력 합니다.
+
+  
 
   > 오류 추적 서비스인 [Sentry](https://sentry.io)에서 [공식 사용 설명서](https://sentry.io/for/vue/) 를 제공합니다.
 
@@ -113,6 +118,31 @@ type: api
   ```
 
   v-on에 사용자 정의 키를 할당합니다.
+
+### performance
+
+> 2.2.0에서 추가됨
+
+- **타입:** `boolean`
+
+- **기본값:** `false`
+
+- **사용방법:**
+
+  `true`로 설정하면 브라우저 devtool의 타임라인에서 컴포넌트 초기화, 컴파일, 렌더링 및 패치 성능 추적을 활성화할 수 있습니다. 개발 모드 및 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API를 지원하는 브라우저에서만 작동합니다.
+
+
+### productionTip
+
+> 2.2.0에서 추가됨
+
+- **타입:** `boolean`
+
+- **기본값:** `true`
+
+- **사용방법:**
+
+  `false`로 설정하면 배포에 대한 팁을 출력하지 않습니다.
 
 ## 전역 API
 
@@ -196,16 +226,20 @@ type: api
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( object, key )</h3>
+<h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
 - **전달인자:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **사용방법:**
 
   객체의 속성을 삭제합니다. 객체가 반응형이면, 뷰 업데이트를 발생시킵니다. 주로 Vue가 속성 삭제를 감지하지 못하는 한계를 극복하기 위해 사용하지만 거의 사용하지 않아야 합니다.
   ** 객체는 Vue 인스턴스 또는 Vue 인스턴스의 루트 데이터 객체일 수 없습니다. **
+
+  > 2.2.0버전 이후에서 배열과 인덱스를 사용할 수 있습니다.
+
+  <p class="tip">목표 객체는 Vue 인스턴스이거나 인스턴스의 루트 데이터 객체일 수 없습니다.</p>
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
@@ -328,8 +362,9 @@ type: api
   })
   ```
 
+
 - **참고:** [렌더 함수](../guide/render-function.html)
- 
+
 <h3 id="Vue-version">Vue.version</h3>
 
 - **상세**: 설치된 Vue 버전을 가져올 수 있습니다. 버전을 이용해서 커뮤니티 플러그인과 컴포넌트 또는 버전마다 다른 처리를 하는데 유용하게 사용할 수 있습니다.
@@ -455,7 +490,7 @@ if (version === 2) {
 
 ### computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **타입:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
 - **상세:**
 
@@ -466,7 +501,7 @@ if (version === 2) {
   계산된 속성은 캐시 되며 의존하고 있는 반응형 속성이 변경되는 경우 다시 평가됩니다. 특정한 의존성이 인스턴스의 범위를 벗어나는 경우(반응형이지 않은 경우)에 계산된 속성은 갱신되지 않습니다. 그러나 여전히 반응형 속성을 갖지 않고 있기 때문에 이를 수정하는 경우 DOM 갱신을 발생시키지 않습니다.
 
   대부분의 상황에서 `cache: false` 를 사용하는 것은 이상적인 방법이 아닙니다. 가능할 때마다 외부 데이터를 반응형 시스템 안으로 가져오는 것이 훨씬 좋습니다. 예를 들어, 계산된 속성이 윈도우 크기에 의존하는 경우 이 정보를 `data` 에 저정한 다음 `resize` 이벤트를 사용하여 데이터를 최신 상태로 유지할 수 있습니다. 이것 또한 반응형입니다!
-  
+
 - **예제:**
 
   ```js
@@ -599,7 +634,7 @@ if (version === 2) {
 
 ### render
 
-  - **타입:** `Function`
+  - **타입:** `(createElement: () => VNode) => VNode`
 
   - **상세:**
 
@@ -609,6 +644,34 @@ if (version === 2) {
 
   - **참고:**
     - [렌더 함수](../guide/render-function)
+
+### renderError
+
+> 2.2.0에서 추가됨
+
+  - **타입:** `(createElement: () => VNode, error: Error) => VNode`
+
+  - **상세:**
+
+    **개발 모드에서만 작동합니다**
+
+    기본 `render` 함수가 에러를 만나면, 대체되는 렌더 결과를 제공합니다. 오류는 두 번째 전달인자로 `renderError` 입니다. 핫 리로드와 함께 사용될 때 특히 유용합니다.
+
+  - **예제:**
+
+    ``` js
+    new Vue({
+      render (h) {
+        throw new Error('oops')
+      },
+      renderError (h, err) {
+        return h('pre', { style: { color: 'red' }}, err.stack)
+      }
+    }).$mount('#app')
+    ```
+
+  - **참고:**
+    - [Render Functions](../guide/render-function)
 
 ## 옵션 / 라이프사이클 훅
 
@@ -773,7 +836,8 @@ if (version === 2) {
 - **참고:**
   - [컴포넌트](../guide/components.html)
 
-## 옵션 / 기타
+
+## 옵션 / 컴포지션
 
 ### parent
 
@@ -811,18 +875,6 @@ if (version === 2) {
 
 - **참고:** [Mixins](../guide/mixins.html)
 
-### name
-
-- **타입:** `string`
-
-- **제한:** 컴포넌트 옵션으로 사용될 때만 사용할 수 있습니다.
-
-- **상세:**
-
-  컴포넌트가 템플릿을 반복적으로 자체 호출 할 수 있게 합니다. 컴포넌트가 `Vue.component()`로 전역으로 등록되면 전역 ID가 자동으로 이름으로 설정됩니다.
-
-  `name` 옵션을 지정하는 또 다른 이점은 디버깅 입니다. 명명된 컴포넌트는 보다 유용한 경고 메시지를 만듭니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)에서 응용 프로그램을 살펴볼 때 익명의 컴포넌트는 매우 유용하지 않은 `<AnonymousComponent>`로 표시됩니다. `name` 옵션을 제공함으로써 훨씬 더 쓸모있는 컴포넌트 트리를 얻을 수 있습니다.
-
 ### extends
 
 - **타입:** `Object | Function`
@@ -844,6 +896,79 @@ if (version === 2) {
     ...
   }
   ```
+
+### provide / inject
+
+> 2.2.0에서 추가됨
+
+- **타입:**
+  - **provide:** `Object | () => Object`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+
+- **상세:**
+
+  <p class="tip">
+  `provide`와 `inject`는 주로 고급 플러그인/컴포넌트 라이브러리를 위해 제공됩니다. 일반 애플리케이션 코드에서는 사용하지 않는 것이 좋습니다.
+  </p>
+
+  이 옵션 쌍은 함께 사용하여 상위 컴포넌트가 컴포넌트 계층 구조의 깊이에 관계없이 모든 하위 항목에 대한 종속성을 주입하는 역할을 하도록 허용합니다. React에 익숙하다면 이것은 React의 컨텍스트 기능과 매우 유사합니다.
+
+  `provide` 옵션은 객체 또는 객체를 반환하는 함수여야합니다. 이 객체에는 하위 항목에 삽입할 수있는 속성이 포함되어 있습니다. ES2015 심볼을 이 객체의 키로 사용할 수 있지만 `Symbol`과 `Reflect.ownKeys`를 기본적으로 지원하는 환경에서만 가능합니다.
+
+  `inject` 옵션은 문자열의 배열이거나 키가 로컬 바인딩 이름을 나타내는 객체이고 사용 가능한 주입에서 검색할 키 (문자열 또는 기호)값이어야합니다.
+
+  provider 컴포넌트는 제공된 속성을 주입하려는 컴포넌트의 부모 목록에 있어야 합니다
+
+- **예제:**
+
+  ``` js
+  var Provider = {
+    provide: {
+      foo: 'bar'
+    },
+    // ...
+  }
+
+  var Child = {
+    inject: ['foo'],
+    created () {
+      console.log(this.foo) // -> "bar"
+    }
+    // ...
+  }
+  ```
+
+  ES2015의 Symbol을 사용하여 `provide` 함수와 `inject` 객체를 사용하세요:
+  ``` js
+  const s = Symbol()
+
+  const Provider = {
+    provide () {
+      return {
+        [s]: 'foo'
+      }
+    }
+  }
+
+  const Child = {
+    inject: { s },
+    // ...
+  }
+  ```
+
+## 옵션 / 기타
+
+### name
+
+- **타입:** `string`
+
+- **제한:** 컴포넌트 옵션으로 사용될 때만 사용할 수 있습니다.
+
+- **상세:**
+
+  컴포넌트가 템플릿을 반복적으로 자체 호출 할 수 있게 합니다. 컴포넌트가 `Vue.component()`로 전역으로 등록되면 전역 ID가 자동으로 이름으로 설정됩니다.
+
+  `name` 옵션을 지정하는 또 다른 이점은 디버깅 입니다. 명명된 컴포넌트는 보다 유용한 경고 메시지를 만듭니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)에서 응용 프로그램을 살펴볼 때 익명의 컴포넌트는 매우 유용하지 않은 `<AnonymousComponent>`로 표시됩니다. `name` 옵션을 제공함으로써 훨씬 더 쓸모있는 컴포넌트 트리를 얻을 수 있습니다.
 
 ### delimiters
 
@@ -875,6 +1000,46 @@ if (version === 2) {
 
 - **참고:** [Functional Components](../guide/render-function.html#Functional-Components)
 
+### model
+
+> 2.2.0에서 추가됨
+
+- **타입:** `{ prop?: string, event?: string }`
+
+- **상세:**
+
+  커스텀 컴포넌트가 `v-model`과 함께 사용될 때 prop와 이벤트를 커스터마이징 할 수 있도록 합니다. 기본적으로 컴포넌트의 `v-model`은 `value`를 보조 변수로 사용하고 `input`을 이벤트로 사용하지만 체크 박스와 라디오 버튼과 같은 일부 입력 타입은 다른 목적으로 `value` 속성을 사용하려고 할 수 있습니다. `model` 옵션을 사용하면 이 경우 충돌을 피할 수 있습니다.
+
+- **예제:**
+
+  ``` js
+  Vue.component('my-checkbox', {
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
+    props: {
+      // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
+      value: String
+    },
+    // ...
+  })
+  ```
+
+  ``` html
+  <my-checkbox v-model="foo" value="some value"></my-checkbox>
+  ```
+
+  위의 내용은 아래와 같습니다.
+
+  ``` html
+  <my-checkbox
+    :checked="foo"
+    @change="val => { foo = val }"
+    value="some value">
+  </my-checkbox>
+  ```
+
 ## 인스턴스 속성
 
 ### vm.$data
@@ -886,6 +1051,16 @@ if (version === 2) {
   Vue 인스턴스가 관찰하는 데이터 객체입니다. Vue 인스턴스는 데이터 객체의 속성에 대한 엑세스를 프록시 합니다.
 
 - **참고:** [옵션 - data](#data)
+
+### vm.$props
+
+> 2.2.0에서 추가됨
+
+- **타입:** `Object`
+
+- **상세:**
+
+  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
 
 ### vm.$el
 
@@ -1142,7 +1317,7 @@ if (version === 2) {
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **전달인자:**
-  - `{string} event`
+  - `{string | Array<string>} event` (array only supported in 2.2.0+)
   - `{Function} callback`
 
 - **사용방법:**
@@ -1454,6 +1629,9 @@ if (version === 2) {
   - `.{keyCode | keyAlias}` - 특정 키에 대해서만 처리 됩니다.
   - `.native` - 컴포넌트의 루트 엘리먼트에서 네이티브 이벤트를 수신합니다.
   - `.once` - 단 한번만 처리됩니다.
+  - `.left` - (2.2.0) 왼쪽 버튼 마우스 이벤트 트리거 처리기.
+  - `.right` - (2.2.0) 오른쪽 버튼 마우스 이벤트 트리거 처리기.
+  - `.middle` - (2.2.0) 가운데 버튼 마우스 이벤트 트리거 처리기.
 
 - **사용방법:**
 
@@ -1865,6 +2043,9 @@ if (version === 2) {
   동적 컴포넌트를 감싸는 경우 `<keep-alive>`는 비활성 컴포넌트 인스턴스를 파괴하지 않고 캐시합니다. `<transition>`과 비슷하게 `<keep-alive>`는 추상 엘리먼트입니다. DOM 엘리먼트 자체는 렌더링 하지 않고 컴포넌트 부모 체인에는 나타나지 않습니다.
 
   컴포넌트가 `<keep-alive>`내에서 토글 될 때, `activated`와 `deactivated`라이프사이클 훅이 그에 따라 호출됩니다.
+
+
+  > 2.2.0 이상에서는 `<keep-alive>` 트리 안에 있는 모든 중첩 된 컴포넌트에 대해 `activated`와 `deactivated`가 실행됩니다.
 
   주로 컴포넌트 상태를 보존하거나 재 렌더링을 피하는데 사용합니다.
 
