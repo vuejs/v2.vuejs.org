@@ -99,22 +99,20 @@
     iframe
         margin 1em 0
     > table
-        border 2px solid $white
+        border-spacing 0
+        border-collapse collapse
         margin 1.2em auto
-        padding: 1em
+        padding 0
         td, th
-            line-height 1.6em
-            padding .5em 1.4em
+            line-height 1.5em
+            padding .4em .8em
             border none
-        td
-            background-color: lighten($codebg, 60%)
+            border 1px solid #ddd
         th
-            background-color: $green
-            color: #fff
-            padding-top: .85em
-            padding-bottom .85em
+            font-weight bold
             text-align left
-        tbody
+        th, tr:nth-child(2n)
+            background-color #f8f8f8
             code
                 background-color #efefef
     p.tip
