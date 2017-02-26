@@ -6,9 +6,9 @@ order: 10
 
 ## Usage basique
 
-Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire et les ((textarea|zones de textes multilignes)). Elle choisira automatiquement la bonne manière de mettre à jour l'élément selon le type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ((plus quelques traitements spéciaux pour les cas particuliers)).
+Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les ((champs de formulaire)). Elle choisira automatiquement la bonne manière de mettre à jour l'élément selon le type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ((plus quelques traitements spéciaux pour les cas particuliers)).
 
-<p class="tip">`v-model` ne prend pas en compte la valeur initial fourni par un champ ou une zone de texte. Il traitera toujours les données de l'instance de vue comme la source de vérité.</p>
+<p class="tip">`v-model` ne prend pas en compte la valeur initiale fournie par un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
 
 <p class="tip" id="vmodel-ime-tip">Pour les languages qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc ...), vous remarquerez que `v-model` ne sera pas mis à jour durant ((l'exécution de la méthode de saisie.))</p>
 
@@ -62,8 +62,7 @@ new Vue({
 
 
 {% raw %}
-<p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
-<p class="tip">Les interpolations sur les textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionneront pas. Utilisez <code>v-model</code> à la place.</p>
+<p class="tip">Les interpolations sur les textarea (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionneront pas. Utilisez <code>v-model</code> à la place.</p>
 {% endraw %}
 
 ### Checkbox
@@ -196,7 +195,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Select à choix multiple (lié à Array):
+Select à choix multiples (lié à Array):
 
 ``` html
 <select v-model="selected" multiple>
@@ -274,11 +273,10 @@ new Vue({
 </script>
 {% endraw %}
 
-## Value Bindings
-## Liaisons de value
+## Liaisons de valeurs
 
-For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
 Pour les options de bouton radio, checkbox et select, les valeurs de liaison de `v-model` sont habituellement des chaînes de caractères statiques (ou des booléens pour checkbox):
+
 
 ``` html
 <!-- `picked` est une chaîne de caractères "a" quand le bouton radio est sélectionné -->
@@ -320,7 +318,7 @@ vm.toggle === vm.b
 ```
 
 ``` js
-// when checked:
+// quand choisi :
 vm.pick === vm.a
 ```
 
