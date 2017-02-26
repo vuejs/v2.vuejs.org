@@ -1060,7 +1060,7 @@ if (version === 2) {
 
 - **상세:**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+  컴포넌트가 전달 받은 속성을 나타내는 객체입니다. Vue 인스턴스는 해당 props 객체의 속성에 대한 접근을 프록시합니다.
 
 ### vm.$el
 
