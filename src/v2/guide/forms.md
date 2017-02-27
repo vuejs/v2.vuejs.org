@@ -6,11 +6,11 @@ order: 10
 
 ## Usage basique
 
-Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire et textarea. Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, plus quelques traitements spéciaux pour certains cas particuliers.
+Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire. Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ainsi que quelques traitements spéciaux pour certains cas particuliers.
 
-<p class="tip">`v-model` ne prend pas en compte la valeur initiale fournie pour un champ ou un textarea. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
+<p class="tip">`v-model` ne prend pas en compte la valeur initiale (attribut "value") fournie pour champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
 
-<p class="tip" id="vmodel-ime-tip">Pour les languages qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc ...), vous remarquerez que `v-model` ne sera pas mis à jour durant l'exécution de la méthode de saisie.</p>
+<p class="tip" id="vmodel-ime-tip">Pour les languages qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc ...), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie.</p>
 
 ### Texte
 
@@ -226,7 +226,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Options dynamiques rendues avec `v-for`:
+Options dynamiques générées avec `v-for`:
 
 ``` html
 <select v-model="selected">
@@ -307,7 +307,7 @@ Mais parfois nous pouvons souhaiter lier la valeur à une propriété dynamique 
 ``` js
 // quand cochée :
 vm.toggle === vm.a
-// when unchecked:
+// quand décochée :
 vm.toggle === vm.b
 ```
 
@@ -341,7 +341,7 @@ vm.selected.number // -> 123
 
 ### `.lazy`
 
-Par défaut, `v-model` synchronise l'input avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place: 
+Par défaut, `v-model` synchronise le champ avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place: 
 
 ``` html
 <!-- synchronisé après le "change" au lieu du "input" -->
@@ -350,7 +350,7 @@ Par défaut, `v-model` synchronise l'input avec les données après chaque évè
 
 ### `.number`
 
-Si vous voulez que l'entrée utilisateur soit automatiquement typée en tant que nombre, vous pouvez ajouter le modificateur `number` à vos input gérés par `v-model`
+Si vous voulez que l'entrée utilisateur soit automatiquement typée en tant que nombre, vous pouvez ajouter le modificateur `number` à vos champs gérés par `v-model`
 
 ``` html
 <input v-model.number="age" type="number">
@@ -360,7 +360,6 @@ C'est souvent utile, parce que même avec `type="number"`, la valeur des éléme
 
 ### `.trim`
 
-If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
 c'est vous voulez que les entrées utilisateurs soit "trimmed" automatiquement, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model`
 
 ```html
@@ -371,7 +370,7 @@ c'est vous voulez que les entrées utilisateurs soit "trimmed" automatiquement, 
 
 > Si vous n'est pas encore familier avec les composants de Vue, sautez ce passage pour le moment
 
-Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des inputs avec un comportement complètement customisé. Ces inputs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez [inputs personnalisés](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
+Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des champs avec un comportement complètement personnalisé. Ces champs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez les [champs personnalisés](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
 
 
 
