@@ -4,39 +4,76 @@ type: guide
 order: 25
 ---
 
-## Official Declaration Files
+## Important 2.2 Change Notice for TS + webpack 2 users
 
-A static type system can help prevent many potential runtime errors, especially as applications grow. That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also [for Vue Router](https://github.com/vuejs/vue-router/tree/dev/types) and [for Vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
+In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
 
-Since these are [published on NPM](https://unpkg.com/vue/types/), you don't even need external tools like `Typings`, as declarations are automatically imported with Vue. That means all you need is a simple:
+We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#recommended-configuration) below on a future-proof setup.
 
-``` ts
+## Official Declaration in NPM Packages
+
+A static type system can help prevent many potential runtime errors, especially as applications grow. That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also for [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) and [vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
+
+Since these are [published on NPM](https://unpkg.com/vue/types/), and the latest TypeScript knows how to resolve type declarations in NPM packages, this means when installed via NPM, you don't need any additional tooling to use TypeScript with Vue.
+
+## Recommended Configuration
+
+``` js
+// tsconfig.json
+{
+  "compilerOptions": {
+    // ... other options omitted
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.Promise"
+    ]
+  }
+}
+```
+
+Note the `allowSyntheticDefaultImports` option allows us to use the following:
+
+``` js
+import Vue from 'vue'
+```
+
+instead of:
+
+``` js
 import Vue = require('vue')
 ```
 
-<p class="tip">In Vue 2.2.0 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. However, this means if you are using TypeScript with webpack 2, `import Vue = require('vue')` will return an ES module object instead of Vue itself.
+The former (ES module syntax) is recommended because it is consistent with recommended plain ES usage, and in the future we are planning to move all official declarations to use ES-style exports.
 
-In the near future, we will update all core typings to use ES-style exports so there usage will be identical to importing ES modules; before these changes land, the temporary workaround is configuring webpack to alias `vue` back to `vue/dist/vue[.runtime].common.js`. You will also need to do the same for `vue-router` and `vuex` if you are using them.</p>
+In addition, if you are using TypeScript with webpack 2, the following is also recommended:
 
-Then all methods, properties, and parameters will be type checked. For example, if you misspell the `template` component option as `tempate` (missing the `l`), the TypeScript compiler will print an error message at compile time. If you're using an editor that can lint TypeScript, such as [Visual Studio Code](https://code.visualstudio.com/), you'll even be able to catch these errors before compilation:
+``` js
+{
+  "compilerOptions": {
+    // ... other options omitted
+    "module": "es2015",
+    "moduleResolution": "node"
+  }
+}
+```
 
-![TypeScript Type Error in Visual Studio Code](/images/typescript-type-error.png)
+This tells TypeScript to leave the ES module import statements intact, which in turn allows webpack 2 to take advantage of ES-module-based tree-shaking.
 
-### Compilation Options
+See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
 
-Vue's declaration files require the `--lib DOM,ES5,ES2015.Promise` [compiler option](https://www.typescriptlang.org/docs/handbook/compiler-options.html). You can pass this option to the `tsc` command or add the equivalent to a `tsconfig.json` file.
+## Using Vue's Type Declarations
 
-### Accessing Vue's Type Declarations
-
-If you want to annotate your own code with Vue's types, you can access them on Vue's exported object. For example, to annotate an exported component options object (e.g. in a `.vue` file):
+Vue's type definition exports many useful [type declarations](https://github.com/vuejs/vue/blob/dev/types/index.d.ts). For example, to annotate an exported component options object (e.g. in a `.vue` file):
 
 ``` ts
-import Vue = require('vue')
+import Vue, { ComponentOptions } from 'vue'
 
 export default {
   props: ['message'],
   template: '<span>{{ message }}</span>'
-} as Vue.ComponentOptions<Vue>
+} as ComponentOptions<Vue>
 ```
 
 ## Class-Style Vue Components
@@ -44,7 +81,7 @@ export default {
 Vue component options can easily be annotated with types:
 
 ``` ts
-import Vue = require('vue')
+import Vue, { ComponentOptions }  from 'vue'
 
 // Declare the component's type
 interface MyComponent extends Vue {
@@ -68,7 +105,7 @@ export default {
   }
 // We need to explicitly annotate the exported options object
 // with the MyComponent type
-} as Vue.ComponentOptions<MyComponent>
+} as ComponentOptions<MyComponent>
 ```
 
 Unfortunately, there are a few limitations here:
@@ -80,7 +117,7 @@ Unfortunately, there are a few limitations here:
 Fortunately, [vue-class-component](https://github.com/vuejs/vue-class-component) can solve both of these problems. It's an official companion library that allows you to declare components as native JavaScript classes, with a `@Component` decorator. As an example, let's rewrite the above component:
 
 ``` ts
-import Vue = require('vue')
+import Vue from 'vue'
 import Component from 'vue-class-component'
 
 // The @Component decorator indicates the class is a Vue component
