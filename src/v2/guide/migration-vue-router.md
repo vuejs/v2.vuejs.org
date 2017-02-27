@@ -1,7 +1,7 @@
 ---
 title: Vue Router 0.7.x으로 부터 마이그레이션
 type: guide
-order: 26
+order: 27
 ---
 
 > Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 [Vue Router 문서](http://router.vuejs.org/en/)를 참조하십시오.
@@ -73,7 +73,7 @@ var router = new VueRouter({
 })
 ```
 
-객체를 반복 할 때 브라우저간에 동일한 키 순서를 사용하는 것이 보장되지 않기 때문에 배열 구문을 사용하면보다 예측 가능한 경로 일치가 가능합니다.
+객체를 반복 할 때 브라우저간에 같은 키 순서를 사용하는 것이 보장되지 않기 때문에 배열 구문을 사용하면보다 예측 가능한 경로 일치가 가능합니다.
 
 {% raw %}
 <div class="upgrade-path">
@@ -255,7 +255,7 @@ if (route.meta.requiresAuth) {
 
 ### `v-link` <sup>변경</sup>
 
-`v-link` 지시문은 새로운[`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)로 대체되었습니다.이 일은 이제 Vue 2의 컴포넌트의 책임입니다.
+`v-link` 디렉티브는 새로운[`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)로 대체되었습니다.이 일은 이제 Vue 2의 컴포넌트의 책임입니다.
 
 ``` html
 <a v-link="'/about'">About</a>
@@ -272,13 +272,13 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link</code> 지시문의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link</code> 디렉티브의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
 ### `v-link-active` <sup>변경</sup>
 
-`v-link-active` 지시문은 [`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)의`tag` 속성으로 대체되었습니다. 예를 들어 다음과 같이 업데이트 할 것입니다.
+`v-link-active` 디렉티브는 [`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)의`tag` 속성으로 대체되었습니다. 예를 들어 다음과 같이 업데이트 할 것입니다.
 
 ``` html
 <li v-link-active>
@@ -299,7 +299,7 @@ if (route.meta.requiresAuth) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link-active</code> 지시문의 예를 찾으십시오.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link-active</code> 디렉티브의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 

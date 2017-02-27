@@ -6,7 +6,7 @@ order: 11
 
 ## 컴포넌트가 무엇인가요?
 
-컴포넌트는 Vue의 가장 강력한 기능 중 하나입니다. 기본 HTML 엘리먼트를 확장하여 재사용 가능한 코드를 캡슐화하는 데 도움이됩니다. 상위 수준에서 컴포넌트는 Vue의 컴파일러에 의해 동작이 추가된 사용자 지정 엘리먼트입니다. 경우에 따라 특별한 `is` 속성으로 확장 된 원시 HTML 엘리먼트로 나타날 수도 있습니다.
+컴포넌트는 Vue의 가장 강력한 기능 중 하나입니다. 기본 HTML 엘리먼트를 확장하여 재사용 가능한 코드를 캡슐화하는 데 도움이 됩니다. 상위 수준에서 컴포넌트는 Vue의 컴파일러에 의해 동작이 추가된 사용자 지정 엘리먼트입니다. 경우에 따라 특별한 `is` 속성으로 확장 된 원시 HTML 엘리먼트로 나타날 수도 있습니다.
 
 ## 컴포넌트 사용하기
 
@@ -89,7 +89,7 @@ new Vue({
 })
 ```
 
-동일한 캡슐화는 지시문과 같은 다른 등록 가능한 Vue 기능에도 적용됩니다.
+동일한 캡슐화는 디렉티브와 같은 다른 등록 가능한 Vue 기능에도 적용됩니다.
 
 ### DOM 템플릿 구문 분석 경고
 
@@ -149,7 +149,7 @@ var data = { counter: 0 }
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
   // 데이터는 기술적으로 함수이므로 Vue는 따지지 않지만
-  // 각 컴포넌트 인스턴스에 대해 동일한 객체 참조를 반환합니다.
+  // 각 컴포넌트 인스턴스에 대해 같은 객체 참조를 반환합니다.
   data: function () {
     return data
   }
@@ -180,7 +180,7 @@ new Vue({
 </script>
 {% endraw %}
 
-이런! 세 개의 컴포넌트 인스턴스가 모두 동일한 `data` 객체를 공유하므로 하나의 카운터를 증가 시키면 모두 증가합니다! 대신 새로운 데이터 객체를 반환하여이 문제를 해결합시다.
+이런! 세 개의 컴포넌트 인스턴스가 모두 같은 `data` 객체를 공유하므로 하나의 카운터를 증가 시키면 모두 증가합니다! 대신 새로운 데이터 객체를 반환하여이 문제를 해결합시다.
 
 ``` js
 data: function () {
@@ -217,7 +217,7 @@ new Vue({
 
 컴포넌트는 부모-자식 관계에서 가장 일반적으로 함께 사용하기 위한 것입니다. 컴포넌트 A는 자체 템플릿에서 컴포넌트 B를 사용할 수 있습니다. 그들은 필연적으로 서로 의사 소통이 필요합니다. 부모는 자식에게 데이터를 전달해야 할 수도 있으며, 자식은 자신에게 일어난 일을 부모에게 알릴 필요가 있습니다. 그러나 부모와 자식이 명확하게 정의된 인터페이스를 통해 가능한한 분리된 상태로 유지하는 것도 매우 중요합니다. 이렇게하면 각 컴포넌트의 코드를 상대적으로 격리 할 수 있도록 작성하고 추론할 수 있으므로 유지 관리가 쉽고 잠재적으로 쉽게 재사용 할 수 있습니다.
 
-Vue.js에서 부모-자식 컴포넌트 관계는 **props는 아래로, events 위로** 라고로 요약 할 수 있습니다. 부모는 **props** 를 통해 자식에게 데이터를 전달하고 자식은 **events** 를 통해 부모에게 메시지를 보냅니다. 어떠헥 작동하는지 보겠습니다.
+Vue.js에서 부모-자식 컴포넌트 관계는 **props는 아래로, events 위로** 라고 요약 할 수 있습니다. 부모는 **props** 를 통해 자식에게 데이터를 전달하고 자식은 **events** 를 통해 부모에게 메시지를 보냅니다. 어떻게 작동하는지 보겠습니다.
 
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
@@ -229,7 +229,7 @@ Vue.js에서 부모-자식 컴포넌트 관계는 **props는 아래로, events �
 
 모든 컴포넌트 인스턴스에는 자체 **격리 된 범위** 가 있습니다. 즉, 하위 컴포넌트의 템플릿에서 상위 데이터를 직접 참조 할 수 없으며 그렇게 해서는 안됩니다. 데이터는 [`props` 옵션](../api/#props) 을 사용하여 하위 컴포넌트로 전달 될 수 있습니다.
 
-소품은 상위 컴포넌트의 정보를 전달하기위한 사용자 지정 특성입니다. 하위 컴포넌트는`props` 옵션을 사용하여 수신 할 것으로 기대되는 소포를 명시 적으로 선언해야합니다
+prop는 상위 컴포넌트의 정보를 전달하기위한 사용자 지정 특성입니다. 하위 컴포넌트는`props` 옵션을 사용하여 수신 할 것으로 기대되는 props를 명시적으로 선언해야합니다
 
 ``` js
 Vue.component('child', {
@@ -347,7 +347,7 @@ new Vue({
 
 모든 props는 하위 속성과 상위 속성 사이의 **단방향** 바인딩을 형성합니다. 상위 속성이 업데이트되면 하위로 흐르게 되지만 그 반대는 안됩니다. 이렇게하면 하위 컴포넌트가 실수로 상위 상태로 변경되는 것을 **방지할 수** 있습니다. 이로 인해 앱의 데이터 흐름을 추론하기가 더 어려워 질 수 있습니다.
 
-또한 상위 컴포넌트가 업데이트 될 때마다 하위 컴포넌트의 모든 소품이 최신 값으로 새로 고쳐집니다. 즉, 하위 컴포넌트 내부에서 소품을 변형하려고 시도하면 안됩니다. 그렇게하면 Vue가 콘솔에서 경고합니다.
+또한 상위 컴포넌트가 업데이트 될 때마다 하위 컴포넌트의 모든 props가 최신 값으로 갱신됩니다. 즉, 하위 컴포넌트 내부에서 prop을 변형하려고 시도하면 안됩니다. 시도할  Vue가 콘솔에서 경고합니다.
 
 일반적으로 prop을 변경시키고 싶은 유혹을 불러 일으킬 수있는 두 가지 경우가 있습니다.
 
@@ -382,7 +382,7 @@ new Vue({
 
 ### Prop 검증
 
-컴포넌트가 받은 중인 prop에 대한 요구사항을 지정할 수 있습니다. 요구사항이 충족 되지 않으면 Vue에서 경고를 내보냅니다. 이 기능은 다른 사용자가 사용할 컴포넌트를 제작할 때 특히 유용합니다.
+컴포넌트가 받는 중인 prop에 대한 요구사항을 지정할 수 있습니다. 요구사항이 충족 되지 않으면 Vue에서 경고를 내보냅니다. 이 기능은 다른 사용자가 사용할 컴포넌트를 제작할 때 특히 유용합니다.
 
 props를 문자열 배열로 정의하는 대신 유효성 검사 요구사항이 있는 객체를 사용할 수 있습니다.
 
@@ -448,7 +448,10 @@ prop 유효성 검사가 실패하면 Vue는 콘솔 경고를 생성합니다(�
 
 또한, 부모 컴포넌트는 자식 컴포넌트가 사용되는 템플릿에서 직접 `v-on` 을 사용하여 자식 컴포넌트에서 보내진 이벤트를 들을 수 있습니다.
 
-예제 입니다.
+
+<p class="tip">`$on`은 자식에서 호출한 이벤트는 감지하지 않습니다. `v-on`을 템플릿에 반드시 지정해야 합니다. 아래의 예제를 보십시오.</p>
+
+예제:
 
 ``` html
 <div id="counter-event-example">
@@ -543,17 +546,21 @@ new Vue({
 위 문장은 아래와 같습니다.
 
 ``` html
-<input v-bind:value="something" v-on:input="something = $event.target.value">
+<input
+  v-bind:value="something"
+  v-on:input="something = $event.target.value">
 ```
 
 컴포넌트와 함께 사용하면 다음과 같이 간단해집니다.
 
 ``` html
-<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
+<custom-input
+  :value="something"
+  @input="value => { something = value }">
+</custom-input>
 ```
 
-따라서 `v-model`을 사용하는 컴포넌트는 다음을 수행해야합니다.
-
+따라서 `v-model`을 사용하는 컴포넌트는 (2.2.0버전 이상에서 설정을 조작할 수 있습니다.)
 - `value` prop를 가집니다.
 - 새로운 값으로 `input` 이벤트를 내보냅니다.
 
@@ -565,16 +572,15 @@ new Vue({
 
 ``` js
 Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
-  ',
+  template: `
+    <span>
+      $
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)">
+    </span>
+  `,
   props: ['value'],
   methods: {
     // 값을 직접 업데이트하는 대신 이 메소드를 사용하여
@@ -626,7 +632,10 @@ Vue.component('currency-input', {
     }
   }
 })
-new Vue({ el: '#currency-input-example' })
+new Vue({
+  el: '#currency-input-example',
+  data: { price: '' }
+})
 </script>
 {% endraw %}
 
@@ -634,12 +643,41 @@ new Vue({ el: '#currency-input-example' })
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-이벤트 인터페이스를 사용하여 더 많은 비정상적인 입력을 생성 할 수도 있습니다. 예를 들어, 다음과 같은 가능성을 상상해보십시오.
+
+
+### 컴포넌트의 `v-model` 사용자 정의
+
+> 2.2.0 버전에서 추가됨
+
+기본적으로 컴포넌트의 `v-model`은 `value`를 보조 변수로 사용하고 `input`을 이벤트로 사용하지만 체크 박스와 라디오 버튼과 같은 일부 입력 타입은 다른 목적으로 `value` 속성을 사용할 수 있습니다. `model` 옵션을 사용하면 다음 경우에 충돌을 피할 수 있습니다:
+
+``` js
+Vue.component('my-checkbox', {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
+    value: String
+  },
+  // ...
+})
+```
 
 ``` html
-<voice-recognizer v-model="question"></voice-recognizer>
-<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
-<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+<my-checkbox v-model="foo" value="some value"></my-checkbox>
+```
+
+아래와 같습니다
+
+
+``` html
+<my-checkbox
+  :checked="foo"
+  @change="val => { foo = val }"
+  value="some value">
+</my-checkbox>
 ```
 
 ### 비 부모-자식간 통신
@@ -695,7 +733,7 @@ API를 파헤치기 전에 먼저 내용이 컴파일되는 범위를 명확히 
 
 > 상위 템플릿의 모든 내용은 상위 범위로 컴파일됩니다. 하위 템플릿의 모든 내용은 하위 범위에서 컴파일됩니다.
 
-일반적인 실수는 부모 템플릿의 하위 속성/메소드에 지시문을 바인딩하려고하는 것입니다.
+일반적인 실수는 부모 템플릿의 하위 속성/메소드에 디렉티브를 바인딩하려고하는 것입니다.
 
 ``` html
 <!-- 작동하지 않습니다 -->
@@ -704,7 +742,7 @@ API를 파헤치기 전에 먼저 내용이 컴파일되는 범위를 명확히 
 
 `someChildProperty`가 자식 컴포넌트의 속성이라고 가정하면, 위의 예제는 작동하지 않을 것입니다. 상위 템플릿은 하위 컴포넌트의 상태를 인식하지 못합니다.
 
-컴포넌트 루트 노드에서 하위 범위 지시문을 바인딩 해야하는 경우 하위 컴포넌트의 자체 템플릿에서 하위 범위 지시문을 바인딩해야합니다.
+컴포넌트 루트 노드에서 하위 범위 디렉티브를 바인딩 해야하는 경우 하위 컴포넌트의 자체 템플릿에서 하위 범위 디렉티브를 바인딩해야합니다.
 
 ``` js
 Vue.component('child-component', {
@@ -724,7 +762,7 @@ Vue.component('child-component', {
 
 하위 컴포넌트 템플릿에 최소한 하나의 `<slot>` 콘텐츠가 포함되어 있지 않으면 부모 콘텐츠가 **삭제** 됩니다. 속성이 없는 슬롯이 하나 뿐인 경우 전체 내용 조각이 DOM의 해당 위치에 삽입되어 슬롯 자체를 대체합니다.
 
-원래 `<slot>` 태그 안에있는 내용은 **대체 콘텐츠** 로 간주됩니다. 대체 콘텐츠는 하위 범위에서 컴파일되며 호스팅 엘리먼트가 비어 있고 삽입할 콘텐츠가없는 경우에만 표시됩니다.
+원래 `<slot>` 태그 안에 있는 내용은 **대체 콘텐츠** 로 간주됩니다. 대체 콘텐츠는 하위 범위에서 컴파일되며 호스팅 엘리먼트가 비어 있고 삽입할 콘텐츠가 없는 경우에만 표시됩니다.
 
 다음 템플릿으로 `my-component`라는 컴포넌트가 있다고 가정하십시오.
 
@@ -766,7 +804,7 @@ Vue.component('child-component', {
 
 `<slot>` 엘리먼트는 특별한 속성 인 `name` 을 가지고 있습니다. 이 속성은 어떻게 내용을 배포해야 하는지를 더 커스터마이징하는 데 사용할 수 있습니다. 이름이 다른 슬롯이 여러 개 있을 수 있습니다. 이름을 가진 슬롯은 내용 조각에 해당 `slot` 속성이 있는 모든 엘리먼트와 일치합니다.
 
-명명되지 않은 슬롯이 하나있을 수 있습니다. **기본 슬롯** 은 일치하지 않는 콘텐츠의 포괄적인 컨텐츠 역할을 합니다. 기본 슬롯이 없으면 일치하지 않는 콘텐츠가 삭제됩니다.
+명명되지 않은 슬롯이 하나 있을 수 있습니다. **기본 슬롯** 은 일치하지 않는 콘텐츠의 포괄적인 컨텐츠 역할을 합니다. 기본 슬롯이 없으면 일치하지 않는 콘텐츠가 삭제됩니다.
 
 예를 들어, 다음과 같은 템플릿을 가진`app-layout` 컴포넌트가 있다고 가정 해보십시오 :
 
@@ -879,7 +917,7 @@ Vue.component('child-component', {
 
 ## 동적 컴포넌트
 
-동일한 마운트 포인트를 사용하고 예약된 `<component>` 엘리먼트를 사용하여 여러 컴포넌트 간에 동적으로 전환하고 `is` 속성에 동적으로 바인드 할 수 있습니다.
+같은 마운트 포인트를 사용하고 예약된 `<component>` 엘리먼트를 사용하여 여러 컴포넌트 간에 동적으로 전환하고 `is` 속성에 동적으로 바인드 할 수 있습니다.
 
 ``` js
 var vm = new Vue({
@@ -960,7 +998,7 @@ Vue 컴포넌트의 API는 prop, 이벤트 및 슬롯의 세 부분으로 나뉩
 
 ### 자식 컴포넌트 참조
 
-props나 이벤트가 있었음에도 불구하고 때때로 JavaScript로 하위 컴포넌트에 직접 액세스 해야 할 수도 있습니다. 이를 위해 `ref` 를 사용하여 참조 컴포넌트 ID를 자식 컴포넌트에 할당해야합니다. 예:
+props나 이벤트가 있었음에도 불구하고 때때로 JavaScript로 하위 컴포넌트에 직접 액세스 해야 할 수도 있습니다. 이를 위해 `ref` 를 사용하여 참조 컴포넌트 ID를 자식 컴포넌트에 할당해야 합니다. 예:
 
 ``` html
 <div id="parent">
@@ -993,7 +1031,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](http://webpack.github.io/docs/code-splitting.html)과 함께 비동기 컴포넌트를 사용하는 것입니다.
+팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](https://webpack.js.org/guides/code-splitting-require/)과 함께 비동기 컴포넌트를 사용하는 것입니다.
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1003,13 +1041,25 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-resolve 함수에서 `Promise`를 반환할 수도 있습니다. 그래서 Webpack 2 + ES2015 구문을 사용하면 다음을 할 수 있습니다 :
+factory 함수에서 `Promise`를 반환할 수도 있습니다. 그래서 Webpack 2 + ES2015 구문을 사용하면 다음을 할 수 있습니다 :
+
 
 ``` js
 Vue.component(
   'async-webpack-example',
-  () => System.import('./my-async-component')
+  () => import('./my-async-component')
 )
+```
+
+[지역 등록](https://vuejs.org/v2/guide/components.html#Local-Registration)을 사용하는 경우, `Promise`를 반환하는 함수를 제공할 수 있습니다.
+
+``` js
+new Vue({
+  // ...
+  components: {
+    'my-component': () => import('./my-async-component')
+  }
+})
 ```
 
 <p class="tip">비동기 컴포넌트를 사용하려는 <strong>Browserify</strong> 사용자인 경우, 작성자는 불행히도 비동기로드가 Browserify에서 지원하지 않는 것이라고 분명하게 [분명하게 주장합니다.](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) 적어도 공식적으로. Browserify 커뮤니티는 기존 및 복잡한 응용 프로그램에 도움이 될 수있는 [몇 가지 해결 방법](https://github.com/vuejs/vuejs.org/issues/620)을 발견했습니다. 다른 모든 시나리오의 경우 기본 제공되는 비동기식 지원을 위해 Webpack을 사용하는 것이 좋습니다.</p>
@@ -1125,7 +1175,7 @@ beforeCreate: function () {
 
 ### 인라인 템플릿
 
-하위 컴포넌트에 `inline-template` 이라는 특수한 속성이 존재할 때, 컴포넌트는 그 내용을 분산 된 내용으로 취급하지 않고 템플릿으로 사용합니다. 따라서보다 유연한 템플릿 작성이 가능합니다.
+하위 컴포넌트에 `inline-template` 이라는 특수한 속성이 존재할 때, 컴포넌트는 그 내용을 분산 된 내용으로 취급하지 않고 템플릿으로 사용합니다. 따라서 보다 유연한 템플릿 작성이 가능합니다.
 
 ``` html
 <my-component inline-template>
@@ -1158,7 +1208,7 @@ Vue.component('hello-world', {
 
 ### `v-once` 를 이용한 비용이 적게드는 정적 컴포넌트
 
-일반 HTML 엘리먼트를 렌더링하는 것은 Vue에서 매우 빠르지만 가끔 정적 콘텐츠가 **많이** 포함 된 컴포넌트가 있을 수 있습니다. 이런 경우,`v-once` 지시문을 루트 엘리먼트에 추가함으로써 캐시가 한번만 실행되도록 할 수 있습니다.
+일반 HTML 엘리먼트를 렌더링하는 것은 Vue에서 매우 빠르지만 가끔 정적 콘텐츠가 **많이** 포함 된 컴포넌트가 있을 수 있습니다. 이런 경우,`v-once` 디렉티브를 루트 엘리먼트에 추가함으로써 캐시가 한번만 실행되도록 할 수 있습니다.
 
 ``` js
 Vue.component('terms-of-service', {

@@ -5,7 +5,7 @@ order: 6
 ---
 
 
-데이터 바인딩은 엘리먼트의 클래스 목록과 인라인 스타일을 조작하기 위해 일반적으로 사용됩니다. 이 두 속성은 `v-bind`를 사용하여 처리할 수 있습니다. 우리는 표현식으로 최종 문자열을 계산하면 됩니다. 그러나 문자열 연결에 간섭하는 것은 짜증나는 일이며 오류가 발생하기 쉽습니다. 이러한 이유로, Vue는 `class`와 `style`에 `v-bind`를 사용할ㄷ 때 특별히 향상된 기능을 제공합니다. 표현식은 문자열 이외에 객체 또는 배열을 이용할 수 있습니다.
+데이터 바인딩은 엘리먼트의 클래스 목록과 인라인 스타일을 조작하기 위해 일반적으로 사용됩니다. 이 두 속성은 `v-bind`를 사용하여 처리할 수 있습니다. 우리는 표현식으로 최종 문자열을 계산하면 됩니다. 그러나 문자열 연결에 간섭하는 것은 짜증나는 일이며 오류가 발생하기 쉽습니다. 이러한 이유로, Vue는 `class`와 `style`에 `v-bind`를 사용할 때 특별히 향상된 기능을 제공합니다. 표현식은 문자열 이외에 객체 또는 배열을 이용할 수 있습니다.
 
 ## HTML 클래스 바인딩하기
 
@@ -19,7 +19,7 @@ order: 6
 
 위 구문은 `active` 클래스의 존재 여부가 데이터 속성 `isActive` 의 [참 속성](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)에 의해 결정되는 것을 의미합니다.
 
-객체에 필드가 더 있으면 여러 클래스를 토글 할 수 있습니다. 또한`v-bind:class` 지시문은 일반 `class` 속성과 공존할 수 있습니다. 그래서 다음과 같은 템플릿이 가능합니다:
+객체에 필드가 더 있으면 여러 클래스를 토글 할 수 있습니다. 또한`v-bind:class` 디렉티브는 일반 `class` 속성과 공존할 수 있습니다. 그래서 다음과 같은 템플릿이 가능합니다:
 
 ``` html
 <div class="static"
@@ -149,14 +149,14 @@ Vue.component('my-component', {
 `isActive`가 참일 때 렌더링 된 HTML은 다음과 같습니다:
 
 ``` html
-<p class="foo bar active"></p>
+<p class="foo bar active">Hi</p>
 ```
 
 ## 인라인 스타일 바인딩
 
 ### 객체 구문
 
-`v-bind:style` 객체 구문은 매우 직설적입니다. JavaScript 객체를 제외하고 CSS와 거의 비슷합니다. CSS 속성 이름에는 camelCase또는 kebab-case를 사용할 수 있습니다.
+`v-bind:style` 객체 구문은 매우 직설적입니다. 거의 CSS 처럼 보이지만 JavaScript 객체입니다. 속성 이름에 camelCase와 kebab-case (따옴표를 함께 사용해야 합니다)를 사용할 수 있습니다.
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>

@@ -18,7 +18,7 @@ Google과 Bing은 동기식 자바스크립트 애플리케이션을 색인할 �
 
 사용자는 인터넷이 느린 원격 지역 또는 좋지 않은 환경에서 사이트를 방문할 수 있습니다. 이 경우 사용자가 기본 컨텐츠를 보는 데 필요한 요청의 수와 크기를 최소화 하여야 합니다.
 
-[Webpack의 코드 분할](https://webpack.github.io/docs/code-splitting.html)을 사용하면 사용자가 전체 응용 프로그램을 다운로드하여 단일 페이지를 볼 수 없도록 방지할 수 있지만 여전히 하나의 HTML파일로 사전에 렌더링 된 파일을 다운로드 합니다.
+[Webpack의 코드 분할](https://webpack.js.org/guides/code-splitting-require/)을 사용하면 사용자가 전체 응용 프로그램을 다운로드하여 단일 페이지를 볼 수 없도록 방지할 수 있지만 여전히 하나의 HTML파일로 사전에 렌더링 된 파일을 다운로드 합니다.
 
 ### 오래된 (또는 없는) 자바스크립트 엔진으로 만든 클라이언트
 
@@ -208,14 +208,15 @@ server.listen(5000, function (error) {
 이게 다입니다! [전체 애플리케이션](https://github.com/chrisvfritz/vue-ssr-demo-simple)을 클론하여 사용할 수 있습니다. 일단 로컬에서 실행하면 페이지를 마우스 오른쪽 버튼으로 클릭하고 `페이지 소스 보기`(와 유사한) 선택을 하여 서버 측 렌더링이 실제로 작동하는지 확인할 수 있습니다. 당신은 body 에서 이것을 확인해야 합니다.
 
 ``` html
-<div id="app" server-rendered="true">You have been here for 0 seconds&period;</div>
+<div id="app"></div>
 ```
 
 대신에
 
 ``` html
-<div id="app"></div>
+<div id="app" server-rendered="true">You have been here for 0 seconds&period;</div>
 ```
+
 
 ## 응답 스트리밍
 
@@ -313,9 +314,9 @@ Vue.component({
 
 ### 캐싱에 이상적인 컴포넌트
 
-모든 "순수한" 컴포넌트는 안전하게 캐시될 수 있습니다. 즉, 동일한 props가 주어진 동일한 HTML을 생성하도록 보장되는 컴포넌트 입니다. 이들의 일반적인 예는 다음과 같습니다.
+모든 "순수한" 컴포넌트는 안전하게 캐시될 수 있습니다. 즉, 같은 props가 주어진 같은 HTML을 생성하도록 보장되는 컴포넌트 입니다. 이들의 일반적인 예는 다음과 같습니다.
 
-- 정적 컴포넌트 (즉, 항상 동일한 HTML을 생성하므로 `serverCacheKey` 함수는 `true`를 반환할 수 있습니다.)
+- 정적 컴포넌트 (즉, 항상 같은 HTML을 생성하므로 `serverCacheKey` 함수는 `true`를 반환할 수 있습니다.)
 - 리스트 항목 컴포넌트 (큰 목록의 일부분을 캐싱하면 성능이 크게 향상될 수 있습니다.)
 - 일반 UI 구성요소 (예: 버튼, 경고 등 - 최소한 slot / 자식보다는 props를 통해 컨텐츠를 받는 경우)
 
@@ -325,4 +326,9 @@ Vue.component({
 
 복잡한 응용 프로그램에서 서버 사이드 렌더링을 마스터하려면 다음 자료를 자세히 살펴보는 것이 좋습니다.
 
-- [vue-server-renderer docs](https://www.npmjs.com/package/vue-server-renderer#api) : 여기에서 다루는 주제에 대한 자세한 내용은 물론 고급 주제에 대한 문서화 [교차 요청에 따른 위험 방지](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) 및 [별도의 서버 빌드 추가](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle) [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): 모든 주요 Vue 라이브러리와 개념을 하나의 응용 프로그램으로 통합하는 단일 애플리케이션
+- [vue-server-renderer docs](https://www.npmjs.com/package/vue-server-renderer#api): 여기에서 언급 한 내용에 대한 자세한 설명과 더불어 [교차 요청에 따른 위험 방지](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) 및 [별도의 서버 빌드 추가](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle) 등 응용적인 주제를 소개하고 있습니다.
+- [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): Vue의 주요 라이브러리와 개념을 응용 프로그램으로 정리 한 예제입니다.
+
+## Nuxt.js
+
+배포 준비 완료 상태의 서버측 렌더링을 사용하는 애플리케이션을 올바르게 구성하는 것은 어려운 작업입니다. 다행히 이 모든 것을보다 쉽게하기 위한 훌륭한 커뮤니티 프로젝트가 있습니다. [Nuxt.js](https://nuxtjs.org/)입니다. Nuxt.js는 Vue 생태계 위에 만들어진 상위 수준의 범용 Vue 애플리케이션을 작성하는 데 매우 간소화 된 개발 환경을 제공합니다. 더 나아가 정적 사이트 생성기(단일 파일 Vue 컴포넌트로 작성된 페이지 포함)로 사용할 수도 있습니다. 한번 시도해보세요

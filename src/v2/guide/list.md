@@ -6,7 +6,7 @@ order: 8
 
 ## `v-for`
 
-`v-for` 지시문을 사용하여 배열을 기반으로 리스트를 렌더링 할 수 있습니다. `v-for` 지시문은 `item in items` 형태로 특별한 문법이 필요합니다. 여기서 `items`는 원본 데이터 배열이고 `item`은 반복되는 배열 엘리먼트의 **별칭** 입니다.
+`v-for` 디렉티브를 사용하여 배열을 기반으로 리스트를 렌더링 할 수 있습니다. `v-for` 디렉티브는 `item in items` 형태로 특별한 문법이 필요합니다. 여기서 `items`는 원본 데이터 배열이고 `item`은 반복되는 배열 엘리먼트의 **별칭** 입니다.
 
 ### 기본 사용방법
 
@@ -113,7 +113,7 @@ var example2 = new Vue({
 <div v-for="item of items"></div>
 ```
 
-### v-for 템플릿
+### `v-for` 템플릿
 
 템플릿 `v-if`와 마찬가지로, `v-for`와 함께 `<template>` 태그를 사용하여 여러 엘리먼트의 블럭을 렌더링 할 수 있습니다. 예를 들어,
 
@@ -126,7 +126,7 @@ var example2 = new Vue({
 </ul>
 ```
 
-### v-for 객체
+### `v-for`와 객체
 
 `v-for`를 사용하여 객체의 속성을 반복할 수도 있습니다.
 
@@ -143,9 +143,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -164,9 +164,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -191,7 +191,7 @@ new Vue({
 
 <p class="tip">객체를 반복할 때 순서는 `Object.keys()`의 키 나열 순서에 따라 결정됩니다. 이 순서는 JavaScript 엔진 구현간에 **일관적이지는 않습니다.**</p>
 
-### v-for 범위
+### Range `v-for`
 
 `v-for`는 정수를 사용할 수 있습니다. 이 경우 템플릿을 여러번 반복 합니다.
 
@@ -212,7 +212,8 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### 컴포넌트와 v-for
+### 컴포넌트와 `v-for`
+
 
 > 이 섹션에서는 [컴포넌트](components.html)에 대한 지식이 있다고 가정합니다. 나중에 읽어도 좋습니다.
 
@@ -232,9 +233,9 @@ new Vue({ el: '#range' })
 </my-component>
 ```
 
-컴포넌트에 `item`을 자동으로 주입하지 않는 이요는 컴포넌트가 `v-for` 작동 방식과 밀접하게 결합되기 때문입니다. 데이터의 출처를 명시적으로 표현하면 다른 사오항에서는 컴포넌트를 재사용할 수 있습니다.
+컴포넌트에 `item`을 자동으로 주입하지 않는 이유는 컴포넌트가 `v-for` 작동 방식과 밀접하게 결합되기 때문입니다. 데이터의 출처를 명시적으로 표현하면 다른 상황에서는 컴포넌트를 재사용할 수 있습니다.
 
-여기 간단한 할일 목록이 예제로 있습니다.
+간단한 할일 목록 예제를 보겠습니다.
 
 ``` html
 <div id="todo-list-example">
@@ -330,10 +331,32 @@ new Vue({
 </script>
 {% endraw %}
 
-## key
+### `v-for`와 `v-if`
+
+같은 노드에 존재할 때, `v-for`는 `v-if`보다 더 높은 우선 순위를 가집니다. 즉,`v-if`는 루프의 각 반복마다 실행될 것입니다. 이는 다음과 같이 _일부_ 항목 만 노드를 렌더링하려는 경우 매우 유용합니다.
 
 
-Vue.js가 `v-for`로 렌더링 된 엘리먼트 목록을 갱신할 때, 기본적으로 "in-place patch" 전략이 사용됩니다. 데이터 항목의 순서가 변경된 경우 항목의 순서와 일치하도록 DOM 요소를 이동하는 대신 Vue는 각 요소를 적절한 위치에 패치하고 특정 색인에서 렌더링 할 내용을 반영하는지 확인합니다. 이것은 Vue 1.x의 `track-by=$index`의 동작과 유사합니다.
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+```
+
+위의 경우에만 완료되지 않은 todo가 렌더링 됩니다.
+
+대신 루프의 실행을 조건부로 건너뛰는 것이 목적이면 `v-if`를 래퍼 엘리먼트로 옮기면(또는 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)사용) 됩니다.
+
+``` html
+<ul v-if="shouldRenderTodos">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+```
+
+## `key`
+
+Vue가 `v-for`에서 렌더링된 엘리먼트 목록을 갱신할 때 기본적으로 "in-place patch" 전략을 사용합니다. 데이터 항목의 순서가 변경된 경우 항목의 순서와 일치하도록 DOM 요소를 이동하는 대신 Vue는 각 요소를 적절한 위치에 패치하고 해당 인덱스에서 렌더링할 내용을 반영하는지 확인합니다. 이것은 Vue 1.x의 `track-by=$index`의 동작과 유사하다.
 
 이 기본 모드는 효율적이지만 **목록의 출력 결과가 하위 컴포넌트 상태 또는 임시 DOM 상태(예: 폼 input)에 의존하지 않는 경우에** 적합합니다.
 
@@ -375,16 +398,16 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-이렇게 하면 Vue가 기존 DOM을 버리고 전체 목록을 다시 렌더링 한다고 생각할 수 있습니다. 다행히도, 그렇지는 않습니다. Vue는 DOM 요소 재사용을 극대화하기 위해 몇가지 똑똑한 구현을 하므로 배열을 겹치는 객체가 포함된 다른 배열로 대체하여 효율적입니다
+이렇게 하면 Vue가 기존 DOM을 버리고 전체 목록을 다시 렌더링 한다고 생각할 수 있습니다. 다행히도, 그렇지는 않습니다. Vue는 DOM 요소 재사용을 극대화하기 위해 몇가지 똑똑한 구현을 하므로 배열을 겹치는 객체가 포함된 다른 배열로 대체하여 효율적입니다.
 
 ### 주의 사항
 
-JavaScript의 제한으로 인해 Vue는 배열에 대해 다음과 같은 변경 사항을 감지할수 **없습니다.**
+JavaScript의 제한으로 인해 Vue는 배열에 대해 다음과 같은 변경 사항을 감지할 수 **없습니다.**
 
 1. 인덱스로 배열에 있는 항목을 직접 설정하는 경우, 예: `vm.items[indexOfItem] = newValue`
 2. 배열 길이를 수정하는 경우, 예: `vm.items.length = newLength`
 
-주의 사항 중 1번을 극복하기 위해 다음 두 경우 모두 `vm.items[indexOfItem] = newValue` 와 동일하게 수행하며, 반응형 시스템을에서도 상태 변경을 트리거 합니다.
+주의 사항 중 1번을 극복하기 위해 다음 두 경우 모두 `vm.items[indexOfItem] = newValue` 와 동일하게 수행하며, 반응형 시스템에서도 상태 변경을 트리거 합니다.
 
 ``` js
 // Vue.set

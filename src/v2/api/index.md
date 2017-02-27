@@ -8,7 +8,7 @@ type: api
 
 ### silent
 
-- **형태:** `boolean`
+- **타입:** `boolean`
 
 - **기본값:** `false`
 
@@ -22,7 +22,7 @@ type: api
 
 ### optionMergeStrategies
 
-- **형태:** `{ [key: string]: Function }`
+- **타입:** `{ [key: string]: Function }`
 
 - **기본값:** `{}`
 
@@ -48,7 +48,7 @@ type: api
 
 ### devtools
 
-- **형태:** `boolean`
+- **타입:** `boolean`
 
 - **기본값:** `true` (`false` in production builds)
 
@@ -63,25 +63,30 @@ type: api
 
 ### errorHandler
 
-- **형태:** `Function`
+- **타입:** `Function`
 
-- **기본값:** 오류 발생 시점의 오류
+- **기본값:** `undefined`
 
 - **사용방법:**
 
   ``` js
-  Vue.config.errorHandler = function (err, vm) {
-    // 오류 처리
+  Vue.config.errorHandler = function (err, vm, type) {
+    // 에러 핸들링
+    // `type`은 Vue의 에러 타입입니다. 예: 라이프사이클 훅
+    // 2.2.0+ 이상에서 사용할 수 있습니다
   }
   ```
+  컴포넌트 렌더 함수 및 감시자 중에 잡히지 않은 오류에 대한 핸들러를 할당합니다. 핸들러는 오류 및 Vue 인스턴스와 함께 호출됩니다.
 
-  컴포넌트 렌더링 또는 감시자에 catch 되지 않은 오류에 대한 핸들러를 할당합니다. 핸들러는 오류와 Vue 인스턴스와 함께 호출됩니다.
+  > 2.2.0에서 이 훅은 컴포넌트 라이프사이클 훅의 오류를 캡처합니다. 또한, 이 훅이 `undefined`일 때, 캡쳐 된 에러는 어플리케이션을 실행 불능으로 만드는 대신에 `console.error` 로그를 출력 합니다.
 
-  > [Sentry](https://sentry.io), 오류 추적 서비스입니다, [공식 사용 설명서](https://sentry.io/for/vue/) 를 제공합니다.
+  
+
+  > 오류 추적 서비스인 [Sentry](https://sentry.io)에서 [공식 사용 설명서](https://sentry.io/for/vue/) 를 제공합니다.
 
 ### ignoredElements
 
-- **형태:** `Array<string>`
+- **타입:** `Array<string>`
 
 - **기본값:** `[]`
 
@@ -97,7 +102,7 @@ type: api
 
 ### keyCodes
 
-- **형태:** `{ [key: string]: number | Array<number> }`
+- **타입:** `{ [key: string]: number | Array<number> }`
 
 - **기본값:** `{}`
 
@@ -113,6 +118,31 @@ type: api
   ```
 
   v-on에 사용자 정의 키를 할당합니다.
+
+### performance
+
+> 2.2.0에서 추가됨
+
+- **타입:** `boolean`
+
+- **기본값:** `false`
+
+- **사용방법:**
+
+  `true`로 설정하면 브라우저 devtool의 타임라인에서 컴포넌트 초기화, 컴파일, 렌더링 및 패치 성능 추적을 활성화할 수 있습니다. 개발 모드 및 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API를 지원하는 브라우저에서만 작동합니다.
+
+
+### productionTip
+
+> 2.2.0에서 추가됨
+
+- **타입:** `boolean`
+
+- **기본값:** `true`
+
+- **사용방법:**
+
+  `false`로 설정하면 배포에 대한 팁을 출력하지 않습니다.
 
 ## 전역 API
 
@@ -196,16 +226,20 @@ type: api
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( object, key )</h3>
+<h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
 - **전달인자:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **사용방법:**
 
   객체의 속성을 삭제합니다. 객체가 반응형이면, 뷰 업데이트를 발생시킵니다. 주로 Vue가 속성 삭제를 감지하지 못하는 한계를 극복하기 위해 사용하지만 거의 사용하지 않아야 합니다.
   ** 객체는 Vue 인스턴스 또는 Vue 인스턴스의 루트 데이터 객체일 수 없습니다. **
+
+  > 2.2.0버전 이후에서 배열과 인덱스를 사용할 수 있습니다.
+
+  <p class="tip">목표 객체는 Vue 인스턴스이거나 인스턴스의 루트 데이터 객체일 수 없습니다.</p>
 
 - **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
@@ -217,7 +251,7 @@ type: api
 
 - **사용방법:**
 
-  전역 지시문을 등록하거나 검색합니다.
+  전역 디렉티브를 등록하거나 검색합니다.
 
   ``` js
   // 등록
@@ -229,7 +263,7 @@ type: api
     unbind: function () {}
   })
 
-  // 등록 (간단한 함수 지시문)
+  // 등록 (간단한 함수 디렉티브)
   Vue.directive('my-directive', function () {
     // `bind`와 `update`를 호출합니다.
   })
@@ -238,7 +272,7 @@ type: api
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **참고:** [사용자 정의 지시문](../guide/custom-directive.html)
+- **참고:** [사용자 정의 디렉티브](../guide/custom-directive.html)
 
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
@@ -268,7 +302,7 @@ type: api
 
 - **사용방법:**
 
-  전역 구성 요소를 등록하거나 검색합니다. 등록 시 자동으로 구성 요소의 `name`을 주어진 `id`로 설정합니다.
+  전역 컴포넌트를 등록하거나 검색합니다. 등록 시 자동으로 컴포넌트의 `name`을 주어진 `id`로 설정합니다.
 
   ``` js
   // 확장된 생성자를 등록합니다
@@ -328,13 +362,32 @@ type: api
   })
   ```
 
+
 - **참고:** [렌더 함수](../guide/render-function.html)
+
+<h3 id="Vue-version">Vue.version</h3>
+
+- **상세**: 설치된 Vue 버전을 가져올 수 있습니다. 버전을 이용해서 커뮤니티 플러그인과 컴포넌트 또는 버전마다 다른 처리를 하는데 유용하게 사용할 수 있습니다.
+
+- **사용법**:
+
+```js
+var version = Number(Vue.version.split('.')[0])
+
+if (version === 2) {
+  // Vue v2.x.x
+} else if (version === 1) {
+  // Vue v1.x.x
+} else {
+  // 지원하지 않는 버전의 경우..
+}
+```
 
 ## 옵션 / 데이터
 
 ### data
 
-- **형태:** `Object | Function`
+- **타입:** `Object | Function`
 
 - **제한:** 컴포넌트에서 사용될 때만 `함수`를 승인합니다.
 
@@ -376,7 +429,7 @@ type: api
 
 ### props
 
-- **형태:** `Array<string> | Object`
+- **타입:** `Array<string> | Object`
 
 - **상세:**
 
@@ -412,7 +465,7 @@ type: api
 
 ### propsData
 
-- **형태:** `{ [key: string]: any }`
+- **타입:** `{ [key: string]: any }`
 
 - **제한:** `new`를 이용한 인스턴스 생성때만 사용됩니다.
 
@@ -437,7 +490,7 @@ type: api
 
 ### computed
 
-- **형태:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **타입:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
 - **상세:**
 
@@ -445,7 +498,9 @@ type: api
 
   <p class="tip">__계산된 속성을 정의 할 때 화살표 함수를 사용하면 안됩니다.__ 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.a`는 정의되지 않습니다.</p>
 
-  계산된 속성은 캐시되며, 반응형 종속성이 변경될 때 다시 계산됩니다.
+  계산된 속성은 캐시 되며 의존하고 있는 반응형 속성이 변경되는 경우 다시 평가됩니다. 특정한 의존성이 인스턴스의 범위를 벗어나는 경우(반응형이지 않은 경우)에 계산된 속성은 갱신되지 않습니다. 그러나 여전히 반응형 속성을 갖지 않고 있기 때문에 이를 수정하는 경우 DOM 갱신을 발생시키지 않습니다.
+
+  대부분의 상황에서 `cache: false` 를 사용하는 것은 이상적인 방법이 아닙니다. 가능할 때마다 외부 데이터를 반응형 시스템 안으로 가져오는 것이 훨씬 좋습니다. 예를 들어, 계산된 속성이 윈도우 크기에 의존하는 경우 이 정보를 `data` 에 저정한 다음 `resize` 이벤트를 사용하여 데이터를 최신 상태로 유지할 수 있습니다. 이것 또한 반응형입니다!
 
 - **예제:**
 
@@ -479,11 +534,11 @@ type: api
 
 ### methods
 
-- **형태:** `{ [key: string]: Function }`
+- **타입:** `{ [key: string]: Function }`
 
 - **상세:**
 
-  Vue 인스턴스에 추가할 메소드입니다. VM 인스턴스를 통해 직접 접근하거나 지시문 표현식에서 사용할 수 있습니다. 모든 메소드는 자동으로 `this` 컨텍스트를 Vue 인스턴스에 바인딩합니다.
+  Vue 인스턴스에 추가할 메소드입니다. VM 인스턴스를 통해 직접 접근하거나 디렉티브 표현식에서 사용할 수 있습니다. 모든 메소드는 자동으로 `this` 컨텍스트를 Vue 인스턴스에 바인딩합니다.
 
   <p class="tip">__화살표 함수를 메소드를 정의하는데 사용하면 안됩니다.__ 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.a`는 정의되지 않습니다.</p>
 
@@ -506,7 +561,7 @@ type: api
 
 ### watch
 
-- **형태:** `{ [key: string]: string | Function | Object }`
+- **타입:** `{ [key: string]: string | Function | Object }`
 
 - **상세:**
 
@@ -545,7 +600,7 @@ type: api
 
 ### el
 
-- **형태:** `string | HTMLElement`
+- **타입:** `string | HTMLElement`
 
 - **제한:** `new`를 이용한 인스턴스 생성때만 사용됩니다.
 
@@ -553,7 +608,7 @@ type: api
 
   Vue 인스턴스에 마운트 할 기존 DOM 엘리먼트 필요합니다. CSS 선택자 문자열 또는 실제 HTMLElement 이어야 합니다.
 
-  인스턴스가 마운트 된 이후, 그 요소는 `vm.$el`로 액세스 할 수 있습니다.
+  인스턴스가 마운트 된 이후, 그 엘리먼트는 `vm.$el`로 액세스 할 수 있습니다.
 
   인스턴스화 할 때 옵션을 사용할 수 있는 경우 인스턴스는 즉시 컴파일을 시작합니다. 그렇지 않으면 컴파일을 수동으로 하기 위해 `vm.$mount()`를 명시적으로 호출해야합니다.
 
@@ -563,13 +618,13 @@ type: api
 
 ### template
 
-- **형태:** `string`
+- **타입:** `string`
 
 - **상세:**
 
   Vue 인스턴스의 마크업으로 사용할 문자열 템플릿 입니다. 템플릿은 마운트 된 엘리먼트를 **대체** 합니다. 템플릿에 컨텐츠 배포 슬롯이 없는 경우 마운트 된 엘리먼트의 기존 마크업은 무시됩니다.
 
-  문자열이 `#`로 시작하면 querySelector로 사용되며 선택된 요소의 innerHTML을 템플릿 문자열로 사용합니다. 이렇게 하면 일반적인 `<script type="x-template">` 트릭을 사용하여 템플릿을 포함할 수 있습니다.
+  문자열이 `#`로 시작하면 querySelector로 사용되며 선택된 엘리먼트의 innerHTML을 템플릿 문자열로 사용합니다. 이렇게 하면 일반적인 `<script type="x-template">` 트릭을 사용하여 템플릿을 포함할 수 있습니다.
 
   <p class="tip">보안 관점에서 신뢰할 수 있는 Vue 템플릿만 사용해야 합니다. 사용자 생성 콘텐츠를 템플릿으로 사용하면 안됩니다.</p>
 
@@ -579,7 +634,7 @@ type: api
 
 ### render
 
-  - **형태:** `Function`
+  - **타입:** `(createElement: () => VNode) => VNode`
 
   - **상세:**
 
@@ -590,13 +645,41 @@ type: api
   - **참고:**
     - [렌더 함수](../guide/render-function)
 
+### renderError
+
+> 2.2.0에서 추가됨
+
+  - **타입:** `(createElement: () => VNode, error: Error) => VNode`
+
+  - **상세:**
+
+    **개발 모드에서만 작동합니다**
+
+    기본 `render` 함수가 에러를 만나면, 대체되는 렌더 결과를 제공합니다. 오류는 두 번째 전달인자로 `renderError` 입니다. 핫 리로드와 함께 사용될 때 특히 유용합니다.
+
+  - **예제:**
+
+    ``` js
+    new Vue({
+      render (h) {
+        throw new Error('oops')
+      },
+      renderError (h, err) {
+        return h('pre', { style: { color: 'red' }}, err.stack)
+      }
+    }).$mount('#app')
+    ```
+
+  - **참고:**
+    - [Render Functions](../guide/render-function)
+
 ## 옵션 / 라이프사이클 훅
 
 모든 라이프사이클 훅은 자동으로 `this` 컨텍스트를 인스턴스에 바인딩하므로 데이터, 계산된 속성 및 메소드에 접근할 수 있습니다. __즉, 화살표 함수를 사용해 라이프사이클 메소드를 정의하면 안됩니다.(예: `created: () => this.fetchTodos()`)__ 이유는 화살표 함수가 부모 컨텍스트를 바인딩 하기 때문에 `this`는 예상대로 Vue 인스턴스가 아니며 `this.fetchTodos`는 정의되지 않습니다.
 
 ### beforeCreate
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -606,7 +689,7 @@ type: api
 
 ### created
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -616,7 +699,7 @@ type: api
 
 ### beforeMount
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -628,7 +711,7 @@ type: api
 
 ### mounted
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -640,7 +723,7 @@ type: api
 
 ### beforeUpdate
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -653,13 +736,13 @@ type: api
 
 ### updated
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
   데이터 변경 후 호출되어 가상 DOM이 다시 렌더링되고 패치 됩니다.
 
-  이 훅이 호출되면 엘리먼트의 DOM이 업데이트 된 상태가 되어 이 훅에서 DOM 종속적인 연산을 할 수 있습니다. 그러나 대부분의 경우 무한루프가 발생할 수 있으므로 훅에서 상태를 변경하면 안됩니다.
+  이 훅이 호출되면 엘리먼트의 DOM이 업데이트 된 상태가 되어 이 훅에서 DOM 종속적인 연산을 할 수 있습니다. 그러나 대부분의 경우 무한루프가 발생할 수 있으므로 훅에서 상태를 변경하면 안됩니다. 상태 변화에 반응하기 위해서 [계산된 속성](#computed) 또는 [감시자(#watch)를 사용하는 것이 더 좋습니다.
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
@@ -667,7 +750,7 @@ type: api
 
 ### activated
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -681,7 +764,7 @@ type: api
 
 ### deactivated
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -695,7 +778,7 @@ type: api
 
 ### beforeDestroy
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
@@ -707,11 +790,11 @@ type: api
 
 ### destroyed
 
-- **형태:** `Function`
+- **타입:** `Function`
 
 - **상세:**
 
-  Vue 인스턴스가 제거된 후 호출됩니다. 이 훅이 호출되면 Vue 인스턴스의 모든 지시문이 바인딩 해제 되고 모든 이벤트 리스너가 제거되며 모든 하위 Vue 인스턴스도 삭제됩니다.
+  Vue 인스턴스가 제거된 후 호출됩니다. 이 훅이 호출되면 Vue 인스턴스의 모든 디렉티브가 바인딩 해제 되고 모든 이벤트 리스너가 제거되며 모든 하위 Vue 인스턴스도 삭제됩니다.
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
@@ -721,19 +804,19 @@ type: api
 
 ### directives
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **상세:**
 
-  Vue 인스턴스에서 사용할 수 있도록 만들어진 지시문의 해시
+  Vue 인스턴스에서 사용할 수 있도록 만들어진 디렉티브의 해시
 
 - **참고:**
-  - [사용자 정의 지시문](../guide/custom-directive.html)
+  - [사용자 정의 디렉티브](../guide/custom-directive.html)
   - [에셋 네이밍 컨벤션](../guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **상세:**
 
@@ -744,7 +827,7 @@ type: api
 
 ### components
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **상세:**
 
@@ -753,11 +836,12 @@ type: api
 - **참고:**
   - [컴포넌트](../guide/components.html)
 
-## 옵션 / 기타
+
+## 옵션 / 컴포지션
 
 ### parent
 
-- **형태:** `Vue instance`
+- **타입:** `Vue instance`
 
 - **상세:**
 
@@ -767,7 +851,7 @@ type: api
 
 ### mixins
 
-- **형태:** `Array<Object>`
+- **타입:** `Array<Object>`
 
 - **상세:**
 
@@ -791,21 +875,9 @@ type: api
 
 - **참고:** [Mixins](../guide/mixins.html)
 
-### name
-
-- **형태:** `string`
-
-- **제한:** 컴포넌트 옵션으로 사용될 때만 사용할 수 있습니다.
-
-- **상세:**
-
-  컴포넌트가 템플릿을 반복적으로 자체 호출 할 수 있게 합니다. 컴포넌트가 `Vue.component()`로 전역으로 등록되면 전역 ID가 자동으로 이름으로 설정됩니다.
-
-  `name` 옵션을 지정하는 또 다른 이점은 디버깅 입니다. 명명된 컴포넌트는 보다 유용한 경고 메시지를 만듭니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)에서 응용 프로그램을 살펴볼 때 익명의 컴포넌트는 매우 유용하지 않은 `<AnonymousComponent>`로 표시됩니다. `name` 옵션을 제공함으로써 훨씬 더 쓸모있는 컴포넌트 트리를 얻을 수 있습니다.
-
 ### extends
 
-- **형태:** `Object | Function`
+- **타입:** `Object | Function`
 
 - **상세:**
 
@@ -825,9 +897,82 @@ type: api
   }
   ```
 
+### provide / inject
+
+> 2.2.0에서 추가됨
+
+- **타입:**
+  - **provide:** `Object | () => Object`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+
+- **상세:**
+
+  <p class="tip">
+  `provide`와 `inject`는 주로 고급 플러그인/컴포넌트 라이브러리를 위해 제공됩니다. 일반 애플리케이션 코드에서는 사용하지 않는 것이 좋습니다.
+  </p>
+
+  이 옵션 쌍은 함께 사용하여 상위 컴포넌트가 컴포넌트 계층 구조의 깊이에 관계없이 모든 하위 항목에 대한 종속성을 주입하는 역할을 하도록 허용합니다. React에 익숙하다면 이것은 React의 컨텍스트 기능과 매우 유사합니다.
+
+  `provide` 옵션은 객체 또는 객체를 반환하는 함수여야합니다. 이 객체에는 하위 항목에 삽입할 수있는 속성이 포함되어 있습니다. ES2015 심볼을 이 객체의 키로 사용할 수 있지만 `Symbol`과 `Reflect.ownKeys`를 기본적으로 지원하는 환경에서만 가능합니다.
+
+  `inject` 옵션은 문자열의 배열이거나 키가 로컬 바인딩 이름을 나타내는 객체이고 사용 가능한 주입에서 검색할 키 (문자열 또는 기호)값이어야합니다.
+
+  > 주의 : `provide`와 `inject` 바인딩은 반응형이 아닙니다. 이는 의도적한 것입니다. 그러나 감시중인 객체를 전달하면 해당 객체의 속성은 계속 반응형입니다.
+
+- **예제:**
+
+  ``` js
+  var Provider = {
+    provide: {
+      foo: 'bar'
+    },
+    // ...
+  }
+
+  var Child = {
+    inject: ['foo'],
+    created () {
+      console.log(this.foo) // -> "bar"
+    }
+    // ...
+  }
+  ```
+
+  ES2015의 Symbol을 사용하여 `provide` 함수와 `inject` 객체를 사용하세요:
+  ``` js
+  const s = Symbol()
+
+  const Provider = {
+    provide () {
+      return {
+        [s]: 'foo'
+      }
+    }
+  }
+
+  const Child = {
+    inject: { s },
+    // ...
+  }
+  ```
+
+## 옵션 / 기타
+
+### name
+
+- **타입:** `string`
+
+- **제한:** 컴포넌트 옵션으로 사용될 때만 사용할 수 있습니다.
+
+- **상세:**
+
+  컴포넌트가 템플릿을 반복적으로 자체 호출 할 수 있게 합니다. 컴포넌트가 `Vue.component()`로 전역으로 등록되면 전역 ID가 자동으로 이름으로 설정됩니다.
+
+  `name` 옵션을 지정하는 또 다른 이점은 디버깅 입니다. 명명된 컴포넌트는 보다 유용한 경고 메시지를 만듭니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)에서 응용 프로그램을 살펴볼 때 익명의 컴포넌트는 매우 유용하지 않은 `<AnonymousComponent>`로 표시됩니다. `name` 옵션을 제공함으로써 훨씬 더 쓸모있는 컴포넌트 트리를 얻을 수 있습니다.
+
 ### delimiters
 
-- **형태:** `Array<string>`
+- **타입:** `Array<string>`
 
 - **기본값:** `{% raw %}["{{", "}}"]{% endraw %}`
 
@@ -847,7 +992,7 @@ type: api
 
 ### functional
 
-- **형태:** `boolean`
+- **타입:** `boolean`
 
 - **상세:**
 
@@ -855,11 +1000,51 @@ type: api
 
 - **참고:** [Functional Components](../guide/render-function.html#Functional-Components)
 
+### model
+
+> 2.2.0에서 추가됨
+
+- **타입:** `{ prop?: string, event?: string }`
+
+- **상세:**
+
+  커스텀 컴포넌트가 `v-model`과 함께 사용될 때 prop와 이벤트를 커스터마이징 할 수 있도록 합니다. 기본적으로 컴포넌트의 `v-model`은 `value`를 보조 변수로 사용하고 `input`을 이벤트로 사용하지만 체크 박스와 라디오 버튼과 같은 일부 입력 타입은 다른 목적으로 `value` 속성을 사용하려고 할 수 있습니다. `model` 옵션을 사용하면 이 경우 충돌을 피할 수 있습니다.
+
+- **예제:**
+
+  ``` js
+  Vue.component('my-checkbox', {
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
+    props: {
+      // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
+      value: String
+    },
+    // ...
+  })
+  ```
+
+  ``` html
+  <my-checkbox v-model="foo" value="some value"></my-checkbox>
+  ```
+
+  위의 내용은 아래와 같습니다.
+
+  ``` html
+  <my-checkbox
+    :checked="foo"
+    @change="val => { foo = val }"
+    value="some value">
+  </my-checkbox>
+  ```
+
 ## 인스턴스 속성
 
 ### vm.$data
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **상세:**
 
@@ -867,9 +1052,19 @@ type: api
 
 - **참고:** [옵션 - data](#data)
 
+### vm.$props
+
+> 2.2.0에서 추가됨
+
+- **타입:** `Object`
+
+- **상세:**
+
+  컴포넌트가 전달 받은 속성을 나타내는 객체입니다. Vue 인스턴스는 해당 props 객체의 속성에 대한 접근을 프록시합니다.
+
 ### vm.$el
 
-- **형태:** `HTMLElement`
+- **타입:** `HTMLElement`
 
 - **읽기 전용**
 
@@ -879,7 +1074,7 @@ type: api
 
 ### vm.$options
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **읽기 전용**
 
@@ -898,7 +1093,7 @@ type: api
 
 ### vm.$parent
 
-- **형태:** `Vue instance`
+- **타입:** `Vue instance`
 
 - **읽기 전용**
 
@@ -908,7 +1103,7 @@ type: api
 
 ### vm.$root
 
-- **형태:** `Vue instance`
+- **타입:** `Vue instance`
 
 - **읽기 전용**
 
@@ -917,7 +1112,7 @@ type: api
   현재 컴포넌트 트리의 루트 Vue 인스턴스입니다. 현재 인스턴스에 부모가 없으면 이 값이 그 자체로 사용됩니다.
 ### vm.$children
 
-- **형태:** `Array<Vue instance>`
+- **타입:** `Array<Vue instance>`
 
 - **읽기 전용**
 
@@ -927,7 +1122,7 @@ type: api
 
 ### vm.$slots
 
-- **형태:** `{ [name: string]: ?Array<VNode> }`
+- **타입:** `{ [name: string]: ?Array<VNode> }`
 
 - **읽기 전용**
 
@@ -979,7 +1174,7 @@ type: api
 
 > 2.1.0의 새로운 기능
 
-- **형태:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **타입:** `{ [name: string]: props => VNode | Array<VNode> }`
 
 - **읽기 전용**
 
@@ -996,7 +1191,7 @@ type: api
 
 ### vm.$refs
 
-- **형태:** `Object`
+- **타입:** `Object`
 
 - **읽기 전용**
 
@@ -1010,7 +1205,7 @@ type: api
 
 ### vm.$isServer
 
-- **형태:** `boolean`
+- **타입:** `boolean`
 
 - **읽기 전용**
 
@@ -1122,7 +1317,7 @@ type: api
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **전달인자:**
-  - `{string} event`
+  - `{string | Array<string>} event` (객체는 2.2.0버전 이상에서만 지원)
   - `{Function} callback`
 
 - **사용방법:**
@@ -1183,7 +1378,7 @@ type: api
 
 - **사용방법:**
 
-  Vue 인스턴스가 인스턴스화 할 때 `el` 옵션이 없으면 연결된 DOM 요소 없이 "unmounted" 상태가 됩니다. `vm.$mount()`는 unmounted 된 Vue인스턴스의 마운트를 수동으로 시작하는데 사용할 수 있습니다.
+  Vue 인스턴스가 인스턴스화 할 때 `el` 옵션이 없으면 연결된 DOM 엘리먼트 없이 "unmounted" 상태가 됩니다. `vm.$mount()`는 unmounted 된 Vue인스턴스의 마운트를 수동으로 시작하는데 사용할 수 있습니다.
 
   `elementOrSelector` 인자가 제공되지 않으면, 템플릿은 문서가 아닌 엘리먼트로 렌더링 될 것이므로 DOM API를 사용하여 문서에 직접 삽입해야 합니다.
 
@@ -1257,7 +1452,7 @@ type: api
 
 - **사용방법:**
 
-  vm을 완전히 제거합니다. 다른 기존 VM과의 연결을 정리하고 모든 지시문을 바인딩 해제하고 모든 이벤트 리스너를 제거합니다.
+  vm을 완전히 제거합니다. 다른 기존 VM과의 연결을 정리하고 모든 디렉티브를 바인딩 해제하고 모든 이벤트 리스너를 제거합니다.
 
   `beforeDestroy`와 `destroyed` 훅을 호출합니다.
 
@@ -1265,7 +1460,7 @@ type: api
 
 - **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
-## 지시문
+## 디렉티브
 
 ### v-text
 
@@ -1273,7 +1468,7 @@ type: api
 
 - **상세:**
 
-  요소의 `textContent`를 업데이트 합니다. `textContent`의 일부를 갱신해야 하면 `{% raw %}{{ Mustache }}{% endraw %}`를 사용해야 합니다.
+  엘리먼트의 `textContent`를 업데이트 합니다. `textContent`의 일부를 갱신해야 하면 `{% raw %}{{ Mustache }}{% endraw %}`를 사용해야 합니다.
 - **예제:**
 
   ```html
@@ -1290,7 +1485,7 @@ type: api
 
 - **상세:**
 
-  요소의 `innerHTML`을 업데이트 합니다. **내용은 일반 HTML으로 삽입되므로 Vue 템플릿으로 컴파일 되지 않습니다.** `v-html`을 사용하여 템플릿을 작성하려는 경우 컴포넌트를 사용하여 솔루션을 다시 생각해 보십시오.
+  엘리먼트의 `innerHTML`을 업데이트 합니다. **내용은 일반 HTML으로 삽입되므로 Vue 템플릿으로 컴파일 되지 않습니다.** `v-html`을 사용하여 템플릿을 작성하려는 경우 컴포넌트를 사용하여 솔루션을 다시 생각해 보십시오.
 
   <p class="tip">  웹사이트에서 임의의 HTML을 동적으로 렌더링하면 [XSS 공격](https://en.wikipedia.org/wiki/Cross-site_scripting)으로 이어질 수 있으므로 매우 위험할 수 있습니다. 신뢰할 수 있는 컨텐츠에만 `v-html`을 사용하고 사용자가 제공한 컨텐츠에는 **절대로** 사용하지 마십시오</p>
 
@@ -1309,7 +1504,7 @@ type: api
 
   토글은 표현식 값의 참에 기반한 `display` CSS 속성입니다.
 
-  이 지시문은 조건이 바뀌면 전환이 호출 됩니다.
+  이 디렉티브는 조건이 바뀌면 전환이 호출 됩니다.
 
 - **참고:** [조건부 렌더링 - v-show](../guide/conditional.html#v-show)
 
@@ -1319,9 +1514,11 @@ type: api
 
 - **사용방법:**
 
-  표현식 값의 참 거짓을 기반으로 엘리먼트를 조건부 렌더링 합니다. 엘리먼트 및 포함된 지시문 / 컴포넌트는 토글하는 동안 삭제되고 다시 작성됩니다. 엘리먼트가 `<template>`요소인 경우 그 내용은 조건부 블록이 됩니다.
+  표현식 값의 참 거짓을 기반으로 엘리먼트를 조건부 렌더링 합니다. 엘리먼트 및 포함된 디렉티브 / 컴포넌트는 토글하는 동안 삭제되고 다시 작성됩니다. 엘리먼트가 `<template>`엘리먼트인 경우 그 내용은 조건부 블록이 됩니다.
 
   조건이 변경될 때 전환이 호출 됩니다.
+
+<p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
 
 - **참고:** [조건부 렌더링 - v-if](../guide/conditional.html)
 
@@ -1329,7 +1526,7 @@ type: api
 
 - **표현식이 필요 없습니다.**
 
-- **제한:** 이전 형제 요소가 `v-if`또는 `v-else-if`이어야 합니다.
+- **제한:** 이전 형제 엘리먼트가 `v-if`또는 `v-else-if`이어야 합니다.
 
 - **사용방법:**
 
@@ -1353,7 +1550,7 @@ type: api
 
 - **예상됨:** `any`
 
-- **제한:** 이전 형제 요소가 `v-if` 또는 `v-else-if` 이어야 합니다.
+- **제한:** 이전 형제 엘리먼트가 `v-if` 또는 `v-else-if` 이어야 합니다.
 
 - **사용방법:**
 
@@ -1383,7 +1580,7 @@ type: api
 
 - **사용방법:**
 
-  원본 데이터를 기반으로 엘리먼트 또는 템플릿 블록을 여러번 렌더링합니다. 지시문의 값은 반복되는 현재 요소에 대한 별칭을 제공하기 위해 특수 구문인 `alias in expression`을 사용해야 합니다.
+  원본 데이터를 기반으로 엘리먼트 또는 템플릿 블록을 여러번 렌더링합니다. 디렉티브의 값은 반복되는 현재 엘리먼트에 대한 별칭을 제공하기 위해 특수 구문인 `alias in expression`을 사용해야 합니다.
 
   ``` html
   <div v-for="item in items">
@@ -1407,7 +1604,10 @@ type: api
   </div>
   ```
 
-  `v-for`에 대한 자세한 사용법은 아래 링크된 가이드에서 설명합니다.
+<p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
+
+`v-for`에 대한 자세한 사용법은 아래 링크된 가이드에서 설명합니다.
+
 
 - **참고:**
   - [리스트 렌더링](../guide/list.html)
@@ -1425,9 +1625,13 @@ type: api
   - `.stop` - `event.stopPropagation()` 을 호출합니다.
   - `.prevent` - `event.preventDefault()` 을 호출합니다.
   - `.capture` - 캡처 모드에서 이벤트 리스너를 추가합니다.
-  - `.self` - 이벤트가 이 엘리먼트에서 전달된 경우에만 트리거를 처리합니다
-  - `.{keyCode | keyAlias}` - 특정 키에 대해서만 트리거를 처리합니다.
-  - `.native` - 컴포넌트의 루트 요소에서 네이티브 이벤트를 수신합니다.
+  - `.self` - 이벤트가 이 엘리먼트에서 전달된 경우에만 처리 됩니다
+  - `.{keyCode | keyAlias}` - 특정 키에 대해서만 처리 됩니다.
+  - `.native` - 컴포넌트의 루트 엘리먼트에서 네이티브 이벤트를 수신합니다.
+  - `.once` - 단 한번만 처리됩니다.
+  - `.left` - (2.2.0) 왼쪽 버튼 마우스 이벤트 트리거 처리기.
+  - `.right` - (2.2.0) 오른쪽 버튼 마우스 이벤트 트리거 처리기.
+  - `.middle` - (2.2.0) 가운데 버튼 마우스 이벤트 트리거 처리기.
 
 - **사용방법:**
 
@@ -1466,6 +1670,9 @@ type: api
 
   <!-- 키 코드를 이용한 키 입력 수식어 -->
   <input @keyup.13="onEnter">
+
+  <!-- the click event will be triggered at most once -->
+  <button v-on:click.once="doThis"></button>
   ```
 
   하위 컴포넌트에서 사용자 지정 이벤트를 수신합니다. (자식에서 "my-event"가 생성될 때 처리기가 호출 됩니다.)
@@ -1514,7 +1721,7 @@ type: api
 
   <!-- 약어 -->
   <img :src="imageSrc">
-  
+
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
 
@@ -1533,7 +1740,7 @@ type: api
   <!-- prop 수식어를 사용하는 DOM 속성 바인딩 -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- 속성 바인딩. 구성요소에서 "prop"를 선언 해야 합니다.  -->
+  <!-- 속성 바인딩. 컴포넌트에서 "prop"를 선언 해야 합니다.  -->
   <my-component :prop="someThing"></my-component>
 
   <!-- XLink -->
@@ -1581,7 +1788,7 @@ type: api
 
 - **사용방법:**
 
-  이 엘리먼트와 모든 자식 엘리먼트에 대한 컴파일을 건너 뜁니다. 원시 mustache 태그를 표시하는데 사용할 수 있습니다. 지시문이 없는 많은 수의 노드를 뛰어 넘으면 컴파일 속도가 빨라집니다.
+  이 엘리먼트와 모든 자식 엘리먼트에 대한 컴파일을 건너 뜁니다. 원시 mustache 태그를 표시하는데 사용할 수 있습니다. 디렉티브가 없는 많은 수의 노드를 뛰어 넘으면 컴파일 속도가 빨라집니다.
 
 - **예제:**
 
@@ -1595,7 +1802,7 @@ type: api
 
 - **사용방법:**
 
-  이 지시문은 Vue 인스턴스가 컴파일을 완료할 때까지 요소에 남아있습니다. `[v-cloak] { display: none }`와 같은 CSS규칙과 함께 이 지시문은 Vue인스턴스가 준비될 때까지 컴파일되지 않은 mustache 바인딩을 숨기는데 사용할 수 있습니다.
+  이 디렉티브는 Vue 인스턴스가 컴파일을 완료할 때까지 엘리먼트에 남아있습니다. `[v-cloak] { display: none }`와 같은 CSS규칙과 함께 이 디렉티브는 Vue인스턴스가 준비될 때까지 컴파일되지 않은 mustache 바인딩을 숨기는데 사용할 수 있습니다.
 
 - **예제:**
 
@@ -1631,7 +1838,7 @@ type: api
   </div>
   <!-- 컴포넌트 -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- v-for 지시문 -->
+  <!-- v-for 디렉티브 -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
@@ -1647,7 +1854,7 @@ type: api
 
 - **예상됨:** `string`
 
-  `key` 특수 속성은 Vue의 가상 DOM 알고리즘이 새로운 노드 목록을 이전 목록과 비교할 때 VNode를 식별하기 위한 힌트로 주로 사용됩니다. 키가 없으면 Vue는 엘리먼트 이동을 최소화하고 같은 유형의 요소를 최대한 많이 패치 / 재사용하려고 하는 알고리즘을 사용합니다. 키를 사용하면 키의 순서 변경을 기반으로 엘리먼트가 재정렬되고 더 이상 존재하지 않는 키가 있는 엘리먼트는 항상 제거 / 삭제 됩니다.
+  `key` 특수 속성은 Vue의 가상 DOM 알고리즘이 새로운 노드 목록을 이전 목록과 비교할 때 VNode를 식별하기 위한 힌트로 주로 사용됩니다. 키가 없으면 Vue는 엘리먼트 이동을 최소화하고 같은 유형의 엘리먼트를 최대한 많이 패치 / 재사용하려고 하는 알고리즘을 사용합니다. 키를 사용하면 키의 순서 변경을 기반으로 엘리먼트가 재정렬되고 더 이상 존재하지 않는 키가 있는 엘리먼트는 항상 제거 / 삭제 됩니다.
 
   동일한 부모의 자식 엘리먼트는 **고유 키** 가 있어야 합니다. 키가 중복되면 렌더링 오류가 발생합니다.
 
@@ -1678,7 +1885,7 @@ type: api
 
 - **예상됨:** `string`
 
-  `ref` 엘리먼트 또는 자식 컴포넌트에 대한 참조를 등록하는데 사용합니다. 참조는 부모 컴포넌트의 `$refs` 객체 아래에 등록됩니다. 일반 DOM 요소에서 사용되는 경우 참조는 해당 엘리먼트입니다. 하위 컴포넌트에서 사용되는 경우 참조는 컴포넌트 인스턴스 입니다.
+  `ref` 엘리먼트 또는 자식 컴포넌트에 대한 참조를 등록하는데 사용합니다. 참조는 부모 컴포넌트의 `$refs` 객체 아래에 등록됩니다. 일반 DOM 엘리먼트에서 사용되는 경우 참조는 해당 엘리먼트입니다. 하위 컴포넌트에서 사용되는 경우 참조는 컴포넌트 인스턴스 입니다.
 
   ``` html
   <!-- vm.$refs.p는 DOM 노드가 됩니다 -->
@@ -1690,7 +1897,7 @@ type: api
 
   `v-for`를 사용하여 엘리먼트 / 컴포넌트에 사용되는 경우 등록된 참조는 DOM 노드 또는 컴포넌트 인스턴스가 포함된 배열입니다.
 
-  참조 등록 타이밍에 대한 중요한 참고 사항: 참조 자체는 렌더링 함수의 결과로 생서되기 떄문에 초기 렌더링에서 참조 자체를 액세스 할 수 없습니다. 아직 존재하지 않습니다! `$refs`는 또한 반응이 없으므로 데이터 바인딩을 위해 템플릿에서 사용해서는 안됩니다.
+  참조 등록 타이밍에 대한 중요한 참고 사항: 참조 자체는 렌더링 함수의 결과로 생성되기 떄문에 초기 렌더링에서 참조 자체를 액세스 할 수 없습니다. 아직 존재하지 않습니다! `$refs`는 또한 반응이 없으므로 데이터 바인딩을 위해 템플릿에서 사용해서는 안됩니다.
 
 - **참고:** [자식 컴포넌트 참조](../guide/components.html#Child-Component-Refs)
 
@@ -1739,21 +1946,27 @@ type: api
   - `mode` - string, 트랜지션을 나가거나 들어가는 타이밍 순서를 제어합니다. 사용 가능한 모드는 `"out-in"`과 `"in-out"`입니다. 기본값은 동시에 발생합니다.
   - `enter-class` - string
   - `leave-class` - string
+  - `appear-class` - string
+  - `enter-to-class` - string
+  - `leave-to-class` - string
+  - `appear-to-class` - string
   - `enter-active-class` - string
   - `leave-active-class` - string
-  - `appear-class` - string
   - `appear-active-class` - string
 
 - **이벤트:**
   - `before-enter`
-  - `enter`
-  - `after-enter`
   - `before-leave`
-  - `leave`
-  - `after-leave`
   - `before-appear`
+  - `enter`
+  - `leave`
   - `appear`
+  - `after-enter`
+  - `after-leave`
   - `after-appear`
+  - `enter-cancelled`
+  - `leave-cancelled` (`v-show` only)
+  - `appear-cancelled`
 
 - **사용방법:**
 
@@ -1804,7 +2017,7 @@ type: api
 
 - **사용방법:**
 
-  `<transition-group>`은 **여러** 엘리먼트 / 컴포넌트에 대한 전환 효과로 사용합니다. `<transition-group>`은 실제 DOM 요소를 렌더링 합니다. 기본값으로 `<span>`을 렌더링하고 `tag` 속성을 통해 렌더링 해야하는 요소를 설정할 수 있습니다.
+  `<transition-group>`은 **여러** 엘리먼트 / 컴포넌트에 대한 전환 효과로 사용합니다. `<transition-group>`은 실제 DOM 엘리먼트를 렌더링 합니다. 기본값으로 `<span>`을 렌더링하고 `tag` 속성을 통해 렌더링 해야하는 엘리먼트를 설정할 수 있습니다.
   애니메이션이 제대로 작동되게 하려면 `<transition-group>`에 있는 모든 자식이 **유일 키** 가 되어야 합니다.
 
   `<transition-group>`은 CSS transform을 통해 장면 전환을 지원합니다. 스크린에서 자식의 위치가 변경된 후 움직이는 CSS클래스 (`name` 속성에서 자동 생성되거나 `move-class` 속성으로 설정됨)가 적용됩니다. 움직이는 클래스가 적용될 때 CSS `transform` 속성이 "전환가능"하면, 엘리먼트는 [FLIP technique](https://aerotwist.com/blog/flip-your-animations/)을 사용하여 목적지로 부드럽게 움직입니다.
@@ -1827,9 +2040,12 @@ type: api
 
 - **사용방법:**
 
-  동적 컴포넌트를 감싸는 경우 `<keep-alive>`는 비활성 컴포넌트 인스턴스를 파괴하지 않고 캐시합니다. `<transition>`과 비슷하게 `<keep-alive>`는 추상 요소입니다. DOM 요소 자체는 렌더링 하지 않고 컴포넌트 부모 체인에는 나타나지 않습니다.
+  동적 컴포넌트를 감싸는 경우 `<keep-alive>`는 비활성 컴포넌트 인스턴스를 파괴하지 않고 캐시합니다. `<transition>`과 비슷하게 `<keep-alive>`는 추상 엘리먼트입니다. DOM 엘리먼트 자체는 렌더링 하지 않고 컴포넌트 부모 체인에는 나타나지 않습니다.
 
-  컴포넌트가 `<keep-alive>`내에서 토글 될 때, `activated`와 `deactivated`라이프사이클 훅이 그에 따라 호출됩니다.
+  컴포넌트가 `<keep-alive>`내에서 토글 될 때, `activated`와 `deactivated` 라이프사이클 훅이 그에 따라 호출됩니다.
+
+
+  > 2.2.0 이상에서는 `<keep-alive>` 트리 안에 있는 모든 중첩 된 컴포넌트에서`activated`와 `deactivated`가 실행됩니다.
 
   주로 컴포넌트 상태를 보존하거나 재 렌더링을 피하는데 사용합니다.
 
@@ -1890,7 +2106,7 @@ type: api
 
 - **참고:** [Slot을 이용한 컨텐트 배포](../guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## VNode 인터페이스
 
 - [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)를 참조하십시오.
 

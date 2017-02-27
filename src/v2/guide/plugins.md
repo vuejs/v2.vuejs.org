@@ -10,7 +10,7 @@ order: 18
 
 1. 약간의 전역 메소드 또는 속성 추가 예. [vue-element](https://github.com/vuejs/vue-element)
 
-2. 하나 이상의 글로벌 에셋 추가 : 지시문 / 필터 / 전환 등. [vue-touch](https://github.com/vuejs/vue-touch)
+2. 하나 이상의 글로벌 에셋 추가 : 디렉티브 / 필터 / 전환 등. [vue-touch](https://github.com/vuejs/vue-touch)
 
 3. 글로벌 mixin으로 일부 컴포넌트 옵션을 추가하십시오. 예. [vuex](https://github.com/vuejs/vuex)
 
@@ -65,7 +65,7 @@ Vue.use(MyPlugin)
 Vue.use(MyPlugin, { someOption: true })
 ```
 
-`Vue.use`는 자동으로 동일한 플러그인을 두 번 이상 사용하지 못하기 때문에 동일한 플러그인에서 여러 번 호출하면 플러그인이 한 번만 설치됩니다.
+`Vue.use`는 자동으로 같은 플러그인을 두 번 이상 사용하지 못하기 때문에 같은 플러그인에서 여러 번 호출하면 플러그인이 한 번만 설치됩니다.
 
 `vue-router`와 같은 Vue.js 공식 플러그인이 제공하는 일부 플러그인은`Vue`가 전역 변수로 사용 가능한 경우 자동으로`Vue.use()`를 호출합니다. 그러나 CommonJS와 같은 모듈 환경에서는 항상`Vue.use()`를 명시 적으로 호출해야합니다 :
 
@@ -78,4 +78,4 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
-[awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins)에서 커뮤니티에서 거대한 기여한 플러그인 및 라이브러리 컬렉션을 확인하세요
+커뮤니티에서 기여한 많은 플러그인 및 라이브러리 컬렉션을 [awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins)에서 확인하세요.

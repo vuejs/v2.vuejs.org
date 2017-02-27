@@ -84,7 +84,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-훨씬 간단 합니다! 이 코드는 더 짧지만 Vue 인스턴스 속성에 더 익숙해야합니다. 이 경우 `anchored-heading` 안에 `Hello world!`와 같이 `slot` 속성 없이 자식을 패스 할 때 그 자식들은 `$ slots.default` 에있는 컴포넌트 인스턴스에 저장된다는 것을 알아야합니다. 아직 구현하지 않았다면 **render 함수로 들어가기 전에 [instance properties API](../api/#vm-slots)를 읽는 것이 좋습니다.**
+훨씬 간단 합니다! 이 코드는 더 짧지만 Vue 인스턴스 속성에 더 익숙해야합니다. 이 경우 `anchored-heading` 안에 `Hello world!`와 같이 `slot` 속성 없이 자식을 패스 할 때 그 자식들은 `$slots.default` 에있는 컴포넌트 인스턴스에 저장된다는 것을 알아야합니다. 아직 구현하지 않았다면 **render 함수로 들어가기 전에 [instance properties API](../api/#vm-slots)를 읽는 것이 좋습니다.**
 
 ## `createElement` 전달인자
 
@@ -159,7 +159,7 @@ createElement(
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // 사용자 지정 지시문.
+  // 사용자 지정 디렉티브.
   // Vue는 이를 관리하기 때문에 바인딩의 oldValue는 설정할 수 없습니다.
   directives: [
     {
@@ -175,9 +175,9 @@ createElement(
   // 범위 지정 슬롯. 형식은
   // { name: props => VNode | Array<VNode> } 입니다.
   scopedSlots: {
-    default: props => h('span', props.text)
+    default: props => createElement('span', props.text)
   },
-  // 컴포넌트의 자식인 경우 슬롯의 이름입니다.
+  // 이 컴퍼넌트가 다른 컴퍼넌트의 자식인 경우, 슬롯의 이름입니다.
   slot: 'name-of-slot'
   // 기타 최고 레벨 속성
   key: 'myKey',
@@ -243,7 +243,7 @@ render: function (createElement) {
 }
 ```
 
-동일한 엘리먼트 / 컴포넌트를 여러 번 복제하려는 경우 팩토리 기능을 사용하여 여러 번 반복 할 수 있습니다. 예를 들어, 다음 렌더링 함수는 20 개의 동일한 p태그를 렌더링하는 완벽하게 가능한 방법입니다.
+같은 엘리먼트 / 컴포넌트를 여러 번 복제하려는 경우 팩토리 기능을 사용하여 여러 번 반복 할 수 있습니다. 예를 들어, 다음 렌더링 함수는 20 개의 같은 p태그를 렌더링하는 완벽하게 가능한 방법입니다.
 
 ``` js
 render: function (createElement) {
@@ -259,7 +259,7 @@ render: function (createElement) {
 
 ### `v-if` 와 `v-for`
 
-일반 자바 스크립트를 사용할 수 있는 환경이면 어디든지 Vue 렌더링 함수는 한가지 방법만을 제공하지는 않습니다. 예를 들어,`v-if`와`v-for`를 사용하는 템플릿에서 :
+일반 JavaScript를 사용할 수 있는 환경이면 어디든지 Vue 렌더링 함수는 한가지 방법만을 제공하지는 않습니다. 예를 들어,`v-if`와`v-for`를 사용하는 템플릿에서 :
 
 ``` html
 <ul v-if="items.length">
@@ -357,7 +357,7 @@ on: {
 
 ### Slots
 
-[`this.$slots`](http://vuejs.org/v2/api/#vm-slots) 에서 정적 슬롯 내용을  VNodes의 배열로 접근할 수 있습니다.
+[`this.$slots`](http://kr.vuejs.org/v2/api/#vm-slots) 에서 정적 슬롯 내용을  VNodes의 배열로 접근할 수 있습니다.
 
 ``` js
 render: function (createElement) {
@@ -366,7 +366,7 @@ render: function (createElement) {
 }
 ```
 
-또한 특정 범위를 가지는 슬롯 [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots)에서 VNode를 반환하는 함수로 접근할 수 있습니다.
+또한 특정 범위를 가지는 슬롯 [`this.$scopedSlots`](http://kr.vuejs.org/v2/api/#vm-scopedSlots)에서 VNode를 반환하는 함수로 접근할 수 있습니다.
 
 ``` js
 render: function (createElement) {
@@ -389,7 +389,7 @@ render (createElement) {
       // { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
-          return h('span', props.text)
+          return createElement('span', props.text)
         }
       }
     })
@@ -543,6 +543,7 @@ Vue의 템플릿이 실제로 함수를 렌더링 하기 위해 컴파일 되는
     <pre><code>{{ result.render }}</code></pre>
     <label>staticRenderFns:</label>
     <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
+    <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
     <label>Compilation Error:</label>
@@ -555,7 +556,9 @@ new Vue({
   data: {
     templateText: '\
 <div>\n\
-  <h1>I\'m a template!</h1>\n\
+  <header>\n\
+    <h1>I\'m a template!</h1>\n\
+  </header>\n\
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\
@@ -602,7 +605,7 @@ console.error = function (error) {
 }
 #vue-compile-demo textarea {
   width: 100%;
-
+  font-family: monospace;
 }
 </style>
 {% endraw %}

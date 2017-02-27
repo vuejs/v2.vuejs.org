@@ -27,13 +27,30 @@
     }
 
     function createSourceSearchPath(query) {
-      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent(query) + '+&type=Code'
+      query = query
+        .replace(/\([^\)]*?\)/g, '')
+        .replace(/vm\./g, 'Vue.prototype.')
+      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
   }
 
+  function parseRawHash (hash) {
+    // Remove leading hash
+    if (hash.charAt(0) === '#') {
+      hash = hash.substr(1)
+    }
+
+    // Escape characthers
+    try {
+      hash = decodeURIComponent(hash)
+    } catch (e) {}
+    return CSS.escape(hash)
+  }
+
   function initLocationHashFuzzyMatching () {
-    var hash = window.location.hash
-    if (!hash) return
+    var rawHash = window.location.hash
+    if (!rawHash) return
+    var hash = parseRawHash(rawHash)
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
@@ -46,7 +63,7 @@
         if (distanceA > distanceB) return 1
         return 0
       })
-      window.location.hash = possibleHashes[0]
+      window.location.hash = '#' + possibleHashes[0]
     }
 
     function normalizeHash (rawHash) {
@@ -74,7 +91,7 @@
   }
 
   /**
-   * Mobile burger menu button for toggling sidebar
+   * Mobile burger menu button and gesture for toggling sidebar
    */
 
   function initMobileMenu () {
@@ -89,6 +106,27 @@
     document.body.addEventListener('click', function (e) {
       if (e.target !== menuButton && !sidebar.contains(e.target)) {
         sidebar.classList.remove('open')
+      }
+    })
+
+    // Toggle sidebar on swipe
+    var start = {}, end = {}
+
+    document.body.addEventListener('touchstart', function (e) {
+      start.x = e.changedTouches[0].clientX
+      start.y = e.changedTouches[0].clientY
+    })
+
+    document.body.addEventListener('touchend', function (e) {
+      end.y = e.changedTouches[0].clientY
+      end.x = e.changedTouches[0].clientX
+
+      var xDiff = end.x - start.x
+      var yDiff = end.y - start.y
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) sidebar.classList.add('open')
+        else sidebar.classList.remove('open')
       }
     })
   }
@@ -158,7 +196,10 @@
 
       var animating = false
       sectionContainer.addEventListener('click', function (e) {
-        e.preventDefault()
+
+        // Not prevent hashchange for smooth-scroll
+        // e.preventDefault()
+
         if (e.target.classList.contains('section-link')) {
           sidebar.classList.remove('open')
           setActive(e.target)

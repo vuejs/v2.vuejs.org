@@ -1,7 +1,7 @@
 ---
 title: Vue 1.x에서 마이그레이션
 type: guide
-order: 25
+order: 26
 ---
 
 ## FAQ
@@ -343,7 +343,45 @@ prop 변이의 대부분의 사용 사례는 다음 중 하나로 대체 할 수
 </div>
 {% endraw %}
 
-## 내장 지시문
+## 계산된 속성
+
+### `cache: false` <sup>사용안함</sup>
+
+계산된 속성의 캐싱 무효화는 향후 주요 버전의 Vue에서 제거 될 예정입니다. 캐시 되지 않은 계산된 속성을 같은 결과를 갖는 메소드로 대체하십시오.
+
+예제:
+
+``` js
+template: '<p>message: {{ timeMessage }}</p>',
+computed: {
+  timeMessage: {
+    cache: false,
+    get: function () {
+      return Date.now() + this.message
+    }
+  }
+}
+```
+
+또는 컴포넌트 메소드를 사용합니다
+
+``` js
+template: '<p>message: {{ getTimeMessage }}</p>',
+methods: {
+  getTimeMessage: function () {
+    return Date.now() + this.message
+  }
+}
+```
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+</div>
+{% endraw %}
+
+## 내장 디렉티브
 
 ### `v-bind`의 참/거짓 <sup>변경</sup>
 
@@ -601,13 +639,13 @@ strings.map(function (str) {
 
 단순화를 위해,`v-el` 과 `v-ref`는 `ref` 속성으로 병합되었습니다. 이 속성은 `$refs` 를 통해 컴포넌트 인스턴스에서 접근 가능합니다. 이는 `v-el:my-element`가 `ref="myElement"`가되고 `v-ref:my-component`가 `ref="myComponent"`가된다는 것을 의미합니다. 일반 요소에서 사용될 때,`ref`는 DOM 요소가 될 것이고, 컴포넌트에서 사용될 때,`ref`는 컴포넌트 인스턴스가 될 것입니다.
 
-`v-ref`는 더 이상 지시문이 아니며 특별한 속성이기 때문에 동적으로 정의 될 수도 있습니다. 이것은 `v-for`와 함께 사용할 때 특히 유용합니다.
+`v-ref`는 더 이상 디렉티브가 아니며 특별한 속성이기 때문에 동적으로 정의 될 수도 있습니다. 이것은 `v-for`와 함께 사용할 때 특히 유용합니다.
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-이전에 `v-el`/`v-ref` 와 `v-for`를 조합하면 각 항목에 고유한 이름을 부여 할 방법이 없었기 때문에 엘리먼트/컴포넌트 배열을 생성합니다. 각 항목에 동일한 `ref`를 주면 여전히 이 동작을 할 수 있습니다.
+이전에 `v-el`/`v-ref` 와 `v-for`를 조합하면 각 항목에 고유한 이름을 부여 할 방법이 없었기 때문에 엘리먼트/컴포넌트 배열을 생성합니다. 각 항목에 같은 `ref`를 주면 여전히 이 동작을 할 수 있습니다.
 
 ``` html
 <p v-for="item in items" ref="items"></p>
@@ -620,7 +658,7 @@ strings.map(function (str) {
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여<code>v-el</code> and <code>v-ref</code>.</p>
+  <p><code>v-el</code>과 <code>v-ref</code>를 찾기 위해 코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하기.</p>
 </div>
 {% endraw %}
 
@@ -647,27 +685,27 @@ You can use:
 </div>
 {% endraw %}
 
-## 사용자 지정 지시문 <sup>단순화</sup>
+## 사용자 지정 디렉티브 <sup>단순화</sup>
 
 지시어는 책임 범위를 크게 줄였습니다. 이제는 하위 수준의 직접 DOM 조작을 적용하는 경우만 사용됩니다. 대부분의 경우 컴포넌트를 주 코드 재사용 추상화로 사용하는 것이 좋습니다.
 
 가장 주목할만한 차이점은 다음과 같습니다.
 
-- 지시문에 더 이상 인스턴스가 없습니다. 이것은 지시문 훅 안에 `this`가 없다는 것을 의미합니다. 대신 필요한 모든 것을 전달인자로 받습니다. 실제로 훅을 가로채는 상태를 유지해야한다면 `el` 에서 그렇게 할 수 있습니다.
+- 디렉티브에 더 이상 인스턴스가 없습니다. 이것은 디렉티브 훅 안에 `this`가 없다는 것을 의미합니다. 대신 필요한 모든 것을 전달인자로 받습니다. 실제로 훅을 가로채는 상태를 유지해야한다면 `el` 에서 그렇게 할 수 있습니다.
 - `acceptStatement`, `deep`, `priority` 등의 옵션은 모두 제거되었습니다. `twoWay` 지시어를 대체하려면 [이 예제](#Two-Way-Filters-replaced)를 참조하십시오.
 - 현재의 훅 중 일부는 다른 동작을 하며 몇 가지 새로운 후크가 있습니다.
 
-다행스럽게도 새로운 지시문이 훨씬 간단하기 때문에 보다 쉽게 마스터 할 수 있습니다. 자세한 내용은 새로운 [사용자 지정 지시문 가이드](custom-directive.html)를 읽어보십시오.
+다행스럽게도 새로운 디렉티브가 훨씬 간단하기 때문에 보다 쉽게 마스터 할 수 있습니다. 자세한 내용은 새로운 [사용자 지정 디렉티브 가이드](custom-directive.html)를 읽어보십시오.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
   <p>
-  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 정의 된 지시문의 예를 찾으십시오. 도우미는 모든 엘리먼트에 플래그를 지정합니다. 대부분의 경우 엘리먼트로 리팩토링하려는 경우가 많기 때문입니다.</p>
+  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 정의 된 디렉티브의 예를 찾으십시오. 도우미는 모든 엘리먼트에 플래그를 지정합니다. 대부분의 경우 엘리먼트로 리팩토링하려는 경우가 많기 때문입니다.</p>
 </div>
 {% endraw %}
 
-### 지시문 `.literal` 수정자 <sup>제거됨</sup>
+### 디렉티브 `.literal` 수정자 <sup>제거됨</sup>
 
 `.literal` 수정자는 제거되었습니다. 문자열 리터럴을 값으로 제공하는 것만으로 쉽게 달성 할 수 있습니다.
 
@@ -833,9 +871,9 @@ methods: {
 
 ### 외부 텍스트 보간 필터 <sup>제거됨</sup>
 
-이제 필터는 텍스트 보간(`{% raw %}{{ }}{% endraw %}`)태그 내에서만 사용할 수 있습니다. 과거에 우리는`v-model`, `v-on` 등과 같은 지시문 내에서 필터를 사용하는 것이 편리함보다 더 복잡하다는 것을 발견했습니다. `v-for`에 대한 목록 필터링의 경우 논리를 JavaScript로 계산된 속성으로 이동하여 컴포넌트 전체에서 재사용할 수 있습니다.
+이제 필터는 텍스트 보간(`{% raw %}{{ }}{% endraw %}`)태그 내에서만 사용할 수 있습니다. 과거에 우리는`v-model`, `v-on` 등과 같은 디렉티브 내에서 필터를 사용하는 것이 편리함보다 더 복잡하다는 것을 발견했습니다. `v-for`에 대한 목록 필터링의 경우 논리를 JavaScript로 계산된 속성으로 이동하여 컴포넌트 전체에서 재사용할 수 있습니다.
 
-일반적으로 자바 스크립트에서 무언가를 얻을 수 있을 때마다 필터와 같은 특별한 구문을 사용하지 않아도 되므로 동일한 관심사를 처리할 수 있습니다. Vue의 기본 제공 지시문 필터를 대체하는 방법은 다음과 같습니다.
+일반적으로 자바 스크립트에서 무언가를 얻을 수 있을 때마다 필터와 같은 특별한 구문을 사용하지 않아도 되므로 동일한 관심사를 처리할 수 있습니다. Vue의 기본 제공 디렉티브 필터를 대체하는 방법은 다음과 같습니다.
 
 #### `debounce` 필터 변경
 
@@ -960,7 +998,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 지시문 내에서 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 디렉티브 내에서 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
 </div>
 {% endraw %}
 
@@ -993,7 +1031,7 @@ Vue에 내장 된 텍스트 필터 각각에 대해 아래에서 어떻게 대�
 
 #### `json` 필터 변경
 
-Vue는 문자열, 숫자, 배열 또는 일반 객체 등 사용자가 자동으로 출력 형식을 지정하기 때문에 실제로는 더 이상 디버깅 할 필요가 없습니다. 그래도 JavaScript의 `JSON.stringify`와 동일한 기능을 원한다면 메소드나 계산 된 속성에서 사용할 수 있습니다.
+Vue는 문자열, 숫자, 배열 또는 일반 객체 등 사용자가 자동으로 출력 형식을 지정하기 때문에 실제로는 더 이상 디버깅 할 필요가 없습니다. 그래도 JavaScript의 `JSON.stringify`와 같은 기능을 원한다면 메소드나 계산 된 속성에서 사용할 수 있습니다.
 
 #### `capitalize` 필터 변경
 
@@ -1085,7 +1123,7 @@ Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
   <p>
-  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-model</code>과 같은 지시문에 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
+  코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-model</code>과 같은 디렉티브에 사용되는 필터의 예를 찾으십시오. 빠뜨린 경우 <strong>console errors</strong>도 표시되어야합니다.</p>
 </div>
 {% endraw %}
 
@@ -1093,7 +1131,7 @@ Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저
 
 ### 중복 슬롯 <sup>제거됨</sup>
 
-같은 템플릿 안에 같은 이름을 가진 `<slot>`을 더 이상 지원하지 않습니다. 슬롯이 렌더링 될 때 "사용"되고 동일한 렌더링 트리의 다른 위치로 렌더링 될 수 없습니다. 여러 장소에서 동일한 내용을 렌더링해야하는 경우 해당 내용을 prop로 전달하십시오.
+같은 템플릿 안에 같은 이름을 가진 `<slot>`을 더 이상 지원하지 않습니다. 슬롯이 렌더링 될 때 "사용"되고 같은 렌더링 트리의 다른 위치로 렌더링 될 수 없습니다. 여러 장소에서 같은 내용을 렌더링해야하는 경우 해당 내용을 prop로 전달하십시오.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1194,7 +1232,7 @@ computed: {
 
 ### HTML 보간 <sup>제거됨</sup>
 
-HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-html` 지시문](../api/#v-html)을 사용하세요.
+HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-html` 디렉티브](../api/#v-html)을 사용하세요.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1205,7 +1243,7 @@ HTML 보간은 (`{% raw %}{{{ foo }}}{% endraw %}`) 삭제되었습니다 [`v-ht
 
 ### 일회용 바인딩 <sup>대체</sup>
 
-일회용 바인딩 (`{% raw %}{{* foo }}{% endraw %}`)은 [`v-once` 지시문](../api/#v-once)으로 변경되었습니다.
+일회용 바인딩 (`{% raw %}{{* foo }}{% endraw %}`)은 [`v-once` 디렉티브](../api/#v-once)으로 변경되었습니다.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1540,7 +1578,7 @@ el 옵션은 `Vue.extend` 에서 더 이상 사용할 수 없습니다. 인스�
 
 앱의 성능이 중요한 부분에서 부분적으로 사용하는 경우 [함수형 컴포넌트](render-function.html#Functional-Components)로 업그레이드 해야 합니다. 그것들은 (`.vue` 파일 대신에) 일반 JS/JSX 파일에 있어야하며 파셜과 마찬가지로 상태가없고 인스턴스도 없습니다. 이것은 렌더링을 매우 빠르게 만듭니다.
 
-파셜에 비해 함수형 컴포넌트의 이점은 JavaScript의 모든 기능에 대한 액세스 권한을 부여하기 때문에 훨씬 더 동적 일 수 있다는 것입니다. 그러나 이에는 따르는 비용이 있습니다. 이전에 렌더링 기능이있는 컴포넌트 프레임 워크를 사용한 적이 없다면 배우기까지 조금 더 시간이 걸릴 수 있습니다.
+파셜에 비해 함수형 컴포넌트의 이점은 JavaScript의 모든 기능에 대한 액세스 권한을 부여하기 때문에 훨씬 더 동적 일 수 있다는 것입니다. 그러나 이에는 따르는 비용이 있습니다. 이전에 렌더링 기능이있는 컴포넌트 를 사용한 적이 없다면 배우기까지 조금 더 시간이 걸릴 수 있습니다.
 
 {% raw %}
 <div class="upgrade-path">

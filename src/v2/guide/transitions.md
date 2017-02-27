@@ -50,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-active {
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
 }
 ```
@@ -76,7 +76,7 @@ new Vue({
 .demo-transition-enter-active, .demo-transition-leave-active {
   transition: opacity .5s
 }
-.demo-transition-enter, .demo-transition-leave-active {
+.demo-transition-enter, .demo-transition-leave-to {
   opacity: 0
 }
 </style>
@@ -96,8 +96,10 @@ new Vue({
 
 1. `v-enter`: enter의 시작 상태. 엘리먼트가 삽입되기 전에 적용되고 한 프레임 후에 제거됩니다.
 2. `v-enter-active`: enter에 대한 활성 및 종료 상태. 엘리먼트가 삽입되기 전에 적용됩니다. 전환 / 애니메이션이 완료되면 제거됩니다.
-3. `v-leave`: leave를 위한 시작 상태. 진출 전환이 트리거 될 때 적용되고 한 프레임 후에 제거됩니다.
-4. `v-leave-active`: leave에 대한 활성 및 종료 상태. 진출 전환이 트리거되면 적용되고 전환 / 애니메이션이 완료되면 제거됩니다.
+3. `v-enter-to`: **2.1.8 이상 버전에서 지원합니다.** 진입 상태의 끝에서 실행됩니다. 엘리먼트가 삽입된 후 (동시에 `v-leave`가 제거됨), 전환/애니메이션이 끝나면 제거되는 하나의 프레임을 추가했습니다.
+4. `v-leave`: leave를 위한 시작 상태. 진출 전환이 트리거 될 때 적용되고 한 프레임 후에 제거됩니다.
+5. `v-leave-active`: leave에 대한 활성 및 종료 상태. 진출 전환이 트리거되면 적용되고 전환 / 애니메이션이 완료되면 제거됩니다.
+6. `v-leave-to`: **2.1.8 이상 버전에서 지원합니다.** 진출 상태의 끝에서 실행됩니다. 진출 전환이 트리거되고 (동시에 `v-leave`가 제거됨), 전환/애니메이션이 끝나면 제거되는 하나의 프레임을 추가했습니다.
 
 ![Transition Diagram](/images/transition.png)
 
@@ -138,7 +140,8 @@ new Vue({
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-active {
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -168,7 +171,7 @@ new Vue({
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-active {
+.slide-fade-enter, .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -177,7 +180,7 @@ new Vue({
 
 ### CSS 애니메이션
 
-CSS 애니메이션은 CSS 전환과 동일한 방식으로 적용됩니다. 차이점은 요소가 삽입 된 직후에`v-enter`가 제거되지 않지만 `animationend` 이벤트에 있습니다.
+CSS 애니메이션은 CSS 전환과 같은 방식으로 적용됩니다. 차이점은 요소가 삽입 된 직후에`v-enter`가 제거되지 않지만 `animationend` 이벤트에 있습니다.
 
 다음은 간결함을 위해 접두사가 붙은 CSS 규칙을 생략 한 예입니다.
 
@@ -320,8 +323,10 @@ new Vue({
 
 - `enter-class`
 - `enter-active-class`
+- `enter-to-class` (>= 2.1.8 only)
 - `leave-class`
 - `leave-active-class`
+- `leave-to-class` (>= 2.1.8 only)
 
 이것들은 원본 클래스 명을 오버라이드 합니다. 이는 Vue의 전환 시스템을 [Animate.css](https://daneden.github.io/animate.css/)와 같은 기존 CSS 애니메이션 라이브러리와 결합하려는 경우 특히 유용합니다.
 
@@ -381,7 +386,25 @@ new Vue({
 
 Vue는 전환이 종료 된 시점을 알기 위해 이벤트 리스너를 연결해야합니다. 적용된 CSS 규칙의 유형에 따라 `transitionend` 또는 `animationend` 가 될 수 있습니다. 둘 중 하나만 사용하는 경우 Vue는 올바른 유형을 자동으로 감지 할 수 있습니다.
 
-그러나 어떤 경우에는 동일한 엘리먼트 (예: Vue에 의해 트리거 된 CSS 애니메이션)와 함께 호버에 대한 CSS 전환 효과를 둘 다 가질 수도 있습니다. 이러한 경우,`type` 속성에서 Vue가 지켜 볼 타입을 명시적으로 선언해야 합니다. 값은 `animation` 또는 `transition` 입니다.
+그러나 어떤 경우에는 같은 엘리먼트 (예: Vue에 의해 트리거 된 CSS 애니메이션)와 함께 호버에 대한 CSS 전환 효과를 둘 다 가질 수도 있습니다. 이러한 경우,`type` 속성에서 Vue가 지켜 볼 타입을 명시적으로 선언해야 합니다. 값은 `animation` 또는 `transition` 입니다.
+
+### 명시적 전환 지속 시간
+
+> 2.2.0 버전에서 추가됨
+
+대부분의 경우 Vue는 전환이 완료를 자동으로 감지할 수 있습니다. 기본적으로 Vue는 루트 전환 엘리먼트에서 첫 번째 `transitionend` 또는 `animationend` 이벤트를 기다립니다. 그러나 이것은 항상 이상적인 것은 아닙니다. 예를 들어, 중첩 된 내부 엘리먼트가 루트 전환 엘리먼트보다 지연된 전환 또는 더 긴 전환 기간을 갖는 다른 엘리먼트와 함께 진행하는 전환 시퀀스를 가질 수 있습니다.
+
+이 경우, `<transition>` 컴포넌트에 `duration` 속성을 사용하여 명시적인 전환 지속 시간(밀리 초)을 지정할 수 있습니다.
+
+``` html
+<transition :duration="1000">...</transition>
+```
+
+진입과 진출 기간에도 명시적인 값을 지정할 수 있습니다.
+
+``` html
+<transition :duration="{ enter: 500, leave: 800 }">...</transition>
+```
 
 ### JavaScript 훅
 
@@ -567,6 +590,7 @@ new Vue({
 <transition
   appear
   appear-class="custom-appear-class"
+  appear-to-class="custom-appear-to-class" (>= 2.1.8 only)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
@@ -581,6 +605,7 @@ new Vue({
   v-on:before-appear="customBeforeAppearHook"
   v-on:appear="customAppearHook"
   v-on:after-appear="customAfterAppearHook"
+  v-on:appear-cancelled="customAppearCancelledHook"
 >
   <!-- ... -->
 </transition>
@@ -601,7 +626,7 @@ new Vue({
 
 이것은 잘 작동하지만 주의해야할 한 가지 주의 사항이 있습니다.
 
-<p class="tip">**동일한 태그 이름** 을 가진 엘리먼트 사이를 전환할 때, Vue에 고유 한 `key` 속성을 부여함으로써 별개의 엘리먼트임을 말해야합니다. 그렇지 않으면 Vue의 컴파일러는 효율성을 위해 엘리먼트의 내용만 바꿉니다. 기술적으로 불필요한 경우 라하더라도 **여러 항목을 항상 `<transition>` 컴포넌트에 키핑하는 것이 좋습니다.**</p>
+<p class="tip">**같은 태그 이름** 을 가진 엘리먼트 사이를 전환할 때, Vue에 고유 한 `key` 속성을 부여함으로써 별개의 엘리먼트임을 말해야합니다. 그렇지 않으면 Vue의 컴파일러는 효율성을 위해 엘리먼트의 내용만 바꿉니다. 기술적으로 불필요한 경우 라하더라도 **여러 항목을 항상 `<transition>` 컴포넌트에 키핑하는 것이 좋습니다.**</p>
 
 예제:
 
@@ -910,7 +935,8 @@ new Vue({
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
 }
-.component-fade-enter, .component-fade-leave-active {
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active for <2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -927,7 +953,7 @@ new Vue({
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
 }
-.component-fade-enter, .component-fade-leave-active {
+.component-fade-enter, .component-fade-leave-to {
   opacity: 0;
 }
 </style>
@@ -962,10 +988,10 @@ new Vue({
 
 ### 리스트의 진입 / 진출 전환
 
-이제 이전에 사용한 것과 동일한 CSS 클래스를 사용하여 들어가고 떠나는 간단한 예제를 살펴 보겠습니다.
+이제 이전에 사용한 것과 같은 CSS 클래스를 사용하여 들어가고 떠나는 간단한 예제를 살펴 보겠습니다.
 
 ``` html
-<div id="list-demo" class="demo">
+<div id="list-demo">
   <button v-on:click="add">Add</button>
   <button v-on:click="remove">Remove</button>
   <transition-group name="list" tag="p">
@@ -1005,7 +1031,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-active {
+.list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1049,7 +1075,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-active {
+.list-enter, .list-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1180,7 +1206,8 @@ new Vue({
   display: inline-block;
   margin-right: 10px;
 }
-.list-complete-enter, .list-complete-leave-active {
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active for <2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1230,7 +1257,7 @@ new Vue({
   display: inline-block;
   margin-right: 10px;
 }
-.list-complete-enter, .list-complete-leave-active {
+.list-complete-enter, .list-complete-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }

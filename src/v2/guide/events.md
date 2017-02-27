@@ -6,7 +6,7 @@ order: 9
 
 ## 이벤트 청취
 
-`v-on` 지시문을 사용하여 DOM 이벤트를 듣고 트리거 될 때 JavaScript를 실행할 수 있습니다.
+`v-on` 디렉티브를 사용하여 DOM 이벤트를 듣고 트리거 될 때 JavaScript를 실행할 수 있습니다.
 
 예제:
 
@@ -25,7 +25,7 @@ var example1 = new Vue({
 })
 ```
 
-Result:
+결과:
 
 {% raw %}
 <div id="example-1" class="demo">
@@ -67,7 +67,9 @@ var example2 = new Vue({
       // 메소드 안에서 사용하는 `this` 는 Vue 인스턴스를 가리킵니다
       alert('Hello ' + this.name + '!')
       // `event` 는 네이티브 DOM 이벤트입니다
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
@@ -76,7 +78,7 @@ var example2 = new Vue({
 example2.greet() // -> 'Hello Vue.js!'
 ```
 
-결과
+결과:
 
 {% raw %}
 <div id="example-2" class="demo">
@@ -91,7 +93,9 @@ var example2 = new Vue({
   methods: {
     greet: function (event) {
       alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
@@ -259,6 +263,20 @@ Vue.config.keyCodes.f1 = 112
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
+<p class="tip">
+수식어 키는 일반 키와 다르며 `keyup` 이벤트와 함께 사용되면 이벤트가 발생할 때 수식어 키가 눌려있어야 합니다. 즉,`keyup.ctrl`는 `ctrl`을 누른 상태에서 키를 놓으면 트리거됩니다. `ctrl` 키만 놓으면 트리거되지 않습니다.
+</p>
+
+### 마우스 버튼 수식어
+
+> 2.2.0 버전에서 추가됨
+
+- `.left`
+- `.right`
+- `.middle`
+
+위 수정자는 특정 마우스 버튼에 의해 트리거 된 이벤트로 핸들러를 제한합니다.
+
 ## 왜 HTML로 된 리스너를 사용합니까
 
 이 모든 이벤트 청취 접근 방법이 우려 사항 분리("separation of concerns")에 대한 오래된 규칙을 어긴다고 생각할 수 있습니다. 모든 뷰 핸들러 함수와 표현식은 현재 뷰 처리 하는 ViewModel에 엄격히 바인딩 되기 때문에 유지보수가 어렵지 않습니다. 실제로 `v-on`을 사용하면 몇가지 이점이 있습니다.
@@ -267,4 +285,4 @@ Vue.config.keyCodes.f1 = 112
 
 2. JavaScript에서 이벤트 리스너를 수동으로 연결할 필요가 없으므로 ViewModel 코드는 순수 로직과 DOM이 필요하지 않습니다. 이렇게 하면 테스트가 쉬워집니다.
 
-3. ViewModel이 파기되면 모든 이벤트 리스너가 자동으로 제거 됩니다. 이벤트 제거에 대한 걱정이 필요 없어집니다
+3. ViewModel이 파기되면 모든 이벤트 리스너가 자동으로 제거 됩니다. 이벤트 제거에 대한 걱정이 필요 없어집니다.
