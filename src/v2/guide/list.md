@@ -395,7 +395,7 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire de nouveau le rendu de la liste entière ? Par chance, cela n'est pas le cas. Vue implémente plusieurs fonctions heuristiques intelligentes pour maximiser la réutilisation du DOM existant ; ainsi remplacer un tableau par un autre partiellement modifié (objets différents pour certains index) est une opération très performante.
+Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire de nouveau le rendu de la liste entière ? Par chance, cela n'est pas le cas. Vue implémente plusieurs fonctions heuristiques intelligentes pour maximiser la réutilisation du DOM existant ; ainsi remplacer un tableau par un autre contenant des objets différents à certains index est une opération très performante.
 
 ### Limitations
 
