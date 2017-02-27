@@ -6,23 +6,23 @@ order: 10
 
 ## Usage basique
 
-Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les ((champs de formulaire)). Elle choisira automatiquement la bonne manière de mettre à jour l'élément selon le type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ((plus quelques traitements spéciaux pour les cas particuliers)).
+Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire et textarea. Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, plus quelques traitements spéciaux pour certains cas particuliers.
 
-<p class="tip">`v-model` ne prend pas en compte la valeur initiale fournie par un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
+<p class="tip">`v-model` ne prend pas en compte la valeur initiale fournie pour un champ ou un textarea. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
 
-<p class="tip" id="vmodel-ime-tip">Pour les languages qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc ...), vous remarquerez que `v-model` ne sera pas mis à jour durant ((l'exécution de la méthode de saisie.))</p>
+<p class="tip" id="vmodel-ime-tip">Pour les languages qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc ...), vous remarquerez que `v-model` ne sera pas mis à jour durant l'exécution de la méthode de saisie.</p>
 
 ### Texte
 
 ``` html
-<input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+<input v-model="message" placeholder="éditez moi">
+<p>Le message est : {{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="edit me">
-  <p>Message is: {{ message }}</p>
+  <input v-model="message" placeholder="éditez moi">
+  <p>Le message est : {{ message }}</p>
 </div>
 <script>
 new Vue({
@@ -37,18 +37,18 @@ new Vue({
 ### Texte multiligne
 
 ``` html
-<span>Multiline message is:</span>
+<span>Le message multiligne est :</span>
 <p style="white-space: pre">{{ message }}</p>
 <br>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="message" placeholder="ajoutez plusieurs lignes"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-  <span>Multiline message is:</span>
+  <span>Le message multiligne est :</span>
   <p style="white-space: pre">{{ message }}</p>
   <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <textarea v-model="message" placeholder="ajoutez plusieurs lignes"></textarea>
 </div>
 <script>
 new Vue({
@@ -67,7 +67,7 @@ new Vue({
 
 ### Checkbox
 
-((Checkbox seule, valeur booléenne:))
+Checkbox seule, valeur booléenne :
 
 
 ``` html
@@ -89,7 +89,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Checkboxes multiple, liées au même Array:
+Checkboxes multiples, liées au même Array:
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
@@ -99,7 +99,7 @@ Checkboxes multiple, liées au même Array:
 <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
 <label for="mike">Mike</label>
 <br>
-<span>Checked names: {{ checkedNames }}</span>
+<span>Nom cochés : {{ checkedNames }}</span>
 ```
 
 ``` js
@@ -120,7 +120,7 @@ new Vue({
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names: {{ checkedNames }}</span>
+  <span>Noms cochés : {{ checkedNames }}</span>
 </div>
 <script>
 new Vue({
@@ -142,7 +142,7 @@ new Vue({
 <input type="radio" id="two" value="Two" v-model="picked">
 <label for="two">Two</label>
 <br>
-<span>Picked: {{ picked }}</span>
+<span>Choisi : {{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
@@ -152,7 +152,7 @@ new Vue({
   <input type="radio" id="two" value="Two" v-model="picked">
   <label for="two">Two</label>
   <br>
-  <span>Picked: {{ picked }}</span>
+  <span>Choisi : {{ picked }}</span>
 </div>
 <script>
 new Vue({
@@ -174,7 +174,7 @@ Select à choix unique:
   <option>B</option>
   <option>C</option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Sélectionné : {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-5" class="demo">
@@ -183,7 +183,7 @@ Select à choix unique:
     <option>B</option>
     <option>C</option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Sélectionné : {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -195,7 +195,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Select à choix multiples (lié à Array):
+Select à choix multiples (lié à un Array):
 
 ``` html
 <select v-model="selected" multiple>
@@ -204,7 +204,7 @@ Select à choix multiples (lié à Array):
   <option>C</option>
 </select>
 <br>
-<span>Selected: {{ selected }}</span>
+<span>Sélectionnés : {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
@@ -214,7 +214,7 @@ Select à choix multiples (lié à Array):
     <option>C</option>
   </select>
   <br>
-  <span>Selected: {{ selected }}</span>
+  <span>Sélectionnés : {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -234,7 +234,7 @@ Options dynamiques rendues avec `v-for`:
     {{ option.text }}
   </option>
 </select>
-<span>Selected: {{ selected }}</span>
+<span>Sélectionné : {{ selected }}</span>
 ```
 ``` js
 new Vue({
@@ -256,7 +256,7 @@ new Vue({
       {{ option.text }}
     </option>
   </select>
-  <span>Selected: {{ selected }}</span>
+  <span>Sélectionné : {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -273,9 +273,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## Liaisons de valeurs
+## Liaisons des attributs value
 
-Pour les options de bouton radio, checkbox et select, les valeurs de liaison de `v-model` sont habituellement des chaînes de caractères statiques (ou des booléens pour checkbox):
+Pour les options de bouton radio, checkbox et select, les valeurs de liaison de `v-model` des attributs value sont habituellement des chaînes de caractères statiques (ou des booléens pour une checkbox):
 
 
 ``` html
@@ -305,7 +305,7 @@ Mais parfois nous pouvons souhaiter lier la valeur à une propriété dynamique 
 ```
 
 ``` js
-// when checked:
+// quand cochée :
 vm.toggle === vm.a
 // when unchecked:
 vm.toggle === vm.b
@@ -344,7 +344,6 @@ vm.selected.number // -> 123
 Par défaut, `v-model` synchronise l'input avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place: 
 
 ``` html
-<!-- synced after "change" instead of "input" -->
 <!-- synchronisé après le "change" au lieu du "input" -->
 <input v-model.lazy="msg" >
 ```
