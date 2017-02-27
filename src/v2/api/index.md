@@ -911,21 +911,13 @@ if (version === 2) {
   `provide`와 `inject`는 주로 고급 플러그인/컴포넌트 라이브러리를 위해 제공됩니다. 일반 애플리케이션 코드에서는 사용하지 않는 것이 좋습니다.
   </p>
 
-<<<<<<< HEAD
   이 옵션 쌍은 함께 사용하여 상위 컴포넌트가 컴포넌트 계층 구조의 깊이에 관계없이 모든 하위 항목에 대한 종속성을 주입하는 역할을 하도록 허용합니다. React에 익숙하다면 이것은 React의 컨텍스트 기능과 매우 유사합니다.
-=======
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
->>>>>>> vuejs/master
 
   `provide` 옵션은 객체 또는 객체를 반환하는 함수여야합니다. 이 객체에는 하위 항목에 삽입할 수있는 속성이 포함되어 있습니다. ES2015 심볼을 이 객체의 키로 사용할 수 있지만 `Symbol`과 `Reflect.ownKeys`를 기본적으로 지원하는 환경에서만 가능합니다.
 
   `inject` 옵션은 문자열의 배열이거나 키가 로컬 바인딩 이름을 나타내는 객체이고 사용 가능한 주입에서 검색할 키 (문자열 또는 기호)값이어야합니다.
 
-<<<<<<< HEAD
-  provider 컴포넌트는 제공된 속성을 주입하려는 컴포넌트의 부모 목록에 있어야 합니다
-=======
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
->>>>>>> vuejs/master
+  > 주의 : `provide`와 `inject` 바인딩은 반응형이 아닙니다. 이는 의도적한 것입니다. 그러나 감시중인 객체를 전달하면 해당 객체의 속성은 계속 반응형입니다.
 
 - **예제:**
 

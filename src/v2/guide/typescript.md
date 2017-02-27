@@ -14,15 +14,12 @@ order: 25
 import Vue = require('vue')
 ```
 
-<<<<<<< HEAD
-그런 다음 모든 메소드, 특성 및 매개 변수의 타입을 검사합니다. 예를 들어, `template` 컴포넌트 옵션을 `tempate` (`l`이 없음)으로 잘못 입력하면, TypeScript 컴파일러는 컴파일시 오류 메시지를 출력합니다. [Visual Studio Code](https://code.visualstudio.com/)와 같은 TypeScript를 사용할 수 있는 에디터를 사용하는 경우 컴파일 전에 이러한 에러를 발견할 수도 있습니다.
-=======
-<p class="tip">In Vue 2.2.0 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. However, this means if you are using TypeScript with webpack 2, `import Vue = require('vue')` will return an ES module object instead of Vue itself.
+<p class="tip">
+Vue 2.2.0에서는 ES 모듈로 추출된 dist 파일을 webpack 2에서 기본적으로 사용하기로 결정 했습니다. 하지만 webpack 2에서 TypeScript를 사용하면 Vue 자체 대신 ES 모듈 객체인 `import Vue = require('vue')`를 반환합니다.
+가까운 장래에 ES 스타일 내보내기를 사용할 수 있도록 ES 모듈 가져오기와 동일하게 사용됩니다. 이 변경 사항이 적용되기 전까지의 임시적인 해결 방법은 webpack에서 `vue`의 알리아스를 `vue/dist/vue[.runtime].common.js`로 다시 설정하는 것입니다. `vue-router`와 `vuex`를 사용하고 있다면 `vue-router`와 `vuex`에 대해서도 똑같이해야합니다.
+</p>
 
-In the near future, we will update all core typings to use ES-style exports so there usage will be identical to importing ES modules; before these changes land, the temporary workaround is configuring webpack to alias `vue` back to `vue/dist/vue[.runtime].common.js`. You will also need to do the same for `vue-router` and `vuex` if you are using them.</p>
-
-Then all methods, properties, and parameters will be type checked. For example, if you misspell the `template` component option as `tempate` (missing the `l`), the TypeScript compiler will print an error message at compile time. If you're using an editor that can lint TypeScript, such as [Visual Studio Code](https://code.visualstudio.com/), you'll even be able to catch these errors before compilation:
->>>>>>> vuejs/master
+그 다음 모든 메소드, 특성 및 매개 변수에 대한  타입 체크가 진행됩니다. 예를 들어, `template` 컴포넌트 옵션을 `tempate` (`l`이 누락 됨)로 잘못 입력하면, TypeScript 컴파일러는 컴파일시에 오류 메시지를 인쇄합니다. [Visual Studio Code](https://code.visualstudio.com/)와 같이 TypeScript를 지원하는 편집기를 사용하는 경우 컴파일 전에 이러한 오류를 포착 할 수도 있습니다.
 
 ![Visual Studio Code의 타입 에러](/images/typescript-type-error.png)
 
