@@ -350,27 +350,28 @@ Par défaut, `v-model` synchronise l'input avec les données après chaque évè
 
 ### `.number`
 
-If you want user input to be automatically typecast as a number, you can add the `number` modifier to your `v-model` managed inputs:
+Si vous voulez que l'entrée utilisateur soit automatiquement typée en tant que nombre, vous pouvez ajouter le modificateur `number` à vos input gérés par `v-model`
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string.
+C'est souvent utile, parce que même avec `type="number"`, la valeur des éléments input HTML retourne toujours une chaîne de caractères.
 
 ### `.trim`
 
 If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
+c'est vous voulez que les entrées utilisateurs soit "trimmed" automatiquement, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model`
 
 ```html
 <input v-model.trim="msg">
 ```
 
-## `v-model` with Components
+## `v-model` avec les composants
 
-> If you're not yet familiar with Vue's components, just skip this for now.
+> Si vous n'est pas encore familier avec les composants de Vue, sautez ce passage pour le moment
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
+Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des inputs avec un comportement complètement customisé. Ces inputs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez [inputs personnalisés](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
 
 
 
