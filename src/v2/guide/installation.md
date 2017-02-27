@@ -119,7 +119,7 @@ module.exports = {
     }
   }
 }
-````
+```
 
 #### Rollup
 
