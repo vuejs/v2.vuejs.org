@@ -192,7 +192,7 @@ Et également un troisième pour l'index :
 
 ### `v-for` et nombres
 
-`v-for` peut également prendre un nombre. Dans ce cas, il répétera le template autant de fois qu'indiqué.
+`v-for` peut également prendre un nombre entier. Dans ce cas, il répétera le template autant de fois qu'indiqué.
 
 ``` html
 <div>
@@ -353,9 +353,9 @@ Si votre intention est plutôt de sauter conditionnellement l'exécution de la b
 
 ## `key`
 
-Quand Vue met à jour une liste d'éléments rendus avec `v-for`, il utilise par défaut une stratégie de « modification localisée » (*in-place patch*). Si l'ordre des éléments de données a changé, plutôt que de déplacer les éléments du DOM pour concorder avec le nouvel ordre des éléments, Vue va simplement changer chaque élément en place et s'assurer que cela reflète ce qui aurait dû être rendu à cet index en particulier. Cela est un comportement similaire au `track-by="$index"` de Vue 1.x.
+Quand Vue met à jour une liste d'éléments rendus avec `v-for`, il utilise par défaut une stratégie de « modification localisée » (*in-place patch*). Si l'ordre des éléments d'un tableau dans *data* a changé, plutôt que de déplacer les éléments du DOM pour concorder avec le nouvel ordre des éléments, Vue va simplement modifier chaque élément déjà en place et s'assurer que cela reflète ce qui aurait dû être rendu à cet index en particulier. C'est un comportement similaire au `track-by="$index"` de Vue 1.x.
 
-Ce mode par défaut est performant, mais seulement envisageable **quand le résultat du rendu de votre liste n'est pas lié à l'état d'un composant enfant ou à l'état temporaire du DOM (ex. : les valeurs de champs d'un formulaire)**.
+Ce mode par défaut est performant, mais adapté seulement **lorsque le résultat du rendu de votre liste ne dépend pas de l'état d'un composant enfant ou de l'état temporaire du DOM (ex. : les valeurs de champs d'un formulaire)**.
 
 Pour expliquer à Vue comment suivre l'identité de chaque nœud, afin que les éléments existants puissent être réutilisés et réordonnés, vous devez fournir un attribut unique `key` (clé) pour chaque élément. Une valeur idéale pour `key` serait l'identifiant `id` unique de chaque élément. Cet attribut spécial est en gros l'équivalent du `track-by` de la 1.x, mais il fonctionne comme un attribut, donc vous avez besoin d'utiliser `v-bind` pour le lier à des valeurs dynamiques (en utilisant ici l'abréviation de `v-bind`) :
 
@@ -367,13 +367,13 @@ Pour expliquer à Vue comment suivre l'identité de chaque nœud, afin que les �
 
 Il est recommandé de fournir une `key` avec `v-for` chaque fois que possible, à moins que le contenu itéré du DOM soit simple ou que vous utilisiez intentionnellement le comportement de base pour un gain de performance.
 
-Comme c'est un mécanisme générique pour Vue permettant d’identifier les nœuds, la `key` a également d'autres usages et ne se limite pas seulement à sont utilisation avec `v-for`, comme nous le verrons plus tard dans le guide.
+Comme c'est un mécanisme générique pour Vue permettant d’identifier les nœuds, la `key` a également d'autres usages et ne se limite pas seulement à son utilisation avec `v-for`, comme nous le verrons plus tard dans le guide.
 
 ## Détection de changement dans un tableau
 
 ### Méthodes de mutation
 
-Vue surcharge ses tableaux observés avec des méthodes de mutation qui vont également déclencher des mises à jour de vue. Les méthodes additionnelles sont :
+Vue surcharge les méthodes de mutation d'un tableau observé afin qu'elles déclenchent également des mises à jour de la vue. Les méthodes encapsulées sont :
 
 - `push()`
 - `pop()`
@@ -383,11 +383,11 @@ Vue surcharge ses tableaux observés avec des méthodes de mutation qui vont ég
 - `sort()`
 - `reverse()`
 
-Vous pouvez ouvrir la console et jouer avec les `items` (éléments) de tableau des exemples précédents en appelant leurs méthodes de mutation. Par exemple : `example1.items.push({ message: 'Baz' })`.
+Vous pouvez ouvrir la console et jouer avec la liste des éléments `items` des exemples précédents en appelant leurs méthodes de mutation. Par exemple : `example1.items.push({ message: 'Baz' })`.
 
 ### Remplacer un tableau
 
-Les méthodes de mutation changent le tableau original sur lesquelles elles sont appelées. En comparaison, il y a aussi des méthodes non-mutatives, ex. `filter()`, `concat()` et `slice()`, qui ne changent pas le tableau original mais **retourne toujours un nouveau tableau**. Quand vous travaillez avec des méthodes non-mutatives, vous pouvez juste remplacer l'ancien tableau par le nouveau :
+Les méthodes de mutation, comme leur nom le suggère, modifient le tableau d'origine sur lequel elles sont appelées. En comparaison, il y a aussi des méthodes non-mutatives comme par ex. `filter()`, `concat()` et `slice()`, qui ne changent pas le tableau original mais **retourne toujours un nouveau tableau**. Quand vous travaillez avec des méthodes non-mutatives, vous pouvez juste remplacer l'ancien tableau par le nouveau :
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -395,7 +395,7 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire le rendu de nouveau sur la liste entière ? Par chance, cela n'est pas le cas. Vue implémente plusieurs fonctions heuristiques intelligentes pour optimiser la réutilisation du DOM existant ; ainsi remplacer un tableau par un autre contenant des objets supplémentaires est une opération très performante.
+Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire de nouveau le rendu de la liste entière ? Par chance, cela n'est pas le cas. Vue implémente plusieurs fonctions heuristiques intelligentes pour maximiser la réutilisation du DOM existant ; ainsi remplacer un tableau par un autre partiellement modifié (objets différents pour certains index) est une opération très performante.
 
 ### Limitations
 
@@ -404,7 +404,7 @@ Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire l
 1. Quand vous affectez directement un élément à un index. Ex. : `vm.items[indexOfItem] = newValue`
 2. Quand vous modifiez la longeur du tableau. Ex. : `vm.items.length = newLength`
 
-Pour contourner la première limitation, les deux exemples suivant accomplissent la même chose que `vm.items[indexOfItem] = newValue`, mais vont également déclencher des mises à jour d'états dans le système réactif :
+Pour contourner la première limitation, les deux exemples suivants accomplissent la même chose que `vm.items[indexOfItem] = newValue`, mais vont également déclencher des mises à jour de l'état dans le système de réactivité :
 
 ``` js
 // Vue.set
@@ -423,7 +423,7 @@ example1.items.splice(newLength)
 
 ## Affichage de résultats filtrés/triés
 
-Parfois nous voulons afficher une version filtrée ou triée d'un tableau sans pour autant changer ou effacer les données originales. Dans ce cas, vous pouvez créer une propriété calculée qui retourne le tableau filtré ou trié.
+Parfois nous voulons afficher une version filtrée ou triée d'un tableau sans pour autant modifier ou réassigner les données d'origine. Dans ce cas, vous pouvez créer une propriété calculée qui retourne le tableau filtré ou trié.
 
 Par exemple :
 
