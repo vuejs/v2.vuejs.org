@@ -399,7 +399,7 @@ Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire d
 
 ### Limitations
 
-À cause des limitations du JavaScript, Vue **ne peut pas** détecter les changements suivants dans un tableau :
+À cause des limitations en JavaScript, Vue **ne peut pas** détecter les changements suivants dans un tableau :
 
 1. Quand vous affectez directement un élément à un index. Ex. : `vm.items[indexOfItem] = newValue`
 2. Quand vous modifiez la longeur du tableau. Ex. : `vm.items.length = newLength`
