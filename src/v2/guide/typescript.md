@@ -8,7 +8,7 @@ order: 25
 
 In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
 
-We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#recommended-configuration) below on a future-proof setup.
+We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#Recommended-Configuration) below on a future-proof setup.
 
 ## Official Declaration in NPM Packages
 
