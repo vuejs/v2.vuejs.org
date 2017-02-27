@@ -233,7 +233,7 @@ Cependant, cela ne passera pas automatiquement les données au composant parce q
 
 La raison pour ne pas injecter automatiquement `item` dans le composant est que cela le rendrait fortement couplé au fonctionnement de `v-for`. Être explicite sur l'endroit d'où proviennent les données rend le composant réutilisable dans d'autres situations.
 
-Voici un exemple complet d'une liste de tâches simple :
+Voici un exemple complet d'une petite liste de tâches :
 
 ``` html
 <div id="todo-list-example">
