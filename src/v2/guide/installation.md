@@ -202,7 +202,7 @@ Apply a global [envify](https://github.com/hughsk/envify) transform to your bund
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Also see [Production Deployment Tips](./deployment.html).
+Also see [Production Deployment Tips](deployment.html).
 
 ### CSP environments
 
