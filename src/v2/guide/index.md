@@ -17,7 +17,7 @@ Vue(/vjuː/ 로 발음, **view** 와 발음이 같습니다.)는 사용자 인�
 Vue.js를 시험해 볼 수 있는 가장 쉬운 방법은 [JSFiddle Hello World 예제](https://jsfiddle.net/chrisvfritz/50wL7mdz/)를 사용하는 것입니다. 다른 탭에서 자유롭게 열어 본 후 몇 가지 기본 예제를 따라가십시오. 또는 단순히 `.html` 파일을 만들고 Vue를 다음과 같이 포함할 수 있습니다.
 
 ``` html
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue"></script>
 ```
 
 [설치](installation.html) 페이지에는 Vue 옵션이 추가로 제공됩니다. Node.js 기반 빌드 도구에 아직 익숙하지 않으면 `vue-cli`로 시작하는 것을 추천하지 **않습니다.**

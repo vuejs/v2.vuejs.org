@@ -14,7 +14,15 @@ order: 25
 import Vue = require('vue')
 ```
 
+<<<<<<< HEAD
 그런 다음 모든 메소드, 특성 및 매개 변수의 타입을 검사합니다. 예를 들어, `template` 컴포넌트 옵션을 `tempate` (`l`이 없음)으로 잘못 입력하면, TypeScript 컴파일러는 컴파일시 오류 메시지를 출력합니다. [Visual Studio Code](https://code.visualstudio.com/)와 같은 TypeScript를 사용할 수 있는 에디터를 사용하는 경우 컴파일 전에 이러한 에러를 발견할 수도 있습니다.
+=======
+<p class="tip">In Vue 2.2.0 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. However, this means if you are using TypeScript with webpack 2, `import Vue = require('vue')` will return an ES module object instead of Vue itself.
+
+In the near future, we will update all core typings to use ES-style exports so there usage will be identical to importing ES modules; before these changes land, the temporary workaround is configuring webpack to alias `vue` back to `vue/dist/vue[.runtime].common.js`. You will also need to do the same for `vue-router` and `vuex` if you are using them.</p>
+
+Then all methods, properties, and parameters will be type checked. For example, if you misspell the `template` component option as `tempate` (missing the `l`), the TypeScript compiler will print an error message at compile time. If you're using an editor that can lint TypeScript, such as [Visual Studio Code](https://code.visualstudio.com/), you'll even be able to catch these errors before compilation:
+>>>>>>> vuejs/master
 
 ![Visual Studio Code의 타입 에러](/images/typescript-type-error.png)
 
