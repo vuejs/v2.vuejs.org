@@ -14,7 +14,9 @@ Since these are [published on NPM](https://unpkg.com/vue/types/), you don't even
 import Vue = require('vue')
 ```
 
-<p class="tip">In Vue 2.2.0 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. However, this means if you are using TypeScript with webpack 2, `import Vue = require('vue')` will return an ES module object instead of Vue itself. To fix this, you will need to configure a webpack alias and point `vue` back to `vue/dist/vue[.runtime].common.js`. You will also need to do the same for `vue-router` and `vuex` if you are using them.</p>
+<p class="tip">In Vue 2.2.0 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. However, this means if you are using TypeScript with webpack 2, `import Vue = require('vue')` will return an ES module object instead of Vue itself.
+
+In the near future, we will update all core typings to use ES-style exports so there usage will be identical to importing ES modules; before these changes land, the temporary workaround is configuring webpack to alias `vue` back to `vue/dist/vue[.runtime].common.js`. You will also need to do the same for `vue-router` and `vuex` if you are using them.</p>
 
 Then all methods, properties, and parameters will be type checked. For example, if you misspell the `template` component option as `tempate` (missing the `l`), the TypeScript compiler will print an error message at compile time. If you're using an editor that can lint TypeScript, such as [Visual Studio Code](https://code.visualstudio.com/), you'll even be able to catch these errors before compilation:
 
