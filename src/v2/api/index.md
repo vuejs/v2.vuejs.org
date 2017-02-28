@@ -808,7 +808,6 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:**
   - [Custom Directives](../guide/custom-directive.html)
-  - [Assets Naming Convention](../guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
