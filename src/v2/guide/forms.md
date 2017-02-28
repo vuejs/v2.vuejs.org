@@ -89,7 +89,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Checkboxes multiples, liées au même tableau (Array):
+Checkboxes multiples, liées au même tableau (Array) :
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
@@ -360,7 +360,7 @@ C'est souvent utile, parce que même avec `type="number"`, la valeur des éléme
 
 ### `.trim`
 
-c'est vous voulez que les saisies utilisateurs soit automatiquement nettoyées des espaces superflus, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model`
+c'est vous voulez que les saisies utilisateurs soit automatiquement nettoyées des espaces superflus, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model` :
 
 ```html
 <input v-model.trim="msg">
