@@ -203,7 +203,7 @@ rollup({
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-[배포 관련 팁](./deployment.html)을 참고하세요.
+[배포 관련 팁](deployment.html)을 참고하세요.
 
 ### CSP 환경
 

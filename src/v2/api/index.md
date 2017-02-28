@@ -70,7 +70,7 @@ type: api
 - **사용방법:**
 
   ``` js
-  Vue.config.errorHandler = function (err, vm, type) {
+  Vue.config.errorHandler = function (err, vm, info) {
     // 에러 핸들링
     // `type`은 Vue의 에러 타입입니다. 예: 라이프사이클 훅
     // 2.2.0+ 이상에서 사용할 수 있습니다

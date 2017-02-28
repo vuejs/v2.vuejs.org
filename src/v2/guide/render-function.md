@@ -357,7 +357,7 @@ on: {
 
 ### Slots
 
-[`this.$slots`](http://kr.vuejs.org/v2/api/#vm-slots) 에서 정적 슬롯 내용을  VNodes의 배열로 접근할 수 있습니다.
+[`this.$slots`](../api/#vm-slots)에서 정적 슬롯 내용을  VNodes의 배열로 접근할 수 있습니다.
 
 ``` js
 render: function (createElement) {
@@ -366,7 +366,7 @@ render: function (createElement) {
 }
 ```
 
-또한 특정 범위를 가지는 슬롯 [`this.$scopedSlots`](http://kr.vuejs.org/v2/api/#vm-scopedSlots)에서 VNode를 반환하는 함수로 접근할 수 있습니다.
+또한 특정 범위를 가지는 슬롯 [`this.$scopedSlots`](../api/#vm-scopedSlots)에서 VNode를 반환하는 함수로 접근할 수 있습니다.
 
 ``` js
 render: function (createElement) {

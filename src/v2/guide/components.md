@@ -1051,7 +1051,7 @@ Vue.component(
 )
 ```
 
-[지역 등록](https://vuejs.org/v2/guide/components.html#Local-Registration)을 사용하는 경우, `Promise`를 반환하는 함수를 제공할 수 있습니다.
+[지역 등록](components.html#Local-Registration)을 사용하는 경우, `Promise`를 반환하는 함수를 제공할 수 있습니다.
 
 ``` js
 new Vue({

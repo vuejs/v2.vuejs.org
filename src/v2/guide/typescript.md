@@ -9,35 +9,78 @@ order: 25
 정적 타이핑 시스템은 특히 애플리케이션이 커짐에 따라 생기는 많은 잠재적 런타임 오류를 예방할 수 있습니다. 이것이 Vue가 [TypeScript](https://www.typescriptlang.org/)에 대해 [공식 타입 선언](https://github.com/vuejs/vue/tree/dev/types)을 제공하는 이유입니다. Vue 코어뿐 아니라 [Vue Router](https://github.com/vuejs/vue-router/tree/dev/types)와 [Vuex](https://github.com/vuejs/vuex/tree/dev/types)도 마찬가지입니다.
 
 [NPM에 배포](https://unpkg.com/vue/types/) 되어 있기 때문에, Vue로 선언을 자동으로 가져오므로 `Typings`와 같은 외부 도구조차 필요하지 않습니다. 즉, 더 추가할것이 별로 없습니다.
+## TypeScript와 Webpack 2 사용자에게 중요한 2.2버전의 변화
 
-``` ts
+Vue 2.2에서 ES 모듈로 내보내진 dist파일을 webpack 2를 기본적으로 사용하기 위해 도입했습니다. 안타깝게도 TypeScript + webpack 2에서 `import Vue = require ('vue ')`가 이제는 Vue 파일 자체를 반환하지 않고 조합된 ES 모듈 객체를 반환합니다.
+
+미래에 모든 공식 선언문을 ES 스타일로 옮길 계획입니다. 미래를 위한 설정을 위해 [구성에 관한 권장사항](#Recommended-Configuration)을 참조하십시오.
+
+## NPM 패키지 공식 선언
+
+정적 타이핑 시스템에서 런타임에러를 방지해야 했습니다. 특히 애플리케이션이 점점 커지는 경우에 발생할 수 있습니다.
+이는 TypeScript를 위해 [공식 타입 선언](https://github.com/vuejs/vue/tree/dev/types)을 Vue에 포함한 이유입니다. Vue 코어뿐 아니라 [vue-router](https://github.com/vuejs/vue-router/tree/dev/types)와 [vuex](https://github.com/vuejs/vuex/tree/dev/types)도 마찬가지 입니다.
+
+[NPM에 배포](https://unpkg.com/vue/types/)하였으며 TypeScript를 NPM을 통해 설치하면 Vue와 함께 사용하는데 필요한 다른 것들이 필요하지 않습니다.
+
+## 구성에 관한 권장 사항
+
+``` js
+// tsconfig.json
+{
+  "compilerOptions": {
+    // ... 다른 옵션 생략
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.Promise"
+    ]
+  }
+}
+```
+
+`allowSyntheticDefaultImports`을 사용하면 다음과 같이 쓸 수 있습니다.
+
+``` js
 import Vue = require('vue')
 ```
 
-<p class="tip">
-Vue 2.2.0에서는 ES 모듈로 추출된 dist 파일을 webpack 2에서 기본적으로 사용하기로 결정 했습니다. 하지만 webpack 2에서 TypeScript를 사용하면 Vue 자체 대신 ES 모듈 객체인 `import Vue = require('vue')`를 반환합니다.
-가까운 장래에 ES 스타일 내보내기를 사용할 수 있도록 ES 모듈 가져오기와 동일하게 사용됩니다. 이 변경 사항이 적용되기 전까지의 임시적인 해결 방법은 webpack에서 `vue`의 알리아스를 `vue/dist/vue[.runtime].common.js`로 다시 설정하는 것입니다. `vue-router`와 `vuex`를 사용하고 있다면 `vue-router`와 `vuex`에 대해서도 똑같이해야합니다.
-</p>
+대신 아래와 같이 씁니다.
 
-그 다음 모든 메소드, 특성 및 매개 변수에 대한  타입 체크가 진행됩니다. 예를 들어, `template` 컴포넌트 옵션을 `tempate` (`l`이 누락 됨)로 잘못 입력하면, TypeScript 컴파일러는 컴파일시에 오류 메시지를 인쇄합니다. [Visual Studio Code](https://code.visualstudio.com/)와 같이 TypeScript를 지원하는 편집기를 사용하는 경우 컴파일 전에 이러한 오류를 포착 할 수도 있습니다.
+``` js
+import Vue from 'vue'
+```
 
-![Visual Studio Code의 타입 에러](/images/typescript-type-error.png)
 
-### 컴파일 옵션
+이전의 (ES 모듈 구문)은 권장하는 일반 ES 사용법과 일치하기 때문에 앞으로는 모든 공식 선언을 ES 스타일의 내보내기를 사용하도록 계획 중 입니다.
 
-Vue의 선언 파일에는 `--lib DOM, ES2015.Promise` [컴파일러 옵션](https://www.typescriptlang.org/docs/handbook/compiler-options.html)이 필요합니다. 이 옵션을 `tsc` 커맨드에 전달하거나`tsconfig.json` 파일에 해당 옵션을 추가 할 수 있습니다.
+또한 webpack 2와 함께 TypeScript를 사용하는 경우 다음을 권장합니다.
 
-### Vue의 타입 선언에 접근하기
+``` js
+{
+  "compilerOptions": {
+    // ... 다른 옵션 생략
+    "module": "es2015",
+    "moduleResolution": "node"
+  }
+}
+```
 
-자신의 코드에 Vue 타입을 주석으로 추가하려면 Vue의 내보낸 객체에서 해당 코드에 액세스 할 수 있습니다. 예를 들어, 내보낸 컴포넌트 옵션 객체 (예: `.vue` 파일)에 주석을 추가하려면,
+이렇게하면 TypeScript에서 ES 모듈 가져오기 구문을 그대로 남겨두고 webpack 2가 ES 모듈 기반의 트리 셰이킹을 활용할 수 있게 만듭니다.
+
+[TypeScript 컴파일러 옵션 문서](https://www.typescriptlang.org/docs/handbook/compiler-options.html)에서 자세한 내용을 확인하세요
+
+## Vue의 타입 정의
+
+Vue의 타입정의는 많은 유용한 [타입 정의](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)를 내보내기할 수 있습니다. 예를 들어, 내보내기한 컴포넌트 옵션 객체에 주석(annotate)를 하려면 (예 :`.vue` 파일의 경우)
 
 ``` ts
-import Vue = require('vue')
+import Vue, { ComponentOptions } from 'vue'
 
 export default {
   props: ['message'],
   template: '<span>{{ message }}</span>'
-} as Vue.ComponentOptions<Vue>
+} as ComponentOptions<Vue>
 ```
 
 ## 고전적인 스타일의 Vue 컴포넌트
@@ -45,7 +88,7 @@ export default {
 Vue 컴포넌트 옵션은 타입에 대해 쉽게 주석을 추가할 수 있습니다.
 
 ``` ts
-import Vue = require('vue')
+import Vue, { ComponentOptions }  from 'vue'
 
 // 컴포넌트 타입 선언
 interface MyComponent extends Vue {
@@ -67,9 +110,8 @@ export default {
       window.alert(this.message)
     }
   }
-
 // 내보낸 옵션 객체에 MyComponent 타입으로 명시적인 주석을 추가해야합니다.
-} as Vue.ComponentOptions<MyComponent>
+} as ComponentOptions<MyComponent>
 ```
 
 안타깝게도, 약간의 제약 사항이 있습니다:
@@ -81,7 +123,7 @@ export default {
 다행히 [vue-class-component](https://github.com/vuejs/vue-class-component)는 이 두 가지 문제를 모두 해결할 수 있습니다. 공식 컴패니언 라이브러리로, 컴포넌트를 네이티브 JavaScript 클래스로 선언할 수있게 해주며, `@Component` 데코레이터를 사용합니다. 예를 들어 위의 컴포넌트를 다시 작성해 보겠습니다.
 
 ``` ts
-import Vue = require('vue')
+import Vue from 'vue'
 import Component from 'vue-class-component'
 
 // @Component 데코레이터는 클래스가 Vue 컴포넌트임을 나타냅니다.
