@@ -279,13 +279,13 @@ Pour les options de bouton radio, checkbox et select, les valeurs de liaison de 
 
 
 ``` html
-<!-- `picked` est une chaîne de caractères "a" quand le bouton radio est sélectionné -->
+<!-- `picked` sera une chaîne de caractères "a" quand le bouton radio sera sélectionné -->
 <input type="radio" v-model="picked" value="a">
 
 <!-- `toggle` est soit true soit false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` est une chaîne de caractères "abc" quand l'option est sélectionnée -->
+<!-- `selected` sera une chaîne de caractères "abc" quand l'option sera sélectionnée -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
