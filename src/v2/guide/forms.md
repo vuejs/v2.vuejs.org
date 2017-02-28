@@ -1,5 +1,5 @@
 ---
-title: Liaisons des champs de formulaire
+title: Liaisons sur les champs de formulaire
 type: guide
 order: 10
 ---
@@ -8,20 +8,20 @@ order: 10
 
 Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire. Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ainsi que quelques traitements spéciaux pour certains cas particuliers.
 
-<p class="tip">`v-model` ne prend pas en compte la valeur initiale (attribut "value") fournie pour champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
+<p class="tip">`v-model` ne prend pas en compte la valeur initiale (attribut "value") fournie pour un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
 
-<p class="tip" id="vmodel-ime-tip">Pour les languages qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc ...), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie.</p>
+<p class="tip" id="vmodel-ime-tip">Pour les langues qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc...), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie.</p>
 
 ### Texte
 
 ``` html
-<input v-model="message" placeholder="éditez moi">
+<input v-model="message" placeholder="modifiez moi">
 <p>Le message est : {{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="éditez moi">
+  <input v-model="message" placeholder="modifiez moi">
   <p>Le message est : {{ message }}</p>
 </div>
 <script>
@@ -62,7 +62,7 @@ new Vue({
 
 
 {% raw %}
-<p class="tip">Les interpolations sur les textarea (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionneront pas. Utilisez <code>v-model</code> à la place.</p>
+<p class="tip">L'interpolation sur les textarea (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionnera pas. Utilisez <code>v-model</code> à la place.</p>
 {% endraw %}
 
 ### Checkbox
@@ -89,7 +89,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Checkboxes multiples, liées au même Array:
+Checkboxes multiples, liées au même tableau (Array):
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
@@ -99,7 +99,7 @@ Checkboxes multiples, liées au même Array:
 <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
 <label for="mike">Mike</label>
 <br>
-<span>Nom cochés : {{ checkedNames }}</span>
+<span>Noms cochés : {{ checkedNames }}</span>
 ```
 
 ``` js
@@ -136,21 +136,21 @@ new Vue({
 
 
 ``` html
-<input type="radio" id="one" value="One" v-model="picked">
-<label for="one">One</label>
+<input type="radio" id="one" value="Un" v-model="picked">
+<label for="one">Un</label>
 <br>
-<input type="radio" id="two" value="Two" v-model="picked">
-<label for="two">Two</label>
+<input type="radio" id="two" value="Deux" v-model="picked">
+<label for="two">Deux</label>
 <br>
 <span>Choisi : {{ picked }}</span>
 ```
 {% raw %}
 <div id="example-4" class="demo">
-  <input type="radio" id="one" value="One" v-model="picked">
-  <label for="one">One</label>
+  <input type="radio" id="one" value="Un" v-model="picked">
+  <label for="one">Un</label>
   <br>
-  <input type="radio" id="two" value="Two" v-model="picked">
-  <label for="two">Two</label>
+  <input type="radio" id="two" value="Deux" v-model="picked">
+  <label for="two">Deux</label>
   <br>
   <span>Choisi : {{ picked }}</span>
 </div>
@@ -166,7 +166,7 @@ new Vue({
 
 ### Select
 
-Select à choix unique:
+Select à choix unique :
 
 ``` html
 <select v-model="selected">
@@ -195,7 +195,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Select à choix multiples (lié à un Array):
+Select à choix multiples (lié à un tableau) :
 
 ``` html
 <select v-model="selected" multiple>
@@ -204,7 +204,7 @@ Select à choix multiples (lié à un Array):
   <option>C</option>
 </select>
 <br>
-<span>Sélectionnés : {{ selected }}</span>
+<span>Sélectionné(s) : {{ selected }}</span>
 ```
 {% raw %}
 <div id="example-6" class="demo">
@@ -214,7 +214,7 @@ Select à choix multiples (lié à un Array):
     <option>C</option>
   </select>
   <br>
-  <span>Sélectionnés : {{ selected }}</span>
+  <span>Sélectionné(s) : {{ selected }}</span>
 </div>
 <script>
 new Vue({
@@ -226,7 +226,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Options dynamiques générées avec `v-for`:
+Options dynamiques générées avec `v-for` :
 
 ``` html
 <select v-model="selected">
@@ -242,9 +242,9 @@ new Vue({
   data: {
     selected: 'A',
     options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
+      { text: 'Un', value: 'A' },
+      { text: 'Deux', value: 'B' },
+      { text: 'Trois', value: 'C' }
     ]
   }
 })
@@ -264,9 +264,9 @@ new Vue({
   data: {
     selected: 'A',
     options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
+      { text: 'Un', value: 'A' },
+      { text: 'Deux', value: 'B' },
+      { text: 'Trois', value: 'C' }
     ]
   }
 })
@@ -275,7 +275,7 @@ new Vue({
 
 ## Liaisons des attributs value
 
-Pour les options de bouton radio, checkbox et select, les valeurs de liaison de `v-model` des attributs value sont habituellement des chaînes de caractères statiques (ou des booléens pour une checkbox):
+Pour les options de bouton radio, checkbox et select, les valeurs de liaison de `v-model` sont habituellement des chaînes de caractères statiques (ou des booléens pour une checkbox) :
 
 
 ``` html
@@ -305,9 +305,9 @@ Mais parfois nous pouvons souhaiter lier la valeur à une propriété dynamique 
 ```
 
 ``` js
-// quand cochée :
+// lorsque c'est coché :
 vm.toggle === vm.a
-// quand décochée :
+// lorsque que c'est décoché :
 vm.toggle === vm.b
 ```
 
@@ -318,7 +318,7 @@ vm.toggle === vm.b
 ```
 
 ``` js
-// quand choisi :
+// Lorsque c'est choisi :
 vm.pick === vm.a
 ```
 
@@ -332,16 +332,16 @@ vm.pick === vm.a
 ```
 
 ``` js
-// quand sélectionné :
+// Lorsque c'est sélectionné :
 typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
 
-## Modificateur
+## Modificateurs
 
 ### `.lazy`
 
-Par défaut, `v-model` synchronise le champ avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place: 
+Par défaut, `v-model` synchronise l'input avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place : 
 
 ``` html
 <!-- synchronisé après le "change" au lieu du "input" -->
@@ -350,7 +350,7 @@ Par défaut, `v-model` synchronise le champ avec les données après chaque év�
 
 ### `.number`
 
-Si vous voulez que l'entrée utilisateur soit automatiquement typée en tant que nombre, vous pouvez ajouter le modificateur `number` à vos champs gérés par `v-model`
+Si vous voulez que la saisie utilisateur soit automatiquement typée en tant que nombre, vous pouvez ajouter le modificateur `number` à vos input gérés par `v-model` :
 
 ``` html
 <input v-model.number="age" type="number">
@@ -360,7 +360,7 @@ C'est souvent utile, parce que même avec `type="number"`, la valeur des éléme
 
 ### `.trim`
 
-c'est vous voulez que les entrées utilisateurs soit "trimmed" automatiquement, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model`
+c'est vous voulez que les saisies utilisateurs soit automatiquement nettoyées des espaces superflus, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model`
 
 ```html
 <input v-model.trim="msg">
@@ -368,9 +368,9 @@ c'est vous voulez que les entrées utilisateurs soit "trimmed" automatiquement, 
 
 ## `v-model` avec les composants
 
-> Si vous n'est pas encore familier avec les composants de Vue, sautez ce passage pour le moment
+> Si vous n'êtes pas encore familier avec les composants de Vue, passez cette section pour le moment.
 
-Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des champs avec un comportement complètement personnalisé. Ces champs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez les [champs personnalisés](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
+Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des inputs avec un comportement complètement customisé. Ces inputs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez [inputs personnalisés](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
 
 
 
