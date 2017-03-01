@@ -358,7 +358,7 @@ C'est souvent utile, parce que même avec `type="number"`, la valeur des éléme
 
 ### `.trim`
 
-c'est vous voulez que les saisies utilisateurs soit automatiquement nettoyées des espaces superflus, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model` :
+Si vous voulez que les saisies utilisateurs soit automatiquement nettoyées des espaces superflus, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model` :
 
 ```html
 <input v-model.trim="msg">
