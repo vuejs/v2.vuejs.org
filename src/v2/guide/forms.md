@@ -6,7 +6,7 @@ order: 10
 
 ## Usage basique
 
-Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire. Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ainsi que quelques traitements spéciaux pour certains cas particuliers.
+Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire (input, select ou textarea). Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ainsi que quelques traitements spéciaux pour certains cas particuliers.
 
 <p class="tip">`v-model` ne prend pas en compte la valeur initiale (attribut "value") fournie pour un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
 
