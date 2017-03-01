@@ -348,7 +348,7 @@ Par défaut, `v-model` synchronise le champ avec les données après chaque év�
 
 ### `.number`
 
-Si vous voulez que la saisie utilisateur soit automatiquement convertie en tant que nombre, vous pouvez ajouter le modificateur `number` à vos champs gérés par `v-model` :
+Si vous voulez que la saisie utilisateur soit automatiquement convertie en nombre, vous pouvez ajouter le modificateur `number` à vos champs gérés par `v-model` :
 
 ``` html
 <input v-model.number="age" type="number">
