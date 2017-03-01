@@ -62,7 +62,7 @@ new Vue({
 
 
 {% raw %}
-<p class="tip">L'interpolation sur les textarea (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionnera pas. Utilisez <code>v-model</code> à la place.</p>
+<p class="tip">L'interpolation sur les textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionnera pas. Utilisez <code>v-model</code> à la place.</p>
 {% endraw %}
 
 ### Checkbox
