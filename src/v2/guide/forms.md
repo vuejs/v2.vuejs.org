@@ -6,7 +6,7 @@ order: 10
 
 ## Usage basique
 
-Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée bidirectionnelle sur les champs de formulaire (input, select ou textarea). Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement un sucre syntaxique pour mettre à jour les données lors des évènements utilisateurs sur les champs, ainsi que quelques traitements spéciaux pour certains cas particuliers.
+Vous pouvez utiliser la directive `v-model` pour créer une liaison de données bidirectionnelle sur les champs de formulaire (input, select ou textarea). Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement du sucre syntaxique pour mettre à jour les données lors des évènements de saisie utilisateur sur les champs, ainsi que quelques traitements spéciaux pour certains cas particuliers.
 
 <p class="tip">`v-model` ne prend pas en compte la valeur initiale (attribut "value") fournie pour un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
 
@@ -15,13 +15,13 @@ Vous pouvez utilisez la directive `v-model` pour créer une liaison de donnée b
 ### Texte
 
 ``` html
-<input v-model="message" placeholder="modifiez moi">
+<input v-model="message" placeholder="modifiez-moi">
 <p>Le message est : {{ message }}</p>
 ```
 
 {% raw %}
 <div id="example-1" class="demo">
-  <input v-model="message" placeholder="modifiez moi">
+  <input v-model="message" placeholder="modifiez-moi">
   <p>Le message est : {{ message }}</p>
 </div>
 <script>
@@ -62,7 +62,7 @@ new Vue({
 
 
 {% raw %}
-<p class="tip">L'interpolation sur les textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionnera pas. Utilisez <code>v-model</code> à la place.</p>
+<p class="tip">L'interpolation sur les zones de texte (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionnera pas. Utilisez <code>v-model</code> à la place.</p>
 {% endraw %}
 
 ### Checkbox
@@ -274,7 +274,7 @@ new Vue({
 
 ## Liaisons des attributs value
 
-Pour les options de bouton radio, checkbox et select, les valeurs de liaison de `v-model` sont habituellement des chaînes de caractères statiques (ou des booléens pour une checkbox) :
+Pour les boutons radio, les cases à cocher et les listes d'options, les valeurs de liaison de `v-model` sont habituellement des chaînes de caractères statiques (ou des booléens pour une case à cocher) :
 
 ``` html
 <!-- `picked` sera une chaîne de caractères "a" quand le bouton radio sera sélectionné -->
@@ -339,7 +339,7 @@ vm.selected.number // -> 123
 
 ### `.lazy`
 
-Par défaut, `v-model` synchronise le champ avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place : 
+Par défaut, `v-model` synchronise le champ avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [mentionné plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place : 
 
 ``` html
 <!-- synchronisé après le "change" au lieu du "input" -->
@@ -348,7 +348,7 @@ Par défaut, `v-model` synchronise le champ avec les données après chaque év�
 
 ### `.number`
 
-Si vous voulez que la saisie utilisateur soit automatiquement typée en tant que nombre, vous pouvez ajouter le modificateur `number` à vos input gérés par `v-model` :
+Si vous voulez que la saisie utilisateur soit automatiquement convertie en tant que nombre, vous pouvez ajouter le modificateur `number` à vos champs gérés par `v-model` :
 
 ``` html
 <input v-model.number="age" type="number">
@@ -358,7 +358,7 @@ C'est souvent utile, parce que même avec `type="number"`, la valeur des éléme
 
 ### `.trim`
 
-Si vous voulez que les saisies utilisateurs soit automatiquement nettoyées des espaces superflus, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model` :
+Si vous voulez que les espaces superflus des saisies utilisateur soient automatiquement retirés, vous pouvez ajouter le modificateur `trim` à vos champs gérés par `v-model` :
 
 ```html
 <input v-model.trim="msg">
@@ -368,7 +368,7 @@ Si vous voulez que les saisies utilisateurs soit automatiquement nettoyées des 
 
 > Si vous n'êtes pas encore familier avec les composants de Vue, passez cette section pour le moment.
 
-Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des champs avec un comportement complètement personnalisé. Ces champs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez [champs personnalisés](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
+Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des champs avec un comportement complètement personnalisé. Ces champs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez la section ["champs personnalisés"](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
 
 
 
