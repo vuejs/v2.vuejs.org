@@ -218,8 +218,10 @@ new Vue({ el: '#range' })
 You can directly use `v-for` on a custom component, like any normal element:
 
 ``` html
-<my-component v-for="item in items"></my-component>
+<my-component v-for="item in items" :key="item.id"></my-component>
 ```
+
+> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
 
 However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
 
