@@ -320,7 +320,7 @@ vm.toggle === vm.b
 vm.pick === vm.a
 ```
 
-### Options des select
+### Options de select
 
 ``` html
 <select v-model="selected">
