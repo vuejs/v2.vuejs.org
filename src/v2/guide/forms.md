@@ -69,7 +69,6 @@ new Vue({
 
 Checkbox seule, valeur booléenne :
 
-
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
 <label for="checkbox">{{ checked }}</label>
