@@ -368,7 +368,7 @@ Si vous voulez que les saisies utilisateurs soit automatiquement nettoyées des 
 
 > Si vous n'êtes pas encore familier avec les composants de Vue, passez cette section pour le moment.
 
-Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des inputs avec un comportement complètement customisé. Ces inputs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez [inputs personnalisés](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
+Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des champs avec un comportement complètement personnalisé. Ces champs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez [champs personnalisés](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
 
 
 
