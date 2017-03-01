@@ -276,7 +276,6 @@ new Vue({
 
 Pour les options de bouton radio, checkbox et select, les valeurs de liaison de `v-model` sont habituellement des chaînes de caractères statiques (ou des booléens pour une checkbox) :
 
-
 ``` html
 <!-- `picked` sera une chaîne de caractères "a" quand le bouton radio sera sélectionné -->
 <input type="radio" v-model="picked" value="a">
