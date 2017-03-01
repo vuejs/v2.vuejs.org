@@ -206,11 +206,11 @@ type: api
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( object, key, value )</h3>
+<h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
 - **Arguments:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
   - `{any} value`
 
 - **Returns:** the set value.
@@ -1277,11 +1277,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   // callback is fired immediately with current value of `a`
   ```
 
-<h3 id="vm-set">vm.$set( object, key, value )</h3>
+<h3 id="vm-set">vm.$set( target, key, value )</h3>
 
 - **Arguments:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
   - `{any} value`
 
 - **Returns:** the set value.
@@ -1292,11 +1292,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **See also:** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( object, key )</h3>
+<h3 id="vm-delete">vm.$delete( target, key )</h3>
 
 - **Arguments:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **Usage:**
 
