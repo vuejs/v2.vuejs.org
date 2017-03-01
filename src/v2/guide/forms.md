@@ -339,7 +339,7 @@ vm.selected.number // -> 123
 
 ### `.lazy`
 
-Par défaut, `v-model` synchronise l'input avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place : 
+Par défaut, `v-model` synchronise le champ avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [dit plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place : 
 
 ``` html
 <!-- synchronisé après le "change" au lieu du "input" -->
