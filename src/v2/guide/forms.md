@@ -316,7 +316,7 @@ vm.toggle === vm.b
 ```
 
 ``` js
-// Lorsque c'est choisi :
+// lorsque c'est choisi :
 vm.pick === vm.a
 ```
 
@@ -330,7 +330,7 @@ vm.pick === vm.a
 ```
 
 ``` js
-// Lorsque c'est sélectionné :
+// lorsque c'est sélectionné :
 typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
