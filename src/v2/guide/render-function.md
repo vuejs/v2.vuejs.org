@@ -360,7 +360,7 @@ on: {
 
 ### Slots
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](http://vuejs.org/v2/api/#vm-slots):
+You can access static slot contents as Arrays of VNodes from [`this.$slots`](../api/#vm-slots):
 
 ``` js
 render: function (createElement) {
@@ -369,7 +369,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots):
+And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
 render: function (createElement) {

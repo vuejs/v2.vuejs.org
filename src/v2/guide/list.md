@@ -218,8 +218,10 @@ new Vue({ el: '#range' })
 Vous pouvez directement utiliser `v-for` sur un composant personnalisé, comme sur n'importe quel autre élément standard :
 
 ``` html
-<my-component v-for="item in items"></my-component>
+<my-component v-for="item in items" :key="item.id"></my-component>
 ```
+
+> En 2.2.0+, lors de l'utilisation de `v-for` avec un composant, une [`key`](list.html#key) (clé) est maintenant requise.
 
 Cependant, cela ne passera pas automatiquement les données au composant parce que les composants ont leurs propres portées isolées. Pour passer les données itérées au composant, nous devons utiliser les props en plus :
 
@@ -255,12 +257,12 @@ Voici un exemple complet d'une simple liste de tâches :
 
 ``` js
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 
@@ -301,12 +303,12 @@ new Vue({
 </div>
 <script>
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 new Vue({
@@ -357,7 +359,7 @@ Quand Vue met à jour une liste d'éléments rendus avec `v-for`, il utilise par
 
 Ce mode par défaut est performant, mais adapté seulement **lorsque le résultat du rendu de votre liste ne dépend pas de l'état d'un composant enfant ou de l'état temporaire du DOM (ex. : les valeurs de champs d'un formulaire)**.
 
-Pour expliquer à Vue comment suivre l'identité de chaque nœud, afin que les éléments existants puissent être réutilisés et réordonnés, vous devez fournir un attribut unique `key` (clé) pour chaque élément. Une valeur idéale pour `key` serait l'identifiant `id` unique de chaque élément. Cet attribut spécial est en gros l'équivalent du `track-by` de la 1.x, mais il fonctionne comme un attribut, donc vous avez besoin d'utiliser `v-bind` pour le lier à des valeurs dynamiques (en utilisant ici l'abréviation de `v-bind`) :
+Pour expliquer à Vue comment suivre l'identité de chaque nœud, afin que les éléments existants puissent être réutilisés et réordonnés, vous devez fournir un attribut unique `key` pour chaque élément. Une valeur idéale pour `key` serait l'identifiant `id` unique de chaque élément. Cet attribut spécial est en gros l'équivalent du `track-by` de la 1.x, mais il fonctionne comme un attribut, donc vous avez besoin d'utiliser `v-bind` pour le lier à des valeurs dynamiques (en utilisant ici l'abréviation de `v-bind`) :
 
 ``` html
 <div v-for="item in items" :key="item.id">
