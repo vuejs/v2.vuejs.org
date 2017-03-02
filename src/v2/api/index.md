@@ -208,11 +208,11 @@ type: api
 
 - **참고:** [비동기 갱신 큐](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( object, key, value )</h3>
+<h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
 - **전달인자:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
   - `{any} value`
 
 - **반환 값:** 설정한 값.
@@ -812,7 +812,6 @@ if (version === 2) {
 
 - **참고:**
   - [사용자 정의 디렉티브](../guide/custom-directive.html)
-  - [에셋 네이밍 컨벤션](../guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
@@ -1285,11 +1284,11 @@ if (version === 2) {
   // 콜백은`a`의 현재 값으로 즉시 시작됩니다.
   ```
 
-<h3 id="vm-set">vm.$set( object, key, value )</h3>
+<h3 id="vm-set">vm.$set( target, key, value )</h3>
 
 - **전달인자:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
   - `{any} value`
 
 - **반환 값:** 설정된 값
@@ -1300,11 +1299,11 @@ if (version === 2) {
 
 - **참고:** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( object, key )</h3>
+<h3 id="vm-delete">vm.$delete( target, key )</h3>
 
 - **전달인자:**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **사용방법:**
 

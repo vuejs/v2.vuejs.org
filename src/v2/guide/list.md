@@ -220,8 +220,10 @@ new Vue({ el: '#range' })
 일반 엘리먼트 처럼 사용자 정의 컴포넌트에서 `v-for`를 직접 사용할 수 있습니다.
 
 ``` html
-<my-component v-for="item in items"></my-component>
+<my-component v-for="item in items" :key="item.id"></my-component>
 ```
+
+> 2.2.0버전 이후로, `v-for`를 사용할 때 [`key`](list.html#key)가 반드시 있어야 합니다.
 
 그러나 컴포넌트에서는 그 범위가 분리되어 있기 때문에 컴포넌트에 데이터를 자동으로 전달하지 않습니다. 반복된 데이터를 컴포넌트를 전달하려면 props를 사용해야 합니다.
 
@@ -257,12 +259,12 @@ new Vue({ el: '#range' })
 
 ``` js
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 
@@ -303,12 +305,12 @@ new Vue({
 </div>
 <script>
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 new Vue({
