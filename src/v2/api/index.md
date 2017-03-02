@@ -641,7 +641,7 @@ if (version === 2) {
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
     
-    <p class="tip">In the option object, the `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
   - **See also:**
     - [Render Functions](../guide/render-function)
