@@ -34,7 +34,7 @@ var vm = new Vue({
     message: 'Bonjour'
   },
   computed: {
-    // un accesseur calculé
+    // un accesseur (getter) calculé
     reversedMessage: function () {
       // `this` pointe sur l'instance vm
       return this.message.split('').reverse().join('')
