@@ -545,7 +545,9 @@ Les événements personnalisés peuvent aussi être utilisés pour créer des ch
 est juste un sucre syntaxique pour :
 
 ``` html
-<input v-bind:value="something" v-on:input="something = $event.target.value">
+<input 
+  v-bind:value="something" 
+  v-on:input="something = $event.target.value">
 ```
 
 Quand il est utilisé avec un composant, cela peut-être simplifié par :
