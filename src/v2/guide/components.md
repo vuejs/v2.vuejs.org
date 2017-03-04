@@ -578,8 +578,7 @@ Vue.component('currency-input', {
       <input
         ref="input"
         v-bind:value="value"
-        v-on:input="updateValue($event.target.value)"
-      >
+        v-on:input="updateValue($event.target.value)">
     </span>
   `,
   props: ['value'],
