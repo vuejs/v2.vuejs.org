@@ -553,7 +553,10 @@ est juste un sucre syntaxique pour :
 Quand il est utilisé avec un composant, cela peut-être simplifié par :
 
 ``` html
-<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
+<custom-input 
+  :value="something" 
+  @input="something = arguments[0]">
+</custom-input>
 ```
 
 Donc pour qu'un composant fonctionne avec `v-model`, il doit :
