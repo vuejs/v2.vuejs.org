@@ -609,7 +609,11 @@ if (version === 2) {
 
   <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+
+- **See also:**
+  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+  - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
 ### template
 
@@ -622,6 +626,8 @@ if (version === 2) {
   If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
 
   <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+
+  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
 
 - **See also:**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
@@ -636,6 +642,8 @@ if (version === 2) {
     An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    
+    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
   - **See also:**
     - [Render Functions](../guide/render-function)
