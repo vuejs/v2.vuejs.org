@@ -229,7 +229,8 @@ Cependant, cela ne passera pas automatiquement les données au composant parce q
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
-  v-bind:index="index">
+  v-bind:index="index"
+  v-bind:key="item.id">
 </my-component>
 ```
 
