@@ -422,7 +422,7 @@ type: api
 
   Passe des valeurs d'attribut à l'instance durant sa création. Cette propriété a pour but principal de faciliter les tests unitaires.
 
-- **Example:**
+- **Exemple:**
 
   ``` js
   var Comp = Vue.extend({
@@ -760,7 +760,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### parent
 
-- **Type :** `Vue instance`
+- **Type :** `Instance de Vue`
 
 - **Détails :**
 
@@ -778,7 +778,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Les hooks de *mixin* sont appelés dans l'ordre dans lequel ils sont fournis, et appelés avant les propres hooks du composant.
 
-- **Example:**
+- **Exemple:**
 
   ``` js
   var mixin = {
@@ -816,7 +816,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Cette option est similaire à `mixins`, la différence étant que les propres options du composant ont la priorité sur celles du composant source à étendre.
 
-- **Example:**
+- **Exemple:**
 
   ``` js
   var CompA = { ... }
@@ -838,7 +838,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Change les délimiteurs d'interpolation de texte. **Cette option est uniquement disponible en version *standalone*.**
 
-- **Example:**
+- **Exemple:**
 
   ``` js
   new Vue({
@@ -850,7 +850,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### functional
 
-- **Type :** `boolean`
+- **Type :** `Boolean`
 
 - **Détails :**
 
@@ -858,7 +858,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Voir aussi :** [Composants Fonctionnels](../guide/render-function.html#Functional-Components)
 
-## Instance Properties
+## Propriétés d'instance
 
 ### vm.$data
 
@@ -866,7 +866,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Détails :**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  L'objet `data` est ce que l'instance de Vue observe. L'instance de Vue agit comme un proxy pour l'accès aux propriétés de cet objet `data`.
 
 - **Voir aussi :** [Options - data](#data)
 
@@ -874,21 +874,21 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Type :** `HTMLElement`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
-  The root DOM element that the Vue instance is managing.
+  L'élément racine du DOM que gère l'instance de Vue.
 
 ### vm.$options
 
 - **Type :** `Object`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  Les options d'instanciation utilisées pour cette instance de Vue. C'est utile lorsque vous voulez inclure des propriétés personnalisées dans les options:
 
   ``` js
   new Vue({
@@ -901,61 +901,61 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### vm.$parent
 
-- **Type :** `Vue instance`
+- **Type :** `Instance de Vue`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
-  The parent instance, if the current instance has one.
+  L'instance parente, si l'instance actuelle en a une.
 
 ### vm.$root
 
-- **Type :** `Vue instance`
+- **Type :** `Instance de Vue`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  L'instance de Vue à la racine de l'arbre de composants actuel. Si l'instance actuelle n'a pas de parents, la valeur sera l'instance elle-même.
 
 ### vm.$children
 
-- **Type :** `Array<Vue instance>`
+- **Type :** `Array<Instance de Vue>`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  Les composants enfants directs de l'instance actuelle. **Notez que l'ordre des enfants n'est pas garanti pour `$children`, et que cette propriété n'est pas réactive.** Si vous vous retrouvez à essayer d'utiliser `$children` pour de la liaison de données, optez plutôt pour une `Array` et `v-for` pour générer les composants enfants, en utilisant l'`Array` comme unique source fiable.
 
 ### vm.$slots
 
 - **Type :** `{ [name: string]: ?Array<VNode> }`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Utilisé pour accéder programmatiquement à du contenu [distribué par slots](../guide/components.html#Content-Distribution-with-Slots). Chaque [slot nommé](../guide/components.html#Named-Slots) a sa propriété correspondante (p. ex. le contenu de `slot="foo"` sera trouvé dans `vm.$slots.foo`). La propriété `default` contient tous les noeuds non inclus dans un slot nommé.
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Accéder à `vm.$slots` est plus utile lorsque vous écrivez un composant avec une [fonction `render`](../guide/render-function.html).
 
-- **Example:**
+- **Exemple:**
 
   ```html
   <blog-post>
     <h1 slot="header">
-      About Me
+      À propos de moi
     </h1>
 
-    <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
+    <p>Voici du contenu pour la page, qui sera inclus dans vm.$slots.default, car il n'est pas à l'intérieur d'un slot nommé.</p>
 
     <p slot="footer">
       Copyright 2016 Evan You
     </p>
 
-    <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
+    <p>Si j'ai du contenu ici, il sera aussi inclus dans vm.$slots.default.</p>
   </blog-post>
   ```
 
@@ -975,17 +975,17 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   ```
 
 - **Voir aussi :**
-  - [`<slot>` Component](#slot-1)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+  - [`Composant <slot>`](#slot-1)
+  - [Distribution de Contenu avec des Slots](../guide/components.html#Content-Distribution-with-Slots)
+  - [Fonctions de Rendu: Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
-> New in 2.1.0
+> Nouveauté en 2.1.0
 
 - **Type :** `{ [name: string]: props => VNode | Array<VNode> }`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
@@ -1002,7 +1002,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Type :** `Object`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
@@ -1016,11 +1016,11 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Type :** `boolean`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
 - **Détails :**
 
-  Whether the current Vue instance is running on the server.
+  Whether the current Instance de Vue is running on the server.
 
 - **Voir aussi :** [Server-Side Rendering](../guide/ssr.html)
 
@@ -1039,11 +1039,11 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Utilisation :**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
+  Watch an expression or a computed function on the Instance de Vue for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
 
 <p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
 
-- **Example:**
+- **Exemple:**
 
   ``` js
   // keypath
@@ -1132,7 +1132,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
 
-- **Example:**
+- **Exemple:**
 
   ``` js
   vm.$on('test', function (msg) {
@@ -1188,13 +1188,13 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Utilisation :**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  If a Instance de Vue didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Instance de Vue.
 
   If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
 
   The method returns the instance itself so you can chain other instance methods after it.
 
-- **Example:**
+- **Exemple:**
 
   ``` js
   var MyComponent = Vue.extend({
@@ -1220,7 +1220,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Utilisation :**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Force the Instance de Vue to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
 <h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
@@ -1233,14 +1233,14 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
-- **Example:**
+- **Exemple:**
 
   ``` js
   new Vue({
     // ...
     methods: {
       // ...
-      example: function () {
+      Exemple: function () {
         // modify data
         this.message = 'changed'
         // DOM is not updated yet
@@ -1280,7 +1280,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
 
-- **Example:**
+- **Exemple:**
 
   ```html
   <span v-text="msg"></span>
@@ -1300,7 +1300,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
 
-- **Example:**
+- **Exemple:**
 
   ```html
   <div v-html="html"></div>
@@ -1447,7 +1447,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
 
-- **Example:**
+- **Exemple:**
 
   ```html
   <!-- method handler -->
@@ -1519,7 +1519,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
 
-- **Example:**
+- **Exemple:**
 
   ```html
   <!-- bind an attribute -->
@@ -1596,7 +1596,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
 
-- **Example:**
+- **Exemple:**
 
   ```html
   <span v-pre>{{ this will not be compiled }}</span>
@@ -1608,9 +1608,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Utilisation :**
 
-  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+  This directive will remain on the element until the associated Instance de Vue finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Instance de Vue is ready.
 
-- **Example:**
+- **Exemple:**
 
   ```css
   [v-cloak] {
@@ -1677,7 +1677,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   - Properly trigger lifecycle hooks of a component
   - Trigger transitions
 
-  For example:
+  For Exemple:
 
   ``` html
   <transition>
