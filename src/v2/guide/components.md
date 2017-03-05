@@ -327,7 +327,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### 리터럴 vs 동적
+### 리터럴 vs. 동적
 
 초보자가 흔히 범하는 실수는 리터럴 구문을 사용하여 숫자를 전달하려고 시도하는 것입니다.
 
@@ -509,7 +509,7 @@ Vue.component('button-counter', {
       this.counter += 1
       this.$emit('increment')
     }
-  },
+  }
 })
 new Vue({
   el: '#counter-event-example',

@@ -614,7 +614,12 @@ if (version === 2) {
 
   <p class="tip">제공된 엘리먼트는 설치 지점으로 사용합니다. Vue 1.x와 달리 마운트 된 엘리먼트는 모든 경우에 Vue가 생성한 DOM으로 대체됩니다. 그러므로 루트 인스턴스를 `<html>` 또는 `<body>`에 마운트 하는 것을 권장하지 않습니다.</p>
 
-- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+
+  <p class="tip">`render`함수 또는 `template` 옵션 둘 다 없으면, 마운트할 DOM 요소의 내부 DOM이 템플릿으로 추출 될 것입니다. 이 경우, Vue의 런타임 + 컴파일러 빌드를 사용해야합니다.</p>
+
+- **참고:**
+  - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+  - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
 ### template
 
@@ -628,9 +633,11 @@ if (version === 2) {
 
   <p class="tip">보안 관점에서 신뢰할 수 있는 Vue 템플릿만 사용해야 합니다. 사용자 생성 콘텐츠를 템플릿으로 사용하면 안됩니다.</p>
 
-- **참고:**
-  - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
-  - [컨텐츠 배포](../guide/components.html#Content-Distribution-with-Slots)
+  <p class="tip">Vue 옵션에 렌더 함수가 있으면 템플릿 속성은 무시됩니다</p>
+
+  - **참고:**
+    - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+    - [Slot을 이용한 컨텐츠 배포](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
@@ -641,6 +648,10 @@ if (version === 2) {
     문자열 템플릿 대신 자바스크립트의 완전한 프로그래밍 기능을 활용할 수 있습니다. render 함수는 `VNode`를 생성하는데 사용되는 첫번째 인자인 `createElement` 메소드를 받습니다.
 
     컴포넌트가 함수형 컴포넌트인 경우 렌더링 함수는 추가로 `context`를 인자로 받습니다. 이 것은 함수형 컴포넌트가 인스턴스가 없기 때문에 컨텍스트에 대한 액세스를 제공합니다.
+
+    <p class="tip">
+    `render`함수는 `template` 옵션 또는 `el` 옵션으로 지정한 엘리먼트를 컴파일 한 것보다 높은 우선 순위를 가집니다.
+    </p>
 
   - **참고:**
     - [렌더 함수](../guide/render-function)
@@ -952,6 +963,34 @@ if (version === 2) {
   const Child = {
     inject: { s },
     // ...
+  }
+  ```
+
+  > 다음 두 예제는 Vue 2.2.1 버전 이후에서만 작동합니다 이전 버전에서는 `props`와 `data`를 초기화한 후 사용할 수 있습니다
+
+주입한 값을 속성의 기본값으로 사용
+  ```js
+  const Child = {
+    inject: ['foo'],
+    props: {
+      bar: {
+        default () {
+          return this.foo
+        }
+      }
+    }
+  }
+  ```
+
+  주입한 값을 data로 사용
+  ```js
+  const Child = {
+    inject: ['foo'],
+    data () {
+      return {
+        bar: this.foo
+      }
+    }
   }
   ```
 

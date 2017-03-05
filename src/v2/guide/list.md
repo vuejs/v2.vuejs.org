@@ -231,7 +231,8 @@ new Vue({ el: '#range' })
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
-  v-bind:index="index">
+  v-bind:index="index"
+  v-bind:key="item.id">
 </my-component>
 ```
 
@@ -250,6 +251,7 @@ new Vue({ el: '#range' })
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -290,7 +292,7 @@ new Vue({
 {% raw %}
 <div id="todo-list-example" class="demo">
   <input
-    v-model="newTodoText" v
+    v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >
@@ -298,6 +300,7 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
