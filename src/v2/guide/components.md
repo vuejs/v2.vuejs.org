@@ -644,6 +644,26 @@ L'implémentation ci-dessus est un peu candide tout de même, Par exemple, les u
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+### Personnalisation de composant avec `v-model`
+ 
+ > Nouveau dans la 2.2.0
+ 
+ Par défaut, `v-model` sur un composant utilise `value` en tant que prop et de `input` en tant qu'événement, mais plusieurs types de champ comme les cases à cocher et les boutons radio pourrait utiliser `value` pour un usage différent. Utiliser l'option `model` permet d'éviter se genre de conflit :
+ 
+ ``` js
+ Vue.component('my-checkbox', {
+   model: {
+     prop: 'checked',
+     event: 'change'
+   },
+   props: {
+     // ceci permet d'utiliser la prop `value` pour un usage différent
+     value: String
+   },
+   // ...
+ })
+ ```
+
 Les interface d'événement peuvent également être utilisées pour crées des champs plus inhabituels. Par exemple, imaginez cette possibilité :
 
 ``` html
