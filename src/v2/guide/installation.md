@@ -46,14 +46,14 @@ $ npm install vue
 
 ## CLI
 
-Vue.js offre une [interface en ligne de commande officielle](https://github.com/vuejs/vue-cli) pour mettre rapidement en place les bases d'une application monopage ambitieuse. Il offre une série de *builds* pré-configurés pour un *workflow frontend* moderne. Cela ne prend que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des *builds* prêts pour la production :
+Vue.js offre une [CLI](https://github.com/vuejs/vue-cli) (interface en ligne de commande) officielle pour mettre rapidement en place les bases d'une application monopage ambitieuse. Il offre une série de *builds* pré-configurés pour un *workflow frontend* moderne. Cela ne prend que quelques minutes pour commencer et lancer des rechargements à chaud, de l'analyse syntaxique à la sauvegarde, et des *builds* prêts pour la production :
 
 ``` bash
 # installer vue-cli
 $ npm install --global vue-cli
 # créer un nouveau projet en utilisant le template "webpack"
 $ vue init webpack my-project
-# installer les dépendances et go !
+# installer les dépendances et c'est parti !
 $ cd my-project
 $ npm install
 $ npm run dev
@@ -76,15 +76,15 @@ Dans le [dossier `dist/` du package NPM](https://unpkg.com/vue@latest/dist/) vou
 
 - **Full**: des *builds* qui contiennent la partie Compiler ainsi que la version Runtime.
 
-- **Compiler**: du code qui est responsable de compiler les chaînes de caractère de template en des fonctions de rendu en JavaScript.
+- **Compiler**: le code qui est responsable de la compilation des chaînes de caractère de template en des fonctions de rendu en JavaScript.
 
-- **Runtime**: du code qui est responsable de la création des instances de Vue, de faire le rendu et les modifications du DOM virtuel, C'est à dire tout sauf ce que fait la partie Compiler.
+- **Runtime**: le code qui est responsable de la création des instances de Vue, de faire le rendu et les modifications du DOM virtuel. C'est à dire tout, sauf ce que fait la partie Compiler.
 
-- **[UMD](https://github.com/umdjs/umd)**: Les *builds* UMD peuvent être utilisés dans un navigateur directement avec la balise `<script>`. Le fichier par défaut du CDN Unpkg à l'adresse [https://unpkg.com/vue](https://unpkg.com/vue) est le *build* UMD Runtime + Compiler (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: Les *builds* UMD peuvent être utilisés directement dans un navigateur directement avec la balise `<script>`. Le fichier par défaut du CDN Unpkg à l'adresse [https://unpkg.com/vue](https://unpkg.com/vue) est le *build* UMD Runtime + Compiler (`vue.js`).
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: Les *builds* CommonJS sont prévus pour une utilisation avec les vieux outils de *bundle* comme [browserify](http://browserify.org/) ou [webpack 1](https://webpack.github.io). Le fichier par défaut pour ces outils (`pkg.main`) est le *build* CommonJS Runtime (`vue.runtime.common.js`).
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: Les *builds* ES module sont prévus pour une utilisation avec les outils de *bundle* modernes comme [webpack 2](https://webpack.js.org) ou [rollup](http://rollupjs.org/). Le fichier par défaut pour ses outils (`pkg.module`) est le *build* ES Module Runtime (`vue.runtime.esm.js`).
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: Les *builds* ES module sont prévus pour une utilisation avec les outils de *bundle* modernes comme [webpack 2](https://webpack.js.org) ou [rollup](http://rollupjs.org/). Le fichier par défaut pour ces outils (`pkg.module`) est le *build* ES Module Runtime (`vue.runtime.esm.js`).
 
 ### Runtime + Compiler vs. Runtime seul
 
@@ -96,7 +96,7 @@ new Vue({
   template: `<div>{{ hi }}</div>`
 })
 
-// ceci non
+// ceci n'en a pas besoin
 new Vue({
   render (h) {
     return h('div', this.hi)
@@ -104,7 +104,7 @@ new Vue({
 })
 ```
 
-En utilisant `vue-loader` ou `vueify`, les templates à l'intérieur des fichiers `*.vue` sont pré-compilés en JavaScript pendant l'étape de *build*. Vous n'avez donc pas réellement besoin du compilateur dans le *bundle* final, et pouvez dans ce cas utiliser la version du *build* Runtime.
+En utilisant `vue-loader` ou `vueify`, les templates à l'intérieur des fichiers `*.vue` sont pré-compilés en JavaScript pendant l'étape de *build*. Vous n'avez donc pas réellement besoin du compilateur dans le *bundle* final et pouvez dans ce cas utiliser la version du *build* Runtime.
 
 Puisque le *build* Runtime est approximativement 30% plus léger que son homologue le *build* Full, vous devriez l'utiliser autant que possible. Si vous souhaitez toujours utiliser le *build* Full à la place, vous avez besoin de configurer un alias dans votre outil de *bundle* :
 
