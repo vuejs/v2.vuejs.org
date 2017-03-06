@@ -151,11 +151,11 @@ Ajoutez au fichier `package.json` de votre projet :
 
 ### Mode dévelopement vs. mode production
 
-Les modes développement et production sont écrit en dure dans les *builds* UMD : les fichiers non minifiés son pour le développement, et les fichier minifiés sont pour la production.
+Les modes développement et production sont écrits en dur dans les *builds* UMD : les fichiers non minifiés sont pour le développement, et les fichier minifiés sont pour la production.
 
 Les *builds* CommonJS et ES Module sont prévus pour les outils de *bundle*, donc nous ne fournissons pas de version minifié pour eux. Vous aurez à votre charge de minifier le *bundle* final vous-même.
 
-Les *builds* CommonJS et ES Module contiennent une utilisation de `process.env.NODE_ENV` pour déterminer le mode qu'ils doivent suivre. Vous devriez utiliser une configuration d'outil de *bundle* appropriée pour remplacer ces variables afin de contrôler avec quel mode Vue doit être exécuté. Remplacer `process.env.NODE_ENV` avec une chaîne de caractère littérale permet aux outils de minification comme UglifyJS de complètement retirer les pends de code réservés au développement, réduisant ainsi la taille du fichier final.
+Les *builds* CommonJS et ES Module contiennent une utilisation de `process.env.NODE_ENV` pour déterminer le mode qu'ils doivent suivre. Vous devriez utiliser une configuration d'outil de *bundle* appropriée pour remplacer ces d'environnements afin de contrôler lequel des modes Vue exécutera. Remplacer `process.env.NODE_ENV` avec une chaîne de caractère littérale permet aux outils de minification comme UglifyJS de complètement retirer les pends de code réservés au développement, réduisant ainsi la taille du fichier final.
 
 #### Webpack
 
@@ -208,7 +208,7 @@ Référez vous également aux [conseils de déploiment en production](deployment
 
 Certains environnements, tels que les Applications de Google Chrome, font respecter la politique de sécurité de contenu (*Content Security Policy* - CSP), qui ne permet pas l'utilisation de `new Function()` pour évaluer les expressions. Le *build standalone* a besoin de cette fonctionnalité pour compiler les templates, elle n'est donc pas utilisable dans ces environnements.
 
-D'un autre côté, le *build runtime* respecte pleinement les CSP. Quand vous utilisez le *build runtime* avec [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) ou [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), vos templates vont être pré-compilé dans les fonctions `render` qui fonctionnent parfaitement dans des environnements CSP.
+D'un autre côté, le *build runtime* respecte pleinement les CSP. Quand vous utilisez le *build runtime* avec [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) ou [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), vos templates vont être pré-compilés dans les fonctions `render` qui fonctionnent parfaitement dans des environnements CSP.
 
 ## Build de développement
 

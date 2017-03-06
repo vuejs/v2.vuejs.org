@@ -609,7 +609,11 @@ if (version === 2) {
 
   <p class="tip">L'élément fourni sert seulement de point de montage. Contrairement à Vue 1.x, l'élément monté sera remplacé par le DOM généré par Vue dans tous les cas. C'est pourquoi il n'est pas recommandé de monter l'instance racine sur `<html>` ou `<body>`.</p>
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+
+- **Voir aussi :**
+  - [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+  - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
 ### template
 
@@ -623,8 +627,10 @@ if (version === 2) {
 
   <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
 
+  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+
 - **Voir aussi :**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+  - [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
   - [Content Distribution](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
@@ -636,6 +642,8 @@ if (version === 2) {
     An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    
+    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
   - **Voir aussi :**
     - [Render Functions](../guide/render-function)
