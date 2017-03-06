@@ -664,12 +664,18 @@ L'implémentation ci-dessus est un peu candide tout de même, Par exemple, les u
  })
  ```
 
-Les interface d'événement peuvent également être utilisées pour crées des champs plus inhabituels. Par exemple, imaginez cette possibilité :
+``` html
+<my-checkbox v-model="foo" value="plusieurs valeurs"></my-checkbox>
+```
+
+La partie ci-dessus serait équivalente à :
 
 ``` html
-<voice-recognizer v-model="question"></voice-recognizer>
-<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
-<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+<my-checkbox
+  :checked="foo"
+  @change="val => { foo = val }"
+  value="plusieurs valeurs">
+</my-checkbox>
 ```
 
 ### Non communication parent-enfant
