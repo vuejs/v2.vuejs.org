@@ -1097,7 +1097,7 @@ When using _string_ templates however, we're not bound by HTML's case-insensitiv
 <MyComponent></MyComponent>
 ```
 
-If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
+If your component isn't passing content via `slot` elements, you can even make it self-closing with a `/` after the name:
 
 ``` html
 <my-component/>
