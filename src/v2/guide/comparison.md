@@ -200,7 +200,7 @@ Une autre différence importante entre ces offres est que les bibliothèques acc
 Pour finir, Vue offre un [outil de génération de projet en ligne de commande](https://github.com/vuejs/vue-cli) qui rend trivial le démarrage d'un nouveau projet en utilisant le système de système de build de votre choix, incluant [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), ou même sans [système de création](https://github.com/vuejs-templates/simple). React fait aussi des progrès de ce côté là avec [create-react-app](https://github.com/facebookincubator/create-react-app), mais a pour le moment quelques limitations :
 
 - Il ne permet aucune configuration durant la génération du projet, là où les templates de projet Vue permettent une personnalisation à la façon Yeoman.
-- Il ne propose qu'un seul template qui présume que vous concevez une application web monopage, là où Vue offre une large variété de templates pour différents objectifs et outils de build.
+- Il ne propose qu'un seul template qui présume que vous concevez une application web monopage, là où Vue offre une large variété de templates pour différents objectifs et outils de *build*.
 - Il ne permet pas la génération de projets depuis des templates faits par les utilisateurs, ce qui peut être particulièrement utile en entreprise avec des conventions pré-établies.
 
 Il est important de noter que beaucoup de ces limitations sont des choix d'architecture intentionnels pris par l'équipe de create-react-app et qui ont également leurs avantages. Par exemple, tant que les besoins de votre projet sont très simples et que vous n'avez jamais besoin d' « éjecter » des choses pour personnaliser votre chaîne de build, vous aurez la possibilité de le mettre à jour en tant que dépendance. Vous pouvez en lire plus à propos de [la différence de philosophie ici](https://github.com/facebookincubator/create-react-app#philosophy).
@@ -217,7 +217,7 @@ Bien que Vue s'élève au niveau d'utilisation de React, voire le dépasse, il p
 
 Ensuite vous pouvez commencer à écrire du code Vue et même livrer la version minifiée sans vous sentir coupable ou vous soucier des problèmes de performance.
 
-Puisque vous n'avez pas besoin de connaître JSX, ES2015 ou les outils de build pour commencer à travailler avec Vue, il faut généralement moins d'un jour à un développeur pour lire [le guide](./) et en savoir assez pour concevoir des applications complexes.
+Puisque vous n'avez pas besoin de connaître JSX, ES2015 ou les outils de *build* pour commencer à travailler avec Vue, il faut généralement moins d'un jour à un développeur pour lire [le guide](./) et en savoir assez pour concevoir des applications complexes.
 
 ### Rendu natif
 
@@ -239,7 +239,7 @@ Vue est bien plus simple que Angular 1, autant en termes d'API que d'architectur
 
 ### Flexibilité et modularité
 
-Angular 1 impose fortement la manière dont votre application doit être structurée, là où Vue offre une solution plus flexible, modulaire. Cela premet de rendre Vue plus adaptable à une large variété de projets, bien que nous reconnaissons également qu'il peut être utile de prendre des décisions pour vous afin que vous puissiez juste commencer à développer.
+Angular 1 impose fortement la manière dont votre application doit être structurée, là où Vue offre une solution plus flexible, modulaire. Cela permet de rendre Vue plus adaptable à une large variété de projets, bien que nous reconnaissons également qu'il peut être utile de prendre des décisions pour vous afin que vous puissiez juste commencer à développer.
 
 C'est pourquoi nous offrons un [template Webpack](https://github.com/vuejs-templates/webpack) qui peut être mis en place en en quelques minutes, tout en vous donnant accès à des fonctionnalités avancées comme le rechargement de module à chaud, l'analyse syntaxique, l'extraction CSS et bien plus.
 
@@ -277,7 +277,7 @@ Concernant la taille, Angular 2 avec sa compilation en ligne de commande et la m
 
 ### Flexibilité
 
-Vue impose beaucoup moins de choix comparé à Angular 2, offrant un support officiel pour divers systèmes de build, avec aucune restriction sur la manière dont vous devez structurer votre application. Beaucoup de développeurs apprécient cette liberté, quand d'autres préfèrent avoir l'unique « bonne façon » de concevoir une application.
+Vue impose beaucoup moins de choix comparé à Angular 2, offrant un support officiel pour divers systèmes de *build*, avec aucune restriction sur la manière dont vous devez structurer votre application. Beaucoup de développeurs apprécient cette liberté, quand d'autres préfèrent avoir l'unique « bonne façon » de concevoir une application.
 
 ### Courbe d'apprentissage
 
@@ -287,9 +287,9 @@ La courbe d'apprentissage de Angular 2 est plus raide. Même sans TypeScript, le
 
 ## Ember
 
-Ember est un framework plein de fonctionalités qui a été conçu pour prendre beaucoup de décisions à la place du développeur. Il fournit beaucoup de conventions et une fois que vous êtes assez familiers avec celles-ci, il peut vous rendre réellement productif. Cependant, cela signifie que la courbe d'apprentissage est élevée et la flexibilité en pâtit. C'est un compromis lorsque vous essayez de choisir entre un framework avec des opinions tranchées et une bibliothèque avec un ensemble d'outils à couplage faible qui travaillent ensemble. Ces derniers vous offrent la liberté mais également vous laissent prendre plus de décisions d'architecture.
+Ember est un framework plein de fonctionnalités qui a été conçu pour prendre beaucoup de décisions à la place du développeur. Il fournit beaucoup de conventions et une fois que vous êtes assez familiers avec celles-ci, il peut vous rendre réellement productif. Cependant, cela signifie que la courbe d'apprentissage est élevée et la flexibilité en pâtit. C'est un compromis lorsque vous essayez de choisir entre un framework avec des opinions tranchées et une bibliothèque avec un ensemble d'outils à couplage faible qui travaillent ensemble. Ces derniers vous offrent la liberté mais également vous laissent prendre plus de décisions d'architecture.
 
-Cela dit, il serait problement plus judicieux de faire une comparaison entre le cœur de Vue et le système de [template](https://guides.emberjs.com/v2.10.0/templates/handlebars-basics/) d'Ember et les couches de [modèles d'objet](https://guides.emberjs.com/v2.10.0/object-model/) :
+Cela dit, il serait probablement plus judicieux de faire une comparaison entre le cœur de Vue et le système de [template](https://guides.emberjs.com/v2.10.0/templates/handlebars-basics/) d'Ember et les couches de [modèles d'objet](https://guides.emberjs.com/v2.10.0/object-model/) :
 
 - Vue fournit une réactivité discrète sur de purs objets JavaScript et des propriétés calculées automatiquement. Avec Ember, vous devez encapsuler le tout dans des objets Ember et manuellement déclarer toutes les dépendances des propriétés calculées.
 
@@ -324,4 +324,4 @@ Riot 2.0 fournit un modèle de développement similaire orienté composants (cel
 - [Un système d'effets de transition](transitions.html). Riot n'en a pas.
 - Un routeur bien plus puissant. L'API de routage de Riot est extrêmement minimaliste.
 - De meilleures performances. Riot [utilise le DOM](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) plutôt qu'un DOM Virtuel, et par conséquent il souffre des mêmes problèmes de performances que Angular 1.
-- Le support d'un outillage plus mâture. Vue fournit un support officiel pour [Webpack](https://github.com/vuejs/vue-loader) et [Browserify](https://github.com/vuejs/vueify), là où Riot s'appuie sur le soutien de la communauté pour l'intégration de systèmes de build.
+- Le support d'un outillage plus mâture. Vue fournit un support officiel pour [Webpack](https://github.com/vuejs/vue-loader) et [Browserify](https://github.com/vuejs/vueify), là où Riot s'appuie sur le soutien de la communauté pour l'intégration de systèmes de *build*.

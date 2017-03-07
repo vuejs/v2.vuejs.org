@@ -16,7 +16,7 @@ var vm = new Vue({
 
 Bien que n'étant pas strictement associée au patron d'architecture [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), la conception de Vue s'en est en partie inspirée. Par convention, nous utilisons souvent la variable `vm` (abréviation pour ViewModel) pour faire référence à nos instances de Vue.
 
-Quand vous créez une instance de Vue, vous devez passer un **objet d'options** qui contient les options pour les données, le template, l'element de montage, les méthodes, les fonctions de retour du cycle de vie etc... La liste des options peut être trouvée [dans la documentation de l'API](../api).
+Quand vous créez une instance de Vue, vous devez passer un **objet d'options** qui contient les options pour les données, le template, l’élément de montage, les méthodes, les fonctions de retour du cycle de vie etc... La liste des options peut être trouvée [dans la documentation de l'API](../api).
 
 Le constructeur de `Vue` peut être étendu pour créer des **constructeurs de composants** réutilisables avec des options prédéfinies.
 
@@ -94,7 +94,7 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple [`mounted`](../api/#mounted), [`updated`](../api/#updated) et [`destroyed`](../api/#destroyed). Tous ces *hooks* de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de « contrôleur » dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces hooks de cycle de vie.
+Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple [`mounted`](../api/#mounted), [`updated`](../api/#updated) et [`destroyed`](../api/#destroyed). Tous ces *hooks* de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de « contrôleur » dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces *hooks* de cycle de vie.
 
 ## Diagramme de cycle de vie
 

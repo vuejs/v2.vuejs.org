@@ -16,7 +16,7 @@ Il est possible de passer un objet à `v-bind:class` pour permuter les classes a
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-La syntaxe ci-dessus signifie que la classe `active` sera présente si la propriété `isActive` est [évaluée à vrai](https://developer.mozilla.org/fr/docs/Glossaire/Truthy).
+La syntaxe ci-dessus signifie que la classe `active` sera présente si la propriété `isActive` est [considérée comme vrai](https://developer.mozilla.org/fr/docs/Glossaire/Truthy).
 
 Vous pouvez permuter plusieurs classes en ayant plus de champs dans l'objet. De plus, la directive `v-bind:class` peut aussi coexister avec l'attribut `class`. Donc, avec le template suivant :
 
@@ -179,7 +179,7 @@ data: {
 }
 ```
 
-Encore une fois, la syntaxe objet est souvent utilisée en conjonction avec des propriétées calculées retournant des objets.
+Encore une fois, la syntaxe objet est souvent utilisée en conjonction avec des propriétés calculées retournant des objets.
 
 ### Syntaxe tableau
 

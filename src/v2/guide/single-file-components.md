@@ -15,7 +15,7 @@ Cela peut très bien fonctionner pour des petits projets ou des projets de taill
 - **L'absence de support pour le CSS** signifie que le CSS ne peut pas être modularisé comme HTML et JavaScript
 - **L'absence d'étape de build** nous restreint au HTML et à JavaScript ES5, sans pouvoir utiliser des préprocesseurs tels que Babel ou Pug (anciennement Jade).
 
-Tous ces désavantages sont résolus par les **composants monofichiers** avec une extension `.vue`, rendus possibles par les outils de build tels que Webpack ou Browserify.
+Tous ces désavantages sont résolus par les **composants monofichiers** avec une extension `.vue`, rendus possibles par les outils de *build* tels que Webpack ou Browserify.
 
 Voici un exemple simple de fichier que nous appellerons `Hello.vue` :
 
@@ -50,7 +50,7 @@ Si vous n'aimez pas l'idée des composants monofichiers, vous pouvez toujours ti
 
 ## Bien commencer
 
-### Pour les utilisateurs qui ne connaissent pas les systemes de build de modules en JavaScript
+### Pour les utilisateurs qui ne connaissent pas les systèmes de *build* de modules en JavaScript
 
 Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des applications JavaScript avancées. Cela implique d'apprendre à utiliser quelques nouveaux outils si vous ne les connaissez pas déjà :
 
@@ -58,7 +58,7 @@ Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des appli
 
 - **JavaScript moderne avec ES2015/16**: Lisez le guide Babel [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). Vous n'avez pas besoin de mémoriser chacune des fonctionnalités maintenant, mais gardez cette page en référence pour pouvoir y revenir.
 
-Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple). Suivez les instructions et vous devriez avoir en un clin d'oeil un projet Vue avec des composants `.vue` , ES2015 et le rechargement à chaud !
+Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple). Suivez les instructions et vous devriez avoir en un clin d’œil un projet Vue avec des composants `.vue` , ES2015 et le rechargement à chaud !
 
 Ce template de projet utilise [Webpack](https://webpack.js.org/), un empaqueteur de modules qui prend des « modules » et les empaquette dans votre application finale. Pour en apprendre plus sur Webpack, [cette vidéo](https://www.youtube.com/watch?v=WQue1AN93YU) est une bonne introduction. Une fois que vous aurez les bases, vous pourrez aussi parcourir [ce cours Webpack avancé sur Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
 

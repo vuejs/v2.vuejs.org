@@ -3,8 +3,8 @@
     <input type="text" id="search-query-<%- context %>" class="search-query st-default-search-input">
   </form>
 </li>
-<li><a href="/v2/guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guide</a></li>
-<li><a href="/v2/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
-<li><a href="/v2/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Exemples</a></li>
+<li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guide</a></li>
+<li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
+<li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Exemples</a></li>
 <%- partial('partials/ecosystem_dropdown') %>
 <%- partial('partials/language_dropdown') %>

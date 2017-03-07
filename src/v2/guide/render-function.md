@@ -360,7 +360,7 @@ on: {
 
 ### Slots
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](http://vuejs.org/v2/api/#vm-slots):
+You can access static slot contents as Arrays of VNodes from [`this.$slots`](../api/#vm-slots):
 
 ``` js
 render: function (createElement) {
@@ -369,7 +369,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots):
+And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
 render: function (createElement) {
@@ -546,6 +546,7 @@ You may be interested to know that Vue's templates actually compile to render fu
     <pre><code>{{ result.render }}</code></pre>
     <label>staticRenderFns:</label>
     <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
+    <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
     <label>Compilation Error:</label>
@@ -558,7 +559,9 @@ new Vue({
   data: {
     templateText: '\
 <div>\n\
-  <h1>I\'m a template!</h1>\n\
+  <header>\n\
+    <h1>I\'m a template!</h1>\n\
+  </header>\n\
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\
@@ -605,7 +608,7 @@ console.error = function (error) {
 }
 #vue-compile-demo textarea {
   width: 100%;
-
+  font-family: monospace;
 }
 </style>
 {% endraw %}

@@ -10,14 +10,14 @@
         <meta property="og:type" content="article">
         <meta property="og:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
         <meta property="og:description" content="<%- theme.site_description %>">
-        <meta property="og:image" content="https://<%- theme.root_domain %>/images/logo.png">
+        <meta property="og:image" content="https://<%- theme.root_domain %>/<%- url_for("/images/logo.png") %>">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
         <meta name="twitter:description" content="<%- theme.site_description %>">
         <meta name="twitter:image" content="https://<%- theme.root_domain %>/images/logo.png">
 
-        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="icon" href="<%- url_for("/images/logo.png") %>" type="image/x-icon">
 
         <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="/<%- isIndex ? 'css/index' : 'css/page' %>.css">
 
         <!-- this needs to be loaded before guide's inline scripts -->
-        <script src="/js/vue.js"></script>
+        <script src="<%- url_for("/js/vue.js") %>"></script>
         <script>window.PAGE_TYPE = "<%- page.type %>"</script>
 
         <!-- ga -->
@@ -54,14 +54,14 @@
                     <%- body %>
                 <% } %>
             </div>
-            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="<%- url_for("/js/smooth-scroll.min.js") %>"></script>
         <% } else { %>
             <%- body %>
         <% } %>
 
         <!-- main custom script for sidebars, version selects etc. -->        
-        <script src="/js/css.escape.js"></script>
-        <script src="/js/common.js"></script>
+        <script src="<%- url_for("/js/css.escape.js") %>"></script>
+        <script src="<%- url_for("/js/common.js") %>"></script>
 
         <!-- search -->
         <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
