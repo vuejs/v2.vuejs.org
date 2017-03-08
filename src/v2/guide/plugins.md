@@ -8,7 +8,8 @@ order: 18
 
 플러그인은 일반적으로 전역 수준 기능을 Vue에 추가합니다. 플러그인에는 엄격하게 정의된 범위는 없습니다. 일반적으로 작성할 수있는 플러그인에는 여러 유형이 있습니다.
 
-1. 약간의 전역 메소드 또는 속성 추가 예. [vue-element](https://github.com/vuejs/vue-element)
+
+1. 약간의 전역 메소드 또는 속성 추가 예. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
 2. 하나 이상의 글로벌 에셋 추가 : 디렉티브 / 필터 / 전환 등. [vue-touch](https://github.com/vuejs/vue-touch)
 
