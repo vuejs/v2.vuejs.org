@@ -8,7 +8,7 @@ order: 10
 
 You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
 
-<p class="tip">`v-model` doesn't care about the initial value provided to an input or a textarea. It will always treat the Vue instance data as the source of truth.</p>
+<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
 
 <p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
 
@@ -169,15 +169,25 @@ Single select:
 
 ``` html
 <select v-model="selected">
+  <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
 <span>Selected: {{ selected }}</span>
 ```
+``` js
+new Vue({
+  el: '...',
+  data: {
+    selected: ''
+  }
+})
+```
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
+    <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -188,11 +198,13 @@ Single select:
 new Vue({
   el: '#example-5',
   data: {
-    selected: null
+    selected: ''
   }
 })
 </script>
 {% endraw %}
+
+<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
 
 Multiple select (bound to Array):
 
