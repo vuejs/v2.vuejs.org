@@ -240,7 +240,7 @@ if (route.meta.requiresAuth) {
 
 In URL, [] syntax for array of query is removed. For example, `/foo?users[]=Tom&users[]=Jerry` will be `/foo?users=Tom&users=Jerry` now.
 
-Since vue-router will treat `?users=Tom` as `query.users == 'Tom'`, unless you are for sure the array will have more than one element, you should add the following kind of watcher:
+Since vue-router will treat `?users=Tom` as `query.users == 'Tom'`, unless you are for sure that the array will have more than one element, you should add the following kind of watcher:
 ```javascript
 '$route.query.users': {
   handler(val) {
