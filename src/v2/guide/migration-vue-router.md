@@ -236,6 +236,20 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
+### [] Syntax for Array of Route Query <sup>removed</sup>
+
+In URL, [] syntax for array of query is removed. For example, `/foo?users[]=Tom&users[]=Jerry` will be `/foo?users=Tom&users=Jerry` now.
+
+Since vue-router will treat `?users=Tom` as `query.users == 'Tom'`, in most array-in-query cases, you should add the following kind of watcher:
+```javascript
+'$route.query.users': {
+  handler(val) {
+    this.$route.query.users = Array.isArray(val) ? val : [val]
+  },
+  immediate: true
+}
+```
+
 ## Route Matching
 
 Route matching now uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) under the hood, making it much more flexible than previously.
