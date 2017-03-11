@@ -242,7 +242,7 @@ In URL, [] syntax for array of query is removed. For example, `/foo?users[]=Tom&
 
 Since vue-router will treat `?users=Tom` as `query.users == 'Tom'`, unless you are for sure that the array will have more than one element, you should check and convert the query to array if necessary.
 
-One practical way is to add the following kind of watcher:
+One practical way is to add a watcher like this:
 
 ```javascript
 '$route.query.users': {
