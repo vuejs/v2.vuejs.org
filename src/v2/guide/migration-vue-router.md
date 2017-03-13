@@ -244,16 +244,14 @@ When passing arrays to query parameters the QueryString syntax is no longer `/fo
 export default {
   // ...
   computed: {
-    // ...
-    users () { // will always be an array
-      const val = this.$route.query.users
-      return Array.isArray(val) ? val : [val]
+    // users will always be an array
+    users () {
+      const users = this.$route.query.users
+      return Array.isArray(users) ? users : [users]
     }
   }
 }
 ```
-
-Or simply check the query parameter before use it.
 
 ## Route Matching
 
