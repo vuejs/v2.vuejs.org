@@ -2,11 +2,11 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.1.10
-dev_size: "218.92"
-min_size: "70.99"
-gz_size: "25.86"
-ro_gz_size: "18.01"
+vue_version: 2.2.0
+dev_size: "234.23"
+min_size: "74.22"
+gz_size: "26.87"
+ro_gz_size: "18.71"
 ---
 
 ### 兼容性
@@ -17,7 +17,7 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 
 每个版本的更新日志见 [GitHub](https://github.com/vuejs/vue/releases)。
 
-## 独立版本
+## 直接 `<script>` 引入
 
 直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。**重要提示：在开发时请用开发版本，遇到常见错误它会给出友好的警告。**
 
@@ -31,8 +31,7 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 
 ### CDN
 
-
-推荐：[unpkg](https://unpkg.com/vue/dist/vue.js), 会保持和 npm 发布的最新的版本一致。可以在 [unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包资源。
+推荐：[https://unpkg.com/vue](https://unpkg.com/vue), 会保持和 npm 发布的最新的版本一致。可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/)浏览 npm 包资源。
 
 也可以从 [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)获取，不过这两个服务版本更新可能略滞后。
 
@@ -47,31 +46,172 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 $ npm install vue
 ```
 
+## CLI
+
+Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds:
+
+``` bash
+# install vue-cli
+$ npm install --global vue-cli
+# create a new project using the "webpack" template
+$ vue init webpack my-project
+# install dependencies and go!
+$ cd my-project
+$ npm install
+$ npm run dev
+```
+
+<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+
+## Explanation of Different Builds
+
+In the [`dist/` directory of the NPM package](https://unpkg.com/vue@latest/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+
+| | UMD | CommonJS | ES Module |
+| --- | --- | --- | --- |
+| **Full** | vue.js | vue.common.js | vue.esm.js |
+| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
+| **Full (production)** | vue.min.js | - | - |
+| **Runtime-only (production)** | vue.runtime.min.js | - | - |
+
+### Terms
+
+- **Full**: builds that contains both the compiler and the runtime.
+
+- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+
+- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+
+- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from Unpkg CDN at [https://unpkg.com/vue](https://unpkg.com/vue) is the Runtime + Compiler UMD build (`vue.js`).
+
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: ES module builds are intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [rollup](http://rollupjs.org/). The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+
 ### 独立构建 vs 运行时构建
 
-有两种构建方式：
+If you need to compile templates on the fly (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
 
-- `vue.common.js` - 独立构建 - 包含模板编译和支持 `template` 选项。**它也依赖于浏览器的接口的存在，所以你不能使用它来为服务器端渲染。** 模板编译器的职责是将模板字符串编译为纯 JavaScript 的渲染函数。如果你想要在组件中使用 `template` 选项，你就需要编译器。 `Vuex` 存储也一样需要独立构建。
-
-- `vue.js` - 运行时构建 - 不包含模板编译也不支持 `template` 选项。你可以用 `render` 函数，只能作用于单文件组件中，因为单文件组件的模板是在构建中预编译到 `render` 函数里的。 运行时构建比独立构建轻量 30%， 只有 {{ro_gz_size}} kb min+gizp 大小。
-
-默认 NPM 包导出的是 **运行时** 构建。为了使用独立构建，在 webpack 配置中添加下面的别名：
 
 ``` js
-resolve: {
-  alias: {
-    'vue$': 'vue/dist/vue.common.js'
+// this requires the compiler
+new Vue({
+  template: `<div>{{ hi }}</div>`
+})
+
+// this does not
+new Vue({
+  render (h) {
+    return h('div', this.hi)
+  }
+})
+```
+
+When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
+
+Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
+
+#### Webpack
+
+``` js
+module.exports = {
+  // ...
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+    }
   }
 }
 ```
 
-对于Browserify，可以添加一个别名到 package.json 中：
+#### Rollup
 
 ``` js
-"browser": {
-  "vue": "vue/dist/vue.common"
-},
+const alias = require('rollup-plugin-alias')
+
+rollup({
+  // ...
+  plugins: [
+    alias({
+      'vue': 'vue/dist/vue.esm.js'
+    })
+  ]
+})
 ```
+
+#### Browserify
+
+Add to your project's `package.json`:
+
+``` js
+{
+  // ...
+  "browser": {
+    "vue": "vue/dist/vue.common.js"
+  }
+}
+```
+
+### Development vs. Production Mode
+
+Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
+
+CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
+
+CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
+
+#### Webpack
+
+Use Webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+
+``` js
+var webpack = require('webpack')
+
+module.exports = {
+  // ...
+  plugins: [
+    // ...
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
+  ]
+}
+```
+
+#### Rollup
+
+Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+
+``` js
+const replace = require('rollup-plugin-replace')
+
+rollup({
+  // ...
+  plugins: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ]
+}).then(...)
+```
+
+#### Browserify
+
+Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
+
+``` bash
+NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
+```
+
+Also see [Production Deployment Tips](deployment.html).
+
+### CSP environments
+
+Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.
+
+On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
 
 ### CSP 环境
 
@@ -94,9 +234,8 @@ $ cd my-project
 $ npm install
 $ npm run dev
 ```
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
-<p class="tip">CLI 默认了用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读[指南](/guide/)，熟悉 Vue 本身之后再研究 CLI。</p>
+<p class="tip">CLI 默认了用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读<a href="./">指南</a> ，熟悉 Vue 本身之后再研究 CLI。</p>
 
 <p class="tip">对于大陆用户，建议将 npm 的注册表源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。</p>
 
@@ -112,6 +251,8 @@ npm run build
 ```
 
 ## Bower
+
+Only UMD builds are available from Bower.
 
 ``` bash
 # 最新稳定版本

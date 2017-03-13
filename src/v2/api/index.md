@@ -65,17 +65,21 @@ type: api
 
 - **类型：** `Function`
 
-- **默认值：** 默认抛出错误
+- **默认值：** `undefined`
 
 - **用法：**
 
   ``` js
-  Vue.config.errorHandler = function (err, vm) {
+  Vue.config.errorHandler = function (err, vm, info) {
     // handle error
+    // `info` is a Vue-specific error info, e.g. which lifecycle hook
+    // the error was found in. Only available in 2.2.0+
   }
   ```
 
   指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
+
+  > In 2.2.0, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
 
@@ -113,6 +117,30 @@ type: api
   ```
 
   给 v-on 自定义键位别名。
+
+### 性能
+
+> New in 2.2.0
+
+- **Type:** `boolean`
+
+- **Default:** `false`
+
+- **Usage**:
+
+  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool timeline. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+
+### productionTip
+
+> New in 2.2.0
+
+- **Type:** `boolean`
+
+- **Default:** `true`
+
+- **Usage**:
+
+  Set this to `false` to prevent the production tip on Vue startup.
 
 ## 全局 API
 
@@ -178,11 +206,11 @@ type: api
 
 - **参考：** [异步更新队列](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( object, key, value )</h3>
+<h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
 - **参数：**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
   - `{any} value`
 
 - **返回值：** 设置的值.
@@ -195,17 +223,19 @@ type: api
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( object, key )</h3>
+<h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
 - **参数：**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **用法：**
 
   删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
 
-  **注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象**
+  > Also works with on Array + index in 2.2.0+.
+
+  <p class="tip">注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象</p>
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
@@ -329,7 +359,7 @@ type: api
   ```
 
 - **参考：** [Render 函数](../guide/render-function.html)
- 
+
 <h3 id="Vue-version">Vue.version</h3>
 
 - **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
@@ -581,7 +611,11 @@ if (version === 2) {
 
   <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载root实例到 `<html>` 或者 `<body>` 上。</p>
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+
+- **参考：**
+  - [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+  - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
 ### template
 
@@ -595,19 +629,51 @@ if (version === 2) {
 
   <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
 
-- **参考：**
+  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+
+- **See also:**
   - [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
   - [内容分发](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
-  - **类型：** `Function`
+  - **类型：** `(createElement: () => VNode) => VNode`
 
   - **详细：**
 
     字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
 
     如果组件是一个函数组件，Render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
+
+    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+
+  - **See also:**
+    - [Render Functions](../guide/render-function)
+
+### renderError
+
+> New in 2.2.0
+
+  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+
+  - **Details:**
+
+    **Only works in development mode.**
+
+    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+
+  - **Example:**
+
+    ``` js
+    new Vue({
+      render (h) {
+        throw new Error('oops')
+      },
+      renderError (h, err) {
+        return h('pre', { style: { color: 'red' }}, err.stack)
+      }
+    }).$mount('#app')
+    ```
 
   - **参考：**
     - [Render 函数](../guide/render-function.html)
@@ -754,7 +820,6 @@ if (version === 2) {
 
 - **参考：**
   - [自定义指令](../guide/custom-directive.html)
-  - [资源命名约定](../guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
@@ -778,7 +843,7 @@ if (version === 2) {
 - **参考：**
   - [组件](../guide/components.html)
 
-## 选项 / 杂项
+##  选项 / 杂项
 
 ### parent
 
@@ -815,18 +880,6 @@ if (version === 2) {
 
 - **参考：** [混合](../guide/mixins.html)
 
-### name
-
-- **类型:** `string`
-
-- **限制:** 只有作为组件选项时起作用。
-
-- **详细:**
-
-  允许组件模板递归地调用自身。注意，组件在全局用 `Vue.component()` 注册时，全局 ID 自动作为组件的 name。
-
-  指定 `name` 选项的另一个好处是便于调试。有名字的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools), 未命名组件将显示成 `<AnonymousComponent>`, 这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
-
 ### extends
 
 - **类型:** `Object | Function`
@@ -848,6 +901,105 @@ if (version === 2) {
     ...
   }
   ```
+
+### provide / inject
+
+> New in 2.2.0
+
+- **Type:**
+  - **provide:** `Object | () => Object`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+
+- **Details:**
+
+  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+
+  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+
+  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+
+  The `inject` options should be either an Array of strings or an object where the keys stand for the local binding name, and the value being the key (string or Symbol) to search for in available injections.
+
+  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+
+- **Example:**
+
+  ``` js
+  var Provider = {
+    provide: {
+      foo: 'bar'
+    },
+    // ...
+  }
+
+  var Child = {
+    inject: ['foo'],
+    created () {
+      console.log(this.foo) // -> "bar"
+    }
+    // ...
+  }
+  ```
+
+  With ES2015 Symbols, function `provide` and object `inject`:
+  ``` js
+  const s = Symbol()
+
+  const Provider = {
+    provide () {
+      return {
+        [s]: 'foo'
+      }
+    }
+  }
+
+  const Child = {
+    inject: { s },
+    // ...
+  }
+  ```
+
+  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+
+  Using an injected value as the default for a prop:
+  ```js
+  const Child = {
+    inject: ['foo'],
+    props: {
+      bar: {
+        default () {
+          return this.foo
+        }
+      }
+    }
+  }
+  ```
+
+  Using an injected value as data entry:
+  ```js
+  const Child = {
+    inject: ['foo'],
+    data () {
+      return {
+        bar: this.foo
+      }
+    }
+  }
+  ```
+
+## Options / Misc
+
+### name
+
+- **Type:** `string`
+
+- **Restriction:** only respected when used as a component option.
+
+- **Details:**
+
+  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+
+  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
 
 ### delimiters
 
@@ -881,6 +1033,46 @@ if (version === 2) {
 - **参考：
 ** [函数式组件](../guide/render-function.html#Functional-Components)
 
+### model
+
+> New in 2.2.0
+
+- **Type:** `{ prop?: string, event?: string }`
+
+- **Details:**
+
+  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+
+- **Example:**
+
+  ``` js
+  Vue.component('my-checkbox', {
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
+    props: {
+      // this allows using the `value` prop for a different purpose
+      value: String
+    },
+    // ...
+  })
+  ```
+
+  ``` html
+  <my-checkbox v-model="foo" value="some value"></my-checkbox>
+  ```
+
+  The above will be equivalent to:
+
+  ``` html
+  <my-checkbox
+    :checked="foo"
+    @change="val => { foo = val }"
+    value="some value">
+  </my-checkbox>
+  ```
+
 ## 实例属性
 
 ### vm.$data
@@ -892,6 +1084,16 @@ if (version === 2) {
   Vue 实例观察的数据对象。Vue 实例代理了对其 data 对象属性的访问。
 
 - **另见:** [选项 - data](#data)
+
+### vm.$props
+
+> New in 2.2.0
+
+- **Type:** `Object`
+
+- **Details:**
+
+  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
 
 ### vm.$el
 
@@ -1117,11 +1319,11 @@ if (version === 2) {
   // 立即以 `a` 的当前值触发回调
   ```
 
-<h3 id="vm-set">vm.$set( object, key, value )</h3>
+<h3 id="vm-set">vm.$set( target, key, value )</h3>
 
 - **参数：**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
   - `{any} value`
 
 - **返回值：** 设置的值.
@@ -1132,11 +1334,11 @@ if (version === 2) {
 
 - **另见：** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( object, key )</h3>
+<h3 id="vm-delete">vm.$delete( target, key )</h3>
 
 - **参数：**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **用法：**
 
@@ -1149,7 +1351,7 @@ if (version === 2) {
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **参数：**
-  - `{string} event`
+  - `{string | Array<string>} event` (array only supported in 2.2.0+)
   - `{Function} callback`
 
 - **用法：**
@@ -1464,7 +1666,11 @@ if (version === 2) {
   - `.capture` - 添加事件侦听器时使用 capture 模式。
   - `.self` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
   - `.{keyCode | keyAlias}` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+  - `.native` - listen for a native event on the root element of component.
   - `.once` - 触发一次。
+  - `.left` - (2.2.0) only trigger handler for left button mouse events.
+  - `.right` - (2.2.0) only trigger handler for right button mouse events.
+  - `.middle` - (2.2.0) only trigger handler for middle button mouse events.
 
 - **用法：**
 
@@ -1874,6 +2080,8 @@ if (version === 2) {
   `<keep-alive>` 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。和 `<transition>` 相似，`<keep-alive>` 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。
 
   当组件在 `<keep-alive>` 内被切换，它的 `activated` 和 `deactivated` 这两个生命周期钩子函数将会被对应执行。
+
+  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
   主要用于保留组件状态或避免重新渲染。
 

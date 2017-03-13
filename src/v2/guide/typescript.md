@@ -4,36 +4,76 @@ type: guide
 order: 25
 ---
 
-## 官方的声明文件
+## Important 2.2 Change Notice for TS + webpack 2 users
+
+In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
+
+We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#Recommended-Configuration) below on a future-proof setup.
+
+## NPM package 中官方声明文件
 
 静态类型系统可以帮助防止许多潜在的运行时错误，特别是随着应用程序的增长. 这就是为什么Vue使用带 [TypeScript](https://www.typescriptlang.org/) 的官方的类型声明 - 不仅是用在Vue-core，也用在 [Vue-router](https://github.com/vuejs/vue/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vue/tree/dev/types)。
 
 由于这些[声明文件](https://unpkg.com/vue/types/)是在 NPM 上发布的，你甚至不需要像 `Typings` 这样的外部工具，因为声明是用Vue自动导入的。 这意味着你需要的是简单的引入 Vue:
 
-``` ts
+## 推荐的配置
+
+``` js
+// tsconfig.json
+{
+  "compilerOptions": {
+    // ... other options omitted
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.Promise"
+    ]
+  }
+}
+```
+
+Note the `allowSyntheticDefaultImports` option allows us to use the following:
+
+``` js
+import Vue from 'vue'
+```
+
+instead of:
+
+``` js
 import Vue = require('vue')
 ```
 
-然后所有的方法，属性和参数将被检查类型。 例如，如果拼写 `template` 组件选项为 tempate（缺少 l ）， TypeScript 编译器将在编译时打印一条错误消息。 如果你使用可以验证TypeScript的编辑器，如 [Visual Studio Code](https://code.visualstudio.com/)，你甚至可以在编译之前捕获这些错误：
+The former (ES module syntax) is recommended because it is consistent with recommended plain ES usage, and in the future we are planning to move all official declarations to use ES-style exports.
 
+In addition, if you are using TypeScript with webpack 2, the following is also recommended:
 
-![TypeScript Type Error in Visual Studio Code](/images/typescript-type-error.png)
+``` js
+{
+  "compilerOptions": {
+    // ... other options omitted
+    "module": "es2015",
+    "moduleResolution": "node"
+  }
+}
+```
 
-### 编译选项
+This tells TypeScript to leave the ES module import statements intact, which in turn allows webpack 2 to take advantage of ES-module-based tree-shaking.
 
-Vue的声明文件需要 `--lib DOM,ES2015.Promise` [编译选项](https://www.typescriptlang.org/docs/handbook/compiler-options.html)。 您可以将此选项传递到 `tsc` 命令或将等效内容添加到 `tsconfig.json` 文件。
+See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
 
 ### 访问Vue的类型声明
 
-如果你想注释自己的代码与Vue的类型,您可以访问在Vue的出口对象。例如,注释一个组件的选择对象(例如在一个 `vue` 文件):
+Vue的类型定义导出雨多有用的 [类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。例如,注释一个组件的选择对象(例如在一个 `vue` 文件):
 
 ``` ts
-import Vue = require('vue')
+import Vue, { ComponentOptions } from 'vue'
 
 export default {
   props: ['message'],
   template: '<span>{{ message }}</span>'
-} as Vue.ComponentOptions<Vue>
+} as ComponentOptions<Vue>
 ```
 
 ## 类-样式Vue组件
@@ -41,7 +81,7 @@ export default {
 Vue 组件选项可以很容易地注释类型:
 
 ``` ts
-import Vue = require('vue')
+import Vue, { ComponentOptions }  from 'vue'
 
 // Declare the component's type
 interface MyComponent extends Vue {
@@ -65,7 +105,7 @@ export default {
   }
 // We need to explicitly annotate the exported options object
 // with the MyComponent type
-} as Vue.ComponentOptions<MyComponent>
+} as ComponentOptions<MyComponent>
 ```
 
 不幸的是,这里有一些限制：
@@ -78,7 +118,7 @@ export default {
 幸运的是, [vue-class-component](https://github.com/vuejs/vue-class-component) 可以解决这两个问题。这是一个官方的库,允许您用 @component 装饰器，像原生 JavaScript 类那样声明组件库。让我们重写上述组件作为一个示例:
 
 ``` ts
-import Vue = require('vue')
+import Vue from 'vue'
 import Component from 'vue-class-component'
 
 // The @Component decorator indicates the class is a Vue component

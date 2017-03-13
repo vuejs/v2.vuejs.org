@@ -294,6 +294,7 @@ render: function (createElement) {
     on: {
       input: function (event) {
         self.value = event.target.value
+        self.$emit('input', event.target.value)
       }
     }
   })
@@ -355,7 +356,7 @@ on: {
 
 ### Slots
 
-使用[`this.$slots`](http://vuejs.org/v2/api/#vm-slots)访问静态插槽内容：
+使用[`this.$slots`](../api/#vm-slots)访问静态插槽内容作为 VNode 数组：
 
 ``` js
 render: function (createElement) {
@@ -364,7 +365,7 @@ render: function (createElement) {
 }
 ```
 
-使用[`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots)访问作用域插槽作为返回VNodes的函数:
+使用[`this.$scopedSlots`](../api/#vm-scopedSlots)访问作用域插槽作为返回VNodes的函数:
 
 ``` js
 render: function (createElement) {

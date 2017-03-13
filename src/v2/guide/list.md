@@ -218,8 +218,10 @@ new Vue({ el: '#range' })
 在自定义组件里，你可以像任何普通元素一样用 `v-for` 。
 
 ``` html
-<my-component v-for="item in items"></my-component>
+<my-component v-for="item in items" :key="item.id"></my-component>
 ```
+
+> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
 
 然而他不能自动传递数据到组件里，因为组件有自己独立的作用域。为了传递迭代数据到组件里，我们要用 `props` ：
 
@@ -227,7 +229,8 @@ new Vue({ el: '#range' })
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
-  v-bind:index="index">
+  v-bind:index="index"
+  v-bind:key="item.id">
 </my-component>
 ```
 
@@ -246,6 +249,7 @@ new Vue({ el: '#range' })
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -255,12 +259,12 @@ new Vue({ el: '#range' })
 
 ``` js
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 
@@ -286,7 +290,7 @@ new Vue({
 {% raw %}
 <div id="todo-list-example" class="demo">
   <input
-    v-model="newTodoText" v
+    v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >
@@ -294,6 +298,7 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -301,12 +306,12 @@ new Vue({
 </div>
 <script>
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 new Vue({
@@ -387,7 +392,7 @@ Vue 包含一组观察数组的变异方法，所以它们也将会触发视图�
 
 ### 重塑数组
 
-变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()`, `slice()` 。这些不会改变原始数组，但总是返回一个新数组。当使用非变异方法时，可以用新数组替换旧数组：
+变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()`, `slice()` 。这些不会改变原始数组，但**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
 
 ``` js
 example1.items = example1.items.filter(function (item) {

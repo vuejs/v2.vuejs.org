@@ -405,6 +405,24 @@ Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可�
 
 但是，在一些场景中，你需要给同一个元素同时设置两种过渡动效，比如 `animation` 很快的被触发并完成了，而 `transition` 效果还没结束。在这种情况中，你就需要使用 `type` 特性并设置 `animation` 或 `transition` 来明确声明你需要 Vue 监听的类型。
 
+### Explicit Transition Durations
+
+> New in 2.2.0
+
+In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+
+In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+
+``` html
+<transition :duration="1000">...</transition>
+```
+
+You can also specify separate values for enter and leave durations:
+
+``` html
+<transition :duration="{ enter: 500, leave: 800 }">...</transition>
+```
+
 ### JavaScript 钩子
 
 可以在属性中声明 JavaScript 钩子

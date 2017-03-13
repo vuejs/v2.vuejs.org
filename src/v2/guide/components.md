@@ -504,7 +504,7 @@ Vue.component('button-counter', {
       this.counter += 1
       this.$emit('increment')
     }
-  },
+  }
 })
 new Vue({
   el: '#counter-event-example',
@@ -541,16 +541,21 @@ new Vue({
 仅仅是一个语法糖：
 
 ``` html
-<input v-bind:value="something" v-on:input="something = $event.target.value">
+<input
+  v-bind:value="something"
+  v-on:input="something = $event.target.value">
 ```
 
 所以在组件中使用时，它相当于下面的简写：
 
 ``` html
-<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
+<custom-input
+  :value="something"
+  @input="value => { something = value }">
+</custom-input>
 ```
 
-所以要让组件的 `v-model` 生效，它必须：
+所以要让组件的 `v-model` 生效，它应该（这可以在 2.2.0以上版本配置）：
 
 - 接受一个 `value` 属性
 - 在有新的 value 时触发 `input` 事件
@@ -563,16 +568,15 @@ new Vue({
 
 ``` js
 Vue.component('currency-input', {
-  template: '
+  template: `
     <span>
       $
       <input
         ref="input"
         v-bind:value="value"
-        v-on:input="updateValue($event.target.value)"
-      >
+        v-on:input="updateValue($event.target.value)">
     </span>
-  ',
+  `,
   props: ['value'],
   methods: {
     // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
@@ -633,12 +637,39 @@ new Vue({
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-这个接口不仅仅可以用来连接组件内部的表单输入，也很容易集成你自己创造的输入类型。想象一下：
+
+### Customizing Component `v-model`
+
+> New in 2.2.0
+
+By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
+
+``` js
+Vue.component('my-checkbox', {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    // this allows using the `value` prop for a different purpose
+    value: String
+  },
+  // ...
+})
+```
 
 ``` html
-<voice-recognizer v-model="question"></voice-recognizer>
-<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
-<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+<my-checkbox v-model="foo" value="some value"></my-checkbox>
+```
+
+The above will be equivalent to:
+
+``` html
+<my-checkbox
+  :checked="foo"
+  @change="val => { foo = val }"
+  value="some value">
+</my-checkbox>
 ```
 
 ### 非父子组件通信
@@ -1011,7 +1042,7 @@ Vue.component(
 )
 ```
 
-When using [local registration](https://vuejs.org/v2/guide/components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+When using [local registration](components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
 
 ``` js
 new Vue({

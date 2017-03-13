@@ -146,7 +146,9 @@ new Vue({
 有时也需要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 `$event` 把它传入方法：
 
 ``` html
-<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
 ```
 
 ``` js
@@ -262,6 +264,16 @@ Vue.config.keyCodes.f1 = 112
 
 <p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone.</p>
 
+### Mouse Button Modifiers
+
+> New in 2.2.0
+
+- `.left`
+- `.right`
+- `.middle`
+
+These modifiers restrict the handler to events triggered by a specific mouse button.
+
 ## 为什么在 HTML 中监听事件?
 
 你可能注意到这种事件监听的方式违背了关注点分离（separation of concern）传统理念。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护上的困难。实际上，使用 `v-on` 有几个好处：
@@ -271,6 +283,7 @@ Vue.config.keyCodes.f1 = 112
 2. 因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。
 
 3. 当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。
+
 
 ***
 
