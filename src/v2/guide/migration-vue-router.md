@@ -236,18 +236,24 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
-### [] Syntax for arrays in queries <sup>removed</sup>
+### [] Syntax for Arrays in Queries <sup>removed</sup>
 
-When passing arrays to query parameters the syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider using the following check:
+When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
 
 ```javascript
-const users = Array.isArray(this.$route.query.users)
-              ? this.$route.query.users
-              : [this.$route.query.users]
-// users will always be an array
+export default {
+  // ...
+  computed: {
+    // ...
+    users () { // will always be an array
+      const val = this.$route.query.users
+      return Array.isArray(val) ? val : [val]
+    }
+  }
+}
 ```
 
-If you were relying on `$route.query.users` in your template, you could use this inside of a computed property. If you were using the query result in a watcher, you should apply the check there.
+Or simply check the query parameter before use it.
 
 ## Route Matching
 
