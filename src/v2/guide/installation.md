@@ -224,7 +224,7 @@ npm run build
 
 ## Bower
 
-Only UMD builds are available from Bower.
+Bower 에서는 UMD 빌드만 사용 가능합니다.
 
 ``` bash
 # 최신 안정판
