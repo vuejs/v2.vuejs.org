@@ -49,7 +49,7 @@ var example1 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-1')
+      smoothScroll.animateScroll(document.querySelector('#example-1'))
     }
   }
 })
@@ -99,7 +99,7 @@ var example2 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-2')
+      smoothScroll.animateScroll(document.querySelector('#example-2'))
     }
   }
 })
