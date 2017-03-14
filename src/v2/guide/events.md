@@ -42,7 +42,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Les méthodes de gestion d'évènement"
+## Les méthodes de gestion d'évènement
 
 La logique pour beaucoup des gestionnaires d'événements sera très certainement plus complexe, par conséquence, garder votre JavaScript dans la valeur de l'attribut v-on ne sera tout simplement pas possible. C'est pourquoi v-on peut aussi accepter le nom d'une méthode que vous voudriez appeler.
 
@@ -75,7 +75,7 @@ var example2 = new Vue({
 })
 
 // vous pouvez également invoquer ces méthodes en JavaScript
-2.greet() // -> 'Hello Vue.js!'
+example2.greet() // -> 'Hello Vue.js!'
 ```
 
 Résultat :
@@ -126,8 +126,8 @@ new Vue({
 Résultat:
 {% raw %}
 <div id="example-3" class="demo">
-  <button v-on:click="say('hi')">Say hi</button>
-  <button v-on:click="say('what')">Say what</button>
+  <button v-on:click="say('salut')">Dire salut</button>
+  <button v-on:click="say('quoi')">Dire quoi</button>
 </div>
 <script>
 new Vue({
@@ -150,7 +150,7 @@ Parfois nous avons également besoin d'accéder à l'événement original du DOM
 ``` js
 // ...
 methods: {
-  avertissement: function (message, event) {
+  warn: function (message, event) {
     // now we have access to the native event
     if (event) event.preventDefault()
     alert(message)
@@ -160,9 +160,9 @@ methods: {
 
 ## Modificateurs d'événements
 
-C'est un besoin courant que de faire appel ā `event.preventDefault()` ou `event.stopPropagation()` à l'intérieur d'une déclaration de gestionnaire d'évènement. Bien que nous puissions réaliser ceci aisément à l'intérieur de " Methods " ,  il serait préférable que les méthodes restent purement dediées à la logique des données au lieu d'avoir à prendre en charge les événements du DOM en détails.
-``
-Pour résoudre ce problème, Vue propose des modificateurs d'événement pour `v-on`. Faire appel à ces modificateurs se fait grâce aux extensions d'instruction, ceux-ci commençant par un point.
+C'est un besoin courant que de faire appel ā `event.preventDefault()` ou `event.stopPropagation()` à l'intérieur d'une déclaration de gestionnaire d'évènement. Bien que nous puissions réaliser ceci aisément à l'intérieur de " methods " ,  il serait préférable que les méthodes restent purement dediées à la logique des données au lieu d'avoir à gérer les détails des évènements du DOM.
+
+Pour résoudre ce problème, Vue propose des modificateurs d'événement pour `v-on`. Rappelez-vous que les modificateurs sont des suffixes de directives indiqués par un point.
 
 - `.stop`
 - `.prevent`
@@ -174,7 +174,7 @@ Pour résoudre ce problème, Vue propose des modificateurs d'événement pour `v
 <!-- la propagation de l'événement du clic sera stoppée -->
 <a v-on:click.stop="doThis"></a>
 
-<!-- l'événement « submit », ne rechargera plus la page -->
+<!-- l'événement « submit » ne rechargera plus la page -->
 <form v-on:submit.prevent="onSubmit"></form>
 
 <!-- les modificateurs peuvent être chainés -->
@@ -183,10 +183,10 @@ Pour résoudre ce problème, Vue propose des modificateurs d'événement pour `v
 <!-- seulement le modificateur -->
 <form v-on:submit.prevent></form>
 
-<!-- utilise le mode « capture » lorsque l'événement d'écoute est ajouté -->
+<!-- utilise le mode « capture » lorsque l'événement écouteur est ajouté -->
 <div v-on:click.capture="doThis">...</div>
 
-<!-- seulement déclanché si l'instruction « event.target » est l'élément lui même.-->
+<!-- seulement déclenché si l'instruction « event.target » est l'élément lui même.-->
 <!-- c-à-d : ne s'applique pas aux éléments "enfant" -->
 <div v-on:click.self="doThat">...</div>
 ```
@@ -195,12 +195,13 @@ Pour résoudre ce problème, Vue propose des modificateurs d'événement pour `v
 
 ``` html
 <!-- l'événement « click » sera déclenché au moins une fois -->
-<a v-on:click.once="faisCeci"></a>
+<a v-on:click.once="DoThis"></a>
 ```
 
 Au contraire des autres modificateurs, qui sont exclusifs aux événements natifs du DOM, le modificateur `.once` peut également être utilisé pour les [événements  des composants](components.html#Using-v-on-with-Custom-Events). Si vous n'avez pas encore lu la section concernant les composants, ne vous en inquiétez pas pour le moment.
 
 ## Modificateurs "key" (Touches)
+
 Lorsque nous écoutons les événements du clavier, nous avons régulièrement besoin de s'assurer des codes des touches. Vue permet également d'ajouter un modificateur de touches pour `v-on`:
 
 ``` html
@@ -222,7 +223,7 @@ Voici la liste complète des raccourcis de modificateur pour les touches :
 
 - `.enter`
 - `.tab`
-- `.delete` (fonctionne pour les touches "Suppression" et "retour-arrière")
+- `.delete` (fonctionne pour les touches "Suppression" et "Retour arrière")
 - `.esc`
 - `.space`
 - `.up`
@@ -230,7 +231,7 @@ Voici la liste complète des raccourcis de modificateur pour les touches :
 - `.left`
 - `.right`
 
-Vous pouvez également [definir des raccourcis personnalisés pour vos modificateurs ](../api/#keyCodes) grâce à l'objet global `config.keyCodes`:
+Vous pouvez également [définir des raccourcis personnalisés pour vos modificateurs ](../api/#keyCodes) grâce à l'objet global `config.keyCodes`:
 
 ``` js
 // active v-on:keyup.f1
@@ -241,14 +242,14 @@ Vue.config.keyCodes.f1 = 112
 
 > New in 2.1.0
 
-Vous pouvez utiliser les modificateurs suivants pour déclancher un événement du clavier ou de la souris seulement lorsque la touche du modificateur correspondant est appuyé :
+Vous pouvez utiliser les modificateurs suivants pour déclencher un événement du clavier ou de la souris seulement lorsque la touche du modificateur correspondante est appuyé :
 
 - `.ctrl`
 - `.alt`
 - `.shift`
 - `.meta`
 
-> Note: Sur les claviers Macintosh, meta est la touche commande (⌘). Sur Windows, meta est la touche windows (⊞). Sur les claviers Sun Microsystems, meta est symbolisé par un diamant plein (◆). Sur certain clavier, spécifiquement sur les claviers des machines MIT et Lisp et leurs successeurs, comme le clavier « Knight » et « space-cadet », meta est ecrit « META ». Sur les claviers Symboliques, meta est etiqueté « META » ou « Meta ».
+> Note: Sur les claviers Macintosh, meta est la touche commande (⌘). Sur Windows, meta est la touche windows (⊞). Sur les claviers Sun Microsystems, meta est symbolisé par un diamant plein (◆). Sur certains claviers, spécifiquement sur les claviers des machines MIT et Lisp et leurs successeurs, comme le clavier « Knight » et « space-cadet », meta est ecrit « META ». Sur les claviers Symboliques, meta est etiqueté « META » ou « Meta ».
 
 Par exemple:
 
@@ -260,13 +261,13 @@ Par exemple:
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-## Pourquoi des écoutes dans le code HTML ?
+## Pourquoi des écouteurs dans le HTML ?
 
-Vous pouriez être preoccupé que tous ces événements d'écoutes viole la bonne vieille règle de la séparation des préoccupations.
-Rassurez-vous - depuis que le gestionnaire de fonctions et d'expressions est strictement lié à « ViewModel »  qui gère la vue courante, cela ne causera aucune difficulté de maintenance. En realité, il y a plusieurs bénéfices à utiliser `v-on` :
+Vous pourriez être inquiets du fait que l'ensemble de cette approche d'écouteurs d'évènements viole la bonne vieille règle de la séparation des préoccupations.
+Rassurez-vous - puisque toutes les fonctions et expressions sont strictement liées à « ViewModel »  qui gère la vue courante, cela ne causera aucune difficulté de maintenance. En realité, il y a plusieurs bénéfices à utiliser `v-on` :
 
-1. Il est plus facile de localiser l'implementation des fonctions dans le gestionnaire de code JS en survolant le code HTML.
+1. Il est plus facile de localiser l'implémentation des fonctions de gestion du code JS en survolant le code HTML.
 
-2. Comme vous n'avez pas à attacher manuellement les écoutes dans votre JS, le code du « ViewModel » peut-être purement logique et sans DOM. Ceci rend plus facile les tests.
+2. Comme vous n'avez pas à attacher manuellement les écouteurs dans votre JS, le code du « ViewModel » peut-être purement logique et sans DOM. Ceci rend plus facile les tests.
 
-3. Quand un « ViewModel » est detruit, tout les evenements d'ecoutes sont automatiquenemt retiré. Vous n'avez pas à vous soucier de le faire vous-même.
+3. Quand un « ViewModel » est détruit, tout les événements écouteurs sont automatiquenemt retiré. Vous n'avez pas à vous soucier de le faire vous-même.
