@@ -1089,7 +1089,7 @@ HTML 템플릿 내에서 kebab-case와 동등한 것을 사용해야합니다.
 <title-cased-component></title-cased-component>
 ```
 
-그러나 _문자열_ 템플릿을 사용할 때 우리는 HTML의 대소문자를 구분하지 않습니다. 즉, 템플릿에서도 CamelCase, TitleCase 또는 kebab-case를 사용하여 컴포넌트와 prop을 참조합니다.
+그러나 _문자열_ 템플릿을 사용할 때 HTML의 대소문자를 구분하지 않습니다. 즉, 템플릿에서도 CamelCase, TitleCase 또는 kebab-case를 사용하여 컴포넌트와 prop을 참조할 수 있습니다.
 
 ``` html
 <!-- 문자열 템플릿은 무엇을 사용해도 상관 없습니다. -->

@@ -145,7 +145,9 @@ new Vue({
 때로 인라인 명령문 핸들러에서 원본 DOM 이벤트에 액세스 해야할 수도 있습니다. 특별한 `$event` 변수를 사용해 메소드에 전달할 수도 있습니다.
 
 ``` html
-<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
 ```
 
 ``` js

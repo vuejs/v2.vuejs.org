@@ -236,6 +236,25 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
+### 쿼리의 배열 구문 <sup>제거됨</sup>
+
+쿼리 전달인자로 배열을 전달할 때 QueryString 문법은 더 이상 `/foo?users[]=Tom&users[]=Jerry`가 아닌 새로운 문법 `/foo?users=Tom&users=Jerry` 입니다.
+내부적으로,`$route.query.users`는 여전히 배열이 되지만, 이 경로에 직접 접근 할 때 `/foo?users=Tom` 쿼리에 단 하나의 전달인자가 있다면, 라우터는 `users`가 배열임을 기대합니다.
+이 때문에 계산된 속성을 추가하여 `$route.query.users`의 모든 참조를 이 속성으로 대체하는 것을 고려해야합니다.
+
+```javascript
+export default {
+  // ...
+  computed: {
+    // users는 항상 배열입니다
+    users () {
+      const users = this.$route.query.users
+      return Array.isArray(users) ? users : [users]
+    }
+  }
+}
+```
+
 ## 라우트 매칭
 
 라우트 매칭은 이제 [path-to-regexp](https://github.com/pillarjs/path-to-regexp)를 사용해 이전보다 훨씬 유연합니다.
