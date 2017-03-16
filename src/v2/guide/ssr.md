@@ -1,5 +1,5 @@
 ---
-title: Server-Side Rendering
+title: Rendu côté serveur
 type: guide
 order: 24
 ---
