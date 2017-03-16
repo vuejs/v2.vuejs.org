@@ -1088,7 +1088,7 @@ Within HTML templates though, you have to use the kebab-case equivalents:
 <title-cased-component></title-cased-component>
 ```
 
-When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you reference your components and props using camelCase, TitleCase, or kebab-case:
+When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components and props using camelCase, TitleCase, or kebab-case:
 
 ``` html
 <!-- use whatever you want in string templates! -->
