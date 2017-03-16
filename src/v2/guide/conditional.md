@@ -130,7 +130,7 @@ Ce n'est pas toujours souhaitable cependant, c'est pourquoi Vue vous offre un mo
 
 ``` html
 <template v-if="loginType === 'username'">
-  <label>Username</label>
+  <label>Nom d'utilisateur</label>
   <input placeholder="Entrez votre nom d'utilisateur" key="username-input">
 </template>
 <template v-else>
@@ -145,7 +145,7 @@ Maintenant ces zones de saisie seront restituées à partir de zéro à chaque f
 <div id="key-example" class="demo">
   <div>
     <template v-if="loginType === 'username'">
-      <label>Username</label>
+      <label>Nom d'utilisateur</label>
       <input placeholder="Entrez votre nom d'utilisateur" key="username-input">
     </template>
     <template v-else>

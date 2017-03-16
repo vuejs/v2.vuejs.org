@@ -60,7 +60,8 @@ En plus de l'interpolation de texte, nous pouvons également lier les attributs 
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Passez votre souris sur moi pendant quelques secondes pour voir mon titre lié dynamiquement !
+    Passez votre souris sur moi pendant quelques secondes 
+    pour voir mon titre lié dynamiquement !
   </span>
 </div>
 ```
