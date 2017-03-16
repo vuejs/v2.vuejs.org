@@ -479,9 +479,9 @@ Vue.component('my-component', {
 函数化组件只是一个函数，所以渲染开销也低很多。但同样它也有完整的组件封装，你需要知道这些， 比如：
 
 
-- 程序化地在多个组件中选择一个
-- 在将 children, props, data 传递给子组件之前操作它们。 
+Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
 
+They're also very useful as wrapper components.  For example, when you need to:
 
 
 下面是一个依赖传入 props 的值的 `smart-list` 组件例子，它能代表更多具体的组件：
