@@ -27,7 +27,7 @@ We plan to move all official declarations to use ES-style exports in the future.
     "lib": [
       "dom",
       "es5",
-      "es2015.Promise"
+      "es2015.promise"
     ]
   }
 }
