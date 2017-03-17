@@ -125,6 +125,13 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
 
 ``` js
 {
+  // Static class name
+  'staticClass': 'class-name',
+  // Static styles
+  'staticStyle': {
+    color: 'blue',
+    fontSize: '14px'
+  },
   // Same API as `v-bind:class`
   'class': {
     foo: true,
