@@ -10,13 +10,13 @@ Avant de plonger dans le SRR (pour *Server-side Rendering* soit Rendu côté ser
 
 ### La SEO
 
-Google et Bing peuvent parfaitement indéxer les applications JavaScript synchrones. _Synchrone_ est le mot-clé important ici. Si votre application démarre avec une animation de chargement, puis charge le contenu via des requêtes Ajax, les moteurs d'indexation n'attendrons que ces opérations soit fini.
+Google et Bing peuvent parfaitement indexer les applications JavaScript synchrones. _Synchrone_ est le mot-clé important ici. Si votre application démarre avec une animation de chargement, puis charge le contenu via des requêtes Ajax, les moteurs d'indexation n'attendrons que ces opérations soit fini.
 
-Cela signifie que si vous avez du contenu qui s'affiche de manière asynchone sur des pages ou la SEO, Le SSR devient nécessaire.
+Cela signifie que si vous avez du contenu qui s'affiche de manière asynchrone sur des pages ou la SEO, Le SSR devient nécessaire.
 
 ### Navigateurs avec connexion bas-débit
 
-Les utilisateurs pourrait visiter votre site depuis des lieux avec une connexion Interne bas-débit – ou juste depuis une mauvaise connexion cellulaire. Dans ces cas, vous souhaitez mimimiser le nombre et la taille des requêtes nécéssaire à l'utilisateur pour afficher ce contenu minimal.
+Les utilisateurs pourrait visiter votre site depuis des lieux avec une connexion Interne bas-débit – ou juste depuis une mauvaise connexion cellulaire. Dans ces cas, vous souhaitez minimiser le nombre et la taille des requêtes nécessaire à l'utilisateur pour afficher ce contenu minimal.
 
 Vous pouvez utiliser l'[outil Webpack de découpe de code](https://webpack.js.org/guides/code-splitting-require/) pour ne pas forcer l'utilisateur à télécharger votre application entière pour voir une seule page, mais cela ne sera jamais aussi performant que de télécharger une seule page de contenu HTML à rendu statique.
 
@@ -28,7 +28,7 @@ Pour plusieurs lieux autour du monde, utiliser un ordinateur avec 1998 pour acc�
 
 Si vous vous penchez sur le SSR pour améliorer la SEO d'une poignées de pages vitrines (ex. : `/`, `/about`, `/contact`, etc), alors vous voudriez probablement utiliser du __rendu statique__ à la place. Au lieu d'utiliser le serveur pour générer code HTML à la demande, le rendu statique utilise des pages générer en amont lors de la phase de *build* du site. L'avantage est que mettre en place du rendu statique est plus simple et vous permet de garder la partie frontale d'un site complètement statique.
 
-Si vous utilisez Webpack, vous pouvez facilement générer du rendu statique avec [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). Il a beaucoup été testé avec des apps Vue — en fait, son créateur est un membre de l'équipe offcielle de Vue.
+Si vous utilisez Webpack, vous pouvez facilement générer du rendu statique avec [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). Il a beaucoup été testé avec des apps Vue — en fait, son créateur est un membre de l'équipe officielle de Vue.
 
 ## Hello World
 
@@ -101,9 +101,9 @@ Réaliser ces modifications demande un peu de fioritures :
     // DÉBUT DU CODE STANDARD
     // ---------------------
 
-    // Main Vue instance must be returned and have a root
-    // node with the id "app", so that the client-side
-    // version can take over once it loads.
+    // L'instance de Vue principale doit être retourné et un
+    // nœud racine avec l'id « app », ainsi la version côté client
+    // peut prendre le relais une fois chargée.
     return new Vue({
       template: '<div id="app">Vous êtes ici depuis {{ counter }} seconde(s).</div>',
       data: {
@@ -270,17 +270,17 @@ Comme vous pouvez le voir, ce n'est pas plus compliqué que la version précéde
 4. Écrit le HTML à placer après la réponse de l'application et finir l'envoi
 5. Prendre en charge les éventuelles erreurs
 
-## Component Caching
+## Mise en cache de composant
 
-Vue's SSR is very fast by default, but you can further improve performance by caching rendered components. This should be considered an advanced feature however, as caching the wrong components (or the right components with the wrong key) could lead to misrendering your app. Specifically:
+Le SSR de Vue est vraiment rapide par défaut, mais il est possible d'améliorer les performances du rendu des composants. Cela est considéré comme une fonctionnalité avancé cependant, car mettre en cache le mauvais composant (ou le bon composant avec la mauvaise clé) peut mener à de mauvais rendu d'application. Spécifiquement :
 
-<p class="tip">You should not cache a component containing child components that rely on global state (e.g. from a vuex store). If you do, those child components (and in fact, the entire sub-tree) will be cached as well. Be especially wary with components that accept slots/children.</p>
+<p class="tip">Vous ne devriez pas mettre en cache un composant contenant des composants enfants qui sont relié à l'état global (ex. : le store de vuex). Si vous le faites, ces composants enfants (et en fait, l'ensemble de leurs propre composants enfants) seront mis en cache. Soyez donc particulièrement attentif avec les composants qui accepte des slots/enfants.</p>
 
-### Setup
+### Mise en place
 
-With that warning out of the way, here's how you cache components.
+Avec cette avertissement pris en compte, voici comment faire de la mise en cache de composants.
 
-First, you'll need to provide your renderer with a [cache object](https://www.npmjs.com/package/vue-server-renderer#cache). Here's a simple example using [lru-cache](https://github.com/isaacs/node-lru-cache):
+Premièrement, vous devez fournir votre générateur de rendu avec un [objet de mise en cache](https://www.npmjs.com/package/vue-server-renderer#cache). Voici ici un simple exemple utilisant [lru-cache](https://github.com/isaacs/node-lru-cache) :
 
 ``` js
 var createRenderer = require('vue-server-renderer').createRenderer
@@ -291,14 +291,14 @@ var renderer = createRenderer({
 })
 ```
 
-That will cache up to 1000 unique renders. For other configurations that more closely align to memory usage, see [the lru-cache options](https://github.com/isaacs/node-lru-cache#options).
+Cela va mettre en cache le résultat pour les 1000 prochains rendus. Pour d'autres configurations plus proche de votre usage de la mémoire, voyez [les options de lru-cache](https://github.com/isaacs/node-lru-cache#options).
 
-Then for components you want to cache, you must provide them with:
+Maintenant pour les composants, que vous voulez mettre en cache, vous devez les fournir avec :
 
-- a unique `name`
-- a `serverCacheKey` function, returning a unique key scoped to the component
+- un `name` unique
+- une fonction `serverCacheKey`, retournant une clé unique limité à la portée du composant
 
-For example:
+Par exemple :
 
 ``` js
 Vue.component({
@@ -311,23 +311,23 @@ Vue.component({
 })
 ```
 
-### Ideal Components for Caching
+### Les composants idéales pour de la mise en cache
 
-Any "pure" component can be safely cached - that is, any component that is guaranteed to generate the same HTML given the same props. Common examples of these include:
+N'importe quel composant « pure » peut être mis en cache sans problème — c'est à dire n'importe quel composant qui assure que le HTML généré fournit toujours les mêmes props. Des exemple commun de cela sont :
 
-- Static components (i.e. they always generate the same HTML, so the `serverCacheKey` function can just return `true`)
-- List item components (when part of large lists, caching these can significantly improve performance)
-- Generic UI components (e.g. buttons, alerts, etc - at least those that accept content through props rather than slots/children)
+- Des composants statiques (c-à-d qu'il génère toujours le même HTML, aussie la fonction `serverCacheKey` à juste à retourner `true`)
+- Des composants de liste d'élément (dans de large liste, les mettre en cache peut significativement améliorer les performances)
+- Des composants d'interface utilisateur générique (c-à-d les boutons, alertes, etc — du moins ceux qui accepte leur contenu à travers les props plutôt que les slots/enfants)
 
-## Build Process, Routing, and Vuex State Hydration
+## Processus de build, routage, et hydratation d'état de Vuex
 
-By now, you should understand the fundamental concepts behind server-side rendering. However, as you introduce a build process, routing, and vuex, each introduces its own considerations.
+Maintenant, vous devriez comprendre le concept fondamental derrière le rendu côté serveur. Cependant, introduire un processus de build, du routage et vuex introduit également sont lots de considération propre.
 
-To truly master server-side rendering in complex applications, we recommend a deep dive into the following resources:
+Pour réellement maîtriser le rendu côté serveur dans des applications complexe, nous vous recommandons de plonger plus particulièrement les ressources suivantes :
 
-- [vue-server-renderer docs](https://www.npmjs.com/package/vue-server-renderer#api): more details on topics covered here, as well as documentation of more advanced topics, such as [preventing cross-request contamination](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) and [adding a separate server build](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
-- [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): the definitive example of integrating all major Vue libraries and concepts in a single application
+- [documentations de vue-server-renderer](https://www.npmjs.com/package/vue-server-renderer#api): plus de détails sur les sujets que nous avons abordés ici, ainsi qu'une documentation de sujets plus avancés, comme [prévenir la contamination entre les requêtes](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) et [l'ajout d'un serveur de build séparé](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
+- [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): l'exemple définitif intégrant toutes les bibliothèques et concepts majeurs de Vue dans une application unique.
 
 ## Nuxt.js
 
-Properly configuring all the discussed aspects of a production-ready server-rendered app can be a daunting task. Luckily, there is an excellent community project that aims to make all of this easier: [Nuxt.js](https://nuxtjs.org/). Nuxt.js is a higher-level framework built on top of the Vue ecosystem which provides an extremely streamlined development experience for writing universal Vue applications. Better yet, you can even use it as a static site generator (with pages authored as single-file Vue components)! We highly recommend giving it a try.
+Configurer proprement tous les aspects dont nous avons discuté pour un rendu côté serveur près à la production peut être une tâche qui incombe. Forte heureusement, il y a un excellent projet communautaire dont le but est de rendre tout cela plus simple : [Nuxt.js](https://nuxtjs.org/). Nuxt.js est un framework de haut niveau construit au dessus de l'écosystème de Vue et qui fournit une expérience de développement organisée pour écrire des applications Vue universelle. Encore mieux, vous pouvez vous en servir comme générateur de site web statique (avec des pages réalisées au format monofichier des composants Vue) ! Nous vous recommandons grandement de l'essayer.
