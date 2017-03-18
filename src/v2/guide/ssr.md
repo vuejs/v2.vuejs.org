@@ -6,33 +6,33 @@ order: 24
 
 ## Avez-vous besoin d'un rendu côté serveur ?
 
-Avant de plonger dans le SRR (pour *Server-side Rendering* soit Rendu côté serveur), explorons en quoi cela pourrait vous est utile et quand l'utiliser.
+Avant de plonger dans le SRR (pour *Server-side Rendering* soit Rendu côté serveur), explorons en quoi cela pourrait vous être utile et quand l'utiliser.
 
 ### La SEO
 
-Google et Bing peuvent parfaitement indexer les applications JavaScript synchrones. _Synchrone_ est le mot-clé important ici. Si votre application démarre avec une animation de chargement, puis charge le contenu via des requêtes Ajax, les moteurs d'indexation n'attendrons que ces opérations soit fini.
+Google et Bing peuvent parfaitement indexer les applications JavaScript synchrones. _Synchrone_ est le mot-clé important ici. Si votre application démarre avec une animation de chargement, puis charge le contenu via des requêtes Ajax, les moteurs d'indexation n'attendront pas que ces opérations soient finies.
 
-Cela signifie que si vous avez du contenu qui s'affiche de manière asynchrone sur des pages ou la SEO, Le SSR devient nécessaire.
+Cela signifie que si vous avez du contenu qui s'affiche de manière asynchrone sur des pages ou la SEO est importante, le SSR devient nécessaire.
 
-### Navigateurs avec connexion bas-débit
+### Clients avec une connexion bas-débit
 
-Les utilisateurs pourrait visiter votre site depuis des lieux avec une connexion Interne bas-débit – ou juste depuis une mauvaise connexion cellulaire. Dans ces cas, vous souhaitez minimiser le nombre et la taille des requêtes nécessaire à l'utilisateur pour afficher ce contenu minimal.
+Les utilisateurs pourraient visiter votre site depuis des lieux avec une connexion Internet bas-débit – ou juste depuis une mauvaise connexion cellulaire. Dans ces cas, vous souhaitez minimiser le nombre et la taille des requêtes nécessaire à l'utilisateur pour afficher ce contenu minimal.
 
-Vous pouvez utiliser l'[outil Webpack de découpe de code](https://webpack.js.org/guides/code-splitting-require/) pour ne pas forcer l'utilisateur à télécharger votre application entière pour voir une seule page, mais cela ne sera jamais aussi performant que de télécharger une seule page de contenu HTML à rendu statique.
+Vous pouvez utiliser l'[outil Webpack de découpe de code](https://webpack.js.org/guides/code-splitting-require/) pour ne pas forcer l'utilisateur à télécharger votre application entière pour voir une seule page, mais cela ne sera jamais aussi performant que de télécharger une seule page de contenu HTML au rendu statique.
 
-### Navigateurs avec vieux (ou juste sans) moteur JavaScript
+### Clients avec vieux (ou juste sans) moteur JavaScript
 
-Pour plusieurs lieux autour du monde, utiliser un ordinateur avec 1998 pour accéder à Interne est encore la seule option possible. Puisque Vue ne fonctionne que pour des versions de IE9+, vous devez toujours délivrer un contenu minimal pour ses anciens navigateurs — ou pour les hackers hipsters utilisant [Lynx](http://lynx.browser.org/) depuis un terminal.
+Il y a encore des endroits autour du monde où utiliser un ordinateur avec 1998 pour accéder à Internet est encore la seule option possible. Puisque Vue ne fonctionne que pour des versions de IE9+, vous devez toujours délivrer un contenu minimal pour ses anciens navigateurs — ou pour les hackers hipsters utilisant [Lynx](http://lynx.browser.org/) depuis un terminal.
 
 ### SSR vs. Rendu statique
 
-Si vous vous penchez sur le SSR pour améliorer la SEO d'une poignées de pages vitrines (ex. : `/`, `/about`, `/contact`, etc), alors vous voudriez probablement utiliser du __rendu statique__ à la place. Au lieu d'utiliser le serveur pour générer code HTML à la demande, le rendu statique utilise des pages générer en amont lors de la phase de *build* du site. L'avantage est que mettre en place du rendu statique est plus simple et vous permet de garder la partie frontale d'un site complètement statique.
+Si vous vous penchez sur le SSR pour améliorer la SEO d'une poignées de pages vitrines (ex. : `/`, `/about`, `/contact`, etc), alors vous voudriez probablement utiliser du __rendu statique__ à la place. Au lieu d'utiliser le serveur pour générer du code HTML à la demande, le rendu statique utilise des pages générés en amont lors de la phase de *build* du site. L'avantage est que mettre en place du rendu statique est plus simple et vous permet de garder la partie frontale d'un site complètement statique.
 
 Si vous utilisez Webpack, vous pouvez facilement générer du rendu statique avec [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). Il a beaucoup été testé avec des apps Vue — en fait, son créateur est un membre de l'équipe officielle de Vue.
 
 ## Hello World
 
-Si vous êtes arrivez jusqu'ici, vous êtes près pour voir le SSR en action. Ça semble complexe, mais un simple script node peut présenter la fonctionnalité en 3 étapes :
+Si vous êtes arrivez jusqu'ici, vous êtes prèt pour voir le SSR en action. Ça semble complexe, mais un simple script Node.js peut présenter la fonctionnalité en 3 étapes :
 
 ``` js
 // Étape 1: Créer une instance de Vue
@@ -54,7 +54,7 @@ renderer.renderToString(app, function (error, html) {
 })
 ```
 
-Pas si effrayant, non ? Bien sûr, cette exemple est plus simple que la plupart de ceux des applications. Nous ne nous sommes pas encore préoccupé :
+Pas si effrayant, non ? Bien sûr, cet exemple est plus simple que la plupart de ceux des applications. Nous ne nous sommes pas encore préoccupé :
 
 - du serveur web
 - de la réponse sous forme de flux
@@ -63,11 +63,11 @@ Pas si effrayant, non ? Bien sûr, cette exemple est plus simple que la plupart 
 - du routage
 - de l'hydratation d'état avec Vuex
 
-Dans la suite de ce guide, nous allons voir comment fonctionne nombre de ces fonctionnalités. Une fois que vous serez familier avec les bases, nous vous orienterons vers de la documentation détaillé et des exemples avancés pour vous aider sur des cas plus concrets.
+Dans la suite de ce guide, nous allons voir comment fonctionne nombre de ces fonctionnalités. Une fois que vous serez familier avec les bases, nous vous orienterons vers de la documentation détaillée et des exemples avancés pour vous aider sur des cas plus concrets.
 
 ## SSR simple avec le serveur web Express
 
-C'est un peu simple d'appeler ça du « Server-side Rendering » quand nous n'avons pas de web serveur, alors réglons ça. Nous allons créer une application de SRR vraiment simple, en utilisant uniquement une syntaxe ES5 sans aucune étape de build ou de plugins Vue.
+C'est un peu simple d'appeler ça du « Server-side Rendering » quand nous n'avons pas de serveur web, alors réglons ça. Nous allons créer une application avec du SRR vraiment simple, en utilisant uniquement une syntaxe ES5 sans aucune étape de *build* ou de plugins Vue.
 
 Nous allons commencer avec une application qui va juste dire à l'utilisateur depuis combien de secondes il est sur la page :
 
@@ -86,10 +86,10 @@ new Vue({
 })
 ```
 
-Pour adapter ça au SSR, il y a quelques modifications à faire, cela permettra au code de fonctionner aussi bien côté navigateur que côté node :
+Pour adapter ça à du SSR, il y a quelques modifications à faire, cela permettra au code de fonctionner aussi bien côté navigateur que côté Node.js :
 
-- Quand chargé dans un navigateur : ajoute l'instance de l'application au contexte globale (c-à-d `window`), ainsi nous pouvons le monter.
-- Quand chargé dans node : exporte un générateur de fonction permettant de créer une nouvelle instance de Vue pour chaque requête.
+- Quand chargé dans un navigateur : ajout de l'instance de l'application au contexte globale (c-à-d `window`), ainsi nous pouvons faire le montage.
+- Quand chargé avec Node.js : export d'un générateur de fonction permettant de créer une nouvelle instance de Vue pour chaque requête.
 
 Réaliser ces modifications demande un peu de fioritures :
 
@@ -101,7 +101,7 @@ Réaliser ces modifications demande un peu de fioritures :
     // DÉBUT DU CODE STANDARD
     // ---------------------
 
-    // L'instance de Vue principale doit être retourné et un
+    // L'instance de Vue principale doit être retournée ainsi qu'un
     // nœud racine avec l'id « app », ainsi la version côté client
     // peut prendre le relais une fois chargée.
     return new Vue({
@@ -147,7 +147,7 @@ Maintenant que nous avons le code de notre application, mettons tout cela dans u
 </html>
 ```
 
-À supposer que le dossier `assets` contienne le fichier `app.js` créer précédemment, et que le fichier `vue.js` contiennent Vue, nous devrions avoir une application monopage fonctionnelle !
+À supposer que le dossier `assets` contienne le fichier `app.js` créer précédemment, et que le fichier `vue.js` contienne Vue, nous devrions avoir une application monopage fonctionnelle !
 
 Maintenant, pour que cela fonctionne avec du rendu côté serveur, il y a juste une étape de plus — le serveur web :
 
@@ -167,7 +167,7 @@ var layout = fs.readFileSync('./index.html', 'utf8')
 // Créer un générateur de rendu
 var renderer = require('vue-server-renderer').createRenderer()
 
-// Créer un serveur express
+// Créer un serveur Express.js
 var express = require('express')
 var server = express()
 
@@ -206,7 +206,7 @@ server.listen(5000, function (error) {
 })
 ```
 
-Et c'est tout ! Vous trouverez ici l'[application complète](https://github.com/chrisvfritz/vue-ssr-demo-simple), au cas ou vous souhaiteriez en faire un clone et de faire plus de tests. Une fois que vous l'aurez fait tourner dans votre environnement local, vous pourrez vérifier que le rendu côté serveur fonctionne réellement en faisant un clique droit sur la page et en sélectionnant « Afficher la source » (ou quelque chose d'équivalent). Vous devriez voir cela dans le corps de la réponse :
+Et c'est tout ! Vous trouverez ici l'[application complète](https://github.com/chrisvfritz/vue-ssr-demo-simple), au cas ou vous souhaiteriez en faire un clone et faire plus de tests. Une fois que vous l'aurez fait tourner dans votre environnement local, vous pourrez vérifier que le rendu côté serveur fonctionne réellement en faisant un clique droit sur la page et en sélectionnant « Afficher la source » (ou quelque chose d'équivalent). Vous devriez voir cela dans le corps de la réponse :
 
 ``` html
 <div id="app" server-rendered="true">Vous êtes ici depuis {{ counter }} seconde(s).</div>
@@ -220,9 +220,9 @@ au lieu de :
 
 ## Réponse envoyée par flux
 
-Vue supporte également le rendu sous forme de __flux__ (__stream__), ce qui est préférable pour les serveurs web supportant l'envoi par flux. Cela permet au HTML d'être écrit dans la réponse _aussitôt que généré_, au lieu de tout fournir à la fin de la réponse. Le résultat des requêtes est ainsi ré-envoyé plus vite, sans délais !
+Vue supporte également le rendu sous forme de __flux__ (__stream__), ce qui est préférable pour les serveurs web supportant l'envoi par flux. Cela permet au HTML d'être écrit dans la réponse _aussitôt que générée_, au lieu de tout fournir à la fin de la réponse. Le résultat des requêtes est ainsi ré-envoyé plus vite, sans délais !
 
-Pour adapter le code de notre précédente application pour une réponse sous forme de flux, nous pouvons simplement remplacé la structure `server.get('*', ...)` par le code suivant :
+Pour adapter le code de notre précédente application pour une réponse sous forme de flux, nous pouvons simplement remplacer la structure `server.get('*', ...)` par le code suivant :
 
 ``` js
 // Fragmenter la présentation en trois parties distinctes
@@ -244,13 +244,13 @@ server.get('*', function (request, response) {
     response.write(chunk)
   })
 
-  // Si une erreur c'est produite pendant le rendu...
+  // Quand le rendu de tous les morceaux a été fait...
   stream.on('end', function () {
     // Écrire la partie après-application de notre réponse HTML
     response.end(postAppHTML)
   })
 
-  // If an error occurs while rendering...
+  // Si une erreur c'est produite pendant le rendu...
   stream.on('error', function (error) {
     // Logguer l'erreur dans la console
     console.error(error)
@@ -264,15 +264,15 @@ server.get('*', function (request, response) {
 
 Comme vous pouvez le voir, ce n'est pas plus compliqué que la version précédente, même si le concepte de réponse sous forme de flux est nouveau pour vous. Nous avons juste :
 
-1. Initialiser un flux
+1. Initialisé un flux
 2. Écrit le HTML à placer avant la réponse de l'application
 3. Écrit le HTML de l'application chaque fois que celui-ci est disponible
-4. Écrit le HTML à placer après la réponse de l'application et finir l'envoi
+4. Écrit le HTML à placer après la réponse de l'application et fini l'envoi
 5. Prendre en charge les éventuelles erreurs
 
 ## Mise en cache de composant
 
-Le SSR de Vue est vraiment rapide par défaut, mais il est possible d'améliorer les performances du rendu des composants. Cela est considéré comme une fonctionnalité avancé cependant, car mettre en cache le mauvais composant (ou le bon composant avec la mauvaise clé) peut mener à de mauvais rendu d'application. Spécifiquement :
+Le SSR de Vue est vraiment rapide par défaut, mais il est possible d'améliorer les performances du rendu des composants. Cela est considéré comme une fonctionnalité avancée cependant, car mettre en cache le mauvais composant (ou le bon composant avec la mauvaise clé) peut mener à de mauvais rendu d'application. Spécifiquement :
 
 <p class="tip">Vous ne devriez pas mettre en cache un composant contenant des composants enfants qui sont relié à l'état global (ex. : le store de vuex). Si vous le faites, ces composants enfants (et en fait, l'ensemble de leurs propre composants enfants) seront mis en cache. Soyez donc particulièrement attentif avec les composants qui accepte des slots/enfants.</p>
 
@@ -296,7 +296,7 @@ Cela va mettre en cache le résultat pour les 1000 prochains rendus. Pour d'autr
 Maintenant pour les composants, que vous voulez mettre en cache, vous devez les fournir avec :
 
 - un `name` unique
-- une fonction `serverCacheKey`, retournant une clé unique limité à la portée du composant
+- une fonction `serverCacheKey`, retournant une clé unique limitée à la portée du composant
 
 Par exemple :
 
@@ -313,19 +313,19 @@ Vue.component({
 
 ### Les composants idéales pour de la mise en cache
 
-N'importe quel composant « pure » peut être mis en cache sans problème — c'est à dire n'importe quel composant qui assure que le HTML généré fournit toujours les mêmes props. Des exemple commun de cela sont :
+N'importe quel composant « pure » peut être mis en cache sans problème — c'est à dire n'importe quel composant qui assure que le HTML généré fournit toujours les mêmes props. Des exemples commun de cela sont :
 
-- Des composants statiques (c-à-d qu'il génère toujours le même HTML, aussie la fonction `serverCacheKey` à juste à retourner `true`)
+- Des composants statiques (c-à-d qu'il génère toujours le même HTML, aussi la fonction `serverCacheKey` à juste à retourner `true`)
 - Des composants de liste d'élément (dans de large liste, les mettre en cache peut significativement améliorer les performances)
 - Des composants d'interface utilisateur générique (c-à-d les boutons, alertes, etc — du moins ceux qui accepte leur contenu à travers les props plutôt que les slots/enfants)
 
 ## Processus de build, routage, et hydratation d'état de Vuex
 
-Maintenant, vous devriez comprendre le concept fondamental derrière le rendu côté serveur. Cependant, introduire un processus de build, du routage et vuex introduit également sont lots de considération propre.
+Maintenant, vous devriez comprendre le concept fondamental derrière le rendu côté serveur. Cependant, introduire un processus de build, du routage et vuex introduit également son lot de considérations propres.
 
-Pour réellement maîtriser le rendu côté serveur dans des applications complexe, nous vous recommandons de plonger plus particulièrement les ressources suivantes :
+Pour réellement maîtriser le rendu côté serveur dans des applications complexes, nous vous recommandons de vous intéresser plus particulièrement aux ressources suivantes :
 
-- [documentations de vue-server-renderer](https://www.npmjs.com/package/vue-server-renderer#api): plus de détails sur les sujets que nous avons abordés ici, ainsi qu'une documentation de sujets plus avancés, comme [prévenir la contamination entre les requêtes](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) et [l'ajout d'un serveur de build séparé](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
+- [documentations de vue-server-renderer](https://www.npmjs.com/package/vue-server-renderer#api) : plus de détails sur les sujets que nous avons abordés ici, ainsi qu'une documentation de sujets plus avancés, comme [prévenir la contamination entre les requêtes](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) et [l'ajout d'un serveur de build séparé](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
 - [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): l'exemple définitif intégrant toutes les bibliothèques et concepts majeurs de Vue dans une application unique.
 
 ## Nuxt.js
