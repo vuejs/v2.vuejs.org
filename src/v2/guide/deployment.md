@@ -10,7 +10,7 @@ order: 20
 
 ### Webpack
 
-If you are using the standalone build, i.e. directly including Vue via a script tag without a build tool, make sure to use the minified version (`vue.min.js`) for production.
+If you are using the standalone build, i.e. directly including Vue via a script tag without a build tool, make sure to use the minified version (`vue.min.js`) for production. Both versions can be found in the [Installation guide](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include).
 
 ### With Build Tools
 
