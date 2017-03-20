@@ -642,7 +642,7 @@ if (version === 2) {
     An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
-    
+
     <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
   - **See also:**
@@ -1771,6 +1771,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
+
+  <!-- pass down parent props in common with a child component -->
+  <child-component v-bind.prop="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
