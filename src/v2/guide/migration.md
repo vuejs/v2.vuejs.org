@@ -175,7 +175,7 @@ mounted: function () {
 
 ### `v-for` 배열의 전달인자 순서 <sup>변경</sup>
 
-`index` 를 포함 할 때, 배열의 인수 순서는 `(index, value)` 이었습니다. `forEach` 나 `map` 과 같은 JavaScript의 네이티브 배열 메소드와의 일관성을 유지하기 위해서 `(value, index)` 가 되었습니다.
+`index`를 포함 할 때, 배열의 인수 순서는 `(index, value)` 이었습니다. `forEach` 나 `map` 과 같은 JavaScript의 네이티브 배열 메소드와의 일관성을 유지하기 위해서 `(value, index)` 가 되었습니다.
 
 {% raw %}
 <div class="upgrade-path">
@@ -637,7 +637,7 @@ strings.map(function (str) {
 
 ### `v-el` 와 `v-ref` <sup>대체</sup>
 
-단순화를 위해,`v-el` 과 `v-ref`는 `ref` 속성으로 병합되었습니다. 이 속성은 `$refs` 를 통해 컴포넌트 인스턴스에서 접근 가능합니다. 이는 `v-el:my-element`가 `ref="myElement"`가되고 `v-ref:my-component`가 `ref="myComponent"`가된다는 것을 의미합니다. 일반 요소에서 사용될 때,`ref`는 DOM 요소가 될 것이고, 컴포넌트에서 사용될 때,`ref`는 컴포넌트 인스턴스가 될 것입니다.
+단순화를 위해,`v-el` 과 `v-ref`는 `ref` 속성으로 병합되었습니다. 이 속성은 `$refs`를 통해 컴포넌트 인스턴스에서 접근 가능합니다. 이는 `v-el:my-element`가 `ref="myElement"`가되고 `v-ref:my-component`가 `ref="myComponent"`가된다는 것을 의미합니다. 일반 요소에서 사용될 때,`ref`는 DOM 요소가 될 것이고, 컴포넌트에서 사용될 때,`ref`는 컴포넌트 인스턴스가 될 것입니다.
 
 `v-ref`는 더 이상 디렉티브가 아니며 특별한 속성이기 때문에 동적으로 정의 될 수도 있습니다. 이것은 `v-for`와 함께 사용할 때 특히 유용합니다.
 
@@ -811,7 +811,7 @@ Todos
 var eventHub = new Vue()
 ```
 
-그런 다음 우리의 컴포넌트에서 `$emit`, `$on`, `$off` 를 사용하여 이벤트를 내보내고, 이벤트를 수신하고, 이벤트 리스너를 각각 정리할 수 있습니다.
+그런 다음 우리의 컴포넌트에서 `$emit`, `$on`, `$off`를 사용하여 이벤트를 내보내고, 이벤트를 수신하고, 이벤트 리스너를 각각 정리할 수 있습니다.
 
 ``` js
 // NewTodoInput
@@ -1092,7 +1092,7 @@ function pluralizeKnife (count) {
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-대부분 잘 작동하지만 지연된 상태 업데이트로 인해 이상한 동작이 발생할 수 있습니다. 예를 들어,`Result` 탭을 클릭하고 그 입력 중 하나에 `9.999` 를 입력하십시오. 입력 값이 사라지면 값은 `$ 10.00`으로 업데이트됩니다. 그러나 계산 된 합계를 보면 `9.999`가 데이터에 저장 되어 있는 것을 볼 수 있습니다. 사용자가 보는 현실의 버전이 동기화되지 않았습니다!
+대부분 잘 작동하지만 지연된 상태 업데이트로 인해 이상한 동작이 발생할 수 있습니다. 예를 들어,`Result` 탭을 클릭하고 그 입력 중 하나에 `9.999`를 입력하십시오. 입력 값이 사라지면 값은 `$ 10.00`으로 업데이트됩니다. 그러나 계산 된 합계를 보면 `9.999`가 데이터에 저장 되어 있는 것을 볼 수 있습니다. 사용자가 보는 현실의 버전이 동기화되지 않았습니다!
 Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저이 필터를 새로운 `<currency-input>` 컴포넌트로 둘러 쌉시다.
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/943zfbsh/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -1578,7 +1578,7 @@ el 옵션은 `Vue.extend` 에서 더 이상 사용할 수 없습니다. 인스�
 
 앱의 성능이 중요한 부분에서 부분적으로 사용하는 경우 [함수형 컴포넌트](render-function.html#Functional-Components)로 업그레이드 해야 합니다. 그것들은 (`.vue` 파일 대신에) 일반 JS/JSX 파일에 있어야하며 파셜과 마찬가지로 상태가없고 인스턴스도 없습니다. 이것은 렌더링을 매우 빠르게 만듭니다.
 
-파셜에 비해 함수형 컴포넌트의 이점은 JavaScript의 모든 기능에 대한 액세스 권한을 부여하기 때문에 훨씬 더 동적 일 수 있다는 것입니다. 그러나 이에는 따르는 비용이 있습니다. 이전에 렌더링 기능이있는 컴포넌트 를 사용한 적이 없다면 배우기까지 조금 더 시간이 걸릴 수 있습니다.
+파셜에 비해 함수형 컴포넌트의 이점은 JavaScript의 모든 기능에 대한 액세스 권한을 부여하기 때문에 훨씬 더 동적 일 수 있다는 것입니다. 그러나 이에는 따르는 비용이 있습니다. 이전에 렌더링 기능이있는 컴포넌트를 사용한 적이 없다면 배우기까지 조금 더 시간이 걸릴 수 있습니다.
 
 {% raw %}
 <div class="upgrade-path">

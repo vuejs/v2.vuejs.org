@@ -326,7 +326,7 @@ export default {
 
 ### `router.go` <sup>변경</sup>
 
-[HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API)와의 일관성을 위해 `router.go`는 [뒤로 / 앞으로 탐색](https://router.vuejs.org/en/essentials/navigation.html#routergon)에만 사용되며 [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) 는 특정 페이지로 이동하는 데 사용됩니다.
+[HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API)와의 일관성을 위해 `router.go`는 [뒤로 / 앞으로 탐색](https://router.vuejs.org/en/essentials/navigation.html#routergon)에만 사용되며 [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation)는 특정 페이지로 이동하는 데 사용됩니다.
 
 {% raw %}
 <div class="upgrade-path">
