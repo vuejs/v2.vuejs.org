@@ -33,7 +33,7 @@ Vue 2.2에서 ES 모듈로 내보내진 dist파일을 webpack 2를 기본적으�
     "lib": [
       "dom",
       "es5",
-      "es2015.Promise"
+      "es2015.promise"
     ]
   }
 }
