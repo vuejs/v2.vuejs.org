@@ -419,7 +419,7 @@ JavaScript의 제한으로 인해 Vue는 배열에 대해 다음과 같은 변�
 Vue.set(example1.items, indexOfItem, newValue)
 ```
 ``` js
-// Array.prototype.splice`
+// Array.prototype.splice
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
