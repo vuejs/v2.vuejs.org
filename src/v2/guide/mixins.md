@@ -31,8 +31,7 @@ var Component = Vue.extend({
 var component = new Component() // -> "hello from mixin!"
 ```
 
-## 옵션 병함
-
+## 옵션 병합
 mixin과 컴포넌트 자체에 중첩 옵션이 포함되어 있으면 적절한 전략을 사용하여 "병합"됩니다. 예를 들어, 같은 이름의 훅 함수가 배열에 병합되어 모든 함수가 호출됩니다. 또한 믹스 인 훅은 컴포넌트 자체의 훅 **이 전에** 호출됩니다.
 
 ``` js
