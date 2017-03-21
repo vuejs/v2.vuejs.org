@@ -416,7 +416,7 @@ To overcome caveat 1, both of the following will accomplish the same as `vm.item
 Vue.set(example1.items, indexOfItem, newValue)
 ```
 ``` js
-// Array.prototype.splice`
+// Array.prototype.splice
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
