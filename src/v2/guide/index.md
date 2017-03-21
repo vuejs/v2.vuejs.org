@@ -257,7 +257,7 @@ var app6 = new Vue({
 
 The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
 
-![Component Tree](/images/components.png)
+![Component Tree](../../images/components.png)
 
 In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
 
