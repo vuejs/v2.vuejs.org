@@ -1,4 +1,4 @@
-site_description: "Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces."
+site_description: "Vue.js - Intuitivo, Rápido e Modularizado framework MVVM para construção de interfaces interativas."
 google_analytics: UA-46852172-1
-root_domain: vuejs.org
+root_domain: br.vuejs.org
 vue_version: 2.2.0
