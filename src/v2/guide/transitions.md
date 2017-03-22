@@ -1,9 +1,5 @@
 ---
-<<<<<<< HEAD:src/guide/transitions.md
 title: 'Efeitos de Transição'
-=======
-title: Transition Effects
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/transitions.md
 type: guide
 order: 13
 ---
@@ -96,28 +92,19 @@ Quando um elemento dentro de um componente `transition` é inserido ou removido,
 
 ### Classes de Transição
 
-<<<<<<< HEAD:src/guide/transitions.md
-Existem quatro classes aplicadas para transição de entrada/saída.
+Existem seis classes aplicadas para transição de entrada/saída.
 
 1. `v-enter`: Inicia o estado de entrada. Aplicado antes do elemento ser inserido, removido depois de um frame.
+
 2. `v-enter-active`: Ativa e termina o estado de entrada. Aplicado antes do elemento ser inserido, removido quando a transição/animação termina.
-3. `v-leave`: Ativa o estado de saída. Aplicado quando a transição de saída é acionada, removido depois de um frame.
-4. `v-leave-active`: Ativa e termina o estado de saída. Aplicado quando a transição de saída é acionada, removido quando a transição/animação termina
-=======
-There are six classes applied for enter/leave transitions.
 
-1. `v-enter`: Starting state for enter. Added before element is inserted, removed one frame after element is inserted.
+3. `v-enter-to`: **Disponível apenas nas versões >=2.1.8.** Estado final de entrada. Adicionado no frame após o elemento ser inserido (ao mesmo tempo que `v-enter` é removido), removido quando a transição/animação terminar.
 
-2. `v-enter-active`: Active state for enter. Applied during the entire entering phase. Added before element is inserted, removed when transition/animation finishes. This class can be used to define the duration, delay and easing curve for the entering transition.
+4. `v-leave`: Ativa o estado de saída. Aplicado quando a transição de saída é acionada, removido depois de um frame.
 
-3. `v-enter-to`: **Only available in versions >=2.1.8.** Ending state for enter. Added one frame after element is inserted (at the same time `v-enter` is removed), removed when transition/animation finishes.
+5. `v-leave-active`: Estado ativo de saída. Aplicado duranto toda a fase de saída. Adicionado imediatamente quando a transição de saída é disparada, removido quando a transição/animação termina. Esta clase pode ser usada para definir a duração, atraso e a curva da transição de saída.
 
-4. `v-leave`: Starting state for leave. Added immediately when a leaving transition is triggered, removed after one frame.
-
-5. `v-leave-active`: Active state for leave. Applied during the entire leaving phase. Added immediately when leave transition is triggered, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the leaving transition.
-
-6. `v-leave-to`: **Only available in versions >=2.1.8.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/transitions.md
+6. `v-leave-to`: **Disponível apenas nas versões >=2.1.8.** Estado final da saída. Adicionado um frame após a transição de saída for disparada (ao mesmo tempo que `v-leave` é removido), removida quando a transição/animação termina.
 
 ![Diagrama de Transição](/images/transition.png)
 
@@ -406,29 +393,25 @@ Vue necessida escutar eventos para que consiga saber quando uma transição acab
 
 No entanto, em alguns casos, você poderá usar os dois tipos em um só elemento, como por exemplo, ter uma animação CSS que será acionada pelo Vue, juntamente com um efeito de transição CSS acionado pelo hover. Nestes casos, você terá que declarar explicitamente o tipo de evento que você gostaria que o Vue utilizasse em um atributo `type`, com o valor `animation` ou `transition`.
 
-<<<<<<< HEAD:src/guide/transitions.md
-### JavaScript Hooks ( Ganchos JavaScript )
-=======
-### Explicit Transition Durations
+### Duração Explícita de Transição
 
-> New in 2.2.0
+> Novo em 2.2.0
 
-In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+Na maioria dos casos, Vue consegue automaticamente detectar quando a animação terminou. Por padrão, Vue aguarda pelo primeiro evento `transitionend` ou `animationend` no elemento raiz da transição. Porém, nem sempre isso é o desejado - por exemplo, nós podemos ter uma transição coreografada onde alguns dos elementos filhos tem tempos diferentes em relação ao elemento raiz.
 
-In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+Nestes casos você pode especificar uma duração (em milisegundos) usando a propriedade `duration` no component `<transition>`:
 
 ``` html
 <transition :duration="1000">...</transition>
 ```
 
-You can also specify separate values for enter and leave durations:
+Você também pode especificar valores separados para a duração de entrada e saída:
 
 ``` html
 <transition :duration="{ enter: 500, leave: 800 }">...</transition>
 ```
 
-### JavaScript Hooks
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/transitions.md
+### JavaScript Hooks ( Ganchos JavaScript )
 
 Você também pode definir os JavaScript hooks ( ganchos JavaScript ) nos atributos:
 
@@ -750,7 +733,7 @@ new Vue({
 
 Por estarem transicionando entre o botão "ligar" e o botão "desligar", ambos os botões são renderizados - uma transição sai enquanto a outra transição entra. Este é o comportamento padrão do `<transition>` - entrada e saída acontecem simultaneamente.
 
-Às vezes isso funciona perfeitamente, como quando realizamos transições de itens que são absolutamente posicionados no topo uns dos outros: 
+Às vezes isso funciona perfeitamente, como quando realizamos transições de itens que são absolutamente posicionados no topo uns dos outros:
 
 {% raw %}
 <div id="no-mode-absolute-demo" class="demo">
@@ -1018,15 +1001,9 @@ Então que tal ter uma lista de itens e renderizá-los simultaneamente com o `v-
 Agora vamos analisar um exemplo simples, utilizando as mesmas classes CSS que utilizamos anteriormente para transições de entrada e saída:
 
 ``` html
-<<<<<<< HEAD:src/guide/transitions.md
 <div id="list-demo" class="demo">
   <button v-on:click="add">Adicionar</button>
   <button v-on:click="remove">Remover</button>
-=======
-<div id="list-demo">
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/transitions.md
   <transition-group name="list" tag="p">
     <span v-for="item in items" v-bind:key="item" class="list-item">
       {{ item }}
@@ -1121,7 +1098,7 @@ Existe um problema com este exemplo. Quando você adiciona ou remove um item, aq
 
 O componente `<transition-group>` tem outro truque na manga. Ele não só tem animação de entrada e saída, como também na mudança de posição. O único conceito novo que você precisa saber para usar esta feature é a adição de **da classe `v-move`**, a qual é inserida quando os itens estão mudando suas posições. Assim como outras classes, elas serão prefixadas com o valor fornecido pelo atributo `name` e você poderá especificar manualmente uma classe com o atributo `move-class`.
 
-Esta classe é útil para especificar o tempo de transição ou a suavidade da curva, como você pode ver adiante: 
+Esta classe é útil para especificar o tempo de transição ou a suavidade da curva, como você pode ver adiante:
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
