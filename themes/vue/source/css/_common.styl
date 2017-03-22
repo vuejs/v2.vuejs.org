@@ -112,13 +112,13 @@ a.button
 
 #ad
     width 125px
-    text-align center
+    // text-align center
     position fixed
     z-index 99
     bottom 10px
     right 10px
     padding 10px
-    background-color rgba(255, 255, 255, .65)
+    background-color #fff
     border-radius 3px
     font-size 13px
     a
@@ -131,14 +131,14 @@ a.button
         margin-bottom 5px
     img
         width 125px
-    // .carbon-img, .carbon-text
-    //     display block
-    //     margin-bottom 6px
-    //     font-weight normal
-    //     color $medium
-    // .carbon-poweredby
-    //     color #aaa
-    //     font-weight normal
+    .carbon-img, .carbon-text
+        display block
+        margin-bottom 6px
+        font-weight normal
+        color $medium
+    .carbon-poweredby
+        color #aaa
+        font-weight normal
 
 #nav
     .nav-link
@@ -150,26 +150,47 @@ a.button
         &:hover
             .nav-dropdown
                 display block
+        &.language
+            margin-left 20px
+        .arrow
+            pointer-events none
     .nav-dropdown
         display none
+        box-sizing border-box
+        max-height "calc(100vh - %s)" % $header-height
+        overflow-y scroll
         position absolute
         top 100%
-        left 0
+        right -15px
         background-color #fff
         padding 10px 0
         border 1px solid #ddd
         border-bottom-color #ccc
         text-align left
         border-radius 4px
+        white-space nowrap
         li
             line-height 1.8em
             margin 0
             display block
+            > ul
+                padding-left: 0
+            &:first-child
+                h4
+                    margin-top 0
+                    padding-top: 0
+                    border-top: 0
+        a, h4
+            padding 0 24px 0 20px
+        h4
+            // text-transform uppercase
+            margin .45em 0 0
+            padding-top: .45em
+            border-top: 1px solid #eee
         a
-            color $light
+            color lighten($dark, 10%)
             font-size .9em
             display block
-            padding 0 30px 0 20px
             &:hover
                 color $green
     .arrow
@@ -183,34 +204,3 @@ a.button
         border-left 4px solid transparent
         border-right 4px solid transparent
         border-top 5px solid #ccc
-
-#donate
-    height 24px
-    .wrapper
-        vertical-align top
-        height 20px
-        border 1px solid #d4d4d4
-        display inline-block
-        box-sizing border-box
-        line-height 16px
-        border-radius 3px
-        cursor pointer
-        background-image linear-gradient(to bottom,#fcfcfc 0,#eee 100%)
-        position relative
-        width 72px
-        &:hover
-            border-color #ccc
-            background-image linear-gradient(to bottom,#eee 0,#ddd 100%)
-        img
-            width 14px
-            height 14px
-            position absolute
-            top 2px
-            left 5px
-        a
-            font 700 11px/14px 'Helvetica Neue', Helvetica, Arial, sans-serif
-            color #333333
-            text-shadow 0 1px 0 #fff
-            position absolute
-            top 2px
-            left 24px

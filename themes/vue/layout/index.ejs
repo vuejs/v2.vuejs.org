@@ -7,14 +7,18 @@
 <div id="hero">
   <div class="inner">
     <div class="left">
-      <img class="hero-logo" src="/images/logo.png">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
     </div><div class="right">
       <h2 class="vue">Vue.js</h2>
       <h1>
         O Framework Javascript<br>Progressivo
       </h1>
       <p>
+<<<<<<< HEAD
         <a class="button" href="/guide/">COMEÇAR</a>
+=======
+        <a class="button" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
+>>>>>>> refs/remotes/vuejs/master
         <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
       </p>
     </div>
@@ -36,9 +40,15 @@
     <div class="point">
       <h2>Performático</h2>
       <p>
+<<<<<<< HEAD
         16kb min+gzip Runtime<br>
         Virtual DOM incrível e rápido<br>
         Mínimo esforço para otimizações
+=======
+        18kb min+gzip Runtime<br>
+        Blazing Fast Virtual DOM<br>
+        Minimal Optimization Efforts
+>>>>>>> refs/remotes/vuejs/master
       </p>
     </div>
   </div>
@@ -49,7 +59,11 @@
     <h3>ORGULHOSAMENTE MANTIDO POR</h3>
     <%- partial('partials/sponsors') %>
     <br>
+<<<<<<< HEAD
     <a class="become-sponsor button white" href="/support-vuejs/">Seja um Patrocinador</a>
+=======
+    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">Become a Backer</a>
+>>>>>>> refs/remotes/vuejs/master
   </div>
 </div>
 
@@ -58,8 +72,6 @@
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You
 </div>
 
-<script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-<script src="/js/common.js"></script>
 <script>
 var topScrolled = false
 window.addEventListener('scroll', function () {

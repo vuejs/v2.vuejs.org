@@ -2,20 +2,43 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><%- page.title ? page.title + ' - ' : '' %>vue.js</title>
+        <title><%- page.title ? page.title + ' — ' : '' %>Vue.js</title>
         <meta charset="utf-8">
-        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="description" content="<%- theme.site_description %>">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
+        <meta property="og:description" content="<%- theme.site_description %>">
+        <meta property="og:image" content="https://<%- theme.root_domain %>/<%- url_for("/images/logo.png") %>">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
+        <meta name="twitter:description" content="<%- theme.site_description %>">
+        <meta name="twitter:image" content="https://<%- theme.root_domain %>/images/logo.png">
+
+        <link rel="icon" href="<%- url_for("/images/logo.png") %>" type="image/x-icon">
+
         <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
-        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
-        <link rel="icon" href="/images/logo.png" type="image/x-icon">
-        <script>
-            window.PAGE_TYPE = "<%- page.type %>"
-        </script>
+
+        <!-- main page styles -->
         <%- css(isIndex ? 'css/index' : 'css/page') %>
-        <%- partial('partials/ga') %>
-        <script src="/js/vue.js"></script>
+
+        <!-- this needs to be loaded before guide's inline scripts -->
+        <script src="<%- url_for("/js/vue.js") %>"></script>
+        <script>window.PAGE_TYPE = "<%- page.type %>"</script>
+
+        <!-- ga -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', '<%- theme.google_analytics %>', '<%- theme.root_domain %>');
+          ga('send', 'pageview');
+        </script>
     </head>
     <body class="<%- isIndex ? '' : 'docs' -%>">
         <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
@@ -31,18 +54,44 @@
                     <%- body %>
                 <% } %>
             </div>
-            <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-            <script src="/js/smooth-scroll.min.js"></script>
-            <script src="/js/common.js"></script>
+            <script src="<%- url_for("/js/smooth-scroll.min.js") %>"></script>
         <% } else { %>
             <%- body %>
         <% } %>
 
+        <!-- main custom script for sidebars, version selects etc. -->        
+        <script src="<%- url_for("/js/css.escape.js") %>"></script>
+        <script src="<%- url_for("/js/common.js") %>"></script>
+
+        <!-- search -->
+        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+        <%- css('css/search') %>
+        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+        <script>
+        [
+          '#search-query-nav',
+          '#search-query-sidebar'
+        ].forEach(function (selector) {
+          if (!document.querySelector(selector)) return
+          // search index defaults to v2
+          var match = window.location.pathname.match(/^\/(v\d+)/)
+          var version = match ? match[1] : 'v2'
+          docsearch({
+            appId: 'BH4D9OD16A',
+            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+            indexName: 'vuejs',
+            inputSelector: selector,
+            algoliaOptions: { facetFilters: ["version:" + version] }
+          })
+        })
+        </script>
+
+        <!-- fastclick -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                FastClick.attach(document.body);
-            }, false);
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body)
+        }, false)
         </script>
     </body>
 </html>
