@@ -107,12 +107,20 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
+    // double quotation mark with kebab-case
+    "media-play-pause": 179,
+    // camelCase does not work
     mediaPlayPause: 179
   }
   ```
-
+  
+  ```js
+  <input type="text" @keyup.media-play-pause="method">
+  ```
+  
   Define custom key alias(es) for v-on.
-
+  
+  
 ## Global API
 
 <h3 id="Vue-extend">Vue.extend( options )</h3>
