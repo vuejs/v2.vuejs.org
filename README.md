@@ -67,12 +67,13 @@ Durante a tradução, se sentir necessidade de sugerir novos para alguma dessas 
 A tradução atualmente é um trabalho em progresso. Observar que todos os itens já marcados como traduzidos ainda carecem de revisão.
 
 **Website**
-- [x] Entry Page (@danielschmitz)
+- [x] Tela Principal (@danielschmitz, @ErickPetru)
+- [x] Menus e barras (@ErickPetru)
 
 **Guide**
-- [x] Installation (@danielschmitz)
-- [x] Introduction (@ErickPetru)
-- [x] The Vue Instance (@danielschmitz)
+- [ ] Installation (@danielschmitz, @ErickPetru)
+- [ ] Introduction (@ErickPetru)
+- [ ] The Vue Instance (@danielschmitz, @ErickPetru)
 - [x] Template Syntax (@vitorarjol)
 - [x] Computed Properties and Watchers (@danielschmitz)
 - [x] Class and Style Bindings (@gidenilson)
