@@ -43,11 +43,7 @@ type: api
 
   A estratégia de mesclagem recebe o valor da opção definida no pai e nas instâncias filhas como o primeiro e segundo argumento, repectivamente. O contexto da instância Vue é passado como o terceiro argumento.
 
-<<<<<<< HEAD:src/api/index.md
-- **Veja também**: [Estratégias de Mesclagem de Opções Customizadas](/guide/mixins.html#Estrategias-de-Mesclagem-de-Opcoes-Customizadas)
-=======
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Veja também**: [Estratégias de Mesclagem de Opções Customizadas](../guide/mixins.html#Estrategias-de-Mesclagem-de-Opcoes-Customizadas)
 
 ### devtools
 
