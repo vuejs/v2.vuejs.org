@@ -48,7 +48,7 @@ var example1 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-1')
+      smoothScroll.animateScroll(document.querySelector('#example-1'))
     }
   }
 })
@@ -97,7 +97,7 @@ var example2 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-2')
+      smoothScroll.animateScroll(document.querySelector('#example-2'))
     }
   }
 })
@@ -248,7 +248,8 @@ However, this won't automatically pass any data to the component, because compon
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
-  v-bind:index="index">
+  v-bind:index="index"
+  v-bind:key="item.id">
 </my-component>
 ```
 
@@ -267,6 +268,7 @@ Aqui está um exemplo completo com uma lista de tarefas simples:
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -306,7 +308,7 @@ new Vue({
 {% raw %}
 <div id="todo-list-example" class="demo">
   <input
-    v-model="newTodoText" v
+    v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
     placeholder="O que precisa ser feito?"
   >
@@ -314,6 +316,7 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -411,7 +414,11 @@ Você pode abrir o console e brincar com o vetor `items` dos exemplos anteriores
 
 ### Substituindo um Array
 
+<<<<<<< HEAD
 Métodos de mutação, como o nome sugere, modificam o Array original que os chamou. Em comparação, há também métodos que não causam mutação, como `filter()`, `concat()` e `slice()`, os quais não modificam o Array original, **sempre retornam um novo Array**. Ao trabalhar com estes métodos, você pode simplesmente substituir o Array antigo pelo novo:
+=======
+Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can just replace the old array with the new one:
+>>>>>>> refs/remotes/vuejs/master
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -467,7 +474,11 @@ computed: {
 }
 ```
 
+<<<<<<< HEAD
 Alternativamente, também é possível simplesmente utilizar um método em casos onde propriedades computadas não são viáveis (por exemplo, dentro de um laços `v-for`):
+=======
+In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can just use a method:
+>>>>>>> refs/remotes/vuejs/master
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>

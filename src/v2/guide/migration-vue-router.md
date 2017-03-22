@@ -264,7 +264,28 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
+<<<<<<< HEAD
 ## Identificação das Rotas
+=======
+### [] Syntax for Arrays in Queries <sup>removed</sup>
+
+When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
+
+```javascript
+export default {
+  // ...
+  computed: {
+    // users will always be an array
+    users () {
+      const users = this.$route.query.users
+      return Array.isArray(users) ? users : [users]
+    }
+  }
+}
+```
+
+## Route Matching
+>>>>>>> refs/remotes/vuejs/master
 
 Agora a identificação das rotas utiliza [path-to-regexp](https://github.com/pillarjs/path-to-regexp) por baixo dos panos, tornando-a muito mais flexível do que anteriormente.
 

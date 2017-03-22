@@ -21,7 +21,7 @@ Detailed release notes for each version are available on [GitHub](https://github
 
 Simply download and include with a script tag. `Vue` will be registered as a global variable.
 
-<p class="tip">Don't use the minified version during development. You will miss out all the nice warnings for common mistakes!</p>
+<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
 
 <div id="downloads">
 <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>

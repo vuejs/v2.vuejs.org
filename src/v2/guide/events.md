@@ -156,7 +156,13 @@ new Vue({
 Às vezes, também precisamos acessar o evento original do DOM  em um manipulador com declaração inline. Você pode passá-lo em um método usando a variável especial `$event`:
 
 ``` html
+<<<<<<< HEAD
 <button v-on:click="warn('Form cannot be submitted yet.', $event)">Enviar</button>
+=======
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
+>>>>>>> refs/remotes/vuejs/master
 ```
 
 ``` js

@@ -323,6 +323,7 @@ render: function (createElement) {
     on: {
       input: function (event) {
         self.value = event.target.value
+        self.$emit('input', event.target.value)
       }
     }
   })
@@ -501,7 +502,13 @@ Tudo o que um componente funcional necessita é passado através de `context`, o
 
 Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com link iria requerer somente acrescentar o parâmetro `context`, e atualizar `this.$slots.default` para `context.children`, e por fim atualizar `this.level` para `context.props.level`.
 
+<<<<<<< HEAD
 Como componentes funcionais são apenas funções, eles são muito mais leves para renderizar. Eles também são muito úteis como componentes *wrapper*. Por exemplo, quando você precisa:
+=======
+Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
+
+They're also very useful as wrapper components.  For example, when you need to:
+>>>>>>> refs/remotes/vuejs/master
 
 - Programaticamente escolher um entre vários outros componentes para delegar
 - Manipular *children*, *props*, ou *data* antes de passá-los a componentes filhos

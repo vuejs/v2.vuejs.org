@@ -624,11 +624,19 @@ if (version === 2) {
 
   <p class="tip">O elemento fornecido serve meramente como um ponto de montagem. Diferentemente do Vue 1.x, o elemento montado será substituído pelo Vue-generated DOM em todos os casos. Portanto, não é recomendado montar a instância raiz em `<html>` ou `<body>`.</p> 
 
+<<<<<<< HEAD
 <<<<<<< HEAD:src/api/index.md
 - **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
 =======
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 >>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+=======
+  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+
+- **See also:**
+  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+  - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
+>>>>>>> refs/remotes/vuejs/master
 
 ### template
 
@@ -647,10 +655,15 @@ if (version === 2) {
   - [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
   - [Distribuição de Conteúdo](/guide/components.html#Content-Distribution-with-Slots)
 
+<<<<<<< HEAD
 ### render
 
   - **Tipo:** `Function`
 =======
+=======
+  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+
+>>>>>>> refs/remotes/vuejs/master
 - **See also:**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Content Distribution](../guide/components.html#Content-Distribution-with-Slots)
@@ -664,7 +677,13 @@ if (version === 2) {
 
     Uma alternativa aos string templates que lhe permite aproveitar o completo poder pragmático do JavaScript. A função render recebe um método `createElement` como seu primeiro argumento usado para criar `VNode`s.
 
+<<<<<<< HEAD
     Se o componente é um componente funcional, a função render também recebe um argumento extra `context`, que fornece acesso à dado contextual uma vez que componentes funcionais são instance-less.
+=======
+    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    
+    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+>>>>>>> refs/remotes/vuejs/master
 
 <<<<<<< HEAD:src/api/index.md
   - **Ver também:**
@@ -1017,6 +1036,34 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
   const Child = {
     inject: { s },
     // ...
+  }
+  ```
+
+  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+
+  Using an injected value as the default for a prop:
+  ```js
+  const Child = {
+    inject: ['foo'],
+    props: {
+      bar: {
+        default () {
+          return this.foo
+        }
+      }
+    }
+  }
+  ```
+
+  Using an injected value as data entry:
+  ```js
+  const Child = {
+    inject: ['foo'],
+    data () {
+      return {
+        bar: this.foo
+      }
+    }
   }
   ```
 

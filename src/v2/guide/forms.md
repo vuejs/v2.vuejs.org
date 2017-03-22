@@ -8,7 +8,11 @@ order: 10
 
 Você pode usar a diretiva `v-model` para criar two-way data bindings em elementos input e textarea de formulários. Ele automaticamente busca a maneira correta de atualizar o elemento com base no tipo de entrada. Embora um pouco mágico, `v-model` é essencialmente syntax sugar para atualização de dados com eventos de entrada do usuário, além de cuidados especiais para alguns casos do edge.
 
+<<<<<<< HEAD
 <p class="tip">`v-model` não se importa com o valor inicial fornecido para um input ou um textarea. Ele sempre vai tratar os dados de instância do Vue como a fonte verdadeira.</p>
+=======
+<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
+>>>>>>> refs/remotes/vuejs/master
 
 <<<<<<< HEAD:src/guide/forms.md
 ### Texto
@@ -176,15 +180,25 @@ Select único:
 
 ``` html
 <select v-model="selected">
+  <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
 <span>Selecionado: {{ selected }}</span>
 ```
+``` js
+new Vue({
+  el: '...',
+  data: {
+    selected: ''
+  }
+})
+```
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
+    <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -195,13 +209,19 @@ Select único:
 new Vue({
   el: '#example-5',
   data: {
-    selected: null
+    selected: ''
   }
 })
 </script>
 {% endraw %}
 
+<<<<<<< HEAD
 Select múltiplo (ligados a um array):
+=======
+<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
+
+Multiple select (bound to Array):
+>>>>>>> refs/remotes/vuejs/master
 
 ``` html
 <select v-model="selected" multiple>

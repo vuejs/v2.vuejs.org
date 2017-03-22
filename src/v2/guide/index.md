@@ -68,7 +68,12 @@ Além de interpolação de texto, podemos interligar atributos de elementos:
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
+<<<<<<< HEAD
     Pare o mouse sobre mim e veja a dica interligada dinamicamente!
+=======
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
+>>>>>>> refs/remotes/vuejs/master
   </span>
 </div>
 ```

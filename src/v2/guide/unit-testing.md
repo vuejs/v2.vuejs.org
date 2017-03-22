@@ -75,7 +75,11 @@ describe('MyComponent', () => {
 
 ## Escrevendo Componentes Testáveis
 
+<<<<<<< HEAD
 Várias saídas de renderização dos componentes são determinadas, principalmente, pelas propriedades que recebem. Na verdade, se a saída de renderizaap de um componente depender unicamente das suas propriedades, torna-se bastante simples para testar, semelhante a afirmar o valor de retorno de uma função pura com diferentes argumentos. Tome um exemplo artificial:
+=======
+A lot of component's render output are primarily determined by the props they receive. In fact, if a component's render output solely depends on its props, it becomes quite straightforward to test, similar to asserting the return value of a pure function with different arguments. Take a contrived example:
+>>>>>>> refs/remotes/vuejs/master
 
 ``` html
 <template>
