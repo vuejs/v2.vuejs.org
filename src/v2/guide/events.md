@@ -186,6 +186,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 <form v-on:submit.prevent></form>
 
 <!-- use capture mode when adding the event listener -->
+<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- only trigger handler if event.target is the element itself -->
