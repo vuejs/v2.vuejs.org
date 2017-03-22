@@ -72,7 +72,7 @@ A tradução atualmente é um trabalho em progresso. Observar que todos os itens
 
 **Guide**
 - [ ] Installation (@danielschmitz, @ErickPetru)
-- [ ] Introduction (@ErickPetru)
+- [X] Introduction (@ErickPetru)
 - [ ] The Vue Instance (@danielschmitz, @ErickPetru)
 - [x] Template Syntax (@vitorarjol)
 - [x] Computed Properties and Watchers (@danielschmitz)
