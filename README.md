@@ -1,10 +1,22 @@
-# vuejs.org
+# br.vuejs.org
 
-This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
+Este é o repositório oficial da tradução em português brasileiro do site do framework JavaScript progressivo [Vue.js](http://www.vuejs.org/). Este site é construído com [hexo](http://hexo.io/). O conteúdo é escrito em formato _Markdown_ e está localizado na pasta `src`. _Pull requests_ são bem-vindos!
 
-## Developing
+## Como colaborar?
 
-Start a dev server at `localhost:4000`:
+Para participar traduzindo/revisando os conteúdos, siga os passos:
+
+- Faça um _fork_ deste repositório para sua própria conta;
+- Edite o arquivo `README` registrando seu usuário ao lado da página que deseja traduzir/revisar;
+- Faça um _pull request_ do `README` para que todos aqui sejam notificados e não ocorram trabalhos repetidos em paralelo.
+- Ao finalizar, faça um novo _pull request_ com os arquivos modificados por você.
+- Não se esqueça de fazer um _merge_ para obter as alterações mais recentes antes de recomeçar o processo assumindo outra tradução/revisão.
+
+Caso não consiga terminar por completo algum arquivo, mas queira enviar o trabalho parcial, pedimos que abra uma nova _Issue_ logo após a submissão para informar quais problemas persistem no arquivo enviado.
+
+## Ambiente de desenvolvimento
+
+Após clonar seu repositório, inicie um servidor de desenvolvimento em `localhost:4000`:
 
 ```
 $ npm install -g hexo-cli
@@ -12,44 +24,47 @@ $ npm install
 $ hexo server
 ```
 
-## Como Proceder
+## Considerações para padronização
 
-- Faça um fork deste repo na sua conta
-- Edite o arquivo README.md inserindo o seu login ao lado da página que deseja traduzir
-- Faça um Pull Request do README e você já poderá começar a traduzir a página
-- Para finalizar, faça um Pull Request da página em questão
+A fim de obtermos uma documentação padronizada, seguem recomendações do que fazer:
 
-## Algumas considerações
+- Seguir maiúsculas e minúsculas conforme o texto original em inglês, mantendo a mesma notação sempre que possível;
+- Traduzir os comentários dos códigos-fonte;
+- Traduzir os textos informativos dos códigos-fonte, por exemplo: `<div id="level-1">Nível 1</div>`;
+- Utilizar alguma extensão de apoio para ortografia e gramática durante a tradução, para evitar que erros deste tipo passem;
+- Embora não seja obrigatório, sugere-se marcar em itálico expressões sem tradução que permanecerem no texto (por exemplo, _view layer_);
+- Quando for submeter, **sempre escreva os comentários do _commit_ em INGLÊS**.
 
-- Não traduzir nome de variáveis (código fonte)
-- Pode traduzir textos informativos no código fonte, como por exemplo: `<div id="level-1">Nível 1</div>`
-- Não é preciso colocar expressões em inglês no itálico
-- Faça os comentários do commit em INGLÊS
-- Não faça PRs para o vuejs/master
-- Não faça PULL ou MERGE de vuejs/master, deixe isso para o @danielschmitz
+E algumas recomendações do que não fazer:
 
-### Palavras padronizadas
+- Não traduzir nomes de variáveis, métodos, dados, _ids_, classes etc. nos códigos-fonte.
+- Não faça _pull request_ diretamente para `vuejs/master`, o processo de tradução deve passar por esse repositório.
+- Não faça _pull_ ou _merge_ diretamente de `vuejs/master`, faça apenas deste repositório para seu _fork_ pessoal.
 
+### Traduções padronizadas
+
+Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira:
+
+- *Bundle* = Pacote
+- *Debug* = Depuração
+- *Handling* = Manipulação
+- *Event Listening* = Escuta de Eventos
+- *Render Funcion* = Função de Renderização
 - *Computed Properties* = Propriedades Computadas
-- *Watchers* = Observadores
 - *Single-File Components* = Componentes Single-File
 - *Custom Elements* = Elementos Personalizados
 - *Performance* = Desempenho
+- *Watchers* = Observadores
 
-## Palavras reservadas
+### Termos não traduzidos
 
-Estas palavras podem ser mantidas no inglês
+Atualmente recomenda-se que estes termos sejam mantidos em inglês: _bundle_,_standalone_, _runtime_, _build_, _alias_, _store_, _scaffolding_ _loader_, _bind_, _loop_, true, false, Number, String, _template_,_wrapper_, _hot-reload_, _hook_.
 
-| debug        | bundle           | standalone  | runtime |
-| ------------- |-------------| -----| --------|
-| build      | import | render | alias | router
-| store      | scaffolding  |   loader | bind |
-| loop | for | true | false |
-| number (tipo) | string (tipo) | template | feature |
-| wrapper | hot-reload | hook | ? |
+Durante a tradução, se sentir necessidade de sugerir novos para alguma dessas duas listas, abra uma nova _Issue_ para discussão.
 
+## Situação da tradução
 
-## Translation Status (en to pt_br)
+A tradução atualmente é um trabalho em progresso. Observar que todos os itens já marcados como traduzidos ainda carecem de revisão.
 
 **Website**
 - [x] Entry Page (@danielschmitz)
@@ -113,50 +128,3 @@ Estas palavras podem ser mantidas no inglês
 - [x] Wrapper Component (@vitorarjol)
 - [x] TodoMVC (@vitorarjol)
 - [x] HackerNews Clone (@vitorarjol)
-=======
-## On Translations
-
-Translation for this documentation project are currently mantained in separate repositories forked from this original one.
-
-### Mandarin
-
-* Translation Repo - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
-
-### Japanese
-
-Japanese translation is maintained by [Vue.js japan user group](https://github.com/vuejs-jp)
-
-* Translation Repo - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
-* Primary maintainer - [kazupon](https://github.com/kazupon)
-
-### Russian
-
-Russian translation is maintained by Translation Gang.
-
-* Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
-* Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
-
-### Italian
-
-* Translation Repo - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
-
-### Korean
-
-Korean translation is maintained by [Vue.js Korean User group](https://github.com/vuejs-kr).
-
-* Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
-* Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
-
-### French
-
-French translation is maintained by Vuejs-FR.
-
-* Translation Repo — [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
-
-### Want to help with the translation?
-
-If you feel okay with translating sorta alone, just fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and just go on.
-
-If you are more of a team player, maybe Translation Gang is for you? Then just let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
-
-And thank you in advance ;)
