@@ -79,7 +79,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 ## 实例生命周期
 
-每个 Vue 实例在被创建之前都要经过一系列的初始化过程。例如，实例需要配置数据观测(data observer)、编译模版、挂载实例到 DOM ，然后在数据变化时更新 DOM 。在这个过程中，实例也会调用一些 **生命周期钩子** ，这就给我们提供了执行自定义逻辑的机会。例如，`created` 这个钩子在实例被创建之后被调用：
+每个 Vue 实例在被创建之前都要经过一系列的初始化过程。例如，实例需要配置数据观测(data observer)、编译模版、挂载实例到 DOM ，然后在数据变化时更新 DOM 。在这个过程中，实例也会调用一些 **生命周期钩子** ，这就给我们提供了执行自定义逻辑的机会。例如，[`created`](../api/#created)  这个钩子在实例被创建之后被调用：
 
 ``` js
 var vm = new Vue({
@@ -94,8 +94,7 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-也有一些其它的钩子，在实例生命周期的不同阶段调用，如 `mounted`、 `updated` 、`destroyed` 。钩子的 `this` 指向调用它的 Vue 实例。一些用户可能会问 Vue.js 是否有“控制器”的概念？答案是，没有。组件的自定义逻辑可以分布在这些钩子中。
-
+也有一些其它的钩子，在实例生命周期的不同阶段调用，如  [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed) 。钩子的 `this` 指向调用它的 Vue 实例。一些用户可能会问 Vue.js 是否有“控制器”的概念？答案是，没有。组件的自定义逻辑可以分布在这些钩子中。
 
 ## 生命周期图示
 
@@ -103,7 +102,6 @@ var vm = new Vue({
 
 ![Lifecycle](/images/lifecycle.png)
 
-![](https://cloud.githubusercontent.com/assets/12537013/17702060/f847b38a-63fe-11e6-9c29-38e58d46f036.png)
 
 ***
 

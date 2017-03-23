@@ -4,14 +4,6 @@ type: about
 order: 0
 ---
 
-## 目前任务
-
-- [vue 2.0 - Guide 翻译校对 （进度 / 认领）](https://github.com/vuefe/vuejs.org/issues/77)
-- [vuex 2.0 - 文档翻译 （进度 / 认领）](https://github.com/vuefe/vuejs.org/issues/124)
-- [webpack2 中文文档翻译（进度 / 认领）](https://github.com/vuefe/webpack.js.org/issues/2)
-
-
-
 ## Guide 翻译贡献
 
 ### Essentials  基础

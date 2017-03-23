@@ -7,14 +7,14 @@
 <div id="hero">
   <div class="inner">
     <div class="left">
-      <img class="hero-logo" src="/images/logo.png">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
     </div><div class="right">
-      <h2 class="vue">Vue.js 2.0 中文</h2>
+      <h2 class="vue">Vue.js</h2>
       <h1>
         渐进式<br>JavaScript 框架
       </h1>
       <p>
-        <a class="button" href="/v2/guide/">起步</a>
+        <a class="button" href="<%- url_for("/v2/guide/") %>">起步</a>
         <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
       </p>
     </div>
@@ -38,7 +38,7 @@
     <div class="point">
       <h2>性能</h2>
       <p>
-        17kb min+gzip 运行大小<br>
+        18kb min+gzip 运行大小<br>
         超快虚拟 DOM <br>
         最省心的优化
       </p>
@@ -51,7 +51,7 @@
     <h3>赞助者</h3>
     <%- partial('partials/sponsors') %>
     <br>
-    <a class="become-sponsor button white" href="/support-vuejs/">成为赞助者</a>
+    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">成为赞助者</a>
   </div>
 </div>
 
@@ -71,4 +71,5 @@ window.addEventListener('scroll', function () {
     document.getElementById('mobile-bar').classList.add('top')
   }
 })
+window.location.href = '/v2/guide' // 直接从首页跳转入教程首页
 </script>

@@ -6,7 +6,7 @@ order: 11
 
 ## 什么是组件？
 
-组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。
+组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 js 特性扩展。
 
 ## 使用组件
 
@@ -121,7 +121,7 @@ new Vue({
 
 ### `data` 必须是函数
 
-使用组件时，大多数选项可以被传入到 Vue 构造器中，有一个例外： `data` 必须是函数。 实际上，如果你这么做：
+使用组件时，大多数可以传入到 Vue 构造器中的选项可以在注册组件时使用，有一个例外： `data` 必须是函数。 实际上，如果你这么做：
 
 ``` js
 Vue.component('my-component', {
@@ -267,7 +267,7 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML 特性不区分大小写。当使用非字符串模版时，prop的名字形式会从 camelCase 转为 kebab-case（短横线隔开）：
+HTML 特性是不区分大小写的。所以，当使用非字符串模版时，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名：
 
 ``` js
 Vue.component('child', {
@@ -429,7 +429,7 @@ Vue.component('example', {
 
 `type` 也可以是一个自定义构造器，使用 `instanceof` 检测。
 
-当 prop 验证失败了， Vue 将拒绝在子组件上设置此值，如果使用的是开发版本会抛出一条警告。
+当 prop 验证失败了，如果使用的是开发版本会抛出一条警告。
 
 ## 自定义事件
 
@@ -504,7 +504,7 @@ Vue.component('button-counter', {
       this.counter += 1
       this.$emit('increment')
     }
-  },
+  }
 })
 new Vue({
   el: '#counter-event-example',
@@ -541,16 +541,21 @@ new Vue({
 仅仅是一个语法糖：
 
 ``` html
-<input v-bind:value="something" v-on:input="something = $event.target.value">
+<input
+  v-bind:value="something"
+  v-on:input="something = $event.target.value">
 ```
 
 所以在组件中使用时，它相当于下面的简写：
 
 ``` html
-<input v-bind:value="something" v-on:input="something = arguments[0]">
+<custom-input
+  :value="something"
+  @input="value => { something = value }">
+</custom-input>
 ```
 
-所以要让组件的 `v-model` 生效，它必须：
+所以要让组件的 `v-model` 生效，它应该（这可以在 2.2.0以上版本配置）：
 
 - 接受一个 `value` 属性
 - 在有新的 value 时触发 `input` 事件
@@ -563,16 +568,15 @@ new Vue({
 
 ``` js
 Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
-  ',
+  template: `
+    <span>
+      $
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)">
+    </span>
+  `,
   props: ['value'],
   methods: {
     // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
@@ -599,15 +603,15 @@ Vue.component('currency-input', {
 </div>
 <script>
 Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
+  template: '
+    <span>
+      $
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)"
+      >
+    </span>
   ',
   props: ['value'],
   methods: {
@@ -622,7 +626,10 @@ Vue.component('currency-input', {
     }
   }
 })
-new Vue({ el: '#currency-input-example' })
+new Vue({
+  el: '#currency-input-example',
+  data: { price: '' }
+})
 </script>
 {% endraw %}
 
@@ -630,12 +637,39 @@ new Vue({ el: '#currency-input-example' })
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-这个接口不仅仅可以用来连接组件内部的表单输入，也很容易集成你自己创造的输入类型。想象一下：
+
+### Customizing Component `v-model`
+
+> New in 2.2.0
+
+By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
+
+``` js
+Vue.component('my-checkbox', {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    // this allows using the `value` prop for a different purpose
+    value: String
+  },
+  // ...
+})
+```
 
 ``` html
-<voice-recognizer v-model="question"></voice-recognizer>
-<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
-<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+<my-checkbox v-model="foo" value="some value"></my-checkbox>
+```
+
+The above will be equivalent to:
+
+``` html
+<my-checkbox
+  :checked="foo"
+  @change="val => { foo = val }"
+  value="some value">
+</my-checkbox>
 ```
 
 ### 非父子组件通信
@@ -817,7 +851,7 @@ Vue.component('child-component', {
 
 > 2.1.0 新增
 
-作用域插槽是一种特殊类型的插槽，用作使用一个（能够传递数据到）可重用模板替换已渲染元素。
+作用域插槽是一种特殊类型的插槽，用作（可以传入数据的）可重用模板,而不是已渲染元素。
 
 在子组件中，只需将数据传递到插槽，就像你将 prop 传递给组件一样：
 
@@ -855,7 +889,7 @@ Vue.component('child-component', {
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- 作用域插槽也可以在这里命名 -->
+  <!-- 作用域插槽也可以被命名 -->
   <template slot="item" scope="props">
     <li class="my-fancy-item">{{ props.text }}</li>
   </template>
@@ -869,7 +903,7 @@ Vue.component('child-component', {
   <slot name="item"
     v-for="item in items"
     :text="item.text">
-    <!-- fallback content here -->
+    <!-- 这里是备用内容 -->
   </slot>
 </ul>
 ```
@@ -977,11 +1011,12 @@ var child = parent.$refs.profile
 
 ### 异步组件
 
-在大型应用中，我们可能需要将应用拆分为多个小模块，按需从服务器下载。为了让事情更简单， Vue.js 允许将组件定义为一个工厂函数，动态地解析组件的定义。Vue.js 只在组件需要渲染时触发工厂函数，并且把结果缓存起来，用于后面的再次渲染。例如：
+在大型应用程序中，我们可能需要将应用拆分为更小的模块，并且只在实际需要时才从服务器加载组件。为了让异步按需加载组件这件事变得简单，Vue.js 允许将组件定义为一个异步解析组件定义的工厂函数。Vue.js 只在组件实际需要渲染时触发工厂函数，并将缓存结果，用于将来再次渲染。例如：
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
+    // Pass the component definition to the resolve callback
     resolve({
       template: '<div>I am async!</div>'
     })
@@ -989,27 +1024,37 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-工厂函数接收一个 `resolve` 回调，在收到从服务器下载的组件定义时调用。也可以调用 `reject(reason)` 指示加载失败。这里 `setTimeout` 只是为了演示。怎么获取组件完全由你决定。推荐配合使用 ：[Webpack 的代码分割功能](http://webpack.github.io/docs/code-splitting.html)：
+工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [Webpack 代码分割功能](https://doc.webpack-china.org/guides/code-splitting-require/)来使用异步组件：
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // 这个特殊的 require 语法告诉 webpack
-  // 自动将编译后的代码分割成不同的块，
-  // 这些块将通过 Ajax 请求自动下载。
+  // 这个特殊的 require 语法将指示 webpack 自动将构建的代码，拆分成通过 Ajax 请求加载的 bundle。
   require(['./my-async-component'], resolve)
 })
 ```
 
-你可以使用 Webpack 2 + ES2015 的语法返回一个 `Promise` resolve 函数：
+可以在工厂函数中返回一个 `Promise`，所以使用 Webpack 2 + ES2015 语法后你可以这么做：
 
 ``` js
 Vue.component(
   'async-webpack-example',
-  () => System.import('./my-async-component')
+  () => import('./my-async-component')
 )
 ```
 
-<p class="tip">如果你是 <strong>Browserify</strong> 用户,可能就无法使用异步组件了,它的作者已经[表明](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) Browserify 是不支持异步加载的。如果这个功能对你很重要，请使用 Webpack。</p>
+When using [local registration](components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+
+``` js
+new Vue({
+  // ...
+  components: {
+    'my-component': () => import('./my-async-component')
+  }
+})
+```
+
+
+<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 Webpack 所内置的一流异步支持。</p>
 
 ### 组件命名约定
 
@@ -1079,9 +1124,9 @@ template: '<div><stack-overflow></stack-overflow></div>'
 上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
 
 
-### Circular References Between Components
+### 组件之间的循环引用
 
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+假设您正在构建一个文件目录树，像是 Mac 下的 Finder 或是 Windows 下的文件资源管理器。您可能有一个使用此模板的 `tree-folder` 组件：
 
 ``` html
 <p>
@@ -1090,7 +1135,7 @@ Let's say you're building a file directory tree, like in Finder or File Explorer
 </p>
 ```
 
-Then a `tree-folder-contents` component with this template:
+然后有一个使用此模板的 `tree-folder-contents` 组件：
 
 ``` html
 <ul>
@@ -1101,17 +1146,20 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+仔细观察后，你就会发现：在渲染树中，这些组件实际上都是彼此的后代和祖先，这是矛盾且相悖的！当使用 `Vue.component` 全局注册组件后，这个问题会自动解决。如果以上已经解决你的问题，你可以在这里停止阅读。
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+然而，如果你使用了模块系统（例如通过 Webpack 或 Browserify 等模块化工具），并通过 require/import 导入组件的话，你就会看到一个错误：
+
 
 ```
 Failed to mount component: template or render function not defined.
+无法挂载组件：模板或 render 函数未定义。
 ```
 
-To explain what's happening, I'll call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+为了解释这是如何产生的，我将称我们的组件为 A 和 B。模块系统看到它需要导入 A，但是首先 A 需要导入 B，但是 B 又需要导入 A，A 又需要导入 B，等等，如此形成了一个死循环，模块系统并不知道在先不解析一个组件的情况下，如何解析另一个组件。为了修复这个问题，我们需要给模块系统一个切入点，我们可以告诉它，A 需要导入 B，但是没有必要先解析 B。
 
-In our case, I'll make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+在我们的例子中，将 `tree-folder` 组件做为切入起点。我们知道制造矛盾的是 `tree-folder-contents` 子组件，所以我们在 `tree-folder` 组件的生命周期钩子函数 `beforeCreate` 中去注册 `tree-folder-contents` 组件：
+
 
 ``` js
 beforeCreate: function () {
@@ -1119,7 +1167,7 @@ beforeCreate: function () {
 }
 ```
 
-Problem solved!
+这样问题就解决了！
 
 ### 内联模版
 
@@ -1154,17 +1202,17 @@ Vue.component('hello-world', {
 
 这在有很多模版或者小的应用中有用，否则应该避免使用，因为它将模版和组件的其他定义隔离了。
 
-### 使用 `v-once` 的低级静态组件(Cheap Static Component)
+### 使用 `v-once` 的低开销静态组件
 
 尽管在 Vue 中渲染 HTML 很快，不过当组件中包含**大量**静态内容时，可以考虑使用 `v-once` 将渲染结果缓存起来，就像这样：
 
 ``` js
 Vue.component('terms-of-service', {
-  template: '\
-    <div v-once>\
-      <h1>Terms of Service</h1>\
-      ... a lot of static content ...\
-    </div>\
+  template: '
+    <div v-once>
+      <h1>Terms of Service</h1>
+      ... a lot of static content ...
+    </div>
   '
 })
 ```

@@ -186,7 +186,7 @@ computed: {
 
 ## 观察 Watchers
 
-虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher 。这是为什么 Vue 提供一个更通用的方法通过 `watch` 选项，来响应数据的变化。当你想要在数据变化响应时，执行异步操作或昂贵操作时，这是很有用的。
+虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher 。这是为什么 Vue 提供一个更通用的方法通过 `watch` 选项，来响应数据的变化。当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的。
 
 例如：
 
@@ -229,12 +229,12 @@ var watchExampleVM = new Vue({
     // _.throttle), 参考: https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
-        var vm = this
         if (this.question.indexOf('?') === -1) {
-          vm.answer = 'Questions usually contain a question mark. ;-)'
+          this.answer = 'Questions usually contain a question mark. ;-)'
           return
         }
-        vm.answer = 'Thinking...'
+        this.answer = 'Thinking...'
+        var vm = this
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
@@ -303,7 +303,7 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-在这个示例中，使用 `watch` 选项允许我们执行异步操作（访问一个 API），限制我们执行该操作的频率，并直到我们得到最终结果时，才设置中间状态。这是计算属性无法做到的。
+在这个示例中，使用 `watch` 选项允许我们执行异步操作（访问一个 API），限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这是计算属性无法做到的。
 
 除了 `watch` 选项之外，您还可以使用 [vm.$watch API](../api/#vm-watch) 命令。
 

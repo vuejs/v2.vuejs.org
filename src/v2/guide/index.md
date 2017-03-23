@@ -19,7 +19,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**�
 尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着我们学习一些基础示例。或者你也可以创建一个本地的 `.html` 文件，然后通过如下方式引入 Vue:
 
 ``` html
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue"></script>
 ```
 
 你可以查看[安装指南](/guide/installation.html)来了解其他安装 Vue 的选项。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是对 Node.js 构建工具不够了解的同学。
@@ -63,7 +63,8 @@ var app = new Vue({
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
   </span>
 </div>
 ```
@@ -268,7 +269,7 @@ Vue.component('todo-item', {
 })
 ```
 
-现在你可以另一个组件模板中写入它：
+现在你可以在另一个组件模板中写入它：
 
 ``` html
 <ol>
@@ -277,7 +278,7 @@ Vue.component('todo-item', {
 </ol>
 ```
 
-但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](components.html#Props) 字段：
+但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个[属性](components.html#Props)字段：
 
 ``` js
 Vue.component('todo-item', {

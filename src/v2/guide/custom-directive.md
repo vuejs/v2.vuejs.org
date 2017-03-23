@@ -24,7 +24,8 @@ new Vue({
 </script>
 {% endraw %}
 
-当页面加载时，元素将获得焦点。事实上，你访问后还没点击任何内容，input 就获得了焦点。现在让我们完善这个指令：
+当页面加载时，元素将获得焦点 (注意：在手机 Safari 上自动聚焦无效)。事实上，你访问后还没点击任何内容，input 就获得了焦点。现在让我们完善这个指令：
+
 
 ``` js
 // 注册一个全局自定义指令 v-focus
@@ -90,7 +91,7 @@ directives: {
 一个使用了这些参数的自定义钩子样例：
 
 ``` html
-<div id="hook-arguments-example" v-demo:hello.a.b="message"></div>
+<div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
 ```
 
 ``` js
@@ -116,7 +117,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="hook-arguments-example" v-demo:hello.a.b="message" class="demo"></div>
+<div id="hook-arguments-example" v-demo:foo.a.b="message" class="demo"></div>
 <script>
 Vue.directive('demo', {
   bind: function (el, binding, vnode) {

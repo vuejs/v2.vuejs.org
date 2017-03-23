@@ -1,7 +1,7 @@
 ---
 title: 从 Vue Router 0.7.x 迁移
 type: guide
-order: 26
+order: 27
 ---
 
 > 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue ，你也需要更新 Vue Router 。这也是我们在主文档中将迁移路径的详情添加进来的原因。
@@ -238,6 +238,23 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
+### [] Syntax for Arrays in Queries <sup>removed</sup>
+
+When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
+
+```javascript
+export default {
+  // ...
+  computed: {
+    // users will always be an array
+    users () {
+      const users = this.$route.query.users
+      return Array.isArray(users) ? users : [users]
+    }
+  }
+}
+```
+
 ## Route 匹配
 
 路由匹配现在使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp) 这个包，这将会使得工作与之前相比更加灵活。
@@ -269,7 +286,7 @@ if (route.meta.requiresAuth) {
 <router-link to="/about">About</router-link>
 ```
 
-Note that `target="_blank"` is not supported on `<router-link>`, so if you need to open a link in a new tab, you have to use `<a>` instead.
+注意`<router-link>`不支持`target="_blank"`，如果你想要在新标签页打开页面，应该使用`<a>`替代
 
 {% raw %}
 <div class="upgrade-path">
@@ -280,9 +297,7 @@ Note that `target="_blank"` is not supported on `<router-link>`, so if you need 
 
 ### `v-link-active` <sup>替换</sup>
 
-The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](http://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
-
-`v-link-active`也因为指定了一个在[ `<router-link>` 组件](http://router.vuejs.org/en/api/router-link.html)上的 tag 属性而被弃用了。举个例子，你需要更新：
+`v-link-active`也被[ `<router-link>` 组件](http://router.vuejs.org/en/api/router-link.html)上的`tag`属性替代了。举个例子，你需要更新：
 
 ``` html
 <li v-link-active>

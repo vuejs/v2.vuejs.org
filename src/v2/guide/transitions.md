@@ -51,7 +51,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-active {
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
 }
 ```
@@ -77,7 +77,7 @@ new Vue({
 .demo-transition-enter-active, .demo-transition-leave-active {
   transition: opacity .5s
 }
-.demo-transition-enter, .demo-transition-leave-active {
+.demo-transition-enter, .demo-transition-leave-to {
   opacity: 0
 }
 </style>
@@ -95,16 +95,22 @@ new Vue({
 
 ### 过渡的-CSS-类名
 
-会有 4 个(CSS)类名在 enter/leave 的过渡中切换
+会有 6 个(CSS)类名在 enter/leave 的过渡中切换
 
 1. `v-enter`: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
 
+
 2. `v-enter-active`: 定义进入过渡的结束状态。在元素被插入时生效，在 `transition/animation` 完成之后移除。
+ This class can be used to define the duration, delay and easing curve for the entering transition.
 
-3. `v-leave`:  定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
+3. `v-enter-to`: **Only available in versions >=2.1.8.** Ending state for enter. Added one frame after element is inserted (at the same time `v-enter` is removed), removed when transition/animation finishes.
 
-4. `v-leave-active`: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 `transition/animation` 完成之后移除。
+4. `v-leave`:  定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
 
+5. `v-leave-active`: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 `transition/animation` 完成之后移除。
+ This class can be used to define the duration, delay and easing curve for the leaving transition.
+
+6. `v-leave-to`: **Only available in versions >=2.1.8.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
 
 ![Transition Diagram](/images/transition.png)
 
@@ -147,8 +153,9 @@ new Vue({
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-active {
-  padding-left: 10px;
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(10px);
   opacity: 0;
 }
 ```
@@ -177,8 +184,8 @@ new Vue({
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-active {
-  padding-left: 10px;
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(10px);
   opacity: 0;
 }
 </style>
@@ -332,8 +339,10 @@ new Vue({
 
 - `enter-class`
 - `enter-active-class`
+- `enter-to-class` (>= 2.1.8 only)
 - `leave-class`
 - `leave-active-class`
+- `leave-to-class` (>= 2.1.8 only)
 
 他们的优先级高于普通的类名，这对于 Vue 的过渡系统和其他第三方 CSS 动画库，如 [Animate.css](https://daneden.github.io/animate.css/) 结合使用十分有用。
 
@@ -395,6 +404,24 @@ new Vue({
 Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可以是 `transitionend` 或 `animationend` ，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别类型并设置监听。
 
 但是，在一些场景中，你需要给同一个元素同时设置两种过渡动效，比如 `animation` 很快的被触发并完成了，而 `transition` 效果还没结束。在这种情况中，你就需要使用 `type` 特性并设置 `animation` 或 `transition` 来明确声明你需要 Vue 监听的类型。
+
+### Explicit Transition Durations
+
+> New in 2.2.0
+
+In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+
+In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+
+``` html
+<transition :duration="1000">...</transition>
+```
+
+You can also specify separate values for enter and leave durations:
+
+``` html
+<transition :duration="{ enter: 500, leave: 800 }">...</transition>
+```
 
 ### JavaScript 钩子
 
@@ -585,6 +612,7 @@ new Vue({
 <transition
   appear
   appear-class="custom-appear-class"
+  appear-to-class="custom-appear-to-class" (>= 2.1.8 only)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
@@ -599,6 +627,7 @@ new Vue({
   v-on:before-appear="customBeforeAppearHook"
   v-on:appear="customAppearHook"
   v-on:after-appear="customAfterAppearHook"
+  v-on:appear-cancelled="customAppearCancelledHook"
 >
   <!-- ... -->
 </transition>
@@ -902,7 +931,7 @@ new Vue({
 
 ## 多个组件的过渡
 
-多个组件的过渡很简单很多 - 我们不需要使用 `key` 特性。相反，我们只需要使用[动态组件](components.html#动态组件):
+多个组件的过渡甚至更简单 - 我们不需要使用 `key` 特性。相反，我们只需要使用[动态组件](components.html#动态组件):
 
 
 ``` html
@@ -932,7 +961,8 @@ new Vue({
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
 }
-.component-fade-enter, .component-fade-leave-active {
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active for <2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -949,7 +979,7 @@ new Vue({
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
 }
-.component-fade-enter, .component-fade-leave-active {
+.component-fade-enter, .component-fade-leave-to {
   opacity: 0;
 }
 </style>
@@ -973,22 +1003,22 @@ new Vue({
 
 ## 列表过渡
 
-目前为止，关于过渡我们已经讲到：
+目前为止，关于过渡我们已经完成了：
 
 - 单个节点
-- 一次渲染多个节点
+- 多个节点，其中每次只渲染一个
 
-那么怎么同时渲染整个列表，比如使用 `v-for` ？在这种场景中，使用  `<transition-group>` 组件。在我们深入例子之前，先了解关于这个组件的几个特点：
+那么，当我们有一个完整的列表（例如使用 `v-for`），我们如何做到同时渲染？在这种情况下，我们将使用  `<transition-group>` 组件。在我们深入例子之前，先来了解关于这个组件的一些要点：
 
-- 不同于 `<transition>`， 它会以一个真实元素呈现：默认为一个 `<span>`。你也可以通过 `tag` 特性更换为其他元素。
-- 元素 **一定需要** 指定唯一的 `key` 特性值
+- 不同于 `<transition>`， 它会以一个真实元素渲染：默认为 `<span>`。你也可以通过 `tag` 属性更换为其他渲染元素
+- 它内部的元素**必须**具有唯一的 `key` 属性
 
 ### 列表的进入和离开过渡
 
 现在让我们由一个简单的例子深入，进入和离开的过渡使用之前一样的 CSS 类名。
 
 ``` html
-<div id="list-demo" class="demo">
+<div id="list-demo">
   <button v-on:click="add">Add</button>
   <button v-on:click="remove">Remove</button>
   <transition-group name="list" tag="p">
@@ -1028,7 +1058,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-active {
+.list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1072,7 +1102,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-active {
+.list-enter, .list-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1204,7 +1234,8 @@ new Vue({
   display: inline-block;
   margin-right: 10px;
 }
-.list-complete-enter, .list-complete-leave-active {
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active for <2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1254,7 +1285,7 @@ new Vue({
   display: inline-block;
   margin-right: 10px;
 }
-.list-complete-enter, .list-complete-leave-active {
+.list-complete-enter, .list-complete-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }

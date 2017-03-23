@@ -23,7 +23,7 @@ var example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
-      {message: 'foo' },
+      {message: 'Foo' },
       {message: 'Bar' }
     ]
   }
@@ -49,7 +49,7 @@ var example1 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-1')
+      smoothScroll.animateScroll(document.querySelector('#example-1'))
     }
   }
 })
@@ -99,7 +99,7 @@ var example2 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-2')
+      smoothScroll.animateScroll(document.querySelector('#example-2'))
     }
   }
 })
@@ -112,7 +112,7 @@ var example2 = new Vue({
 <div v-for="item of items"></div>
 ```
 
-### Template v-for
+### Template `v-for`
 
 如同 `v-if` 模板，你也可以用带有 `v-for` 的 `<template>` 标签来渲染多个元素块。例如： 
 
@@ -125,7 +125,7 @@ var example2 = new Vue({
 </ul>
 ```
 
-### 对象迭代 v-for
+### 对象 v-for
 
 你也可以用 `v-for` 通过一个对象的属性来迭代。
 
@@ -142,9 +142,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -163,9 +163,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -190,7 +190,7 @@ new Vue({
 
 <p class="tip">在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
 
-### 整数迭代 v-for 
+### 范围 `v-for` 
 
 `v-for` 也可以取整数。在这种情况下，它将重复多次模板。
 
@@ -211,15 +211,17 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### 组件 和 v-for
+### 组件 和 `v-for`
 
 > 了解组件相关知识，查看 [组件](components.html) 。完全可以先跳过它，以后再回来查看。
 
 在自定义组件里，你可以像任何普通元素一样用 `v-for` 。
 
 ``` html
-<my-component v-for="item in items"></my-component>
+<my-component v-for="item in items" :key="item.id"></my-component>
 ```
+
+> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
 
 然而他不能自动传递数据到组件里，因为组件有自己独立的作用域。为了传递迭代数据到组件里，我们要用 `props` ：
 
@@ -227,7 +229,8 @@ new Vue({ el: '#range' })
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
-  v-bind:index="index">
+  v-bind:index="index"
+  v-bind:key="item.id">
 </my-component>
 ```
 
@@ -246,6 +249,7 @@ new Vue({ el: '#range' })
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -255,12 +259,12 @@ new Vue({ el: '#range' })
 
 ``` js
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 
@@ -286,7 +290,7 @@ new Vue({
 {% raw %}
 <div id="todo-list-example" class="demo">
   <input
-    v-model="newTodoText" v
+    v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >
@@ -294,6 +298,7 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -301,12 +306,12 @@ new Vue({
 </div>
 <script>
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 new Vue({
@@ -329,9 +334,31 @@ new Vue({
 </script>
 {% endraw %}
 
-## key
+### `v-for` with `v-if`
 
-当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，而不是移动 DOM 元素来匹配数据项的顺序， Vue 将简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
+当它们共存于同一节点上时，`v-for`具有比`v-if`更高的优先级。 这意味着`v-if`将分别在循环的每次迭代上运行。 当你只想要渲染_某些部分_项的节点时非常有用，如下所示：
+
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+```
+
+以上只渲染todos里还未完成的部分。
+
+如果相反地，你的意图是按条件跳过循环的执行，你可以将`v-if`放在一个包装元素（或[`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)）里面。 例如：
+
+``` html
+<ul v-if="shouldRenderTodos">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+```
+
+## `key`
+
+当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，Vue将不是移动 DOM 元素来匹配数据项的顺序，  而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
 
 这个默认的模式是有效的，但是只适用于不依赖子组件状态或临时 DOM 状态（例如：表单输入值）的列表渲染输出。
 
@@ -361,11 +388,11 @@ Vue 包含一组观察数组的变异方法，所以它们也将会触发视图�
 - `sort()`
 - `reverse()`
 
-你打开控制台，然后用前面例子的 `items` 数组调用突变方法：`example1.items.push({ message: 'Baz' })` 。
+你打开控制台，然后用前面例子的 `items` 数组调用变异方法：`example1.items.push({ message: 'Baz' })` 。
 
 ### 重塑数组
 
-变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()`, `slice()` 。这些不会改变原始数组，但总是返回一个新数组。当使用非变异方法时，可以用新数组替换旧数组：
+变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()`, `slice()` 。这些不会改变原始数组，但**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -379,7 +406,7 @@ example1.items = example1.items.filter(function (item) {
 
 由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
 
-1. 当你直接设置一个项的索引时，例如： `vm.items[indexOfItem] = newValue`
+1. 当你利用索引直接设置一个项时，例如： `vm.items[indexOfItem] = newValue`
 2. 当你修改数组的长度时，例如： `vm.items.length = newLength`
 
 为了避免第一种情况，以下两种方式将达到像 `vm.items[indexOfItem] = newValue` 的效果， 同时也将触发状态更新：
@@ -422,7 +449,7 @@ computed: {
 }
 ```
 
-或者，您也可以使用在计算属性是不可行的 method 方法 (例如，在嵌套 `v-for` 循环中)：
+或者，你也可以在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 使用 method 方法：
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>

@@ -9,7 +9,7 @@ order: 18
 
 插件通常会为Vue添加全局功能。插件的范围没有限制——一般有下面几种：
 
-1. 添加全局方法或者属性，如: [vue-element](https://github.com/vuejs/vue-element) 
+1. 添加全局方法或者属性，如: [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
 2. 添加全局资源：指令/过滤器/过渡等，如 [vue-touch](https://github.com/vuejs/vue-touch)
 
@@ -44,7 +44,7 @@ MyPlugin.install = function (Vue, options) {
     ...
   })
 
-  // 4. 添加事例方法
+  // 4. 添加实例方法
   Vue.prototype.$myMethod = function (options) {
     // 逻辑...
   }

@@ -109,13 +109,13 @@ data: {
 <div v-bind:class="[{ active: isActive }, errorClass]">
 ```
 
-### 组件语法
+### 用在组件上
 
-> 这部分内容是假定你已经了解了 [Vue Components](components.html) 相关知识。你可以暂时跳过这里，随后再来阅读。
+> 这个章节假设你已经对 [Vue 组件](components.html) 有一定的了解。当然你也可以跳过这里，稍后再回过头来看。
 
-当你在一个自定义组件上使用 `class` 属性时，那些添加的 class 值将会被添加至组件根元素上。根元素上已存在的 class 值将不会被覆盖。
+当你在一个定制的组件上用到 `class` 属性的时候，这些类将被添加到根元素上面，这个元素上已经存在的类不会被覆盖。
 
-例如，如果你声明一个这样的组件：
+例如，如果你声明了这个组件:
 
 ``` js
 Vue.component('my-component', {
@@ -123,28 +123,28 @@ Vue.component('my-component', {
 })
 ```
 
-随后在上面添加一些 class：
+然后在使用它的时候添加一些 class：
 
 ``` html
 <my-component class="baz boo"></my-component>
 ```
 
-渲染为：
+HTML 最终将被渲染成为:
 
 ``` html
 <p class="foo bar baz boo">Hi</p>
 ```
 
-这里我们同样可以用 class 绑定的形式：
+同样的适用于绑定 HTML class :
 
 ``` html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-当 `isActive` 是 true 时, 渲染的 HTML 将会是：
+当 `isActive` 为 true 的时候，HTML 将被渲染成为:
 
 ``` html
-<p class="foo bar active"></p>
+<p class="foo bar active">Hi</p>
 ```
 
 ## 绑定内联样式
@@ -152,7 +152,6 @@ Vue.component('my-component', {
 ### 对象语法
 
 `v-bind:style` 的对象语法十分直观——看着非常像 CSS ，其实它是一个 JavaScript 对象。 CSS 属性名可以用驼峰式（camelCase）或短横分隔命名（kebab-case）：
-
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -197,4 +196,3 @@ data: {
 > 原文：http://vuejs.org/guide/class-and-style.html
 
 ***
-

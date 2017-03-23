@@ -62,7 +62,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-template 在这种场景中就表现的有些冗余了。虽然我们重复使用 `<slot></slot>` 来接收每一个级别的标题标签，在标题标签中添加相同的锚点元素。但是些都会被包裹在一个无用的 `div` 中，因为组件必须有根节点。
+在这种场景中使用 template 并不是最好的选择：首先代码冗长，为了在不同级别的标题中插入锚点元素，我们需要重复地使用 `<slot></slot>`。其次由于组件必须有根节点，标题和锚点元素被包裹在了一个无用的 `div` 中。
 
 虽然模板在大多数组件中都非常好用，但是在这里它就不是很简洁的了。那么，我们来尝试使用 `render` 函数重写上面的例子：
 
@@ -93,7 +93,7 @@ Vue.component('anchored-heading', {
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // 一个 HTML 标签，组件设置，或一个函数
+  // 一个 HTML 标签，组件选项，或一个函数
   // 必须 Return 上述其中一个
   'div',
 
@@ -173,9 +173,10 @@ createElement(
   // Scoped slots in the form of
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
-    default: props => h('span', props.text)
+    default: props => createElement('span', props.text)
   },
-  // 如果子组件有定义 slot 的名称
+  // The name of the slot, if this component is the
+  // child of another component
   slot: 'name-of-slot'
   // 其他特殊顶层属性
   key: 'myKey',
@@ -281,7 +282,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+在render函数中，没有提供`v-model`的实现，所以你需要自己实现逻辑：
 
 ``` js
 render: function (createElement) {
@@ -291,8 +292,9 @@ render: function (createElement) {
       value: self.value
     },
     on: {
-      input: function (e) {
-        self.value = e.target.value
+      input: function (event) {
+        self.value = event.target.value
+        self.$emit('input', event.target.value)
       }
     }
   })
@@ -301,9 +303,60 @@ render: function (createElement) {
 
 This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
 
+### Event & Key Modifiers
+
+对于 `.capture` 和 `.once` 这样的事件修饰符, Vue 提供了用于 `on` 的前缀:
+
+| Modifier(s) | Prefix |
+| ------ | ------ |
+| `.capture` | `!` |
+| `.once` | `~` |
+| `.capture.once` or<br>`.once.capture` | `~!` |
+
+示例:
+
+```javascript
+on: {
+  '!click': this.doThisInCapturingMode,
+  '~keyup': this.doThisOnce,
+  `~!mouseover`: this.doThisOnceInCapturingMode
+}
+```
+
+对于其他的事件和关键字修饰符, 你可以在处理程序中使用事件方法实现：
+
+| Modifier(s) | Equivalent in Handler |
+| ------ | ------ |
+| `.stop` | `event.stopPropagation()` |
+| `.prevent` | `event.preventDefault()` |
+| `.self` | `if (event.target !== event.currentTarget) return` |
+| Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
+| Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
+
+这里是所有修饰符一起使用的例子:
+
+```javascript
+on: {
+  keyup: function (event) {
+    // Abort if the element emitting the event is not
+    // the element the event is bound to
+    if (event.target !== event.currentTarget) return
+    // Abort if the key that went up is not the enter
+    // key (13) and the shift key was not held down
+    // at the same time
+    if (!event.shiftKey || event.keyCode !== 13) return
+    // Stop event propagation
+    event.stopPropagation()
+    // Prevent the default keyup handler for this element
+    event.preventDefault()
+    // ...
+  }
+}
+```
+
 ### Slots
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](http://vuejs.org/v2/api/#vm-slots):
+使用[`this.$slots`](../api/#vm-slots)访问静态插槽内容作为 VNode 数组：
 
 ``` js
 render: function (createElement) {
@@ -312,7 +365,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots):
+使用[`this.$scopedSlots`](../api/#vm-scopedSlots)访问作用域插槽作为返回VNodes的函数:
 
 ``` js
 render: function (createElement) {
@@ -325,7 +378,7 @@ render: function (createElement) {
 }
 ```
 
-To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+使用render函数传递作用于插槽到子组件，使用VNode数据中的`scopedSlots`关键字：
 
 ``` js
 render (createElement) {
@@ -335,7 +388,7 @@ render (createElement) {
       // in the form of { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
-          return h('span', props.text)
+          return createElement('span', props.text)
         }
       }
     })
@@ -385,7 +438,7 @@ new Vue({
   }
 })
 ```
-<p class="tip">将 `h` 作为 `createElement` 的别名是一个通用惯例，你会发现在 Vue 生态系统中，实际上必须用到 JSX，如果在作用域中 `h` 失去作用， 在应用中会触发报错。</p>
+<p class="tip">将 `h` 作为 `createElement` 的别名是 Vue 生态系统中的一个通用惯例，实际上也是 JSX 所要求的，如果在作用域中 `h` 失去作用， 在应用中会触发报错。</p>
 
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
 
@@ -426,9 +479,9 @@ Vue.component('my-component', {
 函数化组件只是一个函数，所以渲染开销也低很多。但同样它也有完整的组件封装，你需要知道这些， 比如：
 
 
-- 程序化地在多个组件中选择一个
-- 在将 children, props, data 传递给子组件之前操作它们。 
+Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
 
+They're also very useful as wrapper components.  For example, when you need to:
 
 
 下面是一个依赖传入 props 的值的 `smart-list` 组件例子，它能代表更多具体的组件：
@@ -496,6 +549,7 @@ Vue.component('smart-list', {
     <pre><code>{{ result.render }}</code></pre>
     <label>staticRenderFns:</label>
     <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
+    <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
     <label>Compilation Error:</label>
@@ -508,7 +562,9 @@ new Vue({
   data: {
     templateText: '\
 <div>\n\
-  <h1>I\'m a template!</h1>\n\
+  <header>\n\
+    <h1>I\'m a template!</h1>\n\
+  </header>\n\
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\
@@ -555,7 +611,7 @@ console.error = function (error) {
 }
 #vue-compile-demo textarea {
   width: 100%;
-
+  font-family: monospace;
 }
 </style>
 {% endraw %}

@@ -3,10 +3,11 @@
     <input type="text" id="search-query-<%- context %>" class="search-query st-default-search-input">
   </form>
 </li>
-<li><a href="/v2/guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">教程</a></li>
-<li><a href="/v2/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
-<li><a href="/v2/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">示例</a></li>
-<li><a href="https://medium.com/the-vue-point" target="_blank" class="nav-link<%- page.path.match(/blog/) ? ' current' : '' %>">博客</a></li>
-<li><a href="/about/" class="nav-link<%- page.path.match(/about/) ? ' current' : '' %>">参与贡献</a></li>
-<%- partial('partials/community_dropdown') %>
+<li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">教程</a></li>
+<li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
+<li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">示例</a></li>
+<%- partial('partials/about_dropdown') %>
+<%- partial('partials/components_dropdown') %>
 <%- partial('partials/ecosystem_dropdown') %>
+<%- partial('partials/community_dropdown') %>
+<%- partial('partials/language_dropdown') %>

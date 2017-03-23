@@ -67,7 +67,9 @@ var example2 = new Vue({
       // `this` 在方法里指当前 Vue 实例
       alert('Hello ' + this.name + '!')
       // `event` 是原生 DOM 事件
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
@@ -91,7 +93,9 @@ var example2 = new Vue({
   methods: {
     greet: function (event) {
       alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
@@ -142,7 +146,9 @@ new Vue({
 有时也需要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 `$event` 把它传入方法：
 
 ``` html
-<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
 ```
 
 ``` js
@@ -166,6 +172,7 @@ methods: {
 - `.prevent`
 - `.capture`
 - `.self`
+- `.once`
 
 ``` html
 <!-- 阻止单击事件冒泡 -->
@@ -186,6 +193,14 @@ methods: {
 <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
 <div v-on:click.self="doThat">...</div>
 ```
+
+> 2.1.4 新增
+
+``` html
+<!-- 点击事件将只会触发一次 -->
+<a v-on:click.once="doThis"></a>
+```
+不像其它只能对原生的 DOM 事件起作用的修饰符，`.once` 修饰符还能被用到自定义的[组件事件](components.html#Using-v-on-with-Custom-Events)上. 如果你还没有阅读关于组件的文档，现在大可不必担心。
 
 ## 按键修饰符
 
@@ -225,16 +240,39 @@ methods: {
 Vue.config.keyCodes.f1 = 112
 ```
 
-## 鼠标事件修饰符
+## 按键修饰符
 
 > 2.1.0 新增
 
-可以用如下修饰符在相应按键响应时进行鼠标事件监听
+可以用如下修饰符开启鼠标或键盘事件监听，使在按键按下时发生响应。
 
 - `.ctrl`
 - `.alt`
 - `.shift`
 - `.meta`
+
+> 注意：在Mac系统键盘上，meta对应命令键 (⌘)。在Windows系统键盘meta对应windows徽标键(⊞)。在Sun操作系统键盘上，meta对应实心宝石键 (◆)。在其他特定键盘上，尤其在MIT和Lisp键盘及其后续，比如Knight键盘，space-cadet键盘，meta被标记为“META”。在Symbolics键盘上，meta被标记为“META” 或者 “Meta”。
+例如:
+
+```html
+<!-- Alt + C -->
+<input @keyup.alt.67="clear">
+
+<!-- Ctrl + Click -->
+<div @click.ctrl="doSomething">Do something</div>
+```
+
+<p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone.</p>
+
+### Mouse Button Modifiers
+
+> New in 2.2.0
+
+- `.left`
+- `.right`
+- `.middle`
+
+These modifiers restrict the handler to events triggered by a specific mouse button.
 
 ## 为什么在 HTML 中监听事件?
 
@@ -245,6 +283,7 @@ Vue.config.keyCodes.f1 = 112
 2. 因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。
 
 3. 当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。
+
 
 ***
 

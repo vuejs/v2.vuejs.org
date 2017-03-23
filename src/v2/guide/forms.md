@@ -8,7 +8,9 @@ order: 10
 
 你可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。
 
-<p class="tip"> `v-model` 并不关心表单控件初始化所生成的值。因为它会选择 Vue 实例数据来作为具体的值。</p>
+<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
+
+<p class="tip" id="vmodel-ime-tip">对于需要[输入法编辑器](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95)的语言（中文、日文、韩文等），要注意的是，在 IME 字母组合窗口输入时 `v-model` 并不会更新。如果你想在此期间满足更新需求，请使用 `input` 事件。</p>
 
 ### 文本
 
@@ -164,15 +166,25 @@ new Vue({
 
 ``` html
 <select v-model="selected">
+  <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
 <span>Selected: {{ selected }}</span>
 ```
+``` js
+new Vue({
+  el: '...',
+  data: {
+    selected: ''
+  }
+})
+```
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
+    <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -183,11 +195,13 @@ new Vue({
 new Vue({
   el: '#example-5',
   data: {
-    selected: null
+    selected: ''
   }
 })
 </script>
 {% endraw %}
+
+<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
 
 多选列表（绑定到一个数组）：
 
@@ -335,7 +349,7 @@ vm.selected.number // -> 123
 
 ### `.lazy`
 
-在默认情况下， `v-model` 在 `input` 事件中同步输入框的值与数据，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
+在默认情况下， `v-model` 在 `input` 事件中同步输入框的值与数据 (除了 [上述](#vmodel-ime-tip) IME 部分)，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
 
 ``` html
 <!-- 在 "change" 而不是 "input" 事件中更新 -->
@@ -367,7 +381,6 @@ vm.selected.number // -> 123
 > 如果你还不熟悉 Vue 组件，现在先跳过此处。
 
 HTML 内置的输入框类型并不能满足需求。幸运的是，Vue 组件允许使用完全自定义的行为来构建可重用的输入框。这些输入框甚至可以使用 `v-model`！想要了解更多信息，请阅读组件指南中[自定义输入](components.html#使用自定义事件的表单输入组件)。
-
 
 ***
 

@@ -18,7 +18,7 @@ order: 24
 
 用户可能在网络比较慢的情况下从远处访问网站 - 或者通过比较差的带宽。 这些情况下，尽量减少页面请求数量，来保证用户尽快看到基本的内容。
 
-可以用 [Webpack的代码拆分](https://webpack.github.io/docs/code-splitting.html) 避免强制用户下载整个单页面应用，但是，这样也远没有下载个单独的预先渲染过的HTML文件性能高。
+可以用 [Webpack的代码拆分](https://doc.webpack-china.org/guides/code-splitting-require/) 避免强制用户下载整个单页面应用，但是，这样也远没有下载个单独的预先渲染过的HTML文件性能高。
 
 ### 客户端运行在老的(或者直接没有)JavaScript引擎上
 
@@ -221,7 +221,7 @@ server.listen(5000, function (error) {
 
 ## 流式响应
 
-Vue还支持__流式__渲染，优先选择适用于支持流的Web服务器。允许HTML一边生成一般写入相应流，而不是在最后一次全部写入。其结果是请求服务速度更快，没有缺点！
+Vue还支持__流式__渲染，优先选择适用于支持流的Web服务器。允许HTML一边生成一边写入相应流，而不是在最后一次全部写入。其结果是请求服务速度更快，没有缺点！
 
 为了使上一节应用代码适用流式渲染，可以简单的替换 `server.get('*',...)`为下面的代码：
 
@@ -327,6 +327,10 @@ Vue.component({
 
 - [vue-server-renderer 文档](https://www.npmjs.com/package/vue-server-renderer#api):更多细节在这里，和更多先进的主题一起的文档。 例如 [preventing cross-request contamination](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) 和 [添加独立的服务构建](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
 - [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): 明确整合了  所有主要的Vue库和概念在单个应用中
+
+## Nuxt.js
+
+Properly configuring all the discussed aspects of a production-ready server-rendered app can be a daunting task. Luckily, there is an excellent community project that aims to make all of this easier: [Nuxt.js](https://nuxtjs.org/). Nuxt.js is a higher-level framework built on top of the Vue ecosystem which provides an extremely streamlined development experience for writing universal Vue applications. Better yet, you can even use it as a static site generator (with pages authored as single-file Vue components)! We highly recommend giving it a try.
 
 ***
 

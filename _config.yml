@@ -3,9 +3,9 @@
 ## Source: https://github.com/tommy351/hexo/
 
 # Site
-title: Vue.js
-subtitle:
-description: "The Progressive JavaScript Framework"
+title: Vue.js v2 中文文档
+subtitle: Vue.js v2.0 中文文档 vuefe.cn
+description: "Vue.js v2.0 中文文档 vuefe.cn vuefe.com"
 author: Evan You
 email:
 language: zh-CN
@@ -95,10 +95,10 @@ markdown:
 
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
-deploy:
-  type: git
-  repository: https://github.com/vuefe/vuefe.github.io.git
-  branch: gh-pages
+# deploy:
+#   type: git
+#   repository: git@github.com:vuejs/cn.vuejs.org.git
+#   branch: gh-pages
 
 feed:
   type: atom

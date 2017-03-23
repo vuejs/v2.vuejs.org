@@ -1,5 +1,4 @@
-(function() {
-
+(function () {
   initMobileMenu()
   if (PAGE_TYPE) {
     initVersionSelect()
@@ -8,11 +7,11 @@
     initLocationHashFuzzyMatching()
   }
 
-  function initApiSpecLinks() {
+  function initApiSpecLinks () {
     var apiContent = document.querySelector('.content.api')
     if (apiContent) {
       var apiTitles = [].slice.call(apiContent.querySelectorAll('h3'))
-      apiTitles.forEach(function(titleNode) {
+      apiTitles.forEach(function (titleNode) {
         var ulNode = titleNode.parentNode.nextSibling
         if (ulNode.tagName !== 'UL') {
           ulNode = ulNode.nextSibling
@@ -26,38 +25,55 @@
       })
     }
 
-    function createSourceSearchPath(query) {
-      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent(query) + '+&type=Code'
+    function createSourceSearchPath (query) {
+      query = query
+        .replace(/\([^\)]*?\)/g, '')
+        .replace(/vm\./g, 'Vue.prototype.')
+      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
   }
 
-  function initLocationHashFuzzyMatching() {
-    var hash = window.location.hash
-    if (!hash) return
+  function parseRawHash (hash) {
+    // Remove leading hash
+    if (hash.charAt(0) === '#') {
+      hash = hash.substr(1)
+    }
+
+    // Escape characthers
+    try {
+      hash = decodeURIComponent(hash)
+    } catch (e) {}
+    return CSS.escape(hash)
+  }
+
+  function initLocationHashFuzzyMatching () {
+    var rawHash = window.location.hash
+    if (!rawHash) return
+    var hash = parseRawHash(rawHash)
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
       var possibleHashes = [].slice.call(document.querySelectorAll('[id]'))
-        .map(function(el) {
+        .map(function (el) {
           return el.id
         })
-      possibleHashes.sort(function(hashA, hashB) {
+      possibleHashes.sort(function (hashA, hashB) {
         var distanceA = levenshteinDistance(normalizedHash, normalizeHash(hashA))
         var distanceB = levenshteinDistance(normalizedHash, normalizeHash(hashB))
         if (distanceA < distanceB) return -1
         if (distanceA > distanceB) return 1
         return 0
       })
-      window.location.hash = possibleHashes[0]
+      window.location.hash = '#' + possibleHashes[0]
     }
 
-    function normalizeHash(rawHash) {
+    function normalizeHash (rawHash) {
       return rawHash
         .toLowerCase()
         .replace(/\-(?:deprecated|removed|replaced|changed|obsolete)$/, '')
     }
 
-    function levenshteinDistance(a, b) {
+    function levenshteinDistance (a, b) {
       var m = []
       if (!(a && b)) return (b || a).length
       for (var i = 0; i <= b.length; m[i] = [i++]) {}
@@ -76,21 +92,42 @@
   }
 
   /**
-   * Mobile burger menu button for toggling sidebar
+   * Mobile burger menu button and gesture for toggling sidebar
    */
 
-  function initMobileMenu() {
+  function initMobileMenu () {
     var mobileBar = document.getElementById('mobile-bar')
     var sidebar = document.querySelector('.sidebar')
     var menuButton = mobileBar.querySelector('.menu-button')
 
-    menuButton.addEventListener('click', function() {
+    menuButton.addEventListener('click', function () {
       sidebar.classList.toggle('open')
     })
 
-    document.body.addEventListener('click', function(e) {
+    document.body.addEventListener('click', function (e) {
       if (e.target !== menuButton && !sidebar.contains(e.target)) {
         sidebar.classList.remove('open')
+      }
+    })
+
+    // Toggle sidebar on swipe
+    var start = {}, end = {}
+
+    document.body.addEventListener('touchstart', function (e) {
+      start.x = e.changedTouches[0].clientX
+      start.y = e.changedTouches[0].clientY
+    })
+
+    document.body.addEventListener('touchend', function (e) {
+      end.y = e.changedTouches[0].clientY
+      end.x = e.changedTouches[0].clientX
+
+      var xDiff = end.x - start.x
+      var yDiff = end.y - start.y
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) sidebar.classList.add('open')
+        else sidebar.classList.remove('open')
       }
     })
   }
@@ -99,7 +136,7 @@
    * Doc version select
    */
 
-  function initVersionSelect() {
+  function initVersionSelect () {
     // version select
     var versionSelect = document.querySelector('.version-select')
     versionSelect && versionSelect.addEventListener('change', function (e) {
@@ -109,8 +146,8 @@
       window.location.assign(
         'http://' +
         version +
-        (version && '.') +
-        'vuejs.org/' + section + '/'
+        (version && '-') +
+        'cn.vuejs.org/' + section + '/'
       )
     })
   }
@@ -119,7 +156,7 @@
    * Sub headers in sidebar
    */
 
-  function initSubHeaders() {
+  function initSubHeaders () {
     var each = [].forEach
     var main = document.getElementById('main')
     var header = document.getElementById('header')
@@ -141,7 +178,7 @@
       }
       var headers = content.querySelectorAll('h2')
       if (headers.length) {
-        each.call(headers, function(h) {
+        each.call(headers, function (h) {
           sectionContainer.appendChild(makeLink(h))
           var h3s = collectH3s(h)
           allHeaders.push(h)
@@ -152,20 +189,19 @@
         })
       } else {
         headers = content.querySelectorAll('h3')
-        each.call(headers, function(h) {
+        each.call(headers, function (h) {
           sectionContainer.appendChild(makeLink(h))
           allHeaders.push(h)
         })
       }
 
       var animating = false
-      sectionContainer.addEventListener('click', function(e) {
-        e.preventDefault()
+      sectionContainer.addEventListener('click', function (e) {
         if (e.target.classList.contains('section-link')) {
           sidebar.classList.remove('open')
           setActive(e.target)
           animating = true
-          setTimeout(function() {
+          setTimeout(function () {
             animating = false
           }, 400)
         }
@@ -181,10 +217,10 @@
     }
 
     var hoveredOverSidebar = false
-    sidebar.addEventListener('mouseover', function() {
+    sidebar.addEventListener('mouseover', function () {
       hoveredOverSidebar = true
     })
-    sidebar.addEventListener('mouseleave', function() {
+    sidebar.addEventListener('mouseleave', function () {
       hoveredOverSidebar = false
     })
 
@@ -192,7 +228,7 @@
     window.addEventListener('scroll', updateSidebar)
     window.addEventListener('resize', updateSidebar)
 
-    function updateSidebar() {
+    function updateSidebar () {
       var doc = document.documentElement
       var top = doc && doc.scrollTop || document.body.scrollTop
       if (animating || !allHeaders) return
@@ -206,21 +242,31 @@
           last = link
         }
       }
-      if (last)
+      if (last) {
         setActive(last.id, !hoveredOverSidebar)
+      }
     }
 
-    function makeLink(h) {
+    function makeLink (h) {
       var link = document.createElement('li')
       var text = h.textContent.replace(/\(.*\)$/, '')
       link.innerHTML =
         '<a class="section-link" data-scroll href="#' + h.id + '">' +
-        text +
+          htmlEscape(text) +
         '</a>'
       return link
     }
 
-    function collectH3s(h) {
+    function htmlEscape (text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+    }
+
+    function collectH3s (h) {
       var h3s = []
       var next = h.nextSibling
       while (next && next.tagName !== 'H2') {
@@ -232,18 +278,18 @@
       return h3s
     }
 
-    function makeSubLinks(h3s, small) {
+    function makeSubLinks (h3s, small) {
       var container = document.createElement('ul')
       if (small) {
         container.className = 'menu-sub'
       }
-      h3s.forEach(function(h) {
+      h3s.forEach(function (h) {
         container.appendChild(makeLink(h))
       })
       return container
     }
 
-    function setActive(id, shouldScrollIntoView) {
+    function setActive (id, shouldScrollIntoView) {
       var previousActive = sidebar.querySelector('.section-link.active')
       var currentActive = typeof id === 'string' ?
         sidebar.querySelector('.section-link[href="#' + id + '"]') :
@@ -272,7 +318,7 @@
       }
     }
 
-    function makeHeaderClickable(link) {
+    function makeHeaderClickable (link) {
       var wrapper = document.createElement('a')
       wrapper.href = '#' + link.id
       wrapper.setAttribute('data-scroll', '')

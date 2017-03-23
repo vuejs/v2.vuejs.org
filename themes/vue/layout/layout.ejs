@@ -2,31 +2,39 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><%- page.title ? page.title + ' - ' : '' %>vue.js</title>
+        <title><%- page.title ? page.title + ' - ' : '' %>Vue.js中文文档 vuefe.cn vue2</title>
         <meta charset="utf-8">
         <meta name="description" content="<%- theme.site_description %>">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta property="og:type" content="article">
-        <meta property="og:title" content="<%- page.title ? page.title + ' - ' : '' %>vue.js">
+        <meta property="og:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
         <meta property="og:description" content="<%- theme.site_description %>">
-        <meta property="og:image" content="https://<%- theme.root_domain %>/images/logo.png">
+        <meta property="og:image" content="https://<%- theme.root_domain %>/<%- url_for("/images/logo.png") %>">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="<%- page.title ? page.title + ' - ' : '' %>vue.js">
+        <meta name="twitter:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
         <meta name="twitter:description" content="<%- theme.site_description %>">
         <meta name="twitter:image" content="https://<%- theme.root_domain %>/images/logo.png">
 
-        <link rel="icon" href="/images/logo.png" type="image/x-icon">
-
-        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="<%- url_for("/images/logo.png") %>" type="image/x-icon">
 
         <!-- main page styles -->
         <%- css(isIndex ? 'css/index' : 'css/page') %>
 
         <!-- this needs to be loaded before guide's inline scripts -->
-        <script src="/js/vue.js"></script>
+        <script src="<%- url_for("/js/vue.js") %>"></script>
         <script>window.PAGE_TYPE = "<%- page.type %>"</script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ebacf70d9d85cfb235c83d600113ee3e";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
     </head>
     <body class="<%- isIndex ? '' : 'docs' -%>">
         <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
@@ -42,24 +50,14 @@
                     <%- body %>
                 <% } %>
             </div>
-            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="<%- url_for("/js/smooth-scroll.min.js") %>"></script>
         <% } else { %>
             <%- body %>
         <% } %>
 
-        <!-- main custom script for sidebars, version selects etc. -->
-        <script src="/js/common.js"></script>
-
-        <!-- ga -->
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', '<%- theme.google_analytics %>', '<%- theme.root_domain %>');
-          ga('send', 'pageview');
-        </script>
+        <!-- main custom script for sidebars, version selects etc. -->        
+        <script src="<%- url_for("/js/css.escape.js") %>"></script>
+        <script src="<%- url_for("/js/common.js") %>"></script>
 
         <!-- search -->
         <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
@@ -76,8 +74,8 @@
           var version = match ? match[1] : 'v2'
           docsearch({
             appId: 'BH4D9OD16A',
-            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-            indexName: 'vuejs',
+            apiKey: '5638280abff9d207417bb03be05f0b25',
+            indexName: 'vuejs_cn2',
             inputSelector: selector,
             algoliaOptions: { facetFilters: ["version:" + version] }
           })
@@ -91,5 +89,7 @@
           FastClick.attach(document.body)
         }, false)
         </script>
+
+        <script src="/js/vuefe-min.fe7c4b3c46a9ec32c769.js"></script>
     </body>
 </html>

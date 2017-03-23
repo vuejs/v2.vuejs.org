@@ -21,8 +21,9 @@
         ul
             padding-left 1.25em
             line-height 1.4em
-            ul, p
-                margin .6em 0
+            ul, p:not(.tip)
+                padding-bottom 0
+                margin 1.2em 0
     a.button
         font-size .9em
         color #fff
@@ -68,12 +69,21 @@
             bottom -2px
             font-size 1.2em
             font-weight bold
-    figure, p, ul, ol
+    figure
         margin 1.2em 0
     p, ul, ol
         line-height 1.6em
+        // HACK: Create area underneath paragraphs
+        // and lists that will be on top of heading
+        // anchors, for easier text highlighting.
+        margin 1.2em 0 -1.2em
+        padding-bottom 1.2em
+        position relative
+        z-index: 1
     ul, ol
         padding-left 1.5em
+        // FIX: Some link click targets are covered without this
+        position inherit
     a
         color $green
         font-weight 400
@@ -84,8 +94,29 @@
         p
             font-weight 600
             margin-left 0
+            margin-bottom 0
+            padding-bottom 0
     iframe
         margin 1em 0
+    > table
+        border-spacing 0
+        border-collapse collapse
+        margin 1.2em auto
+        padding 0
+        display block
+        overflow-x auto
+        td, th
+            line-height 1.5em
+            padding .4em .8em
+            border none
+            border 1px solid #ddd
+        th
+            font-weight bold
+            text-align left
+        th, tr:nth-child(2n)
+            background-color #f8f8f8
+            code
+                background-color #efefef
     p.tip
         padding 12px 24px 12px 30px
         margin 2em 0
@@ -132,7 +163,7 @@
     .sidebar
         position fixed
 
-@media screen and (min-width: 1360px)
+@media screen and (min-width: 1590px)
     #header
         background-color rgba(255,255,255,.4)
 
