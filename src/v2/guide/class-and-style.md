@@ -153,11 +153,7 @@ When `isActive` is truthy, the rendered HTML will be:
 
 ### Sintaxe de Objeto
 
-<<<<<<< HEAD:src/guide/class-and-style.md
 A sintaxe de objeto para `v-bind:style` é bastante simples - parece quase CSS, só que é um objeto JavaScript. Você pode usar camelCase ou kebab-case para o nome da propriedade CSS.
-=======
-The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/class-and-style.md
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>

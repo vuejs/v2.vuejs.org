@@ -6,11 +6,7 @@ order: 15
 
 ## Introdução
 
-<<<<<<< HEAD:src/guide/render-function.md
 Vue recomenda que templates sejam utilizados para construir seu HTML na grande maioria dos casos. Haverá situações, no entanto, em que você irá realmente precisar de todo o poder de programação do JavaScript. É quando você pode usar a **função "render"**, uma alternativa aos templates que é mais ligada ao compilador.
-=======
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/render-function.md
 
 Vamos mergulhar em um simples exemplo onde a função `render` seria prática. Digamos que você quer gerar links em cabeçalhos (headings):
 
@@ -88,11 +84,7 @@ Vue.component('linked-heading', {
 })
 ```
 
-<<<<<<< HEAD:src/guide/render-function.md
 Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filhos (children) em seu componente sem especificar um atributo `slot`, como o `Alô Mundo!` dentro de `linked-heading`, esses elementos estão acessíveis na instância do componente em `$slots.default`. Se você ainda não leu, **é recomendado que leia a seção [API - propriedades da instância](/api/#vm-slots) antes de se aprofundar em funções "render".**
-=======
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#vm-slots) before diving into render functions.**
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/render-function.md
 
 ## Parâmetros para `createElement`
 
@@ -170,15 +162,9 @@ Importante observar: assim como `v-bind:class` e `v-bind:style` têm tratamento 
   nativeOn: {
     click: this.nativeClickHandler
   },
-<<<<<<< HEAD:src/guide/render-function.md
-  // Diretivas customizadas. Veja que como o bind de 
-  // oldValue não pode ser setado, o Vue contina continua mantendo
+  // Diretivas customizadas. Veja que como o bind de
+  // oldValue não pode ser setado, o Vue continua mantendo
   // o valor dele para você
-=======
-  // Custom directives. Note that the binding's
-  // oldValue cannot be set, as Vue keeps track
-  // of it for you.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/render-function.md
   directives: [
     {
       name: 'my-custom-directive',
@@ -190,17 +176,13 @@ Importante observar: assim como `v-bind:class` e `v-bind:style` têm tratamento 
       }
     }
   ],
-<<<<<<< HEAD:src/guide/render-function.md
-  // O nome do slot (se o elemento for filho de um componente)
-=======
-  // Scoped slots in the form of
+  // Slot na forma de
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of the slot, if this component is the
-  // child of another component
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/render-function.md
+  // O nome do slot se este componente é
+  // filho de outro componente
   slot: 'name-of-slot'
   // Outras propriedades especiais no primeiro nível
   key: 'myKey',
@@ -280,13 +262,9 @@ render: function (createElement) {
 
 ## Substituindo Funcionalidades de Templates por Código JavaScript
 
-<<<<<<< HEAD:src/guide/render-function.md
-Sempre que algo possa ser facilmente realizado em código JavaScript, as funções de renderização do Vue não oferecerão uma alternativa específica. Por exemplo, em templates usando `v-if` e `v-for`:
-=======
 ### `v-if` and `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/render-function.md
+Sempre que algo possa ser facilmente realizado em código JavaScript, as funções de renderização do Vue não oferecerão uma alternativa específica. Por exemplo, em templates usando `v-if` e `v-for`:
 
 ``` html
 <ul v-if="items.length">
@@ -502,13 +480,9 @@ Tudo o que um componente funcional necessita é passado através de `context`, o
 
 Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com link iria requerer somente acrescentar o parâmetro `context`, e atualizar `this.$slots.default` para `context.children`, e por fim atualizar `this.level` para `context.props.level`.
 
-<<<<<<< HEAD
-Como componentes funcionais são apenas funções, eles são muito mais leves para renderizar. Eles também são muito úteis como componentes *wrapper*. Por exemplo, quando você precisa:
-=======
-Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
+Como componentes funcionais são apenas funções, eles são muito mais leves para renderizar.
 
-They're also very useful as wrapper components.  For example, when you need to:
->>>>>>> refs/remotes/vuejs/master
+Eles também são muito úteis como componentes *wrapper*. Por exemplo, quando você precisa:
 
 - Programaticamente escolher um entre vários outros componentes para delegar
 - Manipular *children*, *props*, ou *data* antes de passá-los a componentes filhos
@@ -590,13 +564,9 @@ new Vue({
   data: {
     templateText: '\
 <div>\n\
-<<<<<<< HEAD:src/guide/render-function.md
-  <h1>Sou um template!</h1>\n\
-=======
   <header>\n\
-    <h1>I\'m a template!</h1>\n\
+    <h1>Sou um template!</h1>\n\
   </header>\n\
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/render-function.md
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\

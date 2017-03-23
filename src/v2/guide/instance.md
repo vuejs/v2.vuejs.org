@@ -14,15 +14,9 @@ var vm = new Vue({
 })
 ```
 
-<<<<<<< HEAD:src/guide/instance.md
 Embora não seja estritamente associado com o [padrão MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), o design do Vue foi sem dúvida inspirado por ele. Como convenção, muitas vezes usamos a variável `vm` (abreviação de ViewModel) para se referir à instância Vue.
 
 Quando você criar uma instância do Vue, é necessário repassar um **objeto** que contém opções para dados, elementos, métodos, ciclos de vida e mais. A lista completa de opções pode ser encontrada na [API](/api).
-=======
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instances.
-
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](../api).
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/instance.md
 
 O construtor `Vue` pode ser estendido para a criação de **contrutores de componentes** reutilizáveis com opções pré definidas:
 
@@ -36,7 +30,7 @@ var MyComponent = Vue.extend({
 var myComponentInstance = new MyComponent()
 ```
 
-Embora seja possível criar instâncias repetidamente, na maioria das vezes é recomendado compô-las declarativamente em templates com elementos customizáveis. Vamos falar sobre [o sistema de componentes](components.html) com mais detalhes depois. Por enquanto, você precisa apenas saber que todos os componentes Vue são essencialmente extensões da instância Vue.
+Embora seja possível criar instâncias repetidamente, na maioria das vezes é recomendado compô-los declarativamente em templates com elementos customizáveis. Vamos falar sobre [o sistema de componentes](components.html) com mais detalhes depois. Por enquanto, você precisa apenas saber que todos os componentes Vue são essencialmente extensões da instância Vue.
 
 ## Propriedades e Métodos
 
@@ -83,22 +77,13 @@ vm.$watch('a', function (newVal, oldVal) {
 Não use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) em uma propriedade de instância ou callback (ex: `vm.$watch('a', newVal => this.myMethod())`). Como as arrow functions estão vinculadas ao contexto pai, então `this` não será a instância Vue como você espera, e `this.myMethod` será indefinida.
 </p>
 
-<<<<<<< HEAD:src/guide/instance.md
-Consulte a [API](/api) para a lista completa de propriedades e métodos.
-=======
-Consult the [API reference](../api) for the full list of instance properties and methods.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/instance.md
+Consulte a [API](../api) para a lista completa de propriedades e métodos.
 
 ## Ciclo de vida da instância
 
 Cada instância Vue passa por uma série de etapas na sua inicialização - por exemplo, é necessário configurar o observador do data, compilar o template, montar a instância na DOM, e atualizar a DOM quando os dados forem alterados.
 
 Ao longo do caminho, Vue irá também invocar alguns **lifecycle hooks**, no qual lhe dá algumas oportunidades para executar uma lógica customizada. Por exemplo, `created` é chamado após a instancia do Vue ser criada:
-
-<<<<<<< HEAD:src/guide/instance.md
-=======
-Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the [`created`](../api/#created) hook is called after the instance is created:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/instance.md
 
 ``` js
 var vm = new Vue({
@@ -113,11 +98,7 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-<<<<<<< HEAD:src/guide/instance.md
 Existem outros hooks no qual serão chamados em diferentes etapas do ciclo de vida, como por exemplo `mounted`, `updated`, e `destroyed`. Todos os ciclos de vida são chamados com o seu `this` no contexto da instância Vue sendo invocada. Alguns usuários podem se questionar se o conceito de "controllers" está presente no mundo Vue, e a resposta é: não existem controllers. Sua lógica personalizada para um componente deverá fazer parte destes hooks do ciclo de vida.
-=======
-There are also other hooks which will be called at different stages of the instance's lifecycle, for example [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. You may have been wondering where the concept of "controllers" lives in the Vue world and the answer is: there are no controllers. Your custom logic for a component would be split among these lifecycle hooks.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/instance.md
 
 ## Diagrama do ciclo de vida
 
