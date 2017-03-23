@@ -8,11 +8,7 @@ O Vue.js utiliza uma sintaxe de templates baseada em HTML que permite que você 
 
 Internamente, o Vue compila os templates dentro de funções de renderização do DOM. Combinado com o sistema de reatividade, o Vue é capaz de identificar a menor quantidade possível de componentes para serem re-renderizados e aplica o mínimo possível de manipulações do DOM ao perceber uma mudança no estado da aplicação.
 
-<<<<<<< HEAD:src/guide/syntax.md
 Se você é familiarizado com os conceitos do Virtual DOM mas prefere o poder "puro" do JavaScript, você também pode [escrever funções de renderização diretamente](/guide/render-function.html) ao invés de utilizar templates, além de contar com suporte opcional para JSX.
-=======
-If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](render-function.html) instead of templates, with optional JSX support.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/syntax.md
 
 ## Interpolações
 
@@ -26,11 +22,7 @@ A forma mais básica de data binding é interpolar texto utilizando a sintaxe "M
 
 A tag mustache vai ser trocada pelo valor da propriedade `msg` do objeto de dados correspondente. Esse texto também será sempre atualizado quando a propriedade `msg` for modificada.
 
-<<<<<<< HEAD:src/guide/syntax.md
 Você também pode realizar interpolações únicas (não são atualizadas quando o objeto é modificado) utilizando a [diretiva v-once](/api/#v-once), mas não se esqueça que esse comportamento vai afetar qualquer binding realizado no mesmo nó::
-=======
-You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any binding on the same node:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/syntax.md
 
 ``` html
 <span v-once>Esse valor nunca será modificado: {{ msg }}</span>
@@ -46,19 +38,11 @@ As chaves duplas interpretam os dados como texto simples, e não html. Para que 
 
 Os conteúdos são inseridos como HTML simples - todos data bindings são ignorados. Note que você não pode utilizar a diretiva `v-html` para compor templates parciais, porque o Vue não possui uma engine baseada em templates no formato de string. Ao invés disso, os componentes são a maneira sugerida para a composição e reutilização de componentes de UI.
 
-<<<<<<< HEAD:src/guide/syntax.md
 <p class="tip">Renderizar html dinâmico sem preocauções pode ser muito perigoso porque pode levar à [ataques XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilize a interpolação de HTML apenas em conteúdos que você confia e **nunca** em conteúdos enviados por seus usuários.</p>
-=======
-<p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/syntax.md
 
 ### Atributos
 
-<<<<<<< HEAD:src/guide/syntax.md
 Chaves duplas (mustaches) não podem ser utilizadas dentro de atributos HTML. Para isso, utilize a [diretiva v-bind](/api/#v-bind):
-=======
-Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](../api/#v-bind):
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/syntax.md
 
 ``` html
 <div v-bind:id="dynamicId"></div>
@@ -96,52 +80,9 @@ Essas expressões serão compiladas como JavaScript no escopo data da instância
 
 <p class="tip">As expressões de template são calculadas em um ambiente controlado e somente possuem acesso a uma lista de variáveis globais permitidas, como `Math` e `Date`. Você não deve tentar acessar as variáveis globais definidas pelo usuário em uma expressão de template.</p>
 
-<<<<<<< HEAD:src/guide/syntax.md
-### Filtros
-
-O Vue.js permite que você defina filtros que possam ser utilizados para aplicar formatações de textos comuns. Os filtros devem ser anexados no fim de uma **interpolação mustache**, denotados pelo símbolo "pipe":
-
-``` html
-{{ message | capitalize }}
-```
-
-<p class="tip">Os filtros do Vue 2.x só podem ser utilizados dentro de mustache bindings. Para conseguir o mesmo comportamento dentro de bindings de diretivas, você deve utilizar [Computed properties](/guide/computed.html)</p>
-
-A função do filtro sempre recebe o valor da expressão como o primeiro argumento.
-
-``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  }
-})
-```
-
-Filtros podem ser encadeados:
-
-``` html
-{{ message | filterA | filterB }}
-```
-
-Filtros são funções JavaScript, então eles podem aceitar parâmetros:
-
-``` html
-{{ message | filterA('arg1', arg2) }}
-```
-
-Aqui, a string simples `'arg1'` será passada para o filtro como o segundo parâmetro, e o valor da expressão `arg2` será calculado e passado como terceiro parâmetro.
-
 ## Diretivas
-=======
-## Directives
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/syntax.md
 
-Diretivas são atributos especiais com o prefixo `v-`. Espera-se que os valores atribuídos às diretivas sejam **uma simples expressão JavaScript** (com a excessão para o `v-for`, que será discutido posteriormente). O trabalho de uma diretiva é aplicar efeitos colaterais ao DOM reativamente, ou seja, quando o valor de sua expressão é modificado. Vamos revisar o simples exemplo que vimos na introdução:
+Diretivas são atributos especiais com o prefixo `v-`. Espera-se que os valores atribuídos às diretivas sejam **uma simples expressão Javascript** (com a excessão para o `v-for`, que será discutido posteriormente). O trabalho de uma diretiva é aplicar efeitos colaterais ao DOM reativamente, ou seja, quando o valor de sua expressão é modificado. Vamos revisar o simples exemplo que vimos na introdução:
 
 ``` html
 <p v-if="seen">Agora você me vê</p>
@@ -177,24 +118,17 @@ Modificadores são sufixos especiais denotados por um ponto, que indicam que aqu
 
 Nós veremos mais casos de uso de modificadores quando discutirmos mais sobre `v-on` e `v-model`.
 
-<<<<<<< HEAD:src/guide/syntax.md
-## Abreviações
-=======
-## Filters
+### Filtros
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions**. Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+O Vue.js permite que você defina filtros que possam ser utilizados para aplicar formatações de textos comuns. Os filtros devem ser anexados no fim de uma **interpolação mustache**, denotados pelo símbolo "pipe":
 
 ``` html
-<!-- in mustaches -->
 {{ message | capitalize }}
-
-<!-- in v-bind -->
-<div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Vue 2.x filters can only be used inside mustache interpolations and `v-bind` expressions (the latter supported since 2.1.0), because filters are primarily designed for text transformation purposes. For more complex data transforms in other directives, you should use [Computed properties](computed.html) instead.</p>
+<p class="tip">Os filtros do Vue 2.x só podem ser utilizados dentro de mustache bindings. Para conseguir o mesmo comportamento dentro de bindings de diretivas, você deve utilizar [Computed properties](/guide/computed.html)</p>
 
-The filter function always receives the expression's value as the first argument.
+A função do filtro sempre recebe o valor da expressão como o primeiro argumento.
 
 ``` js
 new Vue({
@@ -209,22 +143,21 @@ new Vue({
 })
 ```
 
-Filters can be chained:
+Filtros podem ser encadeados:
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-Filters are JavaScript functions, therefore they can take arguments:
+Filtros são funções Javascript, então eles podem aceitar parâmetros:
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+Aqui, a string simples `'arg1'` será passada para o filtro como o segundo parâmetro, e o valor da expressão `arg2` será calculado e passado como terceiro parâmetro.
 
-## Shorthands
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/syntax.md
+## Abreviações
 
 O prefixo `v-` serve como uma dica visual para identificar atributos específicos do Vue em seus templates. Isso é útil quando você está utilizando o Vue.js para aplicar comportamento dinâmico em um código existente, mas você pode achar esse comportamento um pouco verboso quando você o utiliza frequentemente. Em casos como no desenvolvimento de uma [SPA](https://en.wikipedia.org/wiki/Single-page_application), o uso desse prefixo fica menos importante, já que o Vue gerencia todos os templates. Assim, o Vue nos permite utilizar abreviações especiais para as duas diretivas mais utilizadas, que são o `v-bind` e o `v-on`:
 

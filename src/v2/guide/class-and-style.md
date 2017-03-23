@@ -111,53 +111,49 @@ No entanto, isso pode ser um tanto verboso se você tiver várias classes condic
 <div v-bind:class="[{ active: isActive }, errorClass]">
 ```
 
-### With Components
+### Com Componentes
 
-> This section assumes knowledge of [Vue Components](components.html). Feel free to skip it and come back later.
+> Esta seçao assume conhecimento de [Componentes Vue](components.html). Pode pular esta parte e voltar depois.
 
-When you use the `class` attribute on a custom component, those classes will be added to the component's root element. Existing classes on this element will not be overwritten.
+Quando você utiliza o atributo `class` em um componente personalizado, estas classes serão adicionadas ao elemento raiz. Classes que já existam neste elemento, não serão removidas.
 
-For example, if you declare this component:
+Por exemplo, se você declarar este componente:
 
 ``` js
 Vue.component('my-component', {
-  template: '<p class="foo bar">Hi</p>'
+  template: '<p class="foo bar">Oi</p>'
 })
 ```
 
-Then add some classes when using it:
+e então adicionar mais classes quando for utilizá-lo:
 
 ``` html
 <my-component class="baz boo"></my-component>
 ```
 
-The rendered HTML will be:
+O HTML resultante será:
 
 ``` html
 <p class="foo bar baz boo">Hi</p>
 ```
 
-The same is true for class bindings:
+O mesmo vale para v-bind de classe:
 
 ``` html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-When `isActive` is truthy, the rendered HTML will be:
+Quando `isActive` for verdadeiro, o HTML resultante será:
 
 ``` html
-<p class="foo bar active">Hi</p>
+<p class="foo bar active">Oi</p>
 ```
 
 ## Binding Inline Styles
 
 ### Sintaxe de Objeto
 
-<<<<<<< HEAD:src/guide/class-and-style.md
 A sintaxe de objeto para `v-bind:style` é bastante simples - parece quase CSS, só que é um objeto JavaScript. Você pode usar camelCase ou kebab-case para o nome da propriedade CSS.
-=======
-The object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case (use quotes with kebab-case) for the CSS property names:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/class-and-style.md
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
