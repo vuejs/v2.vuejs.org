@@ -46,22 +46,24 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 $ npm install vue
 ```
 
-## CLI
+## 命令行工具
 
-Vue.js provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds:
+Vue.js 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
 
 ``` bash
-# install vue-cli
+# 全局安装 vue-cli
 $ npm install --global vue-cli
-# create a new project using the "webpack" template
+# 创建一个基于 webpack 模板的新项目
 $ vue init webpack my-project
-# install dependencies and go!
+# 安装依赖，走你
 $ cd my-project
 $ npm install
 $ npm run dev
 ```
 
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+<p class="tip">CLI 默认了用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读<a href="./">指南</a> ，熟悉 Vue 本身之后再研究 CLI。</p>
+
+<p class="tip">对于大陆用户，建议将 npm 的注册表源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。</p>
 
 ## Explanation of Different Builds
 
@@ -214,24 +216,6 @@ Also see [Production Deployment Tips](deployment.html).
 
 另一方面，运行时构建的是完全兼容 CSP 的。当通过 [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) 或者 [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) 构建时，在 CSP 环境中模板将被完美预编译到 `render` 函数中。
 
-## 命令行工具
-
-Vue.js 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
-
-``` bash
-# 全局安装 vue-cli
-$ npm install --global vue-cli
-# 创建一个基于 webpack 模板的新项目
-$ vue init webpack my-project
-# 安装依赖，走你
-$ cd my-project
-$ npm install
-$ npm run dev
-```
-
-<p class="tip">CLI 默认了用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读<a href="./">指南</a> ，熟悉 Vue 本身之后再研究 CLI。</p>
-
-<p class="tip">对于大陆用户，建议将 npm 的注册表源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。</p>
 
 ## 开发版本
 
