@@ -67,13 +67,13 @@ Durante a tradução, se sentir necessidade de sugerir novos para alguma dessas 
 A tradução atualmente é um trabalho em progresso. Observar que todos os itens já marcados como traduzidos ainda carecem de revisão.
 
 **Website**
-- [x] Tela Principal (@danielschmitz, @ErickPetru)
-- [x] Menus e barras (@ErickPetru)
+- [x] Tela Principal (Tradução: @danielschmitz, @ErickPetru. Revisão 2.2: @ErickPetru)
+- [x] Menus e barras (Tradução: @ErickPetru. Revisão 2.2: @ErickPetru)
 
 **Guide**
-- [ ] Installation (@danielschmitz, @ErickPetru)
-- [X] Introduction (@ErickPetru)
-- [ ] The Vue Instance (@danielschmitz, @ErickPetru)
+- [X] Installation (Tradução: @danielschmitz, @ErickPetru. Revisão 2.2: @ErickPetru)
+- [X] Introduction (Tradução: @ErickPetru. Revisão 2.2: @ErickPetru)
+- [ ] The Vue Instance (Tradução: @danielschmitz. Revisão 2.2: @ErickPetru)
 - [x] Template Syntax (@vitorarjol)
 - [x] Computed Properties and Watchers (@danielschmitz)
 - [x] Class and Style Bindings (@gidenilson)
