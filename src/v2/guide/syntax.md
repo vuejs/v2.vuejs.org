@@ -83,7 +83,6 @@ Essas expressões serão compiladas como JavaScript no escopo data da instância
 ## Diretivas
 
 Diretivas são atributos especiais com o prefixo `v-`. Espera-se que os valores atribuídos às diretivas sejam **uma simples expressão Javascript** (com a excessão para o `v-for`, que será discutido posteriormente). O trabalho de uma diretiva é aplicar efeitos colaterais ao DOM reativamente, ou seja, quando o valor de sua expressão é modificado. Vamos revisar o simples exemplo que vimos na introdução:
->>>>>>> vuejs-master
 
 ``` html
 <p v-if="seen">Agora você me vê</p>
