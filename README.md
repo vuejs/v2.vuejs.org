@@ -4,7 +4,7 @@ Este é o repositório oficial da tradução em português brasileiro do _site_ 
 
 ## Situação da tradução
 
-A tradução atualmente é um trabalho em progresso. Observar que todos os itens já marcados como traduzidos ainda carecem de revisão.
+A tradução atualmente é um trabalho em progresso. Situação de cada página do _site_:
 
 **Website**
 - [x] Tela Principal (Tradução: @danielschmitz, @ErickPetru. Revisão 2.2: @ErickPetru)
@@ -23,7 +23,7 @@ A tradução atualmente é um trabalho em progresso. Observar que todos os itens
 - [ ] Form Input Bindings(Tradução: @gidenilson. Revisão 2.2: **pendente**)
 - [ ] Components (Tradução: **pendente**)
 - [ ] Reactivity in Depth (Tradução: @gidenilson. Revisão 2.2: **pendente**)
-- [ ] Transition Effects: Entering, Leaving, and Lists (Tradução: @jbruni, @NicholasPedroso. Revisão 2.2: **pendente**)
+- [ ] Transition Effects (Tradução: @jbruni, @NicholasPedroso. Revisão 2.2: **pendente**)
 - [ ] Transitioning State (Tradução: **pendente**)
 - [ ] Render Functions (Tradução: @jbruni. Revisão 2.2: **pendente**)
 - [ ] Custom Directives (Tradução: @gidenilson. Revisão 2.2: **pendente**)
