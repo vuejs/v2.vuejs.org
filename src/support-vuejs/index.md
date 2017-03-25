@@ -7,15 +7,11 @@ However, the amount of effort needed to maintain and develop new features for th
 
 ### Platinum ($2000/mo)
 
-**$2000/mo platinum sponsor slot is currently vacant!** [Become our highest-tier sponsor on Patreon!](https://www.patreon.com/bePatron?u=2341390)
-
-As the highest-tier sponsor, your logo will be placed at:
-
-- The top left of every documentation page on vuejs.org (5.7m+ pageviews & 500k+ unique visitors per month)
-
-- The homepage of vuejs.org (at the top of the sponsors section)
-
-- The top of the project repo's README.
+<p style="text-align: center;">
+  <a href="https://stdlib.com">
+    <img style="width:300px" src="/images/stdlib.png">
+  </a>
+</p>
 
 ### Gold ($500/mo)
 
@@ -42,8 +38,6 @@ As the highest-tier sponsor, your logo will be placed at:
     <img src="/images/vuejobs.svg">
   </a><a href="https://leanpub.com/vuejs2" target="_blank">
     <img src="/images/tmvuejs2.png">
-  </a><a href="https://stdlib.com/" target="_blank">
-    <img src="/images/stdlib.png">
   </a>
 </p>
 
