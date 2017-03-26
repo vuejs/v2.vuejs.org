@@ -23,7 +23,7 @@ Here's a simple example of a file we'll call `Hello.vue`:
 
 Now we get:
 
-- [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#syntax-highlighting)
+- [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [CommonJS modules](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [Component-scoped CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
