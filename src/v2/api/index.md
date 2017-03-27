@@ -124,7 +124,7 @@ type: api
 
 - **Type:** `boolean`
 
-- **Default:** `false`
+- **Default:** `false (from 2.2.3)`
 
 - **Usage**:
 
