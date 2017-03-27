@@ -21,7 +21,7 @@ Les notes de version détaillées pour chaque version sont disponibles sur [GitH
 
 Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera déclaré comme une variable globale.
 
-<p class="tip">N'utilisez pas la version minifiée pendant le développement car vous ne bénéficieriez alors pas des avertissements pour les erreurs courantes !</p>
+<p class="tip">N'utilisez pas la version minifiée pendant le développement. Vous ne bénéficieriez alors pas des avertissements pour les erreurs courantes !</p>
 
 <div id="downloads">
 <a class="button" href="./js/vue.js" download>Version de développement</a><span class="light info">Avec tous les avertissements et le mode de débogage</span>

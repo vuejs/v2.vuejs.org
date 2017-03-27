@@ -27,9 +27,11 @@ var vm = new Vue({
   }
 })
 // `vm.a` est maintenant réactive
+
 vm.b = 2
 // `vm.b` N'est PAS réactive
 ```
+
 Vue n'autorise pas l'ajout dynamique de nouvelles propriétés réactives au niveau de la racine dans une instance déjà créée. Toutefois, il est possible d'ajouter des propriétés réactives à un objet imbriqué à l'aide de la méthode `Vue.set(object, key, value)` :
 
 ``` js
