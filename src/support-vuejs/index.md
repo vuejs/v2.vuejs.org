@@ -1,18 +1,19 @@
 # Support Vue.js Development
 
-<a href="https://www.patreon.com/evanyou" target="_blank">
-  <img style="width:120px" src="https://s3.amazonaws.com/patreon_public_assets/toolbox/patreon.png">
-  <span>Support Vue.js on Patreon (recurring pledge)</span>
-</a>
+Vue.js is an MIT licensed open source project and completely free to use.
+However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development by [pledging on Patreon](https://www.patreon.com/evanyou) (recurring, with perks for different tiers) or [donating on PayPal](https://www.paypal.me/evanyou) (one time).
 
-<a href="https://www.paypal.me/evanyou" target="_blank">
-  <img style="width:120px" src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png">
-  <span>Donate via PayPal (one time)</span>
-</a>
+## Current Premium Sponsors:
 
-## Current premium sponsors:
+### Platinum ($2000/mo)
 
-<p style="text-align: center; padding-top: 30px; margin-bottom: 0"><a href="http://www.thedifferenceengine.io/"><img src="/images/tde.png" style="width: 300px"></a></p>
+<p style="text-align: center;">
+  <a href="https://stdlib.com">
+    <img style="width:300px" src="/images/stdlib.png">
+  </a>
+</p>
+
+### Gold ($500/mo)
 
 <p style="text-align: center; margin-top: 0; margin-bottom: 60px" class="sponsors-page">
   <a href="https://jsfiddle.net">
@@ -34,16 +35,11 @@
   </a><a href="https://www.2mhost.com/" target="_blank">
     <img src="/images/2mhost.png">
   </a><a href="https://vuejobs.com/?ref=vuejs" target="_blank" style="position:relative;top:6px">
-    <img src="/images/vuejobs.png">
+    <img src="/images/vuejobs.svg">
   </a><a href="https://leanpub.com/vuejs2" target="_blank">
     <img src="/images/tmvuejs2.png">
-  </a><a href="https://stdlib.com/" target="_blank">
-    <img src="/images/stdlib.png">
   </a>
 </p>
-
-Vue.js is an MIT licensed open source project and completely free to use.
-However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development by [pledging on Patreon](https://www.patreon.com/evanyou) or [donating on PayPal](https://www.paypal.me/evanyou).
 
 If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: **it ensures the project that your product relies on stays healthy and actively maintained.** It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
 
