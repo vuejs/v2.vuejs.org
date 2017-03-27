@@ -27,7 +27,7 @@ Since these are [published on NPM](https://unpkg.com/vue/types/), and the latest
     "lib": [
       "dom",
       "es5",
-      "es2015.Promise"
+      "es2015.promise"
     ]
   }
 }
