@@ -14,6 +14,8 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 <p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
 
+Are you a visual learner? Vuecasts provides a [free, thorough introduction to Vue](http://vuecasts.com) for newcomers to the framework. It's a great place to start your journey.
+
 The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can simply create an `.html` file and include Vue with:
 
 ``` html
