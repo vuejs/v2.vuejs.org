@@ -72,7 +72,7 @@ Vue.component('linked-heading', {
   render: function (createElement) {
     return createElement(
       'h' + this.nivel,   // nome do elemento (tag)
-      this.$slots.default // array de elementos filhos (children)
+      this.$slots.default // array de elementos-filho (children)
     )
   },
   props: {
@@ -84,11 +84,11 @@ Vue.component('linked-heading', {
 })
 ```
 
-Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filhos (children) em seu componente sem especificar um atributo `slot`, como o `Alô Mundo!` dentro de `linked-heading`, esses elementos estão acessíveis na instância do componente em `$slots.default`. Se você ainda não leu, **é recomendado que leia a seção [API - propriedades da instância](/api/#vm-slots) antes de se aprofundar em funções "render".**
+Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos-filho (children) em seu componente sem especificar um atributo `slot`, como o `Alô Mundo!` dentro de `linked-heading`, esses elementos estão acessíveis na instância do componente em `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção [API - propriedades da instância](/api/#vm-slots) antes de se aprofundar em funções "render".**
 
 ## Parâmetros para `createElement`
 
-A segunda coisa com a qual você precisa se familiarizar é como utilizar as funcionalidades disponíveis em templates na função `createElement`. Estes são os parâmetros que `createElement` aceita:
+A segunda coisa com a qual você precisa se familiarizar é como utilizar as features disponíveis em templates na função `createElement`. Estes são os parâmetros que `createElement` aceita:
 
 ``` js
 // @returns {VNode}
@@ -99,7 +99,7 @@ createElement(
   'div',
 
   // {Object}
-  // Um objeto de dados correspondendo aos atributos
+  // Um objeto de dados (chave: valor) correspondendo aos atributos
   // que você usaria em template. Opcional.
   {
     // (veja detalhes na próxima seção, abaixo)
