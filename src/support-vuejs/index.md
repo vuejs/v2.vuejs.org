@@ -38,6 +38,8 @@ However, the amount of effort needed to maintain and develop new features for th
     <img src="/images/vuejobs.svg">
   </a><a href="https://leanpub.com/vuejs2" target="_blank">
     <img src="/images/tmvuejs2.png">
+  </a><a href="https://fancygrid.com" target="_blank">
+    <img src="https://fancygrid.com/logo/logo.png">
   </a>
 </p>
 
