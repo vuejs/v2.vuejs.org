@@ -125,7 +125,7 @@ type: api
 
 - **타입:** `boolean`
 
-- **기본값:** `false`
+- **기본값:** `false (from 2.2.3)`
 
 - **사용방법:**
 
@@ -650,7 +650,7 @@ if (version === 2) {
     컴포넌트가 함수형 컴포넌트인 경우 렌더링 함수는 추가로 `context`를 인자로 받습니다. 이 것은 함수형 컴포넌트가 인스턴스가 없기 때문에 컨텍스트에 대한 액세스를 제공합니다.
 
     <p class="tip">
-    `render`함수는 `template` 옵션 또는 `el` 옵션으로 지정한 엘리먼트를 컴파일 한 것보다 높은 우선 순위를 가집니다.
+    `render` 함수는 `template` 옵션 또는 `el` 옵션으로 지정된 마운트된 엘리먼트의 템플릿에서 컴파일된 렌더링 함수보다 높은 우선 순위를 가집니다.
     </p>
 
   - **참고:**
@@ -1780,6 +1780,9 @@ if (version === 2) {
 
   <!-- 속성 바인딩. 컴포넌트에서 "prop"를 선언 해야 합니다.  -->
   <my-component :prop="someThing"></my-component>
+
+  <!-- pass down parent props in common with a child component -->
+  <child-component v-bind.prop="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>

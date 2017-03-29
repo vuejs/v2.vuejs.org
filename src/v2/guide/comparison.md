@@ -139,7 +139,7 @@ Vue에서 우리는 또한 [렌더링 함수](render-function.html)와 심지어
 <template>
   <div class="list-container">
     <ul v-if="items.length">
-      <li v-for="item in items">
+      <li v-for="item in items" :key="item.id">
         {{ item.name }}
       </li>
     </ul>

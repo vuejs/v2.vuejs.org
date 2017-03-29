@@ -23,7 +23,7 @@ order: 19
 
 이제 우리는 할 수 있습니다:
 
-- [완전한 구문 강조](https://github.com/vuejs/awesome-vue#syntax-highlighting)
+- [완전한 구문 강조](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [CommonJS 모듈](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [컴포넌트에만 제한된 CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 

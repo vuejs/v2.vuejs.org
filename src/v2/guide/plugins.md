@@ -79,4 +79,4 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
-커뮤니티에서 기여한 많은 플러그인 및 라이브러리 컬렉션을 [awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins)에서 확인하세요.
+커뮤니티에서 기여한 많은 플러그인 및 라이브러리 컬렉션을 [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries)에서 확인하세요.
