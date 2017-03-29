@@ -8,11 +8,7 @@ order: 18
 
 Plugins geralmente acrescentam funcionalidade ao Vue em nível global. Não há um escopo estrito definido para um plugin. Existem vários tipos de plugin que você pode escrever:
 
-<<<<<<< HEAD
-1. Adicionar alguns métodos e propriedades globais. p. ex. [vue-element](https://github.com/vuejs/vue-element)
-=======
-1. Add some global methods or properties. e.g. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
->>>>>>> refs/remotes/vuejs/master
+1. Adicionar alguns métodos e propriedades globais. p. ex. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
 2. Adicionar um ou mais recurso global: directives/filters/transitions etc. p. ex. [vue-touch](https://github.com/vuejs/vue-touch)
 
@@ -82,4 +78,4 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
-Confira [awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins) para uma enorme coleção de plugins e bibliotecas contribuídas pela comunidade.
+Confira [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) para uma enorme coleção de plugins e bibliotecas contribuídas pela comunidade.

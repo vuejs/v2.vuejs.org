@@ -64,19 +64,12 @@ var example2 = new Vue({
   // define métodos dentro do objeto `methods`
   methods: {
     greet: function (event) {
-<<<<<<< HEAD:src/guide/events.md
       // `this` dentro de métodos aponta para a instância Vue
       alert('Olá ' + this.name + '!')
       // `event` é o evento DOM nativo
-      alert(event.target.tagName)
-=======
-      // `this` inside methods points to the Vue instance
-      alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
       if (event) {
         alert(event.target.tagName)
       }
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/events.md
     }
   }
 })
@@ -99,15 +92,10 @@ var example2 = new Vue({
   },
   methods: {
     greet: function (event) {
-<<<<<<< HEAD:src/guide/events.md
       alert('Olá ' + this.name + '!')
-      alert(event.target.tagName)
-=======
-      alert('Hello ' + this.name + '!')
       if (event) {
         alert(event.target.tagName)
       }
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/events.md
     }
   }
 })
@@ -156,13 +144,9 @@ new Vue({
 Às vezes, também precisamos acessar o evento original do DOM  em um manipulador com declaração inline. Você pode passá-lo em um método usando a variável especial `$event`:
 
 ``` html
-<<<<<<< HEAD
-<button v-on:click="warn('Form cannot be submitted yet.', $event)">Enviar</button>
-=======
 <button v-on:click="warn('Form cannot be submitted yet.', $event)">
-  Submit
+  Enviar
 </button>
->>>>>>> refs/remotes/vuejs/master
 ```
 
 ``` js
@@ -202,6 +186,7 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para 'v-o
 <form v-on:submit.prevent></form>
 
 <!-- usar modo de captura ao adicionar o event listener -->
+<!-- ex. um evento em um elemento interno é tratato aqui, antes de ser tratado pelo elemento -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- só aciona o manipulador se event.target é o próprio elemento -->
@@ -209,20 +194,15 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para 'v-o
 <div v-on:click.self="doThat">...</div>
 ```
 
-<<<<<<< HEAD:src/guide/events.md
 ## Modificadores de Tecla
-=======
 > New in 2.1.4
 
 ``` html
-<!-- the click event will be triggered at most once -->
+<!-- o evento click será disparado apenas uma vez -->
 <a v-on:click.once="doThis"></a>
 ```
 
-Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components.html#Using-v-on-with-Custom-Events). If you haven't read about components yet, don't worry about this for now.
-
-## Key Modifiers
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/events.md
+Diferente dos outros modificadores, que são exclusivo para eventos nativos, o modificador `.once` também pode ser usado em [Eventos de Componentes](components.html#Using-v-on-with-Custom-Events). Se não leu ainda sobre componentes, não se preocupe agora.
 
 Quando escutamos eventos do teclado, precisamos muitas vezes verificar se há códigos de teclas comuns. O Vue também permite a adição de modificadores de tecla para 'v-on' quando escuta  eventos de tecla:
 
@@ -243,7 +223,6 @@ Lembrar o código de todas as teclas é uma chatice, então o Vue fornece aliase
 
 Aqui está a lista completa dos aliases de modificadores de tecla:
 
-<<<<<<< HEAD:src/guide/events.md
 - enter
 - tab
 - delete (pega ambas as teclas, "Delete" e "Backspace" )
@@ -281,11 +260,6 @@ You can also [define custom key modifier aliases](../api/#keyCodes) via the glob
 Vue.config.keyCodes.f1 = 112
 ```
 
-<<<<<<< HEAD:src/guide/events.md
-## Por que Listeners in HTML?
-=======
-## Modifier Keys
-
 > New in 2.1.0
 
 You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
@@ -319,8 +293,7 @@ For example:
 
 These modifiers restrict the handler to events triggered by a specific mouse button.
 
-## Why Listeners in HTML?
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/events.md
+## Por que Listeners in HTML?
 
 Você pode estar pensando que esta abordagem de escuta de evento viola as boas e velhas práticas sobre "separação de objetivos". Fique descansado - como todas as funções do manipulador de Vue e expressões são estritamente ligados a ViewModel que está manipulando o modo de exibição atual, essa abordagem não causará qualquer dificuldade de manutenção. Na verdade, há vários benefícios em usar `v-on`:
 

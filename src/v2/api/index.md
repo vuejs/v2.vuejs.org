@@ -139,7 +139,7 @@ type: api
 
 - **Type:** `boolean`
 
-- **Default:** `false`
+- **Default:** `false (from 2.2.3)`
 
 - **Usage**:
 
@@ -681,7 +681,7 @@ if (version === 2) {
     Se o componente é um componente funcional, a função render também recebe um argumento extra `context`, que fornece acesso à dado contextual uma vez que componentes funcionais são instance-less.
 =======
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
-    
+
     <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 >>>>>>> refs/remotes/vuejs/master
 
@@ -1854,6 +1854,9 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
+
+  <!-- pass down parent props in common with a child component -->
+  <child-component v-bind.prop="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
