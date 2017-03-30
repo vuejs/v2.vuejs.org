@@ -30,8 +30,6 @@ However, the amount of effort needed to maintain and develop new features for th
     <img src="/images/monterail.png">
   </a><a href="https://www.trisoft.ro/" target="_blank">
     <img src="/images/trisoft.png">
-  </a><a href="http://actualize.co" target="_blank" style="width:180px">
-    <img src="/images/actualize.png" style="width:180px">
   </a><a href="https://www.2mhost.com/" target="_blank">
     <img src="/images/2mhost.png">
   </a><a href="https://vuejobs.com/?ref=vuejs" target="_blank" style="position:relative;top:6px">
@@ -40,6 +38,8 @@ However, the amount of effort needed to maintain and develop new features for th
     <img src="/images/tmvuejs2.png">
   </a><a href="https://fancygrid.com" target="_blank">
     <img src="https://fancygrid.com/logo/logo.png">
+  </a><a href="https://component.ui" target="_blank" style="width:150px">
+    <img src="/images/component_io.png" style="width:150px">
   </a>
 </p>
 
