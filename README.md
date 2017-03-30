@@ -14,7 +14,7 @@ A tradução atualmente é um trabalho em progresso. Situação de cada página 
 - [X] Installation (Tradução: @danielschmitz, @ErickPetru. Revisão 2.2: @ErickPetru)
 - [X] Introduction (Tradução: @ErickPetru. Revisão 2.2: @ErickPetru)
 - [X] The Vue Instance (Tradução: @danielschmitz. Revisão 2.2: @ErickPetru)
-- [-] Template Syntax (Tradução: @vitorarjol. Revisão 2.2: @ErickPetru)
+- [ ] Template Syntax (Tradução: @vitorarjol. Revisão 2.2: @ErickPetru)
 - [ ] Computed Properties and Watchers (Tradução: @danielschmitz. Revisão 2.2: **pendente**)
 - [ ] Class and Style Bindings (Tradução: @gidenilson. Revisão 2.2: **pendente**)
 - [ ] Conditional Rendering (Tradução: @gidenilson. Revisão 2.2: **pendente**)
