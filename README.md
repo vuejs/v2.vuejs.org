@@ -42,7 +42,7 @@ A tradução atualmente é um trabalho em progresso. Situação de cada página 
 - [ ] Join the Vue.js Community! (Tradução: **pendente**)
 
 **API**
-- [ ] Global Config (Tradução: @theus. Revisão 2.2: **pendente**)
+- [x] Global Config (Tradução: @theus. Revisão 2.2: @theus)
 - [ ] Global API
 - [ ] Options / Data
 - [ ] Options / DOM (Tradução: @guilherme-dev. Revisão 2.2: **pendente**)

@@ -54,53 +54,40 @@ type: api
 - **Uso:**
 
   ``` js
-  // tenha certeza de setar isso imediatamente síncrono após o carregamento do Vue
+  // tenha certeza de definir isso imediatamente síncrono após o carregamento do Vue
   Vue.config.devtools = true
   ```
-  Configure se deseja permitir a inspeção do [vue-devtools](https://github.com/vuejs/vue-devtools). O valor padrão dessa opção é `true` em builds de desenvolvimento e `false` em builds de produção. Você pode setar `true` para habilitar a inspeção em builds de produção.
+  Configure se deseja permitir a inspeção do [vue-devtools](https://github.com/vuejs/vue-devtools). O valor padrão dessa opção é `true` em builds de desenvolvimento e `false` em builds de produção. Você pode definir `true` para habilitar a inspeção em builds de produção.
 
 ### errorHandler
 
 - **Tipo:** `Function`
 
-<<<<<<< HEAD:src/api/index.md
-- **Padrão:** Os erros são lançados
-=======
-- **Default:** `undefined`
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Padrão:** `undefined`
 
 - **Uso:**
 
   ``` js
-<<<<<<< HEAD:src/api/index.md
-  Vue.config.errorHandler = function (err, vm) {
+  Vue.config.errorHandler = function (err, vm, info) {
     // manuseia o erro
+    // `info` é um erro específico do Vue, ex: cada lifecycle hook
+    // que o erro foi encontrado. Disponível apenas em 2.2.0+
   }
   ```
 
   Atribui um manipulador para errors não detectados durante a renderização do componente e dos observadores. O manipulador é chamado com o erro e a instância Vue.
-=======
-  Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
-  }
-  ```
 
-  Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
-
-  > In 2.2.0, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+  > No 2.2.0, esse hook também captura erros nos lifecycle hooks do componente. Além disso, quando esse hook é  `undefined` os erros capturados são logados com `console.error` em vez de quebrar o app.
 
   > [Sentry](https://sentry.io), um serviço de rastreamento de erro, fornece [integração oficial](https://sentry.io/for/vue/) usando essa opção.
 
 ### ignoredElements
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **Default:** `[]`
+- **Padrão:** `[]`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.ignoredElements = [
@@ -108,15 +95,11 @@ type: api
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  Faz com que o Vue ignore elementos customizados definidos fora do Vue (ex: usando APIs de Web Components). De outra forma, ele irá lançar um aviso sobre um `Unknown custom element` (elemento customizado desconhecido), assumindo que você esqueceu de registrar um componente global ou escrito erroneamente um nome de componente.
 
 ### keyCodes
 
-<<<<<<< HEAD:src/api/index.md
-- **Tipo:** `{ [key: string]: number }`
-=======
-- **Type:** `{ [key: string]: number | Array<number> }`
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Tipo:** `{ [key: string]: number | Array<number> }`
 
 - **Padrão:** `{}`
 
@@ -135,27 +118,27 @@ type: api
 
 ### performance
 
-> New in 2.2.0
+> Novo no 2.2.0
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false (from 2.2.3)`
+- **Padrão:** `false (a partir do 2.2.3)`
 
-- **Usage**:
+- **Uso**:
 
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool timeline. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+  Defina `true` para habilitar o rastreamento de performance do init, compile, render e patch do componente na timeline do inspetor do navegador. Só funciona no modo de desenvolvimento e em navegadores que suportam a API do [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
 
 ### productionTip
 
-> New in 2.2.0
+> Novo no 2.2.0
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `true`
+- **Padrão:** `true`
 
-- **Usage**:
+- **Uso**:
 
-  Set this to `false` to prevent the production tip on Vue startup.
+  Defina `false` para previnir a dica de produção ao iniciar o Vue.
 
 ## Global API
 
@@ -622,7 +605,7 @@ if (version === 2) {
 
   Se essa opção estiver disponível na instanciação, a instância irá compilar imediatamente; caso contrário, o usuário terá que chamar explicitamente `vm.$mount()` para iniciar manualmente a compilação.
 
-  <p class="tip">O elemento fornecido serve meramente como um ponto de montagem. Diferentemente do Vue 1.x, o elemento montado será substituído pelo Vue-generated DOM em todos os casos. Portanto, não é recomendado montar a instância raiz em `<html>` ou `<body>`.</p> 
+  <p class="tip">O elemento fornecido serve meramente como um ponto de montagem. Diferentemente do Vue 1.x, o elemento montado será substituído pelo Vue-generated DOM em todos os casos. Portanto, não é recomendado montar a instância raiz em `<html>` ou `<body>`.</p>
 
 <<<<<<< HEAD
 <<<<<<< HEAD:src/api/index.md
@@ -647,7 +630,7 @@ if (version === 2) {
   Um string template para ser usado como marcação para a instância Vue. O template irá **substituir** o elemento montado. Qualquer marcação existente dentro do elemento montado será ignorada, a menos que slots de destribuição de conteúdo estejam presentes no template.
 
   Se a string começa com `#` ela será usada como um querySelector e usará o innerHTML do elemento selecionado como template string. Isto permite o uso do comum `<script type="x-template">` truque para incluir templates.
-  
+
   <p class="tip">De uma perspective de segurança, você devia usar apenas Vue templates que você pode confiar. Nunca use conteúdo gerado pelo usuário como seu template.</p>
 
 <<<<<<< HEAD:src/api/index.md
@@ -776,7 +759,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 - **Detalhes:**
 
   Invocado logo após a instância ter sido montada onde `el` é substituído pelo recente criado `vm.$el`. Se a instância raiz é montada em um elemento in-document, `vm.$el` também será in-document quando `mounted` é invocada.
- 
+
   **Este hook não é invocado durante a renderização server-side.**
 
 <<<<<<< HEAD:src/api/index.md
