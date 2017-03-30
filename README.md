@@ -121,7 +121,7 @@ Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira, 
 - *Handling* = Manipulação
 - *Event Listening* = Escuta de Eventos
 - *Render Funcion* = Função de Renderização
-- *Computed Properties* = Propriedades Computadas
+- *Computed Properties* = Dados Computados
 - *Single-File Components* = Componentes Single-File
 - *Custom Elements* = Elementos Personalizados
 - *Performance* = Desempenho
@@ -129,7 +129,7 @@ Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira, 
 
 ### Termos não traduzidos
 
-Atualmente recomenda-se que estes termos sejam mantidos em inglês: _standalone_, _runtime_, _build_, _alias_, _store_, _scaffolding_ _loader_, _bind_, _loop_, true, false, Number, String, _template_,_wrapper_, _hot-reload_, _hook_.
+Atualmente recomenda-se que estes termos sejam mantidos em inglês: _getter_, _setter_, _standalone_, _runtime_, _build_, _alias_, _store_, _scaffolding_ _loader_, _bind_, _loop_, true, false, Number, String, _template_, _wrapper_, _hot-reload_, _hook_.
 
 ### Discussões entre a equipe
 
