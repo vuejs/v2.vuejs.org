@@ -114,7 +114,7 @@ E algumas recomendações do que não fazer:
 
 ### Traduções padronizadas
 
-Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira:
+Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira, desde que a tradução não atrapalhe o contexto da frase:
 
 - *Bundle* = Pacote
 - *Debug* = Depuração
@@ -129,7 +129,7 @@ Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira:
 
 ### Termos não traduzidos
 
-Atualmente recomenda-se que estes termos sejam mantidos em inglês: _bundle_,_standalone_, _runtime_, _build_, _alias_, _store_, _scaffolding_ _loader_, _bind_, _loop_, true, false, Number, String, _template_,_wrapper_, _hot-reload_, _hook_.
+Atualmente recomenda-se que estes termos sejam mantidos em inglês: _standalone_, _runtime_, _build_, _alias_, _store_, _scaffolding_ _loader_, _bind_, _loop_, true, false, Number, String, _template_,_wrapper_, _hot-reload_, _hook_.
 
 ### Discussões entre a equipe
 
