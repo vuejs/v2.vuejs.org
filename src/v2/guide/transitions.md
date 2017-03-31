@@ -478,24 +478,24 @@ methods: {
 }
 ```
 
-These hooks can be used in combination with CSS transitions/animations or on their own.
+Ces hooks peuvent être utilisés en combinaison avec des transitions/animations CSS ou sur eux-mêmes.
 
-<p class="tip">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, they will be called synchronously and the transition will finish immediately.</p>
+<p class="tip">Lors de l'utilisation de transitions uniquement JavaScript, **les fonctions de retour `done` sont obligatoires pour les hooks `enter` et `leave`**. Dans le cas contraire, elles seront appelées de façon synchrone et la transition se terminera immédiatement.</p>
 
-<p class="tip">It's also a good idea to explicitly add `v-bind:css="false"` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.</p>
+<p class="tip">C'est aussi une bonne idée d'ajouter explicitement `v-bind:css="false"` pour les transitions uniquement JavaScript afin que Vue puisse ignorer la détection CSS. Cela empêche également les règles CSS d'interfèrer accidentellement avec la transition.</p>
 
-Now let's dive into an example. Here's a simple JavaScript transition using Velocity.js:
+Maintenant, nous allons plonger dans un exemple. Voici une simple transition JavaScript à l'aide de Velocity.js :
 
 ``` html
 <!--
-Velocity works very much like jQuery.animate and is
-a great option for JavaScript animations
+Velocity fonctionne aussi bien que jQuery.animate et est
+une excellente option pour les animations
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="example-4">
   <button @click="show = !show">
-    Toggle
+    Permter
   </button>
   <transition
     v-on:before-enter="beforeEnter"
@@ -504,7 +504,7 @@ a great option for JavaScript animations
     v-bind:css="false"
   >
     <p v-if="show">
-      Demo
+      Démo
     </p>
   </transition>
 </div>
@@ -541,7 +541,7 @@ new Vue({
 {% raw %}
 <div id="example-4" class="demo">
   <button @click="show = !show">
-    Toggle
+    Permuter
   </button>
   <transition
     v-on:before-enter="beforeEnter"
@@ -549,7 +549,7 @@ new Vue({
     v-on:leave="leave"
   >
     <p v-if="show">
-      Demo
+      Démo
     </p>
   </transition>
 </div>
@@ -584,9 +584,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## Transitions on Initial Render
+## Transitions sur le rendu initial
 
-If you also want to apply a transition on the initial render of a node, you can add the `appear` attribute:
+Si vous souhaitez également appliquer une transition sur le rendu initial d'un nœud, vous pouvez ajouter l'attribut `appear` :
 
 ``` html
 <transition appear>
@@ -594,7 +594,7 @@ If you also want to apply a transition on the initial render of a node, you can 
 </transition>
 ```
 
-By default, this will use the transitions specified for entering and leaving. If you'd like however, you can also specify custom CSS classes:
+Par défaut, cela utilisera les transitions spécifiées pour l’entrée et la sortie. Si vous le souhaitez, vous pouvez également spécifier des classes CSS personnalisées :
 
 ``` html
 <transition
@@ -607,7 +607,7 @@ By default, this will use the transitions specified for entering and leaving. If
 </transition>
 ```
 
-and custom JavaScript hooks:
+et des hooks JavaScript personnalisés :
 
 ``` html
 <transition
@@ -621,63 +621,63 @@ and custom JavaScript hooks:
 </transition>
 ```
 
-## Transitioning Between Elements
+## Transition entre éléments
 
-We discuss [transitioning between components](#Transitioning-Between-Components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:
+Plus loin, nous parlons de [transition entre les composants](#Transitioning-Between-Components), mais vous pouvez également faire une transition entre des éléments bruts en utilisant `v-if`/`v-else`.  L'une des transitions les plus courantes sur deux éléments est entre un conteneur de liste et un message décrivant une liste vide :
 
 ``` html
 <transition>
   <table v-if="items.length > 0">
     <!-- ... -->
   </table>
-  <p v-else>Sorry, no items found.</p>
+  <p v-else>Désolé, aucun élément trouvé.</p>
 </transition>
 ```
 
-This works well, but there's one caveat to be aware of:
+Cela fonctionne bien, mais il y a une mise en garde à connaître :
 
-<p class="tip">When toggling between elements that have **the same tag name**, you must tell Vue that they are distinct elements by giving them unique `key` attributes. Otherwise, Vue's compiler will only replace the content of the element for efficiency. Even when technically unnecessary though, **it's considered good practice to always key multiple items within a `<transition>` component.**</p>
+<p class="tip">Lors de la permutation entre des éléments qui ont **le même nom de balise**, vous devez indiquer à Vue qu’ils sont des éléments distincts en lui donnant des attributs `key` uniques.  Sinon, le compilateur de Vue ne remplacera que le contenu de l'élément dans le but d'être efficace. Cependant, même si c'est techniquement inutile, **c'est considéré comme une bonne pratique de toujours avoir une clé pour chaque élément dans un composant `<transition>`.**</p>
 
-For example:
+Par exemple :
 
 ``` html
 <transition>
   <button v-if="isEditing" key="save">
-    Save
+    Sauver
   </button>
   <button v-else key="edit">
-    Edit
+    Modifier
   </button>
 </transition>
 ```
 
-In these cases, you can also use the `key` attribute to transition between different states of the same element. Instead of using `v-if` and `v-else`, the above example could be rewritten as:
+Dans ces cas, vous pouvez aussi utiliser l'attribut `key` pour effectuer une transition entre différents états du même élément. Au lieu d’utiliser `v-if` et `v-else`, l’exemple ci-dessus pourrait être réécrit ainsi :
 
 ``` html
 <transition>
   <button v-bind:key="isEditing">
-    {{ isEditing ? 'Save' : 'Edit' }}
+    {{ isEditing ? 'Sauver' : 'Modifier' }}
   </button>
 </transition>
 ```
 
-It's actually possible to transition between any number of elements, either by using multiple `v-if`s or binding a single element to a dynamic property. For example:
+Il est effectivement possible de faire une transition entre un nombre indéfini d'éléments, soit en utilisant plusieurs `v-if` ou soit en liant un élément unique à une propriété dynamique. Par exemple :
 
 ``` html
 <transition>
   <button v-if="docState === 'saved'" key="saved">
-    Edit
+    Modifier
   </button>
   <button v-if="docState === 'edited'" key="edited">
-    Save
+    Sauver
   </button>
   <button v-if="docState === 'editing'" key="editing">
-    Cancel
+    Annuler
   </button>
 </transition>
 ```
 
-Which could also be written as:
+Qui pourrait aussi s'écrire ainsi :
 
 ``` html
 <transition>
@@ -692,9 +692,9 @@ Which could also be written as:
 computed: {
   buttonMessage: function () {
     switch (docState) {
-      case 'saved': return 'Edit'
-      case 'edited': return 'Save'
-      case 'editing': return 'Cancel'
+      case 'saved': return 'Modifier'
+      case 'edited': return 'Sauver'
+      case 'editing': return 'Annuler'
     }
   }
 }
