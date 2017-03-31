@@ -1048,7 +1048,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     },
     props: {
       // this allows using the `value` prop for a different purpose
-      value: String
+      value: String,
+      // use `checked` as the prop which take the place of `value`
+      checked: {
+        type: Number,
+        default: 0
+      }
     },
     // ...
   })
