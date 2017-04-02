@@ -111,11 +111,18 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
+    // camelCase won`t work
     mediaPlayPause: 179,
+    // instead you can use kebab-case with double quatation mark
+    "media-play-pause" : 179,
     up: [38, 87]
   }
   ```
 
+  ```html
+  <input type="text" @keyup.media-play-pause="method">
+  ```
+  
   Define custom key alias(es) for v-on.
 
 ### performance
