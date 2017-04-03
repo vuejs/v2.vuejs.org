@@ -1,12 +1,12 @@
 ---
-title: Propriedades Computadas e Observadores
+title: Dados Computados e Observadores
 type: guide
 order: 5
 ---
 
-## Propriedades Computadas
+## Dados Computados
 
-Expressões dentro de templates são convenientes, mas elas deveriam ser utilizadas somente para operações. Templates são destinados para descrever a estrutura da sua view. Colocar muita lógica nos seus templates pode fazer que com eles fiquem inchados e com que a sua manutenção fique mais complicada. Por exemplo:
+Expressões dentro de _templates_ são convenientes, mas elas deveriam ser utilizadas somente para operações. De fato, _templates_ são destinados a descrever a estrutura da sua _view_. Colocar muita lógica neles pode fazer com que fiquem inchados e que a sua manutenção fique mais complicada. Por exemplo:
 
 ``` html
 <div id="example">
@@ -14,9 +14,9 @@ Expressões dentro de templates são convenientes, mas elas deveriam ser utiliza
 </div>
 ```
 
-Neste ponto, o template não é mais tão simples e declarativo. Você tem que olhá-lo por alguns segundos antes de entender que ele exibe a palavra `message`na ordem reversa. O problema é agravado quando se deseja incluir uma mensagem na ordem reversa em mais algum lugar do template.
+Neste ponto, o _template_ não é mais tão simples e declarativo. Você tem que olhá-lo por alguns segundos antes de entender que ele exibe o valor de `message` na ordem reversa. O problema é agravado quando se deseja incluir uma mensagem na ordem reversa em mais algum lugar do _template_, gerando-se repetições de código.
 
-É por isso que, para qualquer lógica mais complexa, você deve usar uma **propriedade calculada** (computed properties, no inglês).
+Por isso que, para qualquer lógica mais complexa, deve-se usar **dados computados** (_computed properties_ no inglês, traduzidos como "dados" pois efetivamente durante sua utilização nos _templates_, se parecem com as propriedades definidas em `data`).
 
 ### Exemplo Básico
 
@@ -34,7 +34,7 @@ var vm = new Vue({
     message: 'Hello'
   },
   computed: {
-    // um getter calculado (computed getter)
+    // uma função "getter" computada (computed getter)
     reversedMessage: function () {
       // `this` aponta para a instância vm
       return this.message.split('').reverse().join('')
@@ -47,7 +47,7 @@ Resultado:
 
 {% raw %}
 <div id="example" class="demo">
-  <p>Mensagem Original: "{{ message }}"</p>
+  <p>Mensagem original: "{{ message }}"</p>
   <p>Mensagem ao contrário: "{{ reversedMessage }}"</p>
 </div>
 <script>
@@ -65,7 +65,7 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Aqui nós declaramos uma propriedade calculada `reversedMessage`. A função que fornecemos será usada como uma função getter para a propriedade `vm.reversedMessage`.
+Aqui nós declaramos um dado computado denominado `reversedMessage`. A função que fornecemos será usada como uma função _getter_ para a propriedade `vm.reversedMessage`.
 
 ``` js
 console.log(vm.reversedMessage) // -> 'olleH'

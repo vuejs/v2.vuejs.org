@@ -13,9 +13,9 @@ A tradução atualmente é um trabalho em progresso. Situação de cada página 
 **Guide**
 - [X] Installation (Tradução: @danielschmitz, @ErickPetru. Revisão 2.2: @ErickPetru)
 - [X] Introduction (Tradução: @ErickPetru. Revisão 2.2: @ErickPetru)
-- [ ] The Vue Instance (Tradução: @danielschmitz. Revisão 2.2: @ErickPetru)
-- [ ] Template Syntax (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] Computed Properties and Watchers (Tradução: @danielschmitz. Revisão 2.2: **pendente**)
+- [X] The Vue Instance (Tradução: @danielschmitz. Revisão 2.2: @ErickPetru)
+- [X] Template Syntax (Tradução: @vitorarjol. Revisão 2.2: @ErickPetru)
+- [ ] Computed Properties and Watchers (Tradução: @danielschmitz. Revisão 2.2: @ErickPetru)
 - [ ] Class and Style Bindings (Tradução: @gidenilson. Revisão 2.2: **pendente**)
 - [ ] Conditional Rendering (Tradução: @gidenilson. Revisão 2.2: **pendente**)
 - [ ] List Rendering (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
@@ -42,7 +42,7 @@ A tradução atualmente é um trabalho em progresso. Situação de cada página 
 - [ ] Join the Vue.js Community! (Tradução: **pendente**)
 
 **API**
-- [ ] Global Config (Tradução: @theus. Revisão 2.2: **pendente**)
+- [x] Global Config (Tradução: @theus. Revisão 2.2: @theus)
 - [ ] Global API
 - [ ] Options / Data
 - [ ] Options / DOM (Tradução: @guilherme-dev. Revisão 2.2: **pendente**)
@@ -114,14 +114,14 @@ E algumas recomendações do que não fazer:
 
 ### Traduções padronizadas
 
-Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira:
+Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira, desde que a tradução não atrapalhe o contexto da frase:
 
 - *Bundle* = Pacote
 - *Debug* = Depuração
 - *Handling* = Manipulação
 - *Event Listening* = Escuta de Eventos
 - *Render Funcion* = Função de Renderização
-- *Computed Properties* = Propriedades Computadas
+- *Computed Properties* = Dados Computados
 - *Single-File Components* = Componentes Single-File
 - *Custom Elements* = Elementos Personalizados
 - *Performance* = Desempenho
@@ -129,7 +129,7 @@ Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira:
 
 ### Termos não traduzidos
 
-Atualmente recomenda-se que estes termos sejam mantidos em inglês: _bundle_,_standalone_, _runtime_, _build_, _alias_, _store_, _scaffolding_ _loader_, _bind_, _loop_, true, false, Number, String, _template_,_wrapper_, _hot-reload_, _hook_.
+Atualmente recomenda-se que estes termos sejam mantidos em inglês: _getter_, _setter_, _standalone_, _runtime_, _build_, _alias_, _store_, _scaffolding_ _loader_, _bind_, _loop_, true, false, Number, String, _template_, _wrapper_, _hot-reload_, _hook_.
 
 ### Discussões entre a equipe
 
