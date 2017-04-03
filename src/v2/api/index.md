@@ -1452,9 +1452,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Utilisation :**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Reporte l'éxécution de la fonction `callback` au prochain cycle de mise à jour du DOM. Utilisez ceci immédiatement après avoir changé des données pour attendre la mise à jour du DOM. C'est la même chose que la fonction globale `Vue.nextTick`, sauf que le contexte `this` dans la fonction `callback` est automatiquement lié à l'instance appelant cette méthode.
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > Nouveau en 2.1.0: retourne une Promise si aucun callback n'est fourni et si les Promise sont supportés dans l'environnement d'exécution.
 
 - **Exemple :**
 
@@ -1463,14 +1463,14 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
     // ...
     methods: {
       // ...
-      example: function () {
-        // modify data
-        this.message = 'changed'
-        // DOM is not updated yet
+      exemple: function () {
+        // modifie des données
+        this.message = 'changé'
+        // le DOM n'est pas encore mis à jour
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
-          this.doSomethingElse()
+          // le DOM est maintenant à jour
+          // `this` est lié à l'instance courante
+          this.faireAutreChose()
         })
       }
     }
@@ -1479,17 +1479,17 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Voir aussi :**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+  - [File de mise à jour asynchrone](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
 - **Utilisation :**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  Détruit complètement une instance de Vue `vm`. Supprime ses connexions avec d'autres instances de Vue, détache toutes ses directives, désactive tous les écouteurs d'événements.
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  Déclenche les hooks `beforeDestroy` et `destroyed`.
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">Dans les cas d'utilisation normaux, vous ne devriez pas avoir à appeler cette méthode vous-même. Contrôlez plutôt le cycle de vie de vos composants enfants de manière pilotée par les données, en utilisant `v-if` et `v-for`.</p>
 
 - **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
 
