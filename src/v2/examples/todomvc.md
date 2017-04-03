@@ -1,7 +1,7 @@
 ---
 title: TodoMVC
 type: examples
-order: 9
+order: 11
 ---
 
 > Esse é um exemplo totalmente compatível com as especificações de implementação do TodoMVC e possui até 120 linhas efetivas de JavaScript (excluindo comentários e linhas brancas).

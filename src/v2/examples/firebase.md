@@ -1,7 +1,7 @@
 ---
 title: Firebase + Validation
 type: examples
-order: 2
+order: 10
 ---
 
 > Esse exemplo utiliza o [Firebase](https://firebase.google.com/) como camada de persistência e sincroniza com os clientes conectados em tempo real (teste abrindo múltiplas abas). Além disso, ele faz validações instantâneas utilizando computed properties e ativa transições CSS ao adicionar ou remover algum item..

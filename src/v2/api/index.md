@@ -109,11 +109,16 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
+    // camelCase won`t work
     mediaPlayPause: 179,
+    // instead you can use kebab-case with double quatation mark
+    media-play-pause: 179,
     up: [38, 87]
   }
   ```
-
+  ```html
+  <input type="text" @keyup.media-play-pause="method">
+  ```
   Define atalhos customizados de teclas para o v-on
 
 ### performance
@@ -1114,7 +1119,12 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
     },
     props: {
       // this allows using the `value` prop for a different purpose
-      value: String
+      value: String,
+      // use `checked` as the prop which take the place of `value`
+      checked: {
+        type: Number,
+        default: 0
+      }
     },
     // ...
   })
