@@ -214,7 +214,7 @@ Outra importante diferença entre os dois ecossistemas é que as bibliotecas com
 
 Por fim, Vue oferece um [CLI gerador de projetos](https://github.com/vuejs/vue-cli) que torna trivialmente simples iniciar um novo projeto usando o sistema de *build* de sua escolha, incluindo [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), ou mesmo [nenhum](https://github.com/vuejs-templates/simple). React também está fazendo avanços nesta área com o [create-react-app](https://github.com/facebookincubator/create-react-app), mas atualmente tem algumas limitações:
 
-- Não permite nenhuma configuração durante a geração do projeto, enquanto os templates de projeto Vue permitem personalização no estilo Yeoman.
+- Não permite nenhuma configuração durante a geração do projeto, enquanto os templates de projeto Vue permitem personalização no estilo [Yeoman](http://yeoman.io/).
 - Oferece um modelo simples assumindo que você está criando uma aplicação *single-page*, enquanto Vue oferece muita variedade, para vários propósitos e sistemas de *build*.
 - Não permite criar projetos a partir de modelos feitos por outros desenvolvedores, o que pode ser muito útil, especialmente em ambientes empresariais com padrões estabelecidos.
 
