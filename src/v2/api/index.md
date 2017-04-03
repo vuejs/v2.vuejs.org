@@ -29,15 +29,15 @@ type: api
 - **Utilisation :**
 
   ``` js
-  Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
-    return child + 1
+  Vue.config.optionMergeStrategies._mon_option = function (parent, enfant, vm) {
+    return enfant + 1
   }
 
-  const Profile = Vue.extend({
-    _my_option: 1
+  const Profil = Vue.extend({
+    _mon_option: 1
   })
 
-  // Profile.options._my_option = 2
+  // Profil.options._mon_option = 2
   ```
 
   Définit des stratégies personnalisées de fusion pour les options.
@@ -94,7 +94,7 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'mon-web-component', 'un-autre-web-component'
   ]
   ```
 
@@ -157,23 +157,23 @@ type: api
   Le cas spécial à noter ici est l'option `data` - il doit s'agir d'une fonction quand utilisé avec `Vue.extend()`.
 
   ``` html
-  <div id="mount-point"></div>
+  <div id="point-de-montage"></div>
   ```
 
   ``` js
   // crée un constructeur réutilisable
-  var Profile = Vue.extend({
-    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+  var Profil = Vue.extend({
+    template: '<p>{{prenom}} {{nom}} alias {{alias}}</p>',
     data: function () {
       return {
-        firstName: 'Walter',
-        lastName: 'White',
+        prenom: 'Walter',
+        nom: 'White',
         alias: 'Heisenberg'
       }
     }
   })
-  // crée une instance de Profile et la monte sur un élément
-  new Profile().$mount('#mount-point')
+  // crée une instance de Profil et la monte sur un élément
+  new Profil().$mount('#point-de-montage')
   ```
 
   Cela donnera comme résultat :
@@ -184,11 +184,11 @@ type: api
 
 - **Voir aussi :** [Composants](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+<h3 id="Vue-nextTick">Vue.nextTick( [callback, contexte] )</h3>
 
 - **Arguments :**
   - `{Function} [callback]`
-  - `{Object} [context]`
+  - `{Object} [contexte]`
 
 - **Utilisation :**
 
@@ -196,7 +196,7 @@ type: api
 
   ``` js
   // modification de données
-  vm.msg = 'Hello'
+  vm.msg = 'Salut'
   // le DOM n'a pas encore été mis à jour
   Vue.nextTick(function () {
     // le DOM est à jour
@@ -207,32 +207,32 @@ type: api
 
 - **Voir aussi :** [File de mise à jour asynchrone](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+<h3 id="Vue-set">Vue.set( cible, clé, valeur )</h3>
 
 - **Arguments :**
-  - `{Object | Array} target`
-  - `{string | number} key`
-  - `{any} value`
+  - `{Object | Array} cible`
+  - `{string | number} clé`
+  - `{any} valeur`
 
 - **Retourne:** la valeur assignée.
 
 - **Utilisation :**
 
-  Assigne une propriété à un objet. Si l'objet est réactif, cette méthode s'assure que la propriété est créée en tant que propriété réactive et déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement l'ajout de nouvelles propriétés.
+  Assigne une propriété à un objet cible. Si l'objet est réactif, cette méthode s'assure que la propriété est créée en tant que propriété réactive et déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement l'ajout de nouvelles propriétés.
 
   **Notez que l'objet ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.**
 
 - **Voir aussi :** [Réactivité en détail](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+<h3 id="Vue-delete">Vue.delete( cible, clé )</h3>
 
 - **Arguments :**
-  - `{Object | Array} target`
-  - `{string | number} key`
+  - `{Object | Array} cible`
+  - `{string | number} clé`
 
 - **Utilisation :**
 
-  Supprime une propriété d'un objet. Si l'objet est réactif, cette méthode s'assure que la suppression déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement la suppression de propriétés, mais vous devriez rarement en avoir besoin.
+  Supprime une propriété d'un objet cible. Si l'objet est réactif, cette méthode s'assure que la suppression déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement la suppression de propriétés, mais vous devriez rarement en avoir besoin.
 
   > Fonctionne aussi avec une `Array` + index en 2.2.0+.
 
@@ -240,11 +240,11 @@ type: api
 
 - **Voir aussi :** [Réactivité en détail](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+<h3 id="Vue-directive">Vue.directive( id, [définition] )</h3>
 
 - **Arguments :**
   - `{string} id`
-  - `{Function | Object} [definition]`
+  - `{Function | Object} [définition]`
 
 - **Utilisation :**
 
@@ -252,7 +252,7 @@ type: api
 
   ``` js
   // inscrit une directive
-  Vue.directive('my-directive', {
+  Vue.directive('ma-directive', {
     bind: function () {},
     inserted: function () {},
     update: function () {},
@@ -261,21 +261,21 @@ type: api
   })
 
   // inscrit une directive comme simple fonction
-  Vue.directive('my-directive', function () {
+  Vue.directive('ma-directive', function () {
     // cette fonction sera appelée comme `bind` et `update` ci-dessus
   })
 
   // accesseur, retourne la définition de la directive si inscrite
-  var myDirective = Vue.directive('my-directive')
+  var maDirective = Vue.directive('ma-directive')
   ```
 
 - **Voir aussi :** [Directives personnalisées](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+<h3 id="Vue-filter">Vue.filter( id, [définition] )</h3>
 
 - **Arguments :**
   - `{string} id`
-  - `{Function} [definition]`
+  - `{Function} [définition]`
 
 - **Utilisation :**
 
@@ -283,19 +283,19 @@ type: api
 
   ``` js
   // inscrit un filtre
-  Vue.filter('my-filter', function (value) {
+  Vue.filter('mon-filtre', function (value) {
     // retourne la valeur modifiée
   })
 
   // accesseur, retourne le filtre si inscrit
-  var myFilter = Vue.filter('my-filter')
+  var monFiltre = Vue.filter('mon-filtre')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+<h3 id="Vue-component">Vue.component( id, [définition] )</h3>
 
 - **Arguments :**
   - `{string} id`
-  - `{Function | Object} [definition]`
+  - `{Function | Object} [définition]`
 
 - **Utilisation :**
 
@@ -303,13 +303,13 @@ type: api
 
   ``` js
   // inscrit un constructeur étendu
-  Vue.component('my-component', Vue.extend({ /* ... */ }))
+  Vue.component('mon-composant', Vue.extend({ /* ... */ }))
 
   // inscrit un composant avec un objet options (appelle automatiquement Vue.extend)
-  Vue.component('my-component', { /* ... */ })
+  Vue.component('mon-composant', { /* ... */ })
 
   // récupère un composant inscrit (retourne toujours le constructeur)
-  var MyComponent = Vue.component('my-component')
+  var MonComposant = Vue.component('mon-composant')
   ```
 
 - **Voir aussi :** [Composants](../guide/components.html).
@@ -352,7 +352,7 @@ type: api
 
   new Vue({
     data: {
-      msg: 'hello'
+      msg: 'salut'
     },
     render: res.render,
     staticRenderFns: res.staticRenderFns
@@ -375,7 +375,7 @@ if (version === 2) {
 } else if (version === 1) {
   // Vue v1.x.x
 } else {
-  // Unsupported versions of Vue
+  // Versions non supportées de Vue
 }
 ```
 
@@ -395,7 +395,7 @@ if (version === 2) {
 
   Après que l'instance ait été créée, l'objet de données initial peut être accédé via `vm.$data`. L'instance de Vue servira également de proxy pour toutes les propriétés trouvées dans l'objet de données, donc `vm.a` sera l'équivalent de `vm.$data.a`.
 
-  Les propriétés commençant par `_` ou `$` ne seront **pas** proxyfiées par l'instance de Vue car elles pourraient entrer en conflit avec certaines propriétés internes et méthodes d'API de Vue. Vous devrez y accéder via `vm.$data._property`.
+  Les propriétés commençant par `_` ou `$` ne seront **pas** proxyfiées par l'instance de Vue car elles pourraient entrer en conflit avec certaines propriétés internes et méthodes d'API de Vue. Vous devrez y accéder via `vm.$data._propriete`.
 
   Lors de la définition d'un **composant**, la propriété `data` doit être déclarée en tant que fonction retournant l'objet de données initial, car il y aura plusieurs instances créées utilisant la même définition. Si nous utilisons un objet classique pour `data`, le même objet sera **partagé par référence** à toutes les instances créées! En fournissant une fonction `data` , chaque fois qu'une nouvelle instance est créée, nous l'appelons simplement afin de récupérer une copie fraîche des données initiales.
 
@@ -414,14 +414,14 @@ if (version === 2) {
   vm.$data === data // -> true
 
   // data doit être une fonction lorsqu'utilisée dans Vue.extend()
-  var Component = Vue.extend({
+  var Composant = Vue.extend({
     data: function () {
       return { a: 1 }
     }
   })
   ```
 
-  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour la propriété `data`__ (exemple: `data: () => { return { a: this.myProp }}`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et  `this.myProp` vaudra `undefined`.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour la propriété `data`__ (exemple: `data: () => { return { a: this.maPropriete }}`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et  `this.maPropriete` vaudra `undefined`.</p>
 
 - **Voir aussi :** [Réactivité en détail](../guide/reactivity.html).
 
@@ -437,22 +437,22 @@ if (version === 2) {
 
   ``` js
   // syntaxe simple
-  Vue.component('props-demo-simple', {
-    props: ['size', 'myMessage']
+  Vue.component('props-démo-simple', {
+    props: ['taille', 'monMessage']
   })
 
   // syntaxe avancée avec validation
-  Vue.component('props-demo-advanced', {
+  Vue.component('props-démo-avancée', {
     props: {
       // juste une vérification de type
-      height: Number,
+      hauteur: Number,
       // vérification du type ainsi que d'autres validations
-      age: {
+      âge: {
         type: Number,
         default: 0,
         required: true,
-        validator: function (value) {
-          return value >= 0
+        validator: function (valeur) {
+          return valeur >= 0
         }
       }
     }
@@ -481,7 +481,7 @@ if (version === 2) {
 
   var vm = new Comp({
     propsData: {
-      msg: 'hello'
+      msg: 'salut'
     }
   })
   ```
@@ -573,22 +573,22 @@ if (version === 2) {
       c: 3
     },
     watch: {
-      a: function (val, oldVal) {
-        console.log('new: %s, old: %s', val, oldVal)
+      a: function (valeur, ancienneValeur) {
+        console.log('nouveau: %s, ancien: %s', valeur, ancienneValeur)
       },
       // nom d'une méthode
-      b: 'someMethod',
+      b: 'uneMéthode',
       // observateur profond (deep watcher)
       c: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler: function (valeur, ancienneValeur) { /* ... */ },
         deep: true
       }
     }
   })
-  vm.a = 2 // -> new: 2, old: 1
+  vm.a = 2 // -> nouveau: 2, ancien: 1
   ```
   
-  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un observateur__ (exemple: `searchQuery: newValue => this.updateAutocomplete(newValue)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.updateAutocomplete` vaudra `undefined`.</p>
+  <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un observateur__ (exemple: `saisie: nouvelleValeur => this.actualiserSuggestions(nouvelleValeur)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.actualiserSuggestions` vaudra `undefined`.</p>
 
 - **Voir aussi :** [Méthodes d'instance - vm.$watch](#vm-watch)
 
@@ -931,7 +931,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
     // ...
   }
 
-  var Child = {
+  var Enfant = {
     inject: ['foo'],
     created () {
       console.log(this.foo) // -> "bar"
@@ -952,7 +952,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
     }
   }
 
-  const Child = {
+  const Enfant = {
     inject: { s },
     // ...
   }
@@ -962,7 +962,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   En utilisant une valeur injectée comme valeur par défaut pour une prop :
   ```js
-  const Child = {
+  const Enfant = {
     inject: ['foo'],
     props: {
       bar: {
@@ -976,7 +976,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   En utilisant une valeur injectée comme entrée de données :
   ```js
-  const Child = {
+  const Enfant = {
     inject: ['foo'],
     data () {
       return {
@@ -1044,7 +1044,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 - **Exemple :**
 
   ``` js
-  Vue.component('my-checkbox', {
+  Vue.component('ma-checkbox', {
     model: {
       prop: 'checked',
       event: 'change'
@@ -1058,17 +1058,17 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   ```
 
   ``` html
-  <my-checkbox v-model="foo" value="une certaine valeur"></my-checkbox>
+  <ma-checkbox v-model="foo" value="une certaine valeur"></ma-checkbox>
   ```
 
   Le code ci-dessus est équivalent à :
 
   ``` html
-  <my-checkbox
+  <ma-checkbox
     :checked="foo"
     @change="val => { foo = val }"
     value="une certaine valeur">
-  </my-checkbox>
+  </ma-checkbox>
   ```
 
 ## Propriétés d'instance
@@ -1115,9 +1115,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   ``` js
   new Vue({
-    customOption: 'foo',
+    optionPersonnalisée: 'foo',
     created: function () {
-      console.log(this.$options.customOption) // -> 'foo'
+      console.log(this.$options.optionPersonnalisée) // -> 'foo'
     }
   })
   ```
@@ -1212,14 +1212,14 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Détails :**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  Utilisé pour accéder programmatiquement aux [slots à portée](../guide/components.html#Scoped-Slots). Pour chaque slot, y-compris celui par défaut `default`, l'objet contient une fonction correspondante qui retourne des nœuds virtuels `VNode`.
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Accéder à `vm.$scopedSlots` est surtout utile lors de l'écriture d'un composant avec une [fonction render](../guide/render-function.html).
 
 - **Voir aussi :**
-  - [`<slot>` Component](#slot-1)
-  - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+  - [Composant `<slot>`](#slot-1)
+  - [Slots à portée](../guide/components.html#Scoped-Slots)
+  - [Fonctions Render : Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
@@ -1229,10 +1229,10 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Détails :**
 
-  An object that holds child components that have `ref` registered.
+  Un objet contenant les composants enfants ayant une référence `ref` enregistrée.
 
 - **Voir aussi :**
-  - [Child Component Refs](../guide/components.html#Child-Component-Refs)
+  - [Références aux Composants Enfants](../guide/components.html#Child-Component-Refs)
   - [ref](#ref)
 
 ### vm.$isServer
@@ -1243,16 +1243,16 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Détails :**
 
-  Whether the current Instance de Vue is running on the server.
+  Vaut `true` si l'instance actuelle de Vue s'exécute côté serveur.
 
-- **Voir aussi :** [Server-Side Rendering](../guide/ssr.html)
+- **Voir aussi :** [Rendu côté serveur](../guide/ssr.html)
 
-## Instance Methods / Data
+## Méthodes et données d'instance
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+<h3 id="vm-watch">vm.$watch( expOuFn, callback, [options] )</h3>
 
 - **Arguments :**
-  - `{string | Function} expOrFn`
+  - `{string | Function} expOuFn`
   - `{Function} callback`
   - `{Object} [options]`
     - `{boolean} deep`
@@ -1262,98 +1262,98 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Utilisation :**
 
-  Watch an expression or a computed function on the Instance de Vue for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
+  Observe les changements sur l'instance de Vue à partir d'une expression ou d'une fonction calculée. La fonction `callback` est appelée avec la nouvelle et l'ancienne valeur. L'expression accepte uniquement les chemins simples délimités par des points. Pour des expressions plus complexes, utilisez plutôt une fonction.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+<p class="tip">Note: lors de la modification (et non la réassignation) d'un <code>Object</code> ou d'un <code>Array</code>, l'ancienne valeur sera la même que la nouvelle valeur car ils référencient le même <code>Object</code>/<code>Array</code>. Vue ne conserve pas de copie de la valeur avant modification.</p>
 
 - **Exemple :**
 
   ``` js
   // keypath
-  vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+  vm.$watch('a.b.c', function (nouvelleValeur, ancienneValeur) {
+    // fait quelque-chose
   })
 
-  // function
+  // fonction
   vm.$watch(
     function () {
       return this.a + this.b
     },
-    function (newVal, oldVal) {
-      // do something
+    function (nouvelleValeur, ancienneValeur) {
+      // fait quelque-chose
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` retourne une fonction `unwatch` qui une fois exécutée stoppe le déclenchement de la fonction `callback` :
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // plus tard, démonte l'observateur
   unwatch()
   ```
 
 - **Option: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  Pour aussi détecter les changements des valeurs imbriquées dans les objets, vous devez passer `deep: true` dans l'argument des options. Notez que vous n'avez pas besoin de cela pour observer les modifications d'un `Array`.
 
   ``` js
-  vm.$watch('someObject', callback, {
+  vm.$watch('monObjet', callback, {
     deep: true
   })
-  vm.someObject.nestedValue = 123
-  // callback is fired
+  vm.monObjet.valeurImbriquée = 123
+  // la fonction callback est déclenchée
   ```
 
 - **Option: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Passer `immediate: true` dans les options déclenchera immédiatement la fonction `callback` avec la valeur actuelle de l'expression :
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // callback is fired immediately with current value of `a`
+  // la fonction callback est immédiatement déclenchée avec la valeur actuelle de `a`
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+<h3 id="vm-set">vm.$set( cible, clé, valeur )</h3>
 
 - **Arguments :**
-  - `{Object | Array} target`
-  - `{string | number} key`
-  - `{any} value`
+  - `{Object | Array} cible`
+  - `{string | number} clé`
+  - `{any} valeur`
 
-- **Retourne :** the set value.
+- **Retourne :** la valeur assignée
 
 - **Utilisation :**
 
-  This is the **alias** of the global `Vue.set`.
+  C'est un **alias** à la fonction globale `Vue.set`.
 
 - **Voir aussi :** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+<h3 id="vm-delete">vm.$delete( cible, clé )</h3>
 
 - **Arguments :**
-  - `{Object | Array} target`
-  - `{string | number} key`
+  - `{Object | Array} cible`
+  - `{string | number} clé`
 
 - **Utilisation :**
 
-  This is the **alias** of the global `Vue.delete`.
+  C'est un **alias** à la fonction globale `Vue.delete`.
 
 - **Voir aussi :** [Vue.delete](#Vue-delete)
 
-## Instance Methods / Events
+## Méthodes et Événements d'Instance
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+<h3 id="vm-on">vm.$on( événement, callback )</h3>
 
 - **Arguments :**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+  - `{string | Array<string>} événement` (`Array` supportée unique depuis la 2.2.0)
   - `{Function} callback`
 
 - **Utilisation :**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  Écoute un événement personnalisé sur l'instance `vm`. Les événements peuvent être déclenchés avec `vm.$emit`. La fonction de callback recevra tous les arguments additionnels passés dans ces méthodes de déclenchement d'événement.
 
 - **Exemple :**
 
@@ -1361,89 +1361,89 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   vm.$on('test', function (msg) {
     console.log(msg)
   })
-  vm.$emit('test', 'hi')
-  // -> "hi"
+  vm.$emit('test', 'salut')
+  // -> "salut"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+<h3 id="vm-once">vm.$once( événement, callback )</h3>
 
 - **Arguments :**
-  - `{string} event`
+  - `{string} événement`
   - `{Function} callback`
 
 - **Utilisation :**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  Écoute un événement personnalisé, mais qu'une seule fois. L'écouteur sera supprimé une fois déclenché pour la première fois.
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+<h3 id="vm-off">vm.$off( [événement, callback] )</h3>
 
 - **Arguments :**
-  - `{string} [event]`
+  - `{string} [événement]`
   - `{Function} [callback]`
 
 - **Utilisation :**
 
-  Remove event listener(s).
+  Supprime un ou des écouteurs d'événements.
 
-  - If no arguments are provided, remove all event listeners;
+  - Si aucun argument n'est fourni, supprime tous les écouteurs d'événements;
 
-  - If only the event is provided, remove all listeners for that event;
+  - Si seul l'argument événément est fourni, supprime tous les écouteurs de cet événement;
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - Si l'événement et le callback sont fournis, supprime l'écouteur uniquement pour cet événément et ce callback spécifique.
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
-
-- **Arguments :**
-  - `{string} event`
-  - `[...args]`
-
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
-
-## Instance Methods / Lifecycle
-
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+<h3 id="vm-emit">vm.$emit( événement, [...arguments] )</h3>
 
 - **Arguments :**
-  - `{Element | string} [elementOrSelector]`
-  - `{boolean} [hydrating]`
+  - `{string} événement`
+  - `[...arguments]`
 
-- **Retourne :** `vm` - the instance itself
+  Déclenche un événement sur l'instance actuelle. Tous les arguments additionnels sont passés à la fonction callback de l'écouteur.
+
+## Méthodes d'Instance / Cycle de Vie
+
+<h3 id="vm-mount">vm.$mount( [élémentOuSelecteur] )</h3>
+
+- **Arguments :**
+  - `{Element | string} [élémentOuSelecteur]`
+  - `{boolean} [hydratation]`
+
+- **Retourne :** `vm` - l'instance elle-même
 
 - **Utilisation :**
 
-  If a Instance de Vue didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Instance de Vue.
+  Si une Instance de Vue n'a pas reçu l'option `el` à l'instanciation, il sera dans un état "non monté", sans élément du DOM associé. `vm.$mount()` peut être utilisé pour démarrer manuellement le montage d'une Instance de Vue non montée.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  Si l'argument `élémentOuSelecteur` n'est pas fourni, le rendu du template se fera dans un élément hors du document, et vous devrez utiliser les API natives du DOM pour l'insérer vous-même dans le document.
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  La méthode retourne l'instance elle-même afin que vous puissiez chaîner d'autres méthodes d'instance ensuite.
 
 - **Exemple :**
 
   ``` js
-  var MyComponent = Vue.extend({
-    template: '<div>Hello!</div>'
+  var MonComposant = Vue.extend({
+    template: '<div>Salut!</div>'
   })
 
-  // create and mount to #app (will replace #app)
-  new MyComponent().$mount('#app')
+  // crée et monte sur #app (remplacera #app)
+  new MonComposant().$mount('#app')
 
-  // the above is the same as:
-  new MyComponent({ el: '#app' })
+  // le code ci-dessus est l'équivalent de :
+  new MonComposant({ el: '#app' })
 
-  // or, render off-document and append afterwards:
-  var component = new MyComponent().$mount()
-  document.getElementById('app').appendChild(component.$el)
+  // ou bien, fait le rendu hors du document et l'insère par la suite
+  var composant = new MonComposant().$mount()
+  document.getElementById('app').appendChild(composant.$el)
   ```
 
 - **Voir aussi :**
   - [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
-  - [Server-Side Rendering](../guide/ssr.html)
+  - [Rendu côté serveur](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
 - **Utilisation :**
 
-  Force the Instance de Vue to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Force l'Instance de Vue à refaire son rendu. Notez que cela n'affecte pas tous les composants enfants, seulement l'instance elle-même et les composants enfants avec un contenu de slot inséré.
 
 <h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
