@@ -1,7 +1,7 @@
 ---
 title: TodoMVC
 type: examples
-order: 9
+order: 11
 ---
 
 > This is a fully spec-compliant TodoMVC implementation in under 120 effective lines of JavaScript (excluding comments and blank lines).

@@ -1,7 +1,7 @@
 ---
 title: Firebase + Validation
 type: examples
-order: 2
+order: 10
 ---
 
 > This example uses [Firebase](https://firebase.google.com/) as the data persistence backend and syncs between clients in real time (you can try opening it in multiple browser tabs). In addition, it performs instant validation using computed properties and triggers CSS transitions when adding/removing items.
