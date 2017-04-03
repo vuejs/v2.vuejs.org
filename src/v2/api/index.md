@@ -622,7 +622,7 @@ if (version === 2) {
 
   Se essa opção estiver disponível na instanciação, a instância irá compilar imediatamente; caso contrário, o usuário terá que chamar explicitamente `vm.$mount()` para iniciar manualmente a compilação.
 
-  <p class="tip">O elemento fornecido serve meramente como um ponto de montagem. Diferentemente do Vue 1.x, o elemento montado será substituído pelo Vue-generated DOM em todos os casos. Portanto, não é recomendado montar a instância raiz em `<html>` ou `<body>`.</p> 
+  <p class="tip">O elemento fornecido serve meramente como um ponto de montagem. Diferentemente do Vue 1.x, o elemento montado será substituído pelo Vue-generated DOM em todos os casos. Portanto, não é recomendado montar a instância raiz em `<html>` ou `<body>`.</p>
 
 <<<<<<< HEAD
 <<<<<<< HEAD:src/api/index.md
@@ -647,7 +647,7 @@ if (version === 2) {
   Um string template para ser usado como marcação para a instância Vue. O template irá **substituir** o elemento montado. Qualquer marcação existente dentro do elemento montado será ignorada, a menos que slots de destribuição de conteúdo estejam presentes no template.
 
   Se a string começa com `#` ela será usada como um querySelector e usará o innerHTML do elemento selecionado como template string. Isto permite o uso do comum `<script type="x-template">` truque para incluir templates.
-  
+
   <p class="tip">De uma perspective de segurança, você devia usar apenas Vue templates que você pode confiar. Nunca use conteúdo gerado pelo usuário como seu template.</p>
 
 <<<<<<< HEAD:src/api/index.md
@@ -776,7 +776,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 - **Detalhes:**
 
   Invocado logo após a instância ter sido montada onde `el` é substituído pelo recente criado `vm.$el`. Se a instância raiz é montada em um elemento in-document, `vm.$el` também será in-document quando `mounted` é invocada.
- 
+
   **Este hook não é invocado durante a renderização server-side.**
 
 <<<<<<< HEAD:src/api/index.md
@@ -1131,7 +1131,12 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
     },
     props: {
       // this allows using the `value` prop for a different purpose
-      value: String
+      value: String,
+      // use `checked` as the prop which take the place of `value`
+      checked: {
+        type: Number,
+        default: 0
+      }
     },
     // ...
   })
