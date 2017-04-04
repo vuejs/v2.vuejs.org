@@ -112,13 +112,19 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
+    // camelCase를 사용할 수 없습니다
     mediaPlayPause: 179,
+    // 대신에 kebab-case와 쌍따옴표를 사용해야 합니다
+    "media-play-pause" : 179,
     up: [38, 87]
   }
   ```
 
+  ```html
+  <input type="text" @keyup.media-play-pause="method">
+  ```
+  
   v-on에 사용자 정의 키를 할당합니다.
-
 ### performance
 
 > 2.2.0에서 추가됨
@@ -1058,7 +1064,12 @@ if (version === 2) {
     },
     props: {
       // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
-      value: String
+      value: String,
+      // `value`를 대신 `checked`를 prop으로 사용하십시오.
+      checked: {
+        type: Number,
+        default: 0
+      }
     },
     // ...
   })

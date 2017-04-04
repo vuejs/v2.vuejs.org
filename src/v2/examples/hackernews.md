@@ -1,7 +1,7 @@
 ---
 title: HackerNews 클론
 type: examples
-order: 10
+order: 12
 ---
 
 > HN의 공식 Firebase API 인 Vue 2.0 + vue-router + vuex를 기반으로 서버 사이드 렌더링 기능을 갖춘 HackerNews 클론입니다.
