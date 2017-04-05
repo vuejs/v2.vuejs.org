@@ -90,34 +90,19 @@ Significa que atualizações não otimizadas no Vue serão muito mais rápidas d
 
 #### No Desenvolvimento
 
-Obviamente, o desempenho em produção é o mais importante e é sobre isso que estivemos discutindo até agora. Todavia, desempenho durante o desenvolvimento ainda importa. A boa notícia é que tanto Vue quanto React permanecem rápidos o suficiente em desenvolvimento para a maioria das aplicações comuns.
+O desempenho em produção é a métrica mais importante, uma vez que está diretamente relacionada à experiência de uso do _framework_ por parte do usuário final. Todavia, desempenho durante o desenvolvimento ainda importa, uma vez que está relacionado à experiência de uso por parte do desenvolvedor.
 
-No entanto, se estiver prototipando visualizações de dados de alto desempenho ou animações, você pode achar útil saber que, em cenários críticos onde Vue não consegue lidar com mais de 10 quadros por segundo em desenvolvimento, temos visto React desacelerar para cerca de 1 quadro por segundo.
+Tanto Vue quanto React se mostram rápidos o suficiente no desenvolvimento da maior parte das aplicações corriqueiras. No entanto, se o caso for prototipação de visualizações de dados de alto desempenho ou animações, chegamos a ver cenários com Vue entregando mais de 10 quadros por segundo em desenvolvimento, enquanto React entregava cerca de 1 quadro por segundo.
 
 Isto ocorre devido às muitas checagens de invariantes pesadas do React, que o ajudam a fornecer vários avisos e mensagens de erro excelentes. Concordamos que estes também são importantes no Vue, mas temos tentado ficar de olho no desempenho enquanto implementamos tais verificações.
 
 ### HTML & CSS
 
-No React, tudo é somente JavaScript, o que soa muito simples e elegante - até você se aprofundar mais. A triste realidade é que reinventar HTML e CSS dentro do JavaScript pode causar muita dor. No Vue, simplesmente abraçamos as tecnologias Web e construímos em cima delas. Para mostrar o que significa, mergulharemos em alguns exemplos.
+No React, tudo é exclusivamente JavaScript, o que soa muito simples e elegante - até você se aprofundar mais. A triste realidade é que reinventar HTML e CSS dentro do JavaScript, enquanto até pode resolver alguns problemas do modelo tradicional, também pode causar muita dor. No Vue, abraçamos as tecnologias Web e construímos em cima delas. Para mostrar o que isso significa, mergulharemos em alguns exemplos.
 
-#### JSX vs Templates
+#### JSX vs. Templates
 
-No React, todos os componentes expressam sua interface com funções `render` usando JSX, uma sintaxe declarativa inspirada em XML, embutida dentro do JavaScript. Aqui está um exemplo, [conferido pela comunidade React](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
-=======
-While performance in production is the more important metric as it is directly associated with end-user experience, performance in development still matters because it is associated with the developer experience.
-
-Both Vue and React remain fast enough in development for most normal applications. However, when prototyping high frame-rate data visualizations or animations, we've seen cases of Vue handling 10 frames per second in development while React dropping to about 1 frame per second.
-
-This is due to React's many heavy invariant checks in development mode, which help it to provide many excellent warnings and error messages. We agree that these are also important in Vue, but have tried to keep a closer eye on performance while we implement these checks.
-
-### HTML & CSS
-
-In React, everything is Just JavaScript, which sounds very simple and elegant - until you dig deeper. The unfortunate reality is that reinventing HTML and CSS within JavaScript, while solving some issues of the traditional model, can also cause pain of its own. In Vue, we instead embrace web technologies and build on top of them. To show you what that means, we'll dive into some examples.
-
-#### JSX vs Templates
-
-In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript. Here's an example, [vetted by the React community](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/comparison.md
+No React, todos os componentes expressam sua interface com funções `render` usando JSX, uma sintaxe declarativa estilo XML, embutida dentro do JavaScript. Aqui está um exemplo, [conferido pela comunidade React](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
 
 ```
 render () {
@@ -214,9 +199,9 @@ Outra importante diferença entre os dois ecossistemas é que as bibliotecas com
 
 Por fim, Vue oferece um [CLI gerador de projetos](https://github.com/vuejs/vue-cli) que torna trivialmente simples iniciar um novo projeto usando o sistema de *build* de sua escolha, incluindo [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), ou mesmo [nenhum](https://github.com/vuejs-templates/simple). React também está fazendo avanços nesta área com o [create-react-app](https://github.com/facebookincubator/create-react-app), mas atualmente tem algumas limitações:
 
-- Não permite nenhuma configuração durante a geração do projeto, enquanto os templates de projeto Vue permitem personalização no estilo [Yeoman](http://yeoman.io/).
+- Não permite nenhuma configuração durante a geração do projeto, enquanto os _templates_ de projeto Vue permitem personalização no estilo [Yeoman](http://yeoman.io/).
 - Oferece um modelo simples assumindo que você está criando uma aplicação *single-page*, enquanto Vue oferece muita variedade, para vários propósitos e sistemas de *build*.
-- Não permite criar projetos a partir de modelos feitos por outros desenvolvedores, o que pode ser muito útil, especialmente em ambientes empresariais com padrões estabelecidos.
+- Não permite criar projetos a partir de modelos feitos por outros desenvolvedores, o que pode ser muito útil especialmente em ambientes empresariais com padrões estabelecidos.
 
 É importante notar, no entanto, que muitas dessas limitações são decisões de projeto intencionais tomadas pela equipe do create-react-app, as quais têm suas vantagens. Por exemplo, enquanto as necessidades de seu projeto são bem simples e você não precisa "ejetar" para customizar seu processo de *build*, é possível mantê-lo atualizado como uma dependência. Você pode ler mais sobre esta [filosofia diferente aqui](https://github.com/facebookincubator/create-react-app#philosophy).
 

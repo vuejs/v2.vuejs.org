@@ -112,14 +112,16 @@ type: api
     // camelCase won`t work
     mediaPlayPause: 179,
     // instead you can use kebab-case with double quatation mark
-    media-play-pause: 179,
+    "media-play-pause" : 179,
     up: [38, 87]
   }
   ```
+
   ```html
   <input type="text" @keyup.media-play-pause="method">
   ```
-  Define atalhos customizados de teclas para o v-on
+
+  Define atalhos customizados de teclas para o `v-on`.
 
 ### performance
 
@@ -610,21 +612,12 @@ if (version === 2) {
 
   Se essa opção estiver disponível na instanciação, a instância irá compilar imediatamente; caso contrário, o usuário terá que chamar explicitamente `vm.$mount()` para iniciar manualmente a compilação.
 
-  <p class="tip">O elemento fornecido serve meramente como um ponto de montagem. Diferentemente do Vue 1.x, o elemento montado será substituído pelo Vue-generated DOM em todos os casos. Portanto, não é recomendado montar a instância raiz em `<html>` ou `<body>`.</p>
+  <p class="tip">Se função `render` ou opção `template`não estiverem presentes, o HTML já no DOM existentes no elemento sendo montado será extraído como _template_. Neste caso, a versão Runtime + Compilador do Vue deve ser utilizada.</p>
 
-<<<<<<< HEAD
-<<<<<<< HEAD:src/api/index.md
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
-=======
-  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
-
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Ver também:**
+- **Ver também:**
+  - [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
   - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
->>>>>>> refs/remotes/vuejs/master
 
 ### template
 
