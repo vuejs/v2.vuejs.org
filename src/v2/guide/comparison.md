@@ -92,7 +92,7 @@ Significa que atualizações não otimizadas no Vue serão muito mais rápidas d
 
 O desempenho em produção é a métrica mais importante, uma vez que está diretamente relacionada à experiência de uso do _framework_ por parte do usuário final. Todavia, desempenho durante o desenvolvimento ainda importa, uma vez que está relacionado à experiência de uso por parte do desenvolvedor.
 
-Tanto Vue quanto React se mostram rápidos o suficiente no desenvolvimento da maior parte das aplicações corriqueiras. No entanto, se o caso for prototipação de visualizações de dados de alto desempenho ou animações, chegamos a ver cenários com Vue entregando mais de 10 quadros por segundo em desenvolvimento, enquanto React entregava cerca de 1 quadro por segundo.
+Tanto Vue quanto React se mostram rápidos o suficiente no desenvolvimento da maioria das aplicações corriqueiras. No entanto, se o caso for prototipação de visualizações de dados de alto desempenho ou animações, chegamos a ver cenários com Vue entregando mais de 10 quadros por segundo, enquanto React entregava cerca de 1 quadro por segundo.
 
 Isto ocorre devido às muitas checagens de invariantes pesadas do React, que o ajudam a fornecer vários avisos e mensagens de erro excelentes. Concordamos que estes também são importantes no Vue, mas temos tentado ficar de olho no desempenho enquanto implementamos tais verificações.
 
@@ -104,7 +104,7 @@ No React, tudo é exclusivamente JavaScript, o que soa muito simples e elegante 
 
 No React, todos os componentes expressam sua interface com funções `render` usando JSX, uma sintaxe declarativa estilo XML, embutida dentro do JavaScript. Aqui está um exemplo, [conferido pela comunidade React](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
 
-```
+```js
 render () {
   let { items } = this.props
 

@@ -38,7 +38,7 @@ A tradução atualmente é um trabalho em progresso. Situação de cada página 
 - [ ] Migration from Vue 1.x (Tradução: **pendente**)
 - [ ] Migration from Vue Router 0.7.x (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
 - [ ] Migration from Vuex 0.6.x to 1.0 (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
-- [ ] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
+- [X] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão 2.2: @ErickPetru)
 - [ ] Join the Vue.js Community! (Tradução: **pendente**)
 
 **API**
