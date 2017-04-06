@@ -16,7 +16,9 @@ However, the amount of effort needed to maintain and develop new features for th
 ### Gold ($500/mo)
 
 <p style="text-align: center; margin-top: 0; margin-bottom: 60px" class="sponsors-page">
-  <a href="https://jsfiddle.net">
+  <a href="https://deepstreamhub.com" target="_blank" style="width:130px;top:1px">
+    <img src="/images/deepstream.png" style="width:130px">
+  </a><a href="https://jsfiddle.net">
     <img src="/images/jsfiddle.png">
   </a><a href="https://laravel.com">
     <img src="/images/laravel.png">
@@ -30,14 +32,16 @@ However, the amount of effort needed to maintain and develop new features for th
     <img src="/images/monterail.png">
   </a><a href="https://www.trisoft.ro/" target="_blank">
     <img src="/images/trisoft.png">
-  </a><a href="http://actualize.co" target="_blank" style="width:180px">
-    <img src="/images/actualize.png" style="width:180px">
   </a><a href="https://www.2mhost.com/" target="_blank">
     <img src="/images/2mhost.png">
   </a><a href="https://vuejobs.com/?ref=vuejs" target="_blank" style="position:relative;top:6px">
     <img src="/images/vuejobs.svg">
   </a><a href="https://leanpub.com/vuejs2" target="_blank">
     <img src="/images/tmvuejs2.png">
+  </a><a href="https://fancygrid.com" target="_blank">
+    <img src="https://fancygrid.com/logo/logo.png">
+  </a><a href="https://component.io" target="_blank" style="width:150px">
+    <img src="/images/component_io.png" style="width:150px">
   </a>
 </p>
 

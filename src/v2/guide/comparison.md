@@ -139,7 +139,7 @@ Dans Vue, nous avons également des [fonctions de rendu](https://vuejs.org/v2/gu
 <template>
   <div class="list-container">
     <ul v-if="items.length">
-      <li v-for="item in items">
+      <li v-for="item in items" :key="item.id">
         {{ item.name }}
       </li>
     </ul>
@@ -199,7 +199,7 @@ Une autre différence importante entre ces offres est que les bibliothèques acc
 
 Pour finir, Vue offre un [outil de génération de projet en ligne de commande](https://github.com/vuejs/vue-cli) qui rend trivial le démarrage d'un nouveau projet en utilisant le système de système de build de votre choix, incluant [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), ou même sans [système de création](https://github.com/vuejs-templates/simple). React fait aussi des progrès de ce côté là avec [create-react-app](https://github.com/facebookincubator/create-react-app), mais a pour le moment quelques limitations :
 
-- Il ne permet aucune configuration durant la génération du projet, là où les templates de projet Vue permettent une personnalisation à la façon Yeoman.
+- Il ne permet aucune configuration durant la génération du projet, là où les templates de projet Vue permettent une personnalisation à la façon [Yeoman](http://yeoman.io/).
 - Il ne propose qu'un seul template qui présume que vous concevez une application web monopage, là où Vue offre une large variété de templates pour différents objectifs et outils de *build*.
 - Il ne permet pas la génération de projets depuis des templates faits par les utilisateurs, ce qui peut être particulièrement utile en entreprise avec des conventions pré-établies.
 
