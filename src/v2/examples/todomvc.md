@@ -1,7 +1,7 @@
 ---
 title: TodoMVC
 type: examples
-order: 9
+order: 11
 ---
 
 > Ceci est une spécification pleinement valide pour une implémentation TodoMVC en moins de 120 lignes effectives (excluant les commentaires et sauts de ligne).
