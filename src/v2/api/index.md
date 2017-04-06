@@ -107,15 +107,22 @@ type: api
 
 - **Utilisation :**
 
-  ``` js
+  ```js
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
+    // camelCase won`t work
     mediaPlayPause: 179,
+    // instead you can use kebab-case with double quatation mark
+    "media-play-pause" : 179,
     up: [38, 87]
   }
   ```
 
+  ```html
+  <input type="text" @keyup.media-play-pause="method">
+  ```
+  
   Définit des alias pour les touches du clavier avec `v-on`.
 
 ### performance
@@ -124,7 +131,7 @@ type: api
 
 - **Type:** `boolean`
 
-- **Default:** `false`
+- **Default:** `false (from 2.2.3)`
 
 - **Usage**:
 
@@ -642,7 +649,7 @@ if (version === 2) {
     An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
 
     If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
-    
+
     <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
   - **Voir aussi :**
@@ -1048,7 +1055,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     },
     props: {
       // this allows using the `value` prop for a different purpose
-      value: String
+      value: String,
+      // use `checked` as the prop which take the place of `value`
+      checked: {
+        type: Number,
+        default: 0
+      }
     },
     // ...
   })
@@ -1771,6 +1783,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
+
+  <!-- pass down parent props in common with a child component -->
+  <child-component v-bind.prop="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
