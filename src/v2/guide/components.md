@@ -379,6 +379,76 @@ The proper answer to these use cases are:
 
 <p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
 
+### Understanding props reactivity
+
+Given the above concepts we can summarize how and when `props` are reactively updating upon changes in the parent.
+
+Primitive `props` (`String`, `Number`, ... ) can be reactive in a component only if made dynamic via `v-bind` as shown above:
+
+* they are reactive if used in `computed` properties or in `methods`:
+    ``` js
+    export default {
+        props: ['myString'],
+        methods: {
+            // use "myString" with "v-bind" as reactive dependency
+            getName() {
+                return this.myString;
+            }
+        },
+        computed: {
+            // use "myString" with "v-bind" as (cached) reactive dependency
+            getComputedName() {
+                return myHeavyComputation(this.myString);
+            }
+        },
+    }
+    ```
+* they are **not** reactive if used in `data` as initial value - unless being referenced by a `watch` function:
+    ``` js
+    export default {
+        props: ['myString'],
+        data: function() {
+            // use "myString" as initial "name": no updates when "myString" changes
+            return { name: this.myString };
+        },
+        watch: {
+            // make "name" reactively update when "myString" changes
+            myString: function(newString) {
+                this.name = newString;
+            }
+        }
+    }
+    ```
+Also keep in mind that when used as non-reactive initial data the assigned value will be the `props` value at the moment of component creation which depends on many aspects of how you define and use a component: `v-if` vs `v-show`, using `keep-alive` vs not using it or when single file components are loaded.
+
+`Object` (or `Array`) `props` can be reactive whether or not passed via `v-bind` if the object itself is being passed and stored in `data` - and not just primitive values of the object:
+
+* If the `Object` reference is stored in `data` any use of it will be reactive towards the `props` value:
+    ``` js
+    export default {
+        props: ['myObj'],
+        data: function() {
+            // "myObj" is now a reactive dependency
+            return { myData: this.myObj };
+        }
+    }
+    ```
+* If the `Object` is cloned or only primitives are stored in data the same rules apply as for primitive props above:
+    ``` js
+    export default {
+        props: ['myObj'],
+        data: function() {
+            return {
+                // no reactive dependency since primitive value
+                name: this.myObj.myString,
+                // no reactive dependency since cloned using lodash
+                myObj: _.cloneDeep(this.myObj)
+            };
+        }
+    }
+    ```
+Note that passing objects by reference like this is often considered bad practice: you are introducing reactive dependencies implicitly instead of using the explicit semantics of Vue for this known as `v-bind` and `watch`.
+
 ### Prop Validation
 
 It is possible for a component to specify requirements for the props it is receiving. If a requirement is not met, Vue will emit warnings. This is especially useful when you are authoring a component that is intended to be used by others.
