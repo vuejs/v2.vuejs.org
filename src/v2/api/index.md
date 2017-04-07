@@ -120,7 +120,6 @@ type: api
   ```html
   <input type="text" @keyup.media-play-pause="method">
   ```
-
   Define atalhos customizados de teclas para o `v-on`.
 
 ### performance
@@ -612,12 +611,13 @@ if (version === 2) {
 
   Se essa opção estiver disponível na instanciação, a instância irá compilar imediatamente; caso contrário, o usuário terá que chamar explicitamente `vm.$mount()` para iniciar manualmente a compilação.
 
-  <p class="tip">Se função `render` ou opção `template`não estiverem presentes, o HTML já no DOM existentes no elemento sendo montado será extraído como _template_. Neste caso, a versão Runtime + Compilador do Vue deve ser utilizada.</p>
+  <p class="tip">O elemento fornecido serve meramente como um ponto de montagem. Diferentemente do Vue 1.x, o elemento montado será substituído pelo Vue-generated DOM em todos os casos. Portanto, não é recomendado montar a instância raiz em `<html>` ou `<body>`.</p>
 
-- **Ver também:**
 - **Ver também:**
   - [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
   - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
+
+  <p class="tip">Se função `render` ou opção `template`não estiverem presentes, o HTML já no DOM existentes no elemento sendo montado será extraído como _template_. Neste caso, a versão Runtime + Compilador do Vue deve ser utilizada.</p>
 
 ### template
 
@@ -631,47 +631,25 @@ if (version === 2) {
 
   <p class="tip">De uma perspective de segurança, você devia usar apenas Vue templates que você pode confiar. Nunca use conteúdo gerado pelo usuário como seu template.</p>
 
-<<<<<<< HEAD:src/api/index.md
 - **Ver também:**
-  - [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-  - [Distribuição de Conteúdo](/guide/components.html#Content-Distribution-with-Slots)
+  - [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
+  - [Distribuição de Conteúdo](../guide/components.html#Content-Distribution-with-Slots)
 
-<<<<<<< HEAD
 ### render
 
-  - **Tipo:** `Function`
-=======
-=======
+  - **Tipo:** `(createElement: () => VNode) => VNode`
   <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
-
->>>>>>> refs/remotes/vuejs/master
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution](../guide/components.html#Content-Distribution-with-Slots)
-
-### render
-
-  - **Type:** `(createElement: () => VNode) => VNode`
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
 
   - **Detalhes:**
 
     Uma alternativa aos string templates que lhe permite aproveitar o completo poder pragmático do JavaScript. A função render recebe um método `createElement` como seu primeiro argumento usado para criar `VNode`s.
 
-<<<<<<< HEAD
     Se o componente é um componente funcional, a função render também recebe um argumento extra `context`, que fornece acesso à dado contextual uma vez que componentes funcionais são instance-less.
-=======
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
 
     <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
->>>>>>> refs/remotes/vuejs/master
 
-<<<<<<< HEAD:src/api/index.md
   - **Ver também:**
-    - [Funções render](/guide/render-function)
-=======
-  - **See also:**
-    - [Render Functions](../guide/render-function)
+    - [Funções render](../guide/render-function)
 
 ### renderError
 
@@ -714,11 +692,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado sincronicamente logo após a instância ser inicializada, antes da observação de dados e configuração event/watcher.
 
-<<<<<<< HEAD:src/api/index.md
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
@@ -728,11 +702,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado sincronicamente após a instância ser criada. Neste ponto, a instância finalizou o processamento das opções, o que significa que  foi configurado:  observação de dados, propriedades computadas, metodos, watch/event callbacks. Entretanto, a fase de montagem não foi iniciada, e a propriedade `$el` não estará disponível ainda.
 
-<<<<<<< HEAD:src/api/index.md
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
@@ -744,11 +714,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   **Este hook não é invocado durante a renderização server-side.**
 
-<<<<<<< HEAD:src/api/index.md
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
@@ -760,11 +726,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   **Este hook não é invocado durante a renderização server-side.**
 
-<<<<<<< HEAD:src/api/index.md
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
@@ -778,11 +740,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   **Este hook não é invocado durante a renderização server-side.**
 
-<<<<<<< HEAD:src/api/index.md
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
@@ -792,20 +750,12 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado após a mudança de dados fazer o virtual DOM ser re-renderizado e atualizado.
 
-<<<<<<< HEAD:src/api/index.md
   O DOM do componente estará no estado `updated` quando este hook for invocado, assim você pode realizar operações DOM-dependent neste hook.
-  Entretanto, na maioria dos casos você deveria evitar mudar o estado deste hook, pois isso pode ocasionar um update loop infinito.
-=======
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+  Entretanto, na maioria dos casos você deveria evitar mudar o estado deste hook, melhor utilizar [propriedades computadas](#computed) ou [watcher](#watch).
 
   **Este hook não é invocado durante a renderização server-side.**
 
-<<<<<<< HEAD:src/api/index.md
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
@@ -845,11 +795,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   **Este hook não é invocado durante a renderização server-side.**
 
-<<<<<<< HEAD:src/api/index.md
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
@@ -860,13 +806,9 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
   Invocado após a instância Vue ter sido destruída. Quando este hook é invocado, todas as diretivas da instância Vue já foram desvinculadas, todos os event listeners foram removidos, e todas as instâncias Vue filhas também foram destruídas.
 
 
-<<<<<<< HEAD:src/api/index.md
   **Este hook não é invocado durante a renderização server-side.**
 
-- **Ver também:** [Diagrama do Ciclo de Vida](/guide/instance.html#Lifecycle-Diagram)
-=======
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
->>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
 ## Options / Assets
 
