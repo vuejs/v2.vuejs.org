@@ -16,19 +16,19 @@ Cela signifie que si vous avez du contenu qui s'affiche de manière asynchrone s
 
 ### Clients avec une connexion bas-débit
 
-Les utilisateurs pourraient visiter votre site depuis des lieux avec une connexion Internet bas-débit – ou juste depuis une mauvaise connexion cellulaire. Dans ces cas, vous souhaitez minimiser le nombre et la taille des requêtes nécessaires à l'utilisateur pour voir le contenu de base.
+Les utilisateurs pourraient visiter votre site depuis des lieux avec une connexion Internet bas-débit (ou juste depuis une mauvaise connexion cellulaire). Dans ces cas, vous souhaitez minimiser le nombre et la taille des requêtes nécessaires à l'utilisateur pour voir le contenu de base.
 
 Vous pouvez utiliser l'[outil Webpack de *code splitting*](https://webpack.js.org/guides/code-splitting-require/) pour ne pas forcer l'utilisateur à télécharger votre application entière pour voir une seule page, mais cela ne sera jamais aussi performant que de télécharger une seule page HTML pré-rendue.
 
 ### Clients avec un vieux (ou juste sans) moteur JavaScript
 
-Pour certaines populations ou endroits du monde, utiliser un ordinateur de 1998 pour accéder à Internet pourrait être la seule option. Puisque Vue ne fonctionne qu'avec IE9+, vous pourriez vouloir délivrer un contenu de base à ceux sur des anciens navigateurs — ou pour les hackers hipsters utilisant [Lynx](http://lynx.browser.org/) depuis un terminal.
+Pour certaines populations ou endroits du monde, utiliser un ordinateur de 1998 pour accéder à Internet pourrait être la seule option. Puisque Vue ne fonctionne qu'avec IE9+, vous pourriez vouloir délivrer un contenu de base à ceux qui utilisent d'anciens navigateurs (ou pour les hackers hipsters utilisant [Lynx](http://lynx.browser.org/) depuis un terminal).
 
 ### SSR vs. Pré-rendu
 
 Si vous étudiez le SSR uniquement pour améliorer la SEO d'une poignée de pages vitrines (ex. : `/`, `/about`, `/contact`, etc), alors vous voudriez probablement utiliser du __pré-rendu__ à la place. Au lieu d'utiliser un serveur web pour compiler le HTML à la volée, le pré-rendu génère simplement des fichiers HTML statiques pour des routes spécifiques lors de la phase de *build*. L'avantage est que mettre en place le pré-rendu est beaucoup plus simple et vous permet de garder la partie frontale d'un site complètement statique.
 
-Si vous utilisez Webpack, vous pouvez facilement ajouter le pré-rendu avec le plugin [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). Il a beaucoup été testé avec des applications Vue — en fait, son créateur est un membre de l'équipe du coeur de Vue.
+Si vous utilisez Webpack, vous pouvez facilement ajouter le pré-rendu avec le plugin [prerender-spa-plugin](https://github.com/chrisvfritz/prerender-spa-plugin). Il a beaucoup été testé avec des applications Vue — en fait, son créateur est un membre de l'équipe principale de Vue.
 
 ## Hello World
 
@@ -54,7 +54,7 @@ renderer.renderToString(app, function (error, html) {
 })
 ```
 
-Pas si effrayant, non ? Bien sûr, cet exemple est plus simple que pour la plupart des applications. Nous n'avons pas encore à nous préoccuper de :
+Pas si effrayant, non ? Bien sûr, cet exemple est plus simple que pour la plupart des applications. Nous n'avons pas encore à nous préoccuper :
 
 - du serveur web
 - de la réponse streamée
@@ -69,7 +69,7 @@ Dans la suite de ce guide, nous allons voir comment travailler avec certaines de
 
 C'est un peu abuser que d'appeler ça du « Server-side Rendering » quand nous n'avons pas de serveur web, alors réglons ça. Nous allons créer une application très simple avec du SSR, en utilisant uniquement une syntaxe ES5 sans aucune étape de *build* ou plugin Vue.
 
-Nous allons commencer avec une application qui va juste dire à l'utilisateur depuis combien de secondes il est sur la page :
+Nous allons commencer avec une application qui va juste dire à l'utilisateur depuis combien de secondes il se trouve sur la page :
 
 ``` js
 new Vue({
@@ -88,10 +88,10 @@ new Vue({
 
 Pour adapter ça au SSR, il y a quelques modifications à faire, afin que cela fonctionne aussi bien dans le navigateur qu'avec Node.js :
 
-- Quand chargé dans un navigateur, ajouter une instance de notre application au contexte global (c-à-d `window`), afin que nous puissions faire le montage.
-- Quand chargé avec Node.js, exporter une fonction de fabrique afin que nous puissions créer une nouvelle instance de Vue pour chaque requête.
+- Quand chargé dans un navigateur, ajoute une instance de notre application au contexte global (c-à-d `window`), afin que nous puissions faire le montage.
+- Quand chargé avec Node.js, exporte une fonction de fabrique afin que nous puissions créer une nouvelle instance de Vue pour chaque requête.
 
-Réaliser ces modifications nécessite une petite base de code :
+La réalisation de ces modifications nécessite une petite base de code :
 
 ``` js
 // assets/app.js
@@ -103,7 +103,7 @@ Réaliser ces modifications nécessite une petite base de code :
 
     // L'instance de Vue principale doit être retournée et avoir
     // un nœud racine avec l'id « app », afin que la version côté
-    // client puisse prendre le relais.
+    // client puisse prendre le relais une fois qu'elle est chargée.
     return new Vue({
       template: '<div id="app">Vous êtes ici depuis {{ counter }} seconde(s).</div>',
       data: {
@@ -149,7 +149,7 @@ Maintenant que nous avons le code de notre application, mettons tout cela dans u
 
 Tant que le répertoire `assets` mentionné contient le fichier `app.js` créé précédemment, ainsi qu'un fichier `vue.js` avec Vue, nous devrions avoir une application monopage fonctionnelle !
 
-Ensuite, pour le faire fonctionner avec du rendu côté serveur, il y a juste une étape de plus — le serveur web :
+Ensuite, pour le faire fonctionner avec du rendu côté serveur, il y a juste une étape de plus (le serveur web) :
 
 ``` js
 // server.js
@@ -319,7 +319,7 @@ N'importe quel composant « pur » peut être mis en cache sans problème — c'
 - Des composants d'éléments de liste (dans de longues listes, les mettre en cache peut significativement améliorer les performances)
 - Des composants génériques d'interface utilisateur (c-à-d les boutons, alertes, etc. — du moins ceux qui acceptent du contenu via les props plutôt que les slots/enfants)
 
-## Processus de build, routage, et hydratation d'état de Vuex
+## Processus de build, routage et hydratation d'état de Vuex
 
 À présent, vous devriez comprendre les concepts fondamentaux derrière le rendu côté serveur. Cependant, à mesure que vous introduisez un processus de *build*, du routage ou vuex, cela introduit son propre lot de considérations.
 
@@ -330,4 +330,4 @@ Pour réellement maîtriser le rendu côté serveur dans des applications comple
 
 ## Nuxt.js
 
-Configurer proprement tous les aspects dont nous avons discuté pour un rendu côté serveur près à la production peut être intimidant. Fort heureusement, il y a un excellent projet communautaire dont le but est de rendre tout cela plus simple : [Nuxt.js](https://nuxtjs.org/). Nuxt.js est un framework de haut niveau construit par-dessus l'écosystème de Vue et qui fournit une expérience de développement toute tracée pour écrire des applications Vue universelle. Encore mieux, vous pouvez vous en servir comme générateur de sites web statiques (avec des pages écrites comme composants Vue monofichiers) ! Nous vous recommandons grandement de l'essayer.
+Configurer proprement tous les aspects dont nous avons discuté pour un rendu côté serveur près à la production peut être intimidant. Fort heureusement, il y a un excellent projet communautaire dont le but est de rendre tout cela plus simple : [Nuxt.js](https://nuxtjs.org/). Nuxt.js est un framework de haut niveau construit par-dessus l'écosystème de Vue et qui fournit une expérience de développement toute tracée pour écrire des applications Vue universelle. Encore mieux, vous pouvez vous en servir comme générateur de sites web statiques (avec des pages écrites comme des composants Vue monofichiers) ! Nous vous recommandons grandement de l'essayer.
