@@ -94,7 +94,7 @@ markdown:
   smartypants: true
 
 # Deployment
-## Docs: http://zespia.tw/hexo/docs/deployment.html
+## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repository: git@github.com:vuejs-br/br.vuejs.org.git
