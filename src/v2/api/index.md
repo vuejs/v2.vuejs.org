@@ -112,7 +112,7 @@ type: api
     // camelCase won`t work
     mediaPlayPause: 179,
     // instead you can use kebab-case with double quatation mark
-    media-play-pause: 179,
+    "media-play-pause" : 179,
     up: [38, 87]
   }
   ```
@@ -120,7 +120,7 @@ type: api
   ```html
   <input type="text" @keyup.media-play-pause="method">
   ```
-  Define atalhos customizados de teclas para o v-on
+  Define atalhos customizados de teclas para o `v-on`.
 
 ### performance
 
@@ -617,7 +617,7 @@ if (version === 2) {
   - [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
   - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
-  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+  <p class="tip">Se função `render` ou opção `template`não estiverem presentes, o HTML já no DOM existentes no elemento sendo montado será extraído como _template_. Neste caso, a versão Runtime + Compilador do Vue deve ser utilizada.</p>
 
 ### template
 
