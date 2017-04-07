@@ -18,11 +18,7 @@ Isso significa que, se você tem conteúdo carregado dinamicamente em páginas o
 
 Usuários talvez visitem seu site a partir de uma área remota com Internet lenta - ou simplesmente com uma conexão móvel ruim. Nestes casos, você irá querer minimizar o número e o tamanho das requisições necessárias para os usuários verem o conteúdo básico.
 
-<<<<<<< HEAD:src/guide/ssr.md
-É possível usar [code splitting do Webpack](https://webpack.github.io/docs/code-splitting.html) para evitar forçar os usuários a baixarem sua aplicação inteira simplesmente para visualizar uma página individual, mas isto ainda não seria tão performático quando baixar um simples arquivo HTML pré-renderizado.
-=======
-You can use [Webpack's code splitting](https://webpack.js.org/guides/code-splitting-require/) to avoid forcing users to download your entire application to view a single page, but it still won't be as performant as downloading a single, pre-rendered HTML file.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/ssr.md
+É possível usar [code splitting do Webpack](https://webpack.js.org/guides/code-splitting-require/) para evitar forçar os usuários a baixarem sua aplicação inteira simplesmente para visualizar uma página individual, mas isto ainda não seria tão performático quando baixar um simples arquivo HTML pré-renderizado.
 
 ### Clientes com Motor JavaScript Antigo (Ou Nulo)
 
@@ -36,7 +32,7 @@ Se você estiver usando Webpack, é possível obter isto facilmente com o [prere
 
 ## Olá Mundo
 
-Se chegou até aqui, está pronto para ver SSR em ação. Soa complexo, mas um script Node simples demonstrando a funcionalidade requer apenas 3 passos:
+Se chegou até aqui, está pronto para ver SSR em ação. Soa complexo, mas um script Node.js simples demonstrando a funcionalidade requer apenas 3 passos:
 
 ``` js
 // Passo 1: Criar uma instância Vue
@@ -90,10 +86,10 @@ new Vue({
 })
 ```
 
-Para adaptá-lo para SSR, existem algumas modificações que precisaremos fazer, para que funcione tanto no navegador quanto no servidor Node:
+Para adaptá-lo para SSR, existem algumas modificações que precisaremos fazer, para que funcione tanto no navegador quanto no servidor Node.js:
 
 - Quando estiver no navegador, coloque uma instância do aplicativo no contexto global (ou seja, `window`), para que possamos montá-lo no documento.
-- Quando estiver no Node, exporte uma função *factory* para que possamos criar uma nova instância do aplicativo a cada requisição.
+- Quando estiver no Node.js, exporte uma função *factory* para que possamos criar uma nova instância do aplicativo a cada requisição.
 
 Atender estes passos requer um pouco de código estrutural:
 
@@ -329,14 +325,9 @@ Neste momento, você deve ter entendido os conceitos fundamentais por trás da r
 
 Para se tornar verdadeiramente um mestre em renderização server-side para aplicações complexas, recomendamos que se aprofunde nos seguintes materiais:
 
-<<<<<<< HEAD:src/guide/ssr.md
 - [documentação do vue-server-renderer](https://www.npmjs.com/package/vue-server-renderer#api): mais detalhes nos tópicos cobertos aqui, assim como documentação de tópicos mais avançados, como [prevenir contaminação entre requisições](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) e [adicionar build separado para o servidor](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
 - [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): o exemplo definitivo de integração de todas as bibliotecas principais do Vue e seus conceitos em uma única aplicação
-=======
-- [vue-server-renderer docs](https://www.npmjs.com/package/vue-server-renderer#api): more details on topics covered here, as well as documentation of more advanced topics, such as [preventing cross-request contamination](https://www.npmjs.com/package/vue-server-renderer#why-use-bundlerenderer) and [adding a separate server build](https://www.npmjs.com/package/vue-server-renderer#creating-the-server-bundle)
-- [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0): the definitive example of integrating all major Vue libraries and concepts in a single application
 
 ## Nuxt.js
 
-Properly configuring all the discussed aspects of a production-ready server-rendered app can be a daunting task. Luckily, there is an excellent community project that aims to make all of this easier: [Nuxt.js](https://nuxtjs.org/). Nuxt.js is a higher-level framework built on top of the Vue ecosystem which provides an extremely streamlined development experience for writing universal Vue applications. Better yet, you can even use it as a static site generator (with pages authored as single-file Vue components)! We highly recommend giving it a try.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/ssr.md
+Configurar corretamente todos os aspectos de uma aplicação pronta para produção utilizando renderização server-sice pode ser uma tarefa dura. Felizmente, existe um excelente projeto público que visa tornar tudo isso mais fácil: [Nuxt.js](https://nuxtjs.org/). Nuxt.js é um framework de alto nível criado sobre o ecosistema Vue que fornece uma experiência extremamente simplificada para escrever aplicações Vue universais. Melhor ainda, você pode utilizá-lo como um gerador de página estática (com páginas criadas como componentes Vue em um arquivo)! Nós altamente recomendamos experimentá-lo.
