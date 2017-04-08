@@ -73,7 +73,7 @@ If you are using Webpack, and prefer separating JavaScript and template files, y
 
 ## Extracting Component CSS
 
-When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file and avoid these issues, and also result in better CSS minification and caching.
+When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file will avoid these issues, and also result in better CSS minification and caching.
 
 Refer to the respective build tool documentations to see how it's done:
 
