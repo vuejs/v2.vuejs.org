@@ -71,7 +71,7 @@ new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-### Inscription local
+### Inscription locale
 
 Vous n'êtes pas obligé d'inscrire chaque composant de manière globale. Vous pouvez rendre un composant disponible dans la portée d'un(e) autre composant/instance en l'inscrivant avec l'option `components` lors de l'instanciation :
 
