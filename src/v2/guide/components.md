@@ -21,7 +21,7 @@ new Vue({
 })
 ```
 
-Pour enregistrer un composant global, vous pouvez utiliser `Vue.component(tagName, options)`. Par exemple :
+Pour inscrire un composant global, vous pouvez utiliser `Vue.component(tagName, options)`. Par exemple :
 
 ``` js
 Vue.component('my-component', {
@@ -31,7 +31,7 @@ Vue.component('my-component', {
 
 <p class="tip">Notez que Vue ne vous force pas à respecter les [règles du W3C](http://www.w3.org/TR/custom-elements/#concepts) en ce qui concerne les noms de balises personnalisées (tout en minuscules, obligation de contenir un trait d'union) bien que suivre cette convention est considéré comme une bonne pratique.</p>
 
-Une fois enregistré, un composant peut être utilisé dans le template d'une instance en tant qu'élément personnalisé, `<my-component></my-component>`. Assurez-vous que le composant soit enregistré **avant** l'instanciation de l'instance racine de Vue. Voici un exemple complet :
+Une fois inscrit, un composant peut être utilisé dans le template d'une instance en tant qu'élément personnalisé, `<my-component></my-component>`. Assurez-vous que le composant soit inscrit **avant** l'instanciation de l'instance racine de Vue. Voici un exemple complet :
 
 ``` html
 <div id="example">
@@ -40,7 +40,7 @@ Une fois enregistré, un composant peut être utilisé dans le template d'une in
 ```
 
 ``` js
-// enregistrer
+// inscrire
 Vue.component('my-component', {
   template: '<div>Un composant personnalisé !</div>'
 })
@@ -71,9 +71,9 @@ new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-### Enregistrement local
+### Inscription local
 
-Vous n'êtes pas obligé d'enregistrer chaque composant de manière globale. Vous pouvez rendre un composant disponible dans la portée d'un(e) autre composant/instance en l'enregistrant avec l'option `components` lors de l'instanciation :
+Vous n'êtes pas obligé d'inscrire chaque composant de manière globale. Vous pouvez rendre un composant disponible dans la portée d'un(e) autre composant/instance en l'inscrivant avec l'option `components` lors de l'instanciation :
 
 ``` js
 var Child = {
@@ -89,7 +89,7 @@ new Vue({
 })
 ```
 
-La même encapsulation s’applique pour les autres fonctionnalités enregistrables de Vue, comme les directives.
+La même encapsulation s’applique pour les autres fonctionnalités de Vue pouvant être inscrites, comme les directives.
 
 ### Limitations de l'analyse d'un template à partir du DOM
 
@@ -332,7 +332,7 @@ new Vue({
 Une erreur répandue chez les débutants est d'essayer de passer un nombre en utilisant la syntaxe littérale :
 
 ``` html
-<!-- ceci passe une simple chaîne de caractère "1" -->
+<!-- ceci passe une simple chaîne de caractères "1" -->
 <comp some-prop="1"></comp>
 ```
 
@@ -403,7 +403,7 @@ Vue.component('example', {
       default: 100
     },
     // les objets et tableaux par défaut doivent être retournés 
-    // depuis fabrique de fonctions
+    // par une fabrique de fonctions
     propE: {
       type: Object,
       default: function () {
@@ -1070,11 +1070,11 @@ Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-
 ``` js
 // dans une définition de composant
 components: {
-  // enregistrement utilisant la kebab-case
+  // inscription utilisant la kebab-case
   'kebab-cased-component': { /* ... */ },
-  // enregistrement utilisant la camelCase
+  // inscription utilisant la camelCase
   'camelCasedComponent': { /* ... */ },
-  // enregistrement utilisant la TitleCase
+  // inscription utilisant la TitleCase
   'TitleCasedComponent': { /* ... */ }
 }
 ```
