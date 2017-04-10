@@ -32,7 +32,7 @@ If you're using Webpack, you can easily add prerendering with the [prerender-spa
 
 ## Hello World
 
-If you've gotten this far, you're ready to see SSR in action. It sounds complex, but a simple node script demoing the feature requires only 3 steps:
+If you've gotten this far, you're ready to see SSR in action. It sounds complex, but a simple Node.js script demoing the feature requires only 3 steps:
 
 ``` js
 // Step 1: Create a Vue instance
@@ -86,10 +86,10 @@ new Vue({
 })
 ```
 
-To adapt this for SSR, there are a few modifications we'll have to make, so that it will work both in the browser and within node:
+To adapt this for SSR, there are a few modifications we'll have to make, so that it will work both in the browser and within Node.js:
 
 - When in the browser, add an instance of our app to the global context (i.e. `window`), so that we can mount it.
-- When in node, export a factory function so that we can create a fresh instance of the app for every request.
+- When in Node.js, export a factory function so that we can create a fresh instance of the app for every request.
 
 Accomplishing this requires a little boilerplate:
 
