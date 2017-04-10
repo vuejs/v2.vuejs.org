@@ -1,10 +1,10 @@
 ---
-title: Gestionnaire d'évènements
+title: Gestion des évènements
 type: guide
 order: 9
 ---
 
-## Écoute des évènements  
+## Écouter des évènements  
 
 Nous pouvons utiliser l'instruction `v-on` pour écouter les évènements du DOM afin d'éxécuter du JavaScript lorsque ces évènements surviennent.
 
@@ -42,9 +42,9 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Les méthodes de gestion d'évènements
+## Les méthodes des gestionnaires d'évènements
 
-La logique avec beaucoup de gestionnaires d'évènements sera très certainement plus complexe, par conséquence, garder votre JavaScript dans la valeur de l'attribut v-on ne sera tout simplement pas possible. C'est pourquoi v-on peut aussi accepter le nom d'une méthode que vous voudriez appeler.
+La logique avec beaucoup de gestionnaires d'évènements sera très certainement plus complexe, par conséquent, gardez votre JavaScript dans la valeur de l'attribut `v-on` ne sera tout simplement pas faisable. C'est pourquoi `v-on` peut aussi accepter le nom d'une méthode que vous voudriez appeler.
 
 Par exemple :
 
@@ -102,9 +102,9 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-## Méthode d'écoute dans les attributs :
+## Méthodes appelées dans les valeurs d'attributs
 
-Au lieu de lier directement la méthode par son nom dans l'attribut, nous pouvons également utiliser la méthode avec une instruction JavaScript :
+Au lieu de lier directement la méthode par son nom dans l'attribut, nous pouvons également utiliser des méthodes dans une instruction JavaScript :
 
 ``` html
 <div id="example-3">
@@ -141,7 +141,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Parfois nous avons également besoin d'accéder à l'évènement original du DOM depuis l'instruction dans l'attribut. Vous pouvez le passer à une méthode en utilisant la variable spéciale $event :
+Parfois nous avons également besoin d'accéder à l'évènement original du DOM depuis l'instruction dans l'attribut. Vous pouvez le passer à une méthode en utilisant la variable spéciale `$event` :
 
 ``` html
 <button v-on:click="warn('Le formulaire ne peut être soumis pour le moment.', $event)">
@@ -173,10 +173,10 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 - `.once`
 
 ``` html
-<!-- la propagation de l'évènement du clic sera stoppée -->
+<!-- la propagation de l'évènement `click` sera stoppée -->
 <a v-on:click.stop="doThis"></a>
 
-<!-- l'évènement « submit » ne rechargera plus la page -->
+<!-- l'évènement `submit` ne rechargera plus la page -->
 <form v-on:submit.prevent="onSubmit"></form>
 
 <!-- les modificateurs peuvent être chainés -->
@@ -186,11 +186,11 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 <form v-on:submit.prevent></form>
 
 <!-- utilise le mode « capture » lorsque l'écouteur d'évènements est ajouté -->
-<!-- c-à-d qu'un évènement destiné à un élément interne est intercepté avant d'être incercepté par ses éléments parents -->
+<!-- c-à-d qu'un évènement destiné à un élément interne est géré ici avant d'être géré par ses éléments parents -->
 <div v-on:click.capture="doThis">...</div>
 
-<!-- seulement déclenché si l'instruction « event.target » est l'élément lui-même -->
-<!-- c-à-d que cela ne s'applique pas aux éléments « enfant » -->
+<!-- seulement déclenché si l'instruction `event.target` est l'élément lui-même -->
+<!-- c-à-d que cela ne s'applique pas aux éléments enfants -->
 <div v-on:click.self="doThat">...</div>
 ```
 
@@ -198,7 +198,7 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 
 ``` html
 <!-- l'évènement « click » sera déclenché au moins une fois -->
-<a v-on:click.once="DoThis"></a>
+<a v-on:click.once="doThis"></a>
 ```
 
 Au contraire des autres modificateurs, qui sont exclusifs aux évènements natifs du DOM, le modificateur `.once` peut également être utilisé pour les [évènements des composants](components.html#Using-v-on-with-Custom-Events). Si vous n'avez pas encore lu la section concernant les composants, ne vous en inquiétez pas pour le moment.
@@ -208,7 +208,7 @@ Au contraire des autres modificateurs, qui sont exclusifs aux évènements natif
 Lorsque nous écoutons les évènements du clavier, nous avons régulièrement besoin de s'assurer du code des touches. Vue permet également d'ajouter un modificateur de touches pour `v-on`:
 
 ``` html
-<!-- faire appel à « vm.submit() » uniquement quand le code de la touche est 13 -->
+<!-- faire appel à « vm.submit() » uniquement quand le code de la touche est `13` -->
 <input v-on:keyup.13="submit">
 ```
 
@@ -245,7 +245,7 @@ Vue.config.keyCodes.f1 = 112
 
 > Nouveau dans la 2.1.0
 
-Vous pouvez utiliser les modificateurs suivants pour déclencher un évènement du clavier ou de la souris seulement lorsque la touche du modificateur correspondante est appuyé :
+Vous pouvez utiliser les modificateurs suivants pour déclencher un évènement du clavier ou de la souris seulement lorsque la touche du modificateur correspondante est pressée :
 
 - `.ctrl`
 - `.alt`
@@ -264,9 +264,9 @@ Par exemple :
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-<p class="tip">Notez que ces modificateurs de raccourcis sont différents des modificateurs usuels utilisé avec l'évènement `keyup`, ils doivent être pressé quand l'évènement est émis. En d'autres mots, `keyup.ctrl` sera déclenché uniquement si vous maintenez la touche `ctrl` enfoncée. Et rien ne sera déclenché si vous `ctrl` enfoncé la touche seulement.</p>
+<p class="tip">Notez que ces modificateurs de raccourcis sont différents des modificateurs usuels utilisés avec l'évènement `keyup`, ils doivent être pressés quand l'évènement est émis. En d'autres mots, `keyup.ctrl` sera déclenché uniquement si vous maintenez la touche `ctrl` enfoncée. rien ne sera déclenché si vous relâchez uniquement la touche `Ctrl`.</p>
 
-### Modificateurs de raccourcis souris
+### Modificateurs de boutons de la souris
 
 > Nouveau dans la 2.2.0
 
@@ -278,10 +278,10 @@ Ces modificateurs n'autorisent la gestion de l'évènement que s'il a été déc
 
 ## Pourquoi des écouteurs dans le HTML ?
 
-Vous pourriez être inquiets du fait que l'ensemble de cette approche d'écouteurs d'évènements viole la bonne vieille règle de la séparation des préoccupations. Rassurez-vous - puisque toutes les fonctions et expressions sont strictement liées au « ViewModel » qui gère la vue courante, cela ne causera aucune difficulté de maintenance. En realité, il y a plusieurs bénéfices à utiliser `v-on` :
+Vous pourriez être inquiets du fait que l'ensemble de cette approche d'écoute d'évènements viole la bonne vieille règle de la séparation des préoccupations. Rassurez-vous - puisque toutes les fonctions et expressions sont strictement liées au « ViewModel » qui gère la vue courante, cela ne causera aucune difficulté de maintenance. En realité, il y a plusieurs avantages à utiliser `v-on` :
 
-1. Il est plus facile de localiser l'implémentation des fonctions de gestion du code JS en survolant le code HTML.
+1. Il est plus facile de localiser l'implémentation des fonctions gestionnaires dans votre code JS en survolant le code HTML.
 
-2. Comme vous n'avez pas à attacher manuellement les écouteurs dans votre JS, le code du « ViewModel » peut-être purement logique et sans DOM. Ceci rend plus facile les tests.
+2. Comme vous n'avez pas à attacher manuellement les écouteurs dans votre JS, le code du « ViewModel » peut être purement logique et sans DOM. Ceci le rend plus facile à tester.
 
 3. Quand un « ViewModel » est détruit, tous les écouteurs d'évènements sont automatiquement retirés. Vous n'avez pas à vous soucier de le faire vous-même.
