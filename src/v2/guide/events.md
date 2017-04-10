@@ -278,7 +278,7 @@ Ces modificateurs n'autorisent la gestion de l'évènement que s'il a été déc
 
 ## Pourquoi des écouteurs dans le HTML ?
 
-Vous pourriez être inquiets du fait que l'ensemble de cette approche d'écoute d'évènements viole la bonne vieille règle de la séparation des préoccupations. Rassurez-vous - puisque toutes les fonctions et expressions sont strictement liées au « ViewModel » qui gère la vue courante, cela ne causera aucune difficulté de maintenance. En realité, il y a plusieurs avantages à utiliser `v-on` :
+Vous pourriez être inquiet du fait que l'ensemble de cette approche d'écoute d'évènements viole la bonne vieille règle de la séparation des préoccupations. Rassurez-vous - puisque toutes les fonctions et expressions sont strictement liées au « ViewModel » qui gère la vue courante, cela ne causera aucune difficulté de maintenance. En realité, il y a plusieurs avantages à utiliser `v-on` :
 
 1. Il est plus facile de localiser l'implémentation des fonctions gestionnaires dans votre code JS en survolant le code HTML.
 
