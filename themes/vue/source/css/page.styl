@@ -221,6 +221,10 @@
     iframe
         margin: 0 !important
 
+// FR - Version
+
+/// Chat
+
 .gitter-open-chat-button
     background-color #4fc08d
     text-transform none
@@ -233,3 +237,202 @@
 
     &.is-displayed
         opacity 1
+        
+/// Shema - Lifecycle
+
+.lifecycle
+    position relative
+    font-size 2vw
+    font-weight bold
+    color #fff
+    text-align center
+    
+    @media (min-width 760px)
+        font-size 16px
+        
+    &--observe-data
+    &--init-event
+    &--has-el
+    &--has-template
+    &--when-mount
+    &--if-el-yes
+    &--if-el-no
+    &--if-template-yes
+    &--if-template-no
+    &--compile-function
+    &--compile-template
+    &--create-el
+    &--virtual-dom
+    &--when-data-change
+    &--when-destroy
+    &--teardown
+    &--mounted
+    &--destroyed
+        z-index 2
+        position absolute 
+        transform translate(-50%, -50%)
+        background-color #3ab882
+        border-radius 10px
+
+    &--observe-data
+    &--init-event
+    &--compile-function
+    &--compile-template
+    &--create-el
+    &--virtual-dom
+    &--teardown
+        background-color #3ab882
+        border-radius 10px
+        
+    &--has-el
+    &--has-template
+        background-color #fcb738
+        border-radius 50%
+
+    &--mounted
+    &--destroyed
+        background-color #da5961
+        border-radius 50%
+
+    &--when-mount
+    &--if-el-yes
+    &--if-el-no
+    &--if-template-yes
+    &--if-template-no
+    &--when-data-change
+    &--when-destroy
+        color #8699A3
+        background-color #fff
+
+    &--observe-data
+        top 9.7%
+        left 49%
+        width 24.5%
+        height 3.3%
+
+    &--init-event
+        top 15.3%
+        left 49%
+        width 24.5%
+        height 2.9%
+
+    &--has-el
+        top 23.2%
+        left 49%
+        width 16%
+        height 4%
+
+    &--has-template
+        top 31.6%
+        left 49%
+        width 16%
+        height 4%
+
+    &--when-mount
+        top 27%
+        left 77.5%
+        width 18%
+        height 4%
+
+    &--if-el-yes
+        left 45%
+        top 27.4%
+        width 6%
+        height 1%
+
+    &--if-el-no
+        top 22.2%
+        left 70.5%
+        width 6%
+        height 1%
+
+    &--if-template-yes
+        top 37.7%
+        left 22.5%
+        width 6%
+        height 1%
+
+    &--if-template-no
+        top 37.7%
+        left 75.5%
+        width 6%
+        height 1%
+
+    &--compile-function
+        top 41.7%
+        left 27%
+        width 24.5%
+        height 5%
+
+    &--compile-template
+        top 41.7%
+        left 70.5%
+        width 24.5%
+        height 5%
+
+    &--create-el
+        top 55%
+        left 49%
+        width 24.5%
+        height 5%
+
+    &--virtual-dom
+        top 68.5%
+        left 79%
+        width 17%
+        height 5%
+
+    &--when-data-change
+        top 63%
+        left 66%
+        width 13%
+        height 4%
+
+    &--when-destroy
+        top 75.2%
+        left 49%
+        width 17%
+        height 4%
+
+    &--teardown
+        top 85%
+        left 49%
+        width 28%
+        height 5%
+
+    &--mounted
+        top 68.3%
+        left 49%
+        width 12%
+        height 5%
+
+    &--destroyed
+        top 94%
+        left 49%
+        width 12%
+        height 5%
+
+    &--observe-data
+    &--init-event
+    &--has-el
+    &--has-template
+    &--when-mount
+    &--if-el-yes
+    &--if-el-no
+    &--if-template-yes
+    &--if-template-no
+    &--compile-function
+    &--compile-template
+    &--create-el
+    &--virtual-dom
+    &--when-data-change
+    &--when-destroy
+    &--teardown
+    &--mounted
+    &--destroyed
+        span
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
+            width 100%
