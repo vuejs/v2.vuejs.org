@@ -89,7 +89,7 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-Ici nous venons de rencontrer quelque chose de nouveau. L'attribut `v-bind` que vous voyez est appelé une **directive**. Les directives sont préfixées par `v-` pour indiquer que ce sont des attributs spéciaux fournis par Vue, et comme vous avez peut être deviné, elles appliquent un comportement réactif spécifique au DOM après rendu. Ici cela veut basiquement dire : « garde l'attribut `title` de cet élément à jour avec la propriété `message` de l'instance de Vue ».
+Ici nous venons de rencontrer quelque chose de nouveau. L'attribut `v-bind` que vous voyez est appelé une **directive**. Les directives sont préfixées par `v-` pour indiquer que ce sont des attributs spéciaux fournis par Vue, et comme vous l'avez peut être deviné, elles appliquent un comportement réactif spécifique au DOM après rendu. Ici cela veut basiquement dire : « garde l'attribut `title` de cet élément à jour avec la propriété `message` de l'instance de Vue ».
 
 Si vous ouvrez votre console JavaScript une nouvelle fois et entrez `app2.message = 'un nouveau message'`, de nouveau vous verrez le HTML lié — dans notre cas l'attribut `title` — se mettre à jour.
 
@@ -222,7 +222,7 @@ var app5 = new Vue({
 
 Notez que dans la méthode, nous avons seulement mis à jour l'état de l'application sans toucher au DOM — toutes les manipulations de DOM sont prises en charge par Vue, ainsi le code que vous écrivez se concentre sur la logique sous-jacente.
 
-Vue fournit aussi la directive `v-model` qui fait de la liaison de données bidirectionnelle entre les champs d'un formulaire et l'état de l'application une simple formalité :
+Vue fournit aussi la directive `v-model` qui fait de la liaison de données bidirectionnelle entre les champs d'un formulaire et l'état de l'application. Une simple formalité :
 
 ``` html
 <div id="app-6">
@@ -255,7 +255,7 @@ var app6 = new Vue({
 
 ## Composer avec des composants
 
-Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de plus grosses applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interface applicative peuvent être abstraites en un arbre de composants.
+Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de plus grosses applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interface applicative peuvent être abstraits en un arbre de composants.
 
 ![Arbre de composants](/images/components.png)
 
@@ -343,7 +343,7 @@ var app7 = new Vue({
 
 Ceci n'est qu'un exemple grossier, nous avons réussi à séparer notre application en deux plus petites unités, et chaque enfant est raisonnablement bien découplé de son parent via l'utilisation des props. Nous pouvons maintenant améliorer notre `<todo-item>` avec un template et une logique plus complexes sans affecter l'application parente.
 
-Pour une grosse application, il est nécessaire de la diviser entièrement en composants afin de rendre le développement plus abordable. Nous parlerons des composants plus précisément [plus tard dans le guide](components.html), mais en attendant voici un exemple (imaginaire) de ce a quoi un template d'application pourrait ressembler avec des composants :
+Pour une grosse application, il est nécessaire de la diviser entièrement en composants afin de rendre le développement plus abordable. Nous parlerons des composants plus précisément [plus tard dans le guide](components.html), mais en attendant voici un exemple (imaginaire) de ce à quoi un template d'application pourrait ressembler avec des composants :
 
 ``` html
 <div id="app">
