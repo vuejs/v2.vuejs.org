@@ -113,7 +113,7 @@ type: api
     f1: 112,
     // camelCase won`t work
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quatation mark
+    // instead you can use kebab-case with double quotation marks
     "media-play-pause" : 179,
     up: [38, 87]
   }
