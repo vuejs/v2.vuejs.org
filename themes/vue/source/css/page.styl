@@ -436,3 +436,70 @@
             left 50%
             transform translate(-50%, -50%)
             width 100%
+  
+/// Shema - Compose
+
+.composition
+    position relative
+    max-width 300px
+    margin 0 auto
+    font-size 16px
+    font-weight bold
+    color #fff
+    text-align center
+        
+    &--parent
+    &--child
+        z-index 2
+        position absolute 
+        transform translate(-50%, -50%)
+        border-radius 50%
+        
+    &--parent
+        background-color #E06666
+                
+    &--child  
+        background-color #8E7CC3   
+        
+    &--events
+    &--props
+        color #34495E
+        z-index 2
+        position absolute 
+        transform translate(-50%, -50%)
+        background-color #fff
+        
+    &--events
+        top 46.5%
+        left 11%
+        width 30.5%
+        height 20%
+
+    &--props
+        top 46.5%
+        left 87%
+        width 25%
+        height 20%
+        
+    &--parent
+        top 18%
+        left 51%
+        width 24%
+        height 20%
+
+    &--child
+        top 71%
+        left 51%
+        width 25%
+        height 20%
+
+    &--parent
+    &--child
+    &--events
+    &--props
+        span
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
+            width 100%
