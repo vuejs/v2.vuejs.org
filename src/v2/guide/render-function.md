@@ -378,7 +378,7 @@ render: function (createElement) {
 }
 ```
 
-使用render函数传递作用于插槽到子组件，使用VNode数据中的`scopedSlots`关键字：
+使用render函数传递作用域插槽到子组件，使用VNode数据中的`scopedSlots`关键字：
 
 ``` js
 render (createElement) {
