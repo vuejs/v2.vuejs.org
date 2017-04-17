@@ -1011,7 +1011,7 @@ var parent = new Vue({ el: '#parent' })
 var child = parent.$refs.profile
 ```
 
-When `ref` is used together with `v-for`, the ref you get will be an array or an object containing the child components mirroring the data source.
+When `ref` is used together with `v-for`, the ref you get will be an array containing the child components mirroring the data source.
 
 <p class="tip">`$refs` are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using `$refs` in templates or computed properties.</p>
 
