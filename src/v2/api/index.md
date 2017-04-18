@@ -114,7 +114,11 @@ type: api
     f1: 112,
     // camelCase를 사용할 수 없습니다
     mediaPlayPause: 179,
+<<<<<<< HEAD
     // 대신에 kebab-case와 쌍따옴표를 사용해야 합니다
+=======
+    // instead you can use kebab-case with double quotation marks
+>>>>>>> vuejs/master
     "media-play-pause" : 179,
     up: [38, 87]
   }
