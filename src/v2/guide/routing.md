@@ -6,7 +6,7 @@ order: 21
 
 ## Router Oficial
 
-Para a maioria das Single Page Applications, é recomendado usar a biblioteca oficialmente suportada [vue-router](https://github.com/vuejs/vue-router). Para mais detalhes, veja a [documentação](http://vuejs.github.io/vue-router/) do vue-router.
+Para a maioria das Single Page Applications, é recomendado usar a biblioteca oficialmente suportada [vue-router](https://github.com/vuejs/vue-router). Para mais detalhes, veja a [documentação](https://router.vuejs.org/) do vue-router.
 
 ## Criando Rotas Simples
 
