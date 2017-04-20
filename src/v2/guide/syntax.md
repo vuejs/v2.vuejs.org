@@ -106,7 +106,7 @@ Outro simples exemplo é a diretiva `v-on`, que observa eventos do DOM:
 <a v-on:click="doSomething">
 ```
 
-Aqui o valor é o nome do evento DOM que ela está estucando. Falaremos sobre gerenciamento de eventos com mais detalhes em breve.
+Aqui o valor é o nome do evento DOM que ela está escutando. Falaremos sobre gerenciamento de eventos com mais detalhes em breve.
 
 ### Modificadores
 
