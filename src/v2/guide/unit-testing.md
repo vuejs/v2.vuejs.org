@@ -93,7 +93,7 @@ import MyComponent from './MyComponent.vue'
 // 렌더링 된 텍스트를 마운트하고 반환하는 헬퍼 함수
 function getRenderedText (Component, propsData) {
   const Ctor = Vue.extend(Component)
-  const vm = new Ctor({ propsData }).$mount()
+  const vm = new Ctor({ propsData: propsData }).$mount()
   return vm.$el.textContent
 }
 
