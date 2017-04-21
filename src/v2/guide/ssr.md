@@ -87,18 +87,10 @@ new Vue({
 })
 ```
 
-<<<<<<< HEAD
 SSR을 적용하기 위해 몇가지 수정해야 브라우저와 node 에서 모두 작동합니다.
 
 - 브라우저에서 앱의 인스턴스를 전역 컨텍스트 (예: `window`)에 추가하면 마운트 할 수 있습니다.
 - node에서 모든 요청에 대해 앱의 새로운 인스턴스를 만들 수 있도록 팩토리 함수를 export 합니다.
-=======
-To adapt this for SSR, there are a few modifications we'll have to make, so that it will work both in the browser and within Node.js:
-
-- When in the browser, add an instance of our app to the global context (i.e. `window`), so that we can mount it.
-- When in Node.js, export a factory function so that we can create a fresh instance of the app for every request.
->>>>>>> vuejs/master
-
 
 이 작업을 완료하려면 약간의 보일러플레이트가 필요 합니다.
 
