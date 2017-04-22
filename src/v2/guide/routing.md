@@ -6,7 +6,7 @@ order: 21
 
 ## Routeur officiel
 
-Pour la plupart des applications monopages, il est recommandé d'utiliser la bibliothèque officiellement supportée [vue-router](https://github.com/vuejs/vue-router). Pour plus de détails, voir la [documentation de vue-router](http://vuejs.github.io/vue-router/).
+Pour la plupart des applications monopages, il est recommandé d'utiliser la bibliothèque officiellement supportée [vue-router](https://github.com/vuejs/vue-router). Pour plus de détails, voir la [documentation](https://router.vuejs.org/) de vue-router.
 
 ## Du routage simple en partant de zéro
 

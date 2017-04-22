@@ -229,7 +229,7 @@ Dans Vue.js, la relation parent-enfant peut être résumée ainsi : **descente d
 
 Chaque instance de composant a sa propre **portée isolée**. Cela signifie qu'on ne peut (et ne devrait) pas directement référencer des données du parent dans un template de composant enfant. Les données doivent être passées aux composants enfants en utilisant **props**.
 
-Une prop est un attribut personnalisé permettant de passer des informations depuis des composants parents. Un composant enfant a besoin de déclarer explicitement quelles sont les props qu'il s'attend à recevoir en utilisant [l'option `props`](../api/#props) : 
+Une prop est un attribut personnalisé permettant de passer des informations depuis des composants parents. Un composant enfant a besoin de déclarer explicitement quelles sont les props qu'il s'attend à recevoir en utilisant [l'option `props`](../api/#props) :
 
 ``` js
 Vue.component('child', {
@@ -402,7 +402,7 @@ Vue.component('example', {
       type: Number,
       default: 100
     },
-    // les objets et tableaux par défaut doivent être retournés 
+    // les objets et tableaux par défaut doivent être retournés
     // par une fabrique de fonctions
     propE: {
       type: Object,
@@ -545,16 +545,16 @@ Les événements personnalisés peuvent aussi être utilisés pour créer des ch
 est juste du sucre syntaxique pour :
 
 ``` html
-<input 
-  v-bind:value="something" 
+<input
+  v-bind:value="something"
   v-on:input="something = $event.target.value">
 ```
 
 Quand il est utilisé avec un composant, cela peut être simplifié par :
 
 ``` html
-<custom-input 
-  :value="something" 
+<custom-input
+  :value="something"
   @input="value => { something = value }">
 </custom-input>
 ```
@@ -584,7 +584,7 @@ Vue.component('currency-input', {
   props: ['value'],
   methods: {
     // Au lieu de mettre à jour directement la valeur, cette
-    // méthode est utilisée pour formater et mettre des 
+    // méthode est utilisée pour formater et mettre des
     // contraintes sur la valeur en entrée
     updateValue: function (value) {
       var formattedValue = value
@@ -645,7 +645,7 @@ L'implémentation ci-dessus est plutôt naïve cependant. Par exemple, les utili
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ### Personnalisation de composant avec `v-model`
- 
+
 > Nouveau dans la 2.2.0
 
 Par défaut, `v-model` sur un composant utilise `value` en tant que prop et peuvent vouloir utiliser `input` en tant qu'événement, mais plusieurs types de champ comme les cases à cocher et les boutons radio pourraient utiliser `value` pour un usage différent. Utiliser l'option `model` permet d'éviter les conflits dans ce genre de situations :
