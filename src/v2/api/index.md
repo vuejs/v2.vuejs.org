@@ -4,7 +4,7 @@ type: api
 
 ## Configuration globale
 
-`Vue.config` est un objet contenant les configurations globales de Vue. Vous pouvez modifier les propriétés listées ci-dessous avant de mettre en place votre application:
+`Vue.config` est un objet contenant les configurations globales de Vue. Vous pouvez modifier les propriétés listées ci-dessous avant de mettre en place votre application :
 
 ### silent
 
@@ -44,7 +44,7 @@ type: api
 
   La stratégie de fusion reçoit en arguments la valeur de cette option définie dans le parent et les instances enfants en tant que premier et second argument, respectivement. L'instance de Vue est passée en troisième argument.
 
-- **Voir aussi**: [Stratégies personnalisées de fusion d'options](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Voir aussi** : [Stratégies personnalisées de fusion d'options](../guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
@@ -98,7 +98,7 @@ type: api
   ]
   ```
 
-  Indique à Vue d'ignorer les éléments personnalisés définis en dehors de Vue (ex: en utilisant les API Web Components). Autrement, un message d'avertissement `Unknown custom element` sera affiché, supposant que vous avez oublié d'inscrire un composant global ou fait une faute de frappe dans son nom.
+  Indique à Vue d'ignorer les éléments personnalisés définis en dehors de Vue (ex. : en utilisant les API Web Components). Autrement, un message d'avertissement `Unknown custom element` sera affiché, supposant que vous avez oublié d'inscrire un composant global ou fait une faute de frappe dans son nom.
 
 ### keyCodes
 
@@ -133,15 +133,15 @@ type: api
 
 ### productionTip
 
-> New in 2.2.0
+> Nouveau en 2.2.0
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `true`
+- **Par défaut :** `true`
 
-- **Usage**:
+- **Utilisation :**
 
-  Set this to `false` to prevent the production tip on Vue startup.
+  Assignez ceci à `false` pour ne plus avoir la notification de production au démarrage de Vue.
 
 ## API globale
 
@@ -234,7 +234,7 @@ type: api
 
   Supprime une propriété d'un objet cible. Si l'objet est réactif, cette méthode s'assure que la suppression déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement la suppression de propriétés, mais vous devriez rarement en avoir besoin.
 
-  > Fonctionne aussi avec une `Array` + index en 2.2.0+.
+  > Fonctionne aussi avec un `Array` + index en 2.2.0+.
 
   <p class="tip">L'objet cible ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.</p>
 
@@ -917,7 +917,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   L'option `provide` doit être un objet ou une fonction retournant un objet. Cet objet contient les propriétés qui sont disponibles pour l'injection dans ses descendants. Vous pouvez utiliser des `Symbol` ES2015 comme clés dans cet objet, mais seulement dans les environnements supportant nativement `Symbol` et `Reflect.ownKeys`.
 
-  L'option `inject` doit être soit une `Array` de `String`, soit un objet où les clés sont les noms des liaisons locales et où les valeurs sont les clés (`String` ou `Symbol`) à rechercher dans les injections disponibles.
+  L'option `inject` doit être soit un `Array` de `String`, soit un objet où les clés sont les noms des liaisons locales et où les valeurs sont les clés (`String` ou `Symbol`) à rechercher dans les injections disponibles.
 
   > Note : les liaisons `provide` et `inject` ne sont PAS réactives. C'est intentionnel. Cependant, si vous passez un objet observé, les propriétés sur cet objet resteront réactives.
 
@@ -1150,7 +1150,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Détails :**
 
-  Les composants enfants directs de l'instance actuelle. **Notez que l'ordre des enfants n'est pas garanti pour `$children`, et que cette propriété n'est pas réactive.** Si vous vous retrouvez à essayer d'utiliser `$children` pour de la liaison de données, optez plutôt pour une `Array` et `v-for` pour générer les composants enfants, en utilisant l'`Array` comme unique source fiable.
+  Les composants enfants directs de l'instance actuelle. **Notez que l'ordre des enfants n'est pas garanti pour `$children`, et que cette propriété n'est pas réactive.** Si vous vous retrouvez à essayer d'utiliser `$children` pour de la liaison de données, optez plutôt pour un `Array` et `v-for` pour générer les composants enfants, en utilisant l'`Array` comme unique source fiable.
 
 ### vm.$slots
 
