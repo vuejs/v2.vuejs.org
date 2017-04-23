@@ -122,7 +122,7 @@ type: api
   ```html
   <input type="text" @keyup.media-play-pause="method">
   ```
-  
+
   Define custom key alias(es) for v-on.
 
 ### performance
@@ -351,7 +351,7 @@ type: api
 
 - **Usage:**
 
-  Compiles a template string into a render function. **Only available in the standalone build.**
+  Compiles a template string into a render function. **Only available in the full build.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -1013,7 +1013,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Details:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
+  Change the plain text interpolation delimiters. **This option is only available in the full build.**
 
 - **Example:**
 
