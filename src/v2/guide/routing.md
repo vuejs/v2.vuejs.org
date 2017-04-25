@@ -6,7 +6,7 @@ order: 21
 
 ## 공식 라우터
 
-대부분의 단일 페이지 애플리케이션의 경우 공식적으로 지원되는 [vue-router library](https://github.com/vuejs/vue-router)를 사용하는 것이 좋습니다. 자세한 내용은 vue-router의 [문서](http://vuejs.github.io/vue-router/)를 참조하십시오.
+대부분의 단일 페이지 애플리케이션의 경우 공식적으로 지원되는 [vue-router library](https://github.com/vuejs/vue-router)를 사용하는 것이 좋습니다. 자세한 내용은 vue-router의 [문서](https://router.vuejs.org/)를 참조하십시오.
 
 ## 단순한 라우팅 시작하기
 

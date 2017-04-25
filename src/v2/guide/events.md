@@ -187,6 +187,7 @@ methods: {
 <form v-on:submit.prevent></form>
 
 <!-- 이벤트 리스너를 추가할 때 캡처모드를 사용합니다 -->
+<!--  즉, 내부 엘리먼트를 대상으로 하는 이벤트가 해당 엘리먼트에서 처리되기 전에 여기서 처리합니다. -->
 <div v-on:click.capture="doThis">...</div>
 
 
