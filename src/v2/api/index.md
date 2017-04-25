@@ -123,9 +123,7 @@ type: api
   ```html
   <input type="text" @keyup.media-play-pause="method">
   ```
-
   v-on에 사용자 정의 키를 할당합니다.
-
 ### performance
 
 > 2.2.0에서 추가됨
@@ -655,7 +653,7 @@ if (version === 2) {
     함수형 컴포넌트의 경우 렌더링 함수는 컴포넌트에 인스턴스가 없기 때문에 컨텍스트에 대한 액세스를 제공하는 추가적인 `context`를 전달합니다
 
     <p class="tip">
-    `render`함수는 `template` 옵션 또는 `el` 옵션으로 지정한 엘리먼트를 컴파일 한 것보다 높은 우선 순위를 가집니다.
+    `render` 함수는 `template` 옵션 또는 `el` 옵션으로 지정된 마운트된 엘리먼트의 템플릿에서 컴파일된 렌더링 함수보다 높은 우선 순위를 가집니다.
     </p>
 
   - **참고:**
@@ -1064,7 +1062,7 @@ if (version === 2) {
     props: {
       // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
       value: String,
-      // `value`를 대신하는 `prop`를 `prop`로 사용해야합니다
+      // `value`를 대신 `checked`를 prop으로 사용하십시오.
       checked: {
         type: Number,
         default: 0
@@ -1930,7 +1928,7 @@ if (version === 2) {
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  `text`가 변경되면 `<span>`은 항상 바뀌므로 트랜지션 시작됩니다.
 
 ### ref
 
