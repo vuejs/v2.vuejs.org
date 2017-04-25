@@ -80,9 +80,9 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 #### 更新性能
 
-In React, when a component's state changes, it triggers the re-render of the entire component sub-tree, starting at that component as root. 
+在React中，当一个组件的`state`发生变化，将触发从根组件开始整个组件子树的重新渲染。
 
-To avoid unnecessary re-renders of child components, you need to implement `shouldComponentUpdate` everywhere and use immutable data structures. In Vue, a component's dependencies are automatically tracked during its render, so the system knows precisely which components actually need to re-render.
+为了避免不必要的重新渲染，你必须到处实现`shouldComponentUpdate`方法和使用不可变数据结构。在Vue中，一个组件的依赖在渲染时被自动的跟踪，所以系统准确地知道什么时候组件需要重新渲染。
 
 这意味着，未经优化的 Vue 相比未经优化的 React 要快的多。由于 Vue 改进过渲染性能，甚至全面优化过的 React 通常也会慢于开箱即用的 Vue。
 
