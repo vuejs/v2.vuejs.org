@@ -192,3 +192,13 @@ The array syntax for `v-bind:style` allows you to apply multiple style objects t
 ### Auto-prefixing
 
 When you use a CSS property that requires [vendor prefixes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) in `v-bind:style`, for example `transform`, Vue will automatically detect and add appropriate prefixes to the applied styles.
+
+### Multiple Values
+
+> 2.3.0+
+
+Starting in 2.3 you can provide an array of multiple (prefixed) values to a style property, for example:
+
+``` html
+<div :style="{ display: ["-webkit-box", "-ms-flexbox", "flex"] }">
+```

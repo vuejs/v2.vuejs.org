@@ -122,7 +122,7 @@ type: api
   ```html
   <input type="text" @keyup.media-play-pause="method">
   ```
-  
+
   Define custom key alias(es) for v-on.
 
 ### performance
@@ -1670,9 +1670,10 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
   - `.native` - listen for a native event on the root element of component.
   - `.once` - trigger handler at most once.
-  - `.left` - (2.2.0) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0) only trigger handler for middle button mouse events.
+  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
+  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
+  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
+  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
 
 - **Usage:**
 
@@ -1742,7 +1743,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Modifiers:**
   - `.prop` - Bind as a DOM property instead of an attribute. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
+  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
+  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
 - **Usage:**
 
@@ -1802,6 +1804,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
   - [Components - Component Props](../guide/components.html#Props)
+  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
 
 ### v-model
 

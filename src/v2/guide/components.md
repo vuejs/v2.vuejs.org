@@ -534,6 +534,34 @@ There may be times when you want to listen for a native event on the root elemen
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
+### `.sync` Modifier
+
+> 2.3.0+
+
+In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x this is exactly what the `.sync` modifier provided. When a child component mutates a prop that has `.sync`, the value change will be reflected in the parent. This is convenient, however it leads to maintenance issues in the long run because it breaks the one-way data flow assumption: the code that mutates child props are implicitly affecting parent state.
+
+This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
+
+In 2.3 we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
+
+The following
+
+``` html
+<comp :foo.sync="bar"></comp>
+```
+
+is expanded into:
+
+``` html
+<comp :foo="bar" @update:foo="val => bar = val"></comp>
+```
+
+For the child component to update `foo`'s value, it needs to explicitly emit an event instead of mutating the prop:
+
+``` js
+this.$emit('update:foo', newValue)
+```
+
 ### Form Input Components using Custom Events
 
 Custom events can also be used to create custom inputs that work with `v-model`. Remember:
@@ -1062,6 +1090,30 @@ new Vue({
 ```
 
 <p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
+
+### Advanced Async Components
+
+> New in 2.3.0
+
+Starting in 2.3 the async component factory can also return an object of the following format:
+
+``` js
+const AsyncComp = () => ({
+  // The component to load. Should be a Promise
+  component: import('./MyComp.vue'),
+  // A component to use while the async component is loading
+  loading: LoadingComp,
+  // A component to use if the load fails
+  error: ErrorComp,
+  // Delay before showing the loading component. Default: 200ms.
+  delay: 200,
+  // The error component will be displayed if a timeout is
+  // provided and exceeded. Default: Infinity.
+  timeout: 3000
+})
+```
+
+Note that when used as a route component in `vue-router`, these properties will be ignored because async components are resolved upfront before the route navigation happens. You also need to use `vue-router` 2.4.0+ if you wish to use the above syntax for route components.
 
 ### Component Naming Conventions
 
