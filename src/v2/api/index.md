@@ -120,6 +120,7 @@ type: api
   ```html
   <input type="text" @keyup.media-play-pause="method">
   ```
+
   Define atalhos customizados de teclas para o `v-on`.
 
 ### performance
@@ -348,7 +349,7 @@ type: api
 
 - **Usage:**
 
-  Compiles a template string into a render function. **Only available in the standalone build.**
+  Compiles a template string into a render function. **Only available in the full build.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -1012,7 +1013,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **Details:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
+  Change the plain text interpolation delimiters. **This option is only available in the full build.**
 
 - **Example:**
 
@@ -1669,9 +1670,10 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
   - `.native` - listen for a native event on the root element of component.
   - `.once` - trigger handler at most once.
-  - `.left` - (2.2.0) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0) only trigger handler for middle button mouse events.
+  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
+  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
+  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
+  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
 
 - **Usage:**
 
@@ -1741,7 +1743,8 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **Modifiers:**
   - `.prop` - Bind as a DOM property instead of an attribute. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
+  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
+  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
 - **Usage:**
 
@@ -1801,6 +1804,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
   - [Components - Component Props](../guide/components.html#Props)
+  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
 
 ### v-model
 

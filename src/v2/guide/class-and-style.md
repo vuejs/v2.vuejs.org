@@ -6,9 +6,9 @@ order: 6
 
 Uma necessidade comum de data binding é manipular uma lista de classe dos elementos e seus estilos inline. Uma vez que ambos são atributos, podemos usar v-bind para lidar com eles: Precisamos calcular uma string final com nossas expressões. No entanto, mexer com concatenação é irritante e propenso a erros. Por esta razão, Vue fornece aprimoramentos especiais quando `v-bind` é usado com `class` e `style`. Além de strings as expressões também podem avaliar objetos ou arrays.
 
-## Vínculos em Classes HTML
+## Vinculando em Classes HTML
 
-### Sintaxe do objeto
+### Sintaxe do Objeto
 
 Podemos passar um objeto para `v-bind:class` para alternar classes dinamicamente:
 
@@ -77,7 +77,7 @@ computed: {
 }
 ```
 
-### Array Sintaxe
+### Sintaxe de Array
 
 Podemos passar um array para `v-bind:class` para aplicar uma lista de classess:
 
@@ -111,9 +111,9 @@ No entanto, isso pode ser um tanto verboso se você tiver várias classes condic
 <div v-bind:class="[{ active: isActive }, errorClass]">
 ```
 
-### Com Componentes
+### Em Componentes
 
-> Esta seçao assume conhecimento de [Componentes Vue](components.html). Pode pular esta parte e voltar depois.
+> Esta seção assume conhecimento de [Componentes Vue](components.html). Pode pular esta parte e voltar depois.
 
 Quando você utiliza o atributo `class` em um componente personalizado, estas classes serão adicionadas ao elemento raiz. Classes que já existam neste elemento, não serão removidas.
 
@@ -149,7 +149,7 @@ Quando `isActive` for verdadeiro, o HTML resultante será:
 <p class="foo bar active">Oi</p>
 ```
 
-## Binding Inline Styles
+## Vinculando em Estilos Inline
 
 ### Sintaxe de Objeto
 
@@ -181,7 +181,7 @@ data: {
 
 Novamente, a sintaxe de objeto é frequentemente usada em conjunto com propriedades computadas que retornam objetos.
 
-### Sintaxe array
+### Sintaxe de Array
 
 A sintaxe array para `v-bind:style` permite que você aplique múltiplos objetos de estilo para o mesmo elemento:
 
@@ -189,6 +189,16 @@ A sintaxe array para `v-bind:style` permite que você aplique múltiplos objetos
 <div v-bind:style="[baseStyles, overridingStyles]">
 ```
 
-### Auto prefixação
+### Auto-Prefixação
 
-Quando você usa uma propriedade CSS que requerem vendor prefixos vendor, em  `v-bind:style`, por exemplo,  `transform`, o Vue irá automaticamente detectar e adicionar os prefixos apropriados para os estilos aplicados.
+Quando você usa uma propriedade CSS que requer [prefixos de fabricantes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) em `v-bind:style`, por exemplo `transform`, Vue irá automaticamente detectar e adicionar os prefixos apropriados para os estilos aplicados.
+
+### Valores Múltiplos
+
+> A partir de 2.3.0+
+
+Iniciando na versão 2.3, você pode prover um Arrahy com múltiplos valores (prefixados) para estilizar um atributo, por exemplo:
+
+``` html
+<div :style="{ display: ["-webkit-box", "-ms-flexbox", "flex"] }">
+```

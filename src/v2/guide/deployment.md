@@ -10,7 +10,7 @@ Em desenvolvimento, Vue proporciona uma grande quantidade de avisos para lhe aju
 
 ### Sem Empacotadores
 
-Se você está utilizando a compilação completa do pacote padrão, ou seja, incluindo diretamente o Vue através de uma _tag_ `<script>` sem uma ferramenta de _build_, tenha certeza que utilizará a versão minificada (`vue.min.js`)  para produção. Ambas as versões podem ser encontradas no [guia de Instalação](installation.html#Inclusao-Direta-com-lt-script-gt).
+Se você está utilizando a compilação completa, ou seja, incluindo diretamente o Vue através de uma _tag_ `<script>` sem uma ferramenta de _build_, tenha certeza que utilizará a versão minificada (`vue.min.js`) para produção. Ambas as versões podem ser encontradas no [guia de Instalação](installation.html#Inclusao-Direta-com-lt-script-gt).
 
 ### Com Empacotadores
 
