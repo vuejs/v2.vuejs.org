@@ -4,6 +4,9 @@ type: guide
 order: 2
 ---
 
+<p class="tip"> **Uma nota sobre a tradução** <br/><br/>
+A tradução deste guia é mantida por um grupo de desenvolvedores e você também pode ajudar! Caso encontre algum erro na tradução, seja ela de português, interpretação de texto, links quebrados etc, por favor crie uma issue no [nosso projeto do github](https://github.com/vuejs-br/br.vuejs.org/issues). Sua participação é muito importante!</p>
+
 ## O que é Vue.js?
 
 Vue (pronuncia-se /vjuː/, como **view**, em inglês) é um **framework progressivo** para a construção de interfaces de usuário. Ao contrário de outros frameworks monolíticos, Vue foi projetado desde sua concepção para ser adotável incrementalmente. A biblioteca principal é focada exclusivamente na camada visual (_view layer_), sendo muito fácil adotar e integrar com outras bibliotecas ou projetos existentes. Por outro lado, Vue também é perfeitamente capaz de dar poder a sofisticadas SPA (Single-Page Applications) quando usado em conjunto com [ferramentas modernas](single-file-components.html) e [bibliotecas adicionais](https://github.com/vuejs/awesome-vue#components--libraries).
