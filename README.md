@@ -2,17 +2,9 @@
 
 Este é o repositório oficial da tradução em português brasileiro do _site_ [vuejs.org](http://www.vuejs.org/). O _site_ foi construído com [hexo](http://hexo.io/) e seu conteúdo é escrito em formato _Markdown_, localizado na pasta `src`. _Pull requests_ são bem-vindos!
 
-## Como colaborar?
+## Como colaborar
 
-Para participar traduzindo/revisando os conteúdos, siga os passos:
-
-- Faça um _fork_ deste repositório para sua própria conta;
-- Edite o arquivo `README` registrando seu usuário ao lado da página que deseja traduzir/revisar;
-- Faça um _pull request_ do `README` para que todos aqui sejam notificados e não ocorram trabalhos repetidos em paralelo.
-- Ao finalizar, faça um novo _pull request_ com os arquivos modificados por você.
-- Não se esqueça de fazer um _merge_ para obter as alterações mais recentes antes de recomeçar o processo assumindo outra tradução/revisão.
-
-Caso não consiga terminar por completo algum arquivo, mas queira enviar o trabalho parcial, pedimos que abra uma nova _Issue_ logo após a submissão para informar quais problemas persistem no arquivo enviado.
+No atual status do projeto, você pode colaborar enviando *issues* de algum erro que encontrar na documentação.
 
 ## Ambiente de desenvolvimento
 
