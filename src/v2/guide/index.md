@@ -266,6 +266,10 @@ In Vue, a component is essentially a Vue instance with pre-defined options. Regi
 Vue.component('todo-item', {
   template: '<li>This is a todo</li>'
 })
+// and create a real instance of that
+var customApp = new Vue({
+  el: '#customApp'
+});
 ```
 
 Now you can compose it in another component's template:
@@ -273,7 +277,7 @@ Now you can compose it in another component's template:
 ``` html
 <ol>
   <!-- Create an instance of the todo-item component -->
-  <todo-item></todo-item>
+  <todo-item id="customApp"></todo-item>
 </ol>
 ```
 
