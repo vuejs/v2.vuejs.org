@@ -473,6 +473,11 @@ Vue.component('my-component', {
 - `slots`: 슬롯 객체를 반환하는 함수
 - `data`: 컴포넌트에 전달된 전체 데이터 객체
 - `parent`: 상위 컴포넌트에 대한 참조
+- `listeners`: (2.3.0+) 부모에게 등록된 이벤트 리스너를 가진 객체입니다. `data.on`의 알리아스입니다.
+- `injections`: (2.3.0+) [`inject`](https://vuejs.org/v2/api/#provide-inject) 옵션을 사용하면 리졸브드 인젝션을 가집니다
+
+> 참고: 2.3.0 버전 이하에서 함수형 컴포넌트에 속성을 허용하려면 `props`가 필요합니다. 2.3.0 이상에서는 `props`를 생략할 수 있으며 컴포넌트 노드에서 발견된 모든 속성은 암시적으로 속성으로 판단됩니다.
+
 
 `functional:true`를 추가한 후 anchor를 가지는 heading 컴포넌트의 렌더 함수를 업데이트 하는 것은 단순히 `context` 전달인자를 추가하고 `this.$slots.default`를 `context.children`으로 갱신한 다음 `this.level`을 `context.props.level`로 갱신하면 됩니다.
 

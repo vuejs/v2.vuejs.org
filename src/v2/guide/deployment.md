@@ -10,8 +10,7 @@ order: 20
 
 ### 빌드 도구를 사용하지 않는 경우
 
-
-독립 실행 형 빌드를 사용하는 경우 (즉, 빌드 도구 없이 스크립트 태그를 통해 Vue를 직접 포함하는 경우) 프로덕션 환경을 위해 축소 버전(`vue.min.js`)을 사용해야합니다. 두가지 버전 모두 [설치 안내](installation.html#Direct-lt-script-gt-Include)
+전체 빌드를 사용하는 경우 (즉, 빌드 도구 없이 스크립트 태그를 통해 Vue를 직접 포함하는 경우) 프로덕션 환경을 위해 축소 버전(`vue.min.js`)을 사용해야합니다. 두가지 버전 모두 [설치 안내](installation.html#Direct-lt-script-gt-Include)
 
 ### 빌드 도구를 사용하는 경우
 

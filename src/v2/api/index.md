@@ -114,11 +114,7 @@ type: api
     f1: 112,
     // camelCase를 사용할 수 없습니다
     mediaPlayPause: 179,
-<<<<<<< HEAD
     // 대신에 kebab-case와 쌍따옴표를 사용해야 합니다
-=======
-    // instead you can use kebab-case with double quotation marks
->>>>>>> vuejs/master
     "media-play-pause" : 179,
     up: [38, 87]
   }
@@ -127,8 +123,9 @@ type: api
   ```html
   <input type="text" @keyup.media-play-pause="method">
   ```
-  
+
   v-on에 사용자 정의 키를 할당합니다.
+
 ### performance
 
 > 2.2.0에서 추가됨
@@ -358,7 +355,7 @@ type: api
 
 - **사용방법:**
 
-  템플릿 문자열을 렌더링 함수로 컴파일합니다. **독립 실행형 빌드에서만 가능합니다.**
+  템플릿 문자열을 렌더링 함수로 컴파일합니다. **전체 빌드에서만 가능합니다.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -1026,7 +1023,7 @@ if (version === 2) {
 
 - **상세:**
 
-  일반 텍스트 보간 구분 기호를 변경하십시오. **이 옵션은 독립 실행형 빌드에서만 사용할 수 있습니다. **
+  일반 텍스트 보간 구분 기호를 변경하십시오. **이 옵션은 전체 빌드에서만 사용할 수 있습니다. **
 
 - **예제:**
 
@@ -1685,6 +1682,7 @@ if (version === 2) {
   - `.left` - (2.2.0) 왼쪽 버튼 마우스 이벤트 트리거 처리기.
   - `.right` - (2.2.0) 오른쪽 버튼 마우스 이벤트 트리거 처리기.
   - `.middle` - (2.2.0) 가운데 버튼 마우스 이벤트 트리거 처리기.
+  - `.passive` - (2.3.0+) DOM 이벤트를 `{ passive: true }`와 연결합니다.
 
 - **사용방법:**
 
@@ -1755,6 +1753,8 @@ if (version === 2) {
 - **수식어:**
   - `.prop` - 속성 대신 DOM 속성으로 바인딩 ([무슨 차이가 있습니까?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
   - `.camel` - kebab-case 속성 이름을 camelCase로 변환합니다. (2.1.0이후 지원)
+  - `.sync` - (2.3.0+) 바인딩 된 값을 업데이트하기 위한 `v-on`를 확장하는 신택스 슈가입니다
+
 
 - **사용방법:**
 
@@ -1814,6 +1814,7 @@ if (version === 2) {
 - **참고:**
   - [클래스 및 스타일 바인딩](../guide/class-and-style.html)
   - [컴포넌트 - 컴포넌트 속성](../guide/components.html#Props)
+  - [컴포넌트 - `.sync` 수식어](../guide/components.html#sync-Modifier)
 
 ### v-model
 
@@ -1927,7 +1928,7 @@ if (version === 2) {
   - 컴포넌트의 라이프사이클 훅을 올바르게 트리거합니다.
   - 전환효과 호출
 
-  For example:
+예제:
 
   ``` html
   <transition>
@@ -1935,7 +1936,7 @@ if (version === 2) {
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+`text`가 변경되면 `<span>`는 패치가 아닌 교체되므로 트랜지션이 트리거됩니다.
 
 ### ref
 
@@ -1972,7 +1973,7 @@ if (version === 2) {
 ### component
 
 - **Props:**
-  - `is` - string | ComponentDefinition | ComponentConstructor
+  - `is` - 문자열 | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
 - **사용방법:**

@@ -195,3 +195,14 @@ data: {
 ### 자동 접두사
 
 `v-bind:style` 에 브라우저 [벤더 접두어](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix)가 필요한 CSS 속성 (예: `transform`)을 사용하면 Vue는 자동으로 해당 접두어를 감지하여 스타일을 적용합니다
+
+### 다중 값 제공
+
+> 2.3.0+
+
+2.3버전 부터 스타일 속성에 접두사가 있는 여러 값을 배열로 전달할 수 있습니다. 예제입니다.
+
+``` html
+<div :style="{ display: ["-webkit-box", "-ms-flexbox", "flex"] }">
+```
+
