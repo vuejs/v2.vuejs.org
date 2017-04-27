@@ -8,19 +8,14 @@ order: 10
 
 Você pode usar a diretiva `v-model` para criar two-way data bindings em elementos input e textarea de formulários. Ele automaticamente busca a maneira correta de atualizar o elemento com base no tipo de entrada. Embora um pouco mágico, `v-model` é essencialmente syntax sugar para atualização de dados com eventos de entrada do usuário, além de cuidados especiais para alguns casos do edge.
 
-<<<<<<< HEAD
-<p class="tip">`v-model` não se importa com o valor inicial fornecido para um input ou um textarea. Ele sempre vai tratar os dados de instância do Vue como a fonte verdadeira.</p>
-=======
-<p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
->>>>>>> refs/remotes/vuejs/master
 
-<<<<<<< HEAD:src/guide/forms.md
+<p class="tip">`v-model` não se importa com o valor inicial fornecido para um input ou um textarea. Ele sempre vai tratar os dados de instância do Vue como a fonte verdadeira. Você deve declarar o valor inicial no lado do JavaScript, dentro da opção `data` do seu componente.</p>
+
+
 ### Texto
-=======
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
 
-### Text
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/forms.md
+<p class="tip" id="vmodel-ime-tip">Para linguagens que requerem um [IME](https://en.wikipedia.org/wiki/Input_method) (Chinês, Japonês, Koreano etc.), você notará que `v-model` nao é atualizado durante a atualização da composição UME. Se você quiser atender a estas atualizações, use o evento `input` ao invés do `v-model`.</p>
+
 
 ``` html
 <input v-model="message" placeholder="Me edite">
@@ -53,16 +48,11 @@ new Vue({
 
 {% raw %}
 <div id="example-textarea" class="demo">
-<<<<<<< HEAD:src/guide/forms.md
+
   <span>A mensagem com múltiplas linhas é:</span>
   <p style="white-space: pre">{{ message }}</p><br>
   <textarea v-model="message" placeholder="Adicione múltiplas linhas"></textarea>
-=======
-  <span>Multiline message is:</span>
-  <p style="white-space: pre">{{ message }}</p>
-  <br>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/forms.md
+
 </div>
 <script>
 new Vue({
@@ -215,13 +205,9 @@ new Vue({
 </script>
 {% endraw %}
 
-<<<<<<< HEAD
-Select múltiplo (ligados a um array):
-=======
-<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
+<p class="tip">Se o valor inicial de sua expressão `v-model` não corresponder a nenhuma das opções, o elemento `<select>` será renderizado em um estado "não selecionado". No iOS isso fará com que o usuário não seja capaz de selecionar o primeiro item porque o iOS não dispara um evento de alteração neste caso. Então ecomenda-se fornecer uma opção desativada com um valor vazio, como demonstrado no exemplo acima.</p>
 
-Multiple select (bound to Array):
->>>>>>> refs/remotes/vuejs/master
+Select Múltiplo (ligado a um Array):
 
 ``` html
 <select v-model="selected" multiple>
@@ -367,12 +353,9 @@ vm.selected.number // -> 123
 
 ### `.lazy`
 
-<<<<<<< HEAD:src/guide/forms.md
 
-Por padrão, `v-model` sincroniza o input com os dados após cada evento de `input`. Adicionando o modificador `lazy` a sincronização ocorrerá somente após o evento `change`:
-=======
-By default, `v-model` syncs the input with the data after each `input` event (with the exception of IME composition as [stated above](#vmodel-ime-tip)). You can add the `lazy` modifier to instead sync after `change` events:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/forms.md
+
+Por padrão, `v-model` sincroniza o input com os dados após cada evento de `input` (com exceção da composição IME [exibido acima](#vmodel-ime-tip)). Adicionando o modificador `lazy` a sincronização ocorrerá somente após o evento `change`:
 
 ``` html
 <!-- sincronizado depois do "change" ao invés de "input" -->

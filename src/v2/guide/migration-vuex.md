@@ -17,13 +17,8 @@ __Vuex 2.0__ é um *redesign* radical incluindo uma simplificação da API, para
 
 __Vuex 1.0__ é majoritariamente retro-compatível, exigindo poucas mudanças para a migração. É recomendado para aqueles com grande base de códigos-fonte ou que desejam uma migração suave em pequenos passos até o Vue 2.0. Este guia é dedicado a facilitar o processo, mas só inclui notas de migração. Para o guia de uso completo, visite a [documentação do Vuex 1.0](https://github.com/vuejs/vuex/tree/1.0/docs/en).
 
-<<<<<<< HEAD:src/guide/migration-vuex.md
-<p class="tip">A lista de depreciações abaixo deve estar relativamente completa, mas a ferramenta de migração ainda está sendo atualizada para abordá-las.</p>
 
-## `store.watch` com Propriedade String <sup>obsoleto</sup>
-=======
-## `store.watch` with String Property Path <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vuex.md
+## `store.watch` com Propriedade String <sup>substituído</sup>
 
 `store.watch` agora aceita apenas funções. Por exemplo, você teria que substituir:
 
@@ -53,15 +48,10 @@ Isto oferece controle mais completo sobre propriedades reativas que você quer d
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vuex.md
-## Emição de Eventos no Store <sup>obsoleto</sup>
 
-A instância do *store* não expõe mais a interface de emição de eventos (`on`, `off`, `emit`). Se você esteve usando o *store* como um *global event bus*, [veja esta seção](http://vuejs.org/guide/migration.html#dispatch-and-broadcast-obsoleto) para instruções de migração.
-=======
-## Store's Event Emitter <sup>removed</sup>
+## Emição de Eventos no Store <sup>removido</sup>
 
-The store instance no longer exposes the event emitter interface (`on`, `off`, `emit`). If you were previously using the store as a global event bus, [see this section](migration.html#dispatch-and-broadcast-removed) for migration instructions.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vuex.md
+A instância do *store* não expõe mais a interface de emição de eventos (`on`, `off`, `emit`). Se você esteve usando o *store* como um *global event bus*, [veja esta seção](migration.html#dispatch-and-broadcast-obsoleto) para instruções de migração.
 
 Ao invés de usar esta interface para observar eventos emitidos pelo próprio *store* (por exemplo, `store.on('mutation', callback)`), um novo método `store.subscribe` foi introduzido. O cenário de uso típico dentro de um plugin seria:
 
@@ -82,11 +72,8 @@ Veja o exemplo na [documentação de plugins](https://github.com/vuejs/vuex/blob
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vuex.md
-## Middlewares <sup>obsoleto</sup>
-=======
-## Middlewares <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vuex.md
+
+## Middlewares <sup>substituído</sup>
 
 Middlewares foram substituídos por plugins. Um plugin é simplesmente uma função que recebe o *store* como seu único argumento, podendo então se subscrever ao evento de mutação ocorrida nele:
 

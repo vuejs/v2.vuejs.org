@@ -4,49 +4,49 @@ Este é o repositório oficial da tradução em português brasileiro do _site_ 
 
 ## Situação da tradução
 
-A tradução atualmente é um trabalho em progresso. Situação de cada página do _site_:
+A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido, mas alguns conteúdos carecem de revisão após as atualizações 2.2 e 2.3 do Vue. Além disso, o conteúdo da API está quase todo em inglês, carecendo de colaboração para tradução. A situação de cada página do _site_:
 
 **Website**
-- [x] Tela Principal (Tradução: @danielschmitz, @ErickPetru. Revisão 2.2: @ErickPetru)
-- [x] Menus e barras (Tradução: @ErickPetru. Revisão 2.2: @ErickPetru)
+- [x] Tela Principal (Tradução: @danielschmitz, @ErickPetru. Revisão: @ErickPetru)
+- [x] Menus e barras (Tradução: @ErickPetru. Revisão: @ErickPetru)
 
 **Guide**
-- [X] Installation (Tradução: @danielschmitz, @ErickPetru. Revisão 2.2: @ErickPetru)
-- [X] Introduction (Tradução: @ErickPetru. Revisão 2.2: @ErickPetru)
-- [X] The Vue Instance (Tradução: @danielschmitz. Revisão 2.2: @ErickPetru)
-- [X] Template Syntax (Tradução: @vitorarjol. Revisão 2.2: @ErickPetru)
-- [X] Computed Properties and Watchers (Tradução: @danielschmitz. Revisão 2.2: @ErickPetru)
-- [ ] Class and Style Bindings (Tradução: @gidenilson. Revisão 2.2: @ErickPetru)
-- [X] Conditional Rendering (Tradução: @gidenilson. Revisão 2.2: @ErickPetru)
-- [ ] List Rendering (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
-- [ ] Event Handling (Tradução: @gidenilson. Revisão 2.2: **pendente**)
-- [ ] Form Input Bindings(Tradução: @gidenilson. Revisão 2.2: **pendente**)
+- [X] Installation (Tradução: @danielschmitz, @ErickPetru. Revisão: @ErickPetru)
+- [X] Introduction (Tradução: @ErickPetru. Revisão: @ErickPetru)
+- [X] The Vue Instance (Tradução: @danielschmitz. Revisão: @ErickPetru)
+- [X] Template Syntax (Tradução: @vitorarjol. Revisão: @ErickPetru)
+- [X] Computed Properties and Watchers (Tradução: @danielschmitz. Revisão: @ErickPetru)
+- [ ] Class and Style Bindings (Tradução: @gidenilson. Revisão: @ErickPetru)
+- [X] Conditional Rendering (Tradução: @gidenilson. Revisão: @ErickPetru)
+- [ ] List Rendering (Tradução: @ErickPetru. Revisão: **pendente**)
+- [ ] Event Handling (Tradução: @gidenilson. Revisão: **pendente**)
+- [ ] Form Input Bindings(Tradução: @gidenilson. Revisão: **pendente**)
 - [ ] Components (Tradução: **pendente**)
-- [ ] Reactivity in Depth (Tradução: @gidenilson. Revisão 2.2: **pendente**)
-- [ ] Transition Effects (Tradução: @jbruni, @NicholasPedroso. Revisão 2.2: **pendente**)
+- [ ] Reactivity in Depth (Tradução: @gidenilson. Revisão: **pendente**)
+- [ ] Transition Effects (Tradução: @jbruni, @NicholasPedroso. Revisão: **pendente**)
 - [ ] Transitioning State (Tradução: **pendente**)
-- [ ] Render Functions (Tradução: @jbruni. Revisão 2.2: **pendente**)
-- [ ] Custom Directives (Tradução: @gidenilson. Revisão 2.2: **pendente**)
-- [ ] Mixins (Tradução: @jbruni. Revisão 2.2: **pendente**)
-- [ ] Plugins (Tradução: @jbruni. Revisão 2.2: **pendente**)
-- [ ] Single File Components (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
-- [X] Production Deployment Tips (Tradução: @vitorarjol. Revisão 2.2: @ErickPetru)
-- [ ] Routing (Tradução: @natanaelphp. Revisão 2.2: **pendente**)
-- [ ] State Management (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
-- [ ] Unit Testing (Tradução: @capaci. Revisão 2.2: **pendente**)
-- [ ] Server-Side Rendering (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
+- [ ] Render Functions (Tradução: @jbruni. Revisão: **pendente**)
+- [ ] Custom Directives (Tradução: @gidenilson. Revisão: **pendente**)
+- [ ] Mixins (Tradução: @jbruni. Revisão: **pendente**)
+- [ ] Plugins (Tradução: @jbruni. Revisão: **pendente**)
+- [ ] Single File Components (Tradução: @ErickPetru. Revisão: **pendente**)
+- [X] Production Deployment Tips (Tradução: @vitorarjol. Revisão: @ErickPetru)
+- [ ] Routing (Tradução: @natanaelphp. Revisão: **pendente**)
+- [ ] State Management (Tradução: @ErickPetru. Revisão: **pendente**)
+- [ ] Unit Testing (Tradução: @capaci. Revisão: **pendente**)
+- [ ] Server-Side Rendering (Tradução: @ErickPetru. Revisão: **pendente**)
 - [ ] Migration from Vue 1.x (Tradução: **pendente**)
-- [ ] Migration from Vue Router 0.7.x (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
-- [ ] Migration from Vuex 0.6.x to 1.0 (Tradução: @ErickPetru. Revisão 2.2: **pendente**)
-- [X] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão 2.2: @ErickPetru)
+- [ ] Migration from Vue Router 0.7.x (Tradução: @ErickPetru. Revisão: **pendente**)
+- [ ] Migration from Vuex 0.6.x to 1.0 (Tradução: @ErickPetru. Revisão: **pendente**)
+- [X] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão: @ErickPetru)
 - [ ] Join the Vue.js Community! (Tradução: **pendente**)
 
 **API**
-- [x] Global Config (Tradução: @theus. Revisão 2.2: @theus)
+- [x] Global Config (Tradução: @theus. Revisão: @theus)
 - [ ] Global API
 - [ ] Options / Data
-- [ ] Options / DOM (Tradução: @guilherme-dev. Revisão 2.2: **pendente**)
-- [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão 2.2: **pendente**)
+- [ ] Options / DOM (Tradução: @guilherme-dev. Revisão: **pendente**)
+- [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: **pendente**)
 - [ ] Options / Assets
 - [ ] Options / Composition
 - [ ] Options / Misc
@@ -61,21 +61,23 @@ A tradução atualmente é um trabalho em progresso. Situação de cada página 
 - [ ] Server-Side Rendering
 
 **Examples**
-- [ ] Markdown Editor (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] GitHub Commits (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] Firebase + Validation (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] Grid Component (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] Tree View (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] SVG Graph (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] Modal Component (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] Elastic Header (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] Wrapper Component (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] TodoMVC (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
-- [ ] HackerNews Clone (Tradução: @vitorarjol. Revisão 2.2: **pendente**)
+- [ ] Markdown Editor (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] GitHub Commits (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] Firebase + Validation (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] Grid Component (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] Tree View (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] SVG Graph (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] Modal Component (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] Elastic Header (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] Wrapper Component (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] TodoMVC (Tradução: @vitorarjol. Revisão: **pendente**)
+- [ ] HackerNews Clone (Tradução: @vitorarjol. Revisão: **pendente**)
 
 ## Como colaborar?
 
-Para participar traduzindo/revisando os conteúdos, siga os passos:
+Problemas pontuais nas traduções já realizadas, como erros de grafia ou frases demasiadamente confusas, podem ser reportados apenas enviando *issues* neste repositório.
+
+Para participar ativamente traduzindo/revisando os conteúdos, siga os passos:
 
 - Faça um _fork_ deste repositório para sua própria conta;
 - Edite o arquivo `README` registrando seu usuário ao lado da página que deseja traduzir/revisar;

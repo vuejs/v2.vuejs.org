@@ -1,12 +1,12 @@
 ---
-title: Bindings Class e Style
+title: Bindings em Classes e Estilos
 type: guide
 order: 6
 ---
 
 Uma necessidade comum de data binding é manipular uma lista de classe dos elementos e seus estilos inline. Uma vez que ambos são atributos, podemos usar v-bind para lidar com eles: Precisamos calcular uma string final com nossas expressões. No entanto, mexer com concatenação é irritante e propenso a erros. Por esta razão, Vue fornece aprimoramentos especiais quando `v-bind` é usado com `class` e `style`. Além de strings as expressões também podem avaliar objetos ou arrays.
 
-## Binding em Classes HTML
+## Vínculos em Classes HTML
 
 ### Sintaxe do objeto
 
