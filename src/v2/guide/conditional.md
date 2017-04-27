@@ -1,65 +1,65 @@
 ---
-title: Conditional Rendering
+title: Renderização Condicional
 type: guide
 order: 7
 ---
 
 ## `v-if`
 
-In string templates, for example Handlebars, we would write a conditional block like this:
+Em _templates_ estilo Handlebars, poderíamos escrever blocos condicionais como este:
 
 ``` html
 <!-- Handlebars template -->
 {{#if ok}}
-  <h1>Yes</h1>
+  <h1>Sim</h1>
 {{/if}}
 ```
 
-In Vue, we use the `v-if` directive to achieve the same:
+No Vue, usamos a diretiva `v-if` para atingir o mesmo resultado:
 
 ``` html
-<h1 v-if="ok">Yes</h1>
+<h1 v-if="ok">Sim</h1>
 ```
 
-It is also possible to add an "else" block with `v-else`:
+Também é possível adicionar um bloco "senão" usando `v-else`:
 
 ``` html
-<h1 v-if="ok">Yes</h1>
-<h1 v-else>No</h1>
+<h1 v-if="ok">Sim</h1>
+<h1 v-else>Não</h1>
 ```
 
-### Conditional Groups with `v-if` on `<template>`
+### Grupos Condicionais com `<template>`
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+Como `v-if` é uma diretiva, deve ser anexado a um único elemento. E se quisermos alternar mais de um elemento? Podemos usar `v-if` em um elemento `<template>`, que serve como um invólucro invisível. O resultado final processado não incluirá o elemento `<template>`.
 
 ``` html
 <template v-if="ok">
-  <h1>Title</h1>
-  <p>Paragraph 1</p>
-  <p>Paragraph 2</p>
+  <h1>Título</h1>
+  <p>Parágrafo 1</p>
+  <p>Parágrafo 2</p>
 </template>
 ```
 
 ### `v-else`
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+É possível utilizar a diretiva `v-else` para indicar um "bloco _else_" para o `v-if`:
 
 ``` html
 <div v-if="Math.random() > 0.5">
-  Now you see me
+  Agora você me vê
 </div>
 <div v-else>
-  Now you don't
+  Agora você não me vê
 </div>
 ```
 
-A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+Um elemento `v-else` deve seguir imediatamente um elemento `v-if` ou `v-else-if`, caso contrário não será reconhecido.
 
 ### `v-else-if`
 
-> New in 2.1.0
+> A partir de 2.1.0
 
-The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+O `v-else-if`, como o nome sugere, serve como um "bloco _else if_" ao `v-if`. Pode inclusive ser encadeado várias vezes:
 
 ```html
 <div v-if="type === 'A'">
@@ -72,44 +72,44 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. 
   C
 </div>
 <div v-else>
-  Not A/B/C
+  Não é A, B ou C
 </div>
 ```
 
-Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+Similar ao `v-else`, um `v-else-if` deve seguir imediatamente um elemento `v-if` ou um elemento `v-else-if`.
 
-### Controlling Reusable Elements with `key`
+### Controlando Reutilização com `key`
 
-Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
+Vue busca renderizar elementos com a maior eficiência possível, os reutilizando ao invés de renderizar do zero. Além de ajudar o Vue a ser mais rápido, isto também traz vantagens úteis. Por exemplo, se você permite a seus usuários alternar entre múltiplos tipos de _login_:
 
 ``` html
 <template v-if="loginType === 'username'">
-  <label>Username</label>
-  <input placeholder="Enter your username">
+  <label>Usuário</label>
+  <input placeholder="Informe o nome de usuário">
 </template>
 <template v-else>
-  <label>Email</label>
-  <input placeholder="Enter your email address">
+  <label>E-mail</label>
+  <input placeholder="Informe o endereço de e-mail">
 </template>
 ```
 
-Then switching the `loginType` in the code above will not erase what the user has already entered. Since both templates use the same elements, the `<input>` is not replaced - just its `placeholder`.
+Alternar o `loginType` do código acima não irá limpar o que o usuário já tiver informado. Uma vez que ambos os _templates_ usam os mesmos elementos, o `<input>` não é substituído, apenas seu `placeholder`.
 
-Check it out for yourself by entering some text in the input, then pressing the toggle button:
+Veja isto em ação, preenchendo com algum texto e pressionando o botão para alternar:
 
 {% raw %}
 <div id="no-key-example" class="demo">
   <div>
     <template v-if="loginType === 'username'">
-      <label>Username</label>
-      <input placeholder="Enter your username">
+      <label>Usuário</label>
+      <input placeholder="Informe o nome de usuário">
     </template>
     <template v-else>
-      <label>Email</label>
-      <input placeholder="Enter your email address">
+      <label>E-mail</label>
+      <input placeholder="Informe o endereço de e-mail">
     </template>
   </div>
-  <button @click="toggleLoginType">Toggle login type</button>
+  <button @click="toggleLoginType">Alternar tipo de Login</button>
 </div>
 <script>
 new Vue({
@@ -126,34 +126,34 @@ new Vue({
 </script>
 {% endraw %}
 
-This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Just add a `key` attribute with unique values:
+Nem sempre este comportamento é desejado. Vue oferece um jeito de dizer "estes elementos são completamente separados, não os reutilize". É só usar atributos `key` com valores únicos:
 
 ``` html
 <template v-if="loginType === 'username'">
-  <label>Username</label>
-  <input placeholder="Enter your username" key="username-input">
+  <label>Usuário</label>
+  <input placeholder="Informe o nome de usuário" key="username-input">
 </template>
 <template v-else>
-  <label>Email</label>
-  <input placeholder="Enter your email address" key="email-input">
+  <label>E-mail</label>
+  <input placeholder="Informe o endereço de e-mail" key="email-input">
 </template>
 ```
 
-Now those inputs will be rendered from scratch each time you toggle. See for yourself:
+Agora estes _inputs_ serão renderizados do zero cada vez que você alternar. Veja em ação:
 
 {% raw %}
 <div id="key-example" class="demo">
   <div>
     <template v-if="loginType === 'username'">
-      <label>Username</label>
-      <input placeholder="Enter your username" key="username-input">
+      <label>Usuário</label>
+      <input placeholder="Informe o nome de usuário" key="username-input">
     </template>
     <template v-else>
-      <label>Email</label>
-      <input placeholder="Enter your email address" key="email-input">
+      <label>E-mail</label>
+      <input placeholder="Informe o endereço de e-mail" key="email-input">
     </template>
   </div>
-  <button @click="toggleLoginType">Toggle login type</button>
+  <button @click="toggleLoginType">Alternar tipo de Login</button>
 </div>
 <script>
 new Vue({
@@ -170,30 +170,30 @@ new Vue({
 </script>
 {% endraw %}
 
-Note that the `<label>` elements are still efficiently re-used, because they don't have `key` attributes.
+Observe que os elementos `<label>` ainda são eficientemente reutilizados, uma vez que não possuem atributos `key`.
 
 ## `v-show`
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+Outra opção para mostrar condicionalmente um elemento é a diretiva `v-show`. A utilização é basicamente a mesma.
 
 ``` html
-<h1 v-show="ok">Hello!</h1>
+<h1 v-show="ok">Olá!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` simply toggles the `display` CSS property of the element.
+A diferença é que um elemento com `v-show` sempre será renderizado e incluído no DOM; `v-show` simplesmente alterna a propriedade CSS `display` do elemento.
 
-<p class="tip">Note that `v-show` doesn't support the `<template>` syntax, nor does it work with `v-else`.</p>
+<p class="tip">Observe que `v-show` não oferece suporte à utilização em `<template>`, nem funciona com `v-else`.</p>
 
-## `v-if` vs `v-show`
+## `v-if` vs. `v-show`
 
-`v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+`v-if` é a renderização condicional "real", pois garante que eventos e componentes filhos dentro do bloco condicional sejam devidamente destruídos e recriados durante a alternância.
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+`v-if` também é **preguiçoso**: se a condição for _false_ na renderização inicial, nada será feito - o bloco condicional não será processado até que a condição se torne _true_ pela primeira vez.
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with just simple CSS-based toggling.
+Em comparação, `v-show` é muito mais simples - o elemento sempre será renderizado independetemente da condição inicial, com alternância baseada simplesmente em CSS.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+De modo geral, `v-if` tem custo maior durante alternâncias de visibilidade, enquanto `v-show` tem custo maior na renderização inicial. Então prefira `v-show` se precisar alternar a visibilidade de algo com muita frequencia; e prefira `v-if` se a condição não tem tanta probabilidade de se modificar durante a execução.
 
-## `v-if` with `v-for`
+## `v-if` com `v-for`
 
-When used together with `v-for`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.
+Quando utilizado em conjunto com `v-for`, este possui maior prioridade do que o `v-if`. Veja o guia de <a href="../guide/list.html#v-for-com-v-if">renderização de listas</a> para mais detalhes.
