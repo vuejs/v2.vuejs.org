@@ -104,28 +104,19 @@ In React, everything is just JavaScript, which sounds very simple and elegant - 
 In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript. Here's an example, [vetted by the React community](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
 
 ``` jsx
-render () {
-  let { items } = this.props
-
-  let children
-  if (items.length > 0) {
-    children = (
+const ListContainer = ({ items }) => (
+  <div className="list-container">
+    {items.length ?
       <ul>
         {items.map(item =>
           <li key={item.id}>{item.name}</li>
         )}
       </ul>
-    )
-  } else {
-    children = <p>No items found.</p>
-  }
-
-  return (
-    <div className='list-container'>
-      {children}
-    </div>
-  )
-}
+    :
+      <p>No items found.</p>
+    }
+  </div>
+)
 ```
 
 Render functions with JSX have a few advantages:
