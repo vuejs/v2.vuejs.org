@@ -110,11 +110,8 @@ Também é possível utilizar `of` como delimitador ao invés de `in`, de forma 
 <div v-for="item of items"></div>
 ```
 
-<<<<<<< HEAD:src/guide/list.md
-### Template com v-for
-=======
-### Template `v-for`
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/list.md
+
+### Template com `v-for`
 
 Similar ao template `v-if`, você também pode utilizar a tag `<template>` com a diretiva `v-for` para renderizar um bloco de múltiplos elementos sem a necessidade de repetição de um *container*. Por exemplo:
 
@@ -127,11 +124,8 @@ Similar ao template `v-if`, você também pode utilizar a tag `<template>` com a
 </ul>
 ```
 
-<<<<<<< HEAD:src/guide/list.md
-### Objetos no v-for
-=======
-### Object `v-for`
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/list.md
+
+### Objetos no `v-for`
 
 É possível utilizar `v-for` para iterar através dos valores das propriedades de um objeto.
 
@@ -195,11 +189,8 @@ E ainda outro para o índice da iteração:
 
 <p class="tip">Ao iterar por um objeto, a ordenação padrão é baseada na ordem da enumeração das chaves oferecida por `Object.keys()`, a qual **não** é garantidamente consistente entre implementações de motores JavaScript distintos.</p>
 
-<<<<<<< HEAD:src/guide/list.md
-### Intervalo de Números
-=======
-### Range `v-for`
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/list.md
+
+### Intervalo de Números `v-for`
 
 A diretiva `v-for` também pode ser um número inteiro. Neste caso, a repetição ocorrerá de acordo com este número de vezes definido.
 
@@ -220,15 +211,10 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/list.md
-### Componentes e v-for
 
-> Esta seção assume conhecimento sobre [Componentes](/guide/components.html). Sinta-se livre para pulá-la agora e voltar depois.
-=======
-### Components and `v-for`
+### Componentes e `v-for`
 
-> This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/list.md
+> Esta seção assume conhecimento sobre [Componentes](/components.html). Sinta-se livre para pulá-la agora e voltar depois.
 
 É possível usar `v-for` diretamente em componentes personalizados, assim como ocorre com elementos comuns:
 
@@ -236,13 +222,10 @@ new Vue({ el: '#range' })
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-<<<<<<< HEAD:src/guide/list.md
-Entretanto, isto não passa automaticamente qualquer dado ao componente, uma vez que componentes possuem escopos isolados independentes. Para passar dados iterados ao componente, precisamos utilizar a sintaxe de props:
-=======
-> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/list.md
+> na versão 2.2.0+, quando usar `v-for` com um componente, o atributo [`key`](list.html#key) é agora requerido.
+
+Entretanto, isto não passa automaticamente qualquer dado ao componente, uma vez que componentes possuem escopos isolados independentes. Para passar dados iterados ao componente, precisamos utilizar a sintaxe de props:
 
 ``` html
 <my-component
@@ -376,11 +359,8 @@ If instead, your intent is to conditionally skip execution of the loop, you can 
 
 ## `key`
 
-<<<<<<< HEAD:src/guide/list.md
+
 Quando o Vue está atualizando uma lista de elementos renderizada com `v-for`, ele usa por padrão uma estratégia de "remendo no local". Se a ordem dos itens nos dados mudar, ao invés de mover os elementos DOM para corresponder com a ordem dos dados, Vue simplesmente atualiza cada elemento no local garante que isso reflita o que deveria ser renderizado naquele índice em particular. Isto é similar ao comportamento de `track-by="$index"` no Vue 1.x.
-=======
-When Vue is updating a list of elements rendered with `v-for`, it by default uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/list.md
 
 Este padrão é eficiente, mas adequado somente **quando a renderização da lista não depende de estado de componentes filhos ou estado temporário do DOM (como valores de inputs)**.
 
@@ -414,11 +394,9 @@ Você pode abrir o console e brincar com o vetor `items` dos exemplos anteriores
 
 ### Substituindo um Array
 
-<<<<<<< HEAD
+
 Métodos de mutação, como o nome sugere, modificam o Array original que os chamou. Em comparação, há também métodos que não causam mutação, como `filter()`, `concat()` e `slice()`, os quais não modificam o Array original, **sempre retornam um novo Array**. Ao trabalhar com estes métodos, você pode simplesmente substituir o Array antigo pelo novo:
-=======
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can just replace the old array with the new one:
->>>>>>> refs/remotes/vuejs/master
+
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -474,11 +452,7 @@ computed: {
 }
 ```
 
-<<<<<<< HEAD
-Alternativamente, também é possível simplesmente utilizar um método em casos onde propriedades computadas não são viáveis (por exemplo, dentro de um laços `v-for`):
-=======
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can just use a method:
->>>>>>> refs/remotes/vuejs/master
+Alternativamente, também é possível simplesmente utilizar um método em casos onde propriedades computadas não são viáveis (por exemplo, dentro de um laços `v-for`), você pode usar o método:
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>

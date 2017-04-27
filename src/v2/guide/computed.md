@@ -75,11 +75,8 @@ console.log(vm.reversedMessage) // -> 'eybdooG'
 
 Pode-se abrir o console e testar o exemplo você mesmo. O valor de `vm.reversedMessage` sempre dependerá do valor de `vm.message`
 
-<<<<<<< HEAD:src/guide/computed.md
+
 Você pode relacionar as propriedades computadas em templates como se fosse uma propriedade normal. Vue sabe que `vm.reversedMessage` depende de `vm.message`, então ele irá atualizar qualquer relação que dependa de `vm.reversedMessage` quando `vm.message` for alterado. E a melhor parte é que nós criamos esta relação de dependência de forma declarativa: A variável calculada é pura e não tem efeitos colaterais, o que torna fácil fazer testes e relações.
-=======
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easy to test and reason about.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/computed.md
 
 ### Cache das variáveis computadas versus métodos
 
@@ -98,11 +95,7 @@ methods: {
 }
 ```
 
-<<<<<<< HEAD:src/guide/computed.md
 Ao invés de uma propriedade calculada, nós podemos definir a mesma funcionalidade como um método. Para o resultado final, as duas abordagens possuem o mesmo resultado. Entretanto, a diferença é que **propriedades computadas são cacheadas baseadas em suas dependências**. Uma propriedade calculada somente será re-calculada quando alguma de suas dependências for alterada. Isso significa que enquanto `message` não tiver alterações, múltiplos acessos a propriedade calculada `reversedMessage` irão retornar o último valor calculado sem executar a função novamente.
-=======
-Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their dependencies.** A computed property will only re-evaluate when some of its dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/computed.md
 
 Isto significa que a seguinte propriedade calculada nunca será alterada, porque `Date.now()` nao faz parte da dependência reativa do Vue.
 
@@ -238,19 +231,12 @@ var watchExampleVM = new Vue({
     // _.throttle), visite: https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
+        var vm = this
         if (this.question.indexOf('?') === -1) {
-<<<<<<< HEAD:src/guide/computed.md
           vm.answer = 'Perguntas geralmente contêm um ponto de interrogação. ;-)'
           return
         }
         vm.answer = 'Pensando...'
-=======
-          this.answer = 'Questions usually contain a question mark. ;-)'
-          return
-        }
-        this.answer = 'Thinking...'
-        var vm = this
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/computed.md
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
@@ -319,8 +305,5 @@ var watchExampleVM = new Vue({
 
 Neste caso, usar a opção `watch`, nos permite realizar uma operação assíncrona (acessar uma API), limitar a frequência com que se realiza essa operação, e definir os estados intermediários até que se obtenha a resposta final. Nada disso é possível com uma propriedade computada.
 
-<<<<<<< HEAD:src/guide/computed.md
-Além da opção `watch`, você também pode usar a [API vm.$watch](/api/#vm-watch).
-=======
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](../api/#vm-watch).
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/computed.md
+
+Além da opção `watch`, você também pode usar a [API vm.$watch](../api/#vm-watch).

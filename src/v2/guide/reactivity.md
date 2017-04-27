@@ -51,19 +51,13 @@ this.$set(this.someObject, 'b', 2)
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
-<<<<<<< HEAD:src/guide/reactivity.md
-Existem também algumas ressalvas relacionadas com arrays, que foram discutidas anteriormente na [seçao sobre renderização de listas](/guide/list.html#Caveats).
-=======
-There are also a few array-related caveats, which were discussed earlier in the [list rendering section](list.html#Caveats).
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/reactivity.md
+
+Existem também algumas ressalvas relacionadas com arrays, que foram discutidas anteriormente na [seçao sobre renderização de listas](list.html#Caveats).
 
 ## Declarando Propriedades Reativas
 
-<<<<<<< HEAD:src/guide/reactivity.md
+
 Como o Vue não permite adicionar dinamicamente Propriedades reativas de nível root, isso significa que você tem inicializar a instância declarando todas as propriedades de nível root com dados iniciais, apenas um valor vazio:
-=======
-Since Vue doesn't allow dynamically adding root-level reactive properties, you have to initialize Vue instances by declaring all root-level reactive data properties upfront, even just with an empty value:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/reactivity.md
 
 ``` js
 var vm = new Vue({

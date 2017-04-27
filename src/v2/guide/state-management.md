@@ -49,11 +49,9 @@ var store = {
 }
 ```
 
-<<<<<<< HEAD:src/guide/state-management.md
+
 Observe que todas as ações que modificam o estado do *store* são colocadas dentro do próprio. Este tipo de gerenciamento de estado centralizado torna mais fácil compreender quais tipos de mutação poderiam acontecer e como poderiam ser disparadas. Se algo der errado, teremos registros no console sobre cada passo realizado para rastrearmos o *bug*.
-=======
-Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how are they triggered. Now when something goes wrong, we'll also have a log of what happened leading up to the bug.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/state-management.md
+
 
 Adicionalmente, cada instância/componente ainda pode gerenciar e manter seus próprios dados privados:
 

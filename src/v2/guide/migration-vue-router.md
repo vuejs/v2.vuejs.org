@@ -8,11 +8,7 @@ order: 27
 
 ## Inicialização do Roteador
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
 ### `router.start` <sup>obsoleto</sup>
-=======
-### `router.start` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
 
 Não há mais uma API especial para inicializar um aplicativo com Vue Router. Ao invés de:
 
@@ -51,11 +47,8 @@ new Vue({
 
 ## Definição de Rotas
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `router.map` <sup>obsoleto</sup>
-=======
-### `router.map` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `router.map` <sup>alterado</sup>
 
 Rotas são agora definidas como um Array em uma [opção `routes`](http://router.vuejs.org/en/essentials/getting-started.html#javascript) na inicialização do roteador. Então estas rotas, por exemplo:
 
@@ -90,11 +83,8 @@ A sintaxe com Array oferece mais precisão na definição de rotas, uma vez que 
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `router.on` <sup>obsoleto</sup>
-=======
-### `router.on` <sup>removed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `router.on` <sup>removido</sup>
 
 Se você precisar programaticamente gerar rotas quando iniciar a aplicação, é possível fazer isso acrescentando dinamicamente definições a um Array de rotas. Por exemplo:
 
@@ -140,11 +130,8 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `subRoutes` <sup>obsoleto</sup>
-=======
-### `subRoutes` <sup>renamed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `subRoutes` <sup>renomeado</sup>
 
 [Renomeado para `children`](http://router.vuejs.org/en/essentials/nested-routes.html) para consistência com Vue e com outras bibliotecas de rotas.
 
@@ -155,11 +142,8 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `router.redirect` <sup>obsoleto</sup>
-=======
-### `router.redirect` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `router.redirect` <sup>alterado</sup>
 
 Isto agora é uma [opção da definição de uma rota](http://router.vuejs.org/en/essentials/redirect-and-alias.html). Então, por exemplo, você atualizará:
 
@@ -185,11 +169,8 @@ Para uma definição conforme exibido abaixo, na configuração de suas `routes`
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `router.alias` <sup>obsoleto</sup>
-=======
-### `router.alias` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `router.alias` <sup>alterado</sup>
 
 Isto agora é uma [opção da definição da rota](http://router.vuejs.org/en/essentials/redirect-and-alias.html) de destino. Então, por exemplo, você atualizará:
 
@@ -222,11 +203,8 @@ alias: ['/manage', '/administer', '/administrate']
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### Propriedades Arbitrárias em Rotas
-=======
-### Arbitrary Route Properties <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### Propriedades Arbitrárias em Rotas <sup>substituído</sup>
 
 Propriedades definidas arbitrariamente em rotas agora precisam estar inseridas em uma nova propriedade `meta`, para evitar conflitos com atualizações futuras. Então, por exemplo:
 
@@ -264,9 +242,7 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
-<<<<<<< HEAD
-## Identificação das Rotas
-=======
+<!-- TODO -->
 ### [] Syntax for Arrays in Queries <sup>removed</sup>
 
 When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
@@ -284,38 +260,27 @@ export default {
 }
 ```
 
-## Route Matching
->>>>>>> refs/remotes/vuejs/master
+## Identificação das Rotas
 
 Agora a identificação das rotas utiliza [path-to-regexp](https://github.com/pillarjs/path-to-regexp) por baixo dos panos, tornando-a muito mais flexível do que anteriormente.
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### Um ou Mais Parâmetros Nomeados
-=======
-### One or More Named Parameters <sup>changed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### Um ou Mais Parâmetros Nomeados <sup>alterado</sup>
 
 A sintaxe mudou levemente, assim `/category/*tags`, por exemplo, deveria ser atualizado para `/category/:tags+`.
 
 {% raw %}
 <div class="upgrade-path">
-<<<<<<< HEAD:src/guide/migration-vue-router.md
+
   <h4>Caminho para Atualização</h4>
   <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos de sintaxe de rotas com regras obsoletas.</p>
-=======
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete route syntax.</p>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
 </div>
 {% endraw %}
 
 ## Links
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `v-link` <sup>obsoleto</sup>
-=======
-### `v-link` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `v-link` <sup>substituído</sup>
 
 A diretiva `v-link` foi substituída por um novo [componente `<router-link>`](http://router.vuejs.org/en/api/router-link.html), visto que este tipo de tarefa é exclusivamente responsabilidade de componentes no Vue 2. Isso significa que em qualquer lugar que você tiver um *link* como este:
 
@@ -338,15 +303,9 @@ Note that `target="_blank"` is not supported on `<router-link>`, so if you need 
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `v-link-active` <sup>obsoleto</sup>
+### `v-link-active` <sup>substituído</sup>
 
 A diretiva `v-link-active` também foi removida em favor de se especificar uma *tag* separada [no componente `<router-link>`](http://router.vuejs.org/en/api/router-link.html). Então, por exemplo, você irá atualizar isto:
-=======
-### `v-link-active` <sup>replaced</sup>
-
-The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](http://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
 
 ``` html
 <li v-link-active>
@@ -386,11 +345,7 @@ Para consistência com a [HTML5 History API](https://developer.mozilla.org/en-US
 
 ## Opções do Roteador: Modos
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `hashbang: false` <sup>obsoleto</sup>
-=======
-### `hashbang: false` <sup>removed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+### `hashbang: false` <sup>removido</sup>
 
 Hashbangs não são mais exigidos pelo Google para indexar uma URL, assim não são mais uma opção padrão (ou mesmo uma opção existente) para a estratégia de hash.
 
@@ -401,11 +356,8 @@ Hashbangs não são mais exigidos pelo Google para indexar uma URL, assim não s
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `history: true` <sup>obsoleto</sup>
-=======
-### `history: true` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `history: true` <sup>substituído</sup>
 
 Todos os modos de roteamento foram condensados em uma simples [opção `mode`](http://router.vuejs.org/en/api/options.html#mode). Atualize:
 
@@ -430,11 +382,8 @@ var router = new VueRouter({
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `abstract: true` <sup>obsoleto</sup>
-=======
-### `abstract: true` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `abstract: true` <sup>subsituído</sup>
 
 Todos os modos de roteamento foram condensados em uma simples [opção `mode`](http://router.vuejs.org/en/api/options.html#mode). Atualize:
 
@@ -461,11 +410,9 @@ var router = new VueRouter({
 
 ## Opções do Roteador: Diversos
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `saveScrollPosition` <sup>obsoleto</sup>
-=======
-### `saveScrollPosition` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `saveScrollPosition` <sup>subsituído</sup>
+
 
 Foi substituído com uma [opção `scrollBehavior`](http://router.vuejs.org/en/advanced/scroll-behavior.html) que aceita uma função, de forma que o comportamento de rolagem pode ser completamente personalizado - inclusive por rota. Abre-se muitas novas possibilidades, mas para simplesmente replicar o antigo comportamento de:
 
@@ -488,11 +435,8 @@ scrollBehavior: function (to, from, savedPosition) {
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `root` <sup>obsoleto</sup>
-=======
-### `root` <sup>renamed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `root` <sup>renomeado</sup>
 
 Renomeado para `base` para consistência com [o elemento HTML `<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).
 
@@ -503,11 +447,8 @@ Renomeado para `base` para consistência com [o elemento HTML `<base>`](https://
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `transitionOnLoad` <sup>obsoleto</sup>
-=======
-### `transitionOnLoad` <sup>removed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `transitionOnLoad` <sup>removido</sup>
 
 Esta opção não é mais necessária agora que o sistema de transições do Vue tem explícito controle de [`appear` de transições](transitions.html#Transitions-on-Initial-Render).
 
@@ -518,11 +459,8 @@ Esta opção não é mais necessária agora que o sistema de transições do Vue
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `suppressTransitionError` <sup>obsoleto</sup>
-=======
-### `suppressTransitionError` <sup>removed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `suppressTransitionError` <sup>removido</sup>
 
 Removido para simplificação de ganchos. Se você realmente precisar suprimir erros de transição, você pode usar [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) para isto.
 
@@ -535,11 +473,8 @@ Removido para simplificação de ganchos. Se você realmente precisar suprimir e
 
 ## Ganchos do Roteador
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `activate` <sup>obsoleto</sup>
-=======
-### `activate` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `activate` <sup>substituído</sup>
 
 Em seu lugar, use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) no componente.
 
@@ -550,11 +485,8 @@ Em seu lugar, use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navig
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `canActivate` <sup>obsoleto</sup>
-=======
-### `canActivate` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `canActivate` <sup>subsituído</sup>
 
 Em seu lugar, use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) no roteador.
 
@@ -565,15 +497,10 @@ Em seu lugar, use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `deactivate` <sup>obsoleto</sup>
 
-Em seu lugar, use os ganchos de componentes [`beforeDestroy`](/api/#beforeDestroy) ou [`destroyed`](/api/#destroyed).
-=======
-### `deactivate` <sup>removed</sup>
+### `deactivate` <sup>removido</sup>
 
-Use the component's [`beforeDestroy`](../api/#beforeDestroy) or [`destroyed`](../api/#destroyed) hooks instead.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+Em seu lugar, use os ganchos de componentes [`beforeDestroy`](../api/#beforeDestroy) ou [`destroyed`](../api/#destroyed).
 
 {% raw %}
 <div class="upgrade-path">
@@ -582,11 +509,7 @@ Use the component's [`beforeDestroy`](../api/#beforeDestroy) or [`destroyed`](..
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `canDeactivate` <sup>obsoleto</sup>
-=======
-### `canDeactivate` <sup>replaced</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+### `canDeactivate` <sup>subsituído</sup>
 
 Em seu lugar, use [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) no componente.
 
@@ -597,11 +520,8 @@ Em seu lugar, use [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navig
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `canReuse: false` <sup>obsoleto</sup>
-=======
-### `canReuse: false` <sup>removed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `canReuse: false` <sup>removido</sup>
 
 Não existem mais casos de uso para isso no novo Vue Router.
 
@@ -612,15 +532,10 @@ Não existem mais casos de uso para isso no novo Vue Router.
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `data` <sup>obsoleto</sup>
+
+### `data` <sup>subsituído</sup>
 
 A propriedade `$route` é reativa, desta forma simplesmente utilize um observador para reagir a mudanças de rota, como neste exemplo:
-=======
-### `data` <sup>replaced</sup>
-
-The `$route` property is now reactive, so you can just use a watcher to react to route changes, like this:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
 
 ``` js
 watch: {
@@ -640,11 +555,8 @@ methods: {
 </div>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/migration-vue-router.md
-### `$loadingRouteData` <sup>obsoleto</sup>
-=======
-### `$loadingRouteData` <sup>removed</sup>
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/migration-vue-router.md
+
+### `$loadingRouteData` <sup>removido</sup>
 
 Defina sua própria propriedade (por exemplo, `isLoading`) e atualize a situação através de um observador na rota. Por exemplo, se estiver obtendo dados remotos com o [axios](https://github.com/mzabriskie/axios):
 

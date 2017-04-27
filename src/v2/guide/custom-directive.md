@@ -26,11 +26,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<<<<<<< HEAD:src/guide/custom-directive.md
 Quando a página carrega, o elemento ganha o foco. Na verdade, se você ainda não clicou em nada desde que visitou esta página, o input acima deverá estar com o foco. Agora vamos construir a diretiva que faz isso:
-=======
-When the page loads, that element gains focus (note: autofocus doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/custom-directive.md
 
 ``` js
 // Register a global custom directive called v-focus
@@ -80,7 +76,6 @@ Iremos explorar os argumentos passados nessas funções hook (`el`, `binding`, `
 
 Os seguintes argumentos são passados nas funções hooks das diretivas
 
-<<<<<<< HEAD:src/guide/custom-directive.md
 - **el**: O elemento a que a diretiva está vinculada. Isso pode ser usado para manipular o DOM diretamente.
 - **binding**: Um objeto contendo as seguintes propriedades.
   - **name**: O nome da diretiva, sem o prefixo `v-`.
@@ -91,18 +86,6 @@ Os seguintes argumentos são passados nas funções hooks das diretivas
   - **modifiers**: Um objeto contendo modificadores, se algum. Por exemplo em `v-my-directive.foo.bar`, o objeto seria `{ foo: true, bar: true }`.
 - **vnode**: O nó virtual produzido pelo compilador do Vue. Veja [VNode API](/api/#VNode-Interface) para mais detalhes.
 - **oldVnode**: O nó virtual anterior, somente disponível em hooks `update` e `componentUpdated`.
-=======
-- **el**: The element the directive is bound to. This can be used to directly manipulate the DOM.
-- **binding**: An object containing the following properties.
-  - **name**: The name of the directive, without the `v-` prefix.
-  - **value**: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be `2`.
-  - **oldValue**: The previous value, only available in `update` and `componentUpdated`. It is available whether or not the value has changed.
-  - **expression**: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be `"1 + 1"`.
-  - **arg**: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
-  - **modifiers**: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-- **vnode**: The virtual node produced by Vue's compiler. See the [VNode API](../api/#VNode-Interface) for full details.
-- **oldVnode**: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/custom-directive.md
 
 <p class="tip">Tirando `el`, você deve tratar esses argumentos como **somente leitura** e nunca modificá-los. Se você precisa compartilhar informações entre hooks, é aconselhável fazê-lo através do elemento [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
 
