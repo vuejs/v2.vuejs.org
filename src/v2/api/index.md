@@ -112,9 +112,10 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase를 사용할 수 없습니다
+    // camelCase는 작동하지 않습니다.
     mediaPlayPause: 179,
-    // 대신에 kebab-case와 쌍따옴표를 사용해야 합니다
+    // 쌍따옴표로 감싸진 kebab-case를 사용하세요
+>>>>>>> origin/master
     "media-play-pause" : 179,
     up: [38, 87]
   }
@@ -131,9 +132,7 @@ type: api
 > 2.2.0에서 추가됨
 
 - **타입:** `boolean`
-
 - **기본값:** `false (from 2.2.3)`
-
 - **사용방법:**
 
   `true`로 설정하면 브라우저 devtool의 타임라인에서 컴포넌트 초기화, 컴파일, 렌더링 및 패치 성능 추적을 활성화할 수 있습니다. 개발 모드 및 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API를 지원하는 브라우저에서만 작동합니다.
@@ -654,7 +653,7 @@ if (version === 2) {
 
     문자열 템플릿 대신 자바스크립트의 완전한 프로그래밍 기능을 활용할 수 있습니다. render 함수는 `VNode`를 생성하는데 사용되는 첫번째 인자인 `createElement` 메소드를 받습니다.
 
-    컴포넌트가 함수형 컴포넌트인 경우 렌더링 함수는 추가로 `context`를 인자로 받습니다. 이 것은 함수형 컴포넌트가 인스턴스가 없기 때문에 컨텍스트에 대한 액세스를 제공합니다.
+    함수형 컴포넌트의 경우 렌더링 함수는 컴포넌트에 인스턴스가 없기 때문에 컨텍스트에 대한 액세스를 제공하는 추가적인 `context`를 전달합니다
 
     <p class="tip">
     `render` 함수는 `template` 옵션 또는 `el` 옵션으로 지정된 마운트된 엘리먼트의 템플릿에서 컴파일된 렌더링 함수보다 높은 우선 순위를 가집니다.
@@ -1796,7 +1795,7 @@ if (version === 2) {
   <!-- 속성 바인딩. 컴포넌트에서 "prop"를 선언 해야 합니다.  -->
   <my-component :prop="someThing"></my-component>
 
-  <!-- pass down parent props in common with a child component -->
+  <!-- 자식 컴포넌트와 공통으로 사용하는 부모 props를 전달합니다 -->
   <child-component v-bind.prop="$props"></child-component>
 
   <!-- XLink -->
