@@ -66,6 +66,8 @@ So far we've only been binding to simple property keys in our templates. But Vue
 {{ message.split('').reverse().join('') }}
 
 <div v-bind:id="'list-' + id"></div>
+
+<div v-bind:style="`background-image: url('${imageUrl}')`"></div>
 ```
 
 These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
