@@ -155,7 +155,7 @@ new Vue({
 {% raw %}
 <div id="example-1" class="demo">
   <button @click="show = !show">
-    Toggle
+    Toggle render
   </button>
   <transition name="slide-fade">
     <p v-if="show">hello</p>

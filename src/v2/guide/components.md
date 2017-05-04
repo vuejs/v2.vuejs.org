@@ -534,6 +534,34 @@ Il y a des fois où vous souhaitez écouter un événement natif sur l'élément
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
+### Modificateur `.sync`
+
+> 2.3.0+
+
+Dans certains cas, nous pourrions avoir besoin d'une « liaison bidirectionnelle » pour une prop. En fait, dans Vue 1.x, c'est exactement ce que le modificateur `.sync` permettait. Quand un composant enfant mute une prop qui a `.sync`, la valeur est remontée au parent. C'est pratique, cependant cela peut conduire a des soucis de maintenance sur le long terme car cela brise l'assemption du flux de donnée unidirectionnelle : le code qui mute dans des props enfants affecte l'état du parent.
+
+C'est pour cela que nous avions retiré le modificateur `.sync` dans la version 2.0. Cependant, nous trouvons tout de même qu'il existe des cas où celle-ci est très utile, nottament pour les composants réutilisables. Ce dont nous avions besoin était **de rendre le code d'un enfant qui affecte l'état d'un parent plus cohérent et explicite.**
+
+Dans la 2.3 nous réintroduisons donc le modificateur `.sync` pour les props, mais cette fois, ce n'est qu'un sucre syntaxique pour étendre automatiquement un écouteur `v-on` additionnel :
+
+Ce qui suit
+
+``` html
+<comp :foo.sync="bar"></comp>
+```
+
+est le raccourci de :
+
+``` html
+<comp :foo="bar" @update:foo="val => bar = val"></comp>
+```
+
+Pour un composant enfant qui met à jour la valeur de `foo`, il faut explicitement emettre un évènement au lieu de muter la prop :
+
+``` js
+this.$emit('update:foo', newValue)
+```
+
 ### Composants de champ de formulaire utilisant les événements personnalisés
 
 Les événements personnalisés peuvent aussi être utilisés pour créer des champs personnalisés qui fonctionnent avec `v-model`. Rappelez-vous :
@@ -1062,6 +1090,30 @@ new Vue({
 ```
 
 <p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser ldes composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour. ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser Webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
+
+### Composants asynchrones avancés
+
+> Nouveau en 2.3.0
+
+Introduit avec la 2.3, le générateur de composant asynchrone peut aussi retourner un objet au format suivant :
+
+``` js
+const AsyncComp = () => ({
+  // Le composant a charger. Il peut être une Promesse (« Promise »)
+  component: import('./MyComp.vue'),
+  // Un composant a utiliser pendant que le composant asynchrone se charge
+  loading: LoadingComp,
+  // Un composant a utiliser en cas d'échec de chargement du composant
+  error: ErrorComp,
+  // Délai avant de montrer le composant de chargement (loading). Par défaut à : 200ms.
+  delay: 200,
+  // Le composant d'erreur est affiché si la limite d'attente
+  // fixée est dépassée. Par défaut à : Infinity.
+  timeout: 3000
+})
+```
+
+Notez qu'en utilisant cela en tant que composant de `vue-router`, ces propriétés vont être ignorées car les composants asynchrones sont résolue avant que la navigation n'intervienne. Vous pouvez utiliser `vue-router` 2.4.0+ si vous souhaitez utiliser la syntaxe ci-dessus pour des composants de route.
 
 ### Conventions de nommage d'un composant
 
