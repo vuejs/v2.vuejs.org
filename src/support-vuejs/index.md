@@ -1,7 +1,7 @@
 # Ajude no Desenvolvimento do Vue.js
 
 Vue.js é um projeto _open source_ com licensa MIT e totalmente gratuito para utilização.
-Entretanto, a quantidade de esforço necessário para manter e desenvolver novos recursos para o projeto não é sustentável se suporte financeiro apropriado. Você pode colaborar com o desenvolvimento do Vue.js através de um [apoio no Patreon](https://www.patreon.com/evanyou) (apoio recorrente, com diferentes níveis de benefícios) ou [doando no PayPal](https://www.paypal.me/evanyou) (doações únicas).
+Entretanto, a quantidade de esforço necessário para manter e desenvolver novos recursos para o projeto não é sustentável sem suporte financeiro apropriado. Você pode colaborar com o desenvolvimento do Vue.js através de um [apoio no Patreon](https://www.patreon.com/evanyou) (apoio recorrente, com diferentes níveis de benefícios) ou [doando no PayPal](https://www.paypal.me/evanyou) (doações únicas).
 
 ### Platina ($2000/mês)
 
