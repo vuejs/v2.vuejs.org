@@ -45,8 +45,8 @@ Entretanto, a quantidade de esforço necessário para manter e desenvolver novos
   </a>
 </p>
 
-Se você possui um negócio ou está usando Vue em um produto que gera resultados financeiros, faz sentido apoiar comercialmente o desenvolvimento do Vue: **isso garante que o projeto que seu produto se apoia mantenha-se saudável a ativamente manutenido**. Isso também pode ajudar em sua exposição na comunidade Vue e tornar mais fácil atrair desenvolvedores Vue para seu produto.
+Se você possui um negócio ou está usando Vue em um produto que gera resultados financeiros, faz sentido apoiar comercialmente o desenvolvimento do Vue: **isso garante que o projeto que seu produto se apoia mantenha-se saudável e ativamente manutenido**. Isso também pode ajudar em sua exposição na comunidade Vue e tornar mais fácil atrair desenvolvedores Vue para seu produto.
 
-Se você está desenvolvendo produtos primárias de sua companhia com Vue.js, também estamos abertos a conversas sobre parcerias pesonalizadas de patrocínio / arranjos de consultoria. [Dê um toque no Twitter](https://twitter.com/youyuxi).
+Se você é uma empresa que está construindo seus principais produtos usando Vue.js, também estamos abertos a conversas sobre patrocínio pesonalizado / acordos de consultoria. [Dê um toque no Twitter](https://twitter.com/youyuxi).
 
 Se você é um usuário individual e gostou da produtividade de utilizar Vue, considere uma doação como um sinal de apreciação - como me pagar um café de vez em quanto :)
