@@ -1,5 +1,5 @@
 ---
-title: Migration from Vue Router 0.7.x
+title: Migration from Vue Router 0.7.x (En)
 type: guide
 order: 27
 ---
@@ -10,7 +10,7 @@ order: 27
 
 ### `router.start` <sup>replaced</sup>
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>There is no longer a special API to initialize an app with Vue Router. That means instead of:
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>There is no longer a special API to initialize an app with Vue Router. That means instead of:</p>
 
 ``` js
 router.start({

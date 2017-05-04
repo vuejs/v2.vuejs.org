@@ -1,12 +1,12 @@
 ---
-title: Transition Effects
+title: Transition Effects (En)
 type: guide
 order: 13
 ---
 
 ## Overview
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:</p>
 
 - automatically apply classes for CSS transitions and animations
 - integrate 3rd-party CSS animation libraries, such as Animate.css

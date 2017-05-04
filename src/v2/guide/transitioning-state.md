@@ -1,10 +1,10 @@
 ---
-title: Transitioning State
+title: Transitioning State (En)
 type: guide
 order: 14
 ---
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:</p>
 
 - numbers and calculations
 - colors displayed
