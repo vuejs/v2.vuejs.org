@@ -10,7 +10,7 @@
         <meta property="og:type" content="article">
         <meta property="og:title" content="List Rendering — Vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
-        <meta property="og:image" content="https://vuejs.org/images/logo.png">
+        <meta property="og:image" content="https://vuejs.org//images/logo.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="List Rendering — Vue.js">
@@ -95,9 +95,14 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
   </ul>
 </div>
@@ -153,27 +158,31 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
     </ul>
     <div class="list">
         <div class="main-sponsor">
-            <span>Sponsored By</span><br>
-            <a href="http://www.thedifferenceengine.io/" target="_blank"
-                style="background-color: #f3f3f3; padding: 10px 0">
-                <img src="/images/tde.png">
+            <span>Platinum Sponsor</span><br>
+            <a href="https://stdlib.com" target="_blank" class="logo">
+                <img src="/images/stdlib.png">
             </a>
         </div>
         <a class="become-backer" href="/support-vuejs">
-            Become a Backer
+            Become a Sponsor
         </a>
         <h2>
             Guide
             
                 <select class="version-select">
-                    <option value="SELF" selected>2.0</option>
+                    <option value="SELF" selected>2.x</option>
                     <option value="v1">1.0</option>
                     <option value="012">0.12</option>
                     <option value="011">0.11</option>
@@ -592,7 +601,7 @@ var example1 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-1')
+      smoothScroll.animateScroll(document.querySelector('#example-1'))
     }
   }
 })
@@ -620,7 +629,7 @@ var example2 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-2')
+      smoothScroll.animateScroll(document.querySelector('#example-2'))
     }
   }
 })
@@ -674,28 +683,31 @@ new Vue({ el: '#range' })
 <p>This section assumes knowledge of <a href="components.html">Components</a>. Feel free to skip it and come back later.</p>
 </blockquote>
 <p>You can directly use <code>v-for</code> on a custom component, like any normal element:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>In 2.2.0+, when using <code>v-for</code> with a component, a <a href="list.html#key"><code>key</code></a> is now required.</p>
+</blockquote>
 <p>However, this won’t automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span></span></div><div class="line">  <span class="attr">v-for</span>=<span class="string">"(item, index) in items"</span></div><div class="line">  <span class="attr">v-bind:item</span>=<span class="string">"item"</span></div><div class="line">  <span class="attr">v-bind:index</span>=<span class="string">"index"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span></span></div><div class="line">  <span class="attr">v-for</span>=<span class="string">"(item, index) in items"</span></div><div class="line">  <span class="attr">v-bind:item</span>=<span class="string">"item"</span></div><div class="line">  <span class="attr">v-bind:index</span>=<span class="string">"index"</span></div><div class="line">  <span class="attr">v-bind:key</span>=<span class="string">"item.id"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>The reason for not automatically injecting <code>item</code> into the component is because that makes the component tightly coupled to how <code>v-for</code> works. Being explicit about where its data comes from makes the component reusable in other situations.</p>
 <p>Here’s a complete example of a simple todo list:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"todo-list-example"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span></span></div><div class="line">    <span class="attr">v-model</span>=<span class="string">"newTodoText"</span></div><div class="line">    <span class="attr">v-on:keyup.enter</span>=<span class="string">"addNewTodo"</span></div><div class="line">    <span class="attr">placeholder</span>=<span class="string">"Add a todo"</span></div><div class="line">  &gt;</div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span></span></div><div class="line">      <span class="attr">is</span>=<span class="string">"todo-item"</span></div><div class="line">      <span class="attr">v-for</span>=<span class="string">"(todo, index) in todos"</span></div><div class="line">      <span class="attr">v-bind:title</span>=<span class="string">"todo"</span></div><div class="line">      <span class="attr">v-on:remove</span>=<span class="string">"todos.splice(index, 1)"</span></div><div class="line">    &gt;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'todo-item'</span>, &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">'\</span></div><div class="line">    &lt;li&gt;\</div><div class="line">      &#123;&#123; title &#125;&#125;\</div><div class="line">      &lt;button v-on:click="$emit(\'remove\')"&gt;X&lt;/button&gt;\</div><div class="line">    &lt;/li&gt;\</div><div class="line">  ',</div><div class="line">  <span class="attr">props</span>: [<span class="string">'title'</span>]</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#todo-list-example'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">newTodoText</span>: <span class="string">''</span>,</div><div class="line">    <span class="attr">todos</span>: [</div><div class="line">      <span class="string">'Do the dishes'</span>,</div><div class="line">      <span class="string">'Take out the trash'</span>,</div><div class="line">      <span class="string">'Mow the lawn'</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">addNewTodo</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.todos.push(<span class="keyword">this</span>.newTodoText)</div><div class="line">      <span class="keyword">this</span>.newTodoText = <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"todo-list-example"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span></span></div><div class="line">    <span class="attr">v-model</span>=<span class="string">"newTodoText"</span></div><div class="line">    <span class="attr">v-on:keyup.enter</span>=<span class="string">"addNewTodo"</span></div><div class="line">    <span class="attr">placeholder</span>=<span class="string">"Add a todo"</span></div><div class="line">  &gt;</div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span></span></div><div class="line">      <span class="attr">is</span>=<span class="string">"todo-item"</span></div><div class="line">      <span class="attr">v-for</span>=<span class="string">"(todo, index) in todos"</span></div><div class="line">      <span class="attr">v-bind:key</span>=<span class="string">"todo"</span></div><div class="line">      <span class="attr">v-bind:title</span>=<span class="string">"todo"</span></div><div class="line">      <span class="attr">v-on:remove</span>=<span class="string">"todos.splice(index, 1)"</span></div><div class="line">    &gt;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'todo-item'</span>, &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">`</span></div><div class="line">    &lt;li&gt;</div><div class="line">      &#123;&#123; title &#125;&#125;</div><div class="line">      &lt;button v-on:click="$emit('remove')"&gt;X&lt;/button&gt;</div><div class="line">    &lt;/li&gt;</div><div class="line">  `,</div><div class="line">  <span class="attr">props</span>: [<span class="string">'title'</span>]</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#todo-list-example'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">newTodoText</span>: <span class="string">''</span>,</div><div class="line">    <span class="attr">todos</span>: [</div><div class="line">      <span class="string">'Do the dishes'</span>,</div><div class="line">      <span class="string">'Take out the trash'</span>,</div><div class="line">      <span class="string">'Mow the lawn'</span></div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">addNewTodo</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.todos.push(<span class="keyword">this</span>.newTodoText)</div><div class="line">      <span class="keyword">this</span>.newTodoText = <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
 <div id="todo-list-example" class="demo">
-  <input v-model="newTodoText" v="" v-on:keyup.enter="addNewTodo" placeholder="Add a todo">
+  <input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo">
   <ul>
-    <li is="todo-item" v-for="(todo, index) in todos" v-bind:title="todo" v-on:remove="todos.splice(index, 1)"></li>
+    <li is="todo-item" v-for="(todo, index) in todos" v-bind:key="todo" v-bind:title="todo" v-on:remove="todos.splice(index, 1)"></li>
   </ul>
 </div>
 <script>
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
   props: ['title']
 })
 new Vue({
@@ -739,7 +751,7 @@ new Vue({
 <li><code>reverse()</code></li>
 </ul>
 <p>You can open the console and play with the previous examples’ <code>items</code> array by calling their mutation methods. For example: <code>example1.items.push({ message: &#39;Baz&#39; })</code>.</p>
-<h3 id="Replacing-an-Array"><a href="#Replacing-an-Array" class="headerlink" title="Replacing an Array"></a>Replacing an Array</h3><p>Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. <code>filter()</code>, <code>concat()</code> and <code>slice()</code>, which do not mutate the original Array but <strong>always return a new array</strong>. When working with non-mutating methods, you can just replace the old array with the new one:</p>
+<h3 id="Replacing-an-Array"><a href="#Replacing-an-Array" class="headerlink" title="Replacing an Array"></a>Replacing an Array</h3><p>Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. <code>filter()</code>, <code>concat()</code> and <code>slice()</code>, which do not mutate the original array but <strong>always return a new array</strong>. When working with non-mutating methods, you can just replace the old array with the new one:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">example1.items = example1.items.filter(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> item.message.match(<span class="regexp">/Foo/</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.</p>
 <h3 id="Caveats"><a href="#Caveats" class="headerlink" title="Caveats"></a>Caveats</h3><p>Due to limitations in JavaScript, Vue <strong>cannot</strong> detect the following changes to an array:</p>
@@ -749,14 +761,14 @@ new Vue({
 </ol>
 <p>To overcome caveat 1, both of the following will accomplish the same as <code>vm.items[indexOfItem] = newValue</code>, but will also trigger state updates in the reactivity system:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Vue.set</span></div><div class="line">Vue.set(example1.items, indexOfItem, newValue)</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Array.prototype.splice`</span></div><div class="line">example1.items.splice(indexOfItem, <span class="number">1</span>, newValue)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Array.prototype.splice</span></div><div class="line">example1.items.splice(indexOfItem, <span class="number">1</span>, newValue)</div></pre></td></tr></table></figure>
 <p>To deal with caveat 2, you can also use <code>splice</code>:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">example1.items.splice(newLength)</div></pre></td></tr></table></figure>
 <h2 id="Displaying-Filtered-Sorted-Results"><a href="#Displaying-Filtered-Sorted-Results" class="headerlink" title="Displaying Filtered/Sorted Results"></a>Displaying Filtered/Sorted Results</h2><p>Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.</p>
 <p>For example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"n in evenNumbers"</span>&gt;</span>&#123;&#123; n &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">data: &#123;</div><div class="line">  <span class="attr">numbers</span>: [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> ]</div><div class="line">&#125;,</div><div class="line"><span class="attr">computed</span>: &#123;</div><div class="line">  <span class="attr">evenNumbers</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Alternatively, you can also just use a method where computed properties are not feasible (e.g. inside nested <code>v-for</code> loops):</p>
+<p>In situations where computed properties are not feasible (e.g. inside nested <code>v-for</code> loops), you can just use a method:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"n in even(numbers)"</span>&gt;</span>&#123;&#123; n &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">data: &#123;</div><div class="line">  <span class="attr">numbers</span>: [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> ]</div><div class="line">&#125;,</div><div class="line"><span class="attr">methods</span>: &#123;</div><div class="line">  <span class="attr">even</span>: <span class="function"><span class="keyword">function</span> (<span class="params">numbers</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 

@@ -324,7 +324,7 @@ a.button.white {
 }
 #header {
   background-color: #fff;
-  height: $heading-inner-height;
+  height: 40px;
   padding: 10px 60px;
   position: relative;
   z-index: 2;
@@ -362,6 +362,23 @@ body.docs #nav {
 .nav-link.current {
   border-bottom: 3px solid #42b983;
 }
+.nav-link.shop {
+  margin-left: 10px;
+}
+.new-label {
+  position: absolute;
+  top: 3px;
+  left: 110%;
+  background-color: #42b983;
+  color: #fff;
+  line-height: 16px;
+  height: 16px;
+  font-size: 9px;
+  font-weight: bold;
+  font-family: 'Roboto Mono', Monaco, courier, monospace;
+  padding: 1px 4px 0 6px;
+  border-radius: 4px;
+}
 .search-query {
   height: 30px;
   line-height: 30px;
@@ -373,7 +390,7 @@ body.docs #nav {
   border-radius: 15px;
   margin-right: 10px;
   transition: border-color 0.2s ease;
-  background: #fff url("/images/search.png") 8px 5px no-repeat;
+  background: #fff url("../images/search.png") 8px 5px no-repeat;
   background-size: 20px;
   vertical-align: middle !important;
 }
@@ -572,8 +589,11 @@ ul.demo li {
 .sidebar ul {
   list-style-type: none;
   margin: 0;
-  line-height: 1.8em;
+  line-height: 1.5em;
   padding-left: 1em;
+}
+.sidebar li {
+  margin-bottom: 0.5em;
 }
 .sidebar .version-select {
   vertical-align: middle;
@@ -623,8 +643,12 @@ ul.demo li {
   color: #7f8c8d;
   font-size: 0.85em;
 }
-.sidebar .main-sponsor a {
+.sidebar .main-sponsor .logo {
+  color: #7f8c8d;
   margin: 10px 0;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: bold;
 }
 .sidebar .main-sponsor img,
 .sidebar .main-sponsor a {
@@ -692,8 +716,9 @@ ul.demo li {
   line-height: 1.4em;
 }
 .content.api ul ul,
-.content.api ul p {
-  margin: 0.6em 0;
+.content.api ul p:not(.tip) {
+  padding-bottom: 0;
+  margin: 1.2em 0;
 }
 .content a.button {
   font-size: 0.9em;
@@ -778,32 +803,37 @@ ul.demo li {
 .content blockquote p {
   font-weight: 600;
   margin-left: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 .content iframe {
   margin: 1em 0;
 }
 .content > table {
-  border: 2px solid $white;
+  border-spacing: 0;
+  border-collapse: collapse;
   margin: 1.2em auto;
-  padding: 1em;
+  padding: 0;
+  display: block;
+  overflow-x: auto;
 }
 .content > table td,
 .content > table th {
-  line-height: 1.6em;
-  padding: 0.5em 1.4em;
+  line-height: 1.5em;
+  padding: 0.4em 0.8em;
   border: none;
-}
-.content > table td {
-  background-color: #fcfcfc;
+  border: 1px solid #ddd;
 }
 .content > table th {
-  background-color: #42b983;
-  color: #fff;
-  padding-top: 0.85em;
-  padding-bottom: 0.85em;
+  font-weight: bold;
   text-align: left;
 }
-.content > table tbody code {
+.content > table th,
+.content > table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+.content > table th code,
+.content > table tr:nth-child(2n) code {
   background-color: #efefef;
 }
 .content p.tip {

@@ -10,7 +10,7 @@
         <meta property="og:type" content="article">
         <meta property="og:title" content="TypeScript Support — Vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
-        <meta property="og:image" content="https://vuejs.org/images/logo.png">
+        <meta property="og:image" content="https://vuejs.org//images/logo.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="TypeScript Support — Vue.js">
@@ -95,9 +95,14 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
   </ul>
 </div>
@@ -153,27 +158,31 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
     </ul>
     <div class="list">
         <div class="main-sponsor">
-            <span>Sponsored By</span><br>
-            <a href="http://www.thedifferenceengine.io/" target="_blank"
-                style="background-color: #f3f3f3; padding: 10px 0">
-                <img src="/images/tde.png">
+            <span>Platinum Sponsor</span><br>
+            <a href="https://stdlib.com" target="_blank" class="logo">
+                <img src="/images/stdlib.png">
             </a>
         </div>
         <a class="become-backer" href="/support-vuejs">
-            Become a Backer
+            Become a Sponsor
         </a>
         <h2>
             Guide
             
                 <select class="version-select">
-                    <option value="SELF" selected>2.0</option>
+                    <option value="SELF" selected>2.x</option>
                     <option value="v1">1.0</option>
                     <option value="012">0.12</option>
                     <option value="011">0.11</option>
@@ -571,16 +580,24 @@
     
       <h1>TypeScript Support</h1>
     
-    <h2 id="Official-Declaration-Files"><a href="#Official-Declaration-Files" class="headerlink" title="Official Declaration Files"></a>Official Declaration Files</h2><p>A static type system can help prevent many potential runtime errors, especially as applications grow. That’s why Vue ships with <a href="https://github.com/vuejs/vue/tree/dev/types" target="_blank" rel="external">official type declarations</a> for <a href="https://www.typescriptlang.org/" target="_blank" rel="external">TypeScript</a> - not only in Vue core, but also <a href="https://github.com/vuejs/vue-router/tree/dev/types" target="_blank" rel="external">for Vue Router</a> and <a href="https://github.com/vuejs/vuex/tree/dev/types" target="_blank" rel="external">for Vuex</a> as well.</p>
-<p>Since these are <a href="https://unpkg.com/vue/types/" target="_blank" rel="external">published on NPM</a>, you don’t even need external tools like <code>Typings</code>, as declarations are automatically imported with Vue. That means all you need is a simple:</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div></pre></td></tr></table></figure>
-<p>Then all methods, properties, and parameters will be type checked. For example, if you misspell the <code>template</code> component option as <code>tempate</code> (missing the <code>l</code>), the TypeScript compiler will print an error message at compile time. If you’re using an editor that can lint TypeScript, such as <a href="https://code.visualstudio.com/" target="_blank" rel="external">Visual Studio Code</a>, you’ll even be able to catch these errors before compilation:</p>
-<p><img src="/images/typescript-type-error.png" alt="TypeScript Type Error in Visual Studio Code"></p>
-<h3 id="Compilation-Options"><a href="#Compilation-Options" class="headerlink" title="Compilation Options"></a>Compilation Options</h3><p>Vue’s declaration files require the <code>--lib DOM,ES5,ES2015.Promise</code> <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank" rel="external">compiler option</a>. You can pass this option to the <code>tsc</code> command or add the equivalent to a <code>tsconfig.json</code> file.</p>
-<h3 id="Accessing-Vue’s-Type-Declarations"><a href="#Accessing-Vue’s-Type-Declarations" class="headerlink" title="Accessing Vue’s Type Declarations"></a>Accessing Vue’s Type Declarations</h3><p>If you want to annotate your own code with Vue’s types, you can access them on Vue’s exported object. For example, to annotate an exported component options object (e.g. in a <code>.vue</code> file):</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  props: [<span class="string">'message'</span>],</div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125; as Vue.ComponentOptions&lt;Vue&gt;</div></pre></td></tr></table></figure>
+    <h2 id="Important-2-2-Change-Notice-for-TS-webpack-2-users"><a href="#Important-2-2-Change-Notice-for-TS-webpack-2-users" class="headerlink" title="Important 2.2 Change Notice for TS + webpack 2 users"></a>Important 2.2 Change Notice for TS + webpack 2 users</h2><p>In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, <code>import Vue = require(&#39;vue&#39;)</code> will now return a synthetic ES module object instead of Vue itself.</p>
+<p>We plan to move all official declarations to use ES-style exports in the future. Please see <a href="#Recommended-Configuration">Recommended Configuration</a> below on a future-proof setup.</p>
+<h2 id="Official-Declaration-in-NPM-Packages"><a href="#Official-Declaration-in-NPM-Packages" class="headerlink" title="Official Declaration in NPM Packages"></a>Official Declaration in NPM Packages</h2><p>A static type system can help prevent many potential runtime errors, especially as applications grow. That’s why Vue ships with <a href="https://github.com/vuejs/vue/tree/dev/types" target="_blank" rel="external">official type declarations</a> for <a href="https://www.typescriptlang.org/" target="_blank" rel="external">TypeScript</a> - not only in Vue core, but also for <a href="https://github.com/vuejs/vue-router/tree/dev/types" target="_blank" rel="external">vue-router</a> and <a href="https://github.com/vuejs/vuex/tree/dev/types" target="_blank" rel="external">vuex</a> as well.</p>
+<p>Since these are <a href="https://unpkg.com/vue/types/" target="_blank" rel="external">published on NPM</a>, and the latest TypeScript knows how to resolve type declarations in NPM packages, this means when installed via NPM, you don’t need any additional tooling to use TypeScript with Vue.</p>
+<h2 id="Recommended-Configuration"><a href="#Recommended-Configuration" class="headerlink" title="Recommended Configuration"></a>Recommended Configuration</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// tsconfig.json</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"compilerOptions"</span>: &#123;</div><div class="line">    <span class="comment">// ... other options omitted</span></div><div class="line">    <span class="string">"allowSyntheticDefaultImports"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="string">"lib"</span>: [</div><div class="line">      <span class="string">"dom"</span>,</div><div class="line">      <span class="string">"es5"</span>,</div><div class="line">      <span class="string">"es2015.promise"</span></div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Note the <code>allowSyntheticDefaultImports</code> option allows us to use the following:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div></pre></td></tr></table></figure>
+<p>instead of:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div></pre></td></tr></table></figure>
+<p>The former (ES module syntax) is recommended because it is consistent with recommended plain ES usage, and in the future we are planning to move all official declarations to use ES-style exports.</p>
+<p>In addition, if you are using TypeScript with webpack 2, the following is also recommended:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"compilerOptions"</span>: &#123;</div><div class="line">    <span class="comment">// ... other options omitted</span></div><div class="line">    <span class="string">"module"</span>: <span class="string">"es2015"</span>,</div><div class="line">    <span class="string">"moduleResolution"</span>: <span class="string">"node"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>This tells TypeScript to leave the ES module import statements intact, which in turn allows webpack 2 to take advantage of ES-module-based tree-shaking.</p>
+<p>See <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank" rel="external">TypeScript compiler options docs</a> for more details.</p>
+<h2 id="Using-Vue’s-Type-Declarations"><a href="#Using-Vue’s-Type-Declarations" class="headerlink" title="Using Vue’s Type Declarations"></a>Using Vue’s Type Declarations</h2><p>Vue’s type definition exports many useful <a href="https://github.com/vuejs/vue/blob/dev/types/index.d.ts" target="_blank" rel="external">type declarations</a>. For example, to annotate an exported component options object (e.g. in a <code>.vue</code> file):</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue, &#123; ComponentOptions &#125; from <span class="string">'vue'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  props: [<span class="string">'message'</span>],</div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125; as ComponentOptions&lt;Vue&gt;</div></pre></td></tr></table></figure>
 <h2 id="Class-Style-Vue-Components"><a href="#Class-Style-Vue-Components" class="headerlink" title="Class-Style Vue Components"></a>Class-Style Vue Components</h2><p>Vue component options can easily be annotated with types:</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"></div><div class="line"><span class="comment">// Declare the component's type</span></div><div class="line"><span class="keyword">interface</span> MyComponent <span class="keyword">extends</span> Vue &#123;</div><div class="line">  message: <span class="built_in">string</span></div><div class="line">  onClick (): <span class="built_in">void</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  template: <span class="string">'&lt;button @click="onClick"&gt;Click!&lt;/button&gt;'</span>,</div><div class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      message: <span class="string">'Hello!'</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    onClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// TypeScript knows that `this` is of type MyComponent</span></div><div class="line">      <span class="comment">// and that `this.message` will be a string</span></div><div class="line">      <span class="built_in">window</span>.alert(<span class="keyword">this</span>.message)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="comment">// We need to explicitly annotate the exported options object</span></div><div class="line"><span class="comment">// with the MyComponent type</span></div><div class="line">&#125; as Vue.ComponentOptions&lt;MyComponent&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue, &#123; ComponentOptions &#125;  from <span class="string">'vue'</span></div><div class="line"></div><div class="line"><span class="comment">// Declare the component's type</span></div><div class="line"><span class="keyword">interface</span> MyComponent <span class="keyword">extends</span> Vue &#123;</div><div class="line">  message: <span class="built_in">string</span></div><div class="line">  onClick (): <span class="built_in">void</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  template: <span class="string">'&lt;button @click="onClick"&gt;Click!&lt;/button&gt;'</span>,</div><div class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      message: <span class="string">'Hello!'</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    onClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// TypeScript knows that `this` is of type MyComponent</span></div><div class="line">      <span class="comment">// and that `this.message` will be a string</span></div><div class="line">      <span class="built_in">window</span>.alert(<span class="keyword">this</span>.message)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"><span class="comment">// We need to explicitly annotate the exported options object</span></div><div class="line"><span class="comment">// with the MyComponent type</span></div><div class="line">&#125; as ComponentOptions&lt;MyComponent&gt;</div></pre></td></tr></table></figure>
 <p>Unfortunately, there are a few limitations here:</p>
 <ul>
 <li><p><strong>TypeScript can’t infer all types from Vue’s API.</strong> For example, it doesn’t know that the <code>message</code> property returned in our <code>data</code> function will be added to the <code>MyComponent</code> instance. That means if we assigned a number or boolean value to <code>message</code>, linters and compilers wouldn’t be able to raise an error, complaining that it should be a string.</p>
@@ -589,7 +606,7 @@
 </li>
 </ul>
 <p>Fortunately, <a href="https://github.com/vuejs/vue-class-component" target="_blank" rel="external">vue-class-component</a> can solve both of these problems. It’s an official companion library that allows you to declare components as native JavaScript classes, with a <code>@Component</code> decorator. As an example, let’s rewrite the above component:</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"><span class="keyword">import</span> Component from <span class="string">'vue-class-component'</span></div><div class="line"></div><div class="line"><span class="comment">// The @Component decorator indicates the class is a Vue component</span></div><div class="line">@Component(&#123;</div><div class="line">  <span class="comment">// All component options are allowed in here</span></div><div class="line">  template: <span class="string">'&lt;button @click="onClick"&gt;Click!&lt;/button&gt;'</span></div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> MyComponent extends Vue &#123;</div><div class="line">  <span class="comment">// Initial data can be declared as instance properties</span></div><div class="line">  message: <span class="built_in">string</span> = <span class="string">'Hello!'</span></div><div class="line"></div><div class="line">  <span class="comment">// Component methods can be declared as instance methods</span></div><div class="line">  onClick (): <span class="built_in">void</span> &#123;</div><div class="line">    <span class="built_in">window</span>.alert(<span class="keyword">this</span>.message)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue from <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Component from <span class="string">'vue-class-component'</span></div><div class="line"></div><div class="line"><span class="comment">// The @Component decorator indicates the class is a Vue component</span></div><div class="line">@Component(&#123;</div><div class="line">  <span class="comment">// All component options are allowed in here</span></div><div class="line">  template: <span class="string">'&lt;button @click="onClick"&gt;Click!&lt;/button&gt;'</span></div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> MyComponent extends Vue &#123;</div><div class="line">  <span class="comment">// Initial data can be declared as instance properties</span></div><div class="line">  message: <span class="built_in">string</span> = <span class="string">'Hello!'</span></div><div class="line"></div><div class="line">  <span class="comment">// Component methods can be declared as instance methods</span></div><div class="line">  onClick (): <span class="built_in">void</span> &#123;</div><div class="line">    <span class="built_in">window</span>.alert(<span class="keyword">this</span>.message)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>With this syntax alternative, our component definition is not only shorter, but TypeScript can also infer the types of <code>message</code> and <code>onClick</code> without explicit interface declarations. This strategy even allows you to handle types for computed properties, lifecycle hooks, and render functions. For full usage details, see <a href="https://github.com/vuejs/vue-class-component#vue-class-component" target="_blank" rel="external">the vue-class-component docs</a>.</p>
 
     

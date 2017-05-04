@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://vuejs.org/"/>
+  <link href="https://vuejs.org/"/>
   <updated>2016-06-17T15:16:10.000Z</updated>
-  <id>http://vuejs.org/</id>
+  <id>https://vuejs.org/</id>
   
   <author>
     <name>Evan You</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Announcing Vue.js 2.0</title>
-    <link href="http://vuejs.org/2016/04/27/announcing-2.0/"/>
-    <id>http://vuejs.org/2016/04/27/announcing-2.0/</id>
+    <link href="https://vuejs.org/2016/04/27/announcing-2.0/"/>
+    <id>https://vuejs.org/2016/04/27/announcing-2.0/</id>
     <published>2016-04-27T17:33:00.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -58,8 +58,8 @@
   
   <entry>
     <title>March 2016 Update</title>
-    <link href="http://vuejs.org/2016/03/14/march-update/"/>
-    <id>http://vuejs.org/2016/03/14/march-update/</id>
+    <link href="https://vuejs.org/2016/03/14/march-update/"/>
+    <id>https://vuejs.org/2016/03/14/march-update/</id>
     <published>2016-03-14T22:45:00.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -89,8 +89,8 @@
   
   <entry>
     <title>Common Beginner Gotchas</title>
-    <link href="http://vuejs.org/2016/02/06/common-gotchas/"/>
-    <id>http://vuejs.org/2016/02/06/common-gotchas/</id>
+    <link href="https://vuejs.org/2016/02/06/common-gotchas/"/>
+    <id>https://vuejs.org/2016/02/06/common-gotchas/</id>
     <published>2016-02-06T15:00:00.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -124,8 +124,8 @@
   
   <entry>
     <title>Announcing vue-cli</title>
-    <link href="http://vuejs.org/2015/12/28/vue-cli/"/>
-    <id>http://vuejs.org/2015/12/28/vue-cli/</id>
+    <link href="https://vuejs.org/2015/12/28/vue-cli/"/>
+    <id>https://vuejs.org/2015/12/28/vue-cli/</id>
     <published>2015-12-28T05:00:00.000Z</published>
     <updated>2016-08-27T17:21:46.000Z</updated>
     
@@ -163,8 +163,8 @@
   
   <entry>
     <title>Why Vue.js doesn&#39;t support templateURL</title>
-    <link href="http://vuejs.org/2015/10/28/why-no-template-url/"/>
-    <id>http://vuejs.org/2015/10/28/why-no-template-url/</id>
+    <link href="https://vuejs.org/2015/10/28/why-no-template-url/"/>
+    <id>https://vuejs.org/2015/10/28/why-no-template-url/</id>
     <published>2015-10-28T14:56:00.000Z</published>
     <updated>2016-10-18T19:59:58.000Z</updated>
     
@@ -189,8 +189,8 @@
   
   <entry>
     <title>Vue.js 1.0.0 Released</title>
-    <link href="http://vuejs.org/2015/10/26/1.0.0-release/"/>
-    <id>http://vuejs.org/2015/10/26/1.0.0-release/</id>
+    <link href="https://vuejs.org/2015/10/26/1.0.0-release/"/>
+    <id>https://vuejs.org/2015/10/26/1.0.0-release/</id>
     <published>2015-10-26T14:00:00.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -241,8 +241,8 @@
   
   <entry>
     <title>Vue.js 0.12 released!</title>
-    <link href="http://vuejs.org/2015/06/11/012-release/"/>
-    <id>http://vuejs.org/2015/06/11/012-release/</id>
+    <link href="https://vuejs.org/2015/06/11/012-release/"/>
+    <id>https://vuejs.org/2015/06/11/012-release/</id>
     <published>2015-06-11T21:37:30.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -287,8 +287,8 @@
   
   <entry>
     <title>0.11 Component Tips</title>
-    <link href="http://vuejs.org/2014/12/08/011-component/"/>
-    <id>http://vuejs.org/2014/12/08/011-component/</id>
+    <link href="https://vuejs.org/2014/12/08/011-component/"/>
+    <id>https://vuejs.org/2014/12/08/011-component/</id>
     <published>2014-12-08T20:02:14.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -323,8 +323,8 @@
   
   <entry>
     <title>Vue.js 0.11 released!</title>
-    <link href="http://vuejs.org/2014/11/09/vue-011-release/"/>
-    <id>http://vuejs.org/2014/11/09/vue-011-release/</id>
+    <link href="https://vuejs.org/2014/11/09/vue-011-release/"/>
+    <id>https://vuejs.org/2014/11/09/vue-011-release/</id>
     <published>2014-11-09T14:23:40.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -345,8 +345,8 @@
   
   <entry>
     <title>Vue.js 0.10.6, and what&#39;s next</title>
-    <link href="http://vuejs.org/2014/07/29/vue-next/"/>
-    <id>http://vuejs.org/2014/07/29/vue-next/</id>
+    <link href="https://vuejs.org/2014/07/29/vue-next/"/>
+    <id>https://vuejs.org/2014/07/29/vue-next/</id>
     <published>2014-07-29T04:04:55.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -379,8 +379,8 @@
   
   <entry>
     <title>Vue.js 0.10 is here!</title>
-    <link href="http://vuejs.org/2014/03/22/vuejs-010-release/"/>
-    <id>http://vuejs.org/2014/03/22/vuejs-010-release/</id>
+    <link href="https://vuejs.org/2014/03/22/vuejs-010-release/"/>
+    <id>https://vuejs.org/2014/03/22/vuejs-010-release/</id>
     <published>2014-03-22T23:00:13.000Z</published>
     <updated>2016-09-21T04:37:17.000Z</updated>
     

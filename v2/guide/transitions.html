@@ -10,7 +10,7 @@
         <meta property="og:type" content="article">
         <meta property="og:title" content="Transition Effects — Vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
-        <meta property="og:image" content="https://vuejs.org/images/logo.png">
+        <meta property="og:image" content="https://vuejs.org//images/logo.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="Transition Effects — Vue.js">
@@ -95,9 +95,14 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
   </ul>
 </div>
@@ -153,27 +158,31 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
     </ul>
     <div class="list">
         <div class="main-sponsor">
-            <span>Sponsored By</span><br>
-            <a href="http://www.thedifferenceengine.io/" target="_blank"
-                style="background-color: #f3f3f3; padding: 10px 0">
-                <img src="/images/tde.png">
+            <span>Platinum Sponsor</span><br>
+            <a href="https://stdlib.com" target="_blank" class="logo">
+                <img src="/images/stdlib.png">
             </a>
         </div>
         <a class="become-backer" href="/support-vuejs">
-            Become a Backer
+            Become a Sponsor
         </a>
         <h2>
             Guide
             
                 <select class="version-select">
-                    <option value="SELF" selected>2.0</option>
+                    <option value="SELF" selected>2.x</option>
                     <option value="v1">1.0</option>
                     <option value="012">0.12</option>
                     <option value="011">0.11</option>
@@ -650,7 +659,7 @@ new Vue({
 
 <div id="example-1" class="demo">
   <button @click="show = !show">
-    Toggle
+    Toggle render
   </button>
   <transition name="slide-fade">
     <p v-if="show">hello</p>
@@ -799,6 +808,14 @@ new Vue({
 
 <h3 id="Using-Transitions-and-Animations-Together"><a href="#Using-Transitions-and-Animations-Together" class="headerlink" title="Using Transitions and Animations Together"></a>Using Transitions and Animations Together</h3><p>Vue needs to attach event listeners in order to know when a transition has ended. It can either be <code>transitionend</code> or <code>animationend</code>, depending on the type of CSS rules applied. If you are only using one or the other, Vue can automatically detect the correct type.</p>
 <p>However, in some cases you may want to have both on the same element, for example having a CSS animation triggered by Vue, along with a CSS transition effect on hover. In these cases, you will have to explicitly declare the type you want Vue to care about in a <code>type</code> attribute, with a value of either <code>animation</code> or <code>transition</code>.</p>
+<h3 id="Explicit-Transition-Durations"><a href="#Explicit-Transition-Durations" class="headerlink" title="Explicit Transition Durations"></a>Explicit Transition Durations</h3><blockquote>
+<p>New in 2.2.0</p>
+</blockquote>
+<p>In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first <code>transitionend</code> or <code>animationend</code> event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.</p>
+<p>In such cases you can specify an explicit transition duration (in milliseconds) using the <code>duration</code> prop on the <code>&lt;transition&gt;</code> component:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:duration</span>=<span class="string">"1000"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>You can also specify separate values for enter and leave durations:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:duration</span>=<span class="string">"&#123; enter: 500, leave: 800 &#125;"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="JavaScript-Hooks"><a href="#JavaScript-Hooks" class="headerlink" title="JavaScript Hooks"></a>JavaScript Hooks</h3><p>You can also define JavaScript hooks in attributes:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">transition</span></span></div><div class="line">  <span class="attr">v-on:before-enter</span>=<span class="string">"beforeEnter"</span></div><div class="line">  <span class="attr">v-on:enter</span>=<span class="string">"enter"</span></div><div class="line">  <span class="attr">v-on:after-enter</span>=<span class="string">"afterEnter"</span></div><div class="line">  <span class="attr">v-on:enter-cancelled</span>=<span class="string">"enterCancelled"</span></div><div class="line"></div><div class="line">  <span class="attr">v-on:before-leave</span>=<span class="string">"beforeLeave"</span></div><div class="line">  <span class="attr">v-on:leave</span>=<span class="string">"leave"</span></div><div class="line">  <span class="attr">v-on:after-leave</span>=<span class="string">"afterLeave"</span></div><div class="line">  <span class="attr">v-on:leave-cancelled</span>=<span class="string">"leaveCancelled"</span></div><div class="line">&gt;</div><div class="line">  <span class="comment">&lt;!-- ... --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line">methods: &#123;</div><div class="line">  <span class="comment">// --------</span></div><div class="line">  <span class="comment">// ENTERING</span></div><div class="line">  <span class="comment">// --------</span></div><div class="line"></div><div class="line">  beforeEnter: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// the done callback is optional when</span></div><div class="line">  <span class="comment">// used in combination with CSS</span></div><div class="line">  enter: <span class="function"><span class="keyword">function</span> (<span class="params">el, done</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    done()</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">afterEnter</span>: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">enterCancelled</span>: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="comment">// --------</span></div><div class="line">  <span class="comment">// LEAVING</span></div><div class="line">  <span class="comment">// --------</span></div><div class="line"></div><div class="line">  beforeLeave: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// the done callback is optional when</span></div><div class="line">  <span class="comment">// used in combination with CSS</span></div><div class="line">  leave: <span class="function"><span class="keyword">function</span> (<span class="params">el, done</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    done()</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">afterLeave</span>: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// leaveCancelled only available with v-show</span></div><div class="line">  leaveCancelled: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>

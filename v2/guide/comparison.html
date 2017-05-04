@@ -10,7 +10,7 @@
         <meta property="og:type" content="article">
         <meta property="og:title" content="Comparison with Other Frameworks — Vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
-        <meta property="og:image" content="https://vuejs.org/images/logo.png">
+        <meta property="og:image" content="https://vuejs.org//images/logo.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="Comparison with Other Frameworks — Vue.js">
@@ -95,9 +95,14 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
   </ul>
 </div>
@@ -153,27 +158,31 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
     </ul>
     <div class="list">
         <div class="main-sponsor">
-            <span>Sponsored By</span><br>
-            <a href="http://www.thedifferenceengine.io/" target="_blank"
-                style="background-color: #f3f3f3; padding: 10px 0">
-                <img src="/images/tde.png">
+            <span>Platinum Sponsor</span><br>
+            <a href="https://stdlib.com" target="_blank" class="logo">
+                <img src="/images/stdlib.png">
             </a>
         </div>
         <a class="become-backer" href="/support-vuejs">
-            Become a Backer
+            Become a Sponsor
         </a>
         <h2>
             Guide
             
                 <select class="version-select">
-                    <option value="SELF" selected>2.0</option>
+                    <option value="SELF" selected>2.x</option>
                     <option value="v1">1.0</option>
                     <option value="012">0.12</option>
                     <option value="011">0.11</option>
@@ -591,7 +600,7 @@
 <li><p>Add as little overhead (pure JavaScript computations) as possible on top of those DOM manipulations. This is an area where Vue and React differ.</p>
 </li>
 </ol>
-<p>The JavaScript overhead is directly related to the mechanisms of computing the necessary DOM operations. Both Vue and React utilizes Virtual DOM to achieve that, but Vue’s Virtual DOM implementation (a fork of <a href="https://github.com/snabbdom/snabbdom" target="_blank" rel="external">snabbdom</a>) is much lighter-weight and thus introduces less overhead than React’s.</p>
+<p>The JavaScript overhead is directly related to the mechanisms of computing the necessary DOM operations. Both Vue and React utilize Virtual DOM to achieve that, but Vue’s Virtual DOM implementation (a fork of <a href="https://github.com/snabbdom/snabbdom" target="_blank" rel="external">snabbdom</a>) is much lighter-weight and thus introduces less overhead than React’s.</p>
 <p>Both Vue and React also offer functional components, which are stateless and instanceless - and therefore, require less overhead. When these are used in performance-critical situations, Vue is once again faster. To demonstrate this, we built a simple <a href="https://github.com/chrisvfritz/vue-render-performance-comparisons" target="_blank" rel="external">benchmark project</a> that just renders 10,000 list items 100 times. We encourage you to try it yourself, as the results will vary depending on the hardware and browser used - and actually, they’ll vary even between runs due to the nature of JavaScript engines.</p>
 <p>If you’re feeling lazy though, below are the numbers from one run in Chrome 52 on a 2014 MacBook Air. To avoid cherry-picking, both benchmarks were actually run 20 separate times, with results from the best runs included below:</p>
 
@@ -637,7 +646,7 @@
 <h4 id="In-Development"><a href="#In-Development" class="headerlink" title="In Development"></a>In Development</h4><p>While performance in production is the more important metric as it is directly associated with end-user experience, performance in development still matters because it is associated with the developer experience.</p>
 <p>Both Vue and React remain fast enough in development for most normal applications. However, when prototyping high frame-rate data visualizations or animations, we’ve seen cases of Vue handling 10 frames per second in development while React dropping to about 1 frame per second.</p>
 <p>This is due to React’s many heavy invariant checks in development mode, which help it to provide many excellent warnings and error messages. We agree that these are also important in Vue, but have tried to keep a closer eye on performance while we implement these checks.</p>
-<h3 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML &amp; CSS"></a>HTML &amp; CSS</h3><p>In React, everything is Just JavaScript, which sounds very simple and elegant - until you dig deeper. The unfortunate reality is that reinventing HTML and CSS within JavaScript, while solving some issues of the traditional model, can also cause pain of its own. In Vue, we instead embrace web technologies and build on top of them. To show you what that means, we’ll dive into some examples.</p>
+<h3 id="HTML-amp-CSS"><a href="#HTML-amp-CSS" class="headerlink" title="HTML &amp; CSS"></a>HTML &amp; CSS</h3><p>In React, everything is just JavaScript, which sounds very simple and elegant - until you dig deeper. The unfortunate reality is that reinventing HTML and CSS within JavaScript, while solving some issues of the traditional model, can also cause pain of its own. In Vue, we instead embrace web technologies and build on top of them. To show you what that means, we’ll dive into some examples.</p>
 <h4 id="JSX-vs-Templates"><a href="#JSX-vs-Templates" class="headerlink" title="JSX vs Templates"></a>JSX vs Templates</h4><p>In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript. Here’s an example, <a href="https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684" target="_blank" rel="external">vetted by the React community</a>:</p>
 <figure class="highlight jsx"><table><tr><td class="code"><pre><div class="line">render () &#123;</div><div class="line">  <span class="keyword">let</span> &#123; items &#125; = <span class="keyword">this</span>.props</div><div class="line"></div><div class="line">  <span class="keyword">let</span> children</div><div class="line">  <span class="keyword">if</span> (items.length &gt; <span class="number">0</span>) &#123;</div><div class="line">    children = (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">        &#123;items.map(item =&gt;</div><div class="line">          <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span>&gt;</span>&#123;item.name&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        )&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    children = <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>No items found.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">'list-container'</span>&gt;</span></span></div><div class="line">      &#123;children&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Render functions with JSX have a few advantages:</p>
@@ -646,7 +655,7 @@
 <li>The tooling support (e.g. linting, type checking, editor autocompletion) for JSX is in some ways more advanced than what’s currently available for Vue templates.</li>
 </ul>
 <p>In Vue, we also have <a href="render-function.html">render functions</a> and even <a href="render-function.html#JSX">support JSX</a>, because sometimes you need that power. However, as the default experience we offer templates as a simpler alternative:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"list-container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-if</span>=<span class="string">"items.length"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span>&gt;</span></div><div class="line">        &#123;&#123; item.name &#125;&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else</span>&gt;</span>No items found.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"list-container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-if</span>=<span class="string">"items.length"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></div><div class="line">        &#123;&#123; item.name &#125;&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else</span>&gt;</span>No items found.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>A few advantages here:</p>
 <ul>
 <li>Fewer implementation and stylistic decisions have to be made while writing a template</li>
@@ -668,11 +677,11 @@
 <p>Another important difference between these offerings is that Vue’s companion libraries for state management and routing (among <a href="https://github.com/vuejs" target="_blank" rel="external">other concerns</a>) are all officially supported and kept up-to-date with the core library. React instead chooses to leave these concerns to the community, creating a more fragmented ecosystem. Being more popular though, React’s ecosystem is considerably richer than Vue’s.</p>
 <p>Finally, Vue offers a <a href="https://github.com/vuejs/vue-cli" target="_blank" rel="external">CLI project generator</a> that makes it trivially easy to start a new project using your choice of build system, including <a href="https://github.com/vuejs-templates/webpack" target="_blank" rel="external">Webpack</a>, <a href="https://github.com/vuejs-templates/browserify" target="_blank" rel="external">Browserify</a>, or even <a href="https://github.com/vuejs-templates/simple" target="_blank" rel="external">no build system</a>. React is also making strides in this area with <a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a>, but it currently has a few limitations:</p>
 <ul>
-<li>It does not allow any configuration during project generation, while Vue’s project templates allow Yeoman-like customization.</li>
+<li>It does not allow any configuration during project generation, while Vue’s project templates allow <a href="http://yeoman.io/" target="_blank" rel="external">Yeoman</a>-like customization.</li>
 <li>It only offers a single template that assumes you’re building a single-page application, while Vue offers a wide variety of templates for various purposes and build systems.</li>
 <li>It cannot generate projects from user-built templates, which can be especially useful for enterprise environments with pre-established conventions.</li>
 </ul>
-<p>It’s important to note though that many of these limitations are intentional design decisions made by the create-react-app team and they do have their advantages. For example, as long as your project’s needs are very simple and you never need to “eject” to customize your build process, you’ll be able to update it as a dependency. You can read more about the <a href="https://github.com/facebookincubator/create-react-app#philosophy" target="_blank" rel="external">differing philosophy here</a>.</p>
+<p>It’s important to note that many of these limitations are intentional design decisions made by the create-react-app team and they do have their advantages. For example, as long as your project’s needs are very simple and you never need to “eject” to customize your build process, you’ll be able to update it as a dependency. You can read more about the <a href="https://github.com/facebookincubator/create-react-app#philosophy" target="_blank" rel="external">differing philosophy here</a>.</p>
 <h4 id="Scaling-Down"><a href="#Scaling-Down" class="headerlink" title="Scaling Down"></a>Scaling Down</h4><p>React is renowned for its steep learning curve. Before you can really get started, you need to know about JSX and probably ES2015+, since many examples use React’s class syntax. You also have to learn about build systems, because although you could technically use Babel Standalone to live-compile your code in the browser, it’s absolutely not suitable for production.</p>
 <p>While Vue scales up just as well as, if not better than React, it also scales down just as well as jQuery. That’s right - all you have to do is drop a single script tag into a page:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue/dist/vue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>

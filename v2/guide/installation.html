@@ -10,7 +10,7 @@
         <meta property="og:type" content="article">
         <meta property="og:title" content="Installation — Vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
-        <meta property="og:image" content="https://vuejs.org/images/logo.png">
+        <meta property="og:image" content="https://vuejs.org//images/logo.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="Installation — Vue.js">
@@ -95,9 +95,14 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
   </ul>
 </div>
@@ -153,27 +158,31 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
     </ul>
     <div class="list">
         <div class="main-sponsor">
-            <span>Sponsored By</span><br>
-            <a href="http://www.thedifferenceengine.io/" target="_blank"
-                style="background-color: #f3f3f3; padding: 10px 0">
-                <img src="/images/tde.png">
+            <span>Platinum Sponsor</span><br>
+            <a href="https://stdlib.com" target="_blank" class="logo">
+                <img src="/images/stdlib.png">
             </a>
         </div>
         <a class="become-backer" href="/support-vuejs">
-            Become a Backer
+            Become a Sponsor
         </a>
         <h2>
             Guide
             
                 <select class="version-select">
-                    <option value="SELF" selected>2.0</option>
+                    <option value="SELF" selected>2.x</option>
                     <option value="v1">1.0</option>
                     <option value="012">0.12</option>
                     <option value="011">0.11</option>
@@ -573,39 +582,95 @@
     
     <h3 id="Compatibility-Note"><a href="#Compatibility-Note" class="headerlink" title="Compatibility Note"></a>Compatibility Note</h3><p>Vue does <strong>not</strong> support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all <a href="http://caniuse.com/#feat=es5" target="_blank" rel="external">ECMAScript 5 compliant browsers</a>.</p>
 <h3 id="Release-Notes"><a href="#Release-Notes" class="headerlink" title="Release Notes"></a>Release Notes</h3><p>Detailed release notes for each version are available on <a href="https://github.com/vuejs/vue/releases" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Standalone"><a href="#Standalone" class="headerlink" title="Standalone"></a>Standalone</h2><p>Simply download and include with a script tag. <code>Vue</code> will be registered as a global variable.</p>
-<p class="tip">Don’t use the minified version during development. You will miss out all the nice warnings for common mistakes!</p>
+<h2 id="Direct-lt-script-gt-Include"><a href="#Direct-lt-script-gt-Include" class="headerlink" title="Direct &lt;script&gt; Include"></a>Direct <code>&lt;script&gt;</code> Include</h2><p>Simply download and include with a script tag. <code>Vue</code> will be registered as a global variable.</p>
+<p class="tip">Don’t use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
 
-<div id="downloads"><br><a class="button" href="/js/vue.js" download="">Development Version</a><span class="light info">With full warnings and debug mode</span><br><br><a class="button" href="/js/vue.min.js" download="">Production Version</a><span class="light info">Warnings stripped, 25.86kb min+gzip</span><br></div>
+<div id="downloads"><br><a class="button" href="/js/vue.js" download="">Development Version</a><span class="light info">With full warnings and debug mode</span><br><br><a class="button" href="/js/vue.min.js" download="">Production Version</a><span class="light info">Warnings stripped, 28.03kb min+gzip</span><br></div>
 
-<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>Recommended: <a href="https://unpkg.com/vue/dist/vue.js" target="_blank" rel="external">unpkg</a>, which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at <a href="https://unpkg.com/vue/" target="_blank" rel="external">unpkg.com/vue/</a>.</p>
-<p>Also available on <a href="//cdn.jsdelivr.net/vue/latest/vue.js">jsDelivr</a> or <a href="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js">cdnjs</a>, but these two services take some time to sync so the latest release may not be available yet.</p>
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>Recommended: <a href="https://unpkg.com/vue" target="_blank" rel="external">https://unpkg.com/vue</a>, which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at <a href="https://unpkg.com/vue/" target="_blank" rel="external">https://unpkg.com/vue/</a>.</p>
+<p>Also available on <a href="//cdn.jsdelivr.net/vue/latest/vue.js">jsDelivr</a> or <a href="//cdnjs.cloudflare.com/ajax/libs/vue/2.3.0/vue.js">cdnjs</a>, but these two services take some time to sync so the latest release may not be available yet.</p>
 <h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><p>NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as <a href="https://webpack.js.org/" target="_blank" rel="external">Webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>. Vue also provides accompanying tools for authoring <a href="single-file-components.html">Single File Components</a>.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># latest stable</span></div><div class="line">$ npm install vue</div></pre></td></tr></table></figure>
-<h3 id="Standalone-vs-Runtime-only-Build"><a href="#Standalone-vs-Runtime-only-Build" class="headerlink" title="Standalone vs. Runtime-only Build"></a>Standalone vs. Runtime-only Build</h3><p>There are two builds available, the standalone build and the runtime-only build. The difference being that the former includes the <strong>template compiler</strong> and the latter does not.</p>
-<p>The template compiler is responsible for compiling Vue template strings into pure JavaScript render functions. If you want to use the <code>template</code> option, then you need the compiler.</p>
-<ul>
-<li><p>The standalone build includes the compiler and supports the <code>template</code> option. <strong>It also relies on the presence of browser APIs so you cannot use it for server-side rendering.</strong></p>
-</li>
-<li><p>The runtime-only build does not include the template compiler, and does not support the <code>template</code> option. You can only use the <code>render</code> option when using the runtime-only build, but it works with single-file components, because single-file components’ templates are pre-compiled into <code>render</code> functions during the build step. The runtime-only build is roughly 30% lighter-weight than the standalone build, weighing only 18.01kb min+gzip.</p>
-</li>
-</ul>
-<p>By default, the NPM package exports the <strong>runtime-only</strong> build. To use the standalone build, add the following alias to your Webpack config:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">resolve: &#123;</div><div class="line">  <span class="attr">alias</span>: &#123;</div><div class="line">    <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.common.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>For Browserify, you can add an alias to your package.json:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="string">"browser"</span>: &#123;</div><div class="line">  <span class="string">"vue"</span>: <span class="string">"vue/dist/vue.common"</span></div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<p class="tip">Do NOT do <code>import Vue from &#39;vue/dist/vue.js&#39;</code> - since some tools or 3rd party libraries may import vue as well, this may cause the app to load both the runtime and standalone builds at the same time and lead to errors.</p>
-
-<h3 id="CSP-environments"><a href="#CSP-environments" class="headerlink" title="CSP environments"></a>CSP environments</h3><p>Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of <code>new Function()</code> for evaluating expressions. The standalone build depends on this feature to compile templates, so is unusable in these environments.</p>
-<p>On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with <a href="https://github.com/vuejs-templates/webpack-simple" target="_blank" rel="external">Webpack + vue-loader</a> or <a href="https://github.com/vuejs-templates/browserify-simple" target="_blank" rel="external">Browserify + vueify</a>, your templates will be precompiled into <code>render</code> functions which work perfectly in CSP environments.</p>
 <h2 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h2><p>Vue.js provides an <a href="https://github.com/vuejs/vue-cli" target="_blank" rel="external">official CLI</a> for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># install vue-cli</span></div><div class="line">$ npm install --global vue-cli</div><div class="line"><span class="comment"># create a new project using the "webpack" template</span></div><div class="line">$ vue init webpack my-project</div><div class="line"><span class="comment"># install dependencies and go!</span></div><div class="line">$ <span class="built_in">cd</span> my-project</div><div class="line">$ npm install</div><div class="line">$ npm run dev</div></pre></td></tr></table></figure>
 <p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
+<h2 id="Explanation-of-Different-Builds"><a href="#Explanation-of-Different-Builds" class="headerlink" title="Explanation of Different Builds"></a>Explanation of Different Builds</h2><p>In the <a href="https://unpkg.com/vue@latest/dist/" target="_blank" rel="external"><code>dist/</code> directory of the NPM package</a> you will find many different builds of Vue.js. Here’s an overview of the difference between them:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>UMD</th>
+<th>CommonJS</th>
+<th>ES Module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Full</strong></td>
+<td>vue.js</td>
+<td>vue.common.js</td>
+<td>vue.esm.js</td>
+</tr>
+<tr>
+<td><strong>Runtime-only</strong></td>
+<td>vue.runtime.js</td>
+<td>vue.runtime.common.js</td>
+<td>vue.runtime.esm.js</td>
+</tr>
+<tr>
+<td><strong>Full (production)</strong></td>
+<td>vue.min.js</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Runtime-only (production)</strong></td>
+<td>vue.runtime.min.js</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Terms"><a href="#Terms" class="headerlink" title="Terms"></a>Terms</h3><ul>
+<li><p><strong>Full</strong>: builds that contains both the compiler and the runtime.</p>
+</li>
+<li><p><strong>Compiler</strong>: code that is responsible for compiling template strings into JavaScript render functions.</p>
+</li>
+<li><p><strong>Runtime</strong>: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.</p>
+</li>
+<li><p><strong><a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD</a></strong>: UMD builds can be used directly in the browser via a <code>&lt;script&gt;</code> tag. The default file from Unpkg CDN at <a href="https://unpkg.com/vue" target="_blank" rel="external">https://unpkg.com/vue</a> is the Runtime + Compiler UMD build (<code>vue.js</code>).</p>
+</li>
+<li><p><strong><a href="http://wiki.commonjs.org/wiki/Modules/1.1" target="_blank" rel="external">CommonJS</a></strong>: CommonJS builds are intended for use with older bundlers like <a href="http://browserify.org/" target="_blank" rel="external">browserify</a> or <a href="https://webpack.github.io" target="_blank" rel="external">webpack 1</a>. The default file for these bundlers (<code>pkg.main</code>) is the Runtime only CommonJS build (<code>vue.runtime.common.js</code>).</p>
+</li>
+<li><p><strong><a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="external">ES Module</a></strong>: ES module builds are intended for use with modern bundlers like <a href="https://webpack.js.org" target="_blank" rel="external">webpack 2</a> or <a href="http://rollupjs.org/" target="_blank" rel="external">rollup</a>. The default file for these bundlers (<code>pkg.module</code>) is the Runtime only ES Module build (<code>vue.runtime.esm.js</code>).</p>
+</li>
+</ul>
+<h3 id="Runtime-Compiler-vs-Runtime-only"><a href="#Runtime-Compiler-vs-Runtime-only" class="headerlink" title="Runtime + Compiler vs. Runtime-only"></a>Runtime + Compiler vs. Runtime-only</h3><p>If you need to compile templates on the fly (e.g. passing a string to the <code>template</code> option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// this requires the compiler</span></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">`&lt;div&gt;&#123;&#123; hi &#125;&#125;&lt;/div&gt;`</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// this does not</span></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  render (h) &#123;</div><div class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="keyword">this</span>.hi)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>When using <code>vue-loader</code> or <code>vueify</code>, templates inside <code>*.vue</code> files are pre-compiled into JavaScript at build time. You don’t really need the compiler in the final bundle, and can therefore use the runtime-only build.</p>
+<p>Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:</p>
+<h4 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h4><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  resolve: &#123;</div><div class="line">    <span class="attr">alias</span>: &#123;</div><div class="line">      <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span> <span class="comment">// 'vue/dist/vue.common.js' for webpack 1</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Rollup"><a href="#Rollup" class="headerlink" title="Rollup"></a>Rollup</h4><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> alias = <span class="built_in">require</span>(<span class="string">'rollup-plugin-alias'</span>)</div><div class="line"></div><div class="line">rollup(&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    alias(&#123;</div><div class="line">      <span class="string">'vue'</span>: <span class="string">'vue/dist/vue.esm.js'</span></div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="Browserify"><a href="#Browserify" class="headerlink" title="Browserify"></a>Browserify</h4><p>Add to your project’s <code>package.json</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  <span class="string">"browser"</span>: &#123;</div><div class="line">    <span class="string">"vue"</span>: <span class="string">"vue/dist/vue.common.js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Development-vs-Production-Mode"><a href="#Development-vs-Production-Mode" class="headerlink" title="Development vs. Production Mode"></a>Development vs. Production Mode</h3><p>Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.</p>
+<p>CommonJS and ES Module builds are intended for bundlers, therefore we don’t provide minified versions for them. You will be responsible for minifying the final bundle yourself.</p>
+<p>CommonJS and ES Module builds also preserve raw checks for <code>process.env.NODE_ENV</code> to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing <code>process.env.NODE_ENV</code> with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.</p>
+<h4 id="Webpack-1"><a href="#Webpack-1" class="headerlink" title="Webpack"></a>Webpack</h4><p>Use Webpack’s <a href="https://webpack.js.org/plugins/define-plugin/" target="_blank" rel="external">DefinePlugin</a>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">      <span class="string">'process.env'</span>: &#123;</div><div class="line">        <span class="attr">NODE_ENV</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Rollup-1"><a href="#Rollup-1" class="headerlink" title="Rollup"></a>Rollup</h4><p>Use <a href="https://github.com/rollup/rollup-plugin-replace" target="_blank" rel="external">rollup-plugin-replace</a>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> replace = <span class="built_in">require</span>(<span class="string">'rollup-plugin-replace'</span>)</div><div class="line"></div><div class="line">rollup(&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    replace(&#123;</div><div class="line">      <span class="string">'process.env.NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;).then(...)</div></pre></td></tr></table></figure>
+<h4 id="Browserify-1"><a href="#Browserify-1" class="headerlink" title="Browserify"></a>Browserify</h4><p>Apply a global <a href="https://github.com/hughsk/envify" target="_blank" rel="external">envify</a> transform to your bundle.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">NODE_ENV=production browserify -g envify <span class="_">-e</span> main.js | uglifyjs -c -m &gt; build.js</div></pre></td></tr></table></figure>
+<p>Also see <a href="deployment.html">Production Deployment Tips</a>.</p>
+<h3 id="CSP-environments"><a href="#CSP-environments" class="headerlink" title="CSP environments"></a>CSP environments</h3><p>Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of <code>new Function()</code> for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.</p>
+<p>On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with <a href="https://github.com/vuejs-templates/webpack-simple" target="_blank" rel="external">Webpack + vue-loader</a> or <a href="https://github.com/vuejs-templates/browserify-simple" target="_blank" rel="external">Browserify + vueify</a>, your templates will be precompiled into <code>render</code> functions which work perfectly in CSP environments.</p>
 <h2 id="Dev-Build"><a href="#Dev-Build" class="headerlink" title="Dev Build"></a>Dev Build</h2><p><strong>Important</strong>: the built files in GitHub’s <code>/dist</code> folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/vuejs/vue.git node_modules/vue</div><div class="line"><span class="built_in">cd</span> node_modules/vue</div><div class="line">npm install</div><div class="line">npm run build</div></pre></td></tr></table></figure>
-<h2 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h2><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># latest stable</span></div><div class="line">$ bower install vue</div></pre></td></tr></table></figure>
-<h2 id="AMD-Module-Loaders"><a href="#AMD-Module-Loaders" class="headerlink" title="AMD Module Loaders"></a>AMD Module Loaders</h2><p>The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.</p>
+<h2 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h2><p>Only UMD builds are available from Bower.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># latest stable</span></div><div class="line">$ bower install vue</div></pre></td></tr></table></figure>
+<h2 id="AMD-Module-Loaders"><a href="#AMD-Module-Loaders" class="headerlink" title="AMD Module Loaders"></a>AMD Module Loaders</h2><p>All UMD builds can be used directly as an AMD module.</p>
 
     
       <div class="guide-links">

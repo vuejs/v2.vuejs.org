@@ -10,7 +10,7 @@
         <meta property="og:type" content="article">
         <meta property="og:title" content="Components — Vue.js">
         <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
-        <meta property="og:image" content="https://vuejs.org/images/logo.png">
+        <meta property="og:image" content="https://vuejs.org//images/logo.png">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="Components — Vue.js">
@@ -95,9 +95,14 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
   </ul>
 </div>
@@ -153,27 +158,31 @@
     <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
   </ul>
 </li>
 
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+  <span class="new-label">NEW!</span>
+</li>
 
     </ul>
     <div class="list">
         <div class="main-sponsor">
-            <span>Sponsored By</span><br>
-            <a href="http://www.thedifferenceengine.io/" target="_blank"
-                style="background-color: #f3f3f3; padding: 10px 0">
-                <img src="/images/tde.png">
+            <span>Platinum Sponsor</span><br>
+            <a href="https://stdlib.com" target="_blank" class="logo">
+                <img src="/images/stdlib.png">
             </a>
         </div>
         <a class="become-backer" href="/support-vuejs">
-            Become a Backer
+            Become a Sponsor
         </a>
         <h2>
             Guide
             
                 <select class="version-select">
-                    <option value="SELF" selected>2.0</option>
+                    <option value="SELF" selected>2.x</option>
                     <option value="v1">1.0</option>
                     <option value="012">0.12</option>
                     <option value="011">0.11</option>
@@ -712,7 +721,7 @@ new Vue({
 })
 </script>
 
-<h3 id="Literal-vs-Dynamic"><a href="#Literal-vs-Dynamic" class="headerlink" title="Literal vs Dynamic"></a>Literal vs Dynamic</h3><p>A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:</p>
+<h3 id="Literal-vs-Dynamic"><a href="#Literal-vs-Dynamic" class="headerlink" title="Literal vs. Dynamic"></a>Literal vs. Dynamic</h3><p>A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- this passes down a plain string "1" --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">some-prop</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>However, since this is a literal prop, its value is passed down as a plain string <code>&quot;1&quot;</code> instead of an actual number. If we want to pass down an actual JavaScript number, we need to use <code>v-bind</code> so that its value is evaluated as a JavaScript expression:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- this passes down an actual number --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">v-bind:some-prop</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -783,7 +792,7 @@ Vue.component('button-counter', {
       this.counter += 1
       this.$emit('increment')
     }
-  },
+  }
 })
 new Vue({
   el: '#counter-event-example',
@@ -801,20 +810,32 @@ new Vue({
 <p>In this example, it’s important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.</p>
 <h4 id="Binding-Native-Events-to-Components"><a href="#Binding-Native-Events-to-Components" class="headerlink" title="Binding Native Events to Components"></a>Binding Native Events to Components</h4><p>There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the <code>.native</code> modifier for <code>v-on</code>. For example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-on:click.native</span>=<span class="string">"doTheThing"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="sync-Modifier"><a href="#sync-Modifier" class="headerlink" title=".sync Modifier"></a><code>.sync</code> Modifier</h3><blockquote>
+<p>2.3.0+</p>
+</blockquote>
+<p>In some cases we may need “two-way binding” for a prop - in fact, in Vue 1.x this is exactly what the <code>.sync</code> modifier provided. When a child component mutates a prop that has <code>.sync</code>, the value change will be reflected in the parent. This is convenient, however it leads to maintenance issues in the long run because it breaks the one-way data flow assumption: the code that mutates child props are implicitly affecting parent state.</p>
+<p>This is why we removed the <code>.sync</code> modifier when 2.0 was released. However, we’ve found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is <strong>making the code in the child that affects parent state more consistent and explicit.</strong></p>
+<p>In 2.3 we re-introduced the <code>.sync</code> modifier for props, but this time it is just syntax sugar that automatically expands into an additional <code>v-on</code> listener:</p>
+<p>The following</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">:foo.sync</span>=<span class="string">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>is expanded into:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">:foo</span>=<span class="string">"bar"</span> @<span class="attr">update:foo</span>=<span class="string">"val =&gt; bar = val"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>For the child component to update <code>foo</code>‘s value, it needs to explicitly emit an event instead of mutating the prop:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">this</span>.$emit(<span class="string">'update:foo'</span>, newValue)</div></pre></td></tr></table></figure>
 <h3 id="Form-Input-Components-using-Custom-Events"><a href="#Form-Input-Components-using-Custom-Events" class="headerlink" title="Form Input Components using Custom Events"></a>Form Input Components using Custom Events</h3><p>Custom events can also be used to create custom inputs that work with <code>v-model</code>. Remember:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"something"</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>is just syntactic sugar for:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-bind:value</span>=<span class="string">"something"</span> <span class="attr">v-on:input</span>=<span class="string">"something = $event.target.value"</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span></span></div><div class="line">  <span class="attr">v-bind:value</span>=<span class="string">"something"</span></div><div class="line">  <span class="attr">v-on:input</span>=<span class="string">"something = $event.target.value"</span>&gt;</div></pre></td></tr></table></figure>
 <p>When used with a component, this simplifies to:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">custom-input</span> <span class="attr">v-bind:value</span>=<span class="string">"something"</span> <span class="attr">v-on:input</span>=<span class="string">"something = arguments[0]"</span>&gt;</span><span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>So for a component to work with <code>v-model</code>, it must:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">custom-input</span></span></div><div class="line">  <span class="attr">:value</span>=<span class="string">"something"</span></div><div class="line">  @<span class="attr">input</span>=<span class="string">"value =&gt; &#123; something = value &#125;"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>So for a component to work with <code>v-model</code>, it should (these can be configured in 2.2.0+):</p>
 <ul>
 <li>accept a <code>value</code> prop</li>
 <li>emit an <code>input</code> event with the new value</li>
 </ul>
 <p>Let’s see it in action with a very simple currency input:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">currency-input</span> <span class="attr">v-model</span>=<span class="string">"price"</span>&gt;</span><span class="tag">&lt;/<span class="name">currency-input</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'currency-input'</span>, &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">'\</span></div><div class="line">    &lt;span&gt;\</div><div class="line">      $\</div><div class="line">      &lt;input\</div><div class="line">        ref="input"\</div><div class="line">        v-bind:value="value"\</div><div class="line">        v-on:input="updateValue($event.target.value)"\</div><div class="line">      &gt;\</div><div class="line">    &lt;/span&gt;\</div><div class="line">  ',</div><div class="line">  <span class="attr">props</span>: [<span class="string">'value'</span>],</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="comment">// Instead of updating the value directly, this</span></div><div class="line">    <span class="comment">// method is used to format and place constraints</span></div><div class="line">    <span class="comment">// on the input's value</span></div><div class="line">    updateValue: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> formattedValue = value</div><div class="line">        <span class="comment">// Remove whitespace on either side</span></div><div class="line">        .trim()</div><div class="line">        <span class="comment">// Shorten to 2 decimal places</span></div><div class="line">        .slice(<span class="number">0</span>, value.indexOf(<span class="string">'.'</span>) + <span class="number">3</span>)</div><div class="line">      <span class="comment">// If the value was not already normalized,</span></div><div class="line">      <span class="comment">// manually override it to conform</span></div><div class="line">      <span class="keyword">if</span> (formattedValue !== value) &#123;</div><div class="line">        <span class="keyword">this</span>.$refs.input.value = formattedValue</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// Emit the number value through the input event</span></div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'input'</span>, <span class="built_in">Number</span>(formattedValue))</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'currency-input'</span>, &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">`</span></div><div class="line">    &lt;span&gt;</div><div class="line">      $</div><div class="line">      &lt;input</div><div class="line">        ref="input"</div><div class="line">        v-bind:value="value"</div><div class="line">        v-on:input="updateValue($event.target.value)"&gt;</div><div class="line">    &lt;/span&gt;</div><div class="line">  `,</div><div class="line">  <span class="attr">props</span>: [<span class="string">'value'</span>],</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="comment">// Instead of updating the value directly, this</span></div><div class="line">    <span class="comment">// method is used to format and place constraints</span></div><div class="line">    <span class="comment">// on the input's value</span></div><div class="line">    updateValue: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> formattedValue = value</div><div class="line">        <span class="comment">// Remove whitespace on either side</span></div><div class="line">        .trim()</div><div class="line">        <span class="comment">// Shorten to 2 decimal places</span></div><div class="line">        .slice(<span class="number">0</span>, value.indexOf(<span class="string">'.'</span>) + <span class="number">3</span>)</div><div class="line">      <span class="comment">// If the value was not already normalized,</span></div><div class="line">      <span class="comment">// manually override it to conform</span></div><div class="line">      <span class="keyword">if</span> (formattedValue !== value) &#123;</div><div class="line">        <span class="keyword">this</span>.$refs.input.value = formattedValue</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// Emit the number value through the input event</span></div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'input'</span>, <span class="built_in">Number</span>(formattedValue))</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
 <div id="currency-input-example" class="demo">
   <currency-input v-model="price"></currency-input>
@@ -853,8 +874,14 @@ new Vue({
 <p>The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here’s a more robust currency filter:</p>
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-<p>The events interface can also be used to create more unusual inputs. For example, imagine these possibilities:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">voice-recognizer</span> <span class="attr">v-model</span>=<span class="string">"question"</span>&gt;</span><span class="tag">&lt;/<span class="name">voice-recognizer</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">webcam-gesture-reader</span> <span class="attr">v-model</span>=<span class="string">"gesture"</span>&gt;</span><span class="tag">&lt;/<span class="name">webcam-gesture-reader</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">webcam-retinal-scanner</span> <span class="attr">v-model</span>=<span class="string">"retinalImage"</span>&gt;</span><span class="tag">&lt;/<span class="name">webcam-retinal-scanner</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Customizing-Component-v-model"><a href="#Customizing-Component-v-model" class="headerlink" title="Customizing Component v-model"></a>Customizing Component <code>v-model</code></h3><blockquote>
+<p>New in 2.2.0</p>
+</blockquote>
+<p>By default, <code>v-model</code> on a component uses <code>value</code> as the prop and <code>input</code> as the event, but some input types such as checkboxes and radio buttons may want to use the <code>value</code> prop for a different purpose. Using the <code>model</code> option can avoid the conflict in such cases:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'my-checkbox'</span>, &#123;</div><div class="line">  <span class="attr">model</span>: &#123;</div><div class="line">    <span class="attr">prop</span>: <span class="string">'checked'</span>,</div><div class="line">    <span class="attr">event</span>: <span class="string">'change'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">    <span class="comment">// this allows using the `value` prop for a different purpose</span></div><div class="line">    value: <span class="built_in">String</span></div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-checkbox</span> <span class="attr">v-model</span>=<span class="string">"foo"</span> <span class="attr">value</span>=<span class="string">"some value"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-checkbox</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>The above will be equivalent to:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-checkbox</span></span></div><div class="line">  <span class="attr">:checked</span>=<span class="string">"foo"</span></div><div class="line">  @<span class="attr">change</span>=<span class="string">"val =&gt; &#123; foo = val &#125;"</span></div><div class="line">  <span class="attr">value</span>=<span class="string">"some value"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">my-checkbox</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="Non-Parent-Child-Communication"><a href="#Non-Parent-Child-Communication" class="headerlink" title="Non Parent-Child Communication"></a>Non Parent-Child Communication</h3><p>Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> bus = <span class="keyword">new</span> Vue()</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// in component A's method</span></div><div class="line">bus.$emit(<span class="string">'id-selected'</span>, <span class="number">1</span>)</div></pre></td></tr></table></figure>
@@ -936,7 +963,7 @@ new Vue({
 <h3 id="Child-Component-Refs"><a href="#Child-Component-Refs" class="headerlink" title="Child Component Refs"></a>Child Component Refs</h3><p>Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using <code>ref</code>. For example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">user-profile</span> <span class="attr">ref</span>=<span class="string">"profile"</span>&gt;</span><span class="tag">&lt;/<span class="name">user-profile</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> parent = <span class="keyword">new</span> Vue(&#123; <span class="attr">el</span>: <span class="string">'#parent'</span> &#125;)</div><div class="line"><span class="comment">// access child component instance</span></div><div class="line"><span class="keyword">var</span> child = parent.$refs.profile</div></pre></td></tr></table></figure>
-<p>When <code>ref</code> is used together with <code>v-for</code>, the ref you get will be an array or an object containing the child components mirroring the data source.</p>
+<p>When <code>ref</code> is used together with <code>v-for</code>, the ref you get will be an array containing the child components mirroring the data source.</p>
 <p class="tip"><code>$refs</code> are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using <code>$refs</code> in templates or computed properties.</p>
 
 <h3 id="Async-Components"><a href="#Async-Components" class="headerlink" title="Async Components"></a>Async Components</h3><p>In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it’s actually needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component actually needs to be rendered and will cache the result for future re-renders. For example:</p>
@@ -945,13 +972,21 @@ new Vue({
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'async-webpack-example'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</div><div class="line">  <span class="comment">// This special require syntax will instruct Webpack to</span></div><div class="line">  <span class="comment">// automatically split your built code into bundles which</span></div><div class="line">  <span class="comment">// are loaded over Ajax requests.</span></div><div class="line">  <span class="built_in">require</span>([<span class="string">'./my-async-component'</span>], resolve)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>You can also return a <code>Promise</code> in the factory function, so with Webpack 2 + ES2015 syntax you can do:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(</div><div class="line">  <span class="string">'async-webpack-example'</span>,</div><div class="line">  () =&gt; <span class="keyword">import</span>(<span class="string">'./my-async-component'</span>)</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>When using <a href="components.html#Local-Registration">local registration</a>, you can also directly provide a function that returns a <code>Promise</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  components: &#123;</div><div class="line">    <span class="string">'my-component'</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./my-async-component'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p class="tip">If you’re a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately <a href="https://github.com/substack/node-browserify/issues/58#issuecomment-21978224" target="_blank" rel="external">made it clear</a> that async loading “is not something that Browserify will ever support.” Officially, at least. The Browserify community has found <a href="https://github.com/vuejs/vuejs.org/issues/620" target="_blank" rel="external">some workarounds</a>, which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
 
+<h3 id="Advanced-Async-Components"><a href="#Advanced-Async-Components" class="headerlink" title="Advanced Async Components"></a>Advanced Async Components</h3><blockquote>
+<p>New in 2.3.0</p>
+</blockquote>
+<p>Starting in 2.3 the async component factory can also return an object of the following format:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> AsyncComp = <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">  <span class="comment">// The component to load. Should be a Promise</span></div><div class="line">  component: <span class="keyword">import</span>(<span class="string">'./MyComp.vue'</span>),</div><div class="line">  <span class="comment">// A component to use while the async component is loading</span></div><div class="line">  loading: LoadingComp,</div><div class="line">  <span class="comment">// A component to use if the load fails</span></div><div class="line">  error: ErrorComp,</div><div class="line">  <span class="comment">// Delay before showing the loading component. Default: 200ms.</span></div><div class="line">  delay: <span class="number">200</span>,</div><div class="line">  <span class="comment">// The error component will be displayed if a timeout is</span></div><div class="line">  <span class="comment">// provided and exceeded. Default: Infinity.</span></div><div class="line">  timeout: <span class="number">3000</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>Note that when used as a route component in <code>vue-router</code>, these properties will be ignored because async components are resolved upfront before the route navigation happens. You also need to use <code>vue-router</code> 2.4.0+ if you wish to use the above syntax for route components.</p>
 <h3 id="Component-Naming-Conventions"><a href="#Component-Naming-Conventions" class="headerlink" title="Component Naming Conventions"></a>Component Naming Conventions</h3><p>When registering components (or props), you can use kebab-case, camelCase, or TitleCase. Vue doesn’t care.</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// in a component definition</span></div><div class="line">components: &#123;</div><div class="line">  <span class="comment">// register using kebab-case</span></div><div class="line">  <span class="string">'kebab-cased-component'</span>: &#123; <span class="comment">/* ... */</span> &#125;,</div><div class="line">  <span class="comment">// register using camelCase</span></div><div class="line">  <span class="string">'camelCasedComponent'</span>: &#123; <span class="comment">/* ... */</span> &#125;,</div><div class="line">  <span class="comment">// register using TitleCase</span></div><div class="line">  <span class="string">'TitleCasedComponent'</span>: &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Within HTML templates though, you have to use the kebab-case equivalents:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- always use kebab-case in HTML templates --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">kebab-cased-component</span>&gt;</span><span class="tag">&lt;/<span class="name">kebab-cased-component</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">camel-cased-component</span>&gt;</span><span class="tag">&lt;/<span class="name">camel-cased-component</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title-cased-component</span>&gt;</span><span class="tag">&lt;/<span class="name">title-cased-component</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>When using <em>string</em> templates however, we’re not bound by HTML’s case-insensitive restrictions. That means even in the template, you reference your components and props using camelCase, TitleCase, or kebab-case:</p>
+<p>When using <em>string</em> templates however, we’re not bound by HTML’s case-insensitive restrictions. That means even in the template, you can reference your components and props using camelCase, TitleCase, or kebab-case:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- use whatever you want in string templates! --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">my-component</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">myComponent</span>&gt;</span><span class="tag">&lt;/<span class="name">myComponent</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">MyComponent</span>&gt;</span><span class="tag">&lt;/<span class="name">MyComponent</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>If your component isn’t passed content via <code>slot</code> elements, you can even make it self-closing with a <code>/</code> after the name:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span>/&gt;</span></div></pre></td></tr></table></figure>
