@@ -2,222 +2,118 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Vue.js</title>
+        <title>vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-        <meta property="og:type" content="article">
-        <meta property="og:title" content="Vue.js">
-        <meta property="og:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
-        <meta property="og:image" content="https://vuejs.org//images/logo.png">
-
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Vue.js">
-        <meta name="twitter:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
-        <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
-
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Dosis:300,500&text=Vue.js' rel='stylesheet' type='text/css'>
+        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
-
-        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
-
-        <!-- main page styles -->
-        <link rel="stylesheet" href="/css/page.css">
-
-        <!-- this needs to be loaded before guide's inline scripts -->
-        <script src="/js/vue.js"></script>
-        <script>window.PAGE_TYPE = ""</script>
-
-        <!-- ga -->
         <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-46852172-1', 'vuejs.org');
-          ga('send', 'pageview');
+            window.PAGE_TYPE = ""
         </script>
+        <link rel="stylesheet" href="/css/page.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.js"></script>
     </head>
-    <body class="docs">        <div id="mobile-bar" >
+    <body>
+        <div id="mobile-bar">
             <a class="menu-button"></a>
             <a class="logo" href="/"></a>
         </div>
-        <div id="header">
-  <a id="logo" href="/">
-    <img src="/images/logo.png">
-    <span>Vue.js</span>
-  </a>
-  <ul id="nav">
-    <li>
+        
+            <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+        <li>
   <form id="search-form">
     <input type="text" id="search-query-nav" class="search-query st-default-search-input">
   </form>
 </li>
-<li><a href="/v2/guide/" class="nav-link">Guide</a></li>
-<li><a href="/v2/api/" class="nav-link">API</a></li>
-<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
-<li class="nav-dropdown-container ecosystem">
-  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+<li><a href="/guide/" class="nav-link">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="/blog/" class="nav-link">Blog</a></li>
+<li class="nav-dropdown-container">
+  <a class="nav-link">Community</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><h4>Help</h4></li>
-    <li><ul>
-      <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
-      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">Templates</a></li>
-    </ul></li>
-    <li><h4>News</h4></li>
-    <li><ul>
-      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
-      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
-      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
-    </ul></li>
-    <li><h4>Core Plugins</h4></li>
-    <li><ul>
-      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
-      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
-    </ul></li>
-    <li><h4>Resource Lists</h4></li>
-    <li><ul>
-      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">Official Repos</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Awesome Vue</a></li>
-    </ul></li>
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
   </ul>
 </li>
 
 
-
-<li class="nav-dropdown-container language">
-  <a class="nav-link">Translations</a><span class="arrow"></span>
-  <ul class="nav-dropdown">
-    <li><a href="https://cn.vuejs.org/" class="nav-link" target="_blank">中文</a></li>
-    <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
-    <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
-    <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
-    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
-  </ul>
-</li>
-
-<li>
-  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
-</li>
-
-  </ul>
+    </ul>
 </div>
 
-        
-            <div id="main" class="fix-sidebar">
+            <div id="main">
                 
-                    <div class="sidebar">
-  <ul class="main-menu">
-    <li>
-  <form id="search-form">
-    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
-  </form>
-</li>
-<li><a href="/v2/guide/" class="nav-link">Guide</a></li>
-<li><a href="/v2/api/" class="nav-link">API</a></li>
-<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
-<li class="nav-dropdown-container ecosystem">
-  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+                    <div id="hero">
+  <div class="inner">
+    <ul id="nav">
+      <li><a href="/guide/" class="nav-link">Guide</a></li>
+      <li><a href="/api/" class="nav-link">API</a></li>
+      <li><a href="/examples/" class="nav-link">Examples</a></li>
+      <li><a href="/blog" class="nav-link">Blog</a></li>
+      <li class="nav-dropdown-container">
+  <a class="nav-link">Community</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><h4>Help</h4></li>
-    <li><ul>
-      <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
-      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">Templates</a></li>
-    </ul></li>
-    <li><h4>News</h4></li>
-    <li><ul>
-      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
-      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
-      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
-    </ul></li>
-    <li><h4>Core Plugins</h4></li>
-    <li><ul>
-      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
-      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
-    </ul></li>
-    <li><h4>Resource Lists</h4></li>
-    <li><ul>
-      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">Official Repos</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Awesome Vue</a></li>
-    </ul></li>
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
   </ul>
 </li>
 
-
-
-<li class="nav-dropdown-container language">
-  <a class="nav-link">Translations</a><span class="arrow"></span>
-  <ul class="nav-dropdown">
-    <li><a href="https://cn.vuejs.org/" class="nav-link" target="_blank">中文</a></li>
-    <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
-    <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
-    <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
-    <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
-  </ul>
-</li>
-
-<li>
-  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
-</li>
-
-  </ul>
-</div>
-
-<div id="hero">
-  <div class="inner">
-    <div class="left">
-      <img class="hero-logo" src="/images/logo.png">
-    </div><div class="right">
-      <h2 class="vue">Vue.js</h2>
-      <h1>
-        The Progressive<br>JavaScript Framework
-      </h1>
-      <p>
-        <a class="button" href="/v2/guide/">GET STARTED</a>
-        <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
-      </p>
+    </ul>
+    <div id="logo-wrap">
+      <img id="logo" src="/images/logo.png">
+      <h1>Vue.js</h1>
     </div>
-  </div>
-</div>
+    <p class="desc">Reactive Components for Modern Web Interfaces</p>
+    <p class="buttons">
+      <a href="/guide/installation.html" class="small-button">Install v1.0.28</a>
+      <a href="/guide/index.html" class="small-button">Get Started</a>
+    </p>
+    <ul id="social">
+      <li><a href="https://twitter.com/vuejs" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @vuejs</a></li>
+      <li><iframe src="//ghbtns.com/github-btn.html?user=vuejs&repo=vue&type=watch&count=true"
+    allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe></li>
+      <li id="donate">
+        <span class="wrapper" style="width: 108px">
+          <img src="/images/patreon.png">
+          <a href="/support-vuejs">Support Vue.js</a>
+        </span>
+      </li>
+    </ul>
 
-<div id="highlights">
-  <div class="inner">
-    <div class="point">
-      <h2>Approachable</h2>
-      <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
-    </div>
+    <ul id="translations">
+      <li><a href="http://cn.vuejs.org" class="nav-link">中文</a></li>
+      <li class="delimiter">|</li>
+      <li><a href="http://jp.vuejs.org" class="nav-link">日本語</a></li>
+      <li class="delimiter">|</li>
+      <li><a href="http://it.vuejs.org" class="nav-link">Italiano</a></li>
+    </ul>
 
-    <div class="point">
-      <h2>Versatile</h2>
-      <p>Simple, minimal core with an incrementally adoptable stack that can handle apps of any scale.</p>
-    </div>
-
-    <div class="point">
-      <h2>Performant</h2>
-      <p>
-        19kb min+gzip Runtime<br>
-        Blazing Fast Virtual DOM<br>
-        Minimal Optimization Efforts
-      </p>
-    </div>
-  </div>
-</div>
-
-<div id="sponsors">
-  <div class="inner">
-    <h3>PROUDLY SPONSORED BY</h3>
-    <a href="https://stdlib.com/" target="_blank" style="width: 180px">
-  <img style="width: 180px" src="/images/stdlib.png">
-</a>
+    <div id="sponsors">
+      <span>Proudly sponsored by</span>
 <br>
-<a href="https://deepstreamhub.com" target="_blank" style="width:130px;top:1px">
-  <img src="/images/deepstream.png" style="width:130px">
+<a href="https://www.itunescn.com/" target="_blank" style="top:2px">
+  <img src="/images/itunescn.png">
 </a>
 <a href="https://jsfiddle.net/" target="_blank">
   <img src="/images/jsfiddle.png">
@@ -234,95 +130,163 @@
 <a href="https://starter.someline.com/" target="_blank" style="top:-2px">
   <img src="/images/someline.png">
 </a>
+<a href="http://gold.xitu.io/?utm_source=vuejs&utm_medium=image&utm_content=juejin&utm_campaign=q3_website" target="_blank" style="width:75px">
+  <img src="/images/juejin.png" style="width:75px">
+</a>
 <a href="http://monterail.com/" target="_blank">
   <img src="/images/monterail.png">
 </a>
-<a href="https://www.trisoft.ro/" target="_blank" style="width:80px;top:-2px">
+<a href="https://www.trisoft.ro/" target="_blank" style="width:80px;top:-1px">
   <img src="/images/trisoft.png" style="width:80px">
 </a>
-<a href="https://www.2mhost.com/" target="_blank" style="width:90px">
-  <img src="/images/2mhost.png" style="width:90px">
-</a>
-<a href="https://vuejobs.com/?ref=vuejs" target="_blank" style="width:80px;top:4px">
-  <img src="/images/vuejobs.svg" style="width:80px">
-</a>
-<a href="https://leanpub.com/vuejs2" target="_blank">
-  <img src="/images/tmvuejs2.png">
-</a>
-<a href="https://famebroker.com" target="_blank" style="width:115px">
-  <img src="/images/famebroker.png" style="width:115px">
-</a>
-<a href="https://fancygrid.com" target="_blank" style="width:110px;">
-  <img src="/images/fancygrid.png" style="width:110px">
-</a>
-<a href="https://component.io" target="_blank" style="width:120px;top:1px">
-  <img src="/images/component_io.png" style="width:120px">
-</a>
 
-    <br>
-    <a class="become-sponsor button white" href="/support-vuejs/">Become a Backer</a>
+    </div>
   </div>
+
+  <div class="down"><img src="/images/down.png"></div>
 </div>
 
-<div id="footer">
-  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
-    <img src="/images/shuttleworth.png" style="width:200px">
-  </a>
-  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
-  Copyright &copy; 2014-2017 Evan You</p>
+<div id="sponsors-mobile">
+  <span>Proudly sponsored by</span>
+<br>
+<a href="https://www.itunescn.com/" target="_blank" style="top:2px">
+  <img src="/images/itunescn.png">
+</a>
+<a href="https://jsfiddle.net/" target="_blank">
+  <img src="/images/jsfiddle.png">
+</a>
+<a href="https://laravel.com/" target="_blank">
+  <img src="/images/laravel.png">
+</a>
+<a href="https://chaitin.cn" target="_blank" style="top:-1px">
+  <img src="/images/chaitin.png">
+</a>
+<a href="https://htmlburger.com" target="_blank">
+  <img src="/images/htmlburger.png">
+</a>
+<a href="https://starter.someline.com/" target="_blank" style="top:-2px">
+  <img src="/images/someline.png">
+</a>
+<a href="http://gold.xitu.io/?utm_source=vuejs&utm_medium=image&utm_content=juejin&utm_campaign=q3_website" target="_blank" style="width:75px">
+  <img src="/images/juejin.png" style="width:75px">
+</a>
+<a href="http://monterail.com/" target="_blank">
+  <img src="/images/monterail.png">
+</a>
+<a href="https://www.trisoft.ro/" target="_blank" style="width:80px;top:-1px">
+  <img src="/images/trisoft.png" style="width:80px">
+</a>
+
 </div>
 
-<script>
-var topScrolled = false
-window.addEventListener('scroll', function () {
-  if (window.pageYOffset > 165 && !topScrolled) {
-    topScrolled = true
-    document.getElementById('mobile-bar').classList.remove('top')
-  } else if (window.pageYOffset <= 165 && topScrolled) {
-    topScrolled = false
-    document.getElementById('mobile-bar').classList.add('top')
+<div id="example">
+  <h2>10 Second Example</h2>
+  <div class="block">
+    <figure class="highlight lang-html"><table><tbody><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">p</span>&gt;</span>{{message}}<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-model</span>=<span class="value">"message"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></tbody></table></figure>
+  </div>
+
+  <div class="sign">+</div>
+
+  <div class="block">
+    <figure class="highlight lang-js"><table><tbody><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="keyword">var</span> demo = <span class="keyword">new</span> Vue({
+  el: <span class="string">'#demo'</span>,
+  data: {
+    message: <span class="string">'Hello Vue.js!'</span>
   }
 })
-</script>
+</pre></td></tr></tbody></table></figure>
+  </div>
+
+  <div class="sign">=</div>
+
+  <div class="block result">
+    <div id="demo">
+      <p>{{message}}</p>
+      <input v-model="message">
+    </div>
+    <script>
+    var demo = new Vue({
+      el: '#demo',
+      data: {
+        message: 'Hello Vue.js!'
+      }
+    })
+    </script>
+  </div>
+</div>
+<div id="features">
+  <div class="feats">
+    <div class="feat">
+      <h2><span class="icon simple"></span>Simple</h2>
+      <p>Write some HTML, grab some JSON, create a Vue instance, that's it.</p>
+    </div>
+    <div class="feat">
+      <h2><span class="icon powerful"></span>Reactive</h2>
+      <p>Expressions & computed properties with transparent dependency tracking.</p>
+    </div>
+    <div class="feat">
+      <h2><span class="icon composable"></span>Components</h2>
+      <p>Compose your application with decoupled, reusable components.</p>
+    </div>
+    <div class="feat">
+      <h2><span class="icon compact"></span>Compact</h2>
+      <p>~24kb min+gzip, no dependencies.</p>
+    </div>
+    <div class="feat">
+      <h2><span class="icon fast"></span>Fast</h2>
+      <p>Precise and efficient async batch DOM updates.</p>
+    </div>
+    <div class="feat">
+      <h2><span class="icon module"></span>Package Ready</h2>
+      <p>Install via NPM or Bower - leverage your favorite eco system!</p>
+    </div>
+  </div>
+</div>
+<div id="why">
+  <h2>You should try it out if you like:</h2>
+  <ul>
+    <li>Extendable Data bindings</li>
+    <li>Plain JS object models</li>
+    <li>APIs that simply make sense</li>
+    <li>Building UIs by composing components</li>
+    <li>Mixing &amp; matching small libraries</li>
+  </ul>
+</div>
+<div id="footer">
+  <a class="start" href="/guide/index.html">Get Started</a>
+  <p>Released under the <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
+  <p>Copyright (c) 2017 <a href="http://evanyou.me" target="_blank">Evan You</a></p>
+</div>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
                 
             </div>
+            <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
             <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
         
 
-        <!-- main custom script for sidebars, version selects etc. -->        
-        <script src="/js/css.escape.js"></script>
-        <script src="/js/common.js"></script>
-
-        <!-- search -->
-        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="/css/search.css">
-        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-        <script>
-        [
-          '#search-query-nav',
-          '#search-query-sidebar'
-        ].forEach(function (selector) {
-          if (!document.querySelector(selector)) return
-          // search index defaults to v2
-          var match = window.location.pathname.match(/^\/(v\d+)/)
-          var version = match ? match[1] : 'v2'
-          docsearch({
-            appId: 'BH4D9OD16A',
-            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-            indexName: 'vuejs',
-            inputSelector: selector,
-            algoliaOptions: { facetFilters: ["version:" + version] }
-          })
-        })
-        </script>
-
-        <!-- fastclick -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body)
-        }, false)
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
         </script>
     </body>
 </html>

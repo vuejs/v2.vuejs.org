@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://vuejs.org/"/>
+  <link href="http://vuejs.org/"/>
   <updated>2016-06-17T15:16:10.000Z</updated>
-  <id>https://vuejs.org/</id>
+  <id>http://vuejs.org/</id>
   
   <author>
     <name>Evan You</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Announcing Vue.js 2.0</title>
-    <link href="https://vuejs.org/2016/04/27/announcing-2.0/"/>
-    <id>https://vuejs.org/2016/04/27/announcing-2.0/</id>
+    <link href="http://vuejs.org/2016/04/27/announcing-2.0/"/>
+    <id>http://vuejs.org/2016/04/27/announcing-2.0/</id>
     <published>2016-04-27T17:33:00.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -58,8 +58,8 @@
   
   <entry>
     <title>March 2016 Update</title>
-    <link href="https://vuejs.org/2016/03/14/march-update/"/>
-    <id>https://vuejs.org/2016/03/14/march-update/</id>
+    <link href="http://vuejs.org/2016/03/14/march-update/"/>
+    <id>http://vuejs.org/2016/03/14/march-update/</id>
     <published>2016-03-14T22:45:00.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -89,8 +89,8 @@
   
   <entry>
     <title>Common Beginner Gotchas</title>
-    <link href="https://vuejs.org/2016/02/06/common-gotchas/"/>
-    <id>https://vuejs.org/2016/02/06/common-gotchas/</id>
+    <link href="http://vuejs.org/2016/02/06/common-gotchas/"/>
+    <id>http://vuejs.org/2016/02/06/common-gotchas/</id>
     <published>2016-02-06T15:00:00.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -124,8 +124,8 @@
   
   <entry>
     <title>Announcing vue-cli</title>
-    <link href="https://vuejs.org/2015/12/28/vue-cli/"/>
-    <id>https://vuejs.org/2015/12/28/vue-cli/</id>
+    <link href="http://vuejs.org/2015/12/28/vue-cli/"/>
+    <id>http://vuejs.org/2015/12/28/vue-cli/</id>
     <published>2015-12-28T05:00:00.000Z</published>
     <updated>2016-08-27T17:21:46.000Z</updated>
     
@@ -163,17 +163,17 @@
   
   <entry>
     <title>Why Vue.js doesn&#39;t support templateURL</title>
-    <link href="https://vuejs.org/2015/10/28/why-no-template-url/"/>
-    <id>https://vuejs.org/2015/10/28/why-no-template-url/</id>
+    <link href="http://vuejs.org/2015/10/28/why-no-template-url/"/>
+    <id>http://vuejs.org/2015/10/28/why-no-template-url/</id>
     <published>2015-10-28T14:56:00.000Z</published>
-    <updated>2016-10-18T19:59:58.000Z</updated>
+    <updated>2017-05-05T20:37:54.000Z</updated>
     
     <content type="html"><![CDATA[<p>A very common question from new Vue users, especially those who used Angular before, is “can I have <code>templateURL</code>?”. I have answered this so many times and I figure it’s better to write something about it.</p>
 <a id="more"></a>
 <p>In Angular, <code>templateURL</code> or <code>ng-include</code> allows the user to dynamically load a remote template file at runtime. This seems pretty convenient as a built-in feature, but let’s rethink what problem it solves.</p>
 <p>First, it allows us to write our template in a separate HTML file. This gives us proper syntax highlighting in editors, which is probably why many prefer to do so. But is splitting your JavaScript code and the template really the best way? For a Vue.js component, its template and its JavaScript is tightly coupled by nature - it’s in fact much simpler if things are just in the same file. The context switching of jumping back and forth between two files actually makes the development experience much worse. Conceptually, components are the basic building block of a Vue.js app, not templates. Every Vue.js template is coupled to an accompanying JavaScript context - there’s no point in splitting them further apart.</p>
 <p>Second, because <code>templateURL</code> loads the template via Ajax at runtime, you don’t need a build step in order to split up your files. This is convenient during development, but comes at a serious cost when you want to deploy it to production. Before HTTP/2 is universally supported, the number of HTTP requests is still probably the most critical factor in your app’s initial load performance. Now imagine you use <code>templateURL</code> for every component in your app - the browser needs to perform dozens of HTTP requests before even being able to display anything! In case you don’t know, most browsers limit the number of parallel requests it can perform to a single server. When you exceed that limit, your app’s initial rendering will suffer for every extra round trip the browser has to wait for. Sure, there are build tools that can help you pre-register all those templates in <code>$templateCache</code> - but that shows us a build step is, in fact, inevitable for any serious frontend development.</p>
-<p>So, without <code>templateURL</code>, how do we deal with the development experience problem? Writing templates as inline JavaScript strings is terrible, faking templates with <code>&lt;script type=&quot;x/template&quot;&gt;</code> also feels like a hack. Well, maybe it’s time to up the game a bit and use a proper module bundler like <a href="http://webpack.github.io/" target="_blank" rel="external">Webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>. It might seem daunting if you’ve never dealt with them before, but trust me it’s worth it to take the leap. Proper modularization is a necessity if you want to build anything large and maintainable. More importantly, you get to write your <a href="http://vuejs.org/guide/single-file-components.html">Vue components in a single file</a>, with proper syntax highlighting and the extra benefits of custom pre-processors, hot-reloading, ES2015 by default, autoprefixing and scoped CSS, which makes the development experience 10 times better.</p>
+<p>So, without <code>templateURL</code>, how do we deal with the development experience problem? Writing templates as inline JavaScript strings is terrible, faking templates with <code>&lt;script type=&quot;x/template&quot;&gt;</code> also feels like a hack. Well, maybe it’s time to up the game a bit and use a proper module bundler like <a href="http://webpack.github.io/" target="_blank" rel="external">Webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>. It might seem daunting if you’ve never dealt with them before, but trust me it’s worth it to take the leap. Proper modularization is a necessity if you want to build anything large and maintainable. More importantly, you get to write your <a href="http://vuejs.org/guide/application.html#Single-File-Components">Vue components in a single file</a>, with proper syntax highlighting and the extra benefits of custom pre-processors, hot-reloading, ES2015 by default, autoprefixing and scoped CSS, which makes the development experience 10 times better.</p>
 <p>Finally, Vue does allow you to <a href="http://vuejs.org/guide/components.html#Async-Components">lazy load your components</a>, and with Webpack it is trivially easy. Although this is only a concern when your initial bundle is so large that you are better off splitting it apart.</p>
 <p>Think in components, not templates.</p>
 ]]></content>
@@ -189,8 +189,8 @@
   
   <entry>
     <title>Vue.js 1.0.0 Released</title>
-    <link href="https://vuejs.org/2015/10/26/1.0.0-release/"/>
-    <id>https://vuejs.org/2015/10/26/1.0.0-release/</id>
+    <link href="http://vuejs.org/2015/10/26/1.0.0-release/"/>
+    <id>http://vuejs.org/2015/10/26/1.0.0-release/</id>
     <published>2015-10-26T14:00:00.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -241,8 +241,8 @@
   
   <entry>
     <title>Vue.js 0.12 released!</title>
-    <link href="https://vuejs.org/2015/06/11/012-release/"/>
-    <id>https://vuejs.org/2015/06/11/012-release/</id>
+    <link href="http://vuejs.org/2015/06/11/012-release/"/>
+    <id>http://vuejs.org/2015/06/11/012-release/</id>
     <published>2015-06-11T21:37:30.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -287,8 +287,8 @@
   
   <entry>
     <title>0.11 Component Tips</title>
-    <link href="https://vuejs.org/2014/12/08/011-component/"/>
-    <id>https://vuejs.org/2014/12/08/011-component/</id>
+    <link href="http://vuejs.org/2014/12/08/011-component/"/>
+    <id>http://vuejs.org/2014/12/08/011-component/</id>
     <published>2014-12-08T20:02:14.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -323,8 +323,8 @@
   
   <entry>
     <title>Vue.js 0.11 released!</title>
-    <link href="https://vuejs.org/2014/11/09/vue-011-release/"/>
-    <id>https://vuejs.org/2014/11/09/vue-011-release/</id>
+    <link href="http://vuejs.org/2014/11/09/vue-011-release/"/>
+    <id>http://vuejs.org/2014/11/09/vue-011-release/</id>
     <published>2014-11-09T14:23:40.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -345,8 +345,8 @@
   
   <entry>
     <title>Vue.js 0.10.6, and what&#39;s next</title>
-    <link href="https://vuejs.org/2014/07/29/vue-next/"/>
-    <id>https://vuejs.org/2014/07/29/vue-next/</id>
+    <link href="http://vuejs.org/2014/07/29/vue-next/"/>
+    <id>http://vuejs.org/2014/07/29/vue-next/</id>
     <published>2014-07-29T04:04:55.000Z</published>
     <updated>2016-06-17T15:16:10.000Z</updated>
     
@@ -379,8 +379,8 @@
   
   <entry>
     <title>Vue.js 0.10 is here!</title>
-    <link href="https://vuejs.org/2014/03/22/vuejs-010-release/"/>
-    <id>https://vuejs.org/2014/03/22/vuejs-010-release/</id>
+    <link href="http://vuejs.org/2014/03/22/vuejs-010-release/"/>
+    <id>http://vuejs.org/2014/03/22/vuejs-010-release/</id>
     <published>2014-03-22T23:00:13.000Z</published>
     <updated>2016-09-21T04:37:17.000Z</updated>
     

@@ -1,3 +1,274 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Redirecting...</title><link rel="canonical" href="/v2/guide/plugins.html"><script>(function(){
-          window.location.replace('/v2/guide/plugins.html' + window.location.hash)
-        })()</script><meta http-equiv="refresh" content="0; url=/v2/guide/plugins.html"></head></html>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Plugins - vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Dosis:300,500&text=Vue.js' rel='stylesheet' type='text/css'>
+        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "guide"
+        </script>
+        <link rel="stylesheet" href="/css/page.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.js"></script>
+    </head>
+    <body>
+        <div id="mobile-bar">
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        
+            <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+        <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/" class="nav-link current">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="/blog/" class="nav-link">Blog</a></li>
+<li class="nav-dropdown-container">
+  <a class="nav-link">Community</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+</div>
+
+            <div id="main">
+                
+                    
+    <div class="sidebar">
+    <ul class="main-menu">
+        <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/" class="nav-link current">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="/blog/" class="nav-link">Blog</a></li>
+<li class="nav-dropdown-container">
+  <a class="nav-link">Community</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">Chat</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+    <div class="list">
+        <div id="donate" style="margin-bottom: 20px">
+            <span class="wrapper" style="width: 110px">
+              <img src="/images/patreon.png">
+              <a href="/support-vuejs">Support Vue.js</a>
+            </span>
+        </div>
+        <h2>
+            Guide
+            <select class="version-select">
+                <option value="">2.0</option>
+                <option selected value="SELF">1.0</option>
+                <option value="012">0.12</option>
+                <option value="011">0.11</option>
+            </select>
+        </h2>
+        <ul class="menu-root">
+            
+                <li>
+                    <a href="/guide/installation.html" class="sidebar-link">Installation</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/index.html" class="sidebar-link">Getting Started</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/overview.html" class="sidebar-link">Overview</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/instance.html" class="sidebar-link">The Vue Instance</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/syntax.html" class="sidebar-link">Data Binding Syntax</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/computed.html" class="sidebar-link">Computed Properties</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/class-and-style.html" class="sidebar-link">Class and Style Bindings</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/list.html" class="sidebar-link">List Rendering</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/events.html" class="sidebar-link">Methods and Event Handling</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/forms.html" class="sidebar-link">Form Input Bindings</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/transitions.html" class="sidebar-link">Transitions</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/components.html" class="sidebar-link">Components</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/reactivity.html" class="sidebar-link">Reactivity in Depth</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/custom-directive.html" class="sidebar-link">Custom Directives</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/custom-filter.html" class="sidebar-link">Custom Filters</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/mixins.html" class="sidebar-link">Mixins</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/plugins.html" class="sidebar-link current">Plugins</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/application.html" class="sidebar-link">Building Large-Scale Apps</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/comparison.html" class="sidebar-link">Comparison with Other Frameworks</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/join.html" class="sidebar-link">Join the Vue Community!</a>
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div class="content guide with-sidebar">
+    <div id="ad">
+  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+</div>
+
+    <h1>Plugins</h1>
+    <h2 id="Writing-a-Plugin"><a href="#Writing-a-Plugin" class="headerlink" title="Writing a Plugin"></a>Writing a Plugin</h2><p>Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:</p>
+<ol>
+<li><p>Add some global methods or properties. e.g. <a href="https://github.com/vuejs/vue-element" target="_blank" rel="external">vue-element</a></p>
+</li>
+<li><p>Add one or more global assets: directives/filters/transitions etc. e.g. <a href="https://github.com/vuejs/vue-touch" target="_blank" rel="external">vue-touch</a></p>
+</li>
+<li><p>Add some Vue instance methods by attaching them to Vue.prototype.</p>
+</li>
+<li><p>A library that provides an API of its own, while at the same time injecting some combination of the above. e.g. <a href="https://github.com/vuejs/vue-router" target="_blank" rel="external">vue-router</a></p>
+</li>
+</ol>
+<p>A Vue.js plugin should expose an <code>install</code> method. The method will be called with the <code>Vue</code> constructor as the first argument, along with possible options:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">MyPlugin.install = <span class="function"><span class="keyword">function</span> (<span class="params">Vue, options</span>) </span>&#123;</div><div class="line">  <span class="comment">// 1. add global method or property</span></div><div class="line">  Vue.myGlobalMethod = ...</div><div class="line">  <span class="comment">// 2. add a global asset</span></div><div class="line">  Vue.directive(<span class="string">'my-directive'</span>, &#123;&#125;)</div><div class="line">  <span class="comment">// 3. add an instance method</span></div><div class="line">  Vue.prototype.$myMethod = ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Using-a-Plugin"><a href="#Using-a-Plugin" class="headerlink" title="Using a Plugin"></a>Using a Plugin</h2><p>Use plugins by calling the <code>Vue.use()</code> global method:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// calls `MyPlugin.install(Vue)`</span></div><div class="line">Vue.use(MyPlugin)</div></pre></td></tr></table></figure>
+<p>You can optionally pass in some options:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.use(MyPlugin, &#123; <span class="attr">someOption</span>: <span class="literal">true</span> &#125;)</div></pre></td></tr></table></figure>
+<p>Some plugins such as <code>vue-router</code> automatically calls <code>Vue.use()</code> if <code>Vue</code> is available as a global variable. However in a module environment you always need to call <code>Vue.use()</code> explicitly:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// When using CommonJS via Browserify or Webpack</span></div><div class="line"><span class="keyword">var</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"><span class="keyword">var</span> VueRouter = <span class="built_in">require</span>(<span class="string">'vue-router'</span>)</div><div class="line"></div><div class="line"><span class="comment">// Don't forget to call this</span></div><div class="line">Vue.use(VueRouter)</div></pre></td></tr></table></figure>
+<h2 id="Existing-Plugins-amp-Tools"><a href="#Existing-Plugins-amp-Tools" class="headerlink" title="Existing Plugins &amp; Tools"></a>Existing Plugins &amp; Tools</h2><ul>
+<li><p><a href="https://github.com/vuejs/vue-router" target="_blank" rel="external">vue-router</a>: The official router for Vue.js. Deeply integrated with Vue.js core to make building Single Page Applications a breeze.</p>
+</li>
+<li><p><a href="https://github.com/vuejs/vue-resource" target="_blank" rel="external">vue-resource</a>: A plugin that provides services for making web requests and handle responses using a XMLHttpRequest or JSONP.</p>
+</li>
+<li><p><a href="https://github.com/vuejs/vue-async-data" target="_blank" rel="external">vue-async-data</a>: Async data loading plugin.</p>
+</li>
+<li><p><a href="https://github.com/vuejs/vue-validator" target="_blank" rel="external">vue-validator</a>: A plugin for form validations.</p>
+</li>
+<li><p><a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="external">vue-devtools</a>: A Chrome devtools extension for debugging Vue.js applications.</p>
+</li>
+<li><p><a href="https://github.com/vuejs/vue-touch" target="_blank" rel="external">vue-touch</a>: Add touch-gesture directives using Hammer.js.</p>
+</li>
+<li><p><a href="https://github.com/vuejs/vue-element" target="_blank" rel="external">vue-element</a>: Register Custom Elements with Vue.js.</p>
+</li>
+<li><p><a href="https://github.com/vuejs/vue-animated-list" target="_blank" rel="external">vue-animated-list</a>: A plugin for easily animating <code>v-for</code> rendered lists.</p>
+</li>
+<li><p><a href="https://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="external">List of User Contributed Tools</a></p>
+</li>
+</ul>
+
+    
+      <div class="guide-links">
+        
+          <span>← <a href="/guide/mixins.html">Mixins</a></span>
+        
+        
+          <span style="float:right"><a href="/guide/application.html">Building Large-Scale Apps</a> →</span>
+        
+      </div>
+    
+    <div class="footer">
+      Caught a mistake or want to contribute to the documentation?
+      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/guide/plugins.md" target="_blank">
+        Edit this page on Github!
+      </a>
+    </div>
+</div>
+
+                
+            </div>
+            <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        </script>
+    </body>
+</html>
