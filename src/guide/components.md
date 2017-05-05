@@ -709,7 +709,7 @@ Vue.component('activate-example', {
 })
 ```
 
-Note the `activate` hook is only respected during dynamic component swapping or the initial render for static components - it does not affect manual insertions with instance methods.
+Note the `activate` hook is only respected during dynamic component swapping or the initial render for static components - it does not affect manual insertions with [DOM](https://v1.vuejs.org/api/#Instance-Methods-DOM)/[lifecycle](https://v1.vuejs.org/api/#Instance-Methods-Lifecycle) instance methods.
 
 ### `transition-mode`
 
