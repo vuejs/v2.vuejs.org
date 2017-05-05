@@ -29,6 +29,7 @@
     function createSourceSearchPath(query) {
       query = query
         .replace(/\([^\)]*?\)/g, '')
+        .replace(/(Vue\.)(\w+)/g, '$1$2" OR "$2')
         .replace(/vm\./g, 'Vue.prototype.')
       return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
