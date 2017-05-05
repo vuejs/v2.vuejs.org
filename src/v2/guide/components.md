@@ -619,7 +619,12 @@ Vue.component('currency-input', {
         // Remove whitespace on either side
         .trim()
         // Shorten to 2 decimal places
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       // If the value was not already normalized,
       // manually override it to conform
       if (formattedValue !== value) {
@@ -653,7 +658,12 @@ Vue.component('currency-input', {
     updateValue: function (value) {
       var formattedValue = value
         .trim()
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
