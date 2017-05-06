@@ -208,7 +208,7 @@
 <h2 id="Two-way-Filters"><a href="#Two-way-Filters" class="headerlink" title="Two-way Filters"></a>Two-way Filters</h2><p>Up till now we have used filters to transform values coming from the model and before displaying them in the view. But it is also possible to define a filter that transforms the value before it is written back to the model from the view (input elements):</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.filter(<span class="string">'currencyDisplay'</span>, &#123;</div><div class="line">  <span class="comment">// model -&gt; view</span></div><div class="line">  <span class="comment">// formats the value when updating the input element.</span></div><div class="line">  read: <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'$'</span>+val.toFixed(<span class="number">2</span>)</div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// view -&gt; model</span></div><div class="line">  <span class="comment">// formats the value when writing to the data.</span></div><div class="line">  write: <span class="function"><span class="keyword">function</span>(<span class="params">val, oldVal</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> number = +val.replace(<span class="regexp">/[^\d.]/g</span>, <span class="string">''</span>)</div><div class="line">    <span class="keyword">return</span> <span class="built_in">isNaN</span>(number) ? <span class="number">0</span> : <span class="built_in">parseFloat</span>(number.toFixed(<span class="number">2</span>))</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Demo:</p>
-
+{% raw %}
 <div id="two-way-filter-demo" class="demo">
   <input type="text" v-model="money | currencyDisplay">
   <p>Model value: {{money}}</p>
@@ -232,7 +232,7 @@ new Vue({
   }
 })
 </script>
-
+{% endraw %}
 <h2 id="Dynamic-Arguments"><a href="#Dynamic-Arguments" class="headerlink" title="Dynamic Arguments"></a>Dynamic Arguments</h2><p>If a filter argument is not enclosed by quotes, it will be evaluated dynamically in the current vm’s data context. In addition, the filter function is always invoked using the current vm as its <code>this</code> context. For example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"userInput"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg | concat userInput&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.filter(<span class="string">'concat'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value, input</span>) </span>&#123;</div><div class="line">  <span class="comment">// here `input` === `this.userInput`</span></div><div class="line">  <span class="keyword">return</span> value + input</div><div class="line">&#125;)</div></pre></td></tr></table></figure>

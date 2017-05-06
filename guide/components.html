@@ -451,7 +451,7 @@ var parent = new Vue({
 <p><strong>Example</strong></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- fade out first, then fade in --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">component</span></span></div><div class="line">  <span class="attr">:is</span>=<span class="string">"view"</span></div><div class="line">  <span class="attr">transition</span>=<span class="string">"fade"</span></div><div class="line">  <span class="attr">transition-mode</span>=<span class="string">"out-in"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">component</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.fade-transition</span> &#123;</div><div class="line">  <span class="attribute">transition</span>: opacity .<span class="number">3s</span> ease;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.fade-enter</span>, <span class="selector-class">.fade-leave</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+{% raw %}
 <div id="transition-mode-demo" class="demo">
   <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
   <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
@@ -482,7 +482,7 @@ new Vue({
   }
 })
 </script>
-
+{% endraw %}
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="Components-and-v-for"><a href="#Components-and-v-for" class="headerlink" title="Components and v-for"></a>Components and v-for</h3><p>You can directly use <code>v-for</code> on the custom component, like any normal element:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>However, this won’t pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:</p>

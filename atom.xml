@@ -80,7 +80,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Growing-Community&quot;&gt;&lt;a href=&quot;#Growing-Community&quot; class=&quot;headerlink&quot; title=&quot;Growing Community&quot;&gt;&lt;/a&gt;Growing Community&lt;/h2&gt;&lt;p&gt;Vue’s growth in the past year has been nothing short of amazing. As of today we are at over 15,000 stars on GitHub, over 500k downloads from npm, and over 2,000 users in the Gitter channel. What’s more exciting though, is that the community successfully organized the first &lt;a href=&quot;http://www.meetup.com/London-Vue-js-Meetup/&quot;&gt;London Vue.js Meetup&lt;/a&gt; and the first &lt;a href=&quot;http://www.meetup.com/Vuejs-Paris/?scroll=true&quot;&gt;Paris Vue.js Meetup&lt;/a&gt;! A big shoutout to the awesome organizers: &lt;a href=&quot;https://twitter.com/JackBarham&quot;&gt;Jack&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/onejamesbrowne/&quot;&gt;James&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/posva/&quot;&gt;Eduardo&lt;/a&gt;.&lt;/p&gt;
+      &lt;h2 id=&quot;Growing-Community&quot;&gt;&lt;a href=&quot;#Growing-Community&quot; class=&quot;headerlink&quot; title=&quot;Growing Community&quot;&gt;&lt;/a&gt;Growing Community&lt;/h2&gt;&lt;p&gt;Vue’s growth in the past year has been nothing short of amazing. As of today we are at over 15,000 stars on GitHub, over 500k downloads from npm, and over 2,000 users in the Gitter channel. What’s more exciting though, is that the community successfully organized the first &lt;a href=&quot;http://www.meetup.com/London-Vue-js-Meetup/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;London Vue.js Meetup&lt;/a&gt; and the first &lt;a href=&quot;http://www.meetup.com/Vuejs-Paris/?scroll=true&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Paris Vue.js Meetup&lt;/a&gt;! A big shoutout to the awesome organizers: &lt;a href=&quot;https://twitter.com/JackBarham&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jack&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/onejamesbrowne/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;James&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/posva/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Eduardo&lt;/a&gt;.&lt;/p&gt;
     
     </summary>
     
@@ -154,7 +154,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;Recently there has been a lot of &lt;a href=&quot;https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.chg95e5p6&quot;&gt;discussion around the tooling hurdle&lt;/a&gt; when you start a React project. Luckily for Vue.js, all you need to do to start with a quick prototype is including it from a CDN via a &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag, so we’ve got that part covered. However, that’s not how you’d build a real world application. In real world applications we inevitably need a certain amount of tooling to give us modularization, transpilers, pre-processors, hot-reload, linting and testing. These tools are necessary for the long-term maintainability and productivity of large projects, but the initial setup can be a big pain. This is why we are announcing &lt;a href=&quot;https://github.com/vuejs/vue-cli&quot;&gt;vue-cli&lt;/a&gt;, a simple CLI tool to help you quickly scaffold Vue.js projects with opinionated, battery-included build setups.&lt;/p&gt;
+      &lt;p&gt;Recently there has been a lot of &lt;a href=&quot;https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.chg95e5p6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;discussion around the tooling hurdle&lt;/a&gt; when you start a React project. Luckily for Vue.js, all you need to do to start with a quick prototype is including it from a CDN via a &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag, so we’ve got that part covered. However, that’s not how you’d build a real world application. In real world applications we inevitably need a certain amount of tooling to give us modularization, transpilers, pre-processors, hot-reload, linting and testing. These tools are necessary for the long-term maintainability and productivity of large projects, but the initial setup can be a big pain. This is why we are announcing &lt;a href=&quot;https://github.com/vuejs/vue-cli&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vue-cli&lt;/a&gt;, a simple CLI tool to help you quickly scaffold Vue.js projects with opinionated, battery-included build setups.&lt;/p&gt;
     
     </summary>
     
@@ -230,9 +230,9 @@
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;Hi HN! If you are not familiar with Vue.js, you might want to read this &lt;a href=&quot;http://blog.evanyou.me/2015/10/25/vuejs-re-introduction/&quot;&gt;blog post&lt;/a&gt; for a higher level overview.&lt;/p&gt;
+&lt;p&gt;Hi HN! If you are not familiar with Vue.js, you might want to read this &lt;a href=&quot;http://blog.evanyou.me/2015/10/25/vuejs-re-introduction/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;blog post&lt;/a&gt; for a higher level overview.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;After 300+ commits, 8 alphas, 4 betas and 2 release candidates, today I am very proud to announce the release of &lt;a href=&quot;https://github.com/vuejs/vue/releases/tag/1.0.0&quot;&gt;Vue.js 1.0.0 Evangelion&lt;/a&gt;! Many thanks to all those who participated in the API re-design process - it would not have been possible without all the input from the community.&lt;/p&gt;
+&lt;p&gt;After 300+ commits, 8 alphas, 4 betas and 2 release candidates, today I am very proud to announce the release of &lt;a href=&quot;https://github.com/vuejs/vue/releases/tag/1.0.0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Vue.js 1.0.0 Evangelion&lt;/a&gt;! Many thanks to all those who participated in the API re-design process - it would not have been possible without all the input from the community.&lt;/p&gt;
     
     </summary>
     
@@ -277,8 +277,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;I’m really excited to announce that &lt;a href=&quot;https://github.com/yyx990803/vue/releases/tag/0.12.0&quot;&gt;Vue.js 0.12: Dragon Ball&lt;/a&gt; is finally here! Thanks to everyone who tried out the beta/rc versions and provided feedback / bug reports along the way.&lt;/p&gt;
-&lt;p&gt;There’s a lot to cover in this release, and we will talk about a few highlights below. However, it is still recommended to carefully go through the &lt;a href=&quot;https://github.com/yyx990803/vue/releases/tag/0.12.0&quot;&gt;Full Release Note&lt;/a&gt; and updated docs if you are upgrading from 0.11. You can report bugs on GitHub, send questions to &lt;a href=&quot;https://github.com/vuejs/Discussion/issues&quot;&gt;vuejs/Discussion&lt;/a&gt;, or join us in the &lt;a href=&quot;https://gitter.im/yyx990803/vue&quot;&gt;Gitter chat channel&lt;/a&gt;.&lt;/p&gt;
+      &lt;p&gt;I’m really excited to announce that &lt;a href=&quot;https://github.com/yyx990803/vue/releases/tag/0.12.0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Vue.js 0.12: Dragon Ball&lt;/a&gt; is finally here! Thanks to everyone who tried out the beta/rc versions and provided feedback / bug reports along the way.&lt;/p&gt;
+&lt;p&gt;There’s a lot to cover in this release, and we will talk about a few highlights below. However, it is still recommended to carefully go through the &lt;a href=&quot;https://github.com/yyx990803/vue/releases/tag/0.12.0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Full Release Note&lt;/a&gt; and updated docs if you are upgrading from 0.11. You can report bugs on GitHub, send questions to &lt;a href=&quot;https://github.com/vuejs/Discussion/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vuejs/Discussion&lt;/a&gt;, or join us in the &lt;a href=&quot;https://gitter.im/yyx990803/vue&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Gitter chat channel&lt;/a&gt;.&lt;/p&gt;
     
     </summary>
     
@@ -312,9 +312,9 @@
     
     <summary type="html">
     
-      &lt;p class=&quot;tip&quot;&gt;Note: this post contains information for the outdated 0.11 version. Please refer to the &lt;a href=&quot;https://github.com/yyx990803/vue/releases&quot;&gt;0.12 release notes&lt;/a&gt; for the changes in the API.&lt;/p&gt;
+      &lt;p class=&quot;tip&quot;&gt;Note: this post contains information for the outdated 0.11 version. Please refer to the &lt;a href=&quot;https://github.com/yyx990803/vue/releases&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;0.12 release notes&lt;/a&gt; for the changes in the API.&lt;/p&gt;
 
-&lt;p&gt;The release of 0.11 introduced &lt;a href=&quot;https://github.com/yyx990803/vue/blob/master/changes.md&quot;&gt;many changes&lt;/a&gt;, but the most important one is how the new component scope works. Previously in 0.10.x, components have inherited scope by default. That means in a child component template you can reference parent scope properties. This often leads to tightly-coupled components, where a child component assumes knowledge of what properties are present in the parent scope. It is also possible to accidentally refer to a parent scope property in a child component.&lt;/p&gt;
+&lt;p&gt;The release of 0.11 introduced &lt;a href=&quot;https://github.com/yyx990803/vue/blob/master/changes.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many changes&lt;/a&gt;, but the most important one is how the new component scope works. Previously in 0.10.x, components have inherited scope by default. That means in a child component template you can reference parent scope properties. This often leads to tightly-coupled components, where a child component assumes knowledge of what properties are present in the parent scope. It is also possible to accidentally refer to a parent scope property in a child component.&lt;/p&gt;
     
     </summary>
     
@@ -336,7 +336,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;After the long wait, &lt;a href=&quot;https://github.com/yyx990803/vue/releases/tag/0.11.0&quot;&gt;Vue.js 0.11 &lt;strong&gt;Cowboy Bebop&lt;/strong&gt;&lt;/a&gt; is finally here! Thanks to everyone who tried out the release candidate versions and provided feedback / bug reports along the way.&lt;/p&gt;
+      &lt;p&gt;After the long wait, &lt;a href=&quot;https://github.com/yyx990803/vue/releases/tag/0.11.0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Vue.js 0.11 &lt;strong&gt;Cowboy Bebop&lt;/strong&gt;&lt;/a&gt; is finally here! Thanks to everyone who tried out the release candidate versions and provided feedback / bug reports along the way.&lt;/p&gt;
     
     </summary>
     
@@ -398,7 +398,7 @@
 <li>Interpolation delimiters can now be customized via the <code>delimiters</code> global config option. Example: <code>Vue.config({ delimiters: [&quot;[&quot;, &quot;]&quot;] })</code> will change the matched interpolation tags to <code>[[ ]]</code> for text bindings and <code>[[[ ]]]</code> for html bindings.</li>
 </ul>
 <h3 id="Changed"><a href="#Changed" class="headerlink" title="Changed"></a>Changed</h3><ul>
-<li><code>{{>yield}}</code> syntax has been deprecated. A Web Components spec compatible content insertion mechanism using <code>&lt;content&gt;</code> elements has been introduced. <a href="/guide/components.html#Content_Insertion">Doc</a>.</li>
+<li><code>{{yield}}</code> syntax has been deprecated. A Web Components spec compatible content insertion mechanism using <code>&lt;content&gt;</code> elements has been introduced. <a href="/guide/components.html#Content_Insertion">Doc</a>.</li>
 <li>To use a component as a custom element, the component ID must now contain a hyphen (<code>-</code>). This is consistent with the current custom element spec draft.</li>
 <li><code>v-repeat</code> Arrays’ augmented methods have been renamed from <code>set</code> to <code>$set(index, value)</code> and <code>remove</code> to <code>$remove(index | value)</code>. The prefix better differentiates them from native methods. The <code>replace</code> method has been removed.</li>
 <li>When iterating over an Object with <code>v-repeat</code>, the object no longer gets a <code>$repeater</code> array. Instead, the object is now augmented with two methods: <code>$add(key, value)</code> and <code>$delete(key)</code>, which will trigger corresponding view updates.</li>

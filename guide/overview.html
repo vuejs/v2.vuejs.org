@@ -224,7 +224,7 @@ var exampleVM = new Vue({
 <p>Let’s look at a second example:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-2"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"greeting"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> exampleVM2 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#example-2'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">greeting</span>: <span class="literal">true</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-
+{% raw %}
 <div id="example-2" class="demo">
   <span v-if="greeting">Hello!</span>
 </div>
@@ -236,7 +236,7 @@ var exampleVM2 = new Vue({
   }
 })
 </script>
-
+{% endraw %}
 <p>Here we are encountering something new. The <code>v-if</code> attribute you are seeing is called a <strong>Directive</strong>. Directives are prefixed with <code>v-</code> to indicate that they are special attributes provided by Vue.js, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Go ahead and set <code>exampleVM2.greeting</code> to <code>false</code> in the console. You should see the “Hello!” message disappear.</p>
 <p>This second example demonstrates that not only can we bind DOM text to the data, we can also bind the <strong>structure</strong> of the DOM to the data. Moreover, Vue.js also provides a powerful transition effect system that can automatically apply transition effects when elements are inserted/removed by Vue.</p>
 <p>There are quite a few other directives, each with its own special functionality. For example the <code>v-for</code> directive for displaying items in an Array, or the <code>v-bind</code> directive for binding HTML attributes. We will discuss the full data-binding syntax with more details later.</p>

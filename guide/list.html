@@ -204,7 +204,7 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"example-1"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span>&gt;</span></div><div class="line">    &#123;&#123; item.message &#125;&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#example-1'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">items</span>: [</div><div class="line">      &#123; <span class="attr">message</span>: <span class="string">'Foo'</span> &#125;,</div><div class="line">      &#123; <span class="attr">message</span>: <span class="string">'Bar'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p><strong>Result:</strong></p>
-
+{% raw %}
 <ul id="example-1" class="demo">
   <li v-for="item in items">
     {{item.message}}
@@ -226,12 +226,12 @@ var example1 = new Vue({
   }
 })
 </script>
-
+{% endraw %}
 <p>Inside <code>v-for</code> blocks we have full access to parent scope properties, plus a special variable <code>$index</code> which, as you probably have guessed, is the Array index for the current item:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"example-2"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span>&gt;</span></div><div class="line">    &#123;&#123; parentMessage &#125;&#125; - &#123;&#123; $index &#125;&#125; - &#123;&#123; item.message &#125;&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> example2 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#example-2'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">parentMessage</span>: <span class="string">'Parent'</span>,</div><div class="line">    <span class="attr">items</span>: [</div><div class="line">      &#123; <span class="attr">message</span>: <span class="string">'Foo'</span> &#125;,</div><div class="line">      &#123; <span class="attr">message</span>: <span class="string">'Bar'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p><strong>Result:</strong></p>
-
+{% raw%}
 <ul id="example-2" class="demo">
   <li v-for="item in items">
     {{ parentMessage }} - {{ $index }} - {{ item.message }}
@@ -254,7 +254,7 @@ var example2 = new Vue({
   }
 })
 </script>
-
+{% endraw %}
 <p>Alternatively, you can also specify an alias for the index (or the key if <code>v-for</code> is used on an Object):</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(index, item) in items"</span>&gt;</span></div><div class="line">  &#123;&#123; index &#125;&#125; &#123;&#123; item.message &#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Starting in 1.0.17 you can also use <code>of</code> as the delimiter instead of <code>in</code>, so that it is closer to JavaScript syntax for iterators:</p>
@@ -300,7 +300,7 @@ var example2 = new Vue({
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"repeat-object"</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"value in object"</span>&gt;</span></div><div class="line">    &#123;&#123; $key &#125;&#125; : &#123;&#123; value &#125;&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#repeat-object'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">object</span>: &#123;</div><div class="line">      <span class="attr">FirstName</span>: <span class="string">'John'</span>,</div><div class="line">      <span class="attr">LastName</span>: <span class="string">'Doe'</span>,</div><div class="line">      <span class="attr">Age</span>: <span class="number">30</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p><strong>Result:</strong></p>
-
+{% raw %}
 <ul id="repeat-object" class="demo">
   <li v-for="value in object">
     {{ $key }} : {{ value }}
@@ -318,7 +318,7 @@ new Vue({
   }
 })
 </script>
-
+{% endraw %}
 <p>You can also provide an alias for the key:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(key, val) in object"</span>&gt;</span></div><div class="line">  &#123;&#123; key &#125;&#125; &#123;&#123; val &#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p class="tip">When iterating over an Object, the order is based on the key enumeration order of <code>Object.keys()</code>, which is <strong>not</strong> guaranteed to be consistent in all JavaScript engine implementations.</p>
@@ -326,14 +326,14 @@ new Vue({
 <h2 id="Range-v-for"><a href="#Range-v-for" class="headerlink" title="Range v-for"></a>Range v-for</h2><p><code>v-for</code> can also take an integer Number. In this case it will repeat the template that many times.</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-for</span>=<span class="string">"n in 10"</span>&gt;</span>&#123;&#123; n &#125;&#125; <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Result:</p>
-
+{% raw %}
 <div id="range" class="demo">
   <span v-for="n in 10">{{ n }} </span>
 </div>
 <script>
 new Vue({ el: '#range' })
 </script>
-
+{% endraw %}
 <h2 id="Displaying-Filtered-Sorted-Results"><a href="#Displaying-Filtered-Sorted-Results" class="headerlink" title="Displaying Filtered/Sorted Results"></a>Displaying Filtered/Sorted Results</h2><p>Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. There are two options to achieve this:</p>
 <ol>
 <li>Create a computed property that returns the filtered or sorted Array;</li>

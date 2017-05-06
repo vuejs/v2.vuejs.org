@@ -137,7 +137,7 @@
 <h3 id="delimiters"><a href="#delimiters" class="headerlink" title="delimiters"></a>delimiters</h3><ul>
 <li><p><strong>Type:</strong> <code>Array&lt;String&gt;</code></p>
 </li>
-<li><p><strong>Default:</strong> <code>["{{", "}}"]</code></p>
+<li><p><strong>Default:</strong> <code>{% raw %}["{{", "}}"]{% endraw %}</code></p>
 </li>
 <li><p><strong>Usage:</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// ES6 template string style</span></div><div class="line">Vue.config.delimiters = [<span class="string">'$&#123;'</span>, <span class="string">'&#125;'</span>]</div></pre></td></tr></table></figure>
@@ -147,7 +147,7 @@
 <h3 id="unsafeDelimiters"><a href="#unsafeDelimiters" class="headerlink" title="unsafeDelimiters"></a>unsafeDelimiters</h3><ul>
 <li><p><strong>Type:</strong> <code>Array&lt;String&gt;</code></p>
 </li>
-<li><p><strong>Default:</strong> <code>["{{{", "}}}"]</code></p>
+<li><p><strong>Default:</strong> <code>{% raw %}["{{{", "}}}"]{% endraw %}</code></p>
 </li>
 <li><p><strong>Usage:</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// make it look more dangerous</span></div><div class="line">Vue.config.unsafeDelimiters = [<span class="string">'&#123;!!'</span>, <span class="string">'!!&#125;'</span>]</div></pre></td></tr></table></figure>
@@ -1171,7 +1171,7 @@
 </li>
 <li><p><strong>Details:</strong></p>
 <p>Updates the element’s <code>textContent</code>.</p>
-<p>Internally, <code>{{ Mustache }}</code> interpolations are also compiled as a <code>v-text</code> directive on a textNode. The directive form requires a wrapper element, but offers slightly better performance and avoids FOUC (Flash of Uncompiled Content).</p>
+<p>Internally, <code>{% raw %}{{ Mustache }}{% endraw %}</code> interpolations are also compiled as a <code>v-text</code> directive on a textNode. The directive form requires a wrapper element, but offers slightly better performance and avoids FOUC (Flash of Uncompiled Content).</p>
 </li>
 <li><p><strong>Example:</strong></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- same as --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -1182,7 +1182,7 @@
 </li>
 <li><p><strong>Details:</strong></p>
 <p>Updates the element’s <code>innerHTML</code>. The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use <a href="#partial">partials</a>.</p>
-<p>Internally, <code>{{{ Mustache }}}</code> interpolations are also compiled as a <code>v-html</code> directive using anchor nodes. The directive form requires a wrapper element, but offers slightly better performance and avoids FOUC (Flash of Uncompiled Content).</p>
+<p>Internally, <code>{% raw %}{{{ Mustache }}}{% endraw %}</code> interpolations are also compiled as a <code>v-html</code> directive using anchor nodes. The directive form requires a wrapper element, but offers slightly better performance and avoids FOUC (Flash of Uncompiled Content).</p>
 <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to <a href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank" rel="external">XSS attacks</a>. Only use <code>v-html</code> on trusted content and <strong>never</strong> on user-provided content.</p>
 </li>
 <li><p><strong>Example:</strong></p>
@@ -1605,7 +1605,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#orderby-example'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">order</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">users</span>: [&#123; <span class="attr">name</span>: <span class="string">'Bruce'</span> &#125;, &#123; <span class="attr">name</span>: <span class="string">'Chuck'</span> &#125;, &#123; <span class="attr">name</span>: <span class="string">'Jackie'</span> &#125;]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Sort using two keys:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"user in users | orderBy 'lastName' 'firstName'"</span>&gt;</span></div><div class="line">    &#123;&#123; user.lastName &#125;&#125; &#123;&#123; user.firstName &#125;&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-
+{% raw %}
   <div id="orderby-example" class="demo">
     <button @click="order = order * -1">Reverse Sort Order</button>
     <ul>
@@ -1623,11 +1623,11 @@
     }
   })
   </script>
-  
+  {% endraw %}
 <p>Sort using a Function:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"orderby-compare-example"</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"order = order * -1"</span>&gt;</span>Reverse Sort Order<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"user in users | orderBy ageByTen order"</span>&gt;</span></div><div class="line">      &#123;&#123; user.name &#125;&#125; - &#123;&#123; user.age &#125;&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#orderby-compare-example'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">order</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">users</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">name</span>: <span class="string">'Jackie'</span>,</div><div class="line">        <span class="attr">age</span>: <span class="number">62</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">name</span>: <span class="string">'Chuck'</span>,</div><div class="line">        <span class="attr">age</span>: <span class="number">76</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">name</span>: <span class="string">'Bruce'</span>,</div><div class="line">        <span class="attr">age</span>: <span class="number">61</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">ageByTen</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Math</span>.floor(a.age / <span class="number">10</span>) - <span class="built_in">Math</span>.floor(b.age / <span class="number">10</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-
+{% raw %}
   <div id="orderby-compare-example" class="demo">
     <button @click="order = order * -1">Reverse Sort Order</button>
     <ul id="orderby-compare-example">
@@ -1663,7 +1663,7 @@
     }
   })
   </script>
-  
+  {% endraw %}
 </li>
 </ul>
 <h2 id="Array-Extension-Methods"><a href="#Array-Extension-Methods" class="headerlink" title="Array Extension Methods"></a>Array Extension Methods</h2><p>Vue.js extends <code>Array.prototype</code> with two additional methods that makes it easier to perform some common Array operations while ensuring reactive updates are properly triggered.</p>

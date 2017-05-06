@@ -158,7 +158,7 @@
 <li>Interpolation delimiters can now be customized via the <code>delimiters</code> global config option. Example: <code>Vue.config({ delimiters: [&quot;[&quot;, &quot;]&quot;] })</code> will change the matched interpolation tags to <code>[[ ]]</code> for text bindings and <code>[[[ ]]]</code> for html bindings.</li>
 </ul>
 <h3 id="Changed"><a href="#Changed" class="headerlink" title="Changed"></a>Changed</h3><ul>
-<li><code>{{>yield}}</code> syntax has been deprecated. A Web Components spec compatible content insertion mechanism using <code>&lt;content&gt;</code> elements has been introduced. <a href="/guide/components.html#Content_Insertion">Doc</a>.</li>
+<li><code>{{yield}}</code> syntax has been deprecated. A Web Components spec compatible content insertion mechanism using <code>&lt;content&gt;</code> elements has been introduced. <a href="/guide/components.html#Content_Insertion">Doc</a>.</li>
 <li>To use a component as a custom element, the component ID must now contain a hyphen (<code>-</code>). This is consistent with the current custom element spec draft.</li>
 <li><code>v-repeat</code> Arrays’ augmented methods have been renamed from <code>set</code> to <code>$set(index, value)</code> and <code>remove</code> to <code>$remove(index | value)</code>. The prefix better differentiates them from native methods. The <code>replace</code> method has been removed.</li>
 <li>When iterating over an Object with <code>v-repeat</code>, the object no longer gets a <code>$repeater</code> array. Instead, the object is now augmented with two methods: <code>$add(key, value)</code> and <code>$delete(key)</code>, which will trigger corresponding view updates.</li>
