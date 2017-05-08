@@ -210,6 +210,15 @@ Some environments, such as Google Chrome Apps, enforce Content Security Policy (
 
 On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
 
+And if you are develop chrome apps or chrome extension, you can set contentSecurityPolicy as the document guide.
+[https://developer.chrome.com/extensions/contentSecurityPolicy](https://developer.chrome.com/extensions/contentSecurityPolicy)
+
+Add following setting to your manifest.json
+
+```
+"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+```
+
 ## Dev Build
 
 **Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
