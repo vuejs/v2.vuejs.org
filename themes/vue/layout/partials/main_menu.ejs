@@ -4,6 +4,7 @@
   </form>
 </li>
 <li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guide</a></li>
+<li><a href="http://vuecasts.com" class="nav-link" target="_blank">Vuecasts</a></li>
 <li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
 <li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Examples</a></li>
 <%- partial('partials/ecosystem_dropdown') %>
