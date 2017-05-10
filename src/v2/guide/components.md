@@ -619,7 +619,12 @@ Vue.component('currency-input', {
         // Retirer les espaces de part et d'autre
         .trim()
         // Tronquer à deux chiffres après la virgule
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       // Si la valeur n'est pas déjà dans le bon format,
       // la réécrire manuellement pour qu'elle le soit
       if (formattedValue !== value) {
@@ -653,7 +658,12 @@ Vue.component('currency-input', {
     updateValue: function (value) {
       var formattedValue = value
         .trim()
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
