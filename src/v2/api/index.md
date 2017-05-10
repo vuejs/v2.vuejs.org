@@ -1785,6 +1785,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
+  
+  <!-- pass down parent props in common with a child component -->
+  <child-component v-bind="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
