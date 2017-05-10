@@ -1128,7 +1128,7 @@ Note that when used as a route component in `vue-router`, these properties will 
 
 ### Component Naming Conventions
 
-When registering components (or props), you can use kebab-case, camelCase, or TitleCase. Vue doesn't care.
+When registering components (or props), you can use kebab-case, camelCase, or TitleCase.
 
 ``` js
 // in a component definition
@@ -1151,14 +1151,32 @@ Within HTML templates though, you have to use the kebab-case equivalents:
 <title-cased-component></title-cased-component>
 ```
 
-When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components and props using camelCase, TitleCase, or kebab-case:
+When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
+
+- kebab-case
+- camelCase or kebab-case if the component has been defined using camelCase
+- kebab-case, camelCase or Title case if the component has been defined using TitleCase
+
+``` js
+components: {
+  'kebab-case-component': { /* ... */ },
+  camelCaseComponent: { /* ... */ },
+  TitleCaseComponent: { /* ... */ }
+}
+```
 
 ``` html
-<!-- use whatever you want in string templates! -->
-<my-component></my-component>
-<myComponent></myComponent>
-<MyComponent></MyComponent>
+<kebab-case-component />
+
+<camel-case-component />
+<camelCaseComponent />
+
+<title-case-component />
+<titleCaseComponent />
+<TitleCaseComponent />
 ```
+
+This means that the TitleCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
 
 If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
 
