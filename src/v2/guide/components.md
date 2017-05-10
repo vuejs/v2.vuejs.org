@@ -428,6 +428,7 @@ The `type` can be one of the following native constructors:
 - Function
 - Object
 - Array
+- Symbol
 
 In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
 
