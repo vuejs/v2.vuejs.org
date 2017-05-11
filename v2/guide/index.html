@@ -96,12 +96,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
   </ul>
@@ -159,12 +159,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
     </ul>
@@ -568,12 +568,26 @@
 <div class="content guide with-sidebar index-guide">
     
       <div id="ad">
-  <!-- <span>Sponsored By</span><br>
-  <a href="http://www.thedifferenceengine.io/" target="_blank"
-    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
-    <img src="/images/tde.png">
-  </a> -->
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+  <script>
+    (function () {
+      var showConfPromo = Math.random() <= 0.33
+      if (showConfPromo) {
+        var c = document.createElement('div')
+        c.id = 'conf-promo'
+        c.innerHTML = '<a href="https://conf.vuejs.org" target="_blank">' +
+          '<img src="/images/conf.png" alt="vueconf">' +
+          '<span>The first VueConf EU is being held in Wrocław, Poland, June 21-23!</span>'
+        '</a>'
+        document.getElementById('ad').appendChild(c)
+      } else {
+        var s = document.createElement('script')
+        s.setAttribute('async', '')
+        s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs'
+        s.id = '_carbonads_js'
+        document.getElementById('ad').appendChild(s)
+      }
+    })()
+  </script>
 </div>
 
     
@@ -716,12 +730,12 @@ var app6 = new Vue({
 <p>But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let’s modify the component definition to make it accept a <a href="components.html#Props">prop</a>:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'todo-item'</span>, &#123;</div><div class="line">  <span class="comment">// The todo-item component now accepts a</span></div><div class="line">  <span class="comment">// "prop", which is like a custom attribute.</span></div><div class="line">  <span class="comment">// This prop is called todo.</span></div><div class="line">  props: [<span class="string">'todo'</span>],</div><div class="line">  <span class="attr">template</span>: <span class="string">'&lt;li&gt;&#123;&#123; todo.text &#125;&#125;&lt;/li&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Now we can pass the todo into each repeated component using <code>v-bind</code>:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-7"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- Now we provide each todo-item with the todo object    --&gt;</span></div><div class="line">    <span class="comment">&lt;!-- it's representing, so that its content can be dynamic --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">todo-item</span> <span class="attr">v-for</span>=<span class="string">"item in groceryList"</span> <span class="attr">v-bind:todo</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-item</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'todo-item'</span>, &#123;</div><div class="line">  <span class="attr">props</span>: [<span class="string">'todo'</span>],</div><div class="line">  <span class="attr">template</span>: <span class="string">'&lt;li&gt;&#123;&#123; todo.text &#125;&#125;&lt;/li&gt;'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">var</span> app7 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#app-7'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">groceryList</span>: [</div><div class="line">      &#123; <span class="attr">text</span>: <span class="string">'Vegetables'</span> &#125;,</div><div class="line">      &#123; <span class="attr">text</span>: <span class="string">'Cheese'</span> &#125;,</div><div class="line">      &#123; <span class="attr">text</span>: <span class="string">'Whatever else humans are supposed to eat'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-7"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--</span></div><div class="line">      Now we provide each todo-item with the todo object</div><div class="line">      it's representing, so that its content can be dynamic.</div><div class="line">      We also need to provide each component with a "key",</div><div class="line">      which will be explained later.</div><div class="line">    --&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">todo-item</span></span></div><div class="line">      <span class="attr">v-for</span>=<span class="string">"item in groceryList"</span></div><div class="line">      <span class="attr">v-bind:todo</span>=<span class="string">"item"</span></div><div class="line">      <span class="attr">v-bind:key</span>=<span class="string">"item.id"</span>&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">todo-item</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'todo-item'</span>, &#123;</div><div class="line">  <span class="attr">props</span>: [<span class="string">'todo'</span>],</div><div class="line">  <span class="attr">template</span>: <span class="string">'&lt;li&gt;&#123;&#123; todo.text &#125;&#125;&lt;/li&gt;'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">var</span> app7 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#app-7'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">groceryList</span>: [</div><div class="line">      &#123; <span class="attr">id</span>: <span class="number">0</span>, <span class="attr">text</span>: <span class="string">'Vegetables'</span> &#125;,</div><div class="line">      &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">text</span>: <span class="string">'Cheese'</span> &#125;,</div><div class="line">      &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">text</span>: <span class="string">'Whatever else humans are supposed to eat'</span> &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
   </ol>
 </div>
 <script>
@@ -733,9 +747,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Vegetables' },
-      { text: 'Cheese' },
-      { text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
@@ -776,7 +790,7 @@ var app7 = new Vue({
             <script src="/js/smooth-scroll.min.js"></script>
         
 
-        <!-- main custom script for sidebars, version selects etc. -->        
+        <!-- main custom script for sidebars, version selects etc. -->
         <script src="/js/css.escape.js"></script>
         <script src="/js/common.js"></script>
 

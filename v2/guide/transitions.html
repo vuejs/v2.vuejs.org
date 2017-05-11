@@ -96,12 +96,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
   </ul>
@@ -159,12 +159,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
     </ul>
@@ -568,12 +568,26 @@
 <div class="content guide with-sidebar transitions-guide">
     
       <div id="ad">
-  <!-- <span>Sponsored By</span><br>
-  <a href="http://www.thedifferenceengine.io/" target="_blank"
-    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
-    <img src="/images/tde.png">
-  </a> -->
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+  <script>
+    (function () {
+      var showConfPromo = Math.random() <= 0.33
+      if (showConfPromo) {
+        var c = document.createElement('div')
+        c.id = 'conf-promo'
+        c.innerHTML = '<a href="https://conf.vuejs.org" target="_blank">' +
+          '<img src="/images/conf.png" alt="vueconf">' +
+          '<span>The first VueConf EU is being held in Wrocław, Poland, June 21-23!</span>'
+        '</a>'
+        document.getElementById('ad').appendChild(c)
+      } else {
+        var s = document.createElement('script')
+        s.setAttribute('async', '')
+        s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs'
+        s.id = '_carbonads_js'
+        document.getElementById('ad').appendChild(s)
+      }
+    })()
+  </script>
 </div>
 
     
@@ -690,7 +704,7 @@ new Vue({
 <p>Here’s an example, omitting prefixed CSS rules for the sake of brevity:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-2"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show = !show"</span>&gt;</span>Toggle show<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"bounce"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>Look at me!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">el</span>: <span class="string">'#example-2'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">show</span>: <span class="literal">true</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.bounce-enter-active</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: bounce-in .<span class="number">5s</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.bounce-leave-active</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: bounce-out .<span class="number">5s</span>;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> bounce-in &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(0);</div><div class="line">  &#125;</div><div class="line">  50% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1.5);</div><div class="line">  &#125;</div><div class="line">  100% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> bounce-out &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1);</div><div class="line">  &#125;</div><div class="line">  50% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1.5);</div><div class="line">  &#125;</div><div class="line">  100% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(0);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.bounce-enter-active</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: bounce-in .<span class="number">5s</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.bounce-leave-active</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: bounce-in .<span class="number">5s</span> reverse;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> bounce-in &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(0);</div><div class="line">  &#125;</div><div class="line">  50% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1.5);</div><div class="line">  &#125;</div><div class="line">  100% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
 <div id="example-2" class="demo">
   <button @click="show = !show">Toggle show</button>
@@ -705,8 +719,8 @@ new Vue({
     animation: bounce-in .5s;
   }
   .bounce-leave-active {
-    -webkit-animation: bounce-out .5s;
-    animation: bounce-out .5s;
+    -webkit-animation: bounce-in .5s reverse;
+    animation: bounce-in .5s reverse;
   }
   @keyframes bounce-in {
     0% {
@@ -722,20 +736,6 @@ new Vue({
       transform: scale(1);
     }
   }
-  @keyframes bounce-out {
-    0% {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
-    50% {
-      -webkit-transform: scale(1.5);
-      transform: scale(1.5);
-    }
-    100% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
-    }
-  }
   @-webkit-keyframes bounce-in {
     0% {
       -webkit-transform: scale(0);
@@ -748,20 +748,6 @@ new Vue({
     100% {
       -webkit-transform: scale(1);
       transform: scale(1);
-    }
-  }
-  @-webkit-keyframes bounce-out {
-    0% {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
-    50% {
-      -webkit-transform: scale(1.5);
-      transform: scale(1.5);
-    }
-    100% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
     }
   }
 </style>
@@ -1485,7 +1471,7 @@ new Vue({
             <script src="/js/smooth-scroll.min.js"></script>
         
 
-        <!-- main custom script for sidebars, version selects etc. -->        
+        <!-- main custom script for sidebars, version selects etc. -->
         <script src="/js/css.escape.js"></script>
         <script src="/js/common.js"></script>
 

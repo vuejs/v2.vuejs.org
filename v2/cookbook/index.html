@@ -96,12 +96,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
   </ul>
@@ -159,12 +159,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
     </ul>
@@ -225,12 +225,26 @@
 <div class="content cookbook with-sidebar ">
     
       <div id="ad">
-  <!-- <span>Sponsored By</span><br>
-  <a href="http://www.thedifferenceengine.io/" target="_blank"
-    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
-    <img src="/images/tde.png">
-  </a> -->
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+  <script>
+    (function () {
+      var showConfPromo = Math.random() <= 0.33
+      if (showConfPromo) {
+        var c = document.createElement('div')
+        c.id = 'conf-promo'
+        c.innerHTML = '<a href="https://conf.vuejs.org" target="_blank">' +
+          '<img src="/images/conf.png" alt="vueconf">' +
+          '<span>The first VueConf EU is being held in Wrocław, Poland, June 21-23!</span>'
+        '</a>'
+        document.getElementById('ad').appendChild(c)
+      } else {
+        var s = document.createElement('script')
+        s.setAttribute('async', '')
+        s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs'
+        s.id = '_carbonads_js'
+        document.getElementById('ad').appendChild(s)
+      }
+    })()
+  </script>
 </div>
 
     
@@ -286,7 +300,7 @@
             <script src="/js/smooth-scroll.min.js"></script>
         
 
-        <!-- main custom script for sidebars, version selects etc. -->        
+        <!-- main custom script for sidebars, version selects etc. -->
         <script src="/js/css.escape.js"></script>
         <script src="/js/common.js"></script>
 

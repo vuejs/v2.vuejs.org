@@ -96,12 +96,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
   </ul>
@@ -159,12 +159,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
     </ul>
@@ -568,12 +568,26 @@
 <div class="content guide with-sidebar components-guide">
     
       <div id="ad">
-  <!-- <span>Sponsored By</span><br>
-  <a href="http://www.thedifferenceengine.io/" target="_blank"
-    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
-    <img src="/images/tde.png">
-  </a> -->
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+  <script>
+    (function () {
+      var showConfPromo = Math.random() <= 0.33
+      if (showConfPromo) {
+        var c = document.createElement('div')
+        c.id = 'conf-promo'
+        c.innerHTML = '<a href="https://conf.vuejs.org" target="_blank">' +
+          '<img src="/images/conf.png" alt="vueconf">' +
+          '<span>The first VueConf EU is being held in Wrocław, Poland, June 21-23!</span>'
+        '</a>'
+        document.getElementById('ad').appendChild(c)
+      } else {
+        var s = document.createElement('script')
+        s.setAttribute('async', '')
+        s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs'
+        s.id = '_carbonads_js'
+        document.getElementById('ad').appendChild(s)
+      }
+    })()
+  </script>
 </div>
 
     
@@ -756,6 +770,7 @@ new Vue({
 <li>Function</li>
 <li>Object</li>
 <li>Array</li>
+<li>Symbol</li>
 </ul>
 <p>In addition, <code>type</code> can also be a custom constructor function and the assertion will be made with an <code>instanceof</code> check.</p>
 <p>When a prop validation fails, Vue will produce a console warning (if using the development build).</p>
@@ -987,12 +1002,19 @@ new Vue({
 <p>Starting in 2.3 the async component factory can also return an object of the following format:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> AsyncComp = <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">  <span class="comment">// The component to load. Should be a Promise</span></div><div class="line">  component: <span class="keyword">import</span>(<span class="string">'./MyComp.vue'</span>),</div><div class="line">  <span class="comment">// A component to use while the async component is loading</span></div><div class="line">  loading: LoadingComp,</div><div class="line">  <span class="comment">// A component to use if the load fails</span></div><div class="line">  error: ErrorComp,</div><div class="line">  <span class="comment">// Delay before showing the loading component. Default: 200ms.</span></div><div class="line">  delay: <span class="number">200</span>,</div><div class="line">  <span class="comment">// The error component will be displayed if a timeout is</span></div><div class="line">  <span class="comment">// provided and exceeded. Default: Infinity.</span></div><div class="line">  timeout: <span class="number">3000</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Note that when used as a route component in <code>vue-router</code>, these properties will be ignored because async components are resolved upfront before the route navigation happens. You also need to use <code>vue-router</code> 2.4.0+ if you wish to use the above syntax for route components.</p>
-<h3 id="Component-Naming-Conventions"><a href="#Component-Naming-Conventions" class="headerlink" title="Component Naming Conventions"></a>Component Naming Conventions</h3><p>When registering components (or props), you can use kebab-case, camelCase, or TitleCase. Vue doesn’t care.</p>
+<h3 id="Component-Naming-Conventions"><a href="#Component-Naming-Conventions" class="headerlink" title="Component Naming Conventions"></a>Component Naming Conventions</h3><p>When registering components (or props), you can use kebab-case, camelCase, or TitleCase.</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// in a component definition</span></div><div class="line">components: &#123;</div><div class="line">  <span class="comment">// register using kebab-case</span></div><div class="line">  <span class="string">'kebab-cased-component'</span>: &#123; <span class="comment">/* ... */</span> &#125;,</div><div class="line">  <span class="comment">// register using camelCase</span></div><div class="line">  <span class="string">'camelCasedComponent'</span>: &#123; <span class="comment">/* ... */</span> &#125;,</div><div class="line">  <span class="comment">// register using TitleCase</span></div><div class="line">  <span class="string">'TitleCasedComponent'</span>: &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Within HTML templates though, you have to use the kebab-case equivalents:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- always use kebab-case in HTML templates --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">kebab-cased-component</span>&gt;</span><span class="tag">&lt;/<span class="name">kebab-cased-component</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">camel-cased-component</span>&gt;</span><span class="tag">&lt;/<span class="name">camel-cased-component</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title-cased-component</span>&gt;</span><span class="tag">&lt;/<span class="name">title-cased-component</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>When using <em>string</em> templates however, we’re not bound by HTML’s case-insensitive restrictions. That means even in the template, you can reference your components and props using camelCase, TitleCase, or kebab-case:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- use whatever you want in string templates! --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">my-component</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">myComponent</span>&gt;</span><span class="tag">&lt;/<span class="name">myComponent</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">MyComponent</span>&gt;</span><span class="tag">&lt;/<span class="name">MyComponent</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>When using <em>string</em> templates however, we’re not bound by HTML’s case-insensitive restrictions. That means even in the template, you can reference your components using:</p>
+<ul>
+<li>kebab-case</li>
+<li>camelCase or kebab-case if the component has been defined using camelCase</li>
+<li>kebab-case, camelCase or Title case if the component has been defined using TitleCase</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">components: &#123;</div><div class="line">  <span class="string">'kebab-case-component'</span>: &#123; <span class="comment">/* ... */</span> &#125;,</div><div class="line">  <span class="attr">camelCaseComponent</span>: &#123; <span class="comment">/* ... */</span> &#125;,</div><div class="line">  <span class="attr">TitleCaseComponent</span>: &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">kebab-case-component</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">camel-case-component</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">camelCaseComponent</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">title-case-component</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">titleCaseComponent</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">TitleCaseComponent</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>This means that the TitleCase is the most universal <em>declaration convention</em> and kebab-case is the most universal <em>usage convention</em>.</p>
 <p>If your component isn’t passed content via <code>slot</code> elements, you can even make it self-closing with a <code>/</code> after the name:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-component</span>/&gt;</span></div></pre></td></tr></table></figure>
 <p>Again, this <em>only</em> works within string templates, as self-closing custom elements are not valid HTML and your browser’s native parser will not understand them.</p>
@@ -1047,7 +1069,7 @@ new Vue({
             <script src="/js/smooth-scroll.min.js"></script>
         
 
-        <!-- main custom script for sidebars, version selects etc. -->        
+        <!-- main custom script for sidebars, version selects etc. -->
         <script src="/js/css.escape.js"></script>
         <script src="/js/common.js"></script>
 

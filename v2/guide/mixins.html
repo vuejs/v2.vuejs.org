@@ -96,12 +96,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
   </ul>
@@ -159,12 +159,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
     </ul>
@@ -568,12 +568,26 @@
 <div class="content guide with-sidebar mixins-guide">
     
       <div id="ad">
-  <!-- <span>Sponsored By</span><br>
-  <a href="http://www.thedifferenceengine.io/" target="_blank"
-    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
-    <img src="/images/tde.png">
-  </a> -->
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+  <script>
+    (function () {
+      var showConfPromo = Math.random() <= 0.33
+      if (showConfPromo) {
+        var c = document.createElement('div')
+        c.id = 'conf-promo'
+        c.innerHTML = '<a href="https://conf.vuejs.org" target="_blank">' +
+          '<img src="/images/conf.png" alt="vueconf">' +
+          '<span>The first VueConf EU is being held in Wrocław, Poland, June 21-23!</span>'
+        '</a>'
+        document.getElementById('ad').appendChild(c)
+      } else {
+        var s = document.createElement('script')
+        s.setAttribute('async', '')
+        s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs'
+        s.id = '_carbonads_js'
+        document.getElementById('ad').appendChild(s)
+      }
+    })()
+  </script>
 </div>
 
     
@@ -588,7 +602,7 @@
 <p>Options that expect object values, for example <code>methods</code>, <code>components</code> and <code>directives</code>, will be merged into the same object. The component’s options will take priority when there are conflicting keys in these objects:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mixin = &#123;</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">foo</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'foo'</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">conflicting</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'from mixin'</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">mixins</span>: [mixin],</div><div class="line">  <span class="attr">methods</span>: &#123;</div><div class="line">    <span class="attr">bar</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'bar'</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">conflicting</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'from self'</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">vm.foo() <span class="comment">// -&gt; "foo"</span></div><div class="line">vm.bar() <span class="comment">// -&gt; "bar"</span></div><div class="line">vm.conflicting() <span class="comment">// -&gt; "from self"</span></div></pre></td></tr></table></figure>
 <p>Note that the same merge strategies are used in <code>Vue.extend()</code>.</p>
-<h2 id="Global-Mixin"><a href="#Global-Mixin" class="headerlink" title="Global Mixin"></a>Global Mixin</h2><p>You can also apply a mixin globally. Use caution! Once you apply a mixin globally, it will affect <strong>every</strong> Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:</p>
+<h2 id="Global-Mixin"><a href="#Global-Mixin" class="headerlink" title="Global Mixin"></a>Global Mixin</h2><p>You can also apply a mixin globally. Use with caution! Once you apply a mixin globally, it will affect <strong>every</strong> Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// inject a handler for `myOption` custom option</span></div><div class="line">Vue.mixin(&#123;</div><div class="line">  <span class="attr">created</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> myOption = <span class="keyword">this</span>.$options.myOption</div><div class="line">    <span class="keyword">if</span> (myOption) &#123;</div><div class="line">      <span class="built_in">console</span>.log(myOption)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="attr">myOption</span>: <span class="string">'hello!'</span></div><div class="line">&#125;)</div><div class="line"><span class="comment">// -&gt; "hello!"</span></div></pre></td></tr></table></figure>
 <p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It’s also a good idea to ship them as <a href="plugins.html">Plugins</a> to avoid duplicate application.</p>
 
@@ -622,7 +636,7 @@
             <script src="/js/smooth-scroll.min.js"></script>
         
 
-        <!-- main custom script for sidebars, version selects etc. -->        
+        <!-- main custom script for sidebars, version selects etc. -->
         <script src="/js/css.escape.js"></script>
         <script src="/js/common.js"></script>
 

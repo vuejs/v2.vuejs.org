@@ -96,12 +96,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
   </ul>
@@ -159,12 +159,12 @@
     <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
     <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/" class="nav-link" target="_blank">Français</a></li>
   </ul>
 </li>
 
 <li>
   <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-  <span class="new-label">NEW!</span>
 </li>
 
     </ul>
@@ -200,12 +200,26 @@
 <div class="content api with-sidebar ">
     
       <div id="ad">
-  <!-- <span>Sponsored By</span><br>
-  <a href="http://www.thedifferenceengine.io/" target="_blank"
-    style="background-color: rgba(0,0,0,.85); padding: 10px 0">
-    <img src="/images/tde.png">
-  </a> -->
-  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+  <script>
+    (function () {
+      var showConfPromo = Math.random() <= 0.33
+      if (showConfPromo) {
+        var c = document.createElement('div')
+        c.id = 'conf-promo'
+        c.innerHTML = '<a href="https://conf.vuejs.org" target="_blank">' +
+          '<img src="/images/conf.png" alt="vueconf">' +
+          '<span>The first VueConf EU is being held in Wrocław, Poland, June 21-23!</span>'
+        '</a>'
+        document.getElementById('ad').appendChild(c)
+      } else {
+        var s = document.createElement('script')
+        s.setAttribute('async', '')
+        s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs'
+        s.id = '_carbonads_js'
+        document.getElementById('ad').appendChild(s)
+      }
+    })()
+  </script>
 </div>
 
     
@@ -1382,7 +1396,7 @@
 <p>When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode <code>class</code> and <code>style</code> does not support Array or Objects.</p>
 </li>
 <li><p><strong>Example:</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- bind an attribute --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"imageSrc"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- shorthand --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"imageSrc"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- with inline string concatenation --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"'/path/to/images/' + fileName"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- class binding --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"&#123; red: isRed &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA, classB]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA, &#123; classB: isB, classC: isC &#125;]"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- style binding --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"&#123; fontSize: size + 'px' &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"[styleObjectA, styleObjectB]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- binding an object of attributes --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind</span>=<span class="string">"&#123; id: someProp, 'other-attr': otherProp &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- DOM attribute binding with prop modifier --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:text-content.prop</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- prop binding. "prop" must be declared in my-component. --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">:prop</span>=<span class="string">"someThing"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- pass down parent props in common with a child component --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">child-component</span> <span class="attr">v-bind.prop</span>=<span class="string">"$props"</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- XLink --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">:xlink:special</span>=<span class="string">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- bind an attribute --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"imageSrc"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- shorthand --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"imageSrc"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- with inline string concatenation --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"'/path/to/images/' + fileName"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- class binding --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"&#123; red: isRed &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA, classB]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA, &#123; classB: isB, classC: isC &#125;]"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- style binding --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"&#123; fontSize: size + 'px' &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"[styleObjectA, styleObjectB]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- binding an object of attributes --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind</span>=<span class="string">"&#123; id: someProp, 'other-attr': otherProp &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- DOM attribute binding with prop modifier --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:text-content.prop</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- prop binding. "prop" must be declared in my-component. --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">:prop</span>=<span class="string">"someThing"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- pass down parent props in common with a child component --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">child-component</span> <span class="attr">v-bind</span>=<span class="string">"$props"</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- XLink --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">svg</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">:xlink:special</span>=<span class="string">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>The <code>.camel</code> modifier allows camelizing a <code>v-bind</code> attribute name when using in-DOM templates, e.g. the SVG <code>viewBox</code> attribute:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">:view-box.camel</span>=<span class="string">"viewBox"</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure>
 <p><code>.camel</code> is not needed if you are using string templates, or compiling with <code>vue-loader</code>/<code>vueify</code>.</p>
@@ -1634,7 +1648,7 @@
             <script src="/js/smooth-scroll.min.js"></script>
         
 
-        <!-- main custom script for sidebars, version selects etc. -->        
+        <!-- main custom script for sidebars, version selects etc. -->
         <script src="/js/css.escape.js"></script>
         <script src="/js/common.js"></script>
 
