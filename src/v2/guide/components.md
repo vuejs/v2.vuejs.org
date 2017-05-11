@@ -1155,7 +1155,7 @@ When using _string_ templates however, we're not bound by HTML's case-insensitiv
 
 - kebab-case
 - camelCase or kebab-case if the component has been defined using camelCase
-- kebab-case, camelCase or Title case if the component has been defined using TitleCase
+- kebab-case, camelCase or TitleCase if the component has been defined using TitleCase
 
 ``` js
 components: {
@@ -1166,14 +1166,14 @@ components: {
 ```
 
 ``` html
-<kebab-case-component />
+<kebab-cased-component></kebab-cased-component>
 
-<camel-case-component />
-<camelCaseComponent />
+<camel-case-component></camel-case-component>
+<camelCaseComponent></camelCaseComponent>
 
-<title-case-component />
-<titleCaseComponent />
-<TitleCaseComponent />
+<title-case-component></title-case-component>
+<titleCaseComponent></titleCaseComponent>
+<TitleCaseComponent></TitleCaseComponent>
 ```
 
 This means that the TitleCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
@@ -1181,7 +1181,7 @@ This means that the TitleCase is the most universal _declaration convention_ and
 If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
 
 ``` html
-<my-component/>
+<my-component />
 ```
 
 Again, this _only_ works within string templates, as self-closing custom elements are not valid HTML and your browser's native parser will not understand them.
