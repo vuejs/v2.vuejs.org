@@ -294,9 +294,17 @@ Maintenant nous pouvons passer la liste dans chaque composant répété en utili
 ``` html
 <div id="app-7">
   <ol>
-    <!-- Maintenant nous fournissons à chaque todo-item l'objet todo qu'il -->
-    <!-- représente de manière à ce que son contenu puisse être dynamique. -->
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <!--
+      Maintenant nous fournissons à chaque todo-item l'objet todo
+      qu'il représente de manière à ce que son contenu puisse être dynamique.
+      Nous avons également besoin de fournir à chaque composant une « clé »,
+      mais nous expliquerons cela plus tard.
+    -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id">
+    </todo-item>
   </ol>
 </div>
 ```
@@ -310,9 +318,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Légumes' },
-      { text: 'Fromage' },
-      { text: 'Tout ce que les humains sont supposés manger' }
+      { id: 0, text: 'Légumes' },
+      { id: 1, text: 'Fromage' },
+      { id: 2, text: 'Tout ce que les humains sont supposés manger' }
     ]
   }
 })
@@ -320,7 +328,7 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
   </ol>
 </div>
 <script>
@@ -332,9 +340,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Légumes' },
-      { text: 'Fromage' },
-      { text: 'Tout ce que les humains sont supposés manger' }
+      { id: 0, text: 'Légumes' },
+      { id: 1, text: 'Fromage' },
+      { id: 2, text: 'Tout ce que les humains sont supposés manger' }
     ]
   }
 })

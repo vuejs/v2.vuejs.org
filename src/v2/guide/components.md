@@ -428,6 +428,7 @@ Le `type` peut être l'un des constructeurs natifs suivants :
 - Function
 - Object
 - Array
+- Symbol
 
 De plus, `type` peut également être une fonction constructeur personnalisée et ainsi l'assertion sera faite avec une vérification `instanceof`.
 
@@ -1127,7 +1128,7 @@ Notez qu'en utilisant cela en tant que composant de `vue-router`, ces propriét�
 
 ### Conventions de nommage d'un composant
 
-Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-case, camelCase, ou TitleCase. Vue n'en tient pas rigueur.
+Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-case, camelCase, ou TitleCase.
 
 ``` js
 // dans une définition de composant
@@ -1141,23 +1142,41 @@ components: {
 }
 ```
 
-À l'intérieur des templates HTML cependant, vous devez utiliser les équivalences kebab-case :
+À l'intérieur des templates HTML cependant, vous devez utiliser les équivalences de la kebab-case :
 
 ``` html
-<!-- toujours utiliser kebab-case dans les templates -->
+<!-- toujours utiliser la kebab-case dans les templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <title-cased-component></title-cased-component>
 ```
 
-Quand vous utilisez des template basés sur les _chaînes de caractères_, vous n'avez pas les restrictions liées à la sensibilité à la casse du HTML. Cela signifie que même dans le template, vous pouvez référencer vos composants et props en utilisant les camelCase, TitleCase, ou kebab-case :
+Quand vous utilisez des template basés sur les _chaînes de caractères_, vous n'avez pas les restrictions liées à la sensibilité à la casse du HTML. Cela signifie que même dans le template, vous pouvez référencer vos composants et props en utilisant :
+
+- la kebab-case
+- la camelCase ou la kebab-case si le composant a été défini avec la camelCase
+- la kebab-case, la camelCase ou la TitleCase si le composant a été défini avec la TitleCase
+
+``` js
+components: {
+  'kebab-case-component': { /* ... */ },
+  camelCaseComponent: { /* ... */ },
+  TitleCaseComponent: { /* ... */ }
+}
+```
 
 ``` html
-<!-- utilisez ce que vous voulez dans les chaînes de caractères de templates ! -->
-<my-component></my-component>
-<myComponent></myComponent>
-<MyComponent></MyComponent>
+<kebab-case-component />
+
+<camel-case-component />
+<camelCaseComponent />
+
+<title-case-component />
+<titleCaseComponent />
+<TitleCaseComponent />
 ```
+
+Cela signifie que la TitleCase est la _convention de déclaration_ la plus universelle et que la kebab-case est la _convention d'utilisation_ la plus universelle.
 
 Si votre composant ne passe pas de contenu via des éléments `slot` vous pouvez même utiliser la syntaxe d'auto-fermeture `/` après le nom :
 
