@@ -1128,7 +1128,7 @@ Notez qu'en utilisant cela en tant que composant de `vue-router`, ces propriét�
 
 ### Conventions de nommage d'un composant
 
-Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-case, camelCase, ou TitleCase.
+Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-case, la camelCase ou la TitleCase.
 
 ``` js
 // dans une définition de composant
@@ -1151,7 +1151,7 @@ components: {
 <title-cased-component></title-cased-component>
 ```
 
-Quand vous utilisez des template basés sur les _chaînes de caractères_, vous n'avez pas les restrictions liées à la sensibilité à la casse du HTML. Cela signifie que même dans le template, vous pouvez référencer vos composants et props en utilisant :
+Quand vous utilisez des template basés sur les _chaînes de caractères_ cependant, vous n'avez pas les restrictions liées à la sensibilité à la casse du HTML. Cela signifie que même dans le template, vous pouvez référencer vos composants et props en utilisant :
 
 - la kebab-case
 - la camelCase ou la kebab-case si le composant a été défini avec la camelCase
