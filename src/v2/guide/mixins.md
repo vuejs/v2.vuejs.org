@@ -88,7 +88,7 @@ Note that the same merge strategies are used in `Vue.extend()`.
 
 ## Global Mixin
 
-You can also apply a mixin globally. Use caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
+You can also apply a mixin globally. Use with caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
 
 ``` js
 // inject a handler for `myOption` custom option

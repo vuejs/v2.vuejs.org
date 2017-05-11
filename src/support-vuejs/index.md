@@ -40,8 +40,6 @@ However, the amount of effort needed to maintain and develop new features for th
     <img src="/images/tmvuejs2.png">
   </a><a href="https://famebroker.com" target="_blank" style="width:135px">
     <img src="/images/famebroker.png" style="width:135px">
-  </a><a href="https://fancygrid.com" target="_blank">
-    <img src="https://fancygrid.com/logo/logo.png">
   </a><a href="https://component.io" target="_blank" style="width:140px">
     <img src="/images/component_io.png" style="width:140px">
   </a>
