@@ -60,7 +60,7 @@ Inside `v-for` blocks we have full access to parent scope properties. `v-for` al
 
 ``` html
 <ul id="example-2">
-  <li v-for="(item, index) in items">
+  <li v-for="(index, item) in items">
     {{ parentMessage }} - {{ index }} - {{ item.message }}
   </li>
 </ul>
