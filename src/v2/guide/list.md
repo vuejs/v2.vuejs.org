@@ -451,6 +451,8 @@ computed: {
 
 In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can just use a method:
 
+(Please explain why this is not feasible! This example looks the same as the previous one!)
+
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
 ```
