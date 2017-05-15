@@ -26,21 +26,21 @@ La communauté React [a été sollicitée](https://github.com/vuejs/vuejs.org/is
 
 ### Performance
 
-Vue comme React offrent des performances comparables dans la plupard des cas d'usage, avec Vue généralement légèrement en tête grâce à son implémentation du DOM Virtuel très légère. Si vous êtes intéressé par les chiffres, vous pouvez regarder ce [benchmark tier](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) se focalisant sur les performances bruts de rendu et de mise à jour. Notez que cela ne prend pas en compte les structures de composants complexes aussi cela est à titre indicatif et non comme verdict absolue.
+Vue comme React offrent des performances comparables dans la plupart des cas d'usage, avec Vue légèrement en tête en général grâce à son implémentation très légère du DOM Virtuel. Si vous êtes intéressé par les chiffres, vous pouvez regarder ce [benchmark tier](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) se focalisant sur les performances bruts de rendu et de mise à jour. Notez que cela ne prend pas en compte les structures de composants complexes, aussi cela est plus à titre indicatif que comme stricte vérité.
 
 #### Efforts d'optimisation
 
-Avec React, quand l'état d'un composant change, cela enclenche de nouveau le rendu de tous ses sous-composants, en partant de ce composant comme racine. Pour éviter les rendus inutiles de composants enfants, vous avez besoin d'un `PureComponent` ou implémenter `shouldComponentUpdate` chaque fois que possible. Vous pouvez également utiliser des structures de données immuables pour rendre vos changements d'états optimisés facilement. Cependant, dans certain cas, vous ne pourrez pas faire de telles optimisations car l'utilisation de `PureComponent` ou `shouldComponentUpdate` présuppose que la sortie de votre arbre de rendu complet est déterminée par l'utilisation des props. Si cela n'est pas pris en compte, certaines optimisations meneront à un état du DOM inconsistant.
+Avec React, quand l'état d'un composant change, cela enclenche de nouveau le rendu de tous ses sous-composants, en partant de ce composant comme racine. Pour éviter les rendus inutiles de composants enfants, vous avez besoin d'un `PureComponent` ou d'implémenter `shouldComponentUpdate` chaque fois que possible. Vous pouvez également utiliser des structures de données immuables pour rendre vos changements d'états optimisés facilement. Cependant, dans certain cas, vous ne pourrez pas faire de telles optimisations car l'utilisation de `PureComponent` ou `shouldComponentUpdate` présuppose que la sortie de votre arbre de rendu complet soit déterminée par l'utilisation des props. Si cela n'est pas pris en compte, certaines optimisations mèneront à un état inconsistant du DOM.
 
-Avec Vue, les dépendances d'un composant sont automatiquement tracées durant le rendu, ainsi le système sait précisément quels composants ont besoin d'être rafraîchis. Chaque composant peut être considéré comme ayant déjà `shouldComponentUpdate` automatiquement implémenté pour vous, sans l'utilisation d'exception pour les composants imbriqués.
+Avec Vue, les dépendances d'un composant sont automatiquement tracées durant le rendu, ainsi le système sait précisément quels composants ont besoin d'être rafraîchis. Chaque composant peut être considéré comme ayant déjà `shouldComponentUpdate` d'implémenté automatiquement pour vous, sans se souciés des exceptions pour les composants imbriqués.
 
-Au final cela permet d'éviter l'utilisation d'un large éventails d'optimisation de la part du développeur, et lui permet de se concentrer d'avantage sur l'architecture de l'application pièce par pièce.
+Au final cela permet d'éviter l'utilisation d'un large éventail d'optimisation de la part du développeur, et lui permet de se concentrer d'avantage sur l'architecture de l'application pièce par pièce.
 
 ### HTML & CSS
 
-Avec React tout est JavaScript. Pas uniquement la structure HTML exprimée via JSX, mais également le CSS qui tend également à être gérer avec du JavaScript. Cette approche a ses propres bénéfices, mais vient également avec son lot de compromis qui ne devrait pas mériter tant d'attention de chaque dévelopeur.
+Avec React tout est JavaScript. Pas seulement la structure HTML exprimée via JSX, mais également le CSS qui tend également à être gérer avec du JavaScript. Cette approche a ses propres bénéfices, mais vient également avec son lot de compromis qui ne devraient pas mériter tant d'attention de la part de chaque développeur.
 
-Vue adopte les technologies classique du Web et construit par-dessus celles-ci. Pour vous montrer ce que cela signifie, nous allons nous plonger dans plusieurs exemples.
+Vue adopte les technologies classiques du Web et construit par-dessus celles-ci. Pour vous montrer ce que cela signifie, nous allons nous plonger dans plusieurs exemples.
 
 #### JSX vs Templates
 
@@ -48,23 +48,23 @@ Avec React, tous les composants expriment leur UI à travers des fonctions de re
 
 Les fonctions de rendu de JSX ont quelques avantages :
 
-- Vous pouvez utiliser la puissance d'un langage de programmation complet (JavaScript) pour créer vos vues. Cela inclut les variables temporaires, le contrôle de flux et les valeur JavaScript directement référencée dans la portée.
+- Vous pouvez utiliser la puissance d'un langage de programmation complet (JavaScript) pour créer vos vues. Cela inclut les variables temporaires, le contrôle de flux et les valeurs JavaScript directement référencées dans la portée.
 
 - Les outils d'aide (ex. : analyse des erreurs, vérifications de typage, auto-complétion) pour JSX sont en bien des points plus avancés que ce qui est actuellement disponible dans les templates de Vue.
 
-Dans Vue, nous avons également des [fonctions de rendu](render-function.html) et même [un support de JSX](render-function.html#JSX), car parfois, nous avons besoin de cette puissance. Cependant, pour une expérience par défaut nous offrons les templates comme une alternative simple. N'importe quel HTML valide est également un template Vue valide, ce qui mêne à ces quelques avantages induits :
+Dans Vue, nous avons également des [fonctions de rendu](render-function.html) et même [un support de JSX](render-function.html#JSX), car parfois, nous avons besoin de cette puissance. Cependant, pour une expérience par défaut nous offrons les templates comme une alternative simple. N'importe quel HTML valide est également un template Vue valide, ce qui mène à ces quelques avantages induits :
 
-- Pour beaucoup de développeurs qui travail en HTML, les templates semble tout simplement plus naturel à écrire. La préférence en elle-même est quelque chose de subjectif, mais si cela rend les développeurs plus productifs alors le bénéfice est objectif.
+- Pour beaucoup de développeurs qui travail en HTML, les templates semblent tout simplement plus naturels à écrire. La préférence en elle-même est quelque chose de subjectif, mais si cela rend les développeurs plus productifs alors le bénéfice est objectif.
 
-- Les templates basé sur du HTML sont plus simple à migrer progressivement depuis une application existante qui souhaiterait tirer avantage des fonctionalités de réactivités de Vue.
+- Les templates basés sur du HTML sont plus simple à migrer progressivement depuis une application existante qui souhaiterait tirer avantage des fonctionnalités de réactivités de Vue.
 
 - Cela est également plus simple pour les designers et les développeurs moins expérimentés de comprendre et contribuer au code de base.
 
-- Vous pouvez même utiliser des pré-processeurs comme Pug (plus connu en tant que Jade) pour créer vos templates de Vue.
+- Vous pouvez même utiliser des pré-processeurs comme PUG (plus connu en tant que Jade) pour créer vos templates de Vue.
 
-Beaucoup argumente que vous devez apprendre un autre language spécifique pour écrire vos templates, nous pensons que cette différence est superficielle. Premièrement, JSX ne signifie pas que les utilisateur ne doivent rien apprendre en plus. Cette syntaxe additionnelle au dessus du JavaScript à beau être simple à apprendre pour quiconque connait le JavaScript, il n'est pas vrai de dire qu'elle ne nécéssite pas un apprentissage supplémentaire. De la même manière, les template sont juste une syntaxe additionnelle au dessus du HTML et qui on un coût d'apprentissage assez bas pour ceux connaissant déjà le HTML. Avec cet autre langage spécifique nous sommes aussi capable d'aider les utilisateurs à faire plus de choses avec moins de code (par ex. les modificateurs `v-on`). La même tache demanderait bien plus de code en utilisant une syntaxe JSX ou des fonctions de rendu.
+Beaucoup argumente que vous devez apprendre un langage spécifique pour écrire vos templates, nous pensons que cette différence est superficielle. Premièrement, JSX ne signifie pas que les utilisateurs ne doivent rien apprendre en plus. Cette syntaxe additionnelle au dessus du JavaScript à beau être simple à apprendre pour quiconque connait le JavaScript, il n'est pas vrai de dire qu'elle ne nécessite pas un apprentissage supplémentaire. De la même manière, les templates sont juste une syntaxe additionnelle au dessus du HTML et qui ont un coût d'apprentissage assez bas pour ceux connaissant déjà le HTML. Avec cet autre langage spécifique nous sommes aussi capable d'aider les utilisateurs à faire plus de choses avec moins de code (par ex. les modificateurs `v-on`). La même tache demanderait bien plus de code en utilisant une syntaxe JSX ou des fonctions de rendu.
 
-À un haut niveau, nous pouvons diviser les composants en deux catégories : ceux de présentation et ceux de logique. Nous recommandons d'utiliser les templates pour les composants de présentation et les fonctions de rendu (ou JSX) pour les composants de logique. Le pourcentage de chaque type dépendant du type d'application que vous construisez bien qu'en général nous trouvions plus de composants de présentation.
+À un haut niveau, nous pouvons diviser les composants en deux catégories : ceux de présentation et ceux de logique. Nous recommandons d'utiliser les templates pour les composants de présentation et les fonctions de rendu (ou JSX) pour les composants de logique. Le pourcentage de chaque type dépend du type d'application que vous construisez, bien qu'en général nous trouvions plus de composants de présentation.
 
 #### CSS à portée limitée au composant
 
@@ -164,17 +164,17 @@ Nous avons une section dédiée pour le nouvel Angular car c'est vraiment un fra
 
 ### TypeScript
 
-Angular demande essentiellement l'utilisation de TypeScript, basant toutes sa documentation et apprentissage en se basant sur des ressources en TypeScript. TypeScript a ses propres bénéfices ; la vérification de type peut-être très utile dans de grosses applications, et peut-être un grand gain de productivité pour les développeurs venant du monde Java ou C#.
+Angular demande essentiellement l'utilisation de TypeScript, basant toute sa documentation et son apprentissage sur des ressources en TypeScript. TypeScript a ses propres bénéfices ; la vérification de type peut-être très utile dans de grosses applications, et peut-être un grand gain de productivité pour les développeurs venant du monde Java ou C#.
 
-Cependant, tout le monde ne souhaite pas utiliser TypeScript. Dans beaucoup de cas d'usage simple, introduire un système de typage est ajoute plus de complexité qu'il n'offre un gain de productivité. Dans ces cas vous vous en sortirez mieux avec Vue, car utiliser Angular sans TypeScript peut être un vrai challenge.
+Cependant, tout le monde ne souhaite pas utiliser TypeScript. Dans beaucoup de cas d'usage simple, introduire un système de typage ajoute une plus grande complexité qu'il n'offre un gain de productivité. Dans ces cas, vous vous en sortirez mieux avec Vue, car utiliser Angular sans TypeScript peut être un vrai challenge.
 
-En fait, sans être profondément intégré à TypeScript comme peut l'être Angular, Vue offre également un [typage officiel](https://github.com/vuejs/vue/tree/dev/types) et des [décorateurs officiels](https://github.com/vuejs/vue-class-component) à ceux qui souhaiteraient utiliser TypeScript avec Vue. Nous collaborons également activement avec les équipes de TypeScript et de VSCode chez Microsoft pour améliorer l'expérience de TS/IDE pour les utilisateurs de TS et de Vue.
+Pour finir, sans être profondément intégré à TypeScript comme peut l'être Angular, Vue offre également un [typage officiel](https://github.com/vuejs/vue/tree/dev/types) et des [décorateurs officiels](https://github.com/vuejs/vue-class-component) à ceux qui souhaiteraient utiliser TypeScript avec Vue. Nous collaborons également activement avec les équipes de TypeScript et de VSCode chez Microsoft pour améliorer l'expérience de TS/IDE pour les utilisateurs de TS et de Vue.
 
 ### Taille et performance
 
 En termes de performance, les deux frameworks sont exceptionnellement rapides et il n'y a pas assez de données de cas réels pour se faire une idée tranchée. Cependant, si vous êtes déterminés à comparer des valeurs, Vue 2.0 semble devant Angular 2 selon le [benchmark d'une tierce-partie](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
 
-Les versions récentes d'Angular, avec une *compilation AOT* et du *tree-shaking* sont capable de diminuer leur taille considérablement. Cependant, un projet complet Vue 2 avec Vuex + vue-router inclus (~30ko gzippé) est toujours significativement plus légé qu'une application AOT compilée et générée par `angular-cli` (~130ko gzippée).
+Les versions récentes d'Angular, avec une *compilation AOT* et du *tree-shaking* sont capables de diminuer leurs tailles considérablement. Cependant, un projet complet Vue 2, avec Vuex et vue-router inclus (~30ko gzippé), est toujours significativement plus léger qu'une application AOT compilée et générée par `angular-cli` (~130ko gzippée).
 
 ### Flexibilité
 
@@ -184,7 +184,7 @@ Vue impose beaucoup moins de choix comparé à Angular 2, offrant un support off
 
 Pour commencer avec Vue, vous avez seulement besoin de connaissances en HTML et JavaScript ES5 (c-à-d JavaScript de base). Avec ces compétences de base, vous pouvez commencer à construire des applications complexes sans perdre des jours à lire [la documentation](https://vuejs.org/v2/guide/).
 
-La courbe d'apprentissage de Angular est plus raide. La surface API du framework est simplement plus grosse et les utilisateurs ont besoin de se familiariser eux-même avec beaucoups de concepts avant d'être productif. Manifestement, la complexité d'Angular est largement dû au fait qu'elle sont conçu uniquement pour rémpondre à de large et complexe applications rendant ainsi le framework bien plus difficile à utiliser pour des développeurs moins expérimentés.
+La courbe d'apprentissage de Angular est plus raide. La surface API du framework est simplement plus grosse et les utilisateurs ont besoin de se familiariser eux-même avec beaucoup de concepts avant d'être productif. Manifestement, la complexité d'Angular est largement dû au fait que son design est conçu uniquement pour répondre à de grandes et complexes applications rendant ainsi le framework bien plus difficile à utiliser pour des développeurs moins expérimentés.
 
 ## Ember
 
