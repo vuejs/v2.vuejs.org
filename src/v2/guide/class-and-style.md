@@ -200,5 +200,5 @@ When you use a CSS property that requires [vendor prefixes](https://developer.mo
 Starting in 2.3 you can provide an array of multiple (prefixed) values to a style property, for example:
 
 ``` html
-<div :style="{ display: ["-webkit-box", "-ms-flexbox", "flex"] }">
+<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
 ```

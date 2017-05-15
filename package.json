@@ -6,7 +6,7 @@
     "version": "3.2.2"
   },
   "dependencies": {
-    "hexo": "^3.2.2",
+    "hexo": "3.2.2",
     "hexo-deployer-git": "0.1.0",
     "hexo-generator-alias": "git+https://github.com/chrisvfritz/vuejs.org-hexo-generator-alias.git",
     "hexo-generator-archive": "^0.1.4",

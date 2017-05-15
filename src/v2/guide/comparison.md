@@ -24,148 +24,47 @@ With that said, it's inevitable that the comparison would appear biased towards 
 
 The React community [has been instrumental](https://github.com/vuejs/vuejs.org/issues/364) in helping us achieve this balance, with special thanks to Dan Abramov from the React team. He was extremely generous with his time and considerable expertise to help us refine this document until we were [both happy](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740) with the final result.
 
-### Performance Profiles
+### Performance
 
-In every real-world scenario that we've tested so far, Vue outperforms React by a fair margin. If your eyebrows are raising right now, read further. We'll breakdown why (and even include a benchmark developed in collaboration with the React team).
+Both React and Vue offer comparable performance in most commonly seen use cases, with Vue usually slightly head due to its lighter-weight Virtual DOM implementation. If you are interested in numbers, you can check out this [3rd party benchmark](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) which focuses on raw rendering/updating performance. Note that this does not take complex component structures into account, so should only be considered a reference rather than a verdict.
 
-#### Render Performance
+#### Optimization Efforts
 
-When rendering UI, manipulating the DOM is typically the most expensive operation and unfortunately, no library can make those raw operations faster. The best we can do is:
+In React, when a component's state changes, it triggers the re-render of the entire component sub-tree, starting at that component as root. To avoid unnecessary re-renders of child components, you need to either use `PureComponent` or implement `shouldComponentUpdate` whenever you can. You may also need to use immutable data structures to make your state changes more optimization-friendly. However, in certain cases you may not be able to rely on such optimizations because `PureComponent/shouldComponentUpdate` assumes the entire sub tree's render output is determined by the props of the current component. If that is not the case, then such optimizations may lead to inconsistent DOM state.
 
-1. Minimize the number of necessary DOM mutations. Both React and Vue use virtual DOM abstractions to accomplish this and both implementations work about equally well.
+In Vue, a component's dependencies are automatically tracked during its render, so the system knows precisely which components actually need to re-render when state changes. Each component can be considered to have `shouldComponentUpdate` automatically implemented for you, without the nested component caveats.
 
-2. Add as little overhead (pure JavaScript computations) as possible on top of those DOM manipulations. This is an area where Vue and React differ.
-
-The JavaScript overhead is directly related to the mechanisms of computing the necessary DOM operations. Both Vue and React utilize Virtual DOM to achieve that, but Vue's Virtual DOM implementation (a fork of [snabbdom](https://github.com/snabbdom/snabbdom)) is much lighter-weight and thus introduces less overhead than React's.
-
-Both Vue and React also offer functional components, which are stateless and instanceless - and therefore, require less overhead. When these are used in performance-critical situations, Vue is once again faster. To demonstrate this, we built a simple [benchmark project](https://github.com/chrisvfritz/vue-render-performance-comparisons) that just renders 10,000 list items 100 times. We encourage you to try it yourself, as the results will vary depending on the hardware and browser used - and actually, they'll vary even between runs due to the nature of JavaScript engines.
-
-If you're feeling lazy though, below are the numbers from one run in Chrome 52 on a 2014 MacBook Air. To avoid cherry-picking, both benchmarks were actually run 20 separate times, with results from the best runs included below:
-
-{% raw %}
-<table class="benchmark-table">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Vue</th>
-      <th>React</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Fastest</th>
-      <td>23ms</td>
-      <td>63ms</td>
-    </tr>
-    <tr>
-      <th>Median</th>
-      <td>42ms</td>
-      <td>81ms</td>
-    </tr>
-    <tr>
-      <th>Average</th>
-      <td>51ms</td>
-      <td>94ms</td>
-    </tr>
-    <tr>
-      <th>95th Perc.</th>
-      <td>73ms</td>
-      <td>164ms</td>
-    </tr>
-    <tr>
-      <th>Slowest</th>
-      <td>343ms</td>
-      <td>453ms</td>
-    </tr>
-  </tbody>
-</table>
-{% endraw %}
-
-#### Update Performance
-
-In React, when a component's state changes, it triggers the re-render of the entire component sub-tree, starting at that component as root. To avoid unnecessary re-renders of child components, you need to implement `shouldComponentUpdate` everywhere and use immutable data structures. In Vue, a component's dependencies are automatically tracked during its render, so the system knows precisely which components actually need to re-render.
-
-This means updates in unoptimized Vue will be much faster than unoptimized React and actually, due to the improved render performance in Vue, even fully-optimized React will usually be slower than Vue is out-of-the-box.
-
-#### In Development
-
-While performance in production is the more important metric as it is directly associated with end-user experience, performance in development still matters because it is associated with the developer experience.
-
-Both Vue and React remain fast enough in development for most normal applications. However, when prototyping high frame-rate data visualizations or animations, we've seen cases of Vue handling 10 frames per second in development while React dropping to about 1 frame per second.
-
-This is due to React's many heavy invariant checks in development mode, which help it to provide many excellent warnings and error messages. We agree that these are also important in Vue, but have tried to keep a closer eye on performance while we implement these checks.
+Overall this removes the need for a whole class of performance optimizations from the developer's plate, and allows them to focus more on building the app itself as it scales.
 
 ### HTML & CSS
 
-In React, everything is just JavaScript, which sounds very simple and elegant - until you dig deeper. The unfortunate reality is that reinventing HTML and CSS within JavaScript, while solving some issues of the traditional model, can also cause pain of its own. In Vue, we instead embrace web technologies and build on top of them. To show you what that means, we'll dive into some examples.
+In React, everything is just JavaScript. Not only are HTML structures expressed via JSX, the recent trends also tend to put CSS management inside JavaScript as well. This approach has its own benefits, but also comes with various trade-offs that may not seem worthwhile for every developer.
+
+Vue embraces classic web technologies and builds on top of them. To show you what that means, we'll dive into some examples.
 
 #### JSX vs Templates
 
-In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript. Here's an example, [vetted by the React community](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684):
-
-``` jsx
-render () {
-  let { items } = this.props
-
-  let children
-  if (items.length > 0) {
-    children = (
-      <ul>
-        {items.map(item =>
-          <li key={item.id}>{item.name}</li>
-        )}
-      </ul>
-    )
-  } else {
-    children = <p>No items found.</p>
-  }
-
-  return (
-    <div className='list-container'>
-      {children}
-    </div>
-  )
-}
-```
+In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript.
 
 Render functions with JSX have a few advantages:
 
-- You can use the power of a full programming language (JavaScript) to build your view.
+- You can leverage the power of a full programming language (JavaScript) to build your view. This includes temporary variables, flow controls, and directly referencing JavaScript values in scope.
+
 - The tooling support (e.g. linting, type checking, editor autocompletion) for JSX is in some ways more advanced than what's currently available for Vue templates.
 
-In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes you need that power. However, as the default experience we offer templates as a simpler alternative:
+In Vue, we also have [render functions](render-function.html) and even [support JSX](render-function.html#JSX), because sometimes you do need that power. However, as the default experience we offer templates as a simpler alternative. Any valid HTML is also a valid Vue template, and this leads to a few advantages of its own:
 
-``` html
-<template>
-  <div class="list-container">
-    <ul v-if="items.length">
-      <li v-for="item in items" :key="item.id">
-        {{ item.name }}
-      </li>
-    </ul>
-    <p v-else>No items found.</p>
-  </div>
-</template>
-```
+- For many developers who have been working with HTML, templates simply feel more natural to read and write. The preference itself can be somewhat subjective, but if it makes the developer more productive then the benefit is objective.
 
-A few advantages here:
+-  HTML-based templates make it much easier to progressively migrate existing applications to take advantage of Vue's reactivity features.
 
-- Fewer implementation and stylistic decisions have to be made while writing a template
-- A template will always be declarative
-- Any valid HTML is valid in a template
-- It reads more like English (e.g. for each item in items)
-- Advanced versions of JavaScript are not required to increase readability
+- It also makes it much easier for designers and less experienced developers to parse and contribute to the codebase.
 
-This is not only much easier for the developer that's writing it, but designers and less experienced developers will also find it much easier parsing and contributing code.
+- You can even use pre-processors such as Pug (formerly known as Jade) to author your Vue templates.
 
-An additional benefit of HTML-compliant templates is that you can use pre-processors such as Pug (formerly known as Jade) to author your Vue templates:
+Some argue that you'd need to learn an extra DSL (Domain-Specific Language) to be able to write templates - we believe this difference is superficial at best. First, JSX doesn't mean the user don't need to learn anything - it's additional syntax on top of plain JavaScript, so it's easy for anyone familar with JavaScript to learn, but saying it's essentially free is misleading. Similarly, template is just additional syntax on top of plain HTML and thus has very low learning cost for those who are already familiar with HTML. With the DSL we are also able to help the user get more done with less code (e.g. `v-on` modifiers). The same task can involve a lot more code when using plain JSX or render functions.
 
-``` pug
-div.list-container
-  ul(v-if="items.length")
-    li(v-for="item in items") {{ item.name }}
-  p(v-else) No items found.
-```
+On a higher level, we can divide components into two categories: presentational ones and logical ones. We recommend using templates for presentational components and render function / JSX for logical ones. The percentage of these components depends on the type of app you are building, but in general we find presentational ones to be much more common.
 
 #### Component-Scoped CSS
 
@@ -229,7 +128,7 @@ At this moment, Weex is still in active development and is not as mature and bat
 
 MobX has become quite popular in the React community and it actually uses a nearly identical reactivity system to Vue. To a limited extent, the React + MobX workflow can be thought of as a more verbose Vue, so if you're using that combination and are enjoying it, jumping into Vue is probably the next logical step.
 
-## Angular 1
+## AngularJS (Angular 1)
 
 Some of Vue's syntax will look very similar to Angular (e.g. `v-if` vs `ng-if`). This is because there were a lot of things that Angular got right and these were an inspiration for Vue very early in its development. There are also many pains that come with Angular however, where Vue has attempted to offer a significant improvement.
 
@@ -259,21 +158,23 @@ Vue doesn't suffer from this at all because it uses a transparent dependency-tra
 
 Interestingly, there are quite a few similarities in how Angular 2 and Vue are addressing these Angular 1 issues.
 
-## Angular 2
+## Angular (Formerly known as Angular 2)
 
-We have a separate section for Angular 2 because it really is a completely new framework. For example, it features a first-class component system, many implementation details have been completely rewritten, and the API has also changed quite drastically.
+We have a separate section for the new Angular because it really is a completely different framework from Angular 1. For example, it features a first-class component system, many implementation details have been completely rewritten, and the API has also changed quite drastically.
 
 ### TypeScript
 
-While Angular 1 could be used for smaller applications, Angular 2 has shifted focus to best facilitate large enterprise applications. As part of this, it almost requires TypeScript, which can be very useful for developers that desire the type safety of languages such as Java and C#.
+Angular essentially requires using TypeScript, given that almost all its documentation and learning resources are TypeScript-based. TypeScript has its obvious benefits - static type checking can be very useful for large-scale applications, and can be a big productivity boost for developers which backgrounds in Java and C#.
 
-Vue is also well-suited to [enterprise environments](https://github.com/vuejs/awesome-vue#enterprise-usage) and can even be used with TypeScript via our [official typings](https://github.com/vuejs/vue/tree/dev/types) and [official decorator](https://github.com/vuejs/vue-class-component), though it's definitely optional in our case.
+However, not everyone wants to use TypeScript. In many smaller-scale use cases, introducing a type system may result in more overhead than productivity gain. In those cases you'd be better off going with Vue instead, since using Angular without TypeScript can be challenging.
+
+Finally, although not as deeply integrated with TypeScript as Angular is, Vue also offers [official typings](https://github.com/vuejs/vue/tree/dev/types) and [official decorator](https://github.com/vuejs/vue-class-component) for those who wish to use TypeScript with Vue. We are also actively collaborating with the TypeScript and VSCode teams at Microsoft to improve the TS/IDE experience for Vue + TS users.
 
 ### Size and Performance
 
 In terms of performance, both frameworks are exceptionally fast and there isn't enough data from real world use cases to make a verdict. However if you are determined to see some numbers, Vue 2.0 seems to be ahead of Angular 2 according to this [3rd party benchmark](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
 
-Size wise, although Angular 2 with offline compilation and tree-shaking is able to get its size down considerably, a full-featured Vue 2.0 with compiler included (23kb) is still lighter than a tree-shaken bare-bone example of Angular 2 (50kb). And do note the Angular 2 app's size is small due to tree-shaking, which removes code for features that you are not using. It will eventually grow back to its actual size as you import and use more features from the framework.
+Recent versions of Angular, with AOT compilation and tree-shaking, have been able to get its size down considerably. However, a full-featured Vue 2 project with Vuex + vue-router included (~30kb gzipped) is still significantly lighter than an out-of-the-box, AOT-compiled application generated by `angular-cli` (~130kb gzipped).
 
 ### Flexibility
 
@@ -283,7 +184,7 @@ Vue is much less opinionated than Angular 2, offering official support for a var
 
 To get started with Vue, all you need is familiarity with HTML and ES5 JavaScript (i.e. plain JavaScript). With these basic skills, you can start building non-trivial applications within less than a day of reading [the guide](./).
 
-Angular 2's learning curve is much steeper. Even without TypeScript, their [Quickstart guide](https://angular.io/docs/js/latest/quickstart.html) starts out with an app that uses ES2015 JavaScript, NPM with 18 dependencies, 4 files, and over 3,000 words to explain it all - just to say Hello World. It wouldn't be an exaggeration to say that [Vue's Hello World](https://jsfiddle.net/chrisvfritz/50wL7mdz/) is a little bit simpler. Maybe because of that, we don't even need to dedicate a whole page in the guide to it.
+Angular's learning curve is much steeper. The API surface of the framework is simply huge and the user will need to familiarize yourself with a lot more concepts before getting productive. Obviously, the complexity of Angular is largely due to its design goal of targeting only large, complex applications - but that does make the framework a lot more difficult for less-experienced developers to pick up.
 
 ## Ember
 
