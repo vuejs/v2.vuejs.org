@@ -1,5 +1,5 @@
 ---
-title: Comparaison avec les autres frameworks
+title: Comparaison avec les autres frameworks (à mettre à jour avec https://github.com/vuejs/vuejs.org/commit/a26f6b69be328e2dac23c871cff86cdaf3595e41)
 type: guide
 order: 29
 ---
