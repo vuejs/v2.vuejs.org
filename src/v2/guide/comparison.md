@@ -24,148 +24,47 @@ Ceci étant dit, il est inévitable que la comparaison puisse paraître biaisée
 
 La communauté React [a été sollicitée](https://github.com/vuejs/vuejs.org/issues/364) pour nous aider à atteindre cette neutralité, avec des remerciements en particulier à Dan Abramov de l'équipe React. Il a été extrêmement généreux en accordant son temps et son expertise pour nous aider à remanier ce document jusqu'à ce que le résultat final [convienne](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740) aux deux parties.
 
-### Profils de performance
+### Performance
 
-Dans tous les scénarios en situation réelle que nous avons testés à ce jour, Vue surpasse React avec une bonne marge. Si vos sourcils viennent tout juste de se relever, lisez plus loin. Nous allons décortiquer pourquoi (et même inclure un *benchmark* développé en collaboration avec l'équipe de React).
+Vue comme React offrent des performances comparables dans la plupard des cas d'usage, avec Vue généralement légèrement en tête grâce à son implémentation du DOM Virtuel très légère. Si vous êtes intéressé par les chiffres, vous pouvez regarder ce [benchmark tier](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) se focalisant sur les performances bruts de rendu et de mise à jour. Notez que cela ne prend pas en compte les structures de composants complexes aussi cela est à titre indicatif et non comme verdict absolue.
 
-#### Performance de rendu
+#### Efforts d'optimisation
 
-Quand on fait le rendu d'une UI, la manipulation du DOM est en général l'opération la plus coûteuse et malheureusement, aucune bibliothèque ne peut rendre ces opérations plus rapides. Le mieux que nous puissions faire est :
+Avec React, quand l'état d'un composant change, cela enclenche de nouveau le rendu de tous ses sous-composants, en partant de ce composant comme racine. Pour éviter les rendus inutiles de composants enfants, vous avez besoin d'un `PureComponent` ou implémenter `shouldComponentUpdate` chaque fois que possible. Vous pouvez également utiliser des structures de données immuables pour rendre vos changements d'états optimisés facilement. Cependant, dans certain cas, vous ne pourrez pas faire de telles optimisations car l'utilisation de `PureComponent` ou `shouldComponentUpdate` présuppose que la sortie de votre arbre de rendu complet est déterminée par l'utilisation des props. Si cela n'est pas pris en compte, certaines optimisations meneront à un état du DOM inconsistant.
 
-1. Minimiser le nombre de changements nécessaires dans le DOM. React et Vue utilisent tous les deux un DOM virtuel pour accomplir cela et les deux implémentations fonctionnent aussi bien l'une que l'autre.
+Avec Vue, les dépendances d'un composant sont automatiquement tracées durant le rendu, ainsi le système sait précisément quels composants ont besoin d'être rafraîchis. Chaque composant peut être considéré comme ayant déjà `shouldComponentUpdate` automatiquement implémenté pour vous, sans l'utilisation d'exception pour les composants imbriqués.
 
-2. Ajouter une surcharge minimale (en purs calculs JavaScript) par-dessus ces manipulations du DOM. C'est là que Vue et React sont différents.
-
-La surcharge JavaScript est directement reliée aux mécanismes calculant les opérations nécessaires sur le DOM. Vue et React utilisent un DOM Virtuel pour y parvenir, mais l'implémentation du DOM Virtuel par Vue (un *fork* de [snabbdom](https://github.com/snabbdom/snabbdom)) est bien plus légère et par conséquent introduit moins de surcharge que celle de React.
-
-Vue comme React offrent également des composants fonctionnels, qui sont sans état et sans instanciation — et donc, requièrent moins de ressources. Quand ils sont utilisés dans des situations où la performance est critique, Vue est là encore plus rapide. Pour le démontrer, nous avons créé un simple [projet de benchmark](https://github.com/chrisvfritz/vue-render-performance-comparisons) qui fait le rendu de 10000 éléments de liste 100 fois. Nous vous encourageons à l'essayer vous-même, sachant que les résultats varient en fonction de la machine et du navigateur utilisé — et en réalité, ils varient même entre chaque exécution du fait de la nature même des moteurs JavaScript.
-
-Si vous n'en avez pas le courage, voici ci-dessous les résultats d'une des exécutions avec Chrome 52 sur un MacBook Air 2014. Pour éviter des résultats triés sur le volet, les deux benchmarks ont été exécutés à 20 reprises séparément, et nous affichons ci-dessous les meilleurs résultats d'exécution :
-
-{% raw %}
-<table class="benchmark-table">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Vue</th>
-      <th>React</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Plus rapide</th>
-      <td>23ms</td>
-      <td>63ms</td>
-    </tr>
-    <tr>
-      <th>Médiane</th>
-      <td>42ms</td>
-      <td>81ms</td>
-    </tr>
-    <tr>
-      <th>Moyenne</th>
-      <td>51ms</td>
-      <td>94ms</td>
-    </tr>
-    <tr>
-      <th>à 95 %</th>
-      <td>73ms</td>
-      <td>164ms</td>
-    </tr>
-    <tr>
-      <th>Plus lent</th>
-      <td>343ms</td>
-      <td>453ms</td>
-    </tr>
-  </tbody>
-</table>
-{% endraw %}
-
-#### Performance au rafraîchissement
-
-Avec React, quand l'état d'un composant change, cela enclenche de nouveau le rendu de tous ses sous-composants, en partant de ce composant comme racine. Pour éviter les rendus inutiles de composants enfants, vous devez implémenter `shouldComponentUpdate` partout et utiliser des structures de données immuables. Avec Vue, les dépendances d'un composant sont automatiquement tracées durant le rendu, ainsi le système sait précisément quels composants ont besoin d'être rafraîchis.
-
-Cela signifie que les rafraîchissements dans un composant Vue non optimisé seront plus rapides que ceux d'un composant React non optimisé. En fait, grâce au rendu performant de Vue, même un React pleinement optimisé est plus lent que Vue sans optimisation.
-
-#### En développement
-
-Bien que la performance en production soit la métrique la plus importante car directement en corrélation avec l'expérience de l'utilisateur final, la performance en développement est aussi importante car associée à l'expérience du développeur.
-
-Vue et React restent suffisamment rapides en développement pour la plupart des applications normales. Cependant, quand vous avez besoin d'un taux de rafraîchissement élevé pour de la visualisation de données ou de l'animation, nous avons observé des cas où Vue supportait 10 images par seconde en développement là où React tombait à environ 1 image par seconde.
-
-Cela est dû aux nombreuses et lourdes vérifications faites régulièrement par React en mode développement qui aident à fournir d'excellents messages d'avertissement et d'erreur. Nous sommes d'accord pour dire que cela est aussi important pour Vue, mais nous avons essayé de garder un œil sur la performance pendant que nous implémentions ces vérifications.
+Au final cela permet d'éviter l'utilisation d'un large éventails d'optimisation de la part du développeur, et lui permet de se concentrer d'avantage sur l'architecture de l'application pièce par pièce.
 
 ### HTML & CSS
 
-Avec React tout est JavaScript, ce qui paraît simple et élégant — jusqu'à ce que vous creusiez plus profondément. La réalité, malheureusement, est que réinventer HTML et CSS en JavaScript résout certains problèmes du modèle traditionnel, mais en créé également d'autres. Avec Vue, nous préférons adopter les technologies du Web et construire par-dessus celles-ci. Pour vous montrer ce que cela signifie, nous allons nous plonger dans plusieurs exemples.
+Avec React tout est JavaScript. Pas uniquement la structure HTML exprimée via JSX, mais également le CSS qui tend également à être gérer avec du JavaScript. Cette approche a ses propres bénéfices, mais vient également avec son lot de compromis qui ne devrait pas mériter tant d'attention de chaque dévelopeur.
+
+Vue adopte les technologies classique du Web et construit par-dessus celles-ci. Pour vous montrer ce que cela signifie, nous allons nous plonger dans plusieurs exemples.
 
 #### JSX vs Templates
 
-Avec React, tous les composants expriment leur UI à travers des fonctions de rendu utilisant JSX, une syntaxe déclarative comme XML qui fonctionne au sein de JavaScript. En voici un exemple ici, [approuvé par la communauté React](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684).
-
-``` jsx
-render () {
-  let { items } = this.props
-
-  let children
-  if (items.length > 0) {
-    children = (
-      <ul>
-        {items.map(item =>
-          <li key={item.id}>{item.name}</li>
-        )}
-      </ul>
-    )
-  } else {
-    children = <p>No items found.</p>
-  }
-
-  return (
-    <div className='list-container'>
-      {children}
-    </div>
-  )
-}
-```
+Avec React, tous les composants expriment leur UI à travers des fonctions de rendu utilisant JSX, une syntaxe déclarative comme XML qui fonctionne au sein de JavaScript.
 
 Les fonctions de rendu de JSX ont quelques avantages :
 
-- Vous pouvez utiliser la puissance d'un langage de programmation complet (JavaScript) pour créer vos vues.
+- Vous pouvez utiliser la puissance d'un langage de programmation complet (JavaScript) pour créer vos vues. Cela inclut les variables temporaires, le contrôle de flux et les valeur JavaScript directement référencée dans la portée.
+
 - Les outils d'aide (ex. : analyse des erreurs, vérifications de typage, auto-complétion) pour JSX sont en bien des points plus avancés que ce qui est actuellement disponible dans les templates de Vue.
 
-Dans Vue, nous avons également des [fonctions de rendu](https://vuejs.org/v2/guide/render-function.html) et même [un support de JSX](https://vuejs.org/v2/guide/render-function.html#JSX), car parfois, nous avons besoin de cette puissance. Cependant, pour une expérience par défaut nous offrons les templates comme une alternative simple :
+Dans Vue, nous avons également des [fonctions de rendu](render-function.html) et même [un support de JSX](render-function.html#JSX), car parfois, nous avons besoin de cette puissance. Cependant, pour une expérience par défaut nous offrons les templates comme une alternative simple. N'importe quel HTML valide est également un template Vue valide, ce qui mêne à ces quelques avantages induits :
 
-``` html
-<template>
-  <div class="list-container">
-    <ul v-if="items.length">
-      <li v-for="item in items" :key="item.id">
-        {{ item.name }}
-      </li>
-    </ul>
-    <p v-else>No items found.</p>
-  </div>
-</template>
-```
+- Pour beaucoup de développeurs qui travail en HTML, les templates semble tout simplement plus naturel à écrire. La préférence en elle-même est quelque chose de subjectif, mais si cela rend les développeurs plus productifs alors le bénéfice est objectif.
 
-Quelques avantages ici :
+- Les templates basé sur du HTML sont plus simple à migrer progressivement depuis une application existante qui souhaiterait tirer avantage des fonctionalités de réactivités de Vue.
 
-- Moins d'implémentations et de décisions sur le style doivent être faites lors de l'écriture du template.
-- Un template est toujours déclaratif.
-- Tout HTML valide est un template valide.
-- Cela se lit plus naturellement en anglais (ex. : for each item in items).
-- Une version avancée de JavaScript n'est pas requise pour accroître la lisibilité.
+- Cela est également plus simple pour les designers et les développeurs moins expérimentés de comprendre et contribuer au code de base.
 
-Non seulement c'est bien plus facile pour le développeur qui les écrit, mais les designers et développeurs moins expérimentés trouveront également bien plus facile d'analyser et de contribuer au code.
+- Vous pouvez même utiliser des pré-processeurs comme Pug (plus connu en tant que Jade) pour créer vos templates de Vue.
 
-Un autre bénéfice des templates respectant le HTML est que vous pouvez utiliser des préprocesseurs comme Pug (anciennement Jade) pour créer vos templates Vue :
+Beaucoup argumente que vous devez apprendre un autre language spécifique pour écrire vos templates, nous pensons que cette différence est superficielle. Premièrement, JSX ne signifie pas que les utilisateur ne doivent rien apprendre en plus. Cette syntaxe additionnelle au dessus du JavaScript à beau être simple à apprendre pour quiconque connait le JavaScript, il n'est pas vrai de dire qu'elle ne nécéssite pas un apprentissage supplémentaire. De la même manière, les template sont juste une syntaxe additionnelle au dessus du HTML et qui on un coût d'apprentissage assez bas pour ceux connaissant déjà le HTML. Avec cet autre langage spécifique nous sommes aussi capable d'aider les utilisateurs à faire plus de choses avec moins de code (par ex. les modificateurs `v-on`). La même tache demanderait bien plus de code en utilisant une syntaxe JSX ou des fonctions de rendu.
 
-``` pug
-div.list-container
-  ul(v-if="items.length")
-    li(v-for="item in items") {{ item.name }}
-  p(v-else) No items found.
-```
+À un haut niveau, nous pouvons diviser les composants en deux catégories : ceux de présentation et ceux de logique. Nous recommandons d'utiliser les templates pour les composants de présentation et les fonctions de rendu (ou JSX) pour les composants de logique. Le pourcentage de chaque type dépendant du type d'application que vous construisez bien qu'en général nous trouvions plus de composants de présentation.
 
 #### CSS à portée limitée au composant
 
@@ -229,7 +128,7 @@ Actuellement, Weex est toujours activement en développement et n'est pas aussi 
 
 MobX est devenu populaire dans la communauté React et utilise actuellement un système de réactivité identique à Vue. Dans une certaine mesure, le workflow React + MobX peut être considéré comme plus verbeux que Vue. Donc si vous utilisez cette combinaison et qu'elle vous plaît, passer sur Vue est probablement la prochaine étape logique.
 
-## Angular 1
+## AngularJS (Angular 1)
 
 Une partie de la syntaxe de Vue ressemblera très fortement à celle de Angular (ex : `v-if` vs `ng-if`). Cela est dû au fait qu'il y a beaucoup de choses pour lesquelles Angular a vu juste et que cela a été une source d'inspiration pour Vue très tôt dans son développement. Cependant, Angular vient également avec de nombreux soucis. C'est là que Vue a tenté d'apporter une amélioration significative.
 
@@ -259,9 +158,9 @@ Vue ne souffre pas de tout ça car il utilise un système transparent de suivi d
 
 Il est intéressant de noter qu'il y a quelques similitudes dans la manière dont Angular 2 et Vue corrigent ces problèmes propres à Angular 1.
 
-## Angular 2
+## Angular (Plus connu sous le nom de Angular 2)
 
-Nous avons une section dédiée à Angular 2 car c'est vraiment un framework complètement nouveau. Par exemple, il comporte un système de composants de première classe, beaucoup de détails d'implémentation ont été complètement réécrits, et l'API a également changé assez drastiquement.
+Nous avons une section dédiée pour le nouvel Angular car c'est vraiment un framework complètement différent d'AngularJS. Par exemple, il comporte un système de composants de première classe, beaucoup de détails d'implémentation ont été complètement réécrits, et l'API a également changé assez drastiquement.
 
 ### TypeScript
 
