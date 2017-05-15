@@ -200,5 +200,5 @@ Quand vous utilisez une propriété CSS qui nécessite un [préfixe vendeur](htt
 Introduit avec la 2.3, vous pouvez fournir de multiples valeurs de préfixes à une propriété style, par exemple :
 
 ``` html
-<div :style="{ display: ["-webkit-box", "-ms-flexbox", "flex"] }">
+<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
 ```
