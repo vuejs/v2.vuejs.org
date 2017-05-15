@@ -160,19 +160,21 @@ Il est intéressant de noter qu'il y a quelques similitudes dans la manière don
 
 ## Angular (Plus connu sous le nom de Angular 2)
 
-Nous avons une section dédiée pour le nouvel Angular car c'est vraiment un framework complètement différent d'AngularJS. Par exemple, il comporte un système de composants de première classe, beaucoup de détails d'implémentation ont été complètement réécrits, et l'API a également changé assez drastiquement.
+Nous avons une section dédiée pour le nouvel Angular car c'est vraiment un framework complètement différent de Angular 1. Par exemple, il comporte un système de composants de première classe, beaucoup de détails d'implémentation ont été complètement ré-écrits, et l'API a également changé assez drastiquement.
 
 ### TypeScript
 
-Alors que Angular 1 pouvait être utilisé pour de petites applications, Angular 2 a changé de point de vue pour faciliter la réalisation d'applications complexes en entreprise. Une conséquence de cela, est qu'il requiert TypeScript, qui peut être réellement utile au développeurs qui désirent un typage fort comme c'est le cas avec Java ou C#.
+Angular demande essentiellement l'utilisation de TypeScript, basant toutes sa documentation et apprentissage en se basant sur des ressources en TypeScript. TypeScript a ses propres bénéfices ; la vérification de type peut-être très utile dans de grosses applications, et peut-être un grand gain de productivité pour les développeurs venant du monde Java ou C#.
 
-Vue est aussi bien fourni pour l'[environnement d'entreprise](https://github.com/vuejs/awesome-vue#enterprise-usage) et peut également être utilisé avec TypeScript via notre [typage officiel](https://github.com/vuejs/vue/tree/dev/types) et les [décorateurs officiels](https://github.com/vuejs/vue-class-component), bien que ce soit tout à fait optionnel dans notre cas.
+Cependant, tout le monde ne souhaite pas utiliser TypeScript. Dans beaucoup de cas d'usage simple, introduire un système de typage est ajoute plus de complexité qu'il n'offre un gain de productivité. Dans ces cas vous vous en sortirez mieux avec Vue, car utiliser Angular sans TypeScript peut être un vrai challenge.
+
+En fait, sans être profondément intégré à TypeScript comme peut l'être Angular, Vue offre également un [typage officiel](https://github.com/vuejs/vue/tree/dev/types) et des [décorateurs officiels](https://github.com/vuejs/vue-class-component) à ceux qui souhaiteraient utiliser TypeScript avec Vue. Nous collaborons également activement avec les équipes de TypeScript et de VSCode chez Microsoft pour améliorer l'expérience de TS/IDE pour les utilisateurs de TS et de Vue.
 
 ### Taille et performance
 
 En termes de performance, les deux frameworks sont exceptionnellement rapides et il n'y a pas assez de données de cas réels pour se faire une idée tranchée. Cependant, si vous êtes déterminés à comparer des valeurs, Vue 2.0 semble devant Angular 2 selon le [benchmark d'une tierce-partie](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
 
-Concernant la taille, Angular 2 avec sa compilation en ligne de commande et la mécanique de *tree-shaking* est capable capable de réduire sa taille considérablement. Un projet Vue 2.0 avec toutes ses fonctionnalités et le compilateur inclus (23ko) est toujours plus léger que le strict minimum en exemple avec Angular 2 (50ko). Notons que la taille d'une application Angular 2 est petite grâce au *tree-shaking* qui enlève le code des fonctionnalités que vous n'utilisez pas. Il va donc éventuellement encore plus grossir jusqu'à retrouver sa taille initiale.
+Les versions récentes d'Angular, avec une *compilation AOT* et du *tree-shaking* sont capable de diminuer leur taille considérablement. Cependant, un projet complet Vue 2 avec Vuex + vue-router inclus (~30ko gzippé) est toujours significativement plus légé qu'une application AOT compilée et générée par `angular-cli` (~130ko gzippée).
 
 ### Flexibilité
 
@@ -182,7 +184,7 @@ Vue impose beaucoup moins de choix comparé à Angular 2, offrant un support off
 
 Pour commencer avec Vue, vous avez seulement besoin de connaissances en HTML et JavaScript ES5 (c-à-d JavaScript de base). Avec ces compétences de base, vous pouvez commencer à construire des applications complexes sans perdre des jours à lire [la documentation](https://vuejs.org/v2/guide/).
 
-La courbe d'apprentissage de Angular 2 est plus raide. Même sans TypeScript, le [Guide de démarrage rapide](https://angular.io/docs/js/latest/quickstart.html) commence avec une application qui utilise JavaScript ES2015, NPM avec 18 dépendances, 4 fichiers, et plus de 3000 mots pour expliquer le fonctionnement global — juste pour dire Hello World. Il ne serait donc pas exagéré de dire que le [Hello World de Vue](https://jsfiddle.net/chrisvfritz/50wL7mdz/) est un peu plus simple. Peut-être est-ce la raison pour laquelle il n'est pas nécessaire de consacrer une page dédiée dans le guide pour ça.
+La courbe d'apprentissage de Angular est plus raide. La surface API du framework est simplement plus grosse et les utilisateurs ont besoin de se familiariser eux-même avec beaucoups de concepts avant d'être productif. Manifestement, la complexité d'Angular est largement dû au fait qu'elle sont conçu uniquement pour rémpondre à de large et complexe applications rendant ainsi le framework bien plus difficile à utiliser pour des développeurs moins expérimentés.
 
 ## Ember
 
