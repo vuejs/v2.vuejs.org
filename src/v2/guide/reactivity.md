@@ -4,13 +4,13 @@ type: guide
 order: 12
 ---
 
-Cobrimos a maioria das noções básicas - agora é hora de dar um mergulho profundo! Uma das características mais distintas do Vue é o sistema de reatividade não obstrutivo. Modelos são simplesmente objetos JavaScript. Quando você os modifica, a exibição é visualização é atualizada. Isso torna o gerenciamento de estado muito simples e intuitivo, mas também é importante entender como isso funciona para evitar algumas armadilhas comuns. Nesta seção, vamos cavar alguns dos detalhes de baixo nível do sistema de reatividade do Vue.
+Cobrimos a maioria das noções básicas - agora é hora de dar um mergulho profundo! Uma das características mais distintas do Vue é o sistema de reatividade não obstrutivo. Modelos são simplesmente objetos JavaScript. Quando você os modifica, a visualização é atualizada. Isso torna o gerenciamento de estado muito simples e intuitivo, mas também é importante entender como isso funciona para evitar algumas armadilhas comuns. Nesta seção, vamos cavar alguns dos detalhes de baixo nível do sistema de reatividade do Vue.
 
 ## Como as Alterções são Monitoradas
 
-Quando você passar um objeto JavaScript simples para uma instância do Vue, como a opção `data`, o Vue irá percorrer todas as suas propriedades e convertê-las para getter/setters usando [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). Esta é uma característica un-shimmable encontrada somente a partir do ES5, razão pela qual o Vue não suporta o IE8 e versões anteriores.
+Quando você passa um objeto JavaScript simples para uma instância do Vue, como a opção `data`, o Vue irá percorrer todas as suas propriedades e convertê-las para getter/setters usando [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). Esta é uma característica un-shimmable encontrada somente a partir do ES5, razão pela qual o Vue não suporta o IE8 e versões anteriores.
 
-Os getter/setters são invisíveis para o usuário, mas debaixo do capô, eles permitem ao Vue executar o rastreamento de dependência e notificações de alteração quando propriedades são acessadas ou modificadas. Uma ressalva é que consoles de browsers formatam getter/setters diferentemente quando alteram objetos de dados, então você pode querer instalar o [vue-devtools] (https://github.com/vuejs/vue-devtools)  para uma ter interface mais amigável para inspeção.
+Os getter/setters são invisíveis para o usuário, mas debaixo do capô, eles permitem ao Vue executar o rastreamento de dependência e notificações de alteração quando propriedades são acessadas ou modificadas. Uma ressalva é que consoles de browsers formatam getter/setters diferentemente quando alteram objetos de dados, então você pode querer instalar o [vue-devtools](https://github.com/vuejs/vue-devtools)  para ter uma interface de inspeção mais amigável.
 
 Cada instância de componente tem um observador de instância, **watcher**, correspondente, que registra todas as propriedades "tocadas" durante a renderização do componente e depedências. Mais tarde, quando o setter de uma dependência é acionado, ele notifica o watcher que então faz com que o componente seja re-renderizado.
 
@@ -52,12 +52,12 @@ this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
 
-Existem também algumas ressalvas relacionadas com arrays, que foram discutidas anteriormente na [seçao sobre renderização de listas](list.html#Caveats).
+Existem também algumas ressalvas relacionadas com arrays, que foram discutidas anteriormente na [seção sobre renderização de listas](list.html#Caveats).
 
 ## Declarando Propriedades Reativas
 
 
-Como o Vue não permite adicionar dinamicamente Propriedades reativas de nível root, isso significa que você tem inicializar a instância declarando todas as propriedades de nível root com dados iniciais, apenas um valor vazio:
+Como o Vue não permite adicionar dinamicamente Propriedades reativas de nível root, você precisa inicializar instâncias Vue declarando todas as propriedades de nível root com dados iniciais, apenas um valor vazio:
 
 ``` js
 var vm = new Vue({
