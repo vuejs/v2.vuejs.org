@@ -478,7 +478,7 @@ Tudo que um componente funcional necessitar é passado através de `context`, o 
 - `data`: Todo o objeto `data` passado ao componente
 - `parent`: Uma referência ao componente pai
 - `listeners`: (2.3.0+) Um objeto contendo escutas a eventos registradas pelo pai. É simplesmente um atalho para `data.on`
-- `injections`: (2.3.0+) Se estiver usando a opção [`inject`](https://vuejs.org/v2/api/#provide-inject), aqui estarão as injeções resolvidas
+- `injections`: (2.3.0+) Se estiver usando a opção [`inject`](../api/#provide-inject), aqui estarão as injeções resolvidas
 
 Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com _link_ iria requerer somente acrescentar o parâmetro `context`, e atualizar `this.$slots.default` para `context.children`, e por fim atualizar `this.level` para `context.props.level`.
 
