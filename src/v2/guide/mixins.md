@@ -88,7 +88,7 @@ Note que são as mesmas estratégias utilizadas em `Vue.extend()`.
 
 ## Mixin Global
 
-Você também pode aplicar um mixin globalmente. Use com cautela! Quando você aplicar um mixin globalmente, ele irá afetar **todas** as instâncias Vue criadas depois. Quando utilizado apropriadamente, isto pode ser usado para injetar lógica de processamento para opções customizadas:
+Você também pode aplicar um mixin globalmente. Use com cautela! Assim que aplicar um mixin globalmente, irá afetar **todas** as instâncias Vue criadas depois. Quando utilizado apropriadamente, isto pode ser usado para injetar lógica de processamento para opções customizadas:
 
 ``` js
 // injeta um handler para a opção customizada `myOption`

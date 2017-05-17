@@ -430,6 +430,7 @@ The `type` can be one of the following native constructors:
 - Function
 - Object
 - Array
+- Symbol
 
 In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
 
@@ -621,7 +622,12 @@ Vue.component('currency-input', {
         // Remove whitespace on either side
         .trim()
         // Shorten to 2 decimal places
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       // If the value was not already normalized,
       // manually override it to conform
       if (formattedValue !== value) {
@@ -655,7 +661,12 @@ Vue.component('currency-input', {
     updateValue: function (value) {
       var formattedValue = value
         .trim()
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
@@ -1119,7 +1130,7 @@ Note that when used as a route component in `vue-router`, these properties will 
 
 ### Component Naming Conventions
 
-When registering components (or props), you can use kebab-case, camelCase, or TitleCase. Vue doesn't care.
+When registering components (or props), you can use kebab-case, camelCase, or TitleCase.
 
 ``` js
 // in a component definition
@@ -1142,14 +1153,32 @@ Within HTML templates though, you have to use the kebab-case equivalents:
 <title-cased-component></title-cased-component>
 ```
 
-When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components and props using camelCase, TitleCase, or kebab-case:
+When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
+
+- kebab-case
+- camelCase or kebab-case if the component has been defined using camelCase
+- kebab-case, camelCase or Title case if the component has been defined using TitleCase
+
+``` js
+components: {
+  'kebab-case-component': { /* ... */ },
+  camelCaseComponent: { /* ... */ },
+  TitleCaseComponent: { /* ... */ }
+}
+```
 
 ``` html
-<!-- use whatever you want in string templates! -->
-<my-component></my-component>
-<myComponent></myComponent>
-<MyComponent></MyComponent>
+<kebab-case-component />
+
+<camel-case-component />
+<camelCaseComponent />
+
+<title-case-component />
+<titleCaseComponent />
+<TitleCaseComponent />
 ```
+
+This means that the TitleCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
 
 If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
 

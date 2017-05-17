@@ -295,9 +295,17 @@ Agora podemos passar o dado `todo` em cada repetição de componente usando `v-b
 ``` html
 <div id="app-7">
   <ol>
-    <!-- Agora provemos a cada todo-item um objeto para a prop todo -->
-    <!-- Desta forma, o conteúdo de cada item pode ser dinâmico -->
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <!--
+      Agora provemos cada todo-item com o objeto todo que ele
+      representa, de forma que seu conteúdo possa ser dinâmico.
+      Também precisamos prover cada componente com uma "chave",
+      a qual será explicada posteriormente.
+    -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id">
+    </todo-item>
   </ol>
 </div>
 ```
@@ -311,9 +319,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Vegetais' },
-      { text: 'Queijo' },
-      { text: 'Qualquer outra coisa que humanos podem comer' }
+      { id: 0, text: 'Vegetais' },
+      { id: 1, text: 'Queijo' },
+      { id: 2, text: 'Qualquer outra coisa que humanos podem comer' }
     ]
   }
 })
@@ -321,7 +329,7 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
   </ol>
 </div>
 <script>
@@ -333,9 +341,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Vegetais' },
-      { text: 'Queijo' },
-      { text: 'Qualquer outra coisa que humanos podem comer' }
+      { id: 0, text: 'Vegetais' },
+      { id: 1, text: 'Queijo' },
+      { id: 2, text: 'Qualquer outra coisa que humanos podem comer' }
     ]
   }
 })
