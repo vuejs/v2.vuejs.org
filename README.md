@@ -16,7 +16,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [X] The Vue Instance (Tradução: @danielschmitz. Revisão: @ErickPetru)
 - [X] Template Syntax (Tradução: @vitorarjol. Revisão: @ErickPetru)
 - [X] Computed Properties and Watchers (Tradução: @danielschmitz. Revisão: @ErickPetru)
-- [ ] Class and Style Bindings (Tradução: @gidenilson. Revisão: @ErickPetru)
+- [X] Class and Style Bindings (Tradução: @gidenilson. Revisão: @ErickPetru)
 - [X] Conditional Rendering (Tradução: @gidenilson. Revisão: @ErickPetru)
 - [ ] List Rendering (Tradução: @ErickPetru. Revisão: **pendente**)
 - [ ] Event Handling (Tradução: @gidenilson. Revisão: **pendente**)
@@ -39,7 +39,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Migration from Vue Router 0.7.x (Tradução: @ErickPetru. Revisão: **pendente**)
 - [ ] Migration from Vuex 0.6.x to 1.0 (Tradução: @ErickPetru. Revisão: **pendente**)
 - [X] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [ ] Join the Vue.js Community! (Tradução: **pendente**)
+- [X] Join the Vue.js Community! (Tradução: @ErickPetru)
 
 **API**
 - [x] Global Config (Tradução: @theus. Revisão: @theus)
