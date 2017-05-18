@@ -649,7 +649,8 @@
 <p>2.3.0+</p>
 </blockquote>
 <p>Starting in 2.3 you can provide an array of multiple (prefixed) values to a style property, for example:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"&#123; display: ["</span><span class="attr">-webkit-box</span>", "<span class="attr">-ms-flexbox</span>", "<span class="attr">flex</span>"] &#125;"&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">"&#123; display: ['-webkit-box', '-ms-flexbox', 'flex'] &#125;"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>This will only render the last value in the array which the browser supports. In this example, it will render <code>display: flex</code> for browsers that support the unprefixed version of flexbox.</p>
 
     
       <div class="guide-links">
