@@ -130,37 +130,37 @@ MobX est devenu populaire dans la communauté React et utilise actuellement un s
 
 ## AngularJS (Angular 1)
 
-Une partie de la syntaxe de Vue ressemblera très fortement à celle de Angular (ex : `v-if` vs `ng-if`). Cela est dû au fait qu'il y a beaucoup de choses pour lesquelles Angular a vu juste et que cela a été une source d'inspiration pour Vue très tôt dans son développement. Cependant, Angular vient également avec de nombreux soucis. C'est là que Vue a tenté d'apporter une amélioration significative.
+Une partie de la syntaxe de Vue ressemblera très fortement à celle de AngularJS (ex : `v-if` vs `ng-if`). Cela est dû au fait qu'il y a beaucoup de choses pour lesquelles AngularJS a vu juste et que cela a été une source d'inspiration pour Vue très tôt dans son développement. Cependant, AngularJS vient également avec de nombreux soucis. C'est là que Vue a tenté d'apporter une amélioration significative.
 
 ### Complexité
 
-Vue est bien plus simple que Angular 1, autant en termes d'API que d'architecture. En apprendre assez pour créer une application complexe prend généralement moins d'un jour, ce qui n'est pas vrai pour Angular 1.
+Vue est bien plus simple que AngularJS, autant en termes d'API que d'architecture. En apprendre assez pour créer une application complexe prend généralement moins d'un jour, ce qui n'est pas vrai pour AngularJS.
 
 ### Flexibilité et modularité
 
-Angular 1 impose fortement la manière dont votre application doit être structurée, là où Vue offre une solution plus flexible, modulaire. Cela permet de rendre Vue plus adaptable à une large variété de projets, bien que nous reconnaissons également qu'il peut être utile de prendre des décisions pour vous afin que vous puissiez juste commencer à développer.
+AngularJS impose fortement la manière dont votre application doit être structurée, là où Vue offre une solution plus flexible, modulaire. Cela permet de rendre Vue plus adaptable à une large variété de projets, bien que nous reconnaissons également qu'il peut être utile de prendre des décisions pour vous afin que vous puissiez juste commencer à développer.
 
 C'est pourquoi nous offrons un [template webpack](https://github.com/vuejs-templates/webpack) qui peut être mis en place en en quelques minutes, tout en vous donnant accès à des fonctionnalités avancées comme le rechargement de module à chaud, l'analyse syntaxique, l'extraction CSS et bien plus.
 
 ### Liaison de données
 
-Angular 1 utilise la liaison de données bidirectionnelle entre les *scopes*, tandis que Vue impose un flux de données unidirectionnel entre les composants. Cela rend le flux de données plus facile à appréhender dans des applications non triviales.
+AngularJS utilise la liaison de données bidirectionnelle entre les *scopes*, tandis que Vue impose un flux de données unidirectionnel entre les composants. Cela rend le flux de données plus facile à appréhender dans des applications non triviales.
 
 ### Directives vs Composants
 
-Vue fait une distinction plus claire entre directives et composants. Les directives sont conçues pour encapsuler uniquement des manipulations du DOM, tandis que les composants sont des unités indépendantes ayant leur propre vue et logique de données. Avec Angular, il y a beaucoup de confusion entre les deux.
+Vue fait une distinction plus claire entre directives et composants. Les directives sont conçues pour encapsuler uniquement des manipulations du DOM, tandis que les composants sont des unités indépendantes ayant leur propre vue et logique de données. Avec AngularJS, il y a beaucoup de confusion entre les deux.
 
 ### Performance
 
-Vue a de meilleures performances et il est bien plus optimisé car il n'utilise pas le *dirty checking*. Angular 1 devient lent quand il y a un grand nombre d'observateurs, car chaque fois que quelque-chose change change dans le *scope*, tous les observateurs ont besoin d'être réévalués. De plus, le *digest cycle* peut avoir besoin de s'exécuter plusieurs fois pour se « stabiliser » si un observateur déclenche une autre mutation. Les utilisateurs d'Angular ont parfois recours à des techniques ésotériques pour contourner le *digest cycle*, et dans certaines situations, il n'y a simplement aucun moyen pour optimiser un *scope* avec beaucoup d'observateurs.
+Vue a de meilleures performances et il est bien plus optimisé car il n'utilise pas le *dirty checking*. AngularJS devient lent quand il y a un grand nombre d'observateurs, car chaque fois que quelque-chose change change dans le *scope*, tous les observateurs ont besoin d'être réévalués. De plus, le *digest cycle* peut avoir besoin de s'exécuter plusieurs fois pour se « stabiliser » si un observateur déclenche une autre mutation. Les utilisateurs d'AngularJS ont parfois recours à des techniques ésotériques pour contourner le *digest cycle*, et dans certaines situations, il n'y a simplement aucun moyen pour optimiser un *scope* avec beaucoup d'observateurs.
 
 Vue ne souffre pas de tout ça car il utilise un système transparent de suivi de dépendances avec mise en file d'attente asynchrone — tous les changements se déclenchent indépendamment à moins qu'ils aient des relations de dépendance explicites.
 
-Il est intéressant de noter qu'il y a quelques similitudes dans la manière dont Angular 2 et Vue corrigent ces problèmes propres à Angular 1.
+Il est intéressant de noter qu'il y a quelques similitudes dans la manière dont Angular et Vue corrigent ces problèmes propres à AngularJS.
 
 ## Angular (Plus connu sous le nom de Angular 2)
 
-Nous avons une section dédiée pour le nouvel Angular car c'est vraiment un framework complètement différent de Angular 1. Par exemple, il comporte un système de composants de première classe, beaucoup de détails d'implémentation ont été complètement ré-écrits, et l'API a également changé assez drastiquement.
+Nous avons une section dédiée pour le nouvel Angular car c'est vraiment un framework complètement différent de AngularJS. Par exemple, il comporte un système de composants de première classe, beaucoup de détails d'implémentation ont été complètement ré-écrits, et l'API a également changé assez drastiquement.
 
 ### TypeScript
 
@@ -172,13 +172,13 @@ Pour finir, sans être profondément intégré à TypeScript comme peut l'être 
 
 ### Taille et performance
 
-En termes de performance, les deux frameworks sont exceptionnellement rapides et il n'y a pas assez de données de cas réels pour se faire une idée tranchée. Cependant, si vous êtes déterminés à comparer des valeurs, Vue 2.0 semble devant Angular 2 selon le [benchmark d'une tierce-partie](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
+En termes de performance, les deux frameworks sont exceptionnellement rapides et il n'y a pas assez de données de cas réels pour se faire une idée tranchée. Cependant, si vous êtes déterminés à comparer des valeurs, Vue 2.0 semble devant Angular selon le [benchmark d'une tierce-partie](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
 
 Les versions récentes d'Angular, avec une *compilation AOT* et du *tree-shaking* sont capables de diminuer leurs tailles considérablement. Cependant, un projet complet Vue 2, avec Vuex et vue-router inclus (~30ko gzippé), est toujours significativement plus léger qu'une application AOT compilée et générée par `angular-cli` (~130ko gzippée).
 
 ### Flexibilité
 
-Vue impose beaucoup moins de choix comparé à Angular 2, offrant un support officiel pour divers systèmes de *build*, avec aucune restriction sur la manière dont vous devez structurer votre application. Beaucoup de développeurs apprécient cette liberté, quand d'autres préfèrent avoir l'unique « bonne façon » de concevoir une application.
+Vue impose beaucoup moins de choix comparé à Angular, offrant un support officiel pour divers systèmes de *build*, avec aucune restriction sur la manière dont vous devez structurer votre application. Beaucoup de développeurs apprécient cette liberté, quand d'autres préfèrent avoir l'unique « bonne façon » de concevoir une application.
 
 ### Courbe d'apprentissage
 
@@ -224,5 +224,5 @@ Riot 2.0 fournit un modèle de développement similaire orienté composants (cel
 
 - [Un système d'effets de transition](transitions.html). Riot n'en a pas.
 - Un routeur bien plus puissant. L'API de routage de Riot est extrêmement minimaliste.
-- De meilleures performances. Riot [utilise le DOM](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) plutôt qu'un DOM Virtuel, et par conséquent il souffre des mêmes problèmes de performances que Angular 1.
+- De meilleures performances. Riot [utilise le DOM](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) plutôt qu'un DOM Virtuel, et par conséquent il souffre des mêmes problèmes de performances que AngularJS.
 - Le support d'un outillage plus mâture. Vue fournit un support officiel pour [webpack](https://github.com/vuejs/vue-loader) et [Browserify](https://github.com/vuejs/vueify), là où Riot s'appuie sur le soutien de la communauté pour l'intégration de systèmes de *build*.

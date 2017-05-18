@@ -200,5 +200,7 @@ Quand vous utilisez une propriété CSS qui nécessite un [préfixe vendeur](htt
 Introduit avec la 2.3, vous pouvez fournir de multiples valeurs de préfixes à une propriété style, par exemple :
 
 ``` html
-<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
+<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
 ```
+
+This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
