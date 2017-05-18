@@ -152,7 +152,7 @@
       var yDiff = end.y - start.y
 
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        if (xDiff > 0  && start.x <= 80) sidebar.classList.add('open')
+        if (xDiff > 0 && start.x <= 80) sidebar.classList.add('open')
         else sidebar.classList.remove('open')
       }
     })
