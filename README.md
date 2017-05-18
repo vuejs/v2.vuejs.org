@@ -16,9 +16,15 @@ $ hexo server
 
 Translation for this documentation project are currently mantained in separate repositories forked from this original one.
 
-### Mandarin
+### French
 
-* Translation Repo - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
+French translation is maintained by Vuejs-FR.
+
+* Translation Repo — [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
+
+### Italian
+
+* Translation Repo - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
 
 ### Japanese
 
@@ -27,17 +33,6 @@ Japanese translation is maintained by [Vue.js japan user group](https://github.c
 * Translation Repo - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
 * Primary maintainer - [kazupon](https://github.com/kazupon)
 
-### Russian
-
-Russian translation is maintained by Translation Gang.
-
-* Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
-* Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
-
-### Italian
-
-* Translation Repo - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
-
 ### Korean
 
 Korean translation is maintained by [Vue.js Korean User group](https://github.com/vuejs-kr).
@@ -45,11 +40,22 @@ Korean translation is maintained by [Vue.js Korean User group](https://github.co
 * Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
 * Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
 
-### French
+### Mandarin
 
-French translation is maintained by Vuejs-FR.
+* Translation Repo - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
 
-* Translation Repo — [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
+### Português-Br
+
+Português-Br translation is maintained by [Vuejs-Br](https://github.com/vuejs-br).
+
+* Translation Repo - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
+
+### Russian
+
+Russian translation is maintained by Translation Gang.
+
+* Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
+* Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
 
 ### Want to help with the translation?
 
