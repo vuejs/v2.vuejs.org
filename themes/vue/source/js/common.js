@@ -7,7 +7,7 @@
     initApiSpecLinks()
     initLocationHashFuzzyMatching()
   }
-  initChat()  
+  initChat()
 
   function initChat () {
       var script = document.createElement("script");
@@ -144,6 +144,7 @@
     })
 
     document.body.addEventListener('touchend', function (e) {
+
       end.y = e.changedTouches[0].clientY
       end.x = e.changedTouches[0].clientX
 
@@ -151,7 +152,7 @@
       var yDiff = end.y - start.y
 
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        if (xDiff > 0) sidebar.classList.add('open')
+        if (xDiff > 0  && start.x <= 80) sidebar.classList.add('open')
         else sidebar.classList.remove('open')
       }
     })
