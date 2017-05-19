@@ -1181,7 +1181,7 @@ This means that the TitleCase is the most universal _declaration convention_ and
 If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
 
 ``` html
-<my-component />
+<my-component/>
 ```
 
 Again, this _only_ works within string templates, as self-closing custom elements are not valid HTML and your browser's native parser will not understand them.
