@@ -115,7 +115,6 @@ type: api
     // camelCase는 작동하지 않습니다.
     mediaPlayPause: 179,
     // 쌍따옴표로 감싸진 kebab-case를 사용하세요
->>>>>>> origin/master
     "media-play-pause" : 179,
     up: [38, 87]
   }
