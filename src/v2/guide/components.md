@@ -1155,25 +1155,25 @@ When using _string_ templates however, we're not bound by HTML's case-insensitiv
 
 - kebab-case
 - camelCase or kebab-case if the component has been defined using camelCase
-- kebab-case, camelCase or Title case if the component has been defined using TitleCase
+- kebab-case, camelCase or TitleCase if the component has been defined using TitleCase
 
 ``` js
 components: {
-  'kebab-case-component': { /* ... */ },
-  camelCaseComponent: { /* ... */ },
-  TitleCaseComponent: { /* ... */ }
+  'kebab-cased-component': { /* ... */ },
+  camelCasedComponent: { /* ... */ },
+  TitleCasedComponent: { /* ... */ }
 }
 ```
 
 ``` html
-<kebab-case-component />
+<kebab-cased-component></kebab-cased-component>
 
-<camel-case-component />
-<camelCaseComponent />
+<camel-cased-component></camel-cased-component>
+<camelCasedComponent></camelCasedComponent>
 
-<title-case-component />
-<titleCaseComponent />
-<TitleCaseComponent />
+<title-cased-component></title-cased-component>
+<titleCasedComponent></titleCasedComponent>
+<TitleCasedComponent></TitleCasedComponent>
 ```
 
 This means that the TitleCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
