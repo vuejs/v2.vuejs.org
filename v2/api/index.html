@@ -1507,6 +1507,20 @@
 <li><p><strong>See also:</strong> <a href="../guide/components.html#Named-Slots">Named Slots</a></p>
 </li>
 </ul>
+<h3 id="is"><a href="#is" class="headerlink" title="is"></a>is</h3><ul>
+<li><p><strong>Expects:</strong> <code>string</code></p>
+<p>Used for <a href="../guide/components.html#Dynamic-Components">dynamic components</a> and to work around <a href="../guide/components.html#DOM-Template-Parsing-Caveats">limitations of in-DOM templates</a>.</p>
+<p>For example:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- component changes when currentView changes --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">component</span> <span class="attr">v-bind:is</span>=<span class="string">"currentView"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- necessary because &lt;my-row&gt; would be invalid inside --&gt;</span></div><div class="line"><span class="comment">&lt;!-- a &lt;table&gt; element and so would be hoisted out      --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">tr</span> <span class="attr">is</span>=<span class="string">"my-row"</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>For detailed usage, follow the links in the description above.</p>
+</li>
+<li><p><strong>See also:</strong></p>
+<ul>
+<li><a href="../guide/components.html#Dynamic-Components">Dynamic Components</a></li>
+<li><a href="../guide/components.html#DOM-Template-Parsing-Caveats">DOM Template Parsing Caveats</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="Built-In-Components"><a href="#Built-In-Components" class="headerlink" title="Built-In Components"></a>Built-In Components</h2><h3 id="component"><a href="#component" class="headerlink" title="component"></a>component</h3><ul>
 <li><p><strong>Props:</strong></p>
 <ul>
