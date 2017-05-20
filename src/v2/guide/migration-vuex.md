@@ -9,7 +9,7 @@ order: 28
 Both Vuex 1.0 and 2.0:
 
 - fully support both Vue 1.0 and 2.0
-- will be maintained for the forseeable future
+- will be maintained for the foreseeable future
 
 They have slightly different target users however.
 
