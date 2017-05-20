@@ -290,7 +290,7 @@
     <link href="https://vuejs.org/2014/12/08/011-component/"/>
     <id>https://vuejs.org/2014/12/08/011-component/</id>
     <published>2014-12-08T20:02:14.000Z</published>
-    <updated>2016-06-17T15:16:10.000Z</updated>
+    <updated>2017-05-20T14:18:29.000Z</updated>
     
     <content type="html"><![CDATA[<p class="tip">Note: this post contains information for the outdated 0.11 version. Please refer to the <a href="https://github.com/yyx990803/vue/releases" target="_blank" rel="external">0.12 release notes</a> for the changes in the API.</p>
 
@@ -305,7 +305,7 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- child template, with replace: true --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on</span>=<span class="string">"click:onChildClick"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;childMessage&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">content</span>&gt;</span><span class="tag">&lt;/<span class="name">content</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Everything in the parent template will be compiled in the parent’s scope, including the content that’s going to be inserted into the child component.</p>
 <p>The only exception to the rule is <code>v-with</code> (and <code>paramAttributes</code> which compiles down to <code>v-with</code>), which works in both places - so you don’t need to worry about it too much.</p>
-<h3 id="Cleaner-Event-Communication"><a href="#Cleaner-Event-Communication" class="headerlink" title="Cleaner Event Communication"></a>Cleaner Event Communication</h3><p>Previously the standard way for a child component to communicate to its parent is via dispatching events. However, with this approach, the event listeners on the parent component are not guaranteed to be listening on the desired child component only. It’s also possible to trigger undesired listners further up the chain if we do not cancel the event.</p>
+<h3 id="Cleaner-Event-Communication"><a href="#Cleaner-Event-Communication" class="headerlink" title="Cleaner Event Communication"></a>Cleaner Event Communication</h3><p>Previously the standard way for a child component to communicate to its parent is via dispatching events. However, with this approach, the event listeners on the parent component are not guaranteed to be listening on the desired child component only. It’s also possible to trigger undesired listeners further up the chain if we do not cancel the event.</p>
 <p>The most common use case is for a parent to react to the events from a specific, direct child component. So in 0.11.4, <a href="/api/directives.html#v-events">a new directive <code>v-events</code></a> has been introduced to enable exactly this behavior.</p>
 <p>0.11.4 has already been released, go try it out!</p>
 ]]></content>
@@ -348,9 +348,9 @@
     <link href="https://vuejs.org/2014/07/29/vue-next/"/>
     <id>https://vuejs.org/2014/07/29/vue-next/</id>
     <published>2014-07-29T04:04:55.000Z</published>
-    <updated>2016-06-17T15:16:10.000Z</updated>
+    <updated>2017-05-20T14:18:29.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="0-10-6"><a href="#0-10-6" class="headerlink" title="0.10.6"></a>0.10.6</h2><p>Vue.js 0.10.6 has been released! This is another small bug-fix release and will be the last maintainance version before the next major release.</p>
+    <content type="html"><![CDATA[<h2 id="0-10-6"><a href="#0-10-6" class="headerlink" title="0.10.6"></a>0.10.6</h2><p>Vue.js 0.10.6 has been released! This is another small bug-fix release and will be the last maintenance version before the next major release.</p>
 <a id="more"></a>
 <ul>
 <li>fix <code>v-style</code> error when value is falsy or a number. ( thanks to <a href="https://github.com/dmfilipenko" target="_blank" rel="external">@dmfilipenko</a> )</li>
@@ -364,13 +364,13 @@
 <li>Fix some issues that are caused by design flaws in the current version. Because these changes affect the design of some core modules, it is actually easier to rewrite than to apply on the current codebase.</li>
 <li>Improve general code quality (in particular, <code>compiler.js</code> as of now is a big pile of mess, and comments are not consistent across the codebase.)</li>
 </ul>
-<p>Take note that the <code>next</code> branch is still in <strong>very</strong> early stage. The internals will change a lot, and when it comes out it <strong>will</strong> break current applications. Despite that I will try to keep the API changes to a minimum. Major differences with current 0.10 branch are documented in <a href="https://github.com/yyx990803/vue/blob/next/changes.md" target="_blank" rel="external"><code>changes.md</code></a>. The list is obviously incomplete and subject to change, some of them are simply ideas, but it at least gives you a taste of what to expect, and I’d appreicate your feedback on any of the topics.</p>
+<p>Take note that the <code>next</code> branch is still in <strong>very</strong> early stage. The internals will change a lot, and when it comes out it <strong>will</strong> break current applications. Despite that I will try to keep the API changes to a minimum. Major differences with current 0.10 branch are documented in <a href="https://github.com/yyx990803/vue/blob/next/changes.md" target="_blank" rel="external"><code>changes.md</code></a>. The list is obviously incomplete and subject to change, some of them are simply ideas, but it at least gives you a taste of what to expect, and I’d appreciate your feedback on any of the topics.</p>
 <p>Share your thoughts at <a href="https://github.com/vuejs/Discussion/issues" target="_blank" rel="external">vuejs/Discussion</a>.</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;0-10-6&quot;&gt;&lt;a href=&quot;#0-10-6&quot; class=&quot;headerlink&quot; title=&quot;0.10.6&quot;&gt;&lt;/a&gt;0.10.6&lt;/h2&gt;&lt;p&gt;Vue.js 0.10.6 has been released! This is another small bug-fix release and will be the last maintainance version before the next major release.&lt;/p&gt;
+      &lt;h2 id=&quot;0-10-6&quot;&gt;&lt;a href=&quot;#0-10-6&quot; class=&quot;headerlink&quot; title=&quot;0.10.6&quot;&gt;&lt;/a&gt;0.10.6&lt;/h2&gt;&lt;p&gt;Vue.js 0.10.6 has been released! This is another small bug-fix release and will be the last maintenance version before the next major release.&lt;/p&gt;
     
     </summary>
     

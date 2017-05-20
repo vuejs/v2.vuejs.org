@@ -17,7 +17,7 @@
         <meta name="twitter:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
-        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="icon" href="/images/logo.png" type="image/png">
 
         <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
@@ -258,7 +258,7 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- child template, with replace: true --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on</span>=<span class="string">"click:onChildClick"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;childMessage&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">content</span>&gt;</span><span class="tag">&lt;/<span class="name">content</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Everything in the parent template will be compiled in the parent’s scope, including the content that’s going to be inserted into the child component.</p>
 <p>The only exception to the rule is <code>v-with</code> (and <code>paramAttributes</code> which compiles down to <code>v-with</code>), which works in both places - so you don’t need to worry about it too much.</p>
-<h3 id="Cleaner-Event-Communication"><a href="#Cleaner-Event-Communication" class="headerlink" title="Cleaner Event Communication"></a>Cleaner Event Communication</h3><p>Previously the standard way for a child component to communicate to its parent is via dispatching events. However, with this approach, the event listeners on the parent component are not guaranteed to be listening on the desired child component only. It’s also possible to trigger undesired listners further up the chain if we do not cancel the event.</p>
+<h3 id="Cleaner-Event-Communication"><a href="#Cleaner-Event-Communication" class="headerlink" title="Cleaner Event Communication"></a>Cleaner Event Communication</h3><p>Previously the standard way for a child component to communicate to its parent is via dispatching events. However, with this approach, the event listeners on the parent component are not guaranteed to be listening on the desired child component only. It’s also possible to trigger undesired listeners further up the chain if we do not cancel the event.</p>
 <p>The most common use case is for a parent to react to the events from a specific, direct child component. So in 0.11.4, <a href="/api/directives.html#v-events">a new directive <code>v-events</code></a> has been introduced to enable exactly this behavior.</p>
 <p>0.11.4 has already been released, go try it out!</p>
 
