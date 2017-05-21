@@ -445,6 +445,49 @@ new Vue({
 
 <p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. If `h` is not available in the scope, your app will throw an error.</p>
 
+If you need to pass props from parent component to a child, make sure to reference them within your `render` function:
+
+``` js
+import AnchoredHeading from './AnchoredHeading.vue'
+
+new Vue({
+  el: '#demo',
+  render (h) {
+    const data = {
+      level: 1
+    }
+    return (
+      <AnchoredHeading level={data.level}>
+        <span>Hello</span> world!
+      </AnchoredHeading>
+    )
+  }
+})
+```
+
+If the parent in question is receiving the props which you'd like to pass down to a child component, simply declare them as you normally would, remembering to reference them within `render`:
+
+``` js
+import AnchoredHeading from './AnchoredHeading.vue'
+
+new Vue({
+  el: '#demo',
+  props: {
+    level: Number
+  },
+  render (h) {
+    const data = {
+      level: this.level
+    }
+    return (
+      <AnchoredHeading level={data.level}>
+        <span>Hello</span> world!
+      </AnchoredHeading>
+    )
+  }
+})
+```
+
 For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
 
 ## Functional Components
