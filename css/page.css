@@ -697,6 +697,31 @@ ul.demo li {
     transform: translate(0, 0);
   }
 }
+.content.menu {
+  font-size: 1.2em;
+}
+.content.menu .menu-root {
+  padding-left: 0;
+}
+.content.menu #search-form,
+.content.menu .algolia-autocomplete,
+.content.menu input {
+  width: 100%;
+}
+.content.menu .aa-dropdown-menu {
+  box-sizing: border-box;
+}
+.content.menu h3 {
+  margin: 1.5em 0 0.75em;
+}
+.content.menu h3:before,
+.content.menu h3:after {
+  display: none;
+}
+.content.menu li {
+  list-style-type: none;
+  margin-top: 0.1em;
+}
 #header {
   box-shadow: 0 0 1px rgba(0,0,0,0.25);
   transition: background-color 0.3s ease-in-out;

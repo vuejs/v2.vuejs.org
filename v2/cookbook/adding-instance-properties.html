@@ -17,7 +17,27 @@
         <meta name="twitter:description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
+        <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+        <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
         <link rel="icon" href="/images/logo.png" type="image/png">
+
+        <meta name="msapplication-TileColor" content="#4fc08d">
+        <meta name="theme-color" content="#4fc08d">
+
+        <meta name="msapplication-config" content="browserconfig.xml">
+        <link rel="manifest" href="/manifest.json">
 
         <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
@@ -183,48 +203,50 @@
             
         </h2>
         <ul class="menu-root">
+    
+        
+        
+        
             
-                
-                
-                
-                    
-                    <!-- Move cookbook sections here once they have -->
-                    <!-- at least one recipe -->
-                
-                <li>
-                    <a href="/v2/cookbook/index.html" class="sidebar-link">Introduction</a>
-                </li>
+            <!-- Move cookbook sections here once they have -->
+            <!-- at least one recipe -->
+        
+        <li>
+            <a href="/v2/cookbook/index.html" class="sidebar-link">Introduction</a>
+        </li>
+    
+        
+        
+        
             
-                
-                
-                
-                    
-                      <li><h3>Vue Instance</h3></li>
-                    
-                    <!-- Move cookbook sections here once they have -->
-                    <!-- at least one recipe -->
-                
-                <li>
-                    <a href="/v2/cookbook/adding-instance-properties.html" class="sidebar-link current">Adding Instance Properties</a>
-                </li>
+                <li><h3>Vue Instance</h3></li>
             
-            
-                <li><h3>Components</h3></li>
-                <li><h4>Form Inputs</h4></li>
-                <li><h4>3rd-Party Integrations</h4></li>
-                <li><h3>Transitions</h3></li>
-                <li><h3>Directives</h3></li>
-                <li><h3>Vue Router</h3></li>
-                <li><h3>Vuex</h3></li>
-            
-        </ul>
+            <!-- Move cookbook sections here once they have -->
+            <!-- at least one recipe -->
+        
+        <li>
+            <a href="/v2/cookbook/adding-instance-properties.html" class="sidebar-link current">Adding Instance Properties</a>
+        </li>
+    
+    
+        <li><h3>Components</h3></li>
+        <li><h4>Form Inputs</h4></li>
+        <li><h4>3rd-Party Integrations</h4></li>
+        <li><h3>Transitions</h3></li>
+        <li><h3>Directives</h3></li>
+        <li><h3>Vue Router</h3></li>
+        <li><h3>Vuex</h3></li>
+    
+</ul>
+
     </div>
 </div>
 
 
 <div class="content cookbook with-sidebar ">
     
-      <div id="ad">
+      
+        <div id="ad">
   <script>
     (function () {
       var showConfPromo = Math.random() <= 0.33
@@ -247,6 +269,7 @@
   </script>
 </div>
 
+      
     
     
       <h1>Adding Instance Properties</h1>
@@ -323,7 +346,8 @@
         <script>
         [
           '#search-query-nav',
-          '#search-query-sidebar'
+          '#search-query-sidebar',
+          '#search-query-menu'
         ].forEach(function (selector) {
           if (!document.querySelector(selector)) return
           // search index defaults to v2
