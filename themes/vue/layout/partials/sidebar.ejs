@@ -44,6 +44,12 @@
                     <% if (p.order === 1.1) { %>
                       <li><h3>Vue Instance</h3></li>
                     <% } %>
+                    <% if (p.order === 2.1) { %>
+                      <li><h3>Directives</h3></li>
+                    <% } %>
+                    <% if (p.order === 3.1) { %>
+                      <li><h3>Components</h3></li>
+                    <% } %>
                     <!-- Move cookbook sections here once they have -->
                     <!-- at least one recipe -->
                 <% } %>
@@ -56,7 +62,7 @@
                 <li><h4>Form Inputs</h4></li>
                 <li><h4>3rd-Party Integrations</h4></li>
                 <li><h3>Transitions</h3></li>
-                <li><h3>Directives</h3></li>
+
                 <li><h3>Vue Router</h3></li>
                 <li><h3>Vuex</h3></li>
             <% } %>
