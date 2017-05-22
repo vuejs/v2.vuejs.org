@@ -15,7 +15,7 @@ All of these are either already stored as raw numbers or can be converted into n
 
 ## Animating State with Watchers
 
-Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using Tween.js:
+Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using [Tween.js](https://github.com/tweenjs/tween.js):
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -95,7 +95,7 @@ new Vue({
 </script>
 {% endraw %}
 
-When you update the number, the change is animated below the input. This makes for a nice demo, but what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with the addition of Color.js:
+When you update the number, the change is animated below the input. This makes for a nice demo, but what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with the addition of [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
