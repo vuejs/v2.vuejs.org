@@ -1159,21 +1159,21 @@ Quand vous utilisez des template basés sur les _chaînes de caractères_ cepend
 
 ``` js
 components: {
-  'kebab-case-component': { /* ... */ },
-  camelCaseComponent: { /* ... */ },
-  TitleCaseComponent: { /* ... */ }
+  'kebab-cased-component': { /* ... */ },
+  camelCasedComponent: { /* ... */ },
+  TitleCasedComponent: { /* ... */ }
 }
 ```
 
 ``` html
-<kebab-case-component />
+<kebab-cased-component></kebab-cased-component>
 
-<camel-case-component />
-<camelCaseComponent />
+<camel-cased-component></camel-cased-component>
+<camelCasedComponent></camelCasedComponent>
 
-<title-case-component />
-<titleCaseComponent />
-<TitleCaseComponent />
+<title-cased-component></title-cased-component>
+<titleCasedComponent></titleCasedComponent>
+<TitleCasedComponent></TitleCasedComponent>
 ```
 
 Cela signifie que la TitleCase est la _convention de déclaration_ la plus universelle et que la kebab-case est la _convention d'utilisation_ la plus universelle.

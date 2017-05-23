@@ -196,7 +196,7 @@ Et également un troisième pour l'index :
 
 ``` html
 <div>
-  <span v-for="n in 10">{{ n }}</span>
+  <span v-for="n in 10">{{ n }} </span>
 </div>
 ```
 

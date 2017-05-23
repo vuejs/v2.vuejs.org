@@ -9,7 +9,7 @@ order: 28
 <p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>Both Vuex 1.0 and 2.0:</p>
 
 - fully support both Vue 1.0 and 2.0
-- will be maintained for the forseeable future
+- will be maintained for the foreseeable future
 
 They have slightly different target users however.
 

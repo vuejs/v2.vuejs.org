@@ -196,7 +196,7 @@ Cela dit, il serait probablement plus judicieux de faire une comparaison entre l
 
 - La syntaxe des templates de Vue exploite toute la puissance des expressions JavaScript alors que les expressions Handlebars et les aides à la syntaxe sont intentionnellement limitées en comparaison.
 
-- Côté performance, Vue surpasse Ember avec une bonne avance, même après la dernière mise à jour du moteur Glimmer dans Ember 2.0. Vue regroupe automatiquement les rafraîchissements des vues par lot, alors que dans Ember, vous devez gérer manuellement les boucles d'exécution dans les situations où la performance est critique.
+- Côté performance, Vue surpasse Ember [avec une bonne avance](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html), même après la dernière mise à jour du moteur Glimmer dans Ember 2.x. Vue regroupe automatiquement les rafraîchissements des vues par lot, alors que dans Ember, vous devez gérer manuellement les boucles d'exécution dans les situations où la performance est critique.
 
 ## Knockout
 

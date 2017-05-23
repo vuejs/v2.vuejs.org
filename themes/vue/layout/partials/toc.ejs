@@ -1,0 +1,38 @@
+<ul class="menu-root">
+    <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
+        <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
+        <% if (type === 'guide') { %>
+            <% if (fileName === 'installation') { %>
+                <li><h3>Essentiel</h3></li>
+            <% } %>
+            <% if (fileName === 'reactivity') { %>
+                <li><h3>Avancé</h3></li>
+            <% } %>
+            <% if (fileName === 'migration') { %>
+                <li><h3>Migration</h3></li>
+            <% } %>
+            <% if (fileName === 'comparison') { %>
+                <li><h3>Meta</h3></li>
+            <% } %>
+        <% } %>
+        <% if (type === 'cookbook') { %>
+            <% if (p.order === 1.1) { %>
+                <li><h3>Instance de Vue</h3></li>
+            <% } %>
+            <!-- Move cookbook sections here once they have -->
+            <!-- at least one recipe -->
+        <% } %>
+        <li>
+            <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
+        </li>
+    <% }) %>
+    <% if (type === 'cookbook') { %>
+        <li><h3>Composants</h3></li>
+        <li><h4>Champs de formulaire</h4></li>
+        <li><h4>Integrations tierces</h4></li>
+        <li><h3>Transitions</h3></li>
+        <li><h3>Directives</h3></li>
+        <li><h3>Vue Router</h3></li>
+        <li><h3>Vuex</h3></li>
+    <% } %>
+</ul>

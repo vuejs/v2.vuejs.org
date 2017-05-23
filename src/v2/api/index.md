@@ -1785,7 +1785,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
-  
+
   <!-- pass down parent props in common with a child component -->
   <child-component v-bind="$props"></child-component>
 
@@ -1957,6 +1957,31 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   For detailed usage, see the guide section linked below.
 
 - **Voir aussi :** [Named Slots](../guide/components.html#Named-Slots)
+
+### is
+
+- **Expects:** `string`
+
+  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+
+  For example:
+
+  ``` html
+  <!-- component changes when currentView changes -->
+  <component v-bind:is="currentView"></component>
+
+  <!-- necessary because <my-row> would be invalid inside -->
+  <!-- a <table> element and so would be hoisted out      -->
+  <table>
+    <tr is="my-row"></tr>
+  </table>
+  ```
+
+  For detailed usage, follow the links in the description above.
+
+- **See also:**
+  - [Dynamic Components](../guide/components.html#Dynamic-Components)
+  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
 
 ## Built-In Components
 
