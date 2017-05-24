@@ -104,7 +104,7 @@ var example2 = new Vue({
 
 ## Methods in Inline Handlers
 
-Instead of binding directly to a method name, we can also use methods in an inline JavaScript statement:
+Instead of binding directly to a method name, we can also use methods in an inline JavaScript expression:
 
 ``` html
 <div id="example-3">
