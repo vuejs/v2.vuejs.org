@@ -118,6 +118,8 @@ Then you can start writing Vue code and even ship the minified version to produc
 
 Since you don't need to know about JSX, ES2015, or build systems to get started with Vue, it also typically takes developers less than a day reading [the guide](./) to learn enough to build non-trivial applications.
 
+A probably more important distinction is that Vue is intentionally designed to be incrementally adoptable, and thus seems simplier for an existing app migration.
+
 ### Native Rendering
 
 React Native enables you to write native-rendered apps for iOS and Android using the same React component model. This is great in that as a developer, you can apply your knowledge of a framework across multiple platforms. On this front, Vue has an official collaboration with [Weex](https://alibaba.github.io/weex/), a cross-platform UI framework developed by Alibaba Group, which uses Vue as its JavaScript framework runtime. This means with Weex, you can use the same Vue component syntax to author components that can not only be rendered in the Browser, but also natively on iOS and Android!
