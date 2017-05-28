@@ -190,6 +190,8 @@ data: function () {
 }
 ```
 
+**It should be noted that the opening curly brace of the fresh data object MUST be on the same line as the `return`.**
+
 Now all our counters each have their own internal state:
 
 {% raw %}
