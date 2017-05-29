@@ -345,7 +345,7 @@ type: api
 
 - **Utilisation :**
 
-  Compile une string template en une fonction de rendu. **Disponible uniquement sur la version standalone.**
+  Compile une string template en une fonction de rendu. **Disponible uniquement sur la version complète.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -1009,7 +1009,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Détails :**
 
-  Change les délimiteurs d'interpolation de texte. **Cette option est uniquement disponible en version *standalone*.**
+  Change les délimiteurs d'interpolation de texte. **Cette option est uniquement disponible en version complète.**
 
 - **Exemple :**
 
