@@ -8,7 +8,7 @@ order: 10
 
 Vous pouvez utiliser la directive `v-model` pour créer une liaison de données bidirectionnelle sur les champs de formulaire (input, select ou textarea). Elle choisira automatiquement la bonne manière de mettre à jour l'élément en fonction du type de champ. Bien qu'un peu magique, `v-model` est essentiellement du sucre syntaxique pour mettre à jour les données lors des évènements de saisie utilisateur sur les champs, ainsi que quelques traitements spéciaux pour certains cas particuliers.
 
-<p class="tip">`v-model` ne prend pas en compte la valeur initiale (attribut "value") fournie pour un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité.</p>
+<p class="tip">`v-model` ne prend pas en compte la valeur initiale des attributs `value`, `checked` ou `selected` fournis par un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité. Vous devez déclarer la valeur initiale dans votre JavaScript, dans l'option `data` de votre composant.</p>
 
 <p class="tip" id="vmodel-ime-tip">Pour les langues qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc...), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie.</p>
 
@@ -169,15 +169,25 @@ Select à choix unique :
 
 ``` html
 <select v-model="selected">
+  <option disabled value="">Sélectionner :</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
 <span>Sélectionné : {{ selected }}</span>
 ```
+``` js
+new Vue({
+  el: '...',
+  data: {
+    selected: ''
+  }
+})
+```
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
+    <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -188,11 +198,13 @@ Select à choix unique :
 new Vue({
   el: '#example-5',
   data: {
-    selected: null
+    selected: ''
   }
 })
 </script>
 {% endraw %}
+
+<p class="tip">Si la valeur initiale de votre expression dans `v-model` ne correspond à aucune des options, l'élément `<select>` va faire le rendu dans un état « non sélectionné ». Sur iOS cela va conduire l'utilisateur à ne pas pouvoir sélectionner le premier élément car aucun événement `change` n'est déclenché dans ce cas. Il est cependant recommandé de fournir une option désactivée avec une valeur vide comme dans l'exemple ci-dessous.</p>
 
 Select à choix multiples (lié à un tableau) :
 

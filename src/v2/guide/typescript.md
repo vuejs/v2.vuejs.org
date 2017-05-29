@@ -1,12 +1,12 @@
 ---
-title: TypeScript Support
+title: TypeScript Support (En)
 type: guide
 order: 25
 ---
 
 ## Important 2.2 Change Notice for TS + webpack 2 users
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.</p>
 
 We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#Recommended-Configuration) below on a future-proof setup.
 
@@ -27,7 +27,7 @@ Since these are [published on NPM](https://unpkg.com/vue/types/), and the latest
     "lib": [
       "dom",
       "es5",
-      "es2015.Promise"
+      "es2015.promise"
     ]
   }
 }

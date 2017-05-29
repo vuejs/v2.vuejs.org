@@ -23,7 +23,7 @@ Voici un exemple simple de fichier que nous appellerons `Hello.vue` :
 
 Maintenant nous avons :
 
-- [Une coloration syntaxique complète](https://github.com/vuejs/awesome-vue#syntax-highlighting)
+- [Une coloration syntaxique complète](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [Des modules CommonJS](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [Du CSS à la portée limitée au composant](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 

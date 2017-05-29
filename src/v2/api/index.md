@@ -1,10 +1,10 @@
 ---
-type: api
+type: api (En)
 ---
 
 ## Configuration globale
 
-`Vue.config` est un objet contenant les configurations globales de Vue. Vous pouvez modifier les propriétés listées ci-dessous avant de mettre en place votre application :
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>`Vue.config` est un objet contenant les configurations globales de Vue. Vous pouvez modifier les propriétés listées ci-dessous avant de mettre en place votre application :</p>
 
 ### silent
 
@@ -108,16 +108,23 @@ type: api
 
 - **Utilisation :**
 
-  ``` js
+  ```js
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
+    // camelCase won`t work
     mediaPlayPause: 179,
+    // instead you can use kebab-case with double quotation marks
+    "media-play-pause" : 179,
     up: [38, 87]
   }
   ```
 
-  Définit des alias pour les touches du clavier avec `v-on`.
+  ```html
+  <input type="text" @keyup.media-play-pause="method">
+  ```
+
+  Définit des alias pour les touches avec `v-on`.
 
 ### performance
 
@@ -125,7 +132,7 @@ type: api
 
 - **Type :** `boolean`
 
-- **Par défaut :** `false`
+- **Par défaut :** `false` (à partir de la 2.2.3)
 
 - **Utilisation :**
 
@@ -1051,7 +1058,12 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
     },
     props: {
       // cela permet d'utiliser la prop `value` à d'autres fins
-      value: String
+      value: String,
+      // utilise `checked` comme prop qui prend la place de `value`
+      checked: {
+        type: Number,
+        default: 0
+      }
     },
     // ...
   })
@@ -1661,9 +1673,10 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
   - `.native` - listen for a native event on the root element of component.
   - `.once` - trigger handler at most once.
-  - `.left` - (2.2.0) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0) only trigger handler for middle button mouse events.
+  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
+  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
+  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
+  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
 
 - **Utilisation :**
 
@@ -1733,7 +1746,8 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Modifiers:**
   - `.prop` - Bind as a DOM property instead of an attribute. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
+  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
+  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
 - **Utilisation :**
 
@@ -1775,6 +1789,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
 
+  <!-- pass down parent props in common with a child component -->
+  <child-component v-bind="$props"></child-component>
+
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
@@ -1790,6 +1807,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 - **Voir aussi :**
   - [Class and Style Bindings](../guide/class-and-style.html)
   - [Components - Component Props](../guide/components.html#Props)
+  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
 
 ### v-model
 
@@ -1942,6 +1960,31 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   For detailed usage, see the guide section linked below.
 
 - **Voir aussi :** [Named Slots](../guide/components.html#Named-Slots)
+
+### is
+
+- **Expects:** `string`
+
+  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+
+  For example:
+
+  ``` html
+  <!-- component changes when currentView changes -->
+  <component v-bind:is="currentView"></component>
+
+  <!-- necessary because <my-row> would be invalid inside -->
+  <!-- a <table> element and so would be hoisted out      -->
+  <table>
+    <tr is="my-row"></tr>
+  </table>
+  ```
+
+  For detailed usage, follow the links in the description above.
+
+- **See also:**
+  - [Dynamic Components](../guide/components.html#Dynamic-Components)
+  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
 
 ## Built-In Components
 

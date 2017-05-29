@@ -4,6 +4,7 @@
 @import "_sponsor"
 @import "_migration"
 @import "_sidebar"
+@import "_offline-menu"
 
 #header
     box-shadow 0 0 1px rgba(0,0,0,.25)
@@ -220,3 +221,21 @@
             margin-left 0
     iframe
         margin: 0 !important
+
+// FR - Version
+
+/// Chat
+
+.gitter-open-chat-button
+    background-color #4fc08d
+    text-transform none
+    -webkit-transition opacity 1s ease
+    -moz-transition opacity 1s ease
+    -ms-transition opacity 1s ease
+    -o-transition opacity 1s ease
+    transition opacity 1s ease
+    opacity 0
+    padding 6px 12px
+
+    &.is-displayed
+        opacity 1
