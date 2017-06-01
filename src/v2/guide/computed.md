@@ -82,7 +82,7 @@ console.log(vm.reversedMessage) // -> '가잘'
 표현식에서 메소드를 호출하여 같은 결과를 얻을 수 있다는 사실을 알고 있을 것입니다.
 
 ``` html
-<p>뒤집한 메시지: "{{ reverseMessage() }}"</p>
+<p>뒤집힌 메시지: "{{ reverseMessage() }}"</p>
 ```
 
 ``` js
