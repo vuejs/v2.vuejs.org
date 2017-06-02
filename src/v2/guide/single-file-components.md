@@ -15,7 +15,7 @@ This can work very well for small to medium-sized projects, where JavaScript is 
 - **No CSS support** means that while HTML and JavaScript are modularized into components, CSS is conspicuously left out
 - **No build step** restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and Babel
 
-All of these are solved by **single-file components** with a `.vue` extension, made possible with build tools such as Webpack or Browserify.
+All of these are solved by **single-file components** with a `.vue` extension, made possible with build tools such as webpack or Browserify.
 
 Here's a simple example of a file we'll call `Hello.vue`:
 
@@ -31,7 +31,7 @@ As promised, we can also use preprocessors such as Pug, Babel (with ES2015 modul
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-These specific languages are just examples. You could just as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
+These specific languages are just examples. You could just as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using webpack with `vue-loader`, it also has first-class support for CSS Modules.
 
 ### What About Separation of Concerns?
 
@@ -60,10 +60,10 @@ With `.vue` components, we're entering the realm of advanced JavaScript applicat
 
 After you've taken a day to dive into these resources, we recommend checking out the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template. Follow the instructions and you should have a Vue project with `.vue` components, ES2015 and hot-reloading running in no time!
 
-The template uses [Webpack](https://webpack.js.org/), a module bundler that takes a number of "modules" and then bundles them into your final application. To learn more about Webpack itself, [this video](https://www.youtube.com/watch?v=WQue1AN93YU) offers a good intro. Once you get past the basics, you might also want to check out [this advanced Webpack course on Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
+The template uses [webpack](https://webpack.js.org/), a module bundler that takes a number of "modules" and then bundles them into your final application. To learn more about webpack itself, [this video](https://www.youtube.com/watch?v=WQue1AN93YU) offers a good intro. Once you get past the basics, you might also want to check out [this advanced webpack course on Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
 
-In Webpack, each module can be transformed by a "loader" before being included in the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with Webpack, you can read [the docs for vue-loader](https://vue-loader.vuejs.org).
+In webpack, each module can be transformed by a "loader" before being included in the bundle, and Vue offers the [vue-loader](https://github.com/vuejs/vue-loader) plugin to take care of translating `.vue` single-file components. The [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template has already set up everything for you, but if you'd like to learn more about how `.vue` components work with webpack, you can read [the docs for vue-loader](https://vue-loader.vuejs.org).
 
 ### For Advanced Users
 
-Whether you prefer Webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
+Whether you prefer webpack or Browserify, we have documented templates for both simple and more complex projects. We recommend browsing [github.com/vuejs-templates](https://github.com/vuejs-templates), picking a template that's right for you, then following the instructions in the README to generate a new project with [vue-cli](https://github.com/vuejs/vue-cli).
