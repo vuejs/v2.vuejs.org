@@ -37,7 +37,7 @@ Recommandé : [https://unpkg.com/vue](https://unpkg.com/vue), qui reflète la de
 
 ## NPM
 
-NPM est la méthode d'installation recommandée lors du développement de grosses applications avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [Webpack](https://webpack.js.org/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
+NPM est la méthode d'installation recommandée lors du développement de grosses applications avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [webpack](https://webpack.js.org/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
 
 ``` bash
 # dernière version stable
@@ -108,7 +108,7 @@ En utilisant `vue-loader` ou `vueify`, les templates à l'intérieur des fichier
 
 Puisque le *build* Runtime est approximativement 30% plus léger que son homologue le *build* Full, vous devriez l'utiliser autant que possible. Si vous souhaitez toujours utiliser le *build* Full à la place, vous avez besoin de configurer un alias dans votre outil de *bundle* :
 
-#### Webpack
+#### webpack
 
 ``` js
 module.exports = {
@@ -157,9 +157,9 @@ Les *builds* CommonJS et ES Module sont prévus pour les outils de *bundle*, don
 
 Les *builds* CommonJS et ES Module contiennent une utilisation de `process.env.NODE_ENV` pour déterminer le mode qu'ils doivent suivre. Vous devriez utiliser une configuration d'outil de *bundle* appropriée pour remplacer ces d'environnements afin de contrôler lequel des modes Vue exécutera. Remplacer `process.env.NODE_ENV` avec une chaîne de caractère littérale permet aux outils de minification comme UglifyJS de complètement retirer les pends de code réservés au développement, réduisant ainsi la taille du fichier final.
 
-#### Webpack
+#### webpack
 
-Utiliser la fonction [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) de Webpack :
+Utiliser la fonction [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) de webpack :
 
 ``` js
 var webpack = require('webpack')
@@ -208,7 +208,7 @@ Référez vous également aux [conseils de déploiment en production](deployment
 
 Certains environnements, tels que les Applications de Google Chrome, font respecter la politique de sécurité de contenu (*Content Security Policy* - CSP), qui ne permet pas l'utilisation de `new Function()` pour évaluer les expressions. Le *build complet* a besoin de cette fonctionnalité pour compiler les templates, elle n'est donc pas utilisable dans ces environnements.
 
-D'un autre côté, le *build runtime* respecte pleinement les CSP. Quand vous utilisez le *build runtime* avec [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) ou [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), vos templates vont être pré-compilés dans les fonctions `render` qui fonctionnent parfaitement dans des environnements CSP.
+D'un autre côté, le *build runtime* respecte pleinement les CSP. Quand vous utilisez le *build runtime* avec [webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) ou [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), vos templates vont être pré-compilés dans les fonctions `render` qui fonctionnent parfaitement dans des environnements CSP.
 
 ## Build de développement
 

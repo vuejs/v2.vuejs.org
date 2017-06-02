@@ -1069,18 +1069,18 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-La fabrique de fonctions reçoit une fonction de retour `resolve` qui devra être appelée quand vous aurez récupéré la définition de votre composant depuis le serveur. Vous pouvez également appeler `reject(reason)` pour indiquer que le chargement a échoué. La fonction `setTimeout` est simplement là en tant qu'exemple ; la manière de récupérer le composant est entièrement à votre charge. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec [la fonctionnalité de découpage de code de Webpack](https://webpack.js.org/guides/code-splitting-require/) :
+La fabrique de fonctions reçoit une fonction de retour `resolve` qui devra être appelée quand vous aurez récupéré la définition de votre composant depuis le serveur. Vous pouvez également appeler `reject(reason)` pour indiquer que le chargement a échoué. La fonction `setTimeout` est simplement là en tant qu'exemple ; la manière de récupérer le composant est entièrement à votre charge. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec [la fonctionnalité de découpage de code de webpack](https://webpack.js.org/guides/code-splitting-require/) :
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // Cette syntaxe de `require` va indiquer à Webpack
+  // Cette syntaxe de `require` va indiquer à webpack
   // de découper automatiquement votre code après build dans
   // des bundles qui seront chargés par des requêtes Ajax.
   require(['./my-async-component'], resolve)
 })
 ```
 
-Vous pouvez également retourner une `Promise` (promesse) dans la fabrique de fonctions ainsi avec Webpack 2 et la syntaxe ES2015 vous pouvez faire :
+Vous pouvez également retourner une `Promise` (promesse) dans la fabrique de fonctions ainsi avec webpack 2 et la syntaxe ES2015 vous pouvez faire :
 
 ``` js
 Vue.component(
@@ -1100,7 +1100,7 @@ new Vue({
 })
 ```
 
-<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser ldes composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour. ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser Webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
+<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser ldes composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour. ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
 
 ### Composants asynchrones avancés
 
@@ -1235,7 +1235,7 @@ Puis un composant `tree-folder-contents` avec ce template :
 
 En regardant attentivement, vous verrez que ces composants seront en fait l'ancêtre _et_ le descendant l'un de l'autre dans l'arbre de rendu — un paradoxe ! Quand vous inscrivez un composant de manière globale avec `Vue.component`, ce paradoxe est résolu pour vous automatiquement. Si c'est votre cas, vous pouvez arrêter de lire ici.
 
-Cependant, si vous réclamez/importez des composants en utilisant un __système de module__, c-à-d via Webpack ou Browserify, vous obtiendrez une erreur « Échec de montage du composant : un template ou une fonction de rendu n'est pas défini. » :
+Cependant, si vous réclamez/importez des composants en utilisant un __système de module__, c-à-d via webpack ou Browserify, vous obtiendrez une erreur « Échec de montage du composant : un template ou une fonction de rendu n'est pas défini. » :
 
 ```
 Failed to mount component: template or render function not defined

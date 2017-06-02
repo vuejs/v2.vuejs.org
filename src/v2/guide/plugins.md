@@ -70,7 +70,7 @@ Vue.use(MyPlugin, { someOption: true })
 Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
 
 ``` js
-// When using CommonJS via Browserify or Webpack
+// When using CommonJS via Browserify or webpack
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 
