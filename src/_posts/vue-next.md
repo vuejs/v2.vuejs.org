@@ -5,7 +5,7 @@ date: 2014-07-29 00:04:55
 
 ## 0.10.6
 
-Vue.js 0.10.6 has been released! This is another small bug-fix release and will be the last maintainance version before the next major release.
+Vue.js 0.10.6 has been released! This is another small bug-fix release and will be the last maintenance version before the next major release.
 
 <!-- more -->
 
@@ -22,6 +22,6 @@ Some of you might have noticed there is a [next](https://github.com/yyx990803/vu
 - Fix some issues that are caused by design flaws in the current version. Because these changes affect the design of some core modules, it is actually easier to rewrite than to apply on the current codebase.
 - Improve general code quality (in particular, `compiler.js` as of now is a big pile of mess, and comments are not consistent across the codebase.)
 
-Take note that the `next` branch is still in **very** early stage. The internals will change a lot, and when it comes out it **will** break current applications. Despite that I will try to keep the API changes to a minimum. Major differences with current 0.10 branch are documented in [`changes.md`](https://github.com/yyx990803/vue/blob/next/changes.md). The list is obviously incomplete and subject to change, some of them are simply ideas, but it at least gives you a taste of what to expect, and I'd appreicate your feedback on any of the topics.
+Take note that the `next` branch is still in **very** early stage. The internals will change a lot, and when it comes out it **will** break current applications. Despite that I will try to keep the API changes to a minimum. Major differences with current 0.10 branch are documented in [`changes.md`](https://github.com/yyx990803/vue/blob/next/changes.md). The list is obviously incomplete and subject to change, some of them are simply ideas, but it at least gives you a taste of what to expect, and I'd appreciate your feedback on any of the topics.
 
 Share your thoughts at [vuejs/Discussion](https://github.com/vuejs/Discussion/issues).

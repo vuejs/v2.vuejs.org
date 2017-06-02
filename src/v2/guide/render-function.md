@@ -1,12 +1,12 @@
 ---
-title: Render Functions
+title: Render Functions (En)
 type: guide
 order: 15
 ---
 
 ## Basics
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.</p>
 
 Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
 
@@ -121,7 +121,7 @@ createElement(
 
 ### The Data Object In-Depth
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects.
+One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects. This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
 
 ``` js
 {
@@ -299,6 +299,7 @@ render: function (createElement) {
     on: {
       input: function (event) {
         self.value = event.target.value
+        self.$emit('input', event.target.value)
       }
     }
   })
@@ -467,6 +468,8 @@ Vue.component('my-component', {
 })
 ```
 
+> Note: in versions <=2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+
 Everything the component needs is passed through `context`, which is an object containing:
 
 - `props`: An object of the provided props
@@ -474,10 +477,14 @@ Everything the component needs is passed through `context`, which is an object c
 - `slots`: A function returning a slots object
 - `data`: The entire data object passed to the component
 - `parent`: A reference to the parent component
+- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is simply an alias to `data.on`
+- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
 
 After adding `functional: true`, updating the render function of our anchored heading component would simply require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
 
-Since functional components are just functions, they're much cheaper to render. They're also very useful as wrapper components. For example, when you need to:
+Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
+
+They're also very useful as wrapper components.  For example, when you need to:
 
 - Programmatically choose one of several other components to delegate to
 - Manipulate children, props, or data before passing them on to a child component
@@ -598,6 +605,10 @@ console.error = function (error) {
 }
 </script>
 <style>
+#vue-compile-demo {
+  -webkit-user-select: inherit;
+  user-select: inherit;
+}
 #vue-compile-demo pre {
   padding: 10px;
   overflow-x: auto;

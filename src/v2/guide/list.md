@@ -49,7 +49,7 @@ var example1 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-1')
+      smoothScroll.animateScroll(document.querySelector('#example-1'))
     }
   }
 })
@@ -99,7 +99,7 @@ var example2 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-2')
+      smoothScroll.animateScroll(document.querySelector('#example-2'))
     }
   }
 })
@@ -196,7 +196,7 @@ Et également un troisième pour l'index :
 
 ``` html
 <div>
-  <span v-for="n in 10">{{ n }}</span>
+  <span v-for="n in 10">{{ n }} </span>
 </div>
 ```
 
@@ -249,6 +249,7 @@ Voici un exemple complet d'une simple liste de tâches :
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -297,6 +298,7 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -414,7 +416,7 @@ Pour contourner la première limitation, les deux exemples suivants accomplissen
 Vue.set(example1.items, indexOfItem, newValue)
 ```
 ``` js
-// Array.prototype.splice`
+// Array.prototype.splice
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
@@ -447,7 +449,7 @@ computed: {
 }
 ```
 
-Alternativement, vous pouvez aussi simplement utiliser une méthode là où les propriétés calculées ne sont pas utilisables (ex. : à l'intérieur d'une boucle `v-for` imbriquée):
+Dans les situations où les propriétés calculées ne sont pas utilisables (ex. : à l'intérieur d'une boucle `v-for` imbriquée), vous pouvez juste utilisez une méthode :
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
