@@ -350,7 +350,6 @@ new Vue({
 
 ### Utilisation à la fois des transitions et des animations
 
-
 Vue a besoin d'attacher des écouteurs d’événements pour savoir quand une transition est terminée. Cela peut être `transitionend` ou `animationend`, selon le type de règles CSS appliquées. Si vous utilisez seulement l'une ou l’autre, Vue peut automatiquement découvrir le type correct.
 
 Toutefois, dans certains cas vous pouvez les avoir à la fois sur le même élément, par exemple avoir une animation de CSS déclenchée par Vue, ainsi qu'un effet de transition CSS lors du survol. Dans ces cas, vous devrez explicitement déclarer le type dont vous voulez que Vue se soucie dans un attribut `type`, avec une valeur à `animation` ou `transition`.
@@ -661,9 +660,9 @@ computed: {
 }
 ```
 
-### Transition Modes
+### Les modes de transition
 
-There's still one problem though. Try clicking the button below:
+Cependant, il existe encore un problème. Essayez de cliquer sur le bouton ci-dessous :
 
 {% raw %}
 <div id="no-mode-demo" class="demo">
@@ -694,9 +693,9 @@ new Vue({
 </style>
 {% endraw %}
 
-As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
+Comme c’est une transition entre le bouton « on » et le bouton « off », les deux boutons sont rendus (La transition en fait apparaître un pendant qu'elle fait disparaître l'autre). Il s’agit du comportement par défaut de `<transition>` (l'entrée et la sortie se font simultanément).
 
-Sometimes this works great, like when transitioning items are absolutely positioned on top of each other:
+Parfois, cela fonctionne très bien, comme lorsque des éléments de transition sont absolument positionnés l'un sur l'autre :
 
 {% raw %}
 <div id="no-mode-absolute-demo" class="demo">
@@ -736,7 +735,7 @@ new Vue({
 </style>
 {% endraw %}
 
-And then maybe also translated so that they look like slide transitions:
+Et puis cela peut être interprété comme des transitions de diapositives.
 
 {% raw %}
 <div id="no-mode-translate-demo" class="demo">
@@ -782,17 +781,17 @@ new Vue({
 </style>
 {% endraw %}
 
-Simultaneous entering and leaving transitions aren't always desirable though, so Vue offers some alternative **transition modes**:
+Les transitions simultanées d'entrée et de sortie ne sont pas toujours désirées, donc Vue propose des **modes de transition** alternatifs :
 
-- `in-out`: New element transitions in first, then when complete, the current element transitions out.
+- `in-out`: Les transitions du nouvel élément se passent en premier, puis quand elles sont terminées, les transitions de l'élément actuel s'effectuent.
 
-- `out-in`: Current element transitions out first, then when complete, the new element transitions in.
+- `out-in`: Les transitions de l'élément actuel se passent en premier, puis quand elles sont terminées, les transitions du nouvel élément s'effectuent.
 
-Now let's update the transition for our on/off buttons with `out-in`:
+Maintenant, mettons à jour la transition pour nos boutons on/off avec `out-in` :
 
 ``` html
 <transition name="fade" mode="out-in">
-  <!-- ... the buttons ... -->
+  <!-- ... les boutons ... -->
 </transition>
 ```
 
@@ -825,9 +824,9 @@ new Vue({
 </style>
 {% endraw %}
 
-With one simple attribute addition, we've fixed that original transition without having to add any special styling.
+Avec l'ajout d'un simple attribut, nous avons corrigé cette transition originale sans devoir ajouter un style spécial.
 
-The `in-out` mode isn't used as often, but can sometimes be useful for a slightly different transition effect. Let's try combining it with the slide-fade transition we worked on earlier:
+Le mode `in-out` n’est pas utilisé aussi souvent, mais peut parfois être utile pour un effet de transition un peu différent. Essayons de le combiner avec la transition diapositive sur laquelle nous avons travaillé précédemment.
 
 {% raw %}
 <div id="in-out-translate-demo" class="demo">
@@ -873,11 +872,11 @@ new Vue({
 </style>
 {% endraw %}
 
-Pretty cool, right?
+Assez cool, non ?
 
-## Transitioning Between Components
+## Transition entre composants
 
-Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we just wrap a [dynamic component](components.html#Dynamic-Components):
+Faire une transition entre composants est encore plus simple (nous n'avons même pas besoin de l'attribut `key`). Au lieu de cela, nous les enveloppons simplement un [composant dynamique](components.html#Dynamic-Components) :
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -893,10 +892,10 @@ new Vue({
   },
   components: {
     'v-a': {
-      template: '<div>Component A</div>'
+      template: '<div>Composant A</div>'
     },
     'v-b': {
-      template: '<div>Component B</div>'
+      template: '<div>Composant B</div>'
     }
   }
 })
@@ -907,7 +906,7 @@ new Vue({
   transition: opacity .3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active for <2.1.8 */ {
+/* .component-fade-leave-active pour <2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -936,17 +935,17 @@ new Vue({
   },
   components: {
     'v-a': {
-      template: '<div>Component A</div>'
+      template: '<div>Composant A</div>'
     },
     'v-b': {
-      template: '<div>Component B</div>'
+      template: '<div>Composant B</div>'
     }
   }
 })
 </script>
 {% endraw %}
 
-## List Transitions
+## Transitions de liste
 
 So far, we've managed transitions for:
 
@@ -1487,7 +1486,7 @@ Vue.component('my-special-transition', {
   render: function (createElement, context) {
     var data = {
       props: {
-        name: 'very-special-transition',
+        name: 'very-special-transition'
         mode: 'out-in'
       },
       on: {
