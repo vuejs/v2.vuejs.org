@@ -164,7 +164,7 @@ We have a separate section for the new Angular because it really is a completely
 
 ### TypeScript
 
-Angular essentially requires using TypeScript, given that almost all its documentation and learning resources are TypeScript-based. TypeScript has its obvious benefits - static type checking can be very useful for large-scale applications, and can be a big productivity boost for developers which backgrounds in Java and C#.
+Angular essentially requires using TypeScript, given that almost all its documentation and learning resources are TypeScript-based. TypeScript has its obvious benefits - static type checking can be very useful for large-scale applications, and can be a big productivity boost for developers with backgrounds in Java and C#.
 
 However, not everyone wants to use TypeScript. In many smaller-scale use cases, introducing a type system may result in more overhead than productivity gain. In those cases you'd be better off going with Vue instead, since using Angular without TypeScript can be challenging.
 
