@@ -184,7 +184,7 @@ Vue is much less opinionated than Angular, offering official support for a varie
 
 To get started with Vue, all you need is familiarity with HTML and ES5 JavaScript (i.e. plain JavaScript). With these basic skills, you can start building non-trivial applications within less than a day of reading [the guide](./).
 
-Angular's learning curve is much steeper. The API surface of the framework is simply huge and the user will need to familiarize yourself with a lot more concepts before getting productive. Obviously, the complexity of Angular is largely due to its design goal of targeting only large, complex applications - but that does make the framework a lot more difficult for less-experienced developers to pick up.
+Angular's learning curve is much steeper. The API surface of the framework is simply huge and as a user you will need to familiarize yourself with a lot more concepts before getting productive. Obviously, the complexity of Angular is largely due to its design goal of targeting only large, complex applications - but that does make the framework a lot more difficult for less-experienced developers to pick up.
 
 ## Ember
 
@@ -196,7 +196,7 @@ That said, it would probably make a better comparison between Vue core and Ember
 
 - Vue's template syntax harnesses the full power of JavaScript expressions, while Handlebars' expression and helper syntax is intentionally quite limited in comparison.
 
-- Performance-wise, Vue outperforms Ember by a fair margin, even after the latest Glimmer engine update in Ember 2.0. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
+- Performance-wise, Vue outperforms Ember [by a fair margin](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html), even after the latest Glimmer engine update in Ember 2.x. Vue automatically batches updates, while in Ember you need to manually manage run loops in performance-critical situations.
 
 ## Knockout
 

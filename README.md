@@ -14,7 +14,7 @@ $ hexo server
 
 ## On Translations
 
-Translation for this documentation project are currently mantained in separate repositories forked from this original one.
+Translation for this documentation project are currently maintained in separate repositories forked from this original one.
 
 ### French
 
