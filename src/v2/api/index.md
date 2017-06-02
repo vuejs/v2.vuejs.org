@@ -1410,10 +1410,10 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ## Instance Methods / Lifecycle
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+<h3 id="vm-mount">vm.$mount( el, hydrating )</h3>
 
 - **Arguments:**
-  - `{Element | string} [elementOrSelector]`
+  - `{Element | string} [el]`
   - `{boolean} [hydrating]`
 
 - **Returns:** `vm` - the instance itself
@@ -1422,7 +1422,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  If `el` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
 
   The method returns the instance itself so you can chain other instance methods after it.
 
