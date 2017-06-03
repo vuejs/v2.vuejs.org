@@ -71,6 +71,17 @@ The easiest way to pre-compile templates is using [Single-File Components](singl
 
 If you are using Webpack, and prefer separating JavaScript and template files, you can use [vue-template-loader](https://github.com/ktsn/vue-template-loader), which also transforms the template files into JavaScript render functions during the build step.
 
+An important thing to keep in mind when switching to pre-compiled templates is that you have to pass those through a render function. So for example your root component should look like this:
+
+```
+new Vue({
+  el: '#app',
+  render: function (h) {
+    return h(require('./rootcomponent.vue'));
+  }
+});
+```
+
 ## Extracting Component CSS
 
 When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file will avoid these issues, and also result in better CSS minification and caching.
