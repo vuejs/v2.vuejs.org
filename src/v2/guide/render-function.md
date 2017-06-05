@@ -262,8 +262,6 @@ render: function (createElement) {
 
 ### `v-if` et `v-for`
 
-
-
 Partout ou quelque chose peut être accomplie simplement en JavaScript, Les fonctions de rendu Vue ne fournissent pas d'alternatives personnelles. Par exemple, un template utilisant `v-if` et `v-for` :
 
 ``` html
