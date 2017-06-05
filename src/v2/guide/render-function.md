@@ -63,7 +63,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Ce template ne semble pas génial. Il n'est pas uniquement verbeux, il duplique `<slot></slot>` dans tous les niveaux de titre et nous allons devoir refaire la même chose pour chaque élément ancre. Le plus génant est également le fait d'entourer tous ses titres d'une `div` inutile car un composant doit contenir exactement une seul nœud racine.
+Ce template ne semble pas génial. Il n'est pas uniquement verbeux, il duplique `<slot></slot>` dans tous les niveaux de titre et nous allons devoir refaire la même chose pour chaque élément ancre. Le plus gênant est également le fait d'entourer tous ses titres d'une `div` inutile car un composant doit contenir exactement une seul nœud racine.
 
 Alors que les templates marche bien pour la majorité des composants, il est clair que celui là n'est pas l'un d'entre eux. Aussi essayons de ré-écrire cela avec une fonction `render` :
 
@@ -150,7 +150,7 @@ Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:styl
   // La gestion d'évènement est regroupée sous `on` cependant
   // les modificateurs comme `v-on:keyup.enter` ne sont pas
   // supportés. Vous devez vérifier manuellement le code de touche
-  // dans le gertionnaire à la place.
+  // dans le gestionnaire à la place.
   on: {
     click: this.clickHandler
   },
@@ -246,7 +246,7 @@ render: function (createElement) {
 }
 ```
 
-Si vous souhaitez réellement dupliquer le même élément/composant plusieurs fois, vous voupez le faire avec une fonction de fabrique. Par exemple, la fonction de rendu suivante est parfaitement valide pour faire le rendu de 20 paragraphes identiques :
+Si vous souhaitez réellement dupliquer le même élément/composant plusieurs fois, vous pouvez le faire avec une fonction de fabrique. Par exemple, la fonction de rendu suivante est parfaitement valide pour faire le rendu de 20 paragraphes identiques :
 
 ``` js
 render: function (createElement) {
@@ -270,7 +270,7 @@ Partout ou quelque chose peut être accomplie simplement en JavaScript, Les fonc
 <ul v-if="items.length">
   <li v-for="item in items">{{ item.name }}</li>
 </ul>
-<p v-else>No items found.</p>
+<p v-else>Aucun élément trouvé.</p>
 ```
 
 Pourrait être ré-écrit avec les `if`/`else` et `map` du JavaScript dans une fonction de rendu
@@ -282,7 +282,7 @@ render: function (createElement) {
       return createElement('li', item.name)
     }))
   } else {
-    return createElement('p', 'No items found.')
+    return createElement('p', 'Aucun élément trouvé.')
   }
 }
 ```
@@ -308,7 +308,7 @@ render: function (createElement) {
 }
 ```
 
-C'est le prix à payer pour travailler à bas niveau, mais cela vous donne un meilleur contrôle sur le détail des intéractions comparé à `v-model`.
+C'est le prix à payer pour travailler à bas niveau, mais cela vous donne un meilleur contrôle sur le détail des interactions comparé à `v-model`.
 
 ### Modificateurs d'évènement et de code de touche
 
@@ -332,8 +332,6 @@ on: {
 
 Pour tous les autres modificateurs d'évènement et de code de touche, aucun préfixe propriétaire n'est nécessaire car il suffit d'utiliser des méthodes d'évènement dans le gestionnaire :
 
-For all other event and key modifiers, no proprietary prefix is necessary, because you can simply use event methods in the handler:
-
 | Modificateur(s) | Équivalence dans le gestionnaire |
 | ------ | ------ |
 | `.stop` | `event.stopPropagation()` |
@@ -347,10 +345,10 @@ Voici un exemple avec tous ses modificateurs utilisés ensemble :
 ```javascript
 on: {
   keyup: function (event) {
-    // Annuler si l'élément qui emet l'évènement n'est pas
+    // Annuler si l'élément qui émet l'évènement n'est pas
     // l'élément auquel l'évènement est lié
     if (event.target !== event.currentTarget) return
-    // Annuler si la touche relachée n'est pas la touche
+    // Annuler si la touche relâchée n'est pas la touche
     // entrer (13) et la clé `shift` n'est pas maintenue
     // en même temps
     if (!event.shiftKey || event.keyCode !== 13) return
@@ -407,7 +405,7 @@ render (createElement) {
 
 ## JSX
 
-Si vous écrivez beaucoup de functions de rendu, cela pourra vous sembler fatiguant d'écrire des choses comme ça :
+Si vous écrivez beaucoup de fonctions de rendu, cela pourra vous sembler fatiguant d'écrire des choses comme ça :
 
 ``` js
 createElement(
@@ -426,7 +424,7 @@ Et d'autant plus quand la version template est vraiment simple en comparaison :
 
 ``` html
 <anchored-heading :level="1">
-  <span>Hello</span> world!
+  <span>Hello</span> world !
 </anchored-heading>
 ```
 
@@ -440,7 +438,7 @@ new Vue({
   render (h) {
     return (
       <AnchoredHeading level={1}>
-        <span>Hello</span> world!
+        <span>Hello</span> world !
       </AnchoredHeading>
     )
   }
@@ -455,7 +453,7 @@ Pour plus d'information sur comment utiliser JSX dans du JavaScript, référez-v
 
 Les titres avec ancres que nous avons créé plus tôt était relativement simple. Il ne gère aucun état, observateur ou état passé du dessus, et il n'a aucune méthode de cycle de vie. Non, ce n'est qu'une simple fonction avec quelque props.
 
-Dans dès cas comme ça, nous pouvons marquer les composants comme `functonal`, ce qui signifie qu'ils sont sans état (« stateless » c.-à-d. sans `data`) et sans instance (« instanceless » c.-à-d. sans contexte `this`). Un composant fonctionnel ressemble à ça :
+Dans dès cas comme ça, nous pouvons marquer les composants comme `functional`, ce qui signifie qu'ils sont sans état (« stateless » c.-à-d. sans `data`) et sans instance (« instanceless » c.-à-d. sans contexte `this`). Un composant fonctionnel ressemble à ça :
 
 ``` js
 Vue.component('my-component', {
@@ -472,7 +470,7 @@ Vue.component('my-component', {
 })
 ```
 
-> Note : dans les versions <= 2.3.0, l'option `props` est requise si vous souhaitez accepter des props dans un composant fonctionnel. Dans les versions 2.3.0+ vous pouvez ommettre l'option `props` et tous les attributs trouvés dans le nœud composant seront implicitement extrait comme des props.
+> Note : dans les versions <= 2.3.0, l'option `props` est requise si vous souhaitez accepter des props dans un composant fonctionnel. Dans les versions 2.3.0+ vous pouvez omettre l'option `props` et tous les attributs trouvés dans le nœud composant seront implicitement extrait comme des props.
 
 Tout ce dont le composant a besoin est passé dans l'objet `context`, qui est un objet contenant :
 
@@ -486,14 +484,14 @@ Tout ce dont le composant a besoin est passé dans l'objet `context`, qui est un
 
 Après avoir ajouté `functional: true`, mettre a jour la fonction de rendu de votre composant de titres avec ancres va seulement demander l'utilisation de l'argument `context`, la mise à jour de `this.$slots.default` pour `context.children`, puis la mise à jour de `this.level` pour `context.props.level`.
 
-Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
+Puisque les composants fonctionnels ne sont que des fonctions, leur rendu est plus rapide. Cependant, cela signifie également que les composants fonctionnels n'apparaissent pas dans l'arbre des composants de l'outil de développement Vue.js de Chrome.
 
-They're also very useful as wrapper components.  For example, when you need to:
+Ils sont également très utile en tant que composant encadrant. Par exemple, quand vous avez besoin de :
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+- Programmatiquement choisir un composant parmi plusieurs autres composant pour de la délégation ou
+- Manipuler les enfants, props, ou données avant de les passer au composant enfant.
 
-Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
+Voici un exemple d'un composant `smart-list` qui délègue à des composants plus spécifiques en fonction des props qui lui sont passées :
 
 ``` js
 var EmptyList = { /* ... */ }
@@ -530,37 +528,37 @@ Vue.component('smart-list', {
 })
 ```
 
-### `slots()` vs `children`
+### `slots()` vs. `children`
 
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+Vous vous demandez peut-être l'utilité d'avoir `slot()` et `children` en même temps. `slots().default` n'est pas la même chose que `children` ? Dans la majorité des cas, oui. Mais que faire si vous avez le composant fonctionnel suivant avec les enfants suivants ?
 
 ``` html
 <my-functional-component>
   <p slot="foo">
-    first
+    premier
   </p>
   <p>second</p>
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by simply passing along `children`.
+Pour ce composant `children` va vous donner les deux paragraphes, `slots().default` ne vous donnera que le second, et `slots().foo` ne vous donnera que le premier. Avoir le choix entre `children` et `slots()` donc a vous de choisir ce que le composant sait à propos du système de slot ou si vous déléguez peut-être la responsabilité à un autre composant en passant simplement `children`.
 
-## Template Compilation
+## Compilation de template
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Vous serez peut-être intéresser de savoir que les templates Vue sont en fait compilé en fonctions de rendu. C'est un détail d'implémentation dont vous avez en général pas à vous soucier, mais si vous souhaiter savoir comment un template spécifique est compilé, vous pourrez trouver cela intéressant. Vous trouverez ci-dessous une petite démo utilisant `Vue.compile` pour voir en live le rendu d'une chaîne de template :
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">
   <textarea v-model="templateText" rows="10"></textarea>
   <div v-if="typeof result === 'object'">
-    <label>render:</label>
+    <label>rendu :</label>
     <pre><code>{{ result.render }}</code></pre>
-    <label>staticRenderFns:</label>
+    <label>staticRenderFns :</label>
     <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
     <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
-    <label>Compilation Error:</label>
+    <label>Erreur de compilation :</label>
     <pre><code>{{ result }}</code></pre>
   </div>
 </div>
@@ -571,13 +569,13 @@ new Vue({
     templateText: '\
 <div>\n\
   <header>\n\
-    <h1>I\'m a template!</h1>\n\
+    <h1>Je suis un template !</h1>\n\
   </header>\n\
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\
   <p v-else>\n\
-    No message.\n\
+    Pas de message.\n\
   </p>\n\
 </div>\
     ',
@@ -585,7 +583,7 @@ new Vue({
   computed: {
     result: function () {
       if (!this.templateText) {
-        return 'Enter a valid template above'
+        return 'Entrez ci-dessous un template valide'
       }
       try {
         var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
