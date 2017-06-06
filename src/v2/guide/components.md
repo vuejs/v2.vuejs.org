@@ -1233,6 +1233,8 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
+You can also checkout this example [here](https://jsfiddle.net/alexec/d6ksvd5b/6/).
+
 When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
 
 However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
