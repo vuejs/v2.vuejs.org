@@ -1392,7 +1392,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Usage:**
 
-  Remove event listener(s).
+  Remove custom event listener(s).
 
   - If no arguments are provided, remove all event listeners;
 
