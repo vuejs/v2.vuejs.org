@@ -93,6 +93,37 @@ markdown:
   smartLists: true
   smartypants: true
 
+# Offline
+## Config passed to sw-precache
+## https://github.com/JLHwung/hexo-offline
+offline:
+  maximumFileSizeToCacheInBytes: 10485760
+  staticFileGlobs:
+    - public/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,json,xml}
+  stripPrefix: public
+  verbose: true
+  runtimeCaching:
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: sendgrid.sp1.convertro.com
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: ad.doubleclick.net
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: cdn.jsdelivr.net
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: fonts.googleapis.com
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: fonts.gstatic.com
+
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:

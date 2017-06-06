@@ -1,15 +1,15 @@
 ---
-title: Migration from Vuex 0.6.x to 1.0
+title: Migration from Vuex 0.6.x to 1.0 (En)
 type: guide
 order: 28
 ---
 
 > Vuex 2.0 is released, but this guide only covers the migration to 1.0? Is that a typo? Also, it looks like Vuex 1.0 and 2.0 were released simultaneously. What's going on? Which one should I use and what's compatible with Vue 2.0?
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Both Vuex 1.0 and 2.0:
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>Both Vuex 1.0 and 2.0:</p>
 
 - fully support both Vue 1.0 and 2.0
-- will be maintained for the forseeable future
+- will be maintained for the foreseeable future
 
 They have slightly different target users however.
 

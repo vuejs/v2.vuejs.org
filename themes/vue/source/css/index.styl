@@ -109,9 +109,11 @@ body
         vertical-align middle
     img
         transition all .3s ease
-        filter contrast(0%)
+        filter grayscale(100%)
+        opacity 0.66
         &:hover
             filter none
+            opacity 1
     a.vip
         display block
         margin 30px auto 15px
@@ -168,3 +170,21 @@ body
             &:before
                 content "—"
                 color $green
+
+// FR - Version
+
+/// Chat
+
+.gitter-open-chat-button
+    background-color #4fc08d
+    text-transform none
+    -webkit-transition opacity 1s ease
+    -moz-transition opacity 1s ease
+    -ms-transition opacity 1s ease
+    -o-transition opacity 1s ease
+    transition opacity 1s ease
+    opacity 0
+    padding 6px 12px
+
+    &.is-displayed
+        opacity 1

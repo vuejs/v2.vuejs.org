@@ -18,7 +18,7 @@ En quoi le *cookbook* est-il différent du guide ? Pourquoi est-ce nécessaire ?
 
 - __Enseigner JavaScript__ : Dans le guide, nous supposons que le lecteur est au moins moyennement familier avec la norme ES5 de JavaScript. Par exemple, nous n'expliquerons pas comment `Array.prototype.filter` fonctionne au sein d'une propriété calculée qui filtre une liste. Dans le *cookbook* en revanche, des fonctionnalités essentielles de JavaScript (y-compris ES6/2015+) peuvent être explorées et expliquées pour montrer comment elles nous aident à construire de meilleures applications Vue.
 
-- __Explorer l'écosystème__ : Pour les fonctionnalités avancées, nous supposons que le lecteur a quelques connaissances sur l'écosystème. Par exemple, si vous voulez utiliser des composants monofichiers avec Webpack, nous n'expliquerons pas comment configurer les parties qui ne concernent pas Vue dans la configuration de Webpack. Dans le *cookbook*, nous avons l'espace suffisant pour explorer plus en profondeur ces bibliothèques de l'écosystème - au moins dans la mesure où cela est universellement utile aux développeurs Vue.
+- __Explorer l'écosystème__ : Pour les fonctionnalités avancées, nous supposons que le lecteur a quelques connaissances sur l'écosystème. Par exemple, si vous voulez utiliser des composants monofichiers avec webpack, nous n'expliquerons pas comment configurer les parties qui ne concernent pas Vue dans la configuration de webpack. Dans le *cookbook*, nous avons l'espace suffisant pour explorer plus en profondeur ces bibliothèques de l'écosystème - au moins dans la mesure où cela est universellement utile aux développeurs Vue.
 
 ## Lignes directrices pour les recettes
 

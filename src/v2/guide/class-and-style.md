@@ -191,4 +191,16 @@ La syntaxe tableau pour `v-bind:style` permet d'appliquer plusieurs objets de st
 
 ### Préfixage automatique
 
-Quand vous utilisez une propriété CSS qui nécessite un préfixe vendeur dans `v-bind:style`, par exemple `transform`, Vue le détectera automatiquement, et ajoutera les préfixes appropriés aux styles appliqués.
+Quand vous utilisez une propriété CSS qui nécessite un [préfixe vendeur](https://developer.mozilla.org/fr/docs/Glossaire/Pr%C3%A9fixe_Vendeur) dans `v-bind:style`, par exemple `transform`, Vue le détectera automatiquement, et ajoutera les préfixes appropriés aux styles appliqués.
+
+### Valeurs multiples
+
+> 2.3.0+
+
+Introduit avec la 2.3, vous pouvez fournir de multiples valeurs de préfixes à une propriété style, par exemple :
+
+``` html
+<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
+```
+
+This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.

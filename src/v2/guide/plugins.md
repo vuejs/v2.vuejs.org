@@ -1,12 +1,12 @@
 ---
-title: Plugins
+title: Plugins (En)
 type: guide
 order: 18
 ---
 
 ## Writing a Plugin
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:
+<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:</p>
 
 1. Add some global methods or properties. e.g. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
@@ -70,7 +70,7 @@ Vue.use(MyPlugin, { someOption: true })
 Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
 
 ``` js
-// When using CommonJS via Browserify or Webpack
+// When using CommonJS via Browserify or webpack
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 
@@ -78,4 +78,4 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins) for a huge collection of community-contributed plugins and libraries.
+Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.

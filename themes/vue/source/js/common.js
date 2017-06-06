@@ -7,6 +7,31 @@
     initApiSpecLinks()
     initLocationHashFuzzyMatching()
   }
+  initChat()
+
+  function initChat () {
+      var script = document.createElement("script");
+      window.gitter = {
+          chat: {
+              options: {
+                  room: "vuejs-fr/vue"
+              }
+          }
+      };
+      script.src = "https://sidecar.gitter.im/dist/sidecar.v1.js";
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+      (function changeOpenChat() {
+          var name = document.getElementsByClassName("gitter-open-chat-button")[0];
+          if (name) {
+              name.innerHTML = 'Chat rapide';
+              name.classList.add("is-displayed");
+          } else {
+              setTimeout(changeOpenChat, 200);
+          }
+      }());
+  }
 
   function initApiSpecLinks () {
     var apiContent = document.querySelector('.content.api')
@@ -29,6 +54,7 @@
     function createSourceSearchPath(query) {
       query = query
         .replace(/\([^\)]*?\)/g, '')
+        .replace(/(Vue\.)(\w+)/g, '$1$2" OR "$2')
         .replace(/vm\./g, 'Vue.prototype.')
       return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
@@ -118,6 +144,7 @@
     })
 
     document.body.addEventListener('touchend', function (e) {
+
       end.y = e.changedTouches[0].clientY
       end.x = e.changedTouches[0].clientX
 
@@ -125,7 +152,7 @@
       var yDiff = end.y - start.y
 
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        if (xDiff > 0) sidebar.classList.add('open')
+        if (xDiff > 0 && start.x <= 80) sidebar.classList.add('open')
         else sidebar.classList.remove('open')
       }
     })
