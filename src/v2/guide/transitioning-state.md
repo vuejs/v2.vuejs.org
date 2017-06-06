@@ -11,7 +11,7 @@ Le système de transition de Vue offre de nombreuses façons simples d'animer l'
 - les positions des nœuds SVG
 - les tailles et les autres propriétés des éléments
 
-Tous ces éléments sont déjà stockés comme des chiffres bruts, ou peuvent être convertis en nombres. Dès que nous le faisons, nous pouvons animer ces modifications de l'état à l'aide de bibliothèques tierces vers un état intermédiaire, en combinant la réactivité de Vue et les systèmes de composants.
+Tous ces éléments sont déjà stockés sous forme de nombres bruts, ou peuvent être convertis en nombres. Dès lors, nous pouvons animer ces modifications de l'état à l'aide de bibliothèques tierces vers un état intermédiaire, en combinaison avec la réactivité de Vue et les systèmes de composants.
 
 ## Animation de l'état avec des observateurs
 
@@ -95,7 +95,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Lorsque vous mettez à jour le nombre, la modification est animée en dessous de l'input. Cela fait une belle démonstration, mais qu'en est-il de quelque chose qui n'est pas directement stocké comme un nombre, comme n'importe quelle couleur CSS valide par exemple ? Voici comment nous pourrions accomplir cela avec l'ajout de [Color.js](https://github.com/brehaut/color-js):
+Lorsque vous mettez à jour le nombre, la modification est animée en dessous de l'input. Cela fait une belle démonstration, mais qu'en est-il de quelque-chose qui n'est pas directement stocké comme un nombre, comme n'importe quelle couleur CSS valide par exemple ? Voici comment nous pourrions accomplir cela avec l'ajout de [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -257,7 +257,7 @@ new Vue({
 
 ## Transitions d'état dynamiques
 
-Tout comme pour les composants de transition de Vue, les données de la sauvegarde des transitions de l'état peuvent être mises à jour en temps réel, ce qui est particulièrement utile pour le prototypage ! Même en utilisant un polygone SVG simple, vous pouvez obtenir de nombreux effets qui seraient difficile à concevoir tant que vous n'avez pas un peu joué avec les variables.
+Tout comme pour les composants de transition de Vue, les transitions d'état de données peuvent être mises à jour en temps réel, ce qui est particulièrement utile pour le prototypage ! Même en utilisant un polygone SVG simple, vous pouvez obtenir de nombreux effets qui seraient difficile à concevoir tant que vous n'avez pas un peu joué avec les variables.
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
@@ -545,4 +545,4 @@ new Vue({
 </script>
 {% endraw %}
 
-Dans les composants enfants, nous pouvons utiliser n'importe quelle combinaison de stratégies de transition qui ont été couvertes sur cette page, ainsi que celles offertes par le [système intégré de transition](transitions.html) de Vue. En utilisant les deux, il existe très peu de limites à ce qui peut être accompli.
+Dans les composants enfants, nous pouvons utiliser n'importe quelle combinaison de stratégies de transition qui ont été abordées dans cette page, ainsi que celles offertes par le [système intégré de transition](transitions.html) de Vue. En utilisant les deux, il existe très peu de limites à ce qui peut être accompli.
