@@ -696,6 +696,7 @@ Vue.component('my-checkbox', {
     event: 'change'
   },
   props: {
+    checked: Boolean,
     // this allows using the `value` prop for a different purpose
     value: String
   },
@@ -716,6 +717,8 @@ The above will be equivalent to:
   value="some value">
 </my-checkbox>
 ```
+
+<p class="tip">Note that you still have to declare the `checked` prop explicitly.</p>
 
 ### Non Parent-Child Communication
 
