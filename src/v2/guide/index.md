@@ -14,7 +14,7 @@ If you are an experienced frontend developer and want to know how Vue compares t
 
 <p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can simply create an `.html` file and include Vue with:
+The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can simply create an `index.html` file and include Vue with:
 
 ``` html
 <script src="https://unpkg.com/vue"></script>
@@ -24,33 +24,43 @@ The [Installation](installation.html) page provides more options of installing V
 
 ## Declarative Rendering
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax. If you are following along in your `index.html` file, our first code example will look like:
 
-``` html
+``` 
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
 <div id="app">
   {{ message }}
 </div>
-```
-``` js
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
-})
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!'
+    }
+  });
+</script>
+</body>
 ```
 {% raw %}
-<div id="app" class="demo">
+<head>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
   {{ message }}
 </div>
 <script>
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
-})
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!'
+    }
+  });
 </script>
+</body>
 {% endraw %}
 
 We have already created our very first Vue app! This looks pretty similar to just rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
