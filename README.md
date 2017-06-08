@@ -21,7 +21,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] List Rendering (Tradução: @ErickPetru. Revisão: **pendente**)
 - [ ] Event Handling (Tradução: @gidenilson. Revisão: **pendente**)
 - [ ] Form Input Bindings(Tradução: @gidenilson. Revisão: **pendente**)
-- [ ] Components (Tradução: **pendente**)
+- [X] Components (Tradução: @thiagorossener, Revisão: **pendente**)
 - [ ] Reactivity in Depth (Tradução: @gidenilson. Revisão: **pendente**)
 - [ ] Transition Effects (Tradução: @jbruni, @NicholasPedroso. Revisão: **pendente**)
 - [ ] Transitioning State (Tradução: **pendente**)
