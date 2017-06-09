@@ -461,7 +461,7 @@ data: {
 },
 methods: {
   even: function (numbers) {
-    return numbers.filter(function (number) {
+    return this.numbers.filter(function (number) {
       return number % 2 === 0
     })
   }
