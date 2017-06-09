@@ -1072,18 +1072,18 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting-require/):
+The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting-require/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
+  // This special require syntax will instruct webpack to
   // automatically split your built code into bundles which
   // are loaded over Ajax requests.
   require(['./my-async-component'], resolve)
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 + ES2015 syntax you can do:
+You can also return a `Promise` in the factory function, so with webpack 2 + ES2015 syntax you can do:
 
 ``` js
 Vue.component(
@@ -1103,7 +1103,7 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
+<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using webpack for built-in, first-class async support.</p>
 
 ### Advanced Async Components
 
@@ -1238,7 +1238,7 @@ Then a `tree-folder-contents` component with this template:
 
 When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+However, if you're requiring/importing components using a __module system__, e.g. via webpack or Browserify, you'll get an error:
 
 ```
 Failed to mount component: template or render function not defined.

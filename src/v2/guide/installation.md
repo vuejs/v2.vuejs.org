@@ -37,7 +37,7 @@ Also available on [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) or [cdnjs](//
 
 ## NPM
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
 
 ``` bash
 # latest stable
@@ -108,7 +108,7 @@ When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-comp
 
 Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
 
-#### Webpack
+#### webpack
 
 ``` js
 module.exports = {
@@ -157,9 +157,9 @@ CommonJS and ES Module builds are intended for bundlers, therefore we don't prov
 
 CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
 
-#### Webpack
+#### webpack
 
-Use Webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+Use webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
 ``` js
 var webpack = require('webpack')
@@ -208,7 +208,7 @@ Also see [Production Deployment Tips](deployment.html).
 
 Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
 
 ## Dev Build
 
