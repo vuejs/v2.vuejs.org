@@ -707,7 +707,7 @@ new Vue({
 <p><code>v-if</code> is also <strong>lazy</strong>: if the condition is false on initial render, it will not do anything - the conditional block won’t be rendered until the condition becomes true for the first time.</p>
 <p>In comparison, <code>v-show</code> is much simpler - the element is always rendered regardless of initial condition, with just simple CSS-based toggling.</p>
 <p>Generally speaking, <code>v-if</code> has higher toggle costs while <code>v-show</code> has higher initial render costs. So prefer <code>v-show</code> if you need to toggle something very often, and prefer <code>v-if</code> if the condition is unlikely to change at runtime.</p>
-<h2 id="v-if-with-v-for"><a href="#v-if-with-v-for" class="headerlink" title="v-if with v-for"></a><code>v-if</code> with <code>v-for</code></h2><p>When used together with <code>v-for</code>, <code>v-for</code> has a higher priority than <code>v-if</code>. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.</p>
+<h2 id="v-if-with-v-for"><a href="#v-if-with-v-for" class="headerlink" title="v-if with v-for"></a><code>v-if</code> with <code>v-for</code></h2><p>When used together with <code>v-if</code>, <code>v-for</code> has a higher priority than <code>v-if</code>. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.</p>
 
     
       <div class="guide-links">
