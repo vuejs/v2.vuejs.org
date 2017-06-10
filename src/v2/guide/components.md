@@ -217,7 +217,7 @@ new Vue({
 
 Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component's code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.
 
-In Vue.js, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
+In Vue, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
 
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
@@ -433,6 +433,44 @@ The `type` can be one of the following native constructors:
 In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
 
 When a prop validation fails, Vue will produce a console warning (if using the development build).
+
+## Non-Prop Attributes
+
+While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, just like HTML elements.
+
+For example, imagine we're using a 3rd-party `bs-date-input` component with a Bootstrap plugin that requires a `data-3d-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+
+``` html
+<bs-date-input data-3d-date-picker="true"></bs-date-input>
+```
+
+And the `data-3d-date-picker="true"` attribute will automatically be added to the root element of `bs-date-input`.
+
+<p class="tip">If `data-3d-date-picker` is the name of a prop defined by `bs-date-input`, the attribute will **not** be added to its root element. When a component defines a prop, that component must explicitly choose what to do with it.</p>
+
+### Replacing/Merging with Existing Attributes
+
+Imagine this is the template for `bs-date-input`:
+
+``` html
+<input type="date" class="form-control">
+```
+
+To add specify a theme for our date picker plugin, we might need to add a specific class, like this:
+
+``` html
+<bs-date-input
+  data-3d-date-picker="true"
+  class="date-picker-theme-calico"
+></bs-date-input>
+```
+
+In this case, two different values for `class` are defined:
+
+- `form-control`, which is set by the component in its template
+- `date-picker-theme-calico`, which is passed to the component by its parent
+
+For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="large"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-calico`.
 
 ## Custom Events
 
