@@ -461,16 +461,16 @@ To add specify a theme for our date picker plugin, we might need to add a specif
 ``` html
 <bs-date-input
   data-3d-date-picker="true"
-  class="date-picker-theme-calico"
+  class="date-picker-theme-dark"
 ></bs-date-input>
 ```
 
 In this case, two different values for `class` are defined:
 
 - `form-control`, which is set by the component in its template
-- `date-picker-theme-calico`, which is passed to the component by its parent
+- `date-picker-theme-dark`, which is passed to the component by its parent
 
-For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="large"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-calico`.
+For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="large"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
 
 ## Custom Events
 
