@@ -30,9 +30,9 @@ Vue.component('my-component', {
 })
 ```
 
-<p class="tip">Note que o Vue não segue as regras da [W3C](http://www.w3.org/TR/custom-elements/#concepts) para tags customizadas (letras minúsculas, precisa ter um hífen) embora seguir essa convenção seja considerada uma boa prática</p>
+<p class="tip">Observe que o Vue não segue as regras da [W3C](http://www.w3.org/TR/custom-elements/#concepts) para tags personalizadas (letras minúsculas, precisa ter um hífen) embora seguir essa convenção seja considerada uma boa prática</p>
 
-Uma vez registrado, um componente pode ser usado em uma instância como um elemento customizado `<my-component></my-component>`. Tenha certeza que o elemento é registrado **antes** de ser instanciado na raiz do Vue. Aqui está um exemplo completo:
+Uma vez registrado, um componente pode ser usado em uma instância como um elemento personalizado `<my-component></my-component>`. Tenha certeza que o elemento é registrado **antes** de ser instanciado na raiz do Vue. Aqui está um exemplo completo:
 
 
 ``` html
@@ -44,7 +44,7 @@ Uma vez registrado, um componente pode ser usado em uma instância como um eleme
 ``` js
 // registro
 Vue.component('my-component', {
-  template: '<div>Um elemento customizado!</div>'
+  template: '<div>Um elemento personalizado!</div>'
 })
 
 // cria a instância raiz
@@ -57,7 +57,7 @@ No qual irá renderizar:
 
 ``` html
 <div id="example">
-  <div>Um elemento customizado!</div>
+  <div>Um elemento personalizado!</div>
 </div>
 ```
 
@@ -67,37 +67,39 @@ No qual irá renderizar:
 </div>
 <script>
 Vue.component('my-component', {
-  template: '<div>Um elemento customizado!</div>'
+  template: '<div>Um elemento personalizado!</div>'
 })
 new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-### Local Registration
+### Registro Local
 
-You don't have to register every component globally. You can make a component available only in the scope of another instance/component by registering it with the `components` instance option:
+Você não tem que registrar todo componente globalmente. Você pode fazer um componente disponível somente no escopo de outra instância/componente, o registrando com a opção `components`:
+
 
 ``` js
 var Child = {
-  template: '<div>A custom component!</div>'
+  template: '<div>Um elemento personalizado!</div>'
 }
 
 new Vue({
   // ...
   components: {
-    // <my-component> will only be available in parent's template
+    // <my-component> só estará disponível no template pai
     'my-component': Child
   }
 })
 ```
 
-The same encapsulation applies for other registerable Vue features, such as directives.
+O mesmo encapsulamento se aplica para outros recursos registráveis do Vue, como as diretivas.
 
-### DOM Template Parsing Caveats
+### Cuidados no Uso de Template DOM
 
-When using the DOM as your template (e.g. using the `el` option to mount an element with existing content), you will be subject to some restrictions that are inherent to how HTML works, because Vue can only retrieve the template content **after** the browser has parsed and normalized it. Most notably, some elements such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<option>` can only appear inside certain other elements.
+Quando usar o DOM como seu _template_ (isto é, usar a opção `el` para montar um elemento em um conteúdo existente), você estará sujeito a algumas restrições inerentes a como o HTML funciona, pois o Vue só pode recuperar o conteúdo do _template_ **depois** que o navegador o analisou e o normalizou. De maneira mais perceptível, alguns elementos como `<ul>`, `<ol>`, `<table>` e `<select>` têm restrições de quais elementos podem aparecer dentro deles, e alguns elementos como `<option>` podem aparecer somente dentro de certos outros elementos.
 
-This will lead to issues when using custom components with elements that have such restrictions, for example:
+Isso levará a problemas quando usar componentes personalizados com elementos que possuem tais restrições, por exemplo:
+
 
 ``` html
 <table>
@@ -105,7 +107,8 @@ This will lead to issues when using custom components with elements that have su
 </table>
 ```
 
-The custom component `<my-row>` will be hoisted out as invalid content, thus causing errors in the eventual rendered output. A workaround is to use the `is` special attribute:
+O componente personalizado `<my-row>` será içado para fora como um conteúdo inválido, causando erros na eventual renderização. Uma solução de contorno seria usar o atributo especial `is`:
+
 
 ``` html
 <table>
@@ -113,28 +116,28 @@ The custom component `<my-row>` will be hoisted out as invalid content, thus cau
 </table>
 ```
 
-**It should be noted that these limitations do not apply if you are using string templates from one of the following sources**:
+**Deve-se notar que essas limitações não se aplicam se você estiver usando string templates de uma das seguintes fontes**:
 
 - `<script type="text/x-template">`
-- JavaScript inline template strings
-- `.vue` components
+- _String templates_ JavaScript de mesma linha
+- Componentes `.vue`
 
-Therefore, prefer using string templates whenever possible.
+Portanto, prefira usar _string templates_ sempre que for possível.
 
-### `data` Must Be a Function
+### `data` Deve Ser uma Função
 
-Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be function. In fact, if you try this:
+A maioria das opções que podem ser passadas para o construtor do Vue podem ser usadas em um componente, com um caso em especial: `data` deve ser uma função. Na verdade, se você tentar isso:
 
 ``` js
 Vue.component('my-component', {
   template: '<span>{{ message }}</span>',
   data: {
-    message: 'hello'
+    message: 'olá'
   }
 })
 ```
 
-Then Vue will halt and emit warnings in the console, telling you that `data` must be a function for component instances. It's good to understand why the rules exist though, so let's cheat.
+Então o Vue irá parar e emitirá avisos no console, te informando que `data` deve ser uma função para instâncias de componente. É bom entender o por que as regras existem, então vamos trapacear.
 
 ``` html
 <div id="example-2">
@@ -149,9 +152,9 @@ var data = { counter: 0 }
 
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  // data is technically a function, so Vue won't
-  // complain, but we return the same object
-  // reference for each component instance
+  // data é tecnicamente uma função, então o Vue não vai
+  // reclamar, mas nós retornamos a mesma referência
+  // do objeto para cada instância do componente
   data: function () {
     return data
   }
@@ -182,7 +185,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Since all three component instances share the same `data` object, incrementing one counter increments them all! Ouch. Let's fix this by instead returning a fresh data object:
+Uma vez que todas as três instâncias do componente compartilham o mesmo objeto `data`, incrementando um contador incrementa todos eles! Ai. Vamos corrigir isso, em vez disso, retornando um novo objeto de dados:
 
 ``` js
 data: function () {
@@ -192,7 +195,7 @@ data: function () {
 }
 ```
 
-Now all our counters each have their own internal state:
+Agora cada um dos nossos contadores tem seu próprio estado interno:
 
 {% raw %}
 <div id="example-2-5" class="demo">
@@ -215,45 +218,45 @@ new Vue({
 </script>
 {% endraw %}
 
-### Composing Components
+### Compondo Componentes
 
-Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component's code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.
+Componentes são feitos para serem usados juntos, de maneira mais comum em relacionamentos pai-filho: o componente A deve usar o componente B no seu próprio _template_. Eles inevitavelmente precisam se comunicar entre si: o pai pode precisar passar dados para baixo, para seu próprio filho, e o filho pode precisar informar seu pai de alguma coisa que aconteceu nele. Entretanto, também é muito importante manter o pai e o filho o mais desacoplados possível por meio de uma interface clara e definida. Isso garante que o código de cada componente possa ser escrito e entendido de forma relativamente isolada, os tornando mais fáceis de manter e potencialmente mais fáceis de reusar.
 
-In Vue.js, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
+No Vue.js, o relacionamento pai-filho do componente pode ser resumido como **propriedades para baixo, eventos para cima**. O pai passa os dados para baixo para o filho por meio de **propriedades**, e o o filho envia mensagens para o pai por meio de **eventos**. Vamos ver como eles funcionam a seguir.
 
 <p style="text-align: center">
-  <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
+  <img style="width:300px" src="/images/props-events.png" alt="propriedades para baixo, eventos para cima">
 </p>
 
-## Props
+## Propriedades
 
-### Passing Data with Props
+### Passando Dados com Propriedades
 
-Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
+Toda instância de componente tem seu próprio **escopo isolado**. Isso significa que você não pode (e não deveria) referenciar diretamente dados do pai no _template_ de um componente filho. Dados podem ser passados para baixo para componentes filho usando **propriedades**.
 
-A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](../api/#props):
+Uma propriedade é um atributo personalizado para passar informação do pai do componente. Um componente filho precisa declarar explicitamente as propriedades que ele espera receber usando a [opção `props`](../api/#props)
 
 ``` js
 Vue.component('child', {
-  // declare the props
+  // declara as propriedades
   props: ['message'],
-  // just like data, the prop can be used inside templates
-  // and is also made available in the vm as this.message
+  // assim como os dados, a propriedade pode ser usada dentro de templates
+  // e também se torna disponível na vm como this.message
   template: '<span>{{ message }}</span>'
 })
 ```
 
-Then we can pass a plain string to it like so:
+Então nós podemos passar uma _string_ simples para ela como:
 
 ``` html
-<child message="hello!"></child>
+<child message="olá!"></child>
 ```
 
-Result:
+Resultado:
 
 {% raw %}
 <div id="prop-example-1" class="demo">
-  <child message="hello!"></child>
+  <child message="olá!"></child>
 </div>
 <script>
 new Vue({
@@ -270,26 +273,27 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML attributes are case-insensitive, so when using non-string templates, camelCased prop names need to use their kebab-case (hyphen-delimited) equivalents:
+Atributos HTML são _case-insensitive_, então quando usar _templates_ que não são do tipo _strings templates_, nomes de propriedade _camelCased_ precisam usar sua equivalente em _kebab-case_ (delimitado por hífen):
+
 
 ``` js
 Vue.component('child', {
-  // camelCase in JavaScript
+  // camelCase em JavaScript
   props: ['myMessage'],
   template: '<span>{{ myMessage }}</span>'
 })
 ```
 
 ``` html
-<!-- kebab-case in HTML -->
-<child my-message="hello!"></child>
+<!-- kebab-case em HTML -->
+<child my-message="olá!"></child>
 ```
 
-Again, if you're using string templates, then this limitation does not apply.
+De novo, se você estiver usando _string templates_, então essa limitação não se aplica.
 
-### Dynamic Props
+### Propriedades Dinâmicas
 
-Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
+Semelhante à ligação de um atributo normal a uma expressão, nós podemos também usar o `v-bind` para dinamicamente ligar propriedades a dados no pai. Sempre que os dados forem atualizados no pai, isso fluirá também para o filho:
 
 ``` html
 <div>
@@ -299,13 +303,13 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-It's often simpler to use the shorthand syntax for `v-bind`:
+Muitas vezes, é mais simples usar a sintaxe abreviada para o `v-bind`:
 
 ``` html
 <child :my-message="parentMsg"></child>
 ```
 
-Result:
+Resultado:
 
 {% raw %}
 <div id="demo-2" class="demo">
@@ -317,7 +321,7 @@ Result:
 new Vue({
   el: '#demo-2',
   data: {
-    parentMsg: 'Message from parent'
+    parentMsg: 'Mensagem do pai'
   },
   components: {
     child: {
@@ -329,37 +333,37 @@ new Vue({
 </script>
 {% endraw %}
 
-### Literal vs. Dynamic
+### Literal vs. Dinâmico
 
-A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
+Um erro comum que iniciantes tendem a fazer é tentar passar um número usando a sintaxe literal:
 
 ``` html
-<!-- this passes down a plain string "1" -->
+<!-- isto passa a string "1" -->
 <comp some-prop="1"></comp>
 ```
 
-However, since this is a literal prop, its value is passed down as a plain string `"1"` instead of an actual number. If we want to pass down an actual JavaScript number, we need to use `v-bind` so that its value is evaluated as a JavaScript expression:
+No entanto, uma vez que isso é uma propriedade literal, seu valor é passado como uma string `"1"` ao invés de um número real. Se quisermos passar um número JavaScript real, nós precisamos usar o `v-bind` para que o seu valor seja avaliado como uma expressão JavaScript:
 
 ``` html
-<!-- this passes down an actual number -->
+<!-- isto passa um número real -->
 <comp v-bind:some-prop="1"></comp>
 ```
 
-### One-Way Data Flow
+### Fluxo de Dados Unidirecional
 
-All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about.
+Todas as propriedades formam uma ligação **unidirecional** entre a propriedade do filho e a do pai: quando a propriedade do pai é atualizada, isso irá fluir para o filho, mas não o caminho de volta. Isso previne os componentes filhos de acidentalmente alterarem o estado dos pais, o que pode dificultar o entendimento dos dados na sua aplicação.
 
-In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
+Além disso, sempre que o componente pai é atualizado, todas as propriedades do componente filho serão atualizadas com o último valor. Isto significa que você **não** deveria tentar alterar uma propriedade dentro do componente filho. Se fizer isso, o Vue irá te avisar no console.
 
-There are usually two cases where it's tempting to mutate a prop:
+Geralmente há dois casos em que é tentador alterar uma propriedade:
 
-1. The prop is used to only pass in an initial value, the child component simply wants to use it as a local data property afterwards;
+1. A propriedade é usada só para passar um valor inicial, o componente filho simplesmente quer usá-la como uma propriedade de dado local posteriormente;
 
-2. The prop is passed in as a raw value that needs to be transformed.
+2. A propriedade é passada como um valor bruto que precisa ser transformado.
 
-The proper answer to these use cases are:
+A resposta apropriada para esses casos de uso são:
 
-1. Define a local data property that uses the prop's initial value as its initial value:
+1. Defina uma propriedade de dado local que usa o valor da propriedade inicial como o seu valor inicial:
 
   ``` js
   props: ['initialCounter'],
@@ -368,7 +372,7 @@ The proper answer to these use cases are:
   }
   ```
 
-2. Define a computed property that is computed from the prop's value:
+2. Defina uma propriedade computada que é computada a partir do valor da propriedade inicial:
 
   ``` js
   props: ['size'],
@@ -379,40 +383,40 @@ The proper answer to these use cases are:
   }
   ```
 
-<p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
+<p class="tip">Observe que objetos e _arrays_ em JavaScript são passados como referência, então, se uma propriedade é um _array_ ou um objeto, alterar o objeto ou o _array_ dentro do próprio filho **afetará** o estado do pai.</p>
 
-### Prop Validation
+### Validação de Propriedades
 
-It is possible for a component to specify requirements for the props it is receiving. If a requirement is not met, Vue will emit warnings. This is especially useful when you are authoring a component that is intended to be used by others.
+É possível para um componente especificar requisitos para as propriedades que ele está recebendo. Se um requisito não é atendido, o Vue emitirá avisos. Isto é especialmente útil quando você está criando um componente que tem a intenção de ser usado por outros.
 
-Instead of defining the props as an array of strings, you can use an object with validation requirements:
+Em vez de definir as propriedades como um _array_ de _strings_, você pode usar um objeto com requisitos de validação:
 
 ``` js
 Vue.component('example', {
   props: {
-    // basic type check (`null` means accept any type)
+    // verificação de tipo básico (`null` significa aceitar qualquer tipo)
     propA: Number,
-    // multiple possible types
+    // vários tipos possíveis
     propB: [String, Number],
-    // a required string
+    // uma string é obrigatória
     propC: {
       type: String,
       required: true
     },
-    // a number with default value
+    // um número com valor padrão
     propD: {
       type: Number,
       default: 100
     },
-    // object/array defaults should be returned from a
-    // factory function
+    // objeto/array padrão deveria ser retornado de uma
+    // função de fábrica
     propE: {
       type: Object,
       default: function () {
         return { message: 'hello' }
       }
     },
-    // custom validator function
+    // função de validação personalizada
     propF: {
       validator: function (value) {
         return value > 10
@@ -422,7 +426,7 @@ Vue.component('example', {
 })
 ```
 
-The `type` can be one of the following native constructors:
+O `type` pode ser um dos seguintes construtores nativos:
 
 - String
 - Number
@@ -432,28 +436,28 @@ The `type` can be one of the following native constructors:
 - Array
 - Symbol
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
+Além disso, `type` também pode ser uma função de construtor personalizada e a asserção será feita com uma verificação `instanceof`.
 
-When a prop validation fails, Vue will produce a console warning (if using the development build).
+Quando a validação da propriedade falha, o Vue produzirá um aviso no console (se usar a _build_ de desenvolvimento).
 
-## Custom Events
+## Eventos Personalizados
 
-We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue's custom event system comes in.
+Nós aprendemos que o pai pode passar dados para o filho usando propriedades, mas como nós comunicamos de volta para o pai quando alguma coisa acontece? É aí que o sistema de eventos personalizados do Vue entra.
 
-### Using `v-on` with Custom Events
+### Usando `v-on` com Eventos Personalizados
 
-Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
+Toda instância Vue implementa uma [interface de eventos](../api/#Instance-Methods-Events), o que significa que ela pode:
 
-- Listen to an event using `$on(eventName)`
-- Trigger an event using `$emit(eventName)`
+- Ouvir um evento usando `$on(eventName)`
+- Disparar um evento usando `$emit(eventName)`
 
-<p class="tip">Note that Vue's event system is separate from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
+<p class="tip">Observe que o sistema de eventos do Vue é separado da [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) do navegador. Embora eles funcionem de maneira semelhante, o `$on` e o `$emit` __não__ são apelidos para o `addEventListener` e o `dispatchEvent`.</p>
 
-In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
+Além disso, um componente pai pode ouvir eventos emitidos do componente filho usando o `v-on` diretamente no _template_ onde o componente filho é usado.
 
-<p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
+<p class="tip">Você não pode usar o `$on` para ouvir eventos emitidos pelo filho. Você deve usar o `v-on` diretamente no _template_, como no exemplo abaixo.</p>
 
-Here's an example:
+Aqui está um exemplo:
 
 ``` html
 <div id="counter-event-example">
@@ -527,53 +531,53 @@ new Vue({
 </script>
 {% endraw %}
 
-In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
+Neste exemplo, é importante notar que o componente filho ainda é completamente desacoplado do que acontece fora dele. Tudo o que ele faz é reportar informações sobre sua própria atividade, no caso de um componente pai se importar.
 
-#### Binding Native Events to Components
+#### Ligando Eventos Nativos a Componentes
 
-There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`. For example:
+Pode haver momentos em que você deseja ouvir um evento nativo no elemento raiz de um componente. Nesses casos, você pode usar o modificador `.native` para o `v-on`. Por exemplo:
 
 ``` html
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
-### `.sync` Modifier
+### O Modificador `.sync`
 
 > 2.3.0+
 
-In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x this is exactly what the `.sync` modifier provided. When a child component mutates a prop that has `.sync`, the value change will be reflected in the parent. This is convenient, however it leads to maintenance issues in the long run because it breaks the one-way data flow assumption: the code that mutates child props are implicitly affecting parent state.
+Em alguns casos nós podemos precisar de uma "ligação bidirecional" para uma propriedade - na verdade, no Vue 1.x isto é exatamente o que o modificador `.sync` fornecia. Quando um componente filho altera a propriedade que tem `.sync`, a mudança de valor refletirá no pai. Isto é conveniente, no entanto isso leva a problemas de manutenção a longo prazo porque quebra a suposição de fluxo de dados unidirecional: o código que altera propriedades do filho está implicitamente afetando o estado do pai.
 
-This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
+Este é o motivo pelo qual removemos o modificador `.sync` quando a versão 2.0 foi lançada. No entanto, descobrimos que, de fato, existem casos em que isso pode ser útil, especialmente quando enviando componentes reutilizáveis. O que nós precisamos mudar é **fazer um código no filho que afeta o estado do pai de forma mais consistente e explícita.**
 
-In 2.3 we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
+Na 2.3 nós re-introduzimos o modificador `.sync` para propriedades, mas desta vez ele é só um açúcar sintático que automaticamente se expande para uma escuta `v-on` adicional:
 
-The following
+O seguinte
 
 ``` html
 <comp :foo.sync="bar"></comp>
 ```
 
-is expanded into:
+é expandido para:
 
 ``` html
 <comp :foo="bar" @update:foo="val => bar = val"></comp>
 ```
 
-For the child component to update `foo`'s value, it needs to explicitly emit an event instead of mutating the prop:
+Para o componente filho atualizar o valor de `foo`, ele precisa explicitamente emitir um evento em vez de alterar a propriedade:
 
 ``` js
 this.$emit('update:foo', newValue)
 ```
 
-### Form Input Components using Custom Events
+### Componentes de Input em Formulário usando Eventos Personalizados
 
-Custom events can also be used to create custom inputs that work with `v-model`. Remember:
+Eventos personalizados também podem ser usados para criar inputs personalizados que funcionam com `v-model`. Lembre-se:
 
 ``` html
 <input v-model="something">
 ```
 
-is just syntactic sugar for:
+é só um açúcar sintático para:
 
 ``` html
 <input
@@ -581,7 +585,7 @@ is just syntactic sugar for:
   v-on:input="something = $event.target.value">
 ```
 
-When used with a component, this simplifies to:
+Quando usado com um componente, isto é simplificado para:
 
 ``` html
 <custom-input
@@ -590,12 +594,12 @@ When used with a component, this simplifies to:
 </custom-input>
 ```
 
-So for a component to work with `v-model`, it should (these can be configured in 2.2.0+):
+Então, para um componente funcionar com o `v-model`, ele deveria (estes podem ser configurados em 2.2.0+):
 
-- accept a `value` prop
-- emit an `input` event with the new value
+- aceitar uma propriedade `value`
+- emitir um evento `input` com um novo valor
 
-Let's see it in action with a very simple currency input:
+Vamos vê-lo em ação com um input monetário muito simples:
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -614,26 +618,26 @@ Vue.component('currency-input', {
   `,
   props: ['value'],
   methods: {
-    // Instead of updating the value directly, this
-    // method is used to format and place constraints
-    // on the input's value
+    // Em vez de atualizar o valor diretamente, este
+    // método é usado para formatar e colocar restrições
+    // no valor do input
     updateValue: function (value) {
       var formattedValue = value
-        // Remove whitespace on either side
+        // Remove espaços em branco de ambos os lados
         .trim()
-        // Shorten to 2 decimal places
+        // Reduz para 2 casas decimais
         .slice(
           0,
           value.indexOf('.') === -1
             ? value.length
             : value.indexOf('.') + 3
         )
-      // If the value was not already normalized,
-      // manually override it to conform
+      // Se o valor não foi normalizado ainda,
+      // o substitui manualmente para acertar
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // Emit the number value through the input event
+      // Emite o valor do número através do evento de input
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -681,15 +685,15 @@ new Vue({
 </script>
 {% endraw %}
 
-The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+A implementação acima, no entanto, é bem ingênua. Por exemplo, é permitido aos usuários entrarem com múltiplos pontos e até letras algumas vezes - urgh! Então para aqueles que querem ver um exemplo não trivial, aqui está um filtro monetário mais robusto:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-### Customizing Component `v-model`
+### Personalizando o Componente `v-model`
 
-> New in 2.2.0
+> Novo na 2.2.0
 
-By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
+Por padrão, o `v-model` em um componente usa `value` como a propriedade e `input` como o evento, mas alguns tipos de _input_ como os _checkboxes_ e os botões _radio_ podem querer usar a propriedade `value` para um propósito diferente. Usar a opção `model` pode evitar o conflito nesses casos:
 
 ``` js
 Vue.component('my-checkbox', {
@@ -698,7 +702,7 @@ Vue.component('my-checkbox', {
     event: 'change'
   },
   props: {
-    // this allows using the `value` prop for a different purpose
+    // isto permite usar a propriedade `value` para um propósito diferente
     value: String
   },
   // ...
@@ -706,42 +710,42 @@ Vue.component('my-checkbox', {
 ```
 
 ``` html
-<my-checkbox v-model="foo" value="some value"></my-checkbox>
+<my-checkbox v-model="foo" value="algum valor"></my-checkbox>
 ```
 
-The above will be equivalent to:
+O acima será equivalente a:
 
 ``` html
 <my-checkbox
   :checked="foo"
   @change="val => { foo = val }"
-  value="some value">
+  value="algum valor">
 </my-checkbox>
 ```
 
-### Non Parent-Child Communication
+### Comunicação Não Pai-Filho
 
-Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:
+Algumas vezes dois componentes podem precisar se comunicar sem serem pai/filho um do outro. Em cenários simples, você pode usar uma instância vazia do Vue como uma central de ônibus de eventos:
 
 ``` js
 var bus = new Vue()
 ```
 ``` js
-// in component A's method
+// no método do componente A
 bus.$emit('id-selected', 1)
 ```
 ``` js
-// in component B's created hook
+// no hook created do componente B
 bus.$on('id-selected', function (id) {
   // ...
 })
 ```
 
-In more complex cases, you should consider employing a dedicated [state-management pattern](state-management.html).
+Em casos mais complexos, você deveria considerar empregar um [padrão de gerenciamento de estado](state-management.html) dedicado.
 
-## Content Distribution with Slots
+## Distribuição de Conteúdo com Slots
 
-When using components, it is often desired to compose them like this:
+Ao usar componentes, muitas vezes é desejado compô-los assim:
 
 ``` html
 <app>
@@ -750,17 +754,17 @@ When using components, it is often desired to compose them like this:
 </app>
 ```
 
-There are two things to note here:
+Há duas coisas para observar aqui:
 
-1. The `<app>` component does not know what content may be present inside its mount target. It is decided by whatever parent component that is using `<app>`.
+1. O componente `<app>` não sabe qual conteúdo pode estar presente dentro de seu alvo de montagem. Isso é decidido por qualquer componente pai que estiver usando `<app>`.
 
-2. The `<app>` component very likely has its own template.
+2. O componente `<app>` provavelmente possui seu próprio _template_.
 
-To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
+Para que a composição funcione, precisamos de um jeito de entreleçar o "conteúdo" do pai e o _template_ do próprio componente. Este é um processo chamado de **distribuição de conteúdo** (ou "transclusão" se você estiver familiarizado com Angular). Vue.js implementa uma API de distribuição de conteúdo que é modelada após o atual [rascunho de especificação de Web Components](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), usando o elemento especial `<slot>` para servir como pontos de distribuição para o conteúdo original.
 
-### Compilation Scope
+### Escopo de Compilação
 
-Before we dig into the API, let's first clarify which scope the contents are compiled in. Imagine a template like this:
+Antes de nos aprofundarmos para dentro da API, vamos primeiro esclarecer em qual escopo os conteúdos são compilados. Imagine um _template_ assim:
 
 ``` html
 <child-component>
@@ -768,24 +772,26 @@ Before we dig into the API, let's first clarify which scope the contents are com
 </child-component>
 ```
 
-Should the `message` be bound to the parent's data or the child data? The answer is the parent. A simple rule of thumb for component scope is:
+A `message` deveria ser ligada aos dados do pai ou aos dados do filho? A resposta é do pai. Uma regra simples para o escopo do componente é:
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in child scope.
+> Tudo que estiver no _template_ do pai é compilado no escopo do pai; tudo que estiver no _template_ do filho é compilado no escopo do filho.
+
+Um erro comum é tentar ligar uma diretiva a uma propriedade/método do filho no _template_ do pai:
 
 A common mistake is trying to bind a directive to a child property/method in the parent template:
 
 ``` html
-<!-- does NOT work -->
+<!-- NÃO funciona -->
 <child-component v-show="someChildProperty"></child-component>
 ```
 
-Assuming `someChildProperty` is a property on the child component, the example above would not work. The parent's template is not aware of the state of a child component.
+Assumindo que `someChildProperty` é uma propriedade no componente filho, o exemplo acima não funcionaria. O _template_ do pai não tem conhecimento do estado do componente filho.
 
-If you need to bind child-scope directives on a component root node, you should do so in the child component's own template:
+Se você precisa ligar diretivas do escopo-filho a um nó de um componente raiz, você deveria fazer isso no próprio _template_ do componente filho:
 
 ``` js
 Vue.component('child-component', {
-  // this does work, because we are in the right scope
+  // isto funciona, pois nós estamos no escopo correto
   template: '<div v-show="someChildProperty">Child</div>',
   data: function () {
     return {
@@ -795,58 +801,58 @@ Vue.component('child-component', {
 })
 ```
 
-Similarly, distributed content will be compiled in the parent scope.
+Da mesma forma, conteúdo distribuído será compilado no escopo dos pais.
 
-### Single Slot
+### Slot Único
 
-Parent content will be **discarded** unless the child component template contains at least one `<slot>` outlet. When there is only one slot with no attributes, the entire content fragment will be inserted at its position in the DOM, replacing the slot itself.
+O conteúdo do pai será **descartado** a menos que o _template_ do componente filho contenha pelo menos um elemento `<slot>`. Quando há apenas um slot sem atributos, todo o fragmento de conteúdo será inserido em sua posição no DOM, substituindo o próprio slot.
 
-Anything originally inside the `<slot>` tags is considered **fallback content**. Fallback content is compiled in the child scope and will only be displayed if the hosting element is empty and has no content to be inserted.
+Qualquer coisa originalmente dentro das tags `<slot>` é considerado **conteúdo reserva**. O conteúdo reserva é compilado no escopo do filho e só será exibido se o elemento hospedeiro estiver vazio e não tiver conteúdo a ser inserido.
 
-Suppose we have a component called `my-component` with the following template:
+Suponha que nós temos um componente chamado `my-component` com o seguinte _template_:
 
 ``` html
 <div>
-  <h2>I'm the child title</h2>
+  <h2>Eu sou o título do filho</h2>
   <slot>
-    This will only be displayed if there is no content
-    to be distributed.
+    Isto só será exibido se não há conteúdo a ser
+    distribuído.
   </slot>
 </div>
 ```
 
-And a parent that uses the component:
+E um pai que usa o componente:
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>Eu sou o título do pai</h1>
   <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <p>Este é um conteúdo original</p>
+    <p>Este é mais um conteúdo original</p>
   </my-component>
 </div>
 ```
 
-The rendered result will be:
+O resultado renderizado será:
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>Eu sou o título do pai</h1>
   <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <h2>Eu sou o título do filho</h2>
+    <p>Este é um conteúdo original</p>
+    <p>Este é mais um conteúdo original</p>
   </div>
 </div>
 ```
 
-### Named Slots
+### Slots Nomeados
 
-`<slot>` elements have a special attribute, `name`, which can be used to further customize how content should be distributed. You can have multiple slots with different names. A named slot will match any element that has a corresponding `slot` attribute in the content fragment.
+Elementos `<slot>` têm um atributo especial `name`, que pode ser usado para personalizar ainda mais o conteúdo a ser distribuído. Você pode ter múltiplos slots com nomes diferentes. Um slot nomeado combinará qualquer elemento que tenha um atributo `<slot>` correspondente no fragmento de conteúdo.
 
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. If there is no default slot, unmatched content will be discarded.
+Ainda pode haver um slot sem nome, que é o **slot padrão** que serve como saída para quando não há combinação de conteúdo. Se não houver nenhum slot padrão, o conteúdo não combinado será descartado.
 
-For example, suppose we have an `app-layout` component with the following template:
+Por exemplo, suponha que tenhamos um componente `app-layout` com o seguinte _template_:
 
 ``` html
 <div class="container">
@@ -862,102 +868,102 @@ For example, suppose we have an `app-layout` component with the following templa
 </div>
 ```
 
-Parent markup:
+Código do pai:
 
 ``` html
 <app-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">Aqui pode ser um título da página</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>Um parágrafo para o conteúdo principal.</p>
+  <p>E aqui outro.</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">Aqui vai alguma informação de contato</p>
 </app-layout>
 ```
 
-The rendered result will be:
+O resultado renderizado será:
 
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>Aqui pode ser um título da página</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>Um parágrafo para o conteúdo principal.</p>
+    <p>E aqui outro.</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>Aqui vai alguma informação de contato</p>
   </footer>
 </div>
 ```
 
-The content distribution API is a very useful mechanism when designing components that are meant to be composed together.
+A API de distribuição de conteúdo é um mecanismo muito útil ao projetar componentes que devem ser compostos juntos.
 
-### Scoped Slots
+### Slots Escopo
 
-> New in 2.1.0
+> Novo em 2.1.0
 
-A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+Um slot escopo é um tipo especial de slot que funciona como um _template_ reusável (em que podemos passar dados para ele) em vez de elementos já renderizados.
 
-In a child component, simply pass data into a slot as if you are passing props to a component:
+Em um componente filho, simplesmente passe os dados para um slot como se você estivesse passando propriedades para um componente:
 
 ``` html
 <div class="child">
-  <slot text="hello from child"></slot>
+  <slot text="olá do filho"></slot>
 </div>
 ```
 
-In the parent, a `<template>` element with a special attribute `scope` indicates that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+No pai, um elemento `<template>` com um atributo especial `scope` indica que ele é um _template_ para um slot escopo. O valor do `scope` é o nome de uma variável temporária que guarda o objeto de propriedades passado do filho:
 
 ``` html
 <div class="parent">
   <child>
     <template scope="props">
-      <span>hello from parent</span>
+      <span>olá do pai</span>
       <span>{{ props.text }}</span>
     </template>
   </child>
 </div>
 ```
 
-If we render the above, the output will be:
+Se nós renderizarmos o código acima, a saída será:
 
 ``` html
 <div class="parent">
   <div class="child">
-    <span>hello from parent</span>
-    <span>hello from child</span>
+    <span>olá do pai</span>
+    <span>olá do filho</span>
   </div>
 </div>
 ```
 
-A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
+Um caso de uso mais típico para slots escopo seria um componente de lista que permite que o consumidor do componente personalize como cada item na lista deveria ser renderizado:
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- scoped slot can be named too -->
+  <!-- slot escopo pode ser nomeado também -->
   <template slot="item" scope="props">
     <li class="my-fancy-item">{{ props.text }}</li>
   </template>
 </my-awesome-list>
 ```
 
-And the template for the list component:
+E o _template_ para o componente de lista:
 
 ``` html
 <ul>
   <slot name="item"
     v-for="item in items"
     :text="item.text">
-    <!-- fallback content here -->
+    <!-- conteúdo reserva aqui -->
   </slot>
 </ul>
 ```
 
-## Dynamic Components
+## Componentes Dinâmicos
 
-You can use the same mount point and dynamically switch between multiple components using the reserved `<component>` element and dynamically bind to its `is` attribute:
+Você pode usar o mesmo ponto de montagem e dinamicamente alternar entre vários componentes usando o elemento reservado `<component>` e ligar dinamicamente ao seu atributo `is`:
 
 ``` js
 var vm = new Vue({
@@ -975,11 +981,11 @@ var vm = new Vue({
 
 ``` html
 <component v-bind:is="currentView">
-  <!-- component changes when vm.currentView changes! -->
+  <!-- o componente muda quando vm.currentView muda! -->
 </component>
 ```
 
-If you prefer, you can also bind directly to component objects:
+Se você preferir, você também pode ligar diretamente aos objetos de componente:
 
 ``` js
 var Home = {
@@ -996,33 +1002,33 @@ var vm = new Vue({
 
 ### `keep-alive`
 
-If you want to keep the switched-out components in memory so that you can preserve their state or avoid re-rendering, you can wrap a dynamic component in a `<keep-alive>` element:
+Se você quiser manter os componentes na memória para que você possa preservar seu estado ou evitar a re-renderização, você pode envolver um componente dinâmico em um elemento `<keep-alive>`:
 
 ``` html
 <keep-alive>
   <component :is="currentView">
-    <!-- inactive components will be cached! -->
+    <!-- componentes inativos serão cacheados! -->
   </component>
 </keep-alive>
 ```
 
-Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
+Confira mais detalhes do `<keep-alive>` na [referência da API](../api/#keep-alive).
 
 ## Misc
 
-### Authoring Reusable Components
+### Criando Componentes Reutilizáveis
 
-When authoring components, it's good to keep in mind whether you intend to reuse it somewhere else later. It's OK for one-off components to be tightly coupled, but reusable components should define a clean public interface and make no assumptions about the context it's used in.
+Ao criar componentes, é bom manter em mente se você pretende reutilizá-lo em algum outro lugar mais tarde. É bom que os componentes únicos sejam fortemente acoplados, mas os componentes reutilizáveis devem definir uma interface pública limpa e não fazer suposições sobre o contexto em que é usado.
 
-The API for a Vue component comes in three parts - props, events, and slots:
+A API para um componente Vue vem em três partes - propriedades, eventos e slots:
 
-- **Props** allow the external environment to pass data into the component
+- **Propriedades** permitem que o ambiente externo passe dados para o componente
 
-- **Events** allow the component to trigger side effects in the external environment
+- **Eventos** permitem que o componente desencadeie efeitos colaterais no ambiente externo
 
-- **Slots** allow the external environment to compose the component with extra content.
+- **Slots** permitem que o ambiente externo componha o componente com conteúdo extra
 
-With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
+Com as sintaxes abreviadas para `v-bind` e `v-on`, as intenções podem ser transmitidas de forma clara e sucinta no _template_:
 
 ``` html
 <my-component
@@ -1032,11 +1038,13 @@ With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can b
   @event-b="doThat"
 >
   <img slot="icon" src="...">
-  <p slot="main-text">Hello!</p>
+  <p slot="main-text">Olá!</p>
 </my-component>
 ```
 
-### Child Component Refs
+### Referências ao Componente Filho
+
+Apesar da existência de propriedades e eventos, algumas vezes você ainda pode precisar acessar diretamente um componente filho em JavaScript. Para conseguir isso você tem que atribuir um ID de referência para o componente filho usando `ref`. Por exemplo:
 
 Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
 
@@ -1048,22 +1056,22 @@ Despite the existence of props and events, sometimes you might still need to dir
 
 ``` js
 var parent = new Vue({ el: '#parent' })
-// access child component instance
+// acessa a instância do componente filho
 var child = parent.$refs.profile
 ```
 
-When `ref` is used together with `v-for`, the ref you get will be an array containing the child components mirroring the data source.
+Quando `ref` é usada junto com `v-for`, a referência que você obtém será um _array_ contendo os componentes filhos que espelham a fonte de dados.
 
-<p class="tip">`$refs` are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using `$refs` in templates or computed properties.</p>
+<p class="tip">`$refs` são populadas somente depois que o componente é renderizado, e isso não é reativo. Elas servem apenas como válvula de escape para a manipulação direta do filho - você deveria evitar o uso de `$refs` nos _templates_ ou nas propriedades computadas.</p>
 
-### Async Components
+### Componentes Assíncronos
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's actually needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component actually needs to be rendered and will cache the result for future re-renders. For example:
+Em grandes aplicações, podemos precisar dividir o aplicativo em pedaços menores e carregar apenas o componente do servidor quando ele é realmente necessário. Para facilitar isso, o Vue permite que você defina seu componente como uma função de fábrica que resolva de forma assíncra sua definição de componente. O Vue só acionará a função de fábrica quando o componente realmente precisar ser renderizado e armazenará em _cache_ o resultado para futuras re-renderizações. Por exemplo:
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
-    // Pass the component definition to the resolve callback
+    // Passa a definição do componente para a callback de resolução
     resolve({
       template: '<div>I am async!</div>'
     })
@@ -1071,18 +1079,18 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting-require/):
+A função de fábrica recebe uma callback `resolve`, que deve ser chamada quando você recuperar a definição do componente do servidor. Você também pode chamar `reject(reason)` para indicar que o carregamento falhou. O `setTimeout` aqui é simplesmente para demonstração; Como recuperar o componente está totalmente por sua conta. Uma abordagem recomendada é usar componentes assíncronos juntos com a [função de divisão de código do Webpack](https://webpack.js.org/guides/code-splitting-require/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
-  // automatically split your built code into bundles which
-  // are loaded over Ajax requests.
+  // Essa sintaxe especial instruirá o Webpack a
+  // automaticamente dividir seu código compilado em
+  // pacotes que são carregados por requisições Ajax.
   require(['./my-async-component'], resolve)
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 + ES2015 syntax you can do:
+Você também pode retornar uma `Promise` na função de fábrica, então com a sintaxe do Webpack 2 + ES2015 você pode fazer:
 
 ``` js
 Vue.component(
@@ -1091,7 +1099,7 @@ Vue.component(
 )
 ```
 
-When using [local registration](components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+Ao usar [registro local](components.html#Local-Registration), você também pode fornecer diretamente uma função que retorne uma `Promise`:
 
 ``` js
 new Vue({
@@ -1102,62 +1110,62 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
+<p class="tip">Se você é um usuário de <strong>Browserify</strong> que gostaria de usar componentes assíncronos, seu criador infelizmente [deixou claro ](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) que carregamento assíncrono "não é algo que o Browserify irá suportar". Oficialmente, pelo menos. A comunidade Browserify encontrou [algumas soluções de contorno](https://github.com/vuejs/vuejs.org/issues/620), que podem ser úteis para aplicações existentes e complexas. Para todos os outros cenários, nós recomendamos simplesmente usar o Webpack, com um suporte assíncrono de primeira classe.</p>
 
-### Advanced Async Components
+### Componentes Assíncronos Avançados
 
-> New in 2.3.0
+> Novo na 2.3.0
 
-Starting in 2.3 the async component factory can also return an object of the following format:
+A partir da 2.3 a fábrica de componente assíncrono também pode retornar um objeto do seguinte formato:
 
 ``` js
 const AsyncComp = () => ({
-  // The component to load. Should be a Promise
+  // O componente para carregar. Deve ser uma Promise
   component: import('./MyComp.vue'),
-  // A component to use while the async component is loading
+  // Um componente para usar enquanto o componente assíncrono está carregando
   loading: LoadingComp,
-  // A component to use if the load fails
+  // Um componente para usar se o carregamento falhar
   error: ErrorComp,
-  // Delay before showing the loading component. Default: 200ms.
+  // Tempo de espera antes de mostrar o componente em loading. Padrão: 200ms.
   delay: 200,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // O componente de erro será exibido se um timeout é
+  // fornecido e seu tempo é excedido. Padrão: Infinity.
   timeout: 3000
 })
 ```
 
-Note that when used as a route component in `vue-router`, these properties will be ignored because async components are resolved upfront before the route navigation happens. You also need to use `vue-router` 2.4.0+ if you wish to use the above syntax for route components.
+Observe que, quando usado como um componente de rota em `vue-router`, essas propriedades serão ignoradas porque os componentes assíncronos são resolvidos antecipadamente, antes que a navegação da rota ocorra. Você também precisa usar `vue-router` 2.4.0+ se você deseja usar a sintaxe acima para componentes de rota.
 
-### Component Naming Conventions
+### Convenções para Nomeação de Componentes
 
-When registering components (or props), you can use kebab-case, camelCase, or TitleCase.
+Ao registrar componentes (ou propriedades), você pode usar _kebab-case_, _camelCase_, ou _TitleCase_.
 
 ``` js
-// in a component definition
+// na definição de um componente
 components: {
-  // register using kebab-case
+  // registra usando kebab-case
   'kebab-cased-component': { /* ... */ },
-  // register using camelCase
+  // registra usando camelCase
   'camelCasedComponent': { /* ... */ },
-  // register using TitleCase
+  // registra usando TitleCase
   'TitleCasedComponent': { /* ... */ }
 }
 ```
 
-Within HTML templates though, you have to use the kebab-case equivalents:
+Dentro de _templates_ HTML no entanto, você tem que usar os _kebab-case_ equivalentes:
 
 ``` html
-<!-- always use kebab-case in HTML templates -->
+<!-- sempre use kebab-case em templates HTML -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <title-cased-component></title-cased-component>
 ```
 
-When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
+Entretanto, ao usar _string templates_, nós não estamos ligados pelas restrições _case-insensitive_ do HTML. Isso significa que mesmo no _template_, você pode referenciar seus componentes usando:
 
-- kebab-case
-- camelCase or kebab-case if the component has been defined using camelCase
-- kebab-case, camelCase or Title case if the component has been defined using TitleCase
+- _kebab-case_
+- _camelCase_ ou _kebab-case_ se o componente foi definido usando _camelCase_
+- _kebab-case_, _camelCase_ ou _TitleCase_ se o componente foi definido usando _TitleCase_
 
 ``` js
 components: {
@@ -1178,25 +1186,25 @@ components: {
 <TitleCaseComponent />
 ```
 
-This means that the TitleCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
+Isto significa que o _TitleCase_ é a _convenção de declaração_ universal e o _kebab-case_ é a _convenção de uso_ universal.
 
-If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
+Se o seu componente não passa conteúdo via elementos `slot`, você pode fechá-lo com uma `/` depois do nome:
 
 ``` html
 <my-component/>
 ```
 
-Again, this _only_ works within string templates, as self-closing custom elements are not valid HTML and your browser's native parser will not understand them.
+De novo, isto _somente_ funciona dentro de _string templates_, pois elementos personalizados auto-fechados não são HTML válidos e seu navegador nativo não irá entendê-los.
 
-### Recursive Components
+### Componentes Recursivos
 
-Components can recursively invoke themselves in their own template. However, they can only do so with the `name` option:
+Componentes podem recursivamente invocar a si mesmos no seu próprio _template_. No entanto, eles só podem fazer isso com a opção `name`:
 
 ``` js
 name: 'unique-name-of-my-component'
 ```
 
-When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+Quando você registra globalmente um componente usando `Vue.component`, o ID global é automaticamente atribuído com o nome na opção `name`.
 
 ``` js
 Vue.component('unique-name-of-my-component', {
@@ -1204,18 +1212,18 @@ Vue.component('unique-name-of-my-component', {
 })
 ```
 
-If you're not careful, recursive components can also lead to infinite loops:
+Se você não tomar cuidado, componentes recursivos podem também gerar _loops_ infinitos:
 
 ``` js
 name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
+Um componente como o de cima resultará em um erro de "tamanho máximo da pilha excedido", então tenha certeza que a sua invocação recursiva é condicional (isto é, usa um `v-id` que irá eventualmente ser `false`).
 
-### Circular References Between Components
+### Referências Circulares Entre Componentes
 
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+Vamos dizer que você está construindo uma árvore de arquivos de diretório, como um Finder ou um File Explorer. Você pode ter um componente `tree-folder` com este _template_:
 
 ``` html
 <p>
@@ -1224,7 +1232,7 @@ Let's say you're building a file directory tree, like in Finder or File Explorer
 </p>
 ```
 
-Then a `tree-folder-contents` component with this template:
+Então um componente `tree-folder-contents` com este _template_:
 
 ``` html
 <ul>
@@ -1235,17 +1243,17 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+Ao olhar mais de perto, você verá que esses componentes serão na verdade seus descendentes _e_ antepassados uns dos outros na árvore de renderização - um paradoxo! Ao registrar globalmente um componente com `Vue.component`, este paradoxo é resolvido para você automaticamente. Se esse é você, você pode parar de ler aqui.
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+Entretanto, se você está pegando/importando componentes usando um __sistem de módulos__, isto é, via Webpack ou Browserify, você terá um erro:
 
 ```
 Failed to mount component: template or render function not defined.
 ```
 
-To explain what's happening, I'll call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+Para explicar o que está acontecendo, irei chamar nossos componentes de A e B. O sistema de módulos enxerga que precisa de A, mas primeiro A precisa de B, mas B precisa de A, mas A precisa de B, etc, etc. Ele fica preso em um _loop_, não sabendo completamente como resolver nenhum dos componentes sem primeiro resolver o outro. Para consertar isso, nós precisamos dar ao sistema de módulos um ponto em que ele possa dizer, "A precisa de B _eventualmente_, mas não há necessidade de resolver o B primeiro."
 
-In our case, I'll make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+No nosso caso, irei fazer esse ponto o componente `tree-folder`. Nós sabemos que o filho que cria o paradoxo é o componente `tree-folder-contents`, então esperaremos até que o hook de ciclo de vida `beforeCreate` o registre:
 
 ``` js
 beforeCreate: function () {
@@ -1253,30 +1261,30 @@ beforeCreate: function () {
 }
 ```
 
-Problem solved!
+Problema resolvido!
 
-### Inline Templates
+### Templates de mesma linha
 
-When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
+Quando o atributo especial `inline-template` está presente em um componente filho, o componente usará seu conteúdo interno como seu _template_, ao invés de tratá-lo como um conteúdo distribuído. Isto permite mais flexibilidade na criação de _templates_.
 
 ``` html
 <my-component inline-template>
   <div>
-    <p>These are compiled as the component's own template.</p>
-    <p>Not parent's transclusion content.</p>
+    <p>Esses são compilados como o próprio template do componente.</p>
+    <p>Não é o conteúdo de transclusão do pai.</p>
   </div>
 </my-component>
 ```
 
-However, `inline-template` makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the `template` option or in a `template` element in a `.vue` file.
+Porém, os `inline-template` dificultam o entendimento do escopo dos seus _templates_. Como uma melhor prática, prefira definir _templates_ dentro do componente usando a opção `template` ou em um elemento `template` em um arquivo `.vue`.
 
 ### X-Templates
 
-Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+Outro jeito de definir _templates_ é dentro de um elemento script com o tipo `text/x-template`, e então referenciando o _template_ por um id. Por exemplo:
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
-  <p>Hello hello hello</p>
+  <p>Olá olá olá</p>
 </script>
 ```
 
@@ -1286,18 +1294,18 @@ Vue.component('hello-world', {
 })
 ```
 
-These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.
+Estes podem ser utéis para demonstrações com grandes _templates_ ou em aplicações extremamente pequenas, mas devem ser evitados, pois eles separam os _templates_ do resto da definição do componente.
 
-### Cheap Static Components with `v-once`
+### Componentes Estáticos Baratos com `v-once`
 
-Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
+Renderizar elementos HTML é muito fácil com o Vue, mas algumas vezes você pode ter um componente que contém **muito** conteúdo estático. Nestes casos, você pode garantir que ele seja avaliado somente uma vez, e então armazenado no cache, adicionando a diretiva `v-once` na raiz do elemento, assim:
 
 ``` js
 Vue.component('terms-of-service', {
   template: '\
     <div v-once>\
-      <h1>Terms of Service</h1>\
-      ... a lot of static content ...\
+      <h1>Termos de Serviço</h1>\
+      ... um monte de conteúdo estático ...\
     </div>\
   '
 })
