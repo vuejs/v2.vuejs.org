@@ -1,5 +1,5 @@
 ---
-title: Etat de transition
+title: État de transition
 type: guide
 order: 14
 ---
@@ -105,7 +105,7 @@ Lorsque vous mettez à jour le nombre, la modification est animée en dessous de
   <input
     v-model="colorQuery"
     v-on:keyup.enter="updateColor"
-    placeholder="Entrez une couleur"
+    placeholder="Entrer une couleur"
   >
   <button v-on:click="updateColor">Mettre à jour</button>
   <p>Aperçu :</p>
@@ -185,7 +185,7 @@ new Vue({
   <input
     v-model="colorQuery"
     v-on:keyup.enter="updateColor"
-    placeholder="Entrez une couleur"
+    placeholder="Entrer une couleur"
   >
   <button v-on:click="updateColor">Mettre à jour</button>
   <p>Aperçu :</p>
