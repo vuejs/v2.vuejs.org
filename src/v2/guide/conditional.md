@@ -28,7 +28,7 @@ order: 7
 <h1 v-else>No</h1>
 ```
 
-### `<template>` 中 `v-if` 条件组 
+### `<template>` 中 `v-if` 条件组
 
 因为 `v-if` 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以把一个 `<template>` 元素当做包装元素，并在上面使用 `v-if`，最终的渲染结果不会包含它。
 
@@ -184,7 +184,6 @@ new Vue({
 
 <p class="tip">注意 `v-show` 不支持 `<template>` 语法。</p>
 
-
 ## `v-if` vs `v-show`
 
 `v-if` 是真实的条件渲染，因为它会确保条件块在切换当中适当地销毁与重建条件块内的事件监听器和子组件。
@@ -197,7 +196,7 @@ new Vue({
 
 ## `v-if` with `v-for`
 
-当与`v-for`一起使用时，`v-for`具有比`v-if`更高的优先级。 相关的详细信息，请参阅<a href="../guide/list.html#V-for-and-v-if">列表渲染指南</a>。
+当与 `v-if` 一起使用时，`v-for` 具有比 `v-if` 更高的优先级。 相关的详细信息，请参阅<a href="../guide/list.html#V-for-and-v-if">列表渲染指南</a>。
 
 ***
 

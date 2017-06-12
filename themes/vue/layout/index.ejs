@@ -23,8 +23,6 @@
 
 <div id="highlights">
   <div class="inner">
-
-
     <div class="point">
       <h2>易用</h2>
       <p>已经会了HTML,CSS,JavaScript？即刻阅读指南开始构建应用！</p>
@@ -33,12 +31,12 @@
     <div class="point">
       <h2>灵活</h2>
       <p>简单小巧的核心，渐进式技术栈，足以应付任何规模的应用。</p>
-    </div>    
+    </div>
 
     <div class="point">
       <h2>性能</h2>
       <p>
-        18kb min+gzip 运行大小<br>
+        19kb min+gzip 运行大小<br>
         超快虚拟 DOM <br>
         最省心的优化
       </p>
@@ -48,16 +46,19 @@
 
 <div id="sponsors">
   <div class="inner">
-    <h3>赞助者</h3>
+    <h3>赞助人员</h3>
     <%- partial('partials/sponsors') %>
     <br>
-    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">成为赞助者</a>
+    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">成为赞助人员</a>
   </div>
 </div>
 
 <div id="footer">
-  遵循 <a href="https://opensource.org/licenses/MIT" href="_blank">MIT 开源协议</a><br>
-  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You
+  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
+    <img src="/images/shuttleworth.png" style="width:200px">
+  </a>
+  <p>遵循 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT 开源协议</a><br>
+  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
 
 <script>

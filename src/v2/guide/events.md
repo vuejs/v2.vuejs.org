@@ -188,6 +188,7 @@ methods: {
 <form v-on:submit.prevent></form>
 
 <!-- 添加事件侦听器时使用事件捕获模式 -->
+<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
@@ -200,6 +201,7 @@ methods: {
 <!-- 点击事件将只会触发一次 -->
 <a v-on:click.once="doThis"></a>
 ```
+
 不像其它只能对原生的 DOM 事件起作用的修饰符，`.once` 修饰符还能被用到自定义的[组件事件](components.html#Using-v-on-with-Custom-Events)上. 如果你还没有阅读关于组件的文档，现在大可不必担心。
 
 ## 按键修饰符
@@ -284,11 +286,9 @@ These modifiers restrict the handler to events triggered by a specific mouse but
 
 3. 当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。
 
-
 ***
 
 > 原文：http://vuejs.org/guide/events.html
 
 ***
-
 

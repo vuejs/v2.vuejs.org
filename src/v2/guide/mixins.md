@@ -91,7 +91,7 @@ vm.conflicting() // -> "from self"
 也可以全局注册混合对象。 注意使用！ 一旦使用全局混合对象，将会影响到 **所有** 之后创建的 Vue 实例。使用恰当时，可以为自定义对象注入处理逻辑。
 
 ``` js
-// 为自定义的选项 'myOption' 注入一个处理器。 
+// 为自定义的选项 'myOption' 注入一个处理器。
 Vue.mixin({
   created: function () {
     var myOption = this.$options.myOption

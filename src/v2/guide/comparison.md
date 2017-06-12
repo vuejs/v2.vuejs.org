@@ -3,6 +3,7 @@ title: 对比其他框架
 type: guide
 order: 29
 ---
+
 这个页面无疑是最难编写的，但我们认为它也是非常重要的。或许你曾遇到了一些问题并且已经用其他的框架解决了。你来这里的目的是看看 Vue 是否有更好的解决方案。这也是我们在此想要回答的。
 
 客观来说，作为核心团队成员，显然我们会更偏爱 Vue，认为对于某些问题来讲用 Vue 解决会更好。如果没有这点信念，我们也就不会整天为此忙活了。但是在此，我们想尽可能地公平和准确地来描述一切。其他的框架也有显著的优点，例如 React 庞大的生态系统，或者像是 Knockout 对浏览器的支持覆盖到了 IE6。我们会尝试着把这些内容全部列出来。
@@ -14,160 +15,56 @@ order: 29
 React 和 Vue 有许多相似之处，它们都有：
 
 - 使用 Virtual DOM
-- 提供了响应式（Reactive）和组件化（Composable）的视图组件。
-- 将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库。
+- 提供了响应式(reactive)和可组合的视图组件(composable view component)。
+- 将注意力集中保持在核心库，同时也关注路由和负责处理全局状态管理的辅助库。
 
 由于有着众多的相似处，我们会用更多的时间在这一块进行比较。这里我们不只保证技术内容的准确性，同时也兼顾了平衡的考量。我们需要指出 React 比 Vue 更好的地方，像是他们的生态系统和丰富的自定义渲染器。
+
+按照这种说法，不可避免的是，对于某些 React 用户来说，这种比较似乎偏向 Vue，因为许多被探讨的主题在某种程度上是主观的。我们认同存在不同技术尝试，而这种比较主要是目的在于概述出「如果你的喜好和我们所提供的潜在相符，Vue 可能是更适合的」的理由。
 
 React 社区为我们准确进行平衡的考量提供了[非常积极地帮助](https://github.com/vuejs/vuejs.org/issues/364)，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨地花费时间来贡献专业知识，帮助我们完善这篇文档，最后我们对最终结果[都十分满意](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740)。
 
 ### 性能简介
 
-到目前为止，针对现实情况的测试中，Vue 的性能是优于 React 的。如果你对此表示怀疑，请继续阅读。我们会解释为什么会这样（并且会提供一个与 React 团队共同约定的比较基准）。
+Both React and Vue offer comparable performance in most commonly seen use cases, with Vue usually slightly ahead due to its lighter-weight Virtual DOM implementation. If you are interested in numbers, you can check out this [3rd party benchmark](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) which focuses on raw rendering/updating performance. Note that this does not take complex component structures into account, so should only be considered a reference rather than a verdict.
 
-#### 渲染性能
+#### 最省事的优化
 
-在渲染用户界面的时候，DOM 的操作成本是最高的，不幸的是没有库可以让这些原始操作变得更快。我们能做到的最好效果就是：
+In React, when a component's state changes, it triggers the re-render of the entire component sub-tree, starting at that component as root. To avoid unnecessary re-renders of child components, you need to either use `PureComponent` or implement `shouldComponentUpdate` whenever you can. You may also need to use immutable data structures to make your state changes more optimization-friendly. However, in certain cases you may not be able to rely on such optimizations because `PureComponent/shouldComponentUpdate` assumes the entire sub tree's render output is determined by the props of the current component. If that is not the case, then such optimizations may lead to inconsistent DOM state.
 
-1. 尽可能减少 DOM 操作的数量。React 和 Vue 都使用 virtual DOM 抽象化这些操作，并实现得一样好。
+In Vue, a component's dependencies are automatically tracked during its render, so the system knows precisely which components actually need to re-render when state changes. Each component can be considered to have `shouldComponentUpdate` automatically implemented for you, without the nested component caveats.
 
-2. 尽可能减少 DOM 操作的开销（纯 JavaScript 计算）。这是 Vue 和 React 不同的地方。
-
-操作必要的 DOM 的开销直接影响整个 JavaScript 的操作成本。Vue 和 React 都使了 virtual DOM，但是 Vue 的实现（fork 自 [snabbdom](https://github.com/snabbdom/snabbdom)）更加轻量，因此与 React 相比花费的开销更少。
-
-Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，没有实例化的，因此会花费更少的开销。当这些都用于关键性能的场景时，Vue 将会更快。为了证明这点，我们建立了一个简单的[参照项目](https://github.com/chrisvfritz/vue-render-performance-comparisons)，它负责渲染 10,000 个列表项 100 次。我们鼓励你基于此去尝试运行一下。然而在实际上，由于浏览器和硬件的差异甚至 JavaScript 引擎的不同，结果都会相应有所不同。
-
-如果你懒得去做，下面的数值是来自于一个 2014 年产的 MacBook Air 并在 Chrome 52 版本下运行所产生的。为了避免偶然性，每个参照项目都分别运行 20 次并取自最好的结果：
-
-{% raw %}
-<table class="benchmark-table">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Vue</th>
-      <th>React</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Fastest</th>
-      <td>23ms</td>
-      <td>63ms</td>
-    </tr>
-    <tr>
-      <th>Median</th>
-      <td>42ms</td>
-      <td>81ms</td>
-    </tr>
-    <tr>
-      <th>Average</th>
-      <td>51ms</td>
-      <td>94ms</td>
-    </tr>
-    <tr>
-      <th>95th Perc.</th>
-      <td>73ms</td>
-      <td>164ms</td>
-    </tr>
-    <tr>
-      <th>Slowest</th>
-      <td>343ms</td>
-      <td>453ms</td>
-    </tr>
-  </tbody>
-</table>
-{% endraw %}
-
-#### 更新性能
-
-在React中，当一个组件的`state`发生变化，将触发从根组件开始整个组件子树的重新渲染。
-
-为了避免不必要的重新渲染，你必须到处实现`shouldComponentUpdate`方法和使用不可变数据结构。在Vue中，一个组件的依赖在渲染时被自动的跟踪，所以系统准确地知道什么时候组件需要重新渲染。
-
-这意味着，未经优化的 Vue 相比未经优化的 React 要快的多。由于 Vue 改进过渲染性能，甚至全面优化过的 React 通常也会慢于开箱即用的 Vue。
-
-#### 开发中
-
-显然，在生产环境中的性能是至关重要的，因为它直接影响着最终的用户体验，但开发过程中的表现也不容小视，这与开发人员息息相关。
-
-不错的是用 Vue 和 React 开发大多数应用的速度都是足够快的。然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
-
-这是由于 React 有大量的检查机制，这会让它提供许多有用的警告和错误提示信息。我们同样认为这些是很重要的，但是我们在实现这些检查时，也更加密切地关注了性能方面。
+Overall this removes the need for a whole class of performance optimizations from the developer's plate, and allows them to focus more on building the app itself as it scales.
 
 ### HTML & CSS
 
-在 React 中，它们都是 JavaScript 编写的，听起来这十分简单和优雅。然而不幸的事实是，JavaScript 内的 HTML 和 CSS 会产生很多痛点。在 Vue 中我们采用 Web 技术并在其上进行扩展。接下来将通过一些实例向你展示这意味的是什么。
+In React, everything is just JavaScript. Not only are HTML structures expressed via JSX, the recent trends also tend to put CSS management inside JavaScript as well. This approach has its own benefits, but also comes with various trade-offs that may not seem worthwhile for every developer.
 
+Vue embraces classic web technologies and builds on top of them. To show you what that means, we'll dive into some examples.
 
 #### JSX vs Templates
 
-在 React 中，所有的组件的渲染功能都依靠 JSX。JSX 是使用 XML 语法编写 Javascript 的一种语法糖。这有一个[通过 React 社区审核过的例子](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684)：
-
-``` jsx
-  render () {
-	    let { items } = this.props
-
-	    let children
-	    if ( items.length > 0 ) {
-	        children = (
-	            <ul>
-	                {items.map( item =>
-	                    <li key={item.id}>{item.name}</li>
-	                )}
-	            </ul>
-	        )
-	    } else {
-	        children = <p>No items found.</p>
-	    }
-
-	    return (
-	        <div className = 'list-container'>
-	            {children}
-	        </div>
-	    )
-	}
-```
+在 React 中，所有的组件的渲染功能都依靠 JSX。JSX 是使用 XML 语法编写 Javascript 的一种语法糖。
 
 JSX 的渲染功能有下面这些优势：
 
-- 你可以使用完整的编程语言 JavaScript 功能来构建你的视图页面。
+- 您可以充分利用完整的编程语言（JavaScript）来构建您的视图。这包括临时变量、流程控制，和直接引用作用域内的 JavaScript 值。
+
 - 工具对 JSX 的支持相比于现有可用的其他 Vue 模板还是比较先进的（比如，linting、类型检查、编辑器的自动完成）。
 
-在 Vue 中，由于有时需要用到这些功能，我们也提供了[渲染功能](render-function.html)并且[支持了 JSX](render-function.html#JSX)。然而，对于大多数组件来说，渲染功能是不推荐使用了。
+在 Vue 中，由于有时需要用到这些功能，我们也提供了[渲染功能](render-function.html)并且[支持了 JSX](render-function.html#JSX)。然而，作为默认体验功能，我们提供模板作为一个更简单的选择。任何有效的 HTML 也是一个有效的 Vue 模板，这会具备一些优点：
 
-在这方面，我们提供的是更简单的模板：
+- For many developers who have been working with HTML, templates simply feel more natural to read and write. The preference itself can be somewhat subjective, but if it makes the developer more productive then the benefit is objective.
 
-``` html
-	<template>
-	    <div class="list-container">
-	        <ul v-if="items.length">
-	            <li v-for="item in items">
-	                {{ item.name }}
-	            </li>
-	        </ul>
-	        <p v-else>No items found.</p>
-	    </div>
-	</template>
-```
+-  HTML-based templates make it much easier to progressively migrate existing applications to take advantage of Vue's reactivity features.
 
-优点如下：
+- It also makes it much easier for designers and less experienced developers to parse and contribute to the codebase.
 
-- 在写模板的过程中，样式风格已定并涉及更少的功能实现。
-- 模板总是会被声明的。
-- 模板中任何 HTML 语法都是有效的。
-- 阅读起来更贴合英语（比如，for each item in items）。
-- 不需要高级版本的 JavaScript 语法，来增加可读性。
+- You can even use pre-processors such as Pug (formerly known as Jade) to author your Vue templates.
 
-这样，不仅开发人员更容易编写代码，设计人员和其他不那么有经验的开发者也可以更容易的分析代码和贡献代码。
+Some argue that you'd need to learn an extra DSL (Domain-Specific Language) to be able to write templates - we believe this difference is superficial at best. First, JSX doesn't mean the user doesn't need to learn anything - it's additional syntax on top of plain JavaScript, so it's easy for anyone familiar with JavaScript to learn, but saying it's essentially free is misleading. Similarly, a template is just additional syntax on top of plain HTML and thus has very low learning cost for those who are already familiar with HTML. With the DSL we are also able to help the user get more done with less code (e.g. `v-on` modifiers). The same task can involve a lot more code when using plain JSX or render functions.
 
-这还没有结束。Vue 拥抱 HTML，而不是用 JavaScript 去重塑它。在模板内，Vue 也允许你用预处理器比如 Pug（原名 Jade）。
-
-``` pug
-div.list-container
-  ul(v-if="items.length")
-    li(v-for="item in items") {{ item.name }}
-  p(v-else) No items found.
-```
+On a higher level, we can divide components into two categories: presentational ones and logical ones. We recommend using templates for presentational components and render function / JSX for logical ones. The percentage of these components depends on the type of app you are building, but in general we find presentational ones to be much more common.
 
 #### CSS 的组件作用域
 
@@ -175,14 +72,14 @@ div.list-container
 
 而 Vue 可以让你在每个[单文件组件](single-file-components.html)中完全访问 CSS。
 
-``` html
-	<style scoped>
-	    @media (min-width: 250px) {
-	        .list-container:hover {
-	            background: orange;
-	        }
-	    }
-	</style>
+``` html
+<style scoped>
+  @media (min-width: 250px) {
+    .list-container:hover {
+      background: orange;
+    }
+  }
+</style>
 ```
 
 这个可选 `scoped` 属性会自动添加一个唯一的属性（比如 `data-v-21e5b78`）为组件内 CSS 指定作用域，编译的时候 `.list-container:hover` 会被编译成类似 `.list-container[data-v-21e5b78]:hover`。
@@ -199,9 +96,9 @@ Vue 和 React 都提供了强大的路由来应对大型应用。React 社区在
 
 两者另一个重要差异是，Vue 的路由库和状态管理库都是由官方维护支持且与核心库同步更新的。React 则是选择把这些问题交给社区维护，因此创建了一个更分散的生态系统。但相对的，React 的生态系统相比 Vue 更加繁荣。
 
-最后，Vue 提供了 [Vue-cli 脚手架](https://github.com/vuejs/vue-cli)，能让你非常容易地构建项目，包含了 [Webpack](https://github.com/vuejs-templates/webpack)、[Browserify](https://github.com/vuejs-templates/browserify)、甚至 [no build system](https://github.com/vuejs-templates/simple)。React 在这方面也提供了 [create-react-app](https://github.com/facebookincubator/create-react-app)，但是现在还存在一些局限性：
+最后，Vue 提供了 [Vue-cli 脚手架](https://github.com/vuejs/vue-cli)，能让你非常容易地构建项目，包含了 [webpack](https://github.com/vuejs-templates/webpack)、[Browserify](https://github.com/vuejs-templates/browserify)、甚至 [no build system](https://github.com/vuejs-templates/simple)。React 在这方面也提供了 [create-react-app](https://github.com/facebookincubator/create-react-app)，但是现在还存在一些局限性：
 
-- 它不允许在项目生成时进行任何配置，而 Vue 支持 Yeoman-like 定制。
+- 它不允许在项目生成时进行任何配置，而 Vue 支持 [Yeoman](http://yeoman.io/)-like 定制。
 - 它只提供一个构建单页面应用的单一模板，而 Vue 提供了各种用途的模板。
 - 它不能用用户自建的模板构建项目，而自建模板对企业环境下预先建立协议是特别有用的。
 
@@ -213,8 +110,9 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 
 就好比 Vue 向上扩展像是 React，Vue 向下扩展后就类似于 jQuery。你只要把如下标签放到页面就可以运行：
 
-`<script src="https://unpkg.com/vue/dist/vue.js"></script>`
-
+``` html
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+```
 
 然后你就可以编写 Vue 代码并应用到生产环境中，你只要用 min 版 Vue 文件替换掉就不用担心其他的性能问题。
 
@@ -222,72 +120,73 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 
 ### 本地渲染
 
+### 本地渲染
+
 ReactNative 能使你用相同的 React 组件模型编写有本地渲染能力的 APP（iOS 和 Android）。能同时跨多平台开发，对开发者是非常棒的。相应地，Vue 和 [Weex](https://alibaba.github.io/weex/) 会进行官方合作，Weex 是阿里的跨平台用户界面开发框架，Weex 的 JavaScript 框架运行时用的就是 Vue。这意味着在 Weex 的帮助下，你使用 Vue 语法开发的组件不仅仅可以运行在浏览器端，还能被用于开发 iOS 和 Android 上的原生应用。
 
 在现在，Weex 还在积极发展，成熟度也不能和 ReactNative 相抗衡。但是，Weex 的发展是由世界上最大的电子商务企业的需求在驱动，Vue 团队也会和 Weex 团队积极合作确保为开发者带来良好的开发体验。
-
 
 ### MobX
 
 Mobx 在 React 社区很流行，实际上在 Vue 也采用了几乎相同的反应系统。在有限程度上，React + Mobx 也可以被认为是更繁琐的 Vue，所以如果你习惯组合使用它们，那么选择 Vue 会更合理。
 
-## Angular 1
+## AngularJS (Angular 1)
 
-Vue 的一些语法和 Angular 的很相似（例如 `v-if` vs `ng-if`）。因为 Angular 是 Vue 早期开发的灵感来源。然而，Angular 中存在的许多问题，在 Vue 中已经得到解决。
+Vue 的一些语法和 AngularJS 的很相似（例如 `v-if` vs `ng-if`）。因为 AngularJS 是 Vue 早期开发的灵感来源。然而，AngularJS 中存在的许多问题，在 Vue 中已经得到解决。
 
 ### 复杂性
 
-在 API 与设计两方面上 Vue.js 都比 Angular 1 简单得多，因此你可以快速地掌握它的全部特性并投入开发。
+在 API 与设计两方面上 Vue.js 都比 AngularJS 1 简单得多，因此你可以快速地掌握它的全部特性并投入开发。
 
 ### 灵活性和模块化
 
-Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方式组织应用程序，而不是在任何时候都必须遵循 Angular 1 制定的规则，这让 Vue 能适用于各种项目。我们知道把决定权交给你是非常必要的。
+Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方式组织应用程序，而不是在任何时候都必须遵循 AngularJS 制定的规则，这让 Vue 能适用于各种项目。我们知道把决定权交给你是非常必要的。
 
-这也就是为什么我们提供 [Webpack template](https://github.com/vuejs-templates/webpack)，让你可以用几分钟，去选择是否启用高级特性，比如热模块加载、linting、CSS 提取等等。
+这也就是为什么我们提供 [webpack template](https://github.com/vuejs-templates/webpack)，让你可以用几分钟，去选择是否启用高级特性，比如热模块加载、linting、CSS 提取等等。
 
 ### 数据绑定
 
-Angular 1 使用双向绑定，Vue 在不同组件间强制使用单向数据流。这使应用中的数据流更加清晰易懂。
+AngularJS 使用双向绑定，Vue 在不同组件间强制使用单向数据流。这使应用中的数据流更加清晰易懂。
 
 ### 指令与组件
 
-在 Vue 中指令和组件分得更清晰。指令只封装 DOM 操作，而组件代表一个自给自足的独立单元 —— 有自己的视图和数据逻辑。在 Angular 中两者有不少相混的地方。
+在 Vue 中指令和组件分得更清晰。指令只封装 DOM 操作，而组件代表一个自给自足的独立单元 —— 有自己的视图和数据逻辑。在 AngularJS 中两者有不少相混的地方。
 
 ### 性能
 
-Vue 有更好的性能，并且非常非常容易优化，因为它不使用脏检查。
-
-在 Angular 1 中，当 watchers 越来越多时会变得越来越慢，因为作用域内的每一次变化，所有 watchers 都要重新计算。并且，如果一些 watchers 触发另一个更新，脏检查循环（digest cycle）可能要运行多次。Angular 用户常常要使用深奥的技术，以解决脏检查循环的问题。有时没有简单的办法来优化有大量 watchers 的作用域。
+Vue 有更好的性能，并且非常非常容易优化，因为它不使用脏检查。在 AngularJS 中，当 watchers 越来越多时会变得越来越慢，因为作用域内的每一次变化，所有 watchers 都要重新计算。并且，如果一些 watchers 触发另一个更新，脏检查循环（digest cycle）可能要运行多次。Angular 用户常常要使用深奥的技术，以解决脏检查循环的问题。有时没有简单的办法来优化有大量 watchers 的作用域。
 
 Vue 则根本没有这个问题，因为它使用基于依赖追踪的观察系统并且异步队列更新，所有的数据变化都是独立触发，除非它们之间有明确的依赖关系。
 
-有意思的是，Angular 2 和 Vue 用相似的设计解决了一些 Angular 1 中存在的问题。
+有意思的是，AngularJS 2 和 Vue 用相似的设计解决了一些 AngularJS 1 中存在的问题。
 
-## Angular 2
+## Angular (Formerly known as Angular 2)
 
-我们单独将 Angular 2 作分类，因为它完全是一个全新的框架。例如：它具有优秀的组件系统，并且许多实现已经完全重写，API 也完全改变了。
+We have a separate section for the new Angular because it really is a completely different framework from AngularJS. 例如：它具有优秀的组件系统，并且许多实现已经完全重写，API 也完全改变了。
 
 ### TypeScript
 
-Angular 1 面向的是较小的应用程序，Angular 2 已转移焦点，面向的是大型企业应用。在这一点上 TypeScript 经常会被引用，它对那些喜欢用 Java 或者 C# 等类型安全的语言的人是非常有用的。
+Angular essentially requires using TypeScript, given that almost all its documentation and learning resources are TypeScript-based. TypeScript has its obvious benefits - static type checking can be very useful for large-scale applications, and can be a big productivity boost for developers with backgrounds in Java and C#.
 
-Vue 也十分适合制作[企业应用](https://github.com/vuejs/awesome-vue#enterprise-usage)，你也可以通过使用[官方类型](https://github.com/vuejs/vue/tree/dev/types)或[官方装饰器](https://github.com/itsFrank/vue-typescript)来支持 TypeScript，这完全可由你的方案来定。
+However, not everyone wants to use TypeScript. In many smaller-scale use cases, introducing a type system may result in more overhead than productivity gain. In those cases you'd be better off going with Vue instead, since using Angular without TypeScript can be challenging.
+
+Finally, although not as deeply integrated with TypeScript as Angular is, Vue also offers [official typings](https://github.com/vuejs/vue/tree/dev/types) and [official decorator](https://github.com/vuejs/vue-class-component) for those who wish to use TypeScript with Vue. We are also actively collaborating with the TypeScript and VSCode teams at Microsoft to improve the TS/IDE experience for Vue + TS users.
 
 ### 大小和性能
 
-在性能方面，这两个框架都非常的快。但目前尚没有足够的数据用例来具体展示。如果你一定要量化这些数据，你可以查看[第三方参照](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)，它表明 Vue 2 相比 Angular 2 是更快的。
+在性能方面，这两个框架都非常的快。但目前尚没有足够的数据用例来具体展示。如果你一定要量化这些数据，你可以查看[第三方参照](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)，它表明 Vue 2 相比 Angular 是更快的。
 
-在大小方面，虽然 Angular 2 使用 tree-shaking 和离线编译技术使代码体积减小了许多。但包含编译器和全部功能的 Vue 2（23kb） 相比 Angular 2（50kb） 还是要小得多。但是要注意，使用 Angular 2 的 App 之所以体积缩减，是因为使用了 tree-shaking 移除了那些框架中没有用到的功能，但随着引入的功能越来越多，尺寸也会越来越大。
+Recent versions of Angular, with AOT compilation and tree-shaking, have been able to get its size down considerably. However, a full-featured Vue 2 project with Vuex + vue-router included (~30kb gzipped) is still significantly lighter than an out-of-the-box, AOT-compiled application generated by `angular-cli` (~130kb gzipped).
 
 ### 灵活性
 
-Vue 相比于 Angular 2 则更加灵活，Vue 官方提供了构建工具来协助你构建项目，但它并不限制你去如何构建。有人可能喜欢用统一的方式来构建，也有很多开发者喜欢这种灵活自由的方式。
+Vue 相比于 Angular 则更加灵活，Vue 官方提供了构建工具来协助你构建项目，但它并不限制你去如何构建。有人可能喜欢用统一的方式来构建，也有很多开发者喜欢这种灵活自由的方式。
 
 ### 学习曲线
 
 开始使用 Vue，你使用的是熟悉的 HTML、符合 ES5 规则的 JavaScript（也就是纯 JavaScript）。有了这些基本的技能，你可以快速地掌握它（[指南](./)）并投入开发 。
 
-Angular 2 的学习曲线是非常陡峭的。即使不包括 TypeScript，它的[开始指南](https://angular.io/docs/js/latest/quickstart.html)中所用的就有 ES2015 标准的 JavaScript、18个 NPM 依赖包、4 个文件和超过 3 千多字的介绍，这一切都是为了完成个 Hello World。而 [Vue's Hello World](https://jsfiddle.net/chrisvfritz/50wL7mdz/) 就非常简单。甚至我们并不用花费一整个页面去介绍它。
+Angular's learning curve is much steeper. The API surface of the framework is simply huge and as a user you will need to familiarize yourself with a lot more concepts before getting productive. Obviously, the complexity of Angular is largely due to its design goal of targeting only large, complex applications - but that does make the framework a lot more difficult for less-experienced developers to pick up.
 
 ## Ember
 
@@ -299,7 +198,7 @@ Ember 是一个全能框架。它提供了大量的约定，一旦你熟悉了�
 
 * Vue 的模板语法可以用全功能的 JavaScript 表达式，而 Handlebars 的语法和帮助函数相比来说非常受限。
 
-* 在性能上，Vue 甩开 Ember 几条街，即使是 Ember 2.0 的最新 Glimmer 引擎。Vue 能够自动批量更新，而 Ember 在关键性能场景时需要手动管理。
+* 在性能上，Vue 比 Ember [具有优势](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html)，即使是 Ember 2.x 的最新 Glimmer 引擎。Vue 能够自动批量更新，而 Ember 在关键性能场景时需要手动管理。
 
 ## Knockout
 
@@ -317,7 +216,7 @@ Polymer 是另一个由谷歌赞助的项目，事实上也是 Vue 的一个灵�
 
 Polymer 自定义的元素是在 HTML 文件中创建的，这限制了 JavaScript/CSS（以及被现代浏览器普遍支持的语言特性）的使用。相比之下，Vue 的单文件组件允许你非常容易的使用 ES2015 和你想用的 CSS 预编译处理器。
 
-在部署生产环境时，Polymer 建议使用 HTML Imports 加载所有资源。而这要求服务器和客户端都支持 Http 2.0 协议，并且浏览器实现了此标准。这是否可行就取决于你的目标用户和部署环境了。如果状况不佳，你必须用 Vulcanizer 工具来打包 Polymer 元素。而在这方面，Vue 可以结合异步组件的特性和 Webpack 的代码分割特性来实现懒加载（lazy-loaded）。这确保了对旧浏览器的兼容，同时保留了良好的加载速度。
+在部署生产环境时，Polymer 建议使用 HTML Imports 加载所有资源。而这要求服务器和客户端都支持 Http 2.0 协议，并且浏览器实现了此标准。这是否可行就取决于你的目标用户和部署环境了。如果状况不佳，你必须用 Vulcanizer 工具来打包 Polymer 元素。而在这方面，Vue 可以结合异步组件的特性和 webpack 的代码分割特性来实现懒加载（lazy-loaded）。这确保了对旧浏览器的兼容，同时保留了良好的加载速度。
 
 而 Vue 和 Web Component 标准进行深层次的整合也是完全可行的，比如使用 Custom Elements、Shadow DOM 的样式封装。然而在我们做出严肃的实现承诺之前，我们目前仍在等待相关标准成熟，进而再广泛应用于主流的浏览器中。
 
@@ -327,8 +226,8 @@ Riot 2.0 提供了一个类似于基于组件的开发模型（在 Riot 中称�
 
 - [过渡效果系统](transitions.html)。Riot 现在还没有提供。
 - 功能更加强大的路由机制。Riot 路由的 API 非常轻量。
-- 更好的性能。Riot 使用了[遍历 DOM 树](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding)而不是 Virtual DOM，但实际上用的还是脏检查机制，因此和 Angular 1 患有相同的性能问题。
-- 更多成熟工具的支持。Vue 提供官方的 [Webpack](https://github.com/vuejs/vue-loader) 和 [Browserify](https://github.com/vuejs/vueify) 支持，而 Riot 依赖社区支持来构建系统集成。
+- 更好的性能。Riot 使用了[遍历 DOM 树](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding)而不是 Virtual DOM，但实际上用的还是脏检查机制，因此和 AngularJS 患有相同的性能问题。
+- 更多成熟工具的支持。Vue 提供官方的 [webpack](https://github.com/vuejs/vue-loader) 和 [Browserify](https://github.com/vuejs/vueify) 支持，而 Riot 依赖社区支持来构建系统集成。
 
 ***
 

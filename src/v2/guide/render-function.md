@@ -8,6 +8,7 @@ order: 15
 
 Vue 推荐使用在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这就是 **render 函数**，它比 template 更接近编译器。
 
+Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
 
 ``` html
 <h1>
@@ -120,8 +121,7 @@ createElement(
 
 ### 完整数据对象
 
-有一件事要注意：在 templates 中，`v-bind:class` 和  `v-bind:style` ，会有特别的处理，他们在 VNode 数据对象中，为最高级配置。
-
+有一件事要注意：在 templates 中，`v-bind:class` 和  `v-bind:style` ，会有特别的处理，他们在 VNode 数据对象中，为最高级配置。 This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
 
 ``` js
 {
@@ -266,6 +266,7 @@ render: function (createElement) {
 </ul>
 <p v-else>No items found.</p>
 ```
+
 这些都会在 render 函数中被 JavaScript 的 `if`/`else` 和 `map` 重写：
 
 ``` js
@@ -438,6 +439,7 @@ new Vue({
   }
 })
 ```
+
 <p class="tip">将 `h` 作为 `createElement` 的别名是 Vue 生态系统中的一个通用惯例，实际上也是 JSX 所要求的，如果在作用域中 `h` 失去作用， 在应用中会触发报错。</p>
 
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
@@ -446,9 +448,9 @@ new Vue({
 ## 函数化组件
 
 之前创建的锚点标题组件是比较简单，没有管理或者监听任何传递给他的状态，也没有生命周期方法。它只是一个接收参数的函数。
+
 在这个例子中，我们标记组件为 `functional`， 这意味它是无状态（没有 `data`），无实例（没有 `this` 上下文）。
 一个 **函数化组件** 就像这样：
-
 
 ``` js
 Vue.component('my-component', {
@@ -465,24 +467,26 @@ Vue.component('my-component', {
 })
 ```
 
-组件需要的一切都是通过上下文传递，包括：
+> Note: in versions <=2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+
+组件需要的一切都是通过 `context` 传递，包括：
 
 - `props`: 提供props 的对象
 - `children`: VNode 子节点的数组
 - `slots`: slots 对象
 - `data`: 传递给组件的 data 对象
 - `parent`: 对父组件的引用
-
+- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is simply an alias to `data.on`
+- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
 
-函数化组件只是一个函数，所以渲染开销也低很多。但同样它也有完整的组件封装，你需要知道这些， 比如：
-
-
-Since functional components are just functions, they're much cheaper to render. However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
+函数化组件只是一个函数，所以渲染开销也低很多。However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
 
 They're also very useful as wrapper components.  For example, when you need to:
 
+- Programmatically choose one of several other components to delegate to
+- Manipulate children, props, or data before passing them on to a child component
 
 下面是一个依赖传入 props 的值的 `smart-list` 组件例子，它能代表更多具体的组件：
 
@@ -601,6 +605,10 @@ console.error = function (error) {
 }
 </script>
 <style>
+#vue-compile-demo {
+  -webkit-user-select: inherit;
+  user-select: inherit;
+}
 #vue-compile-demo pre {
   padding: 10px;
   overflow-x: auto;

@@ -1,7 +1,7 @@
 ---
 title: TodoMVC
 type: examples
-order: 9
+order: 11
 ---
 
 > 本例是一个完全和规范一致的 TodoMVC 实现，只用了 120 行有效的 JavaScript（不包含注释和空行）。
