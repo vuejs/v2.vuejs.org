@@ -6,9 +6,9 @@ order: 15
 
 ## Les bases
 
-Vue vous recommande l'utilisation de templates pour adresser votre HTML dans une grande majorité des cas. Il y a des situation ou cependant vous aurez réellement besoin du pouvoir de programmation du JavaScript. C'est la que vous pouvez utiliser les **fonctions de rendu**, une alternative aux templates plus proche du compilateur.
+Vue vous recommande l'utilisation de templates pour construire votre HTML dans la grande majorité des cas. Il y a cependant des situation ou vous aurez réellement besoin de toute la puissance programmatique de JavaScript. C'est là que vous pouvez utiliser les **fonctions de rendu**, une alternative aux templates qui est plus proche du compilateur.
 
-Plongeons nous dans un simple exemple ou une fonction `render` serait plus pratique. Imaginons que nous souhaitons générer des ancres de titre :
+Voyons un simple exemple où une fonction `render` serait plus pratique. Imaginons que nous souhaitons générer des titres avec une ancre :
 
 ``` html
 <h1>
@@ -63,9 +63,9 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Ce template ne semble pas génial. Il n'est pas uniquement verbeux, il duplique `<slot></slot>` dans tous les niveaux de titre et nous allons devoir refaire la même chose pour chaque élément ancre. Le plus gênant est également le fait d'entourer tous ses titres d'une `div` inutile car un composant doit contenir exactement une seul nœud racine.
+Ce template ne semble pas génial. Il n'est pas uniquement verbeux, il duplique `<slot></slot>` dans tous les niveaux de titre et nous allons devoir refaire la même chose quand nous ajoutons l'élément ancre. Tout cela est également encapsulé dans une `div` inutile car un composant doit contenir exactement un seul nœud racine.
 
-Alors que les templates marche bien pour la majorité des composants, il est clair que celui là n'est pas l'un d'entre eux. Aussi essayons de ré-écrire cela avec une fonction `render` :
+Alors que les templates fonctionnent bien pour la plupart des composants, il est clair que celui-là n'est pas l'un d'entre eux. Aussi essayons de le réécrire avec une fonction `render` :
 
 ``` js
 Vue.component('anchored-heading', {
@@ -84,11 +84,11 @@ Vue.component('anchored-heading', {
 })
 ```
 
-C'est bien plus simple ! Le code est plus court mais demande une plus grande familiarité avec les propriétés d'une instance de Vue. Dans ce cas, vous devez savoir que lorsque vous passez des enfants dans attribut `slot` dans un composant, comme le `Hello world !` a l'intérieur de `anchored-heading`, ces enfants sont stockés dans l'instance du composant sous la propriété `$slots.default`. Si vous ne l'avez pas encore fait, **il est recommandé d'en lire plus sur les [propriétés d'instance de l'API](../api/#vm-slots) avant d'entrer plus en profondeur dans les fonctions de rendu.**
+C'est bien plus simple ! Le code est plus court mais demande une plus grande familiarité avec les propriétés d'une instance de Vue. Dans ce cas, vous devez savoir que lorsque vous passez des enfants dans attribut `slot` dans un composant, comme le `Hello world !` à l'intérieur de `anchored-heading`, ces enfants sont stockés dans l'instance du composant via la propriété `$slots.default`. Si vous ne l'avez pas encore fait, **il est recommandé d'en lire plus sur les [propriétés d'instance de l'API](../api/#vm-slots) avant d'entrer plus en profondeur dans les fonctions de rendu.**
 
 ## Les arguments de `createElement`
 
-La seconde chose a laquelle vous allez devoir vous familiariser est la manière d'utiliser les fonctionnalités de template avec la fonction `createElement`. Voici les arguments que la fonction `createElement` accepte :
+La seconde chose à laquelle vous allez devoir vous familiariser est la manière d'utiliser les fonctionnalités des templates avec la fonction `createElement`. Voici les arguments que la fonction `createElement` accepte :
 
 ``` js
 // @returns {VNode}
@@ -121,7 +121,7 @@ createElement(
 
 ### L'objet de données dans le détail
 
-Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:style` ont un traitement spécial dans les templates, ils ont leurs propres champs dans les objets de données VNode. Cet objet vous permet également d'insérer des attributs HTML normaux comme le permet des fonctions comme `innerHTML` (cela remplace la directive `v-html`) :
+Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:style` ont un traitement spécial dans les templates, ils ont leurs propres champs dans les objets de données VNode. Cet objet vous permet également d'insérer des attributs HTML normaux ainsi que des propriétés du DOM comme `innerHTML` (cela remplace la directive `v-html`) :
 
 ``` js
 {
@@ -160,8 +160,8 @@ Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:styl
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Directives personnalisées. Notons que la valeur liée
-  // `oldValue` ne peut être affectée, car Vue la conserve
+  // Directives personnalisées. Notez que la valeur `oldValue`
+  // de la liaison ne peut pas être affectée, car Vue la conserve
   // pour vous.
   directives: [
     {
@@ -232,9 +232,9 @@ Vue.component('anchored-heading', {
 
 ### Contraintes
 
-#### Les VNodes doivent être unique
+#### Les VNodes doivent être uniques
 
-Tous les VNodes dans l'arbre des composants doivent être unique. Cela signifie que les fonctions suivantes sont invalides :
+Tous les VNodes dans l'arbre des composants doivent être uniques. Cela signifie que les fonctions suivantes sont invalides :
 
 ``` js
 render: function (createElement) {
@@ -246,7 +246,7 @@ render: function (createElement) {
 }
 ```
 
-Si vous souhaitez réellement dupliquer le même élément/composant plusieurs fois, vous pouvez le faire avec une fonction de fabrique. Par exemple, la fonction de rendu suivante est parfaitement valide pour faire le rendu de 20 paragraphes identiques :
+Si vous souhaitez réellement dupliquer le même élément/composant plusieurs fois, vous pouvez le faire avec une fonction fabrique. Par exemple, la fonction de rendu suivante est parfaitement valide pour faire le rendu de 20 paragraphes identiques :
 
 ``` js
 render: function (createElement) {
@@ -258,11 +258,11 @@ render: function (createElement) {
 }
 ```
 
-## Remplacer les fonctionnalités de template avec du pure JavaScript
+## Remplacer les fonctionnalités de template en pur JavaScript
 
 ### `v-if` et `v-for`
 
-Partout ou quelque chose peut être accomplie simplement en JavaScript, Les fonctions de rendu Vue ne fournissent pas d'alternatives personnelles. Par exemple, un template utilisant `v-if` et `v-for` :
+Partout où quelque chose peut être accompli simplement en JavaScript, les fonctions de rendu de Vue ne fournissent pas d'alternative propriétaire. Par exemple, un template utilisant `v-if` et `v-for` :
 
 ``` html
 <ul v-if="items.length">
@@ -271,7 +271,7 @@ Partout ou quelque chose peut être accomplie simplement en JavaScript, Les fonc
 <p v-else>Aucun élément trouvé.</p>
 ```
 
-Pourrait être ré-écrit avec les `if`/`else` et `map` du JavaScript dans une fonction de rendu
+Cela pourrait être réécrit avec les `if`/`else` et `map` du JavaScript dans une fonction de rendu
 
 ``` js
 render: function (createElement) {
@@ -310,9 +310,9 @@ C'est le prix à payer pour travailler à bas niveau, mais cela vous donne un me
 
 ### Modificateurs d'évènement et de code de touche
 
-Pour les modificateur d'évènement `.capture` et `.once`, Vue offre des préfixes pouvant être utilisé dans `on`:
+Pour les modificateurs d'évènement `.capture` et `.once`, Vue offre des préfixes pouvant être utilisé dans `on`:
 
-| Modificateur(s) | Préfixs |
+| Modificateur(s) | Préfixes |
 | ------ | ------ |
 | `.capture` | `!` |
 | `.once` | `~` |
@@ -338,7 +338,7 @@ Pour tous les autres modificateurs d'évènement et de code de touche, aucun pr�
 | Touches :<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (changez `13` en un [autre code de touche](http://keycode.info/) pour les autres modificateurs de code de touche) |
 | Modificateurs de Clés :<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (changez respectivement `ctrlKey` par `altKey`, `shiftKey`, ou `metaKey`) |
 
-Voici un exemple avec tous ses modificateurs utilisés ensemble :
+Voici un exemple avec tous ces modificateurs utilisés ensemble :
 
 ```javascript
 on: {
@@ -347,7 +347,7 @@ on: {
     // l'élément auquel l'évènement est lié
     if (event.target !== event.currentTarget) return
     // Annuler si la touche relâchée n'est pas la touche
-    // entrer (13) et la clé `shift` n'est pas maintenue
+    // Entrée (13) et si la touche `shift` n'est pas maintenue
     // en même temps
     if (!event.shiftKey || event.keyCode !== 13) return
     // Arrêter la propagation d'évènement
@@ -361,7 +361,7 @@ on: {
 
 ### Slots
 
-Vous pouvez accéder aux contenus statique des slots en tant que tableaux de VNodes depuis [`this.$slots`](../api/#vm-slots) :
+Vous pouvez accéder aux contenus des slots statiques en tant que tableaux de VNodes depuis [`this.$slots`](../api/#vm-slots) :
 
 ``` js
 render: function (createElement) {
@@ -370,7 +370,7 @@ render: function (createElement) {
 }
 ```
 
-Et accéer aux slots internes en tant que fonctions qui retourne des VNodes depuis [`this.$scopedSlots`](../api/#vm-scopedSlots) :
+Et accéder aux slots de portée en tant que fonctions qui retournent des VNodes via [`this.$scopedSlots`](../api/#vm-scopedSlots) :
 
 ``` js
 render: function (createElement) {
@@ -383,7 +383,7 @@ render: function (createElement) {
 }
 ```
 
-Pour passer des slots internes à un composant enfant utilisant des fonctions de rendu, utilisez la propriété `scopedSlots` dans les données du VNode :
+Pour passer des slots internes à un composant enfant en utilisant des fonctions de rendu, utilisez la propriété `scopedSlots` dans les données du VNode :
 
 ``` js
 render (createElement) {
@@ -426,7 +426,7 @@ Et d'autant plus quand la version template est vraiment simple en comparaison :
 </anchored-heading>
 ```
 
-C'est pour quoi il y a un [plugin Babel](https://github.com/vuejs/babel-plugin-transform-vue-jsx) pour utiliser JSX avec Vue, nous permettant l'utilisation d'une syntaxe plus proche de celle des templates :
+C'est pourquoi il y a un [plugin Babel](https://github.com/vuejs/babel-plugin-transform-vue-jsx) pour utiliser JSX avec Vue, nous permettant l'utilisation d'une syntaxe plus proche de celle des templates :
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -443,15 +443,15 @@ new Vue({
 })
 ```
 
-<p class="tip">Utiliser `h` comme alias de `createElement` est une convention courante que vous verrez dans l'écosystème Vue qui est de plus requis pour JSX. Si `h` n'est pas disponible dans votre portée courante, votre application va lever une erreur.</p>
+<p class="tip">Utiliser `h` comme alias de `createElement` est une convention courante que vous verrez dans l'écosystème Vue et qui est en faite requise pour JSX. Si `h` n'est pas disponible dans votre portée courante, votre application va lever une erreur.</p>
 
-Pour plus d'information sur comment utiliser JSX dans du JavaScript, référez-vous à la [documentation d'utilisation](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
+Pour plus d'informations sur comment utiliser JSX dans du JavaScript, référez-vous à la [documentation d'utilisation](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
 
 ## Composants fonctionnels
 
-Les titres avec ancres que nous avons créé plus tôt était relativement simple. Il ne gère aucun état, observateur ou état passé du dessus, et il n'a aucune méthode de cycle de vie. Non, ce n'est qu'une simple fonction avec quelque props.
+Le composant de titre ancré que nous avons créé plus tôt était relativement simple. Il ne gère aucun état, n'observe aucun état qu'on lui passe, et il n'a pas de méthodes de cycle de vie. Non, ce n'est qu'une simple fonction avec quelque props.
 
-Dans dès cas comme ça, nous pouvons marquer les composants comme `functional`, ce qui signifie qu'ils sont sans état (« stateless » c.-à-d. sans `data`) et sans instance (« instanceless » c.-à-d. sans contexte `this`). Un composant fonctionnel ressemble à ça :
+Dans des cas comme celui-ci, nous pouvons marquer les composants comme `functional`, ce qui signifie qu'ils sont sans état (« stateless » c.-à-d. sans `data`) et sans instance (« instanceless » c.-à-d. sans contexte `this`). Un composant fonctionnel ressemble à ça :
 
 ``` js
 Vue.component('my-component', {
@@ -468,25 +468,25 @@ Vue.component('my-component', {
 })
 ```
 
-> Note : dans les versions <= 2.3.0, l'option `props` est requise si vous souhaitez accepter des props dans un composant fonctionnel. Dans les versions 2.3.0+ vous pouvez omettre l'option `props` et tous les attributs trouvés dans le nœud composant seront implicitement extrait comme des props.
+> Note : dans les versions <= 2.3.0, l'option `props` est requise si vous souhaitez accepter des props dans un composant fonctionnel. Dans les versions 2.3.0+ vous pouvez omettre l'option `props` et tous les attributs trouvés dans le nœud composant seront implicitement extraits comme des props.
 
 Tout ce dont le composant a besoin est passé dans l'objet `context`, qui est un objet contenant :
 
 - `props`: un objet avec les props fournies,
-- `children`: un tableau de VNode enfant,
+- `children`: un tableau de VNode enfants,
 - `slots`: une fonction retournant un objet de slots,
 - `data`: l'objet de données (`data`) complet passé au composant,
 - `parent`: une référence au composant parent,
-- `listeners`: (2.3.0+) un objet contenant les écouteurs d'évènement enregistré du parent. C'est un simple alias de `data.on`,
+- `listeners`: (2.3.0+) un objet contenant les écouteurs d'évènement enregistrés dans le parent. C'est un simple alias de `data.on`,
 - `injections`: (2.3.0+) si vous utilisez l'option [`inject`](../api/#provide-inject), cela va contenir les injections résolues.
 
-Après avoir ajouté `functional: true`, mettre a jour la fonction de rendu de votre composant de titres avec ancres va seulement demander l'utilisation de l'argument `context`, la mise à jour de `this.$slots.default` pour `context.children`, puis la mise à jour de `this.level` pour `context.props.level`.
+Après avoir ajouté `functional: true`, mettre à jour la fonction de rendu de notre composant de titres avec ancres va simplement nécessiter d'ajouter l'argument `context`, en remplaçant `this.$slots.default` par `context.children`, puis `this.level` par `context.props.level`.
 
 Puisque les composants fonctionnels ne sont que des fonctions, leur rendu est plus rapide. Cependant, cela signifie également que les composants fonctionnels n'apparaissent pas dans l'arbre des composants de l'outil de développement Vue.js de Chrome.
 
-Ils sont également très utile en tant que composant encadrant. Par exemple, quand vous avez besoin de :
+Ils sont également très utiles en tant que composants enveloppes. Par exemple, quand vous avez besoin de :
 
-- Programmatiquement choisir un composant parmi plusieurs autres composant pour de la délégation ou
+- Programmatiquement choisir un composant parmi plusieurs autres composants pour de la délégation ou
 - Manipuler les enfants, props, ou données avant de les passer au composant enfant.
 
 Voici un exemple d'un composant `smart-list` qui délègue à des composants plus spécifiques en fonction des props qui lui sont passées :
@@ -528,7 +528,7 @@ Vue.component('smart-list', {
 
 ### `slots()` vs. `children`
 
-Vous vous demandez peut-être l'utilité d'avoir `slot()` et `children` en même temps. `slots().default` n'est pas la même chose que `children` ? Dans la majorité des cas, oui. Mais que faire si vous avez le composant fonctionnel suivant avec les enfants suivants ?
+Vous vous demandez peut-être l'utilité d'avoir `slot()` et `children` en même temps. `slots().default` n'est-il pas la même chose que `children` ? Dans la majorité des cas, oui. Mais que faire si vous avez un composant fonctionnel avec les enfants suivants ?
 
 ``` html
 <my-functional-component>
@@ -539,11 +539,11 @@ Vous vous demandez peut-être l'utilité d'avoir `slot()` et `children` en même
 </my-functional-component>
 ```
 
-Pour ce composant `children` va vous donner les deux paragraphes, `slots().default` ne vous donnera que le second, et `slots().foo` ne vous donnera que le premier. Avoir le choix entre `children` et `slots()` donc a vous de choisir ce que le composant sait à propos du système de slot ou si vous déléguez peut-être la responsabilité à un autre composant en passant simplement `children`.
+Pour ce composant, `children` va vous donner les deux paragraphes, `slots().default` ne vous donnera que le second, et `slots().foo` ne vous donnera que le premier. Avoir le choix entre `children` et `slots()` vous permet donc de choisir ce que le composant sait à propos du système de slot ou si vous déléguez peut-être la responsabilité à un autre composant en passant simplement `children`.
 
 ## Compilation de template
 
-Vous serez peut-être intéresser de savoir que les templates Vue sont en fait compilé en fonctions de rendu. C'est un détail d'implémentation dont vous avez en général pas à vous soucier, mais si vous souhaiter savoir comment un template spécifique est compilé, vous pourrez trouver cela intéressant. Vous trouverez ci-dessous une petite démo utilisant `Vue.compile` pour voir en live le rendu d'une chaîne de template :
+Vous serez peut-être intéressé de savoir que les templates Vue sont en fait compilés en fonctions de rendu. C'est un détail d'implémentation dont vous n'avez en général pas à vous soucier, mais si vous souhaitez savoir comment un template spécifique est compilé, vous pourrez trouver cela intéressant. Vous trouverez ci-dessous une petite démo utilisant `Vue.compile` pour voir en live le rendu d'une chaîne de template :
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">
