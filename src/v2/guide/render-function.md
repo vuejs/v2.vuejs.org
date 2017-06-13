@@ -106,15 +106,16 @@ createElement(
   },
 
   // {String | Array}
-  // Children VNodes. Optional.
+  // Children VNodes, built using createElement(),
+  // or simply using strings to get 'text VNodes'. Optional.
   [
-    createElement('h1', 'hello world'),
+    'Some text comes first.',
+    createElement('h1', 'A headline'),
     createElement(MyComponent, {
       props: {
-        someProp: 'foo'
+        someProp: 'foobar'
       }
-    }),
-    'bar'
+    })
   ]
 )
 ```
