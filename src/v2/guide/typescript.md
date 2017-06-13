@@ -1,14 +1,14 @@
 ---
-title: TypeScript Support
+title: TypeScript 支持
 type: guide
 order: 25
 ---
 
-## Important 2.2 Change Notice for TS + webpack 2 users
+## 向 TS + webpack 2 用户通知 Vue 2.2 的重要修改
 
-In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
+在 Vue 2.2 中，我们引进了暴露为 ES 模块的 dist 文件，默认情况下配合 webpack 2 使用。不幸的是，由于使用了TypeScript + webpack 2，`import Vue = require('vue')` 返回一个合成的 ES 模块对象而不是 Vue 本身
 
-We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#Recommended-Configuration) below on a future-proof setup.
+我们计划今后所有的官方声明，都将转为使用 ES 风格导出(ES-style export)。请参阅下面长期有效设置的[推荐配置](#Recommended-Configuration)。
 
 ## NPM package 中官方声明文件
 
@@ -63,9 +63,9 @@ This tells TypeScript to leave the ES module import statements intact, which in 
 
 See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
 
-### 访问Vue的类型声明
+### 访问 Vue 的类型声明
 
-Vue的类型定义导出雨多有用的 [类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。例如,注释一个组件的选择对象(例如在一个 `vue` 文件):
+Vue 的类型定义导出许多有用的[类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。例如,注释一个组件的选择对象(例如在一个 `.vue` 文件):
 
 ``` ts
 import Vue, { ComponentOptions } from 'vue'
@@ -112,7 +112,6 @@ export default {
 
 - __TypeScript 不能从 Vue 推断出所有类型的 API。__例如,它不知道 `data` 返回的  `message` 属性将被添加到 `MyComponent` 实例。这意味着如果我们指定一个数字或布尔值信息,验证器和编译器不能抛出一个错误,提示它应该是一个字符串。
 
-
 - 因为之前的限制,__这样可以详细的注释类型__。我们不得不手动声明 `message` 作为字符串的唯一原因,是因为 `TypeScript` 不能推断类型。
 
 幸运的是, [vue-class-component](https://github.com/vuejs/vue-class-component) 可以解决这两个问题。这是一个官方的库,允许您用 @component 装饰器，像原生 JavaScript 类那样声明组件库。让我们重写上述组件作为一个示例:
@@ -139,3 +138,8 @@ export default class MyComponent extends Vue {
 
 由于这种语法的替代,我们的组件定义不仅更短,而且 `TypeScript` 也可以推断出 `message` 和 `onClick` 的类型没有显式接口声明。这种策略甚至允许您处理类型为计算属性,生命周期钩子和渲染功能。完整的使用细节,请参阅[vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component)文档。
 
+***
+
+> 原文：https://vuejs.org/v2/guide/typescript.html
+
+***
