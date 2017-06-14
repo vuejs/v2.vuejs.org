@@ -167,7 +167,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   directives: [
     {
       name: 'my-custom-directive',
-      value: '2'
+      value: '2',
       expression: '1 + 1',
       arg: 'foo',
       modifiers: {
@@ -182,7 +182,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   },
   // The name of the slot, if this component is the
   // child of another component
-  slot: 'name-of-slot'
+  slot: 'name-of-slot',
   // Other special top-level properties
   key: 'myKey',
   ref: 'myRef'
