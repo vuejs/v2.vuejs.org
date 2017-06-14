@@ -4,9 +4,9 @@ type: guide
 order: 3
 ---
 
-## 构造器
+## 构造函数
 
-每个 Vue.js 应用都是通过构造函数 `Vue` 创建一个 **Vue 的根实例** 启动的：
+每个 Vue ViewModel 都是通过 `Vue` 构造函数创建出一个 **Vue 根实例**来引导辅助的：
 
 ``` js
 var vm = new Vue({
@@ -14,27 +14,26 @@ var vm = new Vue({
 })
 ```
 
-虽然没有完全遵循 [MVVM 模式](https://en.wikipedia.org/wiki/Model_View_ViewModel)， Vue 的设计无疑受到了它的启发。因此在文档中经常会使用 `vm` 这个变量名表示 Vue 实例。
+尽管没有完全遵循 [MVVM 模式](https://en.wikipedia.org/wiki/Model_View_ViewModel)，但是 Vue 的设计仍然受到了它的启发。作为约定，通常我们使用变量 `vm` (ViewModel 的简称) 来表示 Vue 实例。
 
-在实例化 Vue 时，需要传入一个**选项对象**，它可以包含数据、模板、挂载元素、方法、生命周期钩子等选项。全部的选项可以在 [API 文档](../api)中查看。
+在实例化 Vue 实例时，你需要传入一个**选项对象**，它可以包含数据(data)、模板(template)、挂载元素(element to mount on)、方法(methods)、生命周期函数(lifecycle callbacks)和其他选项。全部选项列表可以在 [API 参考文档](../api)中查看。
 
-可以扩展 `Vue` 构造器，从而用预定义选项创建可复用的**组件构造器**：
+可以通过预先定义选项扩展 `Vue` 构造函数，从而创建可复用的**组件构造函数**：
 
 ``` js
 var MyComponent = Vue.extend({
   // 扩展选项
 })
 
-// 所有的 `MyComponent` 实例都将以预定义的扩展选项被创建
+// `MyComponent` 的所有实例，都将由预先定义的扩展选项来创建
 var myComponentInstance = new MyComponent()
 ```
 
-尽管可以命令式地创建扩展实例，不过在多数情况下建议将组件构造器注册为一个自定义元素，然后声明式地用在模板中。我们将在后面详细说明[组件系统](/guide/components.html)。现在你只需知道所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
-
+尽管可以命令式地创建扩展实例，不过，在多数情况下，推荐声明式地注册组件，并在模板中作为自定义元素组合在一起。我们将在后面详细说明[组件系统](components.html)。现在，你只需知道所有的 Vue 组件，本质上都是 Vue 对象扩展后的实例。
 
 ## 属性与方法
 
-每个 Vue 实例都会**代理**其 `data` 对象里所有的属性：
+每个 Vue 实例都会**代理**其 `data` 对象的所有属性：
 
 ``` js
 var data = { a: 1 }
@@ -53,9 +52,9 @@ data.a = 3
 vm.a // -> 3
 ```
 
-注意只有这些被代理的属性是**响应的**。如果在实例创建之后添加新的属性到实例上，它不会触发视图更新。我们将在后面详细讨论响应系统。
+应当注意，只有这些以上这种代理属性是**响应式**的。如果在实例创建之后，再对实例添加新的属性，将不会触发任何视图更新。之后我们将详细讨论响应式系统。
 
-除了 data 属性， Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 `$`，以便与代理的 data 属性区分。例如：
+除了 data 属性， Vue 实例还暴露了一些有用的实例属性和方法。这些属性与方法都具有前缀 `$`，以便与所代理的 data 属性有所区分。例如：
 
 ``` js
 var data = { a: 1 }
@@ -69,17 +68,17 @@ vm.$el === document.getElementById('example') // -> true
 
 // $watch 是一个实例方法
 vm.$watch('a', function (newVal, oldVal) {
-  // 这个回调将在 `vm.a`  改变后调用
+  // 这个回调函数将在 `vm.a` 改变后调用
 })
 ```
 
-<p class="tip">注意，不要在实例属性或者回调函数中（如 `vm.$watch('a', newVal => this.myMethod())`）使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)。因为箭头函数绑定父上下文，所以 `this` 不会像预想的一样是 Vue 实例，而是 `this.myMethod` 未被定义。</p>
+<p class="tip">不要在实例属性或者回调函数中（例如，`vm.$watch('a', newVal => this.myMethod())`）使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)。因为箭头函数会绑定父级上下文，所以 `this` 不会按照预期指向 Vue 实例，然后 `this.myMethod` 将是被定义。</p>
 
-实例属性和方法的完整列表中查阅 [API 参考](../api)。
+实例属性和方法的完整列表，请查阅 [API 参考文档](../api)。
 
-## 实例生命周期
+## 实例生命周期钩子函数
 
-每个 Vue 实例在被创建之前都要经过一系列的初始化过程。例如，实例需要配置数据观测(data observer)、编译模版、挂载实例到 DOM ，然后在数据变化时更新 DOM 。在这个过程中，实例也会调用一些 **生命周期钩子** ，这就给我们提供了执行自定义逻辑的机会。例如，[`created`](../api/#created)  这个钩子在实例被创建之后被调用：
+每个 Vue 实例在被创建之前，都要经过一系列的初始化过程 - 例如，Vue 实例需要配置数据观察(data observation)、编译模版(compile the template)、在 DOM 挂载实例(mount the instance to the DOM)，以及在数据变化时更新 DOM(update the DOM when data change)。在这个过程中，Vue 实例还会调用执行一些**生命周期钩子函数**，这就为我们提供了执行自定义逻辑的时机。例如，在实例创建后将调用 [`created`](../api/#created) 钩子函数：
 
 ``` js
 var vm = new Vue({
@@ -94,17 +93,16 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-也有一些其它的钩子，在实例生命周期的不同阶段调用，如  [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed) 。钩子的 `this` 指向调用它的 Vue 实例。一些用户可能会问 Vue.js 是否有“控制器”的概念？答案是，没有。组件的自定义逻辑可以分布在这些钩子中。
+也有一些其它的钩子，在实例生命周期的不同阶段调用，如 [`mounted`](../api/#mounted)、[`updated`](../api/#updated) 和 [`destroyed`](../api/#destroyed)。钩子的 `this` 指向调用它的 Vue 实例。一些用户可能会问 Vue.js 是否有“控制器(controller)”的概念？答案是，没有。组件的自定义逻辑可以分布在这些钩子中。
 
-## 生命周期图示
+## 生命周期示意图
 
-下图说明了实例的生命周期。你不需要立马弄明白所有的东西，不过以后它会有帮助。
+下面是实例生命周期示意图。你不需要现在就完全明白一切，不过这些示意图在之后会对你有所帮助。
 
 ![Lifecycle](/images/lifecycle.png)
 
-
 ***
 
-> 原文： http://vuejs.org/guide/instance.html
+> 原文：https://vuejs.org/v2/guide/instance.html
 
 ***
