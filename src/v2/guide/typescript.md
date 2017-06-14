@@ -65,7 +65,7 @@ import Vue = require('vue')
 
 ### 使用 Vue 的类型声明
 
-Vue 的类型定义导出许多有用的[类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。例如，注释一个组件的选择对象(例如在一个 `.vue` 文件):
+Vue 的类型定义导出许多有用的[类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。例如，要标注一个导出组件的选项对象（比如，在 `.vue` 文件中）：
 
 ``` ts
 import Vue, { ComponentOptions } from 'vue'
