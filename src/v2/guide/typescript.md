@@ -6,7 +6,7 @@ order: 25
 
 ## 向 TS + webpack 2 用户通知 Vue 2.2 的重要修改
 
-在 Vue 2.2 中，我们引进了暴露为 ES 模块的 dist 文件，默认情况下配合 webpack 2 使用。不幸的是，由于使用了TypeScript + webpack 2，`import Vue = require('vue')` 返回一个合成的 ES 模块对象而不是 Vue 本身
+在 Vue 2.2 中，我们引入了暴露为 ES 模块的 dist 文件，默认情况下配合 webpack 2 使用。不幸的是，由于使用了TypeScript + webpack 2，`import Vue = require('vue')` 返回一个合成的 ES 模块对象而不是 Vue 本身
 
 我们计划今后所有的官方声明，都将转为使用 ES 风格导出(ES-style export)。请参阅下面长期有效设置的[推荐配置](#推荐配置)。
 
