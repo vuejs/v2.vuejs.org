@@ -1,6 +1,5 @@
 @import "_common"
 @import "_header"
-@import "_search"
 @import '_sidebar'
 
 $width = 900px
@@ -110,9 +109,17 @@ body
         vertical-align middle
     img
         transition all .3s ease
-        filter contrast(0%)
+        filter grayscale(100%)
+        opacity 0.66
         &:hover
             filter none
+            opacity 1
+    a.vip
+        display block
+        margin 30px auto 15px
+        width 200px
+        img
+            width 200px
     .become-sponsor
         margin-top 40px
         font-size .9em

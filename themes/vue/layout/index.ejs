@@ -7,14 +7,14 @@
 <div id="hero">
   <div class="inner">
     <div class="left">
-      <img class="hero-logo" src="/images/logo.png">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
     </div><div class="right">
       <h2 class="vue">Vue.js</h2>
       <h1>
         The Progressive<br>JavaScript Framework
       </h1>
       <p>
-        <a class="button" href="/guide/">GET STARTED</a>
+        <a class="button" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
         <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
       </p>
     </div>
@@ -36,7 +36,7 @@
     <div class="point">
       <h2>Performant</h2>
       <p>
-        16kb min+gzip Runtime<br>
+        19kb min+gzip Runtime<br>
         Blazing Fast Virtual DOM<br>
         Minimal Optimization Efforts
       </p>
@@ -49,17 +49,18 @@
     <h3>PROUDLY SPONSORED BY</h3>
     <%- partial('partials/sponsors') %>
     <br>
-    <a class="become-sponsor button white" href="/support-vuejs/">Become a Backer</a>
+    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">Become a Backer</a>
   </div>
 </div>
 
 <div id="footer">
-  Released under the <a href="https://opensource.org/licenses/MIT" href="_blank">MIT License</a><br>
-  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You
+  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
+    <img src="/images/shuttleworth.png" style="width:200px">
+  </a>
+  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
+  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
 
-<script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-<script src="/js/common.js"></script>
 <script>
 var topScrolled = false
 window.addEventListener('scroll', function () {

@@ -2,17 +2,26 @@ $header-height = 40px
 
 #header
     background-color #fff
-    padding 25px 60px
+    height: $header-height
+    padding $heading-padding-vertical 60px
     position relative
     z-index 2
+
+body.docs
+    #header
+        position fixed
+        width 100%
+        top 0
+    #nav
+        position fixed
 
 #nav
     list-style-type none
     margin 0
     padding 0
     position absolute
-    right 60px
-    top 25px
+    right 30px
+    top $heading-padding-vertical
     height $header-height
     line-height $header-height
     .break
@@ -26,6 +35,22 @@ $header-height = 40px
     padding-bottom 3px
     &:hover, &.current
         border-bottom 3px solid $green
+    &.shop
+        margin-left 10px
+
+.new-label
+    position absolute
+    top 3px
+    left 110%
+    background-color $green
+    color #fff
+    line-height 16px
+    height 16px
+    font-size 9px
+    font-weight bold
+    font-family $code-font
+    padding 1px 4px 0 6px
+    border-radius 4px
 
 .search-query
     height 30px
@@ -33,11 +58,12 @@ $header-height = 40px
     box-sizing border-box
     padding 0 15px 0 30px
     border 1px solid #e3e3e3
+    color $dark
     outline none
     border-radius 15px
     margin-right 10px
     transition border-color .2s ease
-    background #fff url(/images/search.png) 8px 5px no-repeat
+    background #fff url(../images/search.png) 8px 5px no-repeat
     background-size 20px
     vertical-align middle !important
     &:focus
@@ -65,7 +91,7 @@ $header-height = 40px
     background-color #fff
     z-index 9
     display none
-    box-shadow 0 0 4px rgba(0,0,0,.25)
+    box-shadow 0 0 2px rgba(0,0,0,.25)
     .menu-button
         position absolute
         width 24px
