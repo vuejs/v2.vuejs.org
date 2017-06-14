@@ -6,31 +6,30 @@ order: 13
 
 ## 概述
 
-Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。
-包括以下工具：
+当从 DOM 中插入、更新或移除项目时，Vue 提供多种应用过渡效果的方式。包括以下工具：
 
-- 在 CSS 过渡和动画中自动应用 class
+- 在 CSS 过渡和动画中自动处理 class
 - 可以配合使用第三方 CSS 动画库，如 Animate.css
 - 在过渡钩子函数中使用 JavaScript 直接操作 DOM
 - 可以配合使用第三方 JavaScript 动画库，如 Velocity.js
 
-在这里，我们只会讲到进入、离开和列表的过渡， 你也可以看下一节的 [管理过渡状态](transitioning-state.html).
+本页面中，我们只会涉及到进入、离开和列表的过渡，然而你也可以查看下一章节[管理过渡状态](transitioning-state.html).
 
 ## 单元素/组件的过渡
 
-Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
+Vue 提供了 `transition` 外层包裹容器组件(wrapper component)，可以给下列情形中的任何元素和组件添加进入/离开(enter/leave)过渡
 
-- 条件渲染 （使用 `v-if`）
-- 条件展示 （使用 `v-show`）
+- 条件渲染（使用 `v-if`）
+- 条件展示（使用 `v-show`）
 - 动态组件
 - 组件根节点
 
-这里是一个典型的例子：
+这是一个常见行为的简单示例：
 
 ``` html
 <div id="demo">
   <button v-on:click="show = !show">
-    Toggle
+    点我切换
   </button>
   <transition name="fade">
     <p v-if="show">hello</p>
@@ -51,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active 在 <2.1.8 中 */ {
   opacity: 0
 }
 ```
@@ -83,32 +82,27 @@ new Vue({
 </style>
 {% endraw %}
 
-元素封装成过渡组件之后，在遇到插入或删除时，Vue 将
+当插入或删除包含在 `transition` 组件中的元素时，Vue 将会做以下处理：
 
+1. 自动嗅探目标元素是否应用了 CSS 过渡或动画，如果是，在恰当的时机添加/删除 CSS 类名。
 
-1. 自动嗅探目标元素是否有 CSS 过渡或动画，并在合适时添加/删除 CSS 类名。
+2. 如果过渡组件提供了 [JavaScript 钩子函数](#JavaScript-Hooks)，这些钩子函数将在恰当的时机被调用。
 
-2. 如果过渡组件设置了过渡的 [JavaScript 钩子函数](#JavaScript-Hooks)，会在相应的阶段调用钩子函数。
+3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。（注意：此指浏览器逐帧动画机制，与 Vue，和 Vue 的 `nextTick` 概念不同）
 
-3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，与 Vue，和Vue的 `nextTick` 概念不同)
+### 过渡 CSS 类名
 
+有 6 种 class 类名会在进入/离开(enter/leave)过渡中处理
 
-### 过渡的-CSS-类名
+1. `v-enter`：进入式过渡(entering transition)的开始状态。在插入元素之前添加，在插入元素之后一帧移除。
 
-会有 6 个(CSS)类名在 enter/leave 的过渡中切换
+2. `v-enter-active`：进入式过渡的状态。应用于整个进入式过渡时期。在插入元素之前添加，过渡/动画(transition/animation)完成之后移除。此 class 可用于定义进入式过渡的 duration, delay 和 easing 曲线。
 
-1. `v-enter`: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
+3. `v-enter-to`：**仅适用于版本 >=2.1.8。**进入式过渡的结束状态。在插入元素之后一帧添加（同时，移除 `v-enter`），在`过渡/动画`完成之后移除。
 
+4. `v-leave`: Starting state for leave. Added immediately when a leaving transition is triggered, removed after one frame.
 
-2. `v-enter-active`: 定义进入过渡的结束状态。在元素被插入时生效，在 `transition/animation` 完成之后移除。
- This class can be used to define the duration, delay and easing curve for the entering transition.
-
-3. `v-enter-to`: **Only available in versions >=2.1.8.** Ending state for enter. Added one frame after element is inserted (at the same time `v-enter` is removed), removed when transition/animation finishes.
-
-4. `v-leave`:  定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
-
-5. `v-leave-active`: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 `transition/animation` 完成之后移除。
- This class can be used to define the duration, delay and easing curve for the leaving transition.
+5. `v-leave-active`: Active state for leave. Applied during the entire leaving phase. Added immediately when leave transition is triggered, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the leaving transition.
 
 6. `v-leave-to`: **Only available in versions >=2.1.8.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
 
@@ -1666,8 +1660,6 @@ new Vue({
 
 ***
 
-> 原文：http://vuejs.org/guide/transitions.html
+> 原文：https://vuejs.org/v2/guide/transitions.html
 
 ***
-
-
