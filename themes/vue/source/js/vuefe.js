@@ -14,15 +14,7 @@ var container = container || document;
 container.onmouseup = function(){
   var txt = funcGetSelectText();
   if(txt)
-  {
-  // console.log('vuefe.cn : ' + txt);
-  //  axios.post('https://vuefecom.leanapp.cn/api/words/who', {
-  //     token: store.vuefecom_tempToken,
-  //     word: txt
-  //   })
-  //   .then(function(res) {
-  //   });
-  }
+  {}
 }
 
 /**
@@ -31,7 +23,7 @@ container.onmouseup = function(){
 
 var autoSignUp = function() {
   if (!store.vuefecom_ip || !store.vuefecom_tempToken) {
-    axios.post('https://vuefecom.leanapp.cn/api/user/signuptemp')
+    axios.post('https://vuefe.cn/api/user/signuptemp')
     .then(function(res) {
       if (res.data.code === 0) {
         store.vuefecom_ip = res.data.data.ip;
