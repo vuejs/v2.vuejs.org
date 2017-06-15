@@ -6,7 +6,7 @@ order: 21
 
 ## 官方路由
 
-对于大多数单页面应用，都推荐使用官方支持的[vue-router库](https://github.com/vuejs/vue-router)。更多细节可以看[vue-router文档](http://vuejs.github.io/vue-router/)。
+对于大多数单页面应用，都推荐使用官方支持的[vue-router库](https://github.com/vuejs/vue-router)。更多细节可以看[vue-router 文档](https://router.vuejs.org/)。
 
 ## 从零开始简单的路由
 
@@ -35,6 +35,7 @@ new Vue({
   render (h) { return h(this.ViewComponent) }
 })
 ```
+
 结合HTML5 History API，你可以建立一个非常基本但功能齐全的客户端路由器。可以直接看[实例应用](https://github.com/chrisvfritz/vue-2.0-simple-routing-example)
 
 ## 整合第三方路由

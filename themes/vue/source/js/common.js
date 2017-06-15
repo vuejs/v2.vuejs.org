@@ -28,6 +28,7 @@
     function createSourceSearchPath (query) {
       query = query
         .replace(/\([^\)]*?\)/g, '')
+        .replace(/(Vue\.)(\w+)/g, '$1$2" OR "$2')
         .replace(/vm\./g, 'Vue.prototype.')
       return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
@@ -126,7 +127,7 @@
       var yDiff = end.y - start.y
 
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        if (xDiff > 0) sidebar.classList.add('open')
+        if (xDiff > 0 && start.x <= 80) sidebar.classList.add('open')
         else sidebar.classList.remove('open')
       }
     })

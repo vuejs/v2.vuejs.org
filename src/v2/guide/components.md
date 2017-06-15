@@ -426,6 +426,7 @@ Vue.component('example', {
 - Function
 - Object
 - Array
+- Symbol
 
 `type` 也可以是一个自定义构造器，使用 `instanceof` 检测。
 
@@ -530,6 +531,34 @@ new Vue({
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
+### `.sync` Modifier
+
+> 2.3.0+
+
+In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x this is exactly what the `.sync` modifier provided. When a child component mutates a prop that has `.sync`, the value change will be reflected in the parent. This is convenient, however it leads to maintenance issues in the long run because it breaks the one-way data flow assumption: the code that mutates child props are implicitly affecting parent state.
+
+This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
+
+In 2.3 we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
+
+The following
+
+``` html
+<comp :foo.sync="bar"></comp>
+```
+
+is expanded into:
+
+``` html
+<comp :foo="bar" @update:foo="val => bar = val"></comp>
+```
+
+For the child component to update `foo`'s value, it needs to explicitly emit an event instead of mutating the prop:
+
+``` js
+this.$emit('update:foo', newValue)
+```
+
 ### 使用自定义事件的表单输入组件
 
 自定义事件也可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。牢记：
@@ -585,8 +614,14 @@ Vue.component('currency-input', {
         // 删除两侧的空格符
         .trim()
         // 保留 2 小数位
-        .slice(0, value.indexOf('.') + 3)
-      // 如果值不统一，手动覆盖以保持一致
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
+      // 如果值不统一，
+      // 手动覆盖以保持一致
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
@@ -603,22 +638,27 @@ Vue.component('currency-input', {
 </div>
 <script>
 Vue.component('currency-input', {
-  template: '
-    <span>
-      $
-      <input
-        ref="input"
-        v-bind:value="value"
-        v-on:input="updateValue($event.target.value)"
-      >
-    </span>
+  template: '\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
   ',
   props: ['value'],
   methods: {
     updateValue: function (value) {
       var formattedValue = value
         .trim()
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
@@ -637,7 +677,6 @@ new Vue({
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-
 ### Customizing Component `v-model`
 
 > New in 2.2.0
@@ -651,6 +690,7 @@ Vue.component('my-checkbox', {
     event: 'change'
   },
   props: {
+    checked: Boolean,
     // this allows using the `value` prop for a different purpose
     value: String
   },
@@ -671,6 +711,8 @@ The above will be equivalent to:
   value="some value">
 </my-checkbox>
 ```
+
+<p class="tip">Note that you still have to declare the `checked` prop explicitly.</p>
 
 ### 非父子组件通信
 
@@ -846,7 +888,6 @@ Vue.component('child-component', {
 
 在组合组件时，内容分发 API 是非常有用的机制。
 
-
 ### 作用域插槽
 
 > 2.1.0 新增
@@ -1005,7 +1046,7 @@ var parent = new Vue({ el: '#parent' })
 var child = parent.$refs.profile
 ```
 
-当 `ref` 和 `v-for` 一起使用时， ref 是一个数组或对象，包含相应的子组件。
+当 `ref` 和 `v-for` 一起使用时， ref 是一个数组，包含相应的子组件。
 
 <p class="tip">`$refs` 只在组件渲染完成后才填充，并且它是非响应式的。它仅仅作为一个直接访问子组件的应急方案——应当避免在模版或计算属性中使用 `$refs` 。</p>
 
@@ -1053,8 +1094,31 @@ new Vue({
 })
 ```
 
-
 <p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 Webpack 所内置的一流异步支持。</p>
+
+### Advanced Async Components
+
+> New in 2.3.0
+
+Starting in 2.3 the async component factory can also return an object of the following format:
+
+``` js
+const AsyncComp = () => ({
+  // The component to load. Should be a Promise
+  component: import('./MyComp.vue'),
+  // A component to use while the async component is loading
+  loading: LoadingComp,
+  // A component to use if the load fails
+  error: ErrorComp,
+  // Delay before showing the loading component. Default: 200ms.
+  delay: 200,
+  // The error component will be displayed if a timeout is
+  // provided and exceeded. Default: Infinity.
+  timeout: 3000
+})
+```
+
+Note that when used as a route component in `vue-router`, these properties will be ignored because async components are resolved upfront before the route navigation happens. You also need to use `vue-router` 2.4.0+ if you wish to use the above syntax for route components.
 
 ### 组件命名约定
 
@@ -1083,12 +1147,30 @@ components: {
 
 当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 TitleCase 或者 kebab-case 来引用：
 
-``` html
-<!-- 在字符串模版中可以用任何你喜欢的方式! -->
-<my-component></my-component>
-<myComponent></myComponent>
-<MyComponent></MyComponent>
+- kebab-case
+- camelCase or kebab-case if the component has been defined using camelCase
+- kebab-case, camelCase or TitleCase if the component has been defined using TitleCase
+
+``` js
+components: {
+  'kebab-cased-component': { /* ... */ },
+  camelCasedComponent: { /* ... */ },
+  TitleCasedComponent: { /* ... */ }
+}
 ```
+
+``` html
+<kebab-cased-component></kebab-cased-component>
+
+<camel-cased-component></camel-cased-component>
+<camelCasedComponent></camelCasedComponent>
+
+<title-cased-component></title-cased-component>
+<titleCasedComponent></titleCasedComponent>
+<TitleCasedComponent></TitleCasedComponent>
+```
+
+This means that the TitleCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
 
 如果组件未经 `slot` 元素传递内容，你甚至可以在组件名后使用 `/` 使其自闭合：
 
@@ -1123,7 +1205,6 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 上面组件会导致一个错误 “max stack size exceeded” ，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
 
-
 ### 组件之间的循环引用
 
 假设您正在构建一个文件目录树，像是 Mac 下的 Finder 或是 Windows 下的文件资源管理器。您可能有一个使用此模板的 `tree-folder` 组件：
@@ -1152,14 +1233,12 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 
 ```
-Failed to mount component: template or render function not defined.
-无法挂载组件：模板或 render 函数未定义。
+Failed to mount component: template or render function not defined.（无法挂载组件：模板或 render 函数未定义。）
 ```
 
 为了解释这是如何产生的，我将称我们的组件为 A 和 B。模块系统看到它需要导入 A，但是首先 A 需要导入 B，但是 B 又需要导入 A，A 又需要导入 B，等等，如此形成了一个死循环，模块系统并不知道在先不解析一个组件的情况下，如何解析另一个组件。为了修复这个问题，我们需要给模块系统一个切入点，我们可以告诉它，A 需要导入 B，但是没有必要先解析 B。
 
 在我们的例子中，将 `tree-folder` 组件做为切入起点。我们知道制造矛盾的是 `tree-folder-contents` 子组件，所以我们在 `tree-folder` 组件的生命周期钩子函数 `beforeCreate` 中去注册 `tree-folder-contents` 组件：
-
 
 ``` js
 beforeCreate: function () {
@@ -1208,11 +1287,11 @@ Vue.component('hello-world', {
 
 ``` js
 Vue.component('terms-of-service', {
-  template: '
-    <div v-once>
-      <h1>Terms of Service</h1>
-      ... a lot of static content ...
-    </div>
+  template: '\
+    <div v-once>\
+      <h1>Terms of Service</h1>\
+      ... a lot of static content ...\
+    </div>\
   '
 })
 ```

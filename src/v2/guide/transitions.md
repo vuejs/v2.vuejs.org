@@ -6,26 +6,25 @@ order: 13
 
 ## 概述
 
-Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。
-包括以下工具：
+当从 DOM 中插入、更新或移除项目时，Vue 提供多种应用过渡效果的方式。包括以下工具：
 
-- 在 CSS 过渡和动画中自动应用 class
+- 在 CSS 过渡和动画中自动处理 class
 - 可以配合使用第三方 CSS 动画库，如 Animate.css
 - 在过渡钩子函数中使用 JavaScript 直接操作 DOM
 - 可以配合使用第三方 JavaScript 动画库，如 Velocity.js
 
-在这里，我们只会讲到进入、离开和列表的过渡， 你也可以看下一节的 [管理过渡状态](transitioning-state.html).
+本页面中，我们只会涉及到进入、离开和列表的过渡，然而你也可以查看下一章节[管理过渡状态](transitioning-state.html).
 
 ## 单元素/组件的过渡
 
-Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
+Vue 提供了 `transition` 外层包裹容器组件(wrapper component)，可以给下列情形中的任何元素和组件添加进入/离开(enter/leave)过渡
 
-- 条件渲染 （使用 `v-if`）
-- 条件展示 （使用 `v-show`）
+- 条件渲染（使用 `v-if`）
+- 条件展示（使用 `v-show`）
 - 动态组件
 - 组件根节点
 
-这里是一个典型的例子：
+这是一个常见行为的简单示例：
 
 ``` html
 <div id="demo">
@@ -51,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active 在 <2.1.8 中 */ {
   opacity: 0
 }
 ```
@@ -83,46 +82,39 @@ new Vue({
 </style>
 {% endraw %}
 
-元素封装成过渡组件之后，在遇到插入或删除时，Vue 将
+当插入或删除包含在 `transition` 组件中的元素时，Vue 将会做以下处理：
 
+1. 自动嗅探目标元素是否使用了 CSS 过渡或动画，如果使用，会在合适的时机添加/移除 CSS 过渡 class。
 
-1. 自动嗅探目标元素是否有 CSS 过渡或动画，并在合适时添加/删除 CSS 类名。
+2. 如果过渡组件设置了 [JavaScript 钩子函数](#JavaScript-Hooks)，这些钩子函数将在合适的时机调用。
 
-2. 如果过渡组件设置了过渡的 [JavaScript 钩子函数](#JavaScript-Hooks)，会在相应的阶段调用钩子函数。
+3. 如果没有检测到 CSS 过渡/动画，并且也没有设置 JavaScript 钩子函数，插入和/或删除 DOM 的操作会在下一帧中立即执行。（注意：这里的帧是指浏览器逐帧动画机制，和 Vue 的 `nextTick` 概念不同）
 
-3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，与 Vue，和Vue的 `nextTick` 概念不同)
+### 过渡类名(Transition Classes)
 
+有 6 种 class 类名会在进入/离开(enter/leave)过渡中处理
 
-### 过渡的-CSS-类名
+1. `v-enter`：进入式过渡(entering transition)的开始状态。在插入元素之前添加，在插入元素之后一帧移除。
 
-会有 6 个(CSS)类名在 enter/leave 的过渡中切换
+2. `v-enter-active`：进入式过渡的激活状态。应用于整个进入式过渡时期。在插入元素之前添加，过渡/动画(transition/animation)完成之后移除。此 class 可用于定义进入式过渡的 duration, delay 和 easing 曲线。
 
-1. `v-enter`: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
+3. `v-enter-to`：**仅适用于版本 >=2.1.8。**进入式过渡的结束状态。在插入元素之后一帧添加（同时，移除 `v-enter`），在过渡/动画完成之后移除。
 
+4. `v-leave`：离开式过渡(leaving transition)的开始状态。在触发离开式过渡时立即添加，在一帧之后移除。
 
-2. `v-enter-active`: 定义进入过渡的结束状态。在元素被插入时生效，在 `transition/animation` 完成之后移除。
- This class can be used to define the duration, delay and easing curve for the entering transition.
+5. `v-leave-active`：离开式过渡的激活状态。应用于整个离开式过渡时期。在触发离开式过渡时立即添加，在过渡/动画(transition/animation)完成之后移除。此 class 可用于定义离开式过渡的 duration, delay 和 easing 曲线。
 
-3. `v-enter-to`: **Only available in versions >=2.1.8.** Ending state for enter. Added one frame after element is inserted (at the same time `v-enter` is removed), removed when transition/animation finishes.
-
-4. `v-leave`:  定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
-
-5. `v-leave-active`: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 `transition/animation` 完成之后移除。
- This class can be used to define the duration, delay and easing curve for the leaving transition.
-
-6. `v-leave-to`: **Only available in versions >=2.1.8.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
+6. `v-leave-to`：**仅适用于版本 >=2.1.8。**离开式过渡的结束状态。在触发离开式过渡之后一帧添加（同时，移除 `v-leave`），在过渡/动画完成之后移除。
 
 ![Transition Diagram](/images/transition.png)
 
-对于这些在 `enter/leave` 过渡中切换的类名，`v-` 是这些类名的前缀。使用 `<transition name="my-transition">` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
+对于这些过渡中切换 class，每个都以过渡的 name 作为前缀。当您使用没有 name 的 `<transition>` 元素时，会默认前缀为 `v-`。举个例子，如果你使用 `<transition name="my-transition">`，那么默认的 `v-enter` class 将会被替换为 `my-transition-enter`。
 
-`v-enter-active` 和 `v-leave-active` 可以控制 进入/离开 过渡的不同阶段，在下面章节会有个示例说明。
+`v-enter-active` 和 `v-leave-active` 可以指定不同的进入/离开过渡 easing 曲线，下面章节可以看到一个示例。
 
-### CSS 过渡
+### CSS 过渡(CSS Transitions)
 
-常用的过渡都是使用 CSS 过渡。
-
-下面是一个简单例子：
+最常用到的过渡类型是使用 CSS 过渡。下面是一个简单示例：
 
 ``` html
 <div id="example-1">
@@ -145,8 +137,8 @@ new Vue({
 ```
 
 ``` css
-/* 可以设置不同的进入和离开动画 */
-/* 设置持续时间和动画函数 */
+/* 进入和离开动画可以分别 */
+/* 设置不同的持续时间(duration)和动画函数(timing function) */
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
@@ -154,7 +146,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for <2.1.8 */ {
+/* .slide-fade-leave-active 在 <2.1.8 中 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -163,7 +155,7 @@ new Vue({
 {% raw %}
 <div id="example-1" class="demo">
   <button @click="show = !show">
-    Toggle
+    Toggle render
   </button>
   <transition name="slide-fade">
     <p v-if="show">hello</p>
@@ -191,13 +183,11 @@ new Vue({
 </style>
 {% endraw %}
 
+### CSS 动画(CSS Animations)
 
-### CSS 动画
+CSS 动画用法和 CSS 过渡相同，区别是在动画中 `v-enter` 类名在元素插入 DOM 后不会立即删除，而是在 `animationend` 事件触发时删除。
 
-
-CSS 动画用法同 CSS 过渡，区别是在动画中 `v-enter` 类名在节点插入 DOM 后不会立即删除，而是在 `animationend` 事件触发时删除。
-
-示例： (省略了兼容性前缀)
+这里是一个示例，为了简洁省略了 CSS 规则的前缀：
 
 ``` html
 <div id="example-2">
@@ -222,7 +212,7 @@ new Vue({
   animation: bounce-in .5s;
 }
 .bounce-leave-active {
-  animation: bounce-out .5s;
+  animation: bounce-in .5s reverse;
 }
 @keyframes bounce-in {
   0% {
@@ -233,17 +223,6 @@ new Vue({
   }
   100% {
     transform: scale(1);
-  }
-}
-@keyframes bounce-out {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(0);
   }
 }
 ```
@@ -262,8 +241,8 @@ new Vue({
     animation: bounce-in .5s;
   }
   .bounce-leave-active {
-    -webkit-animation: bounce-out .5s;
-    animation: bounce-out .5s;
+    -webkit-animation: bounce-in .5s reverse;
+    animation: bounce-in .5s reverse;
   }
   @keyframes bounce-in {
     0% {
@@ -277,20 +256,6 @@ new Vue({
     100% {
       -webkit-transform: scale(1);
       transform: scale(1);
-    }
-  }
-  @keyframes bounce-out {
-    0% {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
-    50% {
-      -webkit-transform: scale(1.5);
-      transform: scale(1.5);
-    }
-    100% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
     }
   }
   @-webkit-keyframes bounce-in {
@@ -307,20 +272,6 @@ new Vue({
       transform: scale(1);
     }
   }
-  @-webkit-keyframes bounce-out {
-    0% {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
-    50% {
-      -webkit-transform: scale(1.5);
-      transform: scale(1.5);
-    }
-    100% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
-    }
-  }
 </style>
 <script>
 new Vue({
@@ -332,10 +283,9 @@ new Vue({
 </script>
 {% endraw %}
 
+### 自定义过渡的 class 类名(Custom Transition Classes)
 
-### 自定义过渡类名
-
-我们可以通过以下特性来自定义过渡类名：
+你也可以通过提供一下属性来指定自定义过渡类名
 
 - `enter-class`
 - `enter-active-class`
@@ -344,9 +294,9 @@ new Vue({
 - `leave-active-class`
 - `leave-to-class` (>= 2.1.8 only)
 
-他们的优先级高于普通的类名，这对于 Vue 的过渡系统和其他第三方 CSS 动画库，如 [Animate.css](https://daneden.github.io/animate.css/) 结合使用十分有用。
+它们将覆盖默认约定的类名，这对于将 Vue 的过渡系统和其他现有的第三方 CSS 动画库（如 [Animate.css](https://daneden.github.io/animate.css/)）集成使用会非常有用。
 
-示例：
+这里是一个示例：
 
 ``` html
 <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
@@ -398,16 +348,15 @@ new Vue({
 </script>
 {% endraw %}
 
+### 同时使用过渡和动画(Using Transitions and Animations Together)
 
-### 同时使用 Transitions 和 Animations
+Vue 为了知道过渡何时完成，必须附加相应的事件监听器。它可以是 `transitionend` 或 `animationend`，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别正确的类型并设置相应的事件监听器。
 
-Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可以是 `transitionend` 或 `animationend` ，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别类型并设置监听。
+但是，在一些情况下，你可能需要给同一个元素同时设置过渡和动画，比如在鼠标划过时由 Vue 触发 CSS 动画和 CSS 过渡。在这种情况下，你可能需要通过 `type` 属性，来显式声明需要 Vue 监听的类型，值可以是 `animation` 或 `transition`。
 
-但是，在一些场景中，你需要给同一个元素同时设置两种过渡动效，比如 `animation` 很快的被触发并完成了，而 `transition` 效果还没结束。在这种情况中，你就需要使用 `type` 特性并设置 `animation` 或 `transition` 来明确声明你需要 Vue 监听的类型。
+### 显式过渡持续时间(Explicit Transition Durations)
 
-### Explicit Transition Durations
-
-> New in 2.2.0
+> 2.2.0 新增
 
 In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
 
@@ -1543,7 +1492,7 @@ Vue.component('my-special-transition', {
   render: function (createElement, context) {
     var data = {
       props: {
-        name: 'very-special-transition'
+        name: 'very-special-transition',
         mode: 'out-in'
       },
       on: {
@@ -1705,8 +1654,6 @@ new Vue({
 
 ***
 
-> 原文：http://vuejs.org/guide/transitions.html
+> 原文：https://vuejs.org/v2/guide/transitions.html
 
 ***
-
-

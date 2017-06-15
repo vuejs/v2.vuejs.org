@@ -54,7 +54,7 @@ The only exception to the rule is `v-with` (and `paramAttributes` which compiles
 
 ### Cleaner Event Communication
 
-Previously the standard way for a child component to communicate to its parent is via dispatching events. However, with this approach, the event listeners on the parent component are not guaranteed to be listening on the desired child component only. It's also possible to trigger undesired listners further up the chain if we do not cancel the event.
+Previously the standard way for a child component to communicate to its parent is via dispatching events. However, with this approach, the event listeners on the parent component are not guaranteed to be listening on the desired child component only. It's also possible to trigger undesired listeners further up the chain if we do not cancel the event.
 
 The most common use case is for a parent to react to the events from a specific, direct child component. So in 0.11.4, [a new directive `v-events`](/api/directives.html#v-events) has been introduced to enable exactly this behavior.
 

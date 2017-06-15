@@ -1,28 +1,28 @@
 ---
-title: TypeScript Support
+title: TypeScript 支持
 type: guide
 order: 25
 ---
 
-## Important 2.2 Change Notice for TS + webpack 2 users
+## 向 TS + webpack 2 用户通知 Vue 2.2 的重要修改
 
-In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
+在 Vue 2.2 中，我们引入了暴露为 ES 模块的 dist 文件，默认情况下配合 webpack 2 使用。不幸的是，由于使用了TypeScript + webpack 2，`import Vue = require('vue')` 返回一个合成的 ES 模块对象而不是 Vue 本身
 
-We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#Recommended-Configuration) below on a future-proof setup.
+我们计划今后所有的官方声明，都将转为使用 ES 风格导出(ES-style export)。请参阅下面长期有效设置的[推荐配置](#推荐配置)。
 
-## NPM package 中官方声明文件
+## 发布于 NPM 包中的官方声明
 
-静态类型系统可以帮助防止许多潜在的运行时错误，特别是随着应用程序的增长. 这就是为什么Vue使用带 [TypeScript](https://www.typescriptlang.org/) 的官方的类型声明 - 不仅是用在Vue-core，也用在 [Vue-router](https://github.com/vuejs/vue/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vue/tree/dev/types)。
+静态类型系统(static type system)可以辅助防止许多潜在的运行时错误，特别是随着应用程序的增长。这就是为什么 Vue 使用 [TypeScript](https://www.typescriptlang.org/) [官方的类型声明](https://github.com/vuejs/vue/tree/dev/types) - 不仅是用在 Vue 核心本身，也用在 [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) 和 [vuex](https://github.com/vuejs/vuex/tree/dev/types)。
 
-由于这些[声明文件](https://unpkg.com/vue/types/)是在 NPM 上发布的，你甚至不需要像 `Typings` 这样的外部工具，因为声明是用Vue自动导入的。 这意味着你需要的是简单的引入 Vue:
+由于这些声明文件[发布于 NPM](https://unpkg.com/vue/types/)，并且最新版的 TypeScript 知道如何从 NPM 包中解析类型声明，这意味着，通过NPM 安装后，你甚至不需要任何额外工具，就可以对 Vue 使用 TypeScript：
 
-## 推荐的配置
+## 推荐配置
 
 ``` js
 // tsconfig.json
 {
   "compilerOptions": {
-    // ... other options omitted
+    // ……忽略的其他选项
     "allowSyntheticDefaultImports": true,
     "lib": [
       "dom",
@@ -33,39 +33,39 @@ We plan to move all official declarations to use ES-style exports in the future.
 }
 ```
 
-Note the `allowSyntheticDefaultImports` option allows us to use the following:
+请注意，`allowSyntheticDefaultImports` 选项允许我们使用以下内容：
 
 ``` js
 import Vue from 'vue'
 ```
 
-instead of:
+替代：
 
 ``` js
 import Vue = require('vue')
 ```
 
-The former (ES module syntax) is recommended because it is consistent with recommended plain ES usage, and in the future we are planning to move all official declarations to use ES-style exports.
+推荐使用前者（ES 模块语法），因为它与推荐的纯 ES 用法一致，并且我们计划今后所有的官方声明，都将转为使用 ES 风格导出(ES-style export)。
 
-In addition, if you are using TypeScript with webpack 2, the following is also recommended:
+此外，如果你通过 webpack 2 使用 TypeScript，以下也是推荐设置：
 
 ``` js
 {
   "compilerOptions": {
-    // ... other options omitted
+    // ……忽略的其他选项
     "module": "es2015",
     "moduleResolution": "node"
   }
 }
 ```
 
-This tells TypeScript to leave the ES module import statements intact, which in turn allows webpack 2 to take advantage of ES-module-based tree-shaking.
+这告诉 TypeScript 保持原封不动 ES 模块中的 import 语句，反过来，这也让 webpack 2 能够利用基于 ES 模块(ES-module-based)的 tree-shaking。
 
-See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
+有关更多详细信息，请查看 [TypeScript 编译器(compiler)选项文档](https://www.typescriptlang.org/docs/handbook/compiler-options.html)。
 
-### 访问Vue的类型声明
+### 使用 Vue 的类型声明
 
-Vue的类型定义导出雨多有用的 [类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。例如,注释一个组件的选择对象(例如在一个 `vue` 文件):
+Vue 的类型定义导出许多有用的[类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。例如，要标注一个导出组件的选项对象（比如，在 `.vue` 文件中）：
 
 ``` ts
 import Vue, { ComponentOptions } from 'vue'
@@ -76,14 +76,14 @@ export default {
 } as ComponentOptions<Vue>
 ```
 
-## 类-样式Vue组件
+## class 风格的 Vue 组件(Class-Style Vue Components)
 
-Vue 组件选项可以很容易地注释类型:
+Vue 组件选项可以很容易地标注类型:
 
 ``` ts
 import Vue, { ComponentOptions }  from 'vue'
 
-// Declare the component's type
+// 声明组件类型
 interface MyComponent extends Vue {
   message: string
   onClick (): void
@@ -98,44 +98,48 @@ export default {
   },
   methods: {
     onClick: function () {
-      // TypeScript knows that `this` is of type MyComponent
-      // and that `this.message` will be a string
+      // TypeScript 知道 `this` 是 MyComponent 类型，
+      // 并且 `this.message` 是一个字符串
       window.alert(this.message)
     }
   }
-// We need to explicitly annotate the exported options object
-// with the MyComponent type
+// 我们需要使用显式标注导出的选项对象
+// 为 MyComponent 类型
 } as ComponentOptions<MyComponent>
 ```
 
-不幸的是,这里有一些限制：
+遗憾的是，这里有一些限制：
 
-- __TypeScript 不能从 Vue 推断出所有类型的 API。__例如,它不知道 `data` 返回的  `message` 属性将被添加到 `MyComponent` 实例。这意味着如果我们指定一个数字或布尔值信息,验证器和编译器不能抛出一个错误,提示它应该是一个字符串。
+- __TypeScript 不能从 Vue 的 API 中推断出所有类型。__例如，它不知道 `data` 函数返回的 `message` 属性将被添加到 `MyComponent` 实例。这意味着如果我们为 `message` 设定一个数字或布尔值，验证器(linter)和编译器(compiler)无法抛出一个错误，提示它应该是一个字符串。
 
+- 因为之前的限制，__这样详细标注类型可能变得非常繁琐__。我们必须手动将 `message` 声明为字符串的唯一原因是，因为在这种情况下 TypeScript 不能推断类型。
 
-- 因为之前的限制,__这样可以详细的注释类型__。我们不得不手动声明 `message` 作为字符串的唯一原因,是因为 `TypeScript` 不能推断类型。
-
-幸运的是, [vue-class-component](https://github.com/vuejs/vue-class-component) 可以解决这两个问题。这是一个官方的库,允许您用 @component 装饰器，像原生 JavaScript 类那样声明组件库。让我们重写上述组件作为一个示例:
+幸运的是，[vue-class-component](https://github.com/vuejs/vue-class-component) 可以解决这两个问题。这是一个官方的辅助库，允许你通过使用一个 `@Component` 装饰器，实现像原生 JavaScript class 那样声明组件。举个例子，让我们重写上述组件:
 
 ``` ts
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-// The @Component decorator indicates the class is a Vue component
+// @Component 装饰器表明此 class 是一个 Vue 组件
 @Component({
-  // All component options are allowed in here
+  // 这里允许所有组件选项
   template: '<button @click="onClick">Click!</button>'
 })
 export default class MyComponent extends Vue {
-  // Initial data can be declared as instance properties
+  // 可以将初始数据声明为实例属性
   message: string = 'Hello!'
 
-  // Component methods can be declared as instance methods
+  // 可以将组件方法声明为实例方法
   onClick (): void {
     window.alert(this.message)
   }
 }
 ```
 
-由于这种语法的替代,我们的组件定义不仅更短,而且 `TypeScript` 也可以推断出 `message` 和 `onClick` 的类型没有显式接口声明。这种策略甚至允许您处理类型为计算属性,生命周期钩子和渲染功能。完整的使用细节,请参阅[vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component)文档。
+由于这种语法替代方案，我们的组件定义不仅更简短，而且无需显式接口声明，`TypeScript` 也可以推断出 `message` 和 `onClick` 的类型。这种策略甚至允许你处理计算属性(computed property) 、生命周期钩子函数(lifecycle hook)和渲染函数(render function)的类型。完整的使用细节，请查看 [vue-class-component 文档](https://github.com/vuejs/vue-class-component#vue-class-component)。
 
+***
+
+> 原文：https://vuejs.org/v2/guide/typescript.html
+
+***

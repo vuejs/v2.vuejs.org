@@ -1,0 +1,38 @@
+<ul class="menu-root">
+    <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
+        <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
+        <% if (type === 'guide') { %>
+            <% if (fileName === 'installation') { %>
+                <li><h3>基础概要</h3></li>
+            <% } %>
+            <% if (fileName === 'reactivity') { %>
+                <li><h3>高级进阶</h3></li>
+            <% } %>
+            <% if (fileName === 'migration') { %>
+                <li><h3>升级迁移</h3></li>
+            <% } %>
+            <% if (fileName === 'comparison') { %>
+                <li><h3>其他更多</h3></li>
+            <% } %>
+        <% } %>
+        <% if (type === 'cookbook') { %>
+            <% if (p.order === 1.1) { %>
+                <li><h3>Vue Instance</h3></li>
+            <% } %>
+            <!-- Move cookbook sections here once they have -->
+            <!-- at least one recipe -->
+        <% } %>
+        <li>
+            <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
+        </li>
+    <% }) %>
+    <% if (type === 'cookbook') { %>
+        <li><h3>组件</h3></li>
+        <li><h4>表单输入框</h4></li>
+        <li><h4>第三方集成</h4></li>
+        <li><h3>翻译</h3></li>
+        <li><h3>指令</h3></li>
+        <li><h3>Vue Router</h3></li>
+        <li><h3>Vuex</h3></li>
+    <% } %>
+</ul>

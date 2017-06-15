@@ -111,9 +111,16 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
+    // camelCase won`t work
     mediaPlayPause: 179,
+    // instead you can use kebab-case with double quotation marks
+    "media-play-pause" : 179,
     up: [38, 87]
   }
+  ```
+
+  ```html
+  <input type="text" @keyup.media-play-pause="method">
   ```
 
   给 v-on 自定义键位别名。
@@ -124,7 +131,7 @@ type: api
 
 - **Type:** `boolean`
 
-- **Default:** `false`
+- **Default:** `false (from 2.2.3)`
 
 - **Usage**:
 
@@ -344,7 +351,7 @@ type: api
 
 - **用法：**
 
-  在render函数中编译模板字符串。**只在独立构建时有效**
+  在render函数中编译模板字符串。**只在完整构建时有效**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -381,7 +388,6 @@ if (version === 2) {
 ## 选项 / 数据
 
 ### data
-
 
 - **类型：** `Object | Function`
 
@@ -485,7 +491,6 @@ if (version === 2) {
     }
   })
   ```
-- **参考:** [Props](../guide/components.html#Props)
 
 ### computed
 
@@ -750,10 +755,9 @@ if (version === 2) {
 
   当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。
 
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
+  **This hook is not called during server-side rendering.**
 
 - **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
-
 
 ### activated
 
@@ -794,7 +798,6 @@ if (version === 2) {
   **该钩子在服务器端渲染期间不被调用。**
 
 - **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
-
 
 ### destroyed
 
@@ -1009,8 +1012,7 @@ if (version === 2) {
 
 - **详细:**
 
- 改变纯文本插入分隔符。 **这个选择只有在独立构建时才有用。**
-
+ 改变纯文本插入分隔符。 **这个选择只有在完整构建时才有用。**
 
 - **示例:**
 
@@ -1053,7 +1055,12 @@ if (version === 2) {
     },
     props: {
       // this allows using the `value` prop for a different purpose
-      value: String
+      value: String,
+      // use `checked` as the prop which take the place of `value`
+      checked: {
+        type: Number,
+        default: 0
+      }
     },
     // ...
   })
@@ -1223,7 +1230,6 @@ if (version === 2) {
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
   - [Render 函数](../guide/render-function.html#Slots)
 
-
 ### vm.$refs
 
 - **类型：** `Object`
@@ -1386,7 +1392,7 @@ if (version === 2) {
 
 - **用法：**
 
-  移除事件监听器。
+  移除自定义事件监听器。
 
   - 如果没有提供参数，则移除所有的事件监听器；
 
@@ -1457,8 +1463,7 @@ if (version === 2) {
 
   将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 Vue.nextTick 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
 
-
- > 2.1.0新增：如果没有提供回调且支持 promise 的环境中返回 promise。
+ > 2.1.0 新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
 - **示例：**
 
@@ -1523,7 +1528,6 @@ if (version === 2) {
 
 - **详细：**
 
-
   更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新考虑通过是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
@@ -1560,7 +1564,6 @@ if (version === 2) {
   <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
 
 - **参考：** [条件渲染 - v-if](../guide/conditional.html)
-
 
 ### v-else
 
@@ -1647,7 +1650,6 @@ if (version === 2) {
 
   `v-for` 的详细用法可以通过以下链接查看教程详细说明。
 
-
 - **参考：**
   - [列表渲染](../guide/list.html)
   - [key](../guide/list.html#key)
@@ -1668,9 +1670,10 @@ if (version === 2) {
   - `.{keyCode | keyAlias}` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
   - `.native` - listen for a native event on the root element of component.
   - `.once` - 触发一次。
-  - `.left` - (2.2.0) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0) only trigger handler for middle button mouse events.
+  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
+  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
+  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
+  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
 
 - **用法：**
 
@@ -1740,7 +1743,8 @@ if (version === 2) {
 
 - **修饰符：**
   - `.prop` - 被用于绑定 DOM 属性。([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
+  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
+  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
 - **用法：**
 
@@ -1782,6 +1786,9 @@ if (version === 2) {
   <!-- prop 绑定. “prop” 必须在 my-component 中声明。 -->
   <my-component :prop="someThing"></my-component>
 
+  <!-- pass down parent props in common with a child component -->
+  <child-component v-bind="$props"></child-component>
+
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
@@ -1797,6 +1804,7 @@ if (version === 2) {
 - **参考：**
   - [Class 与 Style 绑定](../guide/class-and-style.html)
   - [组件 - 组件 Props](../guide/components.html#Props)
+  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
 
 ### v-model
 
@@ -1950,6 +1958,31 @@ if (version === 2) {
 
 - **参考：** [命名 Slots](../guide/components.html#Named-Slots)
 
+### is
+
+- **Expects:** `string`
+
+  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+
+  For example:
+
+  ``` html
+  <!-- component changes when currentView changes -->
+  <component v-bind:is="currentView"></component>
+
+  <!-- necessary because <my-row> would be invalid inside -->
+  <!-- a <table> element and so would be hoisted out      -->
+  <table>
+    <tr is="my-row"></tr>
+  </table>
+  ```
+
+  For detailed usage, follow the links in the description above.
+
+- **See also:**
+  - [Dynamic Components](../guide/components.html#Dynamic-Components)
+  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+
 ## 内置的组件
 
 ### component
@@ -1963,7 +1996,8 @@ if (version === 2) {
   渲染一个“元组件”为动态组件。依 `is` 的值，来决定哪个组件被渲染。
 
   ```html
-  <!-- 动态组件由 vm 实例的属性值 `componentId` 控制 -->
+  <!-- 动态组件由 vm 实例的 -->
+  <!-- 属性值 `componentId` 控制 -->
   <component :is="componentId"></component>
 
   <!-- 也能够渲染注册过的组件或 prop 传入的组件 -->
