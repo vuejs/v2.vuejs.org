@@ -299,6 +299,7 @@ Vue.component('todo-item', {
       其中它的内容是动态的。
       我们还需要为每个组件提供一个 "key"，
       这将在之后详细解释。
+    -->
     <todo-item
       v-for="item in groceryList"
       v-bind:todo="item"
