@@ -21,7 +21,7 @@
     <% if (page.title.trim()) { %>
       <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
     <% } %>
-    <% if (page.type === 'about' && page.order === 2) { %>
+    <% if (page.type === 'about' && page.order === 0) { %>
     <%- partial('partials/contributors') %>
     <% } %>
     <%- page.content %>
