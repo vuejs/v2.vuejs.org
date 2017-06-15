@@ -71,8 +71,8 @@ Alors que les templates fonctionnent bien pour la plupart des composants, il est
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // nom de balise
+      this.$slots.default // tableau des enfants
     )
   },
   props: {
