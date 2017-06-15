@@ -29,7 +29,7 @@ Vue 提供了 `transition` 外层包裹容器组件(wrapper component)，可以�
 ``` html
 <div id="demo">
   <button v-on:click="show = !show">
-    点我切换
+    Toggle
   </button>
   <transition name="fade">
     <p v-if="show">hello</p>
@@ -84,11 +84,11 @@ new Vue({
 
 当插入或删除包含在 `transition` 组件中的元素时，Vue 将会做以下处理：
 
-1. 自动嗅探目标元素是否应用了 CSS 过渡或动画，如果是，在恰当的时机添加/删除 CSS 类名。
+1. 自动嗅探目标元素是否使用了 CSS 过渡或动画，如果使用，会在合适的时机添加/移除 CSS 过渡 class。
 
-2. 如果过渡组件提供了 [JavaScript 钩子函数](#JavaScript-Hooks)，这些钩子函数将在恰当的时机被调用。
+2. 如果过渡组件设置了 [JavaScript 钩子函数](#JavaScript-Hooks)，这些钩子函数将在合适的时机调用。
 
-3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。（注意：此指浏览器逐帧动画机制，与 Vue，和 Vue 的 `nextTick` 概念不同）
+3. 如果没有检测到 CSS 过渡/动画，并且也没有设置 JavaScript 钩子函数，插入和/或删除 DOM 的操作会在下一帧中立即执行。（注意：这里的帧是指浏览器逐帧动画机制，和 Vue 的 `nextTick` 概念不同）
 
 ### 过渡 CSS 类名
 
@@ -96,16 +96,15 @@ new Vue({
 
 1. `v-enter`：进入式过渡(entering transition)的开始状态。在插入元素之前添加，在插入元素之后一帧移除。
 
-2. `v-enter-active`：进入式过渡的状态。应用于整个进入式过渡时期。在插入元素之前添加，过渡/动画(transition/animation)完成之后移除。此 class 可用于定义进入式过渡的 duration, delay 和 easing 曲线。
+2. `v-enter-active`：进入式过渡的激活状态。应用于整个进入式过渡时期。在插入元素之前添加，过渡/动画(transition/animation)完成之后移除。此 class 可用于定义进入式过渡的 duration, delay 和 easing 曲线。
 
-3. `v-enter-to`：**仅适用于版本 >=2.1.8。**进入式过渡的结束状态。在插入元素之后一帧添加（同时，移除 `v-enter`），在`过渡/动画`完成之后移除。
+3. `v-enter-to`：**仅适用于版本 >=2.1.8。**进入式过渡的结束状态。在插入元素之后一帧添加（同时，移除 `v-enter`），在过渡/动画完成之后移除。
 
-4. `v-leave`: Starting state for leave. Added immediately when a leaving transition is triggered, removed after one frame.
+4. `v-leave`：离开式过渡(leaving transition)的开始状态。在触发离开式过渡时立即添加，在一帧之后移除。
 
-5. `v-leave-active`: Active state for leave. Applied during the entire leaving phase. Added immediately when leave transition is triggered, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the leaving transition.
+5. `v-leave-active`：离开式过渡的激活状态。应用于整个离开式过渡时期。在触发离开式过渡时立即添加，在过渡/动画(transition/animation)完成之后移除。此 class 可用于定义离开式过渡的 duration, delay 和 easing 曲线。
 
-6. `v-leave-to`: **Only available in versions >=2.1.8.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
-
+6. `v-leave-to`：**仅适用于版本 >=2.1.8。**离开式过渡的结束状态。在触发离开式过渡之后一帧添加（同时，移除 `v-leave`），在过渡/动画完成之后移除。
 ![Transition Diagram](/images/transition.png)
 
 对于这些在 `enter/leave` 过渡中切换的类名，`v-` 是这些类名的前缀。使用 `<transition name="my-transition">` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
