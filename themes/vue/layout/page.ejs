@@ -25,16 +25,6 @@
     <%- partial('partials/contributors') %>
     <% } %>
     <%- page.content %>
-    <% if (page.type === 'guide') { %>
-      <div class="guide-links">
-        <% site.pages.find({ type: page.type, order: page.order - 1 }).each(function (page) { %>
-          <span>← <a href="<%- url_for(page.path) %>"><%- page.title %></a></span>
-        <% }) %>
-        <% site.pages.find({ type: page.type, order: page.order + 1 }).each(function (page) { %>
-          <span style="float:right"><a href="<%- url_for(page.path) %>"><%- page.title %></a> →</span>
-        <% }) %>
-      </div>
-    <% } %>
     <div class="footer">
       发现错误？想参与编辑？
       <a href="https://github.com/vuefe/vuefe.github.io/blob/2.0-cn/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
