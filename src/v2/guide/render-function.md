@@ -6,9 +6,9 @@ order: 15
 
 ## Les bases
 
-Vue vous recommande l'utilisation de templates pour construire votre HTML dans la grande majorité des cas. Il y a cependant des situation ou vous aurez réellement besoin de toute la puissance programmatique de JavaScript. C'est là que vous pouvez utiliser les **fonctions de rendu**, une alternative aux templates qui est plus proche du compilateur.
+Vue vous recommande l'utilisation de templates pour construire votre HTML dans la grande majorité des cas. Il y a cependant des situations où vous aurez réellement besoin de toute la puissance programmatique de JavaScript. C'est là que vous pouvez utiliser les **fonctions de rendu**, une alternative aux templates qui est plus proche du compilateur.
 
-Voyons un simple exemple où une fonction `render` serait plus pratique. Imaginons que nous souhaitons générer des titres avec une ancre :
+Examinons un exemple simple où une fonction `render` serait plus pratique. Imaginons que nous souhaitons générer des titres avec une ancre :
 
 ``` html
 <h1>
@@ -147,7 +147,7 @@ Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:styl
   domProps: {
     innerHTML: 'baz'
   },
-  // La gestion d'évènement est regroupée sous `on` cependant
+  // La gestion d'évènements est regroupée sous `on` cependant
   // les modificateurs comme `v-on:keyup.enter` ne sont pas
   // supportés. Vous devez vérifier manuellement le code de touche
   // dans le gestionnaire à la place.
@@ -240,7 +240,7 @@ Tous les VNodes dans l'arbre des composants doivent être uniques. Cela signifie
 render: function (createElement) {
   var myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
-    // Erf - VNodes dupliqués !
+    // Aïe - VNodes dupliqués !
     myParagraphVNode, myParagraphVNode
   ])
 }
@@ -306,11 +306,11 @@ render: function (createElement) {
 }
 ```
 
-C'est le prix à payer pour travailler à bas niveau, mais cela vous donne un meilleur contrôle sur le détail des interactions comparé à `v-model`.
+C'est le prix à payer pour travailler au plus bas niveau, mais cela vous donne un meilleur contrôle sur le détail des interactions comparé à `v-model`.
 
 ### Modificateurs d'évènement et de code de touche
 
-Pour les modificateurs d'évènement `.capture` et `.once`, Vue offre des préfixes pouvant être utilisé dans `on`:
+Pour les modificateurs d'évènement `.capture` et `.once`, Vue offre des préfixes pouvant être utilisés dans `on`:
 
 | Modificateur(s) | Préfixes |
 | ------ | ------ |
@@ -403,7 +403,7 @@ render (createElement) {
 
 ## JSX
 
-Si vous écrivez beaucoup de fonctions de rendu, cela pourra vous sembler fatiguant d'écrire des choses comme ça :
+Si vous écrivez beaucoup de fonctions `render`, cela pourra vous sembler fatiguant d'écrire des choses comme ça :
 
 ``` js
 createElement(
@@ -449,7 +449,7 @@ Pour plus d'informations sur comment utiliser JSX dans du JavaScript, référez-
 
 ## Composants fonctionnels
 
-Le composant de titre ancré que nous avons créé plus tôt était relativement simple. Il ne gère aucun état, n'observe aucun état qu'on lui passe, et il n'a pas de méthodes de cycle de vie. Non, ce n'est qu'une simple fonction avec quelque props.
+Le composant de titre ancré que nous avons créé plus tôt était relativement simple. Il ne gère aucun état, n'observe aucun état qu'on lui passe, et il n'a pas de méthodes de cycle de vie. Non, ce n'est qu'une simple fonction avec quelques props.
 
 Dans des cas comme celui-ci, nous pouvons marquer les composants comme `functional`, ce qui signifie qu'ils sont sans état (« stateless » c.-à-d. sans `data`) et sans instance (« instanceless » c.-à-d. sans contexte `this`). Un composant fonctionnel ressemble à ça :
 
@@ -472,13 +472,13 @@ Vue.component('my-component', {
 
 Tout ce dont le composant a besoin est passé dans l'objet `context`, qui est un objet contenant :
 
-- `props`: un objet avec les props fournies,
-- `children`: un tableau de VNode enfants,
-- `slots`: une fonction retournant un objet de slots,
-- `data`: l'objet de données (`data`) complet passé au composant,
-- `parent`: une référence au composant parent,
-- `listeners`: (2.3.0+) un objet contenant les écouteurs d'évènement enregistrés dans le parent. C'est un simple alias de `data.on`,
-- `injections`: (2.3.0+) si vous utilisez l'option [`inject`](../api/#provide-inject), cela va contenir les injections résolues.
+- `props` : un objet avec les props fournies,
+- `children` : un tableau de VNode enfants,
+- `slots` : une fonction retournant un objet de slots,
+- `data` : l'objet de données (`data`) complet passé au composant,
+- `parent` : une référence au composant parent,
+- `listeners` : (2.3.0+) un objet contenant les écouteurs d'évènement enregistrés dans le parent. C'est un simple alias de `data.on`,
+- `injections` : (2.3.0+) si vous utilisez l'option [`inject`](../api/#provide-inject), cela va contenir les injections résolues.
 
 Après avoir ajouté `functional: true`, mettre à jour la fonction de rendu de notre composant de titres avec ancres va simplement nécessiter d'ajouter l'argument `context`, en remplaçant `this.$slots.default` par `context.children`, puis `this.level` par `context.props.level`.
 
