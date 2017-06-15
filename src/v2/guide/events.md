@@ -194,6 +194,8 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 <div v-on:click.self="doThat">...</div>
 ```
 
+<p class="tip">L'ordre a de l'importance quand vous utilisez des modificateurs car le code est généré dans le même ordre. Aussi utiliser `@click.prevent.self` va empécher **tous les clicks** alors que `@click.self.prevent` va uniquement empécher le click sur l'élément lui-même.</p>
+
 > Nouveau dans la 2.1.4
 
 ``` html

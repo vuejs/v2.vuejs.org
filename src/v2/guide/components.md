@@ -696,6 +696,7 @@ Vue.component('my-checkbox', {
     event: 'change'
   },
   props: {
+    checked: Boolean,
     // ceci permet d'utiliser la prop `value` pour un usage différent
     value: String
   },
@@ -716,6 +717,8 @@ La partie ci-dessus sera équivalente à :
   value="une valeur">
 </my-checkbox>
 ```
+
+<p class="tip">Notez que vous devez encore déclarer la prop `checked` explicitement.</p>
 
 ### Communication non parent-enfant
 
@@ -1128,7 +1131,7 @@ Notez qu'en utilisant cela en tant que composant de `vue-router`, ces propriét�
 
 ### Conventions de nommage d'un composant
 
-Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-case, la camelCase ou la TitleCase.
+Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-case, la camelCase ou la PascalCase.
 
 ``` js
 // dans une définition de composant
@@ -1137,8 +1140,8 @@ components: {
   'kebab-cased-component': { /* ... */ },
   // inscription utilisant la camelCase
   'camelCasedComponent': { /* ... */ },
-  // inscription utilisant la TitleCase
-  'TitleCasedComponent': { /* ... */ }
+  // inscription utilisant la PascalCase
+  'PascalCasedComponent': { /* ... */ }
 }
 ```
 
@@ -1155,13 +1158,13 @@ Quand vous utilisez des template basés sur les _chaînes de caractères_ cepend
 
 - la kebab-case
 - la camelCase ou la kebab-case si le composant a été défini avec la camelCase
-- la kebab-case, la camelCase ou la TitleCase si le composant a été défini avec la TitleCase
+- la kebab-case, la camelCase ou la PascalCase si le composant a été défini avec la PascalCase
 
 ``` js
 components: {
   'kebab-cased-component': { /* ... */ },
   camelCasedComponent: { /* ... */ },
-  TitleCasedComponent: { /* ... */ }
+  PascalCasedComponent: { /* ... */ }
 }
 ```
 
@@ -1171,12 +1174,12 @@ components: {
 <camel-cased-component></camel-cased-component>
 <camelCasedComponent></camelCasedComponent>
 
-<title-cased-component></title-cased-component>
-<titleCasedComponent></titleCasedComponent>
-<TitleCasedComponent></TitleCasedComponent>
+<pascal-cased-component></pascal-cased-component>
+<pascalCasedComponent></pascalCasedComponent>
+<PascalCasedComponent></PascalCasedComponent>
 ```
 
-Cela signifie que la TitleCase est la _convention de déclaration_ la plus universelle et que la kebab-case est la _convention d'utilisation_ la plus universelle.
+Cela signifie que la PascalCase est la _convention de déclaration_ la plus universelle et que la kebab-case est la _convention d'utilisation_ la plus universelle.
 
 Si votre composant ne passe pas de contenu via des éléments `slot` vous pouvez même utiliser la syntaxe d'auto-fermeture `/` après le nom :
 

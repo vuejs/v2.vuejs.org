@@ -196,4 +196,4 @@ D'une manière générale, `v-if` a des coûts à la permutations plus élevés 
 
 ## `v-if` avec `v-for`
 
-Lorsqu’il est conjointement utilisé avec `v-for`, `v-for` a une priorité plus élevée que `v-if`. Consultez le <a href="../guide/list.html#V-for-and-v-if">guide du rendu de liste</a> pour plus de détails.
+Lorsqu’il est conjointement utilisé avec `v-for`, `v-for` a une priorité plus élevée que `v-if`. Consultez le <a href="../guide/list.html#v-for-avec-v-if">guide du rendu de liste</a> pour plus de détails.
