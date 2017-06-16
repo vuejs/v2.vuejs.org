@@ -1,51 +1,51 @@
 ---
-title: Join the Vue.js Community! (En)
+title: Rejoignez la communauté Vue.js !
 type: guide
 order: 30
 ---
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!</p>
+La communauté Vue grandit incroyablement vite et si vous lisez ceci, il y a de forte chance pour que vous soyez prêt à la rejoindre. Alors... Soyez la ou le bienvenu(e) !
 
-Now we'll answer both what the community can do for you and what you can do for the community.
+Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous et ce que vous pouvez faire pour la communauté.
 
-## Resources You'll Enjoy
+## Ressources qui te plairont
 
-### Get Support
+### Obtenir de l'aide
 
-- [Forum](http://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
-- [Gitter Channel](https://gitter.im/vuejs/vue): A place for devs to meet and chat. You can ask questions here too, but the forum is the better platform, since the discussions are threaded.
-- [Github](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
+- [Forum](https://forum.vuejs.org/c/french): Le meilleur endroit pour poser des questions et obtenir des réponses à propos de Vue et de son écosystème.
+- [Chat Gitter](https://gitter.im/vuejs-fr/vue): Un lieu pour rencontrer et discuter avec des développeurs. Vous pouvez également poser vos questions ici, mais le forum est une meilleure plateforme, car les discussions sont catégorisées et indexées.
+- [Github (En)](https://github.com/vuejs): Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les issues Github sont là pour ça. Les pull requests sont également les bienvenue !
 
-### Explore the Ecosystem
+### Explorer l'écosystème
 
-- [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): See what other awesome resources have been published by other awesome people.
-- [The "Show and Tell" Subforum](http://forum.vuejs.org/c/show-and-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
+- [La page de Awesome Vue (En)](https://github.com/vuejs/awesome-vue): Trouvez d'autres ressources fantastiques publiées par des personnes toutes aussi fantastiques.
+- [La sous-catégorie de forum « Show and Tell » (En)](http://forum.vuejs.org/c/show-and-tell): Un autre endroit génial pour voir ce que les autres ont bâtit avec Vue afin d'agrandir son écosystème.
 
-## What You Can Do
+## Comment pouvez-vous participer
 
-### Contribute Code
+### Contribuer au code
 
-As with any project, there are rules to contributing. To ensure that we can help you or accept your pull request as quickly as possible, please read [the contributing guide](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
+Comme pour n'importe quel projet, il y a des règles de contribution à respecter. Pour vous assurez que nous allons pouvoir vous aider ou accepter vos pull requests aussi rapidement que possible, s'il vous plait [lisez le guide de contribution (En)](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
 
-After that, you'll be ready to contribute to Vue's core repositories:
+Après cela, vous serez fin prêt pour continuer sur les dépôts principaux de Vue :
 
-- [vue](https://github.com/vuejs/vue): the core library
-- [vuex](https://github.com/vuejs/vuex): Flux-inspired state management
-- [vue-router](https://github.com/vuejs/vue-router): a routing system for SPAs
+- [vue](https://github.com/vuejs/vue): Le cœur de la bibliothèque
+- [vuex](https://github.com/vuejs/vuex): Le gestionnaire d'état inspiré par Flux
+- [vue-router](https://github.com/vuejs/vue-router): Le système de routage pour les applications monopages
 
-...as well as many smaller official [companion libraries](https://github.com/vuejs).
+...ainsi que bien d'autre plus petites [bibliothèques de soutien](https://github.com/vuejs) officielles.
 
-### Share (and Build) Your Experience
+### Partagez (et forgez) votre expérience
 
-Apart from answering questions and sharing resources in the forum and Gitter channel, there are a few other less obvious ways to share and expand what you know:
+Hormis répondre aux questions ou partager des ressources sur le forum et le chat, il y a beaucoup d'autres manières d'améliorer et partager vos connaissances :
 
-- **Develop learning materials.** It's often said that the best way to learn is to teach. If there's something interesting you're doing with Vue, strengthen your expertise by writing a blog post, developing a workshop, or even just publishing a gist that you share on social media.
-- **Watch a repo you care about.** This will send you notifications whenever there's activity in that repository, giving you insider knowledge about ongoing discussions and upcoming features. It's a fantastic way to build expertise so that you're eventually able to help address issues and pull requests.
+- **Partagez des ressources pour l'apprentissage.** On dit souvent que la meilleure manière d'apprendre est d'enseigner. Si quelque chose chez Vue vous intéresse, améliorez votre expertise en écrivant un billet de blog, en proposant un workshop ou même en publiant un gist sur les réseaux sociaux.
+- **Surveillez les dépôts qui vous tiennent à cœur.** Cela vous permettra de recevoir des notifications à chaque fois qu'une activité sera recensée sur le dépôt, vous donnant l'occasion d'apprendre depuis le projet et de discuter à propos des futures fonctionnalités. C'est une approche fantastique pour forger son expertise et être ainsi capable d'éventuellement aider avec des issues et des pull requests.
 
-### Translate Docs
+### Traduire les documentations
 
-Vue has already spread across the globe, with even the core team in at least half a dozen timezones. [The forum](http://forum.vuejs.org/) includes 7 languages and counting and many of our docs have [actively-maintained translations](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). We're very proud of Vue's international reach, but we can do even better.
+Vue c'est déjà rependu à travers le monde, et même son équipe principale est répartie sur au moins douze fuseaux horaires. Le [forum international](http://forum.vuejs.org/) inclus bien des langues et beaucoup de nos documentations ont une [traduction maintenue activement](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). Nous sommes extrêmement fier de notre présence international avec Vue, mais nous pouvons faire encore mieux.
 
-I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
+Nous avons espoir que dès maintenant, vous soyez entrain de lire cette ligne dans votre langue préférée. Si ce n'est pas le cas, que diriez-vous de nous aider à changer cela en répliquant le [dépôt international](https://github.com/vuejs/vuejs.org/) ?
 
-If so, please feel free to fork the repo for [these docs](https://github.com/vuejs/vuejs.org/) or for any other officially maintained documentation, then start translating. Once you've made some progress, open an issue or pull request in the main repo and we'll put out a call for more contributors to help you out.
+Et si maintenir la traduction que vous êtes entrain de lire vous intéresse, n'hésitez pas à répliquer le [dépôt français](https://github.com/vuejs-fr/vuejs.org/) et commencer vos traductions où améliorations de traduction en proposant vos pull requests.
