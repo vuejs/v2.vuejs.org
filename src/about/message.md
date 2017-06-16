@@ -4,7 +4,7 @@ type: about
 order: 1
 ---
 
-- 我们还需要些什么？暂且来提 issue吧！ [点击添加建议](https://github.com/vuefe/vuefe.github.io/issues)
+- 我们还需要些什么？暂且来提 issue吧！ [点击添加建议](https://github.com/vuefe/vuejs.org/issues)
 
 ## QQ群
 
