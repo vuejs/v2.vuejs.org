@@ -438,9 +438,9 @@ methods: {
 }
 ```
 
-这些钩子函数可以结合 CSS transitions/animations 使用，也可以单独使用。
+这些钩子函数可以结合 CSS 过渡/动画使用，也可以单独使用。
 
-<p class="tip">当只使用 JavaScript 过渡的时候， **在 `enter` 和 `leave` 钩子函数中，必须有 `done` 回调函数**。否则，这两个钩子函数会被同步调用，过渡会立即完成。</p>
+<p class="tip">当仅使用 JavaScript 过渡的时候， **在 `enter` 和 `leave` 钩子函数中，必须有 `done` 回调函数**。否则，这两个钩子函数会被同步调用，过渡会立即完成。</p>
 
 <p class="tip">推荐对于仅使用 JavaScript 的过渡显式添加 `v-bind:css="false"`，以便 Vue 可以跳过 CSS 侦测。这也可以防止 CSS 规则意外干涉到过渡。</p>
 
