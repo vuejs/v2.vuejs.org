@@ -289,10 +289,10 @@ new Vue({
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class` (>= 2.1.8 only)
+- `enter-to-class`（仅 >= 2.1.8 支持）
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class` (>= 2.1.8 only)
+- `leave-to-class`（仅 >= 2.1.8 支持）
 
 它们将覆盖默认约定的类名，这对于将 Vue 的过渡系统和其他现有的第三方 CSS 动画库（如 [Animate.css](https://daneden.github.io/animate.css/)）集成使用会非常有用。
 
@@ -352,27 +352,27 @@ new Vue({
 
 Vue 为了知道过渡何时完成，必须附加相应的事件监听器。它可以是 `transitionend` 或 `animationend`，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别正确的类型并设置相应的事件监听器。
 
-但是，在一些情况下，你可能需要给同一个元素同时设置过渡和动画，比如在鼠标划过时由 Vue 触发 CSS 动画和 CSS 过渡。在这种情况下，你可能需要通过 `type` 属性，来显式声明需要 Vue 监听的类型，值可以是 `animation` 或 `transition`。
+但是，在一些情况下，你可能需要给同一个元素同时设置过渡和动画，比如由 Vue 触发 CSS 动画，同时在鼠标悬停时触发 CSS 过渡。在这种情况下，你可能需要通过 `type` 属性，来显式声明需要 Vue 监听的类型，值可以是 `animation` 或 `transition`。
 
 ### 显式过渡持续时间(Explicit Transition Durations)
 
 > 2.2.0 新增
 
-In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+在大多数情况下，Vue 可以自动推断出过渡完成时间。默认情况下，Vue 会过渡根元素的第一个 `transitionend` 或 `animationend` 事件触发所需的等待时间。然而，这可能并不总是我们想要的 - 例如，我们可能具有设计安排的过渡序列(transition sequence)：其中一些嵌套的内部元素（在根元素过渡完成后）还具有延续的过渡效果，或比过渡根元素更长的过渡持续时间。
 
-In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+在这种情况下，您可以使用 `<transition>` 组件上的 `duration` 属性 ，来指定一个显式的过渡持续时间（以毫秒为单位）：
 
 ``` html
 <transition :duration="1000">...</transition>
 ```
 
-You can also specify separate values for enter and leave durations:
+您还可以为进入式和离开式持续时间指定不同的值：
 
 ``` html
 <transition :duration="{ enter: 500, leave: 800 }">...</transition>
 ```
 
-### JavaScript 钩子
+### JavaScript 钩子函数
 
 可以在属性中声明 JavaScript 钩子
 
@@ -396,14 +396,14 @@ You can also specify separate values for enter and leave durations:
 // ...
 methods: {
   // --------
-  // 进入中
+  // 进入时
   // --------
 
   beforeEnter: function (el) {
     // ...
   },
-  // 此回调函数是可选项的设置
-  // 与 CSS 结合时使用
+  // 在与 CSS 结合使用时
+  // 此回调函数 done 是可选项
   enter: function (el, done) {
     // ...
     done()
@@ -422,8 +422,8 @@ methods: {
   beforeLeave: function (el) {
     // ...
   },
-  // 此回调函数是可选项的设置
-  // 与 CSS 结合时使用
+  // 在与 CSS 结合使用时
+  // 此回调函数 done 是可选项
   leave: function (el, done) {
     // ...
     done()
@@ -431,20 +431,20 @@ methods: {
   afterLeave: function (el) {
     // ...
   },
-  // leaveCancelled 只用于 v-show 中
+  // leaveCancelled 只能配合 v-show 使用
   leaveCancelled: function (el) {
     // ...
   }
 }
 ```
 
-这些钩子函数可以结合 CSS `transitions/animations` 使用，也可以单独使用。
+这些钩子函数可以结合 CSS transitions/animations 使用，也可以单独使用。
 
-<p class="tip">当只用 JavaScript 过渡的时候， ** 在 `enter` 和 `leave` 中，回调函数 `done` 是必须的 **。 否则，它们会被同步调用，过渡会立即完成。</p>
+<p class="tip">当只使用 JavaScript 过渡的时候， **在 `enter` 和 `leave` 钩子函数中，必须有 `done` 回调函数**。否则，这两个钩子函数会被同步调用，过渡会立即完成。</p>
 
-<p class="tip">推荐对于仅使用 JavaScript 过渡的元素添加 `v-bind:css="false"`，Vue 会跳过 CSS 的检测。这也可以避免过渡过程中 CSS 的影响。</p>
+<p class="tip">推荐对于仅使用 JavaScript 的过渡显式添加 `v-bind:css="false"`，以便 Vue 可以跳过 CSS 侦测。这也可以防止 CSS 规则意外干涉到过渡。</p>
 
-一个使用 Velocity.js 的简单例子：
+现在我们深入来看一个示例。这里是一个简单的使用 Velocity.js 的 JavaScript 过渡：
 
 ``` html
 <!--
@@ -479,7 +479,6 @@ new Vue({
   methods: {
     beforeEnter: function (el) {
       el.style.opacity = 0
-      el.style.transformOrigin = 'left'
     },
     enter: function (el, done) {
       Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
