@@ -106,15 +106,16 @@ createElement(
   },
 
   // {String | Array}
-  // Des VNodes enfants. Optionnel.
+  // Des VNodes enfants, construit en utilisant `createElement()`,
+  // ou en utilisant des chaîne de caractère pour créer des 'text VNodes'. Optionnel.
   [
-    createElement('h1', 'hello world'),
+    'Some text comes first.',
+    createElement('h1', 'A headline'),
     createElement(MyComponent, {
       props: {
-        someProp: 'foo'
+        someProp: 'foobar'
       }
-    }),
-    'bar'
+    })
   ]
 )
 ```
@@ -166,7 +167,7 @@ Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:styl
   directives: [
     {
       name: 'my-custom-directive',
-      value: '2'
+      value: '2',
       expression: '1 + 1',
       arg: 'foo',
       modifiers: {
@@ -181,7 +182,7 @@ Une chose est à noter : de la même manière que `v-bind:class` et `v-bind:styl
   },
   // Le nom du slot, si ce composant est
   // l'enfant d'un autre composant
-  slot: 'name-of-slot'
+  slot: 'name-of-slot',
   // Autres propriétés spéciales de premier niveau
   key: 'myKey',
   ref: 'myRef'
