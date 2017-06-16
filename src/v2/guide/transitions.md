@@ -88,7 +88,7 @@ Quand un élément, encapsulé dans un composant `transition`, est inséré ou e
 
 2. Si le composant de transition possède des [hooks JavaScript](#Hooks-JavaScript), ces hooks seront appelés aux moments appropriés.
 
-3. Si aucune transition/animation CSS n'est détectée et qu'aucun hook JavaScript n'est fourni, les opérations du DOM pour l'insertion et/ou la suppression seront exécutées immédiatement sur la frame suivante (Remarque : il s'agit d'une frame d'animation du navigateur, différente du concept de `nextTick`).
+3. Si aucune transition/animation CSS n'est détectée et qu'aucun hook JavaScript n'est fourni, les opérations du DOM pour l'insertion et/ou la suppression seront exécutées immédiatement à la frame suivante (Remarque : il s'agit d'une frame d'animation du navigateur, différente du concept de `nextTick`).
 
 ### Classes de transition
 
@@ -110,7 +110,7 @@ Il y a six classes appliquées pour les transitions entrantes/sortantes.
 
 Chacune de ces classes sera préfixée avec le nom de la transition. Ici le préfixe `v-` est celui par défaut lorsque vous utilisez l'élément `<transition>` sans nom. Si vous utilisez par exemple `<transition name="ma-transition">`, alors la classe `v-enter` sera nommé `ma-transition-enter`.
 
-`v-enter-active` et `v-leave-active` vous donne la possibilité de spécifier des courbes d'accélération pour les transitions entrantes/sortantes, nous allons les voir dans un exemple dans la section suivante.
+`v-enter-active` et `v-leave-active` vous donnent la possibilité de spécifier des courbes d'accélération pour les transitions entrantes/sortantes, ce que nous verrons en exemple dans la section suivante.
 
 ### Transitions CSS
 
@@ -403,7 +403,7 @@ methods: {
     // ...
   },
   // la fonction de rappel done est facultative quand
-  // c'est utilisé en combinaison avec du CSS
+  // utilisée en combinaison avec du CSS
   enter: function (el, done) {
     // ...
     done()
@@ -423,7 +423,7 @@ methods: {
     // ...
   },
   // la fonction de rappel done est facultative quand
-  // c'est utilisé en combinaison avec du CSS
+  // utilisée en combinaison avec du CSS
   leave: function (el, done) {
     // ...
     done()
@@ -693,7 +693,7 @@ new Vue({
 </style>
 {% endraw %}
 
-Comme c'est une transition entre le bouton « on » et le bouton « off », les deux boutons sont rendus (La transition en fait apparaître un pendant qu'elle fait disparaître l'autre). Il s'agit du comportement par défaut de `<transition>` (l'entrée et la sortie se font simultanément).
+Comme c'est une transition entre le bouton « on » et le bouton « off », les deux boutons sont rendus (l'un est en transition sortante pendant que l'autre est en transition entrante). Il s'agit du comportement par défaut de `<transition>` (l'entrée et la sortie se font simultanément).
 
 Parfois, cela fonctionne très bien, comme lorsque des éléments de transition sont absolument positionnés l'un sur l'autre :
 
@@ -783,9 +783,9 @@ new Vue({
 
 Les transitions simultanées d'entrée et de sortie ne sont pas toujours désirées, donc Vue propose des **modes de transition** alternatifs :
 
-- `in-out`: Les transitions du nouvel élément se passent en premier, puis quand elles sont terminées, les transitions de l'élément actuel s'effectuent.
+- `in-out`: La transition entrante du nouvel élément s'effectue en premier, puis une fois terminée, déclenche la transition sortante de l'élément courant.
 
-- `out-in`: Les transitions de l'élément actuel se passent en premier, puis quand elles sont terminées, les transitions du nouvel élément s'effectuent.
+- `out-in`: La transition sortante de l'élément courant s'effectue en premier, puis une fois terminée, déclenche la transition entrante du nouvel élément.
 
 Maintenant, mettons à jour la transition pour nos boutons on/off avec `out-in` :
 
@@ -1513,9 +1513,9 @@ Oui, même les transitions dans Vue sont pilotées par les données ! Le plus si
 </transition>
 ```
 
-Cela peut être utile quand vous avez défini des transitions/animations CSS à l'aide des conventions de classe de transition de Vue et que vous souhaitez simplement basculer entre elles.
+Cela peut être utile quand vous avez défini des transitions/animations CSS à l'aide des conventions de classes de transition de Vue et que vous souhaitez simplement basculer entre elles.
 
-Vraiment bien, tout attribut de transition peut être dynamiquement lié. Et ce ne sont pas seulement des attributs. Étant donné que les hooks d'événements ne sont que des méthodes, ils ont accès à toutes les données dans le contexte. Cela signifie que selon l'état de votre composant, le JavaScript de vos transitions peuvent se comporter différemment.
+En vérité, tout attribut de transition peut être dynamiquement lié. Et il ne s'agit pas seulement des attributs. Étant donné que les hooks d'événements ne sont que des méthodes, ils ont accès à toutes les données dans le contexte. Cela signifie que selon l'état de votre composant, vos transitions JavaScript peuvent se comporter différemment.
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1645,4 +1645,4 @@ new Vue({
 </script>
 {% endraw %}
 
-Finalement, le meilleur moyen de créer des transitions dynamiques, c'est par le biais de composants qui acceptent des props pour changer la nature de la transition(s) à utiliser. Cela peut sembler ringard, mais la seule limite est votre imagination.
+Finalement, le meilleur moyen de créer des transitions dynamiques, c'est par le biais de composants qui acceptent des props pour changer la nature de ou des transitions à utiliser. Cela peut sembler mielleux, mais la seule limite est votre imagination.
