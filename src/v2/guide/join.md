@@ -14,7 +14,7 @@ Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous 
 
 - [Forum](https://forum.vuejs.org/c/french): Le meilleur endroit pour poser des questions et obtenir des réponses à propos de Vue et de son écosystème.
 - [Chat Gitter](https://gitter.im/vuejs-fr/vue): Un lieu pour rencontrer et discuter avec des développeurs. Vous pouvez également poser vos questions ici, mais le forum est une meilleure plateforme, car les discussions sont catégorisées et indexées.
-- [Github (En)](https://github.com/vuejs): Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les issues Github sont là pour ça. Les pull requests sont également les bienvenue !
+- [Github (En)](https://github.com/vuejs): Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les issues Github sont là pour ça. Les pull requests sont également les bienvenues !
 
 ### Explorer l'écosystème
 
@@ -44,7 +44,7 @@ Hormis répondre aux questions ou partager des ressources sur le forum et le cha
 
 ### Traduire les documentations
 
-Vue c'est déjà rependu à travers le monde, et même son équipe principale est répartie sur au moins douze fuseaux horaires. Le [forum international](http://forum.vuejs.org/) inclus bien des langues et beaucoup de nos documentations ont une [traduction maintenue activement](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). Nous sommes extrêmement fier de notre présence international avec Vue, mais nous pouvons faire encore mieux.
+Vue c'est déjà rependu à travers le monde, et même son équipe principale est répartie sur au moins douze fuseaux horaires. Le [forum international](http://forum.vuejs.org/) inclus bien des langues et beaucoup de nos documentations ont une [traduction maintenue activement](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). Nous sommes extrêmement fiers de notre présence international avec Vue, mais nous pouvons faire encore mieux.
 
 Nous avons espoir que dès maintenant, vous soyez entrain de lire cette ligne dans votre langue préférée. Si ce n'est pas le cas, que diriez-vous de nous aider à changer cela en répliquant le [dépôt international](https://github.com/vuejs/vuejs.org/) ?
 
