@@ -681,6 +681,8 @@ new Vue({
 
 The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
 
+More robust currency filter does not work as expected: in a try to enter number '5.11' after the first digit '1' is entered string '5.09' is shown. I've impression that problem is in currencyValidator.format(number) f-on. It is better to 'return number.toFixed(2)' than 'return (Math.trunc(number * 100) / 100).toFixed(2)'. Additional test are needed.
+
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ### Customizing Component `v-model`
