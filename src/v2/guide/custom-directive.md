@@ -6,7 +6,7 @@ order: 16
 
 ## Introduction
 
-En supplément de la palette de directive fournie en standard (`v-model` et `v-show`), Vue vous permet également d'enregistrer vos propres directives. Notez qu'avec Vue 2, la forme de code préféré pour la réutilisabilité et l''abstraction est le composant. Il y a cependant des cas où vous aurez juste besoin d'un accès de bas niveau aux éléments du DOM, et c'est là que les directives personnalisées vous seraient utiles. Un exemple pourrait être la prise du focus sur un élément de champ, comme celui-ci :
+En supplément de la palette de directive fournie en standard (`v-model` et `v-show`), Vue vous permet également d'enregistrer vos propres directives. Notez qu'avec Vue 2, la forme de code préféré pour la réutilisabilité et l'abstraction est le composant. Il y a cependant des cas où vous aurez juste besoin d'un accès de bas niveau aux éléments du DOM, et c'est là que les directives personnalisées vous seraient utiles. Un exemple pourrait être la prise du focus sur un élément de champ, comme celui-ci :
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -24,7 +24,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Quand la page charge, cet élément prend le focus (notez que l'autofocus ne fonctionne pas sur Safari mobile). En fait, si vous n'avez cliqué sur rien du tout depuis votre arrivée sur la page, le champ ci-dessous devrait avoir le focus en ce moment même. À présent, jetons un œil à la directive qui pourrait accomplir cela :
+Quand la page charge, cet élément prend le focus (notez que l'autofocus ne fonctionne pas sur Safari mobile). En fait, si vous n'avez cliqué sur rien du tout depuis votre arrivée sur la page, le champ ci-dessous devrait avoir le focus. À présent, jetons un œil à la directive qui pourrait accomplir cela :
 
 ``` js
 // Enregistrer une directive globale appelée focus
@@ -37,7 +37,7 @@ Vue.directive('focus', {
 })
 ```
 
-Si vous préférez enregistrer la directive en local à la place, les composants acceptent également l'option `directives` :
+Si vous préférez enregistrer à la place la directive en local, les composants acceptent également l'option `directives` :
 
 ``` js
 directives: {
@@ -53,7 +53,7 @@ Puis dans un template, vous pouvez utiliser le nouvel attribut `v-focus` sur n'i
 <input v-focus>
 ```
 
-## Fonction de hook
+## Fonctions de hook
 
 Une définition d'objet directive peut fournir plusieurs fonctions de hook (toutes optionnelles) :
 
@@ -61,7 +61,7 @@ Une définition d'objet directive peut fournir plusieurs fonctions de hook (tout
 
 - `inserted`: appelée quand l'élément lié a été inséré dans son nœud parent (cela garanti uniquement sa présence dans le nœud parent, mais pas nécessairement dans le DOM principal).
 
-- `update`: appelée après que le composant conteneur ai été mis à jour, __mais possiblement avant que ses enfants ai été mis à jour__. La valeur de la directive peut ou pas avoir changé, mais vous pouvez passer les mises à jour non nécessaire en comparant les valeurs couramment liées avec les anciennes valeurs (voir plus bas les arguments de hook).
+- `update`: appelée après que le composant conteneur ai été mis à jour, __mais peut-être avant que ses enfants ai été mis à jour__. La valeur de la directive peut ou pas avoir changé, mais vous pouvez ignorer les mises à jour inutiles en comparant les valeurs actuelles et anciennes de la liaison (voir plus bas les arguments de hook).
 
 - `componentUpdated`: appelée après que le composant conteneur __et ses enfants__ ai été mis à jour.
 
