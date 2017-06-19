@@ -6,17 +6,17 @@ order: 18
 
 ## Écrie un plugin
 
-Les plugins sont habituellement ajouté au niveau des fonctionnalités globales de Vue. Il y a un cadre strictement défini pour un plugin, et il y a divers types de plugins que vous pouvez écrire :
+Les plugins sont habituellement ajoutés au niveau des fonctionnalités globales de Vue. Il y a un cadre strictement défini pour un plugin, et il y a divers types de plugins que vous pouvez écrire pour :
 
 1. Ajouter plusieurs méthodes globales ou propriétés. Par ex. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
-2. Ajouter une ou plusieurs ensemble de fonctionnalités : directives/filters/transitions, etc. Par ex. [vue-touch](https://github.com/vuejs/vue-touch)
+2. Ajouter une ou plusieurs fonctionnalités : directives/filters/transitions, etc. Par ex. [vue-touch](https://github.com/vuejs/vue-touch)
 
 3. Ajouter plusieurs options de composant avec un mixin global. Par ex. [vuex](https://github.com/vuejs/vuex)
 
 4. Ajouter plusieurs méthodes d'instance de Vue attachées au prototype de Vue.
 
-5. Une bibliothèque fournissant sa propre API, qui inject en même temps plusieurs des éléments précédemment cités. Par ex. [vue-router](https://github.com/vuejs/vue-router)
+5. Fournir une bibliothèque avec sa propre API, qui inject en même temps plusieurs des éléments précédemment cités. Par ex. [vue-router](https://github.com/vuejs/vue-router)
 
 Un plugin Vue.js doit exposer une méthode `install`. Cette méthode va être appelée avec le constructeur de `Vue` en tant que premier argument, avec les options possibles suivantes :
 
