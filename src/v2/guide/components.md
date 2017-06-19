@@ -1122,7 +1122,7 @@ Note that when used as a route component in `vue-router`, these properties will 
 
 ### 组件命名约定
 
-当注册组件（或者 props）时，可以使用 kebab-case ，camelCase ，或 TitleCase 。Vue 不关心这个。
+当注册组件（或者 props）时，可以使用 kebab-case ，camelCase ，或 PascalCase 。Vue 不关心这个。
 
 ``` js
 // 在组件定义中
@@ -1131,8 +1131,8 @@ components: {
   'kebab-cased-component': { /* ... */ },
   // register using camelCase
   'camelCasedComponent': { /* ... */ },
-  // register using TitleCase
-  'TitleCasedComponent': { /* ... */ }
+  // register using PascalCase
+  'PascalCasedComponent': { /* ... */ }
 }
 ```
 
@@ -1149,13 +1149,13 @@ components: {
 
 - kebab-case
 - camelCase or kebab-case if the component has been defined using camelCase
-- kebab-case, camelCase or TitleCase if the component has been defined using TitleCase
+- kebab-case, camelCase or PascalCase if the component has been defined using PascalCase
 
 ``` js
 components: {
   'kebab-cased-component': { /* ... */ },
   camelCasedComponent: { /* ... */ },
-  TitleCasedComponent: { /* ... */ }
+  PascalCasedComponent: { /* ... */ }
 }
 ```
 
@@ -1165,12 +1165,12 @@ components: {
 <camel-cased-component></camel-cased-component>
 <camelCasedComponent></camelCasedComponent>
 
-<title-cased-component></title-cased-component>
-<titleCasedComponent></titleCasedComponent>
-<TitleCasedComponent></TitleCasedComponent>
+<pascal-cased-component></pascal-cased-component>
+<pascalCasedComponent></pascalCasedComponent>
+<PascalCasedComponent></PascalCasedComponent>
 ```
 
-This means that the TitleCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
+This means that the PascalCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
 
 如果组件未经 `slot` 元素传递内容，你甚至可以在组件名后使用 `/` 使其自闭合：
 

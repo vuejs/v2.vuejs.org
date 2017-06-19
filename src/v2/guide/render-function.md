@@ -106,15 +106,16 @@ createElement(
   },
 
   // {String | Array}
-  // 子节点(VNodes). 可选项.
+  // Children VNodes, built using createElement(),
+  // or simply using strings to get 'text VNodes'. Optional.
   [
-    createElement('h1', 'hello world'),
+    'Some text comes first.',
+    createElement('h1', 'A headline'),
     createElement(MyComponent, {
       props: {
-        someProp: 'foo'
+        someProp: 'foobar'
       }
-    }),
-    'bar'
+    })
   ]
 )
 ```
@@ -162,7 +163,7 @@ createElement(
   directives: [
     {
       name: 'my-custom-directive',
-      value: '2'
+      value: '2',
       expression: '1 + 1',
       arg: 'foo',
       modifiers: {
@@ -177,8 +178,8 @@ createElement(
   },
   // The name of the slot, if this component is the
   // child of another component
-  slot: 'name-of-slot'
-  // 其他特殊顶层属性
+  slot: 'name-of-slot',
+  // Other special top-level properties
   key: 'myKey',
   ref: 'myRef'
 }
