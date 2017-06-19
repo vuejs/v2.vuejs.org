@@ -72,7 +72,7 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
-<p class="tip">不要在实例属性或者回调函数中（例如，`vm.$watch('a', newVal => this.myMethod())`）使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)。因为箭头函数会绑定父级上下文，所以 `this` 不会按照预期指向 Vue 实例，然后 `this.myMethod` 将是被定义。</p>
+<p class="tip">不要在实例属性或者回调函数中（例如，`vm.$watch('a', newVal => this.myMethod())`）使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)。因为箭头函数会绑定父级上下文，所以 `this` 不会按照预期指向 Vue 实例，然后 `this.myMethod` 将是未定义。</p>
 
 实例属性和方法的完整列表，请查阅 [API 参考文档](../api)。
 

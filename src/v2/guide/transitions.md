@@ -544,9 +544,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## 初始渲染的过渡
+## 在初始渲染时过渡
 
-可以通过 `appear` 特性设置节点的在初始渲染的过渡
+如果你还想在节点初始渲染时应用过渡，可以添加 `appear` 属性：
 
 ``` html
 <transition appear>
@@ -554,20 +554,20 @@ new Vue({
 </transition>
 ```
 
-这里默认和进入和离开过渡一样，同样也可以自定义 CSS 类名。
+默认情况下，对于进入和离开，会使用特定过渡。但是，如果你有需要，也可以指定自定义 CSS 类名：
 
 ``` html
 <transition
   appear
   appear-class="custom-appear-class"
-  appear-to-class="custom-appear-to-class" (>= 2.1.8 only)
+  appear-to-class="custom-appear-to-class"（仅 >= 2.1.8 支持）
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
 </transition>
 ```
 
-自定义 JavaScript 钩子： 
+以及指定自定义 JavaScript 钩子函数：
 
 ``` html
 <transition
@@ -581,9 +581,9 @@ new Vue({
 </transition>
 ```
 
-## 多个元素的过渡
+## 多个元素之间切换过渡
 
-我们之后讨论 [多个组件的过渡](#多个组件的过渡), 对于原生标签可以使用 `v-if`/`v-else` 。最常见的多标签过渡是一个列表和描述这个列表为空消息的元素：
+我们将在下面讨论[多个元素之间切换过渡](#多个元素之间切换过渡)，但是还是可以使用 `v-if`/`v-else`，来对初始元素之间进行切换过渡。最常见的是，一个列表容器和描述列表为空的消息，这两个元素间的切换过渡：
 
 ``` html
 <transition>
@@ -594,9 +594,9 @@ new Vue({
 </transition>
 ```
 
-可以这样使用，但是有一点需要注意：
+可以这样使用，但是有一点事项需要注意：
 
-<p class="tip">当有**相同标签名**的元素切换时，需要通过 `key` 特性设置唯一的值来标记以让 Vue 区分它们，否则 Vue 为了效率只会替换相同标签内部的内容。即使在技术上没有必要，**给在 `<transition>` 组件中的多个元素设置 key  是一个更好的实践。**</p>
+<p class="tip">当在具有**相同标签名称**的元素之间切换时，需要通过给它们分配唯一的 `key` 属性，以使 Vue 感知它们是不同的元素。否则 Vue 的编译器将因为效率，只会替换元素内部的内容。即使在技术上没有必要，但是，**给 `<transition>` 组件中的多个元素设置 key，被认为是一个最佳实践。**</p>
 
 示例:
 
@@ -611,7 +611,7 @@ new Vue({
 </transition>
 ```
 
-在一些场景中，也可以给通过给同一个元素的 `key` 特性设置不同的状态来代替 `v-if` 和 `v-else`，上面的例子可以重写为：
+在上面这种场景中，也通过给同一元素的 `key` 属性，设置不同的状态来进行过渡。而无需使用 `v-if` 和 `v-else`，所以上面的例子可以重写为：
 
 ``` html
 <transition>
@@ -621,7 +621,7 @@ new Vue({
 </transition>
 ```
 
-使用多个 `v-if` 的多个元素的过渡可以重写为绑定了动态属性的单个元素过渡。 例如：
+实际上，使用 `v-if` 的多个元素之间的过渡，还可以改为在单个元素上绑定动态属性的方式，来在任意数量的元素之间进行转换。例如：
 
 ``` html
 <transition>
