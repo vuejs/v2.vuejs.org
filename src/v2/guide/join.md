@@ -25,7 +25,7 @@ Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous 
 
 ### Contribuer au code
 
-Comme pour n'importe quel projet, il y a des règles de contribution à respecter. Pour vous assurez que nous allons pouvoir vous aider ou accepter vos pull requests aussi rapidement que possible, s'il vous plait [lisez le guide de contribution (En)](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
+Comme pour n'importe quel projet, il y a des règles de contribution à respecter. Pour vous assurez que nous allons pouvoir vous aider ou accepter vos pull requests aussi rapidement que possible, merci de [lire le guide de contribution (En)](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
 
 Après cela, vous serez fin prêt pour continuer sur les dépôts principaux de Vue :
 
@@ -33,18 +33,18 @@ Après cela, vous serez fin prêt pour continuer sur les dépôts principaux de 
 - [vuex](https://github.com/vuejs/vuex): Le gestionnaire d'état inspiré par Flux
 - [vue-router](https://github.com/vuejs/vue-router): Le système de routage pour les applications monopages
 
-...ainsi que bien d'autre plus petites [bibliothèques de soutien](https://github.com/vuejs) officielles.
+...ainsi que bien d'autres plus petites [bibliothèques de soutien](https://github.com/vuejs) officielles.
 
 ### Partagez (et forgez) votre expérience
 
 Hormis répondre aux questions ou partager des ressources sur le forum et le chat, il y a beaucoup d'autres manières d'améliorer et partager vos connaissances :
 
 - **Partagez des ressources pour l'apprentissage.** On dit souvent que la meilleure manière d'apprendre est d'enseigner. Si quelque chose chez Vue vous intéresse, améliorez votre expertise en écrivant un billet de blog, en proposant un workshop ou même en publiant un gist sur les réseaux sociaux.
-- **Surveillez les dépôts qui vous tiennent à cœur.** Cela vous permettra de recevoir des notifications à chaque fois qu'une activité sera recensée sur le dépôt, vous donnant l'occasion d'apprendre depuis le projet et de discuter à propos des futures fonctionnalités. C'est une approche fantastique pour forger son expertise et être ainsi capable d'éventuellement aider avec des issues et des pull requests.
+- **Surveillez les dépôts qui vous tiennent à cœur.** Cela vous enverra des notifications dès qu'il y aura une activité dans le dépôt, vous permettant de suivre les discussions en cours et les fonctionnalités à venir. C'est une approche très intéressante pour consolider votre expertise tout en aidant à résoudre des issues et des pull requests.
 
 ### Traduire les documentations
 
-Vue c'est déjà rependu à travers le monde, et même son équipe principale est répartie sur au moins douze fuseaux horaires. Le [forum international](http://forum.vuejs.org/) inclus bien des langues et beaucoup de nos documentations ont une [traduction maintenue activement](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). Nous sommes extrêmement fiers de notre présence international avec Vue, mais nous pouvons faire encore mieux.
+Vue s'est déjà répandu à travers le monde, et son équipe principale dans au moins une demi-douzaine de fuseaux horaires. Le [forum international](http://forum.vuejs.org/) inclus bien des langues et beaucoup de nos documentations ont une [traduction maintenue activement](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). Nous sommes extrêmement fiers de notre présence international avec Vue, mais nous pouvons faire encore mieux.
 
 Nous avons espoir que dès maintenant, vous soyez entrain de lire cette ligne dans votre langue préférée. Si ce n'est pas le cas, que diriez-vous de nous aider à changer cela en répliquant le [dépôt international](https://github.com/vuejs/vuejs.org/) ?
 
