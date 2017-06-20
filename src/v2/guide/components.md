@@ -933,6 +933,8 @@ If we render the above, the output will be:
 </div>
 ```
 
+<p class="tip">Note that the slot element has to be a `<template>` tag!</p>
+
 A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
 
 ``` html
