@@ -1800,6 +1800,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 
   `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  
+  If the tag is a component then `.prop` will set the property on the component's `$el`.
 
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
