@@ -2139,6 +2139,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </transition>
   ```
 
+  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
+
+
 - **`include` and `exclude`**
 
   > New in 2.1.0
