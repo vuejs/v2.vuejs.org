@@ -1151,7 +1151,7 @@ Within HTML templates though, you have to use the kebab-case equivalents:
 <!-- always use kebab-case in HTML templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
-<title-cased-component></title-cased-component>
+<pascal-cased-component></pascal-cased-component>
 ```
 
 When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
