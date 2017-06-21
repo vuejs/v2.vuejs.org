@@ -753,7 +753,7 @@ When using components, it is often desired to compose them like this:
 
 There are two things to note here:
 
-1. The `<app>` component does not know what content may be present inside its mount target. It is decided by whatever parent component that is using `<app>`.
+1. The `<app>` component does not know what content it will receive. It is decided by the component using `<app>`.
 
 2. The `<app>` component very likely has its own template.
 
