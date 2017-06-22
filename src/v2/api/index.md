@@ -1801,7 +1801,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   ```
 
   `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
-  
+
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
   - [Components - Component Props](../guide/components.html#Props)
