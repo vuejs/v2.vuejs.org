@@ -4,7 +4,7 @@ type: guide
 order: 18
 ---
 
-## Écrie un plugin
+## Écrire un plugin
 
 Les plugins sont habituellement ajoutés au niveau des fonctionnalités globales de Vue. Il y a un cadre strictement défini pour un plugin, et il y a divers types de plugins que vous pouvez écrire pour :
 
@@ -16,7 +16,7 @@ Les plugins sont habituellement ajoutés au niveau des fonctionnalités globales
 
 4. Ajouter plusieurs méthodes d'instance de Vue attachées au prototype de Vue.
 
-5. Fournir une bibliothèque avec sa propre API, qui inject en même temps plusieurs des éléments précédemment cités. Par ex. [vue-router](https://github.com/vuejs/vue-router)
+5. Fournir une bibliothèque avec sa propre API, qui injecte en même temps certains des éléments précédemment cités. Par ex. [vue-router](https://github.com/vuejs/vue-router)
 
 Un plugin Vue.js doit exposer une méthode `install`. Cette méthode va être appelée avec le constructeur de `Vue` en tant que premier argument, avec les options possibles suivantes :
 
@@ -55,11 +55,11 @@ MyPlugin.install = function (Vue, options) {
 Utiliser un plugin en appelant la méthode globale `Vue.use()` :
 
 ``` js
-// appeler `MyPlugin.install(Vue)`
+// appel `MyPlugin.install(Vue)`
 Vue.use(MyPlugin)
 ```
 
-Vous pouvez optionnellement passer plusieurs options :
+Vous pouvez optionnellement passer certaines options :
 
 ``` js
 Vue.use(MyPlugin, { someOption: true })
@@ -67,7 +67,7 @@ Vue.use(MyPlugin, { someOption: true })
 
 `Vue.use` va automatiquement vous empécher d'utiliser plusieurs fois le même plugin, ainsi appeler de multiple fois le même plugin ne l'installera qu'une fois.
 
-Plusieurs plugins fournient officiellement par Vue.js comme `vue-router` appel `Vue.use()` si `Vue` est disponible en tant que variable globale. Cependant, dans un environnement par module comme avec CommonJS, vous devrez toujours manuellement appeler `Vue.use()` :
+Certains plugins fournis officiellement par Vue.js comme `vue-router` appelle `Vue.use()` si `Vue` est disponible en tant que variable globale. Cependant, dans un environnement par module comme avec CommonJS, vous devrez toujours manuellement appeler `Vue.use()` :
 
 ``` js
 // En utilisant CommonJS depuis Browserify ou webpack
