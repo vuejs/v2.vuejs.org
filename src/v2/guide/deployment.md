@@ -14,7 +14,7 @@ Si vous utilisez la version complète, c.-à-d. en incluant directement Vue via 
 
 ### Avec outils de build
 
-Quand vous utilisez un outil de build comme webpack ou Browserify, le mode production sera déterminé par la valeur de `process.env.NODE_ENV` utilisée dans le code source de Vue, et sera en mode développement par défaut. Ces deux outils fournissent des moyens de surcharger cette variable pour activer le mode production de Vue, et les avertissements seront retirés par le minificateur pendant le build. Tous les templates `vue-cli` sont pré-configurés pour vous, mais il est avantageux de savoir comment cela fonctionne :
+Quand vous utilisez un outil de build comme webpack ou Browserify, le mode production sera déterminé par la valeur de `process.env.NODE_ENV` utilisée dans le code source de Vue et sera en mode développement par défaut. Ces deux outils fournissent des moyens de surcharger cette variable pour activer le mode production de Vue et les avertissements seront retirés par le minificateur pendant le build. Tous les templates `vue-cli` sont pré-configurés pour vous, mais il peut être utile de savoir comment cela fonctionne :
 
 #### webpack
 
@@ -75,7 +75,7 @@ Si vous utilisez webpack, et préférez séparer le JavaScript des fichiers de t
 
 Lors de l'utilisation de composants monofichiers, le CSS à l'intérieur des composants est injecté dynamiquement sous la forme de balises `<style>` via JavaScript. Ceci a un léger coût d'exécution, et si vous utilisez du rendu côté serveur, cela causera le phénomène de FOUC (« Flash Of Unstyled Content »). Extraire le CSS depuis tous les composants dans le même fichier évite ces problèmes et amène à une meilleure minification et mise en cache du CSS.
 
-Référez-vous aux documentions respectives des outils de build pour voir comment cela est fait :
+Référez-vous aux documentations respectives des outils de build pour voir comment cela est fait :
 
 - [webpack + vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) (le template webpack `vue-cli` a cela pré-configuré)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
