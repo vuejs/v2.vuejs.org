@@ -14,7 +14,7 @@ Si vous utilisez la version complète, c.-à-d. en incluant directement Vue via 
 
 ### Avec outils de build
 
-Quand vous utilisez un outil de build comme webpack ou Browserify, le mode production sera déterminé par la valeur de `process.env.NODE_ENV` utilisée dans le code source de Vue et sera en mode développement par défaut. Ces deux outils fournissent des moyens de surcharger cette variable pour activer le mode production de Vue et les avertissements seront retirés par le minificateur pendant le build. Tous les templates `vue-cli` sont pré-configurés pour vous, mais il peut être utile de savoir comment cela fonctionne :
+Quand vous utilisez un outil de build comme webpack ou Browserify, le mode production sera déterminé par la valeur de `process.env.NODE_ENV` utilisée dans le code source de Vue, et sera en mode développement par défaut. Ces deux outils fournissent des moyens de surcharger cette variable pour activer le mode production de Vue, et les avertissements seront retirés par le minificateur pendant le build. Tous les templates `vue-cli` sont pré-configurés pour vous, mais il peut être utile de savoir comment cela fonctionne :
 
 #### webpack
 
