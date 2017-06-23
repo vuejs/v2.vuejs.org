@@ -440,11 +440,11 @@ methods: {
 
 这些钩子函数可以结合 CSS 过渡/动画使用，也可以单独使用。
 
-<p class="tip">当仅使用 JavaScript 过渡的时候， **在 `enter` 和 `leave` 钩子函数中，必须有 `done` 回调函数**。否则，这两个钩子函数会被同步调用，过渡会立即完成。</p>
+<p class="tip">当仅使用 JavaScript 式过渡的时候， **在 `enter` 和 `leave` 钩子函数中，必须有 `done` 回调函数**。否则，这两个钩子函数会被同步调用，过渡会立即完成。</p>
 
 <p class="tip">推荐对于仅使用 JavaScript 的过渡显式添加 `v-bind:css="false"`，以便 Vue 可以跳过 CSS 侦测。这也可以防止 CSS 规则意外干涉到过渡。</p>
 
-现在我们深入来看一个示例。这里是一个简单的使用 Velocity.js 的 JavaScript 过渡：
+现在我们深入来看一个示例。这里是一个简单的使用 Velocity.js 的 JavaScript 式过渡：
 
 ``` html
 <!--
@@ -611,7 +611,7 @@ new Vue({
 </transition>
 ```
 
-在上面这种场景中，也通过给同一元素的 `key` 属性，设置不同的状态来进行过渡。而无需使用 `v-if` 和 `v-else`，所以上面的例子可以重写为：
+在上面这种场景中，也通过给同一元素的 `key` 属性，设置不同的状态来进行过渡。而无需使用 `v-if` 和 `v-else`，所以上面的示例可以重写为：
 
 ``` html
 <transition>
@@ -826,7 +826,7 @@ new Vue({
 
 只需添加一个额外的属性，就解决了最初的过渡问题，而无需添加任何特殊样式。
 
-`in-out` 模式不是经常用到，但对于一些稍微不同的过渡效果还是有用的。尝试将这种模式与我们之前滑动淡出过渡的例子相结合：
+`in-out` 模式不是经常用到，但对于一些稍微不同的过渡效果还是有用的。尝试将这种模式与我们之前滑动淡出过渡的示例相结合：
 
 {% raw %}
 <div id="in-out-translate-demo" class="demo">
@@ -874,10 +874,9 @@ new Vue({
 
 很酷吧？
 
-## 多个组件的过渡
+## 多个组件之间过渡
 
-多个组件的过渡甚至更简单 - 我们不需要使用 `key` 特性。相反，我们只需要使用[动态组件](components.html#动态组件):
-
+多个组件之间的过渡甚至更简单 - 我们不需要使用 `key` 属性。相反，我们只需要使用[动态组件](components.html#动态组件):
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -907,7 +906,7 @@ new Vue({
   transition: opacity .3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active for <2.1.8 */ {
+/* .component-fade-leave-active 在 <2.1.8 中 */ {
   opacity: 0;
 }
 ```
@@ -953,14 +952,14 @@ new Vue({
 - 单个节点
 - 多个节点，其中每次只渲染一个
 
-那么，当我们有一个完整的列表（例如使用 `v-for`），我们如何做到同时渲染？在这种情况下，我们将使用  `<transition-group>` 组件。在我们深入例子之前，先来了解关于这个组件的一些要点：
+那么，当我们整个列表的每一项（例如使用 `v-for`）都需要同时进行渲染呢？在这种情况下，我们将使用 `<transition-group>` 组件。在我们深入示例之前，先来了解关于这个组件的一些要点：
 
-- 不同于 `<transition>`， 它会以一个真实元素渲染：默认为 `<span>`。你也可以通过 `tag` 属性更换为其他渲染元素
+- 不同于 `<transition>`，它会以一个真实元素渲染：默认为 `<span>`。你也可以通过 `tag` 属性更换为其他渲染元素
 - 它内部的元素**必须**具有唯一的 `key` 属性
 
-### 列表的进入和离开过渡
+### 进入式/离开式列表过渡
 
-现在让我们由一个简单的例子深入，进入和离开的过渡使用之前一样的 CSS 类名。
+现在让我们来深入一个简单的示例，进入式过渡和离开式过渡都使用与之前相同的 CSS 类名：
 
 ``` html
 <div id="list-demo">
@@ -1003,7 +1002,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
+.list-enter, .list-leave-to /* .list-leave-active 在 <2.1.8 中 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1054,14 +1053,13 @@ new Vue({
 </style>
 {% endraw %}
 
-这个例子有个问题，当添加和移除元素的时候，周围的元素会瞬间移动到他们的新布局的位置，而不是平滑的过渡，我们下面会解决这个问题。
-
+这个示例有个问题，当添加和移除项目时，其周围的项目会瞬间猛地移动到新的位置，而不是平滑过渡，我们稍后会解决这个问题。
 
 ### 列表的位移过渡
 
-`<transition-group>` 组件还有一个特殊之处。不仅可以进入和离开动画，还可以改变定位。要使用这个新功能只需了解新增的 ** `v-move`  特性**，它会在元素的改变定位的过程中应用。像之前的类名一样，可以通过 `name` 属性来自定义前缀，也可以通过 `move-class` 属性手动设置。
+`<transition-group>` 组件还有一个暗藏玄机之处。不仅可以在进入和离开时进行动画，还可以在位置改变时进行动画。使用此功能所需要知道的唯一新的概念是，在项目位置改变时添加额外的 **`v-move` 类名**。与其他类名相同，它的前缀也和设置的 `name` 属性的值相匹配，你也可以通过 `move-class` 属性来手动指定类名。
 
-`v-move` 对于设置过渡的切换时机和过渡曲线非常有用，你会看到如下的例子：
+此类名对于指定过渡时间和 easing 过渡曲线非常有用，如下所示：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
@@ -1126,10 +1124,10 @@ new Vue({
 </style>
 {% endraw %}
 
-这个看起来很神奇，内部的实现，Vue 使用了一个叫 [FLIP](https://aerotwist.com/blog/flip-your-animations/) 简单的动画队列
-使用 transforms 将元素从之前的位置平滑过渡新的位置。
+这个看起来很神奇，内部的实现原理是，Vue 使用了一个叫 [FLIP](https://aerotwist.com/blog/flip-your-animations/) 动画技术，可以通过使用 transform 将元素从之前的位置平滑过渡到新的位置。
 
-我们将之前实现的例子和这个技术结合，使我们列表的一切变动都会有动画过渡。
+我们可以将此技术与我们以前的实施相结合，为我们列表所有可能的位置变更都添加动画！
+
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
@@ -1240,9 +1238,9 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">需要注意的是使用 FLIP 过渡的元素不能设置为 `display: inline` 。作为替代方案，可以设置为 `display: inline-block` 或者放置于 flex 中</p>
+<p class="tip">需要注意的是，使用 FLIP 过渡的元素，在设置为 `display: inline` 时，无法正常运行。作为替代方案，可以将元素设置为 `display: inline-block`，或者将元素放置于 flex 上下文(flex context)中。</p>
 
-FLIP 动画不仅可以实现单列过渡，多维网格的过渡也同样[简单](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+FLIP 动画不局限于单个轴线方向(single axis)，多个维度网格(multidimensional grid)的过渡也同样[简单](https://jsfiddle.net/chrisvfritz/sLrhk1bc/)：
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
@@ -1307,7 +1305,7 @@ new Vue({
 
 ### 列表的渐进过渡
 
-通过 data 属性与 JavaScript 通信 ，就可以实现列表的渐进过渡：
+通过 data 属性与 JavaScript 式过渡的通信，就可以实现列表的逐项渐进过渡：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1453,9 +1451,9 @@ new Vue({
 
 ## 可复用的过渡
 
-过渡可以通过 Vue 的组件系统实现复用。要创建一个可复用过渡组件，你需要做的就是将 `<transition>` 或者 `<transition-group>` 作为根组件，然后将任何子组件放置在其中就可以了。
+通过 Vue 的组件系统可以实现复用过渡。要创建一个可复用过渡，你需要做的就是将 `<transition>` 或者 `<transition-group>` 作为组件根节点，然后将全部子内容放置在 transition 组件中就可以了。
 
-使用 template 的简单例子：
+这里是使用 template 的组件的简单示例：
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1507,16 +1505,17 @@ Vue.component('my-special-transition', {
 
 ## 动态过渡
 
-在 Vue 中即使是过渡也是数据驱动的！动态过渡最基本的例子是通过 `name` 特性来绑定动态值。
+其实，在 Vue 中即使是过渡也是由数据驱动的！动态过渡最基本的例子是，将 `name` 属性(attribute)和动态属性(dynamic property)绑定在一起。
 
 ```html
 <transition v-bind:name="transitionName">
   <!-- ... -->
 </transition>
 ```
-当你想用 Vue 的过渡系统来定义的 CSS 过渡/动画 在不同过渡间切换会非常有用。
 
-所有的过渡特性都是动态绑定。它不仅是简单的特性，通过事件的钩子函数方法，可以在获取到相应上下文数据。这意味着，可以根据组件的状态通过 JavaScript 过渡设置不同的过渡效果。
+当你使用多个 Vue 过渡类名约定，来定义 CSS 过渡/动画，并在不同的类名约定之间切换时，动态过渡会非常有用。
+
+所有的过渡属性都可以动态绑定。并且不仅是属性，由于事件钩子函数都是 Vue 的方法(methods)，所以可以从 this 上下文访问到所有数据。这意味着，根据组件的状态，JavaScript 式过渡的表现可能会有所不同。
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1646,7 +1645,7 @@ new Vue({
 </script>
 {% endraw %}
 
-最后，创建动态过渡的最终方案是组件通过接受 props 来动态修改之前的过渡。一句老话，唯一的限制是你的想象力。
+最后，创建动态过渡的最终方案是，组件通过接受 prop 来动态修改之前的过渡。还是那句话，唯一限制你的是想象力。
 
 ***
 
