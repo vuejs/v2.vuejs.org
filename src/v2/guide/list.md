@@ -114,7 +114,7 @@ var example2 = new Vue({
 
 ### Template `v-for`
 
-如同 `v-if` 模板，你也可以用带有 `v-for` 的 `<template>` 标签来渲染多个元素块。例如： 
+如同 `v-if` 模板，你也可以用带有 `v-for` 的 `<template>` 标签来渲染多个元素块。例如：
 
 ``` html
 <ul>
@@ -190,7 +190,7 @@ new Vue({
 
 <p class="tip">在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
 
-### 范围 `v-for` 
+### 范围 `v-for`
 
 `v-for` 也可以取整数。在这种情况下，它将重复多次模板。
 
@@ -420,7 +420,7 @@ Vue.set(example1.items, indexOfItem, newValue)
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
-避免第二种情况，使用 `splice`：
+避免第二种情况，可以使用 `splice`：
 
 ``` js
 example1.items.splice(newLength)

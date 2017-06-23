@@ -106,7 +106,7 @@ createElement(
   },
 
   // {String | Array}
-  // Children VNodes, built using createElement(),
+  // Children VNodes, built using `createElement()`,
   // or simply using strings to get 'text VNodes'. Optional.
   [
     'Some text comes first.',
@@ -148,13 +148,13 @@ createElement(
   domProps: {
     innerHTML: 'baz'
   },
-  // 事件监听器基于 "on"
-  // 所以不再支持如 v-on:keyup.enter 修饰器
+  // 事件监听器基于 `on`
+  // 所以不再支持如 `v-on:keyup.enter` 修饰器
   // 需要手动匹配 keyCode。
   on: {
     click: this.clickHandler
   },
-  // 仅对于组件，用于监听原生事件，而不是组件使用 vm.$emit 触发的事件。
+  // 仅对于组件，用于监听原生事件，而不是组件使用 `vm.$emit` 触发的事件。
   nativeOn: {
     click: this.nativeClickHandler
   },

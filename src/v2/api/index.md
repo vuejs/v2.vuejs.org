@@ -1742,7 +1742,8 @@ if (version === 2) {
 - **参数：** `attrOrProp (optional)`
 
 - **修饰符：**
-  - `.prop` - 被用于绑定 DOM 属性。([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.prop` - 被用于绑定 DOM 属性。（[有什么不同？](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
+
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
   - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
@@ -2138,6 +2139,9 @@ if (version === 2) {
     </keep-alive>
   </transition>
   ```
+
+  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
+
 
 - **`include` and `exclude`**
 
