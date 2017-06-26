@@ -106,12 +106,14 @@ createElement(
   },
 
   // {String | Array}
-  // VNode 자식들. 선택 사항.
+  // VNode 자식들. createElement를 사용해 만들거나,
+  // 간단히 문자열을 사용해 'text VNodes'를 얻을 수 있습니다. 선택사항
   [
+    'Some text comes first.',
     createElement('h1', 'hello world'),
     createElement(MyComponent, {
       props: {
-        someProp: 'foo'
+        someProp: 'foobar'
       }
     }),
     'bar'
@@ -164,7 +166,7 @@ createElement(
   directives: [
     {
       name: 'my-custom-directive',
-      value: '2'
+      value: '2',
       expression: '1 + 1',
       arg: 'foo',
       modifiers: {
@@ -178,7 +180,7 @@ createElement(
     default: props => createElement('span', props.text)
   },
   // 이 컴퍼넌트가 다른 컴퍼넌트의 자식인 경우, 슬롯의 이름입니다.
-  slot: 'name-of-slot'
+  slot: 'name-of-slot',
   // 기타 최고 레벨 속성
   key: 'myKey',
   ref: 'myRef'
