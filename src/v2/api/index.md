@@ -1966,6 +1966,33 @@ if (version === 2) {
 
 - **참고:** [명명된 슬롯](../guide/components.html#Named-Slots)
 
+### is
+
+- **예상됨:** `string`
+
+  [동적 컴포넌트](../guide/components.html#Dynamic-Components) 및 [DOM 내부 템플릿의 한계](../guide/components.html#DOM-Template-Parsing-Caveats)를 해결하는데 사용합니다.
+
+  예제:
+
+  ``` html
+  <!-- currentView가 변경되면 컴포넌트가 변경됩니다. -->
+  <component v-bind:is="currentView"></component>
+
+  <!-- <my-row>는 <table> 엘리먼트에서 사용할 수 없으므로  -->
+  <!-- 아래처럼 사용해야합니다     -->
+  <table>
+    <tr is="my-row"></tr>
+  </table>
+  ```
+
+  자세한 사용 방법은 위에 적힌 설명의 링크에 있습니다.
+
+- **참고:**
+  - [동적 컴포넌트](../guide/components.html#Dynamic-Components)
+  - [DOM 템플릿 파싱 주의사항](../guide/components.html#DOM-Template-Parsing-Caveats)
+
+
+
 ## 내장 컴포넌트
 
 ### component
