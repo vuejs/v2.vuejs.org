@@ -687,6 +687,7 @@ Vue.component('my-checkbox', {
   },
   props: {
     // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
+    checked: Boolean,
     value: String
   },
   // ...
@@ -707,6 +708,8 @@ Vue.component('my-checkbox', {
   value="some value">
 </my-checkbox>
 ```
+
+<p class="tip">`checked` prop를 명시적으로 선언해야 합니다.</p>
 
 ### 비 부모-자식간 통신
 
