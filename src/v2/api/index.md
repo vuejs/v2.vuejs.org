@@ -1749,10 +1749,9 @@ if (version === 2) {
 - **전달인자:** `attrOrProp (optional)`
 
 - **수식어:**
-  - `.prop` - 속성 대신 DOM 속성으로 바인딩 ([무슨 차이가 있습니까?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.prop` - 속성 대신 DOM 속성으로 바인딩 ([무슨 차이가 있습니까?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). 만약 태그가 컴포넌트라면 `.props`는 컴포넌트의 `$el`에 속성을 추가합니다.
   - `.camel` - kebab-case 속성 이름을 camelCase로 변환합니다. (2.1.0이후 지원)
   - `.sync` - (2.3.0+) 바인딩 된 값을 업데이트하기 위한 `v-on`를 확장하는 신택스 슈가입니다
-
 
 - **사용방법:**
 
