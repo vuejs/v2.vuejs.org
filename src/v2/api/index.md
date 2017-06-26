@@ -1392,7 +1392,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **Usage:**
 
-  Remove event listener(s).
+  Remove custom event listener(s).
 
   - If no arguments are provided, remove all event listeners;
 
@@ -1742,7 +1742,8 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 - **Argument:** `attrOrProp (optional)`
 
 - **Modifiers:**
-  - `.prop` - Bind as a DOM property instead of an attribute. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
+
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
   - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
@@ -1785,7 +1786,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   <!-- prop binding. "prop" must be declared in my-component. -->
   <my-component :prop="someThing"></my-component>
-  
+
   <!-- pass down parent props in common with a child component -->
   <child-component v-bind="$props"></child-component>
 
@@ -1958,6 +1959,31 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **See also:** [Named Slots](../guide/components.html#Named-Slots)
 
+### is
+
+- **Expects:** `string`
+
+  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+
+  For example:
+
+  ``` html
+  <!-- component changes when currentView changes -->
+  <component v-bind:is="currentView"></component>
+
+  <!-- necessary because <my-row> would be invalid inside -->
+  <!-- a <table> element and so would be hoisted out      -->
+  <table>
+    <tr is="my-row"></tr>
+  </table>
+  ```
+
+  For detailed usage, follow the links in the description above.
+
+- **See also:**
+  - [Dynamic Components](../guide/components.html#Dynamic-Components)
+  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+
 ## Built-In Components
 
 ### component
@@ -2113,6 +2139,9 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
     </keep-alive>
   </transition>
   ```
+
+  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
+
 
 - **`include` and `exclude`**
 

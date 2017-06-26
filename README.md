@@ -18,7 +18,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [X] Computed Properties and Watchers (Tradução: @danielschmitz. Revisão: @ErickPetru)
 - [X] Class and Style Bindings (Tradução: @gidenilson. Revisão: @ErickPetru)
 - [X] Conditional Rendering (Tradução: @gidenilson. Revisão: @ErickPetru)
-- [ ] List Rendering (Tradução: @ErickPetru. Revisão: **pendente**)
+- [X] List Rendering (Tradução: @ErickPetru. Revisão: @ErickPetru)
 - [ ] Event Handling (Tradução: @gidenilson. Revisão: **pendente**)
 - [ ] Form Input Bindings(Tradução: @gidenilson. Revisão: **pendente**)
 - [X] Components (Tradução: @thiagorossener, Revisão: **pendente**)

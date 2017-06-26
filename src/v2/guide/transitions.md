@@ -1486,7 +1486,7 @@ Vue.component('my-special-transition', {
   render: function (createElement, context) {
     var data = {
       props: {
-        name: 'very-special-transition'
+        name: 'very-special-transition',
         mode: 'out-in'
       },
       on: {

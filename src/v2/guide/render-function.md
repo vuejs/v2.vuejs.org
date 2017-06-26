@@ -106,15 +106,16 @@ createElement(
   },
 
   // {String | Array}
-  // VNodes filhos. Opcional.
+  // VNodes filhos, mas usando `createElement()`,
+  // ou apenas Strings para 'VNodes textuais'. Opcional.
   [
-    createElement('h1', 'Olá Mundo')
+    'Algum texto vem primeiro.',
+    createElement('h1', 'Um título')
     createElement(MyComponent, {
       props: {
-        umaProp: 'foo'
+        someProp: 'foobar'
       }
-    }),
-    'bar'
+    })
   ]
 )
 ```
@@ -147,18 +148,16 @@ Importante observar: assim como `v-bind:class` e `v-bind:style` têm tratamento 
   domProps: {
     innerHTML: 'baz'
   },
-  // Manipuladores de evento (event handlers) devem
-  // ser declarados dentro do objeto "on".
-  // Modificadores como ".enter" em "v-on:keyup.enter"
-  // não são suportados. Neste exemplo, você teria
-  // que verificar manualmente o "keyCode" do
-  // evento no código do handler.
+  // Manipuladores de eventos são declarados dentro de
+  // `on`, porém modificadores como em `v-on:keyup.enter`
+  // não são suportados. Você terá que verificar
+  // manualmente o keyCode do evento no código.
   on: {
     click: this.clickHandler
   },
-  // Somente para componentes. Permite que você escute
-  // a eventos nativos, ao invés de eventos emitidos
-  // pelo componente usando vm.$emit.
+  // Somente para componentes. Permite a escuta a
+  // eventos nativos, ao invés de eventos emitidos
+  // pelo componente através de `vm.$emit`.
   nativeOn: {
     click: this.nativeClickHandler
   },
@@ -168,7 +167,7 @@ Importante observar: assim como `v-bind:class` e `v-bind:style` têm tratamento 
   directives: [
     {
       name: 'my-custom-directive',
-      value: '2'
+      value: '2',
       expression: '1 + 1',
       arg: 'foo',
       modifiers: {
@@ -181,10 +180,10 @@ Importante observar: assim como `v-bind:class` e `v-bind:style` têm tratamento 
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // O nome do slot se este componente é
+  // O nome do slot, se este componente é
   // filho de outro componente
   slot: 'name-of-slot'
-  // Outras propriedades especiais no primeiro nível
+  // Outras propriedades especiais de primeiro nível
   key: 'myKey',
   ref: 'myRef'
 }
@@ -366,7 +365,7 @@ Você pode acessar conteúdo estáticos de _slots_ como Arrays de VNodes a parti
 
 ``` js
 render: function (createElement) {
-  // <div><slot></slot></div>
+  // `<div><slot></slot></div>`
   return createElement('div', this.$slots.default)
 }
 ```
@@ -375,7 +374,7 @@ E acessar _slots_ com escopo como funções que retornar VNodes a partir de [`th
 
 ``` js
 render: function (createElement) {
-  // <div><slot :text="msg"></slot></div>
+  // `<div><slot :text="msg"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
       text: this.msg
@@ -390,7 +389,7 @@ Para passar _slots_ a um componente filho usando funções de renderização, us
 render (createElement) {
   return createElement('div', [
     createElement('child', {
-      // passe scopedSlots no objeto de dados
+      // passe `scopedSlots` no objeto de dados
       // na forma de { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
@@ -603,6 +602,10 @@ console.error = function (error) {
 }
 </script>
 <style>
+#vue-compile-demo {
+  -webkit-user-select: inherit;
+  user-select: inherit;
+}
 #vue-compile-demo pre {
   padding: 10px;
   overflow-x: auto;

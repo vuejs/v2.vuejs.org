@@ -4,7 +4,7 @@ type: guide
 order: 9
 ---
 
-## Ouvindo Eventos
+## Escutando Eventos
 
 Você pode usar a diretiva `v-on` para escutar eventos do DOM e rodar algum JavaScript quando tal evento for disparado.
 
@@ -42,9 +42,9 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Métodos Manipuladores de Eventos.
+## Métodos em Manipuladores
 
-A lógica para muitos manipuladores de evento é mais complexa, assim manter seu JavaScript no valor do atributo `v-on` simplesmente não é viável. É por isso que `v-on` também pode aceitar o nome de um método que você gostaria de chamar.
+A lógica para muitos manipuladores de evento será mais complexa, assim manter seu JavaScript no valor do atributo `v-on` simplesmente não é viável. É por isso que `v-on` também pode aceitar o nome de um método que você gostaria de chamar.
 
 Por exemplo:
 
@@ -102,9 +102,9 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-## Métodos em Manipuladores de Eventos Inline
+## Chamada Direta de Métodos
 
-Em vez de fazer uma ligação ao nome de um método, também podemos usar métodos em uma instrução JavaScript inline:
+Ao invés de fazer uma ligação apenas ao nome de um método, também podemos chamar métodos com uma instrução JavaScript diretamente no `v-on`:
 
 ``` html
 <div id="example-3">
@@ -141,7 +141,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Às vezes, também precisamos acessar o evento original do DOM  em um manipulador com declaração inline. Você pode passá-lo em um método usando a variável especial `$event`:
+Às vezes, também precisamos acessar o evento original do DOM  em um manipulador com declaração local. Você pode passá-lo em um método usando a variável especial `$event`:
 
 ``` html
 <button v-on:click="warn('Form cannot be submitted yet.', $event)">
@@ -162,9 +162,9 @@ methods: {
 
 ## Modificadores de Evento
 
-É muito comum precisar chamar `event.preventDefault()` ou `Event` dentro de manipuladores de eventos. Embora possamos fazer isto facilmente dentro de métodos, seria melhor se os métodos pudessem lidas apenas com a lógica dos dados, ao invés de ter que lidar com detalhes de evento DOM.
+É muito comum precisar chamar `event.preventDefault()` ou `event.stopPropagation()` em manipuladores de eventos. Embora possamos fazer isto facilmente dentro de métodos, seria melhor se os métodos pudessem lidar apenas com a lógica dos dados, ao invés de ter que lidar com detalhes de eventos DOM.
 
-Para resolver esse problema, o Vue fornece **modificadores de evento** para 'v-on'. Lembre-se que modificadores são sufixos da directiva indicados por um ponto.
+Para resolver esse problema, o Vue fornece **modificadores de evento** para `v-on`. É só se lembrar que modificadores são sufixos da diretiva, indicados após um ponto.
 
 - `.stop`
 - `.prevent`
@@ -173,45 +173,48 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para 'v-o
 - `.once`
 
 ``` html
-<!-- a propagação do evento clique será interrompida -->
+<!-- a propagação do evento click será interrompida -->
 <a v-on:click.stop="doThis"></a>
 
 <!-- o evento submit deixará de recarregar a página -->
 <form v-on:submit.prevent="onSubmit"></form>
 
-<!-- modificadores podem ser encadeadas -->
+<!-- modificadores podem ser encadeados -->
 <a v-on:click.stop.prevent="doThat"></a>
 
-<!-- apenas o modificador -->
+<!-- é possível utilizar apenas o modificador -->
 <form v-on:submit.prevent></form>
 
-<!-- usar modo de captura ao adicionar o event listener -->
-<!-- ex. um evento em um elemento interno é tratato aqui, antes de ser tratado pelo elemento -->
+<!-- usar modo de captura ao adicionar o evento -->
+<!-- ou seja, um evento ocorrido em um elemento interno é tratato aqui mesmo -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- só aciona o manipulador se event.target é o próprio elemento -->
-<!-- isto é, não a partir de um elemento filho -->
+<!-- isto é, não aciona a partir de um elemento filho -->
 <div v-on:click.self="doThat">...</div>
 ```
 
-## Modificadores de Tecla
-> New in 2.1.4
+<p class="tip">A ordem importa quando estiver utilizando modificadores, pois o código relevante é gerado na mesma ordem em que forem informados. Desta forma, utilizar `@click.prevent.self` irá previnir **todos os clicks** inclusive em elementos filhos, enquanto `@click.self.prevent` irá previnir apenas clicks no próprio elemento.</p>
+
+> Novo em 2.1.4
 
 ``` html
 <!-- o evento click será disparado apenas uma vez -->
 <a v-on:click.once="doThis"></a>
 ```
 
-Diferente dos outros modificadores, que são exclusivo para eventos nativos, o modificador `.once` também pode ser usado em [Eventos de Componentes](components.html#Using-v-on-with-Custom-Events). Se não leu ainda sobre componentes, não se preocupe agora.
+Diferente dos outros modificadores, que são exclusivos para eventos nativos, o modificador `.once` também pode ser usado em [eventos de componentes](components.html#Usando-v-on-com-Eventos-Personalizados). Se você ainda não leu sobre componentes, não se preocupe com isso neste momento.
 
-Quando escutamos eventos do teclado, precisamos muitas vezes verificar se há códigos de teclas comuns. O Vue também permite a adição de modificadores de tecla para 'v-on' quando escuta  eventos de tecla:
+## Modificadores de Tecla
+
+Quando escutamos eventos do teclado, precisamos muitas vezes verificar a ocorrência de códigos de teclas comuns. O Vue também permite a adição de modificadores de tecla para `v-on` ao escutar eventos de teclado:
 
 ``` html
 <!-- só chama vm.submit() quando o keyCode é 13 -->
 <input v-on:keyup.13="submit">
 ```
 
-Lembrar o código de todas as teclas é uma chatice, então o Vue fornece aliases para as teclas mais comumente usadas:
+Se lembrar do código de todas as teclas é uma chatice, então o Vue fornece apelidos para as teclas mais usadas:
 
 ``` html
 <!-- igual o acima -->
@@ -221,11 +224,11 @@ Lembrar o código de todas as teclas é uma chatice, então o Vue fornece aliase
 <input @keyup.enter="submit">
 ```
 
-Aqui está a lista completa dos aliases de modificadores de tecla:
+Lista completa dos apelidos de modificadores de tecla:
 
 - enter
 - tab
-- delete (pega ambas as teclas, "Delete" e "Backspace" )
+- delete (captura tanto teclas "Delete" e "Backspace")
 - esc
 - space
 - up
@@ -233,45 +236,27 @@ Aqui está a lista completa dos aliases de modificadores de tecla:
 - left
 - right
 
-Aliases de tecla única também são suportados.
-
-
-``` html
-<input v-on:keyup.v="say('Essa é a primeira letra de Vue')">
-```
-
-Se necessário, você pode até mesmo definir aliases personalizados para modificadores de tecla:
-=======
-- `.enter`
-- `.tab`
-- `.delete` (captures both "Delete" and "Backspace" keys)
-- `.esc`
-- `.space`
-- `.up`
-- `.down`
-- `.left`
-- `.right`
-
-You can also [define custom key modifier aliases](../api/#keyCodes) via the global `config.keyCodes` object:
->>>>>>> refs/remotes/vuejs/master:src/v2/guide/events.md
+Se necessário, você pode [definir apelidos personalizados](../api/#keyCodes) através do objeto global `config.keyCodes`:
 
 ``` js
-// Permitir v-on:keyup.f1
+// habilita v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
 
-> New in 2.1.0
+## Teclas Modificadoras
 
-You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
+> Novo em 2.1.0
+
+Você pode utilizar os modificadores a seguir para acionar eventos de _mouse_ ou teclado apenas quando o modificador correspondente estiver acionado:
 
 - `.ctrl`
 - `.alt`
 - `.shift`
 - `.meta`
 
-> Note: On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.
+> Nota: Nos teclados Macintosh, meta é a tecla de comando (⌘). Nos teclados Windows, meta é a tecla Windows (⊞). Nos teclados Sun Microsystems, meta é marcada como um diamante sólido (◆). Em alguns teclados, especificamente em máquinas MIT e Lisp, como o teclado Knight e teclados space-cadet, meta é descritivamente marcada como “META”. Em teclados Symbolics, meta é descritivamente marcada como “META” ou “Meta”.
 
-For example:
+Por exemplo:
 
 ```html
 <!-- Alt + C -->
@@ -281,24 +266,24 @@ For example:
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-<p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone.</p>
+<p class="tip">Observe que teclas modificadoras são diferentes de teclas comuns, e quando utilizadas com eventos `keyup`, precisam estar pressionadas quando o evento é emitido. Em outras palavras, `keyup.ctrl` só vai disparar se você soltar a tecla enquanto ainda estiver segurando `ctrl`. E não irá disparar se você soltar a tecla `ctrl` sozinha.</p>
 
-### Mouse Button Modifiers
+### Modificadores de Mouse
 
-> New in 2.2.0
+> Novo em 2.2.0
 
 - `.left`
 - `.right`
 - `.middle`
 
-These modifiers restrict the handler to events triggered by a specific mouse button.
+Estes modificadores restrigem o manipulador a eventos disparados por um botão específico do _mouse_.
 
-## Por que Listeners in HTML?
+## Por Que Escutas no HTML?
 
-Você pode estar pensando que esta abordagem de escuta de evento viola as boas e velhas práticas sobre "separação de objetivos". Fique descansado - como todas as funções do manipulador de Vue e expressões são estritamente ligados a ViewModel que está manipulando o modo de exibição atual, essa abordagem não causará qualquer dificuldade de manutenção. Na verdade, há vários benefícios em usar `v-on`:
+Você pode estar pensando que esta abordagem de escutas de evento viola as boas e velhas práticas sobre "separação de responsabilidades". Fique descansado - como todas as funções do manipulador de Vue e expressões são estritamente ligados a ViewModel que está manipulando o modo de exibição atual, essa abordagem não causará qualquer dificuldade de manutenção. Na verdade, há vários benefícios em usar `v-on` no _template_:
 
-1. É mais fácil de localizar as implementações de função de manipulador dentro de seu código JS simplesmente deslizando o dedo sobre o template HTML.
+1. É mais fácil de localizar as implementações de função de manipulador dentro de seu código JS simplesmente deslizando o dedo sobre o _template_ HTML.
 
-2. Como você não tem que manualmente anexar  event listeners em JS, seu código de ViewModel pode conter apenas a lógica pura e  está livre de DOM. Isto torna mais fácil de testar.
+2. Como você não tem que manualmente anexar escutas a eventos em JS, seu código de ViewModel pode conter apenas a lógica pura e está livre de manipulação DOM. Isto torna mais fácil de testar.
 
-3. Quando um ViewModel é destruído, todos os event listeners são removidos automaticamente. Você não precisa se preocupar em removê-los explicitamente.
+3. Quando um ViewModel é destruído, todas escutas a eventos são removidas automaticamente. Você não precisa se preocupar em removê-los explicitamente.

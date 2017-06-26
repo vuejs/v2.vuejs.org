@@ -9,7 +9,7 @@ order: 28
 Tanto Vuex 1.0 quanto 2.0:
 
 - suportanto totalmente tanto Vue 1.0 quanto 2.0
-- serão mantidos por um futuro previsível
+- serão mantidos por um futuro próximo
 
 Entretanto, eles tem públicos-alvo significativamente diferentes:
 

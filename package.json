@@ -14,6 +14,7 @@
     "hexo-generator-feed": "^1.1.0",
     "hexo-generator-index": "^0.2.0",
     "hexo-generator-tag": "^0.2.0",
+    "hexo-offline": "^0.2.0",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.10",
     "hexo-renderer-stylus": "^0.3.1",

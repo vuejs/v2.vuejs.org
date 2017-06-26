@@ -702,6 +702,7 @@ Vue.component('my-checkbox', {
     event: 'change'
   },
   props: {
+    checked: Boolean,
     // isto permite usar a propriedade `value` para um propósito diferente
     value: String
   },
@@ -722,6 +723,8 @@ O acima será equivalente a:
   value="algum valor">
 </my-checkbox>
 ```
+
+<p class="tip">Observe que você ainda terá que declarar a propriedade `checked` explicitamente.</p>
 
 ### Comunicação Não Pai-Filho
 
@@ -756,7 +759,7 @@ Ao usar componentes, muitas vezes é desejado compô-los assim:
 
 Há duas coisas para observar aqui:
 
-1. O componente `<app>` não sabe qual conteúdo pode estar presente dentro de seu alvo de montagem. Isso é decidido por qualquer componente pai que estiver usando `<app>`.
+1. O componente `<app>` não sabe qual conteúdo ele irá receber. Isso é decidido pelo componente pai que estiver usando `<app>`.
 
 2. O componente `<app>` provavelmente possui seu próprio _template_.
 
@@ -1138,7 +1141,7 @@ Observe que, quando usado como um componente de rota em `vue-router`, essas prop
 
 ### Convenções para Nomeação de Componentes
 
-Ao registrar componentes (ou propriedades), você pode usar _kebab-case_, _camelCase_, ou _TitleCase_.
+Ao registrar componentes (ou propriedades), você pode usar _kebab-case_, _camelCase_, ou _PascalCase_.
 
 ``` js
 // na definição de um componente
@@ -1147,8 +1150,8 @@ components: {
   'kebab-cased-component': { /* ... */ },
   // registra usando camelCase
   'camelCasedComponent': { /* ... */ },
-  // registra usando TitleCase
-  'TitleCasedComponent': { /* ... */ }
+  // registra usando PascalCase
+  'PascalCasedComponent': { /* ... */ }
 }
 ```
 
@@ -1158,35 +1161,35 @@ Dentro de _templates_ HTML no entanto, você tem que usar os _kebab-case_ equiva
 <!-- sempre use kebab-case em templates HTML -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
-<title-cased-component></title-cased-component>
+<pascal-cased-component></pascal-cased-component>
 ```
 
 Entretanto, ao usar _string templates_, nós não estamos ligados pelas restrições _case-insensitive_ do HTML. Isso significa que mesmo no _template_, você pode referenciar seus componentes usando:
 
 - _kebab-case_
 - _camelCase_ ou _kebab-case_ se o componente foi definido usando _camelCase_
-- _kebab-case_, _camelCase_ ou _TitleCase_ se o componente foi definido usando _TitleCase_
+- _kebab-case_, _camelCase_ ou _PascalCase_ se o componente foi definido usando _PascalCase_
 
 ``` js
 components: {
-  'kebab-case-component': { /* ... */ },
-  camelCaseComponent: { /* ... */ },
-  TitleCaseComponent: { /* ... */ }
+  'kebab-cased-component': { /* ... */ },
+  camelCasedComponent: { /* ... */ },
+  PascalCasedComponent: { /* ... */ }
 }
 ```
 
 ``` html
-<kebab-case-component />
+<kebab-cased-component></kebab-cased-component>
 
-<camel-case-component />
-<camelCaseComponent />
+<camel-cased-component></camel-cased-component>
+<camelCasedComponent></camelCasedComponent>
 
-<title-case-component />
-<titleCaseComponent />
-<TitleCaseComponent />
+<pascal-cased-component></pascal-cased-component>
+<pascalCasedComponent></pascalCasedComponent>
+<PascalCasedComponent></PascalCasedComponent>
 ```
 
-Isto significa que o _TitleCase_ é a _convenção de declaração_ universal e o _kebab-case_ é a _convenção de uso_ universal.
+Isto significa que o _PascalCase_ é a _convenção de declaração_ universal e o _kebab-case_ é a _convenção de uso_ universal.
 
 Se o seu componente não passa conteúdo via elementos `slot`, você pode fechá-lo com uma `/` depois do nome:
 

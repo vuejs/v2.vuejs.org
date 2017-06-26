@@ -164,7 +164,7 @@ Temos uma seção separada para Angular por ser, de fato, um _framework_ complet
 
 ### TypeScript
 
-Angular essencialmente requer a utilização de TypeScript, dado que quase toda sua documentação e recursos de aprendizado são baseados nesta linguagem. TypeScript tem seus benefícios óbvios - checagem estática de tipos pode ser muito útil para aplicação de larga escala, e pode ser um grande bônus de produtividade para desenvolvedores acostumados com Java e C#.
+Angular essencialmente requer a utilização de TypeScript, dado que quase toda sua documentação e recursos de aprendizado são baseados nesta linguagem. TypeScript tem seus benefícios óbvios - checagem estática de tipos pode ser muito útil para aplicações de larga escala, e pode ser um grande bônus de produtividade para desenvolvedores acostumados com Java e C#.
 
 Entretanto, nem todo mundo quer TypeScript. Em muitos casos de menor escala, introduzir um sistema de tipagem pode resultar em mais sobrecarga do que ganho de produtividade. Nestes casos você estaria melhor seguindo com Vue, afinal utilizar Angular sem TypeScript pode ser desafiador.
 
@@ -196,7 +196,7 @@ Com isto dito, seria provavelmente mais adequado uma comparação entre o núcle
 
 - A sintaxe de _templates_ do Vue se arma com o poder total de expressões JavaScript, enquanto a sintaxe de expressões e _helpers_ do Handlebars é bastante limitada.
 
-- Em termos de performance, Vue supera Ember por uma margem justa, mesmo após a atualização mais recente do motor Glimmer no Ember 2. Vue realiza atualizações em lote automaticamente, enquanto no Ember você precisa lidar manualmente com laços de execução em situações de desempenho crítico.
+- Em termos de performance, Vue supera Ember [por uma margem justa](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html), mesmo após a atualização mais recente do motor Glimmer no Ember 2. Vue realiza atualizações em lote automaticamente, enquanto no Ember você precisa lidar manualmente com laços de execução em situações de desempenho crítico.
 
 ## Knockout
 
