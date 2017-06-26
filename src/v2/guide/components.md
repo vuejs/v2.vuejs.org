@@ -1121,7 +1121,7 @@ const AsyncComp = () => ({
 
 ### 컴포넌트 이름 규약
 
-컴포넌트 (또는 prop)를 등록 할 때 kebab-case, camelCase 또는 TitleCase를 사용할 수 있습니다. Vue는 상관하지 않습니다.
+컴포넌트 (또는 prop)를 등록 할 때 kebab-case, camelCase 또는 PascalCase를 사용할 수 있습니다. Vue는 상관하지 않습니다.
 
 ``` js
 // 컴포넌트 정의에서
@@ -1130,8 +1130,8 @@ components: {
   'kebab-cased-component': { /* ... */ },
   // camelCase를 사용한 등록
   'camelCasedComponent': { /* ... */ },
-  // TitleCase를 사용한 등록
-  'TitleCasedComponent': { /* ... */ }
+  // PascalCase를 사용한 등록
+  'PascalCasedComponent': { /* ... */ }
 }
 ```
 
@@ -1141,10 +1141,10 @@ HTML 템플릿 내에서 kebab-case와 동등한 것을 사용해야합니다.
 <!-- HTML 템플릿에서 항상 kebab-case를 사용하세요 -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
-<title-cased-component></title-cased-component>
+<pascal-cased-component></pascal-cased-component>
 ```
 
-그러나 _문자열_ 템플릿을 사용할 때 HTML의 대소문자를 구분하지 않습니다. 즉, 템플릿에서도 CamelCase, TitleCase 또는 kebab-case를 사용하여 컴포넌트와 prop을 참조할 수 있습니다.
+그러나 _문자열_ 템플릿을 사용할 때 HTML의 대소문자를 구분하지 않습니다. 즉, 템플릿에서도 CamelCase, PascalCase 또는 kebab-case를 사용하여 컴포넌트와 prop을 참조할 수 있습니다.
 
 ``` html
 <!-- 문자열 템플릿은 무엇을 사용해도 상관 없습니다. -->
