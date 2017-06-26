@@ -14,7 +14,7 @@ Vue(/vjuː/ 로 발음, **view** 와 발음이 같습니다.)는 사용자 인�
 
 <p class="tip">공식 가이드는 HTML, CSS 및 JavaScript에 대한 중간 수준의 지식을 전제로 합니다. 프론트 엔드 개발에 완전히 익숙하지 않다면 첫 번째 단계로 프레임워크를 시작하는 것은 좋은 생각이 아닙니다. 기본을 파악한 다음 다시 해보세요! 다른 프레임워크에 대한 사전 경험이 도움 되지만 필수는 아닙니다.</p>
 
-Vue.js를 시험해 볼 수 있는 가장 쉬운 방법은 [JSFiddle Hello World 예제](https://jsfiddle.net/chrisvfritz/50wL7mdz/)를 사용하는 것입니다. 다른 탭에서 자유롭게 열어 본 후 몇 가지 기본 예제를 따라가십시오. 또는 단순히 `.html` 파일을 만들고 Vue를 다음과 같이 포함할 수 있습니다.
+Vue.js를 시험해 볼 수 있는 가장 쉬운 방법은 [JSFiddle Hello World 예제](https://jsfiddle.net/chrisvfritz/50wL7mdz/)를 사용하는 것입니다. 다른 탭에서 자유롭게 열어 본 후 몇 가지 기본 예제를 따라가십시오. 또는 단순히 <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html"><code>index.html</code> 파일</a>을 만들고 Vue를 다음과 같이 포함할 수 있습니다.
 
 ``` html
 <script src="https://unpkg.com/vue"></script>
