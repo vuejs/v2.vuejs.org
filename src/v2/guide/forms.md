@@ -40,7 +40,7 @@ new Vue({
 
 ``` html
 <span>여러 줄을 가지는 메시지:</span>
-<p style="white-space: pre">{{ message }}</p>
+<p style="white-space: pre-line">{{ message }}</p>
 <br>
 <textarea v-model="message" placeholder="여러줄을 입력해보세요"></textarea>
 ```
