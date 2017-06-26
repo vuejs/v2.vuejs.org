@@ -106,7 +106,7 @@ createElement(
   },
 
   // {String | Array}
-  // VNode 자식들. createElement를 사용해 만들거나,
+  // VNode 자식들. `createElement()`를 사용해 만들거나,
   // 간단히 문자열을 사용해 'text VNodes'를 얻을 수 있습니다. 선택사항
   [
     'Some text comes first.',
@@ -149,14 +149,14 @@ createElement(
   domProps: {
     innerHTML: 'baz'
   },
-  // v-on:keyup.enter와 같은 수정자가 지원되지 않으나
-  // 이벤트 핸들러는 "on" 아래에 중첩됩니다.
+  // `v-on:keyup.enter`와 같은 수정자가 지원되지 않으나
+  // 이벤트 핸들러는 `on` 아래에 중첩됩니다.
   // 수동으로 핸들러에서 keyCode를 확인해야 합니다.
   on: {
     click: this.clickHandler
   },
   // 컴포넌트 전용.
-  // vm.$emit를 사용하여 컴포넌트에서 발생하는 이벤트가 아닌
+  // `vm.$emit`를 사용하여 컴포넌트에서 발생하는 이벤트가 아닌
   // 기본 이벤트를 받을 수 있게 합니다.
   nativeOn: {
     click: this.nativeClickHandler
