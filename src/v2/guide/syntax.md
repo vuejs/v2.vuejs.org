@@ -51,7 +51,7 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bi
 这对布尔值的属性也有效 —— 如果条件被求值为 false 的话该属性会被移除：
 
 ``` html
-<button v-bind:disabled="someDynamicCondition">Button</button>
+<button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
 ### 使用 JavaScript 表达式
