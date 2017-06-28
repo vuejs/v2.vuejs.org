@@ -11,97 +11,92 @@ ro_gz_size: "19.54"
 
 ### 兼容性
 
-Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
+Vue.js **不支持** IE8 及其以下版本，因为 Vue.js 使用的 ECMAScript 5 特性在 IE8 无法模拟。Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
 
 ### 更新日志
 
-每个版本的更新日志见 [GitHub](https://github.com/vuejs/vue/releases)。
+每个版本的详细更新日志见 [GitHub](https://github.com/vuejs/vue/releases)。
 
-## 直接 `<script>` 引入
+## 直接引入 `<script>` 标签
 
-直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。**重要提示：在开发时请用开发版本，遇到常见错误它会给出友好的警告。**
+通过 script 标签直接下载并引入，`Vue` 会被注册为一个全局变量。
 
-<p class="tip">开发环境不要用最小压缩版，不然就失去了错误提示和警告!</p>
+<p class="tip">在开发环境，不要使用最小压缩版本。因为开发版本中，所有常见错误的警告会更加友好！</p>
 
 <div id="downloads">
-<a class="button" href="http://vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
+<a class="button" href="http://vuejs.org/js/vue.js" download>开发环境版本</a><span class="light info">包含完整的警告和调试模式</span>
 
-<a class="button" href="http://vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
+<a class="button" href="http://vuejs.org/js/vue.min.js" download>生产环境版本</a><span class="light info">删除警告，{{gz_size}}kb min+gzip</span>
 </div>
 
 ### CDN
 
-推荐：[https://unpkg.com/vue](https://unpkg.com/vue), 会保持和 npm 发布的最新的版本一致。可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/)浏览 npm 包资源。
+推荐使用：[https://unpkg.com/vue](https://unpkg.com/vue)，在 npm 发布后，立刻就能够展现最新版本。你还可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包的源码。
 
-也可以从 [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)获取，不过这两个服务版本更新可能略滞后。
+还可以使用 [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)，但是这两个服务需要一段时间才能同步，所以可能会无法获取最新版本。
 
 ## NPM
 
-
-在用 Vue.js 构建大型应用时推荐使用 NPM 安装， NPM 能很好地和诸如 [Webpack](https://doc.webpack-china.org/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。 Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
-
+在用 Vue 构建大型应用程序时，推荐使用 NPM 安装方式。它可以很好地与模块打包器(module bundler)（例如 [ webpack](https://webpack.js.org/) 或 [Browserify](http://browserify.org/)）配合使用。Vue 还提供用于创建[单文件组件](single-file-components.html)的配套工具。
 
 ``` bash
-# 最新稳定版
+# 最新稳定版本
 $ npm install vue
 ```
 
-## 命令行工具
+## 命令行接口工具
 
-Vue.js 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
+Vue.js 提供一个[官方的命令行接口工具](https://github.com/vuejs/vue-cli)，用于快速搭建大型单页面应用程序。能够为现代前端开发的工作流程，带来持久强力的基础架构。只需几分钟，就可以建立并运行一个带有「热重载、保存时代码检查以及可直接用于生产环境的构建配置」的项目：
 
 ``` bash
-# 全局安装 vue-cli
+# 安装 vue-cli
 $ npm install --global vue-cli
-# 创建一个基于 webpack 模板的新项目
+# 使用 "webpack" 模板创建一个新项目 thetemplate
 $ vue init webpack my-project
-# 安装依赖，走你
+# 安装依赖，然后开始！
 $ cd my-project
 $ npm install
 $ npm run dev
 ```
 
-<p class="tip">CLI 默认了用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读<a href="./">指南</a> ，熟悉 Vue 本身之后再研究 CLI。</p>
+<p class="tip">CLI 工具假定用户对 Node.js 和相关构建工具预先有一定程度的了解。如果你是初次接触 Vue，或者刚开始了解前端构建工具，我们强烈建议你不要使用任何构建工具，来完成<a href="./">指南</a>中的示例。</p><p class="tip">对于大陆用户，建议将 npm 的注册表源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。</p>
 
-<p class="tip">对于大陆用户，建议将 npm 的注册表源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。</p>
+## 不同构建版本的解释说明
 
-## Explanation of Different Builds
-
-In the [`dist/` directory of the NPM package](https://unpkg.com/vue@latest/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+在 [NPM 包的 `dist/` 目录下](https://unpkg.com/vue@latest/dist/)，你会找到许多不同构建版本的 Vue.js。以下是它们之间差异的概述：
 
 | | UMD | CommonJS | ES Module |
 | --- | --- | --- | --- |
-| **Full** | vue.js | vue.common.js | vue.esm.js |
-| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
-| **Full (production)** | vue.min.js | - | - |
-| **Runtime-only (production)** | vue.runtime.min.js | - | - |
+| **完整版本(Full)** | vue.js | vue.common.js | vue.esm.js |
+| **只含有运行时版本(Runtime-only)** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
+| **完整版本（生产环境）** | vue.min.js | - | - |
+| **只含有运行时版本（生产环境）** | vue.runtime.min.js | - | - |
 
-### Terms
+### 术语说明
 
-- **Full**: builds that contains both the compiler and the runtime.
+- **完整版本(Full)**：包含编译器(compiler)和运行时(runtime)的构建版本。
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **编译器(Compiler)**：负责将模板字符串编译成 JavaScript 渲染函数(render function)的代码。
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **运行时(Runtime)**：负责创建 Vue 实例(creating Vue instances)、渲染(rendering)和修补虚拟 DOM(patching virtual DOM) 等的代码。基本上，等同于完整版本减去编译器。
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from Unpkg CDN at [https://unpkg.com/vue](https://unpkg.com/vue) is the Runtime + Compiler UMD build (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**：UMD 构建版本能够直接在浏览器中通过 `<script>` 标签使用。Unpkg CDN 提供的默认文件 [https://unpkg.com/vue](https://unpkg.com/vue)，是运行时+编译器(Runtime + Compiler)的 UMD 构建版本。
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**：CommonJS 版本用于较早期的打包器(bundler)（例如 [browserify](http://browserify.org/) 或 [webpack 1](https://webpack.github.io) 等）中。用于这些打包器的默认文件(`pkg.main`)，是只含有运行时(Runtime only)的 CommonJS 构建版本(`vue.runtime.common.js`)。
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: ES module builds are intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [rollup](http://rollupjs.org/). The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**：ES 模块版本构建用于现代打包器（例如 [webpack 2](https://webpack.js.org) 或 [rollup](http://rollupjs.org/) 等）中。用于这些打包器的默认文件(`pkg.module`)，是只含有运行时(Runtime only)的 ES Module 构建版本(`vue.runtime.esm.js`)。
 
-### 独立构建 vs 运行时构建
+### 运行时+编译器(Runtime + Compiler)版本 vs 只含有运行时版本(Runtime-only)
 
-If you need to compile templates on the fly (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
-
+如果你需要即时编译模板（例如，向 `template` 选项传入一个字符串，或者需要将模板中的非 DOM 的 HTML 挂载到一个元素），你需要带有编译器的版本，因而需要完整构建版本。
 
 ``` js
-// this requires the compiler
+// 这种情况需要编译器(compiler)
 new Vue({
   template: `<div>{{ hi }}</div>`
 })
 
-// this does not
+// 这种情况不需要
 new Vue({
   render (h) {
     return h('div', this.hi)
@@ -109,9 +104,11 @@ new Vue({
 })
 ```
 
-When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
+在使用 `vue-loader` 或 `vueify` 时，`*.vue` 文件中的模板会 在构建时(build time)预编译(pre-compile)为 JavaScript。最终生成的 bundle 中你不再需要编译器(compiler)，因此可以直接使用只含有运行时的构建版本(runtime-only)。
 
-Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
+由于只含有运行时构建版本(runtime-only)比完整构建版本(full-build)轻量大约 30%，你应该尽可能使用只含有运行时的构建版本。如果你还是希望使用完整构建版本，则需要在打包器中配置别名：
+
+由于运行时版本的构建比其全面版本的重量轻约30％，因此您可以随时使用它。如果您仍然希望使用完整版本，则需要在捆绑程序中配置别名：
 
 #### Webpack
 
@@ -120,7 +117,7 @@ module.exports = {
   // ...
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+      'vue$': 'vue/dist/vue.esm.js' // 在 webpack 1 中使用 'vue/dist/vue.common.js'
     }
   }
 }
@@ -143,7 +140,7 @@ rollup({
 
 #### Browserify
 
-Add to your project's `package.json`:
+在项目的 `package.json` 文件中添加：
 
 ``` js
 {
@@ -154,17 +151,17 @@ Add to your project's `package.json`:
 }
 ```
 
-### Development vs. Production Mode
+### 开发环境模式 vs 生产环境模式
 
-Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
+对于 UMD 构建版本，开发环境/生产环境模式是必须配置的选项(hard-coded)，未压缩版本文件用于开发环境，压缩文件用于生产环境。
 
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
+CommonJS 和 ES 模块构建版本适用于打包器，因此我们不需要为它们提供压缩版本。你需要自己负责对最终的 bundle 进行压缩。
 
-CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
+CommonJS 和 ES 模块构建版本也可以保留初始环境 `process.env.NODE_ENV` 变量检测，以在打包器运行时的决定具体使用的模式。你应该使用合适的打包器配置来替换这些环境变量，以在打包器运行时控制 Vue 使用哪种模式。将 `process.env.NODE_ENV` 替换为字符串字面量，可以允许像 UglifyJS 的压缩工具将那些仅开发环境(development-only)用到的代码块全部删除，以减少最终文件的大小。
 
 #### Webpack
 
-Use Webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+使用 Webpack 的 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)：
 
 ``` js
 var webpack = require('webpack')
@@ -184,7 +181,7 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+使用 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)：
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -201,23 +198,23 @@ rollup({
 
 #### Browserify
 
-Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
+使用 [envify](https://github.com/hughsk/envify) 来全局替换 bundle。
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Also see [Production Deployment Tips](deployment.html).
+另请参阅[生产环境部署](deployment.html)。
 
 ### CSP 环境
 
-有些环境，如 Google Chrome Apps ，强制应用内容安全策略 (CSP) ，不能使用 new Function() 对表达式求值。这时可以用 CSP 兼容版本。完整的构建取决于该功能编译模板，所以无法使用这些环境。
+某些环境（例如 Google Chrome Apps）强制执行内容安全策略(Content Security Policy - CSP)，禁止使用 `new Function()` 对表达式求值。完整构建版本在编译模板时，会依赖于此功能，因此在这些环境下无法使用。
 
-另一方面，运行时构建的是完全兼容 CSP 的。当通过 [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) 或者 [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) 构建时，在 CSP 环境中模板将被完美预编译到 `render` 函数中。
+另一方面，只含有运行时的构建版本(runtime-only build)可以完全兼容 CSP(fully CSP-compliant)。当你在 [webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple)  或 [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) 中使用只含有运行时的构建版本(runtime-only build)时，模板将会预编译为 `render` 函数，最终的 `render` 函数能够完美的运行于 CSP 环境。
 
-## 开发版本
+## 在开发时进行构建
 
-**重要**: Github 仓库的 `/dist` 文件夹只有在新版本发布时才会更新。如果想要使用 Github 上 Vue 最新的源码，你需要自己构建。
+**重要**：GitHub 的 `/dist` 文件夹中的构建文件，仅在版本正式发布时才提交更新。要使用 GitHub 的最新源代码构建的 Vue 版本，你必须自行构建它！
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -228,7 +225,7 @@ npm run build
 
 ## Bower
 
-Only UMD builds are available from Bower.
+只能从 Bower 获取构建为 UMD 版本的 Vue.js。
 
 ``` bash
 # 最新稳定版本
@@ -237,10 +234,10 @@ $ bower install vue
 
 ## AMD 模块加载器
 
-独立下载版本或通过 Bower 安装的版本已用 UMD 包装，因此它们可以直接用作 AMD 模块。
+所有构建为 UMD 版本的 Vue.js 都可以直接当作 AMD 模块使用。
 
 ***
 
-> 原文：http://vuejs.org/guide/installation.html
+> 原文：https://vuejs.org/v2/guide/installation.html
 
 ***
