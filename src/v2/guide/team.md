@@ -28,7 +28,7 @@ order: 31
         v-if="member.reposOfficial"
         class="team-member-official-repos"
       >
-        <li class="team-member-category-label">Core</li>
+        <li class="team-member-category-label">Core Focus</li>
         <li v-for="repo in member.reposOfficial">
           <a
             :href="'https://github.com/vuejs/' + repo"
@@ -40,7 +40,7 @@ order: 31
         </li>
       </ul>
       <ul v-if="member.github && member.reposPersonal">
-        <li class="team-member-category-label">Community</li>
+        <li class="team-member-category-label">Ecosystem</li>
         <li v-for="repo in member.reposPersonal">
           <a
             :href="'https://github.com/' + member.github + '/' + repo"
@@ -248,6 +248,9 @@ order: 31
       ],
       reposPersonal: [
         'vuequery', 'vue-google-signin-button'
+      ],
+      links: [
+        'https://koel.phanan.net/'
       ]
     }
   ]))
