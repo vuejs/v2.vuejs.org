@@ -51,7 +51,7 @@ Vue.js 提供一个[官方的命令行接口工具](https://github.com/vuejs/vue
 ``` bash
 # 安装 vue-cli
 $ npm install --global vue-cli
-# 使用 "webpack" 模板创建一个新项目 thetemplate
+# 使用 "webpack" 模板创建一个新项目
 $ vue init webpack my-project
 # 安装依赖，然后开始！
 $ cd my-project
