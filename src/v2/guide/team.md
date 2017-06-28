@@ -227,6 +227,28 @@ order: 31
         'https://twitter.com/VueJsNews',
         'http://www.kharysharpe.com/'
       ]
+    },
+    {
+      name: 'Blake Newman',
+      work: 'Software Engineer @ Attest (askattest.com)',
+      image: 'https://pbs.twimg.com/profile_images/805492508826419200/tabo2HEa_400x400.jpg',
+      github: 'blakenewman',
+      twitter: 'blake-newman',
+      reposOfficial: [
+        'vuex', 'vue-router', 'vue-loader'
+      ]
+    },
+    {
+      name: 'Phan An',
+      image: 'https://www.dropbox.com/s/u9tl5lkb7s8dw0b/avatar.jpg?dl=1',
+      github: 'phanan',
+      twitter: 'notphanan',
+      reposOfficial: [
+        'vuejs.org'
+      ],
+      reposPersonal: [
+        'vuequery', 'vue-google-signin-button'
+      ]
     }
   ]))
 
