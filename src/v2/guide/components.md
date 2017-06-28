@@ -753,7 +753,7 @@ Quand on utilise des composants, il est souvent souhaitable de les composer comm
 
 Il y a deux choses à noter ici :
 
-1. Le composant `<app>` ne sait pas quel contenu peut être présent à l'intérieur de sa cible de montage. Ceci est défini par n'importe quel composant parent qui utilise `<app>`.
+1. Le composant `<app>` ne sait pas quel contenu il va recevoir. Ceci est défini par le composant qui utilise `<app>`.
 
 2. Le composant `<app>` a vraisemblablement son propre template.
 
@@ -1151,7 +1151,7 @@ components: {
 <!-- toujours utiliser la kebab-case dans les templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
-<title-cased-component></title-cased-component>
+<pascal-cased-component></pascal-cased-component>
 ```
 
 Quand vous utilisez des template basés sur les _chaînes de caractères_ cependant, vous n'avez pas les restrictions liées à la sensibilité à la casse du HTML. Cela signifie que même dans le template, vous pouvez référencer vos composants et props en utilisant :

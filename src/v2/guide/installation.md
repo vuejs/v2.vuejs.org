@@ -24,9 +24,9 @@ Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera d�
 <p class="tip">N'utilisez pas la version minifiée pendant le développement. Vous ne bénéficieriez alors pas des avertissements pour les erreurs courantes !</p>
 
 <div id="downloads">
-<a class="button" href="./js/vue.js" download>Version de développement</a><span class="light info">Avec tous les avertissements et le mode de débogage</span>
+<a class="button" href="../../js/vue.js" download>Version de développement</a><span class="light info">Avec tous les avertissements et le mode de débogage</span>
 
-<a class="button" href="./js/vue.min.js" download>Version de production</a><span class="light info">Avertissements retirés, {{gz_size}}ko min+gzip</span>
+<a class="button" href="../../js/vue.min.js" download>Version de production</a><span class="light info">Avertissements retirés, {{gz_size}}ko min+gzip</span>
 </div>
 
 ### CDN

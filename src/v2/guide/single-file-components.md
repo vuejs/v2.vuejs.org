@@ -1,5 +1,5 @@
 ---
-title: Les composants monofichiers
+title: Composants monofichiers
 type: guide
 order: 19
 ---
