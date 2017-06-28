@@ -51,7 +51,7 @@ Les moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTM
 Cela fonctionne également pour les attributs booléens - l'attribut sera retiré si la condition est évaluée fausse :
 
 ``` html
-<button v-bind:disabled="someDynamicCondition">Button</button>
+<button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
 ### Utilisation des expressions JavaScript
