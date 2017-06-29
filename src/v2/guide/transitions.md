@@ -1593,7 +1593,7 @@ new Vue({
     v-on:enter="enter"
     v-on:leave="leave"
   >
-    <p v-if="show">bonjour/p>
+    <p v-if="show">bonjour</p>
   </transition>
   <button v-on:click="stop = true">Arrêtez ça !</button>
 </div>
@@ -1645,4 +1645,4 @@ new Vue({
 </script>
 {% endraw %}
 
-Finalement, le meilleur moyen de créer des transitions dynamiques, c'est par le biais de composants qui acceptent des props pour changer la nature de ou des transitions à utiliser. Cela peut sembler mielleux, mais la seule limite est votre imagination.
+Finalement, le meilleur moyen de créer des transitions dynamiques, c'est par le biais de composants qui acceptent des props pour changer la nature des transitions à utiliser. Cela peut sembler mielleux, mais la seule limite est votre imagination.
