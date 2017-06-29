@@ -6,7 +6,7 @@ order: 16
 
 ## Introduction
 
-En supplément de la palette de directive fournie en standard (`v-model` et `v-show`), Vue vous permet également d'enregistrer vos propres directives. Notez qu'avec Vue 2, la forme de code préféré pour la réutilisabilité et l'abstraction est le composant. Il y a cependant des cas où vous aurez juste besoin d'un accès de bas niveau aux éléments du DOM, et c'est là que les directives personnalisées vous seraient utiles. Un exemple pourrait être la prise du focus sur un élément de champ, comme celui-ci :
+En supplément de l'ensemble de directives fournies par défaut (`v-model` et `v-show`), Vue vous permet également d'enregistrer vos propres directives. Notez qu'avec Vue 2, les composants sont la forme principale de réutilisabilité et d'asbtraction du code. Il y a cependant des cas où vous aurez juste besoin d'un accès de bas niveau aux éléments du DOM, et c'est là que les directives personnalisées vous seraient utiles. Un exemple pourrait être la prise du focus sur un élément de champ, comme celui-ci :
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -24,7 +24,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Quand la page charge, cet élément prend le focus (notez que l'autofocus ne fonctionne pas sur Safari mobile). En fait, si vous n'avez cliqué sur rien du tout depuis votre arrivée sur la page, le champ ci-dessous devrait avoir le focus. À présent, jetons un œil à la directive qui pourrait accomplir cela :
+Quand la page se charge, cet élément prend le focus (notez que l'autofocus ne fonctionne pas sur Safari mobile). En fait, si vous n'avez cliqué sur rien du tout depuis votre arrivée sur la page, le champ ci-dessous devrait avoir le focus. À présent, jetons un œil à la directive qui pourrait accomplir cela :
 
 ``` js
 // Enregistrer une directive globale appelée focus
@@ -55,15 +55,15 @@ Puis dans un template, vous pouvez utiliser le nouvel attribut `v-focus` sur n'i
 
 ## Fonctions de hook
 
-Une définition d'objet directive peut fournir plusieurs fonctions de hook (toutes optionnelles) :
+Un objet de définition de directive peut fournir plusieurs fonctions de hook (toutes optionnelles) :
 
-- `bind` : appelée une fois quand la directive est attachée à l'élément. C'est ici que vous pouvez effectuer les actions uniques d'initialisation.
+- `bind` : appelée une seule fois quand la directive est attachée à l'élément. C'est ici que vous pouvez effectuer les actions uniques d'initialisation.
 
-- `inserted`: appelée quand l'élément lié a été inséré dans son nœud parent (cela garanti uniquement sa présence dans le nœud parent, mais pas nécessairement dans le DOM principal).
+- `inserted`: appelée quand l'élément lié a été inséré dans son nœud parent (cela garantit uniquement sa présence dans le nœud parent, mais pas nécessairement dans le document principal).
 
-- `update`: appelée après que le composant conteneur ai été mis à jour, __mais peut-être avant que ses enfants soit mis à jour__. La valeur de la directive peut ou pas avoir changé, mais vous pouvez ignorer les mises à jour inutiles en comparant les valeurs actuelles et anciennes de la liaison (voir plus bas les arguments de hook).
+- `update`: appelée après que le composant conteneur ait été mis à jour, __mais possiblement avant que ses enfants aient été mis à jour__. La valeur de la directive peut ou pas avoir changé, mais vous pouvez ignorer les mises à jour inutiles en comparant les valeurs actuelles et anciennes de la liaison (voir plus bas les arguments de hook).
 
-- `componentUpdated`: appelée après que le composant conteneur __et ses enfants__ soit mis à jour.
+- `componentUpdated`: appelée après que le composant conteneur __et ses enfants__ aient été mis à jour.
 
 - `unbind`: appelée uniquement une fois, quand la directive est déliée de l'élément.
 
@@ -74,11 +74,11 @@ Nous allons explorer les arguments passés à ces hooks (c.-à-d. `el`, `binding
 Les hooks d'une directive ont accès à ces arguments :
 
 - **el**: L'élément sur lequel la directive est liée. Cela peut être utilisé pour directement manipuler le DOM.
-- **binding**: Un objets contenant les propriétés suivantes.
+- **binding**: Un objet contenant les propriétés suivantes.
   - **name**: Le nom de la directive, sans le préfixe `v-`.
   - **value**: La valeur passée à la directive. Par exemple dans `v-my-directive="1 + 1"`, la valeur serait `2`.
-  - **oldValue**: La valeur précédente, seulement disponible dans `update` et `componentUpdated`. Elle est disponible, que la valeur ai changé ou non.
-  - **expression**: L'expression liée en tant que chaîne de caractère. Par exemple dans `v-my-directive="1 + 1"`, l'expression serait `"1 + 1"`.
+  - **oldValue**: La valeur précédente, seulement disponible dans `update` et `componentUpdated`. Elle est disponible, que la valeur ait changé ou non.
+  - **expression**: L'expression liée en tant que chaîne de caractères. Par exemple dans `v-my-directive="1 + 1"`, l'expression serait `"1 + 1"`.
   - **arg**: L'argument passé à la directive, s'il y en a une. Par exemple dans `v-my-directive:foo`, l'argument serait `"foo"`.
   - **modifiers**: Un objet contenant les modificateurs, s'il y en a. Par exemple dans `v-my-directive.foo.bar`, l'objet des modificateurs serait `{ foo: true, bar: true }`.
 - **vnode**: Le nœud virtuel produit par le compilateur Vue. Voir l'[API VNode](../api/#Interface-VNode) pour tous les détails.
@@ -140,7 +140,7 @@ new Vue({
 
 ## Fonction abrégée
 
-La plupart du temps, vous souhaiterez un même comportement pour les hooks `bind` et `update`, sans avoir besoin des autres hooks. Par exemple :
+Dans de nombreux cas, vous pourriez vouloir le même comportement pour les hooks `bind` et `update`, sans avoir besoin des autres hooks. Par exemple :
 
 ``` js
 Vue.directive('color-swatch', function (el, binding) {
@@ -148,7 +148,7 @@ Vue.directive('color-swatch', function (el, binding) {
 })
 ```
 
-## Objet en tant que valeur
+## Littéraux objet
 
 Si votre directive a besoin de plusieurs valeurs, vous pouvez également passer un objet JavaScript. Souvenez-vous, une directive peut accepter n'importe quelle expression JavaScript.
 
