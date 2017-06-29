@@ -51,7 +51,7 @@ Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive
 It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
 
 ``` html
-<button v-bind:disabled="someDynamicCondition">Button</button>
+<button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
 ### Using JavaScript Expressions

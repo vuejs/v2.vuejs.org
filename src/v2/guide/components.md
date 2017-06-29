@@ -753,7 +753,7 @@ When using components, it is often desired to compose them like this:
 
 There are two things to note here:
 
-1. The `<app>` component does not know what content may be present inside its mount target. It is decided by whatever parent component that is using `<app>`.
+1. The `<app>` component does not know what content it will receive. It is decided by the component using `<app>`.
 
 2. The `<app>` component very likely has its own template.
 
@@ -1151,7 +1151,7 @@ Within HTML templates though, you have to use the kebab-case equivalents:
 <!-- always use kebab-case in HTML templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
-<title-cased-component></title-cased-component>
+<pascal-cased-component></pascal-cased-component>
 ```
 
 When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
