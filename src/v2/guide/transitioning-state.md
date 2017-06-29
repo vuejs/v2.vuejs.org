@@ -257,7 +257,7 @@ new Vue({
 
 ## Transitions d'état dynamiques
 
-Tout comme pour les composants de transition de Vue, les transitions d'état de données peuvent être mises à jour en temps réel, ce qui est particulièrement utile pour le prototypage ! Même en utilisant un polygone SVG simple, vous pouvez obtenir de nombreux effets qui seraient difficile à concevoir tant que vous n'avez pas un peu joué avec les variables.
+Tout comme pour les composants de transition de Vue, les transitions d'état de données peuvent être mises à jour en temps réel, ce qui est particulièrement utile pour le prototypage ! Même en utilisant un polygone SVG simple, vous pouvez obtenir de nombreux effets qu'il serait difficile de concevoir tant que vous n'avez pas un peu joué avec les variables.
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
