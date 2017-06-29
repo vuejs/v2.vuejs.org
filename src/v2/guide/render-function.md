@@ -390,11 +390,7 @@ Pour passer des slots internes à un composant enfant en utilisant des fonctions
 render (createElement) {
   return createElement('div', [
     createElement('child', {
-<<<<<<< HEAD
       // passer `scopedSlots` dans l'objet de données
-=======
-      // pass `scopedSlots` in the data object
->>>>>>> upstream/master
       // in the form of { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
