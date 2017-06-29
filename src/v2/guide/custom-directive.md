@@ -61,9 +61,9 @@ Une définition d'objet directive peut fournir plusieurs fonctions de hook (tout
 
 - `inserted`: appelée quand l'élément lié a été inséré dans son nœud parent (cela garanti uniquement sa présence dans le nœud parent, mais pas nécessairement dans le DOM principal).
 
-- `update`: appelée après que le composant conteneur ai été mis à jour, __mais peut-être avant que ses enfants ai été mis à jour__. La valeur de la directive peut ou pas avoir changé, mais vous pouvez ignorer les mises à jour inutiles en comparant les valeurs actuelles et anciennes de la liaison (voir plus bas les arguments de hook).
+- `update`: appelée après que le composant conteneur ai été mis à jour, __mais peut-être avant que ses enfants soit mis à jour__. La valeur de la directive peut ou pas avoir changé, mais vous pouvez ignorer les mises à jour inutiles en comparant les valeurs actuelles et anciennes de la liaison (voir plus bas les arguments de hook).
 
-- `componentUpdated`: appelée après que le composant conteneur __et ses enfants__ ai été mis à jour.
+- `componentUpdated`: appelée après que le composant conteneur __et ses enfants__ soit mis à jour.
 
 - `unbind`: appelée uniquement une fois, quand la directive est déliée de l'élément.
 
