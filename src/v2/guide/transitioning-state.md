@@ -4,18 +4,18 @@ type: guide
 order: 14
 ---
 
-Vue 的过渡系统提供了非常多简单的方法设置进入、离开和列表的动效。那么对于数据元素本身的动效呢，比如：
+Vue 的过渡系统提供了很多简便方法，可以在进入、离开时，以及对列表进行动画，但是对于数据变化的动画要如何处理呢？比如：
 
-- 数字和运算
-- 颜色的显示
+- 数字和计算
+- 颜色显示
 - SVG 节点的位置
-- 元素的大小和其他的属性
+- 元素大小和其他属性
 
-所有的原始数字都被事先存储起来，可以直接转换到数字。做到这一步，我们就可以结合 Vue 的响应式和组件系统，使用第三方库来实现切换元素的过渡状态。
+所有以上这些都已经存储为原始数字，或者可以转换为数字。一旦我们实现这步，就可以结合 Vue 的响应式和组件系统，使用第三方库补充中间状态(tween state)，以对这些状态变化进行动画。
 
-## 状态动画 与 watcher
+## 使用 watcher 对状态进行动画(Animating State with Watchers)
 
-通过 watcher 我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用 [Tween.js](https://github.com/tweenjs/tween.js) 一个例子：
+watcher 可以观察到从任何数值属性到另一个属性的变化，然后进行动画。这一抽象听起来很复杂，所以让我们深入一个使用 [Tween.js](https://github.com/tweenjs/tween.js) 的例子：
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -95,7 +95,7 @@ new Vue({
 </script>
 {% endraw %}
 
-当你把数值更新时，就会触发动画。这个是一个不错的演示，但是对于不能直接像数字一样存储的值，比如 CSS 中的 color 的值，通过下面的例子我们来通过 [Color.js](https://github.com/brehaut/color-js) 实现一个例子：
+当更新数值时，输入框下方就会对数值的更改进行动画。这是一个不错的 demo 示例，但是，对于不能直接存储为数字的值，比如有效的 CSS 颜色值？以下是我们如何通过添加 [Color.js](https://github.com/brehaut/color-js) 来实现对非数值进行动画：
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -255,10 +255,9 @@ new Vue({
 </style>
 {% endraw %}
 
-## 动态状态转换
+## 动态状态过渡(Dynamic State Transitions)
 
-就像 Vue 的过渡组件一样，数据背后状态转换会实时更新，这对于原型设计十分有用。当你修改一些变量，即使是一个简单的 SVG 多边形也可是实现很多难以想象的效果。
-
+就像 Vue 的过渡组件那样，动态数据所支撑的状态的过渡也可以实时更新，这对于制作原型十分有用！即使是一个简单的 SVG 多边形，在操作一些变量之后，也可是实现很多难以想象的效果。
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
@@ -393,10 +392,9 @@ function generatePoints (stats) {
 
 See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete code behind the above demo.
 
-## 通过组件组织过渡
+## 通过组件组织过渡(Organizing Transitions into Components)
 
-管理太多的状态转换的很快会接近到 Vue 实例或者组件的复杂性，幸好很多的动画可以提取到专用的子组件。
-我们来将之前的示例改写一下：
+管理太多的状态过渡，会快速增加 Vue 实例或者组件的复杂性。幸运的是，许多动画可以提取到专用的子组件中。让我们用前面的整数动画来举例：
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -414,11 +412,11 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete c
 ```
 
 ``` js
-// 这种复杂的补间动画逻辑可以被复用
-// 任何整数都可以执行动画
-// 组件化使我们的界面十分清晰
-// 可以支持更多更复杂的动态过渡
-// strategies.
+// 在我们的应用程序中，所有的整数动画，
+// 现在都可以复用这种复杂的补间动画逻辑。
+// 通过对组件配置更多的动态过渡策略
+// 和复杂过渡策略，
+// 可以使我们的界面十分清晰
 Vue.component('animated-integer', {
   template: '<span>{{ tweeningValue }}</span>',
   props: {
@@ -462,7 +460,7 @@ Vue.component('animated-integer', {
   }
 })
 
-// All complexity has now been removed from the main Vue instance!
+// 现在，可以将所有的动画复杂度，从 Vue 主实例中移除！
 new Vue({
   el: '#example-8',
   data: {
@@ -547,11 +545,10 @@ new Vue({
 </script>
 {% endraw %}
 
-我们能在组件中结合使用这一节讲到各种过渡策略和 Vue [内建的过渡系统](transitions.html)。总之，对于完成各种过渡动效几乎没有阻碍。
+在子组件中，我们可以使用本页面所涵盖的所有过渡策略进行组合，再通过 Vue 提供的[内置过渡系统](transitions.html) 。将这些结合在一起，对于要实现的动画效果的限制很少。
 
 ***
 
-> 原文： http://vuejs.org/guide/transitioning-state.html
+> 原文：https://vuejs.org/v2/guide/transitioning-state.html
 
 ***
-
