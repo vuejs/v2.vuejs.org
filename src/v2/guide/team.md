@@ -100,7 +100,7 @@ order: 31
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
-                <a :href="'https://github.com/vuejs/' + repo" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo }}</a>
               </li>
             </ul>
           </dd>
@@ -110,7 +110,7 @@ order: 31
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="'https://github.com/' + profile.github + '/' + repo" target=_blank>
+                <a :href="githubUrl(profile.github, repo)" target=_blank>
                   {{ repo}}
                 </a>
               </li>
@@ -132,7 +132,7 @@ order: 31
           </dd>
         </template>
         <footer v-if="profile.github || profile.twitter" class="social">
-          <a class=github v-if="profile.github" :href="'https://github.com/' + profile.github">
+          <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
             <i class="fa fa-github"></i>
           </a>
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
@@ -219,7 +219,7 @@ order: 31
       twitter: 'zhaojinjiang',
       work:'Alibaba',
       reposPersonal: [
-        'Weex'
+        'apache/incubator-weex'
       ]
     },
     {
@@ -340,6 +340,17 @@ order: 31
         return link
           .replace(/^https?:\/\/(www\.)?/, '')
           .replace(/\/$/, '')
+      },
+      /**
+       * Generate a GitHub URL using a repo and a handle.
+       */
+      githubUrl: function (handle, repo) {
+        if (repo && repo.indexOf('/') !== -1) {
+          // If the repo name has a slash, it must be an organization repo.
+          // In such a case, we discard the (personal) handle.
+          return 'https://github.com/' + repo;
+        }
+        return 'https://github.com/' + handle + '/' + (repo || '');
       }
     }
   }
