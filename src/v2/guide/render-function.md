@@ -231,23 +231,23 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### 约束
+### 限制(Constraints)
 
 #### VNodes 必须唯一
 
-所有组件树中的 VNodes 必须唯一。这意味着，下面的 render function 是无效的：
+组件树中的所有 VNode 必须是唯一的。也就是说，以下 render 函数无效：
 
 ``` js
 render: function (createElement) {
   var myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
-    // Yikes - duplicate VNodes!
+    // 哟 - VNode 重复！
     myParagraphVNode, myParagraphVNode
   ])
 }
 ```
 
-如果你真的需要重复很多次的元素/组件，你可以使用工厂函数来实现。例如，下面这个例子 render 函数完美有效地渲染了 20 个重复的段落：
+如果你真的需要多次重复相同的元素/组件，你可以使用工厂函数来实现。例如，下面的 render 函数，完美有效地渲染了 20 个相同的段落。
 
 ``` js
 render: function (createElement) {
@@ -259,11 +259,11 @@ render: function (createElement) {
 }
 ```
 
-## 使用 JavaScript 代替模板功能
+## 使用原生 JavaScript 的替换模板功能(Replacing Template Features with Plain JavaScript)
 
 ### `v-if` and `v-for`
 
-无论什么都可以使用原生的 JavaScript 来实现，Vue 的 render 函数不会提供专用的 API。比如， template 中的 `v-if` 和 `v-for`:
+无论什么功能，都可以在原生 JavaScript 中轻松实现，所以 Vue 的 render 函数无需提供专用的替代方案。例如，在模板中使用 `v-if` 和 `v-for`：
 
 ``` html
 <ul v-if="items.length">
@@ -272,7 +272,7 @@ render: function (createElement) {
 <p v-else>No items found.</p>
 ```
 
-这些都会在 render 函数中被 JavaScript 的 `if`/`else` 和 `map` 重写：
+这可以在 render 函数中，通过重写为 JavaScript 的 `if`/`else` 和 `map` 来实现：
 
 ``` js
 render: function (createElement) {
@@ -288,7 +288,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-在render函数中，没有提供`v-model`的实现，所以你需要自己实现逻辑：
+在 render 函数中没有直接和 `v-model` 对标的功能 - 你必须自己实现逻辑：
 
 ``` js
 render: function (createElement) {
@@ -307,9 +307,9 @@ render: function (createElement) {
 }
 ```
 
-This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+这就是深入底层实现需要付出的代价，但是和 `v-model` 相比较，这也可以更好地控制交互细节。
 
-### Event & Key Modifiers
+### 事件 & 按键修饰符(Event & Key Modifiers)
 
 对于 `.capture` 和 `.once` 这样的事件修饰符, Vue 提供了用于 `on` 的前缀:
 
@@ -344,16 +344,16 @@ on: {
 ```javascript
 on: {
   keyup: function (event) {
-    // Abort if the element emitting the event is not
-    // the element the event is bound to
+    // 如果触发事件的元素不是事件绑定的元素
+    // 则返回
     if (event.target !== event.currentTarget) return
-    // Abort if the key that went up is not the enter
-    // key (13) and the shift key was not held down
-    // at the same time
+    // 如果按下去的不是enter键或者
+    // 没有同时按下shift键
+    // 则返回
     if (!event.shiftKey || event.keyCode !== 13) return
-    // Stop event propagation
+    // 阻止事件冒泡
     event.stopPropagation()
-    // Prevent the default keyup handler for this element
+    // 阻止该元素默认的keyup事件
     event.preventDefault()
     // ...
   }
