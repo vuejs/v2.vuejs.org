@@ -106,15 +106,16 @@ createElement(
   },
 
   // {String | Array}
-  // Children VNodes. Optional.
+  // Children VNodes, built using `createElement()`,
+  // or simply using strings to get 'text VNodes'. Optional.
   [
-    createElement('h1', 'hello world'),
+    'Some text comes first.',
+    createElement('h1', 'A headline'),
     createElement(MyComponent, {
       props: {
-        someProp: 'foo'
+        someProp: 'foobar'
       }
-    }),
-    'bar'
+    })
   ]
 )
 ```
@@ -147,8 +148,8 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under "on", though
-  // modifiers such as in v-on:keyup.enter are not
+  // Event handlers are nested under `on`, though
+  // modifiers such as in `v-on:keyup.enter` are not
   // supported. You'll have to manually check the
   // keyCode in the handler instead.
   on: {
@@ -156,7 +157,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   },
   // For components only. Allows you to listen to
   // native events, rather than events emitted from
-  // the component using vm.$emit.
+  // the component using `vm.$emit`.
   nativeOn: {
     click: this.nativeClickHandler
   },
@@ -166,7 +167,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   directives: [
     {
       name: 'my-custom-directive',
-      value: '2'
+      value: '2',
       expression: '1 + 1',
       arg: 'foo',
       modifiers: {
@@ -181,7 +182,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
   },
   // The name of the slot, if this component is the
   // child of another component
-  slot: 'name-of-slot'
+  slot: 'name-of-slot',
   // Other special top-level properties
   key: 'myKey',
   ref: 'myRef'
@@ -365,7 +366,7 @@ You can access static slot contents as Arrays of VNodes from [`this.$slots`](../
 
 ``` js
 render: function (createElement) {
-  // <div><slot></slot></div>
+  // `<div><slot></slot></div>`
   return createElement('div', this.$slots.default)
 }
 ```
@@ -374,7 +375,7 @@ And access scoped slots as functions that return VNodes from [`this.$scopedSlots
 
 ``` js
 render: function (createElement) {
-  // <div><slot :text="msg"></slot></div>
+  // `<div><slot :text="msg"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
       text: this.msg
@@ -389,7 +390,7 @@ To pass scoped slots to a child component using render functions, use the `scope
 render (createElement) {
   return createElement('div', [
     createElement('child', {
-      // pass scopedSlots in the data object
+      // pass `scopedSlots` in the data object
       // in the form of { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {

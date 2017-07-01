@@ -753,7 +753,7 @@ When using components, it is often desired to compose them like this:
 
 There are two things to note here:
 
-1. The `<app>` component does not know what content may be present inside its mount target. It is decided by whatever parent component that is using `<app>`.
+1. The `<app>` component does not know what content it will receive. It is decided by the component using `<app>`.
 
 2. The `<app>` component very likely has its own template.
 
@@ -1131,7 +1131,7 @@ Note that when used as a route component in `vue-router`, these properties will 
 
 ### Component Naming Conventions
 
-When registering components (or props), you can use kebab-case, camelCase, or TitleCase.
+When registering components (or props), you can use kebab-case, camelCase, or PascalCase.
 
 ``` js
 // in a component definition
@@ -1140,8 +1140,8 @@ components: {
   'kebab-cased-component': { /* ... */ },
   // register using camelCase
   'camelCasedComponent': { /* ... */ },
-  // register using TitleCase
-  'TitleCasedComponent': { /* ... */ }
+  // register using PascalCase
+  'PascalCasedComponent': { /* ... */ }
 }
 ```
 
@@ -1151,20 +1151,20 @@ Within HTML templates though, you have to use the kebab-case equivalents:
 <!-- always use kebab-case in HTML templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
-<title-cased-component></title-cased-component>
+<pascal-cased-component></pascal-cased-component>
 ```
 
 When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
 
 - kebab-case
 - camelCase or kebab-case if the component has been defined using camelCase
-- kebab-case, camelCase or TitleCase if the component has been defined using TitleCase
+- kebab-case, camelCase or PascalCase if the component has been defined using PascalCase
 
 ``` js
 components: {
   'kebab-cased-component': { /* ... */ },
   camelCasedComponent: { /* ... */ },
-  TitleCasedComponent: { /* ... */ }
+  PascalCasedComponent: { /* ... */ }
 }
 ```
 
@@ -1174,12 +1174,12 @@ components: {
 <camel-cased-component></camel-cased-component>
 <camelCasedComponent></camelCasedComponent>
 
-<title-cased-component></title-cased-component>
-<titleCasedComponent></titleCasedComponent>
-<TitleCasedComponent></TitleCasedComponent>
+<pascal-cased-component></pascal-cased-component>
+<pascalCasedComponent></pascalCasedComponent>
+<PascalCasedComponent></PascalCasedComponent>
 ```
 
-This means that the TitleCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
+This means that the PascalCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
 
 If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
 

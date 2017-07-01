@@ -420,7 +420,7 @@ Vue.set(example1.items, indexOfItem, newValue)
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
-To deal with caveat 2, you can also use `splice`:
+To deal with caveat 2, you can use `splice`:
 
 ``` js
 example1.items.splice(newLength)
