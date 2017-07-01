@@ -5,174 +5,168 @@ order: 31
 ---
 
 {% raw %}
+<style>
+  #team-members .vuer {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px dotted #ddd;
+  }
+
+  #team-members .vuer .avatar {
+    flex: 0 0 80px;
+  }
+
+  #team-members .vuer .avatar img {
+    border-radius: 50%;
+  }
+
+  #team-members .vuer .profile {
+    padding-left: 26px;
+    flex: 1;
+  }
+
+  #team-members .vuer .profile h3 {
+    margin: 0;
+    font-size: 1.3em;
+  }
+
+  #team-members .vuer .profile h3::before, #team-members .vuer .profile h3::after {
+    display: none;
+  }
+
+  #team-members .vuer .profile dl {
+    margin: 5px 0 0;
+  }
+
+  #team-members .vuer .profile dt, 
+  #team-members .vuer .profile dd,
+  #team-members .vuer .profile ul,
+  #team-members .vuer .profile li {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  #team-members .vuer .profile li::after {
+    content: ' · ';
+  }
+
+  #team-members .vuer .profile li:last-child::after {
+    content: '';
+  }
+
+  #team-members .vuer .profile dt::after {
+    content: ':';
+  }
+
+  #team-members .vuer .profile dd {
+    font-weight: 600;
+  }
+
+  #team-members .vuer .profile dd::after {
+    content: ' ';
+    display: block;
+  }
+
+  #team-members .vuer .profile .social {
+    margin-top: 3px;
+    font-size: 1.3em;
+  }
+
+  #team-members .vuer .profile .social a {
+    margin-right: 5px;
+  }
+
+  #team-members .vuer .profile .social a.github {
+    color: #000;
+  }
+
+  #team-members .vuer .profile .social a.twitter {
+    color: #1da1f3;
+  }
+</style>
+
+<script id="memberTemplate" type="text/tmpl">
+  <div class="vuer">
+    <div class="avatar">
+      <img v-if="profile.image" :src="profile.image" :alt="profile.name" width=80 height=80>
+    </div>
+    <div class="profile">
+      <h3>{{ profile.name }}</h3>
+      <dl>
+        <template v-if="profile.reposOfficial">
+          <dt>Core focus</dt>
+          <dd>
+            <ul>
+              <li v-for="repo in profile.reposOfficial">
+                <a :href="'https://github.com/vuejs/' + repo" target=_blank>{{ repo }}</a>
+              </li>
+            </ul>
+          </dd>
+        </template>
+        <template v-if="profile.github && profile.reposPersonal">
+          <dt>Ecosystem</dt>
+          <dd>
+            <ul>
+              <li v-for="repo in profile.reposPersonal">
+                <a :href="'https://github.com/' + profile.github + '/' + repo" target=_blank>
+                  {{ repo}}
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </template>
+        <template v-if="profile.work">
+          <dt>Work</dt>
+          <dd>{{ profile.work }}</dd>
+        </template>
+        <template v-if="profile.links">
+          <dt>Website{{ profile.links.length > 1 ? 's' : '' }}</dt>
+          <dd>
+            <ul>
+              <li v-for="link in profile.links">
+                <a :href="link" target=_blank>{{ minimizeLink(link) }}</a>
+              </li>
+            </ul>
+          </dd>
+        </template>
+        <footer v-if="profile.github || profile.twitter" class="social">
+          <a class=github v-if="profile.github" :href="'https://github.com/' + profile.github">
+            <i class="fa fa-github"></i>
+          </a>
+          <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </footer>
+      </dl>
+    </div>
+  </div>
+</script>
+
 <div id="team-members">
-  <h2 id="the-core-team">The Core Team</h2>
+  <div class="team">
+    <h2 id="the-core-team">The Core Team</h2>
 
-  <p>
-    The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
-  </p>
+    <p>
+      The development of Vue and its ecosystem is guided by an international team, 
+      some of whom have chosen to be featured below.
+    </p>
 
-  <team-member
-    v-for="member in team"
-    :key="member.github"
-    :member="member"
-    inline-template>
-    <div class="team-person">
-      <h3 :id="'team-person-' + member.name.toLowerCase().replace(/\W/g, '-')">
-        {{ member.name }}
-        <img
-          v-if="member.image"
-          :src="member.image"
-          :alt="member.name"
-        >
-      </h3>
-      <ul
-        v-if="member.reposOfficial"
-        class="team-person-official-repos"
-      >
-        <li class="team-person-category-label">Core Focus</li>
-        <li v-for="repo in member.reposOfficial">
-          <a
-            :href="'https://github.com/vuejs/' + repo"
-            target="_blank"
-          >
-            <img src="/images/logo.png" alt="Vue">
-            {{ repo }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="member.github && member.reposPersonal">
-        <li class="team-person-category-label">Ecosystem</li>
-        <li v-for="repo in member.reposPersonal">
-          <a
-            :href="'https://github.com/' + member.github + '/' + repo"
-            target="_blank"
-          >
-            <i class="fa fa-github"></i>
-            {{ repo }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="member.github || member.twitter">
-        <li class="team-person-category-label">Contact</li>
-        <li v-if="member.github">
-          <a
-            :href="'https://github.com/' + member.github"
-            target="_blank"
-          >
-            <i class="fa fa-github"></i>
-            {{ member.github }}
-          </a>
-        </li>
-        <li v-if="member.twitter">
-          <a
-            :href="'https://twitter.com/' + member.twitter"
-            target="_blank"
-          >
-            <i class="fa fa-twitter"></i>
-            {{ member.twitter }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="member.work || member.links">
-        <li class="team-person-category-label">Work</li>
-        <li v-if="member.work">
-          <i class="fa fa-briefcase"></i>
-          {{ member.work }}
-        </li>
-        <li v-for="link in member.links">
-          <a :href="link" target="_blank">
-            <i class="fa fa-link"></i>
-            {{ minimizeLink(link) }}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </team-member>
+    <member v-for="profile in team" :key="profile.github" :profile="profile"></member>
+  </div>
 
-  <h2 id="community-partners">Community Partners</h2>
+  <div class="team">
+    <h2 id="community-partners">Community Partners</h2>
 
-  <p>
-    Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming news and features.
-  </p>
+    <p>
+      Some members of the Vue community have so enriched it, that they deserve special mention. 
+      We've developed a more intimate relationship with these key partners, often coordinating 
+      with them on upcoming news and features.
+    </p>
 
-  <community-partner
-    v-for="partner in partners"
-    :key="partner.github"
-    :partner="partner"
-    inline-template>
-    <div class="team-person">
-      <h3 :id="'team-person-' + partner.name.toLowerCase().replace(/\W/g, '-')">
-        {{ partner.name }}
-        <img
-          v-if="partner.image"
-          :src="partner.image"
-          :alt="partner.name"
-        >
-      </h3>
-      <ul
-        v-if="partner.reposOfficial"
-        class="team-person-official-repos"
-      >
-        <li class="team-person-category-label">Core Focus</li>
-        <li v-for="repo in partner.reposOfficial">
-          <a
-            :href="'https://github.com/vuejs/' + repo"
-            target="_blank"
-          >
-            <img src="/images/logo.png" alt="Vue">
-            {{ repo }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="partner.github && partner.reposPersonal">
-        <li class="team-person-category-label">Ecosystem</li>
-        <li v-for="repo in partner.reposPersonal">
-          <a
-            :href="'https://github.com/' + repo"
-            target="_blank"
-          >
-            <i class="fa fa-github"></i>
-            {{ repo }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="partner.github || partner.twitter">
-        <li class="team-person-category-label">Contact</li>
-        <li v-if="partner.github">
-          <a
-            :href="'https://github.com/' + partner.github"
-            target="_blank"
-          >
-            <i class="fa fa-github"></i>
-            {{ partner.github }}
-          </a>
-        </li>
-        <li v-if="partner.twitter">
-          <a
-            :href="'https://twitter.com/' + partner.twitter"
-            target="_blank"
-          >
-            <i class="fa fa-twitter"></i>
-            {{ partner.twitter }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="partner.work || partner.links">
-        <li class="team-person-category-label">Work</li>
-        <li v-if="partner.work">
-          <i class="fa fa-briefcase"></i>
-          {{ partner.work }}
-        </li>
-        <li v-for="link in partner.links">
-          <a :href="link" target="_blank">
-            <i class="fa fa-link"></i>
-            {{ minimizeLink(link) }}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </community-partner>
+    <partner v-for="profile in partners" :key="profile.github" :profile="profile"></partner>
+  </div>
 </div>
 
 <script>
@@ -223,7 +217,7 @@ order: 31
       image: 'https://en.gravatar.com/userimage/13176194/461845e850f200dd434da75b198f0952.jpg?size=800',
       github: 'jinjiang',
       twitter: 'zhaojinjiang',
-      work: 'Alibaba',
+      work:'Alibaba',
       reposPersonal: [
         'Weex'
       ]
@@ -251,10 +245,10 @@ order: 31
     },
     {
       name: 'Kazupon',
-      work: 'CTO',
       image: 'https://avatars0.githubusercontent.com/u/72989',
       github: 'kazupon',
       twitter: 'kazu_pon',
+      work: 'CTO',
       reposOfficial: [
         'jp.vuejs.org'
       ],
@@ -301,7 +295,7 @@ order: 31
     },
     {
       name: 'Phan An',
-      image: 'https://www.dropbox.com/s/u9tl5lkb7s8dw0b/avatar.jpg?dl=1',
+      image: 'https://avatars0.githubusercontent.com/u/8056274?v=3&s=460',
       github: 'phanan',
       twitter: 'notphanan',
       reposOfficial: [
@@ -311,7 +305,7 @@ order: 31
         'vuequery', 'vue-google-signin-button'
       ],
       links: [
-        'https://koel.phanan.net/'
+        'https://phanan.net/'
       ]
     }
   ]))
@@ -340,10 +334,7 @@ order: 31
     }
   ]
 
-  Vue.component('team-member', {
-    props: {
-      member: Object
-    },
+  var mixin = {
     methods: {
       minimizeLink: function (link) {
         return link
@@ -351,19 +342,22 @@ order: 31
           .replace(/\/$/, '')
       }
     }
+  }
+
+  Vue.component('member', {
+    template: document.getElementById('memberTemplate').innerHTML,
+    props: {
+      profile: Object
+    },
+    mixins: [mixin] 
   })
 
-  Vue.component('community-partner', {
+  Vue.component('partner', {
+    template: document.getElementById('memberTemplate').innerHTML,
     props: {
-      partner: Object
+      profile: Object
     },
-    methods: {
-      minimizeLink: function (link) {
-        return link
-          .replace(/^https?:\/\/(www\.)?/, '')
-          .replace(/\/$/, '')
-      }
-    }
+    mixins: [mixin]
   })
 
   new Vue({
