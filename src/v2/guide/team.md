@@ -6,6 +6,8 @@ order: 31
 
 {% raw %}
 <div id="team-members">
+  <h2 id="the-core-team">The Core Team</h2>
+
   <p>
     The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
   </p>
@@ -15,20 +17,20 @@ order: 31
     :key="member.github"
     :member="member"
     inline-template>
-    <div class="team-member">
-      <h2 :id="'team-member-' + member.name.toLowerCase().replace(/\W/g, '-')">
+    <div class="team-person">
+      <h3 :id="'team-person-' + member.name.toLowerCase().replace(/\W/g, '-')">
         {{ member.name }}
         <img
           v-if="member.image"
           :src="member.image"
           :alt="member.name"
         >
-      </h2>
+      </h3>
       <ul
         v-if="member.reposOfficial"
-        class="team-member-official-repos"
+        class="team-person-official-repos"
       >
-        <li class="team-member-category-label">Core Focus</li>
+        <li class="team-person-category-label">Core Focus</li>
         <li v-for="repo in member.reposOfficial">
           <a
             :href="'https://github.com/vuejs/' + repo"
@@ -40,7 +42,7 @@ order: 31
         </li>
       </ul>
       <ul v-if="member.github && member.reposPersonal">
-        <li class="team-member-category-label">Ecosystem</li>
+        <li class="team-person-category-label">Ecosystem</li>
         <li v-for="repo in member.reposPersonal">
           <a
             :href="'https://github.com/' + member.github + '/' + repo"
@@ -52,7 +54,7 @@ order: 31
         </li>
       </ul>
       <ul v-if="member.github || member.twitter">
-        <li class="team-member-category-label">Contact</li>
+        <li class="team-person-category-label">Contact</li>
         <li v-if="member.github">
           <a
             :href="'https://github.com/' + member.github"
@@ -73,7 +75,7 @@ order: 31
         </li>
       </ul>
       <ul v-if="member.work || member.links">
-        <li class="team-member-category-label">Work</li>
+        <li class="team-person-category-label">Work</li>
         <li v-if="member.work">
           <i class="fa fa-briefcase"></i>
           {{ member.work }}
@@ -81,16 +83,96 @@ order: 31
         <li v-for="link in member.links">
           <a :href="link" target="_blank">
             <i class="fa fa-link"></i>
-            {{
-              link
-                .replace(/^https?:\/\/(www\.)?/, '')
-                .replace(/\/$/, '')
-            }}
+            {{ minimizeLink(link) }}
           </a>
         </li>
       </ul>
     </div>
   </team-member>
+
+  <h2 id="community-partners">Community Partners</h2>
+
+  <p>
+    Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming news and features.
+  </p>
+
+  <community-partner
+    v-for="partner in partners"
+    :key="partner.github"
+    :partner="partner"
+    inline-template>
+    <div class="team-person">
+      <h3 :id="'team-person-' + partner.name.toLowerCase().replace(/\W/g, '-')">
+        {{ partner.name }}
+        <img
+          v-if="partner.image"
+          :src="partner.image"
+          :alt="partner.name"
+        >
+      </h3>
+      <ul
+        v-if="partner.reposOfficial"
+        class="team-person-official-repos"
+      >
+        <li class="team-person-category-label">Core Focus</li>
+        <li v-for="repo in partner.reposOfficial">
+          <a
+            :href="'https://github.com/vuejs/' + repo"
+            target="_blank"
+          >
+            <img src="/images/logo.png" alt="Vue">
+            {{ repo }}
+          </a>
+        </li>
+      </ul>
+      <ul v-if="partner.github && partner.reposPersonal">
+        <li class="team-person-category-label">Ecosystem</li>
+        <li v-for="repo in partner.reposPersonal">
+          <a
+            :href="'https://github.com/' + repo"
+            target="_blank"
+          >
+            <i class="fa fa-github"></i>
+            {{ repo }}
+          </a>
+        </li>
+      </ul>
+      <ul v-if="partner.github || partner.twitter">
+        <li class="team-person-category-label">Contact</li>
+        <li v-if="partner.github">
+          <a
+            :href="'https://github.com/' + partner.github"
+            target="_blank"
+          >
+            <i class="fa fa-github"></i>
+            {{ partner.github }}
+          </a>
+        </li>
+        <li v-if="partner.twitter">
+          <a
+            :href="'https://twitter.com/' + partner.twitter"
+            target="_blank"
+          >
+            <i class="fa fa-twitter"></i>
+            {{ partner.twitter }}
+          </a>
+        </li>
+      </ul>
+      <ul v-if="partner.work || partner.links">
+        <li class="team-person-category-label">Work</li>
+        <li v-if="partner.work">
+          <i class="fa fa-briefcase"></i>
+          {{ partner.work }}
+        </li>
+        <li v-for="link in partner.links">
+          <a :href="link" target="_blank">
+            <i class="fa fa-link"></i>
+            {{ minimizeLink(link) }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </community-partner>
 </div>
 
 <script>
@@ -184,18 +266,6 @@ order: 31
       ]
     },
     {
-      name: 'Sebastien Chopin',
-      image: 'https://avatars0.githubusercontent.com/u/904724?v=3&s=460',
-      github: 'Atinux',
-      twitter: 'Atinux',
-      reposPersonal: [
-        'nuxt/nuxt.js'
-      ],
-      links: [
-        'https://orion.sh/'
-      ]
-    },
-    {
       name: 'Rahul Kadyan',
       work: 'Headout',
       image: 'https://github.com/znck.png',
@@ -217,15 +287,6 @@ order: 31
       github: 'fnlctrl',
       reposOfficial: [
         'vue-router'
-      ]
-    },
-    {
-      name: 'Khary Sharpe',
-      github: 'kharysharpe',
-      twitter: 'kharysharpe',
-      links: [
-        'https://twitter.com/VueJsNews',
-        'http://www.kharysharpe.com/'
       ]
     },
     {
@@ -255,16 +316,61 @@ order: 31
     }
   ]))
 
+  var partners = [
+    {
+      name: 'Sebastien Chopin',
+      image: 'https://avatars0.githubusercontent.com/u/904724?v=3&s=460',
+      github: 'Atinux',
+      twitter: 'Atinux',
+      reposPersonal: [
+        'nuxt/nuxt.js'
+      ],
+      links: [
+        'https://orion.sh/'
+      ]
+    },
+    {
+      name: 'Khary Sharpe',
+      github: 'kharysharpe',
+      twitter: 'kharysharpe',
+      links: [
+        'https://twitter.com/VueJsNews',
+        'http://www.kharysharpe.com/'
+      ]
+    }
+  ]
+
   Vue.component('team-member', {
     props: {
       member: Object
+    },
+    methods: {
+      minimizeLink: function (link) {
+        return link
+          .replace(/^https?:\/\/(www\.)?/, '')
+          .replace(/\/$/, '')
+      }
+    }
+  })
+
+  Vue.component('community-partner', {
+    props: {
+      partner: Object
+    },
+    methods: {
+      minimizeLink: function (link) {
+        return link
+          .replace(/^https?:\/\/(www\.)?/, '')
+          .replace(/\/$/, '')
+      }
     }
   })
 
   new Vue({
     el: '#team-members',
     data: {
-      team: team
+      team: team,
+      partners: shuffle(partners)
     }
   })
 
