@@ -229,7 +229,7 @@ order: 31
       ]
     },
     {
-      name: 'Egoist',
+      name: 'EGOIST',
       github: 'egoist',
       twitter: 'rem_rin_rin',
       reposOfficial: [
