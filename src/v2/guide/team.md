@@ -281,7 +281,7 @@ order: 31
     {
       name: 'Blake Newman',
       work: 'Software Engineer @ Attest (askattest.com)',
-      github: 'blakenewman',
+      github: 'blake-newman',
       twitter: 'blake-newman',
       reposOfficial: [
         'vuex', 'vue-router', 'vue-loader'
