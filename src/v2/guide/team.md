@@ -90,7 +90,9 @@ order: 31
 <script id="memberTemplate" type="text/tmpl">
   <div class="vuer">
     <div class="avatar">
-      <img v-if="profile.image" :src="profile.image" :alt="profile.name" width=80 height=80>
+      <img v-if="profile.github" 
+        :src="'https://github.com/' + profile.github + '.png'" 
+        :alt="profile.name" width=80 height=80>
     </div>
     <div class="profile">
       <h3>{{ profile.name }}</h3>
@@ -173,7 +175,6 @@ order: 31
 (function () {
   var team = [{
     name: 'Evan You',
-    image: 'https://avatars3.githubusercontent.com/u/499550?v=3&s=460',
     github: 'yyx990803',
     twitter: 'youyuxi',
     work: 'Creator @ Vue.js',
@@ -185,7 +186,6 @@ order: 31
   team = team.concat(shuffle([
     {
       name: 'Chris Fritz',
-      image: 'https://avatars1.githubusercontent.com/u/2327556?v=3&s=460',
       github: 'chrisvfritz',
       twitter: 'chrisvfritz',
       work: 'Consultant',
@@ -198,7 +198,6 @@ order: 31
     },
     {
       name: 'Eduardo',
-      image: 'https://avatars0.githubusercontent.com/u/664177?v=3&s=460',
       github: 'posva',
       twitter: 'posva',
       work: 'Lead Instructor @ IronHack',
@@ -214,7 +213,6 @@ order: 31
     },
     {
       name: 'Jinjiang',
-      image: 'https://en.gravatar.com/userimage/13176194/461845e850f200dd434da75b198f0952.jpg?size=800',
       github: 'jinjiang',
       twitter: 'zhaojinjiang',
       work:'Alibaba',
@@ -236,7 +234,6 @@ order: 31
     {
       name: 'Katashin',
       work: 'oRo Co., Ltd.',
-      image: 'https://avatars1.githubusercontent.com/u/2194624?v=3&s=400',
       github: 'ktsn',
       twitter: 'ktsn',
       reposOfficial: [
@@ -245,7 +242,6 @@ order: 31
     },
     {
       name: 'Kazupon',
-      image: 'https://avatars0.githubusercontent.com/u/72989',
       github: 'kazupon',
       twitter: 'kazu_pon',
       work: 'CTO',
@@ -262,7 +258,6 @@ order: 31
     {
       name: 'Rahul Kadyan',
       work: 'Headout',
-      image: 'https://github.com/znck.png',
       github: 'znck',
       twitter: 'znck0',
       reposOfficial: [
@@ -286,7 +281,6 @@ order: 31
     {
       name: 'Blake Newman',
       work: 'Software Engineer @ Attest (askattest.com)',
-      image: 'https://pbs.twimg.com/profile_images/805492508826419200/tabo2HEa_400x400.jpg',
       github: 'blakenewman',
       twitter: 'blake-newman',
       reposOfficial: [
@@ -295,7 +289,6 @@ order: 31
     },
     {
       name: 'Phan An',
-      image: 'https://avatars0.githubusercontent.com/u/8056274?v=3&s=460',
       github: 'phanan',
       twitter: 'notphanan',
       reposOfficial: [
@@ -313,7 +306,6 @@ order: 31
   var partners = [
     {
       name: 'Sebastien Chopin',
-      image: 'https://avatars0.githubusercontent.com/u/904724?v=3&s=460',
       github: 'Atinux',
       twitter: 'Atinux',
       reposPersonal: [
