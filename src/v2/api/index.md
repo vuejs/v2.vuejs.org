@@ -1896,17 +1896,17 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
   - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
   - [Components - Cheap Static Components with v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## Atributos Especiais
 
 ### key
 
-- **Expects:** `string`
+- **Espera:** `string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  O atributo especial `key` é usado principalmente como um aviso para o algoritmo do virtual DOM do Vue identificar VNodes quando compara a nova lista de nós com a anterior. Sem `keys`, o Vue usa um algoritmo que minimiza a movimentação de elementos e tenta corrigir/reusar elementos do mesmo tipo no local tanto quanto possível. Com `keys`, ele irá reordenar os elementos baseado na ordem de mudança das `keys`, e elementos com `keys` que não estão mais presentes serão sempre removidos/destruídos.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Componentes filhos com pai em comum precisam ter **keys únicas**. `keys` duplicadas causarão erros de renderização.
 
-  The most common use case is combined with `v-for`:
+  O caso mais comum é combinado com o `v-for`:
 
   ``` html
   <ul>
@@ -1914,12 +1914,12 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  Também pode ser usado para forçar a substituição de um elemento/componente ao invés de reusa-lo. Isso pode ser útil quando você quiser:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Ativar corretamente os hooks do ciclo de vida de um componente.
+  - Ativar transições.
 
-  For example:
+  Por exemplo:
 
   ``` html
   <transition>
@@ -1927,62 +1927,62 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  Quanto `text` mudar, o `<span>` será substituído em vez de alterado, então a transição será ativada.
 
 ### ref
 
-- **Expects:** `string`
+- **Espera:** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` é usada para registrar a referência para um elemento ou um componente filho. A referência será registrada no objeto `$refs` do componente pai. Se usada em um elemento normal do DOM, a referência será aquele elemento; se usada em um componente filho, a referência será a instância do componente:
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
-  <p ref="p">hello</p>
+  <!-- vm.$refs.p será o nó do DOM-->
+  <p ref="p">Olá</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
+  <!-- vm.$refs.child será a instância do componente filho -->
   <child-comp ref="child"></child-comp>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  Quando usada em elementos/componentes com `v-for`, a referência registrada será um Array contendo nós do DOM ou instâncias de componentes.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Uma observação importante sobre o tempo do registro de `ref`: como as `refs` são criadas como resultados da função de renderização, você não pode acessá-las na renderização inicial - elas ainda não existem! `$refs` são não-reativas, portanto você não deve tentar usá-las em templates para *data-binding*.
 
-- **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Veja também:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
 
 ### slot
 
-- **Expects:** `string`
+- **Espera:** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  Usado dentro de conteúdos inseridos no componente filho para indicar a qual *named slot* o conteúdo pertence.
 
-  For detailed usage, see the guide section linked below.
+  Para maiores detalhes de uso, veja a sessão no guia linkado abaixo:
 
-- **See also:** [Named Slots](../guide/components.html#Named-Slots)
+- **Veja também:** [Named Slots](../guide/components.html#Named-Slots)
 
 ### is
 
-- **Expects:** `string`
+- **Espera:** `string`
 
-  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+  Usado para [componentes dinâmicos](../guide/components.html#Dynamic-Components) e para trabalhar [limitações dos templates do DOM](../guide/components.html#DOM-Template-Parsing-Caveats).
 
-  For example:
+  Por exemplo:
 
   ``` html
-  <!-- component changes when currentView changes -->
+  <!-- component é alterado quando o currentView é alterado -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because <my-row> would be invalid inside -->
-  <!-- a <table> element and so would be hoisted out      -->
+  <!-- necessário, porque <my-row> seria inválido dentro -->
+  <!-- do elemento <table> e seria "elevado" para fora (hoisted out) -->
   <table>
     <tr is="my-row"></tr>
   </table>
   ```
 
-  For detailed usage, follow the links in the description above.
+  Para maiores detalhes de uso, veja os links na descrição abaixo.
 
-- **See also:**
-  - [Dynamic Components](../guide/components.html#Dynamic-Components)
-  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+- **Veja também:**
+  - [Componentes Dinâmicos](../guide/components.html#Dynamic-Components)
+  - [Ressalvas do processamento do template do DOM](../guide/components.html#DOM-Template-Parsing-Caveats)
 
 ## Built-In Components
 
