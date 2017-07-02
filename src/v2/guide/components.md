@@ -432,6 +432,8 @@ The `type` can be one of the following native constructors:
 
 In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
 
+Since `props` are resolved first when creating a component, the `default` logic in properties cannot call the component's `methods` members or access its `computed` properties.
+
 When a prop validation fails, Vue will produce a console warning (if using the development build).
 
 ## Custom Events
