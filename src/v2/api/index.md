@@ -1902,9 +1902,9 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **Espera:** `string`
 
-  O atributo especial `key` é usado principalmente como um aviso para o algoritmo do virtual DOM do Vue para identificar VNodes quando compara a nova lista de nós com a anterior. Sem *keys*, o Vue usa um algoritmo que minimiza a movimentação de elementos e tenta corrigir/reusar elementos do mesmo tipo no local tanto quanto possível. Com *keys*, ele irá reordenar os elementos baseado na ordem de mudança das *keys*, e elementos com *keys* que não estão mais presentes serão sempre removidos/destruídos.
+  O atributo especial `key` é usado principalmente como um aviso para o algoritmo do virtual DOM do Vue para identificar VNodes quando compara a nova lista de nós com a anterior. Sem `keys`, o Vue usa um algoritmo que minimiza a movimentação de elementos e tenta corrigir/reusar elementos do mesmo tipo no local tanto quanto possível. Com `keys`, ele irá reordenar os elementos baseado na ordem de mudança das `keys`, e elementos com `keys` que não estão mais presentes serão sempre removidos/destruídos.
 
-  Componentes filhos com pai em comum precisam ter **`keys` únicas**. *Keys* duplicadas causarão erros de renderização.
+  Componentes filhos com pai em comum precisam ter **keys únicas**. `keys` duplicadas causarão erros de renderização.
 
   O caso mais comum é combinado com o `v-for`:
 
@@ -1972,7 +1972,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
   <component v-bind:is="currentView"></component>
 
   <!-- necessário, porque <my-row> seria inválido dentro -->
-  <!-- do elemento <table> e seria "elevado" para fora (*hoisted out*) -->
+  <!-- do elemento <table> e seria "elevado" para fora (hoisted out) -->
   <table>
     <tr is="my-row"></tr>
   </table>
