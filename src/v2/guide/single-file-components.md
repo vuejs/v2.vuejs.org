@@ -54,7 +54,7 @@ Si vous n'aimez pas l'idée des composants monofichiers, vous pouvez toujours ti
 
 Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des applications JavaScript avancées. Cela implique d'apprendre à utiliser quelques nouveaux outils si vous ne les connaissez pas déjà :
 
-- **Node Package Manager (NPM)**: Lisez le guide NPM [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) section _10: Uninstalling global packages_.
+- **Node Package Manager (npm)**: Lisez le guide npm [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) section _10: Uninstalling global packages_.
 
 - **JavaScript moderne avec ES2015/16**: Lisez le guide Babel [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). Vous n'avez pas besoin de mémoriser chacune des fonctionnalités maintenant, mais gardez cette page en référence pour pouvoir y revenir.
 

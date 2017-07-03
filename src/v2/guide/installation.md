@@ -31,13 +31,13 @@ Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera d�
 
 ### CDN
 
-Recommandé : [https://unpkg.com/vue](https://unpkg.com/vue), qui reflète la dernière version aussitôt qu'elle est publiée sur NPM. Vous pouvez également parcourir la source du package NPM sur [https://unpkg.com/vue/](https://unpkg.com/vue/).
+Recommandé : [https://unpkg.com/vue](https://unpkg.com/vue), qui reflète la dernière version aussitôt qu'elle est publiée sur npm. Vous pouvez également parcourir la source du package npm sur [https://unpkg.com/vue/](https://unpkg.com/vue/).
 
 Également disponible sur [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) ou [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mais ces deux services mettent du temps à se synchroniser ce qui signifie que la dernière version peut ne pas être encore disponible.
 
-## NPM
+## npm
 
-NPM est la méthode d'installation recommandée lors du développement de grosses applications avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [webpack](https://webpack.js.org/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
+npm est la méthode d'installation recommandée lors du développement de grosses applications avec Vue. Il s'associe bien avec des empaqueteurs de modules comme [webpack](https://webpack.js.org/) ou [Browserify](http://browserify.org/). Vue fournit également des outils d'accompagnement pour la rédaction de [Composants Mono-fichier](single-file-components.html).
 
 ``` bash
 # dernière version stable
@@ -63,7 +63,7 @@ $ npm run dev
 
 ## Explication des différents *builds*
 
-Dans le [dossier `dist/` du package NPM](https://unpkg.com/vue@latest/dist/) vous trouverrez plusieurs *builds* différents de Vue.js. Voici un aperçu des différences entre chacun d'eux :
+Dans le [dossier `dist/` du package npm](https://unpkg.com/vue@latest/dist/) vous trouverrez plusieurs *builds* différents de Vue.js. Voici un aperçu des différences entre chacun d'eux :
 
 | | UMD | CommonJS | ES Module |
 | --- | --- | --- | --- |
