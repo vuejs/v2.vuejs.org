@@ -382,7 +382,7 @@ order: 31
         orgUrl: 'https://www.monterail.com/'
       },
       reposPersonal: [
-        'vue-multiselect', 'vue-newsletter', 'vuelidate'
+        'vue-multiselect', 'monterail/vue-newsletter', 'vuelidate'
       ]
     }
   ]
