@@ -49,7 +49,7 @@
         &::after
           display: block
           content: ' '
-          margin-top: .5em
+          margin-top: .6em
       li
         &::after
           content: ' · '
@@ -57,14 +57,22 @@
         &:last-child::after
           content: ''
       .social
-        margin-top: 3px
-        font-size: 1.3em
         a
-          margin-right: 5px
+          display: inline-block
+          line-height: 1
+          vertical-align: middle
+          margin-right: 10px
           &.github
             color: #000
+            i
+              margin-right: 5px
           &.twitter
             color: #1da1f3
+            i
+              margin-right: 3px
+        i
+          vertical-align: text-bottom
+          font-size: 1.3em
 
 @media (max-width: 640px)
   #team-members

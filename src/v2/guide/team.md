@@ -34,7 +34,7 @@ order: 31
             <ul>
               <li v-for="repo in profile.reposPersonal">
                 <a :href="githubUrl(profile.github, repo)" target=_blank>
-                  {{ repo}}
+                  {{ repo }}
                 </a>
               </li>
             </ul>
@@ -60,10 +60,14 @@ order: 31
         </template>
         <footer v-if="profile.github || profile.twitter" class="social">
           <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
-            <i class="fa fa-github"></i>
+            <i class="fa fa-github"></i>{{
+              profile.github
+            }}
           </a>
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
-            <i class="fa fa-twitter"></i>
+            <i class="fa fa-twitter"></i>{{
+              profile.twitter
+            }}
           </a>
         </footer>
       </dl>
@@ -113,7 +117,7 @@ order: 31
       org: 'Vue.js'
     },
     reposOfficial: [
-      'vuejs/', 'vuejs-templates/'
+      'vuejs/*', 'vuejs-templates/*'
     ],
     links: [
       'https://www.patreon.com/evanyou'
@@ -279,7 +283,7 @@ order: 31
       github: 'LinusBorg',
       twitter: 'Linus_Borg',
       reposOfficial: [
-        'vuejs/', 'vuejs-templates/', 'vue-touch'
+        'vuejs/*', 'vuejs-templates/*', 'vue-touch'
       ],
       reposPersonal: [
         'portal-vue'
@@ -348,7 +352,7 @@ order: 31
         orgUrl: 'https://orion.sh'
       },
       reposPersonal: [
-        'nuxt/', 'nuxt-community/'
+        'nuxt/*', 'nuxt-community/*'
       ]
     },
     {
@@ -361,7 +365,7 @@ order: 31
         orgUrl: 'https://orion.sh'
       },
       reposPersonal: [
-        'nuxt/', 'nuxt-community/', 'vue-flexboxgrid'
+        'nuxt/*', 'nuxt-community/*', 'vue-flexboxgrid'
       ]
     },
     {
@@ -448,7 +452,10 @@ order: 31
         if (repo && repo.indexOf('/') !== -1) {
           // If the repo name has a slash, it must be an organization repo.
           // In such a case, we discard the (personal) handle.
-          return 'https://github.com/' + repo
+          return (
+            'https://github.com/' +
+            repo.replace(/\/\*$/, '')
+          )
         }
         return 'https://github.com/' + handle + '/' + (repo || '')
       }
