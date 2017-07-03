@@ -651,7 +651,7 @@ Which could also be written as:
 // ...
 computed: {
   buttonMessage: function () {
-    switch (docState) {
+    switch (this.docState) {
       case 'saved': return 'Edit'
       case 'edited': return 'Save'
       case 'editing': return 'Cancel'

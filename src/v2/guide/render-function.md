@@ -311,10 +311,11 @@ This is the cost of going lower-level, but it also gives you much more control o
 
 ### Event & Key Modifiers
 
-For the `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
 
 | Modifier(s) | Prefix |
 | ------ | ------ |
+| `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |
