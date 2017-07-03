@@ -274,7 +274,7 @@ order: 31
       ]
     },
     {
-      name: 'Thorsten (Linusborg)',
+      name: 'Linusborg',
       title: 'Hive-Mind Community Wrangler (Probably a Bot)',
       github: 'LinusBorg',
       twitter: 'Linus_Borg',
