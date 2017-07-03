@@ -60,14 +60,10 @@ order: 31
         </template>
         <footer v-if="profile.github || profile.twitter" class="social">
           <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
-            <i class="fa fa-github"></i>{{
-              profile.github
-            }}
+            <i class="fa fa-github"></i>
           </a>
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
-            <i class="fa fa-twitter"></i>{{
-              profile.twitter
-            }}
+            <i class="fa fa-twitter"></i>
           </a>
         </footer>
       </dl>
