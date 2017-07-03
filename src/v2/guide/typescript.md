@@ -6,15 +6,15 @@ order: 25
 
 ## Changements importants dans la 2.2 pour les utilisateurs TS + webpack 2
 
-Dans Vue 2.2 nous avons introduit des fichiers de distribution en tant que modules ES, qui sont utilisés par défaut par webpack 2. Malheureusement, cela a introduit un changement de non retrocompatiblilité non souhaité car avec TypeScript + webpack 2, `import Vue = require('vue')` retourne maintenant un objet module ES synthétique au lieu de Vue lui-même.
+Dans Vue 2.2 nous avons introduit des fichiers de distribution en tant que modules ES, qui seront utilisés par défaut par webpack 2. Malheureusement, cela a introduit un changement de non retrocompatiblilité non souhaité car avec TypeScript + webpack 2, `import Vue = require('vue')` retourne maintenant un objet module ES synthétique au lieu de Vue lui-même.
 
-Nous avons prévu de bouger toutes les déclarations officielles d'export dans le style ES dans le futur. S'il vous plait regardez [la configuration recommandée](#Configuration-recommandee) ci-dessous pour une mise en place future.
+Nous avons prévu de bouger toutes les déclarations officielles d'export dans le style ES dans le futur. Veuillez consulter [la configuration recommandée](#Configuration-recommandee) ci-dessous qui est parée pour les évolutions futures.
 
 ## Déclaration officielle dans les packages npm
 
-Un système de typage statique peut aider à prévenir des erreurs d'exécutions potentielles, et tout spécialement pour les applications qui grandissent. C'est pourquoi Vue est fourni avec des déclarations de types officielles]((https://github.com/vuejs/vue/tree/dev/types) pour [TypeScript](https://www.typescriptlang.org/), et pas seulement pour le cœur de Vue, mais aussi pour [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) et [vuex](https://github.com/vuejs/vuex/tree/dev/types).
+Un système de typage statique peut aider à prévenir des erreurs d'exécutions potentielles, et particulièrement quand les applications grandissent. C'est pourquoi Vue est fourni avec des déclarations de types officielles]((https://github.com/vuejs/vue/tree/dev/types) pour [TypeScript](https://www.typescriptlang.org/), et pas seulement pour le cœur de Vue, mais aussi pour [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) et [vuex](https://github.com/vuejs/vuex/tree/dev/types).
 
-Puisque ceux-ci sont [publiés sur npm](https://unpkg.com/vue/types/), et que la dernière version de TypeScript sait comment résoudre des déclarations de type dans des packages npm, cela signifie qu'installer ceux-ci via npm ne requiert aucun outil supplémentaire pour les utiliser avec TypeScript dans Vue.
+Puisque ceux-ci sont [publiés sur npm](https://unpkg.com/vue/types/), et que la dernière version de TypeScript sait comment résoudre des déclarations de type dans des packages npm, cela signifie qu'installer ceux-ci via npm ne requiert aucun outil supplémentaire pour utiliser TypeScript avec Vue.
 
 ## Configuration recommandée
 
@@ -33,7 +33,7 @@ Puisque ceux-ci sont [publiés sur npm](https://unpkg.com/vue/types/), et que la
 }
 ```
 
-Notez que l'option `allowSyntheticDefaultImports` nous permet d'utiliser l'import comme cela :
+Notez que l'option `allowSyntheticDefaultImports` nous permet d'utiliser l'import comme ceci :
 
 ``` js
 import Vue from 'vue'
@@ -45,7 +45,7 @@ plutôt que comme cela :
 import Vue = require('vue')
 ```
 
-La forme ES est la syntaxe recommandée pour l'appel de modules car elle est consistante avec l'utilisation ES. Nous planifions dans le futur de transformer toutes les déclarations avec l'export de style ES.
+La premiere (syntaxe de module ES) est recommandée car elle est cohérente avec les recommandations d'usage ES. Nous planifions à l'avenir de changer toutes les déclarations officielles pour utiliser les exports dans le style ES.
 
 De plus, si vous utilisez TypeScript avec webpack 2, les options suivantes sont également recommandées :
 
@@ -59,13 +59,13 @@ De plus, si vous utilisez TypeScript avec webpack 2, les options suivantes sont 
 }
 ```
 
-Ceci dit à TypeScript de laisser les instructions d'import de modules ES intacte, ce qui permet à webpack 2 de tirer parti du *tree-shaking* basé sur les modules ES.
+Ceci demande à TypeScript de laisser les instructions d'import de modules ES intactes, ce qui permet à webpack 2 de tirer parti du *tree-shaking* basé sur les modules ES.
 
 Voir [les options de compilation TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html) pour plus de détails.
 
 ## Utiliser la déclaration de type Vue
 
-La définition de type de Vue exporte beaucoup de [déclarations de type](https://github.com/vuejs/vue/blob/dev/types/index.d.ts). Par exemple, pour annoter un objet d'options de composant exporté (par ex. dans un fichier `.vue`) on peut faire cela :
+La définition de type de Vue exporte de nombreuses [déclarations de type](https://github.com/vuejs/vue/blob/dev/types/index.d.ts) utiles. Par exemple, pour annoter l'objet d'options d'un composant exporté (par ex. dans un fichier `.vue`) :
 
 ``` ts
 import Vue, { ComponentOptions } from 'vue'
@@ -103,7 +103,7 @@ export default {
       window.alert(this.message)
     }
   }
-// Nous devons explicitement annoter les objet d'options exportées
+// Nous devons explicitement annoter l'objet d'options exporté
 // avec le type `MyComponent`
 } as ComponentOptions<MyComponent>
 ```
