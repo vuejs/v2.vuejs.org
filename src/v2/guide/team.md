@@ -345,7 +345,7 @@ order: 31
         orgUrl: 'https://orion.sh'
       },
       reposPersonal: [
-        'nuxt/nuxt.js'
+        'nuxt/', 'nuxt-community/'
       ]
     },
     {
@@ -358,7 +358,7 @@ order: 31
         orgUrl: 'https://orion.sh'
       },
       reposPersonal: [
-        'nuxt/nuxt.js', 'nuxt-community/starter-template', 'vue-flexboxgrid'
+        'nuxt/', 'nuxt-community/', 'vue-flexboxgrid'
       ]
     },
     {
