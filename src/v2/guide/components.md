@@ -1065,7 +1065,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [Webpack 代码分割功能](https://doc.webpack-china.org/guides/code-splitting-require/)来使用异步组件：
+工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [Webpack 代码分割功能](https://doc.webpack-china.org/guides/code-splitting/)来使用异步组件：
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {

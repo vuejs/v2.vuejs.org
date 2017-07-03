@@ -307,13 +307,14 @@ This is the cost of going lower-level, but it also gives you much more control o
 
 ### Event & Key Modifiers
 
-对于 `.capture` 和 `.once` 这样的事件修饰符, Vue 提供了用于 `on` 的前缀:
+对于 `.passive`, `.capture` 和 `.once` 这样的事件修饰符, Vue 提供了用于 `on` 的前缀:
 
-| Modifier(s) | Prefix |
+| 修饰符 | 前缀 |
 | ------ | ------ |
+| `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
-| `.capture.once` or<br>`.once.capture` | `~!` |
+| `.capture.once` 或<br>`.once.capture` | `~!` |
 
 示例:
 
