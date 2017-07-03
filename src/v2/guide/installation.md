@@ -35,9 +35,9 @@ Recommended: [https://unpkg.com/vue](https://unpkg.com/vue), which will reflect 
 
 Also available on [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), but these two services take some time to sync so the latest release may not be available yet.
 
-## NPM
+## npm
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+npm is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
 
 ``` bash
 # latest stable
@@ -63,7 +63,7 @@ $ npm run dev
 
 ## Explanation of Different Builds
 
-In the [`dist/` directory of the NPM package](https://unpkg.com/vue@latest/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+In the [`dist/` directory of the npm package](https://unpkg.com/vue@latest/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
 
 | | UMD | CommonJS | ES Module |
 | --- | --- | --- | --- |
