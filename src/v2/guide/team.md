@@ -246,7 +246,7 @@ order: 31
     },
     {
       name: 'Blake Newman',
-      title: 'Experiential Specialist & Code Deleter',
+      title: 'Performance Specializer & Code Deleter',
       work: {
         role: 'Software Engineer',
         org: 'Attest',
