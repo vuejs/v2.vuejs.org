@@ -385,7 +385,7 @@ order: 31
         orgUrl: 'https://www.monterail.com/'
       },
       reposPersonal: [
-        'vue-multiselect', 'monterail/vue-newsletter', 'vuelidate'
+        'monterail/vue-multiselect', 'monterail/vue-newsletter', 'monterail/vuelidate'
       ]
     }, {
       name: 'Alex Kyriakidis',
