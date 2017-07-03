@@ -112,6 +112,9 @@ order: 31
       role: 'Creator',
       org: 'Vue.js'
     },
+    reposOfficial: [
+      'vuejs/', 'vuejs-templates/'
+    ],
     links: [
       'https://www.patreon.com/evanyou'
     ]
@@ -383,6 +386,20 @@ order: 31
       },
       reposPersonal: [
         'vue-multiselect', 'monterail/vue-newsletter', 'vuelidate'
+      ]
+    }, {
+      name: 'Alex Kyriakidis',
+      title: 'Vueducator Extraordinaire',
+      github: 'hootlex',
+      twitter: 'hootlex',
+      work: {
+        role: 'Consultant / Author'
+      },
+      reposPersonal: [
+        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
+      ],
+      links: [
+        'https://vuejsfeed.com/', 'https://vueschool.io/'
       ]
     }
   ]
