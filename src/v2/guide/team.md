@@ -431,6 +431,18 @@ order: 31
       reposPersonal: [
         'nuxt/nuxt.js', 'nuxt-community/modules', 'bootstrap-vue/bootstrap-vue'
       ]
+    },
+    {
+      name: 'Yi Yang',
+      title: 'Interface Elementologist',
+      github: 'Leopoldthecoder',
+      work: {
+        org: 'ele.me',
+        orgUrl: 'https://www.ele.me',
+      },
+      reposPersonal: [
+        'elemefe/element', 'elemefe/mint-ui'
+      ]
     }
   ]
 
