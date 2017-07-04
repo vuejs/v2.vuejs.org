@@ -216,8 +216,8 @@ order: 31
       name: 'Rahul Kadyan',
       title: 'Ecosystem Glue Chemist',
       work: {
-        org: 'Headout',
-        orgUrl: 'https://www.headout.com/'
+        org: 'Myntra',
+        orgUrl: 'https://www.myntra.com/'
       },
       github: 'znck',
       twitter: 'znck0',
