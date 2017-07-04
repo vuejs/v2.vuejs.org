@@ -340,7 +340,7 @@ order: 31
       title: 'Details Deity & Bug Surgeon',
       github: 'defcc',
       work: {
-        org: 'zbj.com'
+        org: 'zbj.com',
         orgUrl: 'http://www.zbj.com/'
       },
       reposOfficial: [
