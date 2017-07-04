@@ -165,6 +165,9 @@ order: 31
         org: 'Alibaba',
         orgUrl: 'https://www.alibaba.com/'
       },
+      reposOfficial: [
+        'cn.vuejs.org'
+      ],
       reposPersonal: [
         'apache/incubator-weex'
       ]
