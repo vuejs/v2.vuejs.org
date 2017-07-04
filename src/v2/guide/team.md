@@ -334,6 +334,21 @@ order: 31
       links: [
         'https://www.eddyerburgh.me'
       ]
+    },
+    {
+      name: 'defcc',
+      title: 'Details Deity & Bug Surgeon',
+      github: 'defcc',
+      work: {
+        org: 'zbj.com'
+        orgUrl: 'http://www.zbj.com/'
+      },
+      reposOfficial: [
+        'vue', 'vuejs.org', 'cn.vuejs.org'
+      ],
+      reposPersonal: [
+        'weexteam/weex-vue-framework', 'into-vue'
+      ]
     }
   ]))
 
