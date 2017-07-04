@@ -5,184 +5,116 @@ order: 31
 ---
 
 {% raw %}
+<script id="vuer-profile-template" type="text/template">
+  <div class="vuer">
+    <div class="avatar">
+      <img v-if="profile.github"
+        :src="'https://github.com/' + profile.github + '.png'"
+        :alt="profile.name" width=80 height=80>
+    </div>
+    <div class="profile">
+      <h3>
+        {{ profile.name }}
+        <sup v-if="profile.title" v-html="profile.title"></sup>
+      </h3>
+      <dl>
+        <template v-if="profile.reposOfficial">
+          <dt>Core focus</dt>
+          <dd>
+            <ul>
+              <li v-for="repo in profile.reposOfficial">
+                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo }}</a>
+              </li>
+            </ul>
+          </dd>
+        </template>
+        <template v-if="profile.github && profile.reposPersonal">
+          <dt>Ecosystem</dt>
+          <dd>
+            <ul>
+              <li v-for="repo in profile.reposPersonal">
+                <a :href="githubUrl(profile.github, repo)" target=_blank>
+                  {{ repo }}
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </template>
+        <template v-if="profile.work">
+          <dt>
+            <i class="fa fa-briefcase"></i>
+          </dt>
+          <dd v-html="workHtml"></dd>
+        </template>
+        <template v-if="profile.links">
+          <dt>
+            <i class="fa fa-link"></i>
+          </dt>
+          <dd>
+            <ul>
+              <li v-for="link in profile.links">
+                <a :href="link" target=_blank>{{ minimizeLink(link) }}</a>
+              </li>
+            </ul>
+          </dd>
+        </template>
+        <footer v-if="profile.github || profile.twitter" class="social">
+          <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
+            <i class="fa fa-github"></i>
+          </a>
+          <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </footer>
+      </dl>
+    </div>
+  </div>
+</script>
+
 <div id="team-members">
-  <h2 id="the-core-team">The Core Team</h2>
+  <div class="team">
+    <h2 id="the-core-team">The Core Team</h2>
 
-  <p>
-    The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
-  </p>
+    <p>
+      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+    </p>
 
-  <team-member
-    v-for="member in team"
-    :key="member.github"
-    :member="member"
-    inline-template>
-    <div class="team-person">
-      <h3 :id="'team-person-' + member.name.toLowerCase().replace(/\W/g, '-')">
-        {{ member.name }}
-        <img
-          v-if="member.image"
-          :src="member.image"
-          :alt="member.name"
-        >
-      </h3>
-      <ul
-        v-if="member.reposOfficial"
-        class="team-person-official-repos"
-      >
-        <li class="team-person-category-label">Core Focus</li>
-        <li v-for="repo in member.reposOfficial">
-          <a
-            :href="'https://github.com/vuejs/' + repo"
-            target="_blank"
-          >
-            <img src="/images/logo.png" alt="Vue">
-            {{ repo }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="member.github && member.reposPersonal">
-        <li class="team-person-category-label">Ecosystem</li>
-        <li v-for="repo in member.reposPersonal">
-          <a
-            :href="'https://github.com/' + member.github + '/' + repo"
-            target="_blank"
-          >
-            <i class="fa fa-github"></i>
-            {{ repo }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="member.github || member.twitter">
-        <li class="team-person-category-label">Contact</li>
-        <li v-if="member.github">
-          <a
-            :href="'https://github.com/' + member.github"
-            target="_blank"
-          >
-            <i class="fa fa-github"></i>
-            {{ member.github }}
-          </a>
-        </li>
-        <li v-if="member.twitter">
-          <a
-            :href="'https://twitter.com/' + member.twitter"
-            target="_blank"
-          >
-            <i class="fa fa-twitter"></i>
-            {{ member.twitter }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="member.work || member.links">
-        <li class="team-person-category-label">Work</li>
-        <li v-if="member.work">
-          <i class="fa fa-briefcase"></i>
-          {{ member.work }}
-        </li>
-        <li v-for="link in member.links">
-          <a :href="link" target="_blank">
-            <i class="fa fa-link"></i>
-            {{ minimizeLink(link) }}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </team-member>
+    <vuer-profile
+      v-for="profile in team"
+      :key="profile.github"
+      :profile="profile"
+    ></vuer-profile>
+  </div>
 
-  <h2 id="community-partners">Community Partners</h2>
+  <div class="team">
+    <h2 id="community-partners">Community Partners</h2>
 
-  <p>
-    Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming news and features.
-  </p>
+    <p>
+      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+    </p>
 
-  <community-partner
-    v-for="partner in partners"
-    :key="partner.github"
-    :partner="partner"
-    inline-template>
-    <div class="team-person">
-      <h3 :id="'team-person-' + partner.name.toLowerCase().replace(/\W/g, '-')">
-        {{ partner.name }}
-        <img
-          v-if="partner.image"
-          :src="partner.image"
-          :alt="partner.name"
-        >
-      </h3>
-      <ul
-        v-if="partner.reposOfficial"
-        class="team-person-official-repos"
-      >
-        <li class="team-person-category-label">Core Focus</li>
-        <li v-for="repo in partner.reposOfficial">
-          <a
-            :href="'https://github.com/vuejs/' + repo"
-            target="_blank"
-          >
-            <img src="/images/logo.png" alt="Vue">
-            {{ repo }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="partner.github && partner.reposPersonal">
-        <li class="team-person-category-label">Ecosystem</li>
-        <li v-for="repo in partner.reposPersonal">
-          <a
-            :href="'https://github.com/' + repo"
-            target="_blank"
-          >
-            <i class="fa fa-github"></i>
-            {{ repo }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="partner.github || partner.twitter">
-        <li class="team-person-category-label">Contact</li>
-        <li v-if="partner.github">
-          <a
-            :href="'https://github.com/' + partner.github"
-            target="_blank"
-          >
-            <i class="fa fa-github"></i>
-            {{ partner.github }}
-          </a>
-        </li>
-        <li v-if="partner.twitter">
-          <a
-            :href="'https://twitter.com/' + partner.twitter"
-            target="_blank"
-          >
-            <i class="fa fa-twitter"></i>
-            {{ partner.twitter }}
-          </a>
-        </li>
-      </ul>
-      <ul v-if="partner.work || partner.links">
-        <li class="team-person-category-label">Work</li>
-        <li v-if="partner.work">
-          <i class="fa fa-briefcase"></i>
-          {{ partner.work }}
-        </li>
-        <li v-for="link in partner.links">
-          <a :href="link" target="_blank">
-            <i class="fa fa-link"></i>
-            {{ minimizeLink(link) }}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </community-partner>
+    <vuer-profile
+      v-for="profile in partners"
+      :key="profile.github"
+      :profile="profile"
+    ></vuer-profile>
+  </div>
 </div>
 
 <script>
 (function () {
   var team = [{
     name: 'Evan You',
-    image: 'https://avatars3.githubusercontent.com/u/499550?v=3&s=460',
+    title: 'Benevolent Dictator For Life',
     github: 'yyx990803',
     twitter: 'youyuxi',
-    work: 'Creator @ Vue.js',
+    work: {
+      role: 'Creator',
+      org: 'Vue.js'
+    },
+    reposOfficial: [
+      'vuejs/*', 'vuejs-templates/*'
+    ],
     links: [
       'https://www.patreon.com/evanyou'
     ]
@@ -191,10 +123,12 @@ order: 31
   team = team.concat(shuffle([
     {
       name: 'Chris Fritz',
-      image: 'https://avatars1.githubusercontent.com/u/2327556?v=3&s=460',
+      title: 'Good Word Putter-Togetherer',
       github: 'chrisvfritz',
       twitter: 'chrisvfritz',
-      work: 'Consultant',
+      work: {
+        role: 'Educator & Consultant'
+      },
       reposOfficial: [
         'vuejs.org', 'vue-migration-helper'
       ],
@@ -204,10 +138,14 @@ order: 31
     },
     {
       name: 'Eduardo',
-      image: 'https://avatars0.githubusercontent.com/u/664177?v=3&s=460',
+      title: 'Real-Time Rerouter',
       github: 'posva',
       twitter: 'posva',
-      work: 'Lead Instructor @ IronHack',
+      work: {
+        role: 'Lead Instructor',
+        org: 'IronHack',
+        orgUrl: 'https://www.ironhack.com/'
+      },
       reposOfficial: [
         'vuefire', 'vue-router'
       ],
@@ -220,16 +158,20 @@ order: 31
     },
     {
       name: 'Jinjiang',
-      image: 'https://en.gravatar.com/userimage/13176194/461845e850f200dd434da75b198f0952.jpg?size=800',
+      title: 'Mobile Extrapolator',
       github: 'jinjiang',
       twitter: 'zhaojinjiang',
-      work: 'Alibaba',
+      work: {
+        org: 'Alibaba',
+        orgUrl: 'https://www.alibaba.com/'
+      },
       reposPersonal: [
-        'Weex'
+        'apache/incubator-weex'
       ]
     },
     {
       name: 'EGOIST',
+      title: 'Build Tool Simplificator',
       github: 'egoist',
       twitter: 'rem_rin_rin',
       reposOfficial: [
@@ -241,8 +183,11 @@ order: 31
     },
     {
       name: 'Katashin',
-      work: 'oRo Co., Ltd.',
-      image: 'https://avatars1.githubusercontent.com/u/2194624?v=3&s=400',
+      title: 'One of a Type State Manager',
+      work: {
+        org: 'oRo Co., Ltd.',
+        orgUrl: 'https://www.oro.com'
+      },
       github: 'ktsn',
       twitter: 'ktsn',
       reposOfficial: [
@@ -251,10 +196,12 @@ order: 31
     },
     {
       name: 'Kazupon',
-      work: 'CTO',
-      image: 'https://avatars0.githubusercontent.com/u/72989',
+      title: 'Validated Internationalizing Missionary',
       github: 'kazupon',
       twitter: 'kazu_pon',
+      work: {
+        role: 'CTO'
+      },
       reposOfficial: [
         'jp.vuejs.org'
       ],
@@ -267,8 +214,11 @@ order: 31
     },
     {
       name: 'Rahul Kadyan',
-      work: 'Headout',
-      image: 'https://github.com/znck.png',
+      title: 'Ecosystem Glue Chemist',
+      work: {
+        org: 'Headout',
+        orgUrl: 'https://www.headout.com/'
+      },
       github: 'znck',
       twitter: 'znck0',
       reposOfficial: [
@@ -283,7 +233,12 @@ order: 31
     },
     {
       name: 'Alan Song',
-      work: 'Cofounder @ Futurenda',
+      title: 'Regent of Routing',
+      work: {
+        role: 'Cofounder',
+        org: 'Futurenda',
+        orgUrl: 'https://www.futurenda.com/'
+      },
       github: 'fnlctrl',
       reposOfficial: [
         'vue-router'
@@ -291,9 +246,13 @@ order: 31
     },
     {
       name: 'Blake Newman',
-      work: 'Software Engineer @ Attest (askattest.com)',
-      image: 'https://pbs.twimg.com/profile_images/805492508826419200/tabo2HEa_400x400.jpg',
-      github: 'blakenewman',
+      title: 'Performance Specializer & Code Deleter',
+      work: {
+        role: 'Software Engineer',
+        org: 'Attest',
+        orgUrl: 'https://www.askattest.com/'
+      },
+      github: 'blake-newman',
       twitter: 'blake-newman',
       reposOfficial: [
         'vuex', 'vue-router', 'vue-loader'
@@ -301,7 +260,7 @@ order: 31
     },
     {
       name: 'Phan An',
-      image: 'https://www.dropbox.com/s/u9tl5lkb7s8dw0b/avatar.jpg?dl=1',
+      title: 'Backend Designer & Process Poet',
       github: 'phanan',
       twitter: 'notphanan',
       reposOfficial: [
@@ -311,7 +270,84 @@ order: 31
         'vuequery', 'vue-google-signin-button'
       ],
       links: [
-        'https://koel.phanan.net/'
+        'https://phanan.net/'
+      ]
+    },
+    {
+      name: 'Linusborg',
+      title: 'Hive-Mind Community Wrangler (Probably a Bot)',
+      github: 'LinusBorg',
+      twitter: 'Linus_Borg',
+      reposOfficial: [
+        'vuejs/*', 'vuejs-templates/*', 'vue-touch'
+      ],
+      reposPersonal: [
+        'portal-vue'
+      ],
+      links: [
+        'https://forum.vuejs.org/'
+      ]
+    },
+    {
+      name: 'Denis Karabaza',
+      title: 'Director of Directives (Emoji-Human Hybrid)',
+      github: 'simplesmiler',
+      twitter: 'simplesmiler',
+      work: {
+        role: 'Software Engineer',
+        org: 'Neolant',
+        orgUrl: 'http://neolant.ru/'
+      },
+      reposPersonal: [
+        'vue-focus', 'vue-clickaway'
+      ],
+      links: [
+        'mailto:denis.karabaza@gmail.com'
+      ]
+    },
+    {
+      name: 'Guillaume Chau',
+      title: 'Client-Server Astronaut',
+      github: 'Akryum',
+      twitter: 'Akryum',
+      reposOfficial: [
+        'vue-curated'
+      ],
+      reposPersonal: [
+        'vue-apollo', 'vue-meteor', 'vue-virtual-scroller'
+      ]
+    },
+    {
+      name: 'Edd Yerburgh',
+      title: 'Testatron Alpha 9000',
+      github: 'eddyerburgh',
+      twitter: 'EddYerburgh',
+      work: {
+        role: 'Full Stack Developer'
+      },
+      reposOfficial: [
+        'vue-test-utils'
+      ],
+      reposPersonal: [
+        'avoriaz'
+      ],
+      links: [
+        'https://www.eddyerburgh.me'
+      ]
+    },
+    {
+      name: 'defcc',
+      title: 'Details Deity & Bug Surgeon',
+      github: 'defcc',
+      work: {
+        org: 'zbj.com',
+        orgUrl: 'http://www.zbj.com/'
+      },
+      reposOfficial: [
+        'vue', 'vuejs.org', 'cn.vuejs.org'
+      ],
+      reposPersonal: [
+        'weexteam/weex-vue-framework', 'into-vue'
       ]
     }
   ]))
@@ -319,49 +355,134 @@ order: 31
   var partners = [
     {
       name: 'Sebastien Chopin',
-      image: 'https://avatars0.githubusercontent.com/u/904724?v=3&s=460',
+      title: '#1 Nuxt Brother',
       github: 'Atinux',
       twitter: 'Atinux',
+      work: {
+        org: 'Orion',
+        orgUrl: 'https://orion.sh'
+      },
       reposPersonal: [
-        'nuxt/nuxt.js'
-      ],
-      links: [
-        'https://orion.sh/'
+        'nuxt/*', 'nuxt-community/*'
+      ]
+    },
+    {
+      name: 'Alexandre Chopin',
+      title: '#1 Nuxt Brother',
+      github: 'alexchopin',
+      twitter: 'ChopinAlexandre',
+      work: {
+        org: 'Orion',
+        orgUrl: 'https://orion.sh'
+      },
+      reposPersonal: [
+        'nuxt/*', 'nuxt-community/*', 'vue-flexboxgrid'
       ]
     },
     {
       name: 'Khary Sharpe',
+      title: 'Viral Newscaster',
       github: 'kharysharpe',
       twitter: 'kharysharpe',
       links: [
         'https://twitter.com/VueJsNews',
         'http://www.kharysharpe.com/'
       ]
+    },
+    {
+      name: 'Damian Dulisz',
+      title: 'Dark Mage of Plugins, News, and Confs',
+      github: 'shentao',
+      twitter: 'DamianDulisz',
+      work: {
+        role: 'Senior Frontend Developer',
+        org: 'Monterail',
+        orgUrl: 'https://www.monterail.com/'
+      },
+      reposPersonal: [
+        'monterail/vue-multiselect', 'monterail/vue-newsletter', 'monterail/vuelidate'
+      ]
+    }, {
+      name: 'Alex Kyriakidis',
+      title: 'Vueducator Extraordinaire',
+      github: 'hootlex',
+      twitter: 'hootlex',
+      work: {
+        role: 'Consultant / Author'
+      },
+      reposPersonal: [
+        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
+      ],
+      links: [
+        'https://vuejsfeed.com/', 'https://vueschool.io/'
+      ]
+    },
+    {
+      name: 'Pooya Parsa',
+      title: 'Nuxtification Modularizer',
+      github: 'pi0',
+      twitter: '_pi0_',
+      work: {
+        role: 'Technical Advisor',
+        org: 'Fandogh (AUT University)',
+        orgUrl: 'https://fandogh.org'
+      },
+      reposPersonal: [
+        'nuxt/nuxt.js', 'nuxt-community/modules', 'bootstrap-vue/bootstrap-vue'
+      ]
     }
   ]
 
-  Vue.component('team-member', {
+  Vue.component('vuer-profile', {
+    template: '#vuer-profile-template',
     props: {
-      member: Object
+      profile: Object
     },
-    methods: {
-      minimizeLink: function (link) {
-        return link
-          .replace(/^https?:\/\/(www\.)?/, '')
-          .replace(/\/$/, '')
+    computed: {
+      workHtml: function () {
+        var work = this.profile.work
+        var html = ''
+        if (work.orgUrl) {
+          html += '<a href="' + work.orgUrl + '" target="_blank">'
+          if (work.org) {
+            html += work.org
+          } else {
+            this.minimizeLink(work.orgUrl)
+          }
+          html += '</a>'
+        } else if (work.org) {
+          html += work.org
+        }
+        if (work.role) {
+          if (html.length > 0) {
+            html = work.role + ' @ ' + html
+          } else {
+            html = work.role
+          }
+        }
+        return html
       }
-    }
-  })
-
-  Vue.component('community-partner', {
-    props: {
-      partner: Object
     },
     methods: {
       minimizeLink: function (link) {
         return link
           .replace(/^https?:\/\/(www\.)?/, '')
           .replace(/\/$/, '')
+          .replace(/^mailto:/, '')
+      },
+      /**
+       * Generate a GitHub URL using a repo and a handle.
+       */
+      githubUrl: function (handle, repo) {
+        if (repo && repo.indexOf('/') !== -1) {
+          // If the repo name has a slash, it must be an organization repo.
+          // In such a case, we discard the (personal) handle.
+          return (
+            'https://github.com/' +
+            repo.replace(/\/\*$/, '')
+          )
+        }
+        return 'https://github.com/' + handle + '/' + (repo || '')
       }
     }
   })
@@ -378,13 +499,17 @@ order: 31
   * Shuffles array in place.
   * @param {Array} a items The array containing the items.
   */
-  function shuffle(a) {
-    var j, x, i;
+  function shuffle (a) {
+    a = a.concat([])
+    if (window.location.hostname === 'localhost') {
+      return a
+    }
+    var j, x, i
     for (i = a.length; i; i--) {
-      j = Math.floor(Math.random() * i);
-      x = a[i - 1];
-      a[i - 1] = a[j];
-      a[j] = x;
+      j = Math.floor(Math.random() * i)
+      x = a[i - 1]
+      a[i - 1] = a[j]
+      a[j] = x
     }
     return a
   }
