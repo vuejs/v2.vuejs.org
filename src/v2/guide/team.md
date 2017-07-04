@@ -33,9 +33,7 @@ order: 31
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="githubUrl(profile.github, repo)" target=_blank>
-                  {{ repo }}
-                </a>
+                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo }}</a>
               </li>
             </ul>
           </dd>
