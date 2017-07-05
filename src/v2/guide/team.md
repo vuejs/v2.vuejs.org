@@ -204,7 +204,7 @@ order: 31
         role: 'CTO & Full Stack Developer'
       },
       reposOfficial: [
-        'jp.vuejs.org'
+        'vuejs.org', 'jp.vuejs.org'
       ],
       reposPersonal: [
         'vue-i18n', 'vue-i18n-loader', 'vue-validator'
