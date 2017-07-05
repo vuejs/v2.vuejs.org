@@ -8,7 +8,7 @@ order: 15
 
 在绝大多数情况下，Vue 推荐你使用模板来组织构建 HTML。然而在一些场景下，你确实需要完整的 JavaScript 编程能力。作为模板的替代增强，你可以使用**render 函数**，它更接近编译器。
 
-让我们深入一个 `render` 函数是最佳实践的简单例子。假设你要生成固定的标题：
+让我们深入一个例子，其中，使用 `render` 函数是比较推荐的方式。假设你要生成固定的标题：
 
 ``` html
 <h1>
@@ -347,13 +347,13 @@ on: {
     // 如果触发事件的元素不是事件绑定的元素
     // 则返回
     if (event.target !== event.currentTarget) return
-    // 如果按下去的不是enter键或者
-    // 没有同时按下shift键
+    // 如果按下去的不是 enter 键或者
+    // 没有同时按下 shift 键
     // 则返回
     if (!event.shiftKey || event.keyCode !== 13) return
     // 阻止事件冒泡
     event.stopPropagation()
-    // 阻止该元素默认的keyup事件
+    // 阻止该元素默认的 keyup 事件
     event.preventDefault()
     // ...
   }
