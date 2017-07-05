@@ -436,7 +436,9 @@ When a prop validation fails, Vue will produce a console warning (if using the d
 
 ## Non-Prop Attributes
 
-While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, just like HTML elements.
+A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+
+While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
 
 For example, imagine we're using a 3rd-party `bs-date-input` component with a Bootstrap plugin that requires a `data-3d-date-picker` attribute on the `input`. We can add this attribute to our component instance:
 
@@ -445,8 +447,6 @@ For example, imagine we're using a 3rd-party `bs-date-input` component with a Bo
 ```
 
 And the `data-3d-date-picker="true"` attribute will automatically be added to the root element of `bs-date-input`.
-
-<p class="tip">If `data-3d-date-picker` is the name of a prop defined by `bs-date-input`, the attribute will **not** be added to its root element. When a component defines a prop, that component must explicitly choose what to do with it.</p>
 
 ### Replacing/Merging with Existing Attributes
 
