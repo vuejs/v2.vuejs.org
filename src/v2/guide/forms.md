@@ -12,6 +12,8 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
 
 <p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
 
+<p class="tip">Note that `v-model` listens for the `input` (default) or `change` (if you use the `lazy` modifier, more on this below) events on the element. These only fire when the *user* modifies the field. Vue cannot automatically update based on other code making changes to the element's value.</p>
+
 ### Text
 
 ``` html
