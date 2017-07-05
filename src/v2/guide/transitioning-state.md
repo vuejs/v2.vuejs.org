@@ -42,12 +42,11 @@ new Vue({
         }
       }
 
-      new TWEEN.Tween({tweeningNumber: oldValue})
+      new TWEEN.Tween({ tweeningNumber: oldValue })
         .easing(TWEEN.Easing.Quadratic.Out)
-        .to({tweeningNumber: newValue}, 500)
+        .to({ tweeningNumber: newValue }, 500)
         .onUpdate(function () {
           vm.animatedNumber = this.tweeningNumber.toFixed(0)
-          // console.log(i++ + ':' + this.tweeningNumber)
         })
         .start()
 
@@ -79,12 +78,11 @@ new Vue({
         }
       }
 
-      new TWEEN.Tween({tweeningNumber: oldValue})
+      new TWEEN.Tween({ tweeningNumber: oldValue })
         .easing(TWEEN.Easing.Quadratic.Out)
-        .to({tweeningNumber: newValue}, 500)
+        .to({ tweeningNumber: newValue }, 500)
         .onUpdate(function () {
           vm.animatedNumber = this.tweeningNumber.toFixed(0)
-          // console.log(i++ + ':' + this.tweeningNumber)
         })
         .start()
 
