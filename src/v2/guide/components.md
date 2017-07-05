@@ -909,7 +909,7 @@ In a child component, simply pass data into a slot as if you are passing props t
 </div>
 ```
 
-In the parent, a `<template>` element with a special attribute `scope` indicates that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+In the parent, a `<template>` element with a special attribute `scope` must exist, indicating that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
 
 ``` html
 <div class="parent">
