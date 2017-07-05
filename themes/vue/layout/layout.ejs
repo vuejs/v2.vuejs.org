@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><%- page.title ? page.title + ' - ' : '' %>Vue.js中文文档 vuefe.cn vue2</title>
+        <title><%- page.title ? page.title + ' - ' : '' %>Vue.js 2.x 中文文档 - vuefe.cn</title>
         <meta charset="utf-8">
         <meta name="description" content="<%- theme.site_description %>">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
         <meta property="og:type" content="article">
         <meta property="og:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
         <meta property="og:description" content="<%- theme.site_description %>">
@@ -38,6 +39,8 @@
         <meta name="msapplication-config" content="browserconfig.xml">
         <link rel="manifest" href="/manifest.json">
 
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
         <!-- main page styles -->
         <%- css(isIndex ? 'css/index' : 'css/page') %>
 
@@ -50,11 +53,10 @@
         (function() {
           var hm = document.createElement("script");
           hm.src = "https://hm.baidu.com/hm.js?ebacf70d9d85cfb235c83d600113ee3e";
-          var s = document.getElementsByTagName("script")[0]; 
+          var s = document.getElementsByTagName("script")[0];
           s.parentNode.insertBefore(hm, s);
         })();
         </script>
-
     </head>
     <body class="<%- isIndex ? '' : 'docs' -%>">
         <div id="mobile-bar" <%- isIndex ? 'class="top"' : '' %>>
