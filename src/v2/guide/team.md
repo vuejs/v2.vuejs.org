@@ -171,7 +171,7 @@ order: 31
       ]
     },
     {
-      name: 'Egoist',
+      name: 'EGOIST',
       title: 'Build Tool Simplificator',
       github: 'egoist',
       twitter: 'rem_rin_rin',
