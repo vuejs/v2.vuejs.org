@@ -363,7 +363,7 @@ var app7 = new Vue({
 </div>
 ```
 
-## 与自定义元素(Custom Element)的关系
+## 与自定义元素的关系
 
 你可能已经注意到，Vue 组件非常类似于 [Web 组件规范](http://www.w3.org/wiki/WebComponents/)中的**自定义元素(Custom Element)**。这是因为 Vue 的组件语法不加限制地效仿参照了此规范。例如 Vue 组件实现了 [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 和 `is` 特殊属性。然而，还是有一些关键区别：
 
