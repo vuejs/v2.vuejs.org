@@ -217,8 +217,9 @@ order: 31
       name: 'Rahul Kadyan',
       title: 'Ecosystem Glue Chemist',
       work: {
-        org: 'Headout',
-        orgUrl: 'https://www.headout.com/'
+        role: 'Software Engineer',
+        org: 'Myntra',
+        orgUrl: 'https://www.myntra.com/'
       },
       github: 'znck',
       twitter: 'znck0',
@@ -229,7 +230,7 @@ order: 31
         'vue-keynote', 'bootstrap-for-vue', 'vue-interop'
       ],
       links: [
-        'https://znck.me', 'https://www.codementor.io/znck'
+        'https://znck.me'
       ]
     },
     {
