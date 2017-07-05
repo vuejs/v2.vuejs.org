@@ -6,9 +6,9 @@ order: 15
 
 ## 基础
 
-Vue 推荐使用在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这就是 **render 函数**，它比 template 更接近编译器。
+在绝大多数情况下，Vue 推荐你使用模板来组织构建 HTML。然而在一些场景下，你确实需要完整的 JavaScript 编程能力。作为模板的替代增强，你可以使用**render 函数**，它更接近编译器。
 
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
+让我们深入一个例子，其中，使用 `render` 函数是比较推荐的方式。假设你要生成固定的标题：
 
 ``` html
 <h1>
@@ -18,13 +18,13 @@ Let's dive into a simple example where a `render` function would be practical. S
 </h1>
 ```
 
-在 HTML 层， 我们决定这样定义组件接口：
+对于以上 HTML，你决定要使用如下组件接口：
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-当我们开始写一个通过 `level` prop 动态生成heading 标签的组件，你可很快能想到这样实现：
+当你开始创建一个组件，并且根据 `level` prop 生成标题时，你会很快想到这样实现：
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -63,16 +63,16 @@ Vue.component('anchored-heading', {
 })
 ```
 
-在这种场景中使用 template 并不是最好的选择：首先代码冗长，为了在不同级别的标题中插入锚点元素，我们需要重复地使用 `<slot></slot>`。其次由于组件必须有根节点，标题和锚点元素被包裹在了一个无用的 `div` 中。
+在这种场景中，并不适合使用模板。不仅会很繁琐，而且要在每个不同级的 h 标签中重复 `<slot></slot>`，并且在其中添加固定元素时也必须做同样的事。由于组件必须包含一个根节点，因此整个内容也要包裹在一个无用的 `div` 中。
 
-虽然模板在大多数组件中都非常好用，但是在这里它就不是很简洁的了。那么，我们来尝试使用 `render` 函数重写上面的例子：
+虽然大多数组件中都非常适合使用模板，但是在这里明显是一种特殊场景。因此，让我们尝试使用 `render` 函数来重写上面的示例：
 
 ``` js
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name 标签名称
-      this.$slots.default // 子组件中的阵列
+      'h' + this.level,   // 标签名称
+      this.$slots.default // 由子节点构成的数组
     )
   },
   props: {
@@ -84,30 +84,30 @@ Vue.component('anchored-heading', {
 })
 ```
 
-简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot`  属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`, 这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [instance properties API](../api/#vm-slots)。**
+现在显得简单清晰！一定程度上。代码变得简短很多，但是需要更加熟悉 Vue 实例属性。在这种情况下，你必须知道在不使用 `slot` 属性向组件中传递内容时（比如 `anchored-heading` 中的 `Hello world!`），这些子节点会被存储到组件实例的 `$slots.default` 中。如果你对此还不够了解，**在深入 render 函数之前，建议先阅读[实例属性 API](../api/#vm-slots)。**
 
 ## `createElement` 参数
 
-第二件你需要熟悉的是如何在 `createElement` 函数中生成模板。这里是 `createElement` 接受的参数：
+第二件你必须熟悉的事情是，如何在 `createElement` 函数中使用模板功能。以下是 `createElement` 接受的参数：
 
 ``` js
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // 一个 HTML 标签，组件选项，或一个函数
-  // 必须 Return 上述其中一个
+  // HTML 标签名称，或组件选项对象，或一个函数，
+  // 其中函数会返回 HTML 标签名称或组件选项对象。必选参数。
   'div',
 
   // {Object}
-  // 一个对应属性的数据对象
-  // 您可以在 template 中使用.可选项.
+  // 一个数据对象，
+  // 和模板中用到的属性相对应。可选参数。
   {
-    // (下一章，将详细说明相关细节)
+    // （详情请看下一节）
   },
 
   // {String | Array}
-  // Children VNodes, built using `createElement()`,
-  // or simply using strings to get 'text VNodes'. Optional.
+  // 子虚拟 DOM 节点(children VNode)组成，或使用 `createElement()` 生成，
+  // 或直接使用字符串的'文本虚拟 DOM 节点(text VNode)'。可选参数。
   [
     'Some text comes first.',
     createElement('h1', 'A headline'),
@@ -120,23 +120,23 @@ createElement(
 )
 ```
 
-### 完整数据对象
+### 深入了解数据对象(The Data Object In-Depth)
 
-有一件事要注意：在 templates 中，`v-bind:class` 和  `v-bind:style` ，会有特别的处理，他们在 VNode 数据对象中，为最高级配置。 This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
+需要注意的一点：类似于 `v-bind:class` 和 `v-bind:style` 在模板中有着特殊的处理，下面这些字段(field)都处于 VNode 数据对象的顶层(top-level)。此对象还允许绑定普通的 HTML 属性和 DOM 属性，如 `innerHTML`（这将替换为 `v-html` 指令）：
 
 ``` js
 {
-  // 和`v-bind:class`一样的 API
+  // 和 `v-bind:class` 的 API 相同
   'class': {
     foo: true,
     bar: false
   },
-  // 和`v-bind:style`一样的 API
+  // 和 `v-bind:style` 的 API 相同
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // 正常的 HTML 特性
+  // 普通的 HTML 属性
   attrs: {
     id: 'foo'
   },
@@ -148,18 +148,22 @@ createElement(
   domProps: {
     innerHTML: 'baz'
   },
-  // 事件监听器基于 `on`
-  // 所以不再支持如 `v-on:keyup.enter` 修饰器
-  // 需要手动匹配 keyCode。
+  // 事件处理程序嵌套在 `on` 字段下，
+  // 然而不支持在 `v-on:keyup.enter` 中的修饰符。
+  // 因此，你必须手动检查
+  // 处理函数中的 keyCode 值是否为 enter 键值。
   on: {
     click: this.clickHandler
   },
-  // 仅对于组件，用于监听原生事件，而不是组件使用 `vm.$emit` 触发的事件。
+  // 仅对于组件，
+  // 用于监听原生事件，而不是组件内部
+  // 使用 `vm.$emit` 触发的事件。
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // 自定义指令. 注意事项：不能对绑定的旧值设值
-  // Vue 会为您持续追踨
+  // 自定义指令。
+  // 注意，由于 Vue 会追踪旧值，
+  // 所以不能对绑定的旧值设值
   directives: [
     {
       name: 'my-custom-directive',
@@ -171,15 +175,15 @@ createElement(
       }
     }
   ],
-  // Scoped slots in the form of
+  // 作用域插槽(scoped slot)的格式如下
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of the slot, if this component is the
-  // child of another component
+  // 如果此组件是另一个组件的子组件，
+  // 需要为插槽(slot)指定名称
   slot: 'name-of-slot',
-  // Other special top-level properties
+  // 其他特殊顶层(top-level)属性
   key: 'myKey',
   ref: 'myRef'
 }
@@ -187,7 +191,7 @@ createElement(
 
 ### 完整示例
 
-有了这方面的知识，我们现在可以完成我们最开始想实现的组件：
+有了这些知识，我们现在就可以完成开始想实现的组件：
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -227,23 +231,23 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### 约束
+### 限制(Constraints)
 
 #### VNodes 必须唯一
 
-所有组件树中的 VNodes 必须唯一。这意味着，下面的 render function 是无效的：
+组件树中的所有 VNode 必须是唯一的。也就是说，以下 render 函数无效：
 
 ``` js
 render: function (createElement) {
   var myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
-    // Yikes - duplicate VNodes!
+    // 哟 - VNode 重复！
     myParagraphVNode, myParagraphVNode
   ])
 }
 ```
 
-如果你真的需要重复很多次的元素/组件，你可以使用工厂函数来实现。例如，下面这个例子 render 函数完美有效地渲染了 20 个重复的段落：
+如果你真的需要多次重复相同的元素/组件，你可以使用工厂函数来实现。例如，下面的 render 函数，完美有效地渲染了 20 个相同的段落。
 
 ``` js
 render: function (createElement) {
@@ -255,11 +259,11 @@ render: function (createElement) {
 }
 ```
 
-## 使用 JavaScript 代替模板功能
+## 使用原生 JavaScript 的替换模板功能(Replacing Template Features with Plain JavaScript)
 
 ### `v-if` and `v-for`
 
-无论什么都可以使用原生的 JavaScript 来实现，Vue 的 render 函数不会提供专用的 API。比如， template 中的 `v-if` 和 `v-for`:
+无论什么功能，都可以在原生 JavaScript 中轻松实现，所以 Vue 的 render 函数无需提供专用的替代方案。例如，在模板中使用 `v-if` 和 `v-for`：
 
 ``` html
 <ul v-if="items.length">
@@ -268,7 +272,7 @@ render: function (createElement) {
 <p v-else>No items found.</p>
 ```
 
-这些都会在 render 函数中被 JavaScript 的 `if`/`else` 和 `map` 重写：
+这可以在 render 函数中，通过重写为 JavaScript 的 `if`/`else` 和 `map` 来实现：
 
 ``` js
 render: function (createElement) {
@@ -284,7 +288,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-在render函数中，没有提供`v-model`的实现，所以你需要自己实现逻辑：
+在 render 函数中没有直接和 `v-model` 对标的功能 - 你必须自己实现逻辑：
 
 ``` js
 render: function (createElement) {
@@ -303,9 +307,9 @@ render: function (createElement) {
 }
 ```
 
-This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+这就是深入底层实现需要付出的代价，但是和 `v-model` 相比较，这也可以更好地控制交互细节。
 
-### Event & Key Modifiers
+### 事件 & 按键修饰符(Event & Key Modifiers)
 
 对于 `.passive`, `.capture` 和 `.once` 这样的事件修饰符, Vue 提供了用于 `on` 的前缀:
 
@@ -341,16 +345,16 @@ on: {
 ```javascript
 on: {
   keyup: function (event) {
-    // Abort if the element emitting the event is not
-    // the element the event is bound to
+    // 如果触发事件的元素不是事件绑定的元素
+    // 则返回
     if (event.target !== event.currentTarget) return
-    // Abort if the key that went up is not the enter
-    // key (13) and the shift key was not held down
-    // at the same time
+    // 如果按下去的不是 enter 键或者
+    // 没有同时按下 shift 键
+    // 则返回
     if (!event.shiftKey || event.keyCode !== 13) return
-    // Stop event propagation
+    // 阻止事件冒泡
     event.stopPropagation()
-    // Prevent the default keyup handler for this element
+    // 阻止该元素默认的 keyup 事件
     event.preventDefault()
     // ...
   }
@@ -628,6 +632,6 @@ console.error = function (error) {
 
 ***
 
-> 原文： http://vuejs.org/guide/render-function.html
+> 原文：https://vuejs.org/v2/guide/render-function.html
 
 ***

@@ -6,7 +6,7 @@ order: 8
 
 ## `v-for`
 
-我们用 `v-for` 指令根据一组数组的选项列表进行渲染。 `v-for` 指令需要以 `item in items` 形式的特殊语法， `items` 是源数据数组并且 `item` 是数组元素迭代的别名。
+我们可以使用 `v-for` 指令，将一个数组渲染为列表项。`v-for` 指令需要限定格式为 `item in items` 的特殊语法，其中，`items` 是原始数据数组(source data array)，而 `item` 是数组中每个迭代元素的**指代别名(alias)**：
 
 ### 基本用法
 
@@ -23,8 +23,8 @@ var example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
-      {message: 'Foo' },
-      {message: 'Bar' }
+      { message: 'Foo' },
+      { message: 'Bar' }
     ]
   }
 })
@@ -56,7 +56,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-在 `v-for` 块中，我们拥有对父作用域属性的完全访问权限。 `v-for` 还支持一个可选的第二个参数为当前项的索引。
+在 `v-for` 代码块中，我们可以完全地访问父级作用域下的属性。`v-for` 还支持可选的第二个参数，作为当前项的索引。
 
 ``` html
 <ul id="example-2">
@@ -106,15 +106,15 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-你也可以用 `of` 替代 `in` 作为分隔符，因为它是最接近 JavaScript 迭代器的语法：
+你还可以不使用 `in`，而是使用 `of` 作为分隔符，因为它更加接近 JavaScript 迭代器语法：
 
 ``` html
 <div v-for="item of items"></div>
 ```
 
-### Template `v-for`
+### 在 template 元素上使用 `v-for`
 
-如同 `v-if` 模板，你也可以用带有 `v-for` 的 `<template>` 标签来渲染多个元素块。例如：
+类似模板中的 `v-if`，你还可以对 `<template>` 标签使用 `v-for`，来渲染多个元素块。例如：
 
 ``` html
 <ul>
@@ -125,9 +125,9 @@ var example2 = new Vue({
 </ul>
 ```
 
-### 对象 v-for
+### 使用 `v-for` 遍历对象
 
-你也可以用 `v-for` 通过一个对象的属性来迭代。
+也可以使用 `v-for` 来遍历对象的属性。
 
 ``` html
 <ul id="repeat-object" class="demo">
@@ -172,7 +172,7 @@ new Vue({
 </script>
 {% endraw %}
 
-你也可以提供第二个的参数为键名：
+还可以提供第二个参数，作为对象的键名(key)：
 
 ``` html
 <div v-for="(value, key) in object">
@@ -180,7 +180,7 @@ new Vue({
 </div>
 ```
 
-第三个参数为索引：
+然后第三个参数作为索引(index)：
 
 ``` html
 <div v-for="(value, key, index) in object">
@@ -188,15 +188,15 @@ new Vue({
 </div>
 ```
 
-<p class="tip">在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
+<p class="tip">在遍历一个对象时，是按照 `Object.keys()` 得出 key 的枚举顺序来遍历，**无法**保证在所有 JavaScript 引擎实现中完全一致。</p>
 
-### 范围 `v-for`
+### 使用 `v-for` 在整数值范围内迭代
 
-`v-for` 也可以取整数。在这种情况下，它将重复多次模板。
+`v-for` 也可以在整数值范围内迭代。在这种情况下，会将模板重复多次。
 
 ``` html
 <div>
-  <span v-for="n in 10">{{ n }} </span>
+  <span v-for="n in 10">{{ n }}</span>
 </div>
 ```
 
@@ -211,17 +211,17 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### 组件 和 `v-for`
+### 组件与 `v-for`
 
-> 了解组件相关知识，查看 [组件](components.html) 。完全可以先跳过它，以后再回来查看。
+> 此节假定已具备[组件](components.html)相关知识。可以先跳过本节内容，了解组件后再回来。
 
-在自定义组件里，你可以像任何普通元素一样用 `v-for` 。
+在自定义组件上，你可以直接使用 `v-for`，就像其他普通元素：
 
 ``` html
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
+> 现在，在 2.2.0+ 版本，当对组件使用 `v-for` 时，必须设置 [`key`](list.html#key) 属性。
 
 然而他不能自动传递数据到组件里，因为组件有自己独立的作用域。为了传递迭代数据到组件里，我们要用 `props` ：
 
@@ -470,6 +470,6 @@ methods: {
 
 ***
 
-> 原文： http://vuejs.org/guide/list.html
+> 原文：https://vuejs.org/v2/guide/list.html
 
 ***
