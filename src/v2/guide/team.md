@@ -201,7 +201,7 @@ order: 31
       github: 'kazupon',
       twitter: 'kazu_pon',
       work: {
-        role: 'CTO'
+        role: 'CTO & Full Stack Developer'
       },
       reposOfficial: [
         'jp.vuejs.org'
