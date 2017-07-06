@@ -757,7 +757,7 @@ Il y a deux choses à noter ici :
 
 2. Le composant `<app>` a vraisemblablement son propre template.
 
-Pour faire fonctionner la composition, nous avons besoin d'un moyen pour entremêler le « contenu » du parent et le template de son propre composant. C'est un processus appelé **distribution de contenu** (ou « transclusion » si vous êtes familier avec Angular). Vue.js implémente une API de distribution de contenu modélisée à partir du brouillon [brouillon de spécification sur les Web Components](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), en utilisant l'élément spécial `<slot>` pour servir de points de distribution pour le contenu original.
+Pour faire fonctionner la composition, nous avons besoin d'un moyen pour entremêler le « contenu » du parent et le template de son propre composant. C'est un processus appelé **distribution de contenu** (ou « transclusion » si vous êtes familier avec Angular). Vue.js implémente une API de distribution de contenu modélisée à partir du [brouillon de spécification sur les Web Components](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), en utilisant l'élément spécial `<slot>` pour servir de points de distribution pour le contenu original.
 
 ### Portée de compilation
 
