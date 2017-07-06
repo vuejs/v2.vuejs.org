@@ -6,11 +6,11 @@ order: 23
 
 ## Outils et mise en place
 
-N'importe quoi de compatible avec un module basé sur un système de build va fonctionner. Mais si vous hésitez sur le choix d'un outil en particulier, essayez le lanceur de tests [Karma](http://karma-runner.github.io). Il y a beaucoup de plugins communautaires, incluant le support de [webpack](https://github.com/webpack/karma-webpack) et [Browserify](https://github.com/Nikku/karma-browserify). Pour une mise en place détaillée, référez-vous à la documentation respective de chaque projet. Ces exemples de configuration de Karma pour [webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) et [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) pourront vous aider à démarrer.
+N'importe quoi de compatible avec un module basé sur un système de build basé sur les modules va fonctionner. Mais si vous cherchez une recommandation particulière, essayez le lanceur de tests [Karma](http://karma-runner.github.io). Il y a beaucoup de plugins communautaires, incluant le support de [webpack](https://github.com/webpack/karma-webpack) et [Browserify](https://github.com/Nikku/karma-browserify). Pour une mise en place détaillée, référez-vous à la documentation respective de chaque projet. Ces exemples de configuration de Karma pour [webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) et [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) pourront vous aider à démarrer.
 
-## De simples assertions
+## Des assertions simples
 
-En terme de structure de test de code, vous n'avez rien de spécial à faire dans vos composants pour les rendre testables. Exportez simplement son objet d'options :
+En termes de structure de code pour les tests, vous n'avez rien de spécial à faire dans vos composants pour les rendre testables. Exportez juste les options en l'état :
 
 ``` html
 <template>
@@ -31,7 +31,7 @@ En terme de structure de test de code, vous n'avez rien de spécial à faire dan
 </script>
 ```
 
-Quand vous testez ce composant, tout ce que vous avez à faire est d'importer l'objet d'options avec un objet Vue pour faire des assertions communes :
+Quand vous testez ce composant, tout ce que vous avez à faire est d'importer l'objet d'options aux côtés de Vue pour faire une série d'assertions communes :
 
 ``` js
 // Importer Vue et le composant à tester
@@ -71,7 +71,7 @@ describe('MyComponent', () => {
 
 ## Écrire des composants testables
 
-Beaucoup de sortie de rendu de composants sont principalement déterminées selon les props que les composants reçoivent. En fait, si une sortie de rendu de composant dépend uniquement de ses props, il devient très rapide de le tester. Exactement de la même manière qu'on ferrait des assertions sur la valeur de retour d'une fonction standard avec différents arguments. Voici un exemple :
+Une bonne partie du code en sortie du rendu d'un composant est principalement déterminé par les props qu'ils reçoivent. En fait, si le rendu d'un composant dépend uniquement de ses props, il devient assez facile à tester, de la même manière que l'on ferait une assertion sur la valeur de retour d'une fonction pure avec différents arguments. Voici un exemple :
 
 ``` html
 <template>
@@ -99,7 +99,7 @@ function getRenderedText (Component, propsData) {
 }
 
 describe('MyComponent', () => {
-  it('rendre correctement le message avec différentes props', () => {
+  it('donne un rendu correct avec différentes props', () => {
     expect(getRenderedText(MyComponent, {
       msg: 'Bonjour'
     })).toBe('Bonjour')
@@ -111,13 +111,13 @@ describe('MyComponent', () => {
 })
 ```
 
-## Assertions de mise à jour asynchrones
+## Assertions sur des mises à jour asynchrones
 
-Parce que Vue [fait les mises à jour du DOM de manière asynchrone](reactivity.html#File-d’attente-de-mise-a-jour-asynchrone), les assertions sur les mises à jour du DOM dû à un changement d'état doivent être faites dans une fonction de rappel `Vue.nextTick` :
+Parce que Vue [fait les mises à jour du DOM de manière asynchrone](reactivity.html#File-d’attente-de-mise-a-jour-asynchrone), les assertions sur les mises à jour du DOM résultant d'un changement d'état doivent être faites dans une fonction de rappel `Vue.nextTick` :
 
 ``` js
 // Inspecter le HTML généré après une mise à jour d'état
-it('mettre à jour le message rendu quand `vm.message` est mis à jour', done => {
+it('met à jour le message rendu quand `vm.message` est mis à jour', done => {
   const vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
 
@@ -129,4 +129,4 @@ it('mettre à jour le message rendu quand `vm.message` est mis à jour', done =>
 })
 ```
 
-Nous avons planifié de travailler sur une collection de fonctions utilitaires de tests communs pour rendre encore plus simple les tests de composant de rendu avec différentes contraintes (par ex. des rendus peu profonds ignorant les composants enfants) et faire des assertions de leur sortie.
+Nous prévoyons de travailler sur une collection de fonctions utilitaires de tests communs pour rendre encore plus simple le rendu de composants avec différentes contraintes (par ex. des rendus peu profonds ignorant les composants enfants) et faire des assertions sur le code en sortie.
