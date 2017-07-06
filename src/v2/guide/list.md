@@ -234,7 +234,7 @@ new Vue({ el: '#range' })
 </my-component>
 ```
 
-没有通过 v-for 将 `item` 自动注入到组件中的原因是，一旦自动注入，就会使得组件与 `v-for` 指令的运行方式紧密耦合(tightly coupled)在一起。通过显式声明组件数据来源，可以使得组件可重用于其他场景(reusable in other situation)。
+没有通过 v-for 将 `item` 自动注入到组件中的原因是，一旦自动注入，就会使得组件与 `v-for` 指令的运行方式紧密耦合(tightly coupled)在一起。通过显式声明组件数据来源，可以使得组件可重用于其他场景。
 
 这里是一个 todo list 的完整示例：
 
