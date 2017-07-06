@@ -1,6 +1,27 @@
 @import "_settings"
 
 #team-members
+  .sort-by-distance-button
+    display: inline-block
+    padding: .4em .5em
+    font-weight: bold
+    font-size: .7em
+    line-height: 1
+    border: none
+    background: $dark
+    color: white
+    border-radius: 3px
+    position: relative
+    cursor: pointer
+    vertical-align: bottom
+    margin-left: 1em
+    i
+      margin-right: .25em
+      &:last-child
+        margin-right: 0
+    &[disabled]
+      opacity: .7
+      cursor: default
   .vuer
     display: flex
     padding: 25px 0
@@ -30,6 +51,17 @@
           color: transparentify($dark, #f9f7f5, .6)
           background: #f9f7f5
           border-radius: 5px
+      .distance
+        position: relative
+        &:before
+          content: '\f1eb'
+          font-family: FontAwesome
+          position: absolute
+          top: 50%
+          margin-top: -.5em
+          line-height: 1
+          right: 100%
+          transform: rotate(-90deg)
       dl
         margin: .6em 0 0
       dt, dd, ul, li
@@ -44,6 +76,9 @@
         &::after
           content: ''
           margin-right: 7px
+        i
+          width: 13px
+          text-align: center
       dd
         font-weight: 600
         &::after
