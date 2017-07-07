@@ -28,26 +28,24 @@ Quand vous commencez avec un composant se basant sur la prop `level` pour simple
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
-  <div>
-    <h1 v-if="level === 1">
-      <slot></slot>
-    </h1>
-    <h2 v-if="level === 2">
-      <slot></slot>
-    </h2>
-    <h3 v-if="level === 3">
-      <slot></slot>
-    </h3>
-    <h4 v-if="level === 4">
-      <slot></slot>
-    </h4>
-    <h5 v-if="level === 5">
-      <slot></slot>
-    </h5>
-    <h6 v-if="level === 6">
-      <slot></slot>
-    </h6>
-  </div>
+  <h1 v-if="level === 1">
+    <slot></slot>
+  </h1>
+  <h2 v-else-if="level === 2">
+    <slot></slot>
+  </h2>
+  <h3 v-else-if="level === 3">
+    <slot></slot>
+  </h3>
+  <h4 v-else-if="level === 4">
+    <slot></slot>
+  </h4>
+  <h5 v-else-if="level === 5">
+    <slot></slot>
+  </h5>
+  <h6 v-else-if="level === 6">
+    <slot></slot>
+  </h6>
 </script>
 ```
 
@@ -63,7 +61,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Ce template ne semble pas génial. Il n'est pas uniquement verbeux, il duplique `<slot></slot>` dans tous les niveaux de titre et nous allons devoir refaire la même chose quand nous ajoutons l'élément ancre. Tout cela est également encapsulé dans une `div` inutile car un composant doit contenir exactement un seul nœud racine.
+Ce template ne semble pas génial. Il n'est pas uniquement verbeux, il duplique `<slot></slot>` dans tous les niveaux de titre et nous allons devoir refaire la même chose quand nous ajouterons l'élément ancre.
 
 Alors que les templates fonctionnent bien pour la plupart des composants, il est clair que celui-là n'est pas l'un d'entre eux. Aussi essayons de le réécrire avec une fonction `render` :
 
@@ -311,10 +309,11 @@ C'est le prix à payer pour travailler au plus bas niveau, mais cela vous donne 
 
 ### Modificateurs d'évènement et de code de touche
 
-Pour les modificateurs d'évènement `.capture` et `.once`, Vue offre des préfixes pouvant être utilisés dans `on`:
+Pour les modificateurs d'évènement `.passive`, `.capture` et `.once`, Vue offre des préfixes pouvant être utilisés dans `on`:
 
 | Modificateur(s) | Préfixes |
 | ------ | ------ |
+| `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
 | `.capture.once` ou<br>`.once.capture` | `~!` |

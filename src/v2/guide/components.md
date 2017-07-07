@@ -432,7 +432,45 @@ Le `type` peut être l'un des constructeurs natifs suivants :
 
 De plus, `type` peut également être une fonction constructeur personnalisée et ainsi l'assertion sera faite avec une vérification `instanceof`.
 
-Quand une validation de prop échoue, Vue produira un avertissement dans la console (si vous utilisez le *build* de développement).
+Quand une validation de prop échoue, Vue produira un avertissement dans la console (si vous utilisez le *build* de développement). Notez que cette props est validée __avant__ que l'instance du composant soit créée, donc à l'intérieur des fonctions `default` ou `validator`, les propriétés d'instance comme  `data`, `computed`, ou `methods` ne seront pas disponibles.
+
+## Attribut non-prop
+
+Un atttribut non-prop est un attribut qui est passé au composant, mais qui n'a pas de prop correspondante défini.
+
+Bien que définir explicitement les props soit conseillé pour passer les informations à un composant enfant, les auteurs des bibliothèques de composant ne suivent pas forcément cette règle dans leurs composants. C'est pour cela que les composants peuveunt accepter des attributs arbitraires, qui sont ajoutés à l'élément racine du composant.
+
+Par exemple, imaginez que nous utilision un composant tiers `bs-date-input` avec un plugin Bootstrap qui nécessite un attribut `data-3d-date-picker` sur l'`input`. Nous pouvons ajouter cet attribut dans l'instance de notre composant :
+
+``` html
+<bs-date-input data-3d-date-picker="true"></bs-date-input>
+```
+
+Et l'attribut `data-3d-date-picker="true"` sera automatiquement ajouté à l'élément racine de `bs-date-input`.
+
+## Remplacement et merge avec des attributs existants
+
+Imaginez que ceci est un template pour `bs-date-input`:
+
+``` html
+<input type="date" class="form-control">
+```
+
+Pour ajouter un theme spécifique à notre plugin date picker, nous allons avoir besoin d'ajouter une classe, comme cela :
+
+``` html
+<bs-date-input
+  data-3d-date-picker="true"
+  class="date-picker-theme-dark"
+></bs-date-input>
+```
+
+Dans ce cas, deux valeurs différentes pour `class` sont définies :
+
+- `form-control`, qui est la classe du composant dans ce template
+- `date-picker-theme-dark`, qui est la classe passée au composant depuis son parent
+
+Pour la plupard des attributs, la valeur fournie au composant va remplacer la valeur mise initialement dans le composant. Donc par exemple, passer `type="large"` va remplacer `type="date"` et probablement le rendre inutilisable ! Heureusement, les attributs `class` et `style` sont plus mâlin, aussi les deux valeurs sont mergées, fournissant la valeur finale suivante : `
 
 ## Événements personnalisés
 
@@ -1072,7 +1110,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-La fabrique de fonctions reçoit une fonction de retour `resolve` qui devra être appelée quand vous aurez récupéré la définition de votre composant depuis le serveur. Vous pouvez également appeler `reject(reason)` pour indiquer que le chargement a échoué. La fonction `setTimeout` est simplement là en tant qu'exemple ; la manière de récupérer le composant est entièrement à votre charge. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec [la fonctionnalité de découpage de code de webpack](https://webpack.js.org/guides/code-splitting-require/) :
+La fonction de farique reçoit une fonction de rappel `resolve` qui devra être appelée quand vous aurez récupéré la définition de votre composant depuis le serveur. Vous pouvez également appeler `reject(reason)` pour indiquer que le chargement a échoué. La fonction `setTimeout` est simplement là en tant qu'exemple ; la manière de récupérer le composant est entièrement à votre charge. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec [la fonctionnalité de scission de code de webpack](https://webpack.js.org/guides/code-splitting-require/) :
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
