@@ -54,8 +54,8 @@ order: 31
             About
             <span
               v-if="profile.distanceInKm <= 150"
+              :title="profile.name + ' is close enough to commute to your location.'"
               class="user-match"
-              title="This person is close enough to commute to your location."
             >{{ textDistance }} away</span>
             <template v-else>{{ textDistance }} away</template>
             in {{ profile.city }}
