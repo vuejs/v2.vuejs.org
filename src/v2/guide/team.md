@@ -669,7 +669,7 @@ order: 31
           '<ul><li>' +
           vm.profile.languages.map(function (languageCode, index) {
             var language = languageNameFor[languageCode]
-            if (languageCode === preferredLanguageCode) {
+            if (languageCode === preferredLanguageCode.slice(0, 2)) {
               return (
                 '<span ' +
                   'class="user-match" ' +
