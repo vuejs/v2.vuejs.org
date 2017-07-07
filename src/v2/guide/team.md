@@ -217,7 +217,7 @@ order: 31
     jp: '日本語',
     fr: 'Français',
     de: 'Deutsch',
-    el: 'ελληνικά',
+    el: 'Ελληνικά',
     es: 'Español',
     hi: 'हिंदी',
     fa: 'فارسی'
