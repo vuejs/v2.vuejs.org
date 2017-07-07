@@ -513,7 +513,7 @@ order: 31
         orgUrl: 'https://orion.sh'
       },
       reposPersonal: [
-        'nuxt/*', 'nuxt-community/*'
+        'nuxt/*', 'nuxt-community/*', 'declandewet/vue-meta'
       ]
     },
     {
