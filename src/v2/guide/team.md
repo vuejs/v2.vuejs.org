@@ -199,6 +199,7 @@ order: 31
     'Chongqing, China': [29.431586, 106.912251],
     'Thessaloniki, Greece': [40.640063, 22.944419],
     'Paris, France': [48.856614, 2.352222],
+    'Bordeaux, France': [44.837789, -0.579180],
     'Lansing, MI, USA': [42.732535, -84.555535],
     'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Hangzhou, China': [30.274084, 120.155070],
@@ -526,7 +527,7 @@ order: 31
     {
       name: 'Alexandre Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Paris, France',
+      city: 'Bordeaux, France',
       languages: ['fr', 'en'],
       github: 'alexchopin',
       twitter: 'ChopinAlexandre',
