@@ -654,13 +654,22 @@ order: 31
       },
       languageListHtml: function () {
         var vm = this
+        var nav = window.navigator
         if (!vm.profile.languages) return ''
-        var userLanguageCode = window.navigator.language.slice(0, 2)
+        var preferredLanguageCode = nav.languages
+          // The preferred language set in the browser
+          ? nav.languages[0]
+          : (
+              // The system language in IE
+              nav.userLanguage ||
+              // The language in the current page
+              nav.language
+            )
         return (
           '<ul><li>' +
           vm.profile.languages.map(function (languageCode, index) {
             var language = languageNameFor[languageCode]
-            if (languageCode === userLanguageCode) {
+            if (languageCode === preferredLanguageCode) {
               return (
                 '<span ' +
                   'class="user-match" ' +
