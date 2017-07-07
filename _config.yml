@@ -104,11 +104,11 @@ offline:
   verbose: true
   runtimeCaching:
     - urlPattern: /*
-      handler: cacheFirst
+      handler: networkFirst
       options:
         origin: sendgrid.sp1.convertro.com
     - urlPattern: /*
-      handler: cacheFirst
+      handler: networkFirst
       options:
         origin: ad.doubleclick.net
     - urlPattern: /*
