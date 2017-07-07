@@ -62,13 +62,17 @@
           line-height: 1
           right: 100%
           transform: rotate(-90deg)
-      .user-language-match
+      .user-match
         cursor: help
         color: steelblue
-        &:before
-          content: '\f0e7'
+        &:after
+          content: '\f06a'
           font-family: FontAwesome
-          margin-right: 5px
+          font-size: .75em
+          vertical-align: super
+          margin-left: 4px
+          margin-right: 2px
+          position: relative
       dl
         margin: .6em 0 0
       dt, dd, ul, li
@@ -84,12 +88,12 @@
           content: ''
           margin-right: 7px
         i
-          width: 13px
+          width: 14px
           text-align: center
           &.fa-map-marker
-            font-size: 1.3em
-          &.fa-globe
             font-size: 1.15em
+          &.fa-globe
+            font-size: 1.2em
           &.fa-link
             font-size: 1.05em
       dd

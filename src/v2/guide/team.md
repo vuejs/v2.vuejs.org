@@ -51,7 +51,14 @@ order: 31
             <span class="sr-only">Distance</span>
           </dt>
           <dd>
-            About {{ textDistance }} away in {{ profile.city }}
+            About
+            <span
+              v-if="profile.distanceInKm <= 150"
+              class="user-match"
+              title="This person is close enough to commute to your location."
+            >{{ textDistance }} away</span>
+            <template v-else>{{ textDistance }} away</template>
+            in {{ profile.city }}
           </dd>
         </span>
         <template v-else-if="profile.city">
@@ -655,10 +662,10 @@ order: 31
             if (languageCode === userLanguageCode) {
               return (
                 '<span ' +
-                  'class="user-language-match" ' +
+                  'class="user-match" ' +
                   'title="' +
                     vm.profile.name +
-                    ' can give technical talks in your preferred language!' +
+                    ' can give technical talks in your preferred language.' +
                   '"' +
                 '\>' + language + '</span>'
               )
