@@ -470,6 +470,16 @@ methods: {
 
 ***
 
+> 译注：
+
+- 变化数组方法：会对原数组操作的数组方法，如 `pop()`, `shift()`, `unshift()`, `splice()`, `sort()` 和 `reverse()`。
+- 非变化数组方法：不会对原数组操作、返回新数组的数组方法，如 `filter()`, `concat()` 和 `slice()`。
+- 变异方法：Vue 将观察数组(observed array)的变化数组方法(mutation method)包裹起来，以便在调用这些方法时，也能够触发视图更新。
+
+***
+
+***
+
 > 原文：https://vuejs.org/v2/guide/list.html
 
 ***
