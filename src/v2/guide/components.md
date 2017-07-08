@@ -216,7 +216,7 @@ new Vue({
 
 组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模版中使用了组件 B 。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。
 
-在 Vue.js 中，父子组件的关系可以总结为 **props down, events up** 。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 给父组件发送消息。看看它们是怎么工作的。
+在 Vue 中，父子组件的关系可以总结为 **props down, events up** 。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 给父组件发送消息。看看它们是怎么工作的。
 
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
@@ -430,7 +430,45 @@ Vue.component('example', {
 
 `type` 也可以是一个自定义构造器，使用 `instanceof` 检测。
 
-当 prop 验证失败了，如果使用的是开发版本会抛出一条警告。
+当 prop 验证失败了，Vue 会在控制台生成一条警告（如果使用的是开发构建版本）。Note that props are validated __before__ a component instance is created, so within `default` or `validator` functions, instance properties such as from `data`, `computed`, or `methods` will not be available.
+
+## Non-Prop Attributes
+
+A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+
+While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
+
+For example, imagine we're using a 3rd-party `bs-date-input` component with a Bootstrap plugin that requires a `data-3d-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+
+``` html
+<bs-date-input data-3d-date-picker="true"></bs-date-input>
+```
+
+And the `data-3d-date-picker="true"` attribute will automatically be added to the root element of `bs-date-input`.
+
+### Replacing/Merging with Existing Attributes
+
+Imagine this is the template for `bs-date-input`:
+
+``` html
+<input type="date" class="form-control">
+```
+
+To add specify a theme for our date picker plugin, we might need to add a specific class, like this:
+
+``` html
+<bs-date-input
+  data-3d-date-picker="true"
+  class="date-picker-theme-dark"
+></bs-date-input>
+```
+
+In this case, two different values for `class` are defined:
+
+- `form-control`, which is set by the component in its template
+- `date-picker-theme-dark`, which is passed to the component by its parent
+
+For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="large"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
 
 ## 自定义事件
 
@@ -902,7 +940,7 @@ Vue.component('child-component', {
 </div>
 ```
 
-在父级中，具有特殊属性 `scope` 的 `<template>` 元素，表示它是作用域插槽的模板。`scope` 的值对应一个临时变量名，此变量接收从子组件中传递的 prop 对象：
+在父级中，必须存在具有特殊属性 `scope` 的 `<template>` 元素，表示它是作用域插槽的模板。`scope` 的值对应一个临时变量名，此变量接收从子组件中传递的 prop 对象：
 
 ``` html
 <div class="parent">

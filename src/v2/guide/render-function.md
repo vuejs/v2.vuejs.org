@@ -28,26 +28,24 @@ order: 15
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
-  <div>
-    <h1 v-if="level === 1">
-      <slot></slot>
-    </h1>
-    <h2 v-if="level === 2">
-      <slot></slot>
-    </h2>
-    <h3 v-if="level === 3">
-      <slot></slot>
-    </h3>
-    <h4 v-if="level === 4">
-      <slot></slot>
-    </h4>
-    <h5 v-if="level === 5">
-      <slot></slot>
-    </h5>
-    <h6 v-if="level === 6">
-      <slot></slot>
-    </h6>
-  </div>
+  <h1 v-if="level === 1">
+    <slot></slot>
+  </h1>
+  <h2 v-else-if="level === 2">
+    <slot></slot>
+  </h2>
+  <h3 v-else-if="level === 3">
+    <slot></slot>
+  </h3>
+  <h4 v-else-if="level === 4">
+    <slot></slot>
+  </h4>
+  <h5 v-else-if="level === 5">
+    <slot></slot>
+  </h5>
+  <h6 v-else-if="level === 6">
+    <slot></slot>
+  </h6>
 </script>
 ```
 
@@ -63,7 +61,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-在这种场景中，并不适合使用模板。不仅会很繁琐，而且要在每个不同级的 h 标签中重复 `<slot></slot>`，并且在其中添加固定元素时也必须做同样的事。由于组件必须包含一个根节点，因此整个内容也要包裹在一个无用的 `div` 中。
+在这种场景中，并不适合使用模板。不仅会很繁琐，而且要在每个不同级的 h 标签中重复 `<slot></slot>`，并且在其中添加固定元素时也必须做同样的事。
 
 虽然大多数组件中都非常适合使用模板，但是在这里明显是一种特殊场景。因此，让我们尝试使用 `render` 函数来重写上面的示例：
 
