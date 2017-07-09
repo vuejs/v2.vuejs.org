@@ -1,5 +1,5 @@
 ---
-type: api (En)
+type: api
 ---
 
 ## Configuration globale
@@ -1509,98 +1509,98 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### v-text
 
-- **Expects :** `string`
+- **Attend comme valeur :** `string`
 
 - **Détails :**
 
-  Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
+  Met à jour le contenu texte `textContent` de l'élément. Si vous n'avez besoin de mettre à jour qu'une partie de ce contenu, vous devriez utiliser les interpolations `{% raw %}{{ Mustache }}{% endraw %}`.
 
 - **Exemple :**
 
   ```html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- même chose que -->
   <span>{{msg}}</span>
   ```
 
-- **Voir aussi :** [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
+- **Voir aussi :** [Syntaxe de liaison de données - interpolations](../guide/syntax.html#Text)
 
 ### v-html
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
 - **Détails :**
 
-  Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  Met à jour le HTML interne `innerHTML` de l'élément. **Notez que les contenus sont insérés en pur HTML - ils ne seront pas compilés en tant que templates Vue**. Si vous vous retrouvez à vouloir composer des templates avec `v-html`, essayez de repenser la solution en utilisant des composants à la place.
 
-  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+  <p class="tip">Faire le rendu dynamique de code HTML arbitraire sur votre site web peut être très dangereux car cela peut mener facilement à des [attaques XSS](https://fr.wikipedia.org/wiki/Cross-site_scripting). Utilisez `v-html` uniquement avec du contenu de confiance et **jamais** avec du contenu fourni par les utilisateurs.</p>
 
 - **Exemple:**
 
   ```html
   <div v-html="html"></div>
   ```
-- **Voir aussi :** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
+- **Voir aussi :** [Syntaxe de liaison de données - interpolations](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
-- **Expects:** `any`
+- **Attend comme valeur :** `any`
 
 - **Utilisation :**
 
-  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
+  Permute l'affichage de l'élément avec la propriété CSS `display` selon si la valeur de l'expression est [truthy](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) ou non.
 
-  This directive triggers transitions when its condition changes.
+  Cette directive déclenche des transitions quand sa condition change.
 
-- **Voir aussi :** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
+- **Voir aussi :** [Rendu conditionnel - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
-- **Expects:** `any`
+- **Attend comme valeur :** `any`
 
 - **Utilisation :**
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  Fait le rendu conditionnel de l'élément selon si la valeur de l'expression est [truthy](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) ou non. L'element et les directives / composants qu'il contient sont détruits et reconstruits durant la permutation. Si l'élément est un `<template>`, son contenu sera extrait en tant que bloc conditionnel.
 
-  This directive triggers transitions when its condition changes.
+  Cette directive déclenche des transitions quand sa condition change.
 
 <p class="tip">Quand utilisé avec v-if, v-for a une plus grande priorité par rapport à v-if. Voir le <a href="../guide/list.html#v-for-with-v-if">guide sur le rendu de listes</a> pour plus de détails.</p>
 
-- **Voir aussi :** [Conditional Rendering - v-if](../guide/conditional.html)
+- **Voir aussi :** [Rendu conditionnel - v-if](../guide/conditional.html)
 
 ### v-else
 
-- **Does not expect expression**
+- **N'attend aucune valeur**
 
-- **Restriction :** previous sibling element must have `v-if` or `v-else-if`.
+- **Restriction :** l'élément précédent doit avoir une directive `v-if` or `v-else-if`.
 
 - **Utilisation :**
 
-  Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
+  Dénote un bloc "else" pour `v-if` ou pour une chaîne `v-if`/`v-else-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
-    Now you see me
+    Là vous me voyez
   </div>
   <div v-else>
-    Now you don't
+    Là vous ne me voyez pas
   </div>
   ```
 
 - **Voir aussi :**
-  - [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+  - [Rendu conditionnel - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
-> New in 2.1.0
+> Nouveauté de la 2.1.0
 
-- **Expects:** `any`
+- **Attend comme valeur :** `any`
 
-- **Restriction :** previous sibling element must have `v-if` or `v-else-if`.
+- **Restriction :** l'élément précédent doit avoir une directive `v-if` or `v-else-if`.
 
 - **Utilisation :**
 
-  Denote the "else if block" for `v-if`. Can be chained.
+  Dénote un bloc "else if" pour `v-if`. Peut être enchaîné plusieurs fois.
 
   ```html
   <div v-if="type === 'A'">
@@ -1613,19 +1613,19 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
     C
   </div>
   <div v-else>
-    Not A/B/C
+    Ni A, ni B, ni C
   </div>
   ```
 
-- **Voir aussi :** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **Voir aussi :** [Rendu conditionnel - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string`
+- **Attend comme valeur :** `Array | Object | number | string`
 
 - **Utilisation :**
 
-  Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  Fait le rendu de l'élément ou du bloc template plusieurs fois selon les données source. La valeur de la directive doit utiliser la syntaxe spéciale `alias in expression` pour fournir un alias à l'élément courant dans l'itération:
 
   ``` html
   <div v-for="item in items">
@@ -1633,7 +1633,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  Comme alternative, vous pouvez aussi spécifier un alias pour l'index courant dans l'itération (ou la clé si utilisé sur un `Object`):
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -1641,7 +1641,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
+  Le comportement par défaut de `v-for` est qu'il essaiera de patcher les éléments actuellement en place sans les déplacer. Pour le forcer à réordonner les éléments, vous devez fournir un indice de tri avec l'attribut spécial `key` :
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -1649,210 +1649,210 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   </div>
   ```
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">Quand utilisé conjointement avec v-if, v-for a une plus grande priorité que v-if. Consultez le <a href="../guide/list.html#v-for-with-v-if">guide de rendu de listes</a> pour plus de détails.</p>
 
-  The detailed usage for `v-for` is explained in the guide section linked below.
+  L'usage détaillé pour `v-for` est expliqué dans la section du guide indiquée ci-dessous.
 
 - **Voir aussi :**
-  - [List Rendering](../guide/list.html)
+  - [Rendu de liste](../guide/list.html)
   - [key](../guide/list.html#key)
 
 ### v-on
 
-- **Shorthand:** `@`
+- **Notation abrégée :** `@`
 
-- **Expects:** `Function | Inline Statement`
+- **Attend comme valeur :** `Function | Inline Statement`
 
-- **Argument:** `event (required)`
+- **Argument de la fonction callback :** `event (required)`
 
-- **Modifiers:**
-  - `.stop` - call `event.stopPropagation()`.
-  - `.prevent` - call `event.preventDefault()`.
-  - `.capture` - add event listener in capture mode.
-  - `.self` - only trigger handler if event was dispatched from this element.
-  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
-  - `.native` - listen for a native event on the root element of component.
-  - `.once` - trigger handler at most once.
-  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
-  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
+- **Modificateurs :**
+  - `.stop` - appelle `event.stopPropagation()`.
+  - `.prevent` - appelle `event.preventDefault()`.
+  - `.capture` - ajoute l'écouteur d'événement en mode capture.
+  - `.self` - déclenche le gestionnaire d'événement uniquement si l'événement provient de cet élément.
+  - `.{keyCode | keyAlias}` - déclenche le gestionnaire d'événement uniquement pour certaines touches du clavier.
+  - `.native` - écoute un événement natif sur l'élément racine d'un composant.
+  - `.once` - déclenche le gestionnaire d'événement une seule fois maximum.
+  - `.left` - (2.2.0+) déclenche le gestionnaire d'événement uniquement pour les événements du bouton gauche de la souris.
+  - `.right` - (2.2.0+) déclenche le gestionnaire d'événement uniquement pour les événements du bouton droit de la souris.
+  - `.middle` - (2.2.0+) déclenche le gestionnaire d'événement uniquement pour les événements du bouton du milieu de la souris.
+  - `.passive` - (2.3.0+) attache un événement du DOM avec `{ passive: true }`.
 
 - **Utilisation :**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
+  Attache un écouteur d'événement à l'élément. Le type d'événement écouté est indiqué comme argument. L'expression peut être soit un nom de méthode, soit une ligne d'instruction, ou simplement omise si des modificateurs sont présents.
 
-  When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
+  Quand utilisé sur un élément HTML standard, il écoute uniquement les **événements natifs du DOM**. Quand utilisé sur un élement personnalisé de composant, il écoute également les **événements personnalisés** émis depuis ce composant enfant.
 
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  Lorsque des événements natifs du DOM sont écoutés, la méthode reçoit l'événement natif comme unique argument. Si la valeur de la directive est une ligne d'instruction, l'instruction a accès à la propriété spéciale `$event` : `v-on:click="handle('ok', $event)"`.
 
 - **Exemple :**
 
   ```html
-  <!-- method handler -->
-  <button v-on:click="doThis"></button>
+  <!-- nom de méthode -->
+  <button v-on:click="faireCeci"></button>
 
-  <!-- inline statement -->
-  <button v-on:click="doThat('hello', $event)"></button>
+  <!-- ligne d'instruction -->
+  <button v-on:click="faireCela('hello', $event)"></button>
 
-  <!-- shorthand -->
-  <button @click="doThis"></button>
+  <!-- notation abrégée -->
+  <button @click="faireCeci"></button>
 
-  <!-- stop propagation -->
-  <button @click.stop="doThis"></button>
+  <!-- stoppe la propagation -->
+  <button @click.stop="faireCeci"></button>
 
-  <!-- prevent default -->
-  <button @click.prevent="doThis"></button>
+  <!-- empêche le comportement par défaut -->
+  <button @click.prevent="faireCeci"></button>
 
-  <!-- prevent default without expression -->
+  <!-- empêche le comportement par défaut sans expression -->
   <form @submit.prevent></form>
 
-  <!-- chain modifiers -->
-  <button @click.stop.prevent="doThis"></button>
+  <!-- enchaîner les modificateurs -->
+  <button @click.stop.prevent="faireCeci"></button>
 
-  <!-- key modifier using keyAlias -->
+  <!-- modificateur de touche avec un keyAlias -->
   <input @keyup.enter="onEnter">
 
-  <!-- key modifier using keyCode -->
+  <!-- modificateur de touche avec un keyCode -->
   <input @keyup.13="onEnter">
 
-  <!-- the click event will be triggered at most once -->
-  <button v-on:click.once="doThis"></button>
+  <!-- l'événement click sera déclenché une seule fois maximum -->
+  <button v-on:click.once="faireCeci"></button>
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  Écouter des événements personnalisés sur un composant enfant (le gestionnaire est appelé quand "mon-evenement" est émis depuis l'enfant):
 
   ```html
-  <my-component @my-event="handleThis"></my-component>
+  <mon-composant @mon-evenement="faireCeci"></mon-composant>
 
-  <!-- inline statement -->
-  <my-component @my-event="handleThis(123, $event)"></my-component>
+  <!-- ligne d'instruction -->
+  <mon-composant @mon-evenement="faireCeci(123, $event)"></mon-composant>
 
-  <!-- native event on component -->
-  <my-component @click.native="onClick"></my-component>
+  <!-- événement natif sur le composant -->
+  <mon-composant @click.native="onClick"></mon-composant>
   ```
 
 - **Voir aussi :**
-  - [Methods and Event Handling](../guide/events.html)
-  - [Components - Custom Events](../guide/components.html#Custom-Events)
+  - [Méthodes et gestionnaires d'événement](../guide/events.html)
+  - [Composants - Événements personnalisés](../guide/components.html#Custom-Events)
 
 ### v-bind
 
-- **Shorthand:** `:`
+- **Notation abrégée :** `:`
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **Attend comme valeur :** `any (avec argument) | Object (sans argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **Argument:** `attrOuProp (optionnel)`
 
-- **Modifiers:**
-  - `.prop` - Bind as a DOM property instead of an attribute. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
-  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
+- **Modificateurs :**
+  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([quelle difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.camel` - (2.1.0+) transforme un nom d'attribut en kebab-case en sa version camelCase.
+  - `.sync` - (2.3.0+) du sucre syntaxique pour ajouter un un gestionnaire `v-on` qui met à jour la valeur liée.
 
 - **Utilisation :**
 
-  Dynamically bind one or more attributes, or a component prop to an expression.
+  Lie dynamiquement un ou plusieurs attributs HTML ou props de composant à une expression.
 
-  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+  Quand utilisé pour lier un attribut `class` ou `style`, la directive supporte des types additionnels de valeur tels que `Array` ou `Object`. Consultez la section du guide en lien ci-dessous pour plus de détails.
 
-  When used for prop binding, the prop must be properly declared in the child component.
+  Quand utilisé pour lier à une prop de composant, la prop doit être bien déclarée dans le composant enfant.
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
+  Utilisé sans argument, la directive peut lier un objet contenant des paires clé-valeur d'attributs. Notez que dans ce mode, `class` et `style` ne supportent pas les `Array` ou `Object`.
 
 - **Exemple :**
 
   ```html
-  <!-- bind an attribute -->
+  <!-- lie un attribut -->
   <img v-bind:src="imageSrc">
 
-  <!-- shorthand -->
+  <!-- notation abrégée -->
   <img :src="imageSrc">
 
-  <!-- with inline string concatenation -->
+  <!-- avec de la concaténation de string -->
   <img :src="'/path/to/images/' + fileName">
 
-  <!-- class binding -->
+  <!-- liaison de classes -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]">
 
-  <!-- style binding -->
+  <!-- liaison de styles -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
-  <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
+  <!-- lier un objet d'attributs -->
+  <div v-bind="{ id: uneProp, 'autre-attr': uneAutreProp }"></div>
 
-  <!-- DOM attribute binding with prop modifier -->
+  <!-- lier un attribut du DOM avec le modificateur prop -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- prop binding. "prop" must be declared in my-component. -->
-  <my-component :prop="someThing"></my-component>
+  <!-- liaison de prop. "prop" doit être déclaré dans mon-composant. -->
+  <mon-composant :prop="uneValeur"></mon-composant>
 
-  <!-- pass down parent props in common with a child component -->
-  <child-component v-bind="$props"></child-component>
+  <!-- transmettre les props parentes à un composant enfant -->
+  <composant-enfant v-bind="$props"></composant-enfant>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  Le modificateur `.camel` permet de réécrire en camelCase un nom d'attribut de `v-bind` si vous déclarez vos templates dans le DOM, p. ex. l'attribut SVG `viewBox` :
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  `.camel` n'est pas nécessaire si vous utilisez des templates en chaîne de caractères ou si vous les compilez avec `vue-loader`/`vueify`.
 
 - **Voir aussi :**
-  - [Class and Style Bindings](../guide/class-and-style.html)
-  - [Components - Component Props](../guide/components.html#Props)
-  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
+  - [Liaisons de classe et de style](../guide/class-and-style.html)
+  - [Composants - Props de composant](../guide/components.html#Props)
+  - [Composants - Modificateur `.sync`](../guide/components.html#sync-Modifier)
 
 ### v-model
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **Attend comme valeur :** variable selon les éléments input de formulaire ou les valeurs en sortie de composants
 
-- **Limited to:**
+- **Limité à :**
   - `<input>`
   - `<select>`
   - `<textarea>`
-  - components
+  - composants
 
-- **Modifiers:**
-  - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast input string to numbers
-  - [`.trim`](../guide/forms.html#trim) - trim input
+- **Modificateurs :**
+  - [`.lazy`](../guide/forms.html#lazy) - écoute les événements `change` au lieu de `input`
+  - [`.number`](../guide/forms.html#number) - convertit en nombres les chaînes de caractères en entrée
+  - [`.trim`](../guide/forms.html#trim) - retire les blancs autour des chaînes de caractères en entrée
 
 - **Utilisation :**
 
-  Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
+  Crée une liaison bidirectionnelle sur un élément de saisie d'un formulaire ou sur un composant. Pour une utilisation détaillée et d'autres notes, consultez la section du guide en lien ci-dessous.
 
 - **Voir aussi :**
-  - [Form Input Bindings](../guide/forms.html)
-  - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [Liaisons de champs de saisie de formulaire](../guide/forms.html)
+  - [Composants - Composants de saisie de formulaire avec événements personnalisés](../guide/components.html#Form-Input-Components-using-Custom-Events)
 
 ### v-pre
 
-- **Does not expect expression**
+- **N'attend aucune valeur**
 
 - **Utilisation :**
 
-  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+  Omet la compilation pour cet élément et tous ses enfants. Vous pouvez utiliser ceci pour afficher à l'utilisateur des expressions `{{ moustache }}`. Utilisé sur un grand nombre de noeuds sans directives, cela peut aussi accélerer la compilation.
 
 - **Exemple :**
 
   ```html
-  <span v-pre>{{ this will not be compiled }}</span>
+  <span v-pre>{{ ceci ne sera pas compilé }}</span>
    ```
 
 ### v-cloak
 
-- **Does not expect expression**
+- **N'attend aucune valeur**
 
 - **Utilisation :**
 
-  This directive will remain on the element until the associated Instance de Vue finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Instance de Vue is ready.
+  Cette directive restera sur l'élément jusqu'à ce que l'instance de Vue associée ait fini sa compilation. Combiné avec des règles CSS telles que `[v-cloak] { display: none }`, cette directive peut être utilisée pour cacher des liaisons moustache encore non compilées jusqu'à ce que l'instance de Vue soit prête.
 
 - **Exemple :**
 
@@ -1868,37 +1868,37 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  L'élément `<div>` ne sera pas visible jusqu'à ce que la compilation soit terminée.
 
 ### v-once
 
-- **Does not expect expression**
+- **N'attend aucune valeur**
 
 - **Détails :**
 
-  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  Fait le rendu de l'élément ou du composant qu'**une seule fois** seulement. Lors des nouveaux rendus par la suite, l'élément/composant et tous ses enfants seront traités comme du contenu statique et ignorés. Cela peut être utilisé pour optimiser les performances à la mise à jour d'un composant.
 
   ```html
-  <!-- single element -->
-  <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- sur un seul element -->
+  <span v-once>Ceci ne changera jamais : {{msg}}</span>
+  <!-- l'élément a des enfants -->
   <div v-once>
-    <h1>comment</h1>
+    <h1>commentaire</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
-  <my-component v-once :comment="msg"></my-component>
-  <!-- v-for directive -->
+  <!-- composant -->
+  <mon-composant v-once :commentaire="msg"></mon-composant>
+  <!-- directive v-for -->
   <ul>
-    <li v-for="i in list" v-once>{{i}}</li>
+    <li v-for="i in liste" v-once>{{i}}</li>
   </ul>
   ```
 
 - **Voir aussi :**
-  - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
-  - [Components - Cheap Static Components with v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
+  - [Syntaxe de liaison de données - interpolations](../guide/syntax.html#Text)
+  - [Components - Composants économes avec v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## Attributs spéciaux
 
 ### key
 
