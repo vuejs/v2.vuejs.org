@@ -249,7 +249,7 @@ Here's a complete example of a simple todo list:
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:key="todo"
+      v-bind:key="index"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
