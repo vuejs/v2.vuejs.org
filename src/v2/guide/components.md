@@ -639,15 +639,15 @@ Let's see it in action with a very simple currency input:
 
 ``` js
 Vue.component('currency-input', {
-  template: `
-    <span>
-      $
-      <input
-        ref="input"
-        v-bind:value="value"
-        v-on:input="updateValue($event.target.value)">
-    </span>
-  `,
+  template: '\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)">\
+    </span>\
+  ',
   props: ['value'],
   methods: {
     // Instead of updating the value directly, this
