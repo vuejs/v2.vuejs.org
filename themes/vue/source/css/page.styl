@@ -5,6 +5,8 @@
 @import "_migration"
 @import "_sidebar"
 @import "_offline-menu"
+@import "_team"
+@import "_animations"
 
 #header
     box-shadow 0 0 1px rgba(0,0,0,.25)
@@ -15,6 +17,7 @@
     padding 2.2em 0
     max-width 600px
     margin 0 auto
+    padding-left: 20px
     &.api
         > a:first-of-type > h2
             margin-top 0
@@ -118,36 +121,44 @@
             background-color #f8f8f8
             code
                 background-color #efefef
-    p.tip
-        padding 12px 24px 12px 30px
-        margin 2em 0
-        border-left 4px solid $red
-        background-color $codebg
-        position relative
-        border-bottom-right-radius $radius
-        border-top-right-radius $radius
-
-        &:before
-            position absolute
-            top 14px
-            left -12px
-            background-color $red
-            color #fff
-            content "!"
-            width 20px
-            height 20px
-            border-radius 100%
-            text-align center
-            line-height 20px
-            font-weight bold
-            font-family $logo-font
-            font-size 14px
-
-        code
-            background-color #efefef
-
-        em
-            color $medium
+    p
+        &.tip, &.success
+            padding 12px 24px 12px 30px
+            margin 2em 0
+            border-left-width 4px
+            border-left-style solid
+            background-color $codebg
+            position relative
+            border-bottom-right-radius $radius
+            border-top-right-radius $radius
+            &:before
+                position absolute
+                top 14px
+                left -12px
+                color #fff
+                width 20px
+                height 20px
+                border-radius 100%
+                text-align center
+                line-height 20px
+                font-weight bold
+                font-family $logo-font
+                font-size 14px
+            code
+                background-color #efefef
+            em
+                color $medium
+        &.tip
+            border-left-color: $red
+            &:before
+                content '!'
+                background-color $red
+        &.success
+            border-left-color: $green
+            &:before
+                content '\f00c'
+                font-family: FontAwesome
+                background-color $green
 
 .guide-links
     margin-top 2em

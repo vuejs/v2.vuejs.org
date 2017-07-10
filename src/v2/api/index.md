@@ -2107,8 +2107,8 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp. Only components matched by this will be cached.
-  - `exclude` - string or RegExp. Any component matched by this will not be cached.
+  - `include` - string or RegExp or Array. Only components matched by this will be cached.
+  - `exclude` - string or RegExp or Array. Any component matched by this will not be cached.
 
 - **Usage:**
 
@@ -2147,7 +2147,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   > New in 2.1.0
 
-  The `include` and `exclude` props allow components to be conditionally cached. Both props can either be a comma-delimited string or a RegExp:
+  The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
 
   ``` html
   <!-- comma-delimited string -->
@@ -2157,6 +2157,11 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   <!-- regex (use v-bind) -->
   <keep-alive :include="/a|b/">
+    <component :is="view"></component>
+  </keep-alive>
+
+  <!-- Array (use v-bind) -->
+  <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
   ```

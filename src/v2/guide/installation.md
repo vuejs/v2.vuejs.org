@@ -93,7 +93,7 @@ Se você precisar compilar _templates_ em tempo real (por exemplo, passando uma 
 ``` js
 // Isso requer o compilador
 new Vue({
-  template: `<div>{{ hi }}</div>`
+  template: '<div>{{ hi }}</div>'
 })
 
 // Isso não requer

@@ -438,7 +438,45 @@ O `type` pode ser um dos seguintes construtores nativos:
 
 Além disso, `type` também pode ser uma função de construtor personalizada e a asserção será feita com uma verificação `instanceof`.
 
-Quando a validação da propriedade falha, o Vue produzirá um aviso no console (se usar a _build_ de desenvolvimento).
+Quando a validação de propriedade falha, Vue produz um aviso no _console_ (se estiver utilizando uma compilação de desenvolvimento). Observe que propriedades são validadas __antes__ da instância do componente ser criada, portanto em funções `default` ou `validator`, propriedades da instância como `data`, `computed` ou `methods` não estarão disponíveis.
+
+## Atributo Não-Prop
+
+Um atributo não-prop é um atributo passado a um componente, mas que não tem uma propriedade correspondente definida através de `props`.
+
+Enquanto explicitamente definir `props` é a forma recomendada de passar informações a componentes filhos, autores de bibliotecas de componentes não podem sempre prever o contexto no qual seus componentes poderão ser utilizados. Por isso componentes podem aceitar atributos arbitrários, os quais são adicionados ao elemento raiz do componente.
+
+Por exemplo, imagine que estamos usando um componente `bs-date-input` de terceiros, com um _plugin_ Bootstrap que exige um atributo `data-3d-date-picker` no `input`. Nós podemos adicionar este atributo à nossa instância do componente:
+
+``` html
+<bs-date-input data-3d-date-picker="true"></bs-date-input>
+```
+
+E o atributo `data-3d-date-picker="true"` será automaticamente adicionado ao elemento raiz do `bs-date-input`.
+
+### Substituindo/Mesclando Atributos Existentes
+
+Imagine que este é o template do `bs-date-input`:
+
+``` html
+<input type="date" class="form-control">
+```
+
+Para especificar um tema para nosso _plugin_ de seleção de datas, precisaríamos adicionar uma classe específica, como essa:
+
+``` html
+<bs-date-input
+  data-3d-date-picker="true"
+  class="date-picker-theme-dark"
+></bs-date-input>
+```
+
+Neste caso, dois valores diferentes para `class` estão definidos:
+
+- `form-control`, configurado pelo próprio componente em seu _template_
+- `date-picker-theme-dark`, passado ao componente através de seu _parent_
+
+Para mais atributos, o valor provido ao componente irá substituir o valor previamente definido no componente. Por exemplo, passar `type="large"` irá sobreescrever `type="date"` e provavelmente quebrar a funcionalidade! Por sorte, os atributos `class` e `style` são um pouco mais inteligentes e os valores podem ser mesclados, tornando o valor final: `form-control date-picker-theme-dark`.
 
 ## Eventos Personalizados
 
@@ -607,15 +645,15 @@ Vamos vê-lo em ação com um input monetário muito simples:
 
 ``` js
 Vue.component('currency-input', {
-  template: `
-    <span>
-      $
-      <input
-        ref="input"
-        v-bind:value="value"
-        v-on:input="updateValue($event.target.value)">
-    </span>
-  `,
+  template: '\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)">\
+    </span>\
+  ',
   props: ['value'],
   methods: {
     // Em vez de atualizar o valor diretamente, este
@@ -917,7 +955,7 @@ Em um componente filho, simplesmente passe os dados para um slot como se você e
 </div>
 ```
 
-No pai, um elemento `<template>` com um atributo especial `scope` indica que ele é um _template_ para um slot escopo. O valor do `scope` é o nome de uma variável temporária que guarda o objeto de propriedades passado do filho:
+No pai, um elemento `<template>` com um atributo especial `scope` deve existir, indicando que ele é um _template_ para um _slot_ com escopo. O valor do `scope` é o nome de uma variável temporária que guarda o objeto de propriedades passado do filho:
 
 ``` html
 <div class="parent">
@@ -1082,7 +1120,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-A função de fábrica recebe uma callback `resolve`, que deve ser chamada quando você recuperar a definição do componente do servidor. Você também pode chamar `reject(reason)` para indicar que o carregamento falhou. O `setTimeout` aqui é simplesmente para demonstração; Como recuperar o componente está totalmente por sua conta. Uma abordagem recomendada é usar componentes assíncronos juntos com a [função de divisão de código do Webpack](https://webpack.js.org/guides/code-splitting-require/):
+A função de fábrica recebe uma _callback_ `resolve`, que deve ser chamada quando você recuperar a definição do componente do servidor. Você também pode chamar `reject(reason)` para indicar que o carregamento falhou. O `setTimeout` aqui é simplesmente para demonstração; Como recuperar o componente está totalmente por sua conta. Uma abordagem recomendada é usar componentes assíncronos juntamente com a [função de divisão de código do Webpack](https://webpack.js.org/guides/code-splitting/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {

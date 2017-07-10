@@ -21,39 +21,37 @@ Vamos mergulhar em um simples exemplo onde a função `render` seria prática. D
 Para o código HTML acima, você decide que quer esta interface para o seu componente:
 
 ``` html
-<linked-heading :nivel="1">Olá Mundo!</linked-heading>
+<anchored-heading :nivel="1">Olá Mundo!</anchored-heading>
 ```
 
 Quando você começar a criar o componente de modo que gere os cabeçalhos de acordo com a propriedade `nivel`, rapidamente chegará a algo assim:
 
 ``` html
-<script type="text/x-template" id="linked-heading-template">
-  <div>
-    <h1 v-if="nivel === 1">
-      <slot></slot>
-    </h1>
-    <h2 v-if="nivel === 2">
-      <slot></slot>
-    </h2>
-    <h3 v-if="nivel === 3">
-      <slot></slot>
-    </h3>
-    <h4 v-if="nivel === 4">
-      <slot></slot>
-    </h4>
-    <h5 v-if="nivel === 5">
-      <slot></slot>
-    </h5>
-    <h6 v-if="nivel === 6">
-      <slot></slot>
-    </h6>
-  </div>
+<script type="text/x-template" id="anchored-heading-template">
+  <h1 v-if="level === 1">
+    <slot></slot>
+  </h1>
+  <h2 v-else-if="level === 2">
+    <slot></slot>
+  </h2>
+  <h3 v-else-if="level === 3">
+    <slot></slot>
+  </h3>
+  <h4 v-else-if="level === 4">
+    <slot></slot>
+  </h4>
+  <h5 v-else-if="level === 5">
+    <slot></slot>
+  </h5>
+  <h6 v-else-if="level === 6">
+    <slot></slot>
+  </h6>
 </script>
 ```
 
 ``` js
-Vue.component('linked-heading', {
-  template: '#linked-heading-template',
+Vue.component('anchored-heading', {
+  template: '#anchored-heading-template',
   props: {
     nivel: {
       type: Number,
@@ -63,12 +61,12 @@ Vue.component('linked-heading', {
 })
 ```
 
-Esse _template_ não está bom. Não somente é prolixo, mas também estamos duplicando `<slot></slot>` para cada nível de cabeçalho, e teremos que fazer o mesmo quando incluirmos o elemento `<a>` para o link. E tudo está dentro de um elemento `div` inútil, somente porque componentes devem possuir exatamente um único elemento raiz.
+Esse _template_ não está passando uma boa sensação. Não é apenas extenso, ele inclusive duplica `<slot></slot>` para cada nível de cabeçalho, e teríamos que fazer o mesmo ao incluirmos um elemento `<a>`.
 
 Enquanto _templates_ funcionam muito bem para a maioria dos componentes, está claro que este caso é uma exceção. Então vamos tentar reescrevê-lo usando uma função `render`:
 
 ``` js
-Vue.component('linked-heading', {
+Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
       'h' + this.nivel,   // nome do elemento (tag)
@@ -84,7 +82,7 @@ Vue.component('linked-heading', {
 })
 ```
 
-Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filho em seu componente, sem especificar um atributo `slot`, como o `Olá Mundo!` dentro de `linked-heading`, esses elementos estão acessíveis na instância do componente através de `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção da API de [propriedades da instância](../api/#vm-slots) antes de se aprofundar em funções `render`**.
+Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filho em seu componente, sem especificar um atributo `slot`, como o `Olá Mundo!` dentro de `anchored-heading`, esses elementos estão acessíveis na instância do componente através de `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção da API de [propriedades da instância](../api/#vm-slots) antes de se aprofundar em funções `render`**.
 
 ## Parâmetros para `createElement`
 
@@ -202,7 +200,7 @@ var getChildrenTextContent = function (children) {
   }).join('')
 }
 
-Vue.component('linked-heading', {
+Vue.component('anchored-heading', {
   render: function (createElement) {
     // criar id em kebabCase
     var headingId = getChildrenTextContent(this.$slots.default)
@@ -311,10 +309,11 @@ Este é o custo de ir para um nível mais baixo, mas também oferece muito mais 
 
 ### Eventos e Modificadores
 
-Para modificadores de eventos `.capture` e `.once`, Vue oferece prefixos que podem ser usandos em conjunto com `on`:
+Para modificadores de eventos `.passive`, `.capture` e `.once`, Vue oferece prefixos que podem ser usandos em conjunto com `on`:
 
 | Modificador | Prefixo |
 | ------ | ------ |
+| `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
 | `.capture.once` ou<br>`.once.capture` | `~!` |
@@ -407,7 +406,7 @@ Se você estiver escrevendo muitas funções `render`, pode se tornar cansativo 
 
 ``` js
 createElement(
-  'linked-heading', {
+  'anchored-heading', {
     props: {
       nivel: 1
     }
@@ -421,23 +420,23 @@ createElement(
 Especialmente quando a versão usando _template_ é tão simples em comparação:
 
 ``` html
-<linked-heading :nivel="1">
+<anchored-heading :nivel="1">
   <span>Alô</span> Mundo!
-</linked-heading>
+</anchored-heading>
 ```
 
 Por isso há um [plugin para Babel](https://github.com/vuejs/babel-plugin-transform-vue-jsx) destinado à utilização de JSX com o Vue, nos trazendo de volta a uma sintaxe mais semelhante à utilizada em _templates_:
 
 ``` js
-import LinkedHeading from './LinkedHeading.vue'
+import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
   el: '#demo',
   render (h) {
     return (
-      <LinkedHeading nivel={1}>
+      <AnchoredHeading nivel={1}>
         <span>Alô</span> Mundo!
-      </LinkedHeading>
+      </AnchoredHeading>
     )
   }
 })

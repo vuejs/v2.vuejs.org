@@ -51,7 +51,7 @@ Chaves duplas não podem ser usadas em atributos HTML. Para isso, utilize a [dir
 Isso também funciona com atributos Boolean - neste caso, o atributo só é renderizado se a condição gerar um valor verdadeiro:
 
 ``` html
-<button v-bind:disabled="someDynamicCondition">Botão</button>
+<button v-bind:disabled="isButtonDisabled">Botão</button>
 ```
 
 ### Expressões JavaScript

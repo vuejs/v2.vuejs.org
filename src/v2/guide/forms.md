@@ -40,7 +40,7 @@ new Vue({
 ### Texto com múltiplas linhas
 
 ``` html
-<span>A mensagem com múltiplas linhas é:</span>
+<span>Mensagem com múltiplas linhas:</span>
 <p style="white-space: pre-line">{{ message }}</p>
 <br>
 <textarea v-model="message" placeholder="Adicione múltiplas linhas"></textarea>
@@ -48,11 +48,10 @@ new Vue({
 
 {% raw %}
 <div id="example-textarea" class="demo">
-
-  <span>A mensagem com múltiplas linhas é:</span>
-  <p style="white-space: pre">{{ message }}</p><br>
+  <span>Mensagem com múltiplas linhas:</span>
+  <p style="white-space: pre-line">{{ message }}</p>
+  <br>
   <textarea v-model="message" placeholder="Adicione múltiplas linhas"></textarea>
-
 </div>
 <script>
 new Vue({
