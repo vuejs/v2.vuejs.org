@@ -17,11 +17,11 @@
     padding 2.2em 0
     max-width 600px
     margin 0 auto
-    padding-left: 20px
+    padding-left 20px
     &.api
         > a:first-of-type > h2
             margin-top 0
-            padding-top: 0
+            padding-top 0
         ul
             padding-left 1.25em
             line-height 1.4em
@@ -60,11 +60,11 @@
         margin $h2-margin-top 0 .8em
         padding-bottom .7em
         border-bottom 1px solid $border
-        z-index: -1
+        z-index -1
     h3
         margin $h3-margin-top 0 1.2em
         position relative
-        z-index: -1
+        z-index -1
         &:after
             content "#"
             color $green
@@ -83,7 +83,7 @@
         margin 1.2em 0 -1.2em
         padding-bottom 1.2em
         position relative
-        z-index: 1
+        z-index 1
     ul, ol
         padding-left 1.5em
         // FIX: Some link click targets are covered without this
@@ -149,15 +149,15 @@
             em
                 color $medium
         &.tip
-            border-left-color: $red
+            border-left-color $red
             &:before
                 content '!'
                 background-color $red
         &.success
-            border-left-color: $green
+            border-left-color $green
             &:before
                 content '\f00c'
-                font-family: FontAwesome
+                font-family FontAwesome
                 background-color $green
 
 .guide-links
@@ -175,11 +175,11 @@
     .sidebar
         position fixed
 
-@media screen and (min-width: 1590px)
+@media screen and (min-width 1590px)
     #header
         background-color rgba(255,255,255,.4)
 
-@media screen and (max-width: 1300px)
+@media screen and (max-width 1300px)
     .content.with-sidebar
         margin-left 290px
     #ad
@@ -191,7 +191,7 @@
         float right
         padding 0 0 20px 30px
 
-@media screen and (max-width: 900px)
+@media screen and (max-width 900px)
     body
         -webkit-text-size-adjust none
         font-size 14px
@@ -223,7 +223,7 @@
         margin-left 0
         text-align center
 
-@media screen and (max-width: 560px)
+@media screen and (max-width 560px)
     #downloads
         text-align center
         margin-bottom 25px
@@ -231,4 +231,4 @@
             margin-top 5px
             margin-left 0
     iframe
-        margin: 0 !important
+        margin 0 !important
