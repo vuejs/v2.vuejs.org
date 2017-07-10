@@ -43,10 +43,10 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 
 **API**
 - [x] Global Config (Tradução: @theus. Revisão: @theus)
-- [ ] Global API
-- [ ] Options / Data
-- [ ] Options / DOM (Tradução: @guilherme-dev. Revisão: **pendente**)
-- [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: **pendente**)
+- [ ] Global API (Tradução: @derevandal. Revisão: **pendente**)
+- [ ] Options / Data (Tradução: @derevandal. Revisão: **pendente**)
+- [ ] Options / DOM (Tradução: @guilherme-dev. Revisão: @derevandal)
+- [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: @derevandal)
 - [ ] Options / Assets
 - [ ] Options / Composition
 - [ ] Options / Misc
