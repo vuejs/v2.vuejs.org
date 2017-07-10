@@ -10,11 +10,11 @@ body
     background-color white
     margin 0
     &.docs
-        padding-top: $header-height
+        padding-top $header-height
 
-@media screen and (max-width: 900px)
+@media screen and (max-width 900px)
     body.docs
-        padding-top: 0
+        padding-top 0
 
 a
     text-decoration none
@@ -174,19 +174,19 @@ a.button
             margin 0
             display block
             > ul
-                padding-left: 0
+                padding-left 0
             &:first-child
                 h4
                     margin-top 0
-                    padding-top: 0
-                    border-top: 0
+                    padding-top 0
+                    border-top 0
         a, h4
             padding 0 24px 0 20px
         h4
             // text-transform uppercase
             margin .45em 0 0
-            padding-top: .45em
-            border-top: 1px solid #eee
+            padding-top .45em
+            border-top 1px solid #eee
         a
             color lighten($dark, 10%)
             font-size .9em
