@@ -1,6 +1,28 @@
 @import "_settings"
 
 #team-members
+  .sort-by-distance-button
+    display: inline-block
+    padding: .4em .7em .45em
+    font-weight: bold
+    font-size: .5em
+    text-transform: uppercase
+    line-height: 1
+    border: none
+    background: $medium
+    color: white
+    border-radius: 3px
+    position: relative
+    cursor: pointer
+    float: right
+    margin-top: .3em
+    i
+      margin-right: .25em
+      &:last-child
+        margin-right: 0
+    &[disabled]
+      opacity: .7
+      cursor: default
   .vuer
     display: flex
     padding: 25px 0
@@ -30,6 +52,29 @@
           color: transparentify($dark, #f9f7f5, .6)
           background: #f9f7f5
           border-radius: 5px
+      // NOTE: Removing the little signal icon for now
+      // .distance
+      //   position: relative
+      //   &:before
+      //     content: '\f1eb'
+      //     font-family: FontAwesome
+      //     position: absolute
+      //     top: 50%
+      //     margin-top: -.5em
+      //     line-height: 1
+      //     right: 100%
+      //     transform: rotate(-90deg)
+      .user-match
+        cursor: help
+        color: steelblue
+        &:after
+          content: '\f06a'
+          font-family: FontAwesome
+          font-size: .75em
+          vertical-align: super
+          margin-left: 4px
+          margin-right: 2px
+          position: relative
       dl
         margin: .6em 0 0
       dt, dd, ul, li
@@ -44,6 +89,15 @@
         &::after
           content: ''
           margin-right: 7px
+        i
+          width: 14px
+          text-align: center
+          &.fa-map-marker
+            font-size: 1.15em
+          &.fa-globe
+            font-size: 1.2em
+          &.fa-link
+            font-size: 1.05em
       dd
         font-weight: 600
         &::after

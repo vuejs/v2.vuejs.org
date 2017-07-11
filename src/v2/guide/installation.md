@@ -93,7 +93,7 @@ Si vous avez besoin de compiler des templates en temps réel (ex. : passer une c
 ``` js
 // ceci a besoin d'un compilateur
 new Vue({
-  template: `<div>{{ hi }}</div>`
+  template: '<div>{{ hi }}</div>'
 })
 
 // ceci n'en a pas besoin
