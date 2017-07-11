@@ -6,7 +6,7 @@ order: 23
 
 ## Outils et mise en place
 
-N'importe quoi de compatible avec un module basé sur un système de build basé sur les modules va fonctionner. Mais si vous cherchez une recommandation particulière, essayez le lanceur de tests [Karma](http://karma-runner.github.io). Il y a beaucoup de plugins communautaires, incluant le support de [webpack](https://github.com/webpack/karma-webpack) et [Browserify](https://github.com/Nikku/karma-browserify). Pour une mise en place détaillée, référez-vous à la documentation respective de chaque projet. Ces exemples de configuration de Karma pour [webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) et [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) pourront vous aider à démarrer.
+Tout ce qui est compatible avec un système de build basé sur des modules fonctionnera. Mais si vous cherchez une recommandation particulière, essayez le lanceur de tests [Karma](http://karma-runner.github.io). Il y a beaucoup de plugins communautaires, incluant le support de [webpack](https://github.com/webpack/karma-webpack) et [Browserify](https://github.com/Nikku/karma-browserify). Pour une mise en place détaillée, référez-vous à la documentation respective de chaque projet. Ces exemples de configuration de Karma pour [webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) et [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) pourront vous aider à démarrer.
 
 ## Des assertions simples
 
@@ -61,7 +61,7 @@ describe('MyComponent', () => {
   })
 
   // Monter une instance et inspecter le résultat en sortie
-  it('rend le message correcte', () => {
+  it('rend le message correct', () => {
     const Ctor = Vue.extend(MyComponent)
     const vm = new Ctor().$mount()
     expect(vm.$el.textContent).toBe('au revoir !')
@@ -71,7 +71,7 @@ describe('MyComponent', () => {
 
 ## Écrire des composants testables
 
-Une bonne partie du code en sortie du rendu d'un composant est principalement déterminé par les props qu'ils reçoivent. En fait, si le rendu d'un composant dépend uniquement de ses props, il devient assez facile à tester, de la même manière que l'on ferait une assertion sur la valeur de retour d'une fonction pure avec différents arguments. Voici un exemple :
+Une bonne partie du code en sortie du rendu d'un composant est principalement déterminée par les props qu'il reçoit. En fait, si le rendu d'un composant dépend uniquement de ses props, il devient assez facile à tester, de la même manière que l'on ferait une assertion sur la valeur de retour d'une fonction pure avec différents arguments. Voici un exemple :
 
 ``` html
 <template>
