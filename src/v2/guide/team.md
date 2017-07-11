@@ -632,6 +632,21 @@ order: 31
       links: [
         'https://node-atlas.js.org/', 'https://blog.lesieur.name/'
       ]
+    },
+    {
+      name: 'ChangJoo Park',
+      title: 'Vuenthusiastic Korean Community Organizer',
+      city: 'Seoul, South Korea',
+      languages: ['ko', 'en'],
+      github: 'changjoo-park',
+      twitter: 'pcjpcj2',
+      reposPersonal: [
+        'vuejs-kr/kr.vuejs.org', 'ChangJoo-Park/vue-component-generator'
+      ],
+      links: [
+        'https://vuejs-kr.github.io',
+        'https://twitter.com/pcjpcj2'
+      ]
     }
   ]
 
