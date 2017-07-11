@@ -6,7 +6,7 @@ order: 16
 
 ## 简介
 
-除了默认设置的核心指令( `v-model` 和 `v-show` ),Vue 也允许注册自定义指令。注意，在 Vue2.0 里面，代码复用的主要形式和抽象是组件——然而，有的情况下,你仍然需要对纯 DOM 元素进行底层操作,这时候就会用到自定义指令。下面这个例子将聚焦一个 input 元素，像这样：
+除了 Vue 核心携带着的一些默认指令（`v-model` 和 `v-show`）之外，Vue 还允许你注册自己的自定义指令。请注意，在 Vue 2.0 中，代码重用和抽象(reuse and abstraction)的主要是以组件的形式 - 但是，可能某些情况下，还是需要对普通元素进行一些底层 DOM 访问，这也是自定义指令仍然有其使用场景之处。接着来看一个在输入元素获取焦点的示例，如下：
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -24,32 +24,30 @@ new Vue({
 </script>
 {% endraw %}
 
-当页面加载时，元素将获得焦点 (注意：在手机 Safari 上自动聚焦无效)。事实上，你访问后还没点击任何内容，input 就获得了焦点。现在让我们完善这个指令：
-
+当页面加载时，元素将获取焦点（注意：自动获取焦点在手机 Safari 上无法运行）。事实上，在访问页面时，如果你还没有点击任何地方，上面的输入框现在应该处于获取焦点的状态。现在让我们构建指令以完成此效果：
 
 ``` js
-// 注册一个全局自定义指令 v-focus
+// 注册一个名为 v-focus 的全局自定义指令
 Vue.directive('focus', {
-  // 当绑定元素插入到 DOM 中。
+  // 当绑定的元素插入到 DOM 时调用此函数……
   inserted: function (el) {
-    // 聚焦元素
+    // 元素调用 focus 获取焦点
     el.focus()
   }
 })
 ```
 
-也可以注册局部指令，组件中接受一个 `directives` 的选项：
+如果你想要注册一个局部指令，也可以通过设置组件的 `directives` 选项：
 
 ``` js
 directives: {
   focus: {
-    // 指令的定义---
-
+    // 指令定义对象
   }
 }
 ```
 
-然后你可以在模板中任何元素上使用新的 `v-focus` 属性：
+然后在模板中，你可以在任何元素上使用新增的 `v-focus` 属性，就像这样：
 
 ``` html
 <input v-focus>
@@ -57,38 +55,38 @@ directives: {
 
 ## 钩子函数
 
-指令定义函数提供了几个钩子函数（可选）：
+指令的定义对象提供了几个钩子函数（全部可选）：
 
-- `bind`: 只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个在绑定时执行一次的初始化动作。
+- `bind`：在指令第一次绑定到元素时调用，只会调用一次。可以在此钩子函数中，执行一次性的初始化设置。
 
-- `inserted`: 被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于 document 中）。
-  
-- `update`: 被绑定元素所在的模板更新时调用，而不论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新（详细的钩子函数参数见下）。
+- `inserted`：在已绑定的元素插入到父节点时调用（只能保证父节点存在，不一定存在于 document 中）。
 
-- `componentUpdated`: 被绑定元素所在模板完成一次更新周期时调用。
+- `update`：在包含指令的组件更新后调用，__但可能之前其子组件已更新__。指令的值可能更新或者还没更新，然而可以通过比较绑定的当前值和旧值，来跳过不必要的更新（参考下面的钩子函数）。
 
-- `unbind`: 只调用一次， 指令与元素解绑时调用。
+- `componentUpdated`：在包含指令的组件更新后调用，并且其子组件已更新。
 
-接下来我们来看一下钩子函数的参数 (包括 `el`，`binding`，`vnode`，`oldVnode`) 。
+- `unbind`：在指令从元素上解除绑定时调用，只会调用一次。
 
-## 钩子函数参数
+我们将在下一节中，探讨传入这些钩子函数的参数（例如 `el`, `binding`, `vnode` 和 `oldVnode`）。
 
-钩子函数被赋予了以下参数：
+## 指令钩子函数参数
 
-- **el**: 指令所绑定的元素，可以用来直接操作 DOM 。
-- **binding**: 一个对象，包含以下属性：
-  - **name**: 指令名，不包括 `v-` 前缀。
-  - **value**: 指令的绑定值， 例如： `v-my-directive="1 + 1"`, value 的值是 `2`。
-  - **oldValue**: 指令绑定的前一个值，仅在 `update` 和 `componentUpdated` 钩子中可用。无论值是否改变都可用。
-  - **expression**: 绑定值的字符串形式。 例如 `v-my-directive="1 + 1"` ， expression 的值是 `"1 + 1"`。
-  - **arg**: 传给指令的参数。例如 `v-my-directive:foo`， arg 的值是 `"foo"`。
-  - **modifiers**: 一个包含修饰符的对象。 例如： `v-my-directive.foo.bar`, 修饰符对象 modifiers 的值是 `{ foo: true, bar: true }`。
-- **vnode**: Vue 编译生成的虚拟节点，查阅 [VNode API](../api/#VNode接口) 了解更多详情。
-- **oldVnode**: 上一个虚拟节点，仅在 `update` 和 `componentUpdated` 钩子中可用。
+指令钩子函数可传入以下参数：
 
-<p class="tip">除了 `el` 之外，其它参数都应该是只读的，尽量不要修改他们。如果需要在钩子之间共享数据，建议通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) 来进行。</p>
+- **el**：指令绑定的元素。可以用于直接操作 DOM。
+- **binding**：一个对象，包含以下属性：
+  - **name**：指令的名称，不包括 `v-` 前缀。
+  - **value**：向指令传入的值。例如，在 `v-my-directive="1 + 1"` 中，传入的值是 `2`。
+  - **oldValue**：之前的值，只在 `update` 和 `componentUpdated` 钩子函数中可用。无论值是否发生变化，都可以使用。
+  - **expression**：指令绑定的表达式(expression)，以字符串格式。例如，在 `v-my-directive="1 + 1"` 中，表达式是 `"1 + 1"`。
+  - **arg**：向指令传入的参数，如果有的话。例如，在 `v-my-directive:foo` 中，参数是 `"foo"`。
+  - **modifiers**：一个对象，包含修饰符，如果有的话。例如，在 `v-my-directive.foo.bar` 中，修饰符是 `{ foo: true, bar: true }`。
+- **vnode**：由 Vue 编译器(Vue's compiler)生成的虚拟 Node 节点(virtual node)。更多细节请查看 [VNode API](../api/#VNode-Interface)。
+- **oldVnode**：之前的虚拟 Node 节点(virtual node)，只在 `update` 和 `componentUpdated` 钩子函数中可用。
 
-一个使用了这些参数的自定义钩子样例：
+<p class="tip">除了 `el` 之外的其他参数，都应该是只读的，并且永远不要去修改它们。如果你需要通过钩子函数共享信息数据，推荐通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) 来实现。</p>
+
+下面是使用这些属性的自定义指令的示例：
 
 ``` html
 <div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
@@ -140,18 +138,19 @@ new Vue({
 </script>
 {% endraw %}
 
-## 函数简写
+## 函数简写(Function Shorthand)
 
-大多数情况下，我们可能想在 `bind` 和 `update` 钩子上做重复动作，并且不想关心其它的钩子函数。可以这样写:
+在许多情况下，可能只需要在 `bind` 和 `update` 钩子函数上定义过相同的行为就足够了，而无需关心其他钩子函数。例如：
 
 ``` js
 Vue.directive('color-swatch', function (el, binding) {
   el.style.backgroundColor = binding.value
 })
 ```
-## 对象字面量
 
-如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法类型的 Javascript 表达式。
+## 对象字面量(Object Literals)
+
+如果指令需要多个值，你还可以向指令传入 JavaScript 对象字面量(object literal)。记住，指令能够接收所有有效的 JavaScript 表达式。
 
 ``` html
 <div v-demo="{ color: 'white', text: 'hello!' }"></div>
@@ -166,6 +165,6 @@ Vue.directive('demo', function (el, binding) {
 
 ***
 
-> 原文：http://vuejs.org/guide/custom-directive.html
+> 原文：https://vuejs.org/v2/guide/custom-directive.html
 
 ***
