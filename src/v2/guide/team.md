@@ -51,14 +51,14 @@ order: 31
             <span class="sr-only">Distance</span>
           </dt>
           <dd>
-            À propos
+            À
             <span
               v-if="profile.distanceInKm <= 150"
               :title="profile.name + ' est assez proche pour que vous puissiez vous rencontrer.'"
               class="user-match"
             >{{ textDistance }} de</span>
             <template v-else>{{ textDistance }} de</template>
-            à {{ profile.city }}
+            {{ profile.city }}
           </dd>
         </span>
         <template v-else-if="profile.city">
