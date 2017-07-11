@@ -262,10 +262,15 @@ Vue.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
-      <button v-on:click="$emit('remove')">X</button>\
+      <button v-on:click="remove">X</button>\
     </li>\
   ',
-  props: ['title']
+  props: ['title'],
+  methods: {
+    remove: function () {
+      this.$emit('remove');
+    }
+  }
 })
 
 new Vue({
@@ -309,10 +314,15 @@ Vue.component('todo-item', {
   template: '\
     <li>\
       {{ title }}\
-      <button v-on:click="$emit('remove')">X</button>\
+      <button v-on:click="remove">X</button>\
     </li>\
   ',
-  props: ['title']
+  props: ['title'],
+  methods: {
+    remove: function () {
+      this.$emit('remove');
+    }
+  }
 })
 new Vue({
   el: '#todo-list-example',
