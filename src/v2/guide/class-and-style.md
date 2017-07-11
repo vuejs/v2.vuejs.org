@@ -203,4 +203,4 @@ Introduit avec la 2.3, vous pouvez fournir de multiples valeurs de préfixes à 
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
 ```
 
-This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
+Ceci rendra uniquement la dernière valeur dans le tableau supportée par le navigateur. Dans cet exemple, cela rendra `display: flex` pour les navigateurs qui supportent la version sans préfixe de flexbox.
