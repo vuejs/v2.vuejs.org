@@ -206,7 +206,8 @@ order: 31
     'Bangalore, India': [12.971599, 77.594563],
     'Kingston, Jamaica': [18.017874, -76.809904],
     'Tehran, Iran': [35.689197, 51.388974],
-    'Shanghai, China': [31.230390, 121.473702]
+    'Shanghai, China': [31.230390, 121.473702],
+    'Annecy, France': [45.899247, 6.129384]
   }
   var languageNameFor = {
     en: 'English',
@@ -615,7 +616,7 @@ order: 31
     },
     {
       name: 'Bruno Lesieur',
-      title: 'French Community Manager',
+      title: 'French Community Directeur',
       city: 'Annecy, France',
       languages: ['fr', 'en'],
       github: 'Haeresis',
@@ -626,7 +627,7 @@ order: 31
         orgUrl: 'https://www.orchard-id.com/'
       },
       reposPersonal: [
-        'Haeresis/node-atlas-hello-vue', 'NodeAtlas/node-atlas'
+        'vuejs-fr/vuejs.org', 'Haeresis/node-atlas-hello-vue'
       ],
       links: [
         'https://node-atlas.js.org/', 'https://blog.lesieur.name/'
