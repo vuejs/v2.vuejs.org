@@ -99,10 +99,11 @@ markdown:
 offline:
   maximumFileSizeToCacheInBytes: 10485760
   staticFileGlobs:
-    - public/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,json,xml}
+    - public/**/*.{js,html,css,png,jpg,jpeg,gif,svg,eot,ttf,woff,woff2,json,xml}
   stripPrefix: public
   verbose: true
   runtimeCaching:
+    # Ad Sources - should be networkFirst
     - urlPattern: /*
       handler: networkFirst
       options:
@@ -111,6 +112,11 @@ offline:
       handler: networkFirst
       options:
         origin: ad.doubleclick.net
+    - urlPattern: /*
+      handler: networkFirst
+      options:
+        origin: srv.carbonads.net
+    # CDNs - should be cacheFirst, since they should be used specific versions so should not change
     - urlPattern: /*
       handler: cacheFirst
       options:
@@ -123,6 +129,14 @@ offline:
       handler: cacheFirst
       options:
         origin: fonts.gstatic.com
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: cdnjs.cloudflare.com
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: maxcdn.bootstrapcdn.com
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
