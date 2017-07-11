@@ -249,7 +249,7 @@ new Vue({ el: '#range' })
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:key="todo"
+      v-bind:key="index"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -259,12 +259,12 @@ new Vue({ el: '#range' })
 
 ``` js
 Vue.component('todo-item', {
-  template: `
-    <li>
-      {{ title }}
-      <button v-on:click="$emit('remove')">X</button>
-    </li>
-  `,
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit('remove')">X</button>\
+    </li>\
+  ',
   props: ['title']
 })
 
@@ -298,7 +298,7 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:key="todo"
+      v-bind:key="index"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -306,12 +306,12 @@ new Vue({
 </div>
 <script>
 Vue.component('todo-item', {
-  template: `
-    <li>
-      {{ title }}
-      <button v-on:click="$emit('remove')">X</button>
-    </li>
-  `,
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit('remove')">X</button>\
+    </li>\
+  ',
   props: ['title']
 })
 new Vue({

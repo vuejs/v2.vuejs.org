@@ -93,7 +93,7 @@ $ npm run dev
 ``` js
 // 这种情况需要编译器(compiler)
 new Vue({
-  template: `<div>{{ hi }}</div>`
+  template: '<div>{{ hi }}</div>'
 })
 
 // 这种情况不需要
