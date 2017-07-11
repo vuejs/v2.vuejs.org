@@ -612,6 +612,25 @@ order: 31
       reposPersonal: [
         'elemefe/element', 'elemefe/mint-ui'
       ]
+    },
+    {
+      name: 'Bruno Lesieur',
+      title: 'French Community Manager',
+      city: 'Annecy, France',
+      languages: ['fr', 'en'],
+      github: 'Haeresis',
+      twitter: 'MachinisteWeb',
+      work: {
+        role: 'Cofounder',
+        org: 'Orchard ID',
+        orgUrl: 'https://www.orchard-id.com/'
+      },
+      reposPersonal: [
+        'Haeresis/node-atlas-hello-vue', 'NodeAtlas/node-atlas'
+      ],
+      links: [
+        'https://node-atlas.js.org/', 'https://blog.lesieur.name/'
+      ]
     }
   ]
 
