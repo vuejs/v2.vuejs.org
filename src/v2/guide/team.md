@@ -208,6 +208,7 @@ order: 31
     'Tehran, Iran': [35.689197, 51.388974],
     'Shanghai, China': [31.230390, 121.473702],
     'Annecy, France': [45.899247, 6.129384],
+    'Seoul, South Korea': [37.566535, 126.977969],
     'Taquaritinga, Brazil': [-21.430094, -48.515285]
   }
   var languageNameFor = {
@@ -223,7 +224,8 @@ order: 31
     el: 'Ελληνικά',
     es: 'Español',
     hi: 'हिंदी',
-    fa: 'فارسی'
+    fa: 'فارسی',
+    ko: '한국어'
   }
 
   var team = [{
@@ -633,6 +635,21 @@ order: 31
       ],
       links: [
         'https://node-atlas.js.org/', 'https://blog.lesieur.name/'
+      ]
+    },
+    {
+      name: 'ChangJoo Park',
+      title: 'Vuenthusiastic Korean Community Organizer',
+      city: 'Seoul, South Korea',
+      languages: ['ko', 'en'],
+      github: 'changjoo-park',
+      twitter: 'pcjpcj2',
+      reposPersonal: [
+        'vuejs-kr/kr.vuejs.org', 'ChangJoo-Park/vue-component-generator'
+      ],
+      links: [
+        'https://vuejs-kr.github.io',
+        'https://twitter.com/pcjpcj2'
       ]
     },
     {
