@@ -14,7 +14,7 @@
                 Seja um Patrocinador
             </a>
             <h2>
-                <%- type === 'api' ? 'API' : (type.charAt(0).toUpperCase() + type.slice(1)) %>
+                <%- type === 'api' ? 'API' : (type === 'guide' ? 'Guia' : (type.charAt(0).toUpperCase() + type.slice(1))) %>
                 <% if (type !== 'cookbook') { %>
                     <select class="version-select">
                         <option value="SELF" selected>2.x</option>

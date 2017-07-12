@@ -40,6 +40,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Migration from Vuex 0.6.x to 1.0 (Tradução: @ErickPetru. Revisão: **pendente**)
 - [X] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão: @ErickPetru)
 - [X] Join the Vue.js Community! (Tradução: @ErickPetru)
+- [X] Meet the Team (Tradução: @ErickPetru)
 
 **API**
 - [x] Global Config (Tradução: @theus. Revisão: @theus)
