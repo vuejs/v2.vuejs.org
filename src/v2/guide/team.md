@@ -207,7 +207,8 @@ order: 31
     'Kingston, Jamaica': [18.017874, -76.809904],
     'Tehran, Iran': [35.689197, 51.388974],
     'Shanghai, China': [31.230390, 121.473702],
-    'Annecy, France': [45.899247, 6.129384]
+    'Annecy, France': [45.899247, 6.129384],
+    'Seoul, South Korea': [37.566535, 126.977969]
   }
   var languageNameFor = {
     en: 'English',
@@ -221,7 +222,8 @@ order: 31
     el: 'Ελληνικά',
     es: 'Español',
     hi: 'हिंदी',
-    fa: 'فارسی'
+    fa: 'فارسی',
+    ko: '한국어'
   }
 
   var team = [{
