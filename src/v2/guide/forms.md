@@ -204,7 +204,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">Se o valor inicial de sua expressão `v-model` não corresponder a nenhuma das opções, o elemento `<select>` será renderizado em um estado "não selecionado". No iOS isso fará com que o usuário não seja capaz de selecionar o primeiro item porque o iOS não dispara um evento de alteração neste caso. Então ecomenda-se fornecer uma opção desativada com um valor vazio, como demonstrado no exemplo acima.</p>
+<p class="tip">Se o valor inicial de sua expressão `v-model` não corresponder a nenhuma das opções, o elemento `<select>` será renderizado em um estado "não selecionado". No iOS isso fará com que o usuário não seja capaz de selecionar o primeiro item porque o iOS não dispara um evento de alteração neste caso. Então recomenda-se fornecer uma opção desativada com um valor vazio, como demonstrado no exemplo acima.</p>
 
 Select Múltiplo (ligado a um Array):
 
