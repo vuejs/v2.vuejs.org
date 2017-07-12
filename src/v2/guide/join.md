@@ -13,7 +13,7 @@ Now we'll answer both what the community can do for you and what you can do for 
 ### Get Support
 
 - [Forum](http://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
-- [Gitter Channel](https://gitter.im/vuejs/vue): A place for devs to meet and chat. You can ask questions here too, but the forum is the better platform, since the discussions are threaded.
+- [Chat](https://chat.vuejs.org/): A place for Vue devs to meet and chat in real time.
 - [Github](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
 
 ### Explore the Ecosystem
@@ -37,7 +37,7 @@ After that, you'll be ready to contribute to Vue's core repositories:
 
 ### Share (and Build) Your Experience
 
-Apart from answering questions and sharing resources in the forum and Gitter channel, there are a few other less obvious ways to share and expand what you know:
+Apart from answering questions and sharing resources in the forum and chat, there are a few other less obvious ways to share and expand what you know:
 
 - **Develop learning materials.** It's often said that the best way to learn is to teach. If there's something interesting you're doing with Vue, strengthen your expertise by writing a blog post, developing a workshop, or even just publishing a gist that you share on social media.
 - **Watch a repo you care about.** This will send you notifications whenever there's activity in that repository, giving you insider knowledge about ongoing discussions and upcoming features. It's a fantastic way to build expertise so that you're eventually able to help address issues and pull requests.
