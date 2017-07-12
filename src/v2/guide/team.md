@@ -208,13 +208,15 @@ order: 31
     'Tehran, Iran': [35.689197, 51.388974],
     'Shanghai, China': [31.230390, 121.473702],
     'Annecy, France': [45.899247, 6.129384],
-    'Seoul, South Korea': [37.566535, 126.977969]
+    'Seoul, South Korea': [37.566535, 126.977969],
+    'Taquaritinga, Brazil': [-21.430094, -48.515285]
   }
   var languageNameFor = {
     en: 'English',
     zh: '中文',
     vi: 'Tiếng Việt',
     pl: 'Polski',
+    pt: 'Português',
     ru: 'Русский',
     jp: '日本語',
     fr: 'Français',
@@ -648,6 +650,22 @@ order: 31
       links: [
         'https://vuejs-kr.github.io',
         'https://twitter.com/pcjpcj2'
+      ]
+    },
+    {
+      name: 'Erick Petrucelli',
+      title: 'Perfectionist Chief Translator for Portuguese',
+      city: 'Taquaritinga, Brasil',
+      languages: ['pt', 'en'],
+      github: 'ErickPetru',
+      twitter: 'erickpetru',
+      work: {
+        role: 'Teacher',
+        org: 'Fatec Taquaritinga',
+        orgUrl: 'http://www.fatectq.edu.br/'
+      },
+      reposPersonal: [
+        'vuejs-br/br.vuejs.org', 'ErickPetru/vue-feathers-chat'
       ]
     }
   ]
