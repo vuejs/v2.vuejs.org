@@ -13,9 +13,8 @@ order: 31
         :alt="profile.name" width=80 height=80>
     </div>
     <div class="profile">
-      <h3>
+      <h3 :data-official-title="profile.title">
         {{ profile.name }}
-        <sup v-if="profile.title" v-html="profile.title"></sup>
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
@@ -189,27 +188,29 @@ order: 31
 <script>
 (function () {
   var cityCoordsFor = {
-    'Londres, Reino Unido': [51.507351, -0.127758],
-    'Wroclaw, Polônia': [51.107885, 17.038538],
+    'Annecy, França': [45.899247, 6.129384],
+    'Bangalore, Índia': [12.971599, 77.594563],
+    'Bordéus, France': [44.837789, -0.579180],
+    'Chengtu, China': [30.572815, 104.066801],
     'Dubna, Rússia': [56.732020, 37.166897],
-    'Tóquio, Japão': [35.689487, 139.691706],
+    'Hancheu, China': [30.274084, 120.155070],
+    'Jersey City, Estados Unidos': [40.728157, -74.558716],
+    'Kingston, Jamaica': [18.017874, -76.809904],
+    'Lansing, Estados Unidos': [42.732535, -84.555535],
+    'Londres, Reino Unido': [51.507351, -0.127758],
     'Lyon, França': [45.764043, 4.835659],
     'Mannheim, Alemanha': [49.487459, 8.466039],
-    'Chengtu, China': [30.572815, 104.066801],
-    'Xunquim, China': [29.431586, 106.912251],
-    'Tessalônica, Grécia': [40.640063, 22.944419],
+    'Orlando, Estados Unidos': [28.538335, -81.379236],
     'Paris, França': [48.856614, 2.352222],
-    'Bordéus, France': [44.837789, -0.579180],
-    'Lansing, Estados Unidos': [42.732535, -84.555535],
-    'Jersey City, Estados Unidos': [40.728157, -74.558716],
-    'Hancheu, China': [30.274084, 120.155070],
-    'Bangalore, Índia': [12.971599, 77.594563],
-    'Kingston, Jamaica': [18.017874, -76.809904],
-    'Teerã, Irã': [35.689197, 51.388974],
-    'Xangai, China': [31.230390, 121.473702],
-    'Annecy, França': [45.899247, 6.129384],
     'Seul, Coreia do Sul': [37.566535, 126.977969],
-    'Taquaritinga, Brasil': [-21.430094, -48.515285]
+    'Taquaritinga, Brasil': [-21.430094, -48.515285],
+    'Teerã, Irã': [35.689197, 51.388974],
+    'Tessalônica, Grécia': [40.640063, 22.944419],
+    'Tóquio, Japão': [35.689487, 139.691706],
+    'Toronto, Canadá': [43.653226, -79.383184],
+    'Wroclaw, Polônia': [51.107885, 17.038538],
+    'Xangai, China': [31.230390, 121.473702],
+    'Xunquim, China': [29.431586, 106.912251]
   }
   var languageNameFor = {
     en: 'Inglês',
@@ -666,6 +667,38 @@ order: 31
       },
       reposPersonal: [
         'vuejs-br/br.vuejs.org', 'ErickPetru/vue-feathers-chat'
+      ]
+    },
+    {
+      name: 'Jilson Thomas',
+      title: 'Promotor Vue e Cara do VueJobs',
+      city: 'Toronto, Canadá',
+      languages: ['en'],
+      github: 'JillzTom',
+      twitter: 'jilsonthomas',
+      work: {
+        role: 'Desenvolvedor Frontend Sênior',
+        org: 'Nominator',
+        orgUrl: 'https://nominator.com/'
+      },
+      links: [
+        'https://vuejobs.com'
+      ]
+    },
+    {
+      name: 'John Leider',
+      title: 'Vuepletamente Escultor de Framework',
+      city: 'Orlando, FL, USA',
+      languages: ['en'],
+      github: 'vuetifyjs',
+      twitter: 'vuetifyjs',
+      work: {
+        role: 'Desenvolvedor',
+        org: 'Fast Forward Academy',
+        orgUrl: 'https://fastforwardacademy.com'
+      },
+      reposPersonal: [
+        'vuetifyjs/vuetify'
       ]
     }
   ]
