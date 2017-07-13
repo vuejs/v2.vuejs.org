@@ -191,7 +191,7 @@ order: 31
     'Annecy, France': [45.899247, 6.129384],
     'Bangalore, India': [12.971599, 77.594563],
     'Bordeaux, France': [44.837789, -0.579180],
-    'Bucharest, Romania': [44.426767, 26.102538]
+    'Bucharest, Romania': [44.426767, 26.102538],
     'Chengdu, China': [30.572815, 104.066801],
     'Chongqing, China': [29.431586, 106.912251],
     'Dubna, Russia': [56.732020, 37.166897],
