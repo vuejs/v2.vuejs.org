@@ -1,5 +1,5 @@
 ---
-title: Bindings em Classes e Estilos
+title: Interligações em Classes e Estilos
 type: guide
 order: 6
 ---

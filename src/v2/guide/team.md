@@ -208,6 +208,7 @@ order: 31
     'Teerã, Irã': [35.689197, 51.388974],
     'Xangai, China': [31.230390, 121.473702],
     'Annecy, França': [45.899247, 6.129384],
+    'Seul, Coreia do Sul': [37.566535, 126.977969],
     'Taquaritinga, Brasil': [-21.430094, -48.515285]
   }
   var languageNameFor = {
@@ -223,7 +224,8 @@ order: 31
     el: 'Grego',
     es: 'Espanhol',
     hi: 'Hindi',
-    fa: 'Persa'
+    fa: 'Persa',
+    ko: 'Coreano'
   }
 
   var team = [{
@@ -636,6 +638,21 @@ order: 31
       ]
     },
     {
+      name: 'ChangJoo Park',
+      title: 'Vuentusiasta Organizador da Equipe Coreana',
+      city: 'Seul, Coreia do Sul',
+      languages: ['ko', 'en'],
+      github: 'changjoo-park',
+      twitter: 'pcjpcj2',
+      reposPersonal: [
+        'vuejs-kr/kr.vuejs.org', 'ChangJoo-Park/vue-component-generator'
+      ],
+      links: [
+        'https://vuejs-kr.github.io',
+        'https://twitter.com/pcjpcj2'
+      ]
+    },
+    {
       name: 'Erick Petrucelli',
       title: 'Perfeccionista Tradutor-Chefe para Português',
       city: 'Taquaritinga, Brasil',
@@ -685,7 +702,7 @@ order: 31
       textDistance: function () {
         var distanceInKm = this.profile.distanceInKm || 0
         if (this.$root.useMiles) {
-          return roundDistance(kmToMi(distanceInKm)) + ' miles'
+          return roundDistance(kmToMi(distanceInKm)) + ' milhas'
         } else {
           return roundDistance(distanceInKm) + ' km'
         }

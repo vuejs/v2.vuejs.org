@@ -1,5 +1,5 @@
 ---
-title: Input Bindings em Formulários
+title: Interligações em Formulários
 type: guide
 order: 10
 ---
@@ -14,7 +14,7 @@ Você pode usar a diretiva `v-model` para criar two-way data bindings em element
 
 ### Texto
 
-<p class="tip" id="vmodel-ime-tip">Para linguagens que requerem um [IME](https://en.wikipedia.org/wiki/Input_method) (Chinês, Japonês, Koreano etc.), você notará que `v-model` nao é atualizado durante a atualização da composição UME. Se você quiser atender a estas atualizações, use o evento `input` ao invés do `v-model`.</p>
+<p class="tip" id="vmodel-ime-tip">Para linguagens que requerem um [IME](https://en.wikipedia.org/wiki/Input_method) (Chinês, Japonês, Koreano etc.), você notará que `v-model` não é atualizado durante a atualização da composição UME. Se você quiser atender a estas atualizações, use o evento `input` ao invés do `v-model`.</p>
 
 
 ``` html
@@ -380,15 +380,8 @@ Se você que que a entrada do usuário seja automaticamente isenta de espaços n
 <input v-model.trim="msg">
 ```
 
-## `v-model` with Components
+## `v-model` com Componentes
 
-> If you're not yet familiar with Vue's components, just skip this for now.
+> Se você não está familiarizado com componentes Vue, apenas pule isto por enquanto.
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
-
-
-
-
-
-
-
+Os tipo de input nativos do HTML nem sempre atendem suas necessidades. Por sorte, componentes Vue permitem construir inputs reutilizáveis com comportamento completamente personalizado. Estes inputs também funcionam com `v-model`! Para saber mais, leia sobre [inputs personalizados](components.html#Componentes-de-Input-em-Formulario-usando-Eventos-Personalizados) no guia de Componentes.
