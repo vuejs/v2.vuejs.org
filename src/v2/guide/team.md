@@ -667,6 +667,22 @@ order: 31
       reposPersonal: [
         'vuejs-br/br.vuejs.org', 'ErickPetru/vue-feathers-chat'
       ]
+    },
+    {
+      name: 'Razvan Stoenescu',
+      title: 'Creator of Quasar Framework',
+      city: 'Bucharest, Romania',
+      languages: ['en', 'ro'],
+      github: 'rstoenescu',
+      twitter: 'quasarframework',
+      work: {
+        role: 'Developer',
+        org: 'Quasar Framework',
+        orgUrl: 'http://quasar-framework.org/'
+      },
+      reposPersonal: [
+        'quasarframework/quasar', 'quasarframework/quasar-cli', 'quasarframework/quasar-play'
+      ]
     }
   ]
 
