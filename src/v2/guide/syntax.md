@@ -36,7 +36,7 @@ Mustache 태그는 해당 데이터 객체의 `msg` 속성 값으로 대체됩�
 <div v-html="rawHtml"></div>
 ```
 
-컨텐츠는 일반 HTML 형식으로 삽입됩니다. 데이터 바인딩은 무시됩니다. Vue는 문자열 기반 템플릿 엔진이 아니기 때문에 `v-html`을 사용하여 템플릿 조각을 작성할 수  없습니다. 대신 컴포넌트는 UI 재사용 및 구성을 위한 기본 단위로 사용해야 합니다.
+이 div의 내용은 일반 HTML로 해석되는 `rawHtml` 속성의 값으로 대체됩니다. 데이터 바인딩은 무시됩니다. Vue는 문자열 기반 템플릿 엔진이 아니기 때문에 `v-html`을 사용하여 템플릿 부분을 작성할 수 없습니다. 대신 컴포넌트는 UI 재사용 및 구성을 위한 기본 단위로 사용합니다.
 
 
 <p class="tip">웹사이트에서 임의의 HTML을 동적으로 렌더링하려면 [XSS 취약점](https://en.wikipedia.org/wiki/Cross-site_scripting)으로 쉽게 이어질 수 있으므로 매우 위험할 가능성이 있습니다. 신뢰할 수 있는 콘텐츠에서는 HTML 보간만 사용하고 사용자가 제공한 콘텐츠에서는 **절대** 사용하면 안됩니다.</p>
@@ -52,7 +52,7 @@ Mustaches는 HTML 속성으로 사용할 수 없으며 대신 [v-bind 디렉티�
 Boolean 속성에 대해서도 작동합니다. 조건이 거짓 값이면 속성이 제거됩니다.
 
 ``` html
-<button v-bind:disabled="someDynamicCondition">Button</button>
+<button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
 ### JavaScript 표현식 사용하기

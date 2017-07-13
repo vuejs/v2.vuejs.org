@@ -28,26 +28,24 @@ Vue는 템플릿을 사용하여 대다수의 경우 HTML을 작성할 것을 �
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
-  <div>
-    <h1 v-if="level === 1">
-      <slot></slot>
-    </h1>
-    <h2 v-if="level === 2">
-      <slot></slot>
-    </h2>
-    <h3 v-if="level === 3">
-      <slot></slot>
-    </h3>
-    <h4 v-if="level === 4">
-      <slot></slot>
-    </h4>
-    <h5 v-if="level === 5">
-      <slot></slot>
-    </h5>
-    <h6 v-if="level === 6">
-      <slot></slot>
-    </h6>
-  </div>
+  <h1 v-if="level === 1">
+    <slot></slot>
+  </h1>
+  <h2 v-else-if="level === 2">
+    <slot></slot>
+  </h2>
+  <h3 v-else-if="level === 3">
+    <slot></slot>
+  </h3>
+  <h4 v-else-if="level === 4">
+    <slot></slot>
+  </h4>
+  <h5 v-else-if="level === 5">
+    <slot></slot>
+  </h5>
+  <h6 v-else-if="level === 6">
+    <slot></slot>
+  </h6>
 </script>
 ```
 
@@ -63,7 +61,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-이 템플릿은 별로 좋지 않습니다. 이것은 장황하지는 않지만 모든 헤딩 수준에 대해`<slot> </slot>`을 중복으로 가지고 있으며 앵커 엘리먼트를 추가 할 때도 똑같이 해야합니다. 컴포넌트는 정확히 하나의 루트 노드를 포함해야하기 때문에 쓸모없는 `div`로 싸여 있습니다.
+이 템플릿은 별로 좋지 않습니다. 이것은 장황할 뿐만 아니라 모든 헤딩 수준에 대해 `<slot> </slot>`을 중복으로 가지고 있으며 앵커 엘리먼트를 추가 할 때도 똑같이 해야합니다.
 
 템플릿은 대부분의 컴포넌트에서 훌륭하게 작동하지만 분명하지는 않습니다. 이제 `render` 함수로 다시 작성해 봅니다.
 
@@ -110,13 +108,12 @@ createElement(
   // 간단히 문자열을 사용해 'text VNodes'를 얻을 수 있습니다. 선택사항
   [
     'Some text comes first.',
-    createElement('h1', 'hello world'),
+    createElement('h1', 'A headline'),
     createElement(MyComponent, {
       props: {
         someProp: 'foobar'
       }
-    }),
-    'bar'
+    })
   ]
 )
 ```
@@ -179,7 +176,7 @@ createElement(
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // 이 컴퍼넌트가 다른 컴퍼넌트의 자식인 경우, 슬롯의 이름입니다.
+  // 이 컴포넌트가 다른 컴포넌트의 자식인 경우, 슬롯의 이름입니다.
   slot: 'name-of-slot',
   // 기타 최고 레벨 속성
   key: 'myKey',
@@ -309,10 +306,11 @@ render: function (createElement) {
 
 ### 이벤트 및 키 수정자
 
-`.capture` 와 `.once` 이벤트 수정자를 위해, Vue는 `on` 과 함께 사용할 수있는 접두사를 제공합니다.
+`.passive`, `.capture` 및 `.once` 이벤트 수식어를 위해 Vue는 `on`과 함께 사용할 수있는 접두사를 제공합니다 
 
 | 수정자| 접두어 |
 | ------ | ------ |
+| `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
 | `.capture.once` 또는<br>`.once.capture` | `~!` |
@@ -364,7 +362,7 @@ on: {
 
 ``` js
 render: function (createElement) {
-  // <div><slot></slot></div>
+  // `<div><slot></slot></div>`
   return createElement('div', this.$slots.default)
 }
 ```
@@ -373,7 +371,7 @@ render: function (createElement) {
 
 ``` js
 render: function (createElement) {
-  // <div><slot :text="msg"></slot></div>
+  // `<div><slot :text="msg"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
       text: this.msg
@@ -388,7 +386,7 @@ render: function (createElement) {
 render (createElement) {
   return createElement('div', [
     createElement('child', {
-      // 데이터 객체의 scopedSlots를 다음 형식으로 전달합니다
+      // 데이터 객체의 `scopedSlots`를 다음 형식으로 전달합니다
       // { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
@@ -475,10 +473,7 @@ Vue.component('my-component', {
 - `data`: 컴포넌트에 전달된 전체 데이터 객체
 - `parent`: 상위 컴포넌트에 대한 참조
 - `listeners`: (2.3.0+) 부모에게 등록된 이벤트 리스너를 가진 객체입니다. `data.on`의 알리아스입니다.
-- `injections`: (2.3.0+) [`inject`](https://vuejs.org/v2/api/#provide-inject) 옵션을 사용하면 리졸브드 인젝션을 가집니다
-
-> 참고: 2.3.0 버전 이하에서 함수형 컴포넌트에 속성을 허용하려면 `props`가 필요합니다. 2.3.0 이상에서는 `props`를 생략할 수 있으며 컴포넌트 노드에서 발견된 모든 속성은 암시적으로 속성으로 판단됩니다.
-
+- `injections`: (2.3.0+) [`inject`](../api/#provide-inject) 옵션을 사용하면 리졸브드 인젝션을 가집니다
 
 `functional:true`를 추가한 후 anchor를 가지는 heading 컴포넌트의 렌더 함수를 업데이트 하는 것은 단순히 `context` 전달인자를 추가하고 `this.$slots.default`를 `context.children`으로 갱신한 다음 `this.level`을 `context.props.level`로 갱신하면 됩니다.
 

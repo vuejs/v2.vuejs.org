@@ -203,6 +203,7 @@ data: {
 2.3버전 부터 스타일 속성에 접두사가 있는 여러 값을 배열로 전달할 수 있습니다. 예제입니다.
 
 ``` html
-<div :style="{ display: ["-webkit-box", "-ms-flexbox", "flex"] }">
+<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
 ```
 
+브라우저가 지원하는 배열의 마지막 값만 렌더링합니다. 이 예제에서는 flexbox의 접두어가 붙지않은 버전을 지원하는 브라우저에 대해 `display : flex`를 렌더링합니다.

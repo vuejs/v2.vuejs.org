@@ -99,7 +99,7 @@ Vue와 React 모두 거의 대부분의 일반적인 애플리케이션에서 �
 
 React에서는 모든 것이 JavaScript만으로 매우 심플하고 우아한 느낌을 줍니다. 불행한 현실은 JavaScript내에서 HTML과 CSS를 사용하면서 기존 모델의 일부 문제를 해결 할 때 자체적으로 고통을 초래할 수 있다는 것입니다. Vue에서 대신 우리는 웹 기술을 수용하고 그 위에 구축했습니다. 그 의미를 보여주기 위해 몇 가지 예를 살펴 보겠습니다.
 
-#### JSX vs Templates
+Vue embraces classic web technologies and builds on top of them. To show you what that means, we'll dive into some examples.
 
 React에서 모든 컴포넌트는 JavaScript 내에서 작동하는 선언적 XML 유사 구문 인 JSX를 사용하여 렌더링 함수 내에서 UI를 표현합니다. 다음은 [React 커뮤니티에 의해 심사받은 예](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684) 입니다.
 
@@ -120,13 +120,7 @@ render () {
     children = <p>No items found.</p>
   }
 
-  return (
-    <div className='list-container'>
-      {children}
-    </div>
-  )
-}
-```
+In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript.
 
 JSX로 렌더하는 경우 몇 가지 장점이 있습니다.
 
@@ -135,18 +129,7 @@ JSX로 렌더하는 경우 몇 가지 장점이 있습니다.
 
 Vue에서 우리는 또한 [렌더링 함수](render-function.html)와 심지어 [JSX 지원](render-function.html#JSX)을 가지고 있습니다. 때로는 그 강력함이 필요하기 때문입니다. 그러나 기본적으로 우리는 더 간단한 대안으로 템플릿을 제공합니다.
 
-``` html
-<template>
-  <div class="list-container">
-    <ul v-if="items.length">
-      <li v-for="item in items" :key="item.id">
-        {{ item.name }}
-      </li>
-    </ul>
-    <p v-else>No items found.</p>
-  </div>
-</template>
-```
+- For many developers who have been working with HTML, templates simply feel more natural to read and write. The preference itself can be somewhat subjective, but if it makes the developer more productive then the benefit is objective.
 
 몇 가지 장점은 다음과 같습니다.
 
@@ -160,12 +143,7 @@ Vue에서 우리는 또한 [렌더링 함수](render-function.html)와 심지어
 
 HTML 호환 템플릿의 또 다른 이점은 Pug(이전에는 Jade로 알려짐)와 같은 전처리기를 사용하여 Vue 템플릿을 제작할 수 있다는 것입니다.
 
-``` pug
-div.list-container
-  ul(v-if="items.length")
-    li(v-for="item in items") {{ item.name }}
-  p(v-else) No items found.
-```
+On a higher level, we can divide components into two categories: presentational ones and logical ones. We recommend using templates for presentational components and render function / JSX for logical ones. The percentage of these components depends on the type of app you are building, but in general we find presentational ones to be much more common.
 
 #### 컴포넌트 범위의 CSS
 
@@ -229,7 +207,7 @@ ReactNative를 사용하면 같은 React 컴포넌트 모델을 사용하여 iOS
 
 MobX는 React 커뮤니티에서 꽤 유명해졌고 실제로 Vue와 거의 같은 반응형 시스템을 사용합니다. 제한된 범위 내에서 React + MobX 워크플로우는 좀 더 장황한 Vue로 생각할 수 있습니다. 따라서 이 조합을 사용하고 있고 그것을 즐기고 있다면 Vue로 넘어오는 것이 아마도 다음 단계일 것입니다.
 
-## Angular 1
+## AngularJS (Angular 1)
 
 일부 Vue의 문법은 Angular와 매우 유사합니다 (예 :`v-if`와`ng-if`). Angular가 제대로 된 많은 것들을 가지고 있었기 때문에 이것은 개발 초기에 Vue에게 영감이 되었습니다. Angular와 함께 제공되는 많은 고통이 있었지만 Vue가 상당한 개선을 제공하려고 시도하였습니다.
 
@@ -257,9 +235,9 @@ Vue는 더 나은 성능을 가지며 변경에 대한 검사를 하지 않기 �
 
 Vue는 비동기 대기열이 있는 투명한 종속성 추적 관찰 시스템을 사용하기 때문에이 문제가 전혀 발생하지 않습니다. 모든 변경 사항은 명시적 종속 관계가 없는 한 독립적으로 트리거됩니다.
 
-흥미롭게도 Angular 2와 Vue가 Angular 1 문제를 해결하는 방법에는 몇 가지 유사점이 있습니다.
+흥미롭게도 AngularJS와 Vue가  문제를 해결하는 방법에는 몇 가지 유사점이 있습니다.
 
-## Angular 2
+## Angular (Formerly known as Angular 2)
 
 Angular 2는 완전히 새로운 것이기 때문에 별도의 섹션을 만들었습니다. 예를 들어, 1급 컴포넌트 시스템이 있으며 많은 구현 세부 사항이 완전히 다시 작성 되었으며 API도 상당히 크게 변경되었습니다.
 
@@ -295,7 +273,7 @@ Ember는 높은 찬사를 받는 완전한 기능의 프레임워크입니다. �
 
 - Vue의 템플릿 문법은 JavaScript 표현식의 모든 기능을 활용하지만 Handlebars의 표현식 및 헬퍼 문법은 의도적으로 비교할 때 매우 제한적입니다.
 
-- 성능 측면에서 Vue는 Ember 2.0의 최신 Glimmer 엔진 업데이트 이후에도 Ember보다 월등히 뛰어납니다. Vue는 업데이트를 자동으로 일괄 처리하지만 Ember에서는 성능이 중요한 상황에서 실행 루프를 수동으로 관리해야합니다.
+- 성능 측면에서 Vue는 Ember 2.0의 최신 Glimmer 엔진 업데이트 이후에도 Ember보다 [월등히](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) 뛰어납니다. Vue는 업데이트를 자동으로 일괄 처리하지만 Ember에서는 성능이 중요한 상황에서 실행 루프를 수동으로 관리해야합니다.
 
 ## Knockout
 

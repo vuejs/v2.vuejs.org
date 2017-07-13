@@ -428,12 +428,51 @@ Vue.component('example', {
 - Function
 - Object
 - Array
+- Symbol
 
 또한, `type` 은 커스텀 생성자 함수가 될 수 있고, assertion은 `instanceof` 체크로 만들어 질 것입니다.
 
 prop 유효성 검사가 실패하면 Vue는 콘솔 경고를 생성합니다(개발 빌드를 사용하는 경우).
 
-## 사용자 정의 이벤트
+props 검증이 실패하면 Vue는 콘솔에서 경고를 출력합니다(개발 빌드를 사용하는 경우). props는 컴포넌트 인스턴스가 __생성되기 전__에 검증되기 때문에 `default` 또는 `validator` 함수 내에서 `data`, `computed` 또는 `methods`와 같은 인스턴스 속성을 사용할 수 없습니다.
+
+## Props가 아닌 속성
+
+Props가 아닌 속성은 컴포넌트로 전달되지만 해당 props는 정의되지 않은 속성입니다.
+
+명시적으로 정의된 props는 하위 컴포넌트에 정보를 전달하는데 적절하지만 컴포넌트 라이브러리를 만드는 경우 컴포넌트가 사용될 수있는 상황을 항상 예측할 수는 없습니다. 이것이 컴포넌트가 컴포넌트의 루트 요소에 추가되는 임의의 속성을 허용해야하는 이유입니다.
+
+요예를 들어, 우리가 `input`에 `data-3d-date-picker` 속성을 요구하는 부트스트랩 플러그인으로 써드 파티 `bs-date-input` 컴포넌트를 사용하고 있다고 상상해보세요. 이 속성을 컴포넌트 인스턴스에 추가 할 수 있습니다.
+
+``` html
+<bs-date-input data-3d-date-picker="true"></bs-date-input>
+```
+
+그리고 `data-3d-date-picker="true"`속성은 `bs-date-input`의 루트 엘리먼트에 자동으로 추가 될 것입니다.
+
+### 존재하는 속성 교체/병합
+
+이 파일이 `bs-date-input`의 템플릿이라고 가정합니다:
+
+``` html
+<input type="date" class="form-control">
+```
+
+데이트피커 플러그인의 테마를 추가하려면 다음과 같이 특정 클래스를 추가해야 할 수도 있습니다.
+
+``` html
+<bs-date-input
+  data-3d-date-picker="true"
+  class="date-picker-theme-dark"
+></bs-date-input>
+```
+
+이 경우 `class`에 대한 두 개의 서로 다른 값이 정의됩니다.
+
+- 템플릿의 컴포넌트에 의해 설정된 `form-control`
+- `date-picker-theme-dark`는 부모에 의해 컴포넌트로 전달됩니다.
+
+대부분의 속성의 경우 컴포넌트에 제공된 값은 컴포넌트에서 설정된 값을 대체합니다. 예를 들어, `type="large"`가 전달되면 `type="date"`를 대체할 것이고 아마도 망가뜨릴 것입니다! 다행스럽게도 `class`와 `style` 속성은 똑똑하기 때문에 두 값이 합쳐져서 최종 값인 `form-control date-picker-theme-dark`를 만듭니다.
 
 우리는 부모가 prop을 사용하여 자식에게 데이터를 전달할 수 있다는 것을 알았지만, 문제가 발생했을 때 어떻게 부모에게 다시 알릴까요? 바로 Vue의 사용자 정의 이벤트 시스템이 들어오는 곳입니다.
 
@@ -600,15 +639,15 @@ this.$emit('update:foo', newValue)
 
 ``` js
 Vue.component('currency-input', {
-  template: `
-    <span>
-      $
-      <input
-        ref="input"
-        v-bind:value="value"
-        v-on:input="updateValue($event.target.value)">
-    </span>
-  `,
+  template: '\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)">\
+    </span>\
+  ',
   props: ['value'],
   methods: {
     // 값을 직접 업데이트하는 대신 이 메소드를 사용하여
@@ -617,8 +656,13 @@ Vue.component('currency-input', {
       var formattedValue = value
         // 공백을 제거합니다.
         .trim()
-        // 소수 자릿수 2자리로 줄입니다.
-        .slice(0, value.indexOf('.') + 3)
+        // 소수 자릿수 2자리로 줄입니다
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       // 값이 아직 정규화 되지 않은 경우
       // 이를 수동으로 재정의하여 조건을 충족시킵니다.
       if (formattedValue !== value) {
@@ -652,7 +696,12 @@ Vue.component('currency-input', {
     updateValue: function (value) {
       var formattedValue = value
         .trim()
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
@@ -744,7 +793,7 @@ bus.$on('id-selected', function (id) {
 
 주목해야할 두가지 사항이 있습니다.
 
-1. `<app>`컴포넌트는 마운트 타겟 내부에 어떤 내용이 있는지 알지 못합니다. `<app>`을 사용하는 부모 컴포넌트에 의해 결정됩니다.
+1. `<app>` 컴포넌트는 어떤 컨텐츠를 받을지 모릅니다. 그것은 컴포넌트에 의해 `<app>` 결정됩니다.
 
 2. `<app>` 컴포넌트에는 자체 템플릿이 있을 가능성이 큽니다.
 
@@ -899,7 +948,7 @@ Vue.component('child-component', {
 </div>
 ```
 
-부모에서, 특별한 속성 `scope`를 가진 `<template>` 엘리먼트는 범위가 지정된 슬롯을 위한 템플릿임을 나타냅니다. `scope`의 값은 자식으로부터 전달 된 props 객체를 저장하는 임시 변수의 이름입니다.
+부모에서, 특별한 속성 `scope`을 가진 `<template>`엘리먼트가 존재해야 합니다. 이것은 범위를 가지는 슬롯을 위한 템플릿임을 나타냅니다. `scope`의 값은 자식으로부터 전달 된 props 객체를 담고있는 임시 변수의 이름입니다:
 
 ``` html
 <div class="parent">
@@ -1062,7 +1111,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](https://webpack.js.org/guides/code-splitting-require/)과 함께 비동기 컴포넌트를 사용하는 것입니다.
+팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](https://webpack.js.org/guides/code-splitting/)과 함께 비동기 컴포넌트를 사용하는 것입니다.
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1121,7 +1170,7 @@ const AsyncComp = () => ({
 
 ### 컴포넌트 이름 규약
 
-컴포넌트 (또는 prop)를 등록 할 때 kebab-case, camelCase 또는 PascalCase를 사용할 수 있습니다. Vue는 상관하지 않습니다.
+컴포넌트 (또는 prop)를 등록 할 때 kebab-case, camelCase 또는 PascalCase를 사용할 수 있습니다.
 
 ``` js
 // 컴포넌트 정의에서
@@ -1146,14 +1195,33 @@ HTML 템플릿 내에서 kebab-case와 동등한 것을 사용해야합니다.
 
 그러나 _문자열_ 템플릿을 사용할 때 HTML의 대소문자를 구분하지 않습니다. 즉, 템플릿에서도 CamelCase, PascalCase 또는 kebab-case를 사용하여 컴포넌트와 prop을 참조할 수 있습니다.
 
-``` html
-<!-- 문자열 템플릿은 무엇을 사용해도 상관 없습니다. -->
-<my-component></my-component>
-<myComponent></myComponent>
-<MyComponent></MyComponent>
+- kebab-case
+- camelCase를 사용하여 컴포넌트가 정의된 경우 camelCase 또는 kebab-case
+- PascalCase를 사용하여 컴포넌트가 정의된 경우 kebab-case, camelCase or PascalCase
+
+``` js
+components: {
+  'kebab-cased-component': { /* ... */ },
+  camelCasedComponent: { /* ... */ },
+  PascalCasedComponent: { /* ... */ }
+}
 ```
 
-컴포넌트가 `slot` 엘리먼트를 통해 컨텐츠를 전달받지 못하면 이름 뒤에 `/`를 사용하여 스스로 닫을 수도 있습니다.
+``` html
+<kebab-cased-component></kebab-cased-component>
+
+<camel-cased-component></camel-cased-component>
+<camelCasedComponent></camelCasedComponent>
+
+<pascal-cased-component></pascal-cased-component>
+<pascalCasedComponent></pascalCasedComponent>
+<PascalCasedComponent></PascalCasedComponent>
+```
+
+
+이것은 PascalCase가 가장 보편적 인 _선언적 컨벤션_임을 의미하며 케밥 케이스는 가장 보편적으로 사용하는 _컨벤션_입니다.
+
+컴포넌트가 `slot` 엘리먼트를 통해 내용을 전달받지 못하면 이름 뒤에 `/`를 사용하여 자체적으로 닫을 수도 있습니다.
 
 ``` html
 <my-component/>

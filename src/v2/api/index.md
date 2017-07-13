@@ -81,8 +81,27 @@ type: api
   > 2.2.0에서 이 훅은 컴포넌트 라이프사이클 훅의 오류를 캡처합니다. 또한, 이 훅이 `undefined`일 때, 캡쳐 된 에러는 어플리케이션을 실행 불능으로 만드는 대신에 `console.error` 로그를 출력 합니다.
 
   
+  > 2.4.0에서 이 훅은 Vue의 사용자 정의 이벤트 핸들러가 발생하는 에러를 감지합니다.
 
   > 오류 추적 서비스인 [Sentry](https://sentry.io)에서 [공식 사용 설명서](https://sentry.io/for/vue/)를 제공합니다.
+
+### warnHandler
+
+> 2.4.0 이후 추가됨
+
+- **타입:** `Function`
+
+- **기본값:** `undefined`
+
+- **사용방법:**
+
+  ``` js
+  Vue.config.warnHandler = function (msg, vm, trace) {
+    // trace는 컴포넌트 계층 구조를 추적합니다.
+  }
+  ```
+
+  런타임 Vue 경고에 대한 사용자 정의 핸들러를 할당하십시오. 이는 개발 중에만 작동하며 배포시 무시됩니다.
 
 ### ignoredElements
 
@@ -1088,6 +1107,33 @@ if (version === 2) {
   </my-checkbox>
   ```
 
+### inheritAttrs
+
+> 2.4.0 이후 추가됨
+
+- **타입:** `boolean`
+
+- **기본값:** `true`
+
+- **상세:**
+
+  기본적으로 props로 인식되지 않는 상위 스코프의 속성 바인딩은 "흘러내려가" 일반 HTML 속성으로 하위 컴포넌트의 루트 엘리먼트에 적용됩니다.
+  타겟 엘리먼트 또는 다른 컴포넌트를 래핑하는 컴포넌트를 제작할 때 항상 원하는 동작을 하지 않을 수 있습니다.
+  `inheritAttrs` 속성을 `false`로 지정하면 기본적인 동작이 중지됩니다.
+  속성은 `$attrs` 인스턴스 속성(2.4에서 새로 추가됨)로 사용할 수 있으며 `v-bind`로 루트 엘리먼트에 명시적으로 바인딩할 수 있습니다.
+
+### comments
+
+> 2.4.0 이후 추가됨
+
+- **타입:** `boolean`
+
+- **기본값:** `false`
+
+- **상세:**
+
+  `true`로 설정하면 템플릿에 있는 HTML 주석을 보존하고 렌더링합니다. 기본값은 동작은 무시합니다.
+
 ## 인스턴스 속성
 
 ### vm.$data
@@ -1263,13 +1309,33 @@ if (version === 2) {
 
 - **참고:** [서버측 렌더링](../guide/ssr.html)
 
+### vm.$attrs
+
+- **타입:** `{ [key: string]: string }`
+
+- **읽기 전용**
+
+- **상세:**
+
+  props로 인식(및 추출)되지 않는 부모 범위 속성 바인딩입니다. 컴포넌트에 선언된 props가 없을 때 `class`와 `style`을 제외하고 모든 부모 범위 바인딩을 기본적으로 포함하며 `v-bind="$attrs"`를 통해 내부 컴포넌트로 전달할 수 있습니다 - 고차원 컴포넌트를 작성할 때 유용합니다.
+
+### vm.$listeners
+
+- **타입:** `{ [key: string]: Function | Array<Function> }`
+
+- **읽기 전용**
+
+- **상세:**
+
+  부모 스코프 `v-on` 이벤트 리스너를 포함합니다 (`.native` 수식어 없음). `v-on="$listeners"`를 통해 내부 컴포넌트로 전달할 수 있습니다 - 고차원 컴포넌트를 생성 할 때 유용합니다.
+
 ## 인스턴스 메소드 / 데이터
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
 - **전달인자:**
   - `{string | Function} expOrFn`
-  - `{Function} callback`
+  - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
@@ -1398,7 +1464,7 @@ if (version === 2) {
   - `{string} [event]`
   - `{Function} [callback]`
 
-- **사용방법:**
+- **Usage:**
 
   사용자 정의 이벤트 리스너를 제거합니다.
 
@@ -1665,9 +1731,9 @@ if (version === 2) {
 
 - **약어:** `@`
 
-- **예상됨:** `Function | Inline Statement`
+- **예상됨:** `Function | Inline Statement | Object`
 
-- **전달인자:** `event (required)`
+- **전달인자:** `event`
 
 - **수식어:**
   - `.stop` - `event.stopPropagation()` 을 호출합니다.
@@ -1686,6 +1752,8 @@ if (version === 2) {
 
   엘리먼트에 이벤트 리스너를 연결합니다. 이벤트 유형은 전달인자로 표시됩니다. 표현식은 메소드 이름 또는 인라인 구문일 수 있으며, 수식어가 있으면 생략할 수 있습니다.
 
+  `2.4.0`부터 `v-on`도 인수없이 이벤트/리스너 쌍의 객체에 바인딩을 지원합니다. 객체 구문을 사용할 때는 수식어를 지원하지 않습니다.
+
   일반 엘리먼트에 사용되면 **기본 DOM 이벤트**만 받습니다. 사용자 정의 컴포넌트에서 사용될 때 해당 하위 컴포넌트에서 생성된 **사용자 정의 이벤트**를 받습니다.
 
   네이티브 DOM 이벤트를 수신하면 메소드는 네이티브 이벤트를 유일한 전달인자로 받습니다. 인라인 구문을 사용하는 경우 명령문은 특별한 `$event` 속성에 접근할 수 있습니다: `v-on: click = "handle('ok', $event)"`
@@ -1695,6 +1763,9 @@ if (version === 2) {
   ```html
   <!-- 메소드 핸들러 -->
   <button v-on:click="doThis"></button>
+
+  <!-- 객체 구문 (2.4.0+) -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
   <!-- 인라인 구문 -->
   <button v-on:click="doThat('hello', $event)"></button>
@@ -1750,7 +1821,7 @@ if (version === 2) {
 
 - **수식어:**
   - `.prop` - 속성 대신 DOM 속성으로 바인딩 ([무슨 차이가 있습니까?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). 만약 태그가 컴포넌트라면 `.props`는 컴포넌트의 `$el`에 속성을 추가합니다.
-  - `.camel` - kebab-case 속성 이름을 camelCase로 변환합니다. (2.1.0이후 지원)
+  - `.camel` - (2.1.0+) kebab-case 속성 이름을 camelCase로 변환합니다. 
   - `.sync` - (2.3.0+) 바인딩 된 값을 업데이트하기 위한 `v-on`를 확장하는 신택스 슈가입니다
 
 - **사용방법:**
@@ -1794,7 +1865,7 @@ if (version === 2) {
   <my-component :prop="someThing"></my-component>
 
   <!-- 자식 컴포넌트와 공통으로 사용하는 부모 props를 전달합니다 -->
-  <child-component v-bind.prop="$props"></child-component>
+  <child-component v-bind="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
@@ -2116,8 +2187,8 @@ if (version === 2) {
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp. 일치하는 컴퍼넌트만 캐시됩니다.
-  - `exclude` - string or RegExp. 일치하는 컴퍼넌트는 캐시되지 않습니다.
+  - `include` - string 또는 RegExp 또는 Array . 일치하는 컴퍼넌트만 캐시됩니다.
+  - `exclude` - string 또는 RegExp 또는 Array. 일치하는 컴퍼넌트는 캐시되지 않습니다.
 
 - **사용방법:**
 
@@ -2156,7 +2227,7 @@ if (version === 2) {
 
   > 2.1.0의 새로운 기능
 
-  `include`와`exclude` prop는 컴포넌트를 조건부 캐시 할 수 있습니다. 두 prop는 쉼표로 분리 된 문자열이거나 RegExp 입니다.
+  `include`와`exclude` prop는 컴포넌트를 조건부 캐시 할 수 있습니다. 두 prop는 쉼표로 분리 된 문자열이거나 RegExp 또는 배열입니다.
 
   ``` html
   <!-- 콤마로 구분된 문자열 -->
@@ -2166,6 +2237,11 @@ if (version === 2) {
 
   <!-- regex (v-bind 사용) -->
   <keep-alive :include="/a|b/">
+    <component :is="view"></component>
+  </keep-alive>
+
+  <!-- Array (use v-bind) -->
+  <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
   ```

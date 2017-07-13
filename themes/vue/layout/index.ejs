@@ -1,7 +1,9 @@
 <div class="sidebar">
-  <ul class="main-menu">
-    <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-  </ul>
+  <div class="sidebar-inner-index">
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
+  </div>
 </div>
 
 <div id="hero">
@@ -36,7 +38,7 @@
     <div class="point">
       <h2>고성능</h2>
       <p>
-        19kb min+gzip Runtime<br>
+        20kb min+gzip Runtime<br>
         엄청나게 빠른 가상 DOM을 제공합니다.<br>
         최소한의 최적화 노력만 필요합니다.
       </p>
@@ -54,8 +56,11 @@
 </div>
 
 <div id="footer">
-  <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>를 따릅니다.<br>
-  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You
+  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
+    <img src="/images/shuttleworth.png" style="width:200px">
+  </a>
+  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
+  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
 
 <script>

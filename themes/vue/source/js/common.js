@@ -29,6 +29,7 @@
     function createSourceSearchPath(query) {
       query = query
         .replace(/\([^\)]*?\)/g, '')
+        .replace(/(Vue\.)(\w+)/g, '$1$2" OR "$2')
         .replace(/vm\./g, 'Vue.prototype.')
       return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
@@ -125,7 +126,7 @@
       var yDiff = end.y - start.y
 
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        if (xDiff > 0) sidebar.classList.add('open')
+        if (xDiff > 0 && start.x <= 80) sidebar.classList.add('open')
         else sidebar.classList.remove('open')
       }
     })
@@ -251,7 +252,16 @@
 
     function makeLink (h) {
       var link = document.createElement('li')
-      var text = h.textContent.replace(/\(.*\)$/, '')
+      window.arst = h
+      var text = [].slice.call(h.childNodes).map(function (node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.nodeValue
+        } else if (['CODE', 'SPAN'].indexOf(node.tagName) !== -1) {
+          return node.textContent
+        } else {
+          return ''
+        }
+      }).join('').replace(/\(.*\)$/, '')
       link.innerHTML =
         '<a class="section-link" data-scroll href="#' + h.id + '">' +
           htmlEscape(text) +

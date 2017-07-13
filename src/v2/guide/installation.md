@@ -2,11 +2,11 @@
 title: 설치방법
 type: guide
 order: 1
-vue_version: 2.3.0
-dev_size: "247.31"
-min_size: "76.64"
-gz_size: "28.03"
-ro_gz_size: "19.54"
+vue_version: 2.4.0
+dev_size: "257.91"
+min_size: "79.71"
+gz_size: "28.96"
+ro_gz_size: "20.18"
 ---
 
 ### 호환성 정보
@@ -95,7 +95,7 @@ CLI는 Node.js 및 관련 빌드 도구에 대한 사전 지식을 필요로 합
 ``` js
 // 아래 내용은 컴파일러가 필요합니다
 new Vue({
-  template: `<div>{{ hi }}</div>`
+  template: '<div>{{ hi }}</div>'
 })
 
 // 아래는 필요하지 않습니다

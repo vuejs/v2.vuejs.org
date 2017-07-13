@@ -293,9 +293,16 @@ Vue.component('todo-item', {
 ``` html
 <div id="app-7">
   <ol>
-    <!-- 이제 각 todo-item 에 todo 객체를 제공합니다. -->
-    <!-- 화면에 나오므로, 각 항목의 컨텐츠는 동적으로 바뀔 수 있습니다. -->
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <!-- 
+      이제 각 todo-item 에 todo 객체를 제공합니다.
+      화면에 나오므로, 각 항목의 컨텐츠는 동적으로 바뀔 수 있습니다. 
+      또한 각 구성 요소에 "키"를 제공해야합니다 (나중에 설명 됨).
+     -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id">
+    </todo-item>
   </ol>
 </div>
 ```
@@ -309,9 +316,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: '채소' },
-      { text: '치즈' },
-      { text: '사람이 먹을 수 있는 다른 무언가' }
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
@@ -319,7 +326,7 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
   </ol>
 </div>
 <script>
@@ -331,9 +338,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: '채소' },
-      { text: '치즈' },
-      { text: '사람이 먹을 수 있는 무엇이든' }
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
