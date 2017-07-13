@@ -209,6 +209,7 @@ order: 31
     'Tehran, Iran': [35.689197, 51.388974],
     'Thessaloniki, Greece': [40.640063, 22.944419],
     'Tokyo, Japan': [35.689487, 139.691706],
+    'Toronto, Canada': [43.653226, -79.383184],
     'Wrocław, Poland': [51.107885, 17.038538]
   }
   var languageNameFor = {
