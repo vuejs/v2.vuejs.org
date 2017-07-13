@@ -191,6 +191,7 @@ order: 31
     'Annecy, França': [45.899247, 6.129384],
     'Bangalore, Índia': [12.971599, 77.594563],
     'Bordéus, France': [44.837789, -0.579180],
+    'Bucareste, Romênia': [44.426767, 26.102538],
     'Chengtu, China': [30.572815, 104.066801],
     'Dubna, Rússia': [56.732020, 37.166897],
     'Hancheu, China': [30.274084, 120.155070],
@@ -226,7 +227,8 @@ order: 31
     es: 'Espanhol',
     hi: 'Hindi',
     fa: 'Persa',
-    ko: 'Coreano'
+    ko: 'Coreano',
+    ro: 'Romeno'
   }
 
   var team = [{
@@ -667,6 +669,22 @@ order: 31
       },
       reposPersonal: [
         'vuejs-br/br.vuejs.org', 'ErickPetru/vue-feathers-chat'
+      ]
+    },
+    {
+      name: 'Razvan Stoenescu',
+      title: 'Criador de Quasars do Espaço Profundo',
+      city: 'Bucareste, Romênia',
+      languages: ['ro', 'en'],
+      github: 'rstoenescu',
+      twitter: 'quasarframework',
+      work: {
+        role: 'Desenvolvedor',
+        org: 'Quasar Framework',
+        orgUrl: 'http://quasar-framework.org/'
+      },
+      reposPersonal: [
+        'quasarframework/quasar', 'quasarframework/quasar-cli', 'quasarframework/quasar-play'
       ]
     },
     {
