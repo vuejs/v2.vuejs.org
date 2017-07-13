@@ -655,7 +655,7 @@ order: 31
     {
       name: 'Erick Petrucelli',
       title: 'Perfectionist Chief Translator for Portuguese',
-      city: 'Taquaritinga, Brasil',
+      city: 'Taquaritinga, Brazil',
       languages: ['pt', 'en'],
       github: 'ErickPetru',
       twitter: 'erickpetru',
