@@ -82,7 +82,27 @@ type: api (En)
 
   > En 2.2.0, ce hook capture également les erreurs dans les hooks du cycle de vie des composants. De plus, quand ce hook est `undefined`, les erreurs capturées seront loguées avec `console.error` plutôt qu'avoir un crash de l'application.
 
+  > In 2.4.0 this hook also captures errors thrown inside Vue custom event handlers.
+
   > [Sentry](https://sentry.io), un service de traçage d'erreur, fournit une [intégration officielle](https://sentry.io/for/vue/) utilisant cette option.
+
+### warnHandler
+
+> New in 2.4.0
+
+- **Type:** `Function`
+
+- **Default:** `undefined`
+
+- **Usage:**
+
+  ``` js
+  Vue.config.warnHandler = function (msg, vm, trace) {
+    // trace is the component hierarchy trace
+  }
+  ```
+
+  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
 
 ### ignoredElements
 
@@ -1012,7 +1032,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Type :** `Array<string>`
 
-- **default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
 - **Détails :**
 
@@ -1082,6 +1102,30 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
     value="une certaine valeur">
   </ma-checkbox>
   ```
+
+### inheritAttrs
+
+> New in 2.4.0
+
+- **Type:** `boolean`
+
+- **Default:** `true`
+
+- **Details:**
+
+  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+
+### comments
+
+> New in 2.4.0
+
+- **Type:** `boolean`
+
+- **Default:** `false`
+
+- **Details:**
+
+  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
 
 ## Propriétés d'instance
 
@@ -1259,13 +1303,33 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Voir aussi :** [Rendu côté serveur](../guide/ssr.html)
 
+### vm.$attrs
+
+- **Type:** `{ [key: string]: string }`
+
+- **Read only**
+
+- **Details:**
+
+  Contains parent-scope attribute bindings that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings except for `class` and `style`, and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+
+### vm.$listeners
+
+- **Type:** `{ [key: string]: Function | Array<Function> }`
+
+- **Read only**
+
+- **Details:**
+
+  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating higher-order components.
+
 ## Méthodes et données d'instance
 
 <h3 id="vm-watch">vm.$watch( expOuFn, callback, [options] )</h3>
 
 - **Arguments :**
-  - `{string | Function} expOuFn`
-  - `{Function} callback`
+  - `{string | Function} expOrFn`
+  - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
@@ -1661,9 +1725,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Shorthand:** `@`
 
-- **Expects:** `Function | Inline Statement`
+- **Expects:** `Function | Inline Statement | Object`
 
-- **Argument:** `event (required)`
+- **Argument:** `event`
 
 - **Modifiers:**
   - `.stop` - call `event.stopPropagation()`.
@@ -1682,6 +1746,8 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
 
+  Starting in `2.4.0`, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+
   When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
 
   When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
@@ -1691,6 +1757,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   ```html
   <!-- method handler -->
   <button v-on:click="doThis"></button>
+
+  <!-- object syntax (2.4.0+) -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
   <!-- inline statement -->
   <button v-on:click="doThat('hello', $event)"></button>

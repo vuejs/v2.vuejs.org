@@ -12,20 +12,20 @@ Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous 
 
 ### Obtenir de l'aide
 
-- [Forum](https://forum.vuejs.org/c/french): Le meilleur endroit pour poser des questions et obtenir des réponses à propos de Vue et de son écosystème.
-- [Chat Gitter](https://gitter.im/vuejs-fr/vue): Un lieu pour rencontrer et discuter avec des développeurs. Vous pouvez également poser vos questions ici, mais le forum est une meilleure plateforme, car les discussions sont catégorisées et indexées.
-- [Github (En)](https://github.com/vuejs): Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les issues Github sont là pour ça. Les pull requests sont également les bienvenues !
+- [Forum](https://forum.vuejs.org/french) : Le meilleur endroit pour poser des questions et obtenir des réponses à propos de Vue et de son écosystème.
+- [Chat](https://gitter.im/vuejs-fr/vue) | [En](https://chat.vuejs.org/) : Un lieu pour rencontrer et discuter avec des développeurs. Vous pouvez également poser vos questions ici, mais le forum est une meilleure plateforme, car les discussions sont catégorisées et indexées.
+- [GitHub](https://github.com/vuejs) : Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les issues Github sont là pour ça. Les pull requests sont également les bienvenues !
 
 ### Explorer l'écosystème
 
-- [La page de Awesome Vue (En)](https://github.com/vuejs/awesome-vue): Trouvez d'autres ressources fantastiques publiées par des personnes tout aussi fantastiques.
-- [La sous-catégorie de forum « Show and Tell » (En)](http://forum.vuejs.org/c/show-and-tell): Un autre endroit génial pour voir ce que les autres ont bâti avec Vue afin d'agrandir son écosystème.
+- [La page de Awesome Vue](https://github.com/vuejs/awesome-vue): Trouvez d'autres ressources fantastiques publiées par des personnes tout aussi fantastiques.
+- [La sous-catégorie de forum « Show and Tell »](http://forum.vuejs.org/c/show-and-tell): Un autre endroit génial pour voir ce que les autres ont bâti avec Vue afin d'agrandir son écosystème.
 
 ## Comment pouvez-vous participer
 
 ### Contribuer au code
 
-Comme pour n'importe quel projet, il y a des règles de contribution à respecter. Pour s'assurer que nous pouvons vous aider ou accepter votre pull request aussi rapidement que possible, merci de [lire le guide de contribution (En)](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
+Comme pour n'importe quel projet, il y a des règles de contribution à respecter. Pour s'assurer que nous pouvons vous aider ou accepter votre pull request aussi rapidement que possible, merci de [lire le guide de contribution](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
 
 Après cela, vous serez fin prêt à contribuer sur les dépôts principaux de Vue :
 

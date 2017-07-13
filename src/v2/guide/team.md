@@ -207,13 +207,16 @@ order: 31
     'Kingston, Jamaica': [18.017874, -76.809904],
     'Tehran, Iran': [35.689197, 51.388974],
     'Shanghai, China': [31.230390, 121.473702],
-    'Annecy, France': [45.899247, 6.129384]
+    'Annecy, France': [45.899247, 6.129384],
+    'Seoul, South Korea': [37.566535, 126.977969],
+    'Taquaritinga, Brazil': [-21.430094, -48.515285]
   }
   var languageNameFor = {
     en: 'English',
     zh: '中文',
     vi: 'Tiếng Việt',
     pl: 'Polski',
+    pt: 'Português',
     ru: 'Русский',
     jp: '日本語',
     fr: 'Français',
@@ -221,7 +224,8 @@ order: 31
     el: 'Ελληνικά',
     es: 'Español',
     hi: 'हिंदी',
-    fa: 'فارسی'
+    fa: 'فارسی',
+    ko: '한국어'
   }
 
   var team = [{
@@ -631,6 +635,37 @@ order: 31
       ],
       links: [
         'https://node-atlas.js.org/', 'https://blog.lesieur.name/'
+      ]
+    },
+    {
+      name: 'ChangJoo Park',
+      title: 'Vuenthusiastic Korean Community Organizer',
+      city: 'Seoul, South Korea',
+      languages: ['ko', 'en'],
+      github: 'changjoo-park',
+      twitter: 'pcjpcj2',
+      reposPersonal: [
+        'vuejs-kr/kr.vuejs.org', 'ChangJoo-Park/vue-component-generator'
+      ],
+      links: [
+        'https://vuejs-kr.github.io',
+        'https://twitter.com/pcjpcj2'
+      ]
+    },
+    {
+      name: 'Erick Petrucelli',
+      title: 'Perfectionist Chief Translator for Portuguese',
+      city: 'Taquaritinga, Brasil',
+      languages: ['pt', 'en'],
+      github: 'ErickPetru',
+      twitter: 'erickpetru',
+      work: {
+        role: 'Teacher',
+        org: 'Fatec Taquaritinga',
+        orgUrl: 'http://www.fatectq.edu.br/'
+      },
+      reposPersonal: [
+        'vuejs-br/br.vuejs.org', 'ErickPetru/vue-feathers-chat'
       ]
     }
   ]
