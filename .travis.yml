@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+- "7.2.1"
+branches:
+  only:
+  - master
+before_script:
+- git config --global user.name 'ChangJoo Park'
+- git config --global user.email 'pcjpcj2@gmail.com'
+- sed -i'' "s~git@github.com:vuejs-kr/kr.vuejs.org~https://${GH_TOKEN}:x-oauth-basic@github.com/vuejs-kr/kr.vuejs.org~" _config.yml
+before_install:
+- npm install -g hexo
+- npm install
+install:
+- hexo generate
+script:
+- hexo deploy --silent
+env:
+  global:
+    secure: FpoWBZFvdVS68ZrblIqDSacmj0iPkuO0q09MEApNT5qxLx9kydZDYri+0qdFn6d61NoRjYG4RhtyqQjwurz97tLKDjCYe7R1WANZRPw3YQ650a2oAVT/uTXifHdGker7jKXzKrQlJ6/H+Kvbsh9Z/9OwYjUiZDSOc9OXfBB/VxlBby1GODc5mTwHZamC/MIIqtK4Cs0Ega7978TiTANJqwK1HP5e5A0xdEmqhAQsb76tOCsf4xdMITRuAmbUkOYYtRNUbGHhHLaOF0b0F0fIDDhiJAipuKAo77L/auDLAJqzNuhDKX3hm9Xktk1rw1+luTQqqYj3SBxFMGMsnuzamR/Q2wNZIjwDLiZ0/g8vlAMg6/sWRmuqHpjEy8p0VmqkHYEZ/melITOmzzB1ogRN6yhdegAhkKBYfm5c9hwPC072/Hve45jUmOMDeJUc35FV3adEkUGcfO0lTqcNQ+vgiJRByTJdgRF19Ubf9hB9hswMOWDaf43n/bYKmzMRabIku6kyblaHZq2WLU8UjMjS3lnTNY42xNlsHxo25pAz64vZmCQgNZsrFBbYL5ayZ2tylcfIVgjQ49eIuHwAZg6nFGvg7Qnpio6O9JbVbAeL0M+/o/uMOV31b/UOCoXp03x9iW5twAEbIsOJA5QXZxtu8VJG+dEAbLQ0PAPE4ds+Zqg=
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/350563f8f3abbc0d3f13
+    on_success: always
+    on_failure: change
+    on_start: false

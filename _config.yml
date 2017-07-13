@@ -5,7 +5,7 @@
 # Site
 title: Vue.js
 subtitle:
-description: "The Progressive JavaScript Framework"
+description: "진보적인 JavaScript 프레임워크"
 author: Evan You
 email:
 language:
@@ -142,7 +142,7 @@ offline:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:vuejs/vuejs.org.git
+  repository: git@github.com:vuejs-kr/kr.vuejs.org.git
 
 feed:
   type: atom
@@ -191,4 +191,3 @@ alias:
   examples/svg.html: v2/examples/svg.html
   examples/todomvc.html: v2/examples/todomvc.html
   examples/tree-view.html: v2/examples/tree-view.html
-

@@ -1,12 +1,12 @@
 ---
-title: Computed Properties and Watchers
+title: 계산된 속성과 감시자
 type: guide
 order: 5
 ---
 
-## Computed Properties
+## 계산된 속성
 
-In-template expressions are very convenient, but they are really only meant for simple operations. Putting too much logic into your templates can make them bloated and hard to maintain. For example:
+템플릿 내에서 사용하는 표현식은 매우 편리하지만 단순한 연산에만 사용해야 합니다. 너무 많은 로직을 템플릿에 넣으면 유지보수가 어려워 질 수 있습니다.
 
 ``` html
 <div id="example">
@@ -14,16 +14,16 @@ In-template expressions are very convenient, but they are really only meant for 
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
+이 시점에서, 템플릿은 더이상 간단하지 않고 장황합니다. `message`를 역순으로 표시한다는 것을 알기 전에 잠깐 다시 보아야 합니다. 템플릿에 뒤집힌 메시지를 두번 이상 포함하려는 경우 문제가 더욱 악화됩니다.
 
-That's why for any complex logic, you should use a **computed property**.
+이 때문에 복잡한 로직의 경우, 반드시 **계산된 속성** 을 사용해야합니다.
 
-### Basic Example
+### 기본 예제
 
 ``` html
 <div id="example">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>원본 메시지: "{{ message }}"</p>
+  <p>뒤집히도록 계산된 메시지: "{{ reversedMessage }}"</p>
 </div>
 ```
 
@@ -31,30 +31,30 @@ That's why for any complex logic, you should use a **computed property**.
 var vm = new Vue({
   el: '#example',
   data: {
-    message: 'Hello'
+    message: '안녕하세요'
   },
   computed: {
-    // a computed getter
+    // 계산된 getter
     reversedMessage: function () {
-      // `this` points to the vm instance
+      // `this` 는 vm 인스턴스를 가리킵니다.
       return this.message.split('').reverse().join('')
     }
   }
 })
 ```
 
-Result:
+결과:
 
 {% raw %}
 <div id="example" class="demo">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>원본 메시지: "{{ message }}"</p>
+  <p>뒤집히도록 계산된 메시지: "{{ reversedMessage }}"</p>
 </div>
 <script>
 var vm = new Vue({
   el: '#example',
   data: {
-    message: 'Hello'
+    message: '안녕하세요'
   },
   computed: {
     reversedMessage: function () {
@@ -65,28 +65,28 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
+여기서 우리는 계산된 속성인 `reversedMessage`를 선언했습니다. 우리가 제공하는 함수는 `vm.reversedMessage`속성에 대한 getter 함수로 사용됩니다.
 
 ``` js
-console.log(vm.reversedMessage) // -> 'olleH'
-vm.message = 'Goodbye'
-console.log(vm.reversedMessage) // -> 'eybdooG'
+console.log(vm.reversedMessage) // -> '요세하녕안'
+vm.message = '잘가'
+console.log(vm.reversedMessage) // -> '가잘'
 ```
 
-You can open the console and play with the example vm yourself. The value of `vm.reversedMessage` is always dependent on the value of `vm.message`.
+콘솔을 열고 예제를 직접 해볼 수 있습니다. `vm.reversedMessage`의 값은 항상 `vm.message`의 값에 의존합니다.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easy to test and reason about.
+일반 속성처럼 템플릿의 계산된 속성에 데이터 바인딩 할 수 있습니다. Vue는 `vm.reversedMessage`가 `vm.message`에 의존하는 것을 알고 있기 때문에 `vm.message`가 바뀔 때 `vm.reversedMessage`에 의존하는 바인딩을 모두 업데이트할 것입니다. 그리고 가장 중요한 것은 우리가 선언적으로 의존 관계를 만들었다는 것입니다. 계산된 getter 함수는 사이드 이펙트가 없어 테스트와 추론하기에 쉬워집니다.
 
-### Computed Caching vs Methods
+### 계산된 캐싱 vs 메소드
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+표현식에서 메소드를 호출하여 같은 결과를 얻을 수 있다는 사실을 알고 있을 것입니다.
 
 ``` html
-<p>Reversed message: "{{ reverseMessage() }}"</p>
+<p>뒤집힌 메시지: "{{ reverseMessage() }}"</p>
 ```
 
 ``` js
-// in component
+// 컴포넌트 내부
 methods: {
   reverseMessage: function () {
     return this.message.split('').reverse().join('')
@@ -94,9 +94,9 @@ methods: {
 }
 ```
 
-Instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their dependencies.** A computed property will only re-evaluate when some of its dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+계산된 속성 대신 메소드와 같은 함수를 정의할 수 있습니다. 최종 결과에 대해 두가지 접근 방식은 서로 동일합니다. 하지만 차이점은 **계산된 속성은 종속성에 따라 캐시된다는 것 입니다.**  계산된 속성은 종속성 중 일부가 변경된 경우에만 다시 계산 됩니다. 이것은 `message`가 변경되지 않는 한, 계산된 속성인 `reversedMessage`에 대한 다중 접근은 함수를 다시 수행할 필요 없이 이전에 계산된 결과를 즉시 반환한다는 것을 의미합니다.
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+이것은 또한 `Date.now()`가 반응형 의존성을 가지지 않기 때문에 다음 계산된 속성이 절대로 업데이트 되지 않는 것을 의미합니다.
 
 ``` js
 computed: {
@@ -106,13 +106,13 @@ computed: {
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+비교해보면, 메소드 호출은 재 렌더링 할 때마다 **항상** 메소드를 호출합니다.
 
-Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+캐싱이 왜 필요할까요? 우리가 시간이 많이 소요되는 **A** 속성을 가지고 있다고 가정하면 거대한 배열을 반복하고 많은 계산을 해야합니다. 그런 다음 우리는 **A** 에 의존하는 다른 계산된 속성을 가질 수 있습니다. 캐싱하지 않으면 **A** 의 getter를 필요한 것보다 더 많이 실행하게 됩니다! 캐싱을 원하지 않는 경우 메소드를 사용하십시오
 
-### Computed vs Watched Property
+### 계산된 속성 vs 감시된 속성
 
-Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue는 Vue 인스턴스의 데이터 변경을 관찰하고 이에 반응하는 보다 일반적인 **속성 감시** 방법을 제공합니다. 다른 데이터 기반으로 변경할 필요가 있는 데이터가 있는 경우, 특히 AngularJS를 사용하던 경우 `watch`를 남용하는 경우가 있습니다. 하지만 `watch` 콜백보다 계산된 속성을 사용하는 것이 더 좋습니다. 다음 예제를 고려하십시오.
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -137,7 +137,7 @@ var vm = new Vue({
 })
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+위의 코드는 반복이 필수적입니다. 계산된 속성을 사용하는 방식과 비교하십시오.
 
 ``` js
 var vm = new Vue({
@@ -154,11 +154,11 @@ var vm = new Vue({
 })
 ```
 
-Much better, isn't it?
+더 낫지 않나요?
 
-### Computed Setter
+### 계산된 Setter
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+계산된 속성은 기본적으로 getter만 가지고 있지만, 필요한 경우 setter를 제공할 수 있습니다.
 
 ``` js
 // ...
@@ -179,18 +179,18 @@ computed: {
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+이제 `vm.fullName = 'John Doe'`를 실행하면 설정자가 호출되고 `vm.firstName`과 `vm.lastName`이 그에 따라 업데이트 됩니다.
 
-## Watchers
+## 감시자
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+대부분의 경우 계산된 속성이 더 적합하지만 사용자 정의 감시자가 필요한 경우가 있습니다. 그래서 Vue는 `watch` 옵션을 통해 데이터 변경에 반응하는 보다 일반적인 방법을 제공합니다. 이는 데이터 변경에 대한 응답으로 비동기식 또는 시간이 많이 소요되는 조작을 수행하려는 경우에 가장 유용합니다.
 
-For example:
+예제 입니다.
 
 ``` html
 <div id="watch-example">
   <p>
-    Ask a yes/no question:
+    yes/no 질문을 물어보세요:
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -198,10 +198,9 @@ For example:
 ```
 
 ``` html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to just use what you're familiar with. -->
+<!-- 이미 Ajax 라이브러리의 풍부한 생태계와 범용 유틸리티 메소드 컬렉션이 있기 떄문에, -->
+<!-- Vue 코어는 다시 만들지 않아 작게 유지됩니다. -->
+<!-- 이것은 또한 당신이 사용하기 친숙할 것을 선택할 수 있는 자유를 줍니다. -->
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script>
@@ -209,41 +208,39 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: '질문을 하기 전까지는 대답할 수 없습니다.'
   },
   watch: {
-    // whenever question changes, this function will run
+    // 질문이 변경될 때 마다 이 기능이 실행됩니다.
     question: function (newQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = '입력을 기다리는 중...'
       this.getAnswer()
     }
   },
   methods: {
-    // _.debounce is a function provided by lodash to limit how
-    // often a particularly expensive operation can be run.
-    // In this case, we want to limit how often we access
-    // yesno.wtf/api, waiting until the user has completely
-    // finished typing before making the ajax request. To learn
-    // more about the _.debounce function (and its cousin
-    // _.throttle), visit: https://lodash.com/docs#debounce
+    // _.debounce는 lodash가 제공하는 기능으로
+    // 특히 시간이 많이 소요되는 작업을 실행할 수 있는 빈도를 제한합니다.
+    // 이 경우, 우리는 yesno.wtf/api 에 액세스 하는 빈도를 제한하고,
+    // 사용자가 ajax요청을 하기 전에 타이핑을 완전히 마칠 때까지 기다리길 바랍니다.
+    // _.debounce 함수(또는 이와 유사한 _.throttle)에 대한
+    // 자세한 내용을 보려면 https://lodash.com/docs#debounce 를 방문하세요.
     getAnswer: _.debounce(
       function () {
         if (this.question.indexOf('?') === -1) {
-          this.answer = 'Questions usually contain a question mark. ;-)'
+          this.answer = '질문에는 일반적으로 물음표가 포함 됩니다. ;-)'
           return
         }
-        this.answer = 'Thinking...'
+        this.answer = '생각중...'
         var vm = this
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
           .catch(function (error) {
-            vm.answer = 'Error! Could not reach the API. ' + error
+            vm.answer = '에러! API 요청에 오류가 있습니다. ' + error
           })
       },
-      // This is the number of milliseconds we wait for the
-      // user to stop typing.
+      // 사용자가 입력을 기다리는 시간(밀리세컨드) 입니다.
       500
     )
   }
@@ -256,7 +253,7 @@ Result:
 {% raw %}
 <div id="watch-example" class="demo">
   <p>
-    Ask a yes/no question:
+    yes/no 질문을 물어보세요:
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -268,11 +265,11 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: '질문을 하기 전까지는 대답할 수 없습니다'
   },
   watch: {
     question: function (newQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = '입력을 기다리는 중...'
       this.getAnswer()
     }
   },
@@ -281,16 +278,16 @@ var watchExampleVM = new Vue({
       function () {
         var vm = this
         if (this.question.indexOf('?') === -1) {
-          vm.answer = 'Questions usually contain a question mark. ;-)'
+          vm.answer = '질문에는 일반적으로 물음표가 포함 됩니다. ;-)'
           return
         }
-        vm.answer = 'Thinking...'
+        vm.answer = '생각중...'
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
           })
           .catch(function (error) {
-            vm.answer = 'Error! Could not reach the API. ' + error
+            vm.answer = '에러! API 요청에 오류가 있습니다. ' + error
           })
       },
       500
@@ -300,6 +297,7 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
 
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](../api/#vm-watch).
+이 경우 `watch` 옵션을 사용하면 비동기 연산 (API 엑세스)를 수행하고, 우리가 그 연산을 얼마나 자주 수행하는지 제한하고, 최종 응답을 얻을 때까지 중간 상태를 설정할 수 있습니다. 계산된 속성은 이러한 기능을 수행할 수 없습니다.
+
+`watch` 옵션 외에도 명령형 [vm.$watch API](../api/#vm-watch)를 사용할 수 있습니다.

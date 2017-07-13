@@ -1,16 +1,16 @@
 ---
-title: Routing
+title: 라우팅
 type: guide
 order: 21
 ---
 
-## Official Router
+## 공식 라우터
 
-For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](https://router.vuejs.org/).
+대부분의 단일 페이지 애플리케이션의 경우 공식적으로 지원되는 [vue-router library](https://github.com/vuejs/vue-router)를 사용하는 것이 좋습니다. 자세한 내용은 vue-router의 [문서](https://router.vuejs.org/)를 참조하십시오.
 
-## Simple Routing From Scratch
+## 단순한 라우팅 시작하기
 
-If you just need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
+매우 단순한 라우팅만 필요하고 완전한 기능을 갖춘 라우터 라이브러리를 사용하지 않으려면 다음과 같이 페이지 수준 컴포넌트를 동적으로 렌더링하면됩니다.
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }
@@ -36,8 +36,8 @@ new Vue({
 })
 ```
 
-Combined with the HTML5 History API, you can build a very basic but fully-functional client-side router. To see that in practice, check out [this example app](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
+HTML5 History API와 결합하여 매우 기본적이지만 기능이 완벽한 클라이언트측 라우터를 구축할 수 있습니다. 이를 실제로 보려면 [예제 앱](https://github.com/chrisvfritz/vue-2.0-simple-routing-example)을 확인하십시오.
 
-## Integrating 3rd-Party Routers
+## 써드파티 라우터 목록
 
-If there's a 3rd-party router you prefer to use, such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director), integration is [similarly easy](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Here's a [complete example](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) using Page.js.
+써드파티 라우터를 사용하기 위해서, 예를 들어 [Page.js](https://github.com/visionmedia/page.js) 또는 [Director](https://github.com/flatiron/director)는 [쉽습니다.](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs) 여기에 Page.js를 사용하는 [완벽한 예제](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs)가 있습니다.

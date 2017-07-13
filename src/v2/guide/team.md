@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: 팀 구성원 만나기
 type: guide
 order: 31
 ---

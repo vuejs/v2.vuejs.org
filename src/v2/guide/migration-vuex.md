@@ -1,93 +1,93 @@
 ---
-title: Migration from Vuex 0.6.x to 1.0
+title: Vuex 0.6.x에서 1.0로 마이그레이션
 type: guide
 order: 28
 ---
 
-> Vuex 2.0 is released, but this guide only covers the migration to 1.0? Is that a typo? Also, it looks like Vuex 1.0 and 2.0 were released simultaneously. What's going on? Which one should I use and what's compatible with Vue 2.0?
+> Vuex 2.0이 출시되었지만이 가이드에서는 1.0으로의 마이그레이션만 다룹니다. 오타 아닌가요? 또한 Vuex 1.0과 2.0이 동시에 출시 된 것처럼 보입니다. 어떻게 된거죠? Vue 2.0과 호환되는 것은 무엇입니까?
 
-Both Vuex 1.0 and 2.0:
+Vuex 1.0 및 2.0:
 
-- fully support both Vue 1.0 and 2.0
-- will be maintained for the foreseeable future
+- Vue 1.0 and 2.0 둘다 완전히 지원합니다.
+- 가까운 미래까지는 유지 됩니다.
 
-They have slightly different target users however.
+하지만 이들은 약간 다른 타겟 사용자를 가지고 있습니다.
 
-__Vuex 2.0__ is a radical redesign and simplification of the API, for those who are starting new projects or want to be on the cutting edge of client-side state management. __It is not covered by this migration guide__, so you should check out [the Vuex 2.0 docs](https://vuex.vuejs.org/en/index.html) if you'd like to learn more about it.
+__Vuex 2.0__은 새로운 프로젝트를 시작하거나 클라이언트측 상태 관리의 최신에 있기를 원하는 사람들을 위해 API의 근본적인 재 설계 및 단순화를 하였습니다. __이 마이그레이션 가이드에서는 다루지 않습니다__ 자세한 내용은 [Vuex 2.0 문서](https://vuex.vuejs.org/en/index.html)를 참조하십시오.
 
-__Vuex 1.0__ is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who just want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see [the Vuex 1.0 docs](https://github.com/vuejs/vuex/tree/1.0/docs/en).
+__Vuex 1.0__ 은 대부분 하위 버전과 호환되므로 업그레이드하는 데 필요한 변경 사항은 거의 없습니다. 기존 코드베이스가 큰 사람들이나 Vue 2.0으로의 가장 매끄러운 업그레이드 경로를 원하는 사람들에게 권장됩니다. 이 가이드는 해당 프로세스를 용이하게하기 위해 작성된 것이지만 마이그레이션 참고 사항만 포함합니다. 전체 사용법 안내는 [Vuex 1.0 문서](https://github.com/vuejs/vuex/tree/1.0/docs/en)를 참조하십시오.
 
-## `store.watch` with String Property Path <sup>replaced</sup>
+## `store.watch` 와 문자열 속성 패스 <sup>교체됨</sup>
 
-`store.watch` now only accept functions. So for example, you would have to replace:
+`store.watch` 는 이제 함수만 허용됩니다. 예를 들어 아래 처럼 바꾸어야 합니다.
 
 ``` js
 store.watch('user.notifications', callback)
 ```
 
-with:
+아래처럼 사용하세요
 
 ``` js
 store.watch(
-  // When the returned result changes...
+  // 변경이 완료되었습니다...
   function (state) {
     return state.user.notifications
   },
-  // Run this callback
+  // 아래 콜백을 실행하세요
   callback
 )
 ```
 
-This gives you more complete control over the reactive properties you'd like to watch.
+이렇게 하면 반응성 속성을 보다 완벽하게 제어 할 수 있습니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>store.watch</code> with a string as the first argument.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 문자열로 <code>store.watch</code>가 첫번째 전달인자로 사용되는 예를 찾아보십시오. </p>
 </div>
 {% endraw %}
 
-## Store's Event Emitter <sup>removed</sup>
+## Store의 Event Emitter <sup>제거</sup>
 
-The store instance no longer exposes the event emitter interface (`on`, `off`, `emit`). If you were previously using the store as a global event bus, [see this section](migration.html#dispatch-and-broadcast-removed) for migration instructions.
+store 인스턴스는 더이상 event emitter 인터페이스 (`on`, `off`, `emit`)를 노출하지 않습니다. 이전에 store를 전역 이벤트 버스로 사용했다면 마이그레이션 지침 [이 섹션을 보세요](migration.html#dispatch-and-broadcast-removed)을 참조하십시오.
 
-Instead of using this interface to watch events emitted by the store itself (e.g. `store.on('mutation', callback)`), a new method `store.subscribe` is introduced. Typical usage inside a plugin would be:
+이 인터페이스를 사용하여 store 자체에서 emit 된 이벤트(예 `store.on('mutation', callback)`)를 보지않고 `store.subscribe`라는 새로운 메소드가 도입되었습니다. 플러그인 내부의 일반적인 사용법은 다음과 같습니다.
 
 ``` js
 var myPlugin = store => {
   store.subscribe(function (mutation, state) {
-    // Do something...
+    // 무언가 하세요...
   })
 }
 
 ```
 
-See example [the plugins docs](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md) for more info.
+[the plugins docs](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md)에서 더 자세한 내용을 보세요.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>store.on</code>, <code>store.off</code>, and <code>store.emit</code>.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>store.on</code>, <code>store.off</code> 및 <code>store.emit</code>의 예를 찾아보십시오.</p>
 </div>
 {% endraw %}
 
-## Middlewares <sup>replaced</sup>
+## 미들웨어 <sup>변경</sup>
 
-Middlewares are replaced by plugins. A plugin is simply a function that receives the store as the only argument, and can listen to the mutation event on the store:
+미들웨어는 플러그인에 의해 변경되었습니다. 플러그인은 store를 유일한 전달인자로 받는 함수이며 store에서 mutation 이벤트를 받을 수 있습니다.
 
 ``` js
 const myPlugins = store => {
   store.subscribe('mutation', (mutation, state) => {
-    // Do something...
+    // 무언가 하세요...
   })
 }
 ```
 
-For more details, see [the plugins docs](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md).
+[the plugins docs](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md)에서 더 자세한 내용을 보세요.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>middlewares</code> option on a store.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 상점에서 <code>middlewares</code> 옵션의 예를 찾으십시오.</p>
 </div>
 {% endraw %}

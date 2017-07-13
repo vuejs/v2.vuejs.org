@@ -1,21 +1,21 @@
 ---
-title: Transitioning State
+title: 트렌지션 상태
 type: guide
 order: 14
 ---
 
-Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
+Vue의 전환 시스템은 진입, 진출 및 목록을 애니메이션으로 만드는 많은 간단한 방법을 제공하지만 데이터 자체에 대한 애니메이션은 어떻게 해야할까요?
 
-- numbers and calculations
-- colors displayed
-- the positions of SVG nodes
-- the sizes and other properties of elements
+- 숫자와 계산
+- 색 표시
+- SVG노드의 위치
+- 엘리먼트의 크기 및 기타 속성
 
-All of these are either already stored as raw numbers or can be converted into numbers. Once we do that, we can animate these state changes using 3rd-party libraries to tween state, in combination with Vue's reactivity and component systems.
+이들 모두는 이미 원시 숫자로 저장되어 있거나 숫자로 변환 될 수 있습니다. 그렇게하면 Vue의 반응성 및 컴포넌트 시스템과 함께 써드파티 라이브러리를 사용하여 트윈 상태로 상태 변경 사항을 애니메이션으로 만들 수 있습니다.
 
-## Animating State with Watchers
+## 감시자와 애니메이션 상태
 
-Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using [Tween.js](https://github.com/tweenjs/tween.js):
+감시자를 사용하면 숫자 속성의 변경 사항을 다른 속성으로 애니메이션 할 수 있습니다. 처음에는 복잡해 보일 수도 있으므로 [Tween.js](https://github.com/tweenjs/tween.js)를 사용하여 예제를 살펴 보겠습니다.
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -93,7 +93,7 @@ new Vue({
 </script>
 {% endraw %}
 
-When you update the number, the change is animated below the input. This makes for a nice demo, but what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with the addition of [Color.js](https://github.com/brehaut/color-js):
+숫자를 갱신하면 변경 사항이 입력 아래에 애니메이션으로 표시됩니다. 이것은 멋진 멋져 보이지만, 예를 들어 유효한 CSS 색상과 같이 숫자로 직접 저장되지 않은 것은 어떻게 할까요? 다음은 [Color.js](https://github.com/brehaut/color-js)를 추가하여 이를 수행하는 방법입니다.
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -251,9 +251,9 @@ new Vue({
 </style>
 {% endraw %}
 
-## Dynamic State Transitions
+## 동적 상태 전환
 
-Just as with Vue's transition components, the data backing state transitions can be updated in real time, which is especially useful for prototyping! Even using a simple SVG polygon, you can achieve many effects that would be difficult to conceive of until you've played with the variables a little.
+Vue의 전환 컴포넌트와 마찬가지로 데이터 백업 상태 전환을 실시간으로 업데이트 할 수 있으므로 프로토 타이핑에 특히 유용합니다! 간단한 SVG 다각형을 사용해도, 변수를 조금씩 사용하기 전까지는 생각하기 어려운 많은 효과를 얻을 수 있습니다.
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
@@ -386,11 +386,11 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete code behind the above demo.
+위 데모의 전체 코드는 [이 fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) 참조하십시오.
 
-## Organizing Transitions into Components
+## 컴포넌트를 이용한 전환 구성
 
-Managing many state transitions can quickly increase the complexity of a Vue instance or component. Fortunately, many animations can be extracted out into dedicated child components. Let's do this with the animated integer from our earlier example:
+여러 상태 전환을 관리하면 Vue 인스턴스 또는 컴포넌트의 복잡성을 빠르게 높일 수 있습니다. 다행히도 많은 애니메이션을 전용 하위 컴포넌트로 추출 할 수 있습니다. 이전 예제의 숫자를 이용하는 애니메이션을 사용해 보겠습니다.
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -408,11 +408,10 @@ Managing many state transitions can quickly increase the complexity of a Vue ins
 ```
 
 ``` js
-// This complex tweening logic can now be reused between
-// any integers we may wish to animate in our application.
-// Components also offer a clean interface for configuring
-// more dynamic transitions and complex transition
-// strategies.
+// 이 복잡한 트위닝 로직은 이제 응용 프로그램에서
+// 애니메이션을 적용하려는 숫자 사이에서 재사용 할 수 있습니다.
+// 또한 컴포넌트는보다 동적인 전환 및 복잡한 전환 전략을
+// 구성할 수 있는 깨끗한 인터페이스를 제공합니다.
 Vue.component('animated-integer', {
   template: '<span>{{ tweeningValue }}</span>',
   props: {
@@ -455,7 +454,7 @@ Vue.component('animated-integer', {
   }
 })
 
-// All complexity has now been removed from the main Vue instance!
+// 모든 Vue 인스턴스에서 모든 복잡성이 제거 되었습니다!
 new Vue({
   el: '#example-8',
   data: {
@@ -539,4 +538,4 @@ new Vue({
 </script>
 {% endraw %}
 
-Within child components, we can use any combination of transition strategies that have been covered on this page, along with those offered by Vue's [built-in transition system](transitions.html). Together, there are very few limits to what can be accomplished.
+자식 컴포넌트 내에서, 이 페이지에서 다룬 전환 전략과 Vue의 [기본 제공 전환 시스템](transitions.html)에서 제공하는 전환 전략을 조합하여 사용할 수 있습니다. 함께 사용할 할 수 있는 것에는 거의 제한이 없습니다.

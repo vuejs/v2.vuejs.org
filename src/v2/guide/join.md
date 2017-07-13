@@ -1,51 +1,52 @@
 ---
-title: Join the Vue.js Community!
+title: Vue.js 커뮤니티에 참여하세요!
 type: guide
 order: 30
 ---
 
-Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
+Vue의 커뮤니티는 엄청나게 빠르게 성장하고 있습니다. 이 글을 읽는다면 가입 할 준비가 된 것입니다. 정말로 환영합니다!
 
-Now we'll answer both what the community can do for you and what you can do for the community.
+이제 커뮤니티가 여러분에게 할 수 있는 일과 여러분이 커뮤니티에 할 수 있는 일 모두 다룰 것 입니다.
 
-## Resources You'll Enjoy
+## 즐길 수 있는 리소스들
 
-### Get Support
+### 지원 받기
 
-- [Forum](http://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
-- [Chat](https://chat.vuejs.org/): A place for Vue devs to meet and chat in real time.
-- [Github](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
+- [Forum](http://forum.vuejs.org/): Vue와 생태계에한관한 질문하고 답변을 얻는 가장 좋은 곳 입니다.
+- [Chat](https://chat.vuejs.org/): 개발자들과 대화할 수 있는 장소입니다.
+- [Github](https://github.com/vuejs): 보고 할 버그가 있거나 요청할 기능이 있다면 GitHub 이슈가 필요합니다. 또한 풀 리퀘스트 요청을 환영합니다!
 
-### Explore the Ecosystem
 
-- [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): See what other awesome resources have been published by other awesome people.
-- [The "Show and Tell" Subforum](http://forum.vuejs.org/c/show-and-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
+### 생태계 둘러보기
 
-## What You Can Do
+- [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): 다른 사람들이 멋진 리소스를 공유했는지 확인하십시오.
+- [The "Show and Tell" Subforum](http://forum.vuejs.org/c/show-and-tell): 다른 사람들이 빌드 한 것과 Vue 생태계가 성장하고 있는지 확인하기 위한 또 다른 좋은 장소입니다.
 
-### Contribute Code
+## 할 수 있는 일들
 
-As with any project, there are rules to contributing. To ensure that we can help you or accept your pull request as quickly as possible, please read [the contributing guide](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
+### 코드 컨트리뷰션
 
-After that, you'll be ready to contribute to Vue's core repositories:
+어떤 프로젝트와 마찬가지로 기여할 수있는 규칙이 있습니다. 최대한 빨리 당신을 도울 수 있도록 또는 풀리퀘스트를 가능한 빨리 수락 할 수 있도록 [컨트리뷰션 가이드](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md) 꼭 읽어보세요.
 
-- [vue](https://github.com/vuejs/vue): the core library
-- [vuex](https://github.com/vuejs/vuex): Flux-inspired state management
-- [vue-router](https://github.com/vuejs/vue-router): a routing system for SPAs
+그 다음에는 Vue의 핵심 저장소에 기꺼이 기여할 준비가됩니다.
 
-...as well as many smaller official [companion libraries](https://github.com/vuejs).
+- [vue](https://github.com/vuejs/vue): 코어 라이브러리
+- [vuex](https://github.com/vuejs/vuex): Flux에서 영감을 받은 상태 관리
+- [vue-router](https://github.com/vuejs/vue-router): SPA를 위한 라우팅 시스템
 
-### Share (and Build) Your Experience
+...뿐만 아니라 많은 작은 공식적인 [동반하는 라이브러리](https://github.com/vuejs)들이 있습니다.
 
-Apart from answering questions and sharing resources in the forum and chat, there are a few other less obvious ways to share and expand what you know:
+### 당신의 경험을 공유 (그리고 빌드) 하세요
 
-- **Develop learning materials.** It's often said that the best way to learn is to teach. If there's something interesting you're doing with Vue, strengthen your expertise by writing a blog post, developing a workshop, or even just publishing a gist that you share on social media.
-- **Watch a repo you care about.** This will send you notifications whenever there's activity in that repository, giving you insider knowledge about ongoing discussions and upcoming features. It's a fantastic way to build expertise so that you're eventually able to help address issues and pull requests.
+포럼 및 채팅을 이용해 질문에 답변하고 리소스를 공유하는 것 외에도 알고있는 것을 공유하고 확장 할 수있는 몇 가지 다른 분명한 방법이 있습니다.
 
-### Translate Docs
+- **교육을 위한 자료를 만들어 주세요** 종종 배우는 가장 좋은 방법은 가르치는 것입니다. Vue에서 흥미로운 점이 있다면 블로그 게시물을 작성하거나 워크샵을 주최하거나 소셜 미디어에서 공유하는 요지를 게시하여 전문성을 강화하십시오.
+- **관심 있는 저장소를 지켜보세요** 그러면 해당 저장소에 활동이 있을 때마다 알림이 전송되어 진행중인 토론 및 향후 기능에 대한 내부 지식을 얻을 수 있습니다. 전문 지식을 구축하는 환상적인 방법으로 궁극적으로 문제를 해결하고 요청을 처리 할 수 있습니다.
 
-Vue has already spread across the globe, with even the core team in at least half a dozen timezones. [The forum](http://forum.vuejs.org/) includes 7 languages and counting and many of our docs have [actively-maintained translations](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). We're very proud of Vue's international reach, but we can do even better.
+### 문서 번역
 
-I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
+Vue는 이미 전 세계로 퍼져 나갔고 코어 팀조차 적어도 6개 이상의 시간대에 퍼져 있습니다. [포럼](http://forum.vuejs.org/)에는 7 개 언어가 포함되어 있으며 많은 문서가 [적극적으로 번역을 유지하고 있습니다](https://github.com/vuejs?utf8=%E2%9C % 93 & query = vuejs.org). 우리는 Vue의 국제적인 범위에 대해 매우 자랑스러워 하고 있고 또한 더 성장할 수 있습니다.
 
-If so, please feel free to fork the repo for [these docs](https://github.com/vuejs/vuejs.org/) or for any other officially maintained documentation, then start translating. Once you've made some progress, open an issue or pull request in the main repo and we'll put out a call for more contributors to help you out.
+지금 당장 당신이 선호하는 언어로 이 문장을 읽고 싶은 경우 우리를 도와 주시겠습니까?
+
+그렇다면 [이 문서](https://github.com/vuejs/vuejs.org/) 또는 기타 공식적으로 유지 관리되는 문서에 대한 저장소를 포크하여 자유롭게 번역을 시작하십시오. 진행 상황을 확인한 후 문제를 열거 나 주 저장소에서 요청을 가져 오면 더 많은 기부자에게 도움을 요청할 것입니다.

@@ -2,31 +2,31 @@
 type: api
 ---
 
-## Global Config
+## 전역 설정
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` 은 Vue의 전역 설정을 가지고 있는 객체입니다. 앱이 실행하기 전에 아래의 속성들을 변경할 수 있습니다:
 
 ### silent
 
-- **Type:** `boolean`
+- **타입:** `boolean`
 
-- **Default:** `false`
+- **기본값:** `false`
 
-- **Usage:**
+- **사용방법:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  모든 Vue의 로그와 경고를 출력하지 않습니다.
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **타입:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **기본값:** `{}`
 
-- **Usage:**
+- **사용방법:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -40,76 +40,76 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  사용자 정의 병합 전략을 설정할 수 있습니다.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  병합 전략은 부모 및 자식 인스턴스에 정의된 해당 옵션의 값을 첫번째와 두번째 인자로 전달 받습니다. 컨텍스트 Vue 객체는 세번째 인자로 전달 받습니다.
 
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **참고:** [사용자 정의 병합 전략](../guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
-- **Type:** `boolean`
+- **타입:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **기본값:** `true` (`false` in production builds)
 
-- **Usage:**
+- **사용방법:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // Vue를 불러온 후 동기적으로 설정됩니다
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  [vue-devtools](https://github.com/vuejs/vue-devtools)를 사용할 수 있게 합니다. 개발용 빌드시 `true`, 배포용 빌드는 `false`가 기본 값입니다. `true`로 설정하면 통해 배포용 빌드에서 사용할 수 있습니다.
 
 ### errorHandler
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Default:** `undefined`
+- **기본값:** `undefined`
 
-- **Usage:**
+- **사용방법:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
+    // 에러 핸들링
+    // `type`은 Vue의 에러 타입입니다. 예: 라이프사이클 훅
+    // 2.2.0+ 이상에서 사용할 수 있습니다
   }
   ```
+  컴포넌트 렌더 함수 및 감시자 중에 잡히지 않은 오류에 대한 핸들러를 할당합니다. 핸들러는 오류 및 Vue 인스턴스와 함께 호출됩니다.
 
-  Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
+  > 2.2.0에서 이 훅은 컴포넌트 라이프사이클 훅의 오류를 캡처합니다. 또한, 이 훅이 `undefined`일 때, 캡쳐 된 에러는 어플리케이션을 실행 불능으로 만드는 대신에 `console.error` 로그를 출력 합니다.
 
-  > In 2.2.0, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  
+  > 2.4.0에서 이 훅은 Vue의 사용자 정의 이벤트 핸들러가 발생하는 에러를 감지합니다.
 
-  > In 2.4.0 this hook also captures errors thrown inside Vue custom event handlers.
-
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > 오류 추적 서비스인 [Sentry](https://sentry.io)에서 [공식 사용 설명서](https://sentry.io/for/vue/)를 제공합니다.
 
 ### warnHandler
 
-> New in 2.4.0
+> 2.4.0 이후 추가됨
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Default:** `undefined`
+- **기본값:** `undefined`
 
-- **Usage:**
+- **사용방법:**
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // trace is the component hierarchy trace
+    // trace는 컴포넌트 계층 구조를 추적합니다.
   }
   ```
 
-  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+  런타임 Vue 경고에 대한 사용자 정의 핸들러를 할당하십시오. 이는 개발 중에만 작동하며 배포시 무시됩니다.
 
 ### ignoredElements
 
-- **Type:** `Array<string>`
+- **타입:** `Array<string>`
 
-- **Default:** `[]`
+- **기본값:** `[]`
 
-- **Usage:**
+- **사용방법:**
 
   ``` js
   Vue.config.ignoredElements = [
@@ -117,23 +117,23 @@ type: api
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  Vue가 외부에서 정의된 사용자 정의 엘리먼트(예를 들어, Web Components API)를 무시하도록 합니다. 전역 컴포넌트를 등록하지 않았거나, `알수 없는 사용자 정의 엘리먼트`에 대한 경고를 표시합니다.
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number | Array<number> }`
+- **타입:** `{ [key: string]: number | Array<number> }`
 
-- **Default:** `{}`
+- **기본값:** `{}`
 
-- **Usage:**
+- **사용방법:**
 
   ``` js
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase won`t work
+    // camelCase는 작동하지 않습니다.
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quotation marks
+    // 쌍따옴표로 감싸진 kebab-case를 사용하세요
     "media-play-pause" : 179,
     up: [38, 87]
   }
@@ -143,51 +143,50 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  Define custom key alias(es) for v-on.
+  v-on에 사용자 정의 키를 할당합니다.
 
 ### performance
 
-> New in 2.2.0
+> 2.2.0에서 추가됨
 
-- **Type:** `boolean`
+- **타입:** `boolean`
+- **기본값:** `false (from 2.2.3)`
+- **사용방법:**
 
-- **Default:** `false (from 2.2.3)`
+  `true`로 설정하면 브라우저 devtool의 타임라인에서 컴포넌트 초기화, 컴파일, 렌더링 및 패치 성능 추적을 활성화할 수 있습니다. 개발 모드 및 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API를 지원하는 브라우저에서만 작동합니다.
 
-- **Usage**:
-
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool timeline. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
 
 ### productionTip
 
-> New in 2.2.0
+> 2.2.0에서 추가됨
 
-- **Type:** `boolean`
+- **타입:** `boolean`
 
-- **Default:** `true`
+- **기본값:** `true`
 
-- **Usage**:
+- **사용방법:**
 
-  Set this to `false` to prevent the production tip on Vue startup.
+  `false`로 설정하면 배포에 대한 팁을 출력하지 않습니다.
 
-## Global API
+## 전역 API
 
 <h3 id="Vue-extend">Vue.extend( options )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Object} options`
 
-- **Usage:**
+- **사용방법:**
 
-  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
+  Vue 생성자의 "하위 클래스"를 만듭니다. 전달인자는 컴포넌트 옵션을 포함하는 객체이어야 합니다.
 
-  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
+  특별히 중요해야 할 경우는 `data` 옵션입니다. `Vue.extend()`와 함께 사용하는 경우 반드시 함수여야 합니다.
 
   ``` html
   <div id="mount-point"></div>
   ```
 
   ``` js
-  // create constructor
+  // 생성자를 만듭니다.
   var Profile = Vue.extend({
     template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
     data: function () {
@@ -198,86 +197,88 @@ type: api
       }
     }
   })
-  // create an instance of Profile and mount it on an element
+  // Profile 인스턴스를 만들고, 엘리먼트에 마운트 합니다.
   new Profile().$mount('#mount-point')
   ```
 
-  Will result in:
+  아래처럼 출력됩니다:
 
   ``` html
   <p>Walter White aka Heisenberg</p>
   ```
 
-- **See also:** [Components](../guide/components.html)
+- **참고:** [컴포넌트](../guide/components.html)
 
 <h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Function} [callback]`
   - `{Object} [context]`
 
-- **Usage:**
+- **사용방법:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+  다음 DOM 업데이트 사이클 이후 실행하는 콜백을 연기합니다. DOM 업데이트를 기다리기 위해 일부 데이터를 변경한 직후 사용해야 합니다.
 
   ``` js
-  // modify data
+  // 데이터를 변경합니다
   vm.msg = 'Hello'
-  // DOM not updated yet
+  // 아직 DOM 업데이트가 되지 않았습니다
   Vue.nextTick(function () {
-    // DOM updated
+    // DOM이 업데이트 되었습니다
   })
   ```
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > 2.1.0에 새로 생겼습니다: 콜백이 없고, Promise를 지원하는 환경에서 Promise를 반환합니다.
 
-- **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+- **참고:** [비동기 갱신 큐](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Object | Array} target`
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **반환 값:** 설정한 값.
 
-- **Usage:**
+- **사용방법:**
 
-  Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
+  객체에 대한 속성을 설정합니다. 객체가 반응형이면, 속성이 반응형 속성으로 만들어지고 뷰 업데이트를 발생시킵니다.
+  이는 Vue가 속성 추가를 감지하지 못하는 한계를 넘기 위해 사용합니다
 
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
+  **객체는 Vue 인스턴스 또는 Vue 인스턴스의 루트 객체일 수 없습니다.**
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
 <h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Object | Array} target`
   - `{string | number} key`
 
-- **Usage:**
+- **사용방법:**
 
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+  객체의 속성을 삭제합니다. 객체가 반응형이면, 뷰 업데이트를 발생시킵니다. 주로 Vue가 속성 삭제를 감지하지 못하는 한계를 극복하기 위해 사용하지만 거의 사용하지 않아야 합니다.
+  ** 객체는 Vue 인스턴스 또는 Vue 인스턴스의 루트 데이터 객체일 수 없습니다. **
 
-  > Also works with on Array + index in 2.2.0+.
+  > 2.2.0버전 이후에서 배열과 인덱스를 사용할 수 있습니다.
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">목표 객체는 Vue 인스턴스이거나 인스턴스의 루트 데이터 객체일 수 없습니다.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
-- **Usage:**
+- **사용방법:**
 
-  Register or retrieve a global directive.
+  전역 디렉티브를 등록하거나 검색합니다.
 
   ``` js
-  // register
+  // 등록
   Vue.directive('my-directive', {
     bind: function () {},
     inserted: function () {},
@@ -286,92 +287,92 @@ type: api
     unbind: function () {}
   })
 
-  // register (simple function directive)
+  // 등록 (간단한 함수 디렉티브)
   Vue.directive('my-directive', function () {
-    // this will be called as `bind` and `update`
+    // `bind`와 `update`를 호출합니다.
   })
 
-  // getter, return the directive definition if registered
+  // getter, 등록된 지시어의 경우 반환합니다.
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **See also:** [Custom Directives](../guide/custom-directive.html)
+- **참고:** [사용자 정의 디렉티브](../guide/custom-directive.html)
 
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{string} id`
   - `{Function} [definition]`
 
-- **Usage:**
+- **사용방법:**
 
-  Register or retrieve a global filter.
+  전역 필터를 등록하거나 검색합니다.
 
   ``` js
-  // register
+  // 등록
   Vue.filter('my-filter', function (value) {
-    // return processed value
+    // 처리된 값을 반환합니다
   })
 
-  // getter, return the filter if registered
+  // getter, 필터가 등록된 경우 반환합니다
   var myFilter = Vue.filter('my-filter')
   ```
 
 <h3 id="Vue-component">Vue.component( id, [definition] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{string} id`
   - `{Function | Object} [definition]`
 
-- **Usage:**
+- **사용방법:**
 
-  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
+  전역 컴포넌트를 등록하거나 검색합니다. 등록 시 자동으로 컴포넌트의 `name`을 주어진 `id`로 설정합니다.
 
   ``` js
-  // register an extended constructor
+  // 확장된 생성자를 등록합니다
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // register an options object (automatically call Vue.extend)
+  // 옵션 객체를 등록합니다 (자동으로 Vue.extend를 호출합니다)
   Vue.component('my-component', { /* ... */ })
 
-  // retrieve a registered component (always return constructor)
+  // 등록된 컴포넌트를 검색합니다 (항상 생성자를 반환합니다)
   var MyComponent = Vue.component('my-component')
   ```
 
-- **See also:** [Components](../guide/components.html)
+- **참고:** [컴포넌트](../guide/components.html)
 
 <h3 id="Vue-use">Vue.use( plugin )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Object | Function} plugin`
 
-- **Usage:**
+- **사용방법:**
 
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+  Vue.js 플러그인을 설치합니다. 플러그인이 Object인 경우 `install` 메소드를 가져야 합니다. 플러그인이 함수 그 자체이면 install 메소드로 처리됩니다. install 메소드는 Vue를 인자로 사용해 호출합니다.
 
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+  이 메소드가 동일한 플러그인에서 여러번 호출되면 한번만 설치합니다.
 
-- **See also:** [Plugins](../guide/plugins.html)
+- **참고:** [플러그인](../guide/plugins.html)
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Object} mixin`
 
-- **Usage:**
+- **사용방법:**
 
-  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+  전역으로 mixin을 적용합니다. 생성된 모든 Vue 인스턴스에 영향을 줍니다. 플러그인 작성자가 컴포넌트에 사용자 정의 동작을 주입하는데 플러그인을 사용할 수 있습니다. **애플리케이션 코드**에서는 추천하지 않습니다.
 
-- **See also:** [Global Mixins](../guide/mixins.html#Global-Mixin)
+- **참고:** [전역 Mixins](../guide/mixins.html#Global-Mixin)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{string} template`
 
-- **Usage:**
+- **사용방법:**
 
-  Compiles a template string into a render function. **Only available in the full build.**
+  템플릿 문자열을 렌더링 함수로 컴파일합니다. **전체 빌드에서만 가능합니다.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -385,13 +386,14 @@ type: api
   })
   ```
 
-- **See also:** [Render Functions](../guide/render-function.html)
+
+- **참고:** [렌더 함수](../guide/render-function.html)
 
 <h3 id="Vue-version">Vue.version</h3>
 
-- **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
+- **상세**: 설치된 Vue 버전을 가져올 수 있습니다. 버전을 이용해서 커뮤니티 플러그인과 컴포넌트 또는 버전마다 다른 처리를 하는데 유용하게 사용할 수 있습니다.
 
-- **Usage**:
+- **사용법**:
 
 ```js
 var version = Number(Vue.version.split('.')[0])
@@ -401,45 +403,43 @@ if (version === 2) {
 } else if (version === 1) {
   // Vue v1.x.x
 } else {
-  // Unsupported versions of Vue
+  // 지원하지 않는 버전의 경우..
 }
 ```
 
-## Options / Data
+## 옵션 / 데이터
 
 ### data
 
-- **Type:** `Object | Function`
+- **타입:** `Object | Function`
 
-- **Restriction:** Only accepts `Function` when used in a component definition.
+- **제한:** 컴포넌트에서 사용될 때만 `함수`를 승인합니다.
 
-- **Details:**
+- **상세:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
+  Vue 인스턴스의 데이터 객체입니다. Vue는 속성을 getter/setter로 재귀적으로 변환해 "반응형"으로 만듭니다. **객체는 반드시 기본 객체이어야 합니다**: 브라우저 API 객체 및 프로토타입 속성과 같은 기본 객체는 무시됩니다. 데이터는 데이터일 뿐이며 객체 자체의 상태를 유지하는 동작은 관찰하지 않는 것이 좋습니다.
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  일단 관찰되어지면, 루트 데이터 객체에 반응형 속성을 추가할 수 없습니다. 따라서 인스턴스 생성 이전에 모든 루트 수준의 반응형 속성을 미리 선언해야 합니다.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  인스턴스가 생성된 이후 원래 데이터 객체는 `vm.$data`로 접근할 수 있습니다. Vue 인스턴스는 데이터 객체에 있는 모든 속성을 프록시하므로 `vm.a`는 `vm.$data.a`와 동일합니다.
 
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  `_` 또는 `$`로 시작하는 속성은 Vue의 내부 속성 및 API 메소드와 충돌할 수 있으므로 Vue 인스턴스에서 **프록시 되지 않습니다**. `vm.$data._property`로 접근 해야 합니다.
 
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
+  필요한 경우, `vm.$data`를 `JSON.parse(JSON.stringify(...))`를 통해 전달함으로써 원본 객체의 복사본을 얻을 수 있습니다.
 
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
-
-- **Example:**
+- **예제:**
 
   ``` js
   var data = { a: 1 }
 
-  // direct instance creation
+  // 직접 객체 생성
   var vm = new Vue({
     data: data
   })
   vm.a // -> 1
   vm.$data === data // -> true
 
-  // must use function when in Vue.extend()
+  // Vue.extend()에서 반드시 함수를 사용해야 합니다.
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -447,32 +447,32 @@ if (version === 2) {
   })
   ```
 
-  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
+  <p class="tip">__화살표 함수를 `data`에서 사용하면 안됩니다__ (예를 들어, `data: () => { return { a: this.myProp }}`) 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 예상과 달리 Vue 인스턴스가 아니며, `this.myProp`는 정의되지 않습니다.</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **참고:** [반응형에 대해 깊이 알기](../guide/reactivity.html)
 
 ### props
 
-- **Type:** `Array<string> | Object`
+- **타입:** `Array<string> | Object`
 
-- **Details:**
+- **상세:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  부모 컴포넌트의 데이터를 받을 수 있게 노출된 속성의 리스트/해시 입니다. 단순한 배열 기반 구문과 사용자 지정 유효성 검사 및 기본값과 같은 고급 구성을 허용하는 Object 기반 구문이 있습니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
-  // simple syntax
+  // 단순한 구문
   Vue.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // 유효성 검사를 포함한 객체 구문
   Vue.component('props-demo-advanced', {
     props: {
-      // just type check
+      // 타입 체크만 합니다.
       height: Number,
-      // type check plus other validations
+      // 타입 체크와 유효성 검사를 합니다.
       age: {
         type: Number,
         default: 0,
@@ -485,19 +485,19 @@ if (version === 2) {
   })
   ```
 
-- **See also:** [Props](../guide/components.html#Props)
+- **참고:** [Props](../guide/components.html#Props)
 
 ### propsData
 
-- **Type:** `{ [key: string]: any }`
+- **타입:** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **제한:** `new`를 이용한 인스턴스 생성때만 사용됩니다.
 
-- **Details:**
+- **상세:**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  인스턴스를 생성하는 동안 속성을 전달합니다. 이것은 단위 테스트를 쉽게 하기 위한 것 입니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   var Comp = Vue.extend({
@@ -514,27 +514,29 @@ if (version === 2) {
 
 ### computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **타입:** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Details:**
+- **상세:**
 
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+  Vue 인스턴스에 추가되는 계산된 속성입니다. 모든 getter와 setter는 자동으로 `this` 컨텍스트를 Vue 인스턴스에 바인딩 합니다.
 
-  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">__계산된 속성을 정의 할 때 화살표 함수를 사용하면 안됩니다.__ 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.a`는 정의되지 않습니다.</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
+  계산된 속성은 캐시 되며 의존하고 있는 반응형 속성이 변경되는 경우 다시 평가됩니다. 특정한 의존성이 인스턴스의 범위를 벗어나는 경우(반응형이지 않은 경우)에 계산된 속성은 갱신되지 않습니다. 그러나 여전히 반응형 속성을 갖지 않고 있기 때문에 이를 수정하는 경우 DOM 갱신을 발생시키지 않습니다.
 
-- **Example:**
+  대부분의 상황에서 `cache: false`를 사용하는 것은 이상적인 방법이 아닙니다. 가능할 때마다 외부 데이터를 반응형 시스템 안으로 가져오는 것이 훨씬 좋습니다. 예를 들어, 계산된 속성이 윈도우 크기에 의존하는 경우 이 정보를 `data` 에 저장한 다음 `resize` 이벤트를 사용하여 데이터를 최신 상태로 유지할 수 있습니다. 이것 또한 반응형입니다!
+
+- **예제:**
 
   ```js
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only, just need a function
+      // get만 가능합니다. 함수가 필요합니다.
       aDouble: function () {
         return this.a * 2
       },
-      // both get and set
+      // get과 set 입니다.
       aPlus: {
         get: function () {
           return this.a + 1
@@ -551,20 +553,20 @@ if (version === 2) {
   vm.aDouble // -> 4
   ```
 
-- **See also:**
-  - [Computed Properties](../guide/computed.html)
+- **참고:**
+  - [계산된 속성](../guide/computed.html)
 
 ### methods
 
-- **Type:** `{ [key: string]: Function }`
+- **타입:** `{ [key: string]: Function }`
 
-- **Details:**
+- **상세:**
 
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+  Vue 인스턴스에 추가할 메소드입니다. VM 인스턴스를 통해 직접 접근하거나 디렉티브 표현식에서 사용할 수 있습니다. 모든 메소드는 자동으로 `this` 컨텍스트를 Vue 인스턴스에 바인딩합니다.
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">__화살표 함수를 메소드를 정의하는데 사용하면 안됩니다.__ 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.a`는 정의되지 않습니다.</p>
 
-- **Example:**
+- **예제:**
 
   ```js
   var vm = new Vue({
@@ -579,17 +581,17 @@ if (version === 2) {
   vm.a // 2
   ```
 
-- **See also:** [Methods and Event Handling](../guide/events.html)
+- **참고:** [메소드와 이벤트 핸들링](../guide/events.html)
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object }`
+- **타입:** `{ [key: string]: string | Function | Object }`
 
-- **Details:**
+- **상세:**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+  키가 표시되는 표현식이고 값이 콜백입니다. 값은 메서드 이름이 문자열이거나 추가 옵션이 포함된 Object가 될 수도 있습니다. Vue 인스턴스는 인스턴스 생성시 객체의 각 항목에 대해 `$watch()`를 호출합니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   var vm = new Vue({
@@ -602,9 +604,9 @@ if (version === 2) {
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
-      // string method name
+      // 문자열 메소드 이름
       b: 'someMethod',
-      // deep watcher
+      // 깊은 감시자
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
@@ -614,80 +616,83 @@ if (version === 2) {
   vm.a = 2 // -> new: 2, old: 1
   ```
 
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  <p class="tip">__화살표 함수를 감시자에 사용하면 안됩니다.__ (예를 들어, `searchQuery: newValue => this.updateAutocomplete(newValue)`) 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.updateAutocomplete`는 정의되지 않습니다. </p>
 
-- **See also:** [Instance Methods - vm.$watch](#vm-watch)
+- **참고:** [인스턴스 메소드 - vm.$watch](#vm-watch)
 
-## Options / DOM
+## 옵션들 / DOM
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **타입:** `string | HTMLElement`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **제한:** `new`를 이용한 인스턴스 생성때만 사용됩니다.
 
-- **Details:**
+- **상세:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  Vue 인스턴스에 마운트 할 기존 DOM 엘리먼트 필요합니다. CSS 선택자 문자열 또는 실제 HTMLElement 이어야 합니다.
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  인스턴스가 마운트 된 이후, 그 엘리먼트는 `vm.$el`로 액세스 할 수 있습니다.
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  인스턴스화 할 때 옵션을 사용할 수 있는 경우 인스턴스는 즉시 컴파일을 시작합니다. 그렇지 않으면 컴파일을 수동으로 하기 위해 `vm.$mount()`를 명시적으로 호출해야합니다.
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip">제공된 엘리먼트는 설치 지점으로 사용합니다. Vue 1.x와 달리 마운트 된 엘리먼트는 모든 경우에 Vue가 생성한 DOM으로 대체됩니다. 그러므로 루트 인스턴스를 `<html>` 또는 `<body>`에 마운트 하는 것을 권장하지 않습니다.</p>
 
-  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+  <p class="tip">`render`함수 또는 `template` 옵션 둘 다 없으면, 마운트할 DOM 요소의 내부 DOM이 템플릿으로 추출 될 것입니다. 이 경우, Vue의 런타임 + 컴파일러 빌드를 사용해야합니다.</p>
+
+- **참고:**
+  - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
   - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
 
 ### template
 
-- **Type:** `string`
+- **타입:** `string`
 
-- **Details:**
+- **상세:**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Vue 인스턴스의 마크업으로 사용할 문자열 템플릿 입니다. 템플릿은 마운트 된 엘리먼트를 **대체** 합니다. 템플릿에 컨텐츠 배포 슬롯이 없는 경우 마운트 된 엘리먼트의 기존 마크업은 무시됩니다.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  문자열이 `#`로 시작하면 querySelector로 사용되며 선택된 엘리먼트의 innerHTML을 템플릿 문자열로 사용합니다. 이렇게 하면 일반적인 `<script type="x-template">` 트릭을 사용하여 템플릿을 포함할 수 있습니다.
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip">보안 관점에서 신뢰할 수 있는 Vue 템플릿만 사용해야 합니다. 사용자 생성 콘텐츠를 템플릿으로 사용하면 안됩니다.</p>
 
-  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+  <p class="tip">Vue 옵션에 렌더 함수가 있으면 템플릿 속성은 무시됩니다</p>
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution](../guide/components.html#Content-Distribution-with-Slots)
+  - **참고:**
+    - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+    - [Slot을 이용한 컨텐츠 배포](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
-  - **Type:** `(createElement: () => VNode) => VNode`
+  - **타입:** `(createElement: () => VNode) => VNode`
 
-  - **Details:**
+  - **상세:**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    문자열 템플릿 대신 자바스크립트의 완전한 프로그래밍 기능을 활용할 수 있습니다. render 함수는 `VNode`를 생성하는데 사용되는 첫번째 인자인 `createElement` 메소드를 받습니다.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    함수형 컴포넌트의 경우 렌더링 함수는 컴포넌트에 인스턴스가 없기 때문에 컨텍스트에 대한 액세스를 제공하는 추가적인 `context`를 전달합니다
 
-    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+    <p class="tip">
+    `render` 함수는 `template` 옵션 또는 `el` 옵션으로 지정된 마운트된 엘리먼트의 템플릿에서 컴파일된 렌더링 함수보다 높은 우선 순위를 가집니다.
+    </p>
 
-  - **See also:**
-    - [Render Functions](../guide/render-function)
+  - **참고:**
+    - [렌더 함수](../guide/render-function)
 
 ### renderError
 
-> New in 2.2.0
+> 2.2.0에서 추가됨
 
-  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+  - **타입:** `(createElement: () => VNode, error: Error) => VNode`
 
-  - **Details:**
+  - **상세:**
 
-    **Only works in development mode.**
+    **개발 모드에서만 작동합니다**
 
-    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+    기본 `render` 함수가 에러를 만나면, 대체되는 렌더 결과를 제공합니다. 오류는 두 번째 전달인자로 `renderError` 입니다. 핫 리로드와 함께 사용될 때 특히 유용합니다.
 
-  - **Example:**
+  - **예제:**
 
     ``` js
     new Vue({
@@ -700,195 +705,195 @@ if (version === 2) {
     }).$mount('#app')
     ```
 
-  - **See also:**
+  - **참고:**
     - [Render Functions](../guide/render-function)
 
-## Options / Lifecycle Hooks
+## 옵션 / 라이프사이클 훅
 
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.
+모든 라이프사이클 훅은 자동으로 `this` 컨텍스트를 인스턴스에 바인딩하므로 데이터, 계산된 속성 및 메소드에 접근할 수 있습니다. __즉, 화살표 함수를 사용해 라이프사이클 메소드를 정의하면 안됩니다.(예: `created: () => this.fetchTodos()`)__ 이유는 화살표 함수가 부모 컨텍스트를 바인딩 하기 때문에 `this`는 예상대로 Vue 인스턴스가 아니며 `this.fetchTodos`는 정의되지 않습니다.
 
 ### beforeCreate
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+  인스턴스가 방금 초기화 된 후 데이터 관찰 및 이벤트 / 감시자 설정 전에 동기적으로 호출 됩니다.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
 ### created
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  인스턴스가 작성된 후 동기적으로 호출됩니다. 이 단계에서 인스턴스는 데이터 처리, 계산된 속성, 메서드, 감시/이벤트 콜백 등과 같은 옵션 처리를 완료합니다. 그러나 마운트가 시작되지 않았으므로 `$el` 속성을 아직 사용할 수 없습니다.
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeMount
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  마운트가 시작되기 바로 전에 호출됩니다. `render` 함수가 처음으로 호출 됩니다.
 
-  **This hook is not called during server-side rendering.**
+  **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
 ### mounted
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  `el`이 새로 생성된 `vm.$el`로 대체된 인스턴스가 마운트 된 직후 호출됩니다. 루트 인스턴스가 문서 내의 엘리먼트에 마운트 되어 있으면, `mounted`가 호출 될 때 `vm.$el`도 문서 안에 있게 됩니다.
 
-  **This hook is not called during server-side rendering.**
+  **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
 ### beforeUpdate
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  가상 DOM이 다시 렌더링되고 패치 전 데이터가 변경되면 호출됩니다.
+  이 훅에서 더 많은 상태 변경을 수행할 수 있으며 추가로 재 렌더링을 트리거하지 않습니다.
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
+  **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-  **This hook is not called during server-side rendering.**
-
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
 ### updated
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  데이터 변경 후 호출되어 가상 DOM이 다시 렌더링되고 패치 됩니다.
 
-  The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
+  이 훅이 호출되면 엘리먼트의 DOM이 업데이트 된 상태가 되어 이 훅에서 DOM 종속적인 연산을 할 수 있습니다. 그러나 대부분의 경우 무한루프가 발생할 수 있으므로 훅에서 상태를 변경하면 안됩니다. 상태 변화에 반응하기 위해서 [계산된 속성](#computed) 또는 [감시자(#watch)를 사용하는 것이 더 좋습니다.
 
-  **This hook is not called during server-side rendering.**
+  **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
 ### activated
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called when a kept-alive component is activated.
+  keep-alive 인 컴포넌트가 활성화 될 때 호출됩니다.
 
-  **This hook is not called during server-side rendering.**
+  **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **See also:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **참고:**
+  - [내장 컴포넌트 - keep-alive](#keep-alive)
+  - [동적 컴포넌트 - keep-alive](../guide/components.html#keep-alive)
 
 ### deactivated
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called when a kept-alive component is deactivated.
+  keep-alive인 컴포넌트가 비활성화 될 때 호출됩니다.
 
-  **This hook is not called during server-side rendering.**
+  **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **See also:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **참고:**
+  - [내장 컴포넌트 - keep-alive](#keep-alive)
+  - [동적 컴포넌트 - keep-alive](../guide/components.html#keep-alive)
 
 ### beforeDestroy
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  Vue 인스턴스가 제거되기 전에 호출됩니다. 이 단계에서 인스턴스는 아직 완벽하게 작동합니다.
 
-  **This hook is not called during server-side rendering.**
+  **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
 ### destroyed
 
-- **Type:** `Function`
+- **타입:** `Function`
 
-- **Details:**
+- **상세:**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Vue 인스턴스가 제거된 후 호출됩니다. 이 훅이 호출되면 Vue 인스턴스의 모든 디렉티브가 바인딩 해제 되고 모든 이벤트 리스너가 제거되며 모든 하위 Vue 인스턴스도 삭제됩니다.
 
-  **This hook is not called during server-side rendering.**
+  **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
-## Options / Assets
+## 옵션 / 에셋
 
 ### directives
 
-- **Type:** `Object`
+- **타입:** `Object`
 
-- **Details:**
+- **상세:**
 
-  A hash of directives to be made available to the Vue instance.
+  Vue 인스턴스에서 사용할 수 있도록 만들어진 디렉티브의 해시
 
-- **See also:**
-  - [Custom Directives](../guide/custom-directive.html)
+- **참고:**
+  - [사용자 정의 디렉티브](../guide/custom-directive.html)
 
 ### filters
 
-- **Type:** `Object`
+- **타입:** `Object`
 
-- **Details:**
+- **상세:**
 
-  A hash of filters to be made available to the Vue instance.
+  Vue 인스턴스에서 사용할 수 있도록 만들어진 필터의 해시
 
-- **See also:**
+- **참고:**
   - [`Vue.filter`](#Vue-filter)
 
 ### components
 
-- **Type:** `Object`
+- **타입:** `Object`
 
-- **Details:**
+- **상세:**
 
-  A hash of components to be made available to the Vue instance.
+  Vue 인스턴스에서 사용할 수 있도록 만들어진 컴포넌트의 해시
 
-- **See also:**
-  - [Components](../guide/components.html)
+- **참고:**
+  - [컴포넌트](../guide/components.html)
 
-## Options / Composition
+
+## 옵션 / 컴포지션
 
 ### parent
 
-- **Type:** `Vue instance`
+- **타입:** `Vue instance`
 
-- **Details:**
+- **상세:**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  작성 할 인스턴스의 상위 인스턴스를 지정해야 합니다. 부모-자식 관계를 설정합니다. 부모는 자식에 대해 `this.$parent`로 접근할 수 있고 자식은 부모의 `$children`배열로 추가 됩니다.
 
-  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">`$parent`와 `$children`은 적당히 사용해야합니다. 대부분 escape-hatch로 사용합니다. 부모와 자식 간 의사소통은 props와 이벤트 사용을 권장합니다.</p>
 
 ### mixins
 
-- **Type:** `Array<Object>`
+- **타입:** `Array<Object>`
 
-- **Details:**
+- **상세:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  `mixins` 옵션은 mixin 객체 배열을 받아들입니다. 이러한 mixin 객체는 일반 인스턴스 객체와 마찬가지로 인스턴스 옵션을 포함할 수 있으며, `Vue.extend()`에서 같은 옵션 병합 로직을 사용하여 최종 옵션과 병합됩니다. 예: mixin에 생성된 훅이 포함되어 있고 컴포넌트 자체에도 하나가 있으면 두 함수가 모두 호출 됩니다.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Mixin 훅은 제공된 순서대로 호출되며 컴포넌트의 훅보다 먼저 호출됩니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   var mixin = {
@@ -902,24 +907,24 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   // -> 2
   ```
 
-- **See also:** [Mixins](../guide/mixins.html)
+- **참고:** [Mixins](../guide/mixins.html)
 
 ### extends
 
-- **Type:** `Object | Function`
+- **타입:** `Object | Function`
 
-- **Details:**
+- **상세:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  `Vue.extend`를 사용하지 않고 선언적으로 다른 컴포넌트를 확장할 수 있습니다. (일반 옵션 객체 또는 생성자 일 수 있습니다.) 이것은 주로 단일 파일 컴포넌트 사이를 쉽게 확장할 수 있도록 하기 위함입니다.
 
-  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+  이것은 `mixins`와 유사합니다. 차이점은 컴포넌트의 자체 옵션이 확장되는 원본 컴포넌트보다 우선순위가 높다는 것 입니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call Vue.extend on either
+  // Vue.extend를 호출하지 않고도 CompA를 확장할 수 있습니다.
   var CompB = {
     extends: CompA,
     ...
@@ -928,25 +933,27 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### provide / inject
 
-> New in 2.2.0
+> 2.2.0에서 추가됨
 
-- **Type:**
+- **타입:**
   - **provide:** `Object | () => Object`
   - **inject:** `Array<string> | { [key: string]: string | Symbol }`
 
-- **Details:**
+- **상세:**
 
-  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+  <p class="tip">
+  `provide`와 `inject`는 주로 고급 플러그인/컴포넌트 라이브러리를 위해 제공됩니다. 일반 애플리케이션 코드에서는 사용하지 않는 것이 좋습니다.
+  </p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  이 옵션 쌍은 함께 사용하여 상위 컴포넌트가 컴포넌트 계층 구조의 깊이에 관계없이 모든 하위 항목에 대한 종속성을 주입하는 역할을 하도록 허용합니다. React에 익숙하다면 이것은 React의 컨텍스트 기능과 매우 유사합니다.
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  `provide` 옵션은 객체 또는 객체를 반환하는 함수여야합니다. 이 객체에는 하위 항목에 삽입할 수있는 속성이 포함되어 있습니다. ES2015 심볼을 이 객체의 키로 사용할 수 있지만 `Symbol`과 `Reflect.ownKeys`를 기본적으로 지원하는 환경에서만 가능합니다.
 
-  The `inject` options should be either an Array of strings or an object where the keys stand for the local binding name, and the value being the key (string or Symbol) to search for in available injections.
+  `inject` 옵션은 문자열의 배열이거나 키가 로컬 바인딩 이름을 나타내는 객체이고 사용 가능한 주입에서 검색할 키 (문자열 또는 기호)값이어야합니다.
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+  > 주의 : `provide`와 `inject` 바인딩은 반응형이 아닙니다. 이는 의도적한 것입니다. 그러나 감시중인 객체를 전달하면 해당 객체의 속성은 계속 반응형입니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   var Provider = {
@@ -965,7 +972,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  ES2015의 Symbol을 사용하여 `provide` 함수와 `inject` 객체를 사용하세요:
   ``` js
   const s = Symbol()
 
@@ -983,9 +990,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   }
   ```
 
-  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > 다음 두 예제는 Vue 2.2.1 버전 이후에서만 작동합니다 이전 버전에서는 `props`와 `data`를 초기화한 후 사용할 수 있습니다
 
-  Using an injected value as the default for a prop:
+주입한 값을 속성의 기본값으로 사용
   ```js
   const Child = {
     inject: ['foo'],
@@ -999,7 +1006,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   }
   ```
 
-  Using an injected value as data entry:
+  주입한 값을 data로 사용
   ```js
   const Child = {
     inject: ['foo'],
@@ -1011,61 +1018,61 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   }
   ```
 
-## Options / Misc
+## 옵션 / 기타
 
 ### name
 
-- **Type:** `string`
+- **타입:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **제한:** 컴포넌트 옵션으로 사용될 때만 사용할 수 있습니다.
 
-- **Details:**
+- **상세:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  컴포넌트가 템플릿을 반복적으로 자체 호출 할 수 있게 합니다. 컴포넌트가 `Vue.component()`로 전역으로 등록되면 전역 ID가 자동으로 이름으로 설정됩니다.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  `name` 옵션을 지정하는 또 다른 이점은 디버깅 입니다. 명명된 컴포넌트는 보다 유용한 경고 메시지를 만듭니다. 또한 [vue-devtools](https://github.com/vuejs/vue-devtools)에서 응용 프로그램을 살펴볼 때 익명의 컴포넌트는 매우 유용하지 않은 `<AnonymousComponent>`로 표시됩니다. `name` 옵션을 제공함으로써 훨씬 더 쓸모있는 컴포넌트 트리를 얻을 수 있습니다.
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **타입:** `Array<string>`
 
-- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **기본값:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **Details:**
+- **상세:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the full build.**
+  일반 텍스트 보간 구분 기호를 변경하십시오. **이 옵션은 전체 빌드에서만 사용할 수 있습니다. **
 
-- **Example:**
+- **예제:**
 
   ``` js
   new Vue({
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // 구분 기호가 ES6 템플릿 문자열 스타일로 변경되었습니다.
   ```
 
 ### functional
 
-- **Type:** `boolean`
+- **타입:** `boolean`
 
-- **Details:**
+- **상세:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+  컴포넌트에 상태를 저장하지 않는(`data`가 없음) 및 인스턴스가 없도록 (`this` 컨텍스트가 없음) 만듭니다. 단순히 가상 노드를 반환하는 `render` 함수로 렌더링을 훨씬 더 가볍게 만듭니다.
 
-- **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
+- **참고:** [Functional Components](../guide/render-function.html#Functional-Components)
 
 ### model
 
-> New in 2.2.0
+> 2.2.0에서 추가됨
 
-- **Type:** `{ prop?: string, event?: string }`
+- **타입:** `{ prop?: string, event?: string }`
 
-- **Details:**
+- **상세:**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  커스텀 컴포넌트가 `v-model`과 함께 사용될 때 prop와 이벤트를 커스터마이징 할 수 있도록 합니다. 기본적으로 컴포넌트의 `v-model`은 `value`를 보조 변수로 사용하고 `input`을 이벤트로 사용하지만 체크 박스와 라디오 버튼과 같은 일부 입력 타입은 다른 목적으로 `value` 속성을 사용하려고 할 수 있습니다. `model` 옵션을 사용하면 이 경우 충돌을 피할 수 있습니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   Vue.component('my-checkbox', {
@@ -1074,9 +1081,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
       event: 'change'
     },
     props: {
-      // this allows using the `value` prop for a different purpose
+      // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
       value: String,
-      // use `checked` as the prop which take the place of `value`
+      // `value`를 대신 `checked`를 prop으로 사용하십시오.
       checked: {
         type: Number,
         default: 0
@@ -1090,7 +1097,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <my-checkbox v-model="foo" value="some value"></my-checkbox>
   ```
 
-  The above will be equivalent to:
+  위의 내용은 아래와 같습니다.
 
   ``` html
   <my-checkbox
@@ -1102,69 +1109,72 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### inheritAttrs
 
-> New in 2.4.0
+> 2.4.0 이후 추가됨
 
-- **Type:** `boolean`
+- **타입:** `boolean`
 
-- **Default:** `true`
+- **기본값:** `true`
 
-- **Details:**
+- **상세:**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  기본적으로 props로 인식되지 않는 상위 스코프의 속성 바인딩은 "흘러내려가" 일반 HTML 속성으로 하위 컴포넌트의 루트 엘리먼트에 적용됩니다.
+  타겟 엘리먼트 또는 다른 컴포넌트를 래핑하는 컴포넌트를 제작할 때 항상 원하는 동작을 하지 않을 수 있습니다.
+  `inheritAttrs` 속성을 `false`로 지정하면 기본적인 동작이 중지됩니다.
+  속성은 `$attrs` 인스턴스 속성(2.4에서 새로 추가됨)로 사용할 수 있으며 `v-bind`로 루트 엘리먼트에 명시적으로 바인딩할 수 있습니다.
 
 ### comments
 
-> New in 2.4.0
+> 2.4.0 이후 추가됨
 
-- **Type:** `boolean`
+- **타입:** `boolean`
 
-- **Default:** `false`
+- **기본값:** `false`
 
-- **Details:**
+- **상세:**
 
-  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+  `true`로 설정하면 템플릿에 있는 HTML 주석을 보존하고 렌더링합니다. 기본값은 동작은 무시합니다.
 
-## Instance Properties
+## 인스턴스 속성
 
 ### vm.$data
 
-- **Type:** `Object`
+- **타입:** `Object`
 
-- **Details:**
+- **상세:**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  Vue 인스턴스가 관찰하는 데이터 객체입니다. Vue 인스턴스는 데이터 객체의 속성에 대한 엑세스를 프록시 합니다.
 
-- **See also:** [Options - data](#data)
+- **참고:** [옵션 - data](#data)
 
 ### vm.$props
 
-> New in 2.2.0
+> 2.2.0에서 추가됨
 
-- **Type:** `Object`
+- **타입:** `Object`
 
-- **Details:**
+- **상세:**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+  컴포넌트가 전달 받은 속성을 나타내는 객체입니다. Vue 인스턴스는 해당 props 객체의 속성에 대한 접근을 프록시합니다.
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **타입:** `HTMLElement`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  The root DOM element that the Vue instance is managing.
+  Vue 인스턴스가 관리하는 루트 DOM 엘리먼트 입니다.
 
 ### vm.$options
 
-- **Type:** `Object`
+- **타입:** `Object`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  인스턴스화 옵션은 현재 Vue 인스턴스에 사용됩니다. 이 옵션은 옵션에 사용자 정의 속성을 포함해야할 경우 유용합니다.
 
   ``` js
   new Vue({
@@ -1177,47 +1187,46 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$parent
 
-- **Type:** `Vue instance`
+- **타입:** `Vue instance`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  The parent instance, if the current instance has one.
+  현재 인스턴스에 부모 인스턴스가 있는 경우, 부모 인스턴스 입니다.
 
 ### vm.$root
 
-- **Type:** `Vue instance`
+- **타입:** `Vue instance`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
-
+  현재 컴포넌트 트리의 루트 Vue 인스턴스입니다. 현재 인스턴스에 부모가 없으면 이 값이 그 자체로 사용됩니다.
 ### vm.$children
 
-- **Type:** `Array<Vue instance>`
+- **타입:** `Array<Vue instance>`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+   현재 인스턴스가 가지고 있는 바로 하위의 컴포넌트 입니다. **`$children`에 대한 순서 보장은 없으며, 반응형이 아닙니다.** 데이터 바인딩을 위해 `$children`을 사용하려면, Array와 `v-for`를 사용하여 자식 컴포넌트를 생성하는 것을 고려하세요. Array를 원본으로 사용하세요.
 
 ### vm.$slots
 
-- **Type:** `{ [name: string]: ?Array<VNode> }`
+- **타입:** `{ [name: string]: ?Array<VNode> }`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  프로그래밍으로 접근 가능한 컨텐트 [슬롯 별 배포](../guide/components.html#Content-Distribution-with-Slots)에 사용합니다. 각 [명명된 슬롯](../guide/components.html#Named-Slots)은 고유한 속성을 가지고 있습니다. (예: `slot=foo` 는 `vm.$slots.foo`에서 찾을 수 있습니다.) `default` 속성은 명명된 슬롯에 포함되지 않은 노드를 포함합니다.
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  `vm.$slots`에 접근하는 것은 [렌더 함수](../guide/render-function.html)로 컴포넌트를 작성할 때 가장 유용합니다.
 
-- **Example:**
+- **예제:**
 
   ```html
   <blog-post>
@@ -1250,101 +1259,101 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   })
   ```
 
-- **See also:**
-  - [`<slot>` Component](#slot-1)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+- **참고:**
+  - [`<slot>` 컴포넌트](#slot-1)
+  - [Slot을 이용한 컨텐트 배포](../guide/components.html#Content-Distribution-with-Slots)
+  - [렌더 함수: Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
-> New in 2.1.0
+> 2.1.0의 새로운 기능
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **타입:** `{ [name: string]: props => VNode | Array<VNode> }`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  [범위가 지정된 슬롯](../guide/components.html#Scoped-Slots)에 프로그래밍으로 액세스하는데 사용됩니다. `default`를 포함하여 각 슬롯에 대해 객체는 VNode를 반환하는 해당 함수를 포함합니다.
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  `vm.$scopedSlots`에 접근하는 것은 [렌더 함수](../guide/render-function.html)로 컴포넌트를 작성할 때 가장 유용합니다.
 
-- **See also:**
-  - [`<slot>` Component](#slot-1)
-  - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+- **참고:**
+  - [`<slot>` 컴포넌트](#slot-1)
+  - [범위가 지정된 슬롯](../guide/components.html#Scoped-Slots)
+  - [렌더 함수: Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
-- **Type:** `Object`
+- **타입:** `Object`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  An object that holds child components that have `ref` registered.
+  `ref`가 등록된 자식 컴포넌트를 보관하는 객체입니다.
 
-- **See also:**
-  - [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **참고:**
+  - [자식 컴포넌트 참조](../guide/components.html#Child-Component-Refs)
   - [ref](#ref)
 
 ### vm.$isServer
 
-- **Type:** `boolean`
+- **타입:** `boolean`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  Whether the current Vue instance is running on the server.
+  현재 Vue 인스턴스가 서버에서 실행중인지 여부.
 
-- **See also:** [Server-Side Rendering](../guide/ssr.html)
+- **참고:** [서버측 렌더링](../guide/ssr.html)
 
 ### vm.$attrs
 
-- **Type:** `{ [key: string]: string }`
+- **타입:** `{ [key: string]: string }`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  Contains parent-scope attribute bindings that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings except for `class` and `style`, and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  props로 인식(및 추출)되지 않는 부모 범위 속성 바인딩입니다. 컴포넌트에 선언된 props가 없을 때 `class`와 `style`을 제외하고 모든 부모 범위 바인딩을 기본적으로 포함하며 `v-bind="$attrs"`를 통해 내부 컴포넌트로 전달할 수 있습니다 - 고차원 컴포넌트를 작성할 때 유용합니다.
 
 ### vm.$listeners
 
-- **Type:** `{ [key: string]: Function | Array<Function> }`
+- **타입:** `{ [key: string]: Function | Array<Function> }`
 
-- **Read only**
+- **읽기 전용**
 
-- **Details:**
+- **상세:**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating higher-order components.
+  부모 스코프 `v-on` 이벤트 리스너를 포함합니다 (`.native` 수식어 없음). `v-on="$listeners"`를 통해 내부 컴포넌트로 전달할 수 있습니다 - 고차원 컴포넌트를 생성 할 때 유용합니다.
 
-## Instance Methods / Data
+## 인스턴스 메소드 / 데이터
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{string | Function} expOrFn`
   - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **반환 값:** `{Function} unwatch`
 
-- **Usage:**
+- **사용방법:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
+  변경을 위해 Vue 인스턴스에서 표현식이나 계산된 함수를 감시합니다. 콜백은 새 값과 이전 값을 인자로 호출됩니다. 표현식은 점으로 구분된 경로를 허용합니다. 더 복잡한 표현식을 사용하려면 함수를 사용하세요.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+  <p class="tip">참고: Object 또는 Array를 변경하는 대신 변형하는 경우 동일한 Object / Array를 참조하므로 이전 값은 새 값과 같습니다. Vue는 사전 변이된 값의 사본을 보관하지 않습니다.</p>
 
-- **Example:**
+- **예제:**
 
   ``` js
   // keypath
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // 필요한 코드를 작성하세요
   })
 
   // function
@@ -1353,82 +1362,83 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // 필요한 코드를 작성하세요
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch`는 콜백을 호출하지 않는 unwatch 함수를 반환합니다.
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // 나중에, 감시자를 제거해야합니다
   unwatch()
   ```
 
-- **Option: deep**
+- **옵션: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+
+  Objects 내부의 중첩된 값 변경을 감지하려면 options 인자에 `deep: true`를 전달해야 합니다. Array 변이를 수신하기 위해 그렇게 할 필요는 없습니다.
 
   ``` js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // 콜백이 호출됩니다
   ```
 
-- **Option: immediate**
+- **옵션: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  옵션에서 `immediate: true`를 전달하면 표현식의 현재 값으로 즉시 콜백을 호출합니다.
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // callback is fired immediately with current value of `a`
+  // 콜백은`a`의 현재 값으로 즉시 시작됩니다.
   ```
 
 <h3 id="vm-set">vm.$set( target, key, value )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Object | Array} target`
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **반환 값:** 설정된 값
 
-- **Usage:**
+- **사용방법:**
 
-  This is the **alias** of the global `Vue.set`.
+  전역 `Vue.set`의 **별칭** 입니다.
 
-- **See also:** [Vue.set](#Vue-set)
+- **참고:** [Vue.set](#Vue-set)
 
 <h3 id="vm-delete">vm.$delete( target, key )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Object | Array} target`
   - `{string | number} key`
 
-- **Usage:**
+- **사용방법:**
 
-  This is the **alias** of the global `Vue.delete`.
+  전역 `Vue.delete`의 **별칭** 입니다.
 
-- **See also:** [Vue.delete](#Vue-delete)
+- **참고:** [Vue.delete](#Vue-delete)
 
-## Instance Methods / Events
+## 인스턴스 메소드 / 이벤트
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
-- **Arguments:**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+- **전달인자:**
+  - `{string | Array<string>} event` (객체는 2.2.0버전 이상에서만 지원)
   - `{Function} callback`
 
-- **Usage:**
+- **사용방법:**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  현재 VM에서 사용자 정의 이벤트를 듣습니다. 이벤트는 `vm.$emit`에 의해 호출될 수 있습니다. 콜백은 이러한 이벤트 트리거 메소드에 전달 된 모든 추가 인수를 수신합니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   vm.$on('test', function (msg) {
@@ -1440,96 +1450,94 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 <h3 id="vm-once">vm.$once( event, callback )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{string} event`
   - `{Function} callback`
 
-- **Usage:**
+- **사용방법:**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  사용자 이벤트를 한번만 듣습니다. 리스너는 한번 호출되면 제거됩니다.
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{string} [event]`
   - `{Function} [callback]`
 
 - **Usage:**
 
-  Remove custom event listener(s).
+  사용자 정의 이벤트 리스너를 제거합니다.
 
-  - If no arguments are provided, remove all event listeners;
-
-  - If only the event is provided, remove all listeners for that event;
-
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - 인자가 없으면 모든 이벤트 리스너를 제거합니다.
+  - 이벤트만 인자로 전달 받는 경우 해당 이벤트의 모든 리스너를 제거합니다.
+  - 이벤트와 콜백을 전달 받으면 특정 콜백에 대한 리스너만 제거합니다.
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{string} event`
   - `[...args]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  현재 인스턴스에서 이벤트를 트리거 합니다. 추가 인자는 리스너의 콜백 함수로 전달됩니다ㅣ.
 
-## Instance Methods / Lifecycle
+## 인스턴스 메소드 / 라이프사이클
 
 <h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **Returns:** `vm` - the instance itself
+- **반환 값:** `vm` - 인스턴스 그 자체
 
-- **Usage:**
+- **사용방법:**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  Vue 인스턴스가 인스턴스화 할 때 `el` 옵션이 없으면 연결된 DOM 엘리먼트 없이 "unmounted" 상태가 됩니다. `vm.$mount()`는 unmounted 된 Vue인스턴스의 마운트를 수동으로 시작하는데 사용할 수 있습니다.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  `elementOrSelector` 인자가 제공되지 않으면, 템플릿은 문서가 아닌 엘리먼트로 렌더링 될 것이므로 DOM API를 사용하여 문서에 직접 삽입해야 합니다.
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  이 메소드는 다른 인스턴스 메소드를 체이닝 할 수 있도록 인스턴스 그 자체를 반환 합니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   var MyComponent = Vue.extend({
     template: '<div>Hello!</div>'
   })
 
-  // create and mount to #app (will replace #app)
+  // 생성하고 #app에 마운트 합니다.(#app을 대체합니다)
   new MyComponent().$mount('#app')
 
-  // the above is the same as:
+  // 위와 같습니다.
   new MyComponent({ el: '#app' })
 
-  // or, render off-document and append afterwards:
+  // 또는 문서를 렌더링하고 나중에 추가할 수 있습니다.
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(component.$el)
   ```
 
-- **See also:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Server-Side Rendering](../guide/ssr.html)
+- **참고:**
+  - [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
+  - [서버측 렌더링](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
-- **Usage:**
+- **사용방법:**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Vue 인스턴스를 강제로 다시 렌더링합니다. 모든 하위 컴포넌트에는 영향이 미치지 않으며, 슬롯 그 자체가 삽입된 슬롯 자체 및 하위 컴포넌트에만 영향을 미칩니다.
 
 <h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
-- **Arguments:**
+- **전달인자:**
   - `{Function} [callback]`
 
-- **Usage:**
+- **사용방법:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  다음 DOM 업데이트 사이클 이후 실행될 콜백을 연기합니다. DOM 업데이트를 기다리기 위해 일부 데이터를 변경한 직후 사용하십시오. 이 것은 콜백의 `this`컨텍스트가 이 메소드를 호출하는 인스턴스에 자동으로 바인딩되는 점을 제외하고 전역 `Vue.nextTick`과 같습니다.
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > 2.1.0의 새로운 기능 : 콜백이 제공되지 않고 Promise가 실행 환경에서 지원되는 경우 Promise를 반환합니다.
 
-- **Example:**
+- **예제:**
 
   ``` js
   new Vue({
@@ -1537,12 +1545,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     methods: {
       // ...
       example: function () {
-        // modify data
+        // 데이터 수정
         this.message = 'changed'
-        // DOM is not updated yet
+        // 아직 DOM 이 갱신되지 않음
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // DOM이 이제 갱신됨
+          // `this` 가 현재 인스턴스에 바인딩 됨
           this.doSomethingElse()
         })
       }
@@ -1550,94 +1558,93 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   })
   ```
 
-- **See also:**
+- **참고:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+  - [비동기 업데이트 큐](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
-- **Usage:**
+- **사용방법:**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  vm을 완전히 제거합니다. 다른 기존 VM과의 연결을 정리하고 모든 디렉티브를 바인딩 해제하고 모든 이벤트 리스너를 제거합니다.
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  `beforeDestroy`와 `destroyed` 훅을 호출합니다.
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">일반적인 사용에서는 이 메소드를 직접 호출하면 안됩니다. `v-if`와 `v-for`를 사용하여 데이터 기반 방식으로 하위 컴포넌트의 라이프사이클을 제어하는 것이 좋습니다.</p>
 
-- **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
-## Directives
+## 디렉티브
 
 ### v-text
 
-- **Expects:** `string`
+- **예상됨:** `string`
 
-- **Details:**
+- **상세:**
 
-  Updates the element's `textContent`. If you need to update the part of `textContent`, you should use `{% raw %}{{ Mustache }}{% endraw %}` interpolations.
-
-- **Example:**
+  엘리먼트의 `textContent`를 업데이트 합니다. `textContent`의 일부를 갱신해야 하면 `{% raw %}{{ Mustache }}{% endraw %}`를 사용해야 합니다.
+- **예제:**
 
   ```html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- 같습니다 -->
   <span>{{msg}}</span>
   ```
 
-- **See also:** [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
+- **참고:** [데이터 바인딩 문법 - 보간](../guide/syntax.html#Text)
 
 ### v-html
 
-- **Expects:** `string`
+- **예상됨:** `string`
 
-- **Details:**
+- **상세:**
 
-  Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  엘리먼트의 `innerHTML`을 업데이트 합니다. **내용은 일반 HTML으로 삽입되므로 Vue 템플릿으로 컴파일 되지 않습니다.** `v-html`을 사용하여 템플릿을 작성하려는 경우 컴포넌트를 사용하여 솔루션을 다시 생각해 보십시오.
 
-  <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+  <p class="tip">  웹사이트에서 임의의 HTML을 동적으로 렌더링하면 [XSS 공격](https://en.wikipedia.org/wiki/Cross-site_scripting)으로 이어질 수 있으므로 매우 위험할 수 있습니다. 신뢰할 수 있는 컨텐츠에만 `v-html`을 사용하고 사용자가 제공한 컨텐츠에는 **절대로** 사용하지 마십시오</p>
 
-- **Example:**
+- **예제:**
 
   ```html
   <div v-html="html"></div>
   ```
-- **See also:** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
+- **참고:** [데이터 바인딩 문법 - 보간](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
-- **Expects:** `any`
+- **예상됨:** `any`
 
-- **Usage:**
+- **사용방법:**
 
-  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
+  토글은 표현식 값의 참에 기반을 둔 `display` CSS 속성입니다.
 
-  This directive triggers transitions when its condition changes.
+  이 디렉티브는 조건이 바뀌면 전환이 호출 됩니다.
 
-- **See also:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
+- **참고:** [조건부 렌더링 - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
-- **Expects:** `any`
+- **예상됨:** `any`
 
-- **Usage:**
+- **사용방법:**
 
-  Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a `<template>` element, its content will be extracted as the conditional block.
+  표현식 값의 참 거짓을 기반으로 엘리먼트를 조건부 렌더링 합니다. 엘리먼트 및 포함된 디렉티브 / 컴포넌트는 토글하는 동안 삭제되고 다시 작성됩니다. 엘리먼트가 `<template>`엘리먼트인 경우 그 내용은 조건부 블록이 됩니다.
 
-  This directive triggers transitions when its condition changes.
+  조건이 변경될 때 전환이 호출 됩니다.
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+<p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
 
-- **See also:** [Conditional Rendering - v-if](../guide/conditional.html)
+- **참고:** [조건부 렌더링 - v-if](../guide/conditional.html)
 
 ### v-else
 
-- **Does not expect expression**
+- **표현식이 필요 없습니다.**
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **제한:** 이전 형제 엘리먼트가 `v-if`또는 `v-else-if`이어야 합니다.
 
-- **Usage:**
+- **사용방법:**
 
-  Denote the "else block" for `v-if` or a `v-if`/`v-else-if` chain.
+  `v-if` 또는`v-if` /`v-else-if` 체인을위한 "else 블록"을 나타냅니다.
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1648,20 +1655,21 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
 
-- **See also:**
-  - [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+- **참고:**
+  - [조건부 렌더링 - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
-> New in 2.1.0
+> 2.1.0의 새로운 기능
 
-- **Expects:** `any`
+- **예상됨:** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **제한:** 이전 형제 엘리먼트가 `v-if` 또는 `v-else-if` 이어야 합니다.
 
-- **Usage:**
+- **사용방법:**
 
-  Denote the "else if block" for `v-if`. Can be chained.
+
+  `v-if`에 대한 "else if 블록"을 나타냅니다. 체이닝 가능합니다.
 
   ```html
   <div v-if="type === 'A'">
@@ -1678,15 +1686,15 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **참고:** [조건부 렌더링 - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string`
+- **예상됨:** `Array | Object | number | string`
 
-- **Usage:**
+- **사용방법:**
 
-  Render the element or template block multiple times based on the source data. The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  원본 데이터를 기반으로 엘리먼트 또는 템플릿 블록을 여러번 렌더링합니다. 디렉티브의 값은 반복되는 현재 엘리먼트에 대한 별칭을 제공하기 위해 특수 구문인 `alias in expression`을 사용해야 합니다.
 
   ``` html
   <div v-for="item in items">
@@ -1694,7 +1702,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  또는, 인덱스(아니면 객체의 경우 키)의 별칭을 지정할 수 있습니다.
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -1702,7 +1710,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
+  `v-for`의 기본 동작은 엘리먼트를 이동하지 않고 그 자리에서 패치를 시도합니다. 강제로 엘리먼트의 순서를 바꾸려면 특수 속성 `key`를 설정해야 합니다.
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -1710,218 +1718,218 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+<p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
 
-  The detailed usage for `v-for` is explained in the guide section linked below.
+`v-for`에 대한 자세한 사용법은 아래 링크된 가이드에서 설명합니다.
 
-- **See also:**
-  - [List Rendering](../guide/list.html)
+
+- **참고:**
+  - [리스트 렌더링](../guide/list.html)
   - [key](../guide/list.html#key)
 
 ### v-on
 
-- **Shorthand:** `@`
+- **약어:** `@`
 
-- **Expects:** `Function | Inline Statement | Object`
+- **예상됨:** `Function | Inline Statement | Object`
 
-- **Argument:** `event`
+- **전달인자:** `event`
 
-- **Modifiers:**
-  - `.stop` - call `event.stopPropagation()`.
-  - `.prevent` - call `event.preventDefault()`.
-  - `.capture` - add event listener in capture mode.
-  - `.self` - only trigger handler if event was dispatched from this element.
-  - `.{keyCode | keyAlias}` - only trigger handler on certain keys.
-  - `.native` - listen for a native event on the root element of component.
-  - `.once` - trigger handler at most once.
-  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
-  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
+- **수식어:**
+  - `.stop` - `event.stopPropagation()` 을 호출합니다.
+  - `.prevent` - `event.preventDefault()` 을 호출합니다.
+  - `.capture` - 캡처 모드에서 이벤트 리스너를 추가합니다.
+  - `.self` - 이벤트가 이 엘리먼트에서 전달된 경우에만 처리 됩니다
+  - `.{keyCode | keyAlias}` - 특정 키에 대해서만 처리 됩니다.
+  - `.native` - 컴포넌트의 루트 엘리먼트에서 네이티브 이벤트를 수신합니다.
+  - `.once` - 단 한번만 처리됩니다.
+  - `.left` - (2.2.0) 왼쪽 버튼 마우스 이벤트 트리거 처리기.
+  - `.right` - (2.2.0) 오른쪽 버튼 마우스 이벤트 트리거 처리기.
+  - `.middle` - (2.2.0) 가운데 버튼 마우스 이벤트 트리거 처리기.
+  - `.passive` - (2.3.0+) DOM 이벤트를 `{ passive: true }`와 연결합니다.
 
-- **Usage:**
+- **사용방법:**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
+  엘리먼트에 이벤트 리스너를 연결합니다. 이벤트 유형은 전달인자로 표시됩니다. 표현식은 메소드 이름 또는 인라인 구문일 수 있으며, 수식어가 있으면 생략할 수 있습니다.
 
-  Starting in `2.4.0`, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  `2.4.0`부터 `v-on`도 인수없이 이벤트/리스너 쌍의 객체에 바인딩을 지원합니다. 객체 구문을 사용할 때는 수식어를 지원하지 않습니다.
 
-  When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
+  일반 엘리먼트에 사용되면 **기본 DOM 이벤트**만 받습니다. 사용자 정의 컴포넌트에서 사용될 때 해당 하위 컴포넌트에서 생성된 **사용자 정의 이벤트**를 받습니다.
 
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  네이티브 DOM 이벤트를 수신하면 메소드는 네이티브 이벤트를 유일한 전달인자로 받습니다. 인라인 구문을 사용하는 경우 명령문은 특별한 `$event` 속성에 접근할 수 있습니다: `v-on: click = "handle('ok', $event)"`
 
-- **Example:**
+- **예제:**
 
   ```html
-  <!-- method handler -->
+  <!-- 메소드 핸들러 -->
   <button v-on:click="doThis"></button>
 
-  <!-- object syntax (2.4.0+) -->
+  <!-- 객체 구문 (2.4.0+) -->
   <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
-  <!-- inline statement -->
+  <!-- 인라인 구문 -->
   <button v-on:click="doThat('hello', $event)"></button>
 
-  <!-- shorthand -->
+  <!-- 약어 -->
   <button @click="doThis"></button>
 
-  <!-- stop propagation -->
+  <!-- 전파 금지 -->
   <button @click.stop="doThis"></button>
 
-  <!-- prevent default -->
+  <!-- 기본 동작 방지 -->
   <button @click.prevent="doThis"></button>
 
-  <!-- prevent default without expression -->
+  <!-- 표현식이 없는 기본 동작 방지 -->
   <form @submit.prevent></form>
 
-  <!-- chain modifiers -->
+  <!-- 수식어 체이닝 -->
   <button @click.stop.prevent="doThis"></button>
 
-  <!-- key modifier using keyAlias -->
+  <!-- 키 별칭을 이용한 키 입력 수식어 -->
   <input @keyup.enter="onEnter">
 
-  <!-- key modifier using keyCode -->
+  <!-- 키 코드를 이용한 키 입력 수식어 -->
   <input @keyup.13="onEnter">
 
   <!-- the click event will be triggered at most once -->
   <button v-on:click.once="doThis"></button>
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  하위 컴포넌트에서 사용자 지정 이벤트를 수신합니다. (자식에서 "my-event"가 생성될 때 처리기가 호출 됩니다.)
 
   ```html
   <my-component @my-event="handleThis"></my-component>
 
-  <!-- inline statement -->
+  <!-- 인라인 구문 -->
   <my-component @my-event="handleThis(123, $event)"></my-component>
 
-  <!-- native event on component -->
+  <!-- 컴포넌트의 기본 이벤트 -->
   <my-component @click.native="onClick"></my-component>
   ```
 
-- **See also:**
-  - [Methods and Event Handling](../guide/events.html)
-  - [Components - Custom Events](../guide/components.html#Custom-Events)
+- **참고:**
+  - [메소드와 이벤트 핸들링](../guide/events.html)
+  - [컴포넌트 - 사용자 정의 이벤트](../guide/components.html#Custom-Events)
 
 ### v-bind
 
-- **Shorthand:** `:`
+- **약어:** `:`
 
-- **Expects:** `any (with argument) | Object (without argument)`
+- **예상됨:** `any (with argument) | Object (without argument)`
 
-- **Argument:** `attrOrProp (optional)`
+- **전달인자:** `attrOrProp (optional)`
 
-- **Modifiers:**
-  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
+- **수식어:**
+  - `.prop` - 속성 대신 DOM 속성으로 바인딩 ([무슨 차이가 있습니까?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). 만약 태그가 컴포넌트라면 `.props`는 컴포넌트의 `$el`에 속성을 추가합니다.
+  - `.camel` - (2.1.0+) kebab-case 속성 이름을 camelCase로 변환합니다. 
+  - `.sync` - (2.3.0+) 바인딩 된 값을 업데이트하기 위한 `v-on`를 확장하는 신택스 슈가입니다
 
-  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
-  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
+- **사용방법:**
 
-- **Usage:**
+  동적으로 하나 이상의 컴포넌트 속성 또는 표현식을 바인딩 합니다.
 
-  Dynamically bind one or more attributes, or a component prop to an expression.
+  `class`또는 `style` 속성을 묶는 데 사용될 때, Array나 Objects와 같은 추가 값 유형을 지원합니다. 자세한 내용은 아래 링크된 섹션을 참조하십시오.
 
-  When used to bind the `class` or `style` attribute, it supports additional value types such as Array or Objects. See linked guide section below for more details.
+  속성 바인딩에 사용할 때 속성은 하위 컴포넌트에서 올바르게 선언되어야 합니다.
 
-  When used for prop binding, the prop must be properly declared in the child component.
+  전달인자 없이 사용하면 속성 이름 - 값 쌍을 포함하는 객체를 바인딩 하는데 사용할 수 있습니다. 이 모드에서는 `class`와 `style`은 Array나 Objects를 지원하지 않습니다.
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs. Note in this mode `class` and `style` does not support Array or Objects.
-
-- **Example:**
+- **예제:**
 
   ```html
-  <!-- bind an attribute -->
+  <!-- 속성을 바인딩 합니다. -->
   <img v-bind:src="imageSrc">
 
-  <!-- shorthand -->
+  <!-- 약어 -->
   <img :src="imageSrc">
 
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
 
-  <!-- class binding -->
+  <!-- 클래스 바인딩 -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]">
 
-  <!-- style binding -->
+  <!-- 스타일 바인딩 -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- binding an object of attributes -->
+  <!-- 속성 객체 바인딩 -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!-- DOM attribute binding with prop modifier -->
+  <!-- prop 수식어를 사용하는 DOM 속성 바인딩 -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- prop binding. "prop" must be declared in my-component. -->
+  <!-- 속성 바인딩. 컴포넌트에서 "prop"를 선언 해야 합니다.  -->
   <my-component :prop="someThing"></my-component>
 
-  <!-- pass down parent props in common with a child component -->
+  <!-- 자식 컴포넌트와 공통으로 사용하는 부모 props를 전달합니다 -->
   <child-component v-bind="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  `.camel` 수식어는 DOM 템플릿을 사용할 때 `v-bind` 속성 이름을 camelCase화 할수 있습니다. (예: SVG `viewBox`속성)
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  문자열 템플릿을 사용하거나 `vue-loader`/`vueify` 로 컴파일 하는 경우 `.camel`은 필요 없습니다.
 
-- **See also:**
-  - [Class and Style Bindings](../guide/class-and-style.html)
-  - [Components - Component Props](../guide/components.html#Props)
-  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
+- **참고:**
+  - [클래스 및 스타일 바인딩](../guide/class-and-style.html)
+  - [컴포넌트 - 컴포넌트 속성](../guide/components.html#Props)
+  - [컴포넌트 - `.sync` 수식어](../guide/components.html#sync-Modifier)
 
 ### v-model
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **예상됨:** 컴포넌트 폼 인풋 엘리먼트 또는 출력 값에 따라 다릅니다.
 
-- **Limited to:**
+- **제한사항:**
   - `<input>`
   - `<select>`
   - `<textarea>`
   - components
 
-- **Modifiers:**
-  - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast input string to numbers
-  - [`.trim`](../guide/forms.html#trim) - trim input
+- **수식어:**
+  - [`.lazy`](../guide/forms.html#lazy) - `input`대신 `change` 이벤트를 듣습니다.
+  - [`.number`](../guide/forms.html#number) - 문자열을 숫자로 변경합니다.
+  - [`.trim`](../guide/forms.html#trim) - 입력에 대한 trim 을 합니다.
 
-- **Usage:**
+- **사용방법:**
 
-  Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
+  폼 인풋 엘리먼트 또는 컴포넌트에 양방향 바인딩을 만듭니다. 자세한 사용법은 아래 링크된 가이드 섹션을 참조하십시오.
 
-- **See also:**
-  - [Form Input Bindings](../guide/forms.html)
-  - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
+- **참고:**
+  - [폼 인풋 바인딩](../guide/forms.html)
+  - [컴포넌트 - 사용자 정의 이벤트를 이용하는 폼 인풋 컴포넌트](../guide/components.html#Form-Input-Components-using-Custom-Events)
 
 ### v-pre
 
-- **Does not expect expression**
+- **표현식이 필요하지 않습니다**
 
-- **Usage:**
+- **사용방법:**
 
-  Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
+  이 엘리먼트와 모든 자식 엘리먼트에 대한 컴파일을 건너 뜁니다. 원시 mustache 태그를 표시하는데 사용할 수 있습니다. 디렉티브가 없는 많은 수의 노드를 뛰어 넘으면 컴파일 속도가 빨라집니다.
 
-- **Example:**
+- **예제:**
 
   ```html
-  <span v-pre>{{ this will not be compiled }}</span>
+  <span v-pre>{{ 이 부분은 컴파일 되지 않습니다 }}</span>
    ```
 
 ### v-cloak
 
-- **Does not expect expression**
+- **표현식이 필요하지 않습니다**
 
-- **Usage:**
+- **사용방법:**
 
-  This directive will remain on the element until the associated Vue instance finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the Vue instance is ready.
+  이 디렉티브는 Vue 인스턴스가 컴파일을 완료할 때까지 엘리먼트에 남아있습니다. `[v-cloak] { display: none }`와 같은 CSS규칙과 함께 이 디렉티브는 Vue인스턴스가 준비될 때까지 컴파일되지 않은 mustache 바인딩을 숨기는데 사용할 수 있습니다.
 
-- **Example:**
+- **예제:**
 
   ```css
   [v-cloak] {
@@ -1935,47 +1943,47 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  `<div>`는 컴파일이 끝날 때까지 보이지 않습니다.
 
 ### v-once
 
-- **Does not expect expression**
+- **표현식이 필요하지 않습니다**
 
-- **Details:**
+- **상세:**
 
-  Render the element and component **once** only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  엘리먼트 및 컴포넌트를 **한번만** 렌더링 합니다. 후속 렌더링에서 엘리먼트 / 컴포넌트와 모든 하위 엘리먼트는 정적으로 처리되어 건너 뜁니다. 이는 업데이트 성능을 최적화하는데 사용합니다.
 
   ```html
-  <!-- single element -->
+  <!-- 단일 엘리먼트 -->
   <span v-once>This will never change: {{msg}}</span>
-  <!-- the element have children -->
+  <!-- 자식 엘리먼트를 포함하는 엘리먼트 -->
   <div v-once>
     <h1>comment</h1>
     <p>{{msg}}</p>
   </div>
-  <!-- component -->
+  <!-- 컴포넌트 -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- v-for directive -->
+  <!-- v-for 디렉티브 -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
   ```
 
-- **See also:**
-  - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
-  - [Components - Cheap Static Components with v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
+- **참고:**
+  - [데이터 바인딩 문법 - 보간](../guide/syntax.html#Text)
+  - [컴포넌트 - v-once를 이용한 가벼운 정적 컴포넌트](../guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## 특별한 속성들
 
 ### key
 
-- **Expects:** `string`
+- **예상됨:** `string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  `key` 특수 속성은 Vue의 가상 DOM 알고리즘이 새로운 노드 목록을 이전 목록과 비교할 때 VNode를 식별하기 위한 힌트로 주로 사용됩니다. 키가 없으면 Vue는 엘리먼트 이동을 최소화하고 같은 유형의 엘리먼트를 최대한 많이 패치 / 재사용하려고 하는 알고리즘을 사용합니다. 키를 사용하면 키의 순서 변경을 기반으로 엘리먼트가 재정렬되고 더 이상 존재하지 않는 키가 있는 엘리먼트는 항상 제거 / 삭제 됩니다.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  동일한 부모의 자식 엘리먼트는 **고유 키** 가 있어야 합니다. 키가 중복되면 렌더링 오류가 발생합니다.
 
-  The most common use case is combined with `v-for`:
+  가장 일반적인 이용 사례는 `v-for`와 결합합니다.
 
   ``` html
   <ul>
@@ -1983,12 +1991,12 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  엘리먼트 / 컴포넌트를 재사용하지 않고 강제로 대체하는데에도 사용할 수 있습니다. 이것은 다음과 같은 경우 유용할 수 있습니다.
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - 컴포넌트의 라이프사이클 훅을 올바르게 트리거합니다.
+  - 전환효과 호출
 
-  For example:
+예제:
 
   ``` html
   <transition>
@@ -1996,94 +2004,98 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+`text`가 변경되면 `<span>`는 패치가 아닌 교체되므로 트랜지션이 트리거됩니다.
 
 ### ref
 
-- **Expects:** `string`
+- **예상됨:** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` 엘리먼트 또는 자식 컴포넌트에 대한 참조를 등록하는데 사용합니다. 참조는 부모 컴포넌트의 `$refs` 객체 아래에 등록됩니다. 일반 DOM 엘리먼트에서 사용되는 경우 참조는 해당 엘리먼트입니다. 하위 컴포넌트에서 사용되는 경우 참조는 컴포넌트 인스턴스 입니다.
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
+  <!-- vm.$refs.p는 DOM 노드가 됩니다 -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
+  <!-- vm.$refs.child는 자식 컴포넌트 인스턴스가 됩니다. -->
   <child-comp ref="child"></child-comp>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  `v-for`를 사용하여 엘리먼트 / 컴포넌트에 사용되는 경우 등록된 참조는 DOM 노드 또는 컴포넌트 인스턴스가 포함된 배열입니다.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  참조 등록 타이밍에 대한 중요한 참고 사항: 참조 자체는 렌더링 함수의 결과로 생성되기 때문에 초기 렌더링에서 참조 자체를 액세스 할 수 없습니다. 아직 존재하지 않습니다! `$refs`는 또한 반응이 없으므로 데이터 바인딩을 위해 템플릿에서 사용해서는 안됩니다.
 
-- **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **참고:** [자식 컴포넌트 참조](../guide/components.html#Child-Component-Refs)
 
 ### slot
 
-- **Expects:** `string`
+- **예상됨:** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  컨텐츠가 있는 슬롯의 이름을 위해 자식 컴포넌트에 삽입된 컨텐츠에 사용됩니다.
 
-  For detailed usage, see the guide section linked below.
+  자세한 사용법은 아래 링크 된 가이드 섹션을 참조하십시오.
 
-- **See also:** [Named Slots](../guide/components.html#Named-Slots)
+- **참고:** [명명된 슬롯](../guide/components.html#Named-Slots)
 
 ### is
 
-- **Expects:** `string`
+- **예상됨:** `string`
 
-  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+  [동적 컴포넌트](../guide/components.html#Dynamic-Components) 및 [DOM 내부 템플릿의 한계](../guide/components.html#DOM-Template-Parsing-Caveats)를 해결하는데 사용합니다.
 
-  For example:
+  예제:
 
   ``` html
-  <!-- component changes when currentView changes -->
+  <!-- currentView가 변경되면 컴포넌트가 변경됩니다. -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because <my-row> would be invalid inside -->
-  <!-- a <table> element and so would be hoisted out      -->
+  <!-- <my-row>는 <table> 엘리먼트에서 사용할 수 없으므로  -->
+  <!-- 아래처럼 사용해야합니다     -->
   <table>
     <tr is="my-row"></tr>
   </table>
   ```
 
-  For detailed usage, follow the links in the description above.
+  자세한 사용 방법은 위에 적힌 설명의 링크에 있습니다.
 
-- **See also:**
-  - [Dynamic Components](../guide/components.html#Dynamic-Components)
-  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+- **참고:**
+  - [동적 컴포넌트](../guide/components.html#Dynamic-Components)
+  - [DOM 템플릿 파싱 주의사항](../guide/components.html#DOM-Template-Parsing-Caveats)
 
-## Built-In Components
+
+
+## 내장 컴포넌트
 
 ### component
 
 - **Props:**
-  - `is` - string | ComponentDefinition | ComponentConstructor
+  - `is` - 문자열 | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
-- **Usage:**
+- **사용방법:**
 
-  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
+  동적 컴포넌트 렌더링을 위한 "메타 컴포넌트"입니다. 렌더링할 실제 컴포넌트는 `is` prop에 의해 결정됩니다.
 
   ```html
-  <!-- a dynamic component controlled by -->
-  <!-- the `componentId` property on the vm -->
+
+  <!-- vm 의 `componentId` 속성에 의해   -->
+  <!-- 제어되는 동적 컴포넌트 -->
   <component :is="componentId"></component>
 
-  <!-- can also render registered component or component passed as prop -->
+  <!-- 등록된 컴포넌트 또는 컴포넌트를 prop로 전달할 수 있습니다. -->
   <component :is="$options.components.child"></component>
   ```
 
-- **See also:** [Dynamic Components](../guide/components.html#Dynamic-Components)
+- **참고:** [동적 컴포넌트](../guide/components.html#Dynamic-Components)
 
 ### transition
 
 - **Props:**
-  - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
-  - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
-  - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
+  - `name` - string, 전환 CSS 클래스 이름을 자동으로 생성하는데 사용됩니다. 예: `name: 'fade'`는 자동으로 `.fade-enter`, `.fade-enter-active`로 확장됩니다. 기본값은 `"v"`입니다.
+  - `appear` - boolean, 초기 렌더링에서 전환 적용 여부를 정합니다. 기본값은 `false` 입니다.
+  - `css` - boolean, CSS 전환 클래스를 적용할 여부입니다. 기본 값은 `true`입니다. `false`로 설정하면 컴포넌트 이벤트를 통해 등록된 자바스크립트 훅만 호출됩니다.
+  - `type` - string, 전환 종료 타이밍을 결정하기 위해 대기할 전환 이벤트의 유형을 지정합니다. 사용 가능한 값은 `"transition"`과 `"animation"`입니다. 기본적으로 더 긴 지속시간을 갖는 유형을 자동으로 감지합니다.
   - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `mode` - string, 트랜지션을 나가거나 들어가는 타이밍 순서를 제어합니다. 사용 가능한 모드는 `"out-in"`과 `"in-out"`입니다. 기본값은 동시에 발생합니다.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2094,7 +2106,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `leave-active-class` - string
   - `appear-active-class` - string
 
-- **Events:**
+- **이벤트:**
   - `before-enter`
   - `before-leave`
   - `before-appear`
@@ -2108,22 +2120,22 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   - `leave-cancelled` (`v-show` only)
   - `appear-cancelled`
 
-- **Usage:**
+- **사용방법:**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
+  `<transition>`은 **단일** 엘리먼트 / 컴포넌트에 대한 전환 효과로 사용됩니다. `<transition>`은 추가 DOM 엘리먼트를 렌더링 하지 않으며 컴포넌트 계층에도 나타나지 않습니다. 내부의 래핑된 컨텐츠에 단순히 전환 효과를 적용합니다.
 
   ```html
-  <!-- simple element -->
+  <!-- 단일 엘리먼트 -->
   <transition>
     <div v-if="ok">toggled content</div>
   </transition>
 
-  <!-- dynamic component -->
+  <!-- 동적 컴포넌트 -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
 
-  <!-- event hooking -->
+  <!-- 이벤트 훅 -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
       <div v-show="ok">toggled content</div>
@@ -2136,32 +2148,31 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
     ...
     methods: {
       transitionComplete: function (el) {
-        // for passed 'el' that DOM element as the argument, something ...
+        // 전달된 'el'에 대해 DOM 엘리먼트를 전달인자로 사용하는 경우..
       }
     }
     ...
   }).$mount('#transition-demo')
   ```
 
-- **See also:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **참고:** [Transitions: 진입, 진출, 그리고 리스트](../guide/transitions.html)
 
 ### transition-group
 
 - **Props:**
-  - `tag` - string, defaults to `span`.
-  - `move-class` - overwrite CSS class applied during moving transition.
-  - exposes the same props as `<transition>` except `mode`.
+  - `tag` - string, 기본값은 `span` 입니다.
+  - `move-class` - 이동 전환 중에 적용된 CSS클래스를 덮어 씁니다.
+  - `mode`를 제외한 `<transition>`과 동일한 prop를 노출합니다.
 
-- **Events:**
-  - exposes the same events as `<transition>`.
+- **이벤트:**
+  - `<transition>`과 같은 이벤트를 노출합니다.
 
-- **Usage:**
+- **사용방법:**
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
+  `<transition-group>`은 **여러** 엘리먼트 / 컴포넌트에 대한 전환 효과로 사용합니다. `<transition-group>`은 실제 DOM 엘리먼트를 렌더링 합니다. 기본값으로 `<span>`을 렌더링하고 `tag` 속성을 통해 렌더링 해야하는 엘리먼트를 설정할 수 있습니다.
+  애니메이션이 제대로 작동되게 하려면 `<transition-group>`에 있는 모든 자식이 **유일 키** 가 되어야 합니다.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
-
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>`은 CSS transform을 통해 장면 전환을 지원합니다. 스크린에서 자식의 위치가 변경된 후 움직이는 CSS클래스 (`name` 속성에서 자동 생성되거나 `move-class` 속성으로 설정됨)가 적용됩니다. 움직이는 클래스가 적용될 때 CSS `transform` 속성이 "전환가능"하면, 엘리먼트는 [FLIP technique](https://aerotwist.com/blog/flip-your-animations/)을 사용하여 목적지로 부드럽게 움직입니다.
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2171,37 +2182,38 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </transition-group>
   ```
 
-- **See also:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **참고:** [Transitions: 진입, 진출, 그리고 리스트](../guide/transitions.html)
 
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp or Array. Only components matched by this will be cached.
-  - `exclude` - string or RegExp or Array. Any component matched by this will not be cached.
+  - `include` - string 또는 RegExp 또는 Array . 일치하는 컴퍼넌트만 캐시됩니다.
+  - `exclude` - string 또는 RegExp 또는 Array. 일치하는 컴퍼넌트는 캐시되지 않습니다.
 
-- **Usage:**
+- **사용방법:**
 
-  When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
+  동적 컴포넌트를 감싸는 경우 `<keep-alive>`는 비활성 컴포넌트 인스턴스를 파괴하지 않고 캐시합니다. `<transition>`과 비슷하게 `<keep-alive>`는 추상 엘리먼트입니다. DOM 엘리먼트 자체는 렌더링 하지 않고 컴포넌트 부모 체인에는 나타나지 않습니다.
 
-  When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+  컴포넌트가 `<keep-alive>`내에서 토글 될 때, `activated`와 `deactivated` 라이프사이클 훅이 그에 따라 호출됩니다.
 
-  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
-  Primarily used with preserve component state or avoid re-rendering.
+  > 2.2.0 이상에서는 `<keep-alive>` 트리 안에 있는 모든 중첩 된 컴포넌트에서`activated`와 `deactivated`가 실행됩니다.
+
+  주로 컴포넌트 상태를 보존하거나 재 렌더링을 피하는데 사용합니다.
 
   ```html
-  <!-- basic -->
+  <!-- 기본 사용 -->
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- multiple conditional children -->
+  <!-- 여러개의 조건부 자식 컴포넌트 -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with <transition> -->
+  <!-- <transition>과 함께 사용합니다. -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2209,22 +2221,21 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </transition>
   ```
 
-  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
+`<keep-alive>`는 한개의 자식 컴포넌트가 토글되고 있는 경우를 위해 설계된 것에 주의해야합니다. 내부에 `v-for`가 있으면 작동하지 않습니다. 우와 같이 조건부 자식 컴포넌트가 여러개인 경우 `<keep-alive>`는 한번에 하나의 자식만 렌더링도록 요청됩니다.
 
+- **`include` 와 `exclude`**
 
-- **`include` and `exclude`**
+  > 2.1.0의 새로운 기능
 
-  > New in 2.1.0
-
-  The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
+  `include`와`exclude` prop는 컴포넌트를 조건부 캐시 할 수 있습니다. 두 prop는 쉼표로 분리 된 문자열이거나 RegExp 또는 배열입니다.
 
   ``` html
-  <!-- comma-delimited string -->
+  <!-- 콤마로 구분된 문자열 -->
   <keep-alive include="a,b">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use v-bind) -->
+  <!-- regex (v-bind 사용) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
@@ -2235,29 +2246,29 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   </keep-alive>
   ```
 
-  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
+  `name` 옵션을 사용할 수없는 경우, 컴포넌트 자신의`name` 옵션에서 일치하는 항목을 먼저 확인한 다음 로컬 등록 이름 (부모의`components` 옵션에서 키)을 확인합니다. 익명의 컴포넌트는 일치시킬 수 없습니다.
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>`는 캐시 될 인스턴스가 없으므로 함수형 컴포넌트에서 작동하지 않습니다.</p>
 
-- **See also:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **참고:** [동적 컴포넌트 - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
 - **Props:**
-  - `name` - string, Used for named slot.
+  - `name` - string, 명명된 슬롯으로 사용합니다
 
-- **Usage:**
+- **사용방법:**
 
-  `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
+  `<slot>` 은 컴포넌트 템플릿의 컨텐츠 배포 역할을 합니다. `<slot>`은 대체됩니다
 
-  For detailed usage, see the guide section linked below.
+  자세한 사용법은 아래 링크된 가이드 섹션을 참조하십시오.
 
-- **See also:** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **참고:** [Slot을 이용한 컨텐트 배포](../guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## VNode 인터페이스
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)를 참조하십시오.
 
-## Server-Side Rendering
+## 서버측 렌더링
 
-- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- [vue-server-renderer 패키지 문서](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)를 참조하십시오.

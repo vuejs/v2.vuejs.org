@@ -1,16 +1,16 @@
 ---
-title: Migration from Vue Router 0.7.x
+title: Vue Router 0.7.x으로 부터 마이그레이션
 type: guide
 order: 27
 ---
 
-> Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](http://router.vuejs.org/en/).
+> Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 [Vue Router 문서](http://router.vuejs.org/en/)를 참조하십시오.
 
-## Router Initialization
+## 라우터 초기화
 
-### `router.start` <sup>replaced</sup>
+### `router.start` <sup>변경</sup>
 
-There is no longer a special API to initialize an app with Vue Router. That means instead of:
+Vue Router로 앱을 초기화하는 특별한 API는 더 이상 존재하지 않습니다. 그 대신에 다음을 의미합니다:
 
 ``` js
 router.start({
@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-You'll just pass a router property to a Vue instance:
+Vue 인스턴스에 라우터 속성 만 전달하면됩니다.
 
 ``` js
 new Vue({
@@ -28,7 +28,7 @@ new Vue({
 })
 ```
 
-Or, if you're using the runtime-only build of Vue:
+또는 Vue의 런타임 전용 빌드를 사용하는 경우
 
 ``` js
 new Vue({
@@ -40,16 +40,16 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 호출되는 <code>router.start</code>의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-## Route Definitions
+## 라우터 정의
 
-### `router.map` <sup>replaced</sup>
+### `router.map` <sup>변경</sup>
 
-Routes are now defined as an array on a [`routes` option](http://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
+이제 라우트는 라우터 인스턴스화시 [`routes` 옵션](http://router.vuejs.org/en/essentials/getting-started.html#javascript)에 배열로 정의됩니다. 따라서 예를 들어 이러한 라우트는 다음과 같습니다.
 
 ``` js
 router.map({
@@ -62,7 +62,7 @@ router.map({
 })
 ```
 
-Will instead be defined with:
+대신 다음과 같이 정의됩니다.
 
 ``` js
 var router = new VueRouter({
@@ -73,26 +73,26 @@ var router = new VueRouter({
 })
 ```
 
-The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.
+객체를 반복 할 때 브라우저간에 같은 키 순서를 사용하는 것이 보장되지 않기 때문에 배열 구문을 사용하면보다 예측 가능한 경로 일치가 가능합니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.map</code> being called.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.map</code>가 호출되는 의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `router.on` <sup>removed</sup>
+### `router.on` <sup>제거됨</sup>
 
-If you need to programmatically generate routes when starting up your app, you can do so by dynamically pushing definitions to a routes array. For example:
+앱을 시작할 때 프로그래밍으로 경로를 생성해야하는 경우 라우터 정의를 동적으로 경로 배열에 푸시함으로써 수행 할 수 있습니다. 예 :
 
 ``` js
-// Normal base routes
+// 기본 라우트
 var routes = [
   // ...
 ]
 
-// Dynamically generated routes
+// 동적으로 생성한 라우트
 marketingPages.forEach(function (page) {
   routes.push({
     path: '/marketing/' + page.slug
@@ -110,7 +110,7 @@ var router = new Router({
 })
 ```
 
-If you need to add new routes after the router has been instantiated, you can replace the router's matcher with a new one that includes the route you'd like to add:
+라우터가 인스턴스화 된 후에 새 경로를 추가해야하는 경우 추가하려는 경로가 포함 된 새 라우터로 라우터의 일치자(matcher)를 바꿀 수 있습니다.
 
 ``` js
 router.match = createMatcher(
@@ -123,25 +123,25 @@ router.match = createMatcher(
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.on</code> being called.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.on</code>가 호출되는지 확인하십시오.</p>
 </div>
 {% endraw %}
 
-### `subRoutes` <sup>renamed</sup>
+### `subRoutes` <sup>이름 변경</sup>
 
-[Renamed to `children`](http://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
+Vue 및 다른 라우팅 라이브러리와의 일관성을 위해 [자식으로 이름이 변경](http://router.vuejs.org/en/essentials/nested-routes.html) 되었습니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subRoutes</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>subRoutes</code> 옵션의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `router.redirect` <sup>replaced</sup>
+### `router.redirect` <sup>변경</sup>
 
-This is now an [option on route definitions](http://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
+[경로 정의에 대한 옵션](http://router.vuejs.org/en/essentials/redirect-and-alias.html)입니다. 예를 들어 다음과 같이 업데이트 할 것입니다.
 
 ``` js
 router.redirect({
@@ -149,7 +149,7 @@ router.redirect({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+`routes` 설정에서 아래와 같은 정의로 바꿉니다:
 
 ``` js
 {
@@ -160,14 +160,14 @@ to a definition like below in your `routes` configuration:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.redirect</code> being called.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.redirect</code>가 호출되는지 확인하십시오.</p>
 </div>
 {% endraw %}
 
-### `router.alias` <sup>replaced</sup>
+### `router.alias` <sup>변경</sup>
 
-This is now an [option on the definition for the route](http://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
+별칭을 지정하려는 [경로 정의 옵션](http://router.vuejs.org/en/essentials/redirect-and-alias.html)입니다. 예를 들어 다음과 같이 업데이트 할 것입니다.
 
 ``` js
 router.alias({
@@ -175,7 +175,7 @@ router.alias({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+`routes` 설정에서 아래와 같은 정의로 바꿉니다:
 
 ``` js
 {
@@ -185,7 +185,7 @@ to a definition like below in your `routes` configuration:
 }
 ```
 
-If you need multiple aliases, you can also use an array syntax:
+여러 개의 별칭이 필요한 경우 배열 구문을 사용할 수도 있습니다.
 
 ``` js
 alias: ['/manage', '/administer', '/administrate']
@@ -193,14 +193,14 @@ alias: ['/manage', '/administer', '/administrate']
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.alias</code> being called.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.alias</code>가 호출되는지 확인하십시오.</p>
 </div>
 {% endraw %}
 
-### Arbitrary Route Properties <sup>replaced</sup>
+### 임의 라우트 속성 <sup>변경</sup>
 
-Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:
+미래의 기능과의 충돌을 피하기 위해 임의의 라우트 속성이 새 메타 속성 아래에서 범위가 지정되어야합니다. 예를 들어, 다음과 같이 정의했다면 :
 
 ``` js
 '/admin': {
@@ -209,7 +209,7 @@ Arbitrary route properties must now be scoped under the new meta property, to av
 }
 ```
 
-Then you would now update it to:
+이제 다음과 같이 업데이트 할 것입니다.
 
 ``` js
 {
@@ -221,7 +221,7 @@ Then you would now update it to:
 }
 ```
 
-Then when later accessing this property on a route, you will still go through meta. For example:
+그런 다음 경로에서 이 속성에 나중에 액세스하면 mata 예제를 계속 진행합니다.
 
 ``` js
 if (route.meta.requiresAuth) {
@@ -231,20 +231,22 @@ if (route.meta.requiresAuth) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of arbitrary route properties not scoped under meta.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 메타에서 범위가 지정되지 않은 임의의 경로 속성의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### [] Syntax for Arrays in Queries <sup>removed</sup>
+### 쿼리의 배열 구문 <sup>제거됨</sup>
 
-When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
+쿼리 전달인자로 배열을 전달할 때 QueryString 문법은 더 이상 `/foo?users[]=Tom&users[]=Jerry`가 아닌 새로운 문법 `/foo?users=Tom&users=Jerry` 입니다.
+내부적으로,`$route.query.users`는 여전히 배열이 되지만, 이 경로에 직접 접근 할 때 `/foo?users=Tom` 쿼리에 단 하나의 전달인자가 있다면, 라우터는 `users`가 배열임을 기대합니다.
+이 때문에 계산된 속성을 추가하여 `$route.query.users`의 모든 참조를 이 속성으로 대체하는 것을 고려해야합니다.
 
 ```javascript
 export default {
   // ...
   computed: {
-    // users will always be an array
+    // users는 항상 배열입니다
     users () {
       const users = this.$route.query.users
       return Array.isArray(users) ? users : [users]
@@ -253,49 +255,49 @@ export default {
 }
 ```
 
-## Route Matching
+## 라우트 매칭
 
-Route matching now uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) under the hood, making it much more flexible than previously.
+라우트 매칭은 이제 [path-to-regexp](https://github.com/pillarjs/path-to-regexp)를 사용해 이전보다 훨씬 유연합니다.
 
-### One or More Named Parameters <sup>changed</sup>
+### 하나 이상의 이름을 가지는 인자 <sup>변경</sup>
 
-The syntax has changed slightly, so `/category/*tags` for example, should be updated to `/category/:tags+`.
+구문이 약간 변경되었으므로, 예를 들어`/category/*tags` 는 `/category/:tags+` 로 업데이트 되어야 합니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete route syntax.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 더 이상 사용되지 않는 경로 구문의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-## Links
+## 링크
 
-### `v-link` <sup>replaced</sup>
+### `v-link` <sup>변경</sup>
 
-The `v-link` directive has been replaced with a new [`<router-link>` component](http://router.vuejs.org/en/api/router-link.html), as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:
+`v-link` 디렉티브는 새로운[`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)로 대체되었습니다.이 일은 이제 Vue 2의 컴포넌트의 책임입니다.
 
 ``` html
 <a v-link="'/about'">About</a>
 ```
 
-You'll need to update it like this:
+다음과 같이 업데이트해야합니다.
 
 ``` html
 <router-link to="/about">About</router-link>
 ```
 
-Note that `target="_blank"` is not supported on `<router-link>`, so if you need to open a link in a new tab, you have to use `<a>` instead.
+`target="_blank"` 는 `<router-link>` 에서 지원되지 않으므로 새 탭에서 링크를 열어야 할 경우 대신`<a>`를 사용해야합니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-link</code> directive.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link</code> 디렉티브의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `v-link-active` <sup>replaced</sup>
+### `v-link-active` <sup>변경</sup>
 
-The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](http://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
+`v-link-active` 디렉티브는 [`<router-link>` 컴포넌트](http://router.vuejs.org/en/api/router-link.html)의`tag` 속성으로 대체되었습니다. 예를 들어 다음과 같이 업데이트 할 것입니다.
 
 ``` html
 <li v-link-active>
@@ -303,7 +305,7 @@ The `v-link-active` directive has also been replaced by the `tag` attribute on [
 </li>
 ```
 
-to this:
+이는 아래와 같이 변경 되었습니다.
 
 ``` html
 <router-link tag="li" to="/about">
@@ -311,44 +313,44 @@ to this:
 </router-link>
 ```
 
-The `<a>` will be the actual link (and will get the correct href), but the active class will be applied to the outer `<li>`.
+`<a>`는 실제 링크가 될 것이고 올바른 href를 얻을 것이다. 그러나 활성 클래스는 바깥 쪽`<li>`에 적용될 것이다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-link-active</code> directive.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>v-link-active</code> 디렉티브의 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-## Programmatic Navigation
+## 프로그래밍 방식의 네비게이션
 
-### `router.go` <sup>changed</sup>
+### `router.go` <sup>변경</sup>
 
-For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
+[HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API)와의 일관성을 위해 `router.go`는 [뒤로 / 앞으로 탐색](https://router.vuejs.org/en/essentials/navigation.html#routergon)에만 사용되며 [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation)는 특정 페이지로 이동하는 데 사용됩니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.go</code> being used where <code>router.push</code> should be used instead.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.go</code>를 사용하고 있고 <code>router.push</code>가 대신 사용되야 하는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-## Router Options: Modes
+## 라우터 옵션 : 모드
 
-### `hashbang: false` <sup>removed</sup>
+### `hashbang: false` <sup>제거됨</sup>
 
-Hashbangs are no longer required for Google to crawl a URL, so they are no longer the default (or even an option) for the hash strategy.
+Hashbang은 더 이상 Google이 URL을 크롤링하는 데 필요하지 않으므로 더 이상 해시 전략의 기본 (또는 옵션)이 아닙니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>hashbang: false</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>hashbang: false</code> 옵션을 사용하는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `history: true` <sup>replaced</sup>
+### `history: true` <sup>변경</sup>
 
-All routing mode options have been condensed into a single [`mode` option](http://router.vuejs.org/en/api/options.html#mode). Update:
+모든 라우팅 모드 옵션은 단일 [모드](http://router.vuejs.org/en/api/options.html#mode) 옵션으로 압축되었습니다.
 
 ``` js
 var router = new VueRouter({
@@ -356,7 +358,7 @@ var router = new VueRouter({
 })
 ```
 
-to:
+위를 아래 코드로 변경합니다.
 
 ``` js
 var router = new VueRouter({
@@ -366,14 +368,14 @@ var router = new VueRouter({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>history: true</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>history: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `abstract: true` <sup>replaced</sup>
+### `abstract: true` <sup>변경</sup>
 
-All routing mode options have been condensed into a single [`mode` option](http://router.vuejs.org/en/api/options.html#mode). Update:
+모든 라우팅 모드 옵션은 단일 [`mode` 옵션](http://router.vuejs.org/en/api/options.html#mode)으로 압축되었습니다.
 
 ``` js
 var router = new VueRouter({
@@ -381,7 +383,7 @@ var router = new VueRouter({
 })
 ```
 
-to:
+위를 아래 코드로 변경합니다.
 
 ``` js
 var router = new VueRouter({
@@ -391,22 +393,22 @@ var router = new VueRouter({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>abstract: true</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>abstract: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-## Route Options: Misc
+## Route 옵션: 기타
 
-### `saveScrollPosition` <sup>replaced</sup>
+### `saveScrollPosition` <sup>변경</sup>
 
-This has been replaced with a [`scrollBehavior` option](http://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:
+이것은 함수를 받아들이는 [`scrollBehavior` 옵션](http://router.vuejs.org/en/advanced/scroll-behavior.html)으로 대체되었으므로 라우트마다 스크롤 동작을 완벽하게 사용자 정의 할 수 있습니다 . 이것은 많은 새로운 가능성을 열어 놓았지만 단순히 다음과 같은 예전의 행동을 그대로 재현할 수 있습니다.
 
 ``` js
 saveScrollPosition: true
 ```
 
-You can replace it with:
+위를 아래 코드로 변경합니다.
 
 ``` js
 scrollBehavior: function (to, from, savedPosition) {
@@ -416,104 +418,104 @@ scrollBehavior: function (to, from, savedPosition) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>saveScrollPosition: true</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>saveScrollPosition: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `root` <sup>renamed</sup>
+### `root` <sup>이름 변경</sup>
 
-Renamed to `base` for consistency with [the HTML `<base>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).
+[HTML`<base>` 엘리먼트](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)와의 일관성을 위해 `base`로 이름이 변경되었습니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>root</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>root</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `transitionOnLoad` <sup>removed</sup>
+### `transitionOnLoad` <sup>제거됨</sup>
 
-This option is no longer necessary now that Vue's transition system has explicit [`appear` transition control](transitions.html#Transitions-on-Initial-Render).
+Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.html#Transitions-on-Initial-Render)가 추가되었으므로이 옵션은 더 이상 필요하지 않습니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transitionOnLoad: true</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>transitionOnLoad: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `suppressTransitionError` <sup>removed</sup>
+### `suppressTransitionError` <sup>제거됨</sup>
 
-Removed due to hooks simplification. If you really must suppress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
+훅 단순화로 인해 제거되었습니다. 정말로 전환 오류를 억제해야한다면 [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)를 사용할 수 있습니다. 대신.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>suppressTransitionError: true</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>suppressTransitionError: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-## Route Hooks
+## 라우트 훅
 
-### `activate` <sup>replaced</sup>
+### `activate` <sup>변경</sup>
 
-Use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+대신 컴포넌트에서 [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards)를 사용하십시오.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>beforeRouteEnter</code> hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>beforeRouteEnter</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `canActivate` <sup>replaced</sup>
+### `canActivate` <sup>변경</sup>
 
-Use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) in the route instead.
+라우터에서 [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard)을 대신 사용하십시오.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canActivate</code> hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>canActivate</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `deactivate` <sup>removed</sup>
+### `deactivate` <sup>제거됨</sup>
 
-Use the component's [`beforeDestroy`](../api/#beforeDestroy) or [`destroyed`](../api/#destroyed) hooks instead.
+컴포넌트의 [`beforeDestroy`](../api/#beforeDestroy) 또는 [`destroyed`](../api/#destroyed) 훅을 대신 사용하십시오.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>deactivate</code> hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>deactivate</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `canDeactivate` <sup>replaced</sup>
+### `canDeactivate` <sup>대체됨</sup>
 
-Use [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+컴포넌트의 [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards)을 대신 사용하십시오.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canDeactivate</code> hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>canDeactivate</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `canReuse: false` <sup>removed</sup>
+### `canReuse: false` <sup>제거됨</sup>
 
-There's no longer a use case for this in the new Vue Router.
+새로운 Vue Router에는 더 이상 유스 케이스가 없습니다.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canReuse: false</code> option.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>canReuse: false</code> 옵션이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `data` <sup>replaced</sup>
+### `data` <sup>변경</sup>
 
-The `$route` property is now reactive, so you can just use a watcher to react to route changes, like this:
+이제 `$route` 속성은 반응적입니다. 따라서 감시자를 사용하여 다음과 같이 경로 변경에 반응할 수 있습니다 :
 
 ``` js
 watch: {
@@ -528,14 +530,14 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>data</code> hook.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>data</code> 훅이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}
 
-### `$loadingRouteData` <sup>removed</sup>
+### `$loadingRouteData` <sup>제거됨</sup>
 
-Define your own property (e.g. `isLoading`), then update the loading state in a watcher on the route. For example, if fetching data with [axios](https://github.com/mzabriskie/axios):
+자신의 속성 (예 : `isLoading`)을 정의한 다음 경로의 감시자에서 로드 상태를 업데이트합니다. 예를 들어, [axios](https://github.com/mzabriskie/axios)로 데이터를 가져 오는 경우 :
 
 ``` js
 data: function () {
@@ -570,7 +572,7 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>$loadingRouteData</code> meta property.</p>
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>$loadingRouteData</code> 메타 속성이 사용되는 예를 찾으십시오.</p>
 </div>
 {% endraw %}

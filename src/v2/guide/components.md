@@ -1,37 +1,37 @@
 ---
-title: Components
+title: 컴포넌트
 type: guide
 order: 11
 ---
 
-## What are Components?
+## 컴포넌트가 무엇인가요?
 
-Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue's compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special `is` attribute.
+컴포넌트는 Vue의 가장 강력한 기능 중 하나입니다. 기본 HTML 엘리먼트를 확장하여 재사용 가능한 코드를 캡슐화하는 데 도움이 됩니다. 상위 수준에서 컴포넌트는 Vue의 컴파일러에 의해 동작이 추가된 사용자 지정 엘리먼트입니다. 경우에 따라 특별한 `is` 속성으로 확장 된 원시 HTML 엘리먼트로 나타날 수도 있습니다.
 
-## Using Components
+## 컴포넌트 사용하기
 
-### Registration
+### 등록
 
-We've learned in the previous sections that we can create a new Vue instance with:
+이전 섹션에서 다음을 사용하여 새 Vue 인스턴스를 만들 수 있음을 알게되었습니다.
 
 ``` js
 new Vue({
   el: '#some-element',
-  // options
+  // 옵션
 })
 ```
 
-To register a global component, you can use `Vue.component(tagName, options)`. For example:
+전역 컴포넌트를 등록하려면, `Vue.component(tagName, options)`를 사용합니다.
 
 ``` js
 Vue.component('my-component', {
-  // options
+  // 옵션
 })
 ```
 
-<p class="tip">Note that Vue does not enforce the [W3C rules](http://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
+<p class="tip">Vue는 사용자 지정 태그 이름에 대해 [W3C 규칙](http://www.w3.org/TR/custom-elements/#concepts)을 적용하지 않습니다 (모두 소문자이어야 하고 하이픈을 포함해야합니다). 그러나 이 규칙을 따르는 것이 좋습니다.</p>
 
-Once registered, a component can be used in an instance's template as a custom element, `<my-component></my-component>`. Make sure the component is registered **before** you instantiate the root Vue instance. Here's the full example:
+일단 등록되면, 컴포넌트는 인스턴스의 템플릿에서 커스텀 엘리먼트,`<my-component></my-component>`로 사용할 수 있습니다. 루트 Vue 인스턴스를 인스턴스화하기 **전에** 컴포넌트가 등록되어 있는지 확인하십시오. 전체 예제는 다음과 같습니다.
 
 ``` html
 <div id="example">
@@ -40,22 +40,22 @@ Once registered, a component can be used in an instance's template as a custom e
 ```
 
 ``` js
-// register
+// 등록
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<div>사용자 정의 컴포넌트 입니다!</div>'
 })
 
-// create a root instance
+// 루트 인스턴스 생성
 new Vue({
   el: '#example'
 })
 ```
 
-Which will render:
+아래와 같이 렌더링 됩니다.
 
 ``` html
 <div id="example">
-  <div>A custom component!</div>
+  <div>사용자 정의 컴포넌트 입니다!</div>
 </div>
 ```
 
@@ -65,37 +65,37 @@ Which will render:
 </div>
 <script>
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<div>사용자 정의 컴포넌트 입니다!</div>'
 })
 new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-### Local Registration
+### 지역 등록
 
-You don't have to register every component globally. You can make a component available only in the scope of another instance/component by registering it with the `components` instance option:
+모든 컴포넌트를 전역으로 등록 할 필요는 없습니다. 컴포넌트를 `components` 인스턴스 옵션으로 등록함으로써 다른 인스턴스/컴포넌트의 범위에서만 사용할 수있는 컴포넌트를 만들 수 있습니다:
 
 ``` js
 var Child = {
-  template: '<div>A custom component!</div>'
+  template: '<div>사용자 정의 컴포넌트 입니다!</div>'
 }
 
 new Vue({
   // ...
   components: {
-    // <my-component> will only be available in parent's template
+    // <my-component> 는 상위 템플릿에서만 사용할 수 있습니다.
     'my-component': Child
   }
 })
 ```
 
-The same encapsulation applies for other registerable Vue features, such as directives.
+동일한 캡슐화는 디렉티브와 같은 다른 등록 가능한 Vue 기능에도 적용됩니다.
 
-### DOM Template Parsing Caveats
+### DOM 템플릿 구문 분석 경고
 
-When using the DOM as your template (e.g. using the `el` option to mount an element with existing content), you will be subject to some restrictions that are inherent to how HTML works, because Vue can only retrieve the template content **after** the browser has parsed and normalized it. Most notably, some elements such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<option>` can only appear inside certain other elements.
+DOM을 템플릿으로 사용할 때 (예 : `el` 옵션을 사용하여 기존 콘텐츠가 있는 엘리먼트를 마운트하는 경우), Vue는 템플릿 콘텐츠만 가져올 수 있기 때문에 HTML이 작동하는 방식에 고유한 몇 가지 제한 사항이 적용됩니다. 이는 브라우저가 구문 분석과 정규화한 후에 작동합니다. 가장 중요한 것은`<ul>`,`<ol>`,`<table>`과`<select>`와 같은 일부 엘리먼트는 그 안에 어떤 엘리먼트가 나타날 수 있는지에 대한 제한을 가지고 있으며,`<option>`과 같이 특정 다른 엘리먼트 안에만 나타날 수 있습니다.
 
-This will lead to issues when using custom components with elements that have such restrictions, for example:
+이러한 제한이 있는 엘리먼트가 있는 사용자 지정 컴포넌트를 사용하면 다음과 같은 문제가 발생할 수 있습니다.
 
 ``` html
 <table>
@@ -103,7 +103,7 @@ This will lead to issues when using custom components with elements that have su
 </table>
 ```
 
-The custom component `<my-row>` will be hoisted out as invalid content, thus causing errors in the eventual rendered output. A workaround is to use the `is` special attribute:
+사용자 지정 컴포넌트 `<my-row>` 는 잘못 된 컨텐츠가 되어, 결과적으로 렌더링시 에러를 발생시킵니다. 해결 방법은 `is` 특수 속성을 사용하는 것입니다 :
 
 ``` html
 <table>
@@ -111,17 +111,17 @@ The custom component `<my-row>` will be hoisted out as invalid content, thus cau
 </table>
 ```
 
-**It should be noted that these limitations do not apply if you are using string templates from one of the following sources**:
+**다음 소스 중 하나에 포함되면 문자열 템플릿을 사용하는 경우에는 이러한 제한 사항이 적용되지 않습니다.**:
 
 - `<script type="text/x-template">`
-- JavaScript inline template strings
-- `.vue` components
+- JavaScript 인라인 템플릿 문자열
+- `.vue` 컴포넌트
 
-Therefore, prefer using string templates whenever possible.
+따라서 가능한 경우 항상 문자열 템플릿을 사용하는 것이 좋습니다.
 
-### `data` Must Be a Function
+### `data` 는 반드시 함수여야합니다.
 
-Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be function. In fact, if you try this:
+Vue 생성자에 사용할 수 있는 대부분의 옵션은 컴포넌트에서 사용할 수 있습니다. 한가지 특별한 경우가 있습니다. `data` 는 함수여야 합니다. 실제로 이를 사용하는 경우에:
 
 ``` js
 Vue.component('my-component', {
@@ -132,7 +132,8 @@ Vue.component('my-component', {
 })
 ```
 
-Then Vue will halt and emit warnings in the console, telling you that `data` must be a function for component instances. It's good to understand why the rules exist though, so let's cheat.
+그런 다음 Vue는 중단하고 콘솔에서 경고를 합니다. `data`는 컴포넌트 인스턴스의 함수여야합니다. 규칙이 존재하는 이유를 이해하는 것이 좋습니다. 따라서 다음과 같이 사용하십시오.
+
 
 ``` html
 <div id="example-2">
@@ -147,9 +148,8 @@ var data = { counter: 0 }
 
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  // data is technically a function, so Vue won't
-  // complain, but we return the same object
-  // reference for each component instance
+  // 데이터는 기술적으로 함수이므로 Vue는 따지지 않지만
+  // 각 컴포넌트 인스턴스에 대해 같은 객체 참조를 반환합니다.
   data: function () {
     return data
   }
@@ -180,7 +180,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Since all three component instances share the same `data` object, incrementing one counter increments them all! Ouch. Let's fix this by instead returning a fresh data object:
+이런! 세 개의 컴포넌트 인스턴스가 모두 같은 `data` 객체를 공유하므로 하나의 카운터를 증가 시키면 모두 증가합니다! 대신 새로운 데이터 객체를 반환하여 이 문제를 해결합시다.
 
 ``` js
 data: function () {
@@ -190,7 +190,7 @@ data: function () {
 }
 ```
 
-Now all our counters each have their own internal state:
+이제 모든 카운터에는 각각 고유한 내부 상태가 있습니다.
 
 {% raw %}
 <div id="example-2-5" class="demo">
@@ -213,11 +213,11 @@ new Vue({
 </script>
 {% endraw %}
 
-### Composing Components
+### 컴포넌트 작성
 
-Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component's code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.
+컴포넌트는 부모-자식 관계에서 가장 일반적으로 함께 사용하기 위한 것입니다. 컴포넌트 A는 자체 템플릿에서 컴포넌트 B를 사용할 수 있습니다. 그들은 필연적으로 서로 의사 소통이 필요합니다. 부모는 자식에게 데이터를 전달해야 할 수도 있으며, 자식은 자신에게 일어난 일을 부모에게 알릴 필요가 있습니다. 그러나 부모와 자식이 명확하게 정의된 인터페이스를 통해 가능한한 분리된 상태로 유지하는 것도 매우 중요합니다. 이렇게하면 각 컴포넌트의 코드를 상대적으로 격리 할 수 있도록 작성하고 추론할 수 있으므로 유지 관리가 쉽고 잠재적으로 쉽게 재사용 할 수 있습니다.
 
-In Vue, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
+Vue.js에서 부모-자식 컴포넌트 관계는 **props는 아래로, events 위로** 라고 요약 할 수 있습니다. 부모는 **props**를 통해 자식에게 데이터를 전달하고 자식은 **events**를 통해 부모에게 메시지를 보냅니다. 어떻게 작동하는지 보겠습니다.
 
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
@@ -225,33 +225,33 @@ In Vue, the parent-child component relationship can be summarized as **props dow
 
 ## Props
 
-### Passing Data with Props
+### Props로 데이터 전달하기
 
-Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
+모든 컴포넌트 인스턴스에는 자체 **격리 된 범위** 가 있습니다. 즉, 하위 컴포넌트의 템플릿에서 상위 데이터를 직접 참조 할 수 없으며 그렇게 해서는 안됩니다. 데이터는 [`props` 옵션](../api/#props) 을 사용하여 하위 컴포넌트로 전달 될 수 있습니다.
 
-A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](../api/#props):
+prop는 상위 컴포넌트의 정보를 전달하기위한 사용자 지정 특성입니다. 하위 컴포넌트는`props` 옵션을 사용하여 수신 할 것으로 기대되는 props를 명시적으로 선언해야합니다
 
 ``` js
 Vue.component('child', {
-  // declare the props
+  // props 정의
   props: ['message'],
-  // just like data, the prop can be used inside templates
-  // and is also made available in the vm as this.message
+  // 데이터와 마찬가지로 prop은 템플릿 내부에서 사용할 수 있으며
+  // vm의 this.message로 사용할 수 있습니다.
   template: '<span>{{ message }}</span>'
 })
 ```
 
-Then we can pass a plain string to it like so:
+그런 다음 일반 문자열을 다음과 같이 전달할 수 있습니다.
 
 ``` html
-<child message="hello!"></child>
+<child message="안녕하세요!"></child>
 ```
 
-Result:
+결과:
 
 {% raw %}
 <div id="prop-example-1" class="demo">
-  <child message="hello!"></child>
+  <child message="안녕하세요!"></child>
 </div>
 <script>
 new Vue({
@@ -268,26 +268,26 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML attributes are case-insensitive, so when using non-string templates, camelCased prop names need to use their kebab-case (hyphen-delimited) equivalents:
+HTML 속성은 대소 문자를 구분하지 않으므로 문자열이 아닌 템플릿을 사용할 때 camelCased prop 이름에 해당하는 kebab-case(하이픈 구분)를 사용해야 합니다.
 
 ``` js
 Vue.component('child', {
-  // camelCase in JavaScript
+  // JavaScript는 camelCase
   props: ['myMessage'],
   template: '<span>{{ myMessage }}</span>'
 })
 ```
 
 ``` html
-<!-- kebab-case in HTML -->
-<child my-message="hello!"></child>
+<!-- HTML는 kebab-case -->
+<child my-message="안녕하세요!"></child>
 ```
 
-Again, if you're using string templates, then this limitation does not apply.
+문자열 템플릿을 사용하는 경우에도 이 제한이 적용되지 않습니다.
 
-### Dynamic Props
+### 동적 Props
 
-Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
+정규 속성을 표현식에 바인딩하는 것과 비슷하게, `v-bind`를 사용하여 부모의 데이터에 props를 동적으로 바인딩 할 수 있습니다. 데이터가 상위에서 업데이트 될 때마다 하위 데이터로도 전달됩니다.
 
 ``` html
 <div>
@@ -297,13 +297,13 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-It's often simpler to use the shorthand syntax for `v-bind`:
+`v-bind`에 대한 단축 구문을 사용하는 것이 더 간단합니다.
 
 ``` html
 <child :my-message="parentMsg"></child>
 ```
 
-Result:
+결과:
 
 {% raw %}
 <div id="demo-2" class="demo">
@@ -315,7 +315,7 @@ Result:
 new Vue({
   el: '#demo-2',
   data: {
-    parentMsg: 'Message from parent'
+    parentMsg: '부모로부터 전달 받은 메시지'
   },
   components: {
     child: {
@@ -327,37 +327,38 @@ new Vue({
 </script>
 {% endraw %}
 
-### Literal vs. Dynamic
+### 리터럴 vs. 동적
 
-A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
+초보자가 흔히 범하는 실수는 리터럴 구문을 사용하여 숫자를 전달하려고 시도하는 것입니다.
 
 ``` html
-<!-- this passes down a plain string "1" -->
+<!-- 이것은 일반 문자열 "1"을 전달합니다. -->
 <comp some-prop="1"></comp>
 ```
 
-However, since this is a literal prop, its value is passed down as a plain string `"1"` instead of an actual number. If we want to pass down an actual JavaScript number, we need to use `v-bind` so that its value is evaluated as a JavaScript expression:
+그러나 이것은 리터럴 prop이기 때문에 그 값은 실제 숫자가 아닌 일반 문자열 `"1"` 로 전달됩니다. 실제 JavScript 숫자를 전달하려면 값이 JavaScript 표현식으로 평가되도록 `v-bind`를 사용해야합니다.
 
 ``` html
-<!-- this passes down an actual number -->
+<!-- 이것은 실제 숫자로 전달합니다. -->
 <comp v-bind:some-prop="1"></comp>
 ```
 
-### One-Way Data Flow
+### 단방향 데이터 흐름
 
-All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about.
+모든 props는 하위 속성과 상위 속성 사이의 **단방향** 바인딩을 형성합니다. 상위 속성이 업데이트되면 하위로 흐르게 되지만 그 반대는 안됩니다. 이렇게하면 하위 컴포넌트가 실수로 상위 상태로 변경되는 것을 **방지할 수** 있습니다. 이로 인해 앱의 데이터 흐름을 추론하기가 더 어려워 질 수 있습니다.
 
-In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
+또한 상위 컴포넌트가 업데이트 될 때마다 하위 컴포넌트의 모든 props가 최신 값으로 갱신됩니다. 즉, 하위 컴포넌트 내부에서 prop을 변형하려고 시도하면 안됩니다. 시도할  Vue가 콘솔에서 경고합니다.
 
-There are usually two cases where it's tempting to mutate a prop:
+일반적으로 prop을 변경시키고 싶은 유혹을 불러 일으킬 수있는 두 가지 경우가 있습니다.
 
-1. The prop is used to only pass in an initial value, the child component simply wants to use it as a local data property afterwards;
+1. 이 prop는 초기 값을 전달 하는데만 사용되며 하위 컴포넌트는 이후에 이를 로컬 데이터 속성으로 사용하기만 합니다.
 
-2. The prop is passed in as a raw value that needs to be transformed.
+2. prop는 변경되어야 할 원시 값으로 전달됩니다.
 
-The proper answer to these use cases are:
 
-1. Define a local data property that uses the prop's initial value as its initial value:
+이러한 사용 사례에 대한 적절한 대답은 다음과 같습니다.
+
+1. prop의 초기 값을 초기 값으로 사용하는 로컬 데이터 속성을 정의 하십시오.
 
   ``` js
   props: ['initialCounter'],
@@ -366,7 +367,7 @@ The proper answer to these use cases are:
   }
   ```
 
-2. Define a computed property that is computed from the prop's value:
+2. prop 값으로 부터 계산된 속성을 정의 합니다.
 
   ``` js
   props: ['size'],
@@ -377,40 +378,39 @@ The proper answer to these use cases are:
   }
   ```
 
-<p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
+<p class="tip">자바 스크립트의 객체와 배열은 참조로 전달되므로 prop가 배열이나 객체인 경우 하위 객체 또는 배열 자체를 부모 상태로 변경하면 부모 상태에 **영향을 줍니다**.</p>
 
-### Prop Validation
+### Prop 검증
 
-It is possible for a component to specify requirements for the props it is receiving. If a requirement is not met, Vue will emit warnings. This is especially useful when you are authoring a component that is intended to be used by others.
+컴포넌트가 받는 중인 prop에 대한 요구사항을 지정할 수 있습니다. 요구사항이 충족 되지 않으면 Vue에서 경고를 내보냅니다. 이 기능은 다른 사용자가 사용할 컴포넌트를 제작할 때 특히 유용합니다.
 
-Instead of defining the props as an array of strings, you can use an object with validation requirements:
+props를 문자열 배열로 정의하는 대신 유효성 검사 요구사항이 있는 객체를 사용할 수 있습니다.
 
 ``` js
 Vue.component('example', {
   props: {
-    // basic type check (`null` means accept any type)
+    // 기본 타입 확인 (`null` 은 어떤 타입이든 가능하다는 뜻입니다)
     propA: Number,
-    // multiple possible types
+    // 여러개의 가능한 타입
     propB: [String, Number],
-    // a required string
+    // 문자열이며 꼭 필요합니다
     propC: {
       type: String,
       required: true
     },
-    // a number with default value
+    // 숫자이며 기본 값을 가집니다
     propD: {
       type: Number,
       default: 100
     },
-    // object/array defaults should be returned from a
-    // factory function
+    // 객체/배열의 기본값은 팩토리 함수에서 반환 되어야 합니다.
     propE: {
       type: Object,
       default: function () {
         return { message: 'hello' }
       }
     },
-    // custom validator function
+    // 사용자 정의 유효성 검사 가능
     propF: {
       validator: function (value) {
         return value > 10
@@ -420,7 +420,7 @@ Vue.component('example', {
 })
 ```
 
-The `type` can be one of the following native constructors:
+`type`은 다음 네이티브 생성자 중 하나를 사용할 수 있습니다.
 
 - String
 - Number
@@ -430,33 +430,35 @@ The `type` can be one of the following native constructors:
 - Array
 - Symbol
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
+또한, `type` 은 커스텀 생성자 함수가 될 수 있고, assertion은 `instanceof` 체크로 만들어 질 것입니다.
 
-When prop validation fails, Vue will produce a console warning (if using the development build). Note that props are validated __before__ a component instance is created, so within `default` or `validator` functions, instance properties such as from `data`, `computed`, or `methods` will not be available.
+prop 유효성 검사가 실패하면 Vue는 콘솔 경고를 생성합니다(개발 빌드를 사용하는 경우).
 
-## Non-Prop Attributes
+props 검증이 실패하면 Vue는 콘솔에서 경고를 출력합니다(개발 빌드를 사용하는 경우). props는 컴포넌트 인스턴스가 __생성되기 전__에 검증되기 때문에 `default` 또는 `validator` 함수 내에서 `data`, `computed` 또는 `methods`와 같은 인스턴스 속성을 사용할 수 없습니다.
 
-A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+## Props가 아닌 속성
 
-While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
+Props가 아닌 속성은 컴포넌트로 전달되지만 해당 props는 정의되지 않은 속성입니다.
 
-For example, imagine we're using a 3rd-party `bs-date-input` component with a Bootstrap plugin that requires a `data-3d-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+명시적으로 정의된 props는 하위 컴포넌트에 정보를 전달하는데 적절하지만 컴포넌트 라이브러리를 만드는 경우 컴포넌트가 사용될 수있는 상황을 항상 예측할 수는 없습니다. 이것이 컴포넌트가 컴포넌트의 루트 요소에 추가되는 임의의 속성을 허용해야하는 이유입니다.
+
+요예를 들어, 우리가 `input`에 `data-3d-date-picker` 속성을 요구하는 부트스트랩 플러그인으로 써드 파티 `bs-date-input` 컴포넌트를 사용하고 있다고 상상해보세요. 이 속성을 컴포넌트 인스턴스에 추가 할 수 있습니다.
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
 ```
 
-And the `data-3d-date-picker="true"` attribute will automatically be added to the root element of `bs-date-input`.
+그리고 `data-3d-date-picker="true"`속성은 `bs-date-input`의 루트 엘리먼트에 자동으로 추가 될 것입니다.
 
-### Replacing/Merging with Existing Attributes
+### 존재하는 속성 교체/병합
 
-Imagine this is the template for `bs-date-input`:
+이 파일이 `bs-date-input`의 템플릿이라고 가정합니다:
 
 ``` html
 <input type="date" class="form-control">
 ```
 
-To add specify a theme for our date picker plugin, we might need to add a specific class, like this:
+데이트피커 플러그인의 테마를 추가하려면 다음과 같이 특정 클래스를 추가해야 할 수도 있습니다.
 
 ``` html
 <bs-date-input
@@ -465,31 +467,30 @@ To add specify a theme for our date picker plugin, we might need to add a specif
 ></bs-date-input>
 ```
 
-In this case, two different values for `class` are defined:
+이 경우 `class`에 대한 두 개의 서로 다른 값이 정의됩니다.
 
-- `form-control`, which is set by the component in its template
-- `date-picker-theme-dark`, which is passed to the component by its parent
+- 템플릿의 컴포넌트에 의해 설정된 `form-control`
+- `date-picker-theme-dark`는 부모에 의해 컴포넌트로 전달됩니다.
 
-For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="large"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
+대부분의 속성의 경우 컴포넌트에 제공된 값은 컴포넌트에서 설정된 값을 대체합니다. 예를 들어, `type="large"`가 전달되면 `type="date"`를 대체할 것이고 아마도 망가뜨릴 것입니다! 다행스럽게도 `class`와 `style` 속성은 똑똑하기 때문에 두 값이 합쳐져서 최종 값인 `form-control date-picker-theme-dark`를 만듭니다.
 
-## Custom Events
+우리는 부모가 prop을 사용하여 자식에게 데이터를 전달할 수 있다는 것을 알았지만, 문제가 발생했을 때 어떻게 부모에게 다시 알릴까요? 바로 Vue의 사용자 정의 이벤트 시스템이 들어오는 곳입니다.
 
-We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue's custom event system comes in.
+### `v-on`을 이용한 사용자 지정 이벤트
 
-### Using `v-on` with Custom Events
+모든 Vue 인스턴스는 다음과 같은 [이벤트 인터페이스](../api/#Instance-Methods-Events)를 구현합니다.
 
-Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
+- `$on(eventName)`을 사용하여 이벤트를 감지 하십시오.
+- `$emit(eventName)`을 사용하여 이벤트를 트리거 하십시오.
 
-- Listen to an event using `$on(eventName)`
-- Trigger an event using `$emit(eventName)`
+<p class="tip">Vue의 이벤트 시스템은 브라우저의 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)와 별개입니다. 비슷하게 작동하지만 `$on` 과 `$emit` 는 `addEventListener` 와 `dispatchEvent`의 별칭이 아닙니다.</p>
 
-<p class="tip">Note that Vue's event system is separate from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
+또한, 부모 컴포넌트는 자식 컴포넌트가 사용되는 템플릿에서 직접 `v-on` 을 사용하여 자식 컴포넌트에서 보내진 이벤트를 들을 수 있습니다.
 
-In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
 
-<p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
+<p class="tip">`$on`은 자식에서 호출한 이벤트는 감지하지 않습니다. `v-on`을 템플릿에 반드시 지정해야 합니다. 아래의 예제를 보십시오.</p>
 
-Here's an example:
+예제:
 
 ``` html
 <div id="counter-event-example">
@@ -563,53 +564,53 @@ new Vue({
 </script>
 {% endraw %}
 
-In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
+이 예제에서는 하위 컴포넌트가 외부에서 발생 하는 것과 완전히 분리 된다는 점에 유의해야 합니다. 부모 컴포넌트가 신경 쓸 수 있는 경우를 대비하여 자체 활동에 대한 정보를 보고 하는 것뿐입니다.
 
-#### Binding Native Events to Components
+#### 컴포넌트에 네이티브 이벤트 바인딩
 
-There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`. For example:
+컴포넌트의 루트 엘리먼트에서 네이티브 이벤트를 수신하려는 경우가 있을 수 있습니다. 이러한 경우 `v-on` 에 `.native` 수식자를 사용할 수 있습니다. 예 :
 
 ``` html
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
-### `.sync` Modifier
+### `.sync` 수식어
 
 > 2.3.0+
 
-In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x this is exactly what the `.sync` modifier provided. When a child component mutates a prop that has `.sync`, the value change will be reflected in the parent. This is convenient, however it leads to maintenance issues in the long run because it breaks the one-way data flow assumption: the code that mutates child props are implicitly affecting parent state.
+일부 경우에 속성에 "양방향 바인딩"이 필요할 수 있습니다. Vue 1버전에 있던 `.sync` 수식어와 동일합니다. 자식 컴포넌트가 `.sync`를 가지는 속성을 변경하면 값의 변경이 부모에 반영됩니다. 편리하지만 단방향 데이터 흐름이 아니기 때문에 장기적으로 유지보수에 문제가 생깁니다. 자식 속성을 변경하는 코드는 부모의 상태에 영향을 미칩니다.
 
-This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
+이 때문에 `.sync`는 2.0버전에서 삭제되었습니다. 그러나 재사용 가능한 컴포넌트를 만들 때 유용할 수 있다는 점을 알게 되었습니다. **부모 상태에 영향을 미치는 코드를 더욱 일관적이고 명백하게 만들어야합니다.**
 
-In 2.3 we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
+2.3 버전에서 속성을 위한 `.sync` 수식어를 다시 만들었지만 자동으로 `v-on`로 확장되는 신택스 슈가입니다.
 
-The following
+따라서 아래 코드는
 
 ``` html
 <comp :foo.sync="bar"></comp>
 ```
 
-is expanded into:
+아래와 같습니다.
 
 ``` html
 <comp :foo="bar" @update:foo="val => bar = val"></comp>
 ```
 
-For the child component to update `foo`'s value, it needs to explicitly emit an event instead of mutating the prop:
+하위 컴포넌트가 `foo`를 갱신하려면 속성을 변경하는 대신 명시적으로 이벤트를 보내야합니다.
 
 ``` js
 this.$emit('update:foo', newValue)
 ```
 
-### Form Input Components using Custom Events
+### 사용자 정의 이벤트를 사용하여 폼 입력 컴포넌트 만들기
 
-Custom events can also be used to create custom inputs that work with `v-model`. Remember:
+사용자 정의 이벤트는 `v-model` 에서 작동하는 사용자 정의 입력을 만드는데에도 사용할 수 있습니다. 기억하세요.
 
 ``` html
 <input v-model="something">
 ```
 
-is just syntactic sugar for:
+위 문장은 아래와 같습니다.
 
 ``` html
 <input
@@ -617,7 +618,7 @@ is just syntactic sugar for:
   v-on:input="something = $event.target.value">
 ```
 
-When used with a component, this simplifies to:
+컴포넌트와 함께 사용하면 다음과 같이 간단해집니다.
 
 ``` html
 <custom-input
@@ -626,12 +627,11 @@ When used with a component, this simplifies to:
 </custom-input>
 ```
 
-So for a component to work with `v-model`, it should (these can be configured in 2.2.0+):
+따라서 `v-model`을 사용하는 컴포넌트는 (2.2.0버전 이상에서 설정을 조작할 수 있습니다.)
+- `value` prop를 가집니다.
+- 새로운 값으로 `input` 이벤트를 내보냅니다.
 
-- accept a `value` prop
-- emit an `input` event with the new value
-
-Let's see it in action with a very simple currency input:
+매우 간단한 통화 입력을 사용하는 모습을 보겠습니다.
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -650,26 +650,25 @@ Vue.component('currency-input', {
   ',
   props: ['value'],
   methods: {
-    // Instead of updating the value directly, this
-    // method is used to format and place constraints
-    // on the input's value
+    // 값을 직접 업데이트하는 대신 이 메소드를 사용하여
+    // 입력 값에 대한 서식을 지정하고 배치 할 수 있습니다
     updateValue: function (value) {
       var formattedValue = value
-        // Remove whitespace on either side
+        // 공백을 제거합니다.
         .trim()
-        // Shorten to 2 decimal places
+        // 소수 자릿수 2자리로 줄입니다
         .slice(
           0,
           value.indexOf('.') === -1
             ? value.length
             : value.indexOf('.') + 3
         )
-      // If the value was not already normalized,
-      // manually override it to conform
+      // 값이 아직 정규화 되지 않은 경우
+      // 이를 수동으로 재정의하여 조건을 충족시킵니다.
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // Emit the number value through the input event
+      // 입력 이벤트를 통해 숫자 값을 내보냅니다.
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -717,15 +716,17 @@ new Vue({
 </script>
 {% endraw %}
 
-The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+위의 구현은 꽤 단순합니다. 예를 들어, 사용자는 때때로 여러 마침표와 글자를 입력 할 수 있습니다. 그렇기 때문에 보다 강력한 통화 필터를 사용할 수 있습니다.
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-### Customizing Component `v-model`
 
-> New in 2.2.0
 
-By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
+### 컴포넌트의 `v-model` 사용자 정의
+
+> 2.2.0 버전에서 추가됨
+
+기본적으로 컴포넌트의 `v-model`은 `value`를 보조 변수로 사용하고 `input`을 이벤트로 사용하지만 체크 박스와 라디오 버튼과 같은 일부 입력 타입은 다른 목적으로 `value` 속성을 사용할 수 있습니다. `model` 옵션을 사용하면 다음 경우에 충돌을 피할 수 있습니다:
 
 ``` js
 Vue.component('my-checkbox', {
@@ -734,8 +735,8 @@ Vue.component('my-checkbox', {
     event: 'change'
   },
   props: {
+    // 다른 목적을 위해 `value` prop를 사용할 수 있습니다.
     checked: Boolean,
-    // this allows using the `value` prop for a different purpose
     value: String
   },
   // ...
@@ -746,7 +747,8 @@ Vue.component('my-checkbox', {
 <my-checkbox v-model="foo" value="some value"></my-checkbox>
 ```
 
-The above will be equivalent to:
+아래와 같습니다
+
 
 ``` html
 <my-checkbox
@@ -756,31 +758,31 @@ The above will be equivalent to:
 </my-checkbox>
 ```
 
-<p class="tip">Note that you still have to declare the `checked` prop explicitly.</p>
+<p class="tip">`checked` prop를 명시적으로 선언해야 합니다.</p>
 
-### Non Parent-Child Communication
+### 비 부모-자식간 통신
 
-Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:
+때로는 두 컴포넌트가 서로 통신 할 필요가 있지만 서로 부모/자식이 아닐 수도 있습니다. 간단한 시나리오에서는 비어있는 Vue 인스턴스를 중앙 이벤트 버스로 사용할 수 있습니다.
 
 ``` js
 var bus = new Vue()
 ```
 ``` js
-// in component A's method
+// 컴포넌트 A의 메소드
 bus.$emit('id-selected', 1)
 ```
 ``` js
-// in component B's created hook
+// 컴포넌트 B의 created 훅
 bus.$on('id-selected', function (id) {
   // ...
 })
 ```
 
-In more complex cases, you should consider employing a dedicated [state-management pattern](state-management.html).
+보다 복잡한 경우에는 전용 [상태 관리 패턴](state-management.html)을 고려해야합니다
 
-## Content Distribution with Slots
+## 슬롯을 사용한 컨텐츠 배포
 
-When using components, it is often desired to compose them like this:
+컴포넌트를 사용할 때 다음과 같이 컴포넌트를 구성하는 것이 좋습니다.
 
 ``` html
 <app>
@@ -789,17 +791,17 @@ When using components, it is often desired to compose them like this:
 </app>
 ```
 
-There are two things to note here:
+주목해야할 두가지 사항이 있습니다.
 
-1. The `<app>` component does not know what content it will receive. It is decided by the component using `<app>`.
+1. `<app>` 컴포넌트는 어떤 컨텐츠를 받을지 모릅니다. 그것은 컴포넌트에 의해 `<app>` 결정됩니다.
 
-2. The `<app>` component very likely has its own template.
+2. `<app>` 컴포넌트에는 자체 템플릿이 있을 가능성이 큽니다.
 
-To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
+위 구성으로 작동하도록 하려면 부모 "content"와 컴포넌트의 자체 템플릿을 섞는 방법이 필요합니다. 이것은 **콘텐츠 배포** (또는 Angular에 익숙한 경우 "transclusion") 프로세스입니다. Vue.js는 현재 [웹 컴포넌트 사양 초안](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)을 모델로 한 콘텐츠 배포 API를 구현하며 원본 콘텐츠의 배포판 역할을하기 위해 특수한 `<slot>` 엘리먼트를 사용합니다.
 
-### Compilation Scope
+### 범위 컴파일
 
-Before we dig into the API, let's first clarify which scope the contents are compiled in. Imagine a template like this:
+API를 파헤치기 전에 먼저 내용이 컴파일되는 범위를 명확히 해야합니다. 다음과 같은 템플릿이 있다고 상상해보겠습니다.
 
 ``` html
 <child-component>
@@ -807,24 +809,24 @@ Before we dig into the API, let's first clarify which scope the contents are com
 </child-component>
 ```
 
-Should the `message` be bound to the parent's data or the child data? The answer is the parent. A simple rule of thumb for component scope is:
+`message`가 부모 데이터 또는 자식 데이터중 어디에 바인딩되어야 할까요? 대답은 부모입니다. 컴포넌트 범위에 대한 간단한 법칙은 다음과 같습니다.
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in child scope.
+> 상위 템플릿의 모든 내용은 상위 범위로 컴파일됩니다. 하위 템플릿의 모든 내용은 하위 범위에서 컴파일됩니다.
 
-A common mistake is trying to bind a directive to a child property/method in the parent template:
+일반적인 실수는 부모 템플릿의 하위 속성/메소드에 디렉티브를 바인딩하려고하는 것입니다.
 
 ``` html
-<!-- does NOT work -->
+<!-- 작동하지 않습니다 -->
 <child-component v-show="someChildProperty"></child-component>
 ```
 
-Assuming `someChildProperty` is a property on the child component, the example above would not work. The parent's template is not aware of the state of a child component.
+`someChildProperty`가 자식 컴포넌트의 속성이라고 가정하면, 위의 예제는 작동하지 않을 것입니다. 상위 템플릿은 하위 컴포넌트의 상태를 인식하지 못합니다.
 
-If you need to bind child-scope directives on a component root node, you should do so in the child component's own template:
+컴포넌트 루트 노드에서 하위 범위 디렉티브를 바인딩 해야하는 경우 하위 컴포넌트의 자체 템플릿에서 하위 범위 디렉티브를 바인딩해야합니다.
 
 ``` js
 Vue.component('child-component', {
-  // this does work, because we are in the right scope
+  // 이제 작동합니다. 올바른 위치에 놓여 있습니다.
   template: '<div v-show="someChildProperty">Child</div>',
   data: function () {
     return {
@@ -834,58 +836,57 @@ Vue.component('child-component', {
 })
 ```
 
-Similarly, distributed content will be compiled in the parent scope.
+마찬가지로 분산된 콘텐츠는 상위 범위에서 컴파일됩니다.
 
-### Single Slot
+### 단일 슬롯
 
-Parent content will be **discarded** unless the child component template contains at least one `<slot>` outlet. When there is only one slot with no attributes, the entire content fragment will be inserted at its position in the DOM, replacing the slot itself.
+하위 컴포넌트 템플릿에 최소한 하나의 `<slot>` 콘텐츠가 포함되어 있지 않으면 부모 콘텐츠가 **삭제** 됩니다. 속성이 없는 슬롯이 하나 뿐인 경우 전체 내용 조각이 DOM의 해당 위치에 삽입되어 슬롯 자체를 대체합니다.
 
-Anything originally inside the `<slot>` tags is considered **fallback content**. Fallback content is compiled in the child scope and will only be displayed if the hosting element is empty and has no content to be inserted.
+원래 `<slot>` 태그 안에 있는 내용은 **대체 콘텐츠** 로 간주됩니다. 대체 콘텐츠는 하위 범위에서 컴파일되며 호스팅 엘리먼트가 비어 있고 삽입할 콘텐츠가 없는 경우에만 표시됩니다.
 
-Suppose we have a component called `my-component` with the following template:
+다음 템플릿으로 `my-component`라는 컴포넌트가 있다고 가정하십시오.
 
 ``` html
 <div>
-  <h2>I'm the child title</h2>
+  <h2>나는 자식 컴포넌트의 제목입니다</h2>
   <slot>
-    This will only be displayed if there is no content
-    to be distributed.
+    제공된 컨텐츠가 없는 경우에만 보실 수 있습니다.
   </slot>
 </div>
 ```
 
-And a parent that uses the component:
+그리고 그 컴포넌트를 사용하는 부모는
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>나는 부모 컴포넌트의 제목입니다</h1>
   <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <p>이것은 원본 컨텐츠 입니다.</p>
+    <p>이것은 원본 중 추가 컨텐츠 입니다</p>
   </my-component>
 </div>
 ```
 
-The rendered result will be:
+아래처럼 렌더링 됩니다.
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>나는 부모 컴포넌트의 제목입니다</h1>
   <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <h2>나는 자식 컴포넌트의 제목 입니다</h2>
+    <p>이것은 원본 컨텐츠 입니다.</p>
+    <p>이것은 원본 중 추가 컨텐츠 입니다</p>
   </div>
 </div>
 ```
 
-### Named Slots
+### 이름을 가지는 슬롯
 
-`<slot>` elements have a special attribute, `name`, which can be used to further customize how content should be distributed. You can have multiple slots with different names. A named slot will match any element that has a corresponding `slot` attribute in the content fragment.
+`<slot>` 엘리먼트는 특별한 속성 인 `name` 을 가지고 있습니다. 이 속성은 어떻게 내용을 배포해야 하는지를 더 커스터마이징하는 데 사용할 수 있습니다. 이름이 다른 슬롯이 여러 개 있을 수 있습니다. 이름을 가진 슬롯은 내용 조각에 해당 `slot` 속성이 있는 모든 엘리먼트와 일치합니다.
 
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. If there is no default slot, unmatched content will be discarded.
+명명되지 않은 슬롯이 하나 있을 수 있습니다. **기본 슬롯** 은 일치하지 않는 콘텐츠의 포괄적인 컨텐츠 역할을 합니다. 기본 슬롯이 없으면 일치하지 않는 콘텐츠가 삭제됩니다.
 
-For example, suppose we have an `app-layout` component with the following template:
+예를 들어, 다음과 같은 템플릿을 가진`app-layout` 컴포넌트가 있다고 가정 해보십시오 :
 
 ``` html
 <div class="container">
@@ -901,45 +902,45 @@ For example, suppose we have an `app-layout` component with the following templa
 </div>
 ```
 
-Parent markup:
+부모 마크업
 
 ``` html
 <app-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">여기에 페이지 제목이 위치합니다</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>메인 컨텐츠의 단락입니다.</p>
+  <p>하나 더 있습니다.</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">여기에 연락처 정보입니다.</p>
 </app-layout>
 ```
 
-The rendered result will be:
+아래와 같이 렌더링 됩니다.
 
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>여기에 페이지 제목이 위치합니다</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>메인 컨텐츠의 단락입니다.</p>
+    <p>하나 더 있습니다.</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>여기에 연락처 정보입니다.</p>
   </footer>
 </div>
 ```
 
-The content distribution API is a very useful mechanism when designing components that are meant to be composed together.
+콘텐츠 배포 API는 함께 구성할 컴포넌트를 디자인 할 때 매우 유용한 메커니즘입니다.
 
-### Scoped Slots
+### 범위를 가지는 슬롯
 
-> New in 2.1.0
+> 2.1.0에 새롭게 추가됨.
 
-A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+범위가 지정된 슬롯은 이미 렌더링 된 엘리먼트 대신 재사용 가능한 템플릿(데이터를 전달할 수 있음)으로 작동하는 특별한 유형의 슬롯입니다.
 
-In a child component, simply pass data into a slot as if you are passing props to a component:
+하위 컴포넌트에서 prop을 컴포넌트에 전달하는 것처럼 슬롯에 데이터를 전달하기만 하면 됩니다.
 
 ``` html
 <div class="child">
@@ -947,7 +948,7 @@ In a child component, simply pass data into a slot as if you are passing props t
 </div>
 ```
 
-In the parent, a `<template>` element with a special attribute `scope` must exist, indicating that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+부모에서, 특별한 속성 `scope`을 가진 `<template>`엘리먼트가 존재해야 합니다. 이것은 범위를 가지는 슬롯을 위한 템플릿임을 나타냅니다. `scope`의 값은 자식으로부터 전달 된 props 객체를 담고있는 임시 변수의 이름입니다:
 
 ``` html
 <div class="parent">
@@ -960,7 +961,7 @@ In the parent, a `<template>` element with a special attribute `scope` must exis
 </div>
 ```
 
-If we render the above, the output will be:
+위를 렌더링하면 출력은 다음과 같습니다.
 
 ``` html
 <div class="parent">
@@ -971,32 +972,32 @@ If we render the above, the output will be:
 </div>
 ```
 
-A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
+범위가 지정된 슬롯의 일반적인 사용 사례는 컴포넌트 사용자가 목록의 각 항목을 렌더링하는 방법을 사용자 지정할 수 있는 리스트 컴포넌트입니다.
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- scoped slot can be named too -->
+  <!-- 범위를 가지는 슬롯도 이름을 가질 수 있습니다. -->
   <template slot="item" scope="props">
     <li class="my-fancy-item">{{ props.text }}</li>
   </template>
 </my-awesome-list>
 ```
 
-And the template for the list component:
+그리고 리스트 컴포넌트의 템플릿 :
 
 ``` html
 <ul>
   <slot name="item"
     v-for="item in items"
     :text="item.text">
-    <!-- fallback content here -->
+    <!-- 대체 컨텐츠는 여기입니다. -->
   </slot>
 </ul>
 ```
 
-## Dynamic Components
+## 동적 컴포넌트
 
-You can use the same mount point and dynamically switch between multiple components using the reserved `<component>` element and dynamically bind to its `is` attribute:
+같은 마운트 포인트를 사용하고 예약된 `<component>` 엘리먼트를 사용하여 여러 컴포넌트 간에 동적으로 전환하고 `is` 속성에 동적으로 바인드 할 수 있습니다.
 
 ``` js
 var vm = new Vue({
@@ -1014,11 +1015,11 @@ var vm = new Vue({
 
 ``` html
 <component v-bind:is="currentView">
-  <!-- component changes when vm.currentView changes! -->
+  <!-- vm.currentView가 변경되면 컴포넌트가 변경됩니다! -->
 </component>
 ```
 
-If you prefer, you can also bind directly to component objects:
+원하는 경우 컴포넌트 객체에 직접 바인딩 할 수도 있습니다.
 
 ``` js
 var Home = {
@@ -1035,33 +1036,33 @@ var vm = new Vue({
 
 ### `keep-alive`
 
-If you want to keep the switched-out components in memory so that you can preserve their state or avoid re-rendering, you can wrap a dynamic component in a `<keep-alive>` element:
+전환된 컴포넌트를 메모리에 유지하여 상태를 보존하거나 다시 렌더링하지 않도록하려면 동적 컴포넌트를 `<keep-alive>` 엘리먼트에 래핑 할 수 있습니다.
 
 ``` html
 <keep-alive>
   <component :is="currentView">
-    <!-- inactive components will be cached! -->
+    <!-- 비활성화 된 컴포넌트는 캐시 됩니다! -->
   </component>
 </keep-alive>
 ```
 
-Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
+[API 참조](../api/#keep-alive)에서 `<keep-alive>` 에 대한 자세한 내용을 확인하십시오.
 
-## Misc
+## 기타
 
-### Authoring Reusable Components
+### 재사용 가능한 컴포넌트 제작하기
 
-When authoring components, it's good to keep in mind whether you intend to reuse it somewhere else later. It's OK for one-off components to be tightly coupled, but reusable components should define a clean public interface and make no assumptions about the context it's used in.
+컴포넌트를 작성할 때 나중에 다른 곳에서 다시 사용할 것인지에 대한 여부를 명심하는 것이 좋습니다. 일회용 컴포넌트가 단단히 결합 되어도 상관 없지만 재사용 가능한 컴포넌트는 깨끗한 공용 인터페이스를 정의 해야하며 사용된 컨텍스트에 대한 가정을 하지 않아야합니다.
 
-The API for a Vue component comes in three parts - props, events, and slots:
+Vue 컴포넌트의 API는 prop, 이벤트 및 슬롯의 세 부분으로 나뉩니다.
 
-- **Props** allow the external environment to pass data into the component
+- **Props** 는 외부 환경이 데이터를 컴포넌트로 전달하도록 허용합니다.
 
-- **Events** allow the component to trigger side effects in the external environment
+- **이벤트**를 통해 컴포넌트가 외부 환경에서 사이드이펙트를 발생할 수 있도록 합니다.
 
-- **Slots** allow the external environment to compose the component with extra content.
+- **슬롯** 을 사용하면 외부 환경에서 추가 컨텐츠가 포함 된 컴포넌트를 작성할 수 있습니다.
 
-With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
+`v-bind` 와 `v-on` 을 위한 전용 약어문을 사용하여 의도를 명확하고 간결하게 템플릿에 전달할 수 있습니다.
 
 ``` html
 <my-component
@@ -1075,9 +1076,9 @@ With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can b
 </my-component>
 ```
 
-### Child Component Refs
+### 자식 컴포넌트 참조
 
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
+props나 이벤트가 있었음에도 불구하고 때때로 JavaScript로 하위 컴포넌트에 직접 액세스 해야 할 수도 있습니다. 이를 위해 `ref` 를 이용하여 참조 컴포넌트 ID를 자식 컴포넌트에 할당해야 합니다. 예:
 
 ``` html
 <div id="parent">
@@ -1087,22 +1088,22 @@ Despite the existence of props and events, sometimes you might still need to dir
 
 ``` js
 var parent = new Vue({ el: '#parent' })
-// access child component instance
+// 자식 컴포넌트 인스턴스에 접근합니다.
 var child = parent.$refs.profile
 ```
 
-When `ref` is used together with `v-for`, the ref you get will be an array containing the child components mirroring the data source.
+`ref`가 `v-for`와 함께 사용될 때, 얻을 수 있는 ref는 데이터 소스를 미러링하는 자식 컴포넌트를 포함하는 배열이 될 것입니다.
 
-<p class="tip">`$refs` are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using `$refs` in templates or computed properties.</p>
+<p class="tip">`$refs` 는 컴포넌트가 렌더링 된 후에만 채워지며 반응적이지 않습니다. 그것은 직접 자식 조작을 위한 escape 해치를 의미합니다 - 템플릿이나 계산 된 속성에서 `$refs`를 사용하지 말아야합니다.</p>
 
-### Async Components
+### 비동기 컴포넌트
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's actually needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component actually needs to be rendered and will cache the result for future re-renders. For example:
+대규모 응용 프로그램에서는 응용 프로그램을 더 작은 덩어리로 나누고 실제로 필요할 때만 서버에서 컴포넌트를 로드해야 할 수도 있습니다. Vue를 사용하면 컴포넌트 정의를 비동기식으로 해결하는 팩토리 함수로 컴포넌트를 정의 할 수 있습니다. Vue는 컴포넌트가 실제로 렌더링되어야 할 때만 팩토리 기능을 트리거하고 이후의 리렌더링을 위해 결과를 캐시합니다. 예 :
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
-    // Pass the component definition to the resolve callback
+    // 컴포넌트 정의를 resolve 콜백에 전달합니다.
     resolve({
       template: '<div>I am async!</div>'
     })
@@ -1110,18 +1111,18 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+팩토리 함수는 `resolve` 콜백을 받습니다. 이 콜백은 서버에서 컴포넌트 정의를 가져 왔을 때 호출 되어야 합니다. 또한 `reject (reason)` 을 호출하여 로드가 실패 했음을 알릴 수 있습니다. 여기서 `setTimeout` 은 데모 용입니다. 컴포넌트를 검색하는 방법은 전적으로 귀하에게 달려 있습니다. 권장되는 접근법 중 하나는 [Webpack의 코드 분할 기능](https://webpack.js.org/guides/code-splitting/)과 함께 비동기 컴포넌트를 사용하는 것입니다.
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
-  // automatically split your built code into bundles which
-  // are loaded over Ajax requests.
+  // 이 특별한 require 구문은 Webpack이 Ajax 요청을 통해
+  // 로드되는 번들로 작성된 코드를 자동으로 분리하도록 지시합니다.
   require(['./my-async-component'], resolve)
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 + ES2015 syntax you can do:
+factory 함수에서 `Promise`를 반환할 수도 있습니다. 그래서 Webpack 2 + ES2015 구문을 사용하면 다음을 할 수 있습니다 :
+
 
 ``` js
 Vue.component(
@@ -1130,7 +1131,7 @@ Vue.component(
 )
 ```
 
-When using [local registration](components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+[지역 등록](components.html#Local-Registration)을 사용하는 경우, `Promise`를 반환하는 함수를 제공할 수 있습니다.
 
 ``` js
 new Vue({
@@ -1141,62 +1142,62 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
+<p class="tip">비동기 컴포넌트를 사용하려는 <strong>Browserify</strong> 사용자인 경우, 작성자는 불행히도 비동기로드가 Browserify에서 지원하지 않는 것이라고 분명하게 [분명하게 주장합니다.](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) 적어도 공식적으로. Browserify 커뮤니티는 기존 및 복잡한 응용 프로그램에 도움이 될 수있는 [몇 가지 해결 방법](https://github.com/vuejs/vuejs.org/issues/620)을 발견했습니다. 다른 모든 시나리오의 경우 기본 제공되는 비동기식 지원을 위해 Webpack을 사용하는 것이 좋습니다.</p>
 
-### Advanced Async Components
+### 고급 비동기 컴포넌트
 
-> New in 2.3.0
+> 2.3.0버전에서 추가
 
-Starting in 2.3 the async component factory can also return an object of the following format:
+2.3 버전부터 비동기 컴포넌트 팩토리는 다음 형태의 객체를 반환할 수 있습니다.
 
 ``` js
 const AsyncComp = () => ({
-  // The component to load. Should be a Promise
+  // 로드하는 컴포넌트입니다. 반드시 Promise이어야합니다.
   component: import('./MyComp.vue'),
-  // A component to use while the async component is loading
+  // 비동기 컴포넌트가 로드되는 동안 사용할 컴포넌트
   loading: LoadingComp,
-  // A component to use if the load fails
+  // 실패했을 경우 사용하는 컴포넌트
   error: ErrorComp,
-  // Delay before showing the loading component. Default: 200ms.
+  // 로딩 컴포넌트를 보여주기전 지연하는 정도. 기본값: 200ms.
   delay: 200,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // 시간이 초과되면 에러용 컴포넌트가 표시됩니다
+  // 기본값: Infinity.
   timeout: 3000
 })
 ```
 
-Note that when used as a route component in `vue-router`, these properties will be ignored because async components are resolved upfront before the route navigation happens. You also need to use `vue-router` 2.4.0+ if you wish to use the above syntax for route components.
+`vue-router`에서 라우트 컴포넌트로 사용하는 경우 라우트 네비게이션이 발생하기전에 비동기 컴포넌트가 먼저 작동하기때문에 이러한 특성은 무시됩니다. 라우트 컴포넌트에서 위의 문법을 사용하려면 `vue-router` 2.4.0 이상을 사용해야합니다.
 
-### Component Naming Conventions
+### 컴포넌트 이름 규약
 
-When registering components (or props), you can use kebab-case, camelCase, or PascalCase.
+컴포넌트 (또는 prop)를 등록 할 때 kebab-case, camelCase 또는 PascalCase를 사용할 수 있습니다.
 
 ``` js
-// in a component definition
+// 컴포넌트 정의에서
 components: {
-  // register using kebab-case
+  // kebab-case를 사용한 등록
   'kebab-cased-component': { /* ... */ },
-  // register using camelCase
+  // camelCase를 사용한 등록
   'camelCasedComponent': { /* ... */ },
-  // register using PascalCase
+  // PascalCase를 사용한 등록
   'PascalCasedComponent': { /* ... */ }
 }
 ```
 
-Within HTML templates though, you have to use the kebab-case equivalents:
+HTML 템플릿 내에서 kebab-case와 동등한 것을 사용해야합니다.
 
 ``` html
-<!-- always use kebab-case in HTML templates -->
+<!-- HTML 템플릿에서 항상 kebab-case를 사용하세요 -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <pascal-cased-component></pascal-cased-component>
 ```
 
-When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
+그러나 _문자열_ 템플릿을 사용할 때 HTML의 대소문자를 구분하지 않습니다. 즉, 템플릿에서도 CamelCase, PascalCase 또는 kebab-case를 사용하여 컴포넌트와 prop을 참조할 수 있습니다.
 
 - kebab-case
-- camelCase or kebab-case if the component has been defined using camelCase
-- kebab-case, camelCase or PascalCase if the component has been defined using PascalCase
+- camelCase를 사용하여 컴포넌트가 정의된 경우 camelCase 또는 kebab-case
+- PascalCase를 사용하여 컴포넌트가 정의된 경우 kebab-case, camelCase or PascalCase
 
 ``` js
 components: {
@@ -1217,25 +1218,26 @@ components: {
 <PascalCasedComponent></PascalCasedComponent>
 ```
 
-This means that the PascalCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
 
-If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
+이것은 PascalCase가 가장 보편적 인 _선언적 컨벤션_임을 의미하며 케밥 케이스는 가장 보편적으로 사용하는 _컨벤션_입니다.
+
+컴포넌트가 `slot` 엘리먼트를 통해 내용을 전달받지 못하면 이름 뒤에 `/`를 사용하여 자체적으로 닫을 수도 있습니다.
 
 ``` html
 <my-component/>
 ```
 
-Again, this _only_ works within string templates, as self-closing custom elements are not valid HTML and your browser's native parser will not understand them.
+다시 말하지만, 이것은 자기 닫는 사용자 정의 엘리먼트가 유효한 HTML이 아니므로 문자열 템플릿내에서만 작동하며 브라우저의 기본 파서는 이를 이해하지 못합니다.
 
-### Recursive Components
+### 재귀 컴포넌트
 
-Components can recursively invoke themselves in their own template. However, they can only do so with the `name` option:
+컴포넌트는 자신의 템플릿에서 재귀적으로 호출할 수 있습니다. 그러나, 그들은 `name` 옵션으로만 가능합니다.
 
 ``` js
 name: 'unique-name-of-my-component'
 ```
 
-When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+`Vue.component`를 사용하여 컴포넌트를 전역적으로 등록하면, 글로벌 ID가 컴포넌트의 `name` 옵션으로 자동 설정됩니다.
 
 ``` js
 Vue.component('unique-name-of-my-component', {
@@ -1243,18 +1245,18 @@ Vue.component('unique-name-of-my-component', {
 })
 ```
 
-If you're not careful, recursive components can also lead to infinite loops:
+주의하지 않으면 재귀적 컴포넌트로 인해 무한 루프가 발생할 수도 있습니다.
 
 ``` js
 name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
+위와 같은 컴포넌트는 "최대 스택 크기 초과" 오류가 발생하므로 재귀 호출이 조건부 (즉, 마지막에 `false`가 될 `v-if`를 사용하세요)인지 확인하십시오.
 
-### Circular References Between Components
+### 컴포넌트 사이의 순환 참조
 
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+Finder나 파일 탐색기와 같이 파일 디렉토리 트리를 작성한다고 가정해 보겠습니다. 이 템플릿을 가지고 `tree-folder` 컴포넌트를 가질 수 있습니다.
 
 ``` html
 <p>
@@ -1263,7 +1265,7 @@ Let's say you're building a file directory tree, like in Finder or File Explorer
 </p>
 ```
 
-Then a `tree-folder-contents` component with this template:
+그런 다음이 템플릿이 있는 `tree-folder-contents` 컴포넌트 :
 
 ``` html
 <ul>
@@ -1274,17 +1276,17 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+자세히 살펴보면이 컴포넌트가 실제로 렌더링 트리에서 서로의 자식 및 조상인 패러독스라는 것을 알 수 있습니다! `Vue.component`를 이용해 전역으로 컴포넌트 등록할 때, 이 패러독스는 자동으로 해결됩니다. 그런 경우에 처해있으면 한번 읽어보세요.
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+그러나 __모듈 시스템__ 을 사용하여 컴포넌트를 필요로하거나 가져오는 경우. Webpack 또는 Browserify를 통해 오류가 발생합니다.
 
 ```
-Failed to mount component: template or render function not defined.
+컴포넌트를 마운트하지 못했습니다 : 템플릿 또는 렌더링 함수가 정의되지 않았습니다.
 ```
 
-To explain what's happening, I'll call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+무슨 일이 일어나고 있는지 설명하기 위해 모듈 A와 B를 호출 할 것입니다. 모듈 시스템은 A가 필요합니다 하지만 A는 B를 우선적으로 필요로 합니다 게다가 B는 A를 필요로 하는 것을 알 수 있습니다. 먼저 서로 다른 컴포넌트를 해결하지 않고 두 컴포넌트를 완전히 해결하는 방법을 알지 못합니다. 이를 해결하려면 모듈 시스템에 "A는 B를 필요로 하나 B를 __먼저__ 해결할 필요가 없습니다."라고 말할 수있는 지점을 제공해야합니다.
 
-In our case, I'll make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+여기에서는 `tree-folder` 컴포넌트로 삼을 것입니다. 패러독스를 만드는 자식은 `tree-folder-contents` 컴포넌트이므로, `beforeCreate` 라이프 사이클 훅이 등록 될 때까지 기다릴 것입니다.
 
 ``` js
 beforeCreate: function () {
@@ -1292,26 +1294,26 @@ beforeCreate: function () {
 }
 ```
 
-Problem solved!
+문제가 해결되었습니다!
 
-### Inline Templates
+### 인라인 템플릿
 
-When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
+하위 컴포넌트에 `inline-template` 이라는 특수한 속성이 존재할 때, 컴포넌트는 그 내용을 분산 된 내용으로 취급하지 않고 템플릿으로 사용합니다. 따라서 보다 유연한 템플릿 작성이 가능합니다.
 
 ``` html
 <my-component inline-template>
   <div>
-    <p>These are compiled as the component's own template.</p>
-    <p>Not parent's transclusion content.</p>
+    <p>이것은 컴포넌트의 자체 템플릿으로 컴파일됩니다.</p>
+    <p>부모가 만들어낸 내용이 아닙니다.</p>
   </div>
 </my-component>
 ```
 
-However, `inline-template` makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the `template` option or in a `template` element in a `.vue` file.
+그러나, `inline-template` 은 템플릿의 범위를 추론하기 더 어렵게 만듭니다. 가장 좋은 방법은 `template` 옵션을 사용하거나`.vue` 파일의`template` 엘리먼트를 사용하여 컴포넌트 내부에 템플릿을 정의하는 것입니다.
 
 ### X-Templates
 
-Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+템플리트를 정의하는 또 다른 방법은 `text/x-template` 유형의 스크립트 엘리먼트 내부에 ID로 템플릿을 참조하는 것입니다. 예:
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -1325,11 +1327,11 @@ Vue.component('hello-world', {
 })
 ```
 
-These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.
+이 기능은 큰 템플릿이나 매우 작은 응용 프로그램의 데모에는 유용 할 수 있지만 템플릿을 나머지 컴포넌트 정의와 분리하기 때문에 피해야합니다.
 
-### Cheap Static Components with `v-once`
+### `v-once`를 이용한 비용이 적게드는 정적 컴포넌트
 
-Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
+일반 HTML 엘리먼트를 렌더링하는 것은 Vue에서 매우 빠르지만 가끔 정적 콘텐츠가 **많이** 포함 된 컴포넌트가 있을 수 있습니다. 이런 경우,`v-once` 디렉티브를 루트 엘리먼트에 추가함으로써 캐시가 한번만 실행되도록 할 수 있습니다.
 
 ``` js
 Vue.component('terms-of-service', {

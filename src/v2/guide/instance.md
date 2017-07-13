@@ -1,40 +1,40 @@
 ---
-title: The Vue Instance
+title: Vue 인스턴스
 type: guide
 order: 3
 ---
 
-## Constructor
+## 생성자
 
-Every Vue vm is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
+모든 Vue vm은 `Vue` 생성자 함수로 **root Vue 인스턴스**를 생성하여 부트스트래핑됩니다.
 
 ``` js
 var vm = new Vue({
-  // options
+  // 옵션
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instances.
+엄격히 [MVVM 패턴](https://en.wikipedia.org/wiki/Model_View_ViewModel)과 관련이 없지만 Vue의 디자인은 부분적으로 그것에 영감을 받았습니다. 컨벤션으로, Vue 인스턴스를 참조하기 위해 종종 변수 `vm`(ViewModel의 약자)을 사용합니다.
 
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](../api).
+Vue 인스턴스를 인스턴스화 할 때는 데이터, 템플릿, 마운트할 엘리먼트, 메소드, 라이프사이클 콜백 등의 옵션을 포함 할 수있는 **options 객체**를 전달 해야합니다. 전체 옵션 목록은 [API reference](../api)에서 찾을 수 있습니다.
 
-The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
+`Vue` 생성자는 미리 정의 된 옵션으로 재사용 가능한 **컴포넌트 생성자**를 생성하도록 확장 될 수 있습니다
 
 ``` js
 var MyComponent = Vue.extend({
-  // extension options
+  // 옵션 확장
 })
 
-// all instances of `MyComponent` are created with
-// the pre-defined extension options
+// `MyComponent`의 모든 인스턴스는
+// 미리 정의된 확장 옵션과 함께 생성됩니다.
 var myComponentInstance = new MyComponent()
 ```
 
-Although it is possible to create extended instances imperatively, most of the time it is recommended to compose them declaratively in templates as custom elements. We will talk about [the component system](components.html) in detail later. For now, you just need to know that all Vue components are essentially extended Vue instances.
+확장된 인스턴스를 만들수는 있으나 대개 템플릿에서 사용자 지정 엘리먼트로 선언적으로 작성하는 것이 좋습니다. 나중에 [컴포넌트 시스템](components.html)에 대해 자세히 설명합니다. 지금은 모든 Vue 컴포넌트가 본질적으로 확장된 Vue 인스턴스라는 것을 알아야 합니다.
 
-## Properties and Methods
+## 속성과 메소드
 
-Each Vue instance **proxies** all the properties found in its `data` object:
+각 Vue 인스턴스는 `data` 객체에 있는 모든 속성을 **프록시** 처리 합니다.
 
 ``` js
 var data = { a: 1 }
@@ -44,18 +44,18 @@ var vm = new Vue({
 
 vm.a === data.a // -> true
 
-// setting the property also affects original data
+// 속성 설정은 원본 데이터에도 영향을 미칩니다.
 vm.a = 2
 data.a // -> 2
 
-// ... and vice-versa
+// ... 당연하게도
 data.a = 3
 vm.a // -> 3
 ```
 
-It should be noted that only these proxied properties are **reactive**. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.
+이러한 프록시 속성은 **반응형** 입니다. 인스턴스를 작성한 후 인스턴스에 새 특성을 첨부하면 뷰 업데이트가 트리거되지 않습니다. 우리는 나중에 반응 시스템에 대해 자세히 논의 할 것입니다.
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate them from proxied data properties. For example:
+Vue 인스턴스는 데이터 속성 외에도 유용한 인스턴스 속성 및 메소드를 제공합니다. 이 프로퍼티들과 메소드들은 `$` 접두사로 프록시 데이터 속성과 구별됩니다. 예:
 
 ``` js
 var data = { a: 1 }
@@ -67,19 +67,20 @@ var vm = new Vue({
 vm.$data === data // -> true
 vm.$el === document.getElementById('example') // -> true
 
-// $watch is an instance method
+// $watch 는 인스턴스 메소드 입니다.
 vm.$watch('a', function (newVal, oldVal) {
-  // this callback will be called when `vm.a` changes
+  // `vm.a`가 변경되면 호출 됩니다.
 })
 ```
 
-<p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an instance property or callback (e.g. `vm.$watch('a', newVal => this.myMethod())`). As arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect and `this.myMethod` will be undefined.</p>
+<p class="tip">인스턴스 속성이나 콜백에서 [화살표 함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)를 사용하지 마십시오. (예: `vm.$watch('a', newVal => this.myMethod())`). 화살표 함수는 부모 컨텍스트에 바인딩 되어 있으므로 `this`는 Vue 인스턴스가 아니며 `this.myMethod`는 정의되지 않습니다.
+</p>
 
-Consult the [API reference](../api) for the full list of instance properties and methods.
+인스턴스 속성 및 메소드의 전체 목록을 보려면 [API 참조](../api)를 참조하세요
 
-## Instance Lifecycle Hooks
+## 인스턴스 라이프사이클 훅
 
-Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the [`created`](../api/#created) hook is called after the instance is created:
+각 Vue 인스턴스는 데이터 관찰을 설정하고, 템플릿을 컴파일하고, 인스턴스를 DOM에 마운트하고, 데이터가 변경 될 때 DOM을 업데이트해야 할 때 일련의 초기화 단계를 거칩니다. 그 과정에서 사용자 정의 로직을 실행할 수있는 **라이프사이클 훅** 도 호출됩니다. 예를 들어, [`created`](../api/#created) 훅은 인스턴스가 생성된 후에 호출됩니다. 예:
 
 ``` js
 var vm = new Vue({
@@ -87,17 +88,17 @@ var vm = new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
+    // `this` 는 vm 인스턴스를 가리킵니다.
     console.log('a is: ' + this.a)
   }
 })
 // -> "a is: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, for example [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. You may have been wondering where the concept of "controllers" lives in the Vue world and the answer is: there are no controllers. Your custom logic for a component would be split among these lifecycle hooks.
+인스턴스 라이프사이클의 여러 단계에서 호출될 다른 훅도 있습니다. 그 예로 [`mounted`](../api/#mounted),[`updated`](../api/#updated) 및 [`destroyed`](../api/#destroyed)가 있습니다. 모든 라이프사이클 훅은 `this` 컨텍스트가 호출하는 Vue 인스턴스를 가리키며 호출됩니다. Vue 세계에서 "컨트롤러"의 컨셉이 어디에 있는지 궁금할 수 있습니다. 답은 컨트롤러가 없습니다. 컴포넌트의 사용자 지정 로직은 이러한 라이프사이클 훅으로 분할됩니다.
 
-## Lifecycle Diagram
+## 라이프사이클 다이어그램
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but this diagram will be helpful in the future.
+아래는 인스턴스 라이프사이클에 대한 다이어그램입니다. 지금 당장 모든 것을 완전히 이해할 필요는 없지만 다이어그램은 앞으로 도움이 될 것입니다.
 
 ![Lifecycle](/images/lifecycle.png)

@@ -57,6 +57,7 @@ Russian translation is maintained by Translation Gang.
 * Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
 
+
 ### Want to help with the translation?
 
 If you feel okay with translating sorta alone, just fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and just go on.
@@ -64,3 +65,7 @@ If you feel okay with translating sorta alone, just fork the repo, create a "wor
 If you are more of a team player, maybe Translation Gang is for you? Then just let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
 
 And thank you in advance ;)
+
+
+* Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
+* Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
