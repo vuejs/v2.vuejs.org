@@ -667,6 +667,22 @@ order: 31
       reposPersonal: [
         'vuejs-br/br.vuejs.org', 'ErickPetru/vue-feathers-chat'
       ]
+    },
+    {
+      name: 'John Leider',
+      title: 'Framework Sculptor',
+      city: 'Florida, United States',
+      languages: ['en'],
+      github: 'vuetifyjs',
+      twitter: 'vuetifyjs',
+      work: {
+        role: 'Developer',
+        org: 'Fast Forward Academy',
+        orgUrl: 'https://fastforwardacademy.com'
+      },
+      reposPersonal: [
+        'vuetifyjs/vuetify', 'vuetifyjs/vuetify'
+      ]
     }
   ]
 
