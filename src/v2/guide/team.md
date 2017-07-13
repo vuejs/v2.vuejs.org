@@ -671,7 +671,7 @@ order: 31
     },
     {
       name: 'Jilson Thomas',
-      title: 'Vue promoter and VueJobs Guy',
+      title: 'Vue Promoter and VueJobs Guy',
       city: 'Toronto, Canada',
       languages: ['en'],
       github: 'JillzTom',
