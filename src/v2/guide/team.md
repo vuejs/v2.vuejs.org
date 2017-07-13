@@ -22,7 +22,7 @@ order: 31
           <dt>Cœur de Vue</dt>
           <dd>
             <ul>
-              <li v-for="dépôt à profile.reposOfficial">
+              <li v-for="repo in profile.reposOfficial">
                 <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo }}</a>
               </li>
             </ul>
@@ -32,7 +32,7 @@ order: 31
           <dt>Écosystème</dt>
           <dd>
             <ul>
-              <li v-for="dépôt à profile.reposPersonal">
+              <li v-for="repo in profile.reposPersonal">
                 <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo }}</a>
               </li>
             </ul>
@@ -122,13 +122,13 @@ order: 31
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>qui est près de moi</span>
+          <span>Qui est près de moi ?</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      N'a pas trouver de lieu.
+      Impossible d'obtenir votre localisation.
     </p>
 
     <p>
@@ -161,13 +161,13 @@ order: 31
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>qui est près de moi</span>
+          <span>Qui est près de moi ?</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      N'a pas trouver de lieu.
+      Impossible d'obtenir votre localisation.
     </p>
 
     <p>
@@ -733,7 +733,7 @@ order: 31
                   'class="user-match" ' +
                   'title="' +
                     vm.profile.name +
-                    ' peut discuter techniquement avec vous dans votre langue préférée.' +
+                    ' peut donner des présentations techniques dans votre langue préférée.' +
                   '"' +
                 '\>' + language + '</span>'
               )
