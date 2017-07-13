@@ -13,9 +13,8 @@ order: 31
         :alt="profile.name" width=80 height=80>
     </div>
     <div class="profile">
-      <h3>
+      <h3 :data-official-title="profile.title">
         {{ profile.name }}
-        <sup v-if="profile.title" v-html="profile.title"></sup>
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
@@ -189,27 +188,28 @@ order: 31
 <script>
 (function () {
   var cityCoordsFor = {
-    'London, UK': [51.507351, -0.127758],
-    'Wrocław, Poland': [51.107885, 17.038538],
-    'Dubna, Russia': [56.732020, 37.166897],
-    'Tokyo, Japan': [35.689487, 139.691706],
-    'Lyon, France': [45.764043, 4.835659],
-    'Mannheim, Germany': [49.487459, 8.466039],
+    'Annecy, France': [45.899247, 6.129384],
+    'Bangalore, India': [12.971599, 77.594563],
+    'Bordeaux, France': [44.837789, -0.579180],
     'Chengdu, China': [30.572815, 104.066801],
     'Chongqing, China': [29.431586, 106.912251],
-    'Thessaloniki, Greece': [40.640063, 22.944419],
-    'Paris, France': [48.856614, 2.352222],
-    'Bordeaux, France': [44.837789, -0.579180],
-    'Lansing, MI, USA': [42.732535, -84.555535],
-    'Jersey City, NJ, USA': [40.728157, -74.558716],
+    'Dubna, Russia': [56.732020, 37.166897],
     'Hangzhou, China': [30.274084, 120.155070],
-    'Bangalore, India': [12.971599, 77.594563],
+    'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
-    'Tehran, Iran': [35.689197, 51.388974],
-    'Shanghai, China': [31.230390, 121.473702],
-    'Annecy, France': [45.899247, 6.129384],
+    'Lansing, MI, USA': [42.732535, -84.555535],
+    'London, UK': [51.507351, -0.127758],
+    'Lyon, France': [45.764043, 4.835659],
+    'Mannheim, Germany': [49.487459, 8.466039],
+    'Orlando, FL, USA': [28.538335, -81.379236],
+    'Paris, France': [48.856614, 2.352222],
     'Seoul, South Korea': [37.566535, 126.977969],
-    'Taquaritinga, Brazil': [-21.430094, -48.515285]
+    'Shanghai, China': [31.230390, 121.473702],
+    'Taquaritinga, Brazil': [-21.430094, -48.515285],
+    'Tehran, Iran': [35.689197, 51.388974],
+    'Thessaloniki, Greece': [40.640063, 22.944419],
+    'Tokyo, Japan': [35.689487, 139.691706],
+    'Wrocław, Poland': [51.107885, 17.038538]
   }
   var languageNameFor = {
     en: 'English',
@@ -670,8 +670,8 @@ order: 31
     },
     {
       name: 'John Leider',
-      title: 'Framework Sculptor',
-      city: 'Florida, United States',
+      title: 'Vuetiful Framework Sculptor',
+      city: 'Orlando, FL, USA',
       languages: ['en'],
       github: 'vuetifyjs',
       twitter: 'vuetifyjs',
@@ -681,7 +681,7 @@ order: 31
         orgUrl: 'https://fastforwardacademy.com'
       },
       reposPersonal: [
-        'vuetifyjs/vuetify', 'vuetifyjs/vuetify'
+        'vuetifyjs/vuetify'
       ]
     }
   ]
