@@ -667,6 +667,22 @@ order: 31
       reposPersonal: [
         'vuejs-br/br.vuejs.org', 'ErickPetru/vue-feathers-chat'
       ]
+    },
+    {
+      name: 'Jilson Thomas',
+      title: 'Vue promoter and VueJobs Guy',
+      city: 'Toronto, Canada',
+      languages: ['en'],
+      github: 'JillzTom',
+      twitter: 'jilsonthomas',
+      work: {
+        role: 'Senior Frontend Developer',
+        org: 'Nominator',
+        orgUrl: 'https://nominator.com/'
+      },
+      links: [
+        'https://vuejobs.com',
+      ]
     }
   ]
 
