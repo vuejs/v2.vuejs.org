@@ -192,6 +192,7 @@ order: 31
 (function () {
   var cityCoordsFor = {
     'Annecy, France': [45.899247, 6.129384],
+    'Alicante, Spain' : [38.346543, -0.483838],
     'Bangalore, India': [12.971599, 77.594563],
     'Bordeaux, France': [44.837789, -0.579180],
     'Bucharest, Romania': [44.426767, 26.102538],
@@ -701,6 +702,21 @@ order: 31
         role: 'Senior Frontend Developer',
         org: 'Nominator',
         orgUrl: 'https://nominator.com/'
+      },
+      links: [
+        'https://vuejobs.com'
+      ]
+    },
+    {
+      name: 'Israel Ortuño',
+      title: 'VueJobs Buccaneer',
+      city: 'Alicante, Spain',
+      languages: ['es', 'en'],
+      github: 'IsraelOrtuno',
+      twitter: 'IsraelOrtuno',
+      work: {
+        role: 'Full Stack Web Developer',
+        org: 'Freelance'
       },
       links: [
         'https://vuejobs.com'
