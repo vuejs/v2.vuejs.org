@@ -706,7 +706,7 @@ order: 31
     },
     {
       name: 'Israel Ortuño',
-      title: 'Vue Promoter and VueJobs Guy',
+      title: 'VueJobs buccaneer',
       city: 'Alicante, Spain',
       languages: ['en', 'es'],
       github: 'IsraelOrtuno',
