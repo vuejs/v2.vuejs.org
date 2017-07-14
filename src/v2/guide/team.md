@@ -706,13 +706,13 @@ order: 31
     },
     {
       name: 'Israel Ortuño',
-      title: 'VueJobs buccaneer',
+      title: 'VueJobs Buccaneer',
       city: 'Alicante, Spain',
-      languages: ['en', 'es'],
+      languages: ['es', 'en'],
       github: 'IsraelOrtuno',
       twitter: 'IsraelOrtuno',
       work: {
-        role: 'Full-stack web developer',
+        role: 'Full Stack Web Developer',
         org: 'Freelance'
       },
       links: [
