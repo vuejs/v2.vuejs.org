@@ -21,10 +21,10 @@ When you instantiate a Vue instance, you need to pass in an **options object** w
 The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
 
 ``` js
+
 var MyComponent = Vue.extend({
   // extension options
 })
-
 // all instances of `MyComponent` are created with
 // the pre-defined extension options
 var myComponentInstance = new MyComponent()
@@ -53,9 +53,12 @@ data.a = 3
 vm.a // -> 3
 ```
 
-It should be noted that only these proxied properties are **reactive**. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate them from proxied data properties. For example:
+It should be noted that only these proxied properties are **reactive**. Meaning, you are able to read and write to the members of the data object **directly** and it will be propagated everywhere for you. **Note here**: we have, `vm.a` and not `vm.data.a(undefined)`. The data object has been `proxied`. Vue then watches the proxied object to update your view accordingly when any of them changes.
+
+If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.
+
+In addition to proxied data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate them from proxied data properties. For example:
 
 ``` js
 var data = { a: 1 }
@@ -69,9 +72,12 @@ vm.$el === document.getElementById('example') // -> true
 
 // $watch is an instance method
 vm.$watch('a', function (newVal, oldVal) {
-  // this callback will be called when `vm.a` changes
+  console.log('value of a has changed');
 })
-```
+vm.a = 0 // -> logs 'value a has changed'
+vm.a = 10 // -> logs 'value a has changed'
+ ```
+**See how easy it is**: Vue allows you to update your data(ex. after a network call), and its propagated everywhere for you.
 
 <p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an instance property or callback (e.g. `vm.$watch('a', newVal => this.myMethod())`). As arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect and `this.myMethod` will be undefined.</p>
 
