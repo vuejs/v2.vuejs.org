@@ -202,10 +202,12 @@ order: 31
     'Hangzhou, China': [30.274084, 120.155070],
     'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
+    'Krasnodar, Russia': [45.039267, 38.987221],
     'Lansing, MI, USA': [42.732535, -84.555535],
     'London, UK': [51.507351, -0.127758],
     'Lyon, France': [45.764043, 4.835659],
     'Mannheim, Germany': [49.487459, 8.466039],
+    'Moscow, Russia': [55.755826, 37.617300],
     'Orlando, FL, USA': [28.538335, -81.379236],
     'Paris, France': [48.856614, 2.352222],
     'Seoul, South Korea': [37.566535, 126.977969],
@@ -736,6 +738,31 @@ order: 31
       },
       reposPersonal: [
         'vuetifyjs/vuetify'
+      ]
+    },
+    {
+      name: 'Grigoriy Beziuk',
+      title: 'Translation Gang Leader',
+      city: 'Moscow, Russia',
+      languages: ['ru', 'de', 'en'],
+      github: 'gbezyuk',
+      work: {
+        role: 'Full Stack Web Developer',
+        org: 'Self Employed',
+        orgUrl: 'http://gbezyuk.ru'
+      },
+      reposPersonal: [
+        'translation-gang/ru.vuejs.org'
+      ]
+    },
+    {
+      name: 'Alexander Sokolov',
+      title: 'Russian Translation Sharp Eye',
+      city: 'Krasnodar, Russia',
+      languages: ['ru', 'en'],
+      github: 'Alex-Sokolov',
+      reposPersonal: [
+        'translation-gang/ru.vuejs.org'
       ]
     }
   ]
