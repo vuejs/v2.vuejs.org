@@ -252,7 +252,16 @@
 
     function makeLink (h) {
       var link = document.createElement('li')
-      var text = h.textContent.replace(/\(.*\)$/, '')
+      window.arst = h
+      var text = [].slice.call(h.childNodes).map(function (node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.nodeValue
+        } else if (['CODE', 'SPAN'].indexOf(node.tagName) !== -1) {
+          return node.textContent
+        } else {
+          return ''
+        }
+      }).join('').replace(/\(.*\)$/, '')
       link.innerHTML =
         '<a class="section-link" data-scroll href="#' + h.id + '">' +
           htmlEscape(text) +

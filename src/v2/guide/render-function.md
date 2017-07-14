@@ -28,26 +28,24 @@ When you get started with a component that just generates a heading based on the
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
-  <div>
-    <h1 v-if="level === 1">
-      <slot></slot>
-    </h1>
-    <h2 v-if="level === 2">
-      <slot></slot>
-    </h2>
-    <h3 v-if="level === 3">
-      <slot></slot>
-    </h3>
-    <h4 v-if="level === 4">
-      <slot></slot>
-    </h4>
-    <h5 v-if="level === 5">
-      <slot></slot>
-    </h5>
-    <h6 v-if="level === 6">
-      <slot></slot>
-    </h6>
-  </div>
+  <h1 v-if="level === 1">
+    <slot></slot>
+  </h1>
+  <h2 v-else-if="level === 2">
+    <slot></slot>
+  </h2>
+  <h3 v-else-if="level === 3">
+    <slot></slot>
+  </h3>
+  <h4 v-else-if="level === 4">
+    <slot></slot>
+  </h4>
+  <h5 v-else-if="level === 5">
+    <slot></slot>
+  </h5>
+  <h6 v-else-if="level === 6">
+    <slot></slot>
+  </h6>
 </script>
 ```
 
@@ -63,7 +61,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element. The whole thing is also wrapped in a useless `div` because components must contain exactly one root node.
+That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element.
 
 While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
 
@@ -311,10 +309,11 @@ This is the cost of going lower-level, but it also gives you much more control o
 
 ### Event & Key Modifiers
 
-For the `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
 
 | Modifier(s) | Prefix |
 | ------ | ------ |
+| `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |

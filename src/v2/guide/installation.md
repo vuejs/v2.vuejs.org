@@ -93,7 +93,7 @@ If you need to compile templates on the fly (e.g. passing a string to the `templ
 ``` js
 // this requires the compiler
 new Vue({
-  template: `<div>{{ hi }}</div>`
+  template: '<div>{{ hi }}</div>'
 })
 
 // this does not
