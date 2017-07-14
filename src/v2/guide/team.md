@@ -756,7 +756,7 @@ order: 31
     },
     {
       name: 'Alexander Sokolov',
-      title: 'Translation Gang Right Hand',
+      title: 'Russian Translation Sharp Eye',
       city: 'Krasnodar, Russia',
       languages: ['ru', 'en'],
       github: 'Alex-Sokolov',
