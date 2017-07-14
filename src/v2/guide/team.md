@@ -862,6 +862,9 @@ order: 31
       }
       document.addEventListener('keydown', this.konamiKeydown)
     },
+    beforeDestroy: function () {
+      document.removeEventListener('keydown', this.konamiKeydown)
+    }
     methods: {
       getUserPosition: function () {
         var vm = this
@@ -912,9 +915,6 @@ order: 31
           this.konami.position = 0
         }
       }
-    },
-    beforeUnmount: function () {
-      document.removeEventListener('keydown', this.konamiKeydown)
     }
   })
 
