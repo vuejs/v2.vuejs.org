@@ -737,7 +737,33 @@ order: 31
       reposPersonal: [
         'vuetifyjs/vuetify'
       ]
-    }
+    },
+    {
+      name: 'Grigoriy Beziuk',
+      title: 'Translation Gang Führer',
+      city: 'Around the World',
+      languages: ['ru', 'de', 'en'],
+      github: 'gbezyuk',
+      twitter: 'schoder',
+      work: {
+        role: 'Full Stack Web Developer',
+        org: 'self-employed',
+        orgUrl: 'http://gbezyuk.ru'
+      },
+      reposOfficial: [
+        'translation-gang/ru.vuejs.org'
+      ]
+    },
+    {
+      name: 'Alexander Sokolov',
+      title: 'Translation Gang Right Hand',
+      city: 'Krasnodar, Russia',
+      languages: ['ru', 'en'],
+      github: 'Alex-Sokolov',
+      reposOfficial: [
+        'translation-gang/ru.vuejs.org'
+      ]
+    },
   ]
 
   Vue.component('vuer-profile', {
