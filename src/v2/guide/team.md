@@ -744,7 +744,6 @@ order: 31
       city: 'Around the World',
       languages: ['ru', 'de', 'en'],
       github: 'gbezyuk',
-      twitter: 'schoder',
       work: {
         role: 'Full Stack Web Developer',
         org: 'self-employed',
