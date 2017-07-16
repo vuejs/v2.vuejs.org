@@ -81,7 +81,27 @@ type: api
 
   > In 2.2.0, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
+  > In 2.4.0 this hook also captures errors thrown inside Vue custom event handlers.
+
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+
+### warnHandler
+
+> New in 2.4.0
+
+- **Type:** `Function`
+
+- **Default:** `undefined`
+
+- **Usage:**
+
+  ``` js
+  Vue.config.warnHandler = function (msg, vm, trace) {
+    // trace is the component hierarchy trace
+  }
+  ```
+
+  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
 
 ### ignoredElements
 
@@ -1080,6 +1100,30 @@ if (version === 2) {
   </my-checkbox>
   ```
 
+### inheritAttrs
+
+> New in 2.4.0
+
+- **Type:** `boolean`
+
+- **Default:** `true`
+
+- **Details:**
+
+  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+
+### comments
+
+> New in 2.4.0
+
+- **Type:** `boolean`
+
+- **Default:** `false`
+
+- **Details:**
+
+  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+
 ## 实例属性
 
 ### vm.$data
@@ -1256,13 +1300,33 @@ if (version === 2) {
 
 - **参考：** [服务端渲染](../guide/ssr.html)
 
+### vm.$attrs
+
+- **Type:** `{ [key: string]: string }`
+
+- **Read only**
+
+- **Details:**
+
+  Contains parent-scope attribute bindings that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings except for `class` and `style`, and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+
+### vm.$listeners
+
+- **Type:** `{ [key: string]: Function | Array<Function> }`
+
+- **Read only**
+
+- **Details:**
+
+  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating higher-order components.
+
 ## 实例方法 / 数据
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
 - **参数：**
   - `{string | Function} expOrFn`
-  - `{Function} callback`
+  - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
@@ -1658,9 +1722,9 @@ if (version === 2) {
 
 - **缩写：** `@`
 
-- **类型：** `Function | Inline Statement`
+- **类型：** `Function | Inline Statement | Object`
 
-- **参数：** `event (required)`
+- **参数：** `event`
 
 - **修饰符：**
   - `.stop` - 调用 `event.stopPropagation()`。
@@ -1679,6 +1743,8 @@ if (version === 2) {
 
   绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
+  Starting in `2.4.0`, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+
   用在普通元素上时，只能监听 **原生 DOM 事件**。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
 
   在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 `$event` 属性： `v-on:click="handle('ok', $event)"`。
@@ -1688,6 +1754,9 @@ if (version === 2) {
   ```html
   <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
+
+  <!-- object syntax (2.4.0+) -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
   <!-- 内联语句 -->
   <button v-on:click="doThat('hello', $event)"></button>
