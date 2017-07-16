@@ -482,7 +482,7 @@ Tout ce dont le composant a besoin est passé dans l'objet `context`, qui est un
 
 Après avoir ajouté `functional: true`, mettre à jour la fonction de rendu de notre composant de titres avec ancres va simplement nécessiter d'ajouter l'argument `context`, en remplaçant `this.$slots.default` par `context.children`, puis `this.level` par `context.props.level`.
 
-Puisque les composants fonctionnels ne sont que des fonctions, leur rendu est plus rapide. Cependant, cela signifie également que les composants fonctionnels n'apparaissent pas dans l'arbre des composants de l'outil de développement Vue.js de Chrome.
+Puisque les composants fonctionnels ne sont que des fonctions, leur rendu est plus rapide. Cependant, cela signifie également que les composants fonctionnels n'apparaissent pas dans l'arbre des composants de l'outil de développement [Vue devtools](https://github.com/vuejs/vue-devtools).
 
 Ils sont également très utiles en tant que composants enveloppes. Par exemple, quand vous avez besoin de :
 

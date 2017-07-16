@@ -6,7 +6,7 @@ order: 3
 
 ## Constructeur
 
-Chaque Vue vm est initialisée en créant une **instance racine de Vue** avec le constructeur de la fonction `Vue`
+Chaque application Vue est initialisée en créant une **instance racine de Vue** avec le constructeur de la fonction `Vue` :
 
 ``` js
 var vm = new Vue({
@@ -14,9 +14,9 @@ var vm = new Vue({
 })
 ```
 
-Bien que n'étant pas strictement associée au patron d'architecture [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), la conception de Vue s'en est en partie inspirée. Par convention, nous utilisons souvent la variable `vm` (abréviation pour ViewModel) pour faire référence à nos instances de Vue.
+Bien que n'étant pas strictement associée au patron d'architecture [MVVM pattern](https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-vue_mod%C3%A8le), la conception de Vue s'en est en partie inspirée. Par convention, nous utilisons souvent la variable `vm` (abréviation pour ViewModel) pour faire référence à nos instances de Vue.
 
-Quand vous créez une instance de Vue, vous devez passer un **objet d'options** qui contient les options pour les données, le template, l’élément de montage, les méthodes, les fonctions de retour du cycle de vie etc... La liste des options peut être trouvée [dans la documentation de l'API](../api).
+Quand vous créez une instance de Vue, vous devez passer un **objet d'options** qui contient les options pour les données, le template, l'élément de montage, les méthodes, les fonctions de rappel du cycle de vie et plus encore. La liste des options peut être trouvée [dans la documentation de l'API](../api#Options-Data).
 
 Le constructeur de `Vue` peut être étendu pour créer des **constructeurs de composants** réutilisables avec des options prédéfinies.
 
@@ -53,7 +53,7 @@ data.a = 3
 vm.a // -> 3
 ```
 
-Soulignons que seuls ces propriétés proxifiées sont **réactives**. Si vous attachez une nouvelle propriété à l'instance après sa création, elle ne déclenchera aucune mise à jour de la vue. Nous parlerons plus loin du système de réactivité en détail.
+Soulignons que seuls ces propriétés proxifiées sont **réactives**, c.-à-d. que tout changement sur leurs valeurs déclenchera un nouveau rendu de la vue. Si vous attachez une nouvelle propriété à l'instance après sa création, elle ne déclenchera aucune mise à jour de la vue. Nous parlerons plus loin du système de réactivité en détail.
 
 En plus des propriétés de data, les instances de Vue exposent de nombreuses méthodes et propriétés utiles. Ces propriétés et méthodes sont préfixées par `$` pour les différencier des propriétés proxifiées de data. Par exemple :
 
@@ -75,7 +75,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 <p class="tip">N'utilisez pas les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) sur une propriété ou fonction de retour d'une instance  (par exemple `vm.$watch('a', newVal => this.myMethod())`). Comme les fonctions fléchées sont liées au contexte parent, `this` ne sera pas l'instance de Vue comme vous pourriez vous y attendre et `this.myMethod` sera indéfini.</p>
 
-Consultez [l'API](../api) pour une liste complète des propriétés et méthodes d'une instance. 
+Consultez [l'API](../api#Proprietes-dinstance) pour une liste complète des propriétés et méthodes d'une instance.
 
 ## Les *hooks* de cycle de vie d'une instance
 
