@@ -69,11 +69,11 @@ vm.$el === document.getElementById('example') // -> true
 
 // $watch est une méthode de l'instance
 vm.$watch('a', function (newVal, oldVal) {
-  // cette fonction de retour sera appelée quand `vm.a` changera
+  // cette fonction de rappel sera appelée quand `vm.a` changera
 })
 ```
 
-<p class="tip">N'utilisez pas les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) sur une propriété ou fonction de retour d'une instance  (par exemple `vm.$watch('a', newVal => this.myMethod())`). Comme les fonctions fléchées sont liées au contexte parent, `this` ne sera pas l'instance de Vue comme vous pourriez vous y attendre et `this.myMethod` sera indéfini.</p>
+<p class="tip">N'utilisez pas les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) sur une propriété ou fonction de rappel d'une instance  (par exemple `vm.$watch('a', newVal => this.myMethod())`). Comme les fonctions fléchées sont liées au contexte parent, `this` ne sera pas l'instance de Vue comme vous pourriez vous y attendre et `this.myMethod` sera indéfini.</p>
 
 Consultez [l'API](../api#Proprietes-dinstance) pour une liste complète des propriétés et méthodes d'une instance.
 

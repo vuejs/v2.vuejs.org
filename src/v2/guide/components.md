@@ -1102,7 +1102,7 @@ Dans de grosses applications, nous avons parfois besoin de diviser la structure 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
-    // Passer la définition du composant à la fonction de retour `resolve`
+    // Passer la définition du composant à la fonction de rappel `resolve`
     resolve({
       template: '<div>I am async!</div>'
     })

@@ -440,7 +440,7 @@ methods: {
 
 Ces hooks peuvent être utilisés en combinaison avec des transitions/animations CSS ou sur eux-mêmes.
 
-<p class="tip">Lors de l'utilisation de transitions uniquement JavaScript, **les fonctions de retour `done` sont obligatoires pour les hooks `enter` et `leave`**. Dans le cas contraire, elles seront appelées de façon synchrone et la transition se terminera immédiatement.</p>
+<p class="tip">Lors de l'utilisation de transitions uniquement JavaScript, **les fonctions de rappel `done` sont obligatoires pour les hooks `enter` et `leave`**. Dans le cas contraire, elles seront appelées de façon synchrone et la transition se terminera immédiatement.</p>
 
 <p class="tip">C'est aussi une bonne idée d'ajouter explicitement `v-bind:css="false"` pour les transitions uniquement JavaScript afin que Vue puisse ignorer la détection CSS. Cela empêche également les règles CSS d'interfèrer accidentellement avec la transition.</p>
 

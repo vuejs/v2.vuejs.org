@@ -75,7 +75,7 @@ Il y a des raisons techniques derrière cette restriction (ça élimine toute un
 
 ## File d'attente de mise à jour asynchrone
 
-Au cas où vous ne l'auriez pas encore remarqué, Vue effectue les mises à jour du DOM de façon **asynchrone**. Chaque fois qu'un changement de données est observé, cela ouvrira une file d'attente et mettra en mémoire toutes les modifications de données qui se sont produites dans la même boucle des événements. Si le même observateur est déclenché plusieurs fois, il ne sera ajouté qu'une seule fois dans la file d'attente. Cette suppression des doublons en mémoire est primordiale car elle évite des calculs et des manipulations du DOM inutiles. Puis, lors du prochain « tour » (tick) de la boucle des événements, Vue vide la file d'attente et effectue le travail (déjà dédoublonné). En interne, Vue essaie d'utiliser les fonctions natives `Promise.then` et `MutationObserver` pour la file d'attente asynchrone et se rabat sur `setTimeout(fn, 0)` si elles ne sont pas supportées. 
+Au cas où vous ne l'auriez pas encore remarqué, Vue effectue les mises à jour du DOM de façon **asynchrone**. Chaque fois qu'un changement de données est observé, cela ouvrira une file d'attente et mettra en mémoire toutes les modifications de données qui se sont produites dans la même boucle des événements. Si le même observateur est déclenché plusieurs fois, il ne sera ajouté qu'une seule fois dans la file d'attente. Cette suppression des doublons en mémoire est primordiale car elle évite des calculs et des manipulations du DOM inutiles. Puis, lors du prochain « tour » (tick) de la boucle des événements, Vue vide la file d'attente et effectue le travail (déjà dédoublonné). En interne, Vue essaie d'utiliser les fonctions natives `Promise.then` et `MutationObserver` pour la file d'attente asynchrone et se rabat sur `setTimeout(fn, 0)` si elles ne sont pas supportées.
 
 Par exemple, lorsque vous définissez `vm.someData = 'nouvelle valeur'`, le composant ne sera pas rendu de nouveau immédiatement. Il se mettra à jour au prochain « tour » (tick), lorsque la file d'attente sera vidée. La plupart du temps nous n'avons pas besoin de nous en soucier, mais cela peut être délicat lorsque vous voulez faire quelque chose qui dépend de l'état du DOM après sa mise à jour. Bien que Vue.js encourage généralement les développeurs à penser dans un mode « piloté par les données » (« data-driven ») en évitant de toucher le DOM directement, parfois il peut être nécessaire de se salir les mains. Afin d'attendre que Vue.js ait terminé la mise à jour du DOM après un changement de données, vous pouvez utiliser `Vue.nextTick (callback)` immédiatement après la modification des données. La fonction de retour sera appelée après que le DOM ait été mis à jour. Par exemple :
 
@@ -97,7 +97,7 @@ Vue.nextTick(function () {
 })
 ```
 
-Il y a aussi la méthode d'instance `vm.$nextTick()`, qui est particulièrement pratique à l'intérieur des composants, car elle n'a pas besoin de la variable globale de `Vue` et le contexte `this` de sa fonction de retour sera automatiquement lié à l'instance de Vue actuelle :
+Il y a aussi la méthode d'instance `vm.$nextTick()`, qui est particulièrement pratique à l'intérieur des composants, car elle n'a pas besoin de la variable globale de `Vue` et le contexte `this` de sa fonction de rappel sera automatiquement lié à l'instance de Vue actuelle :
 
 ``` js
 Vue.component('example', {

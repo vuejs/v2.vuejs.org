@@ -112,7 +112,7 @@ Pourquoi avons-nous besoin de mettre en cache ? Imaginez que nous avons une prop
 
 ### Propriétés calculées vs observées
 
-Vue fournit une façon plus générique d'observer et de réagir aux changements de données sur une instance de Vue : **les propriétés watch**. Quand vous avez des données qu'il faut changer selon d'autres données, il est tentant d'abuser de `watch` (surtout si vous venez du monde d'AngularJS). Toutefois, il est souvent préférable d’utiliser une propriété calculée et non une fonction de retour impérative comme `watch`. Considérez cet exemple :
+Vue fournit une façon plus générique d'observer et de réagir aux changements de données sur une instance de Vue : **les propriétés watch**. Quand vous avez des données qu'il faut changer selon d'autres données, il est tentant d'abuser de `watch` (surtout si vous venez du monde d'AngularJS). Toutefois, il est souvent préférable d’utiliser une propriété calculée et non une fonction de rappel impérative comme `watch`. Considérez cet exemple :
 
 ``` html
 <div id="demo">{{ fullName }}</div>
