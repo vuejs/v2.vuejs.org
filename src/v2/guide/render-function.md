@@ -485,9 +485,9 @@ Vue.component('my-component', {
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
 
-函数化组件只是一个函数，所以渲染开销也低很多。However, this also mean that functional components don't show up in VueJS Chrome dev tools component tree.
+由于函数式组件只是函数，因此渲染性能开销也低很多。但是，由于缺少持久性实例，意味着它们不会出现在 [Vue 调试工具](https://github.com/vuejs/vue-devtools)的组件树中。
 
-They're also very useful as wrapper components.  For example, when you need to:
+They're also very useful as wrapper components. For example, when you need to:
 
 - Programmatically choose one of several other components to delegate to
 - Manipulate children, props, or data before passing them on to a child component

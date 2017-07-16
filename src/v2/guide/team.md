@@ -15,6 +15,7 @@ order: 31
     <div class="profile">
       <h3 :data-official-title="profile.title">
         {{ profile.name }}
+        <sup v-if="profile.title && titleVisible" v-html="profile.title"></sup>
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
@@ -142,6 +143,7 @@ order: 31
       v-for="profile in sortedTeam"
       :key="profile.github"
       :profile="profile"
+      :title-visible="titleVisible"
     ></vuer-profile>
   </div>
 
@@ -181,6 +183,7 @@ order: 31
       v-for="profile in sortedPartners"
       :key="profile.github"
       :profile="profile"
+      :title-visible="titleVisible"
     ></vuer-profile>
   </div>
 </div>
@@ -189,6 +192,7 @@ order: 31
 (function () {
   var cityCoordsFor = {
     'Annecy, France': [45.899247, 6.129384],
+    'Alicante, Spain' : [38.346543, -0.483838],
     'Bangalore, India': [12.971599, 77.594563],
     'Bordeaux, France': [44.837789, -0.579180],
     'Bucharest, Romania': [44.426767, 26.102538],
@@ -198,10 +202,12 @@ order: 31
     'Hangzhou, China': [30.274084, 120.155070],
     'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
+    'Krasnodar, Russia': [45.039267, 38.987221],
     'Lansing, MI, USA': [42.732535, -84.555535],
     'London, UK': [51.507351, -0.127758],
     'Lyon, France': [45.764043, 4.835659],
     'Mannheim, Germany': [49.487459, 8.466039],
+    'Moscow, Russia': [55.755826, 37.617300],
     'Orlando, FL, USA': [28.538335, -81.379236],
     'Paris, France': [48.856614, 2.352222],
     'Seoul, South Korea': [37.566535, 126.977969],
@@ -704,6 +710,21 @@ order: 31
       ]
     },
     {
+      name: 'Israel Ortuño',
+      title: 'VueJobs Buccaneer',
+      city: 'Alicante, Spain',
+      languages: ['es', 'en'],
+      github: 'IsraelOrtuno',
+      twitter: 'IsraelOrtuno',
+      work: {
+        role: 'Full Stack Web Developer',
+        org: 'Freelance'
+      },
+      links: [
+        'https://vuejobs.com'
+      ]
+    },
+    {
       name: 'John Leider',
       title: 'Vuetiful Framework Sculptor',
       city: 'Orlando, FL, USA',
@@ -718,13 +739,39 @@ order: 31
       reposPersonal: [
         'vuetifyjs/vuetify'
       ]
+    },
+    {
+      name: 'Grigoriy Beziuk',
+      title: 'Translation Gang Leader',
+      city: 'Moscow, Russia',
+      languages: ['ru', 'de', 'en'],
+      github: 'gbezyuk',
+      work: {
+        role: 'Full Stack Web Developer',
+        org: 'Self Employed',
+        orgUrl: 'http://gbezyuk.ru'
+      },
+      reposPersonal: [
+        'translation-gang/ru.vuejs.org'
+      ]
+    },
+    {
+      name: 'Alexander Sokolov',
+      title: 'Russian Translation Sharp Eye',
+      city: 'Krasnodar, Russia',
+      languages: ['ru', 'en'],
+      github: 'Alex-Sokolov',
+      reposPersonal: [
+        'translation-gang/ru.vuejs.org'
+      ]
     }
   ]
 
   Vue.component('vuer-profile', {
     template: '#vuer-profile-template',
     props: {
-      profile: Object
+      profile: Object,
+      titleVisible: Boolean
     },
     computed: {
       workHtml: function () {
@@ -828,7 +875,11 @@ order: 31
       isSorting: false,
       errorGettingLocation: false,
       userPosition: null,
-      useMiles: false
+      useMiles: false,
+      konami: {
+        position: 0,
+        code: [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
+      }
     },
     computed: {
       sortedTeam: function () {
@@ -836,6 +887,9 @@ order: 31
       },
       sortedPartners: function () {
         return this.sortVuersByDistance(this.partners)
+      },
+      titleVisible: function () {
+        return this.konami.code.length === this.konami.position
       }
     },
     created: function () {
@@ -849,6 +903,10 @@ order: 31
           this.useMiles = true
         }
       }
+      document.addEventListener('keydown', this.konamiKeydown)
+    },
+    beforeDestroy: function () {
+      document.removeEventListener('keydown', this.konamiKeydown)
     },
     methods: {
       getUserPosition: function () {
@@ -890,6 +948,15 @@ order: 31
           )
         })
         return vuersWithDistances
+      },
+      konamiKeydown: function (event) {
+        if (this.titleVisible) {
+          return
+        }
+
+        if (event.keyCode !== this.konami.code[this.konami.position++]) {
+          this.konami.position = 0
+        }
       }
     }
   })
