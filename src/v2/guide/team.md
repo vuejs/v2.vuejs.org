@@ -13,9 +13,9 @@ order: 31
         :alt="profile.name" width=80 height=80>
     </div>
     <div class="profile">
-      <h3>
+      <h3 :data-official-title="profile.title">
         {{ profile.name }}
-        <sup v-if="profile.title" v-html="profile.title"></sup>
+        <sup v-if="profile.title && titleVisible" v-html="profile.title"></sup>
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
@@ -143,6 +143,7 @@ order: 31
       v-for="profile in sortedTeam"
       :key="profile.github"
       :profile="profile"
+      :title-visible="titleVisible"
     ></vuer-profile>
   </div>
 
@@ -182,6 +183,7 @@ order: 31
       v-for="profile in sortedPartners"
       :key="profile.github"
       :profile="profile"
+      :title-visible="titleVisible"
     ></vuer-profile>
   </div>
 </div>
@@ -189,30 +191,40 @@ order: 31
 <script>
 (function () {
   var cityCoordsFor = {
-    'London, UK': [51.507351, -0.127758],
-    'Wrocław, Poland': [51.107885, 17.038538],
-    'Dubna, Russia': [56.732020, 37.166897],
-    'Tokyo, Japan': [35.689487, 139.691706],
-    'Lyon, France': [45.764043, 4.835659],
-    'Mannheim, Germany': [49.487459, 8.466039],
+    'Annecy, France': [45.899247, 6.129384],
+    'Alicante, Spain' : [38.346543, -0.483838],
+    'Bangalore, India': [12.971599, 77.594563],
+    'Bordeaux, France': [44.837789, -0.579180],
+    'Bucharest, Romania': [44.426767, 26.102538],
     'Chengdu, China': [30.572815, 104.066801],
     'Chongqing, China': [29.431586, 106.912251],
-    'Thessaloniki, Greece': [40.640063, 22.944419],
-    'Paris, France': [48.856614, 2.352222],
-    'Bordeaux, France': [44.837789, -0.579180],
-    'Lansing, MI, USA': [42.732535, -84.555535],
-    'Jersey City, NJ, USA': [40.728157, -74.558716],
+    'Dubna, Russia': [56.732020, 37.166897],
     'Hangzhou, China': [30.274084, 120.155070],
-    'Bangalore, India': [12.971599, 77.594563],
+    'Jersey City, NJ, USA': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
+    'Krasnodar, Russia': [45.039267, 38.987221],
+    'Lansing, MI, USA': [42.732535, -84.555535],
+    'London, UK': [51.507351, -0.127758],
+    'Lyon, France': [45.764043, 4.835659],
+    'Mannheim, Germany': [49.487459, 8.466039],
+    'Moscow, Russia': [55.755826, 37.617300],
+    'Orlando, FL, USA': [28.538335, -81.379236],
+    'Paris, France': [48.856614, 2.352222],
+    'Seoul, South Korea': [37.566535, 126.977969],
+    'Shanghai, China': [31.230390, 121.473702],
+    'Taquaritinga, Brazil': [-21.430094, -48.515285],
     'Tehran, Iran': [35.689197, 51.388974],
-    'Shanghai, China': [31.230390, 121.473702]
+    'Thessaloniki, Greece': [40.640063, 22.944419],
+    'Tokyo, Japan': [35.689487, 139.691706],
+    'Toronto, Canada': [43.653226, -79.383184],
+    'Wrocław, Poland': [51.107885, 17.038538]
   }
   var languageNameFor = {
     en: 'English',
     zh: '中文',
     vi: 'Tiếng Việt',
     pl: 'Polski',
+    pt: 'Português',
     ru: 'Русский',
     jp: '日本語',
     fr: 'Français',
@@ -220,7 +232,9 @@ order: 31
     el: 'Ελληνικά',
     es: 'Español',
     hi: 'हिंदी',
-    fa: 'فارسی'
+    fa: 'فارسی',
+    ko: '한국어',
+    ro: 'Română'
   }
 
   var team = [{
@@ -612,13 +626,152 @@ order: 31
       reposPersonal: [
         'elemefe/element', 'elemefe/mint-ui'
       ]
+    },
+    {
+      name: 'Bruno Lesieur',
+      title: 'French Community Directeur',
+      city: 'Annecy, France',
+      languages: ['fr', 'en'],
+      github: 'Haeresis',
+      twitter: 'MachinisteWeb',
+      work: {
+        role: 'Cofounder',
+        org: 'Orchard ID',
+        orgUrl: 'https://www.orchard-id.com/'
+      },
+      reposPersonal: [
+        'vuejs-fr/vuejs.org', 'Haeresis/node-atlas-hello-vue'
+      ],
+      links: [
+        'https://node-atlas.js.org/', 'https://blog.lesieur.name/'
+      ]
+    },
+    {
+      name: 'ChangJoo Park',
+      title: 'Vuenthusiastic Korean Community Organizer',
+      city: 'Seoul, South Korea',
+      languages: ['ko', 'en'],
+      github: 'changjoo-park',
+      twitter: 'pcjpcj2',
+      reposPersonal: [
+        'vuejs-kr/kr.vuejs.org', 'ChangJoo-Park/vue-component-generator'
+      ],
+      links: [
+        'https://vuejs-kr.github.io',
+        'https://twitter.com/pcjpcj2'
+      ]
+    },
+    {
+      name: 'Erick Petrucelli',
+      title: 'Perfectionist Chief Translator for Portuguese',
+      city: 'Taquaritinga, Brazil',
+      languages: ['pt', 'en'],
+      github: 'ErickPetru',
+      twitter: 'erickpetru',
+      work: {
+        role: 'Teacher',
+        org: 'Fatec Taquaritinga',
+        orgUrl: 'http://www.fatectq.edu.br/'
+      },
+      reposPersonal: [
+        'vuejs-br/br.vuejs.org', 'ErickPetru/vue-feathers-chat'
+      ]
+    },
+    {
+      name: 'Razvan Stoenescu',
+      title: 'Deep Space Quasar Creator',
+      city: 'Bucharest, Romania',
+      languages: ['ro', 'en'],
+      github: 'rstoenescu',
+      twitter: 'quasarframework',
+      work: {
+        role: 'Developer',
+        org: 'Quasar Framework',
+        orgUrl: 'http://quasar-framework.org/'
+      },
+      reposPersonal: [
+        'quasarframework/quasar', 'quasarframework/quasar-cli', 'quasarframework/quasar-play'
+      ]
+    },
+    {
+      name: 'Jilson Thomas',
+      title: 'Vue Promoter and VueJobs Guy',
+      city: 'Toronto, Canada',
+      languages: ['en'],
+      github: 'JillzTom',
+      twitter: 'jilsonthomas',
+      work: {
+        role: 'Senior Frontend Developer',
+        org: 'Nominator',
+        orgUrl: 'https://nominator.com/'
+      },
+      links: [
+        'https://vuejobs.com'
+      ]
+    },
+    {
+      name: 'Israel Ortuño',
+      title: 'VueJobs Buccaneer',
+      city: 'Alicante, Spain',
+      languages: ['es', 'en'],
+      github: 'IsraelOrtuno',
+      twitter: 'IsraelOrtuno',
+      work: {
+        role: 'Full Stack Web Developer',
+        org: 'Freelance'
+      },
+      links: [
+        'https://vuejobs.com'
+      ]
+    },
+    {
+      name: 'John Leider',
+      title: 'Vuetiful Framework Sculptor',
+      city: 'Orlando, FL, USA',
+      languages: ['en'],
+      github: 'vuetifyjs',
+      twitter: 'vuetifyjs',
+      work: {
+        role: 'Developer',
+        org: 'Fast Forward Academy',
+        orgUrl: 'https://fastforwardacademy.com'
+      },
+      reposPersonal: [
+        'vuetifyjs/vuetify'
+      ]
+    },
+    {
+      name: 'Grigoriy Beziuk',
+      title: 'Translation Gang Leader',
+      city: 'Moscow, Russia',
+      languages: ['ru', 'de', 'en'],
+      github: 'gbezyuk',
+      work: {
+        role: 'Full Stack Web Developer',
+        org: 'Self Employed',
+        orgUrl: 'http://gbezyuk.ru'
+      },
+      reposPersonal: [
+        'translation-gang/ru.vuejs.org'
+      ]
+    },
+    {
+      name: 'Alexander Sokolov',
+      title: 'Russian Translation Sharp Eye',
+      city: 'Krasnodar, Russia',
+      languages: ['ru', 'en'],
+      github: 'Alex-Sokolov',
+      reposPersonal: [
+        'translation-gang/ru.vuejs.org'
+      ]
     }
   ]
 
   Vue.component('vuer-profile', {
     template: '#vuer-profile-template',
     props: {
-      profile: Object
+      profile: Object,
+      titleVisible: Boolean
     },
     computed: {
       workHtml: function () {
@@ -722,7 +875,11 @@ order: 31
       isSorting: false,
       errorGettingLocation: false,
       userPosition: null,
-      useMiles: false
+      useMiles: false,
+      konami: {
+        position: 0,
+        code: [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
+      }
     },
     computed: {
       sortedTeam: function () {
@@ -730,6 +887,9 @@ order: 31
       },
       sortedPartners: function () {
         return this.sortVuersByDistance(this.partners)
+      },
+      titleVisible: function () {
+        return this.konami.code.length === this.konami.position
       }
     },
     created: function () {
@@ -743,6 +903,10 @@ order: 31
           this.useMiles = true
         }
       }
+      document.addEventListener('keydown', this.konamiKeydown)
+    },
+    beforeDestroy: function () {
+      document.removeEventListener('keydown', this.konamiKeydown)
     },
     methods: {
       getUserPosition: function () {
@@ -784,6 +948,15 @@ order: 31
           )
         })
         return vuersWithDistances
+      },
+      konamiKeydown: function (event) {
+        if (this.titleVisible) {
+          return
+        }
+
+        if (event.keyCode !== this.konami.code[this.konami.position++]) {
+          this.konami.position = 0
+        }
       }
     }
   })

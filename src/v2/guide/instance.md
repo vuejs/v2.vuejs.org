@@ -6,7 +6,7 @@ order: 3
 
 ## Constructor
 
-Every Vue vm is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
+Every Vue application is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
 
 ``` js
 var vm = new Vue({
@@ -14,9 +14,9 @@ var vm = new Vue({
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instances.
+Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
 
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the [API reference](../api).
+When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks, and more. The full list of options can be found in the [API reference](../api/#Options-Data).
 
 The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
 
@@ -53,7 +53,7 @@ data.a = 3
 vm.a // -> 3
 ```
 
-It should be noted that only these proxied properties are **reactive**. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.
+It should be noted that only these proxied properties are **reactive**, meaning any changes to their values will trigger the view to re-render. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in detail later.
 
 In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate them from proxied data properties. For example:
 
@@ -75,7 +75,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 <p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an instance property or callback (e.g. `vm.$watch('a', newVal => this.myMethod())`). As arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect and `this.myMethod` will be undefined.</p>
 
-Consult the [API reference](../api) for the full list of instance properties and methods.
+Consult the [API reference](../api/#Instance-Properties) for the full list of instance properties and methods.
 
 ## Instance Lifecycle Hooks
 
