@@ -198,6 +198,7 @@ order: 31
     'Bucharest, Romania': [44.426767, 26.102538],
     'Chengdu, China': [30.572815, 104.066801],
     'Chongqing, China': [29.431586, 106.912251],
+    'Denver, CO, USA': [39.739236, -104.990251],
     'Dubna, Russia': [56.732020, 37.166897],
     'Hangzhou, China': [30.274084, 120.155070],
     'Jersey City, NJ, USA': [40.728157, -74.558716],
@@ -776,6 +777,20 @@ order: 31
       github: 'Alex-Sokolov',
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
+      ]
+    },
+    {
+      name: 'Sarah Drasner',
+      city: 'Denver, CO, USA',
+      languages: ['en'],
+      work: {
+        role: 'Consultant'
+      },
+      github: 'sdras',
+      twitter: 'sarah_edo',
+      codepen: 'sdras',
+      reposPersonal: [
+        'intro-to-vue', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'vue-wine-label', 'vue-weather-notifier'
       ]
     }
   ]
