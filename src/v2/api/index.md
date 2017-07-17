@@ -254,13 +254,13 @@ type: api
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} key/index`
+
+  > Only works with Array + index in 2.2.0+.
 
 - **Usage:**
 
   Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
-
-  > Also works with on Array + index in 2.2.0+.
 
   <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
 
