@@ -312,7 +312,68 @@ Component templates should only include simple expressions, with more complex ex
 
 ### Complex computed properties
 
-Whenever possible, computed properties should be split into as many named values as possible.
+Complex computed properties should be split into as many simpler properties as possible.
+
+<sg-enforcement type="none"></sg-enforcement>
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` js
+computed: {
+  price: function () {
+    var basePrice = this.manufactureCost / (1 - this.profitMargin)
+    return (
+      basePrice -
+      basePrice * (this.discountPercent || 0)
+    )
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+computed: {
+  basePrice: function () {
+    return this.manufactureCost / (1 - this.profitMargin)
+  },
+  discount: function () {
+    return this.basePrice * (this.discountPercent || 0)
+  },
+  finalPrice: function () {
+    return this.basePrice - this.discount
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+Simpler, well-named computed properties are:
+
+- __Easier to test__
+
+  When each computed property contains only a very simple expression, with very few dependencies, it's much easier to write tests confirming that it works correctly.
+
+- __Easier to read__
+
+  Simplifying computed properties forces you to give each value a descriptive name, even if it's not reused. This makes it much easier for other developers (and future you) to focus in on the code they care about and figure out what's going on.
+
+- __More adaptable to changing requirements__
+
+  Any value that can be named might be useful to the view. For example, we might decide to display a message telling the user how much money they saved. We might also decide to calculate sales tax, but perhaps display it separately, rather than as part of the final price.
+
+  Small, focused computed properties make fewer assumptions about how information will be used, so require less refactoring as requirements change.
+
+{% raw %}</details>{% endraw %}
 
 ### Quoted attribute values
 
