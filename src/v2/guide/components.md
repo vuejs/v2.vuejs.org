@@ -1103,7 +1103,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [Webpack 代码分割功能](https://doc.webpack-china.org/guides/code-splitting/)来使用异步组件：
+工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [webpack 代码分割功能](https://doc.webpack-china.org/guides/code-splitting/)来使用异步组件：
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1112,7 +1112,7 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-可以在工厂函数中返回一个 `Promise`，所以使用 Webpack 2 + ES2015 语法后你可以这么做：
+可以在工厂函数中返回一个 `Promise`，所以使用 webpack 2 + ES2015 语法后你可以这么做：
 
 ``` js
 Vue.component(
@@ -1132,7 +1132,7 @@ new Vue({
 })
 ```
 
-<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 Webpack 所内置的一流异步支持。</p>
+<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 webpack 所内置的一流异步支持。</p>
 
 ### Advanced Async Components
 
@@ -1267,7 +1267,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 仔细观察后，你就会发现：在渲染树中，这些组件实际上都是彼此的后代和祖先，这是矛盾且相悖的！当使用 `Vue.component` 全局注册组件后，这个问题会自动解决。如果以上已经解决你的问题，你可以在这里停止阅读。
 
-然而，如果你使用了模块系统（例如通过 Webpack 或 Browserify 等模块化工具），并通过 require/import 导入组件的话，你就会看到一个错误：
+然而，如果你使用了模块系统（例如通过 webpack 或 Browserify 等模块化工具），并通过 require/import 导入组件的话，你就会看到一个错误：
 
 
 ```
