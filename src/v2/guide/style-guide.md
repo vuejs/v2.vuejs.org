@@ -282,7 +282,50 @@ Component names should always be multi-word (containing at least one hyphen), to
 
 ### Self-closing components
 
-Components with no content should be self-closing in single-file component or string templates, but never in DOM templates.
+Components with no content should be self-closing in single-file components, string templates, and JSX - but never in DOM templates.
+
+<sg-enforcement type="linter"></sg-enforcement>
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<!-- In single-file components, string templates, and JSX -->
+<MyComponent></MyComponent>
+```
+
+``` html
+<!-- In DOM templates -->
+<my-component/>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<!-- In single-file components, string templates, and JSX -->
+<MyComponent/>
+```
+
+``` html
+<!-- In DOM templates -->
+<my-component></my-component>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+Components that self-close communicate that they not only have no content, but are **meant** to have content. This extra expressive power and the cleaner code it allows make it preferred.
+
+Unfortunately however, HTML doesn't allow custom elements to be self-closing - only [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). This means a self-closing component is not guaranteed to be parsed correctly by the DOM, which may strip out the `/` from the opening tag. For this reason, self-closing components are only allowed in single-file components, string templates, and JSX, where Vue can compile the code into DOM-friendly HTML.
+
+{% raw %}</details>{% endraw %}
 
 ### Component name casing in JS/JSX
 
