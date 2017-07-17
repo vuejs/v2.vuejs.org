@@ -201,9 +201,7 @@ Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Vali
 
 ### Component style scoping
 
-Component styles should be scoped.
-
-<!-- TODO: Add note about NOT using scoped in libraries, but using a scoping strategy like BEM instead. -->
+Component styles should always be scoped in applications, but 3rd-party libraries should instead use a class-based scoping strategy, such as [BEM](http://getbem.com/).
 
 <sg-enforcement type="none"></sg-enforcement>
 
