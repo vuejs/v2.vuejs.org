@@ -381,28 +381,29 @@ new Vue({
 
 ### Prop 验证
 
-组件可以为 props 指定验证要求。如果未指定验证要求，Vue 会发出警告。当组件给其他人使用时这很有用。
+可以为组件接收到的 props 指定一些要求条件。如果某个要求条件未满足验证，Vue 就会触发警告。当你创建一个组件，并将这个组件提供给他人使用时，验证机制是很有帮助的。
 
-prop 是一个对象而不是字符串数组时，它包含验证要求：
+除了将 props 定义为一个数组或字符串，你还可以将其定义为一个带有验证要求条件的对象：
 
 ``` js
 Vue.component('example', {
   props: {
-    // 基础类型检测 （`null` 意思是任何类型都可以）
+    // 基本类型检查（`null` 表示接受所有类型）
     propA: Number,
-    // 多种类型
+    // 多种可能的类型
     propB: [String, Number],
-    // 必传且是字符串
+    // 必须传递，一个的字符串
     propC: {
       type: String,
       required: true
     },
-    // 数字，有默认值
+    // 数字类型，有一个默认值
     propD: {
       type: Number,
       default: 100
     },
-    // 数组／对象的默认值应当由一个工厂函数返回
+    // 数组/对象类型，
+    // 应该默认返回一个工厂函数
     propE: {
       type: Object,
       default: function () {
@@ -419,7 +420,7 @@ Vue.component('example', {
 })
 ```
 
-`type` 可以是下面原生构造器：
+`type` 可以是以下原生构造函数之一：
 
 - String
 - Number
@@ -429,11 +430,11 @@ Vue.component('example', {
 - Array
 - Symbol
 
-`type` 也可以是一个自定义构造器，使用 `instanceof` 检测。
+除了以上这些，`type` 还可以是一个自定义构造函数，在通过 `instanceof` 检测时，此构造函数会被用于进行类型推断。
 
-当 prop 验证失败了，Vue 会在控制台生成一条警告（如果使用的是开发构建版本）。Note that props are validated __before__ a component instance is created, so within `default` or `validator` functions, instance properties such as from `data`, `computed`, or `methods` will not be available.
+当 prop 验证失败，（如果使用的是开发构建版本，）Vue 就会在控制台抛出警告。注意，props 会在组件实例创建__之前__进行验证，因此在 `default` 或 `validator` 函数中，像 `data`, `computed` 或 `methods` 这些组件实例上的属性还无法访问。
 
-## Non-Prop Attributes
+## 非 Prop 属性(Non-Prop Attributes)
 
 A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
 
