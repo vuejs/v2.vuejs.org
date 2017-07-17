@@ -1250,7 +1250,7 @@ name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-Un composant comme celui ci-dessus conduira à une erreur « taille maximale de pile dépassée »  ("max stack size exceeded"), donc assurez-vous que les invocations récursives soient conditionnelles (c-à-d utilisent un `v-if` qui vaudra éventuellement `false`).
+Un composant comme celui ci-dessus conduira à une erreur « taille maximale de pile dépassée »  ("max stack size exceeded"), donc assurez-vous que les invocations récursives soient conditionnelles (c.-à-d. utilisent un `v-if` qui vaudra éventuellement `false`).
 
 ### Références circulaires entre les composants
 
@@ -1276,7 +1276,7 @@ Puis un composant `tree-folder-contents` avec ce template :
 
 En regardant attentivement, vous verrez que ces composants seront en fait l'ancêtre _et_ le descendant l'un de l'autre dans l'arbre de rendu — un paradoxe ! Quand vous inscrivez un composant de manière globale avec `Vue.component`, ce paradoxe est résolu pour vous automatiquement. Si c'est votre cas, vous pouvez arrêter de lire ici.
 
-Cependant, si vous réclamez/importez des composants en utilisant un __système de module__, c-à-d via webpack ou Browserify, vous obtiendrez une erreur « Échec de montage du composant : un template ou une fonction de rendu n'est pas défini. » :
+Cependant, si vous réclamez/importez des composants en utilisant un __système de module__, c.-à-d. via webpack ou Browserify, vous obtiendrez une erreur « Échec de montage du composant : un template ou une fonction de rendu n'est pas défini. » :
 
 ```
 Failed to mount component: template or render function not defined

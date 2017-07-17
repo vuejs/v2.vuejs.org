@@ -98,13 +98,13 @@ Il y a six classes appliquées pour les transitions entrantes/sortantes.
 
 2. `v-enter-active`: C'est l'état actif pour *enter*. Il est appliqué pendant toute la phase *enter*. Il est ajouté avant que l'élément soit inséré, il est supprimé lorsque la transition/animation est terminée. Cette classe peut être utilisée pour définir la durée, le retard et la courbe d'accélération pour la transition entrante.
 
-3. `v-enter-to`: **Seulement disponible pour les versions >=2.1.8.** C'est l'état de fin pour *enter*. Il est ajouté une fois que l'élément est inséré (au même moment que `v-enter` est supprimé), il est supprimé lorsque la transition/animation est terminée.
+3. `v-enter-to`: **Seulement disponible pour les versions 2.1.8+.** C'est l'état de fin pour *enter*. Il est ajouté une fois que l'élément est inséré (au même moment que `v-enter` est supprimé), il est supprimé lorsque la transition/animation est terminée.
 
 4. `v-leave`: C'est l'état de départ pour *leave*. Il est ajouté dès qu'une transition sortante est déclenchée, il est supprimé après une frame.
 
 5. `v-leave-active`: C'est l'état actif pour *leave*. Il est appliqué pendant toute la phase *leave*. Il est ajouté dès qu'une transition sortante est déclenchée, il est supprimé lorsque la transition/animation est terminée. Cette classe peut être utilisée pour définir la durée, le retard et la courbe d'accélération pour la transition de sortie.
 
-6. `v-leave-to`: **Seulement disponible pour les versions >=2.1.8.** C'est l'état de fin pour *leave*. Il est ajouté après que la transition sortante soit déclenchée (au même moment que `v-leave` est supprimé), il est supprimé lorsque la transition/animation est terminée.
+6. `v-leave-to`: **Seulement disponible pour les versions 2.1.8+.** C'est l'état de fin pour *leave*. Il est ajouté après que la transition sortante soit déclenchée (au même moment que `v-leave` est supprimé), il est supprimé lorsque la transition/animation est terminée.
 
 ![Diagramme de transition](/images/transition.png)
 
@@ -289,10 +289,10 @@ Vous pouvez également spécifier des classes de transition personnalisées en f
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class` (>= 2.1.8 uniquement)
+- `enter-to-class` (2.1.8+ uniquement)
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class` (>= 2.1.8 uniquement)
+- `leave-to-class` (2.1.8+ uniquement)
 
 Celles-ci remplacent les noms de classes habituelles. C'est surtout utile quand vous voulez combiner le système de transition de Vue avec une bibliothèque d'animation CSS existante, comme [Animate.css](https://daneden.github.io/animate.css/).
 
@@ -560,7 +560,7 @@ Par défaut, cela utilisera les transitions spécifiées pour l'entrée et la so
 <transition
   appear
   appear-class="custom-appear-class"
-  appear-to-class="custom-appear-to-class" (>= 2.1.8 only)
+  appear-to-class="custom-appear-to-class" (2.1.8+ seulement)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
