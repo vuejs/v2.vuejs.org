@@ -519,6 +519,19 @@ order: 31
       reposPersonal: [
         'weexteam/weex-vue-framework', 'into-vue'
       ]
+    },
+    {
+      name: 'gebilaoxiong',
+      title: 'Issue Annihilator',
+      city: 'Chongqing, China',
+      languages: ['zh', 'en'],
+      work: {
+        org: 'zbj.com',
+        orgUrl: 'http://www.zbj.com/'
+      },
+      reposOfficial: [
+        'vue'
+      ]
     }
   ]))
 
