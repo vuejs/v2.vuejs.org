@@ -6,13 +6,13 @@ order: 11
 
 ## 什么是组件？
 
-组件（Component）是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素， Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 js 特性扩展。
+组件(component)是 Vue 最强大的功能之一。组件可以帮助你扩展基本的 HTML 元素，以封装可重用代码。在较高层面上，组件是 Vue 编译器附加行为后的自定义元素。在某些情况下，组件也可以是原生 HTML 元素的形式，以特定的 `is` 特性扩展。
 
 ## 使用组件
 
 ### 注册
 
-之前说过，我们可以通过以下方式创建一个 Vue 实例：
+在之前的章节我们了解到，通过以下方式可以创建一个新的 Vue 实例：
 
 ``` js
 new Vue({
@@ -21,7 +21,7 @@ new Vue({
 })
 ```
 
-要注册一个全局组件，你可以使用 `Vue.component(tagName, options)`。 例如：
+要注册一个全局组件，你可以使用 `Vue.component(tagName, options)`。例如：
 
 ``` js
 Vue.component('my-component', {
@@ -29,9 +29,9 @@ Vue.component('my-component', {
 })
 ```
 
-<p class="tip">对于自定义标签名，Vue.js 不强制要求遵循 [W3C规则](https://www.w3.org/TR/custom-elements/#concepts) （小写，并且包含一个短杠），尽管遵循这个规则比较好。</p>
+<p class="tip">注意，对于自定义标签的名称，Vue 不强制要求遵循 [W3C 规则](https://www.w3.org/TR/custom-elements/#concepts)（全部小写，必须包含连字符(-)），但是尽量遵循 W3C 规则的约定是比较推荐的做法。</p>
 
-组件在注册之后，便可以在父实例的模块中以自定义元素 `<my-component></my-component>` 的形式使用。要确保在初始化根实例 **之前** 注册了组件：
+组件在注册过之后，就可以在实例的模板中，以自定义元素 `<my-component></my-component>` 的方式使用。要确保在 Vue 根实例(root Vue instance)实例化之前，就已经将组件注册完成。
 
 ``` html
 <div id="example">
@@ -45,13 +45,13 @@ Vue.component('my-component', {
   template: '<div>A custom component!</div>'
 })
 
-// 创建根实例
+// 创建一个根实例
 new Vue({
   el: '#example'
 })
 ```
 
-渲染为：
+将会渲染为：
 
 ``` html
 <div id="example">
@@ -73,7 +73,7 @@ new Vue({ el: '#example' })
 
 ### 局部注册
 
-不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用：
+没有必要将每个组件都注册在全局。你可以通过实例的 `components` 选项，将组件注册在局部，可以使组件只能从其他实例/组件的作用域范围中访问到。
 
 ``` js
 var Child = {
@@ -83,19 +83,19 @@ var Child = {
 new Vue({
   // ...
   components: {
-    // <my-component> 将只在父模板可用
+    // <my-component> 将只在父级模板中可用
     'my-component': Child
   }
 })
 ```
 
-这种封装也适用于其它可注册的 Vue 功能，如指令。
+其他可注册的 Vue 功能，也可以使用与此相同的封装方式，例如指令。
 
 ### DOM 模版解析说明
 
-当使用 DOM 作为模版时（例如，将 `el` 选项挂载到一个已存在的元素上）, 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模版内容。尤其像这些元素 `<ul>` ， `<ol>`， `<table>` ， `<select>` 限制了能被它包裹的元素， `<option>` 只能出现在其它元素内部。
+当使用 DOM 作为模板时（例如，使用 `el` 选项，将现有内容挂载到一个元素上），你会受到一些源自 HTML 运行机制的限制，因为 Vue 只有在浏览器解析和标准化 HTML **之后**，才可以获取到模板内容。尤其是像 `<ul>`, `<ol>`, `<table>` 和 `<select>` 这样的元素，限制了出现在其中的元素，而像 `<option>` 这样的元素，只能出现在相应的元素中。
 
-在自定义组件中使用这些受限制的元素时会导致一些问题，例如：
+在这些受限制的元素中使用自定义元素，会导致一些问题，例如：
 
 ``` html
 <table>
@@ -103,7 +103,7 @@ new Vue({
 </table>
 ```
 
-自定义组件 `<my-row>` 被认为是无效的内容，因此在渲染的时候会导致错误。变通的方案是使用特殊的 `is` 属性：
+自定义组件 `<my-row>` 将会被当作无效内容，提升到 table 之外，从而导致最终渲染输出后的错误。解决方案是使用特殊的 `is` 属性：
 
 ``` html
 <table>
@@ -111,17 +111,17 @@ new Vue({
 </table>
 ```
 
-**应当注意，如果您使用来自以下来源之一的字符串模板，这些限制将不适用：**
+**应当注意，在使用以下字符串模板之一的场景中，这些限制将不再适用**：
 
 - `<script type="text/x-template">`
-- JavaScript内联模版字符串
+- JavaScript 内联模版字符串
 - `.vue` 组件
 
-因此，有必要的话请使用字符串模版。
+因此，尽可能使用字符串模板。
 
-### `data` 必须是函数
+### `data` 必须是一个函数
 
-使用组件时，大多数可以传入到 Vue 构造器中的选项可以在注册组件时使用，有一个例外： `data` 必须是函数。 实际上，如果你这么做：
+在组件中，多数的组件选项可以传递给 Vue 构造函数，然后共享于多个组件实例，然而有一个特例：`data` 必须是一个函数。实际上，如果你这么做：
 
 ``` js
 Vue.component('my-component', {
@@ -132,7 +132,7 @@ Vue.component('my-component', {
 })
 ```
 
-那么 Vue 会在控制台发出警告，告诉你在组件中 `data` 必须是一个函数。最好理解这种规则的存在意义。
+Vue 就会停下来，并且在控制台中触发警告，提醒你，`data` 返回的数据会用在每个组件实例当中，因此 `data` 必须是一个函数。最好理解这种规则存在的意义，那么让我们想办法绕过这种限制。
 
 ``` html
 <div id="example-2">
@@ -147,8 +147,9 @@ var data = { counter: 0 }
 
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  // data 是一个函数，因此 Vue 不会警告，
-  // 但是我们为每一个组件返回了同一个对象引用
+  // 严格来看 data 是一个函数，
+  // 因此 Vue 不会警告，但是我们为每个组件实例
+  // 返回同一个对象的引用
   data: function () {
     return data
   }
@@ -179,7 +180,7 @@ new Vue({
 </script>
 {% endraw %}
 
-由于这三个组件共享了同一个 `data` ， 因此增加一个 counter 会影响所有组件！我们可以通过为每个组件返回新的 data 对象来解决这个问题：
+由于三个组件实例共享的是同一个对象，因此增加一个计数器，就会增加全部！嗯。让我们通过改为返回一个全新的数据对象，来解决下这个问题：
 
 ``` js
 data: function () {
@@ -189,7 +190,7 @@ data: function () {
 }
 ```
 
-现在每个 counter 都有它自己内部的状态了：
+现在所有的计数器，都已经具有它们自己内部的状态：
 
 {% raw %}
 <div id="example-2-5" class="demo">
@@ -212,35 +213,35 @@ new Vue({
 </script>
 {% endraw %}
 
-### 构成组件
+### 将组件组合在一起
 
-组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模版中使用了组件 B 。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。
+组件，意味着组合在一起使用的元件，多数场景是父子关系：组件 A 可以在自己的模板中使用组件 B。这就必然的需要彼此相互通信：父组件可能会向下传递数组给子组件，然后子组件也可能会将自身发生的变化通知到父组件。然而，重要的是，为了尽可能将父子组件解耦，需要有一个定义清晰的接口。定义清晰的通信方式，可以确保组件可以相对隔离地组织代码，以及合乎逻辑易于推断，从而使它们更加易于维护，并且可能更加易于复用。
 
-在 Vue 中，父子组件的关系可以总结为 **props down, events up** 。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 给父组件发送消息。看看它们是怎么工作的。
+在 Vue 中，父子组件之间的关系可以概述为：**props 向下，events 向上**。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 发送消息给父组件。让我们来看下它们是如何运行的。
 
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
 </p>
 
-## Prop
+## Props
 
-### 使用 Prop 传递数据
+### 使用 Props 传递数据
 
-组件实例的作用域是**孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
+每个组件实例都有自己的**孤立隔离作用域**。也就是说，不能（也不应该）直接在子组件模板中引用父组件数据。要想在子组件模板中引用父组件数据，可以使用 **props** 将数据向下传递到子组件。
 
-prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 [`props` 选项](../api/#props)声明 “prop”：
+每个 prop 属性,都可以控制是否从父组件的自定义属性中接收数据。子组件需要使用 [`props` 选项](../api/#props)显式声明 props，以便它可以从父组件接收到期望的数据。
 
 ``` js
 Vue.component('child', {
   // 声明 props
   props: ['message'],
-  // 就像 data 一样，prop 可以用在模板内
-  // 同样也可以在 vm 实例中像 “this.message” 这样使用
+  // 就像 data 一样，prop 可以在组件模板内部使用，
+  // 并且，还可以在 vm 实例中通过 this.message 访问
   template: '<span>{{ message }}</span>'
 })
 ```
 
-然后向它传入一个普通字符串：
+然后我们可以像这样，传入一个普通字符串：
 
 ``` html
 <child message="hello!"></child>
@@ -265,9 +266,9 @@ new Vue({
 </script>
 {% endraw %}
 
-### camelCase vs. kebab-case
+### 驼峰式命名(camelCase) vs. 串联式命名(kebab-case)
 
-HTML 特性是不区分大小写的。所以，当使用非字符串模版时，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名：
+HTML 属性会忽略大小写(case-insensitive)，因此，在使用非字符串模板(non-string template)时，驼峰式命名的 prop 名称，需要转换为同等相应的串联式命名（连字符分隔）：
 
 ``` js
 Vue.component('child', {
@@ -278,15 +279,15 @@ Vue.component('child', {
 ```
 
 ``` html
-<!-- kebab-case in HTML -->
+<!-- HTML 中的串联式命名 -->
 <child my-message="hello!"></child>
 ```
 
-再次说明，如果你使用字符串模版，不用在意这些限制。
+再次申明，如果是在使用字符串模板的场景，则没有这些限制。
 
-### 动态 Prop
+### 动态 Props
 
-类似于用 `v-bind` 绑定 HTML 特性到一个表达式，也可以用 `v-bind` 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件：
+类似于将一个普通属性绑定到一个表达式，我们还可以使用 `v-bind` 将 props 属性动态地绑定到父组件中的数据。无论父组件何时更新数据，都可以将数据向下流入到子组件中：
 
 ``` html
 <div>
@@ -296,7 +297,7 @@ Vue.component('child', {
 </div>
 ```
 
-使用 `v-bind` 的缩写语法通常更简单：
+使用 `v-bind` 简写语法，通常看起来更简洁：
 
 ``` html
 <child :my-message="parentMsg"></child>
@@ -326,37 +327,37 @@ new Vue({
 </script>
 {% endraw %}
 
-### 字面量语法 vs 动态语法
+### 字面量传值 vs. 动态传值
 
-初学者常犯的一个错误是使用字面量语法传递数值：
+一个初学者易于常犯的错误是，试图通过字面量语法向下传递一个数值：
 
 ``` html
-<!-- 传递了一个字符串"1" -->
+<!-- 这会向下传递一个普通字符串 "1" -->
 <comp some-prop="1"></comp>
 ```
 
-因为它是一个字面 prop ，它的值以字符串 `"1"` 而不是以实际的数字传下去。如果想传递一个实际的 JavaScript 数字，需要使用 `v-bind` ，从而让它的值被当作 JavaScript 表达式计算：
+然而，由于这是一个字面量 prop 属性，其值会作为普通字符串 `"1"` 向下传递，而不是一个真正的数值。如果想要向下传递真正的 JavaScript 数值，我们就需要使用 `v-bind`，从而将 prop 属性作为一个 JavaScript 表达式来取值：
 
 ``` html
-<!-- 传递实际的数字 -->
+<!-- 这会向下传递一个真正的数值 -->
 <comp v-bind:some-prop="1"></comp>
 ```
 
-### 单向数据流
+### 单向数据流(One-Way Data Flow)
 
-prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解。
+所有的 props 都是在子组件属性和父组件属性之间绑定的，按照**自上而下单向流动**方式构成：当父组件属性更新，数据就会向下流动到子组件，但是反过来却并非如此。这种机制可以防止子组件意外地修改了父组件的状态，会造成应用程序的数据流动变得难于推断。
 
-另外，每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你**不应该**在子组件内部改变 prop 。如果你这么做了，Vue 会在控制台给出警告。
+此外，每次父组件更新时，子组件中所有的 props 都会更新为最新值。也就是说，你**不应该**试图在子组件内部修改 prop。如果你这么做，Vue 就会在控制台给出警告。
 
-通常有两种改变 prop 的情况：
+诱使我们修改 prop 的原因，通常有两种：
 
-1. prop 作为初始值传入，子组件之后只是将它的初始值作为本地数据的初始值使用；
+1. prop 只是用于传递初始值，之后子组件想要直接将 prop 作为一个局部数据的属性；
 
-2. prop 作为需要被转变的原始值传入。
+2. prop 作为一个需要转换的原始值传入。
 
-更确切的说这两种情况是：
+这些场景中，比较合适的应对方式是：
 
-1. 定义一个局部 data 属性，并将 prop 的初始值作为局部数据的初始值。
+1. 定义一个局部数据的属性，将 prop 属性的初始值作为局部属性的初始值：
 
   ``` js
   props: ['initialCounter'],
@@ -365,7 +366,7 @@ prop 是单向绑定的：当父组件的属性变化时，将传导给子组件
   }
   ```
 
-2. 定义一个 computed 属性，此属性从 prop 的值计算得出。
+2. 定义一个计算属性，从 prop 传入的值来取值：
 
   ``` js
   props: ['size'],
@@ -376,32 +377,33 @@ prop 是单向绑定的：当父组件的属性变化时，将传导给子组件
   }
   ```
 
-<p class="tip">注意在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它**会影响**父组件的状态。</p>
+<p class="tip">注意，在 JavaScript 中对象和数组会作为引用类型传入，因此，如果 prop 是一个对象或数组，在子组件内部修改对象或数组自身，**将会影响**父组件的状态。</p>
 
 ### Prop 验证
 
-组件可以为 props 指定验证要求。如果未指定验证要求，Vue 会发出警告。当组件给其他人使用时这很有用。
+可以为组件接收到的 props 指定一些要求条件。如果某个要求条件未满足验证，Vue 就会触发警告。当你创建一个组件，并将这个组件提供给他人使用时，验证机制是很有帮助的。
 
-prop 是一个对象而不是字符串数组时，它包含验证要求：
+除了将 props 定义为一个数组或字符串，你还可以将其定义为一个带有验证要求条件的对象：
 
 ``` js
 Vue.component('example', {
   props: {
-    // 基础类型检测 （`null` 意思是任何类型都可以）
+    // 基本类型检查（`null` 表示接受所有类型）
     propA: Number,
-    // 多种类型
+    // 多种可能的类型
     propB: [String, Number],
-    // 必传且是字符串
+    // 必须传递，一个的字符串
     propC: {
       type: String,
       required: true
     },
-    // 数字，有默认值
+    // 数字类型，有一个默认值
     propD: {
       type: Number,
       default: 100
     },
-    // 数组／对象的默认值应当由一个工厂函数返回
+    // 数组/对象类型，
+    // 应该默认返回一个工厂函数
     propE: {
       type: Object,
       default: function () {
@@ -418,7 +420,7 @@ Vue.component('example', {
 })
 ```
 
-`type` 可以是下面原生构造器：
+`type` 可以是以下原生构造函数之一：
 
 - String
 - Number
@@ -428,33 +430,33 @@ Vue.component('example', {
 - Array
 - Symbol
 
-`type` 也可以是一个自定义构造器，使用 `instanceof` 检测。
+除了以上这些，`type` 还可以是一个自定义构造函数，在通过 `instanceof` 检测时，此构造函数会被用于进行类型推断。
 
-当 prop 验证失败了，Vue 会在控制台生成一条警告（如果使用的是开发构建版本）。Note that props are validated __before__ a component instance is created, so within `default` or `validator` functions, instance properties such as from `data`, `computed`, or `methods` will not be available.
+当 prop 验证失败，（如果使用的是开发构建版本，）Vue 就会在控制台抛出警告。注意，props 会在组件实例创建__之前__进行验证，因此在 `default` 或 `validator` 函数中，像 `data`, `computed` 或 `methods` 这些组件实例上的属性还无法访问。
 
-## Non-Prop Attributes
+## 非 Prop 属性(Non-Prop Attributes)
 
-A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+非 prop 属性，就是指无需符合 prop 属性的定义规则，而是可以直接传入到组件的属性。
 
-While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
+虽然，我们推荐通过显式定义 props，将信息数据从父组件传递给子组件，然而组件库的创建者，并无法完全预知到，他们编写的组件可能会被用于什么样的上下文环境(context)中。这也就是为什么组件可以接收任意属性，并且这些属性将会被添加到组件的根元素中。
 
-For example, imagine we're using a 3rd-party `bs-date-input` component with a Bootstrap plugin that requires a `data-3d-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+例如，假设我们使用一个名为 `bs-date-input`，用到 BootStrap 插件的第三方组件，并且需要向此组件内的 `input` 传入一个 `data-3d-date-picker` 属性。我们可以将这个属性添加到我们的组件实例中：
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
 ```
 
-And the `data-3d-date-picker="true"` attribute will automatically be added to the root element of `bs-date-input`.
+然后，`data-3d-date-picker="true"` 属性就会自动添加到 `bs-date-input` 组件的根元素上。
 
-### Replacing/Merging with Existing Attributes
+### 替换/合并现有的属性(Replacing/Merging with Existing Attributes)
 
-Imagine this is the template for `bs-date-input`:
+假设这是 `bs-date-input` 组件的模板：
 
 ``` html
 <input type="date" class="form-control">
 ```
 
-To add specify a theme for our date picker plugin, we might need to add a specific class, like this:
+为了给日期选择器插件添加一个指定的主题，我们可能需要向组件添加一个指定的 class 类名，就像这样：
 
 ``` html
 <bs-date-input
@@ -463,29 +465,31 @@ To add specify a theme for our date picker plugin, we might need to add a specif
 ></bs-date-input>
 ```
 
-In this case, two different values for `class` are defined:
+在这种场景中，定义了两个不同的 `class` 值：
 
-- `form-control`, which is set by the component in its template
-- `date-picker-theme-dark`, which is passed to the component by its parent
+- `form-control`，是在组件模板中设置的 class 类名
+- `date-picker-theme-dark`，是从父组件传入的 class 类名
 
-For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="large"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
+对于大多数属性，传给组件的值将会替换掉组件自身设置的值。因此，例如，向组件传入 `type="large"`，将会替换掉组件自身设置的 `type="date"`，这就很可能破坏组件的一些预设功能！幸运的是，`class` 和 `style` 属性会略微智能，这两个值会被合并，而非替换，而最终的值是：`form-control date-picker-theme-dark`。
 
 ## 自定义事件
 
-我们知道，父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，应该怎样做？那就是自定义事件！
+之前我们已经了解到，父组件可以使用 props 向下传递 data 数据给子组件，然而，如何将子组件内部发生的一些变化向上通知到父组件呢？这就是 Vue 自定义事件的用途。
 
-### 使用 `v-on` 绑定自定义事件
+### 使用 `v-on` 的自定义事件
 
-每个 Vue 实例都实现了[事件接口(Events interface)](../api/#Instance-Methods-Events)，即：
+每个 Vue 实例都接入了一个[事件接口(events interface)](../api/#Instance-Methods-Events)，也就是说，这些 Vue 实例可以做到：
 
-- 使用 `$on(eventName)` 监听事件
-- 使用 `$emit(eventName)` 触发事件
+- 使用 `$on(eventName)` 监听一个事件
+- 使用 `$emit(eventName)` 触发一个事件
 
-<p class="tip">Vue的事件系统分离自浏览器的[EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)。尽管它们的运行类似，但是`$on` 和 `$emit` __不是__`addEventListener` 和 `dispatchEvent` 的别名。</p>
+<p class="tip">注意，Vue 事件系统，与浏览器的 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) 毫无关联。虽然它们之间具有类似的事件机制，但是 `$on` 和 `$emit` __并非__ `addEventListener` 和 `dispatchEvent` 的别名</p>
 
-另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
+除此之外，父组件可以直接在模板中调用子组件的地方，使用 `v-on` 监听子组件触发的事件。
 
-下面是一个例子：
+<p class="tip">无法在父组件或父实例中使用 `$on` 来监听子组件触发的事件。必须直接在模板中使用 `v-on`，就像下面的例子：</p>
+
+这里是一个示例：
 
 ``` html
 <div id="counter-event-example">
@@ -559,17 +563,17 @@ new Vue({
 </script>
 {% endraw %}
 
-在本例中，子组件已经和它外部完全解耦了。它所做的只是触发一个父组件关心的内部事件。
+在这个例子中，需要注意的要点是，子组件仍然是与组件外部环境发生的变化之间完全解耦的。它需要做的就是将自身内部的行为全部通知到父组件中，以防止父组件主动关注子组件信息造成耦合。
 
-#### 给组件绑定原生事件
+#### 为组件绑定原生事件(Binding Native Events to Components)
 
-有时候，你可能想在某个组件的根元素上监听一个原生事件。可以使用 `.native` 修饰 `v-on` 。例如：
+有时候，你可能希望某个组件的根元素能够监听到原生事件。在这种场景中，你可以在 `v-on` 后面添加 `.native` 修饰符。例如：
 
 ``` html
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
-### `.sync` Modifier
+### `.sync` 修饰符
 
 > 2.3.0+
 
@@ -1336,6 +1340,25 @@ Vue.component('terms-of-service', {
 
 ***
 
-> 原文：http://vuejs.org/guide/components.html
+> 原文：https://vuejs.org/v2/guide/components.html
+
+***
+
+***
+
+> 译注（如有错误，请[在此](https://github.com/vuefe/vuejs.org/issues)指出）：
+
+- 字符串模板(string template)和非字符串模板(non-string template)
+
+  参考[本章节 - DOM 模版解析说明](#DOM-模版解析说明)：
+  1. 字符串模板(string template)
+
+    - `<script type="text/x-template">`
+    - JavaScript 内联模版字符串
+    - `.vue` 组件
+
+  1. 非字符串模板(non-string template)
+
+    - DOM 模版
 
 ***

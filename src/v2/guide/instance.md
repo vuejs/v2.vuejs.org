@@ -6,7 +6,7 @@ order: 3
 
 ## 构造函数
 
-每个 Vue ViewModel 都是通过 `Vue` 构造函数创建出一个 **Vue 根实例**来引导辅助的：
+每个 Vue 应用程序都是通过 `Vue` 构造函数创建出一个 **Vue 根实例**来引导辅助的：
 
 ``` js
 var vm = new Vue({
@@ -16,7 +16,7 @@ var vm = new Vue({
 
 尽管没有完全遵循 [MVVM 模式](https://en.wikipedia.org/wiki/Model_View_ViewModel)，但是 Vue 的设计仍然受到了它的启发。作为约定，通常我们使用变量 `vm` (ViewModel 的简称) 来表示 Vue 实例。
 
-在实例化 Vue 实例时，你需要传入一个**选项对象**，它可以包含数据(data)、模板(template)、挂载元素(element to mount on)、方法(methods)、生命周期函数(lifecycle callbacks)和其他选项。全部选项列表可以在 [API 参考文档](../api)中查看。
+在实例化 Vue 实例时，你需要传入一个**选项对象**，它可以包含数据(data)、模板(template)、挂载元素(element to mount on)、方法(methods)、生命周期函数(lifecycle callbacks)和其他选项。全部选项列表可以在 [API 参考文档](../api/#Options-Data)中查看。
 
 可以通过预先定义选项扩展 `Vue` 构造函数，从而创建可复用的**组件构造函数**：
 
@@ -52,7 +52,7 @@ data.a = 3
 vm.a // -> 3
 ```
 
-应当注意，只有这些以上这种代理属性是**响应式**的。如果在实例创建之后，再对实例添加新的属性，将不会触发任何视图更新。之后我们将详细讨论响应式系统。
+应当注意，只有这些以上这种代理属性是**响应式**的，也就是说，在 data 中所有属性值的更新，都会触发视图重新渲染。如果在实例创建之后，再对实例添加新的属性，将不会触发任何视图更新。之后我们将详细讨论响应式系统。
 
 除了 data 属性， Vue 实例还暴露了一些有用的实例属性和方法。这些属性与方法都具有前缀 `$`，以便与所代理的 data 属性有所区分。例如：
 
@@ -74,7 +74,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 <p class="tip">不要在实例属性或者回调函数中（例如，`vm.$watch('a', newVal => this.myMethod())`）使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)。因为箭头函数会绑定父级上下文，所以 `this` 不会按照预期指向 Vue 实例，然后 `this.myMethod` 将是未定义。</p>
 
-实例属性和方法的完整列表，请查阅 [API 参考文档](../api)。
+实例属性和方法的完整列表，请查阅 [API 参考文档](../api#Instance-Properties)。
 
 ## 实例生命周期钩子函数
 
