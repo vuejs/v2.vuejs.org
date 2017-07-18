@@ -436,27 +436,27 @@ Vue.component('example', {
 
 ## 非 Prop 属性(Non-Prop Attributes)
 
-A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+非 prop 属性，就是指无需符合 prop 属性的定义规则，而是可以直接传入到组件的属性。
 
-While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
+虽然，我们推荐通过显式定义 props，将信息数据从父组件传递给子组件，然而组件库的创建者，并无法完全预知到，他们编写的组件可能会被用于什么样的上下文环境(context)中。这也就是为什么组件可以接收任意属性，并且这些属性将会被添加到组件的根元素中。
 
-For example, imagine we're using a 3rd-party `bs-date-input` component with a Bootstrap plugin that requires a `data-3d-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+例如，假设我们使用一个名为 `bs-date-input`，用到 BootStrap 插件的第三方组件，并且需要向此组件内的 `input` 传入一个 `data-3d-date-picker` 属性。我们可以将这个属性添加到我们的组件实例中：
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
 ```
 
-And the `data-3d-date-picker="true"` attribute will automatically be added to the root element of `bs-date-input`.
+然后，`data-3d-date-picker="true"` 属性就会自动添加到 `bs-date-input` 组件的根元素上。
 
-### Replacing/Merging with Existing Attributes
+### 替换/合并现有的属性(Replacing/Merging with Existing Attributes)
 
-Imagine this is the template for `bs-date-input`:
+假设这是 `bs-date-input` 组件的模板：
 
 ``` html
 <input type="date" class="form-control">
 ```
 
-To add specify a theme for our date picker plugin, we might need to add a specific class, like this:
+为了给日期选择器插件添加一个指定的主题，我们可能需要向组件添加一个指定的 class 类名，就像这样：
 
 ``` html
 <bs-date-input
@@ -465,29 +465,31 @@ To add specify a theme for our date picker plugin, we might need to add a specif
 ></bs-date-input>
 ```
 
-In this case, two different values for `class` are defined:
+在这种场景中，定义了两个不同的 `class` 值：
 
-- `form-control`, which is set by the component in its template
-- `date-picker-theme-dark`, which is passed to the component by its parent
+- `form-control`，是在组件模板中设置的 class 类名
+- `date-picker-theme-dark`，是从父组件传入的 class 类名
 
-For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="large"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
+对于大多数属性，传给组件的值将会替换掉组件自身设置的值。因此，例如，向组件传入 `type="large"`，将会替换掉组件自身设置的 `type="date"`，这就很可能破坏组件的一些预设功能！幸运的是，`class` 和 `style` 属性会略微智能，这两个值会被合并，而非替换，而最终的值是：`form-control date-picker-theme-dark`。
 
 ## 自定义事件
 
-我们知道，父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，应该怎样做？那就是自定义事件！
+之前我们已经了解到，父组件可以使用 props 向下传递 data 数据给子组件，然而，如何将子组件内部发生的一些变化向上通知到父组件呢？这就是 Vue 自定义事件的用途。
 
-### 使用 `v-on` 绑定自定义事件
+### 使用 `v-on` 的自定义事件
 
-每个 Vue 实例都实现了[事件接口(Events interface)](../api/#Instance-Methods-Events)，即：
+每个 Vue 实例都接入了一个[事件接口(events interface)](../api/#Instance-Methods-Events)，也就是说，这些 Vue 实例可以做到：
 
-- 使用 `$on(eventName)` 监听事件
-- 使用 `$emit(eventName)` 触发事件
+- 使用 `$on(eventName)` 监听一个事件
+- 使用 `$emit(eventName)` 触发一个事件
 
-<p class="tip">Vue的事件系统分离自浏览器的[EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)。尽管它们的运行类似，但是`$on` 和 `$emit` __不是__`addEventListener` 和 `dispatchEvent` 的别名。</p>
+<p class="tip">注意，Vue 事件系统，与浏览器的 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) 毫无关联。虽然它们之间具有类似的事件机制，但是 `$on` 和 `$emit` __并非__ `addEventListener` 和 `dispatchEvent` 的别名</p>
 
-另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
+除此之外，父组件可以直接在模板中调用子组件的地方，使用 `v-on` 监听子组件触发的事件。
 
-下面是一个例子：
+<p class="tip">无法在父组件或父实例中使用 `$on` 来监听子组件触发的事件。必须直接在模板中使用 `v-on`，就像下面的例子：</p>
+
+这里是一个示例：
 
 ``` html
 <div id="counter-event-example">
@@ -561,17 +563,17 @@ new Vue({
 </script>
 {% endraw %}
 
-在本例中，子组件已经和它外部完全解耦了。它所做的只是触发一个父组件关心的内部事件。
+在这个例子中，需要注意的要点是，子组件仍然是与组件外部环境发生的变化之间完全解耦的。它需要做的就是将自身内部的行为全部通知到父组件中，以防止父组件主动关注子组件信息造成耦合。
 
-#### 给组件绑定原生事件
+#### 为组件绑定原生事件(Binding Native Events to Components)
 
-有时候，你可能想在某个组件的根元素上监听一个原生事件。可以使用 `.native` 修饰 `v-on` 。例如：
+有时候，你可能希望某个组件的根元素能够监听到原生事件。在这种场景中，你可以在 `v-on` 后面添加 `.native` 修饰符。例如：
 
 ``` html
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
-### `.sync` Modifier
+### `.sync` 修饰符
 
 > 2.3.0+
 
