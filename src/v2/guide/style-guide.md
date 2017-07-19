@@ -329,7 +329,73 @@ Unfortunately however, HTML doesn't allow custom elements to be self-closing - o
 
 ### Component name casing in JS/JSX
 
-Component names in JS/JSX should always be PascalCase.
+Component names in JS/JSX should always be PascalCase, though may instead be in kebab-case for simpler applications that only use global component registration through `Vue.component`.
+
+<sg-enforcement type="linter"></sg-enforcement>
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` js
+Vue.component('myComponent', { /* ... */ })
+```
+
+``` js
+import myComponent from './MyComponent.vue'
+```
+
+``` js
+export default {
+  name: 'myComponent',
+  // ...
+}
+```
+
+``` js
+export default {
+  name: 'my-component',
+  // ...
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+Vue.component('MyComponent', { /* ... */ })
+```
+
+``` js
+Vue.component('my-component', { /* ... */ })
+```
+
+``` js
+import MyComponent from './MyComponent.vue'
+```
+
+``` js
+export default {
+  name: 'MyComponent',
+  // ...
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+In JavaScript, PascalCase is the convention for classes and prototype constructors - essentially, anything that can have distinct instances. Vue components also have instances, so it makes sense to also use PascalCase. As an added benefit, using PascalCase within JSX (and templates) allows readers of the code to more easily distinguish between components and HTML elements.
+
+However, for applications that use **only** global component definitions via `Vue.component`, we recommend kebab-case instead. The reasons are:
+
+- It's rare that global components are ever referenced in JavaScript, so following a convention for JavaScript makes less sense.
+- These applications always include many in-DOM components, where kebab-case [**must** be used](#Component-name-casing-in-templates).
+{% raw %}</details>{% endraw %}
 
 ### Component name casing in templates
 
@@ -346,6 +412,10 @@ Child components that are tightly coupled with their parent should include the p
 ### Abbreviations in component names
 
 Component names should prefer full words over uncommon abbreviations.
+
+### Prop name casing
+
+Prop names should always use camelCase during declaration, but kebab-case in templates and JSX.
 
 ### Multi-attribute elements
 
