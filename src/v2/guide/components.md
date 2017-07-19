@@ -266,7 +266,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### 驼峰式命名(camelCase) vs. 串联式命名(kebab-case)
+### 驼峰式命名 vs. 串联式命名(camelCase vs. kebab-case)
 
 HTML 属性会忽略大小写(case-insensitive)，因此，在使用非字符串模板(non-string template)时，驼峰式命名的 prop 名称，需要转换为同等相应的串联式命名（连字符分隔）：
 
@@ -327,7 +327,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### 字面量传值 vs. 动态传值
+### 字面量传值 vs. 动态传值(Literal vs. Dynamic)
 
 一个初学者易于常犯的错误是，试图通过字面量语法向下传递一个数值：
 
@@ -563,7 +563,7 @@ new Vue({
 </script>
 {% endraw %}
 
-在这个例子中，需要注意的要点是，子组件仍然是与组件外部环境发生的变化之间完全解耦的。它需要做的就是将自身内部的行为全部通知到父组件中，以防止父组件主动关注子组件信息造成耦合。
+在这个例子中，需要注意的要点是，子组件仍然是与组件外部环境发生的变化之间完全解耦的。它需要做的就是将自身内部的信息全部通知到父组件中，以防止父组件主动关注子组件内部信息造成耦合。
 
 #### 为组件绑定原生事件(Binding Native Events to Components)
 
@@ -577,25 +577,25 @@ new Vue({
 
 > 2.3.0+
 
-In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x this is exactly what the `.sync` modifier provided. When a child component mutates a prop that has `.sync`, the value change will be reflected in the parent. This is convenient, however it leads to maintenance issues in the long run because it breaks the one-way data flow assumption: the code that mutates child props are implicitly affecting parent state.
+在某些场景中，我们可能需要对一个 prop 进行「双向绑定」 - 事实上，这个功能在 Vue 1.x 中已经由 `.sync` 修饰符实现。当一个子组件修改带有 `.sync` 修饰符的 prop 时，设置的值就会反向映射(reflect)到父组件中。这很方便，然而长远来看会造成维护上的问题，因为这种双向绑定的机制，破坏了单向数据流(one-way data flow)的设计：在修改子组件的 props 后，这些代码隐式的，也会影响到父组件状态，父组件的状态来源很难从代码中显式推断。
 
-This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
+这也就是为什么我们要在 Vue.js 2.0 发布时，移除 `.sync` 修饰符的原因。然而，我们发现确实在某些场景中还是需要双向绑定，尤其有助于数据往返于可重用组件。我们需要做出的改进是，**将子组件影响父组件状态的代码，能够和单向数据流保持一致，以及变得更加清晰明确**
 
-In 2.3 we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
+在 Vue.js 2.3 中，我们为 props 重新引入了 `.sync` 修饰符，但是这次只是原有语法的语法糖(syntax sugar)包装而成，其背后实现原理是，在组件上自动扩充一个额外的 `v-on` 监听器：
 
-The following
+以下
 
 ``` html
 <comp :foo.sync="bar"></comp>
 ```
 
-is expanded into:
+会被扩充为：
 
 ``` html
 <comp :foo="bar" @update:foo="val => bar = val"></comp>
 ```
 
-For the child component to update `foo`'s value, it needs to explicitly emit an event instead of mutating the prop:
+对于子组件，如果想要更新 `foo` 的值，则需要显式地触发一个事件，而不是直接修改 prop：
 
 ``` js
 this.$emit('update:foo', newValue)
