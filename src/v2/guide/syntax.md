@@ -130,7 +130,7 @@ Vue.js allows you to define filters that can be used to apply common text format
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Vue 2.x filters can only be used inside mustache interpolations and `v-bind` expressions (the latter supported since 2.1.0), because filters are primarily designed for text transformation purposes. For more complex data transforms in other directives, you should use [Computed properties](computed.html) instead.</p>
+<p class="tip">Vue 2.x filters can only be used inside mustache interpolations and `v-bind` expressions (the latter supported in 2.1.0+), because filters are primarily designed for text transformation purposes. For more complex data transforms in other directives, you should use [Computed properties](computed.html) instead.</p>
 
 The filter function always receives the expression's value as the first argument.
 
