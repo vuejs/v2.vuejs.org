@@ -79,15 +79,15 @@ type: api
 
   Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
 
-  > In 2.2.0, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
-  > In 2.4.0 this hook also captures errors thrown inside Vue custom event handlers.
+  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
 
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
 
 ### warnHandler
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `Function`
 
@@ -147,11 +147,11 @@ type: api
 
 ### performance
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `boolean`
 
-- **Default:** `false (from 2.2.3)`
+- **Default:** `false (from 2.2.3+)`
 
 - **Usage**:
 
@@ -159,7 +159,7 @@ type: api
 
 ### productionTip
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `boolean`
 
@@ -229,7 +229,7 @@ type: api
   })
   ```
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
@@ -677,7 +677,7 @@ if (version === 2) {
 
 ### renderError
 
-> New in 2.2.0
+> New in 2.2.0+
 
   - **Type:** `(createElement: () => VNode, error: Error) => VNode`
 
@@ -928,7 +928,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### provide / inject
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:**
   - **provide:** `Object | () => Object`
@@ -1102,7 +1102,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### inheritAttrs
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
@@ -1114,7 +1114,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### comments
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
@@ -1138,7 +1138,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$props
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `Object`
 
@@ -1257,7 +1257,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$scopedSlots
 
-> New in 2.1.0
+> New in 2.1.0+
 
 - **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
 
@@ -1527,7 +1527,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **Example:**
 
@@ -1653,7 +1653,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### v-else-if
 
-> New in 2.1.0
+> New in 2.1.0+
 
 - **Expects:** `any`
 
@@ -1743,7 +1743,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
 
-  Starting in `2.4.0`, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
   When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
 
@@ -2185,7 +2185,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
 
-  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
   Primarily used with preserve component state or avoid re-rendering.
 
@@ -2214,7 +2214,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **`include` and `exclude`**
 
-  > New in 2.1.0
+  > New in 2.1.0+
 
   The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
 

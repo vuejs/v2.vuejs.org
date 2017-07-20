@@ -581,7 +581,7 @@ In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x thi
 
 This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
 
-In 2.3 we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
+In 2.3.0+ we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
 
 The following
 
@@ -723,7 +723,7 @@ The implementation above is pretty naive though. For example, users are allowed 
 
 ### Customizing Component `v-model`
 
-> New in 2.2.0
+> New in 2.2.0+
 
 By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
 
@@ -935,7 +935,7 @@ The content distribution API is a very useful mechanism when designing component
 
 ### Scoped Slots
 
-> New in 2.1.0
+> New in 2.1.0+
 
 A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
 
@@ -1145,9 +1145,9 @@ new Vue({
 
 ### Advanced Async Components
 
-> New in 2.3.0
+> New in 2.3.0+
 
-Starting in 2.3 the async component factory can also return an object of the following format:
+Starting in 2.3.0+ the async component factory can also return an object of the following format:
 
 ``` js
 const AsyncComp = () => ({
