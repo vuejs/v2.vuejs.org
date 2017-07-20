@@ -526,6 +526,7 @@ order: 31
       title: 'Issue Annihilator',
       city: 'Chongqing, China',
       languages: ['zh', 'en'],
+      github: 'gebilaoxiong',
       work: {
         org: 'zbj.com',
         orgUrl: 'http://www.zbj.com/'
