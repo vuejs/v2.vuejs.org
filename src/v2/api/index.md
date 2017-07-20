@@ -983,7 +983,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   }
   ```
 
-  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
 
   Using an injected value as the default for a prop:
   ```js
