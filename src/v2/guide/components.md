@@ -470,7 +470,7 @@ Dans ce cas, deux valeurs différentes pour `class` sont définies :
 - `form-control`, qui est la classe du composant dans ce template
 - `date-picker-theme-dark`, qui est la classe passée au composant depuis son parent
 
-Pour la plupard des attributs, la valeur fournie au composant va remplacer la valeur mise initialement dans le composant. Donc par exemple, passer `type="large"` va remplacer `type="date"` et probablement le rendre inutilisable ! Heureusement, les attributs `class` et `style` sont plus mâlin, aussi les deux valeurs sont mergées, fournissant la valeur finale suivante : `
+Pour la plupard des attributs, la valeur fournie au composant va remplacer la valeur mise initialement dans le composant. Donc par exemple, passer `type="large"` va remplacer `type="date"` et probablement le rendre inutilisable ! Heureusement, les attributs `class` et `style` sont plus mâlin, aussi les deux valeurs sont mergées, fournissant la valeur finale suivante : `form-control date-picker-theme-dark`.
 
 ## Événements personnalisés
 
