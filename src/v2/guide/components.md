@@ -83,7 +83,7 @@ var Child = {
 new Vue({
   // ...
   components: {
-    // <my-component> 将只在父级模板中可用
+    // 只能在父级模板中使用 <my-component>
     'my-component': Child
   }
 })
@@ -579,9 +579,9 @@ new Vue({
 
 在某些场景中，我们可能需要对一个 prop 进行「双向绑定」 - 事实上，这个功能在 Vue 1.x 中已经由 `.sync` 修饰符实现。当一个子组件修改带有 `.sync` 修饰符的 prop 时，设置的值就会反向映射(reflect)到父组件中。这很方便，然而长远来看会造成维护上的问题，因为这种双向绑定的机制，破坏了单向数据流(one-way data flow)的设计：在修改子组件的 props 后，这些代码隐式的，也会影响到父组件状态，父组件的状态来源很难从代码中显式推断。
 
-这也就是为什么我们要在 Vue.js 2.0 发布时，移除 `.sync` 修饰符的原因。然而，我们发现确实在某些场景中还是需要双向绑定，尤其有助于数据往返于可重用组件。我们需要做出的改进是，**将子组件影响父组件状态的代码，能够和单向数据流保持一致，以及变得更加清晰明确**
+这也就是为什么我们要在 2.0 发布时，移除 `.sync` 修饰符的原因。然而，我们发现确实在某些场景中还是需要双向绑定，尤其有助于数据往返于可重用组件。我们需要做出的改进是，**将子组件影响父组件状态的代码，能够和单向数据流保持一致，以及变得更加清晰明确**。
 
-在 Vue.js 2.3 中，我们为 props 重新引入了 `.sync` 修饰符，但是这次只是原有语法的语法糖(syntax sugar)包装而成，其背后实现原理是，在组件上自动扩充一个额外的 `v-on` 监听器：
+在 2.3 中，我们为 props 重新引入了 `.sync` 修饰符，但是这次只是原有语法的语法糖(syntax sugar)包装而成，其背后实现原理是，在组件上自动扩充一个额外的 `v-on` 监听器：
 
 以下
 
@@ -601,15 +601,15 @@ new Vue({
 this.$emit('update:foo', newValue)
 ```
 
-### 使用自定义事件的表单输入组件
+### 使用自定义事件的表单输入组件(Form Input Components using Custom Events)
 
-自定义事件也可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。牢记：
+自定义事件，还可以用于辅助自定义输入框实现 `v-model`。回顾下：
 
 ``` html
 <input v-model="something">
 ```
 
-仅仅是一个语法糖：
+其实是下面的语法糖包装而成：
 
 ``` html
 <input
@@ -617,7 +617,7 @@ this.$emit('update:foo', newValue)
   v-on:input="something = $event.target.value">
 ```
 
-所以在组件中使用时，它相当于下面的简写：
+在一个组件上使用 v-model 时，会简化为：
 
 ``` html
 <custom-input
@@ -626,12 +626,12 @@ this.$emit('update:foo', newValue)
 </custom-input>
 ```
 
-所以要让组件的 `v-model` 生效，它应该（这可以在 2.2.0以上版本配置）：
+因此，对于一个带有 `v-model` 的组件，它应该如下（在 2.2.0+ 这是可配置的）：
 
-- 接受一个 `value` 属性
-- 在有新的 value 时触发 `input` 事件
+- 接收一个 `value` prop
+- 触发 `input` 事件，并传入新值
 
-一个非常简单的货币输入：
+让我们通过一个非常简单的货币输入框，看看带有 v-model 的组件的表现：
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -650,24 +650,26 @@ Vue.component('currency-input', {
   ',
   props: ['value'],
   methods: {
-    // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
+    // 此方法不是用来直接更新 value，
+    // 而是用于对 input 的 value
+    // 进行格式化和位数限制
     updateValue: function (value) {
       var formattedValue = value
-        // 删除两侧的空格符
+        // 移除两侧的空白符
         .trim()
-        // 保留 2 小数位
+        // 保留 2 位小数
         .slice(
           0,
           value.indexOf('.') === -1
             ? value.length
             : value.indexOf('.') + 3
         )
-      // 如果值不统一，
-      // 手动覆盖以保持一致
+      // 如果 value 还不标准格式，
+      // 手动将其覆盖以符合规范
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // 通过 input 事件发出数值
+      // 向上触发 input 事件，并传递数字值
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -715,15 +717,15 @@ new Vue({
 </script>
 {% endraw %}
 
-上面的实现方式太过理想化了。 比如，用户甚至可以输入多个小数点或句号 - 哦哦！因此我们需要一个更有意义的例子，下面是一个更加完善的货币过滤器：
+以上实现有点太微不足道了。例如，用户可以输入多个句号，有时甚至可以输入字母 - 哦哦！为此我们要找一个足够复杂的例子，下面是一个更加健壮的货币过滤器：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-### Customizing Component `v-model`
+### 定制组件 `v-model`
 
-> New in 2.2.0
+> 2.2.0 新增
 
-By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
+在一个组件中，`v-model` 默认使用 `value` 作为 prop，以及默认使用 `input` 作为监听事件，但是一些输入框类型，例如 checkbox 和 radio，可能会用到 value。在这种情况下，为了避免冲突，就会需要使用组件的 `model` 选项：
 
 ``` js
 Vue.component('my-checkbox', {
@@ -733,7 +735,7 @@ Vue.component('my-checkbox', {
   },
   props: {
     checked: Boolean,
-    // this allows using the `value` prop for a different purpose
+    // 这样可以将 `value` prop 释放出来，用作其他用途
     value: String
   },
   // ...
@@ -744,7 +746,7 @@ Vue.component('my-checkbox', {
 <my-checkbox v-model="foo" value="some value"></my-checkbox>
 ```
 
-The above will be equivalent to:
+以上等同于：
 
 ``` html
 <my-checkbox
@@ -754,29 +756,29 @@ The above will be equivalent to:
 </my-checkbox>
 ```
 
-<p class="tip">Note that you still have to declare the `checked` prop explicitly.</p>
+<p class="tip">注意，仍然需要显式声明 `checked` prop 属性。</p>
 
-### 非父子组件通信
+### 非父子组件通信(Non Parent-Child Communication)
 
-有时候非父子关系的组件也需要通信。在简单的场景下，使用一个空的 Vue 实例作为中央事件总线：
+有时候两个组件之间需要进行通信，但是它们彼此不是父子组件的关系。在一些简单场景，你可以使用一个空的 Vue 实例作为一个事件总线中心(central event bus)：
 
 ``` js
 var bus = new Vue()
 ```
 ``` js
-// 触发组件 A 中的事件
+// 在组件 A 的 methods 方法中触发事件
 bus.$emit('id-selected', 1)
 ```
 ``` js
-// 在组件 B 创建的钩子中监听事件
+// 在组件 B 的 created 钩子函数中监听事件
 bus.$on('id-selected', function (id) {
   // ...
 })
 ```
 
-在更多复杂的情况下，你应该考虑使用专门的 [状态管理模式](state-management.html).
+在复杂场景中，你应该考虑使用专门的[状态管理模式](state-management.html)。
 
-## 使用 Slot 分发内容
+## 使用 slot 分发内容(Content Distribution with Slots)
 
 在使用组件时，常常要像这样组合它们：
 
@@ -1107,7 +1109,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [Webpack 代码分割功能](https://doc.webpack-china.org/guides/code-splitting/)来使用异步组件：
+工厂函数接收 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；怎么获取组件完全取决于你。比较推荐的方式是配合 [webpack 代码分割功能](https://doc.webpack-china.org/guides/code-splitting/)来使用异步组件：
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1116,7 +1118,7 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-可以在工厂函数中返回一个 `Promise`，所以使用 Webpack 2 + ES2015 语法后你可以这么做：
+可以在工厂函数中返回一个 `Promise`，所以使用 webpack 2 + ES2015 语法后你可以这么做：
 
 ``` js
 Vue.component(
@@ -1136,7 +1138,7 @@ new Vue({
 })
 ```
 
-<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 Webpack 所内置的一流异步支持。</p>
+<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到了 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，这可能对现有的和复杂的应用程序有所帮助。对于所有其他场景，我们推荐简单地使用 webpack 所内置的一流异步支持。</p>
 
 ### Advanced Async Components
 
@@ -1271,7 +1273,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 仔细观察后，你就会发现：在渲染树中，这些组件实际上都是彼此的后代和祖先，这是矛盾且相悖的！当使用 `Vue.component` 全局注册组件后，这个问题会自动解决。如果以上已经解决你的问题，你可以在这里停止阅读。
 
-然而，如果你使用了模块系统（例如通过 Webpack 或 Browserify 等模块化工具），并通过 require/import 导入组件的话，你就会看到一个错误：
+然而，如果你使用了模块系统（例如通过 webpack 或 Browserify 等模块化工具），并通过 require/import 导入组件的话，你就会看到一个错误：
 
 
 ```
