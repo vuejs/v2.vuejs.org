@@ -44,7 +44,7 @@ MyPlugin.install = function (Vue, options) {
   })
 
   // 4. ajouter une méthode d'instance
-  Vue.prototype.$myMethod = function (options) {
+  Vue.prototype.$myMethod = function (methodOptions) {
     // de la logique de code...
   }
 }

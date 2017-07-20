@@ -257,11 +257,11 @@ type: api (En)
   - `{Object | Array} cible`
   - `{string | number} clé`
 
+  > Fonctionne uniquement avec Array + index dans la 2.2.0+.
+
 - **Utilisation :**
 
   Supprime une propriété d'un objet cible. Si l'objet est réactif, cette méthode s'assure que la suppression déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement la suppression de propriétés, mais vous devriez rarement en avoir besoin.
-
-  > Fonctionne aussi avec un `Array` + index en 2.2.0+.
 
   <p class="tip">L'objet cible ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.</p>
 
