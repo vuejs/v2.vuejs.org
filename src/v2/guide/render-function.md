@@ -306,7 +306,7 @@ render: function (createElement) {
 
 ### 이벤트 및 키 수정자
 
-`.passive`, `.capture` 및 `.once` 이벤트 수식어를 위해 Vue는 `on`과 함께 사용할 수있는 접두사를 제공합니다 
+`.passive`, `.capture` 및 `.once` 이벤트 수식어를 위해 Vue는 `on`과 함께 사용할 수있는 접두사를 제공합니다
 
 | 수정자| 접두어 |
 | ------ | ------ |
@@ -465,7 +465,8 @@ Vue.component('my-component', {
 })
 ```
 
-컴포넌트에 필요한 모든 것은 `context`를 통해 전달됩니다. 이 객체는 다음을 포함하는 객체 입니다.
+> 주의 : 2.3.0 이전 버전에서, 함수형 컴포넌트에서 props을 받아들이려면 `props` 옵션이 필요합니다. 2.3.0 이상에서는 `props` 옵션을 생략할 수 있으며, 컴포넌트 노드에서 발견된 모든 속성은 암시적으로 props으로 추출됩니다.
+
 
 - `props`: 전달받은 props에 대한 객체
 - `children`: VNode 자식의 배열
@@ -477,14 +478,11 @@ Vue.component('my-component', {
 
 `functional:true`를 추가한 후 anchor를 가지는 heading 컴포넌트의 렌더 함수를 업데이트 하는 것은 단순히 `context` 전달인자를 추가하고 `this.$slots.default`를 `context.children`으로 갱신한 다음 `this.level`을 `context.props.level`로 갱신하면 됩니다.
 
-함수형 컴포넌트는 단지 함수일 뿐이므로 렌더링에 들어가는 비용이 적습니다. 그러나  VueJS 크롬 개발자 도구의 컴포넌트 트리에서 함수형 컴포넌트를 볼 수 없습니다.
+함수형 컴포넌트는 단지 함수일 뿐이므로 렌더링에 들어가는 비용이 적습니다. 그러나  [Vue 크롬 개발자 도구](https://github.com/vuejs/vue-devtools)의 컴포넌트 트리에서 함수형 컴포넌트를 볼 수 없습니다.
 
-또한 래퍼 컴포넌트로 사용하면 유용합니다 아래와 같은 경우에 사용하세요
+또한 래퍼 컴포넌트로도 매우 유용합니다. 예를 들어,
 
-- 프로그래밍적으로 기능을 위임할 여러 컴포넌트 중 하나를 선택하십시오.
-- 하위 컴포넌트에 전달하기 전에 자식 컴포넌트 또는 props를 조작합니다.
 
-여기에 `smart-list` 컴포넌트 예제는 전달된 props에 따라 더 구체적인 컴포넌트에 위임하는 예제 입니다.
 
 ``` js
 var EmptyList = { /* ... */ }

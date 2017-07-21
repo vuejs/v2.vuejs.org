@@ -4,9 +4,10 @@ type: guide
 order: 25
 ---
 
-## 공식 선언 파일
+## Webpack 2 사용자를 위한 2.2.0이상 버전의 타입스크립트의 중요 변경사항
 
-정적 타이핑 시스템은 특히 애플리케이션이 커짐에 따라 생기는 많은 잠재적 런타임 오류를 예방할 수 있습니다. 이것이 Vue가 [TypeScript](https://www.typescriptlang.org/)에 대해 [공식 타입 선언](https://github.com/vuejs/vue/tree/dev/types)을 제공하는 이유입니다. Vue 코어뿐 아니라 [Vue Router](https://github.com/vuejs/vue-router/tree/dev/types)와 [Vuex](https://github.com/vuejs/vuex/tree/dev/types)도 마찬가지입니다.
+Vue 2.2.0+에서 우리는 ES모듈로 노출 된 dist파일을 Webpack 2에서 기본적으로 사용하기 시작합니다.
+불행히도 TypeScript + webpack 2를 사용하면 `import Vue = require('vue')`는 이제 Vue 자체 대신 ES 모듈 객체를 반환합니다.
 
 [NPM에 배포](https://unpkg.com/vue/types/) 되어 있기 때문에, Vue로 선언을 자동으로 가져오므로 `Typings`와 같은 외부 도구조차 필요하지 않습니다. 즉, 더 추가할것이 별로 없습니다.
 ## TypeScript와 Webpack 2 사용자에게 중요한 2.2버전의 변화
