@@ -1031,9 +1031,11 @@ if (version === 2) {
 
 - **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+
 - **Details:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the full build.**
+  Change the plain text interpolation delimiters.
 
 - **Example:**
 
@@ -1119,6 +1121,8 @@ if (version === 2) {
 - **Type:** `boolean`
 
 - **Default:** `false`
+
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
 
 - **Details:**
 
