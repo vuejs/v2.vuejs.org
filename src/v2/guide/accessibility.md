@@ -22,7 +22,7 @@ There are a huge range of disabilities, which can be divided roughly into four c
 
 There's a lot of technology that people with disabilities utilise to use their computers, but often that technology isn't useful unless we take measures to ensure it works. For example, low vision users, blind users and users with dyslexia may use screen readers to read out what's on the screen—but if there are images on the page the screen reader won't know what to read out unless we tell it using alt text. This guide will outline a number of common problems people with disabilities have when browsing websites and explain what we can do to help.
 
-## Basic accessibility 
+## Basic accessibility
 
 Accessibility in standard websites, such as putting alt text on images and making sure your text is large enough to read, has been covered many times before, so instead of rewriting what has already been said here, here's a couple articles covering the topic:
 
@@ -54,6 +54,163 @@ It's better to make content display on click instead of on hover - or both. For 
 
 ### Extended input elements
 
+Standard input elements such as text inputs (<input type="text" placeholder="Example text input">) and checkboxes (<input type="checkbox">) often don't look great, so it's fairly common to want to change the appearance of them.
+
+For example, maybe you want to change a checkbox to look like this:
+
+{% raw %}
+<div id="example-0" class="demo">
+  <div class="toggle-button">
+    <div class="toggle-button__handle"></div>
+  </div>
+</div>
+{% endraw %}
+
+You can't just style a checkbox to look like that: you have to create your own component creating every part of the toggle button. Maybe you could do it like this:
+
+```html
+<div
+  :class="['toggle-button', { 'toggle-button--checked': checked }]"
+  @click="checked = !checked">
+  <div class="toggle-button__handle"></div>
+</div>
+```
+
+Once styled with a bit of CSS, this works fine - clicking on the component toggles the `toggle-button--checked` class and we can move the position of the handle using CSS. Here it is:
+
+{% raw %}
+<div id="example-1" class="demo">
+  <div
+    :class="['toggle-button', { 'toggle-button--checked': checked }]"
+    @click="checked = !checked">
+    <div class="toggle-button__handle"></div>
+  </div>
+  
+  <pre>{ checked: {{ checked }} }</pre>
+</div>
+<script>
+var example1 = new Vue({
+  el: '#example-1',
+  data: {
+    checked: false,
+  },
+})
+</script>
+<style>
+.toggle-button {
+  position: relative;
+
+  width: 60px;
+  height: 30px;
+  
+  border-radius: 15px;
+  background-color: hsl(0, 75%, 75%);
+  
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.toggle-button--checked {
+  background-color: hsl(240, 75%, 75%);
+}
+
+.toggle-button__handle {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+
+  width: 24px;
+  height: 24px;
+  
+  border-radius: 50%;
+  background-color: hsl(0, 75%, 35%);
+  
+  transition: all 0.3s;
+}
+
+.toggle-button--checked .toggle-button__handle {
+  transform: translateX(30px);
+  
+  background-color: hsl(240, 75%, 35%);
+}
+</style>
+{% endraw %}
+
+If you click on the toggle button, it seems to work fine. The variable has changed, and the handle has moved - it's obvious what the state of the toggle button is.
+
+However, while we can tell that it is a toggle button by looking at it, the browser has no idea - the browser thinks that it's just two `<div>` elements. This affects two groups of people:
+
+- Keyboard-only users won't be able to move focus to the button, and so can't click on it to toggle it. You can test this yourself by attempting to tab onto the element (start in the input elements at the beginning of this section).
+- The element is completely invisible to screen readers, so not only will people using screen readers not be able to change the value of the button, but they won't even know that it is there.
+
+The first problem is fairly easy to solve: you can just add `tabindex="0"` to the element and you can then tab to it. Note in the next demo that the element is given an outline when focused: this is good! It means that users who aren't using a mouse can tell where the focus is.
+
+The second isn't as simple, and there are two ways to solve it:
+
+#### Extend a native input element
+
+The first possible way to solve this problem is to build the component by starting with a native input element, hiding it from displaying, and making our new HTML hidden from screen readers.
+
+For example, with the previous demo, we could have a hidden checkbox input bound to the same variable, like this:
+
+{% raw %}
+<div id="example-2" class="demo">
+  <input v-model="checked" class="sr-only" type="checkbox">
+  <div
+    aria-hidden="true"
+    tabindex="0"
+    :class="['toggle-button', { 'toggle-button--checked': checked }]"
+    @click="checked = !checked">
+    <div class="toggle-button__handle"></div>
+  </div>
+  
+  <pre>{ checked: {{ checked }} }</pre>
+</div>
+<script>
+var example1 = new Vue({
+  el: '#example-2',
+  data: {
+    checked: false,
+  },
+})
+</script>
+{% endraw %}
+
+The `sr-only` class means that the checkbox is visible only to screen readers, and `aria-hidden="true"` on the toggle button means that it is hidden to screen readers. Screen readers read out the checkbox, and your sighted users see the toggle button as intended—it works for both parties.
+
+#### ARIA attributes
+
+We saw an ARIA attribute in the previous example to hide the custom HTML from the screen reader. aria-hidden is one of a tonne of attributes that you can add to elements to tell assistive technology such as screen readers what things on the page are.
+
+Check out MDN for a longer read on ARIA: [An overview of accessible web applications and widgets][aria mdn].
+
+To make first example accessible using ARIA, we have to set the role to "checkbox" and use the `aria-checked` attribute:
+
+{% raw %}
+<div id="example-3" class="demo">
+  <div
+    role="checkbox"
+    tabindex="0"
+    :aria-checked="checked"
+    :class="['toggle-button', { 'toggle-button--checked': checked }]"
+    @click="checked = !checked">
+    <div class="toggle-button__handle"></div>
+  </div>
+  
+  <pre>{ checked: {{ checked }} }</pre>
+</div>
+<script>
+var example1 = new Vue({
+  el: '#example-3',
+  data: {
+    checked: false,
+  },
+})
+</script>
+{% endraw %}
+
+Either method of making the custom input element accessible works fine and isn't too difficult to implement.
+
 ### Dynamic content
 
 ### Page navigation with client-side routing
@@ -64,3 +221,4 @@ It's better to make content display on click instead of on hover - or both. For 
 
 [wcag 2.0]: https://www.w3.org/TR/WCAG20/
 [switch technology]: https://en.wikipedia.org/wiki/Switch_access
+[aria mdn]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/An_overview_of_accessible_web_applications_and_widgets
