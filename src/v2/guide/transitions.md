@@ -50,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
 }
 ```
@@ -95,11 +95,17 @@ new Vue({
 진입 / 진출 전환에는 네가지 클래스가 적용됩니다.
 
 1. `v-enter`: enter의 시작 상태. 엘리먼트가 삽입되기 전에 적용되고 한 프레임 후에 제거됩니다.
+
 2. `v-enter-active`: enter에 대한 활성 및 종료 상태. 엘리먼트가 삽입되기 전에 적용됩니다. 전환 / 애니메이션이 완료되면 제거됩니다.
+
 3. `v-enter-to`: **2.1.8 이상 버전에서 지원합니다.** 진입 상태의 끝에서 실행됩니다. 엘리먼트가 삽입된 후 (동시에 `v-leave`가 제거됨), 전환/애니메이션이 끝나면 제거되는 하나의 프레임을 추가했습니다.
+
 4. `v-leave`: leave를 위한 시작 상태. 진출 전환이 트리거 될 때 적용되고 한 프레임 후에 제거됩니다.
+
 5. `v-leave-active`: leave에 대한 활성 및 종료 상태. 진출 전환이 트리거되면 적용되고 전환 / 애니메이션이 완료되면 제거됩니다.
+
 6. `v-leave-to`: **2.1.8 이상 버전에서 지원합니다.** 진출 상태의 끝에서 실행됩니다. 진출 전환이 트리거되고 (동시에 `v-leave`가 제거됨), 전환/애니메이션이 끝나면 제거되는 하나의 프레임을 추가했습니다.
+
 
 ![Transition Diagram](/images/transition.png)
 
@@ -141,7 +147,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for <2.1.8 */ {
+/* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -284,10 +290,10 @@ new Vue({
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class` (>= 2.1.8 only)
+- `enter-to-class` (2.1.8+)
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class` (>= 2.1.8 only)
+- `leave-to-class` (2.1.8+)
 
 이것들은 원본 클래스 명을 오버라이드 합니다. 이는 Vue의 전환 시스템을 [Animate.css](https://daneden.github.io/animate.css/)와 같은 기존 CSS 애니메이션 라이브러리와 결합하려는 경우 특히 유용합니다.
 
@@ -551,7 +557,7 @@ new Vue({
 <transition
   appear
   appear-class="custom-appear-class"
-  appear-to-class="custom-appear-to-class" (>= 2.1.8 only)
+  appear-to-class="custom-appear-to-class" (2.1.8+)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
@@ -897,7 +903,7 @@ new Vue({
   transition: opacity .3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active for <2.1.8 */ {
+/* .component-fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -992,7 +998,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1168,7 +1174,7 @@ new Vue({
   margin-right: 10px;
 }
 .list-complete-enter, .list-complete-leave-to
-/* .list-complete-leave-active for <2.1.8 */ {
+/* .list-complete-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }

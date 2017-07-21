@@ -254,7 +254,9 @@ type: api
 
 - **전달인자:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} key/index`
+
+  > Only works with Array + index in 2.2.0+.
 
 - **사용방법:**
 
@@ -1038,9 +1040,11 @@ if (version === 2) {
 
 - **기본값:** `{% raw %}["{{", "}}"]{% endraw %}`
 
+- **제한사항:** 이 옵션은 전체 빌드에서만 사용할 수 있습니다.
+
 - **상세:**
 
-  일반 텍스트 보간 구분 기호를 변경하십시오. **이 옵션은 전체 빌드에서만 사용할 수 있습니다. **
+  일반 텍스트 보간 구분 기호를 변경하십시오.
 
 - **예제:**
 
@@ -1122,6 +1126,8 @@ if (version === 2) {
   `inheritAttrs` 속성을 `false`로 지정하면 기본적인 동작이 중지됩니다.
   속성은 `$attrs` 인스턴스 속성(2.4에서 새로 추가됨)로 사용할 수 있으며 `v-bind`로 루트 엘리먼트에 명시적으로 바인딩할 수 있습니다.
 
+  Note: this option does **not** affect `class` and `style` bindings.
+
 ### comments
 
 > 2.4.0 이후 추가됨
@@ -1129,6 +1135,8 @@ if (version === 2) {
 - **타입:** `boolean`
 
 - **기본값:** `false`
+
+- **제한사항:** 이 옵션은 전체 빌드에서만 사용할 수 있습니다.
 
 - **상세:**
 
@@ -1821,7 +1829,7 @@ if (version === 2) {
 
 - **수식어:**
   - `.prop` - 속성 대신 DOM 속성으로 바인딩 ([무슨 차이가 있습니까?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). 만약 태그가 컴포넌트라면 `.props`는 컴포넌트의 `$el`에 속성을 추가합니다.
-  - `.camel` - (2.1.0+) kebab-case 속성 이름을 camelCase로 변환합니다. 
+  - `.camel` - (2.1.0+) kebab-case 속성 이름을 camelCase로 변환합니다.
   - `.sync` - (2.3.0+) 바인딩 된 값을 업데이트하기 위한 `v-on`를 확장하는 신택스 슈가입니다
 
 - **사용방법:**

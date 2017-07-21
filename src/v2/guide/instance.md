@@ -76,7 +76,7 @@ vm.$watch('a', function (newVal, oldVal) {
 <p class="tip">인스턴스 속성이나 콜백에서 [화살표 함수](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)를 사용하지 마십시오. (예: `vm.$watch('a', newVal => this.myMethod())`). 화살표 함수는 부모 컨텍스트에 바인딩 되어 있으므로 `this`는 Vue 인스턴스가 아니며 `this.myMethod`는 정의되지 않습니다.
 </p>
 
-인스턴스 속성 및 메소드의 전체 목록을 보려면 [API 참조](../api)를 참조하세요
+인스턴스 속성 및 메소드의 전체 목록을 보려면 [API 레퍼런스](../api/#Instance-Properties)를 참조하세요
 
 ## 인스턴스 라이프사이클 훅
 
