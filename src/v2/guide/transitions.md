@@ -50,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
 }
 ```
@@ -146,7 +146,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for <2.1.8 */ {
+/* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -289,10 +289,10 @@ Vous pouvez également spécifier des classes de transition personnalisées en f
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class` (2.1.8+ uniquement)
+- `enter-to-class` (2.1.8+)
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class` (2.1.8+ uniquement)
+- `leave-to-class` (2.1.8+)
 
 Celles-ci remplacent les noms de classes habituelles. C'est surtout utile quand vous voulez combiner le système de transition de Vue avec une bibliothèque d'animation CSS existante, comme [Animate.css](https://daneden.github.io/animate.css/).
 
@@ -356,7 +356,7 @@ Toutefois, dans certains cas, vous pouvez les avoir tous les deux sur le même �
 
 ### Durées de transition explicites
 
-> Nouveau dans 2.2.0
+> Nouveau dans 2.2.0+
 
 Dans la plupart des cas, Vue peut automatiquement déterminer quand la transition est terminée. Par défaut, Vue attend le premier évènement `transitionend` ou `animationend` sur l'élément de transition racine. Cependant, cela peut ne pas toujours être souhaité (par exemple, nous pouvons avoir une séquence de transition chorégraphiée où certains éléments internes imbriqués ont une transition retardée ou une durée de transition plus longue que l'élément de transition racine).
 
@@ -560,7 +560,7 @@ Par défaut, cela utilisera les transitions spécifiées pour l'entrée et la so
 <transition
   appear
   appear-class="custom-appear-class"
-  appear-to-class="custom-appear-to-class" (2.1.8+ seulement)
+  appear-to-class="custom-appear-to-class" (2.1.8+)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
@@ -906,7 +906,7 @@ new Vue({
   transition: opacity .3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active pour <2.1.8 */ {
+/* .component-fade-leave-active avant la 2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -1002,7 +1002,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1178,7 +1178,7 @@ new Vue({
   margin-right: 10px;
 }
 .list-complete-enter, .list-complete-leave-to
-/* .list-complete-leave-active for <2.1.8 */ {
+/* .list-complete-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }

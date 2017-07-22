@@ -80,15 +80,15 @@ type: api (En)
 
   Définit un gestionnaire pour les erreurs non interceptées pendant le rendu d'un composant et les appels aux observateurs. Ce gestionnaire sera appelé avec comme arguments l'erreur et l'instance de Vue associée.
 
-  > En 2.2.0, ce hook capture également les erreurs dans les hooks du cycle de vie des composants. De plus, quand ce hook est `undefined`, les erreurs capturées seront loguées avec `console.error` plutôt qu'avoir un crash de l'application.
+  > En 2.2.0+, ce hook capture également les erreurs dans les hooks du cycle de vie des composants. De plus, quand ce hook est `undefined`, les erreurs capturées seront loguées avec `console.error` plutôt qu'avoir un crash de l'application.
 
-  > In 2.4.0 this hook also captures errors thrown inside Vue custom event handlers.
+  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
 
   > [Sentry](https://sentry.io), un service de traçage d'erreur, fournit une [intégration officielle](https://sentry.io/for/vue/) utilisant cette option.
 
 ### warnHandler
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `Function`
 
@@ -148,11 +148,11 @@ type: api (En)
 
 ### performance
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0+
 
 - **Type :** `boolean`
 
-- **Par défaut :** `false` (à partir de la 2.2.3)
+- **Par défaut :** `false` (à partir de la 2.2.3+)
 
 - **Utilisation :**
 
@@ -160,7 +160,7 @@ type: api (En)
 
 ### productionTip
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0+
 
 - **Type :** `boolean`
 
@@ -230,7 +230,7 @@ type: api (En)
   })
   ```
 
-  > Nouveauté  de la 2.1.0: retourne une Promise si aucune fonction de callback n'est fournie et si Promise est supporté par l'environnement d'exécution.
+  > Nouveauté de la 2.1.0+ : retourne une Promise si aucune fonction de callback n'est fournie et si Promise est supporté par l'environnement d'exécution.
 
 - **Voir aussi :** [File de mise à jour asynchrone](../guide/reactivity.html#Async-Update-Queue)
 
@@ -678,7 +678,7 @@ if (version === 2) {
 
 ### renderError
 
-> Nouveau en 2.2.0
+> Nouveau en 2.2.0+
 
   - **Type :** `(createElement: () => VNode, error: Error) => VNode`
 
@@ -705,9 +705,7 @@ if (version === 2) {
     - [Fonctions de Rendu](../guide/render-function)
 
 
-## Options / Hooks du cycle de vie
-
-Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.
+<p class="tip">Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.</p>
 
 ### beforeCreate
 
@@ -930,7 +928,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### provide / inject
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0+
 
 - **Type :**
   - **provide :** `Object | () => Object`
@@ -985,7 +983,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   }
   ```
 
-  > Les deux prochains exemples fonctionnent seulement avec Vue > 2.2.1. En dessous de cette version, les valeurs injectées étaient résolues après l'initialisation des `props` et de `data`.
+  > Les deux prochains exemples fonctionnent seulement avec Vue 2.2.1+. En dessous de cette version, les valeurs injectées étaient résolues après l'initialisation des `props` et de `data`.
 
   En utilisant une valeur injectée comme valeur par défaut pour une prop :
   ```js
@@ -1033,6 +1031,8 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 - **Type :** `Array<string>`
 
 - **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
+
+- **Restrictions :** Cette option n'est disponible que dans la version complète du build, avec la compilation dans le navigateur.
 
 - **Détails :**
 
@@ -1105,7 +1105,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### inheritAttrs
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
@@ -1115,13 +1115,17 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
 
+  Note: this option does **not** affect `class` and `style` bindings.
+
 ### comments
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
 - **Default:** `false`
+
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
 
 - **Details:**
 
@@ -1141,7 +1145,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### vm.$props
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0+
 
 - **Type :** `Object`
 
@@ -1260,7 +1264,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### vm.$scopedSlots
 
-> Nouveauté en 2.1.0
+> Nouveauté en 2.1.0+
 
 - **Type :** `{ [name: string]: props => VNode | Array<VNode> }`
 
@@ -1311,7 +1315,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Details:**
 
-  Contains parent-scope attribute bindings that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings except for `class` and `style`, and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
 
 ### vm.$listeners
 
@@ -1530,7 +1534,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Reporte l'éxécution de la fonction `callback` au prochain cycle de mise à jour du DOM. Utilisez ceci immédiatement après avoir changé des données pour attendre la mise à jour du DOM. C'est la même chose que la fonction globale `Vue.nextTick`, sauf que le contexte `this` dans la fonction `callback` est automatiquement lié à l'instance appelant cette méthode.
 
-  > Nouveau en 2.1.0: retourne une Promise si aucun callback n'est fourni et si les Promise sont supportés dans l'environnement d'exécution.
+  > Nouveau en 2.1.0+ : retourne une Promise si aucun callback n'est fourni et si les Promise sont supportés dans l'environnement d'exécution.
 
 - **Exemple :**
 
@@ -1656,7 +1660,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### v-else-if
 
-> New in 2.1.0
+> New in 2.1.0+
 
 - **Expects:** `any`
 
@@ -1746,7 +1750,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
 
-  Starting in `2.4.0`, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
   When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
 
@@ -2188,7 +2192,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
 
-  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
   Primarily used with preserve component state or avoid re-rendering.
 
@@ -2217,7 +2221,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **`include` and `exclude`**
 
-  > New in 2.1.0
+  > New in 2.1.0+
 
   The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
 

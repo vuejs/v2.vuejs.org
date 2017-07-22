@@ -581,7 +581,7 @@ Dans certains cas, nous pourrions avoir besoin d'une « liaison bidirectionnell
 
 C'est pour cela que nous avions retiré le modificateur `.sync` dans la version 2.0. Cependant, nous trouvons tout de même qu'il existe des cas où celle-ci est très utile, nottament pour les composants réutilisables. Ce dont nous avions besoin était **de rendre le code d'un enfant qui affecte l'état d'un parent plus cohérent et explicite.**
 
-Dans la 2.3 nous réintroduisons donc le modificateur `.sync` pour les props, mais cette fois, ce n'est qu'un sucre syntaxique pour étendre automatiquement un écouteur `v-on` additionnel :
+Dans la 2.3.0+ nous réintroduisons donc le modificateur `.sync` pour les props, mais cette fois, ce n'est qu'un sucre syntaxique pour étendre automatiquement un écouteur `v-on` additionnel :
 
 Ce qui suit
 
@@ -723,7 +723,7 @@ L'implémentation ci-dessus est plutôt naïve cependant. Par exemple, les utili
 
 ### Personnalisation de composant avec `v-model`
 
-> Nouveau dans la 2.2.0
+> Nouveau dans la 2.2.0+
 
 Par défaut, `v-model` sur un composant utilise `value` en tant que prop et peuvent vouloir utiliser `input` en tant qu'événement, mais plusieurs types de champ comme les cases à cocher et les boutons radio pourraient utiliser `value` pour un usage différent. Utiliser l'option `model` permet d'éviter les conflits dans ce genre de situations :
 
@@ -935,7 +935,7 @@ L'API de distribution de contenu est un mécanisme vraiment utile lors de la con
 
 ### Slots avec portée
 
-> Nouveau dans la 2.1.0
+> Nouveau dans la 2.1.0+
 
 Un slot avec portée est un type de slot spécial qui fonctionne comme un template réutilisable (auquel on peut passer des données) au lieu d'éléments déjà rendus.
 
@@ -1145,9 +1145,9 @@ new Vue({
 
 ### Composants asynchrones avancés
 
-> Nouveau en 2.3.0
+> Nouveau dans la 2.3.0+
 
-Introduit avec la 2.3, le générateur de composant asynchrone peut aussi retourner un objet au format suivant :
+Introduit dans la 2.3.0+, le générateur de composant asynchrone peut aussi retourner un objet au format suivant :
 
 ``` js
 const AsyncComp = () => ({

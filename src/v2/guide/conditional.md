@@ -57,7 +57,7 @@ Un élément `v-else` doit immédiatement suivre un élément `v-if` ou un élé
 
 ### `v-else-if`
 
-> Nouveau dans la 2.1.0
+> Nouveau dans la 2.1.0+
 
 Le `v-else-if`, comme le nom le suggère, sert comme une « structure sinon si » pour `v-if`. Il peut également être enchaîné plusieurs fois :
 

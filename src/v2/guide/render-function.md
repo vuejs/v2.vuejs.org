@@ -468,7 +468,7 @@ Vue.component('my-component', {
 })
 ```
 
-> Note : dans les versions <= 2.3.0, l'option `props` est requise si vous souhaitez accepter des props dans un composant fonctionnel. Dans les versions 2.3.0+ vous pouvez omettre l'option `props` et tous les attributs trouvés dans le nœud composant seront implicitement extraits comme des props.
+> Note : dans les versions avant 2.3.0, l'option `props` est requise si vous souhaitez accepter des props dans un composant fonctionnel. Dans les versions 2.3.0+ vous pouvez omettre l'option `props` et tous les attributs trouvés dans le nœud composant seront implicitement extraits comme des props.
 
 Tout ce dont le composant a besoin est passé dans l'objet `context`, qui est un objet contenant :
 

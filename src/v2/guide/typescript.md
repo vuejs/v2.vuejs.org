@@ -4,9 +4,9 @@ type: guide
 order: 25
 ---
 
-## Changements importants dans la 2.2 pour les utilisateurs TS + webpack 2
+## Changements importants dans la 2.2.0+ pour les utilisateurs TS + webpack 2
 
-Dans Vue 2.2 nous avons introduit des fichiers de distribution en tant que modules ES, qui seront utilisés par défaut par webpack 2. Malheureusement, cela a introduit un changement de non retrocompatiblilité non souhaité car avec TypeScript + webpack 2, `import Vue = require('vue')` retourne maintenant un objet module ES synthétique au lieu de Vue lui-même.
+Dans Vue 2.2.0+ nous avons introduit des fichiers de distribution en tant que modules ES, qui seront utilisés par défaut par webpack 2. Malheureusement, cela a introduit un changement de non retrocompatiblilité non souhaité car avec TypeScript + webpack 2, `import Vue = require('vue')` retourne maintenant un objet module ES synthétique au lieu de Vue lui-même.
 
 Nous avons prévu de bouger toutes les déclarations officielles d'export dans le style ES dans le futur. Veuillez consulter [la configuration recommandée](#Configuration-recommandee) ci-dessous qui est parée pour les évolutions futures.
 

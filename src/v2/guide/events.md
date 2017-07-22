@@ -196,7 +196,7 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 
 <p class="tip">L'ordre a de l'importance quand vous utilisez des modificateurs car le code est généré dans le même ordre. Aussi utiliser `@click.prevent.self` va empécher **tous les clicks** alors que `@click.self.prevent` va uniquement empécher le click sur l'élément lui-même.</p>
 
-> Nouveau dans la 2.1.4
+> Nouveau dans la 2.1.4+
 
 ``` html
 <!-- l'évènement « click » sera déclenché au moins une fois -->
@@ -270,7 +270,7 @@ Par exemple :
 
 ### Modificateurs de boutons de la souris
 
-> Nouveau dans la 2.2.0
+> Nouveau dans la 2.2.0+
 
 - `.left`
 - `.right`
