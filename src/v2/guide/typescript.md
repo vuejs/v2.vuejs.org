@@ -1,28 +1,28 @@
 ---
-title: TypeScript Support
+title: Support de TypeScript
 type: guide
 order: 25
 ---
 
-## Important 2.2.0+ Change Notice for TS + webpack 2 users
+## Changements importants dans la 2.2.0+ pour les utilisateurs TS + webpack 2
 
-In Vue 2.2.0+ we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
+Dans Vue 2.2.0+ nous avons introduit des fichiers de distribution en tant que modules ES, qui seront utilisés par défaut par webpack 2. Malheureusement, cela a introduit un changement de non retrocompatiblilité non souhaité car avec TypeScript + webpack 2, `import Vue = require('vue')` retourne maintenant un objet module ES synthétique au lieu de Vue lui-même.
 
-We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#Recommended-Configuration) below on a future-proof setup.
+Nous avons prévu de bouger toutes les déclarations officielles d'export dans le style ES dans le futur. Veuillez consulter [la configuration recommandée](#Configuration-recommandee) ci-dessous qui est parée pour les évolutions futures.
 
-## Official Declaration in NPM Packages
+## Déclaration officielle dans les packages npm
 
-A static type system can help prevent many potential runtime errors, especially as applications grow. That's why Vue ships with [official type declarations](https://github.com/vuejs/vue/tree/dev/types) for [TypeScript](https://www.typescriptlang.org/) - not only in Vue core, but also for [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) and [vuex](https://github.com/vuejs/vuex/tree/dev/types) as well.
+Un système de typage statique peut aider à prévenir des erreurs d'exécutions potentielles, et particulièrement quand les applications grandissent. C'est pourquoi Vue est fourni avec des déclarations de types officielles]((https://github.com/vuejs/vue/tree/dev/types) pour [TypeScript](https://www.typescriptlang.org/), et pas seulement pour le cœur de Vue, mais aussi pour [vue-router](https://github.com/vuejs/vue-router/tree/dev/types) et [vuex](https://github.com/vuejs/vuex/tree/dev/types).
 
-Since these are [published on NPM](https://unpkg.com/vue/types/), and the latest TypeScript knows how to resolve type declarations in NPM packages, this means when installed via NPM, you don't need any additional tooling to use TypeScript with Vue.
+Puisque ceux-ci sont [publiés sur npm](https://unpkg.com/vue/types/), et que la dernière version de TypeScript sait comment résoudre des déclarations de type dans des packages npm, cela signifie qu'installer ceux-ci via npm ne requiert aucun outil supplémentaire pour utiliser TypeScript avec Vue.
 
-## Recommended Configuration
+## Configuration recommandée
 
 ``` js
 // tsconfig.json
 {
   "compilerOptions": {
-    // ... other options omitted
+    // ... les autres options sont omises
     "allowSyntheticDefaultImports": true,
     "lib": [
       "dom",
@@ -33,39 +33,39 @@ Since these are [published on NPM](https://unpkg.com/vue/types/), and the latest
 }
 ```
 
-Note the `allowSyntheticDefaultImports` option allows us to use the following:
+Notez que l'option `allowSyntheticDefaultImports` nous permet d'utiliser l'import comme ceci :
 
 ``` js
 import Vue from 'vue'
 ```
 
-instead of:
+plutôt que comme cela :
 
 ``` js
 import Vue = require('vue')
 ```
 
-The former (ES module syntax) is recommended because it is consistent with recommended plain ES usage, and in the future we are planning to move all official declarations to use ES-style exports.
+La premiere (syntaxe de module ES) est recommandée car elle est cohérente avec les recommandations d'usage ES. Nous planifions à l'avenir de changer toutes les déclarations officielles pour utiliser les exports dans le style ES.
 
-In addition, if you are using TypeScript with webpack 2, the following is also recommended:
+De plus, si vous utilisez TypeScript avec webpack 2, les options suivantes sont également recommandées :
 
 ``` js
 {
   "compilerOptions": {
-    // ... other options omitted
+    // ... les autres options sont omises
     "module": "es2015",
     "moduleResolution": "node"
   }
 }
 ```
 
-This tells TypeScript to leave the ES module import statements intact, which in turn allows webpack 2 to take advantage of ES-module-based tree-shaking.
+Ceci demande à TypeScript de laisser les instructions d'import de modules ES intactes, ce qui permet à webpack 2 de tirer parti du *tree-shaking* basé sur les modules ES.
 
-See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
+Voir [les options de compilation TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html) pour plus de détails.
 
-## Using Vue's Type Declarations
+## Utiliser la déclaration de type Vue
 
-Vue's type definition exports many useful [type declarations](https://github.com/vuejs/vue/blob/dev/types/index.d.ts). For example, to annotate an exported component options object (e.g. in a `.vue` file):
+La définition de type de Vue exporte de nombreuses [déclarations de type](https://github.com/vuejs/vue/blob/dev/types/index.d.ts) utiles. Par exemple, pour annoter l'objet d'options d'un composant exporté (par ex. dans un fichier `.vue`) :
 
 ``` ts
 import Vue, { ComponentOptions } from 'vue'
@@ -76,14 +76,14 @@ export default {
 } as ComponentOptions<Vue>
 ```
 
-## Class-Style Vue Components
+## Composants Vue sous forme de classe
 
-Vue component options can easily be annotated with types:
+Les options de composant Vue peuvent facilement être annotées avec des types :
 
 ``` ts
 import Vue, { ComponentOptions }  from 'vue'
 
-// Declare the component's type
+// Déclarer le type de composant
 interface MyComponent extends Vue {
   message: string
   onClick (): void
@@ -93,47 +93,47 @@ export default {
   template: '<button @click="onClick">Click!</button>',
   data: function () {
     return {
-      message: 'Hello!'
+      message: 'Bonjour !'
     }
   },
   methods: {
     onClick: function () {
-      // TypeScript knows that `this` is of type MyComponent
-      // and that `this.message` will be a string
+      // TypeScript sait que `this` est de type `MyComponentTypeScript`
+      // et que `this.message` sera une chaîne de caractères
       window.alert(this.message)
     }
   }
-// We need to explicitly annotate the exported options object
-// with the MyComponent type
+// Nous devons explicitement annoter l'objet d'options exporté
+// avec le type `MyComponent`
 } as ComponentOptions<MyComponent>
 ```
 
-Unfortunately, there are a few limitations here:
+Malheureusement, il y a quelques limitations ici :
 
-- __TypeScript can't infer all types from Vue's API.__ For example, it doesn't know that the `message` property returned in our `data` function will be added to the `MyComponent` instance. That means if we assigned a number or boolean value to `message`, linters and compilers wouldn't be able to raise an error, complaining that it should be a string.
+- __TypeScript ne peut pas déduire tous les types de l'API de Vue__ Par exemple, il ne sait pas que la propriété `message` renvoyée dans notre fonction `data` sera ajoutée à l'instance `MyComponent`. Cela signifie que si nous attribuons un nombre ou une valeur booléenne à `message`, les linters et les compilateurs ne seraient pas en mesure d'émettre une erreur, en pointant le fait qu'il s'agit normalement d'une chaîne de caractères.
 
-- Because of the previous limitation, __annotating types like this can be verbose__. The only reason we have to manually declare `message` as a string is because TypeScript can't infer the type in this case.
+- À cause de la précédente limitation, __l'annotation de types peut être verbeuse__. La seule raison pour laquelle nous devons déclarer manuellement `message` en tant que chaîne de caractères est parce que TypeScript ne peut pas déduire le type dans ce cas.
 
-Fortunately, [vue-class-component](https://github.com/vuejs/vue-class-component) can solve both of these problems. It's an official companion library that allows you to declare components as native JavaScript classes, with a `@Component` decorator. As an example, let's rewrite the above component:
+Fort heureusement, [vue-class-component](https://github.com/vuejs/vue-class-component) peut résoudre ses deux problèmes. C'est une bibliothèque de support officielle qui permet de déclarer les composants comme des classes natives en JavaScript, avec le décorateur `@Component`. Pour l'exemple, ré-écrivons le composant ci-dessus :
 
 ``` ts
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-// The @Component decorator indicates the class is a Vue component
+// Le décorateur @Component indique que la classe est un composant Vue
 @Component({
-  // All component options are allowed in here
+  // Toutes les options de composant sont autorisées ici.
   template: '<button @click="onClick">Click!</button>'
 })
 export default class MyComponent extends Vue {
-  // Initial data can be declared as instance properties
-  message: string = 'Hello!'
+  // Les données initiales peuvent être déclarées comme des propriétés de l'instance
+  message: string = 'Bonjour !'
 
-  // Component methods can be declared as instance methods
+  // Les méthodes peuvent être déclarées comme des méthodes d'instance
   onClick (): void {
     window.alert(this.message)
   }
 }
 ```
 
-With this syntax alternative, our component definition is not only shorter, but TypeScript can also infer the types of `message` and `onClick` without explicit interface declarations. This strategy even allows you to handle types for computed properties, lifecycle hooks, and render functions. For full usage details, see [the vue-class-component docs](https://github.com/vuejs/vue-class-component#vue-class-component).
+Avec cette syntaxe alternative, nos définitions de composant ne sont pas seulement plus courtes, mais TypeScript peut aussi connaître les types de `message` et `onClick` avec des interfaces de déclarations explicites. Cette stratégie peut même vous permettre de gérer des types pour les propriétés calculées, les hooks de cycle de vie et les fonctions de rendu. Pour une utilisation plus détaillée, référez-vous à [la documentation de vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component).

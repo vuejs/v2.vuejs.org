@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: Rencontrer l'équipe
 type: guide
 order: 31
 ---
@@ -19,7 +19,7 @@ order: 31
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Core focus</dt>
+          <dt>Cœur de Vue</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
@@ -29,7 +29,7 @@ order: 31
           </dd>
         </template>
         <template v-if="profile.github && profile.reposPersonal">
-          <dt>Ecosystem</dt>
+          <dt>Écosystème</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
@@ -41,7 +41,7 @@ order: 31
         <template v-if="profile.work">
           <dt>
             <i class="fa fa-briefcase"></i>
-            <span class="sr-only">Work</span>
+            <span class="sr-only">Travail</span>
           </dt>
           <dd v-html="workHtml"></dd>
         </template>
@@ -51,20 +51,20 @@ order: 31
             <span class="sr-only">Distance</span>
           </dt>
           <dd>
-            About
+            À
             <span
               v-if="profile.distanceInKm <= 150"
-              :title="profile.name + ' is close enough to commute to your location.'"
+              :title="profile.name + ' est assez proche pour que vous puissiez vous rencontrer.'"
               class="user-match"
-            >{{ textDistance }} away</span>
-            <template v-else>{{ textDistance }} away</template>
-            in {{ profile.city }}
+            >{{ textDistance }} de</span>
+            <template v-else>{{ textDistance }} de</template>
+            {{ profile.city }}
           </dd>
         </span>
         <template v-else-if="profile.city">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">City</span>
+            <span class="sr-only">Ville</span>
           </dt>
           <dd>
             {{ profile.city }}
@@ -73,14 +73,14 @@ order: 31
         <template v-if="profile.languages">
           <dt>
             <i class="fa fa-globe"></i>
-            <span class="sr-only">Languages</span>
+            <span class="sr-only">Langues</span>
           </dt>
           <dd v-html="languageListHtml" class="language-list"></dd>
         </template>
         <template v-if="profile.links">
           <dt>
             <i class="fa fa-link"></i>
-            <span class="sr-only">Links</span>
+            <span class="sr-only">Liens</span>
           </dt>
           <dd>
             <ul>
@@ -93,7 +93,7 @@ order: 31
         <footer v-if="profile.github || profile.twitter" class="social">
           <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
             <i class="fa fa-github"></i>
-            <span class="sr-only">Github</span>
+            <span class="sr-only">GitHub</span>
           </a>
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
             <i class="fa fa-twitter"></i>
@@ -109,7 +109,7 @@ order: 31
   <div class="team">
 
     <h2 id="the-core-team">
-      The Core Team
+      Équipe principale
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -122,21 +122,21 @@ order: 31
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>Qui est près de moi ?</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Impossible d'obtenir votre localisation.
     </p>
 
     <p>
-      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+      Le développement de Vue et son écosystème est assuré par une équipe internationale. Certains d'entre eux ont choisi d'apparaître ci-dessous.
     </p>
 
     <p v-if="userPosition" class="success">
-      The core team has been sorted by their distance from you.
+      L'équipe principale a été triée en fonction de la distance qui vous sépare.
     </p>
 
     <vuer-profile
@@ -149,7 +149,7 @@ order: 31
 
   <div class="team">
     <h2 id="community-partners">
-      Community Partners
+      Partenaires de la communauté
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -162,21 +162,21 @@ order: 31
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>Qui est près de moi ?</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Impossible d'obtenir votre localisation.
     </p>
 
     <p>
-      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+      Certains membres de la communauté Vue l'ont tellement enrichie, qu'ils méritent une mention spéciale. Nous avons développé une relation plus intime avec ces partenaires clés, en nous coordonnant souvent sur les nouvelles fonctionnalités et les nouveautés.
     </p>
 
     <p v-if="userPosition" class="success">
-      The community partners have been sorted by their distance from you.
+      Les partenaires de la communauté ont été triés en fonction de la distance qui vous sépare.
     </p>
 
     <vuer-profile
@@ -879,7 +879,7 @@ order: 31
                   'class="user-match" ' +
                   'title="' +
                     vm.profile.name +
-                    ' can give technical talks in your preferred language.' +
+                    ' peut donner des présentations techniques dans votre langue préférée.' +
                   '"' +
                 '\>' + language + '</span>'
               )

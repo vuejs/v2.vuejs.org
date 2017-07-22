@@ -1,5 +1,5 @@
 ---
-title: Elastic Header
+title: Header élastique
 type: examples
 order: 7
 ---

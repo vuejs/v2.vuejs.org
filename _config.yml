@@ -5,14 +5,14 @@
 # Site
 title: Vue.js
 subtitle:
-description: "The Progressive JavaScript Framework"
+description: "Le Framework JavaScript Évolutif"
 author: Evan You
 email:
 language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://vuejs.org
+url: http://fr.vuejs.org
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -65,7 +65,7 @@ logger_format:
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: MMM D YYYY
+date_format: D MMM YYYY
 time_format: H:mm:ss
 
 # Pagination
@@ -142,7 +142,7 @@ offline:
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:vuejs/vuejs.org.git
+  repository: git@github.com:vuejs-fr/vuejs.org.git
 
 feed:
   type: atom
