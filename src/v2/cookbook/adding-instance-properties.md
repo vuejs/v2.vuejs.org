@@ -151,7 +151,7 @@ Alors quelles sont les alternatives ?
 
 ### Quand ne pas utiliser un système de modules
 
-Dans les applications __sans__ systèmes de modules (ex. via Webpack ou Browserify), il y a un *pattern* souvent utilisé dans _n'importe quel_ *frontend* amélioré en JavaScript : un objet global `App`.
+Dans les applications __sans__ systèmes de modules (ex. via webpack ou Browserify), il y a un *pattern* souvent utilisé dans _n'importe quel_ *frontend* amélioré en JavaScript : un objet global `App`.
 
 Si ce que vous voulez ajouter n'a rien à voir avec Vue spécifiquement, cela peut être une bonne alternative à étudier. Voici un exemple :
 

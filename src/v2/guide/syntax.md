@@ -51,7 +51,7 @@ Les moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTM
 Cela fonctionne également pour les attributs booléens - l'attribut sera retiré si la condition est évaluée fausse :
 
 ``` html
-<button v-bind:disabled="someDynamicCondition">Button</button>
+<button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
 ### Utilisation des expressions JavaScript
@@ -130,7 +130,7 @@ Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Les filtres de Vue 2.x peuvent être seulement utilisés à l'intérieur des interpolations de moustaches et des expressions de `v-bind` (ces dernières étant supportées depuis la 2.1.0) car les filtres ont été conçus à la base dans le but de transformer du texte. Pour des cas plus complexes de transformation de données dans d'autres directives, vous devriez utiliser les [propriétés calculées](computed.html) à la place.</p>
+<p class="tip">Les filtres de Vue 2.x peuvent être seulement utilisés à l'intérieur des interpolations de moustaches et des expressions de `v-bind` (ces dernières étant supportées depuis la 2.1.0+) car les filtres ont été conçus à la base dans le but de transformer du texte. Pour des cas plus complexes de transformation de données dans d'autres directives, vous devriez utiliser les [propriétés calculées](computed.html) à la place.</p>
 
 La fonction de filtre reçoit toujours la valeur de l'expression comme premier argument.
 

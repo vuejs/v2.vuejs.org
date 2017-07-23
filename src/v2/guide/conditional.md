@@ -57,7 +57,7 @@ Un élément `v-else` doit immédiatement suivre un élément `v-if` ou un élé
 
 ### `v-else-if`
 
-> Nouveau dans la 2.1.0
+> Nouveau dans la 2.1.0+
 
 Le `v-else-if`, comme le nom le suggère, sert comme une « structure sinon si » pour `v-if`. Il peut également être enchaîné plusieurs fois :
 
@@ -196,4 +196,4 @@ D'une manière générale, `v-if` a des coûts à la permutations plus élevés 
 
 ## `v-if` avec `v-for`
 
-Lorsqu’il est conjointement utilisé avec `v-for`, `v-for` a une priorité plus élevée que `v-if`. Consultez le <a href="../guide/list.html#V-for-and-v-if">guide du rendu de liste</a> pour plus de détails.
+Lorsqu’il est conjointement utilisé avec `v-for`, `v-for` a une priorité plus élevée que `v-if`. Consultez le <a href="../guide/list.html#v-for-avec-v-if">guide du rendu de liste</a> pour plus de détails.

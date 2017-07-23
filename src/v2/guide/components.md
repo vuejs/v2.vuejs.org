@@ -432,7 +432,45 @@ Le `type` peut être l'un des constructeurs natifs suivants :
 
 De plus, `type` peut également être une fonction constructeur personnalisée et ainsi l'assertion sera faite avec une vérification `instanceof`.
 
-Quand une validation de prop échoue, Vue produira un avertissement dans la console (si vous utilisez le *build* de développement).
+Quand une validation de prop échoue, Vue produira un avertissement dans la console (si vous utilisez le *build* de développement). Notez que cette props est validée __avant__ que l'instance du composant soit créée, donc à l'intérieur des fonctions `default` ou `validator`, les propriétés d'instance comme  `data`, `computed`, ou `methods` ne seront pas disponibles.
+
+## Attribut non-prop
+
+Un atttribut non-prop est un attribut qui est passé au composant, mais qui n'a pas de prop correspondante défini.
+
+Bien que définir explicitement les props soit conseillé pour passer les informations à un composant enfant, les auteurs des bibliothèques de composant ne suivent pas forcément cette règle dans leurs composants. C'est pour cela que les composants peuveunt accepter des attributs arbitraires, qui sont ajoutés à l'élément racine du composant.
+
+Par exemple, imaginez que nous utilision un composant tiers `bs-date-input` avec un plugin Bootstrap qui nécessite un attribut `data-3d-date-picker` sur l'`input`. Nous pouvons ajouter cet attribut dans l'instance de notre composant :
+
+``` html
+<bs-date-input data-3d-date-picker="true"></bs-date-input>
+```
+
+Et l'attribut `data-3d-date-picker="true"` sera automatiquement ajouté à l'élément racine de `bs-date-input`.
+
+## Remplacement et merge avec des attributs existants
+
+Imaginez que ceci est un template pour `bs-date-input`:
+
+``` html
+<input type="date" class="form-control">
+```
+
+Pour ajouter un theme spécifique à notre plugin date picker, nous allons avoir besoin d'ajouter une classe, comme cela :
+
+``` html
+<bs-date-input
+  data-3d-date-picker="true"
+  class="date-picker-theme-dark"
+></bs-date-input>
+```
+
+Dans ce cas, deux valeurs différentes pour `class` sont définies :
+
+- `form-control`, qui est la classe du composant dans ce template
+- `date-picker-theme-dark`, qui est la classe passée au composant depuis son parent
+
+Pour la plupard des attributs, la valeur fournie au composant va remplacer la valeur mise initialement dans le composant. Donc par exemple, passer `type="large"` va remplacer `type="date"` et probablement le rendre inutilisable ! Heureusement, les attributs `class` et `style` sont plus mâlin, aussi les deux valeurs sont mergées, fournissant la valeur finale suivante : `form-control date-picker-theme-dark`.
 
 ## Événements personnalisés
 
@@ -543,7 +581,7 @@ Dans certains cas, nous pourrions avoir besoin d'une « liaison bidirectionnell
 
 C'est pour cela que nous avions retiré le modificateur `.sync` dans la version 2.0. Cependant, nous trouvons tout de même qu'il existe des cas où celle-ci est très utile, nottament pour les composants réutilisables. Ce dont nous avions besoin était **de rendre le code d'un enfant qui affecte l'état d'un parent plus cohérent et explicite.**
 
-Dans la 2.3 nous réintroduisons donc le modificateur `.sync` pour les props, mais cette fois, ce n'est qu'un sucre syntaxique pour étendre automatiquement un écouteur `v-on` additionnel :
+Dans la 2.3.0+ nous réintroduisons donc le modificateur `.sync` pour les props, mais cette fois, ce n'est qu'un sucre syntaxique pour étendre automatiquement un écouteur `v-on` additionnel :
 
 Ce qui suit
 
@@ -601,15 +639,15 @@ Voyons cela par l'exemple avec une simple saisie de devise :
 
 ``` js
 Vue.component('currency-input', {
-  template: `
-    <span>
-      $
-      <input
-        ref="input"
-        v-bind:value="value"
-        v-on:input="updateValue($event.target.value)">
-    </span>
-  `,
+  template: '\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)">\
+    </span>\
+  ',
   props: ['value'],
   methods: {
     // Au lieu de mettre à jour directement la valeur, cette
@@ -685,7 +723,7 @@ L'implémentation ci-dessus est plutôt naïve cependant. Par exemple, les utili
 
 ### Personnalisation de composant avec `v-model`
 
-> Nouveau dans la 2.2.0
+> Nouveau dans la 2.2.0+
 
 Par défaut, `v-model` sur un composant utilise `value` en tant que prop et peuvent vouloir utiliser `input` en tant qu'événement, mais plusieurs types de champ comme les cases à cocher et les boutons radio pourraient utiliser `value` pour un usage différent. Utiliser l'option `model` permet d'éviter les conflits dans ce genre de situations :
 
@@ -696,6 +734,7 @@ Vue.component('my-checkbox', {
     event: 'change'
   },
   props: {
+    checked: Boolean,
     // ceci permet d'utiliser la prop `value` pour un usage différent
     value: String
   },
@@ -716,6 +755,8 @@ La partie ci-dessus sera équivalente à :
   value="une valeur">
 </my-checkbox>
 ```
+
+<p class="tip">Notez que vous devez encore déclarer la prop `checked` explicitement.</p>
 
 ### Communication non parent-enfant
 
@@ -750,11 +791,11 @@ Quand on utilise des composants, il est souvent souhaitable de les composer comm
 
 Il y a deux choses à noter ici :
 
-1. Le composant `<app>` ne sait pas quel contenu peut être présent à l'intérieur de sa cible de montage. Ceci est défini par n'importe quel composant parent qui utilise `<app>`.
+1. Le composant `<app>` ne sait pas quel contenu il va recevoir. Ceci est défini par le composant qui utilise `<app>`.
 
 2. Le composant `<app>` a vraisemblablement son propre template.
 
-Pour faire fonctionner la composition, nous avons besoin d'un moyen pour entremêler le « contenu » du parent et le template de son propre composant. C'est un processus appelé **distribution de contenu** (ou « transclusion » si vous êtes familier avec Angular). Vue.js implémente une API de distribution de contenu modélisée à partir du brouillon [brouillon de spécification sur les Web Components](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), en utilisant l'élément spécial `<slot>` pour servir de points de distribution pour le contenu original.
+Pour faire fonctionner la composition, nous avons besoin d'un moyen pour entremêler le « contenu » du parent et le template de son propre composant. C'est un processus appelé **distribution de contenu** (ou « transclusion » si vous êtes familier avec Angular). Vue.js implémente une API de distribution de contenu modélisée à partir du [brouillon de spécification sur les Web Components](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), en utilisant l'élément spécial `<slot>` pour servir de points de distribution pour le contenu original.
 
 ### Portée de compilation
 
@@ -894,7 +935,7 @@ L'API de distribution de contenu est un mécanisme vraiment utile lors de la con
 
 ### Slots avec portée
 
-> Nouveau dans la 2.1.0
+> Nouveau dans la 2.1.0+
 
 Un slot avec portée est un type de slot spécial qui fonctionne comme un template réutilisable (auquel on peut passer des données) au lieu d'éléments déjà rendus.
 
@@ -1061,7 +1102,7 @@ Dans de grosses applications, nous avons parfois besoin de diviser la structure 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
-    // Passer la définition du composant à la fonction de retour `resolve`
+    // Passer la définition du composant à la fonction de rappel `resolve`
     resolve({
       template: '<div>I am async!</div>'
     })
@@ -1069,18 +1110,18 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-La fabrique de fonctions reçoit une fonction de retour `resolve` qui devra être appelée quand vous aurez récupéré la définition de votre composant depuis le serveur. Vous pouvez également appeler `reject(reason)` pour indiquer que le chargement a échoué. La fonction `setTimeout` est simplement là en tant qu'exemple ; la manière de récupérer le composant est entièrement à votre charge. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec [la fonctionnalité de découpage de code de Webpack](https://webpack.js.org/guides/code-splitting-require/) :
+La fonction de farique reçoit une fonction de rappel `resolve` qui devra être appelée quand vous aurez récupéré la définition de votre composant depuis le serveur. Vous pouvez également appeler `reject(reason)` pour indiquer que le chargement a échoué. La fonction `setTimeout` est simplement là en tant qu'exemple ; la manière de récupérer le composant est entièrement à votre charge. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec [la fonctionnalité de scission de code de webpack](https://webpack.js.org/guides/code-splitting-require/) :
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // Cette syntaxe de `require` va indiquer à Webpack
+  // Cette syntaxe de `require` va indiquer à webpack
   // de découper automatiquement votre code après build dans
   // des bundles qui seront chargés par des requêtes Ajax.
   require(['./my-async-component'], resolve)
 })
 ```
 
-Vous pouvez également retourner une `Promise` (promesse) dans la fabrique de fonctions ainsi avec Webpack 2 et la syntaxe ES2015 vous pouvez faire :
+Vous pouvez également retourner une `Promise` (promesse) dans la fabrique de fonctions ainsi avec webpack 2 et la syntaxe ES2015 vous pouvez faire :
 
 ``` js
 Vue.component(
@@ -1100,13 +1141,13 @@ new Vue({
 })
 ```
 
-<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser ldes composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour. ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser Webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
+<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser ldes composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour. ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
 
 ### Composants asynchrones avancés
 
-> Nouveau en 2.3.0
+> Nouveau dans la 2.3.0+
 
-Introduit avec la 2.3, le générateur de composant asynchrone peut aussi retourner un objet au format suivant :
+Introduit dans la 2.3.0+, le générateur de composant asynchrone peut aussi retourner un objet au format suivant :
 
 ``` js
 const AsyncComp = () => ({
@@ -1128,7 +1169,7 @@ Notez qu'en utilisant cela en tant que composant de `vue-router`, ces propriét�
 
 ### Conventions de nommage d'un composant
 
-Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-case, la camelCase ou la TitleCase.
+Quand vous inscrivez un composant (ou des props), vous pouvez utiliser la kebab-case, la camelCase ou la PascalCase.
 
 ``` js
 // dans une définition de composant
@@ -1137,8 +1178,8 @@ components: {
   'kebab-cased-component': { /* ... */ },
   // inscription utilisant la camelCase
   'camelCasedComponent': { /* ... */ },
-  // inscription utilisant la TitleCase
-  'TitleCasedComponent': { /* ... */ }
+  // inscription utilisant la PascalCase
+  'PascalCasedComponent': { /* ... */ }
 }
 ```
 
@@ -1148,20 +1189,20 @@ components: {
 <!-- toujours utiliser la kebab-case dans les templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
-<title-cased-component></title-cased-component>
+<pascal-cased-component></pascal-cased-component>
 ```
 
 Quand vous utilisez des template basés sur les _chaînes de caractères_ cependant, vous n'avez pas les restrictions liées à la sensibilité à la casse du HTML. Cela signifie que même dans le template, vous pouvez référencer vos composants et props en utilisant :
 
 - la kebab-case
 - la camelCase ou la kebab-case si le composant a été défini avec la camelCase
-- la kebab-case, la camelCase ou la TitleCase si le composant a été défini avec la TitleCase
+- la kebab-case, la camelCase ou la PascalCase si le composant a été défini avec la PascalCase
 
 ``` js
 components: {
   'kebab-cased-component': { /* ... */ },
   camelCasedComponent: { /* ... */ },
-  TitleCasedComponent: { /* ... */ }
+  PascalCasedComponent: { /* ... */ }
 }
 ```
 
@@ -1171,12 +1212,12 @@ components: {
 <camel-cased-component></camel-cased-component>
 <camelCasedComponent></camelCasedComponent>
 
-<title-cased-component></title-cased-component>
-<titleCasedComponent></titleCasedComponent>
-<TitleCasedComponent></TitleCasedComponent>
+<pascal-cased-component></pascal-cased-component>
+<pascalCasedComponent></pascalCasedComponent>
+<PascalCasedComponent></PascalCasedComponent>
 ```
 
-Cela signifie que la TitleCase est la _convention de déclaration_ la plus universelle et que la kebab-case est la _convention d'utilisation_ la plus universelle.
+Cela signifie que la PascalCase est la _convention de déclaration_ la plus universelle et que la kebab-case est la _convention d'utilisation_ la plus universelle.
 
 Si votre composant ne passe pas de contenu via des éléments `slot` vous pouvez même utiliser la syntaxe d'auto-fermeture `/` après le nom :
 
@@ -1209,7 +1250,7 @@ name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-Un composant comme celui ci-dessus conduira à une erreur « taille maximale de pile dépassée »  ("max stack size exceeded"), donc assurez-vous que les invocations récursives soient conditionnelles (c-à-d utilisent un `v-if` qui vaudra éventuellement `false`).
+Un composant comme celui ci-dessus conduira à une erreur « taille maximale de pile dépassée »  ("max stack size exceeded"), donc assurez-vous que les invocations récursives soient conditionnelles (c.-à-d. utilisent un `v-if` qui vaudra éventuellement `false`).
 
 ### Références circulaires entre les composants
 
@@ -1235,7 +1276,7 @@ Puis un composant `tree-folder-contents` avec ce template :
 
 En regardant attentivement, vous verrez que ces composants seront en fait l'ancêtre _et_ le descendant l'un de l'autre dans l'arbre de rendu — un paradoxe ! Quand vous inscrivez un composant de manière globale avec `Vue.component`, ce paradoxe est résolu pour vous automatiquement. Si c'est votre cas, vous pouvez arrêter de lire ici.
 
-Cependant, si vous réclamez/importez des composants en utilisant un __système de module__, c-à-d via Webpack ou Browserify, vous obtiendrez une erreur « Échec de montage du composant : un template ou une fonction de rendu n'est pas défini. » :
+Cependant, si vous réclamez/importez des composants en utilisant un __système de module__, c.-à-d. via webpack ou Browserify, vous obtiendrez une erreur « Échec de montage du composant : un template ou une fonction de rendu n'est pas défini. » :
 
 ```
 Failed to mount component: template or render function not defined

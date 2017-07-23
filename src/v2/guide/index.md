@@ -14,7 +14,7 @@ Si vous êtes un développeur *frontend* confirmé et que vous souhaitez compare
 
 <p class="tip">Ce guide officiel présuppose que vous ayez un niveau intermédiaire de connaissance en HTML, CSS et JavaScript. Si vous êtes complètement nouveau dans le développement *frontend*, ce n'est peut-être pas la solution la plus judicieuse de vous lancer dans un framework pour vos premiers pas — aussi complétez vos bases avant de revenir ! Bien qu'une première expérience avec d'autres frameworks puisse être utile, cela n'est pas obligatoire.</p>
 
-La manière la plus simple d'essayer Vue.js est d'utiliser [l'exemple Hello World sur JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Si vous le souhaitez, ouvrez-le dans un nouvel onglet afin de suivre pendant que nous parcourons des exemples de base. Vous pouvez aussi simplement créer un fichier `.html` et ajouter Vue avec :
+La manière la plus simple d'essayer Vue.js est d'utiliser [l'exemple Hello World sur JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Si vous le souhaitez, ouvrez-le dans un nouvel onglet afin de suivre pendant que nous parcourons des exemples de base. Vous pouvez aussi simplement <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">créer un fichier <code>index.html</code></a> et ajouter Vue avec :
 
 ``` html
 <script src="https://unpkg.com/vue"></script>

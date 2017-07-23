@@ -80,9 +80,29 @@ type: api
 
   Définit un gestionnaire pour les erreurs non interceptées pendant le rendu d'un composant et les appels aux observateurs. Ce gestionnaire sera appelé avec comme arguments l'erreur et l'instance de Vue associée.
 
-  > En 2.2.0, ce hook capture également les erreurs dans les hooks du cycle de vie des composants. De plus, quand ce hook est `undefined`, les erreurs capturées seront loguées avec `console.error` plutôt qu'avoir un crash de l'application.
+  > En 2.2.0+, ce hook capture également les erreurs dans les hooks du cycle de vie des composants. De plus, quand ce hook est `undefined`, les erreurs capturées seront loguées avec `console.error` plutôt qu'avoir un crash de l'application.
+
+  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
 
   > [Sentry](https://sentry.io), un service de traçage d'erreur, fournit une [intégration officielle](https://sentry.io/for/vue/) utilisant cette option.
+
+### warnHandler
+
+> New in 2.4.0+
+
+- **Type:** `Function`
+
+- **Default:** `undefined`
+
+- **Usage:**
+
+  ``` js
+  Vue.config.warnHandler = function (msg, vm, trace) {
+    // trace is the component hierarchy trace
+  }
+  ```
+
+  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
 
 ### ignoredElements
 
@@ -128,11 +148,11 @@ type: api
 
 ### performance
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0+
 
 - **Type :** `boolean`
 
-- **Par défaut :** `false` (à partir de la 2.2.3)
+- **Par défaut :** `false` (à partir de la 2.2.3+)
 
 - **Utilisation :**
 
@@ -140,7 +160,7 @@ type: api
 
 ### productionTip
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0+
 
 - **Type :** `boolean`
 
@@ -210,7 +230,7 @@ type: api
   })
   ```
 
-  > Nouveauté  de la 2.1.0: retourne une Promise si aucune fonction de callback n'est fournie et si Promise est supporté par l'environnement d'exécution.
+  > Nouveauté de la 2.1.0+ : retourne une Promise si aucune fonction de callback n'est fournie et si Promise est supporté par l'environnement d'exécution.
 
 - **Voir aussi :** [File de mise à jour asynchrone](../guide/reactivity.html#Async-Update-Queue)
 
@@ -237,11 +257,11 @@ type: api
   - `{Object | Array} cible`
   - `{string | number} clé`
 
+  > Fonctionne uniquement avec Array + index dans la 2.2.0+.
+
 - **Utilisation :**
 
   Supprime une propriété d'un objet cible. Si l'objet est réactif, cette méthode s'assure que la suppression déclenche les mises à jour de la vue. Ceci est principalement utilisé pour passer outre la limitation de Vue qui est de ne pas pouvoir détecter automatiquement la suppression de propriétés, mais vous devriez rarement en avoir besoin.
-
-  > Fonctionne aussi avec un `Array` + index en 2.2.0+.
 
   <p class="tip">L'objet cible ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.</p>
 
@@ -658,7 +678,7 @@ if (version === 2) {
 
 ### renderError
 
-> Nouveau en 2.2.0
+> Nouveau en 2.2.0+
 
   - **Type :** `(createElement: () => VNode, error: Error) => VNode`
 
@@ -685,9 +705,7 @@ if (version === 2) {
     - [Fonctions de Rendu](../guide/render-function)
 
 
-## Options / Hooks du cycle de vie
-
-Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.
+<p class="tip">Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.</p>
 
 ### beforeCreate
 
@@ -910,7 +928,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### provide / inject
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0+
 
 - **Type :**
   - **provide :** `Object | () => Object`
@@ -965,7 +983,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   }
   ```
 
-  > Les deux prochains exemples fonctionnent seulement avec Vue > 2.2.1. En dessous de cette version, les valeurs injectées étaient résolues après l'initialisation des `props` et de `data`.
+  > Les deux prochains exemples fonctionnent seulement avec Vue 2.2.1+. En dessous de cette version, les valeurs injectées étaient résolues après l'initialisation des `props` et de `data`.
 
   En utilisant une valeur injectée comme valeur par défaut pour une prop :
   ```js
@@ -1012,7 +1030,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Type :** `Array<string>`
 
-- **default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
+
+- **Restrictions :** Cette option n'est disponible que dans la version complète du build, avec la compilation dans le navigateur.
 
 - **Détails :**
 
@@ -1083,6 +1103,34 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   </ma-checkbox>
   ```
 
+### inheritAttrs
+
+> New in 2.4.0+
+
+- **Type:** `boolean`
+
+- **Default:** `true`
+
+- **Details:**
+
+  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+
+  Note: this option does **not** affect `class` and `style` bindings.
+
+### comments
+
+> New in 2.4.0+
+
+- **Type:** `boolean`
+
+- **Default:** `false`
+
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+
+- **Details:**
+
+  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+
 ## Propriétés d'instance
 
 ### vm.$data
@@ -1097,7 +1145,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### vm.$props
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0+
 
 - **Type :** `Object`
 
@@ -1216,7 +1264,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### vm.$scopedSlots
 
-> Nouveauté en 2.1.0
+> Nouveauté en 2.1.0+
 
 - **Type :** `{ [name: string]: props => VNode | Array<VNode> }`
 
@@ -1259,13 +1307,33 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Voir aussi :** [Rendu côté serveur](../guide/ssr.html)
 
+### vm.$attrs
+
+- **Type:** `{ [key: string]: string }`
+
+- **Read only**
+
+- **Details:**
+
+  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+
+### vm.$listeners
+
+- **Type:** `{ [key: string]: Function | Array<Function> }`
+
+- **Read only**
+
+- **Details:**
+
+  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating higher-order components.
+
 ## Méthodes et données d'instance
 
 <h3 id="vm-watch">vm.$watch( expOuFn, callback, [options] )</h3>
 
 - **Arguments :**
-  - `{string | Function} expOuFn`
-  - `{Function} callback`
+  - `{string | Function} expOrFn`
+  - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
@@ -1466,7 +1534,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Reporte l'éxécution de la fonction `callback` au prochain cycle de mise à jour du DOM. Utilisez ceci immédiatement après avoir changé des données pour attendre la mise à jour du DOM. C'est la même chose que la fonction globale `Vue.nextTick`, sauf que le contexte `this` dans la fonction `callback` est automatiquement lié à l'instance appelant cette méthode.
 
-  > Nouveau en 2.1.0: retourne une Promise si aucun callback n'est fourni et si les Promise sont supportés dans l'environnement d'exécution.
+  > Nouveau en 2.1.0+ : retourne une Promise si aucun callback n'est fourni et si les Promise sont supportés dans l'environnement d'exécution.
 
 - **Exemple :**
 
@@ -1661,9 +1729,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 - **Notation abrégée :** `@`
 
-- **Attend comme valeur :** `Function | Inline Statement`
+- **Attend comme valeur :** `Function | Inline Statement | Object`
 
-- **Argument de la fonction callback :** `event (required)`
+- **Argument de la fonction callback :** `event`
 
 - **Modificateurs :**
   - `.stop` - appelle `event.stopPropagation()`.
@@ -1682,6 +1750,8 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   Attache un écouteur d'événement à l'élément. Le type d'événement écouté est indiqué comme argument. L'expression peut être soit un nom de méthode, soit une ligne d'instruction, ou simplement omise si des modificateurs sont présents.
 
+  À partie de la 2.4.0, `v-on` supporte aussi la liaison à un objet de paires événement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
+
   Quand utilisé sur un élément HTML standard, il écoute uniquement les **événements natifs du DOM**. Quand utilisé sur un élement personnalisé de composant, il écoute également les **événements personnalisés** émis depuis ce composant enfant.
 
   Lorsque des événements natifs du DOM sont écoutés, la méthode reçoit l'événement natif comme unique argument. Si la valeur de la directive est une ligne d'instruction, l'instruction a accès à la propriété spéciale `$event` : `v-on:click="handle('ok', $event)"`.
@@ -1691,6 +1761,9 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   ```html
   <!-- nom de méthode -->
   <button v-on:click="faireCeci"></button>
+
+  <!-- syntaxe objet (2.4.0+) -->
+  <button v-on="{ mousedown: faireCeci, mouseup: faireCela }"></button>
 
   <!-- ligne d'instruction -->
   <button v-on:click="faireCela('hello', $event)"></button>
@@ -1745,7 +1818,7 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 - **Argument:** `attrOuProp (optionnel)`
 
 - **Modificateurs :**
-  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([quelle difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([quelle difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `prop` assignera la propriété sur l'élément `$el` du composant.
   - `.camel` - (2.1.0+) transforme un nom d'attribut en kebab-case en sa version camelCase.
   - `.sync` - (2.3.0+) du sucre syntaxique pour ajouter un un gestionnaire `v-on` qui met à jour la valeur liée.
 
@@ -2142,12 +2215,14 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   </transition>
   ```
 
+  Notez que `<keep-alive>` est conçu pour le cas où il a un seul composant enfant direct qui est permuté. Il ne fonctionne pas si vous avez `v-for` à l'intérieur. Quand il y a de multiples enfants condtionnels, comme ci-dessus, `<keep-alive>` requiert qu'un seul enfant soit visible à la fois.
+
 - **`include` et `exclude`**
 
   > Nouveauté de la 2.1.0
 
-  Les props `include` et `exclude` définissent les conditions de mise en cache des composants. Les deux props peuvent être soit une liste délimitée par des virgules, soit une expression régulière :
-
+  Les props `include` et `exclude` définissent les conditions de mise en cache des composants. Les deux props peuvent être soit une liste délimitée par des virgules, soit une expression régulière, soit une Array :
+  
   ``` html
   <!-- liste délimitée par des virgules -->
   <keep-alive include="a,b">
@@ -2156,6 +2231,11 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
   <!-- expression régulière (utiliser v-bind) -->
   <keep-alive :include="/a|b/">
+    <component :is="view"></component>
+  </keep-alive>
+
+  <!-- Array (utiliser v-bind) -->
+  <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
   ```

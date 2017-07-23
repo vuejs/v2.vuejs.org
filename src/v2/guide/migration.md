@@ -1052,7 +1052,7 @@ text.toLowerCase()
 
 #### Replacing the `pluralize` Filter
 
-The [pluralize](https://www.npmjs.com/package/pluralize) package on NPM serves this purpose nicely, but if you only want to pluralize a specific word or want to have special output for cases like `0`, then you can also easily define your own pluralize functions. For example:
+The [pluralize](https://www.npmjs.com/package/pluralize) package on npm serves this purpose nicely, but if you only want to pluralize a specific word or want to have special output for cases like `0`, then you can also easily define your own pluralize functions. For example:
 
 ``` js
 function pluralizeKnife (count) {

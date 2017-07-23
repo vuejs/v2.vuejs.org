@@ -7,6 +7,14 @@
         <meta name="description" content="<%- theme.site_description %>">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+        <link rel="alternate" hreflang="x-default" href="https://vuejs.org/<%- page.path %>">
+        <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/<%- page.path %>">
+        <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/<%- page.path %>">
+        <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/<%- page.path %>">
+        <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/<%- page.path %>">
+        <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/<%- page.path %>">
+        <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/<%- page.path %>">
+
         <meta property="og:type" content="article">
         <meta property="og:title" content="<%- page.title ? page.title + ' — ' : '' %>Vue.js">
         <meta property="og:description" content="<%- theme.site_description %>">
@@ -41,6 +49,8 @@
 
         <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <!-- main page styles -->
         <link rel="stylesheet" href="/<%- isIndex ? 'css/index' : 'css/page' %>.css">

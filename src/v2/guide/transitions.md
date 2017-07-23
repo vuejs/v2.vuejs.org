@@ -1,38 +1,38 @@
 ---
-title: Transition Effects (En)
+title: Effets de transition
 type: guide
 order: 13
 ---
 
-## Overview
+## Vue d'ensemble
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:</p>
+Vue fournit plusieurs façons d'appliquer des effets de transition lorsque des éléments sont insérés, mis à jour ou supprimés du DOM. Cela inclut des outils pour :
 
-- automatically apply classes for CSS transitions and animations
-- integrate 3rd-party CSS animation libraries, such as Animate.css
-- use JavaScript to directly manipulate the DOM during transition hooks
-- integrate 3rd-party JavaScript animation libraries, such as Velocity.js
+- appliquer automatiquement des classes pour les transitions et les animations CSS
+- intégrer des bibliothèques d'animation CSS tierces, comme Animate.css
+- utiliser JavaScript pour manipuler directement le DOM durant les *hooks* de transition
+- intégrer des bibliothèques d'animation JavaScript tierces, comme Velocity.js
 
-On this page, we'll only cover entering, leaving, and list transitions, but you can see the next section for [managing state transitions](transitioning-state.html).
+Sur cette page, nous ne traiterons que des transitions entrantes, sortantes et de liste, mais vous pouvez consulter la section suivante pour la [gestion des transitions d'état](transitioning-state.html).
 
-## Transitioning Single Elements/Components
+## Transition d'éléments/composants simples
 
-Vue provides a `transition` wrapper component, allowing you to add entering/leaving transitions for any element or component in the following contexts:
+Vue fournit un composant conteneur `transition`, vous permettant d'ajouter des transitions entrantes/sortantes pour n'importe quel élément ou composant dans les contextes suivants :
 
-- Conditional rendering (using `v-if`)
-- Conditional display (using `v-show`)
-- Dynamic components
-- Component root nodes
+- Le rendu conditionnel (en utilisant `v-if`)
+- L'affichage conditionnel (en utilisant `v-show`)
+- Les composants dynamiques
+- Les nœuds racine de composant
 
-This is what a very simple example looks like in action:
+Voilà à quoi ressemble un exemple très simple en action :
 
 ``` html
 <div id="demo">
   <button v-on:click="show = !show">
-    Toggle
+    Permuter
   </button>
   <transition name="fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">bonjour</p>
   </transition>
 </div>
 ```
@@ -50,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
 }
 ```
@@ -58,10 +58,10 @@ new Vue({
 {% raw %}
 <div id="demo">
   <button v-on:click="show = !show">
-    Toggle
+    Permuter
   </button>
   <transition name="demo-transition">
-    <p v-if="show">hello</p>
+    <p v-if="show">bonjour</p>
   </transition>
 </div>
 <script>
@@ -82,47 +82,47 @@ new Vue({
 </style>
 {% endraw %}
 
-When an element wrapped in a `transition` component is inserted or removed, this is what happens:
+Quand un élément, encapsulé dans un composant `transition`, est inséré ou enlevé, voilà ce qui arrive :
 
-1. Vue will automatically sniff whether the target element has CSS transitions or animations applied. If it does, CSS transition classes will be added/removed at appropriate timings.
+1. Vue recherchera automatiquement si l'élément cible a des transitions CSS ou des animations appliquées. Si c'est le cas, les classes de transition CSS seront ajoutées/supprimées aux moments appropriés.
 
-2. If the transition component provided [JavaScript hooks](#JavaScript-Hooks), these hooks will be called at appropriate timings.
+2. Si le composant de transition possède des [hooks JavaScript](#Hooks-JavaScript), ces hooks seront appelés aux moments appropriés.
 
-3. If no CSS transitions/animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal will be executed immediately on next frame (Note: this is a browser animation frame, different from Vue's concept of `nextTick`).
+3. Si aucune transition/animation CSS n'est détectée et qu'aucun hook JavaScript n'est fourni, les opérations du DOM pour l'insertion et/ou la suppression seront exécutées immédiatement à la frame suivante (Remarque : il s'agit d'une frame d'animation du navigateur, différente du concept de `nextTick`).
 
-### Transition Classes
+### Classes de transition
 
-There are six classes applied for enter/leave transitions.
+Il y a six classes appliquées pour les transitions entrantes/sortantes.
 
-1. `v-enter`: Starting state for enter. Added before element is inserted, removed one frame after element is inserted.
+1. `v-enter`: C'est l'état de départ pour *enter*. Il est ajouté avant que l'élément soit inséré, il est supprimé une fois que l'élément est inséré.
 
-2. `v-enter-active`: Active state for enter. Applied during the entire entering phase. Added before element is inserted, removed when transition/animation finishes. This class can be used to define the duration, delay and easing curve for the entering transition.
+2. `v-enter-active`: C'est l'état actif pour *enter*. Il est appliqué pendant toute la phase *enter*. Il est ajouté avant que l'élément soit inséré, il est supprimé lorsque la transition/animation est terminée. Cette classe peut être utilisée pour définir la durée, le retard et la courbe d'accélération pour la transition entrante.
 
-3. `v-enter-to`: **Only available in versions >=2.1.8.** Ending state for enter. Added one frame after element is inserted (at the same time `v-enter` is removed), removed when transition/animation finishes.
+3. `v-enter-to`: **Seulement disponible pour les versions 2.1.8+.** C'est l'état de fin pour *enter*. Il est ajouté une fois que l'élément est inséré (au même moment que `v-enter` est supprimé), il est supprimé lorsque la transition/animation est terminée.
 
-4. `v-leave`: Starting state for leave. Added immediately when a leaving transition is triggered, removed after one frame.
+4. `v-leave`: C'est l'état de départ pour *leave*. Il est ajouté dès qu'une transition sortante est déclenchée, il est supprimé après une frame.
 
-5. `v-leave-active`: Active state for leave. Applied during the entire leaving phase. Added immediately when leave transition is triggered, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the leaving transition.
+5. `v-leave-active`: C'est l'état actif pour *leave*. Il est appliqué pendant toute la phase *leave*. Il est ajouté dès qu'une transition sortante est déclenchée, il est supprimé lorsque la transition/animation est terminée. Cette classe peut être utilisée pour définir la durée, le retard et la courbe d'accélération pour la transition de sortie.
 
-6. `v-leave-to`: **Only available in versions >=2.1.8.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
+6. `v-leave-to`: **Seulement disponible pour les versions 2.1.8+.** C'est l'état de fin pour *leave*. Il est ajouté après que la transition sortante soit déclenchée (au même moment que `v-leave` est supprimé), il est supprimé lorsque la transition/animation est terminée.
 
-![Transition Diagram](/images/transition.png)
+![Diagramme de transition](/images/transition.png)
 
-Each of these classes will be prefixed with the name of the transition. Here the `v-` prefix is the default when you use a `<transition>` element with no name. If you use `<transition name="my-transition">` for example, then the `v-enter` class would instead be `my-transition-enter`.
+Chacune de ces classes sera préfixée avec le nom de la transition. Ici le préfixe `v-` est celui par défaut lorsque vous utilisez l'élément `<transition>` sans nom. Si vous utilisez par exemple `<transition name="ma-transition">`, alors la classe `v-enter` sera nommé `ma-transition-enter`.
 
-`v-enter-active` and `v-leave-active` give you the ability to specify different easing curves for enter/leave transitions, which you'll see an example of in the following section.
+`v-enter-active` et `v-leave-active` vous donnent la possibilité de spécifier des courbes d'accélération pour les transitions entrantes/sortantes, ce que nous verrons en exemple dans la section suivante.
 
-### CSS Transitions
+### Transitions CSS
 
-One of the most common transition types uses CSS transitions. Here's a simple example:
+L'un des types de transition les plus courants utilise les transitions CSS. Voici un exemple simple :
 
 ``` html
 <div id="example-1">
   <button @click="show = !show">
-    Toggle render
+    Permuter
   </button>
   <transition name="slide-fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">bonjour</p>
   </transition>
 </div>
 ```
@@ -137,8 +137,8 @@ new Vue({
 ```
 
 ``` css
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
+/* Les animations d'entrée (« enter ») et de sortie (« leave »)  */
+/* peuvent utiliser differentes fonctions de durée et de temps.  */
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
@@ -146,7 +146,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for <2.1.8 */ {
+/* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -155,10 +155,10 @@ new Vue({
 {% raw %}
 <div id="example-1" class="demo">
   <button @click="show = !show">
-    Toggle render
+    Permuter
   </button>
   <transition name="slide-fade">
-    <p v-if="show">hello</p>
+    <p v-if="show">bonjour</p>
   </transition>
 </div>
 <script>
@@ -185,15 +185,15 @@ new Vue({
 
 ### CSS Animations
 
-CSS animations are applied in the same way as CSS transitions, the difference being that `v-enter` is not removed immediately after the element is inserted, but on an `animationend` event.
+Les animations CSS sont appliquées de la même manière que les transitions CSS, la différence étant que `v-enter` n'est pas supprimé immédiatement après l'insertion de l'élément, mais par un événement `animationend`.
 
-Here's an example, omitting prefixed CSS rules for the sake of brevity:
+Voici un exemple, en supprimant les règles CSS préfixées pour des raisons de concision :
 
 ``` html
 <div id="example-2">
-  <button @click="show = !show">Toggle show</button>
+  <button @click="show = !show">Permuter l'affichage</button>
   <transition name="bounce">
-    <p v-if="show">Look at me!</p>
+    <p v-if="show">Regarde moi !</p>
   </transition>
 </div>
 ```
@@ -229,9 +229,9 @@ new Vue({
 
 {% raw %}
 <div id="example-2" class="demo">
-  <button @click="show = !show">Toggle show</button>
+  <button @click="show = !show">Permuter l'affichage</button>
   <transition name="bounce">
-    <p v-show="show">Look at me!</p>
+    <p v-show="show">Regarde moi !</p>
   </transition>
 </div>
 
@@ -283,34 +283,34 @@ new Vue({
 </script>
 {% endraw %}
 
-### Custom Transition Classes
+### Classes de transition personnalisées
 
-You can also specify custom transition classes by providing the following attributes:
+Vous pouvez également spécifier des classes de transition personnalisées en fournissant les attributs suivants :
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class` (>= 2.1.8 only)
+- `enter-to-class` (2.1.8+)
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class` (>= 2.1.8 only)
+- `leave-to-class` (2.1.8+)
 
-These will override the conventional class names. This is especially useful when you want to combine Vue's transition system with an existing CSS animation library, such as [Animate.css](https://daneden.github.io/animate.css/).
+Celles-ci remplacent les noms de classes habituelles. C'est surtout utile quand vous voulez combiner le système de transition de Vue avec une bibliothèque d'animation CSS existante, comme [Animate.css](https://daneden.github.io/animate.css/).
 
-Here's an example:
+Voici un exemple :
 
 ``` html
 <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
 
 <div id="example-3">
   <button @click="show = !show">
-    Toggle render
+    Permuter
   </button>
   <transition
     name="custom-classes-transition"
     enter-active-class="animated tada"
     leave-active-class="animated bounceOutRight"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">bonjour</p>
   </transition>
 </div>
 ```
@@ -328,14 +328,14 @@ new Vue({
 <link href="https://unpkg.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
-    Toggle render
+    Permuter
   </button>
   <transition
     name="custom-classes-transition"
     enter-active-class="animated tada"
     leave-active-class="animated bounceOutRight"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">bonjour</p>
   </transition>
 </div>
 <script>
@@ -348,33 +348,33 @@ new Vue({
 </script>
 {% endraw %}
 
-### Using Transitions and Animations Together
+### Utilisation simultanée des transitions et animations
 
-Vue needs to attach event listeners in order to know when a transition has ended. It can either be `transitionend` or `animationend`, depending on the type of CSS rules applied. If you are only using one or the other, Vue can automatically detect the correct type.
+Vue a besoin d'attacher des écouteurs d'évènement pour savoir quand une transition est terminée. Cela peut être `transitionend` ou `animationend`, selon le type de règles CSS appliquées. Si vous utilisez seulement l'une ou l'autre, Vue peut automatiquement déterminer le type correct.
 
-However, in some cases you may want to have both on the same element, for example having a CSS animation triggered by Vue, along with a CSS transition effect on hover. In these cases, you will have to explicitly declare the type you want Vue to care about in a `type` attribute, with a value of either `animation` or `transition`.
+Toutefois, dans certains cas, vous pouvez les avoir tous les deux sur le même élément, par exemple avoir une animation CSS déclenchée par Vue, ainsi qu'un effet de transition CSS lors du survol. Dans ces cas, vous devez explicitement déclarer le type dont vous voulez que Vue se soucie dans un attribut `type`, avec une valeur à `animation` ou `transition`.
 
-### Explicit Transition Durations
+### Durées de transition explicites
 
-> New in 2.2.0
+> Nouveau dans 2.2.0+
 
-In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+Dans la plupart des cas, Vue peut automatiquement déterminer quand la transition est terminée. Par défaut, Vue attend le premier évènement `transitionend` ou `animationend` sur l'élément de transition racine. Cependant, cela peut ne pas toujours être souhaité (par exemple, nous pouvons avoir une séquence de transition chorégraphiée où certains éléments internes imbriqués ont une transition retardée ou une durée de transition plus longue que l'élément de transition racine).
 
-In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+Dans ce cas, vous pouvez spécifier une durée de transition explicite (en millisecondes) en utilisant le prop `duration` sur le composant `<transition>` :
 
 ``` html
 <transition :duration="1000">...</transition>
 ```
 
-You can also specify separate values for enter and leave durations:
+Vous pouvez également spécifier des valeurs séparées pour les durées de *enter* et *leave* :
 
 ``` html
 <transition :duration="{ enter: 500, leave: 800 }">...</transition>
 ```
 
-### JavaScript Hooks
+### *Hooks* JavaScript
 
-You can also define JavaScript hooks in attributes:
+Vous pouvez définir des *hooks* JavaScript dans les attributs :
 
 ``` html
 <transition
@@ -395,15 +395,15 @@ You can also define JavaScript hooks in attributes:
 ``` js
 // ...
 methods: {
-  // --------
-  // ENTERING
-  // --------
+  // ----------
+  // EN ENTRANT
+  // ----------
 
   beforeEnter: function (el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // la fonction de rappel done est facultative quand
+  // utilisée en combinaison avec du CSS
   enter: function (el, done) {
     // ...
     done()
@@ -415,15 +415,15 @@ methods: {
     // ...
   },
 
-  // --------
-  // LEAVING
-  // --------
+  // ----------
+  // EN SORTANT
+  // ----------
 
   beforeLeave: function (el) {
     // ...
   },
-  // the done callback is optional when
-  // used in combination with CSS
+  // la fonction de rappel done est facultative quand
+  // utilisée en combinaison avec du CSS
   leave: function (el, done) {
     // ...
     done()
@@ -431,31 +431,31 @@ methods: {
   afterLeave: function (el) {
     // ...
   },
-  // leaveCancelled only available with v-show
+  // leaveCancelled est uniquement disponible avec v-show
   leaveCancelled: function (el) {
     // ...
   }
 }
 ```
 
-These hooks can be used in combination with CSS transitions/animations or on their own.
+Ces hooks peuvent être utilisés en combinaison avec des transitions/animations CSS ou sur eux-mêmes.
 
-<p class="tip">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, they will be called synchronously and the transition will finish immediately.</p>
+<p class="tip">Lors de l'utilisation de transitions uniquement JavaScript, **les fonctions de rappel `done` sont obligatoires pour les hooks `enter` et `leave`**. Dans le cas contraire, elles seront appelées de façon synchrone et la transition se terminera immédiatement.</p>
 
-<p class="tip">It's also a good idea to explicitly add `v-bind:css="false"` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.</p>
+<p class="tip">C'est aussi une bonne idée d'ajouter explicitement `v-bind:css="false"` pour les transitions uniquement JavaScript afin que Vue puisse ignorer la détection CSS. Cela empêche également les règles CSS d'interfèrer accidentellement avec la transition.</p>
 
-Now let's dive into an example. Here's a simple JavaScript transition using Velocity.js:
+Maintenant, nous allons plonger dans un exemple. Voici une simple transition JavaScript à l'aide de Velocity.js :
 
 ``` html
 <!--
-Velocity works very much like jQuery.animate and is
-a great option for JavaScript animations
+Velocity fonctionne aussi bien que jQuery.animate et est
+une excellente option pour les animations
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="example-4">
   <button @click="show = !show">
-    Toggle
+    Permuter
   </button>
   <transition
     v-on:before-enter="beforeEnter"
@@ -464,7 +464,7 @@ a great option for JavaScript animations
     v-bind:css="false"
   >
     <p v-if="show">
-      Demo
+      Démo
     </p>
   </transition>
 </div>
@@ -501,7 +501,7 @@ new Vue({
 {% raw %}
 <div id="example-4" class="demo">
   <button @click="show = !show">
-    Toggle
+    Permuter
   </button>
   <transition
     v-on:before-enter="beforeEnter"
@@ -509,7 +509,7 @@ new Vue({
     v-on:leave="leave"
   >
     <p v-if="show">
-      Demo
+      Démo
     </p>
   </transition>
 </div>
@@ -544,9 +544,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## Transitions on Initial Render
+## Transitions sur le rendu initial
 
-If you also want to apply a transition on the initial render of a node, you can add the `appear` attribute:
+Si vous souhaitez également appliquer une transition sur le rendu initial d'un nœud, vous pouvez ajouter l'attribut `appear` :
 
 ``` html
 <transition appear>
@@ -554,20 +554,20 @@ If you also want to apply a transition on the initial render of a node, you can 
 </transition>
 ```
 
-By default, this will use the transitions specified for entering and leaving. If you'd like however, you can also specify custom CSS classes:
+Par défaut, cela utilisera les transitions spécifiées pour l'entrée et la sortie. Si vous le souhaitez, vous pouvez également spécifier des classes CSS personnalisées :
 
 ``` html
 <transition
   appear
   appear-class="custom-appear-class"
-  appear-to-class="custom-appear-to-class" (>= 2.1.8 only)
+  appear-to-class="custom-appear-to-class" (2.1.8+)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
 </transition>
 ```
 
-and custom JavaScript hooks:
+et des hooks JavaScript personnalisés :
 
 ``` html
 <transition
@@ -581,63 +581,63 @@ and custom JavaScript hooks:
 </transition>
 ```
 
-## Transitioning Between Elements
+## Transition entre éléments
 
-We discuss [transitioning between components](#Transitioning-Between-Components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:
+Plus loin, nous parlons de [transition entre les composants](#transition-entre-les-composants), mais vous pouvez également faire une transition entre des éléments bruts en utilisant `v-if`/`v-else`.  L'une des transitions les plus courantes sur deux éléments est entre un conteneur de liste et un message décrivant une liste vide :
 
 ``` html
 <transition>
   <table v-if="items.length > 0">
     <!-- ... -->
   </table>
-  <p v-else>Sorry, no items found.</p>
+  <p v-else>Désolé, aucun élément trouvé.</p>
 </transition>
 ```
 
-This works well, but there's one caveat to be aware of:
+Cela fonctionne bien, mais il y a une mise en garde à connaître :
 
-<p class="tip">When toggling between elements that have **the same tag name**, you must tell Vue that they are distinct elements by giving them unique `key` attributes. Otherwise, Vue's compiler will only replace the content of the element for efficiency. Even when technically unnecessary though, **it's considered good practice to always key multiple items within a `<transition>` component.**</p>
+<p class="tip">Lors de la permutation entre des éléments qui ont **le même nom de balise**, vous devez indiquer à Vue qu'ils sont des éléments distincts en lui donnant des attributs `key` uniques.  Sinon, le compilateur de Vue ne remplacera que le contenu de l'élément dans le but d'être efficace. Cependant, même si c'est techniquement inutile, **c'est considéré comme une bonne pratique de toujours avoir une clé pour chaque élément dans un composant `<transition>`.**</p>
 
-For example:
+Par exemple :
 
 ``` html
 <transition>
   <button v-if="isEditing" key="save">
-    Save
+    Sauver
   </button>
   <button v-else key="edit">
-    Edit
+    Modifier
   </button>
 </transition>
 ```
 
-In these cases, you can also use the `key` attribute to transition between different states of the same element. Instead of using `v-if` and `v-else`, the above example could be rewritten as:
+Dans ces cas, vous pouvez aussi utiliser l'attribut `key` pour effectuer une transition entre différents états du même élément. Au lieu d'utiliser `v-if` et `v-else`, l'exemple ci-dessus pourrait être réécrit ainsi :
 
 ``` html
 <transition>
   <button v-bind:key="isEditing">
-    {{ isEditing ? 'Save' : 'Edit' }}
+    {{ isEditing ? 'Sauver' : 'Modifier' }}
   </button>
 </transition>
 ```
 
-It's actually possible to transition between any number of elements, either by using multiple `v-if`s or binding a single element to a dynamic property. For example:
+Il est effectivement possible de faire une transition entre un nombre indéfini d'éléments, soit en utilisant plusieurs `v-if` ou soit en liant un élément unique à une propriété dynamique. Par exemple :
 
 ``` html
 <transition>
   <button v-if="docState === 'saved'" key="saved">
-    Edit
+    Modifier
   </button>
   <button v-if="docState === 'edited'" key="edited">
-    Save
+    Sauver
   </button>
   <button v-if="docState === 'editing'" key="editing">
-    Cancel
+    Annuler
   </button>
 </transition>
 ```
 
-Which could also be written as:
+Qui pourrait aussi s'écrire ainsi :
 
 ``` html
 <transition>
@@ -651,18 +651,18 @@ Which could also be written as:
 // ...
 computed: {
   buttonMessage: function () {
-    switch (docState) {
-      case 'saved': return 'Edit'
-      case 'edited': return 'Save'
-      case 'editing': return 'Cancel'
+    switch (this.docState) {
+      case 'saved': return 'Modifier'
+      case 'edited': return 'Sauver'
+      case 'editing': return 'Annuler'
     }
   }
 }
 ```
 
-### Transition Modes
+### Les modes de transition
 
-There's still one problem though. Try clicking the button below:
+Cependant, il existe encore un problème. Essayez de cliquer sur le bouton ci-dessous :
 
 {% raw %}
 <div id="no-mode-demo" class="demo">
@@ -693,9 +693,9 @@ new Vue({
 </style>
 {% endraw %}
 
-As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
+Comme c'est une transition entre le bouton « on » et le bouton « off », les deux boutons sont rendus (l'un est en transition sortante pendant que l'autre est en transition entrante). Il s'agit du comportement par défaut de `<transition>` (l'entrée et la sortie se font simultanément).
 
-Sometimes this works great, like when transitioning items are absolutely positioned on top of each other:
+Parfois, cela fonctionne très bien, comme lorsque des éléments de transition sont absolument positionnés l'un sur l'autre :
 
 {% raw %}
 <div id="no-mode-absolute-demo" class="demo">
@@ -735,7 +735,7 @@ new Vue({
 </style>
 {% endraw %}
 
-And then maybe also translated so that they look like slide transitions:
+Et puis cela peut être interprété comme des transitions de diapositives.
 
 {% raw %}
 <div id="no-mode-translate-demo" class="demo">
@@ -781,17 +781,17 @@ new Vue({
 </style>
 {% endraw %}
 
-Simultaneous entering and leaving transitions aren't always desirable though, so Vue offers some alternative **transition modes**:
+Les transitions simultanées d'entrée et de sortie ne sont pas toujours désirées, donc Vue propose des **modes de transition** alternatifs :
 
-- `in-out`: New element transitions in first, then when complete, the current element transitions out.
+- `in-out`: La transition entrante du nouvel élément s'effectue en premier, puis une fois terminée, déclenche la transition sortante de l'élément courant.
 
-- `out-in`: Current element transitions out first, then when complete, the new element transitions in.
+- `out-in`: La transition sortante de l'élément courant s'effectue en premier, puis une fois terminée, déclenche la transition entrante du nouvel élément.
 
-Now let's update the transition for our on/off buttons with `out-in`:
+Maintenant, mettons à jour la transition pour nos boutons on/off avec `out-in` :
 
 ``` html
 <transition name="fade" mode="out-in">
-  <!-- ... the buttons ... -->
+  <!-- ... les boutons ... -->
 </transition>
 ```
 
@@ -824,9 +824,9 @@ new Vue({
 </style>
 {% endraw %}
 
-With one simple attribute addition, we've fixed that original transition without having to add any special styling.
+Avec l'ajout d'un simple attribut, nous avons corrigé cette transition originale sans devoir ajouter un style spécial.
 
-The `in-out` mode isn't used as often, but can sometimes be useful for a slightly different transition effect. Let's try combining it with the slide-fade transition we worked on earlier:
+Le mode `in-out` n'est pas utilisé aussi souvent, mais peut parfois être utile pour un effet de transition un peu différent. Essayons de le combiner avec la transition diapositive sur laquelle nous avons travaillé précédemment.
 
 {% raw %}
 <div id="in-out-translate-demo" class="demo">
@@ -872,11 +872,11 @@ new Vue({
 </style>
 {% endraw %}
 
-Pretty cool, right?
+Assez cool, non ?
 
-## Transitioning Between Components
+## Transition entre les composants
 
-Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we just wrap a [dynamic component](components.html#Dynamic-Components):
+Faire une transition entre les composants est encore plus simple (nous n'avons même pas besoin de l'attribut `key`). Au lieu de cela, nous les enveloppons simplement d'un [composant dynamique](components.html#Composants-dynamiques) :
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -892,10 +892,10 @@ new Vue({
   },
   components: {
     'v-a': {
-      template: '<div>Component A</div>'
+      template: '<div>Composant A</div>'
     },
     'v-b': {
-      template: '<div>Component B</div>'
+      template: '<div>Composant B</div>'
     }
   }
 })
@@ -906,7 +906,7 @@ new Vue({
   transition: opacity .3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active for <2.1.8 */ {
+/* .component-fade-leave-active avant la 2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -935,36 +935,36 @@ new Vue({
   },
   components: {
     'v-a': {
-      template: '<div>Component A</div>'
+      template: '<div>Composant A</div>'
     },
     'v-b': {
-      template: '<div>Component B</div>'
+      template: '<div>Composant B</div>'
     }
   }
 })
 </script>
 {% endraw %}
 
-## List Transitions
+## Transitions de liste
 
-So far, we've managed transitions for:
+Jusqu'à présent, nous avons réalisé des transitions pour :
 
-- Individual nodes
-- Multiple nodes where only 1 is rendered at a time
+- des nœuds individuels
+- des nœuds multiples où un seul est rendu à la fois
 
-So what about for when we have a whole list of items we want to render simultaneously, for example with `v-for`? In this case, we'll use the `<transition-group>` component. Before we dive into an example though, there are a few things that are important to know about this component:
+Alors, qu'en est-il lorsque nous avons une liste complète d'éléments où nous voulons faire un rendu simultané, par exemple avec `v-for` ? Dans ce cas, nous allons utiliser le composant `<transition-group>`. Cependant avant de plonger dans un exemple, il y a quelques éléments importants à connaître sur ce composant :
 
-- Unlike `<transition>`, it renders an actual element: a `<span>` by default. You can change the element that's rendered with the `tag` attribute.
-- Elements inside are **always required** to have a unique `key` attribute
+- Contrairement à `<transition>`, il rend un élément réel : par défaut un `<span>`. Vous pouvez modifier l'élément rendu avec l'attribut `tag`.
+- Les éléments à l'intérieur **doivent toujours avoir** un attribut `key` unique
 
-### List Entering/Leaving Transitions
+### Transitions de liste entrantes/sortantes
 
-Now let's dive into a simple example, transitioning entering and leaving using the same CSS classes we've used previously:
+Maintenant, nous allons nous plonger dans un exemple simple, faire des transitions entrantes et sortantes en utilisant les mêmes classes CSS que celles utilisées précédemment :
 
 ``` html
 <div id="list-demo">
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
+  <button v-on:click="add">Ajouter</button>
+  <button v-on:click="remove">Enlever</button>
   <transition-group name="list" tag="p">
     <span v-for="item in items" v-bind:key="item" class="list-item">
       {{ item }}
@@ -1002,7 +1002,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1010,8 +1010,8 @@ new Vue({
 
 {% raw %}
 <div id="list-demo" class="demo">
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
+  <button v-on:click="add">Ajouter</button>
+  <button v-on:click="remove">Enlever</button>
   <transition-group name="list" tag="p">
     <span v-for="item in items" :key="item" class="list-item">
       {{ item }}
@@ -1053,19 +1053,19 @@ new Vue({
 </style>
 {% endraw %}
 
-There's one problem with this example. When you add or remove an item, the ones around it instantly snap into their new place instead of smoothly transitioning. We'll fix that later.
+Il y a un problème avec cet exemple. Quand vous ajoutez ou enlevez un élément, ceux qui l'entourent se placent instantanément dans leur nouvel emplacement au lieu de se déplacer en douceur. Nous allons régler cela plus tard.
 
-### List Move Transitions
+### Transitions de déplacement de liste
 
-The `<transition-group>` component has another trick up its sleeve. It can not only animate entering and leaving, but also changes in position. The only new concept you need to know to use this feature is the addition of **the `v-move` class**, which is added when items are changing positions. Like the other classes, its prefix will match the value of a provided `name` attribute and you can also manually specify a class with the `move-class` attribute.
+Le composant `<transition-group>` a un autre tour dans son sac. Il peut non seulement animer l'entrée et la sortie, mais aussi faire des changements de position. Le seul nouveau concept que vous devez connaitre pour utiliser cette fonctionnalité, c'est l'addition de **la classe `v-move`**,  qui est ajoutée quand les éléments changent de position. Comme les autres classes, son préfixe correspondra à la valeur d'un attribut `name` fourni et vous pouvez également spécifier manuellement une classe avec l'attribut `move-class`.
 
-This class is mostly useful for specifying the transition timing and easing curve, as you'll see below:
+Cette classe est surtout utile pour spécifier le temps de la transition et la courbe d'accélération, comme vous pourrez le voir ci-dessous :
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="flip-list-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
+  <button v-on:click="shuffle">Mélanger</button>
   <transition-group name="flip-list" tag="ul">
     <li v-for="item in items" v-bind:key="item">
       {{ item }}
@@ -1097,7 +1097,7 @@ new Vue({
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 <div id="flip-list-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
+  <button v-on:click="shuffle">Mélanger</button>
   <transition-group name="flip-list" tag="ul">
     <li v-for="item in items" :key="item">
       {{ item }}
@@ -1124,17 +1124,17 @@ new Vue({
 </style>
 {% endraw %}
 
-This might seem like magic, but under the hood, Vue is using a simple animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
+Cela peut sembler magique, mais sous le capot, Vue utilise une technique simple d'animation appelée [FLIP](https://aerotwist.com/blog/flip-your-animations/)  pour transiter en douceur les éléments de leur ancienne position vers la nouvelle à l'aide de transformations.
 
-We can combine this technique with our previous implementation to animate every possible change to our list!
+Nous pouvons combiner cette technique avec notre implémentation précédente pour animer chaque changement possible dans notre liste !
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="list-complete-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
+  <button v-on:click="shuffle">Mélanger</button>
+  <button v-on:click="add">Ajouter</button>
+  <button v-on:click="remove">Enlever</button>
   <transition-group name="list-complete" tag="p">
     <span
       v-for="item in items"
@@ -1178,7 +1178,7 @@ new Vue({
   margin-right: 10px;
 }
 .list-complete-enter, .list-complete-leave-to
-/* .list-complete-leave-active for <2.1.8 */ {
+/* .list-complete-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1190,9 +1190,9 @@ new Vue({
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 <div id="list-complete-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
+  <button v-on:click="shuffle">Mélanger</button>
+  <button v-on:click="add">Ajouter</button>
+  <button v-on:click="remove">Enlever</button>
   <transition-group name="list-complete" tag="p">
     <span v-for="item in items" :key="item" class="list-complete-item">
       {{ item }}
@@ -1238,16 +1238,16 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
+<p class="tip">Un point important est a noter : ces transitions FLIP ne fonctionnent pas si des éléments sont configurés avec `display: inline`. Comme alternative, vous pouvez utiliser `display: inline-block` ou placer des éléments dans un contexte flexible.</p>
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can transitioned [just as easily](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+Ces animations FLIP ne se limitent pas à un seul axe. Les éléments dans une grille multidimensionnelle peuvent être transitionnés [aussi facilement](https://jsfiddle.net/chrisvfritz/sLrhk1bc/) :
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
-  <strong>Lazy Sudoku</strong>
-  <p>Keep hitting the shuffle button until you win.</p>
+  <strong>Sudoku de fainéant</strong>
+  <p>Continuez à appuyer sur le bouton Mélanger jusqu'à ce que vous gagnez.</p>
   <button @click="shuffle">
-    Shuffle
+    Mélanger
   </button>
   <transition-group name="cell" tag="div" class="sudoku-container">
     <div v-for="cell in cells" :key="cell.id" class="cell">
@@ -1303,9 +1303,9 @@ new Vue({
 </style>
 {% endraw %}
 
-### Staggering List Transitions
+### Échelonnage des transitions de liste
 
-By communicating with JavaScript transitions through data attributes, it's also possible to stagger transitions in a list:
+En communiquant avec des transitions JavaScript via des attributs de données, il est également possible d'échelonner les transitions dans une liste :
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1449,11 +1449,11 @@ new Vue({
 </script>
 {% endraw %}
 
-## Reusable Transitions
+## Transitions réutilisables
 
-Transitions can be reused through Vue's component system. To create a reusable transition, all you have to do is place a `<transition>` or `<transition-group>` component at the root, then pass any children into the transition component.
+Les Transitions peuvent être réutilisées par le biais du système de composant de Vue. Pour créer une transition réutilisable, il suffit de placer un composant `<transition>` ou `<transition-group>` à la racine, puis passer les enfants dans le composant de transition.
 
-Here's an example using a template component:
+Voici un exemple utilisant un composant template :
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1478,7 +1478,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-And functional components are especially well-suited to this task:
+Et les composants fonctionnels sont particulièrement adaptés à cette tâche :
 
 ``` js
 Vue.component('my-special-transition', {
@@ -1503,9 +1503,9 @@ Vue.component('my-special-transition', {
 })
 ```
 
-## Dynamic Transitions
+## Transitions dynamiques
 
-Yes, even transitions in Vue are data-driven! The most basic example of a dynamic transition binds the `name` attribute to a dynamic property.
+Oui, même les transitions dans Vue sont pilotées par les données ! Le plus simple des exemples d'une transition dynamique lie l'attribut `name` à une propriété dynamique.
 
 ```html
 <transition v-bind:name="transitionName">
@@ -1513,9 +1513,9 @@ Yes, even transitions in Vue are data-driven! The most basic example of a dynami
 </transition>
 ```
 
-This can be useful when you've defined CSS transitions/animations using Vue's transition class conventions and simply want to switch between them.
+Cela peut être utile quand vous avez défini des transitions/animations CSS à l'aide des conventions de classes de transition de Vue et que vous souhaitez simplement basculer entre elles.
 
-Really though, any transition attribute can be dynamically bound. And it's not just attributes. Since event hooks are just methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
+En vérité, tout attribut de transition peut être dynamiquement lié. Et il ne s'agit pas seulement des attributs. Étant donné que les hooks d'événements ne sont que des méthodes, ils ont accès à toutes les données dans le contexte. Cela signifie que selon l'état de votre composant, vos transitions JavaScript peuvent se comporter différemment.
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -1529,9 +1529,9 @@ Really though, any transition attribute can be dynamically bound. And it's not j
     v-on:enter="enter"
     v-on:leave="leave"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">bonjour</p>
   </transition>
-  <button v-on:click="stop = true">Stop it!</button>
+  <button v-on:click="stop = true">Arrêter ça !</button>
 </div>
 ```
 
@@ -1593,9 +1593,9 @@ new Vue({
     v-on:enter="enter"
     v-on:leave="leave"
   >
-    <p v-if="show">hello</p>
+    <p v-if="show">bonjour</p>
   </transition>
-  <button v-on:click="stop = true">Stop it!</button>
+  <button v-on:click="stop = true">Arrêtez ça !</button>
 </div>
 <script>
 new Vue({
@@ -1645,5 +1645,4 @@ new Vue({
 </script>
 {% endraw %}
 
-Finally, the ultimate way of creating dynamic transitions is through components that accept props to change the nature of the transition(s) to be used. It may sound cheesy, but the only limit really is your imagination.
-
+Finalement, le meilleur moyen de créer des transitions dynamiques, c'est par le biais de composants qui acceptent des props pour changer la nature des transitions à utiliser. Cela peut sembler mielleux, mais la seule limite est votre imagination.

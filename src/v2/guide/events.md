@@ -4,7 +4,7 @@ type: guide
 order: 9
 ---
 
-## Écouter des évènements  
+## Écouter des évènements
 
 Nous pouvons utiliser l'instruction `v-on` pour écouter les évènements du DOM afin d'éxécuter du JavaScript lorsque ces évènements surviennent.
 
@@ -186,15 +186,17 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 <form v-on:submit.prevent></form>
 
 <!-- utilise le mode « capture » lorsque l'écouteur d'évènements est ajouté -->
-<!-- c-à-d qu'un évènement destiné à un élément interne est géré ici avant d'être géré par ses éléments parents -->
+<!-- c.-à-d. qu'un évènement destiné à un élément interne est géré ici avant d'être géré par ses éléments parents -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- seulement déclenché si l'instruction `event.target` est l'élément lui-même -->
-<!-- c-à-d que cela ne s'applique pas aux éléments enfants -->
+<!-- c.-à-d. que cela ne s'applique pas aux éléments enfants -->
 <div v-on:click.self="doThat">...</div>
 ```
 
-> Nouveau dans la 2.1.4
+<p class="tip">L'ordre a de l'importance quand vous utilisez des modificateurs car le code est généré dans le même ordre. Aussi utiliser `@click.prevent.self` va empécher **tous les clicks** alors que `@click.self.prevent` va uniquement empécher le click sur l'élément lui-même.</p>
+
+> Nouveau dans la 2.1.4+
 
 ``` html
 <!-- l'évènement « click » sera déclenché au moins une fois -->
@@ -268,7 +270,7 @@ Par exemple :
 
 ### Modificateurs de boutons de la souris
 
-> Nouveau dans la 2.2.0
+> Nouveau dans la 2.2.0+
 
 - `.left`
 - `.right`
