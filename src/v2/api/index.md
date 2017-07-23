@@ -4,7 +4,7 @@ type: api
 
 ## Configuration globale
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>`Vue.config` est un objet contenant les configurations globales de Vue. Vous pouvez modifier les propriétés listées ci-dessous avant de mettre en place votre application :</p>
+`Vue.config` est un objet contenant les configurations globales de Vue. Vous pouvez modifier les propriétés listées ci-dessous avant de mettre en place votre application :
 
 ### silent
 
@@ -1902,13 +1902,13 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
 
 ### key
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  L'attribut spécial `key` est principalement utilisé comme marqueur pour l'algorithme de DOM virtuel de Vue afin d'identifier les *VNodes* lors du différentiel entre la nouvelle liste des nœuds et la liste précédente. Sans clés, Vue utilise un algorithme qui minimise le déplacement de nœuds et essaie de patcher/réutiliser le plus possible les éléments présents du même type. Avec des clés, cela réordonnera les éléments en se basant sur le nouvel ordre de clés, et les éléments avec des clés qui ne sont plus présentes seront toujours supprimés/détruits.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Les enfants d'un même parent commun doivent avoir des **clés uniques**. Des clés en doublons causeront des erreurs de rendu.
 
-  The most common use case is combined with `v-for`:
+  Le cas d'utilisation le plus classique est la combinaison avec `v-for`:
 
   ``` html
   <ul>
@@ -1916,107 +1916,107 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  Il peut aussi être utilisé pour forcer le remplacement d'un élément/composant au lieu de le réutiliser. Cela peut être utile lorsque vous voulez :
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Déclencher correctement les hooks de cycle de vie d'un composant
+  - Déclencher des transitions
 
-  For example:
+  Par exemple:
 
   ``` html
   <transition>
-    <span :key="text">{{ text }}</span>
+    <span :key="texte">{{ texte }}</span>
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  Quand `texte` change, le `<span>` sera toujours remplacé plutôt que d'être patché, afin qu'une transition soit déclenchée.
 
 ### ref
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` est utilisé pour inscrire une référence à un élément ou à un composant enfant. La référence sera inscrite sous l'objet `$refs` du composant parent. Lorsqu'utilisé sur un élément du DOM, la référence sera cet élément; lorsqu'utilisé sur un composant enfant, la référence sera l'instance du composant :
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
+  <!-- vm.$refs.p sera le nœud du DOM -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
-  <child-comp ref="child"></child-comp>
+  <!-- vm.$refs.enfant sera l'instance du composant enfant -->
+  <comp-enfant ref="enfant"></comp-enfant>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  Quand utilisé sur des éléments/composants avec `v-for`, la référence inscrite sera une Array contenant les noeuds du DOM ou les instances de composant.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Une note importante à propos du timing de l'inscription de la référence: étant donné que les refs elles-même résultent de la fonction de rendu, vous ne pouvez pas y accéder au rendu initial - elles n'existent pas encore ! `$refs` est également non réactif, c'est pourquoi vous ne devriez pas essayer de les utiliser dans des templates pour de la liaison de données.
 
-- **Voir aussi :** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Voir aussi :** [Références de composants enfants](../guide/components.html#Child-Component-Refs)
 
 ### slot
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  Utilisé sur du contenu inséré dans les composants enfants afin d'indiquer à quel slot nommé le contenu doit être associé.
 
-  For detailed usage, see the guide section linked below.
+  Pour un usage détaillé, veuillez consulter la section du guide en lien ci-dessous.
 
-- **Voir aussi :** [Named Slots](../guide/components.html#Named-Slots)
+- **Voir aussi :** [Slots nommés](../guide/components.html#Named-Slots)
 
 ### is
 
-- **Expects:** `string`
+- **Attend comme valeur :** `string`
 
-  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+  Utilisé pour les [composants dynamiques](../guide/components.html#Dynamic-Components) et pour contourner les [limitations des templates dans le DOM](../guide/components.html#DOM-Template-Parsing-Caveats).
 
-  For example:
+  Par exemple:
 
   ``` html
-  <!-- component changes when currentView changes -->
-  <component v-bind:is="currentView"></component>
+  <!-- le composant change quand la vue actuelle change -->
+  <component v-bind:is="vueActuelle"></component>
 
-  <!-- necessary because <my-row> would be invalid inside -->
-  <!-- a <table> element and so would be hoisted out      -->
+  <!-- nécessaire car <ma-ligne> sera invalide à l'intérieur -->
+  <!-- d'un élément <table> et donc sera écarté -->
   <table>
-    <tr is="my-row"></tr>
+    <tr is="ma-ligne"></tr>
   </table>
   ```
 
-  For detailed usage, follow the links in the description above.
+  Pour un usage détaillé, suivez les liens dans la description ci-dessus.
 
 - **See also:**
-  - [Dynamic Components](../guide/components.html#Dynamic-Components)
-  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+  - [Composants dynamiques](../guide/components.html#Dynamic-Components)
+  - [Limitations de l'analyse des templates dans le DOM](../guide/components.html#DOM-Template-Parsing-Caveats)
 
-## Built-In Components
+## Composants intégrés par défaut
 
 ### component
 
 - **Props:**
   - `is` - string | ComponentDefinition | ComponentConstructor
-  - `inline-template` - boolean
+  - `inline-template` - booléen
 
 - **Utilisation :**
 
-  A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop:
+  Un "méta-composant" pour le rendu de composants dynamiques. Le composant réel obtenu est déterminé par la prop `is` :
 
   ```html
-  <!-- a dynamic component controlled by -->
-  <!-- the `componentId` property on the vm -->
-  <component :is="componentId"></component>
+  <!-- un composant dynamique contrôlé par -->
+  <!-- la propriété `idComposant` de l'instance de vue -->
+  <component :is="idComposant"></component>
 
-  <!-- can also render registered component or component passed as prop -->
-  <component :is="$options.components.child"></component>
+  <!-- peut aussi faire le rendu de composants inscrits globalement ou passés comme prop -->
+  <component :is="$options.components.enfant"></component>
   ```
 
-- **Voir aussi :** [Dynamic Components](../guide/components.html#Dynamic-Components)
+- **Voir aussi :** [Composants dynamiques](../guide/components.html#Dynamic-Components)
 
 ### transition
 
 - **Props:**
-  - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
-  - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
-  - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
-  - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `name` - string, utilisé pour générer automatiquement des noms de classes CSS pour les transitions. p. ex. `name: 'fade'` donnera `.fade-enter`, `.fade-enter-active`, etc. Valeur par défaut : `"v"`.
+  - `appear` - booléen, indique si la transition doit être appliquée ou non au rendu initial. Valeur par défaut: `false`.
+  - `css` - booléen, indique si les classes CSS de transition doivent être appliquées ou non. Valeur par défaut: `true`. Si assigné à `false`, seuls les hooks JavaScript inscrits via les événements du composant seront déclenchés.
+  - `type` - string, spécifie le type d'événement de transition à attendre pour déterminer le timing de fin de transition. Les valeurs disponibles sont `"transition"` and `"animation"`. Par défaut, il détectera automatiquement le type ayant la durée la plus longue.
+  - `mode` - string, contrôle la séquence de timing des transitions entrantes/sortantes. Les modes disponibles sont `"out-in"` et `"in-out"`; par défaut en simultané.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2038,28 +2038,28 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   - `after-leave`
   - `after-appear`
   - `enter-cancelled`
-  - `leave-cancelled` (`v-show` only)
+  - `leave-cancelled` (`v-show` uniquement)
   - `appear-cancelled`
 
 - **Utilisation :**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
+  `<transition>` sert d'effets de transition pour un  **unique** élément/composant. Le rendu de `<transition>` ne donne pas un élément supplémentaire dans le DOM, et n'apparaît pas non plus dans la hiérarchie du composant inspecté. Il applique simplement le comportement de transition au contenu imbriqué à l'intérieur.
 
   ```html
-  <!-- simple element -->
+  <!-- élément simple -->
   <transition>
-    <div v-if="ok">toggled content</div>
+    <div v-if="ok">contenu permuté</div>
   </transition>
 
-  <!-- dynamic component -->
+  <!-- composant dynamique -->
   <transition name="fade" mode="out-in" appear>
     <component :is="view"></component>
   </transition>
 
-  <!-- event hooking -->
+  <!-- hooks d'événement -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
-      <div v-show="ok">toggled content</div>
+      <div v-show="ok">contenu permuté</div>
     </transition>
   </div>
   ```
@@ -2069,32 +2069,32 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
     ...
     methods: {
       transitionComplete: function (el) {
-        // for passed 'el' that DOM element as the argument, something ...
+        // pour l'élément du DOM 'el' passé en argument, faire quelque-chose...
       }
     }
     ...
   }).$mount('#transition-demo')
   ```
 
-- **Voir aussi :** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Voir aussi :** [Transitions: entrantes, sortantes et de listes](../guide/transitions.html)
 
 ### transition-group
 
 - **Props:**
-  - `tag` - string, defaults to `span`.
-  - `move-class` - overwrite CSS class applied during moving transition.
-  - exposes the same props as `<transition>` except `mode`.
+  - `tag` - string, par défaut `span`.
+  - `move-class` - surcharge la classe CSS appliquée durant le mouvement de transition.
+  - expose les mêmes props que `<transition>` à l'exception de `mode`.
 
-- **Events:**
-  - exposes the same events as `<transition>`.
+- **Événements:**
+  - expose les mêmes événements que `<transition>`.
 
 - **Utilisation :**
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
+  `<transition-group>` sert d'effets de transition pour de **multiples** éléments/composants. Le rendu de `<transition-group>` donne un nouvel élément dans le DOM. Par défaut, il s'agit d'un `<span>`, mais vous pouvez configurer le type d'élément en sortie via l'attribut `tag`.
 
-  Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
+  Notez que chaque enfant dans un `<transition-group>` doit avoir une **clé unique** pour que les animations fonctionnent correctement.
 
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` supporte les déplacements de transition via les transformations CSS. Quand la position à l'écran d'un élément enfant a changé après une mise à jour, une classe CSS de déplacement (auto générée à partir de l'attribut `name` ou configurée via l'attribut `move-class`) est appliquée. Si la propriété CSS `transform` permet les transitions quand la classe de déplacement est appliquée, l'élément sera animé de façon fluide jusqu'à sa destination en utilisant la [technique FLIP](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2104,37 +2104,37 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   </transition-group>
   ```
 
-- **Voir aussi :** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Voir aussi :** [Transitions: entrantes, sortantes et de listes](../guide/transitions.html)
 
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp. Only components matched by this will be cached.
-  - `exclude` - string or RegExp. Any component matched by this will not be cached.
+  - `include` - string ou RegExp. Seuls les composants correspondants seront mis en cache.
+  - `exclude` - string ou RegExp. Les composants correspondants ne seront pas mis en cache.
 
 - **Utilisation :**
 
-  When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
+  Quand il entoure un composant dynamique, `<keep-alive>` met en cache les instances de composant inactives sans les détruire. Tout comme `<transition>`, `<keep-alive>` est un composant abstrait: le rendu ne donne pas d'élément supplémentaire dans le DOM, et il n'apparaît pas dans la chaîne de composants du parent.
 
-  When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
+  Lorsqu'un composant est permuté à l'intérieur de `<keep-alive>`, ses hooks de cycle de vie `activated` et `deactivated` seront appelés en conséquence.
 
-  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > À partir de la 2.2.0, `activated` et `deactivated` se déclencheront pour tous les composants imbriqués dans une arborescence `<keep-alive>`.
 
-  Primarily used with preserve component state or avoid re-rendering.
+  Principalement utilisé pour préserver l'état du composant ou éviter un nouveau rendu.
 
   ```html
-  <!-- basic -->
+  <!-- basique -->
   <keep-alive>
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- multiple conditional children -->
+  <!-- de multiples enfants conditionnels -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with <transition> -->
+  <!-- utilisé avec <transition> -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2142,47 +2142,47 @@ Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattach�
   </transition>
   ```
 
-- **`include` and `exclude`**
+- **`include` et `exclude`**
 
-  > New in 2.1.0
+  > Nouveauté de la 2.1.0
 
-  The `include` and `exclude` props allow components to be conditionally cached. Both props can either be a comma-delimited string or a RegExp:
+  Les props `include` et `exclude` définissent les conditions de mise en cache des composants. Les deux props peuvent être soit une liste délimitée par des virgules, soit une expression régulière :
 
   ``` html
-  <!-- comma-delimited string -->
+  <!-- liste délimitée par des virgules -->
   <keep-alive include="a,b">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use v-bind) -->
+  <!-- expression régulière (utiliser v-bind) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
   ```
 
-  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
+  La correspondance est d'abord faite avec l'option `name` propre au composant, puis avec son nom d'inscription locale (la clé dans l'option `components` du parent) si l'option `name` n'est pas disponible. Les composants anonymes ne peuvent pas être mis en correspondance.
 
-  <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
+  <p class="tip">`<keep-alive>` ne fonctionne pas avec les composants fonctionnels puisqu'ils n'ont pas d'instances à mettre en cache.</p>
 
-- **Voir aussi :** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Voir aussi :** [Composants dynamiques - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
 - **Props:**
-  - `name` - string, Used for named slot.
+  - `name` - string, utilisé pour nommer le slot.
 
 - **Utilisation :**
 
-  `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
+  `<slot>` sert d'emplacement de distribution de contenu dans les templates de composant. L'élement `<slot>` lui-même sera remplacé par le contenu.
 
-  For detailed usage, see the guide section linked below.
+  Pour un usage détaillé, consultez la section du guide en lien ci-dessous.
 
-- **Voir aussi :** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Voir aussi :** [Distribution de contenu avec les Slots](../guide/components.html#Content-Distribution-with-Slots)
 
-## VNode Interface
+## Interface VNode
 
-- Please refer to the [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- Veuillez vous référer à la [déclaration de classe VNode](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
-## Server-Side Rendering
+## Rendu côté serveur
 
-- Please refer to the [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- Veuillez vous référer à la [documentation du package vue-server-renderer](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
