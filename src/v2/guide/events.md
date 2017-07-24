@@ -42,7 +42,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Les méthodes des gestionnaires d'évènements
+## Méthodes des gestionnaires d'évènements
 
 La logique avec beaucoup de gestionnaires d'évènements sera très certainement plus complexe, par conséquent, gardez votre JavaScript dans la valeur de l'attribut `v-on` ne sera tout simplement pas faisable. C'est pourquoi `v-on` peut aussi accepter le nom d'une méthode que vous voudriez appeler.
 
