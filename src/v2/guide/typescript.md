@@ -137,3 +137,63 @@ export default class MyComponent extends Vue {
 ```
 
 With this syntax alternative, our component definition is not only shorter, but TypeScript can also infer the types of `message` and `onClick` without explicit interface declarations. This strategy even allows you to handle types for computed properties, lifecycle hooks, and render functions. For full usage details, see [the vue-class-component docs](https://github.com/vuejs/vue-class-component#vue-class-component).
+
+## Declaring Types of Vue Plugins
+
+Plugins may augment Vue's global/instance properties, component options and so on. For that case, augmenting type declaration is also needed to use plugins in TypeScript. Fortunately, there is a feature to augment an existing types that is called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+
+For example, if you want to declare an additional instance property `$myProperty` that has `string` type:
+
+```ts
+// 1. Make sure to import 'vue' before declaring augmented types
+import Vue from 'vue'
+
+// 2. Specify a file that have the type that you want to augment
+//    Vue has the constructor type in types/vue.d.ts
+declare module 'vue/types/vue' {
+  // 3. Declare augmented Vue.
+  interface Vue {
+    $myProperty: string
+  }
+}
+```
+
+After including the above code as a declaration file (like `my-property.d.ts`) in your project, you can use `$myProperty` on a Vue instance.
+
+```ts
+var vm = new Vue()
+console.log(vm.$myProperty) // This will be successfully compiled
+```
+
+You can declare additional global properties and component options as well:
+
+```ts
+import Vue from 'vue'
+
+declare module 'vue/types/vue' {
+  // Global properties can be declared
+  // by using `namespace` instead of `interface`
+  namespace Vue {
+    const $myGlobal: string
+  }
+}
+
+// ComponentOptions is declared in types/options.d.ts
+declare module 'vue/types/options' {
+  interface ComponentOptions<V extends Vue> {
+    myOption?: string
+  }
+}
+```
+
+The above declarations let the following code be compiled:
+
+```ts
+// Global property
+console.log(Vue.$myGlobal)
+
+// Additional component option
+var vm = new Vue({
+  myOption: 'Hello'
+})
+```
