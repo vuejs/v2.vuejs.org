@@ -581,7 +581,7 @@ new Vue({
 
 这也就是为什么我们要在 Vue.js 2.0 发布时，移除 `.sync` 修饰符的原因。然而，我们发现确实在某些场景中还是需要双向绑定，尤其有助于数据往返于可重用组件。我们需要做出的改进是，**将子组件影响父组件状态的代码，能够和单向数据流保持一致，以及变得更加清晰明确**
 
-在 Vue.js 2.3 中，我们为 props 重新引入了 `.sync` 修饰符，但是这次只是原有语法的语法糖(syntax sugar)包装而成，其背后实现原理是，在组件上自动扩充一个额外的 `v-on` 监听器：
+在 2.3.0+ 中，我们为 props 重新引入了 `.sync` 修饰符，但是这次只是原有语法的语法糖(syntax sugar)包装而成，其背后实现原理是，在组件上自动扩充一个额外的 `v-on` 监听器：
 
 以下
 
@@ -721,7 +721,7 @@ new Vue({
 
 ### Customizing Component `v-model`
 
-> New in 2.2.0
+> New in 2.2.0+
 
 By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
 
@@ -932,7 +932,7 @@ Vue.component('child-component', {
 
 ### 作用域插槽
 
-> 2.1.0 新增
+> 2.1.0+ 新增
 
 作用域插槽是一种特殊类型的插槽，用作（可以传入数据的）可重用模板,而不是已渲染元素。
 
@@ -1140,9 +1140,9 @@ new Vue({
 
 ### Advanced Async Components
 
-> New in 2.3.0
+> New in 2.3.0+
 
-Starting in 2.3 the async component factory can also return an object of the following format:
+Starting in 2.3.0+ the async component factory can also return an object of the following format:
 
 ``` js
 const AsyncComp = () => ({

@@ -197,7 +197,7 @@ methods: {
 
 <p class="tip">Order matters when using modifiers because the relevant code is generated in the same order. Therefore using `@click.prevent.self` will prevent **all clicks** while `@click.self.prevent` will only prevent clicks on the element itself.</p>
 
-> 2.1.4 新增
+> 2.1.4+ 新增
 
 ``` html
 <!-- 点击事件将只会触发一次 -->
@@ -270,7 +270,7 @@ Vue.config.keyCodes.f1 = 112
 
 ### Mouse Button Modifiers
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - `.left`
 - `.right`

@@ -50,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active 在 <2.1.8 中 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active 在低于版本 2.1.8 中 */ {
   opacity: 0
 }
 ```
@@ -98,13 +98,13 @@ new Vue({
 
 2. `v-enter-active`：进入式过渡的激活状态。应用于整个进入式过渡时期。在插入元素之前添加，过渡/动画(transition/animation)完成之后移除。此 class 可用于定义进入式过渡的 duration, delay 和 easing 曲线。
 
-3. `v-enter-to`：**仅适用于版本 >=2.1.8。**进入式过渡的结束状态。在插入元素之后一帧添加（同时，移除 `v-enter`），在过渡/动画完成之后移除。
+3. `v-enter-to`：**仅适用于版本 2.1.8+。**进入式过渡的结束状态。在插入元素之后一帧添加（同时，移除 `v-enter`），在过渡/动画完成之后移除。
 
 4. `v-leave`：离开式过渡(leaving transition)的开始状态。在触发离开式过渡时立即添加，在一帧之后移除。
 
 5. `v-leave-active`：离开式过渡的激活状态。应用于整个离开式过渡时期。在触发离开式过渡时立即添加，在过渡/动画(transition/animation)完成之后移除。此 class 可用于定义离开式过渡的 duration, delay 和 easing 曲线。
 
-6. `v-leave-to`：**仅适用于版本 >=2.1.8。**离开式过渡的结束状态。在触发离开式过渡之后一帧添加（同时，移除 `v-leave`），在过渡/动画完成之后移除。
+6. `v-leave-to`：**仅适用于版本 2.1.8+。**离开式过渡的结束状态。在触发离开式过渡之后一帧添加（同时，移除 `v-leave`），在过渡/动画完成之后移除。
 
 ![Transition Diagram](/images/transition.png)
 
@@ -146,7 +146,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active 在 <2.1.8 中 */ {
+/* .slide-fade-leave-active 在低于 2.1.8 版本中 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -289,10 +289,10 @@ new Vue({
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class`（仅 >= 2.1.8 支持）
+- `enter-to-class` (2.1.8+)
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class`（仅 >= 2.1.8 支持）
+- `leave-to-class` (2.1.8+)
 
 它们将覆盖默认约定的类名，这对于将 Vue 的过渡系统和其他现有的第三方 CSS 动画库（如 [Animate.css](https://daneden.github.io/animate.css/)）集成使用会非常有用。
 
@@ -356,7 +356,7 @@ Vue 为了知道过渡何时完成，必须附加相应的事件监听器。它�
 
 ### 显式过渡持续时间(Explicit Transition Durations)
 
-> 2.2.0 新增
+> 2.2.0+ 新增
 
 在大多数情况下，Vue 可以自动推断出过渡完成时间。默认情况下，Vue 会过渡根元素的第一个 `transitionend` 或 `animationend` 事件触发所需的等待时间。然而，这可能并不总是我们想要的 - 例如，我们可能具有设计安排的过渡序列(transition sequence)：其中一些嵌套的内部元素（在根元素过渡完成后）还具有延续的过渡效果，或比过渡根元素更长的过渡持续时间。
 
@@ -560,6 +560,7 @@ new Vue({
 <transition
   appear
   appear-class="custom-appear-class"
+  appear-to-class="custom-appear-to-class" (2.1.8+)
   appear-to-class="custom-appear-to-class"（仅 >= 2.1.8 支持）
   appear-active-class="custom-appear-active-class"
 >
@@ -906,7 +907,7 @@ new Vue({
   transition: opacity .3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active 在 <2.1.8 中 */ {
+/* .component-fade-leave-active 在低于 2.1.8 版本中 */ {
   opacity: 0;
 }
 ```
@@ -1002,7 +1003,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to /* .list-leave-active 在 <2.1.8 中 */ {
+.list-enter, .list-leave-to /* .list-leave-active 在低于 2.1.8 版本中 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1178,7 +1179,7 @@ new Vue({
   margin-right: 10px;
 }
 .list-complete-enter, .list-complete-leave-to
-/* .list-complete-leave-active for <2.1.8 */ {
+/* .list-complete-leave-active 在低于 2.1.8 版本中 */ {
   opacity: 0;
   transform: translateY(30px);
 }
