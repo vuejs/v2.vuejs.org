@@ -44,7 +44,7 @@ MyPlugin.install = function (Vue, options) {
   })
 
   // 4. 添加实例方法
-  Vue.prototype.$myMethod = function (options) {
+  Vue.prototype.$myMethod = function (methodOptions) {
     // 逻辑...
   }
 }
@@ -70,7 +70,7 @@ Vue.use(MyPlugin, { someOption: true })
 一些插件，如 `vue-router` 如果 `Vue` 是全局变量则自动调用 `Vue.use()` 。不过在模块环境中应当始终显式调用 `Vue.use()` :
 
 ``` js
-// 通过 Browserify 或 Webpack 使用 CommonJS 兼容模块
+// 通过 Browserify 或 webpack 使用 CommonJS 兼容模块
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 

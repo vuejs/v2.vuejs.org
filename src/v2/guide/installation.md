@@ -110,7 +110,7 @@ new Vue({
 
 由于运行时版本的构建比其全面版本的重量轻约30％，因此您可以随时使用它。如果您仍然希望使用完整版本，则需要在捆绑程序中配置别名：
 
-#### Webpack
+#### webpack
 
 ``` js
 module.exports = {
@@ -159,9 +159,9 @@ CommonJS 和 ES 模块构建版本适用于打包器，因此我们不需要为�
 
 CommonJS 和 ES 模块构建版本也可以保留初始环境 `process.env.NODE_ENV` 变量检测，以在打包器运行时的决定具体使用的模式。你应该使用合适的打包器配置来替换这些环境变量，以在打包器运行时控制 Vue 使用哪种模式。将 `process.env.NODE_ENV` 替换为字符串字面量，可以允许像 UglifyJS 的压缩工具将那些仅开发环境(development-only)用到的代码块全部删除，以减少最终文件的大小。
 
-#### Webpack
+#### webpack
 
-使用 Webpack 的 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)：
+使用 webpack 的 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)：
 
 ``` js
 var webpack = require('webpack')

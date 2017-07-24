@@ -18,7 +18,7 @@ How is the cookbook different from the guide? Why is this necessary?
 
 - __Teaching JavaScript__: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won't explain how `Array.prototype.filter` works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.
 
-- __Exploring the Ecosystem__: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
+- __Exploring the Ecosystem__: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in webpack, we don't explain how to configure the non-Vue parts of the webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
 
 ## Guidelines for Recipes
 

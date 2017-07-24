@@ -79,15 +79,15 @@ type: api
 
   指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
 
-  > In 2.2.0, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
-  > In 2.4.0 this hook also captures errors thrown inside Vue custom event handlers.
+  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
 
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
 
 ### warnHandler
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `Function`
 
@@ -147,11 +147,11 @@ type: api
 
 ### 性能
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `boolean`
 
-- **Default:** `false (from 2.2.3)`
+- **Default:** `false (from 2.2.3+)`
 
 - **Usage**:
 
@@ -159,7 +159,7 @@ type: api
 
 ### productionTip
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `boolean`
 
@@ -229,7 +229,7 @@ type: api
   })
   ```
 
-  > 2.1.0新增：如果没有提供回调且支持 promise 的环境中返回 promise。
+  > 2.1.0+ 新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
 - **参考：** [异步更新队列](../guide/reactivity.html#Async-Update-Queue)
 
@@ -254,13 +254,13 @@ type: api
 
 - **参数：**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} key/index`
+
+  > Only works with Array + index in 2.2.0+.
 
 - **用法：**
 
   删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
-
-  > Also works with on Array + index in 2.2.0+.
 
   <p class="tip">注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象</p>
 
@@ -677,7 +677,7 @@ if (version === 2) {
 
 ### renderError
 
-> New in 2.2.0
+> New in 2.2.0+
 
   - **Type:** `(createElement: () => VNode, error: Error) => VNode`
 
@@ -705,7 +705,7 @@ if (version === 2) {
 
 ## 选项 / 生命周期钩子
 
-所有的生命周期钩子自动绑定 `this` 上下文到实例中，因此你可以访问数据，对属性和方法进行运算。这意味着 __你不能使用箭头函数来定义一个生命周期方法__ (例如 `created: () => this.fetchTodos()`)。这是因为箭头函数绑定了父上下文，因此 `this` 与你期待的 Vue 实例不同， `this.fetchTodos` 的行为未定义。
+<p class="tip">所有的生命周期钩子自动绑定 `this` 上下文到实例中，因此你可以访问数据，对属性和方法进行运算。这意味着 __你不能使用箭头函数来定义一个生命周期方法__ (例如 `created: () => this.fetchTodos()`)。这是因为箭头函数绑定了父上下文，因此 `this` 与你期待的 Vue 实例不同， `this.fetchTodos` 的行为未定义。</p>
 
 ### beforeCreate
 
@@ -927,7 +927,7 @@ if (version === 2) {
 
 ### provide / inject
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:**
   - **provide:** `Object | () => Object`
@@ -982,7 +982,7 @@ if (version === 2) {
   }
   ```
 
-  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
 
   Using an injected value as the default for a prop:
   ```js
@@ -1030,9 +1030,11 @@ if (version === 2) {
 
 - **默认值:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **详细:**
+- **限制：** 这个选择只在完整构建版本中才可用，将在浏览器中编译。
 
- 改变纯文本插入分隔符。 **这个选择只有在完整构建时才有用。**
+- **详细：**
+
+  改变纯文本插入分隔符。
 
 - **示例:**
 
@@ -1102,7 +1104,7 @@ if (version === 2) {
 
 ### inheritAttrs
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
@@ -1112,13 +1114,17 @@ if (version === 2) {
 
   By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
 
+  Note: this option does **not** affect `class` and `style` bindings.
+
 ### comments
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
 - **Default:** `false`
+
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
 
 - **Details:**
 
@@ -1138,7 +1144,7 @@ if (version === 2) {
 
 ### vm.$props
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `Object`
 
@@ -1257,7 +1263,7 @@ if (version === 2) {
 
 ### vm.$scopedSlots
 
-> 2.1.0新增
+> 2.1.0+ 新增
 
 - **类型：** `{ [name: string]: props => VNode | Array<VNode> }`
 
@@ -1308,7 +1314,7 @@ if (version === 2) {
 
 - **Details:**
 
-  Contains parent-scope attribute bindings that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings except for `class` and `style`, and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
 
 ### vm.$listeners
 
@@ -1527,7 +1533,7 @@ if (version === 2) {
 
   将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 Vue.nextTick 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
 
- > 2.1.0 新增：如果没有提供回调且支持 promise 的环境中返回 promise。
+ > 2.1.0+ 新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
 - **示例：**
 
@@ -1653,7 +1659,7 @@ if (version === 2) {
 
 ### v-else-if
 
-> 2.1.0新增
+> 2.1.0+ 新增
 
 - **Expects:** `any`
 
@@ -1743,7 +1749,7 @@ if (version === 2) {
 
   绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
-  Starting in `2.4.0`, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
   用在普通元素上时，只能监听 **原生 DOM 事件**。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
 
@@ -2185,7 +2191,7 @@ if (version === 2) {
 
   当组件在 `<keep-alive>` 内被切换，它的 `activated` 和 `deactivated` 这两个生命周期钩子函数将会被对应执行。
 
-  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
   主要用于保留组件状态或避免重新渲染。
 
@@ -2214,7 +2220,7 @@ if (version === 2) {
 
 - **`include` and `exclude`**
 
-  > 2.1.0 新增
+  > 2.1.0+ 新增
 
   `include` 和 `exclude` 允许通过条件控制组件的缓存，它们可以用逗号隔开的字符串、或正则表达式、或数组。来进行设置：
 
@@ -2226,6 +2232,11 @@ if (version === 2) {
 
   <!-- regex (use v-bind) -->
   <keep-alive :include="/a|b/">
+    <component :is="view"></component>
+  </keep-alive>
+
+  <!-- Array (use v-bind) -->
+  <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
   ```

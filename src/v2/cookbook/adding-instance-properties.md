@@ -151,7 +151,7 @@ So what are the alternatives?
 
 ### When Not Using a Module System
 
-In applications with __no__ module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
+In applications with __no__ module system (e.g. via webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
 
 If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
 
