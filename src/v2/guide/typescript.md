@@ -140,7 +140,7 @@ With this syntax alternative, our component definition is not only shorter, but 
 
 ## Declaring Types of Vue Plugins
 
-Plugins may augment Vue's global/instance properties, component options and so on. For that case, augmenting type declaration is also needed to use plugins in TypeScript. Fortunately, there is a feature to augment an existing types that is called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+Plugins may add Vue's global/instance properties, component options and so on. For that case, type declaration also needs updates to make plugins code compile in TypeScript. Fortunately, there is a feature to augment an existing types that is called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
 For example, if you want to declare an additional instance property `$myProperty` that has `string` type:
 
