@@ -864,9 +864,7 @@ order: 31
               // The system language in IE
               nav.userLanguage ||
               // The language in the current page
-              nav.language ||
-              // Default to English if none found
-              'en'
+              nav.language
             )
         return (
           '<ul><li>' +
@@ -874,6 +872,7 @@ order: 31
             var language = languageNameFor[languageCode]
             if (
               languageCode !== 'en' &&
+              preferredLanguageCode &&
               languageCode === preferredLanguageCode.slice(0, 2)
             ) {
               return (
