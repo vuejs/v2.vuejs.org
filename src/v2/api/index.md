@@ -701,7 +701,7 @@ if (version === 2) {
     ```
 
   - **See also:**
-    - [Render Functions](../guide/render-function)
+    - [Render Functions](../guide/render-function.html)
 
 ## Options / Lifecycle Hooks
 
