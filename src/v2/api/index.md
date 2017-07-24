@@ -673,7 +673,7 @@ if (version === 2) {
     <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
   - **See also:**
-    - [Render Functions](../guide/render-function)
+    - [Render Functions](../guide/render-function.html)
 
 ### renderError
 
