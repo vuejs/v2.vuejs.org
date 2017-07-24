@@ -96,7 +96,7 @@ var vm = new Vue({
 
 Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple [`mounted`](../api/#mounted), [`updated`](../api/#updated) et [`destroyed`](../api/#destroyed). Tous ces *hooks* de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de « contrôleur » dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces *hooks* de cycle de vie.
 
-## Diagramme de cycle de vie
+## Diagramme du cycle de vie
 
 Ci-dessous se trouve le diagramme d'un cycle de vie d'une instance. Vous n'avez pas besoin de tout comprendre de A à Z à ce stade, mais ce diagramme pourra vous être utile dans le futur.
 
