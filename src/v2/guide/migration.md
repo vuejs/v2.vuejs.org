@@ -728,48 +728,48 @@ avec :
 
 ## Transitions
 
-### `transition` Attribute <sup>remplacé</sup>
+### Attribut `transition` <sup>remplacé</sup>
 
-Vue's transition system has changed quite drastically and now uses `<transition>` and `<transition-group>` wrapper elements, rather than the `transition` attribute. It's recommended to read the new [Transitions guide](transitions.html) to learn more.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute.</p>
-</div>
-{% endraw %}
-
-### `Vue.transition` for Reusable Transitions <sup>remplacé</sup>
-
-With the new transition system, you can now just [use components for reusable transitions](transitions.html#Reusable-Transitions).
+Le système de transition de Vue a changé drastiquement et maintenant il faut utiliser les élements `<transition>` et `<transition-group>` au lieu de l'attribut `transition`. Il est recommandé de lire le nouveau [guide des transitions](transitions.html) pour en apprendre plus.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>Vue.transition</code>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'attribut <code>transition</code>.</p>
 </div>
 {% endraw %}
 
-### Transition `stagger` Attribute <sup>retiré</sup>
+### `Vue.transition` pour les transitions réutilisables <sup>remplacé</sup>
 
-If you need to stagger list transitions, you can control timing by setting and accessing a `data-index` (or similar attribute) on an element. See [an example here](transitions.html#Staggering-List-Transitions).
+Avec le nouveau système de transition, vous pouvez maintenant [utiliser les composants pour des transitions réutilisables](transitions.html#Transitions-reutilisables).
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transition</code> attribute. During your update, you can transition (pun very much intended) to the new staggering strategy as well.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'attribut de <code>Vue.transition</code>.</p>
 </div>
 {% endraw %}
 
-## Events
+### Attribut de transition `stagger` <sup>retiré</sup>
 
-### `events` option <sup>retiré</sup>
+Si vous avez besoin de écheloner les transitions, vous pouvez contrôler le timing en accédant ou changeant une `data-index` ou attribut similaire sur un élément. Consultez [un exemple ici](transitions.html#Echelonnage-des-transitions-de-liste).
 
-The `events` option has been removed. Event handlers should now be registered in the `created` hook instead. Check out the [`$dispatch` and `$broadcast` migration guide](#dispatch-and-broadcast-replaced) for a detailed example.
+{% raw %}
+<div class="upgrade-path">
+  <h4>Mise en évidence</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'attribut de <code>transition</code>. Au cours de votre mise à jour, vous pouvez également passer à la nouvelle stratégie d'échelonnage.</p>
+</div>
+{% endraw %}
+
+## Évènements
+
+### Option `events` <sup>retirée</sup>
+
+L'option `events` a été retirée. Les gestionnaires d'évènements doivent maintenant être abonné dans le hook `created` à la place. Consultez [le guide `$dispatch` et `$broadcast`](#dispatch-et-broadcast-remplaces) pour plus de détails.
 
 ### `Vue.directive('on').keyCodes` <sup>remplacé</sup>
 
-The new, more concise way to configure `keyCodes` is through `Vue.config.keyCodes`. For example:
+La nouvelle, et plus concise, manière de configuré `keyCodes` à travers `Vue.config.keyCodes`. Par exemple :
 
 ``` js
 // enable v-on:keyup.f1
@@ -778,21 +778,21 @@ Vue.config.keyCodes.f1 = 112
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the the old <code>keyCode</code> configuration syntax.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de vieilles configurations de syntaxe <code>keyCode</code>.</p>
 </div>
 {% endraw %}
 
-### `$dispatch` and `$broadcast` <sup>remplacé</sup>
+### `$dispatch` et `$broadcast` <sup>remplacés</sup>
 
-`$dispatch` and `$broadcast` have been removed in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
+`$dispatch` et `$broadcast` on été remplacés en faveur d'une communication plus explicite entre composants et des solutions de gestion d'état plus maintenable, comme [Vuex](https://github.com/vuejs/vuex).
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It simply doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+Le problème est que le flux d'évènement dépend de la structure de l'arbre des composants qui peut être dur à appréhender et très fragile quand l'arbre devient large. Ils ne s'adaptaient pas correctement et nous ne voulons pas qu'ils amènent plus de bien que de mal. `$dispatch` et `$broadcast` ne résolvaient pas non plus la communication entre les composants voisins.
 
-One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
+L'un des usages les plus communs de ces méthodes était la communication entre un parent et ses enfants directs. Dans ces cas, vous pouvez en fait [écouter un `$emit` depuis un enfant avec `v-on`](components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises). Cela vous permet de garder la commodité des événements en étant plus explicite.
 
-However, when communicating between distant descendants/ancestors, `$emit` won't help you. Instead, the simplest possible upgrade would be to use a centralized event hub. This has the added benefit of allowing you to communicate between components no matter where they are in the component tree - even between siblings! Because Vue instances implement an event emitter interface, you can actually use an empty Vue instance for this purpose.
+Cependant, quand on communique entre descendant ou ancètres distant, `$emit` ne nous aidera pas. À la place, le plus simple serait de centraliser les changements dans un canal d'évènements centralisé. Cela vous apporte la possibilité de communiquer entre composants sans vous soucier de là où ils sont dans l'arbre des composants (même entre voisins !). Parceque les instances de Vue implémente une interface de émission d'évènement, vous pouvez en fait utiliser une instance de Vue vide pour réaliser cela.
 
-For example, let's say we have a todo app structured like this:
+Par exemple, imaginons que nous avons une application de liste de tâches comme celle là :
 
 ```
 Todos
@@ -801,15 +801,15 @@ Todos
     |-- DeleteTodoButton
 ```
 
-We could manage communication between components with this single event hub:
+Nous pourrions gérer la communication entre ces composants avec ce simple canal d'évènement :
 
 ``` js
-// This is the event hub we'll use in every
-// component to communicate between them.
+// Ceci est le canal d'évènement que nous utiliserons dans
+// tous les composants pour communiquer entre eux.
 var eventHub = new Vue()
 ```
 
-Then in our components, we can use `$emit`, `$on`, `$off` to emit events, listen for events, and clean up event listeners, respectively:
+Maintenant dans nos composants, nous pouvons utilisez `$emit`, `$on` et `$off` pour respectivement émettre des évènements, écouter des évènements et netoyer les écouteurs d'évènements :
 
 ``` js
 // NewTodoInput
@@ -839,8 +839,8 @@ created: function () {
   eventHub.$on('add-todo', this.addTodo)
   eventHub.$on('delete-todo', this.deleteTodo)
 },
-// It's good to clean up event listeners before
-// a component is destroyed.
+// Il est bon de netoyer les écouteurs d'évènements avant
+// la destruction du composant.
 beforeDestroy: function () {
   eventHub.$off('add-todo', this.addTodo)
   eventHub.$off('delete-todo', this.deleteTodo)
@@ -857,12 +857,12 @@ methods: {
 }
 ```
 
-This pattern can serve as a replacement for `$dispatch` and `$broadcast` in simple scenarios, but for more complex cases, it's recommended to use a dedicated state management layer such as [Vuex](https://github.com/vuejs/vuex).
+Ce modèle peut servir de remplacement à `$dispatch` et `$broadcast` dans des scénarios simples. Pour des cas plus complexes, il est recommandé d'utiliser une couche de gestion d'état dédiée comme [Vuex](https://github.com/vuejs/vuex).
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>$dispatch</code> and <code>$broadcast</code>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>$dispatch</code> et <code>$broadcast</code>.</p>
 </div>
 {% endraw %}
 
