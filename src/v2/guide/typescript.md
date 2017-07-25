@@ -140,18 +140,18 @@ With this syntax alternative, our component definition is not only shorter, but 
 
 ## Declaring Types of Vue Plugins
 
-Plugins may add Vue's global/instance properties, component options and so on. For that case, type declaration also needs updates to make plugins code compile in TypeScript. Fortunately, there is a feature to augment an existing types that is called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+Plugins may add to Vue's global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. Fortunately, there's a TypeScript feature to augment existing types called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-For example, if you want to declare an additional instance property `$myProperty` that has `string` type:
+For example, to declare an instance property `$myProperty` with type `string`:
 
-```ts
+``` ts
 // 1. Make sure to import 'vue' before declaring augmented types
 import Vue from 'vue'
 
-// 2. Specify a file that have the type that you want to augment
+// 2. Specify a file with the types you want to augment
 //    Vue has the constructor type in types/vue.d.ts
 declare module 'vue/types/vue' {
-  // 3. Declare augmented Vue.
+  // 3. Declare augmentation for Vue
   interface Vue {
     $myProperty: string
   }
@@ -165,7 +165,7 @@ var vm = new Vue()
 console.log(vm.$myProperty) // This will be successfully compiled
 ```
 
-You can declare additional global properties and component options as well:
+You can also declare additional global properties and component options:
 
 ```ts
 import Vue from 'vue'
@@ -186,7 +186,7 @@ declare module 'vue/types/options' {
 }
 ```
 
-The above declarations let the following code be compiled:
+The above declarations allow the following code to be compiled:
 
 ```ts
 // Global property
