@@ -1220,7 +1220,7 @@ if (version === 2) {
 
 - **Détails :**
 
-  Utilisé pour accéder programmatiquement à du contenu [distribué par slots](../guide/components.html#Content-Distribution-with-Slots). Chaque [slot nommé](../guide/components.html#Named-Slots) a sa propriété correspondante (p. ex. le contenu de `slot="foo"` sera trouvé dans `vm.$slots.foo`). La propriété `default` contient tous les noeuds non inclus dans un slot nommé.
+  Utilisé pour accéder programmatiquement à du contenu [distribué par slots](../guide/components.html#Content-Distribution-with-Slots). Chaque [slot nommé](../guide/components.html#Named-Slots) a sa propriété correspondante (p. ex. le contenu de `slot="foo"` sera trouvé dans `vm.$slots.foo`). La propriété `default` contient tous les nœuds non inclus dans un slot nommé.
 
   Accéder à `vm.$slots` est plus utile lorsque vous écrivez un composant avec une [fonction `render`](../guide/render-function.html).
 
@@ -1640,11 +1640,11 @@ if (version === 2) {
 
 - **N'attend aucune valeur**
 
-- **Restriction :** l'élément précédent doit avoir une directive `v-if` or `v-else-if`.
+- **Restriction :** l'élément précédent doit avoir une directive `v-if` ou `v-else-if`.
 
 - **Utilisation :**
 
-  Dénote un bloc "else" pour `v-if` ou pour une chaîne `v-if`/`v-else-if`.
+  Dénote un bloc « else » pour `v-if` ou pour une chaîne `v-if`/`v-else-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1660,7 +1660,7 @@ if (version === 2) {
 
 ### v-else-if
 
-> Nouveauté de la 2.1.0
+> Nouveauté en 2.1.0+
 
 - **Attend comme valeur :** `any`
 
@@ -1668,7 +1668,7 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Dénote un bloc "else if" pour `v-if`. Peut être enchaîné plusieurs fois.
+  Dénote un bloc « else if » pour `v-if`. Peut être enchaîné plusieurs fois.
 
   ```html
   <div v-if="type === 'A'">
@@ -1731,7 +1731,7 @@ if (version === 2) {
 
 - **Attend comme valeur :** `Function | Inline Statement | Object`
 
-- **Argument de la fonction callback :** `event`
+- **Argument de la fonction de rappel (callback) :** `event`
 
 - **Modificateurs :**
   - `.stop` - appelle `event.stopPropagation()`.
@@ -1750,7 +1750,7 @@ if (version === 2) {
 
   Attache un écouteur d'événement à l'élément. Le type d'événement écouté est indiqué comme argument. L'expression peut être soit un nom de méthode, soit une ligne d'instruction, ou simplement omise si des modificateurs sont présents.
 
-  À partie de la 2.4.0, `v-on` supporte aussi la liaison à un objet de paires événement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
+  À partir de la 2.4.0+, `v-on` supporte aussi la liaison à un objet de paires événement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
 
   Quand utilisé sur un élément HTML standard, il écoute uniquement les **événements natifs du DOM**. Quand utilisé sur un élement personnalisé de composant, il écoute également les **événements personnalisés** émis depuis ce composant enfant.
 
@@ -1793,7 +1793,7 @@ if (version === 2) {
   <button v-on:click.once="faireCeci"></button>
   ```
 
-  Écouter des événements personnalisés sur un composant enfant (le gestionnaire est appelé quand "mon-evenement" est émis depuis l'enfant):
+  Écouter des événements personnalisés sur un composant enfant (le gestionnaire est appelé quand `mon-evenement` est émis depuis l'enfant):
 
   ```html
   <mon-composant @mon-evenement="faireCeci"></mon-composant>
@@ -1815,7 +1815,7 @@ if (version === 2) {
 
 - **Attend comme valeur :** `any (avec argument) | Object (sans argument)`
 
-- **Argument:** `attrOuProp (optionnel)`
+- **Argument :** `attrOuProp (optionnel)`
 
 - **Modificateurs :**
   - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([quelle difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `prop` assignera la propriété sur l'élément `$el` du composant.
@@ -1841,7 +1841,7 @@ if (version === 2) {
   <!-- notation abrégée -->
   <img :src="imageSrc">
 
-  <!-- avec de la concaténation de string -->
+  <!-- avec de la concaténation de chaînes de caractères -->
   <img :src="'/path/to/images/' + fileName">
 
   <!-- liaison de classes -->
@@ -1884,7 +1884,7 @@ if (version === 2) {
 
 ### v-model
 
-- **Attend comme valeur :** variable selon les éléments input de formulaire ou les valeurs en sortie de composants
+- **Attend comme valeur :** variable selon les éléments des champs de formulaire ou les valeurs en sortie de composants
 
 - **Limité à :**
   - `<input>`
@@ -1911,7 +1911,7 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Omet la compilation pour cet élément et tous ses enfants. Vous pouvez utiliser ceci pour afficher à l'utilisateur des expressions `{{ moustache }}`. Utilisé sur un grand nombre de noeuds sans directives, cela peut aussi accélerer la compilation.
+  Omet la compilation pour cet élément et tous ses enfants. Vous pouvez utiliser ceci pour afficher à l'utilisateur des expressions `{{ moustache }}`. Utilisé sur un grand nombre de nœuds sans directives, cela peut aussi accélerer la compilation.
 
 - **Exemple :**
 
@@ -1925,7 +1925,7 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Cette directive restera sur l'élément jusqu'à ce que l'instance de Vue associée ait fini sa compilation. Combiné avec des règles CSS telles que `[v-cloak] { display: none }`, cette directive peut être utilisée pour cacher des liaisons moustache encore non compilées jusqu'à ce que l'instance de Vue soit prête.
+  Cette directive restera sur l'élément jusqu'à ce que l'instance de Vue associée ait fini sa compilation. Combiné avec des règles CSS telles que `[v-cloak] { display: none }`, cette directive peut être utilisée pour cacher des liaisons moustaches encore non compilées jusqu'à ce que l'instance de Vue soit prête.
 
 - **Exemple :**
 
@@ -1952,7 +1952,7 @@ if (version === 2) {
   Fait le rendu de l'élément ou du composant qu'**une seule fois** seulement. Lors des nouveaux rendus par la suite, l'élément/composant et tous ses enfants seront traités comme du contenu statique et ignorés. Cela peut être utilisé pour optimiser les performances à la mise à jour d'un composant.
 
   ```html
-  <!-- sur un seul element -->
+  <!-- sur un seul élément -->
   <span v-once>Ceci ne changera jamais : {{msg}}</span>
   <!-- l'élément a des enfants -->
   <div v-once>
@@ -1994,7 +1994,7 @@ if (version === 2) {
   - Déclencher correctement les hooks de cycle de vie d'un composant
   - Déclencher des transitions
 
-  Par exemple:
+  Par exemple :
 
   ``` html
   <transition>
@@ -2018,7 +2018,7 @@ if (version === 2) {
   <comp-enfant ref="enfant"></comp-enfant>
   ```
 
-  Quand utilisé sur des éléments/composants avec `v-for`, la référence inscrite sera une Array contenant les noeuds du DOM ou les instances de composant.
+  Quand utilisé sur des éléments/composants avec `v-for`, la référence inscrite sera un `Array` contenant les nœuds du DOM ou les instances de composant.
 
   Une note importante à propos du timing de l'inscription de la référence: étant donné que les refs elles-même résultent de la fonction de rendu, vous ne pouvez pas y accéder au rendu initial - elles n'existent pas encore ! `$refs` est également non réactif, c'est pourquoi vous ne devriez pas essayer de les utiliser dans des templates pour de la liaison de données.
 
@@ -2040,7 +2040,7 @@ if (version === 2) {
 
   Utilisé pour les [composants dynamiques](../guide/components.html#Dynamic-Components) et pour contourner les [limitations des templates dans le DOM](../guide/components.html#DOM-Template-Parsing-Caveats).
 
-  Par exemple:
+  Par exemple :
 
   ``` html
   <!-- le composant change quand la vue actuelle change -->
@@ -2069,7 +2069,7 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Un "méta-composant" pour le rendu de composants dynamiques. Le composant réel obtenu est déterminé par la prop `is` :
+  Un « méta-composant » pour le rendu de composants dynamiques. Le composant réel obtenu est déterminé par la prop `is` :
 
   ```html
   <!-- un composant dynamique contrôlé par -->
@@ -2149,7 +2149,7 @@ if (version === 2) {
   }).$mount('#transition-demo')
   ```
 
-- **Voir aussi :** [Transitions: entrantes, sortantes et de listes](../guide/transitions.html)
+- **Voir aussi :** [Transitions : entrantes, sortantes et de listes](../guide/transitions.html)
 
 ### transition-group
 
@@ -2177,7 +2177,7 @@ if (version === 2) {
   </transition-group>
   ```
 
-- **Voir aussi :** [Transitions: entrantes, sortantes et de listes](../guide/transitions.html)
+- **Voir aussi :** [Transition : entrantes, sortantes et de listes](../guide/transitions.html)
 
 ### keep-alive
 
@@ -2187,11 +2187,11 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Quand il entoure un composant dynamique, `<keep-alive>` met en cache les instances de composant inactives sans les détruire. Tout comme `<transition>`, `<keep-alive>` est un composant abstrait: le rendu ne donne pas d'élément supplémentaire dans le DOM, et il n'apparaît pas dans la chaîne de composants du parent.
+  Quand il entoure un composant dynamique, `<keep-alive>` met en cache les instances de composant inactives sans les détruire. Tout comme `<transition>`, `<keep-alive>` est un composant abstrait : le rendu ne donne pas d'élément supplémentaire dans le DOM, et il n'apparaît pas dans la chaîne de composants du parent.
 
   Lorsqu'un composant est permuté à l'intérieur de `<keep-alive>`, ses hooks de cycle de vie `activated` et `deactivated` seront appelés en conséquence.
 
-  > À partir de la 2.2.0, `activated` et `deactivated` se déclencheront pour tous les composants imbriqués dans une arborescence `<keep-alive>`.
+  > À partir de la 2.2.0+, `activated` et `deactivated` se déclencheront pour tous les composants imbriqués dans une arborescence `<keep-alive>`.
 
   Principalement utilisé pour préserver l'état du composant ou éviter un nouveau rendu.
 
