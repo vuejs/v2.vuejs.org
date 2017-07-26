@@ -161,7 +161,7 @@ Filters are JavaScript functions, therefore they can take arguments:
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into the `filterA` as its second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.  
+Here `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into the `filterA` as its second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
 
 ## Shorthands
 
