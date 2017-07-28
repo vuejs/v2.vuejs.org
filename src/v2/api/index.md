@@ -79,15 +79,15 @@ type: api
 
   Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
 
-  > In 2.2.0, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
-  > In 2.4.0 this hook also captures errors thrown inside Vue custom event handlers.
+  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
 
   > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
 
 ### warnHandler
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `Function`
 
@@ -147,11 +147,11 @@ type: api
 
 ### performance
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `boolean`
 
-- **Default:** `false (from 2.2.3)`
+- **Default:** `false (from 2.2.3+)`
 
 - **Usage**:
 
@@ -159,7 +159,7 @@ type: api
 
 ### productionTip
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `boolean`
 
@@ -229,7 +229,7 @@ type: api
   })
   ```
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
@@ -254,13 +254,13 @@ type: api
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} key/index`
+
+  > Only works with Array + index in 2.2.0+.
 
 - **Usage:**
 
   Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
-
-  > Also works with on Array + index in 2.2.0+.
 
   <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
 
@@ -677,7 +677,7 @@ if (version === 2) {
 
 ### renderError
 
-> New in 2.2.0
+> New in 2.2.0+
 
   - **Type:** `(createElement: () => VNode, error: Error) => VNode`
 
@@ -705,7 +705,7 @@ if (version === 2) {
 
 ## Options / Lifecycle Hooks
 
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.
+<p class="tip">All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.</p>
 
 ### beforeCreate
 
@@ -928,7 +928,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### provide / inject
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:**
   - **provide:** `Object | () => Object`
@@ -983,7 +983,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
   }
   ```
 
-  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
 
   Using an injected value as the default for a prop:
   ```js
@@ -1031,9 +1031,11 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+
 - **Details:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the full build.**
+  Change the plain text interpolation delimiters.
 
 - **Example:**
 
@@ -1102,7 +1104,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### inheritAttrs
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
@@ -1112,13 +1114,17 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
 
+  Note: this option does **not** affect `class` and `style` bindings.
+
 ### comments
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
 - **Default:** `false`
+
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
 
 - **Details:**
 
@@ -1138,7 +1144,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$props
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `Object`
 
@@ -1257,7 +1263,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### vm.$scopedSlots
 
-> New in 2.1.0
+> New in 2.1.0+
 
 - **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
 
@@ -1308,7 +1314,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Details:**
 
-  Contains parent-scope attribute bindings that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings except for `class` and `style`, and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
 
 ### vm.$listeners
 
@@ -1527,7 +1533,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **Example:**
 
@@ -1653,7 +1659,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### v-else-if
 
-> New in 2.1.0
+> New in 2.1.0+
 
 - **Expects:** `any`
 
@@ -1743,7 +1749,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
 
-  Starting in `2.4.0`, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
   When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
 
@@ -2185,7 +2191,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
 
-  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
   Primarily used with preserve component state or avoid re-rendering.
 
@@ -2214,7 +2220,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **`include` and `exclude`**
 
-  > New in 2.1.0
+  > New in 2.1.0+
 
   The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
 

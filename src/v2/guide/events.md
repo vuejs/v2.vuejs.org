@@ -196,7 +196,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 
 <p class="tip">Order matters when using modifiers because the relevant code is generated in the same order. Therefore using `@click.prevent.self` will prevent **all clicks** while `@click.self.prevent` will only prevent clicks on the element itself.</p>
 
-> New in 2.1.4
+> New in 2.1.4+
 
 ``` html
 <!-- the click event will be triggered at most once -->
@@ -270,7 +270,7 @@ For example:
 
 ### Mouse Button Modifiers
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - `.left`
 - `.right`

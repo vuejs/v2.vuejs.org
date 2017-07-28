@@ -50,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
 }
 ```
@@ -98,13 +98,13 @@ There are six classes applied for enter/leave transitions.
 
 2. `v-enter-active`: Active state for enter. Applied during the entire entering phase. Added before element is inserted, removed when transition/animation finishes. This class can be used to define the duration, delay and easing curve for the entering transition.
 
-3. `v-enter-to`: **Only available in versions >=2.1.8.** Ending state for enter. Added one frame after element is inserted (at the same time `v-enter` is removed), removed when transition/animation finishes.
+3. `v-enter-to`: **Only available in versions 2.1.8+.** Ending state for enter. Added one frame after element is inserted (at the same time `v-enter` is removed), removed when transition/animation finishes.
 
 4. `v-leave`: Starting state for leave. Added immediately when a leaving transition is triggered, removed after one frame.
 
 5. `v-leave-active`: Active state for leave. Applied during the entire leaving phase. Added immediately when leave transition is triggered, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the leaving transition.
 
-6. `v-leave-to`: **Only available in versions >=2.1.8.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
+6. `v-leave-to`: **Only available in versions 2.1.8+.** Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave` is removed), removed when the transition/animation finishes.
 
 ![Transition Diagram](/images/transition.png)
 
@@ -146,7 +146,7 @@ new Vue({
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for <2.1.8 */ {
+/* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -289,10 +289,10 @@ You can also specify custom transition classes by providing the following attrib
 
 - `enter-class`
 - `enter-active-class`
-- `enter-to-class` (>= 2.1.8 only)
+- `enter-to-class` (2.1.8+)
 - `leave-class`
 - `leave-active-class`
-- `leave-to-class` (>= 2.1.8 only)
+- `leave-to-class` (2.1.8+)
 
 These will override the conventional class names. This is especially useful when you want to combine Vue's transition system with an existing CSS animation library, such as [Animate.css](https://daneden.github.io/animate.css/).
 
@@ -356,7 +356,7 @@ However, in some cases you may want to have both on the same element, for exampl
 
 ### Explicit Transition Durations
 
-> New in 2.2.0
+> New in 2.2.0+
 
 In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
 
@@ -560,7 +560,7 @@ By default, this will use the transitions specified for entering and leaving. If
 <transition
   appear
   appear-class="custom-appear-class"
-  appear-to-class="custom-appear-to-class" (>= 2.1.8 only)
+  appear-to-class="custom-appear-to-class" (2.1.8+)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
@@ -906,7 +906,7 @@ new Vue({
   transition: opacity .3s ease;
 }
 .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active for <2.1.8 */ {
+/* .component-fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -1002,7 +1002,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */ {
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1178,7 +1178,7 @@ new Vue({
   margin-right: 10px;
 }
 .list-complete-enter, .list-complete-leave-to
-/* .list-complete-leave-active for <2.1.8 */ {
+/* .list-complete-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }

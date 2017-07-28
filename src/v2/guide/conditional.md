@@ -57,7 +57,7 @@ A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - o
 
 ### `v-else-if`
 
-> New in 2.1.0
+> New in 2.1.0+
 
 The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
 
