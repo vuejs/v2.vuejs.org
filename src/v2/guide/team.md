@@ -18,7 +18,7 @@ order: 31
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Foco principal</dt>
+          <dt>Focado em</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
