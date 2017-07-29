@@ -28,22 +28,22 @@ Quando você começar a criar o componente de modo que gere os cabeçalhos de ac
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
-  <h1 v-if="level === 1">
+  <h1 v-if="nivel === 1">
     <slot></slot>
   </h1>
-  <h2 v-else-if="level === 2">
+  <h2 v-else-if="nivel === 2">
     <slot></slot>
   </h2>
-  <h3 v-else-if="level === 3">
+  <h3 v-else-if="nivel === 3">
     <slot></slot>
   </h3>
-  <h4 v-else-if="level === 4">
+  <h4 v-else-if="nivel === 4">
     <slot></slot>
   </h4>
-  <h5 v-else-if="level === 5">
+  <h5 v-else-if="nivel === 5">
     <slot></slot>
   </h5>
-  <h6 v-else-if="level === 6">
+  <h6 v-else-if="nivel === 6">
     <slot></slot>
   </h6>
 </script>
