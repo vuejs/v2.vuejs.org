@@ -84,45 +84,45 @@
                     <%- body %>
                 <% } %>
             </div>
-            <script src="<%- url_for("/js/smooth-scroll.min.js") %>"></script>
+            <script src="<%- url_for("/js/smooth-scroll.min.js") %>" defer></script>
         <% } else { %>
             <%- body %>
         <% } %>
 
         <!-- main custom script for sidebars, version selects etc. -->
-        <script src="<%- url_for("/js/css.escape.js") %>"></script>
-        <script src="<%- url_for("/js/common.js") %>"></script>
+        <script src="<%- url_for("/js/css.escape.js") %>" defer></script>
+        <script src="<%- url_for("/js/common.js") %>" defer></script>
 
         <!-- search -->
         <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
         <%- css('css/search') %>
-        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-        <script>
-        [
-          '#search-query-nav',
-          '#search-query-sidebar',
-          '#search-query-menu'
-        ].forEach(function (selector) {
-          if (!document.querySelector(selector)) return
-          // search index defaults to v2
-          var match = window.location.pathname.match(/^\/(v\d+)/)
-          var version = match ? match[1] : 'v2'
-          docsearch({
-            appId: 'BH4D9OD16A',
-            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-            indexName: 'vuejs',
-            inputSelector: selector,
-            algoliaOptions: { facetFilters: ["version:" + version] }
-          })
-        })
-        </script>
-
+        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js" defer></script>
         <!-- fastclick -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js" defer></script>
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body)
-        }, false)
+            document.addEventListener('DOMContentLoaded', function() {
+                var docsearchInit = function() {
+                    [
+                    '#search-query-nav',
+                    '#search-query-sidebar',
+                    '#search-query-menu'
+                    ].forEach(function (selector) {
+                        if (!document.querySelector(selector)) return;
+                        // search index defaults to v2
+                        var match = window.location.pathname.match(/^\/(v\d+)/);
+                        var version = match ? match[1] : 'v2';
+                        docsearch({
+                            appId: 'BH4D9OD16A',
+                            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+                            indexName: 'vuejs',
+                            inputSelector: selector,
+                            algoliaOptions: { facetFilters: ["version:" + version] }
+                        });
+                    });
+                };
+                docsearchInit();
+                FastClick.attach(document.body);
+            }, false);
         </script>
     </body>
 </html>
