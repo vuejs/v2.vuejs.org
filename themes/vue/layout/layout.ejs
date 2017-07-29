@@ -56,7 +56,7 @@
         <%- css(isIndex ? 'css/index' : 'css/page') %>
 
         <!-- this needs to be loaded before guide's inline scripts -->
-        <script src="<%- url_for("/js/vue.js") %>"></script>
+        <script src="<%- url_for("/js/vue.js") %>" defer></script>
         <script>window.PAGE_TYPE = "<%- page.type %>"</script>
 
         <!-- ga -->
