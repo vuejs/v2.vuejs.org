@@ -347,7 +347,7 @@ Quando existem no mesmo nó, `v-for` tem prioridade maior que o `v-if`. Isto sig
 
 O código acima renderiza apenas as tarefas que não estão marcadas como completas.
 
-Se, ao invés disso, a intensão for condicionalmente ignorar a execução de todo o _loop_, você pode envolver o `v-if` em outro elemento (ou [`<template>`](conditional.html#Grupos-Condicionais-com-lt-template-gt)). Por exemplo:
+Se, ao invés disso, a intenção for condicionalmente ignorar a execução de todo o _loop_, você pode envolver o `v-if` em outro elemento (ou [`<template>`](conditional.html#Grupos-Condicionais-com-lt-template-gt)). Por exemplo:
 
 ``` html
 <ul v-if="shouldRenderTodos">
