@@ -565,7 +565,7 @@ new Vue({
 
 In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
 
-#### Binding Native Events to Components
+### Binding Native Events to Components
 
 There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`. For example:
 
