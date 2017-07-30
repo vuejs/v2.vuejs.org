@@ -30,7 +30,7 @@ Vue.component('my-component', {
 })
 ```
 
-<p class="tip">Observe que o Vue não segue as regras da [W3C](http://www.w3.org/TR/custom-elements/#concepts) para tags personalizadas (letras minúsculas, precisa ter um hífen) embora seguir essa convenção seja considerada uma boa prática</p>
+<p class="tip">Observe que o Vue não segue as regras da [W3C](http://www.w3.org/TR/custom-elements/#custom-elements-core-concepts) para tags personalizadas (letras minúsculas, precisa ter um hífen) embora seguir essa convenção seja considerada uma boa prática</p>
 
 Uma vez registrado, um componente pode ser usado em uma instância como um elemento personalizado `<my-component></my-component>`. Tenha certeza que o elemento é registrado **antes** de ser instanciado na raiz do Vue. Aqui está um exemplo completo:
 
@@ -819,8 +819,6 @@ A `message` deveria ser ligada aos dados do pai ou aos dados do filho? A respost
 
 Um erro comum é tentar ligar uma diretiva a uma propriedade/método do filho no _template_ do pai:
 
-A common mistake is trying to bind a directive to a child property/method in the parent template:
-
 ``` html
 <!-- NÃO funciona -->
 <child-component v-show="someChildProperty"></child-component>
@@ -1086,8 +1084,6 @@ Com as sintaxes abreviadas para `v-bind` e `v-on`, as intenções podem ser tran
 ### Referências ao Componente Filho
 
 Apesar da existência de propriedades e eventos, algumas vezes você ainda pode precisar acessar diretamente um componente filho em JavaScript. Para conseguir isso você tem que atribuir um ID de referência para o componente filho usando `ref`. Por exemplo:
-
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
 
 ``` html
 <div id="parent">
