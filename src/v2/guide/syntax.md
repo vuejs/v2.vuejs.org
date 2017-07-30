@@ -153,7 +153,7 @@ Filters can be chained:
 {{ message | filterA | filterB }}
 ```
 
-In this case, `filterA`, defined with a single argument, will recieve the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
+In this case, `filterA`, defined with a single argument, will receive the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
 
 Filters are JavaScript functions, therefore they can take arguments:
 
