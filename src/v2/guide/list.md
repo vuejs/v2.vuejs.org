@@ -285,12 +285,13 @@ new Vue({
         id: 3,
         title: 'Mow the lawn'
       }
-    ]
+    ],
+    nextTodoId: 4
   },
   methods: {
     addNewTodo: function () {
-      this.todos.push(({
-        id: this.todos.length + 1,
+      this.todos.push({
+        id: this.nextTodoId++,
         title: this.newTodoText
       })
       this.newTodoText = ''
@@ -300,7 +301,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="todo-list-example" class="demo">
+<div id="todo-list-example">
   <input
     v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
@@ -326,6 +327,7 @@ Vue.component('todo-item', {
   ',
   props: ['title']
 })
+
 new Vue({
   el: '#todo-list-example',
   data: {
@@ -343,12 +345,13 @@ new Vue({
         id: 3,
         title: 'Mow the lawn'
       }
-    ]
+    ],
+    nextTodoId: 4
   },
   methods: {
     addNewTodo: function () {
       this.todos.push({
-        id: this.todos.length + 1,
+        id: this.nextTodoId++,
         title: this.newTodoText
       })
       this.newTodoText = ''
