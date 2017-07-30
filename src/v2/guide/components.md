@@ -664,7 +664,7 @@ Vue.component('currency-input', {
             ? value.length
             : value.indexOf('.') + 3
         )
-      // 如果 value 还不标准格式，
+      // 如果 value 还不是标准格式，
       // 手动将其覆盖以符合规范
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
@@ -717,7 +717,7 @@ new Vue({
 </script>
 {% endraw %}
 
-以上实现有点太微不足道了。例如，用户可以输入多个句号，有时甚至可以输入字母 - 哦哦！为此我们要找一个足够复杂的例子，下面是一个更加健壮的货币过滤器：
+以上实现有点太简陋了。例如，用户可以输入多个句号，有时甚至可以输入字母 - 哦哦！为此我们要找一个足够复杂的例子，下面是一个更加健壮的货币过滤器：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -824,7 +824,7 @@ bus.$on('id-selected', function (id) {
 
 ``` js
 Vue.component('child-component', {
-  // 有效运行，因为指令的表达式 someChildProperty 处于正确的作用域内
+  // 正常运行，因为指令的表达式 someChildProperty 处于正确的作用域内
   template: '<div v-show="someChildProperty">Child</div>',
   data: function () {
     return {
@@ -1345,12 +1345,6 @@ Vue.component('terms-of-service', {
 
 ***
 
-> 原文：https://vuejs.org/v2/guide/components.html
-
-***
-
-***
-
 > 译注（如有错误，请[在此](https://github.com/vuefe/vuejs.org/issues)指出）：
 
 - 字符串模板(string template)和非字符串模板(non-string template)
@@ -1365,5 +1359,11 @@ Vue.component('terms-of-service', {
   1. 非字符串模板(non-string template)
 
     - DOM 模版
+
+***
+
+***
+
+> 原文：https://vuejs.org/v2/guide/components.html
 
 ***
