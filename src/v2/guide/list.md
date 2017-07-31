@@ -190,6 +190,69 @@ And another for the index:
 
 <p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
 
+### Computed property with `v-for`
+
+Sometime, you deal with an array and you want use a computed property based on each value of this array. This could be accomplish like that:
+
+``` html
+<ul id="repeat-computed" class="demo">
+  <li v-for="(timestamp, index) in timestamps">
+    {{ formatHours[index] }}
+  </li>
+</ul>
+```
+
+``` js
+new Vue({
+  el: '#repeat-computed',
+  data: {
+    timestamps: [
+      1501492818892,
+      1501492847876,
+      1501493126650
+    ]
+  },
+  computed: {
+    formatHours: function () {
+      return this.timestamps.map(function (timestamp) {
+          var now = new Date(timestamp)
+          return now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds()
+      });
+    }
+  }
+})
+```
+
+Result:
+
+{% raw %}
+<ul id="repeat-computed" class="demo">
+  <li v-for="(timestamp, index) in timestamps">
+    {{ formatHours[index] }}
+  </li>
+</ul>
+<script>
+new Vue({
+  el: '#repeat-computed',
+  data: {
+    timestamps: [
+      1501492818892,
+      1501492847876,
+      1501493126650
+    ]
+  },
+  computed: {
+    formatHours: function () {
+      return this.timestamps.map(function (timestamp) {
+          var now = new Date(timestamp)
+          return now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds()
+      });
+    }
+  }
+})
+</script>
+{% endraw %}
+
 ### Range `v-for`
 
 `v-for` can also take an integer. In this case it will repeat the template that many times.
