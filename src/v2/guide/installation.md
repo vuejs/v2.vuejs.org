@@ -88,7 +88,7 @@ In the [`dist/` directory of the NPM package](https://unpkg.com/vue@latest/dist/
 
 ### Runtime + Compiler vs. Runtime-only
 
-If you need to compile templates on the fly (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
+If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
 
 ``` js
 // this requires the compiler
