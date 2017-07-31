@@ -196,7 +196,7 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para `v-o
 
 <p class="tip">A ordem importa quando estiver utilizando modificadores, pois o código relevante é gerado na mesma ordem em que forem informados. Desta forma, utilizar `@click.prevent.self` irá previnir **todos os clicks** inclusive em elementos filhos, enquanto `@click.self.prevent` irá previnir apenas clicks no próprio elemento.</p>
 
-> Novo em 2.1.4
+> Novo em 2.1.4+
 
 ``` html
 <!-- o evento click será disparado apenas uma vez -->
@@ -270,7 +270,7 @@ Por exemplo:
 
 ### Modificadores de Mouse
 
-> Novo em 2.2.0
+> Novo em 2.2.0+
 
 - `.left`
 - `.right`

@@ -77,15 +77,15 @@ type: api
 
   Atribui um manipulador para errors não detectados durante a renderização do componente e dos observadores. O manipulador é chamado com o erro e a instância Vue.
 
-  > No 2.2.0, esse hook também captura erros nos lifecycle hooks do componente. Além disso, quando esse hook é  `undefined` os erros capturados são logados com `console.error` em vez de quebrar o app.
+  > No 2.2.0+, esse gatilho também captura erros em gatilhos de ciclo-de-vida do componente. Além disso, quando esse gatilho é `undefined`, os erros capturados são registrados com `console.error` em vez de quebrar o aplicativo.
 
-  > No 2.4.0, esse hook também captura erros disparados dentro de manipuladores de eventos customizados Vue.
+  > No 2.4.0+, esse gatilho também captura erros disparados dentro de manipuladores de eventos personalizados.
 
   > [Sentry](https://sentry.io), um serviço de rastreamento de erro, fornece [integração oficial](https://sentry.io/for/vue/) usando essa opção.
 
 ### warnHandler
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `Function`
 
@@ -145,11 +145,11 @@ type: api
 
 ### performance
 
-> Novo no 2.2.0
+> Novo em 2.2.0+
 
 - **Tipo:** `boolean`
 
-- **Padrão:** `false (a partir do 2.2.3)`
+- **Padrão:** `false (desde 2.2.3+)`
 
 - **Uso**:
 
@@ -157,7 +157,7 @@ type: api
 
 ### productionTip
 
-> Novo no 2.2.0
+> Novo em 2.2.0+
 
 - **Tipo:** `boolean`
 
@@ -227,7 +227,7 @@ type: api
   })
   ```
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
@@ -252,13 +252,13 @@ type: api
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} key/index`
+
+  > Only works with Array + index in 2.2.0+.
 
 - **Usage:**
 
   Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
-
-  > Also works with on Array + index in 2.2.0+.
 
   <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
 
@@ -670,11 +670,11 @@ if (version === 2) {
     <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
   - **Ver também:**
-    - [Funções render](../guide/render-function)
+    - [Funções de Renderização](../guide/render-function.html)
 
 ### renderError
 
-> New in 2.2.0
+> New in 2.2.0+
 
   - **Type:** `(createElement: () => VNode, error: Error) => VNode`
 
@@ -698,12 +698,16 @@ if (version === 2) {
     ```
 
   - **See also:**
+<<<<<<< HEAD
     - [Render Functions](../guide/render-function)
 >>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
+=======
+    - [Render Functions](../guide/render-function.html)
+>>>>>>> refs/remotes/vuejs/master
 
 ## Opções / Lifecycle Hooks
 
-Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculados à instância, assim você pode acessar dados, propriedades computadas e métodos. Isso significa que __você não deve usar uma arrow function para definir um método lifecycle__ (e.g. `created: () => this.fetchTodos()`). Isto porque arrow functions vinculam o contexto pai, assim `this` não será a instância Vue como você espera e `this.fetchTodos` será `undefined`.
+<p class="tip">Todos os gatilhos de ciclo-de-vida automaticamente possuem seus contextos `this` vinculados à instância, assim você pode acessar dados, propriedades computadas e métodos. Isso significa que __você não deve usar Arrow Function para definir este tipo de método__ (por exemplo, `created: () => this.fetchTodos()`). Isto porque _arrow functions_ vinculam o contexto pai, assim `this` não será a instância Vue como você espera e `this.fetchTodos` será `undefined`.</p>
 
 ### beforeCreate
 
@@ -733,7 +737,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado logo antes da montagem começar: a função `render` está prestes a ser invocada pela primeira vez.
 
-  **Este hook não é invocado durante a renderização server-side.**
+  **Este gatilho não é invocado durante a renderização server-side.**
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
@@ -745,7 +749,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado logo após a instância ter sido montada onde `el` é substituído pelo recente criado `vm.$el`. Se a instância raiz é montada em um elemento in-document, `vm.$el` também será in-document quando `mounted` é invocada.
 
-  **Este hook não é invocado durante a renderização server-side.**
+  **Este gatilho não é invocado durante a renderização server-side.**
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
@@ -757,9 +761,9 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado quando os dados mudam, antes do virtual DOM ser re-renderizado e atualizado.
 
-  Você pode realizar mais mudanças de estado neste hook e elas não irão disparar re-renders adicionais.
+  Você pode realizar mais mudanças de estado neste gatilho e elas não irão disparar re-renders adicionais.
 
-  **Este hook não é invocado durante a renderização server-side.**
+  **Este gatilho não é invocado durante a renderização server-side.**
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
@@ -771,10 +775,10 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado após a mudança de dados fazer o virtual DOM ser re-renderizado e atualizado.
 
-  O DOM do componente estará no estado `updated` quando este hook for invocado, assim você pode realizar operações DOM-dependent neste hook.
-  Entretanto, na maioria dos casos você deveria evitar mudar o estado deste hook, melhor utilizar [propriedades computadas](#computed) ou [watcher](#watch).
+  O DOM do componente estará no estado `updated` quando este gatilho for invocado, assim você pode realizar operações dependentes de DOM neste gatilho.
+  Entretanto, na maioria dos casos você deveria evitar mudar o estado deste gatilho, melhor utilizar [propriedades computadas](#computed) ou [observadores](#watch).
 
-  **Este hook não é invocado durante a renderização server-side.**
+  **Este gatilho não é invocado durante a renderização server-side.**
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
@@ -786,7 +790,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado quando um componente kept-alive é ativado.
 
-  **Este hook não é invocado durante a renderização server-side.**
+  **Este gatilho não é invocado durante a renderização server-side.**
 
 - **Ver também:**
   - [Built-in Components - keep-alive](#keep-alive)
@@ -800,7 +804,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado quando um componente kept-alive é desativado.
 
-  **Este hook não é invocado durante a renderização server-side.**
+  **Este gatilho não é invocado durante a renderização server-side.**
 
 - **Ver também:**
   - [Built-in Components - keep-alive](#keep-alive)
@@ -814,7 +818,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Invocado logo antes da instância Vue ser destruída. Neste ponto a instância ainda é completamente funcional.
 
-  **Este hook não é invocado durante a renderização server-side.**
+  **Este gatilho não é invocado durante a renderização server-side.**
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
@@ -824,10 +828,10 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **Detalhes:**
 
-  Invocado após a instância Vue ter sido destruída. Quando este hook é invocado, todas as diretivas da instância Vue já foram desvinculadas, todos os event listeners foram removidos, e todas as instâncias Vue filhas também foram destruídas.
+  Invocado após a instância Vue ter sido destruída. Quando este gatilho é invocado, todas as diretivas da instância Vue já foram desvinculadas, todos os event listeners foram removidos, e todas as instâncias Vue filhas também foram destruídas.
 
 
-  **Este hook não é invocado durante a renderização server-side.**
+  **Este gatilho não é invocado durante a renderização server-side.**
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
 
@@ -928,7 +932,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 ### provide / inject
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:**
   - **provide:** `Object | () => Object`
@@ -983,7 +987,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
   }
   ```
 
-  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
 
   Using an injected value as the default for a prop:
   ```js
@@ -1031,9 +1035,11 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
 
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+
 - **Details:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the full build.**
+  Change the plain text interpolation delimiters.
 
 - **Example:**
 
@@ -1102,7 +1108,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 ### inheritAttrs
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
@@ -1112,13 +1118,17 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
 
+  Note: this option does **not** affect `class` and `style` bindings.
+
 ### comments
 
-> New in 2.4.0
+> New in 2.4.0+
 
 - **Type:** `boolean`
 
 - **Default:** `false`
+
+- **Restrictions:** This option is only available in the full build, with in-browser compilation.
 
 - **Details:**
 
@@ -1138,7 +1148,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 ### vm.$props
 
-> New in 2.2.0
+> New in 2.2.0+
 
 - **Type:** `Object`
 
@@ -1257,7 +1267,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 ### vm.$scopedSlots
 
-> New in 2.1.0
+> New in 2.1.0+
 
 - **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
 
@@ -1308,7 +1318,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **Details:**
 
-  Contains parent-scope attribute bindings that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings except for `class` and `style`, and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
 
 ### vm.$listeners
 
@@ -1527,7 +1537,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
 - **Example:**
 
@@ -1653,7 +1663,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 ### v-else-if
 
-> New in 2.1.0
+> New in 2.1.0+
 
 - **Expects:** `any`
 
@@ -1743,7 +1753,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
 
-  Starting in `2.4.0`, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
   When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
 
@@ -2185,7 +2195,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
   When a component is toggled inside `<keep-alive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly.
 
-  > In 2.2.0 and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
   Primarily used with preserve component state or avoid re-rendering.
 
@@ -2214,7 +2224,7 @@ Todos os lifecycle hooks automaticamente possuem seus contextos `this` vinculado
 
 - **`include` and `exclude`**
 
-  > New in 2.1.0
+  > New in 2.1.0+
 
   The `include` and `exclude` props allow components to be conditionally cached. Both props can be a comma-delimited string, a RegExp or an Array:
 

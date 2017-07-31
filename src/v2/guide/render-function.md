@@ -466,7 +466,7 @@ Vue.component('meu-componente', {
   }
 })
 ```
-> Nota: em versões <=2.3.0, a opção `props` é obrigatória se você deseja aceitar propriedades em um componente funcional. Em 2.3.0+ você pode omitir `props` e todos os atributos encontrados no nó do componente serão implicitamente extraídos como propriedades.
+> Nota: em versões anteriores a 2.3.0, a opção `props` é obrigatória se você deseja aceitar propriedades em um componente funcional. Em 2.3.0+ você pode omitir `props` e todos os atributos encontrados no nó do componente serão implicitamente extraídos como propriedades.
 
 Tudo que um componente funcional necessitar é passado através de `context`, o qual é um objeto contendo:
 
@@ -480,7 +480,7 @@ Tudo que um componente funcional necessitar é passado através de `context`, o 
 
 Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com _link_ iria requerer somente acrescentar o parâmetro `context`, e atualizar `this.$slots.default` para `context.children`, e por fim atualizar `this.level` para `context.props.level`.
 
-Como componentes funcionais são apenas funções, eles são muito mais leves para renderizar.
+Como componentes funcionais são apenas funções, eles são muito mais leves para renderizar. Entretanto, por carecer de uma instância persistente, eles não são exibidos na árvore de componentes do [Vue devtools](https://github.com/vuejs/vue-devtools).
 
 Eles também são muito úteis como componentes encapsuladores. Por exemplo, quando você precisa:
 

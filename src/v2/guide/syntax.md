@@ -130,9 +130,9 @@ O Vue.js permite que se defina filtros utilizáveis para aplicar formatações e
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Filtros no Vue 2.x podem ser utilizados somente em interpolações _mustache_ e expressões `v-bind` (estas suportadas desde 2.1.0), pois foram projetados com o propósito de formatações textuais comuns. Cenários mais complexos de transformações em outras diretivas dependem de [dados Computados](/guide/computed.html), e não filtros.</p>
+<p class="tip">Filtros no Vue 2.x podem ser utilizados somente em interpolações _mustache_ e expressões `v-bind` (estas suportadas em 2.1.0+), pois foram projetados com o propósito de formatações textuais comuns. Cenários mais complexos de transformações em outras diretivas dependem de [dados computados](/guide/computed.html), e não filtros.</p>
 
-A função de filtro sempre recebe o valor da expressão como o primeiro parâmetro.
+A função de filtro sempre recebe o valor da expressão (o resultado da cadeia até aquele momento) como o primeiro parâmetro. Neste exemplo, a função do filtro `capitalize` irá receber o valor de `message` como seu argumento.
 
 ``` js
 new Vue({
@@ -153,13 +153,15 @@ Filtros podem ser encadeados:
 {{ message | filterA | filterB }}
 ```
 
+Neste caso, `filterA`, definido com um argumento simples, irá receber o valor de `message`, e então o filtro `filterB` irá calcular a partir do resultado de `filterA` passado como um argumento simples para `filterB`.
+
 Filtros são funções Javascript, então eles podem aceitar parâmetros:
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Aqui, a String literal `'arg1'` será passada para o filtro como o segundo parâmetro, e o valor da expressão `arg2` será calculado e passado como terceiro parâmetro.
+Neste exemplo `filterA` é definido com uma função recebendo dois argumentos. O valor de `message` será seu primeiro argumento. O literal textual `'arg1'` será o segundo argumento e o valor da expressão `arg2` será calculado e seu resultado passado como terceiro parâmetro.
 
 ## Abreviações
 

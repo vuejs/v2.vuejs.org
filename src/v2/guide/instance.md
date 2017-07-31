@@ -6,7 +6,7 @@ order: 3
 
 ## Construtor
 
-Todo objeto `vm` é iniciado através de uma **instância raiz do Vue** com a função construtora:
+Toda aplicação Vue é inicializada através da criação de uma **instância raiz do Vue** com a função construtora `Vue`:
 
 ``` js
 var vm = new Vue({
@@ -14,9 +14,9 @@ var vm = new Vue({
 })
 ```
 
-Embora não seja estritamente associado com o [padrão MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), o _design_ do Vue foi sem dúvida inspirado por ele. Como convenção, muitas vezes usamos a variável `vm` (abreviação de _ViewModel_) para se referir à instância Vue.
+Embora não seja estritamente associado com o [padrão MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), o _design_ do Vue foi parcialmente inspirado por ele. Como convenção, muitas vezes usamos a variável `vm` (abreviação de _ViewModel_) para se referir à instância Vue.
 
-Quando você cria uma instância, é necessário passar um **objeto** que contém opções para dados, elementos, métodos, ciclos de vida, dentre outros. A lista completa de opções pode ser encontrada na [API](/api).
+Quando você cria uma instância, é necessário passar um **objeto de opções** que contém opções para dados, _template_, elementos, métodos, gatilhos de ciclo de vida, dentre outros. A lista completa de opções pode ser encontrada na [API](../api/#Options-Data).
 
 O construtor `Vue` pode ser estendido para a criação de **contrutores de componentes** reutilizáveis com opções pré-definidas:
 
@@ -53,7 +53,7 @@ data.a = 3
 vm.a // -> 3
 ```
 
-Deve-se notar que somente estas propriedades relacionadas são **reativas**. Se você definir uma nova propriedade para a instância após ela ser criada, ela não irá provocar nenhuma atualização na _view_. Vamos discutir o sistema de reatividade em detalhes mais tarde.
+Deve-se notar que somente estas propriedades relacionadas são **reativas**, ou seja, qualquer modificação em seus valores irá disparar uma atualização na _view_. Se você definir uma nova propriedade a uma instância após ela ter sido criada, não haverá atualizações reativas para ela. Vamos discutir o sistema de reatividade em detalhes mais tarde.
 
 Além das propriedade `data`, a instância Vue expõe uma variedade de propriedades e métodos muito úteis. Estas propriedades e métodos são prefixadas com `$` para se diferenciar das propriedades que foram definidas pelo desenvolvedor. Por exemplo:
 
@@ -77,7 +77,7 @@ vm.$watch('a', function (newVal, oldVal) {
 Não utilize [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) em uma propriedade de instância ou _callback_ (ex: `vm.$watch('a', (newVal, oldVal) => this.myMethod())`). Como as _arrow functions_ são vinculadas ao contexto pai, o `this` não representará a instância Vue como você espera, ou seja, `this.myMethod` estará indefinida.
 </p>
 
-Consulte a [API](../api) para a lista completa de propriedades e métodos.
+Consulte a [API](../api/#Instance-Properties) para a lista completa de propriedades e métodos da instância.
 
 ## Ciclo de Vida da Instância
 

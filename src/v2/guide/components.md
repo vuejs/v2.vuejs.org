@@ -335,7 +335,7 @@ new Vue({
 
 ### Literal vs. Dinâmico
 
-Um erro comum que iniciantes tendem a fazer é tentar passar um número usando a sintaxe literal:
+Um erro comum que iniciantes tendem a fazer é tentar passar um número usando sintaxe literal:
 
 ``` html
 <!-- isto passa a string "1" -->
@@ -587,35 +587,33 @@ Em alguns casos nós podemos precisar de uma "ligação bidirecional" para uma p
 
 Este é o motivo pelo qual removemos o modificador `.sync` quando a versão 2.0 foi lançada. No entanto, descobrimos que, de fato, existem casos em que isso pode ser útil, especialmente quando enviando componentes reutilizáveis. O que nós precisamos mudar é **fazer um código no filho que afeta o estado do pai de forma mais consistente e explícita.**
 
-Na 2.3 nós re-introduzimos o modificador `.sync` para propriedades, mas desta vez ele é só um açúcar sintático que automaticamente se expande para uma escuta `v-on` adicional:
-
-O seguinte
+Na versão 2.3.0+ re-introduzimos o modificador `.sync` para propriedades, mas desta vez ele é só um pouco de "açúcar de sintaxe", o qual automaticamente se expande para uma escuta `v-on` adicional. Por exemplo, o seguinte:
 
 ``` html
 <comp :foo.sync="bar"></comp>
 ```
 
-é expandido para:
+É expandido para:
 
 ``` html
 <comp :foo="bar" @update:foo="val => bar = val"></comp>
 ```
 
-Para o componente filho atualizar o valor de `foo`, ele precisa explicitamente emitir um evento em vez de alterar a propriedade:
+Para o componente filho atualizar o valor de `foo`, ele precisa explicitamente emitir um evento em vez de alterar a propriedade diretamente:
 
 ``` js
 this.$emit('update:foo', newValue)
 ```
 
-### Componentes de Input em Formulário usando Eventos Personalizados
+### Componentes de Formulários usando Eventos Personalizados
 
-Eventos personalizados também podem ser usados para criar inputs personalizados que funcionam com `v-model`. Lembre-se:
+Eventos personalizados também podem ser usados para criar _inputs_ personalizados que funcionam com `v-model`. Lembre-se:
 
 ``` html
 <input v-model="something">
 ```
 
-é só um açúcar sintático para:
+É só um "açúcar de sintaxe" para:
 
 ``` html
 <input
@@ -632,12 +630,12 @@ Quando usado com um componente, isto é simplificado para:
 </custom-input>
 ```
 
-Então, para um componente funcionar com o `v-model`, ele deveria (estes podem ser configurados em 2.2.0+):
+Então, para um componente funcionar com o `v-model`, ele deveria (a partir de 2.2.0+):
 
 - aceitar uma propriedade `value`
 - emitir um evento `input` com um novo valor
 
-Vamos vê-lo em ação com um input monetário muito simples:
+Vamos vê-lo em ação com um _input_ monetário muito simples:
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -723,13 +721,13 @@ new Vue({
 </script>
 {% endraw %}
 
-A implementação acima, no entanto, é bem ingênua. Por exemplo, é permitido aos usuários entrarem com múltiplos pontos e até letras algumas vezes - urgh! Então para aqueles que querem ver um exemplo não trivial, aqui está um filtro monetário mais robusto:
+A implementação acima, no entanto, é bem ingênua. Por exemplo, é permitido aos usuários entrarem com múltiplos pontos e até letras algumas vezes - eca! Então para aqueles que querem ver um exemplo não trivial, aqui está um filtro monetário mais robusto:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 ### Personalizando o Componente `v-model`
 
-> Novo na 2.2.0
+> Novo em 2.2.0+
 
 Por padrão, o `v-model` em um componente usa `value` como a propriedade e `input` como o evento, mas alguns tipos de _input_ como os _checkboxes_ e os botões _radio_ podem querer usar a propriedade `value` para um propósito diferente. Usar a opção `model` pode evitar o conflito nesses casos:
 
@@ -943,7 +941,7 @@ A API de distribuição de conteúdo é um mecanismo muito útil ao projetar com
 
 ### Slots Escopo
 
-> Novo em 2.1.0
+> Novo em 2.1.0+
 
 Um slot escopo é um tipo especial de slot que funciona como um _template_ reusável (em que podemos passar dados para ele) em vez de elementos já renderizados.
 
@@ -1155,22 +1153,22 @@ new Vue({
 
 ### Componentes Assíncronos Avançados
 
-> Novo na 2.3.0
+> Novo em 2.3.0+
 
-A partir da 2.3 a fábrica de componente assíncrono também pode retornar um objeto do seguinte formato:
+A partir da versão 2.3.0+ a fábrica de componente assíncrono também pode retornar um objeto no seguinte formato:
 
 ``` js
 const AsyncComp = () => ({
-  // O componente para carregar. Deve ser uma Promise
+  // O componente a carregar, na forma de uma Promise
   component: import('./MyComp.vue'),
   // Um componente para usar enquanto o componente assíncrono está carregando
   loading: LoadingComp,
   // Um componente para usar se o carregamento falhar
   error: ErrorComp,
-  // Tempo de espera antes de mostrar o componente em loading. Padrão: 200ms.
+  // Tempo de espera antes de mostrar o carregamento. Padrão: 200ms
   delay: 200,
-  // O componente de erro será exibido se um timeout é
-  // fornecido e seu tempo é excedido. Padrão: Infinity.
+  // O componente de erro será exibido se um limite de tempo é
+  // fornecido e este for excedido. Padrão: Infinity
   timeout: 3000
 })
 ```

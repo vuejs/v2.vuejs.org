@@ -197,7 +197,7 @@ Quando você usa uma propriedade CSS que requer [prefixos de fabricantes](https:
 
 > A partir de 2.3.0+
 
-Iniciando na versão 2.3, você pode prover um Array com múltiplos valores (prefixados) para estilizar um atributo, por exemplo:
+Nas versões 2.3.0+ você pode prover um Array com múltiplos valores (prefixados) para estilizar um atributo, por exemplo:
 
 ``` html
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">

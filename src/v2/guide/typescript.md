@@ -4,9 +4,9 @@ type: guide
 order: 25
 ---
 
-## Important 2.2 Change Notice for TS + webpack 2 users
+## Important 2.2.0+ Change Notice for TS + webpack 2 users
 
-In Vue 2.2 we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
+In Vue 2.2.0+ we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
 
 We plan to move all official declarations to use ES-style exports in the future. Please see [Recommended Configuration](#Recommended-Configuration) below on a future-proof setup.
 
@@ -137,3 +137,63 @@ export default class MyComponent extends Vue {
 ```
 
 With this syntax alternative, our component definition is not only shorter, but TypeScript can also infer the types of `message` and `onClick` without explicit interface declarations. This strategy even allows you to handle types for computed properties, lifecycle hooks, and render functions. For full usage details, see [the vue-class-component docs](https://github.com/vuejs/vue-class-component#vue-class-component).
+
+## Declaring Types of Vue Plugins
+
+Plugins may add to Vue's global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. Fortunately, there's a TypeScript feature to augment existing types called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+
+For example, to declare an instance property `$myProperty` with type `string`:
+
+``` ts
+// 1. Make sure to import 'vue' before declaring augmented types
+import Vue from 'vue'
+
+// 2. Specify a file with the types you want to augment
+//    Vue has the constructor type in types/vue.d.ts
+declare module 'vue/types/vue' {
+  // 3. Declare augmentation for Vue
+  interface Vue {
+    $myProperty: string
+  }
+}
+```
+
+After including the above code as a declaration file (like `my-property.d.ts`) in your project, you can use `$myProperty` on a Vue instance.
+
+```ts
+var vm = new Vue()
+console.log(vm.$myProperty) // This will be successfully compiled
+```
+
+You can also declare additional global properties and component options:
+
+```ts
+import Vue from 'vue'
+
+declare module 'vue/types/vue' {
+  // Global properties can be declared
+  // by using `namespace` instead of `interface`
+  namespace Vue {
+    const $myGlobal: string
+  }
+}
+
+// ComponentOptions is declared in types/options.d.ts
+declare module 'vue/types/options' {
+  interface ComponentOptions<V extends Vue> {
+    myOption?: string
+  }
+}
+```
+
+The above declarations allow the following code to be compiled:
+
+```ts
+// Global property
+console.log(Vue.$myGlobal)
+
+// Additional component option
+var vm = new Vue({
+  myOption: 'Hello'
+})
+```
