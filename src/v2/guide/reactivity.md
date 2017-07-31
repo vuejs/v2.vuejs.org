@@ -73,7 +73,7 @@ vm.message = 'Hello!'
 
 Se a propriedade `message` não for declarada em `data`, o Vue irá avisar que a função de renderização está tentando acessar uma propriedade que não existe.
 
-Há razões técnicas por trás dessa restrição - it eliminates a class of edge cases in the dependency tracking system, and also makes Vue instances play nicer with type checking systems. Mas há também uma consideração importante em termos de capacidade de manutenção do código: O objeto `data` é como o esquema para o estado do seu componente. Declarar todas as propriedades reativas antecipadamente faz o código do componente mais fácil de entender quando revisitado posteriormente ou lido por outro desenvolvedor.
+Há razões técnicas por trás dessa restrição - elimina uma classe em _edge cases_ ou casos de borda (Quando ocorrem em um parâmetro de operação extrema) no sistema de rastreamento de dependências, e também faz com que as instâncias do Vue funcionem melhor com os sistemas de verificação de tipos. Mas há também uma consideração importante em termos de capacidade de manutenção do código: O objeto `data` é como o esquema para o estado do seu componente. Declarar todas as propriedades reativas antecipadamente faz o código do componente mais fácil de entender quando revisitado posteriormente ou lido por outro desenvolvedor.
 
 ## Fila de atualização assíncrona
 
