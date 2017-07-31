@@ -230,8 +230,8 @@ However, this won't automatically pass any data to the component, because compon
   v-for="(item, index) in items"
   v-bind:item="item"
   v-bind:index="index"
-  v-bind:key="item.id">
-</my-component>
+  v-bind:key="item.id"
+></my-component>
 ```
 
 The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
