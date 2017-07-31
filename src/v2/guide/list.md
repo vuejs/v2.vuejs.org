@@ -232,8 +232,8 @@ Entretanto, isto não passa automaticamente qualquer dado ao componente, uma vez
   v-for="(item, index) in items"
   v-bind:item="item"
   v-bind:index="index"
-  v-bind:key="item.id">
-</my-component>
+  v-bind:key="item.id"
+></my-component>
 ```
 
 A razão pela qual `item` não é injetado automaticamente no componente é que isto o tornaria fortemente acoplado à funcionalidade do `v-for`. Ao ser explícito sobre a origem dos dados, garante-se que o componente seja reutilizável em outras situações.
@@ -251,8 +251,8 @@ Aqui está um exemplo completo com uma lista de tarefas simples:
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:key="index"
-      v-bind:title="todo"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul>
@@ -274,14 +274,27 @@ new Vue({
   data: {
     newTodoText: '',
     todos: [
-      'Lavar os pratos',
-      'Tirar o lixo',
-      'Cortar a grama'
-    ]
+      {
+        id: 1,
+        title: 'Lavar os pratos',
+      },
+      {
+        id: 2,
+        title: 'Tirar o lixo',
+      },
+      {
+        id: 3,
+        title: 'Cortar a grama'
+      }
+    ],
+    nextTodoId: 4
   },
   methods: {
     addNewTodo: function () {
-      this.todos.push(this.newTodoText)
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
       this.newTodoText = ''
     }
   }
@@ -299,8 +312,8 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:key="index"
-      v-bind:title="todo"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul>
@@ -315,19 +328,33 @@ Vue.component('todo-item', {
   ',
   props: ['title']
 })
+
 new Vue({
   el: '#todo-list-example',
   data: {
     newTodoText: '',
     todos: [
-      'Lavar os pratos',
-      'Tirar o lixo',
-      'Cortar a grama'
-    ]
+      {
+        id: 1,
+        title: 'Lavar os pratos',
+      },
+      {
+        id: 2,
+        title: 'Tirar o lixo',
+      },
+      {
+        id: 3,
+        title: 'Cortar a grama'
+      }
+    ],
+    nextTodoId: 4
   },
   methods: {
     addNewTodo: function () {
-      this.todos.push(this.newTodoText)
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
       this.newTodoText = ''
     }
   }

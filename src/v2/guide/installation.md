@@ -88,7 +88,7 @@ No [diretório `dist/`do pacote NPM](https://unpkg.com/vue@latest/dist/) você e
 
 ### Compilador + Runtime vs. Runtime
 
-Se você precisar compilar _templates_ em tempo real (por exemplo, passando uma String na opção `template`, ou usando elementos existentes no DOM através do HTML como _template_), você vai precisar do compilador e, portanto, do _build_ completo:
+Se você precisar compilar _templates_ em tempo real no cliente (por exemplo, passando uma String na opção `template`, ou usando elementos pré-existentes no DOM através do HTML como _template_), você vai precisar do compilador e, portanto, do _build_ completo:
 
 ``` js
 // Isso requer o compilador
