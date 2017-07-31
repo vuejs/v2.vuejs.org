@@ -136,49 +136,49 @@ export default class MyComponent extends Vue {
 }
 ```
 
-<p>Avec cette syntaxe alternative, nos définitions de composant ne sont pas seulement plus courtes, mais TypeScript peut aussi connaître les types de `message` et `onClick` avec des interfaces de déclarations explicites. Cette stratégie peut même vous permettre de gérer des types pour les propriétés calculées, les hooks de cycle de vie et les fonctions de rendu. Pour une utilisation plus détaillée, référez-vous à [la documentation de vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component).</p><p class="tip">**La partie suivante est est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
+Avec cette syntaxe alternative, nos définitions de composant ne sont pas seulement plus courtes, mais TypeScript peut aussi connaître les types de `message` et `onClick` avec des interfaces de déclarations explicites. Cette stratégie peut même vous permettre de gérer des types pour les propriétés calculées, les hooks de cycle de vie et les fonctions de rendu. Pour une utilisation plus détaillée, référez-vous à [la documentation de vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component).
 
-## Declaring Types of Vue Plugins
+## Déclaration des types des plugins Vue
 
-Plugins may add to Vue's global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. Fortunately, there's a TypeScript feature to augment existing types called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+Les plugins peuvent ajouter des propriétés d'instance de Vue, des propriétés globales de Vue et des options de composant de Vue. Dans ces cas, les déclarations de type sont nécessaire pour permettre aux plugins de compiler en TypeScript. Fort heureusement, il y a une fonctionnalité TypeScript pour augmenter les types existant appelée [module d'augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-For example, to declare an instance property `$myProperty` with type `string`:
+Par exemple, pour déclarer une propriété d'instance `$myProperty` avec le type `string` :
 
 ``` ts
-// 1. Make sure to import 'vue' before declaring augmented types
+// 1. Assurez-vous d'importer `vue` avant de déclarer les types augmentés
 import Vue from 'vue'
 
-// 2. Specify a file with the types you want to augment
-//    Vue has the constructor type in types/vue.d.ts
+// 2. Spécifiez un fichier avec les types que vous voulez augmenter
+//    Vue a le type de constructeur dans types/vue.d.ts
 declare module 'vue/types/vue' {
-  // 3. Declare augmentation for Vue
+  // 3. Déclarez l'augmentation pour Vue
   interface Vue {
     $myProperty: string
   }
 }
 ```
 
-After including the above code as a declaration file (like `my-property.d.ts`) in your project, you can use `$myProperty` on a Vue instance.
+Après inclusion du code ci-dessus en tant que déclaration de fichier (comme `my-property.d.ts`) dans votre projet, vous pouvez utiliser `$myProperty` dans une instance de Vue.
 
 ```ts
 var vm = new Vue()
-console.log(vm.$myProperty) // This will be successfully compiled
+console.log(vm.$myProperty) // Ceci sera compilé avec succès
 ```
 
-You can also declare additional global properties and component options:
+Vous pouvez aussi déclarer des propriétés globales additionnelles et des options de composant :
 
 ```ts
 import Vue from 'vue'
 
 declare module 'vue/types/vue' {
-  // Global properties can be declared
-  // by using `namespace` instead of `interface`
+  // Les propriétés globales peuvent être déclarées
+  // en utilisant `namespace` au lieu de `interface`
   namespace Vue {
     const $myGlobal: string
   }
 }
 
-// ComponentOptions is declared in types/options.d.ts
+// `ComponentOptions` est déclarée dans types/options.d.ts
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
     myOption?: string
@@ -186,13 +186,13 @@ declare module 'vue/types/options' {
 }
 ```
 
-The above declarations allow the following code to be compiled:
+La déclaration ci-dessus permet au code suivant de compiler :
 
 ```ts
-// Global property
+// Propriété globale
 console.log(Vue.$myGlobal)
 
-// Additional component option
+// Option additionnelle de composant
 var vm = new Vue({
   myOption: 'Hello'
 })
