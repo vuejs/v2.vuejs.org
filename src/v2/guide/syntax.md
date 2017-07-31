@@ -132,7 +132,7 @@ Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer
 
 <p class="tip">Les filtres de Vue 2.x peuvent être seulement utilisés à l'intérieur des interpolations de moustaches et des expressions de `v-bind` (ces dernières étant supportées depuis la 2.1.0+) car les filtres ont été conçus à la base dans le but de transformer du texte. Pour des cas plus complexes de transformation de données dans d'autres directives, vous devriez utiliser les [propriétés calculées](computed.html) à la place.</p>
 
-La fonction de filtre reçoit toujours la valeur de l'expression comme premier argument.
+La fonction de filtre reçoit toujours la valeur de l'expression (le résultat de la chaîne) comme premier argument. Dans cet exemple, la fonction de filtre `capitalize` va recevoir la valeur de `message` dans son argument.
 
 ``` js
 new Vue({
@@ -153,19 +153,21 @@ Les filtres peuvent être chaînés :
 {{ message | filterA | filterB }}
 ```
 
+Dans ce cas, `filterA`, définie avec un seul argument, va recevoir la valeur de `message`. Puis la fonction `filterB` va être appelée avec le résultat de `filterA` passé dans `filterB` en tant que simple argument.
+
 Les filtres sont des fonctions JavaScript et peuvent donc recevoir des arguments :
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Ici la chaîne de caractères `'arg1'` sera passée au filtre en tant que second argument, et la valeur de l'expression `arg2` sera évaluée et passée en tant que troisième argument.
+Ici `filterA` est définie comme une fonction prenant trois arguments. La valeur de `message` va être passée en premier argument. La chaîne de caractères `'arg1'` sera passée au filtre `filterA` en tant que second argument, et la valeur de l'expression `arg2` sera évaluée et passée en tant que troisième argument.
 
 ## Abréviations
 
 Le préfixe `v-` sert d'indicateur visuel pour identifier les attributs spécifiques à Vue dans vos templates. C'est pratique lorsque vous utilisez Vue.js pour appliquer des comportements dynamiques sur un balisage existant, mais peut sembler verbeux pour des directives utilisées fréquemment. Par ailleurs, le besoin d'un préfixe `v-`devient moins important quand vous développez une [application monopage](https://fr.wikipedia.org/wiki/Application_web_monopage) où Vue.js gère tous les templates. C'est pourquoi Vue.js fournit des abréviations pour deux des directives les plus utilisées, `v-bind` et `v-on`:
 
-### Abréviation pour `v-bind` 
+### Abréviation pour `v-bind`
 
 ``` html
 <!-- syntaxe complète -->

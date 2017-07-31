@@ -61,9 +61,9 @@ Un objet de définition de directive peut fournir plusieurs fonctions de hook (t
 
 - `inserted`: appelée quand l'élément lié a été inséré dans son nœud parent (cela garantit uniquement sa présence dans le nœud parent, mais pas nécessairement dans le document principal).
 
-- `update`: appelée après que le composant conteneur ait été mis à jour, __mais possiblement avant que ses enfants aient été mis à jour__. La valeur de la directive peut ou pas avoir changé, mais vous pouvez ignorer les mises à jour inutiles en comparant les valeurs actuelles et anciennes de la liaison (voir plus bas les arguments de hook).
+- `update`: appelée après que le composant conteneur VNode ait été mis à jour, __mais possiblement avant que ses enfants aient été mis à jour__. La valeur de la directive peut ou pas avoir changé, mais vous pouvez ignorer les mises à jour inutiles en comparant les valeurs actuelles et anciennes de la liaison (voir plus bas les arguments de hook).
 
-- `componentUpdated`: appelée après que le composant conteneur __et ses enfants__ aient été mis à jour.
+- `componentUpdated`: appelée après que le composant conteneur VNode __et les VNode de ses enfants__ aient été mis à jour.
 
 - `unbind`: appelée uniquement une fois, quand la directive est déliée de l'élément.
 

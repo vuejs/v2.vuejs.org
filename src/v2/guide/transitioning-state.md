@@ -140,11 +140,11 @@ new Vue({
           requestAnimationFrame(animate)
         }
       }
-      
+
       new TWEEN.Tween(this.tweenedColor)
         .to(this.color, 750)
         .start()
-      
+
       animate()
     }
   },
@@ -216,11 +216,11 @@ new Vue({
           requestAnimationFrame(animate)
         }
       }
-      
+
       new TWEEN.Tween(this.tweenedColor)
         .to(this.color, 750)
         .start()
-      
+
       animate()
     }
   },
@@ -442,14 +442,14 @@ Vue.component('animated-integer', {
           requestAnimationFrame(animate)
         }
       }
-      
+
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
         .onUpdate(function () {
           vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
         .start()
-      
+
       animate()
     }
   }
@@ -512,14 +512,14 @@ Vue.component('animated-integer', {
           requestAnimationFrame(animate)
         }
       }
-      
+
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
         .onUpdate(function () {
           vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
         .start()
-      
+
       animate()
     }
   }
@@ -539,4 +539,15 @@ new Vue({
 </script>
 {% endraw %}
 
-Dans les composants enfants, nous pouvons utiliser n'importe quelle combinaison de stratégies de transition qui ont été abordées dans cette page, ainsi que celles offertes par le [système intégré de transition](transitions.html) de Vue. En utilisant les deux, il existe très peu de limites à ce qui peut être accompli.
+<p>Dans les composants enfants, nous pouvons utiliser n'importe quelle combinaison de stratégies de transition qui ont été abordées dans cette page, ainsi que celles offertes par le [système intégré de transition](transitions.html) de Vue. En utilisant les deux, il existe très peu de limites à ce qui peut être accompli.</p><p class="tip">**La partie suivante est est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
+
+## Bringing Designs to Life
+
+To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+
+Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+
+Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
+
+<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

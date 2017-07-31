@@ -872,6 +872,7 @@ order: 31
             var language = languageNameFor[languageCode]
             if (
               languageCode !== 'en' &&
+              preferredLanguageCode &&
               languageCode === preferredLanguageCode.slice(0, 2)
             ) {
               return (

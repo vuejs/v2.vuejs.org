@@ -670,11 +670,11 @@ if (version === 2) {
     Une alternative aux templates en chaîne de caractères vous permettant d'exploiter toute la puissance programmatique de JavaScript. La fonction de rendu `render` reçoit une méthode `createElement` comme premier argument servant à créer des `VNode`s.
 
     Si le composant est un composant fonctionnel, la fonction `render` recevra aussi un argument supplémentaire `context`, qui donne accès aux données contextuelles puisque les composants fonctionnels sont sans instance.
-    
+
     <p class="tip">La fonction `render` a la priorité par rapport à la fonction de rendu compilée à partir de l'option `template`, ou par rapport au template HTML de l'élément d'ancrage dans le DOM qui est spécifié par l'option `el`.</p>
 
   - **Voir aussi :**
-    - [Fonctions de Rendu](../guide/render-function)
+    - [Fonctions de Rendu](../guide/render-function.html)
 
 ### renderError
 
@@ -702,7 +702,7 @@ if (version === 2) {
     ```
 
   - **Voir aussi ::**
-    - [Fonctions de Rendu](../guide/render-function)
+    - [Fonctions de Rendu](../guide/render-function.html)
 
 
 <p class="tip">Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.</p>
