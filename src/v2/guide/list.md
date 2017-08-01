@@ -196,8 +196,8 @@ Sometime, you deal with an array and you want use a computed property based on e
 
 ``` html
 <ul id="repeat-computed" class="demo">
-  <li v-for="(timestamp, index) in timestamps">
-    {{ formattedHours[index] }}
+  <li v-for="timestamp in formattedHours">
+    {{ timestamp }}
   </li>
 </ul>
 ```
@@ -227,8 +227,8 @@ Result:
 
 {% raw %}
 <ul id="repeat-computed" class="demo">
-  <li v-for="(timestamp, index) in timestamps">
-    {{ formattedHours[index] }}
+  <li v-for="timestamp in formattedHours">
+    {{ timestamp }}
   </li>
 </ul>
 <script>
