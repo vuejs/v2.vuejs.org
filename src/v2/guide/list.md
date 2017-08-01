@@ -230,8 +230,8 @@ Cependant, cela ne passera pas automatiquement les données au composant parce q
   v-for="(item, index) in items"
   v-bind:item="item"
   v-bind:index="index"
-  v-bind:key="item.id">
-</my-component>
+  v-bind:key="item.id"
+></my-component>
 ```
 
 La raison pour ne pas injecter automatiquement `item` dans le composant est que cela le rendrait fortement couplé au fonctionnement de `v-for`. Être explicite sur l'endroit d'où proviennent les données rend le composant réutilisable dans d'autres situations.
@@ -301,7 +301,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="todo-list-example">
+<div id="todo-list-example" class="demo">
   <input
     v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
@@ -387,7 +387,7 @@ Si votre intention est plutôt de sauter conditionnellement l'exécution de la b
 
 Quand Vue met à jour une liste d'éléments rendus avec `v-for`, il utilise par défaut une stratégie de « modification localisée » (*in-place patch*). Si l'ordre des éléments d'un tableau dans *data* a changé, plutôt que de déplacer les éléments du DOM pour concorder avec le nouvel ordre des éléments, Vue va simplement modifier chaque élément déjà en place et s'assurer que cela reflète ce qui aurait dû être rendu à cet index en particulier. C'est un comportement similaire au `track-by="$index"` de Vue 1.x.
 
-Ce mode par défaut est performant, mais adapté seulement **lorsque le résultat du rendu de votre liste ne dépend pas de l'état d'un composant enfant ou de l'état temporaire du DOM (ex. : les valeurs de champs d'un formulaire)**.
+Ce mode par défaut est performant, mais adapté seulement **lorsque le résultat du rendu de votre liste ne dépend pas de l'état d'un composant enfant ou de l'état temporaire du DOM (par ex. : les valeurs de champs d'un formulaire)**.
 
 Pour expliquer à Vue comment suivre l'identité de chaque nœud, afin que les éléments existants puissent être réutilisés et réordonnés, vous devez fournir un attribut unique `key` pour chaque élément. Une valeur idéale pour `key` serait l'identifiant `id` unique de chaque élément. Cet attribut spécial est en gros l'équivalent du `track-by` de la 1.x, mais il fonctionne comme un attribut, donc vous avez besoin d'utiliser `v-bind` pour le lier à des valeurs dynamiques (en utilisant ici l'abréviation de `v-bind`) :
 
@@ -433,8 +433,8 @@ Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire d
 
 À cause des limitations en JavaScript, Vue **ne peut pas** détecter les changements suivants dans un tableau :
 
-1. Quand vous affectez directement un élément à un index. Ex. : `vm.items[indexOfItem] = newValue`
-2. Quand vous modifiez la longeur du tableau. Ex. : `vm.items.length = newLength`
+1. Quand vous affectez directement un élément à un index. Par ex. : `vm.items[indexOfItem] = newValue`
+2. Quand vous modifiez la longeur du tableau. Par ex. : `vm.items.length = newLength`
 
 Pour contourner la première limitation, les deux exemples suivants accomplissent la même chose que `vm.items[indexOfItem] = newValue`, mais vont également déclencher des mises à jour de l'état dans le système de réactivité :
 
@@ -476,7 +476,7 @@ computed: {
 }
 ```
 
-Dans les situations où les propriétés calculées ne sont pas utilisables (ex. : à l'intérieur d'une boucle `v-for` imbriquée), vous pouvez juste utilisez une méthode :
+Dans les situations où les propriétés calculées ne sont pas utilisables (par ex. : à l'intérieur d'une boucle `v-for` imbriquée), vous pouvez juste utilisez une méthode :
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>

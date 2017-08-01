@@ -33,7 +33,7 @@ var component = new Component() // -> "hello from mixin!"
 
 ## Fusion des options
 
-Quand un mixin et un composant définissent les mêmes options, elles seront fusionnées en utilisant la stratégie appropriée. Par exemple, les fonctions de hook avec le même nom seront fusionnées dans un tableau afin qu'elles soient toutes appelées. De plus, les *hooks* des mixins seront appelés **avant** les *hooks* du composant:
+Quand un mixin et un composant définissent les mêmes options, elles seront fusionnées en utilisant la stratégie appropriée. Par exemple, les fonctions de hook avec le même nom seront fusionnées dans un tableau afin qu'elles soient toutes appelées. De plus, les hooks des mixins seront appelés **avant** les hooks du composant:
 
 ``` js
 var mixin = {

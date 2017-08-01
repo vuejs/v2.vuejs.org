@@ -77,7 +77,7 @@ vm.$watch('a', function (newVal, oldVal) {
 
 Consultez [l'API](../api#Proprietes-dinstance) pour une liste complète des propriétés et méthodes d'une instance.
 
-## Les *hooks* de cycle de vie d'une instance
+## Les hooks de cycle de vie d'une instance
 
 Chaque instance de vue traverse une série d'étapes d'initialisation au moment de sa création - par exemple, elle doit mettre en place l'observation des données, compiler le template, monter l'instance sur le DOM et mettre à jour le DOM quand les données changent. En cours de route, elle va aussi invoquer des **_hooks_ de cycle de vie**, qui nous donnent l'opportunité d'exécuter une logique personnalisée. Par exemple, le hook [`created`](../api/#created) est appelé une fois l'instance créée.
 
@@ -94,7 +94,7 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple [`mounted`](../api/#mounted), [`updated`](../api/#updated) et [`destroyed`](../api/#destroyed). Tous ces *hooks* de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de « contrôleur » dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces *hooks* de cycle de vie.
+Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple [`mounted`](../api/#mounted), [`updated`](../api/#updated) et [`destroyed`](../api/#destroyed). Tous ces hooks de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque. Vous vous êtes peut-être demandé où se trouvait le concept de « contrôleur » dans le monde de Vue et la réponse est : il n'y pas de contrôleurs. Votre logique personnalisée pour un composant sera répartie entre ces hooks de cycle de vie.
 
 ## Diagramme du cycle de vie
 

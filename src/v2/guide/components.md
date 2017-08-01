@@ -93,7 +93,7 @@ La même encapsulation s’applique pour les autres fonctionnalités de Vue pouv
 
 ### Limitations de l'analyse d'un template à partir du DOM
 
-Quand vous utilisez le DOM en tant que template (ex. : en utilisant l'option `el` pour monter un élément avec du contenu existant), vous êtes sujet à plusieurs restrictions dépendantes de la façon dont fonctionne le HTML, car Vue peut uniquement récupérer le contenu du template **après** qu'il ait été analysé et normalisé. Des éléments tels que `<ul>`, `<ol>`, `<table>` et `<select>` ont notamment des restrictions sur les éléments que l'on peut trouver à l'intérieur, et plusieurs éléments comme `<option>` ne peuvent apparaître qu'à l'intérieur de certains éléments.
+Quand vous utilisez le DOM en tant que template (par ex. : en utilisant l'option `el` pour monter un élément avec du contenu existant), vous êtes sujet à plusieurs restrictions dépendantes de la façon dont fonctionne le HTML, car Vue peut uniquement récupérer le contenu du template **après** qu'il ait été analysé et normalisé. Des éléments tels que `<ul>`, `<ol>`, `<table>` et `<select>` ont notamment des restrictions sur les éléments que l'on peut trouver à l'intérieur, et plusieurs éléments comme `<option>` ne peuvent apparaître qu'à l'intérieur de certains éléments.
 
 Ceci est problématique quand on utilise des composants personnalisés avec des éléments qui ont ces restrictions, par exemple :
 
@@ -1116,7 +1116,7 @@ La fonction de farique reçoit une fonction de rappel `resolve` qui devra être 
 Vue.component('async-webpack-example', function (resolve) {
   // Cette syntaxe de `require` va indiquer à webpack
   // de découper automatiquement votre code après build dans
-  // des bundles qui seront chargés par des requêtes Ajax.
+  // des paquetages (« bundles ») qui seront chargés par des requêtes Ajax.
   require(['./my-async-component'], resolve)
 })
 ```
@@ -1284,7 +1284,7 @@ Failed to mount component: template or render function not defined
 
 Pour expliquer ce qui arrive, je vais appeler nos composants A et B. Le système de module voit de quoi A a besoin, d'abord A a besoin de B, mais B à besoin de A, mais A a besoin de B, etc, etc. Ça tourne en boucle, ne sachant pas comment complètement résoudre l'un ou l'autre des composants sans en résoudre un avant l'autre. Pour régler ça, nous avons besoin de donner au système de module un moyen de dire, « A a _éventuellement_ besoin de B, mais il n'y a pas de raison de résoudre B en premier. ».
 
-Dans notre cas, je ferais cela avec le composant `tree-folder`. Nous savons que l'enfant crée un paradoxe dans le composant `tree-folder-contents`, nous allons donc attendre le *hook* `beforeCreate` du cycle de vie pour l'inscrire :
+Dans notre cas, je ferais cela avec le composant `tree-folder`. Nous savons que l'enfant crée un paradoxe dans le composant `tree-folder-contents`, nous allons donc attendre le hook `beforeCreate` du cycle de vie pour l'inscrire :
 
 ``` js
 beforeCreate: function () {

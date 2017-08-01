@@ -10,7 +10,7 @@ Vue fournit plusieurs façons d'appliquer des effets de transition lorsque des �
 
 - appliquer automatiquement des classes pour les transitions et les animations CSS
 - intégrer des bibliothèques d'animation CSS tierces, comme Animate.css
-- utiliser JavaScript pour manipuler directement le DOM durant les *hooks* de transition
+- utiliser JavaScript pour manipuler directement le DOM durant les hooks de transition
 - intégrer des bibliothèques d'animation JavaScript tierces, comme Velocity.js
 
 Sur cette page, nous ne traiterons que des transitions entrantes, sortantes et de liste, mais vous pouvez consulter la section suivante pour la [gestion des transitions d'état](transitioning-state.html).
@@ -372,9 +372,9 @@ Vous pouvez également spécifier des valeurs séparées pour les durées de *en
 <transition :duration="{ enter: 500, leave: 800 }">...</transition>
 ```
 
-### *Hooks* JavaScript
+### hooks JavaScript
 
-Vous pouvez définir des *hooks* JavaScript dans les attributs :
+Vous pouvez définir des hooks JavaScript dans les attributs :
 
 ``` html
 <transition
@@ -1520,9 +1520,9 @@ En vérité, tout attribut de transition peut être dynamiquement lié. Et il ne
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
-<div id="dynamic-fade-demo">
-  Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
-  Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
+<div id="dynamic-fade-demo" class="demo">
+  Fondu entrant : <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
+  Fondu sortant : <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
   <transition
     v-bind:css="false"
     v-on:before-enter="beforeEnter"
@@ -1531,7 +1531,14 @@ En vérité, tout attribut de transition peut être dynamiquement lié. Et il ne
   >
     <p v-if="show">bonjour</p>
   </transition>
-  <button v-on:click="stop = true">Arrêter ça !</button>
+  <button
+    v-if="stop"
+    v-on:click="stop = false; show = false"
+  >Commencer l'animation</button>
+  <button
+    v-else
+    v-on:click="stop = true"
+  >Arrêter ça !</button>
 </div>
 ```
 
@@ -1543,7 +1550,7 @@ new Vue({
     fadeInDuration: 1000,
     fadeOutDuration: 1000,
     maxFadeDuration: 1500,
-    stop: false
+    stop: true
   },
   mounted: function () {
     this.show = false
@@ -1585,8 +1592,8 @@ new Vue({
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 <div id="dynamic-fade-demo" class="demo">
-  Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
-  Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
+  Fondu entrant : <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
+  Fondu sortant : <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
   <transition
     v-bind:css="false"
     v-on:before-enter="beforeEnter"
@@ -1595,7 +1602,14 @@ new Vue({
   >
     <p v-if="show">bonjour</p>
   </transition>
-  <button v-on:click="stop = true">Arrêtez ça !</button>
+  <button
+    v-if="stop"
+    v-on:click="stop = false; show = false"
+  >Commencer l'animation</button>
+  <button
+    v-else
+    v-on:click="stop = true"
+  >Arrêtez ça !</button>
 </div>
 <script>
 new Vue({
@@ -1605,7 +1619,7 @@ new Vue({
     fadeInDuration: 1000,
     fadeOutDuration: 1000,
     maxFadeDuration: 1500,
-    stop: false
+    stop: true
   },
   mounted: function () {
     this.show = false

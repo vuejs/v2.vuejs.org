@@ -50,7 +50,7 @@ Les fonctions de rendu de JSX ont quelques avantages :
 
 - Vous pouvez utiliser la puissance d'un langage de programmation complet (JavaScript) pour créer vos vues. Cela inclut les variables temporaires, le contrôle de flux et les valeurs JavaScript directement référencées dans la portée.
 
-- Les outils d'aide (ex. : analyse des erreurs, vérifications de typage, auto-complétion) pour JSX sont en bien des points plus avancés que ce qui est actuellement disponible dans les templates de Vue.
+- Les outils d'aide (par ex. : analyse des erreurs, vérifications de typage, auto-complétion) pour JSX sont en bien des points plus avancés que ce qui est actuellement disponible dans les templates de Vue.
 
 Dans Vue, nous avons également des [fonctions de rendu](render-function.html) et même [un support de JSX](render-function.html#JSX), car parfois, nous avons besoin de cette puissance. Cependant, pour une expérience par défaut nous offrons les templates comme une alternative simple. N'importe quel HTML valide est également un template Vue valide, ce qui mène à ces quelques avantages induits :
 
@@ -92,7 +92,7 @@ Enfin, exactement comme en HTML, vous avez également la possibilité d'écrire 
 
 #### Utilisation avancée
 
-Pour de larges applications, Vue et React offrent des solutions de routage robustes. La communauté React a également été très innovante en matière de solutions de gestion d'état (ex. : Flux/Redux). Ces modèles de gestion d'état et [même Redux lui-même](https://github.com/egoist/revue) peuvent être facilement intégrés dans une application Vue. En fait, Vue a même poussé ce modèle un cran plus loin avec [Vuex](https://github.com/vuejs/vuex), une solution de gestion d'état inspirée par Elm qui s'intègre profondément dans Vue et qui, nous pensons, offre une expérience de développement supérieure.
+Pour de larges applications, Vue et React offrent des solutions de routage robustes. La communauté React a également été très innovante en matière de solutions de gestion d'état (par ex. : Flux/Redux). Ces modèles de gestion d'état et [même Redux lui-même](https://github.com/egoist/revue) peuvent être facilement intégrés dans une application Vue. En fait, Vue a même poussé ce modèle un cran plus loin avec [Vuex](https://github.com/vuejs/vuex), une solution de gestion d'état inspirée par Elm qui s'intègre profondément dans Vue et qui, nous pensons, offre une expérience de développement supérieure.
 
 Une autre différence importante entre ces offres est que les bibliothèques accompagnant Vue pour la gestion d'état et le routage (parmi [d'autres concernées](https://github.com/vuejs)) sont toutes officiellement supportées et gardées à jour avec le cœur de la bibliothèque. React préfère en revanche laisser cette partie à la communauté, créant un écosystème plus fragmenté. Toutefois, étant plus populaire, l'écosystème de React est considérablement plus riche que celui de Vue.
 
@@ -202,7 +202,7 @@ Cela dit, il serait probablement plus judicieux de faire une comparaison entre l
 
 Knockout fut un pionnier dans le domaine du MVVM et du suivi de dépendances, et son système de réactivité est vraiment très similaire à Vue. C'est son [support des navigateurs](http://knockoutjs.com/documentation/browser-support.html) qui est vraiment impressionnant considérant tout ce qu'il permet de faire avec un support jusqu'à IE6 ! Vue d'un autre côté ne supporte que IE9+.
 
-Avec le temps cependant, le développement de Knockout a ralenti et il commence a se montrer un peu agé. Par exemple, son système de composant manque d'un ensemble complet de *hooks* au cycle de vie et même si c'est un cas d'utilisation commun, l'interface pour passer des composants enfants à un composant est quelque peu laborieuse en comparaison de Vue.
+Avec le temps cependant, le développement de Knockout a ralenti et il commence a se montrer un peu agé. Par exemple, son système de composant manque d'un ensemble complet de hooks au cycle de vie et même si c'est un cas d'utilisation commun, l'interface pour passer des composants enfants à un composant est quelque peu laborieuse en comparaison de Vue.
 
 Il semble aussi y avoir une différence de philosophie dans le design des APIs qui, si vous êtes curieux, peut être démontrée en étudiant comment chacun gère la création [d'une simple liste de tâches](https://gist.github.com/chrisvfritz/9e5f2d6826af00fcbace7be8f6dccb89). C'est assurément quelque chose de subjectif, mais beaucoup considèrent l'API de Vue moins complexe et mieux structurée.
 
@@ -214,7 +214,7 @@ Avec Polymer 1.0, l'équipe a également créé un système de liaison de donné
 
 Les éléments personnalisés de Polymer sont créés dans des fichiers HTML, ce qui vous limite à du simple JavaScript/CSS (et les fonctionnalités supportées par les navigateurs actuels). En comparaison, les fichiers de composant unique de Vue vous permettent facilement d'utiliser ES2015+ et le préprocesseur CSS de votre choix.
 
-Quand vous déployez en production, Polymer recommande de tout charger à la volée avec des imports HTML, en s'appuyant sur l'implémentation dans les navigateurs de la specicification, et du support de HTTP/2 côté client et côté serveur. Cela peut ou non être faisable en fonction de l'audience ciblée ou de l'environnement serveur. Au cas où vous ne souhaiteriez pas cela, vous pouvez utiliser un outil appelé Vulcanizer pour empaqueter vos éléments Polymer. De ce côté, Vue peut combiner ses fonctionnalités de composant asynchrone avec la fonctionnalité de scission de code de webpack pour facilement découper des parties du *bundle* applicatif afin qu'elles soient chargées à la volée. Cela assure l'entière compatibilité avec les vieux navigateurs en conservant une excellente performance au chargement.
+Quand vous déployez en production, Polymer recommande de tout charger à la volée avec des imports HTML, en s'appuyant sur l'implémentation dans les navigateurs de la specicification, et du support de HTTP/2 côté client et côté serveur. Cela peut ou non être faisable en fonction de l'audience ciblée ou de l'environnement serveur. Au cas où vous ne souhaiteriez pas cela, vous pouvez utiliser un outil appelé Vulcanizer pour empaqueter vos éléments Polymer. De ce côté, Vue peut combiner ses fonctionnalités de composant asynchrone avec la fonctionnalité de scission de code de webpack pour facilement découper des parties du paquetage (« bundle ») applicatif afin qu'elles soient chargées à la volée. Cela assure l'entière compatibilité avec les vieux navigateurs en conservant une excellente performance au chargement.
 
 Il est aussi totalement possible d'offrir une intégration profonde entre Vue et les specs des Web Components, Custom Elements, Shadow DOM — Cependant, nous attendons toujours que les spécifications mûrissent et soient largement implémentées dans tous les navigateurs majeurs avant de sérieusement nous pencher sur la question.
 
