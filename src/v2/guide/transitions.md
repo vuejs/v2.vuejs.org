@@ -1521,7 +1521,7 @@ Vue.component('my-special-transition', {
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
-<div id="dynamic-fade-demo">
+<div id="dynamic-fade-demo" class="demo">
   Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
   Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
   <transition
@@ -1532,7 +1532,14 @@ Vue.component('my-special-transition', {
   >
     <p v-if="show">hello</p>
   </transition>
-  <button v-on:click="stop = true">Stop it!</button>
+  <button
+    v-if="stop"
+    v-on:click="stop = false; show = false"
+  >Start animating</button>
+  <button
+    v-else
+    v-on:click="stop = true"
+  >Stop it!</button>
 </div>
 ```
 
@@ -1544,7 +1551,7 @@ new Vue({
     fadeInDuration: 1000,
     fadeOutDuration: 1000,
     maxFadeDuration: 1500,
-    stop: false
+    stop: true
   },
   mounted: function () {
     this.show = false
@@ -1596,7 +1603,14 @@ new Vue({
   >
     <p v-if="show">hello</p>
   </transition>
-  <button v-on:click="stop = true">Stop it!</button>
+  <button
+    v-if="stop"
+    v-on:click="stop = false; show = false"
+  >Start animating</button>
+  <button
+    v-else
+    v-on:click="stop = true"
+  >Stop it!</button>
 </div>
 <script>
 new Vue({
@@ -1606,7 +1620,7 @@ new Vue({
     fadeInDuration: 1000,
     fadeOutDuration: 1000,
     maxFadeDuration: 1500,
-    stop: false
+    stop: true
   },
   mounted: function () {
     this.show = false

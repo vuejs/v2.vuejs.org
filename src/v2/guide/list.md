@@ -230,8 +230,8 @@ new Vue({ el: '#range' })
   v-for="(item, index) in items"
   v-bind:item="item"
   v-bind:index="index"
-  v-bind:key="item.id">
-</my-component>
+  v-bind:key="item.id"
+></my-component>
 ```
 
 没有通过 v-for 将 `item` 自动注入到组件中的原因是，一旦自动注入，就会使得组件与 `v-for` 指令的运行方式紧密耦合(tightly coupled)在一起。通过显式声明组件数据来源，可以使得组件可重用于其他场景。
@@ -249,8 +249,8 @@ new Vue({ el: '#range' })
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:key="index"
-      v-bind:title="todo"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul>
@@ -273,14 +273,27 @@ new Vue({
   data: {
     newTodoText: '',
     todos: [
-      'Do the dishes',
-      'Take out the trash',
-      'Mow the lawn'
-    ]
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
   },
   methods: {
     addNewTodo: function () {
-      this.todos.push(this.newTodoText)
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
       this.newTodoText = ''
     }
   }
@@ -298,8 +311,8 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:key="index"
-      v-bind:title="todo"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul>
@@ -314,19 +327,33 @@ Vue.component('todo-item', {
   ',
   props: ['title']
 })
+
 new Vue({
   el: '#todo-list-example',
   data: {
     newTodoText: '',
     todos: [
-      'Do the dishes',
-      'Take out the trash',
-      'Mow the lawn'
-    ]
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
   },
   methods: {
     addNewTodo: function () {
-      this.todos.push(this.newTodoText)
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
       this.newTodoText = ''
     }
   }
