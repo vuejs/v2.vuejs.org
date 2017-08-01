@@ -691,7 +691,7 @@ Les directives ont une portée de responsabilité grandement réduite : elles so
 Certaine des différences les plus notables inclues :
 
 - Les directives n'ont plus d'instances. Cela signifie qu'il n'y a plus de `this` dans les hooks des directives. À la place, elles reçoivent tout ce dont elles ont besoin en tant qu'arguments. Si vraiment vous devez faire persister des états à travers les hooks, vous pouvez le faire avec `el`.
-- Les options comme `acceptStatement`, `deep`, `priority`, etc. ont toutes été retirées. Pour remplacer les directives `twoWay`, consultez [cette exemple](#filtres-bidirectionnelles-replacés).
+- Les options comme `acceptStatement`, `deep`, `priority`, etc. ont toutes été retirées. Pour remplacer les directives `twoWay`, consultez [cette exemple](#filtres-bidirectionnels-replacés).
 - Certains des hooks ont un comportement différent. D'autres hooks sont nouveaux.
 
 Heureusement, puisque les nouvelles directives sont plus simples, vous pouvez les maîtriser plus facilement. Lisez le nouveau [guide des directives](custom-directive.html) pour en apprendre plus.
@@ -866,17 +866,17 @@ Ce modèle peut servir de remplacement à `$dispatch` et `$broadcast` dans des s
 </div>
 {% endraw %}
 
-## Filters
+## Filtres
 
-### Filters Outside Text Interpolations <sup>retiré</sup>
+### Filtres en dehors des interpolations de texte <sup>retiré</sup>
 
-Filters can now only be used inside text interpolations (`{% raw %}{{ }}{% endraw %}` tags). In the past we've found using filters within directives such as `v-model`, `v-on`, etc led to more complexity than convenience. For list filtering on `v-for`, it's also better to move that logic into JavaScript as computed properties, so that it can be reused throughout your component.
+Les filtres peuvent maintenant seulement être utilisé à l'intérieur des interpolations de texte (Ouverture et fermeture `{% raw %}{{ }}{% endraw %}`). Avant, il était possible d'utiliser ses filtres sur `v-model`, `v-on`, etc mais cela menait à plus de complexité et d'incomvéniant. Pour filtrer les listes sur `v-for`, il est plus logique de déplacer cela dans la partie propriétés calculées du JavaScript, ainsi cela peut-être ré-utilisé à travers votre composant.
 
-In general, whenever something can be achieved in plain JavaScript, we want to avoid introducing a special syntax like filters to take care of the same concern. Here's how you can replace Vue's built-in directive filters:
+En général, chaque fois que quelque chose peut-être fait en JavaScript, nous voulons éviter d'introduire une syntaxe spéciale comme les filtres pour prendre en charge les mêmes choses. Voici comment vous pouvez remplacer les directives de filtres de Vue :
 
-#### Replacing the `debounce` Filter
+#### Remplacer le filtre `debounce`
 
-Instead of:
+Au lieu de :
 
 ``` html
 <input v-on:keyup="doStuff | debounce 500">
@@ -890,7 +890,7 @@ methods: {
 }
 ```
 
-Use [lodash's `debounce`](https://lodash.com/docs/4.15.0#debounce) (or possibly [`throttle`](https://lodash.com/docs/4.15.0#throttle)) to directly limit calling the expensive method. You can achieve the same as above like this:
+utilisez le [`debounce` de lodash](https://lodash.com/docs/4.15.0#debounce) (ou également [`throttle`](https://lodash.com/docs/4.15.0#throttle)) pour limiter directement l'appel des méthodes coûteuse en ressource. Vous pouvez ainsi arriver au même résultat qu'au dessus ainsi :
 
 ``` html
 <input v-on:keyup="doStuff">
@@ -904,9 +904,9 @@ methods: {
 }
 ```
 
-For more on the advantages of this strategy, see [the example here with `v-model`](#debounce-Param-Attribute-for-v-model-removed).
+Pour en savoir plus sur les avantages de cette stratégie, regardez [l'exemple ici avec `v-model`](#Parametre-dattribut-debounce-pour-v-model-retire).
 
-#### Replacing the `limitBy` Filter
+#### Remplacer le filtre `limitBy`
 
 Instead of:
 
@@ -914,7 +914,7 @@ Instead of:
 <p v-for="item in items | limitBy 10">{{ item }}</p>
 ```
 
-Use JavaScript's built-in [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples) in a computed property:
+Utiliser la [méthode native `.slice`](https://developer.mozilla.org/fr-FR/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Exemples) du JavaScript dans une propriété calculée :
 
 ``` html
 <p v-for="item in filteredItems">{{ item }}</p>
@@ -928,7 +928,7 @@ computed: {
 }
 ```
 
-#### Replacing the `filterBy` Filter
+#### Remplacer le filtre `filterBy`
 
 Instead of:
 
@@ -936,7 +936,7 @@ Instead of:
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
 ```
 
-Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples) in a computed property:
+Utiliser la [méthode native `.filter`](https://developer.mozilla.org/fr-FR/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Exemples) du JavaScript dans une propriété calculée :
 
 ``` html
 <p v-for="user in filteredUsers">{{ user.name }}</p>
@@ -953,7 +953,7 @@ computed: {
 }
 ```
 
-JavaScript's native `.filter` can also manage much more complex filtering operations, because you have access to the full power of JavaScript within computed properties. For example, if you wanted to find all active users and case-insensitively match against both their name and email:
+La fonction JavaScript navive `.filter` peut également gérer des opérations de filtrage plus complexes, car vous avez accès à toute la puissance de JavaScript dans les propriétés calculées. Par exemple, si vous souhaiter trouver tous les utilisateurs actif avec une concordance non sensible à la casse de leurs nom et email :
 
 ``` js
 var self = this
@@ -966,15 +966,15 @@ self.users.filter(function (user) {
 })
 ```
 
-#### Replacing the `orderBy` Filter
+#### Remplacer le filtre `orderBy`
 
-Instead of:
+Au lieu de :
 
 ``` html
 <p v-for="user in users | orderBy 'name'">{{ user.name }}</p>
 ```
 
-Use [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (or possibly [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) in a computed property:
+Utilisez le [`orderBy` de lodash](https://lodash.com/docs/4.15.0#orderBy) (ou également [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) dans une propriété calculée :
 
 ``` html
 <p v-for="user in orderedUsers">{{ user.name }}</p>
@@ -988,7 +988,7 @@ computed: {
 }
 ```
 
-You can even order by multiple columns:
+Vous pouvez même ordoner par multiples colonnes :
 
 ``` js
 _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
@@ -997,19 +997,19 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters being used inside directives. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de filtres utilisés dans les directives. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
 
-### Filter Argument Syntax <sup>changé</sup>
+### Syntaxe d'argument de filtre <sup>changée</sup>
 
-Filters' syntax for arguments now better aligns with JavaScript function invocation. So instead of taking space-delimited arguments:
+La syntaxe pour les arguments de filtres est maintenant plus consistante avec l'invocation des fonctions JavaScript. Donc au lieu d'utiliser des délimitations avec espace pour les argument :
 
 ``` html
 <p>{{ date | formatDate 'YY-MM-DD' timeZone }}</p>
 ```
 
-We surround the arguments with parentheses and delimit the arguments with commas:
+Nous entourons les arguments avec des parenthèses et les délimitons avec des virgules :
 
 ``` html
 <p>{{ date | formatDate('YY-MM-DD', timeZone) }}</p>
@@ -1018,41 +1018,41 @@ We surround the arguments with parentheses and delimit the arguments with commas
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the old filter syntax. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de vieille syntaxe de filtre. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
 
-### Built-In Text Filters <sup>retiré</sup>
+### Filtres de texte intégré <sup>retiré</sup>
 
-Although filters within text interpolations are still allowed, all of the filters have been removed. Instead, it's recommended to use more specialized libraries for solving problems in each domain (e.g. [`date-fns`](https://date-fns.org/) to format dates and [`accounting`](http://openexchangerates.github.io/accounting.js/) for currencies).
+Bien que les filtres dans les interpolations de texte soit toujours authorisé, tous les filtres on été retiré. À la place, nous recommandons d'utiliser des bibliothèques spéciales pour résoudre les problèmes dans chaque domaine (par ex. [`date-fns`](https://date-fns.org/) pour le format des dates et [`accounting`](http://openexchangerates.github.io/accounting.js/) pour le format des devises).
 
-For each of Vue's built-in text filters, we go through how you can replace them below. The example code could exist in custom helper functions, methods, or computed properties.
+Vous trouverez de quoi remplacer chaque filtre de texte dans la liste ci-dessous. L'exemple de code peut exister dans des fonctions utilitaires personnalisées, méthodes ou propriétés calculées.
 
-#### Replacing the `json` Filter
+#### Remplacer le filtre `json`
 
-You actually don't need to for debugging anymore, as Vue will nicely format output for you automatically, whether it's a string, number, array, or plain object. If you want the exact same functionality as JavaScript's `JSON.stringify` though, then you can use that in a method or computed property.
+Vous n'avez rien besoin de faire de ce point de vue, car Vue va joliement formater la sortie pour vous automatiquement, qu'il s'agisse d'une chaîne de caractères, d'un nombre, d'un tableau ou d'un objet complet. Si vous voulez une fonctionnalité identique en JavaScript, c'est `JSON.stringify`. Vous pouvez donc utiliser cela dans une méthode ou dans une propriété calculée.
 
-#### Replacing the `capitalize` Filter
+#### Remplacer le filtre `capitalize`
 
 ``` js
 text[0].toUpperCase() + text.slice(1)
 ```
 
-#### Replacing the `uppercase` Filter
+#### Remplacer le filtre `uppercase`
 
 ``` js
 text.toUpperCase()
 ```
 
-#### Replacing the `lowercase` Filter
+#### Remplacer le filtre `lowercase`
 
 ``` js
 text.toLowerCase()
 ```
 
-#### Replacing the `pluralize` Filter
+#### Remplacer le filtre `pluralize`
 
-The [pluralize](https://www.npmjs.com/package/pluralize) package on npm serves this purpose nicely, but if you only want to pluralize a specific word or want to have special output for cases like `0`, then you can also easily define your own pluralize functions. For example:
+Le package [pluralize](https://www.npmjs.com/package/pluralize) sur npm adresse ses problèmes très bien, mais si vous voulez uniquement mettre au pluriel un mot spécifique ou que vous voulez une sortie spéciale pour dès cas comme `0`, vous pouvez facilement définir votre propre fonction de mise au pluriel. Par exemple :
 
 ``` js
 function pluralizeKnife (count) {
@@ -1066,62 +1066,62 @@ function pluralizeKnife (count) {
 }
 ```
 
-#### Replacing the `currency` Filter
+#### Remplacer le filtre `currency`
 
-For a very naive implementation, you could just do something like this:
+Pour toutes les implémentation basique, vous pouvez juste faire quelque chose comme ceci :
 
 ``` js
 '$' + price.toFixed(2)
 ```
 
-In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixed(2)` rounds up to `0.04`, but `0.045` rounds down to `0.04`). To work around these issues, you can use the [`accounting`](http://openexchangerates.github.io/accounting.js/) library to more reliably format currencies.
+Dans beaucoup de cas cependant, vous allez toujours tomber sur des comportements étranges (par ex : `0.035.toFixed(2)` va être arrondi à l'entier supérieur alors que `0.045` va être arrondi à l'entier inférieur). Pour résoudre ces problèmes, vous pouvez utiliser la bibliothèque [`accounting`](http://openexchangerates.github.io/accounting.js/) pour des formats de devises plus solides.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete text filters. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de filtres obsolètes. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
 
-### Filtres bidirectionnelles <sup>remplacés</sup>
+### Filtres bidirectionnels <sup>remplacés</sup>
 
-Some users have enjoyed using two-way filters with `v-model` to create interesting inputs with very little code. While _seemingly_ simple however, two-way filters can also hide a great deal of complexity - and even encourage poor UX by delaying state updates. Instead, components wrapping an input are recommended as a more explicit and feature-rich way of creating custom inputs.
+Beaucoup d'utilisateurs adorent utiliser des filtres bidirectionnels avec `v-model` pour créer des champs intéressant avec très peu de code. Si simple _d'apparence_, les filtres bidirectionnels peuvent aussi cacher un grand niveau de complexité et encourager une expérience utilisateur pauvre en rendant lente la mises à jour des états. À la place, créer un champ dans un composant est recommandé et permet de mieux apréhender son utilisation et d'y ajouter tout ce qu'il faut pour de la création de champs personnalisés.
 
-As an example, we'll now walk the migration of a two-way currency filter:
+Par exemple, nous allons migrer un filtre de devise bidirectionnel :
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-It mostly works well, but the delayed state updates can cause strange behavior. For example, click on the `Result` tab and try entering `9.999` into one of those inputs. When the input loses focus, its value will update to `$10.00`. When looking at the calculated total however, you'll see that `9.999` is what's stored in our data. The version of reality that the user sees is out of sync!
+Il fonctionne plutôt bien, mais la rétention de mise à jour d'état peut causer des comportements étrange. Par exemple, cliquez sur l'onglet `Result` et essayez d'entrer la valeur `9.999` dans l'un des champs. Quand le champ perd le focus, sa valeur va être mise à jour à `$10.00`. Quand vous regardez le total calculé cependant, vous verrez que `9.999` est toujours stoqué dans nos données. La version de la réalité que l'utilisateur voit est hors de synchro !
 
-To start transitioning towards a more robust solution using Vue 2.0, let's first wrap this filter in a new `<currency-input>` component:
+Pour commencer a utiliser une solution plus robuste en utilisant Vue 2.0, commençons par entourer ce filtre dans un nouveau composant `<currency-input>` :
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/943zfbsh/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-This allows us add behavior that a filter alone couldn't encapsulate, such as selecting the content of an input on focus. Now the next step will be to extract the business logic from the filter. Below, we pull everything out into an external [`currencyValidator` object](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e):
+Celui-ci nous permet d'ajouter des comportements qu'un filtre seul ne pourrait pas encapsuler, comme sélectionner le contenu d'un champ lors du focus. Maintenant, la prochaine étape va être d'extraire la logique métier du filtre. Ci-dessous, nous allons tous mettre dans un [objet `currencyValidator`](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e) externe :
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/9c32kev2/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-This increased modularity not only makes it easier to migrate to Vue 2, but also allows currency parsing and formatting to be:
+Cette augmentation de la modularité ne permet pas seulement de rendre plus facile la migration vers Vue 2, mais permet également à l'analyse et au formatage d'être :
 
-- unit tested in isolation from your Vue code
-- used by other parts of your application, such as to validate the payload to an API endpoint
+- testé unitairement et isolé de votre code Vue,
+- utilisé par d'autres parties de votre application, comme pour valider les valeurs en provenance d'une API.
 
-Having this validator extracted out, we've also more comfortably built it up into a more robust solution. The state quirks have been eliminated and it's actually impossible for users to enter anything wrong, similar to what the browser's native number input tries to do.
+Avec ce validateur extrait, nous sommes plus à l'aise pour construire une solution plus robuste. L'étrangeté de changement d'état a été éliminée et il est en fait impossible pour l'utilisateur d'entrer une valeur fausse, de la même manière que le fait le champ numérique natif des navigateurs.
 
-We're still limited however, by filters and by Vue 1.0 in general, so let's complete the upgrade to Vue 2.0:
+Nous sommes toujours limité cependant, par les filtres et par Vue 1.0 en général. Donc terminons notre mise à jour vers Vue 2.0 :
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-You may notice that:
+Vous pouvez remarquer que :
 
-- Every aspect of our input is more explicit, using lifecycle hooks and DOM events in place of the hidden behavior of two-way filters.
-- We can now use `v-model` directly on our custom inputs, which is not only more consistent with normal inputs, but also means our component is Vuex-friendly.
-- Since we're no longer using filter options that require a value to be returned, our currency work could actually be done asynchronously. That means if we had a lot of apps that had to work with currencies, we could easily refactor this logic into a shared microservice.
+- Tous les aspects de notre champ sont plus explicites, en utilisant les hooks de cycle de vie et les évènements du DOM à la place du mécanisme masqué des filtres bidirectionnels.
+- Nous pouvons maintenant utiliser `v-model` directement sur nos champs personnalisés, cela ne signifie pas uniquement qu'ils ont plus de consistances avec les champs standards, mais cela signifie également qu'ils sont mieux adaptés à Vuex.
+- Comme nous n'utilisons plus d'options de filtre nécessitant qu'une valeur soit retournée, notre dévise peut fonctionner de manière asynchrone. Cela signifie que si vous avez beaucoup d'applications qui fonctionne avec des devises, vous pouvez facilement refactoriser les logiques dans un microservice.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of filters used in directives like <code>v-model</code>. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de filtres utilisant des dircetive comme <code>v-model</code>. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
 
