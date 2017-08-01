@@ -132,7 +132,7 @@ Vue.js allows you to define filters that can be used to apply common text format
 
 <p class="tip">Vue 2.x filters can only be used inside mustache interpolations and `v-bind` expressions (the latter supported in 2.1.0+), because filters are primarily designed for text transformation purposes. For more complex data transforms in other directives, you should use [Computed properties](computed.html) instead.</p>
 
-The filter function always receives the expression's value as the first argument.
+The filter function always receives the expression's value (the result of the former chain) as its first argument. In this example, the `capitalize` filter function will receive the value of `message` as its argument.
 
 ``` js
 new Vue({
@@ -153,13 +153,15 @@ Filters can be chained:
 {{ message | filterA | filterB }}
 ```
 
+In this case, `filterA`, defined with a single argument, will receive the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
+
 Filters are JavaScript functions, therefore they can take arguments:
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+Here `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into the `filterA` as its second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
 
 ## Shorthands
 
