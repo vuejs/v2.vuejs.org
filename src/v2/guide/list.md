@@ -197,7 +197,7 @@ Sometime, you deal with an array and you want use a computed property based on e
 ``` html
 <ul id="repeat-computed" class="demo">
   <li v-for="(timestamp, index) in timestamps">
-    {{ formatedHours[index] }}
+    {{ formattedHours[index] }}
   </li>
 </ul>
 ```
@@ -213,7 +213,7 @@ new Vue({
     ]
   },
   computed: {
-    formatedHours: function () {
+    formattedHours: function () {
       return this.timestamps.map(function (timestamp) {
           var now = new Date(timestamp)
           return now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds()
@@ -228,7 +228,7 @@ Result:
 {% raw %}
 <ul id="repeat-computed" class="demo">
   <li v-for="(timestamp, index) in timestamps">
-    {{ formatedHours[index] }}
+    {{ formattedHours[index] }}
   </li>
 </ul>
 <script>
@@ -242,7 +242,7 @@ new Vue({
     ]
   },
   computed: {
-    formatedHours: function () {
+    formattedHours: function () {
       return this.timestamps.map(function (timestamp) {
           var now = new Date(timestamp)
           return now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds()
