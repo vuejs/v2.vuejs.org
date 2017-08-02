@@ -48,7 +48,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Options / Data (Tradução: @derevandal. Revisão: **pendente**)
 - [ ] Options / DOM (Tradução: @guilherme-dev. Revisão: @derevandal)
 - [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: @derevandal)
-- [ ] Options / Assets
+- [ ] Options / Assets (Tradução: @kimuraz. Revisão: **pendente**)
 - [ ] Options / Composition
 - [ ] Options / Misc
 - [ ] Instance Properties
@@ -123,7 +123,7 @@ Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira, 
 - *Debug* = Depuração
 - *Handling* = Manipulação
 - *Event Listening* = Escuta de Eventos
-- *Render Funcion* = Função de Renderização
+- *Render Function* = Função de Renderização
 - *Computed Properties* = Dados Computados
 - *Single-File Components* = Componentes Single-File
 - *Custom Elements* = Elementos Personalizados
