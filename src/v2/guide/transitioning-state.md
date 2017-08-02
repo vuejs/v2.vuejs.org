@@ -140,11 +140,11 @@ new Vue({
           requestAnimationFrame(animate)
         }
       }
-      
+
       new TWEEN.Tween(this.tweenedColor)
         .to(this.color, 750)
         .start()
-      
+
       animate()
     }
   },
@@ -216,11 +216,11 @@ new Vue({
           requestAnimationFrame(animate)
         }
       }
-      
+
       new TWEEN.Tween(this.tweenedColor)
         .to(this.color, 750)
         .start()
-      
+
       animate()
     }
   },
@@ -442,14 +442,14 @@ Vue.component('animated-integer', {
           requestAnimationFrame(animate)
         }
       }
-      
+
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
         .onUpdate(function () {
           vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
         .start()
-      
+
       animate()
     }
   }
@@ -512,14 +512,14 @@ Vue.component('animated-integer', {
           requestAnimationFrame(animate)
         }
       }
-      
+
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
         .onUpdate(function () {
           vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
         .start()
-      
+
       animate()
     }
   }
@@ -540,6 +540,17 @@ new Vue({
 {% endraw %}
 
 在子组件中，我们可以使用本页面所涵盖的所有过渡策略进行组合，再通过 Vue 提供的[内置过渡系统](transitions.html) 。将这些结合在一起，对于要实现的动画效果的限制很少。
+
+## Bringing Designs to Life
+
+To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+
+Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+
+Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
+
+<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 ***
 

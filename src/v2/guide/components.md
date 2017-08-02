@@ -501,14 +501,14 @@ Vue.component('example', {
 
 ``` js
 Vue.component('button-counter', {
-  template: '<button v-on:click="increment">{{ counter }}</button>',
+  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
   data: function () {
     return {
       counter: 0
     }
   },
   methods: {
-    increment: function () {
+    incrementCounter: function () {
       this.counter += 1
       this.$emit('increment')
     }
@@ -536,14 +536,14 @@ new Vue({
 </div>
 <script>
 Vue.component('button-counter', {
-  template: '<button v-on:click="increment">{{ counter }}</button>',
+  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
   data: function () {
     return {
       counter: 0
     }
   },
   methods: {
-    increment: function () {
+    incrementCounter: function () {
       this.counter += 1
       this.$emit('increment')
     }
@@ -565,7 +565,7 @@ new Vue({
 
 在这个例子中，需要注意的要点是，子组件仍然是与组件外部环境发生的变化之间完全解耦的。它需要做的就是将自身内部的信息全部通知到父组件中，以防止父组件主动关注子组件内部信息造成耦合。
 
-#### 为组件绑定原生事件(Binding Native Events to Components)
+### 为组件绑定原生事件(Binding Native Events to Components)
 
 有时候，你可能希望某个组件的根元素能够监听到原生事件。在这种场景中，你可以在 `v-on` 后面添加 `.native` 修饰符。例如：
 
