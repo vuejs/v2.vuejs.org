@@ -1,59 +1,59 @@
 ---
-title: 混合
+title: 混合(Mixins)
 type: guide
 order: 17
 ---
 
 ## 基础
 
-混合是一种灵活的分布式复用 Vue 组件的方式。混合对象可以包含任意组件选项。以组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。
+混合(mixins)是分发 Vue 组件的可复用功能的一种非常灵活方式。每个 mixin 对象可以包含全部组件选项。当组件使用 mixin 对象时，mixin 对象中的全部选项，都会被“混入(mix)”到组件自身的选项当中。
 
-例子：
+例如：
 
 ``` js
-// 定义一个混合对象
+// 定义一个 mixin 对象
 var myMixin = {
   created: function () {
     this.hello()
   },
   methods: {
     hello: function () {
-      console.log('hello from mixin!')
+      console.log('来自 mixin 对象的 hello！')
     }
   }
 }
 
-// 定义一个使用混合对象的组件
+// 定义一个使用以上 mixin 对象的组件
 var Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // -> "hello from mixin!"
+var component = new Component() // -> "来自 mixin 对象的 hello！"
 ```
 
-## 选项合并
+## 选项合并(Option Merging)
 
-当组件和混合对象含有同名选项时，这些选项将以恰当的方式混合。比如，同名钩子函数将混合为一个数组，因此都将被调用。另外，混合对象的 钩子将在组件自身钩子 **之前** 调用 ：
+当 mixin 对象和组件自身的选项对象，在二者选项名称相同时，Vue 会选取合适的“合并(merge)”策略。例如，具有相同名称的钩子函数，将合并到一个数组中，最终它们会被依次调用。此外，需要注意，mixin 对象中的同名钩子函数，会在组件自身的钩子函数**之前**调用：
 
 ``` js
 var mixin = {
   created: function () {
-    console.log('混合对象的钩子被调用')
+    console.log('mixin 对象的钩子函数被调用')
   }
 }
 
 new Vue({
   mixins: [mixin],
   created: function () {
-    console.log('组件钩子被调用')
+    console.log('组件的钩子函数被调用')
   }
 })
 
-// -> "混合对象的钩子被调用"
-// -> "组件钩子被调用"
+// -> "mixin 对象的钩子函数被调用"
+// -> "组件的钩子函数被调用"
 ```
 
-值为对象的选项，例如 `methods`, `components` 和 `directives`，将被混合为同一个对象。 两个对象键名冲突时，取组件对象的键值对。
+例如，`methods`, `components` 和 `directives`，这些值为对象的选项(option)，则会被合并到相应的选项对象上。但是，在二者的键名(key)发生冲突时，就会优先使用组件选项对象中键值对：
 
 ``` js
 var mixin = {
@@ -84,14 +84,14 @@ vm.bar() // -> "bar"
 vm.conflicting() // -> "from self"
 ```
 
-注意： `Vue.extend()` 也使用同样的策略进行合并。
+注意，在 `Vue.extend()` 中，Vue 也使用了与此相同的合并策略。
 
-## 全局混合
+## 全局混合(Global Mixin)
 
-也可以全局注册混合对象。 注意使用！ 一旦使用全局混合对象，将会影响到 **所有** 之后创建的 Vue 实例。使用恰当时，可以为自定义对象注入处理逻辑。
+也可以在全局使用 mixin。请谨慎使用！一旦在全局中使用了 mixin，就会影响到之后创建的**每个**实例。在用法正确时，可以为自定义选项注入处理逻辑：
 
 ``` js
-// 为自定义的选项 'myOption' 注入一个处理器。
+// 为自定义选项 `myOption` 注入一个处理函数
 Vue.mixin({
   created: function () {
     var myOption = this.$options.myOption
@@ -107,11 +107,11 @@ new Vue({
 // -> "hello!"
 ```
 
-<p class="tip">谨慎使用全局混合对象，因为会影响到每个单独创建的 Vue 实例（包括第三方模板）。大多数情况下，只应当应用于自定义选项，就像上面示例一样。 也可以将其用作 [Plugins](plugins.html) 以避免产生重复应用</p>
+<p class="tip">请少量且小心谨慎地使用全局混合，因为这会影响到之后创建的每个 Vue 实例，包括第三方组件也会受到影响。在多数情况下，如同以上示例中所演示的，你应该只将全局混合，用于自定义选项的处理逻辑。还有一个比较不错的做法，可以将选项传入到[插件](plugins.html)，通过插件来复用组件功能，以避免应用程序中的重复部分。</p>
 
-## 自定义选项混合策略
+## 自定义选项的合并策略(Custom Option Merge Strategies)
 
-自定义选项将使用默认策略，即简单地覆盖已有值。 如果想让自定义选项以自定义逻辑混合，可以向 `Vue.config.optionMergeStrategies` 添加一个函数：
+在合并自定义选项(custom option)时，Vue 会使用默认策略，即直接覆盖已有值。如果想要定制自定义选项的合并逻辑，则需要向 `Vue.config.optionMergeStrategies` 添加一个函数：
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -119,14 +119,14 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 }
 ```
 
-对于大多数对象选项，可以使用 `methods` 的合并策略:
+对于大多数基于对象(object-based)的选项，可以直接使用 `methods` 的合并策略：
 
 ``` js
 var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 1.x的混合策略里找到:
+可以在 [Vuex](https://github.com/vuejs/vuex) 1.x 的合并策略里，找到一个高级用法示例：
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed
@@ -143,6 +143,6 @@ Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
 
 ***
 
-> 原文： http://vuejs.org/guide/mixins.html
+> 原文：https://vuejs.org/v2/guide/mixins.html
 
 ***
