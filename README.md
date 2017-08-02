@@ -22,7 +22,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Event Handling (Tradução: @gidenilson. Revisão: **pendente**)
 - [ ] Form Input Bindings(Tradução: @gidenilson. Revisão: **pendente**)
 - [X] Components (Tradução: @thiagorossener, Revisão: **pendente**)
-- [ ] Reactivity in Depth (Tradução: @gidenilson. Revisão: **pendente**)
+- [ ] Reactivity in Depth (Tradução: @gidenilson / @alaexandesigner. Revisão: **pendente**)
 - [ ] Transition Effects (Tradução: @jbruni, @NicholasPedroso. Revisão: **pendente**)
 - [ ] Transitioning State (Tradução: **pendente**)
 - [X] Render Functions (Tradução: @jbruni. Revisão: @ErickPetru)
