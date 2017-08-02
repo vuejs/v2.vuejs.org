@@ -839,35 +839,35 @@ if (version === 2) {
 
 ### directives
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalhes:**
 
-  A hash of directives to be made available to the Vue instance.
+  Um hash de diretivas que será disponibilizado para a instância do Vue.
 
-- **See also:**
+- **Veja tambem:**
   - [Custom Directives](../guide/custom-directive.html)
 
 ### filters
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalhes:**
 
-  A hash of filters to be made available to the Vue instance.
+  Um hash de filtros que será disponibilizado para a instância do Vue.
 
-- **See also:**
+- **Veja também:**
   - [`Vue.filter`](#Vue-filter)
 
 ### components
 
 - **Type:** `Object`
 
-- **Details:**
+- **Detalhes:**
 
-  A hash of components to be made available to the Vue instance.
+  Um hash de componentes que será disponibilizado para a instância do Vue.
 
-- **See also:**
+- **Veja também:**
   - [Components](../guide/components.html)
 
 ## Options / Composition
