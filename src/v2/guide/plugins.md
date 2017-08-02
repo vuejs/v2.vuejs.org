@@ -12,7 +12,7 @@ Plugins usually add global-level functionality to Vue. There is no strictly defi
 
 2. Add one or more global assets: directives/filters/transitions etc. e.g. [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. Add some component options by global mixin. e.g. [vuex](https://github.com/vuejs/vuex)
+3. Add some component options by global mixin. e.g. [vuex](https://github.com/vuejs/vuex) 1.x
 
 4. Add some Vue instance methods by attaching them to Vue.prototype.
 
