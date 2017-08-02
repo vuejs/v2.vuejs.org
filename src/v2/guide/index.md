@@ -44,11 +44,13 @@ var app = new Vue({
   {{ message }}
 </div>
 <script>
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!'
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -80,11 +82,13 @@ var app2 = new Vue({
   </span>
 </div>
 <script>
-var app2 = new Vue({
-  el: '#app-2',
-  data: {
-    message: 'You loaded this page on ' + new Date()
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  var app2 = new Vue({
+    el: '#app-2',
+    data: {
+      message: 'You loaded this page on ' + new Date()
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -117,11 +121,13 @@ var app3 = new Vue({
   <span v-if="seen">Now you see me</span>
 </div>
 <script>
-var app3 = new Vue({
-  el: '#app-3',
-  data: {
-    seen: true
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  var app3 = new Vue({
+    el: '#app-3',
+    data: {
+      seen: true
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -162,15 +168,17 @@ var app4 = new Vue({
   </ol>
 </div>
 <script>
-var app4 = new Vue({
-  el: '#app-4',
-  data: {
-    todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
-    ]
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  var app4 = new Vue({
+    el: '#app-4',
+    data: {
+      todos: [
+        { text: 'Learn JavaScript' },
+        { text: 'Learn Vue' },
+        { text: 'Build something awesome' }
+      ]
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -206,16 +214,18 @@ var app5 = new Vue({
   <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
 <script>
-var app5 = new Vue({
-  el: '#app-5',
-  data: {
-    message: 'Hello Vue.js!'
-  },
-  methods: {
-    reverseMessage: function () {
-      this.message = this.message.split('').reverse().join('')
+document.addEventListener('DOMContentLoaded', function() {
+  var app5 = new Vue({
+    el: '#app-5',
+    data: {
+      message: 'Hello Vue.js!'
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -244,11 +254,13 @@ var app6 = new Vue({
   <input v-model="message">
 </div>
 <script>
-var app6 = new Vue({
-  el: '#app-6',
-  data: {
-    message: 'Hello Vue!'
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  var app6 = new Vue({
+    el: '#app-6',
+    data: {
+      message: 'Hello Vue!'
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -332,19 +344,21 @@ var app7 = new Vue({
   </ol>
 </div>
 <script>
-Vue.component('todo-item', {
-  props: ['todo'],
-  template: '<li>{{ todo.text }}</li>'
-})
-var app7 = new Vue({
-  el: '#app-7',
-  data: {
-    groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
-    ]
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+  })
+  var app7 = new Vue({
+    el: '#app-7',
+    data: {
+      groceryList: [
+        { id: 0, text: 'Vegetables' },
+        { id: 1, text: 'Cheese' },
+        { id: 2, text: 'Whatever else humans are supposed to eat' }
+      ]
+    }
+  })
 })
 </script>
 {% endraw %}

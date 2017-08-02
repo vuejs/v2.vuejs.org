@@ -561,48 +561,50 @@ You may be interested to know that Vue's templates actually compile to render fu
   </div>
 </div>
 <script>
-new Vue({
-  el: '#vue-compile-demo',
-  data: {
-    templateText: '\
-<div>\n\
-  <header>\n\
-    <h1>I\'m a template!</h1>\n\
-  </header>\n\
-  <p v-if="message">\n\
-    {{ message }}\n\
-  </p>\n\
-  <p v-else>\n\
-    No message.\n\
-  </p>\n\
-</div>\
-    ',
-  },
-  computed: {
-    result: function () {
-      if (!this.templateText) {
-        return 'Enter a valid template above'
-      }
-      try {
-        var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
-        return {
-          render: this.formatFunction(result.render),
-          staticRenderFns: result.staticRenderFns.map(this.formatFunction)
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#vue-compile-demo',
+    data: {
+      templateText: '\
+  <div>\n\
+    <header>\n\
+      <h1>I\'m a template!</h1>\n\
+    </header>\n\
+    <p v-if="message">\n\
+      {{ message }}\n\
+    </p>\n\
+    <p v-else>\n\
+      No message.\n\
+    </p>\n\
+  </div>\
+      ',
+    },
+    computed: {
+      result: function () {
+        if (!this.templateText) {
+          return 'Enter a valid template above'
         }
-      } catch (error) {
-        return error.message
+        try {
+          var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
+          return {
+            render: this.formatFunction(result.render),
+            staticRenderFns: result.staticRenderFns.map(this.formatFunction)
+          }
+        } catch (error) {
+          return error.message
+        }
+      }
+    },
+    methods: {
+      formatFunction: function (fn) {
+        return fn.toString().replace(/(\{\n)(\S)/, '$1  $2')
       }
     }
-  },
-  methods: {
-    formatFunction: function (fn) {
-      return fn.toString().replace(/(\{\n)(\S)/, '$1  $2')
-    }
+  })
+  console.error = function (error) {
+    throw new Error(error)
   }
 })
-console.error = function (error) {
-  throw new Error(error)
-}
 </script>
 <style>
 #vue-compile-demo {

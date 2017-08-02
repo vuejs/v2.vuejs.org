@@ -25,11 +25,13 @@ You can use the `v-model` directive to create two-way data bindings on form inpu
   <p>Message is: {{ message }}</p>
 </div>
 <script>
-new Vue({
-  el: '#example-1',
-  data: {
-    message: ''
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-1',
+    data: {
+      message: ''
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -51,11 +53,13 @@ new Vue({
   <textarea v-model="message" placeholder="add multiple lines"></textarea>
 </div>
 <script>
-new Vue({
-  el: '#example-textarea',
-  data: {
-    message: ''
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-textarea',
+    data: {
+      message: ''
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -79,11 +83,13 @@ Single checkbox, boolean value:
   <label for="checkbox">{{ checked }}</label>
 </div>
 <script>
-new Vue({
-  el: '#example-2',
-  data: {
-    checked: false
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-2',
+    data: {
+      checked: false
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -122,11 +128,13 @@ new Vue({
   <span>Checked names: {{ checkedNames }}</span>
 </div>
 <script>
-new Vue({
-  el: '#example-3',
-  data: {
-    checkedNames: []
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-3',
+    data: {
+      checkedNames: []
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -154,11 +162,13 @@ new Vue({
   <span>Picked: {{ picked }}</span>
 </div>
 <script>
-new Vue({
-  el: '#example-4',
-  data: {
-    picked: ''
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-4',
+    data: {
+      picked: ''
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -195,11 +205,13 @@ new Vue({
   <span>Selected: {{ selected }}</span>
 </div>
 <script>
-new Vue({
-  el: '#example-5',
-  data: {
-    selected: ''
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-5',
+    data: {
+      selected: ''
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -228,11 +240,13 @@ Multiple select (bound to Array):
   <span>Selected: {{ selected }}</span>
 </div>
 <script>
-new Vue({
-  el: '#example-6',
-  data: {
-    selected: []
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-6',
+    data: {
+      selected: []
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -270,16 +284,18 @@ new Vue({
   <span>Selected: {{ selected }}</span>
 </div>
 <script>
-new Vue({
-  el: '#example-7',
-  data: {
-    selected: 'A',
-    options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
-    ]
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-7',
+    data: {
+      selected: 'A',
+      options: [
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' }
+      ]
+    }
+  })
 })
 </script>
 {% endraw %}

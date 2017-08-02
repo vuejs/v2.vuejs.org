@@ -112,16 +112,18 @@ Check it out for yourself by entering some text in the input, then pressing the 
   <button @click="toggleLoginType">Toggle login type</button>
 </div>
 <script>
-new Vue({
-  el: '#no-key-example',
-  data: {
-    loginType: 'username'
-  },
-  methods: {
-    toggleLoginType: function () {
-      return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#no-key-example',
+    data: {
+      loginType: 'username'
+    },
+    methods: {
+      toggleLoginType: function () {
+        return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -156,16 +158,18 @@ Now those inputs will be rendered from scratch each time you toggle. See for you
   <button @click="toggleLoginType">Toggle login type</button>
 </div>
 <script>
-new Vue({
-  el: '#key-example',
-  data: {
-    loginType: 'username'
-  },
-  methods: {
-    toggleLoginType: function () {
-      return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#key-example',
+    data: {
+      loginType: 'username'
+    },
+    methods: {
+      toggleLoginType: function () {
+        return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
