@@ -38,8 +38,6 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
     <img src="/images/someline.png">
   </a><a href="http://monterail.com/" target="_blank">
     <img src="/images/monterail.png">
-  </a><a href="https://www.trisoft.ro/" target="_blank">
-    <img src="/images/trisoft.png">
   </a><a href="https://www.2mhost.com/" target="_blank">
     <img src="/images/2mhost.png">
   </a><a href="https://vuejobs.com/?ref=vuejs" target="_blank" style="position:relative;top:6px">
@@ -50,8 +48,8 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
     <img src="/images/famebroker.png" style="width:135px">
   </a><a href="https://component.io" target="_blank" style="width:140px">
     <img src="/images/component_io.png" style="width:140px">
-  </a><a href="https://cn.100offer.com/how-it-works/?utm_source=vuejs&utm_medium=display&utm_campaign=vuejs_20170704&utm_content=find_new_job&campaign_code=vuejs" target="_blank" style="width:110px;">
-    <img src="/images/100offer.png" style="width:110px">
+  </a><a href="https://www.v2ex.com/t/379389" target="_blank" style="width:120px;">
+    <img src="/images/v2exer.png" style="width:120px;">
   </a>
 </p>
 
