@@ -50,7 +50,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: @derevandal)
 - [ ] Options / Assets (Tradução: @kimuraz. Revisão: **pendente**)
 - [ ] Options / Composition
-- [ ] Options / Misc
+- [ ] Options / Misc (Tradução: @vitorbaraujo. Revisão: **pendente**)
 - [ ] Instance Properties
 - [ ] Instance Methods / Data
 - [ ] Instance Methods / Events
