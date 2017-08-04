@@ -892,14 +892,22 @@ if (version === 2) {
 
   ``` js
   var mixin = {
-    created: function () { console.log(1) }
+    created: function () { console.log(1) },
+    methods: {
+      test: function () { console.log('mixin') }
+    }
   }
   var vm = new Vue({
     created: function () { console.log(2) },
+    methods: {
+      test: function () { console.log('vue') }
+    },
     mixins: [mixin]
   })
+  
   // -> 1
   // -> 2
+  vm.test() // -> vue
   ```
 
 - **See also:** [Mixins](../guide/mixins.html)
@@ -912,18 +920,29 @@ if (version === 2) {
 
   Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
 
-  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+  This is similar to `mixins`, the component's own options also takes higher priority than the source component being extended.
 
 - **Example:**
 
   ``` js
-  var CompA = { ... }
+  var CompA = {
+    methods: {
+      test: function () { console.log('A') }
+    },
+    // ...
+  }
 
   // extend CompA without having to call Vue.extend on either
   var CompB = {
     extends: CompA,
-    ...
+    methods: {
+      test: function () { console.log('B') }
+    }
+    // ...
   }
+  
+  var vm = new Vue(CompB)
+  vm.test() // -> B
   ```
 
 ### provide / inject
