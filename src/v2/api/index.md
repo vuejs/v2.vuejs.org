@@ -44,7 +44,7 @@ type: api
 
   合并策略选项分别接受第一个参数作为父实例，第二个参数为子实例，Vue实例上下文被作为第三个参数传入。
 
-- **参考** [自定义选项的混合策略](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **参考** [自定义选项的混合策略](../guide/mixins.html#自定义选项的合并策略-Custom-Option-Merge-Strategies)
 
 ### devtools
 
@@ -72,44 +72,44 @@ type: api
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
     // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
+    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子
+    // 只在 2.2.0+ 可用
   }
   ```
 
   指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
 
-  > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  > 从 2.2.0+ 起，这个钩子也会捕获组件生命周期钩子里的错误。同样的，当这个钩子是 `undefined` 时，被捕获的错误会通过 `console.error` 输出而避免应用崩溃。
 
-  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
+  > 从 2.4.0+ 起这个钩子也会捕获 Vue 自定义事件句柄内部的错误了。
 
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > [Sentry](https://sentry.io), 一个错误追踪服务, 通过此选项提供[官方集成](https://sentry.io/for/vue/)。
 
 ### warnHandler
 
-> New in 2.4.0+
+> 2.4.0+ 新增
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Default:** `undefined`
+- **默认值：** `undefined`
 
-- **Usage:**
+- **用法：**
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // trace is the component hierarchy trace
+    // 追踪组件继承
   }
   ```
 
-  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+  为 Vue 的运行时警告赋于一个自定义句柄。注意这只会在开发者环境下生效，在生产环境下它会被忽略。
 
 ### ignoredElements
 
-- **类型:** `Array<string>`
+- **类型：** `Array<string>`
 
-- **默认值:** `[]`
+- **默认值：** `[]`
 
-- **用法:**
+- **用法：**
 
   ``` js
   Vue.config.ignoredElements = [
@@ -131,10 +131,10 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase won`t work
+    // camelCase 不可用
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quotation marks
-    "media-play-pause" : 179,
+    // 取而代之的是 kebab-case 且用双引号括起来
+    "media-play-pause": 179,
     up: [38, 87]
   }
   ```
@@ -145,33 +145,33 @@ type: api
 
   给 v-on 自定义键位别名。
 
-### 性能
+### performance
 
-> New in 2.2.0+
+> 2.2.0+ 新增
 
-- **Type:** `boolean`
+- **类型：** `boolean`
 
-- **Default:** `false (from 2.2.3+)`
+- **默认值：** `false (从 2.2.3+ 开始)`
 
-- **Usage**:
+- **用法：**
 
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool timeline. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+  设置为 `true` 以在浏览器开发工具中启用对组件初始化，渲染和打补丁的性能追踪。只适用于开发模式和支持 [`performance.mark`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API的浏览器上。
 
 ### productionTip
 
-> New in 2.2.0+
+> 2.2.0+ 新增
 
-- **Type:** `boolean`
+- **类型：** `boolean`
 
-- **Default:** `true`
+- **默认值：** `true`
 
-- **Usage**:
+- **用法：**
 
-  Set this to `false` to prevent the production tip on Vue startup.
+  设置为 `false` 以阻止 vue 在启动时生成生产提示。
 
 ## 全局 API
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **参数：**
   - `{Object} options`
@@ -210,7 +210,7 @@ type: api
 
 - **参考：** [组件](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+### Vue.nextTick( [callback, context] )
 
 - **参数：**
   - `{Function} [callback]`
@@ -231,9 +231,9 @@ type: api
 
   > 2.1.0+ 新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
-- **参考：** [异步更新队列](../guide/reactivity.html#Async-Update-Queue)
+- **参考：** [异步更新队列](../guide/reactivity.html#异步更新队列)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, key, value )
 
 - **参数：**
   - `{Object | Array} target`
@@ -250,23 +250,25 @@ type: api
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, key )
 
 - **参数：**
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > Only works with Array + index in 2.2.0+.
+  > 仅在 2.2.0+ 版本中支持 Array + index 用法。
 
 - **用法：**
 
   删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
 
-  <p class="tip">注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象</p>
+  > 在 2.2.0+ 中同样支持在数组上工作。
+
+  <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **参数：**
   - `{string} id`
@@ -297,7 +299,7 @@ type: api
 
 - **参考：** [自定义指令](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+### Vue.filter( id, [definition] )
 
 - **参数：**
   - `{string} id`
@@ -317,7 +319,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+### Vue.component( id, [definition] )
 
 - **参数：**
   - `{string} id`
@@ -340,7 +342,7 @@ type: api
 
 - **参考：** [组件](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **参数：**
   - `{Object | Function} plugin`
@@ -353,7 +355,7 @@ type: api
 
 - **参考：** [插件](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **参数：**
   - `{Object} mixin`
@@ -362,9 +364,9 @@ type: api
 
   全局注册一个混合，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混合，向组件注入自定义的行为。**不推荐在应用代码中使用**。
 
-- **参考：** [全局混合](../guide/mixins.html#Global-Mixin)
+- **参考：** [全局混合](../guide/mixins.html#全局混合)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **参数：**
   - `{string} template`
@@ -387,11 +389,11 @@ type: api
 
 - **参考：** [Render 函数](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
-- **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
+- **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
-- **Usage**:
+- **用法：**
 
 ```js
 var version = Number(Vue.version.split('.')[0])
@@ -411,9 +413,9 @@ if (version === 2) {
 
 - **类型：** `Object | Function`
 
-- **限制:** 组件的定义只接受 `function`。
+- **限制：** 组件的定义只接受 `function`。
 
-- **详细:**
+- **详细：**
 
   Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。**对象必须是纯粹的对象(含有零个或多个的key/value对)**：浏览器 API 创建的原生对象，原型上的属性会被忽略。大概来说，data 应该只能是数据 - 不推荐观察拥有状态行为的对象。
 
@@ -427,7 +429,7 @@ if (version === 2) {
 
  如果需要，可以通过将 `vm.$data` 传入 `JSON.parse(JSON.stringify(...))` 得到深拷贝的原始数据对象。
 
-- **示例:**
+- **示例：**
 
   ``` js
   var data = { a: 1 }
@@ -449,17 +451,17 @@ if (version === 2) {
 
   <p class="tip">注意，__不应该对 `data` 属性使用箭头函数__ (例如`data: () => { return { a: this.myProp }}`)。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，`this.myProp` 将是 undefined。</p>
 
-- **参考:** [深入响应式原理](../guide/reactivity.html)
+- **参考：** [深入响应式原理](../guide/reactivity.html)
 
 ### props
 
-- **类型:** `Array<string> | Object`
+- **类型：** `Array<string> | Object`
 
-- **详细:**
+- **详细：**
 
   props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
 
-- **示例:**
+- **示例：**
 
   ``` js
   // 简单语法
@@ -485,19 +487,19 @@ if (version === 2) {
   })
   ```
 
-- **参考:** [Props](../guide/components.html#Props)
+- **参考：** [Props](../guide/components.html#Props)
 
 ### propsData
 
-- **类型:** `{ [key: string]: any }`
+- **类型：** `{ [key: string]: any }`
 
-- **限制:** 只用于 `new` 创建的实例中。
+- **限制：** 只用于 `new` 创建的实例中。
 
-- **详细:**
+- **详细：**
 
   创建实例时传递 props。主要作用是方便测试。
 
-- **示例:**
+- **示例：**
 
   ``` js
   var Comp = Vue.extend({
@@ -516,15 +518,15 @@ if (version === 2) {
 
 - **类型：** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **详细:**
+- **详细：**
 
   计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
 
   <p class="tip">注意，__不应该使用箭头函数来定义计算属性函数__ (例如 `aDouble: () => this.a * 2`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
+  计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果实例范畴之外的依赖 (比如非响应式的 not reactive) 是__不会__触发计算属性更新的。
 
-- **示例:**
+- **示例：**
 
   ```js
   var vm = new Vue({
@@ -556,15 +558,15 @@ if (version === 2) {
 
 ### methods
 
-- **类型:** `{ [key: string]: Function }`
+- **类型：** `{ [key: string]: Function }`
 
-- **详细:**
+- **详细：**
 
   methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 `this` 自动绑定为 Vue 实例。
 
   <p class="tip">注意，__不应该使用箭头函数来定义 method 函数__ (例如 `plus: () => this.a++`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
 
-- **示例:**
+- **示例：**
 
   ```js
   var vm = new Vue({
@@ -583,13 +585,13 @@ if (version === 2) {
 
 ### watch
 
-- **类型:** `{ [key: string]: string | Function | Object }`
+- **类型：** `{ [key: string]: string | Function | Object }`
 
-- **详细:**
+- **详细：**
 
   一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 `$watch()`，遍历 watch 对象的每一个属性。
 
-- **示例:**
+- **示例：**
 
   ``` js
   var vm = new Vue({
@@ -636,11 +638,11 @@ if (version === 2) {
 
   <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载root实例到 `<html>` 或者 `<body>` 上。</p>
 
-  <p class="tip">If neither `render` function nor `template` option is present, the in-DOM HTML of the mounting DOM element will be extracted as the template. In this case, Runtime + Compiler build of Vue should be used.</p>
+  <p class="tip">如果 `render` 函数和 `template` 属性都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。</p>
 
 - **参考：**
-  - [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
-  - [Runtime + Compiler vs. Runtime-only](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
+  - [生命周期图示](../guide/instance.html#生命周期图示)
+  - [独立构建-vs-运行时构建](../guide/installation.html#独立构建-vs-运行时构建)
 
 ### template
 
@@ -654,11 +656,11 @@ if (version === 2) {
 
   <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
 
-  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+  <p class="tip">如果 Vue 选项中包含 render 函数，template 选项将被忽略。</p>
 
-- **See also:**
-  - [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
-  - [内容分发](../guide/components.html#Content-Distribution-with-Slots)
+- **参考：**
+  - [生命周期图示](../guide/instance.html#生命周期图示)
+  - [内容分发](../guide/components.html#使用-Slot-分发内容)
 
 ### render
 
@@ -670,24 +672,24 @@ if (version === 2) {
 
     如果组件是一个函数组件，Render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
 
-    <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
+    <p class="tip">Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译 render 函数。</p>
 
-  - **See also:**
-    - [Render Functions](../guide/render-function.html)
+  - **参考：**
+    - [Render 函数](../guide/render-function.html)
 
 ### renderError
 
-> New in 2.2.0+
+> 2.2.0+ 新增
 
-  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+  - **类型：** `(createElement: () => VNode, error: Error) => VNode`
 
-  - **Details:**
+  - **详细：**
 
-    **Only works in development mode.**
+    **只在开发者环境下工作。**
 
-    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+    当 `render` 函数遭遇错误时，提供另外一种渲染输出。其错误将会作为第二个参数传递到 `renderError`。这个功能配合 hot-reload 非常实用。
 
-  - **Example:**
+  - **示例：**
 
     ``` js
     new Vue({
@@ -715,7 +717,7 @@ if (version === 2) {
 
   在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用。
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### created
 
@@ -725,7 +727,7 @@ if (version === 2) {
 
   实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### beforeMount
 
@@ -737,7 +739,7 @@ if (version === 2) {
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### mounted
 
@@ -749,7 +751,7 @@ if (version === 2) {
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### beforeUpdate
 
@@ -763,7 +765,7 @@ if (version === 2) {
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### updated
 
@@ -773,11 +775,11 @@ if (version === 2) {
 
   由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。
 
-  当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。
+  当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态。如果要相应状态改变，通常最好使用[计算属性](#computed)或 [watcher](#watch) 取而代之。
 
-  **This hook is not called during server-side rendering.**
+  **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### activated
 
@@ -817,7 +819,7 @@ if (version === 2) {
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### destroyed
 
@@ -829,15 +831,15 @@ if (version === 2) {
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ## 选项 / 资源
 
 ### directives
 
-- **类型:** `Object`
+- **类型：** `Object`
 
-- **详细:**
+- **详细：**
 
 包含 Vue 实例可用指令的哈希表。
 
@@ -846,9 +848,9 @@ if (version === 2) {
 
 ### filters
 
-- **类型:** `Object`
+- **类型：** `Object`
 
-- **详细:**
+- **详细：**
 
 包含 Vue 实例可用过滤器的哈希表。
 
@@ -857,22 +859,22 @@ if (version === 2) {
 
 ### components
 
-- **类型:** `Object`
+- **类型：** `Object`
 
-- **详细:**
+- **详细：**
 
 包含 Vue 实例可用组件的哈希表。
 
 - **参考：**
   - [组件](../guide/components.html)
 
-##  选项 / 杂项
+## 选项 / 杂项
 
 ### parent
 
-- **类型:** `Vue instance`
+- **类型：** `Vue instance`
 
-- **详细:**
+- **详细：**
 
   指定已创建的实例之父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
 
@@ -880,14 +882,15 @@ if (version === 2) {
 
 ### mixins
 
-- **类型:** `Array<Object>`
+- **类型：** `Array<Object>`
 
-- **详细:**
+- **详细：**
 
   `mixins` 选项接受一个混合对象的数组。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。举例：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。
+
   Mixin钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。
 
-- **示例:**
+- **示例：**
 
   ``` js
   var mixin = {
@@ -905,15 +908,15 @@ if (version === 2) {
 
 ### extends
 
-- **类型:** `Object | Function`
+- **类型：** `Object | Function`
 
-- **详细:**
+- **详细：**
 
   允许声明扩展另一个组件(可以是一个简单的选项对象或构造函数),而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
 
   这和 `mixins` 类似，区别在于，组件自身的选项会比要扩展的源组件具有更高的优先级。
 
-- **示例:**
+- **示例：**
 
   ``` js
   var CompA = { ... }
@@ -927,25 +930,25 @@ if (version === 2) {
 
 ### provide / inject
 
-> New in 2.2.0+
+> 2.2.0+ 新增
 
-- **Type:**
+- **类型：**
   - **provide:** `Object | () => Object`
   - **inject:** `Array<string> | { [key: string]: string | Symbol }`
 
-- **Details:**
+- **详细：**
 
-  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+  <p class="tip">`provide` 和 `inject` 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。如果你熟悉 React，这与 React 的上下文特性很相似。
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  `provide` 选项应该是一个对象或返回一个对象的函数。该对象包含可注入其子孙的属性。在该对象中你可以使用 ES2015 Symbols 作为 key，但是只在原生支持 `Symbol` 和 `Reflect.ownKeys` 的环境下可工作。
 
-  The `inject` options should be either an Array of strings or an object where the keys stand for the local binding name, and the value being the key (string or Symbol) to search for in available injections.
+  `inject` 选项应该是一个字符串数组或一个对象，该对象的 key 代表了本地绑定的名称，value 为其 key (字符串或 Symbol) 以在可用的注入中搜索。
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+  > 提示：`provide` 和 `inject` 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。
 
-- **Example:**
+- **示例：**
 
   ``` js
   var Provider = {
@@ -964,7 +967,8 @@ if (version === 2) {
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  利用 ES2015 Symbols、函数 `provide` 和对象 `inject`：
+
   ``` js
   const s = Symbol()
 
@@ -982,9 +986,10 @@ if (version === 2) {
   }
   ```
 
-  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > 接下来 2 个例子只工作在 Vue 2.2.1 或更高版本。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
 
-  Using an injected value as the default for a prop:
+  使用一个注入的值作为一个属性的默认值：
+
   ```js
   const Child = {
     inject: ['foo'],
@@ -998,7 +1003,7 @@ if (version === 2) {
   }
   ```
 
-  Using an injected value as data entry:
+  使用一个注入的值作为数据入口：
   ```js
   const Child = {
     inject: ['foo'],
@@ -1010,23 +1015,23 @@ if (version === 2) {
   }
   ```
 
-## Options / Misc
+## 选项 / 其它
 
 ### name
 
-- **Type:** `string`
+- **类型：** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **限制：** 只有作为组件选项时起作用。
 
-- **Details:**
+- **详细：**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  允许组件模板递归地调用自身。注意，组件在全局用 `Vue.component()` 注册时，全局 ID 自动作为组件的 name。
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  指定 `name` 选项的另一个好处是便于调试。有名字的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools), 未命名组件将显示成 `<AnonymousComponent>`, 这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
 
 ### delimiters
 
-- **类型:** `Array<string>`
+- **类型：** `Array<string>`
 
 - **默认值:** `{% raw %}["{{", "}}"]{% endraw %}`
 
@@ -1036,7 +1041,7 @@ if (version === 2) {
 
   改变纯文本插入分隔符。
 
-- **示例:**
+- **示例：**
 
   ``` js
   new Vue({
@@ -1048,24 +1053,23 @@ if (version === 2) {
 
 ### functional
 
-- **类型:** `boolean`
+- **类型：** `boolean`
 
-- **详细:**
+- **详细：**
 
   使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
 
-- **参考：
-** [函数式组件](../guide/render-function.html#Functional-Components)
+- **参考：** [函数式组件](../guide/render-function.html#函数化组件)
 
 ### model
 
-> New in 2.2.0
+> 2.2.0 新增
 
-- **Type:** `{ prop?: string, event?: string }`
+- **类型：** `{ prop?: string, event?: string }`
 
-- **Details:**
+- **详细：**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  允许一个自定义组件在使用 `v-model` 时定制 prop 和 event。默认情况下，一个组件上的 `v-model` 会把 `value` 用作 prop 且把 `input` 用作 event，但是一些输入类型比如单选框和复选框按钮可能像使用 `value` prop 来达到不同的目的。使用 `model` 选项可以回避这些情况产生的冲突。
 
 - **Example:**
 
@@ -1092,7 +1096,7 @@ if (version === 2) {
   <my-checkbox v-model="foo" value="some value"></my-checkbox>
   ```
 
-  The above will be equivalent to:
+  上述代码相当于：
 
   ``` html
   <my-checkbox
@@ -1104,39 +1108,39 @@ if (version === 2) {
 
 ### inheritAttrs
 
-> New in 2.4.0+
+> 2.4.0+ 新增
 
-- **Type:** `boolean`
+- **类型：** `boolean`
 
-- **Default:** `true`
+- **默认值：** `true`
 
-- **Details:**
+- **详细：**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 `inheritAttrs` 到 `false`，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 `$attrs` 可以让这些特性生效，且可以通过 `v-bind` 显性的绑定到非根元素上。
 
-  Note: this option does **not** affect `class` and `style` bindings.
+  注意：这个选项**不影响** `class` 和 `style` 绑定。
 
 ### comments
 
-> New in 2.4.0+
+> 2.4.0+ 新增
 
-- **Type:** `boolean`
+- **类型：** `boolean`
 
-- **Default:** `false`
+- **默认值：** `false`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **限制：** 这个选项只在完整构建版本中的浏览器内编译时可用。
 
-- **Details:**
+- **详细：**
 
-  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+  当设为 `true` 时，将会保留且渲染模板中的 HTML 注释。默认行为是舍弃它们。
 
 ## 实例属性
 
 ### vm.$data
 
-- **类型:** `Object`
+- **类型：** `Object`
 
-- **详细:**
+- **详细：**
 
   Vue 实例观察的数据对象。Vue 实例代理了对其 data 对象属性的访问。
 
@@ -1144,31 +1148,31 @@ if (version === 2) {
 
 ### vm.$props
 
-> New in 2.2.0+
+> 2.2.0+ 新增
 
-- **Type:** `Object`
+- **类型：** `Object`
 
-- **Details:**
+- **详细：**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+一个对象，代表当前组件收到的 props。Vue 示例代理访问到这个 props 对象的属性们。
 
 ### vm.$el
 
-- **类型:** `HTMLElement`
+- **类型：** `HTMLElement`
 
 - **只读**
 
-- **详细:**
+- **详细：**
 
   Vue 实例使用的根 DOM 元素。
 
 ### vm.$options
 
-- **类型:** `Object`
+- **类型：** `Object`
 
 - **只读**
 
-- **详细:**
+- **详细：**
 
   用于当前 Vue 实例的初始化选项。需要在选项中包含自定义属性时会有用处：
 
@@ -1183,31 +1187,31 @@ if (version === 2) {
 
 ### vm.$parent
 
-- **类型:** `Vue instance`
+- **类型：** `Vue instance`
 
 - **只读**
 
-- **详细:**
+- **详细：**
 
   父实例，如果当前实例有的话。
 
 ### vm.$root
 
-- **类型:** `Vue instance`
+- **类型：** `Vue instance`
 
 - **只读**
 
-- **详细:**
+- **详细：**
 
   当前组件树的根 Vue 实例。如果当前实例没有父实例，此实例将会是其自已。
 
 ### vm.$children
 
-- **类型:** `Array<Vue instance>`
+- **类型：** `Array<Vue instance>`
 
 - **只读**
 
-- **详细:**
+- **详细：**
 
   当前实例的直接子组件。**需要注意 `$children` 并不保证顺序，也不是响应式的。**如果你发现自己正在尝试使用 `$children` 来进行数据绑定，考虑使用一个数组配合 `v-for` 来生成子组件，并且使用 Array 作为真正的来源。
 
@@ -1217,13 +1221,13 @@ if (version === 2) {
 
 - **只读**
 
-- **详细:**
+- **详细：**
 
-  用来访问被 [slot 分发](../guide/components.html#Content-Distribution-with-Slots)的内容。每个[具名 slot](../guide/components.html#Named-Slots) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
+  用来访问被 [slot 分发](../guide/components.html#使用-Slot-分发内容)的内容。每个[具名 slot](../guide/components.html#具名-Slot) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
 
   在使用 [render 函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
-- **示例:**
+- **示例：**
 
   ```html
   <blog-post>
@@ -1258,7 +1262,7 @@ if (version === 2) {
 
 - **参考：**
   - [`<slot>` 组件](#slot-1)
-  - [使用 Slots 进行内容分发](../guide/components.html#Content-Distribution-with-Slots)
+  - [使用 Slots 进行内容分发](../guide/components.html#使用-Slot-分发内容)
   - [Render 函数](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
@@ -1271,9 +1275,9 @@ if (version === 2) {
 
 - **详细：**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  用来访问 [scoped slots](../guide/components.html#Scoped-Slots)。对于包括 `默认 slot` 在内的每一个 slot， 该对象都包含一个返回相应 VNode 的函数。
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  在使用 [render 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
 
 - **参考：**
   - [`<slot>` 组件](#slot-1)
@@ -1291,7 +1295,7 @@ if (version === 2) {
   一个对象，其中包含了所有拥有 `ref` 注册的子组件。
 
 - **另见：**
-  - [子组件引用](../guide/components.html#Child-Component-Refs)
+  - [子组件引用](../guide/components.html#子组件索引)
   - [ref](#ref)
 
 ### vm.$isServer
@@ -1308,27 +1312,27 @@ if (version === 2) {
 
 ### vm.$attrs
 
-- **Type:** `{ [key: string]: string }`
+- **类型：** `{ [key: string]: string }`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细：**
 
-  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  包含了父作用域中不被认为 (且不预期为) props 的特性绑定 (`class` 和 `style` 除外)。当一个组件没有声明任何 props 时，这里会包含所有父作用域的绑定 (`class` 和 `style` 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建更高层次的组件时非常有用。
 
 ### vm.$listeners
 
-- **Type:** `{ [key: string]: Function | Array<Function> }`
+- **类型：** `{ [key: string]: Function | Array<Function> }`
 
-- **Read only**
+- **只读**
 
-- **Details:**
+- **详细：**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating higher-order components.
+  包含了父作用域中的 (不含 `.native` 修饰器的) `v-on` 事件监听器。它可以通过 `v-on="$listeners"` 传入内部组件——在创建更高层次的组件时非常有用。
 
 ## 实例方法 / 数据
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+### vm.$watch( expOrFn, callback, [options] )
 
 - **参数：**
   - `{string | Function} expOrFn`
@@ -1343,7 +1347,7 @@ if (version === 2) {
 
   观察 Vue 实例变化的一个表达式或计算属性函数。回调函数得到的参数为新值和旧值。表达式只接受监督的键路径。对于更复杂的表达式，用一个函数取代。
 
-  <p class="tip">注意：在变异（不是替换）对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变异之前值的副本。</p>
+<p class="tip">注意：在变异（不是替换）对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变异之前值的副本。</p>
 
 - **示例：**
 
@@ -1395,7 +1399,7 @@ if (version === 2) {
   // 立即以 `a` 的当前值触发回调
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+### vm.$set( target, key, value )
 
 - **参数：**
   - `{Object | Array} target`
@@ -1410,7 +1414,7 @@ if (version === 2) {
 
 - **另见：** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+### vm.$delete( target, key )
 
 - **参数：**
   - `{Object | Array} target`
@@ -1424,10 +1428,10 @@ if (version === 2) {
 
 ## 实例方法/事件
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+### vm.$on( event, callback )
 
 - **参数：**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+  - `{string | Array<string>} event` (数组只在 2.2.0+ 中支持)
   - `{Function} callback`
 
 - **用法：**
@@ -1444,7 +1448,7 @@ if (version === 2) {
   // -> "hi"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+### vm.$once( event, callback )
 
 - **参数：**
   - `{string} event`
@@ -1452,9 +1456,9 @@ if (version === 2) {
 
 - **用法：**
 
-  监听一个自定义事件，但是只触发一次，在第一次触发之移除除监听器。
+  监听一个自定义事件，但是只触发一次，在第一次触发之后移除监听器。
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **参数：**
   - `{string} [event]`
@@ -1470,7 +1474,7 @@ if (version === 2) {
 
   - 如果同时提供了事件与回调，则只移除这个回调的监听器。
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+### vm.$emit( event, [...args] )
 
 - **参数：**
   - `{string} event`
@@ -1480,7 +1484,7 @@ if (version === 2) {
 
 ## 实例方法 / 生命周期
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+### vm.$mount( [elementOrSelector] )
 
 - **参数：**
   - `{Element | string} [elementOrSelector]`
@@ -1515,25 +1519,25 @@ if (version === 2) {
   ```
 
 - **参考：**
-  - [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+  - [生命周期图示](../guide/instance.html#生命周期图示)
   - [服务端渲染](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **示例：**
 
-  迫使Vue实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
+  迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **参数：**
   - `{Function} [callback]`
 
 - **用法：**
 
-  将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 Vue.nextTick 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
+  将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 `Vue.nextTick` 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
 
- > 2.1.0+ 新增：如果没有提供回调且支持 promise 的环境中返回 promise。
+ > 2.1.0+ 新增：如果没有提供回调且支持 Promise 的环境中返回 Promise。
 
 - **示例：**
 
@@ -1558,9 +1562,9 @@ if (version === 2) {
 
 - **参考：**
   - [Vue.nextTick](#Vue-nextTick)
-  - [异步更新队列](../guide/reactivity.html#Async-Update-Queue)
+  - [异步更新队列](../guide/reactivity.html#异步更新队列)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **用法：**
 
@@ -1570,13 +1574,13 @@ if (version === 2) {
 
   <p class="tip">在大多数场景中你不应该调用这个方法。最好使用 `v-if` 和 `v-for` 指令以数据驱动的方式控制子组件的生命周期。</p>
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ## 指令
 
 ### v-text
 
-- **类型：** `string`
+- **期望类型：** `string`
 
 - **详细：**
 
@@ -1590,15 +1594,15 @@ if (version === 2) {
   <span>{{msg}}</span>
   ```
 
-- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#Text)
+- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#插值)
 
 ### v-html
 
-- **类型：** `string`
+- **期望类型：** `string`
 
 - **详细：**
 
-  更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新考虑通过是否通过使用组件来替代。
+  更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板，可以重新考虑是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
 
@@ -1611,7 +1615,7 @@ if (version === 2) {
 
 ### v-show
 
-- **类型：** `any`
+- **期望类型：** `any`
 
 - **用法：**
 
@@ -1619,11 +1623,13 @@ if (version === 2) {
 
   当条件变化时该指令触发过渡效果。
 
+  <p class="tip">当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。详见[列表渲染教程](../guide/list.html#v-for-with-v-if)</p>
+
 - **参考：** [条件渲染 - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
-- **类型：** `any`
+- **期望类型：** `any`
 
 - **用法：**
 
@@ -1661,13 +1667,13 @@ if (version === 2) {
 
 > 2.1.0+ 新增
 
-- **Expects:** `any`
+- **期望类型：** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **限制：** 前一兄弟元素必须有 `v-if` 或 `v-else-if`。
 
-- **Usage:**
+- **用法：**
 
-  Denote the "else if block" for `v-if`. Can be chained.
+  表示 `v-if` 的 "else if 块"。可以链式调用。
 
   ```html
   <div v-if="type === 'A'">
@@ -1684,11 +1690,11 @@ if (version === 2) {
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **参考:** [条件渲染 - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
-- **类型：** `Array | Object | number | string`
+- **期望类型：** `Array | Object | number | string`
 
 - **用法：**
 
@@ -1728,7 +1734,7 @@ if (version === 2) {
 
 - **缩写：** `@`
 
-- **类型：** `Function | Inline Statement | Object`
+- **期望类型：** `Function | Inline Statement | Object`
 
 - **参数：** `event`
 
@@ -1737,19 +1743,19 @@ if (version === 2) {
   - `.prevent` - 调用 `event.preventDefault()`。
   - `.capture` - 添加事件侦听器时使用 capture 模式。
   - `.self` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
-  - `.{keyCode | keyAlias}` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
-  - `.native` - listen for a native event on the root element of component.
-  - `.once` - 触发一次。
-  - `.left` - (2.2.0+) only trigger handler for left button mouse events.
-  - `.right` - (2.2.0+) only trigger handler for right button mouse events.
-  - `.middle` - (2.2.0+) only trigger handler for middle button mouse events.
-  - `.passive` - (2.3.0+) attaches a DOM event with `{ passive: true }`.
+  - `.{keyCode | keyAlias}` - 只当事件是从特定键触发时才触发回调。
+  - `.native` - 监听组件根元素的原生事件。
+  - `.once` - 只触发一次回调。
+  - `.left` - (2.2.0) 只当点击鼠标左键时触发。
+  - `.right` - (2.2.0) 只当点击鼠标右键时触发。
+  - `.middle` - (2.2.0) 只当点击鼠标中键时触发。
+  - `.passive` - (2.3.0) 以 `{ passive: true }` 模式添加侦听器
 
 - **用法：**
 
   绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
-  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  从 `2.4.0` 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
 
   用在普通元素上时，只能监听 **原生 DOM 事件**。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
 
@@ -1761,7 +1767,7 @@ if (version === 2) {
   <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
 
-  <!-- object syntax (2.4.0+) -->
+  <!-- 对象语法 (2.4.0+) -->
   <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
   <!-- 内联语句 -->
@@ -1788,7 +1794,7 @@ if (version === 2) {
   <!-- 键修饰符，键代码 -->
   <input @keyup.13="onEnter">
 
-  <!-- the click event will be triggered at most once -->
+  <!-- 点击回调只会触发一次 -->
   <button v-on:click.once="doThis"></button>
   ```
 
@@ -1806,21 +1812,20 @@ if (version === 2) {
 
 - **参考：**
   - [方法与事件处理器](../guide/events.html)
-  - [组件 - 自定义事件](../guide/components.html#Custom-Events)
+  - [组件 - 自定义事件](../guide/components.html#自定义事件)
 
 ### v-bind
 
 - **缩写：** `:`
 
-- **类型：** `any (with argument) | Object (without argument)`
+- **期望类型：** `any (with argument) | Object (without argument)`
 
 - **参数：** `attrOrProp (optional)`
 
 - **修饰符：**
-  - `.prop` - 被用于绑定 DOM 属性。（[有什么不同？](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
-
+  - `.prop` - 被用于绑定 DOM 属性（[有什么不同？](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
-  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
+  - `.sync` - (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 `v-on` 侦听器。
 
 - **用法：**
 
@@ -1841,7 +1846,7 @@ if (version === 2) {
   <!-- 缩写 -->
   <img :src="imageSrc">
 
-  <!-- with inline string concatenation -->
+  <!-- 内联字符串拼接 -->
   <img :src="'/path/to/images/' + fileName">
 
   <!-- class 绑定 -->
@@ -1862,29 +1867,29 @@ if (version === 2) {
   <!-- prop 绑定. “prop” 必须在 my-component 中声明。 -->
   <my-component :prop="someThing"></my-component>
 
-  <!-- pass down parent props in common with a child component -->
+  <!-- 通过 $props 将父组件的 props 一起传给子组件 -->
   <child-component v-bind="$props"></child-component>
 
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  `.camel` 修饰符允许在使用 DOM 模板时将 `v-bind` 属性名称驼峰化，例如 SVG 的 `viewBox` 属性：
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  在使用字符串模板或通过 `vue-loader`/`vueify` 编译时，无需使用 `.camel`。
 
 - **参考：**
   - [Class 与 Style 绑定](../guide/class-and-style.html)
   - [组件 - 组件 Props](../guide/components.html#Props)
-  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
+  - [组件 - `.sync` 修饰符](../guide/components.html#sync-修饰符)
 
 ### v-model
 
-- **类型：** 随表单控件类型不同而不同。
+- **期望类型：** 随表单控件类型不同而不同。
 
 - **限制：**
   - `<input>`
@@ -1903,7 +1908,7 @@ if (version === 2) {
 
 - **参考：**
   - [表单控件绑定](../guide/forms.html)
-  - [组件 - 在输入组件上使用自定义事件](../guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [组件 - 在输入组件上使用自定义事件](../guide/components.html#使用自定义事件的表单输入组件)
 
 ### v-pre
 
@@ -1968,14 +1973,14 @@ if (version === 2) {
   ```
 
 - **参考：**
-  - [数据绑定语法- 插值](../guide/syntax.html#Text)
-  - [组件 - 使用 v-once 实现轻量的静态组件](../guide/components.html#Cheap-Static-Components-with-v-once)
+  - [数据绑定语法- 插值](../guide/syntax.html#插值)
+  - [组件 - 使用 v-once 实现轻量的静态组件](../guide/components.html#使用-v-once-的低级静态组件-Cheap-Static-Component)
 
-## 特殊元素
+## 特殊属性
 
 ### key
 
-- **示例：** `string`
+- **期望类型：** `string`
 
   `key` 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素。
 
@@ -2006,9 +2011,9 @@ if (version === 2) {
 
 ### ref
 
-- **类型：** `string`
+- **期望类型：** `string`
 
-  `ref` 被用来给元素或子组件注册引用信息。引用信息会根据父组件的 `$refs` 对象进行注册。如果在普通的DOM元素上使用，引用信息就是元素; 如果用在子组件上，引用信息就是组件实例:
+  `ref` 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 `$refs` 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素; 如果用在子组件上，引用就指向组件实例:
 
   ``` html
   <!-- vm.$refs.p will be the DOM node -->
@@ -2018,29 +2023,29 @@ if (version === 2) {
   <child-comp ref="child"></child-comp>
   ```
 
-  当 `v-for` 用于元素或组件的时候，引用信息将是包含DOM节点或组件实例数组。
+  当 `v-for` 用于元素或组件的时候，引用信息将是包含 DOM 节点或组件实例的数组。
 
   关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模版中做数据绑定。
 
-- **参考：** [子组件 Refs](../guide/components.html#Child-Component-Refs)
+- **参考：** [子组件 Refs](../guide/components.html#子组件索引)
 
 ### slot
 
-- **类型：** `string`
+- **期望类型：** `string`
 
   用于标记往哪个slot中插入子组件内容。
 
   详细用法，请参考下面指南部分的链接。
 
-- **参考：** [命名 Slots](../guide/components.html#Named-Slots)
+- **参考：** [具名 Slots](../guide/components.html#具名-Slot)
 
 ### is
 
-- **Expects:** `string`
+- **期望类型：** `string`
 
-  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 内模板到限制](../guide/components.html#DOM 模版解析说明)来工作。
 
-  For example:
+  示例：
 
   ``` html
   <!-- component changes when currentView changes -->
@@ -2053,17 +2058,17 @@ if (version === 2) {
   </table>
   ```
 
-  For detailed usage, follow the links in the description above.
+  更多的使用细节，请移步至下面的链接。
 
-- **See also:**
-  - [Dynamic Components](../guide/components.html#Dynamic-Components)
-  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+- **参考：**
+  - [动态组件](../guide/components.html#动态组件)
+  - [DOM 模版解析说明](../guide/components.html#DOM 模版解析说明)
 
 ## 内置的组件
 
 ### component
 
-- **Props：**
+- **属性：**
   - `is` - string | ComponentDefinition | ComponentConstructor
   - `inline-template` - boolean
 
@@ -2084,7 +2089,7 @@ if (version === 2) {
 
 ### transition
 
-- **Props：**
+- **属性：**
   - `name` - string, 用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为`.fade-enter`，`.fade-enter-active`等。默认类名为 `"v"`
   - `appear` - boolean, 是否在初始渲染时使用过渡。默认为 `false`。
   - `css` - boolean, 是否使用 CSS 过渡类。默认为 `true`。如果设置为 `false`，将只通过组件事件触发注册的 JavaScript 钩子。
@@ -2181,9 +2186,9 @@ if (version === 2) {
 
 ### keep-alive
 
-- **Props:**
-  - `include` - 字符串，或正则表达式，或数组。匹配的组件会被缓存。
-  - `exclude` - 字符串，或正则表达式，或数组。匹配的组件不会被缓存。
+- **属性：**
+  - `include` - 字符串或正则表达式。只有匹配的组件会被缓存。
+  - `exclude` - 字符串或正则表达式。任何匹配的组件都不会被缓存。
 
 - **用法：**
 
@@ -2215,22 +2220,21 @@ if (version === 2) {
   </transition>
   ```
 
-  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
-
+  注意，`<keep-alive>` 是用在其一个直属的子组件被开关的情形。如果你在其中有 `v-if` 则不会工作。如果有上述的多个条件性的子元素，`<keep-alive>` 要求同时只有一个子元素被渲染。
 
 - **`include` and `exclude`**
 
   > 2.1.0+ 新增
 
-  `include` 和 `exclude` 允许通过条件控制组件的缓存，它们可以用逗号隔开的字符串、或正则表达式、或数组。来进行设置：
+  `include` 和 `exclude` 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示:
 
   ``` html
-  <!-- comma-delimited string -->
+  <!-- 逗号分隔字符串 -->
   <keep-alive include="a,b">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use v-bind) -->
+  <!-- 正则表达式 (使用 v-bind) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
@@ -2241,7 +2245,7 @@ if (version === 2) {
   </keep-alive>
   ```
 
-  首先检查组件的 `name` 选项，如果没有 `name`，再检查本地注册名（父组件 `components` 选项）。匿名组件不会被匹配。
+  匹配首先检查组件自身的 `name` 选项，如果 `name` 选项不可用，则匹配它的局部注册名称（父组件 `components` 选项的键值）。匿名组件不能被匹配。
 
   <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
@@ -2249,16 +2253,16 @@ if (version === 2) {
 
 ### slot
 
-- **Props：**
+- **属性：**
   - `name` - string, 用于命名插槽。
 
-- **Usage:**
+- **用法：**
 
   `<slot>` 元素作为组件模板之中的内容分发插槽。 `<slot>` 元素自身将被替换。
 
   详细用法，请参考下面教程的链接。
 
-- **参考：** [使用Slots分发内容](../guide/components.html#使用Slots分发内容)
+- **参考：** [使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
 
 ## VNode接口
 
@@ -2267,3 +2271,9 @@ if (version === 2) {
 ## 服务端渲染
 
 - 请参考[vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+
+***
+
+> 原文：https://vuejs.org/v2/api/
+
+***
