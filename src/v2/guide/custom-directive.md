@@ -13,13 +13,15 @@ In addition to the default set of directives shipped in core (`v-model` and `v-s
   <input v-focus>
 </div>
 <script>
-Vue.directive('focus', {
-  inserted: function (el) {
-    el.focus()
-  }
-})
-new Vue({
-  el: '#simplest-directive-example'
+document.addEventListener('DOMContentLoaded', function() {
+  Vue.directive('focus', {
+    inserted: function (el) {
+      el.focus()
+    }
+  })
+  new Vue({
+    el: '#simplest-directive-example'
+  })
 })
 </script>
 {% endraw %}
@@ -117,23 +119,25 @@ new Vue({
 {% raw %}
 <div id="hook-arguments-example" v-demo:foo.a.b="message" class="demo"></div>
 <script>
-Vue.directive('demo', {
-  bind: function (el, binding, vnode) {
-    var s = JSON.stringify
-    el.innerHTML =
-      'name: '       + s(binding.name) + '<br>' +
-      'value: '      + s(binding.value) + '<br>' +
-      'expression: ' + s(binding.expression) + '<br>' +
-      'argument: '   + s(binding.arg) + '<br>' +
-      'modifiers: '  + s(binding.modifiers) + '<br>' +
-      'vnode keys: ' + Object.keys(vnode).join(', ')
-  }
-})
-new Vue({
-  el: '#hook-arguments-example',
-  data: {
-    message: 'hello!'
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  Vue.directive('demo', {
+    bind: function (el, binding, vnode) {
+      var s = JSON.stringify
+      el.innerHTML =
+        'name: '       + s(binding.name) + '<br>' +
+        'value: '      + s(binding.value) + '<br>' +
+        'expression: ' + s(binding.expression) + '<br>' +
+        'argument: '   + s(binding.arg) + '<br>' +
+        'modifiers: '  + s(binding.modifiers) + '<br>' +
+        'vnode keys: ' + Object.keys(vnode).join(', ')
+    }
+  })
+  new Vue({
+    el: '#hook-arguments-example',
+    data: {
+      message: 'hello!'
+    }
+  })
 })
 </script>
 {% endraw %}

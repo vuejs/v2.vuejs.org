@@ -33,11 +33,13 @@ Result:
   <p>The button above has been clicked {{ counter }} times.</p>
 </div>
 <script>
-var example1 = new Vue({
-  el: '#example-1',
-  data: {
-    counter: 0
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      counter: 0
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -85,19 +87,21 @@ Result:
   <button v-on:click="greet">Greet</button>
 </div>
 <script>
-var example2 = new Vue({
-  el: '#example-2',
-  data: {
-    name: 'Vue.js'
-  },
-  methods: {
-    greet: function (event) {
-      alert('Hello ' + this.name + '!')
-      if (event) {
-        alert(event.target.tagName)
+document.addEventListener('DOMContentLoaded', function() {
+  var example2 = new Vue({
+    el: '#example-2',
+    data: {
+      name: 'Vue.js'
+    },
+    methods: {
+      greet: function (event) {
+        alert('Hello ' + this.name + '!')
+        if (event) {
+          alert(event.target.tagName)
+        }
       }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -130,13 +134,15 @@ Result:
   <button v-on:click="say('what')">Say what</button>
 </div>
 <script>
-new Vue({
-  el: '#example-3',
-  methods: {
-    say: function (message) {
-      alert(message)
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-3',
+    methods: {
+      say: function (message) {
+        alert(message)
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}

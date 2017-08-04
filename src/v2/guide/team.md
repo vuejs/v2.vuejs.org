@@ -189,7 +189,7 @@ order: 31
 </div>
 
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', function() {
   var cityCoordsFor = {
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
@@ -1060,6 +1060,6 @@ order: 31
   function roundDistance (num) {
     return Number(Math.ceil(num).toPrecision(2))
   }
-})()
+})
 </script>
 {% endraw %}

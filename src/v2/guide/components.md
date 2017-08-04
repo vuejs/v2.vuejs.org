@@ -64,10 +64,12 @@ Which will render:
   <my-component></my-component>
 </div>
 <script>
-Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+document.addEventListener('DOMContentLoaded', function() {
+  Vue.component('my-component', {
+    template: '<div>A custom component!</div>'
+  })
+  new Vue({ el: '#example' })
 })
-new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
@@ -167,15 +169,17 @@ new Vue({
   <simple-counter></simple-counter>
 </div>
 <script>
-var data = { counter: 0 }
-Vue.component('simple-counter', {
-  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  data: function () {
-    return data
-  }
-})
-new Vue({
-  el: '#example-2'
+document.addEventListener('DOMContentLoaded', function() {
+  var data = { counter: 0 }
+  Vue.component('simple-counter', {
+    template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+    data: function () {
+      return data
+    }
+  })
+  new Vue({
+    el: '#example-2'
+  })
 })
 </script>
 {% endraw %}
@@ -199,16 +203,18 @@ Now all our counters each have their own internal state:
   <my-component></my-component>
 </div>
 <script>
-Vue.component('my-component', {
-  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  data: function () {
-    return {
-      counter: 0
+document.addEventListener('DOMContentLoaded', function() {
+  Vue.component('my-component', {
+    template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+    data: function () {
+      return {
+        counter: 0
+      }
     }
-  }
-})
-new Vue({
-  el: '#example-2-5'
+  })
+  new Vue({
+    el: '#example-2-5'
+  })
 })
 </script>
 {% endraw %}
@@ -254,14 +260,16 @@ Result:
   <child message="hello!"></child>
 </div>
 <script>
-new Vue({
-  el: '#prop-example-1',
-  components: {
-    child: {
-      props: ['message'],
-      template: '<span>{{ message }}</span>'
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#prop-example-1',
+    components: {
+      child: {
+        props: ['message'],
+        template: '<span>{{ message }}</span>'
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -312,17 +320,19 @@ Result:
   <child v-bind:my-message="parentMsg"></child>
 </div>
 <script>
-new Vue({
-  el: '#demo-2',
-  data: {
-    parentMsg: 'Message from parent'
-  },
-  components: {
-    child: {
-      props: ['myMessage'],
-      template: '<span>{{myMessage}}</span>'
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#demo-2',
+    data: {
+      parentMsg: 'Message from parent'
+    },
+    components: {
+      child: {
+        props: ['myMessage'],
+        template: '<span>{{myMessage}}</span>'
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -535,30 +545,32 @@ new Vue({
   <button-counter v-on:increment="incrementTotal"></button-counter>
 </div>
 <script>
-Vue.component('button-counter', {
-  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
-  data: function () {
-    return {
-      counter: 0
-    }
-  },
-  methods: {
-    incrementCounter: function () {
-      this.counter += 1
-      this.$emit('increment')
-    }
-  }
-})
-new Vue({
-  el: '#counter-event-example',
-  data: {
-    total: 0
-  },
-  methods: {
-    incrementTotal: function () {
-      this.total += 1
-    }
-  }
+document.addEventListener('DOMContentLoaded', function() {
+    Vue.component('button-counter', {
+      template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
+      data: function () {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        incrementCounter: function () {
+          this.counter += 1
+          this.$emit('increment')
+        }
+      }
+    })
+    new Vue({
+      el: '#counter-event-example',
+      data: {
+        total: 0
+      },
+      methods: {
+        incrementTotal: function () {
+          this.total += 1
+        }
+      }
+    })
 })
 </script>
 {% endraw %}
@@ -681,38 +693,40 @@ Vue.component('currency-input', {
   <currency-input v-model="price"></currency-input>
 </div>
 <script>
-Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
-  ',
-  props: ['value'],
-  methods: {
-    updateValue: function (value) {
-      var formattedValue = value
-        .trim()
-        .slice(
-          0,
-          value.indexOf('.') === -1
-            ? value.length
-            : value.indexOf('.') + 3
-        )
-      if (formattedValue !== value) {
-        this.$refs.input.value = formattedValue
+document.addEventListener('DOMContentLoaded', function() {
+  Vue.component('currency-input', {
+    template: '\
+      <span>\
+        $\
+        <input\
+          ref="input"\
+          v-bind:value="value"\
+          v-on:input="updateValue($event.target.value)"\
+        >\
+      </span>\
+    ',
+    props: ['value'],
+    methods: {
+      updateValue: function (value) {
+        var formattedValue = value
+          .trim()
+          .slice(
+            0,
+            value.indexOf('.') === -1
+              ? value.length
+              : value.indexOf('.') + 3
+          )
+        if (formattedValue !== value) {
+          this.$refs.input.value = formattedValue
+        }
+        this.$emit('input', Number(formattedValue))
       }
-      this.$emit('input', Number(formattedValue))
     }
-  }
-})
-new Vue({
-  el: '#currency-input-example',
-  data: { price: '' }
+  })
+  new Vue({
+    el: '#currency-input-example',
+    data: { price: '' }
+  })
 })
 </script>
 {% endraw %}

@@ -142,7 +142,6 @@
         text-align: center
         line-height: 20px
         font-weight: bold
-        font-family: $logo-font
         font-size: 14px
       code
         background-color: #efefef
@@ -159,6 +158,13 @@
         content: '\f00c'
         font-family: FontAwesome
         background-color: $green
+
+.wf-active
+  .content
+    p
+      &.tip, &.success
+        &:before
+          font-family: $logo-font
 
 .guide-links
   margin-top: 2em

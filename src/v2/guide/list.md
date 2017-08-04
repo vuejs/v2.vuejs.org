@@ -39,19 +39,21 @@ Result:
   </li>
 </ul>
 <script>
-var example1 = new Vue({
-  el: '#example-1',
-  data: {
-    items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
-    ]
-  },
-  watch: {
-    items: function () {
-      smoothScroll.animateScroll(document.querySelector('#example-1'))
+document.addEventListener('DOMContentLoaded', function() {
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      items: [
+        { message: 'Foo' },
+        { message: 'Bar' }
+      ]
+    },
+    watch: {
+      items: function () {
+        smoothScroll.animateScroll(document.querySelector('#example-1'))
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -88,20 +90,22 @@ Result:
   </li>
 </ul>
 <script>
-var example2 = new Vue({
-  el: '#example-2',
-  data: {
-    parentMessage: 'Parent',
-    items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
-    ]
-  },
-  watch: {
-    items: function () {
-      smoothScroll.animateScroll(document.querySelector('#example-2'))
+document.addEventListener('DOMContentLoaded', function() {
+  var example2 = new Vue({
+    el: '#example-2',
+    data: {
+      parentMessage: 'Parent',
+      items: [
+        { message: 'Foo' },
+        { message: 'Bar' }
+      ]
+    },
+    watch: {
+      items: function () {
+       smoothScroll.animateScroll(document.querySelector('#example-2'))
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -159,15 +163,17 @@ Result:
   </li>
 </ul>
 <script>
-new Vue({
-  el: '#repeat-object',
-  data: {
-    object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#repeat-object',
+    data: {
+      object: {
+        firstName: 'John',
+        lastName: 'Doe',
+        age: 30
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -207,7 +213,9 @@ Result:
   <span v-for="n in 10">{{ n }} </span>
 </div>
 <script>
-new Vue({ el: '#range' })
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({ el: '#range' })
+})
 </script>
 {% endraw %}
 
@@ -318,45 +326,47 @@ new Vue({
   </ul>
 </div>
 <script>
-Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
-  props: ['title']
-})
-
-new Vue({
-  el: '#todo-list-example',
-  data: {
-    newTodoText: '',
-    todos: [
-      {
-        id: 1,
-        title: 'Do the dishes',
+document.addEventListener('DOMContentLoaded', function() {
+    Vue.component('todo-item', {
+      template: '\
+        <li>\
+          {{ title }}\
+          <button v-on:click="$emit(\'remove\')">X</button>\
+        </li>\
+      ',
+      props: ['title']
+    })
+    
+    new Vue({
+      el: '#todo-list-example',
+      data: {
+        newTodoText: '',
+        todos: [
+          {
+            id: 1,
+            title: 'Do the dishes',
+          },
+          {
+            id: 2,
+            title: 'Take out the trash',
+          },
+          {
+            id: 3,
+            title: 'Mow the lawn'
+          }
+        ],
+        nextTodoId: 4
       },
-      {
-        id: 2,
-        title: 'Take out the trash',
-      },
-      {
-        id: 3,
-        title: 'Mow the lawn'
+      methods: {
+        addNewTodo: function () {
+          this.todos.push({
+            id: this.nextTodoId++,
+            title: this.newTodoText
+          })
+          this.newTodoText = ''
+        }
       }
-    ],
-    nextTodoId: 4
-  },
-  methods: {
-    addNewTodo: function () {
-      this.todos.push({
-        id: this.nextTodoId++,
-        title: this.newTodoText
-      })
-      this.newTodoText = ''
-    }
-  }
+    })
 })
 </script>
 {% endraw %}

@@ -418,45 +418,47 @@ Debouncing is used to limit how often we execute Ajax requests and other expensi
 These limitations become apparent when designing a search indicator, like this one for example:
 
 {% raw %}
-<script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js" defer></script>
 <div id="debounce-search-demo" class="demo">
   <input v-model="searchQuery" placeholder="Type something">
   <strong>{{ searchIndicator }}</strong>
 </div>
 <script>
-new Vue({
-  el: '#debounce-search-demo',
-  data: {
-    searchQuery: '',
-    searchQueryIsDirty: false,
-    isCalculating: false
-  },
-  computed: {
-    searchIndicator: function () {
-      if (this.isCalculating) {
-        return '⟳ Fetching new results'
-      } else if (this.searchQueryIsDirty) {
-        return '... Typing'
-      } else {
-        return '✓ Done'
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#debounce-search-demo',
+    data: {
+      searchQuery: '',
+      searchQueryIsDirty: false,
+      isCalculating: false
+    },
+    computed: {
+      searchIndicator: function () {
+        if (this.isCalculating) {
+          return '⟳ Fetching new results'
+        } else if (this.searchQueryIsDirty) {
+          return '... Typing'
+        } else {
+          return '✓ Done'
+        }
       }
+    },
+    watch: {
+      searchQuery: function () {
+        this.searchQueryIsDirty = true
+        this.expensiveOperation()
+      }
+    },
+    methods: {
+      expensiveOperation: _.debounce(function () {
+        this.isCalculating = true
+        setTimeout(function () {
+          this.isCalculating = false
+          this.searchQueryIsDirty = false
+        }.bind(this), 1000)
+      }, 500)
     }
-  },
-  watch: {
-    searchQuery: function () {
-      this.searchQueryIsDirty = true
-      this.expensiveOperation()
-    }
-  },
-  methods: {
-    expensiveOperation: _.debounce(function () {
-      this.isCalculating = true
-      setTimeout(function () {
-        this.isCalculating = false
-        this.searchQueryIsDirty = false
-      }.bind(this), 1000)
-    }, 500)
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -470,7 +472,7 @@ utility library, we know the specific debounce implementation we
 use will be best-in-class - and we can use it ANYWHERE. Not just
 in our template.
 -->
-<script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js" defer></script>
 <div id="debounce-search-demo">
   <input v-model="searchQuery" placeholder="Type something">
   <strong>{{ searchIndicator }}</strong>

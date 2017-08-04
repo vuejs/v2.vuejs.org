@@ -2,7 +2,6 @@
 @import "_syntax"
 
 body
-  font-family: $body-font
   font-size: $body-font-size
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
@@ -11,6 +10,10 @@ body
   margin: 0
   &.docs
     padding-top: $header-height
+
+.wf-active
+  body
+    font-family: $body-font
 
 @media screen and (max-width: 900px)
   body.docs
@@ -28,11 +31,14 @@ h1, h2, h3, h4, strong
   color: $dark
 
 code, pre
-  font-family: $code-font
   font-size: $code-font-size
   background-color: $codebg
   -webkit-font-smoothing: initial
   -moz-osx-font-smoothing: initial
+
+.wf-active
+  code
+    font-family: $code-font
 
 code
   color: #e96900

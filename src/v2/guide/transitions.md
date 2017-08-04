@@ -65,11 +65,13 @@ new Vue({
   </transition>
 </div>
 <script>
-new Vue({
-  el: '#demo',
-  data: {
-    show: true
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#demo',
+    data: {
+      show: true
+    }
+  })
 })
 </script>
 <style>
@@ -162,11 +164,13 @@ new Vue({
   </transition>
 </div>
 <script>
-new Vue({
-  el: '#example-1',
-  data: {
-    show: true
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-1',
+    data: {
+      show: true
+    }
+  })
 })
 </script>
 <style>
@@ -274,11 +278,13 @@ new Vue({
   }
 </style>
 <script>
-new Vue({
-  el: '#example-2',
-  data: {
-    show: true
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-2',
+    data: {
+      show: true
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -339,11 +345,13 @@ new Vue({
   </transition>
 </div>
 <script>
-new Vue({
-  el: '#example-3',
-  data: {
-    show: true
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-3',
+    data: {
+      show: true
+    }
+  })
 })
 </script>
 {% endraw %}
@@ -513,33 +521,35 @@ new Vue({
     </p>
   </transition>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js" defer></script>
 <script>
-new Vue({
-  el: '#example-4',
-  data: {
-    show: false
-  },
-  methods: {
-    beforeEnter: function (el) {
-      el.style.opacity = 0
-      el.style.transformOrigin = 'left'
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-4',
+    data: {
+      show: false
     },
-    enter: function (el, done) {
-      Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
-      Velocity(el, { fontSize: '1em' }, { complete: done })
-    },
-    leave: function (el, done) {
-      Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
-      Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
-      Velocity(el, {
-        rotateZ: '45deg',
-        translateY: '30px',
-        translateX: '30px',
-        opacity: 0
-      }, { complete: done })
+    methods: {
+      beforeEnter: function (el) {
+        el.style.opacity = 0
+        el.style.transformOrigin = 'left'
+      },
+      enter: function (el, done) {
+        Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+        Velocity(el, { fontSize: '1em' }, { complete: done })
+      },
+      leave: function (el, done) {
+        Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
+        Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+        Velocity(el, {
+          rotateZ: '45deg',
+          translateY: '30px',
+          translateX: '30px',
+          opacity: 0
+        }, { complete: done })
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -676,11 +686,13 @@ There's still one problem though. Try clicking the button below:
   </transition>
 </div>
 <script>
-new Vue({
-  el: '#no-mode-demo',
-  data: {
-    on: false
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#no-mode-demo',
+    data: {
+      on: false
+    }
+  })
 })
 </script>
 <style>
@@ -711,11 +723,13 @@ Sometimes this works great, like when transitioning items are absolutely positio
   </div>
 </div>
 <script>
-new Vue({
-  el: '#no-mode-absolute-demo',
-  data: {
-    on: false
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#no-mode-absolute-demo',
+    data: {
+      on: false
+    }
+  })
 })
 </script>
 <style>
@@ -751,11 +765,13 @@ And then maybe also translated so that they look like slide transitions:
   </div>
 </div>
 <script>
-new Vue({
-  el: '#no-mode-translate-demo',
-  data: {
-    on: false
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#no-mode-translate-demo',
+    data: {
+      on: false
+    }
+  })
 })
 </script>
 <style>
@@ -807,11 +823,13 @@ Now let's update the transition for our on/off buttons with `out-in`:
   </transition>
 </div>
 <script>
-new Vue({
-  el: '#with-mode-demo',
-  data: {
-    on: false
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#with-mode-demo',
+    data: {
+      on: false
+    }
+  })
 })
 </script>
 <style>
@@ -842,11 +860,13 @@ The `in-out` mode isn't used as often, but can sometimes be useful for a slightl
   </div>
 </div>
 <script>
-new Vue({
-  el: '#in-out-translate-demo',
-  data: {
-    on: false
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#in-out-translate-demo',
+    data: {
+      on: false
+    }
+  })
 })
 </script>
 <style>
@@ -928,19 +948,21 @@ new Vue({
 }
 </style>
 <script>
-new Vue({
-  el: '#transition-components-demo',
-  data: {
-    view: 'v-a'
-  },
-  components: {
-    'v-a': {
-      template: '<div>Component A</div>'
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#transition-components-demo',
+    data: {
+      view: 'v-a'
     },
-    'v-b': {
-      template: '<div>Component B</div>'
+    components: {
+      'v-a': {
+        template: '<div>Component A</div>'
+      },
+      'v-b': {
+        template: '<div>Component B</div>'
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -1019,23 +1041,25 @@ new Vue({
   </transition-group>
 </div>
 <script>
-new Vue({
-  el: '#list-demo',
-  data: {
-    items: [1,2,3,4,5,6,7,8,9],
-    nextNum: 10
-  },
-  methods: {
-    randomIndex: function () {
-      return Math.floor(Math.random() * this.items.length)
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#list-demo',
+    data: {
+      items: [1,2,3,4,5,6,7,8,9],
+      nextNum: 10
     },
-    add: function () {
-      this.items.splice(this.randomIndex(), 0, this.nextNum++)
-    },
-    remove: function () {
-      this.items.splice(this.randomIndex(), 1)
-    },
-  }
+    methods: {
+      randomIndex: function () {
+        return Math.floor(Math.random() * this.items.length)
+      },
+      add: function () {
+        this.items.splice(this.randomIndex(), 0, this.nextNum++)
+      },
+      remove: function () {
+        this.items.splice(this.randomIndex(), 1)
+      },
+    }
+  })
 })
 </script>
 <style>
@@ -1095,7 +1119,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js" defer></script>
 <div id="flip-list-demo" class="demo">
   <button v-on:click="shuffle">Shuffle</button>
   <transition-group name="flip-list" tag="ul">
@@ -1105,16 +1129,18 @@ new Vue({
   </transition-group>
 </div>
 <script>
-new Vue({
-  el: '#flip-list-demo',
-  data: {
-    items: [1,2,3,4,5,6,7,8,9]
-  },
-  methods: {
-    shuffle: function () {
-      this.items = _.shuffle(this.items)
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#flip-list-demo',
+    data: {
+      items: [1,2,3,4,5,6,7,8,9]
+    },
+    methods: {
+      shuffle: function () {
+        this.items = _.shuffle(this.items)
+      }
     }
-  }
+  })
 })
 </script>
 <style>
@@ -1188,7 +1214,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js" defer></script>
 <div id="list-complete-demo" class="demo">
   <button v-on:click="shuffle">Shuffle</button>
   <button v-on:click="add">Add</button>
@@ -1200,26 +1226,28 @@ new Vue({
   </transition-group>
 </div>
 <script>
-new Vue({
-  el: '#list-complete-demo',
-  data: {
-    items: [1,2,3,4,5,6,7,8,9],
-    nextNum: 10
-  },
-  methods: {
-    randomIndex: function () {
-      return Math.floor(Math.random() * this.items.length)
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#list-complete-demo',
+    data: {
+      items: [1,2,3,4,5,6,7,8,9],
+      nextNum: 10
     },
-    add: function () {
-      this.items.splice(this.randomIndex(), 0, this.nextNum++)
-    },
-    remove: function () {
-      this.items.splice(this.randomIndex(), 1)
-    },
-    shuffle: function () {
-      this.items = _.shuffle(this.items)
+    methods: {
+      randomIndex: function () {
+        return Math.floor(Math.random() * this.items.length)
+      },
+      add: function () {
+        this.items.splice(this.randomIndex(), 0, this.nextNum++)
+      },
+      remove: function () {
+        this.items.splice(this.randomIndex(), 1)
+      },
+      shuffle: function () {
+        this.items = _.shuffle(this.items)
+      }
     }
-  }
+  })
 })
 </script>
 <style>
@@ -1256,22 +1284,24 @@ These FLIP animations are also not limited to a single axis. Items in a multidim
   </transition-group>
 </div>
 <script>
-new Vue({
-  el: '#sudoku-demo',
-  data: {
-    cells: Array.apply(null, { length: 81 })
-      .map(function (_, index) {
-        return {
-          id: index,
-          number: index % 9 + 1
-        }
-      })
-  },
-  methods: {
-    shuffle: function () {
-      this.cells = _.shuffle(this.cells)
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#sudoku-demo',
+    data: {
+      cells: Array.apply(null, { length: 81 })
+        .map(function (_, index) {
+          return {
+            id: index,
+            number: index % 9 + 1
+          }
+        })
+    },
+    methods: {
+      shuffle: function () {
+        this.cells = _.shuffle(this.cells)
+      }
     }
-  }
+  })
 })
 </script>
 <style>
@@ -1380,7 +1410,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js" defer></script>
 <div id="example-5" class="demo">
   <input v-model="query">
   <transition-group
@@ -1399,52 +1429,54 @@ new Vue({
   </transition-group>
 </div>
 <script>
-new Vue({
-  el: '#example-5',
-  data: {
-    query: '',
-    list: [
-      { msg: 'Bruce Lee' },
-      { msg: 'Jackie Chan' },
-      { msg: 'Chuck Norris' },
-      { msg: 'Jet Li' },
-      { msg: 'Kung Fury' }
-    ]
-  },
-  computed: {
-    computedList: function () {
-      var vm = this
-      return this.list.filter(function (item) {
-        return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
-      })
-    }
-  },
-  methods: {
-    beforeEnter: function (el) {
-      el.style.opacity = 0
-      el.style.height = 0
+document.addEventListener('DOMContentLoaded', function() {
+  new Vue({
+    el: '#example-5',
+    data: {
+      query: '',
+      list: [
+        { msg: 'Bruce Lee' },
+        { msg: 'Jackie Chan' },
+        { msg: 'Chuck Norris' },
+        { msg: 'Jet Li' },
+        { msg: 'Kung Fury' }
+      ]
     },
-    enter: function (el, done) {
-      var delay = el.dataset.index * 150
-      setTimeout(function () {
-        Velocity(
-          el,
-          { opacity: 1, height: '1.6em' },
-          { complete: done }
-        )
-      }, delay)
+    computed: {
+      computedList: function () {
+        var vm = this
+        return this.list.filter(function (item) {
+          return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
+        })
+      }
     },
-    leave: function (el, done) {
-      var delay = el.dataset.index * 150
-      setTimeout(function () {
-        Velocity(
-          el,
-          { opacity: 0, height: 0 },
-          { complete: done }
-        )
-      }, delay)
+    methods: {
+      beforeEnter: function (el) {
+        el.style.opacity = 0
+        el.style.height = 0
+      },
+      enter: function (el, done) {
+        var delay = el.dataset.index * 150
+        setTimeout(function () {
+          Velocity(
+            el,
+            { opacity: 1, height: '1.6em' },
+            { complete: done }
+          )
+        }, delay)
+      },
+      leave: function (el, done) {
+        var delay = el.dataset.index * 150
+        setTimeout(function () {
+          Velocity(
+            el,
+            { opacity: 0, height: 0 },
+            { complete: done }
+          )
+        }, delay)
+      }
     }
-  }
+  })
 })
 </script>
 {% endraw %}
@@ -1590,7 +1622,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js" defer></script>
 <div id="dynamic-fade-demo" class="demo">
   Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
   Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
@@ -1612,49 +1644,51 @@ new Vue({
   >Stop it!</button>
 </div>
 <script>
-new Vue({
-  el: '#dynamic-fade-demo',
-  data: {
-    show: true,
-    fadeInDuration: 1000,
-    fadeOutDuration: 1000,
-    maxFadeDuration: 1500,
-    stop: true
-  },
-  mounted: function () {
-    this.show = false
-  },
-  methods: {
-    beforeEnter: function (el) {
-      el.style.opacity = 0
-    },
-    enter: function (el, done) {
-      var vm = this
-      Velocity(el,
-        { opacity: 1 },
-        {
-          duration: this.fadeInDuration,
-          complete: function () {
-            done()
-            if (!vm.stop) vm.show = false
-          }
+document.addEventListener('DOMContentLoaded', function() {
+    new Vue({
+      el: '#dynamic-fade-demo',
+      data: {
+        show: true,
+        fadeInDuration: 1000,
+        fadeOutDuration: 1000,
+        maxFadeDuration: 1500,
+        stop: true
+      },
+      mounted: function () {
+        this.show = false
+      },
+      methods: {
+        beforeEnter: function (el) {
+          el.style.opacity = 0
+        },
+        enter: function (el, done) {
+          var vm = this
+          Velocity(el,
+            { opacity: 1 },
+            {
+              duration: this.fadeInDuration,
+              complete: function () {
+                done()
+                if (!vm.stop) vm.show = false
+              }
+            }
+          )
+        },
+        leave: function (el, done) {
+          var vm = this
+          Velocity(el,
+            { opacity: 0 },
+            {
+              duration: this.fadeOutDuration,
+              complete: function () {
+                done()
+                vm.show = true
+              }
+            }
+          )
         }
-      )
-    },
-    leave: function (el, done) {
-      var vm = this
-      Velocity(el,
-        { opacity: 0 },
-        {
-          duration: this.fadeOutDuration,
-          complete: function () {
-            done()
-            vm.show = true
-          }
-        }
-      )
-    }
-  }
+      }
+    })
 })
 </script>
 {% endraw %}
