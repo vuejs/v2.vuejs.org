@@ -1127,33 +1127,33 @@ Vous pouvez remarquer que :
 
 ## Slots
 
-### Duplicate Slots <sup>retiré</sup>
+### Slots dupliqués <sup>retirés</sup>
 
-It is no longer supported to have `<slot>`s with the same name in the same template. When a slot is rendered it is "used up" and cannot be rendered elsewhere in the same render tree. If you must render the same content in multiple places, pass that content as a prop.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Mise en évidence</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about duplicate slots <code>v-model</code>.</p>
-</div>
-{% endraw %}
-
-### `slot` Attribute Styling <sup>retiré</sup>
-
-Content inserted via named `<slot>` no longer preserves the `slot` attribute. Use a wrapper element to style them, or for advanced use cases, modify the inserted content programmatically using [render functions](render-function.html).
+Il n'est plus possible d'avoir deux `<slot>` avec le même nom dans le même template. Quand le rendu d'un slot est fait, il est réputé déjà rendu et son rendu ne doit plus être refait dans le même arble de rendu. Si vous devez faire le rendu d'un même contenu, à des endroits différents, passez le contenu en tant que prop.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find CSS selectors targeting named slots (e.g. <code>[slot="my-slot-name"]</code>).</p>
+  <p>Lancez votre suite de test ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos de slots <code>v-model</code> dupliqué.</p>
 </div>
 {% endraw %}
 
-## Special Attributes
+### Attribut de stylisation `slot` <sup>retiré</sup>
 
-### `keep-alive` Attribute <sup>remplacé</sup>
+Le contenu inséré via un `<slot>` nommé ne préservera plus l'attribut `slot`. Utilisez un élément englobant pour le styliser, ou pour des cas avancés, modifiez le contenu insérré programmatiquement en utilisant des [fonctions de rendu](render-function.html).
 
-`keep-alive` is no longer a special attribute, but rather a wrapper component, similar to `<transition>`. For example:
+{% raw %}
+<div class="upgrade-path">
+  <h4>Mise en évidence</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des sélecteurs CSS ciblant des slots nommées (par ex : <code>[slot="my-slot-name"]</code>).</p>
+</div>
+{% endraw %}
+
+## Attributs spéciaux
+
+### Attributs `keep-alive` <sup>remplacés</sup>
+
+`keep-alive` n'est plus un attribut spécial, mais un composant enveloppant, similaire à `<transition>`. Par exemple :
 
 ``` html
 <keep-alive>
@@ -1161,7 +1161,7 @@ Content inserted via named `<slot>` no longer preserves the `slot` attribute. Us
 </keep-alive>
 ```
 
-This makes it possible to use `<keep-alive>` on multiple conditional children:
+Cela permet d'utiliser `<keep-alive>` sur de multiple enfants conditionnels :
 
 ``` html
 <keep-alive>
@@ -1170,9 +1170,9 @@ This makes it possible to use `<keep-alive>` on multiple conditional children:
 </keep-alive>
 ```
 
-<p class="tip">When `<keep-alive>` has multiple children, they should eventually evaluate to a single child. Any child other than the first one will simply be ignored.</p>
+<p class="tip">Quand `<keep-alive>` a plusieurs enfants, ils devraient être évalués comme un seul enfant. Tout autre enfant autre que le premier sera simplement ignoré.</p>
 
-When used together with `<transition>`, make sure to nest it inside:
+Quand vous les utilisez avec `<transition>`, assurez-vous de les imbriquer ainsi :
 
 ``` html
 <transition>
@@ -1185,7 +1185,7 @@ When used together with `<transition>`, make sure to nest it inside:
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find <code>keep-alive</code> attributes.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver les attributs <code>keep-alive</code>.</p>
 </div>
 {% endraw %}
 
