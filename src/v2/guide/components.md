@@ -4,9 +4,9 @@ type: guide
 order: 11
 ---
 
-## O que são componentes?
+## Entendendo Componentes
 
-Os componentes são um dos recursos mais poderosos do Vue. Eles lhe ajudam a estender os elementos HTML para encapsular um código de forma reusável. Em um alto nível, componentes são elementos personalizados que o Vue compila e anexa a sua instância. Em alguns casos, eles podem aparecer como um HTML nativo que estende do atributo especial `is`
+Os componentes são um dos recursos mais poderosos do Vue. Eles ajudam a estender os elementos HTML para encapsular código de forma reusável. Em um alto nível, componentes são elementos personalizados que o Vue compila e anexa à sua instância. Em alguns casos, eles podem aparecer como um HTML nativo estendido com o atributo especial `is`.
 
 ## Usando Componentes
 
@@ -30,7 +30,7 @@ Vue.component('my-component', {
 })
 ```
 
-<p class="tip">Observe que o Vue não segue as regras da [W3C](http://www.w3.org/TR/custom-elements/#custom-elements-core-concepts) para tags personalizadas (letras minúsculas, precisa ter um hífen) embora seguir essa convenção seja considerada uma boa prática</p>
+<p class="tip">Observe que o Vue não força as regras da [W3C](http://www.w3.org/TR/custom-elements/#custom-elements-core-concepts) para nomes de _tags_ personalizadas (tudo minúsculo, com hífen entre palavras) embora seguir essa convenção seja considerado uma boa prática.</p>
 
 Uma vez registrado, um componente pode ser usado em uma instância como um elemento personalizado `<my-component></my-component>`. Tenha certeza que o elemento é registrado **antes** de ser instanciado na raiz do Vue. Aqui está um exemplo completo:
 
@@ -53,7 +53,7 @@ new Vue({
 })
 ```
 
-No qual irá renderizar:
+O resultado renderizado será:
 
 ``` html
 <div id="example">
@@ -75,8 +75,7 @@ new Vue({ el: '#example' })
 
 ### Registro Local
 
-Você não tem que registrar todo componente globalmente. Você pode fazer um componente disponível somente no escopo de outra instância/componente, o registrando com a opção `components`:
-
+Você não é obrigado a registrar todo componente globalmente. É possível disponibilizar um componente somente no escopo de outra instância/componente, registrando-o com a opção `components`:
 
 ``` js
 var Child = {
@@ -92,14 +91,13 @@ new Vue({
 })
 ```
 
-O mesmo encapsulamento se aplica para outros recursos registráveis do Vue, como as diretivas.
+De fato, a mesma regra de encapsulamento se aplica para outros recursos registráveis do Vue, como as diretivas e os filtros.
 
-### Cuidados no Uso de Template DOM
+### Cuidados com o Uso no DOM
 
-Quando usar o DOM como seu _template_ (isto é, usar a opção `el` para montar um elemento em um conteúdo existente), você estará sujeito a algumas restrições inerentes a como o HTML funciona, pois o Vue só pode recuperar o conteúdo do _template_ **depois** que o navegador o analisou e o normalizou. De maneira mais perceptível, alguns elementos como `<ul>`, `<ol>`, `<table>` e `<select>` têm restrições de quais elementos podem aparecer dentro deles, e alguns elementos como `<option>` podem aparecer somente dentro de certos outros elementos.
+Quando usar o próprio DOM como seu _template_ (isto é, usar a opção `el` para montar a instância Vue em um conteúdo HTML já existente), você estará sujeito a algumas restrições inerentes a como o HTML funciona, pois o Vue só pode recuperar o conteúdo do _template_ **depois** que o navegador o analisou e o normalizou. De maneira mais perceptível, alguns elementos como `<ul>`, `<ol>`, `<table>` e `<select>` têm restrições de quais elementos podem aparecer dentro deles, e alguns elementos como `<option>` podem aparecer somente dentro de certos outros elementos.
 
-Isso levará a problemas quando usar componentes personalizados com elementos que possuem tais restrições, por exemplo:
-
+Isso levará a problemas quando usar componentes personalizados no lugar de elementos que possuem tais restrições, por exemplo:
 
 ``` html
 <table>
@@ -107,8 +105,7 @@ Isso levará a problemas quando usar componentes personalizados com elementos qu
 </table>
 ```
 
-O componente personalizado `<my-row>` será içado para fora como um conteúdo inválido, causando erros na eventual renderização. Uma solução de contorno seria usar o atributo especial `is`:
-
+O componente personalizado `<my-row>` será jogado para fora da tabela como um conteúdo inválido, causando erros na renderização. Uma solução seria usar o atributo especial `is`:
 
 ``` html
 <table>
@@ -116,17 +113,17 @@ O componente personalizado `<my-row>` será içado para fora como um conteúdo i
 </table>
 ```
 
-**Deve-se notar que essas limitações não se aplicam se você estiver usando string templates de uma das seguintes fontes**:
+**Note que essas limitações não se aplicam se estiver usando _templates_ baseados em Strings, de uma das seguintes maneiras:**:
 
 - `<script type="text/x-template">`
-- _String templates_ JavaScript de mesma linha
+- _Templates Strings_ do próprio JavaScript
 - Componentes `.vue`
 
-Portanto, prefira usar _string templates_ sempre que for possível.
+Portanto, para casos simples, prefira usar _Template Strings_ sempre que for possível.
 
-### `data` Deve Ser uma Função
+### Opção `data` Sempre como Função
 
-A maioria das opções que podem ser passadas para o construtor do Vue podem ser usadas em um componente, com um caso em especial: `data` deve ser uma função. Na verdade, se você tentar isso:
+A maioria das opções que podem ser informadas no construtor de uma instância Vue também podem ser usadas em um componente, com um caso em especial: a opção `data` deve ser uma função. De fato, se você tentar isso:
 
 ``` js
 Vue.component('my-component', {
@@ -137,7 +134,7 @@ Vue.component('my-component', {
 })
 ```
 
-Então o Vue irá parar e emitirá avisos no console, te informando que `data` deve ser uma função para instâncias de componente. É bom entender o por que as regras existem, então vamos trapacear.
+Você será interrompido com avisos no _console_, informando que `data` deve ser uma função para instâncias de componentes. É bom entender por que as regras existem: vamos trapacear!
 
 ``` html
 <div id="example-2">
@@ -152,9 +149,9 @@ var data = { counter: 0 }
 
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  // data é tecnicamente uma função, então o Vue não vai
-  // reclamar, mas nós retornamos a mesma referência
-  // do objeto para cada instância do componente
+  // data é tecnicamente uma função, assim o Vue não vai
+  // reclamar, mas nós retornamos a mesma referência ao
+  // mesmo objeto para qualquer instância do componente
   data: function () {
     return data
   }
@@ -185,7 +182,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Uma vez que todas as três instâncias do componente compartilham o mesmo objeto `data`, incrementando um contador incrementa todos eles! Ai. Vamos corrigir isso, em vez disso, retornando um novo objeto de dados:
+Uma vez que todas as três instâncias do componente compartilham o mesmo objeto `data`, incrementar o contador no objeto reflete em todos eles! Ah não... Vamos corrigir isso, retornando um novo objeto de dados para cada instância do componente:
 
 ``` js
 data: function () {
@@ -220,9 +217,9 @@ new Vue({
 
 ### Compondo Componentes
 
-Componentes são feitos para serem usados juntos, de maneira mais comum em relacionamentos pai-filho: o componente A deve usar o componente B no seu próprio _template_. Eles inevitavelmente precisam se comunicar entre si: o pai pode precisar passar dados para baixo, para seu próprio filho, e o filho pode precisar informar seu pai de alguma coisa que aconteceu nele. Entretanto, também é muito importante manter o pai e o filho o mais desacoplados possível por meio de uma interface clara e definida. Isso garante que o código de cada componente possa ser escrito e entendido de forma relativamente isolada, os tornando mais fáceis de manter e potencialmente mais fáceis de reusar.
+Componentes são feitos para serem usados juntos, de maneira mais comum em relacionamentos pai-filho: o componente A deve usar o componente B no seu próprio _template_. Eles inevitavelmente precisam se comunicar entre si: o pai pode precisar passar dados para baixo ao seu próprio filho, e o filho pode precisar informar seu pai de alguma coisa que aconteceu nele. Entretanto, também é muito importante manter o pai e o filho o mais desacoplados possível por meio de uma comunicação clara e definida. Isso garante que o código de cada componente possa ser escrito e entendido de forma relativamente isolada, os tornando mais fáceis de manter e potencialmente mais fáceis de reutilizar.
 
-No Vue.js, o relacionamento pai-filho do componente pode ser resumido como **propriedades para baixo, eventos para cima**. O pai passa os dados para baixo para o filho por meio de **propriedades**, e o o filho envia mensagens para o pai por meio de **eventos**. Vamos ver como eles funcionam a seguir.
+No Vue, o relacionamento pai-filho pode ser resumido como **propriedades para baixo, eventos para cima**. O pai passa dados para baixo por meio de **propriedades**, e o filho envia mensagens para o pai por meio de **eventos**. Vamos ver como eles funcionam a seguir.
 
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="propriedades para baixo, eventos para cima">
@@ -587,7 +584,7 @@ Em alguns casos nós podemos precisar de uma "ligação bidirecional" para uma p
 
 Este é o motivo pelo qual removemos o modificador `.sync` quando a versão 2.0 foi lançada. No entanto, descobrimos que, de fato, existem casos em que isso pode ser útil, especialmente quando enviando componentes reutilizáveis. O que nós precisamos mudar é **fazer um código no filho que afeta o estado do pai de forma mais consistente e explícita.**
 
-Na versão 2.3.0+ re-introduzimos o modificador `.sync` para propriedades, mas desta vez ele é só um pouco de "açúcar de sintaxe", o qual automaticamente se expande para uma escuta `v-on` adicional. Por exemplo, o seguinte:
+Na versão 2.3.0+ re-introduzimos o modificador `.sync` para propriedades, mas desta vez ele é só um pouco de "açúcar sintático", o qual automaticamente se expande para uma escuta `v-on` adicional. Por exemplo, o seguinte:
 
 ``` html
 <comp :foo.sync="bar"></comp>
@@ -613,7 +610,7 @@ Eventos personalizados também podem ser usados para criar _inputs_ personalizad
 <input v-model="something">
 ```
 
-É só um "açúcar de sintaxe" para:
+É só um "açúcar sintático" para:
 
 ``` html
 <input

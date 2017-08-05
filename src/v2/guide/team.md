@@ -241,7 +241,7 @@ order: 31
 
   var team = [{
     name: 'Evan You',
-    title: 'Ditador Benevolente para a Vida',
+    title: 'Ditador Benevolente Vitalício',
     city: 'Jersey City, Estados Unidos',
     languages: ['zh', 'en'],
     github: 'yyx990803',

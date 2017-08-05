@@ -12,7 +12,7 @@ Plugins geralmente acrescentam funcionalidade ao Vue em nível global. Não há 
 
 2. Adicionar um ou mais recursos globais: diretivas/filtros/transições etc. Exemplo: [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. Adicionar algumas opções de componente via _mixin_ global. Exemplo: [vuex](https://github.com/vuejs/vuex)
+3. Adicionar algumas opções de componente via _mixin_ global. Exemplo: [vue-router](https://github.com/vuejs/vue-router)
 
 4. Adicionar métodos para instâncias Vue incluindo-os em `Vue.prototype`.
 

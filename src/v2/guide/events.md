@@ -13,7 +13,7 @@ Por exemplo:
 ``` html
 <div id="example-1">
   <button v-on:click="counter += 1">Adiciona 1</button>
-  <p>O botão acima foi clicado {{ counter }} vezes.</p>
+  <p>Quantas vezes o botão acima foi clicado: {{ counter }}</p>
 </div>
 ```
 ``` js
@@ -30,7 +30,7 @@ Resultado:
 {% raw %}
 <div id="example-1" class="demo">
   <button v-on:click="counter += 1">Adiciona 1</button>
-  <p>O botão acima foi clicado {{ counter }} vezes.</p>
+  <p>Quantas vezes o botão acima foi clicado: {{ counter }}</p>
 </div>
 <script>
 var example1 = new Vue({
@@ -44,7 +44,7 @@ var example1 = new Vue({
 
 ## Métodos em Manipuladores
 
-A lógica para muitos manipuladores de evento será mais complexa, assim manter seu JavaScript no valor do atributo `v-on` simplesmente não é viável. É por isso que `v-on` também pode aceitar o nome de um método que você gostaria de chamar.
+A lógica para muitos manipuladores de evento será mais complexa, sendo assim manter diretamente código JavaScript no valor do atributo `v-on` simplesmente não é viável. É por isso que `v-on` também pode aceitar o nome de um método que você gostaria de chamar.
 
 Por exemplo:
 
@@ -109,7 +109,7 @@ Ao invés de fazer uma ligação apenas ao nome de um método, também podemos c
 ``` html
 <div id="example-3">
   <button v-on:click="say('oi')">Diga oi</button>
-  <button v-on:click="say('que')">Diga que</button>
+  <button v-on:click="say('tchau')">Diga tchau</button>
 </div>
 ```
 ``` js
@@ -127,7 +127,7 @@ Resultado:
 {% raw %}
 <div id="example-3" class="demo">
   <button v-on:click="say('oi')">Diga oi</button>
-  <button v-on:click="say('que')">Diga que</button>
+  <button v-on:click="say('tchau')">Diga tchau</button>
 </div>
 <script>
 new Vue({
@@ -141,7 +141,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Às vezes, também precisamos acessar o evento original do DOM  em um manipulador com declaração local. Você pode passá-lo em um método usando a variável especial `$event`:
+Às vezes, também precisamos acessar o evento original do DOM em um manipulador. Você pode passá-lo a um método usando a variável especial `$event`:
 
 ``` html
 <button v-on:click="warn('Form cannot be submitted yet.', $event)">
@@ -194,7 +194,7 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para `v-o
 <div v-on:click.self="doThat">...</div>
 ```
 
-<p class="tip">A ordem importa quando estiver utilizando modificadores, pois o código relevante é gerado na mesma ordem em que forem informados. Desta forma, utilizar `@click.prevent.self` irá previnir **todos os clicks** inclusive em elementos filhos, enquanto `@click.self.prevent` irá previnir apenas clicks no próprio elemento.</p>
+<p class="tip">A ordem importa quando utilizar modificadores, pois o código é gerado na mesma ordem. Desta forma, `@click.prevent.self` irá previnir **todos os cliques**, enquanto `@click.self.prevent` irá previnir apenas cliques no próprio elemento.</p>
 
 > Novo em 2.1.4+
 
@@ -203,11 +203,11 @@ Para resolver esse problema, o Vue fornece **modificadores de evento** para `v-o
 <a v-on:click.once="doThis"></a>
 ```
 
-Diferente dos outros modificadores, que são exclusivos para eventos nativos, o modificador `.once` também pode ser usado em [eventos de componentes](components.html#Usando-v-on-com-Eventos-Personalizados). Se você ainda não leu sobre componentes, não se preocupe com isso neste momento.
+Diferente dos outros modificadores, exclusivos para eventos nativos, o `.once` também pode ser usado em [eventos de componentes](components.html#Usando-v-on-com-Eventos-Personalizados). Se você ainda não leu sobre componentes, não se preocupe com isso neste momento.
 
-## Modificadores de Tecla
+## Modificadores de Teclado
 
-Quando escutamos eventos do teclado, precisamos muitas vezes verificar a ocorrência de códigos de teclas comuns. O Vue também permite a adição de modificadores de tecla para `v-on` ao escutar eventos de teclado:
+Quando escutamos eventos do teclado, precisamos muitas vezes verificar a ocorrência de códigos de teclas comuns. O Vue também permite a adição de modificadores `v-on` ao escutar eventos de teclado:
 
 ``` html
 <!-- só chama vm.submit() quando o keyCode é 13 -->
@@ -226,17 +226,17 @@ Se lembrar do código de todas as teclas é uma chatice, então o Vue fornece ap
 
 Lista completa dos apelidos de modificadores de tecla:
 
-- enter
-- tab
-- delete (captura tanto teclas "Delete" e "Backspace")
-- esc
-- space
-- up
-- down
-- left
-- right
+- `.enter`
+- `.tab`
+- `.delete` (captura tanto "Delete" quanto "Backspace")
+- `.esc`
+- `.space`
+- `.up`
+- `.down`
+- `.left`
+- `.right`
 
-Se necessário, você pode [definir apelidos personalizados](../api/#keyCodes) através do objeto global `config.keyCodes`:
+Se necessário, defina [apelidos personalizados](../api/#keyCodes) através do objeto global `config.keyCodes`:
 
 ``` js
 // habilita v-on:keyup.f1
@@ -266,7 +266,7 @@ Por exemplo:
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-<p class="tip">Observe que teclas modificadoras são diferentes de teclas comuns, e quando utilizadas com eventos `keyup`, precisam estar pressionadas quando o evento é emitido. Em outras palavras, `keyup.ctrl` só vai disparar se você soltar a tecla enquanto ainda estiver segurando `ctrl`. E não irá disparar se você soltar a tecla `ctrl` sozinha.</p>
+<p class="tip">Teclas modificadoras são diferentes de teclas comuns, e quando utilizadas com eventos `keyup`, precisam estar pressionadas quando o evento é emitido. Em outras palavras, `keyup.ctrl` só vai disparar se você soltar alguma tecla enquanto ainda estiver segurando `ctrl`. E não irá disparar se você soltar a tecla `ctrl` sozinha.</p>
 
 ### Modificadores de Mouse
 
@@ -276,14 +276,14 @@ Por exemplo:
 - `.right`
 - `.middle`
 
-Estes modificadores restrigem o manipulador a eventos disparados por um botão específico do _mouse_.
+Estes modificadores restrigem o manipulador a eventos disparados por um botão específico do _mouse_, respectivamente o botão da esqueda, o da direita e o central (quando existente).
 
 ## Por Que Escutas no HTML?
 
-Você pode estar pensando que esta abordagem de escutas de evento viola as boas e velhas práticas sobre "separação de responsabilidades". Fique descansado - como todas as funções do manipulador de Vue e expressões são estritamente ligados a ViewModel que está manipulando o modo de exibição atual, essa abordagem não causará qualquer dificuldade de manutenção. Na verdade, há vários benefícios em usar `v-on` no _template_:
+Você pode estar pensando que esta abordagem de escutas de evento viola as boas e velhas práticas sobre "separação de responsabilidades". Fique tranquilo - como todas as funções de manipuladores e expressões Vue são estritamente ligadas ao _ViewModel_ que está manipulando o modo de exibição atual, essa abordagem não causará qualquer dificuldade de manutenção. Na verdade, há vários benefícios em usar `v-on` no _template_:
 
 1. É mais fácil de localizar as implementações de função de manipulador dentro de seu código JS simplesmente deslizando o dedo sobre o _template_ HTML.
 
-2. Como você não tem que manualmente anexar escutas a eventos em JS, seu código de ViewModel pode conter apenas a lógica pura e está livre de manipulação DOM. Isto torna mais fácil de testar.
+2. Como você não tem que manualmente anexar escutas a eventos em JS, seu código de _ViewModel_ pode conter apenas a lógica pura e está livre de manipulação DOM. Isto torna mais fácil de testar.
 
-3. Quando um ViewModel é destruído, todas escutas a eventos são removidas automaticamente. Você não precisa se preocupar em removê-los explicitamente.
+3. Quando um _ViewModel_ é destruído, todas escutas a eventos são removidas automaticamente. Você não precisa se preocupar em removê-las explicitamente.
