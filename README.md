@@ -49,7 +49,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Options / DOM (Tradução: @guilherme-dev. Revisão: @derevandal)
 - [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: @derevandal)
 - [ ] Options / Assets (Tradução: @kimuraz. Revisão: **pendente**)
-- [ ] Options / Composition
+- [ ] Options / Composition (Trandução: @kimuraz. Revisão: **pendente**)
 - [ ] Options / Misc (Tradução: @vitorbaraujo. Revisão: **pendente**)
 - [ ] Instance Properties
 - [ ] Instance Methods / Data
