@@ -1979,7 +1979,7 @@ if (version === 2) {
 
 ### key
 
-- **Espera:** `string`
+- **Espera:** `number | string`
 
   O atributo especial `key` é usado principalmente como um aviso para o algoritmo do virtual DOM do Vue identificar VNodes quando compara a nova lista de nós com a anterior. Sem `keys`, o Vue usa um algoritmo que minimiza a movimentação de elementos e tenta corrigir/reusar elementos do mesmo tipo no local tanto quanto possível. Com `keys`, ele irá reordenar os elementos baseado na ordem de mudança das `keys`, e elementos com `keys` que não estão mais presentes serão sempre removidos/destruídos.
 

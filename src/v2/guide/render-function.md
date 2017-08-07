@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filho em seu componente, sem especificar um atributo `slot`, como o `Olá Mundo!` dentro de `anchored-heading`, esses elementos estão acessíveis na instância do componente através de `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção da API de [propriedades da instância](../api/#vm-slots) antes de se aprofundar em funções `render`**.
+Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filho em seu componente, sem especificar um atributo `slot`, como o `Olá Mundo!` dentro de `anchored-heading`, esses elementos estão acessíveis na instância do componente através de `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção da API de [propriedades da instância](../api/#Instance-Properties) antes de se aprofundar em funções `render`**.
 
 ## Parâmetros para `createElement`
 
