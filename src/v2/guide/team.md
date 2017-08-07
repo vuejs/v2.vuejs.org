@@ -322,7 +322,7 @@ order: 31
       city: 'Chengdu, China',
       languages: ['zh', 'en'],
       github: 'egoist',
-      twitter: 'rem_rin_rin',
+      twitter: '_egoistlily',
       reposOfficial: [
         'vue-cli'
       ],
@@ -413,7 +413,7 @@ order: 31
         orgUrl: 'https://www.askattest.com/'
       },
       github: 'blake-newman',
-      twitter: 'blake-newman',
+      twitter: 'blakenewman',
       reposOfficial: [
         'vuex', 'vue-router', 'vue-loader'
       ]
