@@ -1,5 +1,5 @@
 ---
-title: Transitioning State
+title: Transições nos Dados
 type: guide
 order: 14
 ---

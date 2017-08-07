@@ -1,12 +1,12 @@
 ---
-title: Reatividada em Profundidade
+title: Reatividade em Profundidade
 type: guide
 order: 12
 ---
 
 Cobrimos a maioria das noções básicas - agora é hora de dar um mergulho profundo! Uma das características mais distintas do Vue é o sistema de reatividade não obstrutivo. Modelos são simplesmente objetos JavaScript. Quando você os modifica, a visualização é atualizada. Isso torna o gerenciamento de estado muito simples e intuitivo, mas também é importante entender como isso funciona para evitar algumas armadilhas comuns. Nesta seção, vamos cavar alguns dos detalhes de baixo nível do sistema de reatividade do Vue.
 
-## Como as Alterções são Monitoradas
+## Como as Alterações são Monitoradas
 
 Quando você passa um objeto JavaScript simples para uma instância do Vue, como a opção `data`, o Vue irá percorrer todas as suas propriedades e convertê-las para getter/setters usando [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). Esta é uma característica un-shimmable encontrada somente a partir do ES5, razão pela qual o Vue não suporta o IE8 e versões anteriores.
 

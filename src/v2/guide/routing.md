@@ -1,14 +1,14 @@
 ---
-title: Routing
+title: Roteamento
 type: guide
 order: 21
 ---
 
-## Router Oficial
+## Roteador Oficial
 
-Para a maioria das Single Page Applications, é recomendado usar a biblioteca oficialmente suportada [vue-router](https://github.com/vuejs/vue-router). Para mais detalhes, veja a [documentação](https://router.vuejs.org/) do vue-router.
+Para a maioria das _Single Page Applications_, é recomendado usar a biblioteca oficialmente suportada [vue-router](https://github.com/vuejs/vue-router). Para mais detalhes, veja a [documentação do vue-router](https://router.vuejs.org/).
 
-## Criando Rotas Simples
+## Roteamento Simples do Zero
 
 Se você precisa apenas de rotas muito simples e não deseja adicionar uma biblioteca completa de rotas, você pode renderizar componentes/páginas dinamicamente deste modo:
 
@@ -36,8 +36,8 @@ new Vue({
 })
 ```
 
-Combinado com a API de histórico do HTML5, você pode criar um router do lado do cliente muito básico, porém totalmente funcional. Para ver isso na prática, confira este [aplicativo de exemplo](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
+Combinado com a API de histórico do HTML5, você pode criar um roteador do lado do cliente muito básico, porém totalmente funcional. Para ver isso na prática, confira [este exemplo](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
 
-## Integração com routers de terceiros
+## Integração com Roteadores de Terceiros
 
 Se há uma bliblioteca de terceiros para rotas que você prefira usar, como [Page.js](https://github.com/visionmedia/page.js) ou [Director](https://github.com/flatiron/director), a integração é [igualmente fácil](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Aqui está um [exemplo completo](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) usando Page.js.
