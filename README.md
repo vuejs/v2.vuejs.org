@@ -55,7 +55,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Instance Methods / Data
 - [ ] Instance Methods / Events
 - [ ] Instance Methods / Lifecycle
-- [ ] Directives
+- [ ] Directives (Tradução: @tarciozemel)
 - [ ] Special Attributes (Tradução: @kessiacastro. Revisão: **pendente**)
 - [ ] Built-In Components
 - [ ] VNode Interface
