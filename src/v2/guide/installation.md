@@ -72,7 +72,7 @@ No [diretório `dist/`do pacote NPM](https://unpkg.com/vue@latest/dist/) você e
 | **Completa (produção)** | vue.min.js | - | - |
 | **Apenas Runtime (produção)** | vue.runtime.min.js | - | - |
 
-### Terms
+### Termos
 
 - **Completa**: pacotes completos, os quais contêem tanto o compilador quanto o motor de tempo de execução (em inglês, _runtime_).
 
