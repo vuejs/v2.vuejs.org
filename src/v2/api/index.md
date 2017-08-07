@@ -2158,7 +2158,7 @@ if (version === 2) {
 
 ### transition-group
 
-- **Props：**
+- **属性：**
   - `tag` - string, 默认为 `span`
   - `move-class` - 覆盖移动过渡期间应用的 CSS 类。
   - 除了 `mode`，其他特性和 `<transition>` 相同。
@@ -2196,7 +2196,7 @@ if (version === 2) {
 
   当组件在 `<keep-alive>` 内被切换，它的 `activated` 和 `deactivated` 这两个生命周期钩子函数将会被对应执行。
 
-  > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
+  > 在 2.2.0+ 及其更高版本中，`activated` 和 `deactivated` 将会在 `<keep-alive>` 树内的所有嵌套组件中触发。
 
   主要用于保留组件状态或避免重新渲染。
 
