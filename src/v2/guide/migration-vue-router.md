@@ -319,7 +319,7 @@ export default {
 <div class="upgrade-path">
   <h4>升级路径</h4>
   <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>v-link-active</code> 指令的示例</p>
-</div>  
+</div>
 {% endraw %}
 
 ## 编程导航
@@ -576,4 +576,4 @@ methods: {
 
 > 原文： http://vuejs.org/guide/migration-vue-router.html
 
-*** 
+***
