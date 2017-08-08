@@ -1581,7 +1581,7 @@ if (version === 2) {
 
 - **Détails :**
 
-  Met à jour le contenu texte `textContent` de l'élément. Si vous n'avez besoin de mettre à jour qu'une partie de ce contenu, vous devriez utiliser les interpolations `{% raw %}{{ Mustache }}{% endraw %}`.
+  Met à jour le contenu textuel (`textContent`) de l'élément. Si vous n'avez besoin de mettre à jour qu'une partie de ce contenu, vous devriez utiliser les interpolations `{% raw %}{{ Mustache }}{% endraw %}`.
 
 - **Exemple :**
 
@@ -1599,7 +1599,7 @@ if (version === 2) {
 
 - **Détails :**
 
-  Met à jour le HTML interne `innerHTML` de l'élément. **Notez que les contenus sont insérés en pur HTML - ils ne seront pas compilés en tant que templates Vue**. Si vous vous retrouvez à vouloir composer des templates avec `v-html`, essayez de repenser la solution en utilisant des composants à la place.
+  Met à jour le contenu HTML (`innerHTML`) de l'élément. **Notez que les contenus sont insérés en pur HTML - ils ne seront pas compilés en tant que templates Vue**. Si vous vous retrouvez à vouloir composer des templates avec `v-html`, essayez de repenser la solution en utilisant des composants à la place.
 
   <p class="tip">Faire le rendu dynamique de code HTML arbitraire sur votre site web peut être très dangereux car cela peut mener facilement à des [attaques XSS](https://fr.wikipedia.org/wiki/Cross-site_scripting). Utilisez `v-html` uniquement avec du contenu de confiance et **jamais** avec du contenu fourni par les utilisateurs.</p>
 
@@ -1693,7 +1693,7 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Fait le rendu de l'élément ou du bloc template plusieurs fois selon les données source. La valeur de la directive doit utiliser la syntaxe spéciale `alias in expression` pour fournir un alias à l'élément courant dans l'itération:
+  Fait le rendu de l'élément ou du bloc template plusieurs fois selon les données sources. La valeur de la directive doit utiliser la syntaxe spéciale `alias in expression` pour fournir un alias à l'élément courant dans l'itération:
 
   ``` html
   <div v-for="item in items">
@@ -1853,16 +1853,16 @@ if (version === 2) {
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- lier un objet d'attributs -->
+  <!-- lie un objet d'attributs -->
   <div v-bind="{ id: uneProp, 'autre-attr': uneAutreProp }"></div>
 
-  <!-- lier un attribut du DOM avec le modificateur prop -->
+  <!-- lie un attribut du DOM avec le modificateur prop -->
   <div v-bind:text-content.prop="text"></div>
 
   <!-- liaison de prop. "prop" doit être déclaré dans mon-composant. -->
   <mon-composant :prop="uneValeur"></mon-composant>
 
-  <!-- transmettre les props parentes à un composant enfant -->
+  <!-- transmet les props parentes à un composant enfant -->
   <composant-enfant v-bind="$props"></composant-enfant>
 
   <!-- XLink -->
