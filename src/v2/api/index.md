@@ -565,7 +565,7 @@ if (version === 2) {
   <p class="tip">
     Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.
 
-    Also note that __methods must not be prefixed with an `_`__, e.g. `_update`, as this conflicts with interval Vue methods.
+    Also note that __methods must not be prefixed with an `_` or `$`__, e.g. `_update` or `$update`, as this may conflict with interval Vue methods.
   </p>
 
 - **Example:**
