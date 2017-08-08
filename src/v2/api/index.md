@@ -562,7 +562,11 @@ if (version === 2) {
 
   Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">
+    Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.
+
+    Also note that __methods must not be prefixed with an `_` or `$`__, e.g. `_update` or `$update`, as this may conflict with interval Vue methods.
+  </p>
 
 - **Example:**
 
