@@ -119,7 +119,7 @@ render () {
   } else {
     children = <p>No items found.</p>
   }
-
+```
 In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript.
 
 JSX로 렌더하는 경우 몇 가지 장점이 있습니다.
