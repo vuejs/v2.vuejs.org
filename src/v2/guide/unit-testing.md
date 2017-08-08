@@ -43,13 +43,13 @@ import MyComponent from 'path/to/MyComponent.vue'
 describe('MyComponent', () => {
   // Inspect the raw component options
   it('has a created hook', () => {
-    expect(typeof MyComponent.created).toBe('function')
+    expect(typeof MyComponent.created).to.equal('function')
   })
 
   // Evaluate the results of functions in
   // the raw component options
   it('sets the correct default data', () => {
-    expect(typeof MyComponent.data).toBe('function')
+    expect(typeof MyComponent.data).to.equal('function')
     const defaultData = MyComponent.data()
     expect(defaultData.message).toBe('hello!')
   })
