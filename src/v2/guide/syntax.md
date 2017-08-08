@@ -80,6 +80,8 @@ These expressions will be evaluated as JavaScript in the data scope of the owner
 
 <p class="tip">Template expressions are sandboxed and only have access to a whitelist of globals such as `Math` and `Date`. You should not attempt to access user defined globals in template expressions.</p>
 
+<p class="tip">ESNext features are available in template expressions with the caveat that the feature set is limited by the **Node.js** version you use.</p>
+
 ## Directives
 
 Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception for `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
