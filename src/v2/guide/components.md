@@ -438,7 +438,7 @@ Quand une validation de prop échoue, Vue produira un avertissement dans la cons
 
 Un atttribut non-prop est un attribut qui est passé au composant, mais qui n'a pas de prop correspondante défini.
 
-Bien que définir explicitement les props soit conseillé pour passer les informations à un composant enfant, les auteurs des bibliothèques de composant ne suivent pas forcément cette règle dans leurs composants. C'est pour cela que les composants peuveunt accepter des attributs arbitraires, qui sont ajoutés à l'élément racine du composant.
+Bien que définir explicitement les props soit conseillé pour passer les informations à un composant enfant, les auteurs des bibliothèques de composant ne suivent pas forcément cette règle dans leurs composants. C'est pour cela que les composants peuvent accepter des attributs arbitraires, qui sont ajoutés à l'élément racine du composant.
 
 Par exemple, imaginez que nous utilision un composant tiers `bs-date-input` avec un plugin Bootstrap qui nécessite un attribut `data-3d-date-picker` sur l'`input`. Nous pouvons ajouter cet attribut dans l'instance de notre composant :
 
