@@ -90,7 +90,7 @@ describe('MyComponent', () => {
 import Vue from 'vue'
 import MyComponent from './MyComponent.vue'
 
-// 挂载元素并返回已渲染的文本的工具函数 
+// 挂载元素并返回已渲染的文本的工具函数
 function getRenderedText (Component, propsData) {
   const Ctor = Vue.extend(Component)
   const vm = new Ctor({ propsData: propsData }).$mount()

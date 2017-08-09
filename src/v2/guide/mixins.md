@@ -1,5 +1,5 @@
 ---
-title: 混合(Mixins)
+title: 混合
 type: guide
 order: 17
 ---

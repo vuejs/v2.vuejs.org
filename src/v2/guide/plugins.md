@@ -12,7 +12,7 @@ order: 18
 
 2. 添加一个或多个全局资源(asset)：指令(directives)/过滤器(filters)/过渡(transitions) 等。例如 [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. 通过全局混合，添加一些组件选项。例如 [vuex](https://github.com/vuejs/vuex)
+3. 通过全局混合，添加一些组件选项。例如 [vue-router](https://github.com/vuejs/vue-router)
 
 4. 添加一些 Vue 实例方法，通过把这些方法添加到 Vue.prototype 上实现。
 
