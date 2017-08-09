@@ -943,8 +943,8 @@ if (version === 2) {
   The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
 
   The `inject` option should be either:
-  - An array of strings, or
-  - An object where the keys stand for the local binding name, and the value is either:
+  - an array of strings, or
+  - an object where the keys are the local binding name and the value is either:
     - the key (string or Symbol) to search for in available injections, or
     - an object where:
       - the `name` property is the key (string or Symbol) to search for in available injections, and
