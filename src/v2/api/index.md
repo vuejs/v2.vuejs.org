@@ -44,7 +44,7 @@ type: api
 
   La stratégie de fusion reçoit en arguments la valeur de cette option définie dans le parent et les instances enfants en tant que premier et second argument, respectivement. L'instance de Vue est passée en troisième argument.
 
-- **Voir aussi** : [Stratégie de fusion des options personnalisées](../guide/mixins.html#Strategie-de-fusion-des-options-personnalisees)
+- **Voir aussi :** [Stratégie de fusion des options personnalisées](../guide/mixins.html#Strategie-de-fusion-des-options-personnalisees)
 
 ### devtools
 
@@ -552,8 +552,7 @@ if (version === 2) {
   vm.aDouble // -> 4
   ```
 
-- **Voir aussi :**
-  - [Propriétés calculées](../guide/computed.html)
+- **Voir aussi :** [Propriétés calculées](../guide/computed.html)
 
 ### methods
 
@@ -673,8 +672,7 @@ if (version === 2) {
 
     <p class="tip">La fonction `render` a la priorité par rapport à la fonction de rendu compilée à partir de l'option `template`, ou par rapport au template HTML de l'élément d'ancrage dans le DOM qui est spécifié par l'option `el`.</p>
 
-  - **Voir aussi :**
-    - [Fonctions de rendu](../guide/render-function.html)
+  - **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
 
 ### renderError
 
@@ -701,8 +699,7 @@ if (version === 2) {
     }).$mount('#app')
     ```
 
-  - **Voir aussi :**
-    - [Fonctions de rendu](../guide/render-function.html)
+  - **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
 
 
 <p class="tip">Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.</p>
@@ -841,8 +838,7 @@ if (version === 2) {
 
   Un objet de mappage des directives à mettre à disposition de l'instance de Vue.
 
-- **Voir aussi :**
-  - [Directives personnalisées](../guide/custom-directive.html)
+- **Voir aussi :** [Directives personnalisées](../guide/custom-directive.html)
 
 ### filters
 
@@ -852,8 +848,7 @@ if (version === 2) {
 
   Un objet de mappage des filtres à mettre à disposition de l'instance de Vue.
 
-- **Voir aussi :**
-  - [`Vue.filter`](#Vue-filter)
+- **Voir aussi :** [`Vue.filter`](#Vue-filter)
 
 ### components
 
@@ -863,8 +858,7 @@ if (version === 2) {
 
   Un objet de mappage des composants à mettre à disposition de l'instance de Vue.
 
-- **Voir aussi :**
-  - [Composants](../guide/components.html)
+- **Voir aussi :** [Composants](../guide/components.html)
 
 ## Options / Divers
 
@@ -1655,8 +1649,7 @@ if (version === 2) {
   </div>
   ```
 
-- **Voir aussi :**
-  - [Rendu conditionnel - v-else](../guide/conditional.html#v-else)
+- **Voir aussi :** [Rendu conditionnel - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
