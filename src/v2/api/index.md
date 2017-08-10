@@ -44,7 +44,7 @@ type: api
 
   La stratégie de fusion reçoit en arguments la valeur de cette option définie dans le parent et les instances enfants en tant que premier et second argument, respectivement. L'instance de Vue est passée en troisième argument.
 
-- **Voir aussi** : [Stratégies personnalisées de fusion d'options](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Voir aussi** : [Stratégie de fusion des options personnalisées](../guide/mixins.html#Strategie-de-fusion-des-options-personnalisees)
 
 ### devtools
 
@@ -232,7 +232,7 @@ type: api
 
   > Nouveauté de la 2.1.0+ : retourne une Promise si aucune fonction de callback n'est fournie et si Promise est supporté par l'environnement d'exécution.
 
-- **Voir aussi :** [File de mise à jour asynchrone](../guide/reactivity.html#Async-Update-Queue)
+- **Voir aussi :** [File d’attente de mise à jour asynchrone](../guide/reactivity.html#File-d’attente-de-mise-a-jour-asynchrone)
 
 <h3 id="Vue-set">Vue.set( cible, clé, valeur )</h3>
 
@@ -249,7 +249,7 @@ type: api
 
   **Notez que l'objet ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.**
 
-- **Voir aussi :** [Réactivité en détail](../guide/reactivity.html)
+- **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
 <h3 id="Vue-delete">Vue.delete( cible, clé )</h3>
 
@@ -265,7 +265,7 @@ type: api
 
   <p class="tip">L'objet cible ne peut pas être une instance de Vue, ou l'objet de données à la racine d'une instance de Vue.</p>
 
-- **Voir aussi :** [Réactivité en détail](../guide/reactivity.html)
+- **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [définition] )</h3>
 
@@ -339,7 +339,7 @@ type: api
   var MonComposant = Vue.component('mon-composant')
   ```
 
-- **Voir aussi :** [Composants](../guide/components.html).
+- **Voir aussi :** [Composants](../guide/components.html)
 
 <h3 id="Vue-use">Vue.use( plugin )</h3>
 
@@ -352,7 +352,7 @@ type: api
 
   Quand cette méthode est appelée avec le même plugin plusieurs fois, le plugin ne sera installée qu'une seule fois.
 
-- **Voir aussi :** [Plugins](../guide/plugins.html).
+- **Voir aussi :** [Plugins](../guide/plugins.html)
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
@@ -363,7 +363,7 @@ type: api
 
   Applique une mixin globale, qui affecte toutes les instances de Vue créées par la suite. Cela peut être utilisé par les créateurs de plugins pour injecter un composant personnalisé dans les composants. **Non recommandé dans le code applicatif**.
 
-- **Voir aussi :** [Mixins globales](../guide/mixins.html#Global-Mixin)
+- **Voir aussi :** [Mixin global](../guide/mixins.html#Mixin-global)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
@@ -387,7 +387,7 @@ type: api
   ```
 
 - **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
- 
+
 <h3 id="Vue-version">Vue.version</h3>
 
 - **Détails :** Donne la version de Vue installée sous forme de `String`. C'est particulièrement utile pour les plugins et les composants de la communauté, où vous pouvez être amenés à utiliser différentes stratégies pour différentes versions.
@@ -450,7 +450,7 @@ if (version === 2) {
 
   <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour la propriété `data`__ (exemple: `data: () => { return { a: this.maPropriete }}`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et  `this.maPropriete` vaudra `undefined`.</p>
 
-- **Voir aussi :** [Réactivité en détail](../guide/reactivity.html).
+- **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
 ### props
 
@@ -486,7 +486,7 @@ if (version === 2) {
   })
   ```
 
-- **Voir aussi :** [Attributs](../guide/components.html#Props)
+- **Voir aussi :** [Props](../guide/components.html#Props)
 
 ### propsData
 
@@ -562,7 +562,7 @@ if (version === 2) {
 - **Détails :**
 
   Les méthodes qui seront ajoutées à l'instance de Vue. Vous pouvez accéder à ces méthodes directement depuis l'instance VM ou les utiliser à travers des expressions de directives. Toutes les méthodes ont leur contexte d'appel `this` automatiquement assigné à l'instance de Vue.
-  
+
   <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une méthode__ (exemple: `plus: () => this.a++`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.a` vaudra `undefined`.</p>
 
 - **Exemple :**
@@ -580,7 +580,7 @@ if (version === 2) {
   vm.a // 2
   ```
 
-- **Voir aussi :** [Méthodes et gestion d'évènements](../guide/events.html)
+- **Voir aussi :** [Gestion des évènements](../guide/events.html)
 
 ### watch
 
@@ -614,10 +614,10 @@ if (version === 2) {
   })
   vm.a = 2 // -> nouveau: 2, ancien: 1
   ```
-  
+
   <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un observateur__ (exemple: `saisie: nouvelleValeur => this.actualiserSuggestions(nouvelleValeur)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.actualiserSuggestions` vaudra `undefined`.</p>
 
-- **Voir aussi :** [Méthodes d'instance - vm.$watch](#vm-watch)
+- **Voir aussi :** [Méthodes et données d'instance - vm.$watch](#vm-watch)
 
 ## Options / DOM
 
@@ -640,8 +640,8 @@ if (version === 2) {
   <p class="tip">Si ni la fonction `render` ni l'option `template` ne sont présentes, le code HTML de l'élément du DOM sur lequel le composant est monté sera extrait et défini comme template de ce composant. Dans ce cas, la version "Runtime + Compilateur" de Vue doit être utilisée.</p>
 
 - **Voir aussi :**
-  - [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
-  - [Runtime + Compilateur vs. Runtime uniquement](../guide/installation.html#Runtime-Compiler-vs-Runtime-only)
+  - [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
+  - [Runtime + Compiler vs. Runtime seul](../guide/installation.html#Runtime-Compiler-vs-Runtime-seul)
 
 ### template
 
@@ -658,8 +658,8 @@ if (version === 2) {
   <p class="tip">Si la fonction `render` est présente comme option de l'instance de Vue, le template sera ignoré.</p>
 
 - **Voir aussi :**
-  - [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
-  - [Distribution de Contenu](../guide/components.html#Content-Distribution-with-Slots)
+  - [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
+  - [Distribution de contenu avec des slots](../guide/components.html#Distribution-de-contenu-avec-des-slots)
 
 ### render
 
@@ -674,7 +674,7 @@ if (version === 2) {
     <p class="tip">La fonction `render` a la priorité par rapport à la fonction de rendu compilée à partir de l'option `template`, ou par rapport au template HTML de l'élément d'ancrage dans le DOM qui est spécifié par l'option `el`.</p>
 
   - **Voir aussi :**
-    - [Fonctions de Rendu](../guide/render-function.html)
+    - [Fonctions de rendu](../guide/render-function.html)
 
 ### renderError
 
@@ -701,8 +701,8 @@ if (version === 2) {
     }).$mount('#app')
     ```
 
-  - **Voir aussi ::**
-    - [Fonctions de Rendu](../guide/render-function.html)
+  - **Voir aussi :**
+    - [Fonctions de rendu](../guide/render-function.html)
 
 
 <p class="tip">Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.</p>
@@ -715,7 +715,7 @@ if (version === 2) {
 
   Appelé de manière synchrone juste après que l'instance ait été initialisée, et avant l'observation des données et l'installation des évènements/observateurs.
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### created
 
@@ -725,7 +725,7 @@ if (version === 2) {
 
   Appelé de manière synchrone après que l'instance ait été créée. À ce stade, l'instance a fini de traiter les options, ce qui signifie que les éléments suivants ont été installés: observation des données, propriétés calculées, méthodes, fonctions de retour des observateurs et évènements. Cependant, la propriété `$el` n'est pas encore disponible.
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### beforeMount
 
@@ -737,7 +737,7 @@ if (version === 2) {
 
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### mounted
 
@@ -749,7 +749,7 @@ if (version === 2) {
 
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### beforeUpdate
 
@@ -763,7 +763,7 @@ if (version === 2) {
 
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### updated
 
@@ -777,7 +777,7 @@ if (version === 2) {
 
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### activated
 
@@ -790,7 +790,7 @@ if (version === 2) {
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
 - **Voir aussi :**
-  - [Composants intégrés de base - keep-alive](#keep-alive)
+  - [Composants intégrés par défaut - keep-alive](#keep-alive)
   - [Composants dynamiques - keep-alive](../guide/components.html#keep-alive)
 
 ### deactivated
@@ -804,7 +804,7 @@ if (version === 2) {
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
 - **Voir aussi :**
-  - [Composants intégrés de base - keep-alive](#keep-alive)
+  - [Composants intégrés par défaut - keep-alive](#keep-alive)
   - [Composants dynamiques - keep-alive](../guide/components.html#keep-alive)
 
 ### beforeDestroy
@@ -817,7 +817,7 @@ if (version === 2) {
 
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ### destroyed
 
@@ -829,7 +829,7 @@ if (version === 2) {
 
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ## Options / Ressources
 
@@ -842,7 +842,7 @@ if (version === 2) {
   Un objet de mappage des directives à mettre à disposition de l'instance de Vue.
 
 - **Voir aussi :**
-  - [Directives Personnalisées](../guide/custom-directive.html)
+  - [Directives personnalisées](../guide/custom-directive.html)
 
 ### filters
 
@@ -864,7 +864,7 @@ if (version === 2) {
   Un objet de mappage des composants à mettre à disposition de l'instance de Vue.
 
 - **Voir aussi :**
-  - [Components](../guide/components.html)
+  - [Composants](../guide/components.html)
 
 ## Options / Divers
 
@@ -1056,7 +1056,7 @@ if (version === 2) {
 
   Rend le composant sans état (pas de propriété `data`) et sans instance (pas de contexte `this`). Il s'agit simplement d'une fonction `render` qui retourne des nœuds virtuels, ce qui réduit fortement les coûts en performance au rendu pour ce type de composants.
 
-- **Voir aussi :** [Composants Fonctionnels](../guide/render-function.html#Functional-Components)
+- **Voir aussi :** [Composants fonctionnels](../guide/render-function.html#Composants-fonctionnels)
 
 ### model
 
@@ -1141,7 +1141,7 @@ if (version === 2) {
 
   L'objet `data` est ce que l'instance de Vue observe. L'instance de Vue agit comme un proxy pour l'accès aux propriétés de cet objet `data`.
 
-- **Voir aussi :** [Options - data](#data)
+- **Voir aussi :** [Options / Data - data](#data)
 
 ### vm.$props
 
@@ -1220,9 +1220,9 @@ if (version === 2) {
 
 - **Détails :**
 
-  Utilisé pour accéder programmatiquement à du contenu [distribué par slots](../guide/components.html#Content-Distribution-with-Slots). Chaque [slot nommé](../guide/components.html#Named-Slots) a sa propriété correspondante (p. ex. le contenu de `slot="foo"` sera trouvé dans `vm.$slots.foo`). La propriété `default` contient tous les nœuds non inclus dans un slot nommé.
+  Utilisé pour accéder programmatiquement à du contenu [distribué par slots](../guide/components.html#Distribution-de-contenu-avec-des-slots). Chaque [slot nommé](../guide/components.html#Slots-nommes) a sa propriété correspondante (p. ex. le contenu de `slot="foo"` sera trouvé dans `vm.$slots.foo`). La propriété `default` contient tous les nœuds non inclus dans un slot nommé.
 
-  Accéder à `vm.$slots` est plus utile lorsque vous écrivez un composant avec une [fonction `render`](../guide/render-function.html).
+  Accéder à `vm.$slots` est plus utile lorsque vous écrivez un composant avec une [fonction de rendu](../guide/render-function.html).
 
 - **Exemple :**
 
@@ -1258,9 +1258,9 @@ if (version === 2) {
   ```
 
 - **Voir aussi :**
-  - [`Composant <slot>`](#slot-1)
-  - [Distribution de Contenu avec des Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Fonctions de Rendu: Slots](../guide/render-function.html#Slots)
+  - [Composant `<slot>`](#slot-1)
+  - [Distribution de contenu avec des slots](../guide/components.html#Distribution-de-contenu-avec-des-slots)
+  - [Fonctions de rendu - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
@@ -1272,14 +1272,14 @@ if (version === 2) {
 
 - **Détails :**
 
-  Utilisé pour accéder programmatiquement aux [slots à portée](../guide/components.html#Scoped-Slots). Pour chaque slot, y-compris celui par défaut `default`, l'objet contient une fonction correspondante qui retourne des nœuds virtuels `VNode`.
+  Utilisé pour accéder programmatiquement aux [slots avec portée](../guide/components.html#Slots-avec-portee). Pour chaque slot, y-compris celui par défaut `default`, l'objet contient une fonction correspondante qui retourne des nœuds virtuels `VNode`.
 
-  Accéder à `vm.$scopedSlots` est surtout utile lors de l'écriture d'un composant avec une [fonction render](../guide/render-function.html).
+  Accéder à `vm.$scopedSlots` est surtout utile lors de l'écriture d'un composant avec une [fonction de rendu](../guide/render-function.html).
 
 - **Voir aussi :**
   - [Composant `<slot>`](#slot-1)
-  - [Slots à portée](../guide/components.html#Scoped-Slots)
-  - [Fonctions Render : Slots](../guide/render-function.html#Slots)
+  - [Slots avec portée](../guide/components.html#Slots-avec-portee)
+  - [Fonctions de rendu - Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
@@ -1292,8 +1292,8 @@ if (version === 2) {
   Un objet contenant les composants enfants ayant une référence `ref` enregistrée.
 
 - **Voir aussi :**
-  - [Références aux Composants Enfants](../guide/components.html#Child-Component-Refs)
-  - [ref](#ref)
+  - [Les refs des composants enfants](../guide/components.html#Les-refs-des-composants-enfants)
+  - [Attributs spéciaux - ref](#ref)
 
 ### vm.$isServer
 
@@ -1516,7 +1516,7 @@ if (version === 2) {
   ```
 
 - **Voir aussi :**
-  - [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+  - [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
   - [Rendu côté serveur](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
@@ -1559,7 +1559,7 @@ if (version === 2) {
 
 - **Voir aussi :**
   - [Vue.nextTick](#Vue-nextTick)
-  - [File de mise à jour asynchrone](../guide/reactivity.html#Async-Update-Queue)
+  - [File d’attente de mise à jour asynchrone](../guide/reactivity.html#File-d’attente-de-mise-a-jour-asynchrone)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
@@ -1571,7 +1571,7 @@ if (version === 2) {
 
   <p class="tip">Dans les cas d'utilisation normaux, vous ne devriez pas avoir à appeler cette méthode vous-même. Contrôlez plutôt le cycle de vie de vos composants enfants de manière pilotée par les données, en utilisant `v-if` et `v-for`.</p>
 
-- **Voir aussi :** [Diagramme du Cycle de Vie](../guide/instance.html#Lifecycle-Diagram)
+- **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
 ## Directives
 
@@ -1591,7 +1591,7 @@ if (version === 2) {
   <span>{{msg}}</span>
   ```
 
-- **Voir aussi :** [Syntaxe de liaison de données - interpolations](../guide/syntax.html#Text)
+- **Voir aussi :** [Syntaxe de liaison de données - Interpolations](../guide/syntax.html#Texte)
 
 ### v-html
 
@@ -1608,7 +1608,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
-- **Voir aussi :** [Syntaxe de liaison de données - interpolations](../guide/syntax.html#Raw-HTML)
+- **Voir aussi :** [Syntaxe de liaison de données - Interpolations](../guide/syntax.html#Interpetation-du-HTML)
 
 ### v-show
 
@@ -1632,7 +1632,7 @@ if (version === 2) {
 
   Cette directive déclenche des transitions quand sa condition change.
 
-<p class="tip">Quand utilisé avec v-if, v-for a une plus grande priorité par rapport à v-if. Voir le <a href="../guide/list.html#v-for-with-v-if">guide sur le rendu de listes</a> pour plus de détails.</p>
+<p class="tip">Quand utilisé avec v-if, v-for a une plus grande priorité par rapport à v-if. Voir le <a href="../guide/list.htmll#v-for-avec-v-if">guide sur le rendu de listes</a> pour plus de détails.</p>
 
 - **Voir aussi :** [Rendu conditionnel - v-if](../guide/conditional.html)
 
@@ -1806,8 +1806,8 @@ if (version === 2) {
   ```
 
 - **Voir aussi :**
-  - [Méthodes et gestionnaires d'événement](../guide/events.html)
-  - [Composants - Événements personnalisés](../guide/components.html#Custom-Events)
+  - [Gestion des évènements](../guide/events.html)
+  - [Composants - Événements personnalisés](../guide/components.html#Evenements-personnalises)
 
 ### v-bind
 
@@ -1880,7 +1880,7 @@ if (version === 2) {
 - **Voir aussi :**
   - [Liaisons de classe et de style](../guide/class-and-style.html)
   - [Composants - Props de composant](../guide/components.html#Props)
-  - [Composants - Modificateur `.sync`](../guide/components.html#sync-Modifier)
+  - [Composants - Modificateur `.sync`](../guide/components.html#Modificateur-sync)
 
 ### v-model
 
@@ -1902,8 +1902,8 @@ if (version === 2) {
   Crée une liaison bidirectionnelle sur un élément de saisie d'un formulaire ou sur un composant. Pour une utilisation détaillée et d'autres notes, consultez la section du guide en lien ci-dessous.
 
 - **Voir aussi :**
-  - [Liaisons de champs de saisie de formulaire](../guide/forms.html)
-  - [Composants - Composants de saisie de formulaire avec événements personnalisés](../guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [Liaisons sur les champs de formulaire](../guide/forms.html)
+  - [Composants - Composants de champ de formulaire utilisant les événements personnalisés](../guide/components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises)
 
 ### v-pre
 
@@ -1968,8 +1968,8 @@ if (version === 2) {
   ```
 
 - **Voir aussi :**
-  - [Syntaxe de liaison de données - interpolations](../guide/syntax.html#Text)
-  - [Components - Composants économes avec v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
+  - [Syntaxe de liaison de données - Interpolations](../guide/syntax.html#Texte)
+  - [Composants - Composants statiques peu coûteux avec `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
 
 ## Attributs spéciaux
 
@@ -2022,7 +2022,7 @@ if (version === 2) {
 
   Une note importante à propos du timing de l'inscription de la référence: étant donné que les refs elles-même résultent de la fonction de rendu, vous ne pouvez pas y accéder au rendu initial - elles n'existent pas encore ! `$refs` est également non réactif, c'est pourquoi vous ne devriez pas essayer de les utiliser dans des templates pour de la liaison de données.
 
-- **Voir aussi :** [Références de composants enfants](../guide/components.html#Child-Component-Refs)
+- **Voir aussi :** [Les refs des composants enfants](../guide/components.html#Les-refs-des-composants-enfants)
 
 ### slot
 
@@ -2032,13 +2032,13 @@ if (version === 2) {
 
   Pour un usage détaillé, veuillez consulter la section du guide en lien ci-dessous.
 
-- **Voir aussi :** [Slots nommés](../guide/components.html#Named-Slots)
+- **Voir aussi :** [Slots nommés](../guide/components.html#Slots-nommes)
 
 ### is
 
 - **Attend comme valeur :** `string`
 
-  Utilisé pour les [composants dynamiques](../guide/components.html#Dynamic-Components) et pour contourner les [limitations des templates dans le DOM](../guide/components.html#DOM-Template-Parsing-Caveats).
+  Utilisé pour les [composants dynamiques](../guide/components.html#Composants-dynamiques) et pour contourner les [limitations des templates dans le DOM](../guide/components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM).
 
   Par exemple :
 
@@ -2056,8 +2056,8 @@ if (version === 2) {
   Pour un usage détaillé, suivez les liens dans la description ci-dessus.
 
 - **See also:**
-  - [Composants dynamiques](../guide/components.html#Dynamic-Components)
-  - [Limitations de l'analyse des templates dans le DOM](../guide/components.html#DOM-Template-Parsing-Caveats)
+  - [Composants dynamiques](../guide/components.html#Composants-dynamiques)
+  - [Limitations de l’analyse d’un template à partir du DOM](../guide/components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM)
 
 ## Composants intégrés par défaut
 
@@ -2080,7 +2080,7 @@ if (version === 2) {
   <component :is="$options.components.enfant"></component>
   ```
 
-- **Voir aussi :** [Composants dynamiques](../guide/components.html#Dynamic-Components)
+- **Voir aussi :** [Composants dynamiques](../guide/components.html#Composants-dynamiques)
 
 ### transition
 
@@ -2222,7 +2222,7 @@ if (version === 2) {
   > Nouveauté de la 2.1.0
 
   Les props `include` et `exclude` définissent les conditions de mise en cache des composants. Les deux props peuvent être soit une liste délimitée par des virgules, soit une expression régulière, soit une Array :
-  
+
   ``` html
   <!-- liste délimitée par des virgules -->
   <keep-alive include="a,b">
@@ -2257,7 +2257,7 @@ if (version === 2) {
 
   Pour un usage détaillé, consultez la section du guide en lien ci-dessous.
 
-- **Voir aussi :** [Distribution de contenu avec les Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Voir aussi :** [Distribution de contenu avec des slots](../guide/components.html#Distribution-de-contenu-avec-des-slots)
 
 ## Interface VNode
 
