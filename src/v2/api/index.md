@@ -362,7 +362,7 @@ type: api
 
   Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
-- **See also:** [Global Mixins](../guide/mixins.html#Global-Mixin)
+- **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
@@ -551,8 +551,7 @@ if (version === 2) {
   vm.aDouble // -> 4
   ```
 
-- **See also:**
-  - [Computed Properties](../guide/computed.html)
+- **See also:** [Computed Properties](../guide/computed.html)
 
 ### methods
 
@@ -579,7 +578,7 @@ if (version === 2) {
   vm.a // 2
   ```
 
-- **See also:** [Methods and Event Handling](../guide/events.html)
+- **See also:** [Event Handling](../guide/events.html)
 
 ### watch
 
@@ -616,7 +615,7 @@ if (version === 2) {
 
   <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
 
-- **See also:** [Instance Methods - vm.$watch](#vm-watch)
+- **See also:** [Instance Methods / Data - vm.$watch](#vm-watch)
 
 ## Options / DOM
 
@@ -658,7 +657,7 @@ if (version === 2) {
 
 - **See also:**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution](../guide/components.html#Content-Distribution-with-Slots)
+  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
 
 ### render
 
@@ -672,8 +671,7 @@ if (version === 2) {
 
     <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
-  - **See also:**
-    - [Render Functions](../guide/render-function.html)
+  - **See also:** [Render Functions](../guide/render-function.html)
 
 ### renderError
 
@@ -700,8 +698,7 @@ if (version === 2) {
     }).$mount('#app')
     ```
 
-  - **See also:**
-    - [Render Functions](../guide/render-function.html)
+  - **See also:** [Render Functions](../guide/render-function.html)
 
 ## Options / Lifecycle Hooks
 
@@ -841,8 +838,7 @@ if (version === 2) {
 
   A hash of directives to be made available to the Vue instance.
 
-- **See also:**
-  - [Custom Directives](../guide/custom-directive.html)
+- **See also:** [Custom Directives](../guide/custom-directive.html)
 
 ### filters
 
@@ -852,8 +848,7 @@ if (version === 2) {
 
   A hash of filters to be made available to the Vue instance.
 
-- **See also:**
-  - [`Vue.filter`](#Vue-filter)
+- **See also:** [`Vue.filter`](#Vue-filter)
 
 ### components
 
@@ -863,8 +858,7 @@ if (version === 2) {
 
   A hash of components to be made available to the Vue instance.
 
-- **See also:**
-  - [Components](../guide/components.html)
+- **See also:** [Components](../guide/components.html)
 
 ## Options / Composition
 
@@ -1140,7 +1134,7 @@ if (version === 2) {
 
   The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
 
-- **See also:** [Options - data](#data)
+- **See also:** [Options / Data - data](#data)
 
 ### vm.$props
 
@@ -1259,7 +1253,7 @@ if (version === 2) {
 - **See also:**
   - [`<slot>` Component](#slot-1)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+  - [Render Functions - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
@@ -1278,7 +1272,7 @@ if (version === 2) {
 - **See also:**
   - [`<slot>` Component](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+  - [Render Functions - Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
@@ -1292,7 +1286,7 @@ if (version === 2) {
 
 - **See also:**
   - [Child Component Refs](../guide/components.html#Child-Component-Refs)
-  - [ref](#ref)
+  - [Special Attributes - ref](#ref)
 
 ### vm.$isServer
 
@@ -1590,7 +1584,7 @@ if (version === 2) {
   <span>{{msg}}</span>
   ```
 
-- **See also:** [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
+- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Text)
 
 ### v-html
 
@@ -1607,7 +1601,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
-- **See also:** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
+- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
@@ -1654,8 +1648,7 @@ if (version === 2) {
   </div>
   ```
 
-- **See also:**
-  - [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+- **See also:** [Conditional Rendering - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
@@ -1805,7 +1798,7 @@ if (version === 2) {
   ```
 
 - **See also:**
-  - [Methods and Event Handling](../guide/events.html)
+  - [Event Handling](../guide/events.html)
   - [Components - Custom Events](../guide/components.html#Custom-Events)
 
 ### v-bind
@@ -1879,7 +1872,7 @@ if (version === 2) {
 
 - **See also:**
   - [Class and Style Bindings](../guide/class-and-style.html)
-  - [Components - Component Props](../guide/components.html#Props)
+  - [Components - Props](../guide/components.html#Props)
   - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
 
 ### v-model
@@ -1969,7 +1962,7 @@ if (version === 2) {
 
 - **See also:**
   - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
-  - [Components - Cheap Static Components with v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
+  - [Components - Cheap Static Components with `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
 
 ## Special Attributes
 
