@@ -1359,11 +1359,11 @@ Retrouvez simplement la donnée réactive.
 </div>
 {% endraw %}
 
-## DOM-Focused Instance Methods
+## Méthodes d'intance centrés sur le DOM
 
 ### `vm.$appendTo` <sup>retiré</sup>
 
-Use the native DOM API:
+Utilisez l'API native du DOM :
 
 ``` js
 myElement.appendChild(vm.$el)
@@ -1372,13 +1372,13 @@ myElement.appendChild(vm.$el)
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$appendTo</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$appendTo</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
 
 ### `vm.$before` <sup>retiré</sup>
 
-Use the native DOM API:
+Utilisez l'API native du DOM :
 
 ``` js
 myElement.parentNode.insertBefore(vm.$el, myElement)
@@ -1387,13 +1387,13 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$before</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$before</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
 
 ### `vm.$after` <sup>retiré</sup>
 
-Use the native DOM API:
+Utilisez l'API native du DOM :
 
 ``` js
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
@@ -1408,13 +1408,13 @@ myElement.parentNode.appendChild(vm.$el)
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$after</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$after</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
 
 ### `vm.$remove` <sup>retiré</sup>
 
-Use the native DOM API:
+Utilisez l'API native du DOM :
 
 ``` js
 vm.$el.remove()
@@ -1423,42 +1423,42 @@ vm.$el.remove()
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$remove</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$remove</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
 
-## Meta Instance Methods
+## Meta méthodes d'instance
 
 ### `vm.$eval` <sup>retiré</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](http://forum.vuejs.org/) for ideas.
+Pas réellement utilie. Si vous avez des difficultés liés à cette fonctionnalité et que vous n'êtes pas certain de savoir comment faire autrement, vous pouvez poster sur [le forum](https://forum.vuejs.org/c/french) et partager vos idées.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$eval</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$eval</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
 
 ### `vm.$interpolate` <sup>retiré</sup>
 
-No real use. If you do happen to rely on this feature somehow and aren't sure how to work around it, post on [the forum](http://forum.vuejs.org/) for ideas.
+Pas réellement utilie. Si vous avez des difficultés liés à cette fonctionnalité et que vous n'êtes pas certain de savoir comment faire autrement, vous pouvez poster sur [le forum](https://forum.vuejs.org/c/french) et partager vos idées.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$interpolate</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$interpolate</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
 
 ### `vm.$log` <sup>retiré</sup>
 
-Use the [Vue Devtools](https://github.com/vuejs/vue-devtools) for the optimal debugging experience.
+Utilisez le [Devtools de Vue](https://github.com/vuejs/vue-devtools) pour une expérience de debogue optimale.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>vm.$log</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$log</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
 
