@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-C'est bien plus simple ! Le code est plus court mais demande une plus grande familiarité avec les propriétés d'une instance de Vue. Dans ce cas, vous devez savoir que lorsque vous passez des enfants dans attribut `slot` dans un composant, comme le `Hello world !` à l'intérieur de `anchored-heading`, ces enfants sont stockés dans l'instance du composant via la propriété `$slots.default`. Si vous ne l'avez pas encore fait, **il est recommandé d'en lire plus sur les [propriétés d'instance de l'API](../api/#vm-slots) avant d'entrer plus en profondeur dans les fonctions de rendu.**
+C'est bien plus simple ! Le code est plus court mais demande une plus grande familiarité avec les propriétés d'une instance de Vue. Dans ce cas, vous devez savoir que lorsque vous passez des enfants dans attribut `slot` dans un composant, comme le `Hello world !` à l'intérieur de `anchored-heading`, ces enfants sont stockés dans l'instance du composant via la propriété `$slots.default`. Si vous ne l'avez pas encore fait, **il est recommandé d'en lire plus sur les [propriétés d'instance de l'API](../api/#Proprietes-dinstance) avant d'entrer plus en profondeur dans les fonctions de rendu.**
 
 ## Les arguments de `createElement`
 

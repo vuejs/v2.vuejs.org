@@ -12,7 +12,7 @@ Les plugins sont habituellement ajoutés au niveau des fonctionnalités globales
 
 2. Ajouter une ou plusieurs ressources globales : directives, filters, transitions, etc. Par ex. [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. Ajouter plusieurs options de composant avec un mixin global. Par ex. [vuex](https://github.com/vuejs/vuex)
+3. Ajouter plusieurs options de composant avec un mixin global. Par ex. [vue-router](https://github.com/vuejs/vue-router)
 
 4. Ajouter des méthodes d'instance de Vue en les reliant au prototype de Vue.
 

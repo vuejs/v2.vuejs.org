@@ -1975,7 +1975,7 @@ if (version === 2) {
 
 ### key
 
-- **Attend comme valeur :** `string`
+- **Attend comme valeur :** `number | string`
 
   L'attribut spécial `key` est principalement utilisé comme marqueur pour l'algorithme de DOM virtuel de Vue afin d'identifier les *VNodes* lors du différentiel entre la nouvelle liste des nœuds et la liste précédente. Sans clés, Vue utilise un algorithme qui minimise le déplacement de nœuds et essaie de patcher/réutiliser le plus possible les éléments présents du même type. Avec des clés, cela réordonnera les éléments en se basant sur le nouvel ordre de clés, et les éléments avec des clés qui ne sont plus présentes seront toujours supprimés/détruits.
 
