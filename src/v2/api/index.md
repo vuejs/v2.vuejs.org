@@ -553,8 +553,7 @@ if (version === 2) {
   vm.aDouble // -> 4
   ```
 
-- **另见:**
-  - [计算属性](../guide/computed.html)
+- **参考：**[计算属性](../guide/computed.html)
 
 ### methods
 
@@ -581,7 +580,7 @@ if (version === 2) {
   vm.a // 2
   ```
 
-- **参考:** [方法与事件处理器](../guide/events.html)
+- **参考：** [事件处理](../guide/events.html)
 
 ### watch
 
@@ -618,7 +617,7 @@ if (version === 2) {
 
   <p class="tip">注意，__不应该使用箭头函数来定义 watcher 函数__ (例如 `searchQuery: newValue => this.updateAutocomplete(newValue)`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.updateAutocomplete` 将是 undefined。</p>
 
-- **参考：** [实例方法 - vm.$watch](#vm-watch)
+- **参考：**[实例方法 / 数据 - vm.$watch](#vm-watch)
 
 ## 选项 / DOM
 
@@ -660,7 +659,7 @@ if (version === 2) {
 
 - **参考：**
   - [生命周期图示](../guide/instance.html#生命周期图示)
-  - [内容分发](../guide/components.html#使用-Slot-分发内容)
+  - [使用 slot 分发内容](../guide/components.html#使用-slot-分发内容)
 
 ### render
 
@@ -674,8 +673,7 @@ if (version === 2) {
 
     <p class="tip">Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译 render 函数。</p>
 
-  - **参考：**
-    - [Render 函数](../guide/render-function.html)
+  - **参考：**[render 函数](../guide/render-function.html)
 
 ### renderError
 
@@ -702,8 +700,7 @@ if (version === 2) {
     }).$mount('#app')
     ```
 
-  - **参考：**
-    - [Render 函数](../guide/render-function.html)
+  - **参考：**[render 函数](../guide/render-function.html)
 
 ## 选项 / 生命周期钩子
 
@@ -843,8 +840,7 @@ if (version === 2) {
 
 包含 Vue 实例可用指令的哈希表。
 
-- **参考：**
-  - [自定义指令](../guide/custom-directive.html)
+- **参考：**[自定义指令](../guide/custom-directive.html)
 
 ### filters
 
@@ -854,8 +850,7 @@ if (version === 2) {
 
 包含 Vue 实例可用过滤器的哈希表。
 
-- **另见:**
-  - [`Vue.filter`](#Vue-filter)
+- **参考：**[`Vue.filter`](#Vue-filter)
 
 ### components
 
@@ -865,8 +860,7 @@ if (version === 2) {
 
 包含 Vue 实例可用组件的哈希表。
 
-- **参考：**
-  - [组件](../guide/components.html)
+- **参考：**[组件](../guide/components.html)
 
 ## 选项 / 杂项
 
@@ -1144,7 +1138,7 @@ if (version === 2) {
 
   Vue 实例观察的数据对象。Vue 实例代理了对其 data 对象属性的访问。
 
-- **另见:** [选项 - data](#data)
+- **参考：** [选项 / 选项 - data](#data)
 
 ### vm.$props
 
@@ -1263,7 +1257,7 @@ if (version === 2) {
 - **参考：**
   - [`<slot>` 组件](#slot-1)
   - [使用 Slots 进行内容分发](../guide/components.html#使用-Slot-分发内容)
-  - [Render 函数](../guide/render-function.html#Slots)
+  - [Render 函数 - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
@@ -1282,7 +1276,7 @@ if (version === 2) {
 - **参考：**
   - [`<slot>` 组件](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render 函数](../guide/render-function.html#Slots)
+  - [Render 函数 - Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
@@ -1296,7 +1290,7 @@ if (version === 2) {
 
 - **另见：**
   - [子组件引用](../guide/components.html#子组件索引)
-  - [ref](#ref)
+  - [特殊属性 - ref](#ref)
 
 ### vm.$isServer
 
@@ -1594,7 +1588,7 @@ if (version === 2) {
   <span>{{msg}}</span>
   ```
 
-- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#插值)
+- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#文本-Text)
 
 ### v-html
 
@@ -1611,7 +1605,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
-- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#Raw-HTML)
+- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#原始-HTML-Raw-HTML)
 
 ### v-show
 
@@ -1660,8 +1654,7 @@ if (version === 2) {
   </div>
   ```
 
-- **参考：**
-  - [条件渲染 - v-else](../guide/conditional.html#v-else)
+- **参考：**[条件渲染 - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
@@ -1811,7 +1804,7 @@ if (version === 2) {
   ```
 
 - **参考：**
-  - [方法与事件处理器](../guide/events.html)
+  - [事件处理](../guide/events.html)
   - [组件 - 自定义事件](../guide/components.html#自定义事件)
 
 ### v-bind
@@ -1884,7 +1877,7 @@ if (version === 2) {
 
 - **参考：**
   - [Class 与 Style 绑定](../guide/class-and-style.html)
-  - [组件 - 组件 Props](../guide/components.html#Props)
+  - [组件 - Props](../guide/components.html#Props)
   - [组件 - `.sync` 修饰符](../guide/components.html#sync-修饰符)
 
 ### v-model
@@ -1974,13 +1967,13 @@ if (version === 2) {
 
 - **参考：**
   - [数据绑定语法- 插值](../guide/syntax.html#插值)
-  - [组件 - 使用 v-once 实现轻量的静态组件](../guide/components.html#使用-v-once-的低级静态组件-Cheap-Static-Component)
+  - [组件 - 对低开销的静态组件使用 `v-once`](../guide/components.html#对低开销的静态组件使用-v-once)
 
 ## 特殊属性
 
 ### key
 
-- **期望类型：** `string`
+- **期望类型：**`number | string`
 
   `key` 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素。
 
