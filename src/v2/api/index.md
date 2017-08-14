@@ -97,7 +97,7 @@ type: api
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // trace is the component hierarchy trace
+    // `trace` is the component hierarchy trace
   }
   ```
 
@@ -134,7 +134,7 @@ type: api
     // camelCase won`t work
     mediaPlayPause: 179,
     // instead you can use kebab-case with double quotation marks
-    "media-play-pause" : 179,
+    "media-play-pause": 179,
     up: [38, 87]
   }
   ```
@@ -143,7 +143,7 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  Define custom key alias(es) for v-on.
+  Define custom key alias(es) for `v-on`.
 
 ### performance
 
@@ -913,7 +913,7 @@ if (version === 2) {
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call Vue.extend on either
+  // extend CompA without having to call `Vue.extend` on either
   var CompB = {
     extends: CompA,
     ...
@@ -1386,7 +1386,7 @@ if (version === 2) {
   vm.$watch('a', callback, {
     immediate: true
   })
-  // callback is fired immediately with current value of `a`
+  // `callback` is fired immediately with current value of `a`
   ```
 
 <h3 id="vm-set">vm.$set( target, key, value )</h3>
@@ -1601,6 +1601,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
+
 - **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Raw-HTML)
 
 ### v-show
@@ -1811,7 +1812,6 @@ if (version === 2) {
 
 - **Modifiers:**
   - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
-
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
   - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
@@ -1954,7 +1954,7 @@ if (version === 2) {
   </div>
   <!-- component -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- v-for directive -->
+  <!-- `v-for` directive -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
@@ -2039,8 +2039,8 @@ if (version === 2) {
   <!-- component changes when currentView changes -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because <my-row> would be invalid inside -->
-  <!-- a <table> element and so would be hoisted out      -->
+  <!-- necessary because `<my-row>` would be invalid inside -->
+  <!-- a `<table>` element and so would be hoisted out      -->
   <table>
     <tr is="my-row"></tr>
   </table>
@@ -2200,7 +2200,7 @@ if (version === 2) {
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with <transition> -->
+  <!-- used together with `<transition>` -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2209,7 +2209,6 @@ if (version === 2) {
   ```
 
   Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
-
 
 - **`include` and `exclude`**
 
@@ -2223,12 +2222,12 @@ if (version === 2) {
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use v-bind) -->
+  <!-- regex (use `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use v-bind) -->
+  <!-- Array (use `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
