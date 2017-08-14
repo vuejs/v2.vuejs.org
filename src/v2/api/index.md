@@ -1304,21 +1304,21 @@ if (version === 2) {
 
 - **Type :** `{ [key: string]: string }`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Contient les attributs liés de portée parente (à l'exeption de `class` et `style`) qui ne sont pas reconnus (et extrait) en tant que props. Quand un composant n'a aucune props de déclarée, il contient essentiellement toutes les liaisons de portée parente (à l'exeption de `class` et `style`), et peut être passé à l'intérieur d'un composant enfant via `v-bind="$attrs"`. Ceci est utile pour la création de composants d'ordre supérieur.
 
 ### vm.$listeners
 
 - **Type :** `{ [key: string]: Function | Array<Function> }`
 
-- **Read only**
+- **Accessible uniquement en lecture**
 
-- **Details:**
+- **Détails :**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating higher-order components.
+  Contient le gestionnaire d'évènement `v-on` de portée parente (sans le modificateur `.native`). Il peut être passé à l'intérieur d'un composant enfant via `v-on="$listeners"`. Ceci est utile pour la création de composants d'ordre supérieur.
 
 ## Méthodes et données d'instance
 
@@ -1484,7 +1484,7 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Si une Instance de Vue n'a pas reçu l'option `el` à l'instanciation, il sera dans un état "non monté", sans élément du DOM associé. `vm.$mount()` peut être utilisé pour démarrer manuellement le montage d'une Instance de Vue non montée.
+  Si une Instance de Vue n'a pas reçu l'option `el` à l'instanciation, il sera dans un état « non monté », sans élément du DOM associé. `vm.$mount()` peut être utilisé pour démarrer manuellement le montage d'une Instance de Vue non montée.
 
   Si l'argument `élémentOuSelecteur` n'est pas fourni, le rendu du template se fera dans un élément hors du document, et vous devrez utiliser les API natives du DOM pour l'insérer vous-même dans le document.
 
@@ -2048,7 +2048,7 @@ if (version === 2) {
 
   Pour un usage détaillé, suivez les liens dans la description ci-dessus.
 
-- **See also:**
+- **Voir aussi :**
   - [Composants dynamiques](../guide/components.html#Composants-dynamiques)
   - [Limitations de l’analyse d’un template à partir du DOM](../guide/components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM)
 
