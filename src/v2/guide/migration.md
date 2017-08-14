@@ -1466,7 +1466,7 @@ Utilisez le [Devtools de Vue](https://github.com/vuejs/vue-devtools) pour une ex
 
 ### `replace: false` <sup>retiré</sup>
 
-Components now always replace the element they're bound to. To simulate the behavior of `replace: false`, you can wrap your root component with an element similar to the one you're replacing. For example:
+Les composants remplace maintenant les éléments sur lesquels il sont liés. Pour simuler le comportement de `replace: false`, vous devez encadrer votre composant racine avec un élément similaire à celui que vous remplacez. Par exemple :
 
 ``` js
 new Vue({
@@ -1475,7 +1475,7 @@ new Vue({
 })
 ```
 
-Or with a render function:
+Ou avec une fonction de rendu :
 
 ``` js
 new Vue({
@@ -1493,7 +1493,7 @@ new Vue({
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>replace: false</code>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>replace: false</code>.replace: false</p>
 </div>
 {% endraw %}
 
