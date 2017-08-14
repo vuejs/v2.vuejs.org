@@ -97,7 +97,7 @@ type: api
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // trace is the component hierarchy trace
+    // `trace` is the component hierarchy trace
   }
   ```
 
@@ -134,7 +134,7 @@ type: api
     // camelCase won`t work
     mediaPlayPause: 179,
     // instead you can use kebab-case with double quotation marks
-    "media-play-pause" : 179,
+    "media-play-pause": 179,
     up: [38, 87]
   }
   ```
@@ -143,7 +143,7 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  Define custom key alias(es) for v-on.
+  Define custom key alias(es) for `v-on`.
 
 ### performance
 
@@ -913,7 +913,7 @@ if (version === 2) {
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call Vue.extend on either
+  // extend CompA without having to call `Vue.extend` on either
   var CompB = {
     extends: CompA,
     ...
@@ -1386,7 +1386,7 @@ if (version === 2) {
   vm.$watch('a', callback, {
     immediate: true
   })
-  // callback is fired immediately with current value of `a`
+  // `callback` is fired immediately with current value of `a`
   ```
 
 <h3 id="vm-set">vm.$set( target, key, value )</h3>
@@ -1954,7 +1954,7 @@ if (version === 2) {
   </div>
   <!-- component -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- v-for directive -->
+  <!-- `v-for` directive -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
@@ -2039,8 +2039,8 @@ if (version === 2) {
   <!-- component changes when currentView changes -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because <my-row> would be invalid inside -->
-  <!-- a <table> element and so would be hoisted out      -->
+  <!-- necessary because `<my-row>` would be invalid inside -->
+  <!-- a `<table>` element and so would be hoisted out      -->
   <table>
     <tr is="my-row"></tr>
   </table>
@@ -2200,7 +2200,7 @@ if (version === 2) {
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with <transition> -->
+  <!-- used together with `<transition>` -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2222,12 +2222,12 @@ if (version === 2) {
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use v-bind) -->
+  <!-- regex (use `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use v-bind) -->
+  <!-- Array (use `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
