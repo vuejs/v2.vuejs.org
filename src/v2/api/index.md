@@ -1,5 +1,5 @@
 ---
-type: api
+type : api
 ---
 
 ## Configuration globale
@@ -81,27 +81,27 @@ type: api
 
   > En 2.2.0+, ce hook capture également les erreurs dans les hooks du cycle de vie des composants. De plus, quand ce hook est `undefined`, les erreurs capturées seront loguées avec `console.error` plutôt qu'avoir un crash de l'application.
 
-  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
+  > En 2.4.0+ ce hook capture également les erreurs lancées depuis un gestionnaire d'évènement Vue personnalisé.
 
   > [Sentry](https://sentry.io), un service de traçage d'erreur, fournit une [intégration officielle](https://sentry.io/for/vue/) utilisant cette option.
 
 ### warnHandler
 
-> New in 2.4.0+
+> Nouveau dans la 2.4.0+
 
-- **Type:** `Function`
+- **Type :** `Function`
 
-- **Default:** `undefined`
+- ***Par défaut :** `undefined`
 
-- **Usage:**
+- **Utilisation :**
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // trace is the component hierarchy trace
+    // `trace` est la trace de hierarchie de composant
   }
   ```
 
-  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+  Assigne un gestionnaire personnalisé pour les avertissements à l'exécution de Vue. Notez que cela n'est fonctionnel qu'en développement et est ignoré en production.
 
 ### ignoredElements
 
@@ -131,10 +131,10 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase won`t work
+    // La camelCase ne marche pas
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quotation marks
-    "media-play-pause" : 179,
+    // à la place vous devez utiliser la kebab-case avec un guillement double
+    "media-play-pause": 179,
     up: [38, 87]
   }
   ```
@@ -218,7 +218,7 @@ type: api
 
 - **Utilisation :**
 
-  Reporte l'exécution du callback au prochain cycle de mise à jour du DOM. Utilisez-le immédiatement après avoir changé des données afin d'attendre la mise à jour du DOM.
+  Reporte l'exécution de la fonction de rappel au prochain cycle de mise à jour du DOM. Utilisez-le immédiatement après avoir changé des données afin d'attendre la mise à jour du DOM.
 
   ``` js
   // modification de données
@@ -229,7 +229,7 @@ type: api
   })
   ```
 
-  > Nouveauté de la 2.1.0+ : retourne une Promise si aucune fonction de callback n'est fournie et si Promise est supporté par l'environnement d'exécution.
+  > Nouveauté de la 2.1.0+ : retourne une Promise si aucune fonction de rappel n'est fournie et si Promise est supporté par l'environnement d'exécution.
 
 - **Voir aussi :** [File d’attente de mise à jour asynchrone](../guide/reactivity.html#File-d’attente-de-mise-a-jour-asynchrone)
 
@@ -415,7 +415,7 @@ if (version === 2) {
 
 - **Détails :**
 
-  L'objet de données pour l'instance de Vue. Vue va de manière récursive convertir ses propriétés en des accesseurs/mutateurs (*getter/setters*) afin de les rendre "réactives". **L'objet doit être un simple objet de base**: les objets natifs tels que les API du navigateur et les propriétés issues du prototype sont ignorées. Une règle d'or est que la donnée doit juste être de la donnée - il n'est pas recommandé d'observer des objets ayant leur propre comportement avec états.
+  L'objet de données pour l'instance de Vue. Vue va de manière récursive convertir ses propriétés en des accesseurs/mutateurs (*getter/setters*) afin de les rendre « réactives ». **L'objet doit être un simple objet de base**: les objets natifs tels que les API du navigateur et les propriétés issues du prototype sont ignorées. Une règle d'or est que la donnée doit juste être de la donnée - il n'est pas recommandé d'observer des objets ayant leur propre comportement avec états.
 
   Une fois observé, vous ne pouvez plus ajouter de propriétés réactives à l'objet de données racine. C'est pourquoi il est recommandé de déclarer dès le départ toutes les propriétés réactives à la racine de l'objet de données, avant de créer l'instance.
 
@@ -474,7 +474,7 @@ if (version === 2) {
       hauteur: Number,
       // vérification du type ainsi que d'autres validations
       âge: {
-        type: Number,
+        type : Number,
         default: 0,
         required: true,
         validator: function (valeur) {
@@ -518,7 +518,7 @@ if (version === 2) {
 
 - **Détails :**
 
-  Les propriétés calculées qui seront ajoutées à l'instance de Vue. Tous les accesseurs (*getters*) et mutateurs (*setters*) ont leur contexte `this` automatiquement lié à l'instance de Vue.
+  Les propriétés calculées qui seront ajoutées à l'instance de Vue. Tous les accesseurs (« getters ») et mutateurs (« setters ») ont leur contexte `this` automatiquement lié à l'instance de Vue.
 
   <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir une propriété calculée__ (exemple: `aDouble: () => this.a * 2`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.a` vaudra `undefined`.</p>
 
@@ -586,7 +586,7 @@ if (version === 2) {
 
 - **Détails :**
 
-  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de callback exécutée quand cette expression change. On parle alors d'observateur ou *watcher* pour décrire ce lien. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un objet avec des options avancées. L'instance de Vue appelera `$watch()` pour chaque clé de l'objet à l'initialisation.
+  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de rappel exécutée quand cette expression change. On parle alors d'observateur ou *watcher* pour décrire ce lien. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un objet avec des options avancées. L'instance de Vue appelera `$watch()` pour chaque clé de l'objet à l'initialisation.
 
 - **Exemple :**
 
@@ -610,7 +610,7 @@ if (version === 2) {
       }
     }
   })
-  vm.a = 2 // -> nouveau: 2, ancien: 1
+  vm.a = 2 // -> nouveau : 2, ancien : 1
   ```
 
   <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un observateur__ (exemple: `saisie: nouvelleValeur => this.actualiserSuggestions(nouvelleValeur)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.actualiserSuggestions` vaudra `undefined`.</p>
@@ -675,7 +675,7 @@ if (version === 2) {
 
 ### renderError
 
-> Nouveau en 2.2.0+
+> Nouveau dans la 2.2.0+
 
   - **Type :** `(createElement: () => VNode, error: Error) => VNode`
 
@@ -913,7 +913,7 @@ if (version === 2) {
   ``` js
   var CompA = { ... }
 
-  // étend CompA sans avoir à appeler Vue.extend sur l'un ou l'autre
+  // étend CompA sans avoir à appeler `Vue.extend` sur l'un ou l'autre
   var CompB = {
     extends: CompA,
     ...
@@ -1023,7 +1023,7 @@ if (version === 2) {
 
 - **Type :** `Array<string>`
 
-- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **Par défaut :** `{% raw %}["{{", "}}"]{% endraw %}`
 
 - **Restrictions :** Cette option n'est disponible que dans la version complète du build, avec la compilation dans le navigateur.
 
@@ -1053,7 +1053,7 @@ if (version === 2) {
 
 ### model
 
-> Nouveau en 2.2.0
+> Nouveau dans la 2.2.0
 
 - **Type :** `{ prop?: string, event?: string }`
 
@@ -1074,7 +1074,7 @@ if (version === 2) {
       value: String,
       // utilise `checked` comme prop qui prend la place de `value`
       checked: {
-        type: Number,
+        type : Number,
         default: 0
       }
     },
@@ -1098,31 +1098,31 @@ if (version === 2) {
 
 ### inheritAttrs
 
-> New in 2.4.0+
+> Nouveau dans la 2.4.0+
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `true`
+- **Par défaut :** `true`
 
-- **Details:**
+- **Détails :**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  Par défaut, les attributs de portée parente qui ne sont pas reconnu en tant que props vont « échouer » et être appliquées à l'élément racine du composant enfant en tant qu'attribut HTML normal. Quand on crée un composant qui encapsule un élément cible ou un autre composant, cela peut ne pas être le comportement souhaité. En mettant `inheritAttrs` à `false`, ce comportement par défaut peut être désactivé. Les attributs sont disponibles via la propriété d'instance `$attrs` (aussi nouvelle en 2.4) et peuvent être explicitement liée a un élément non racine en utilisant `v-bind`.
 
-  Note: this option does **not** affect `class` and `style` bindings.
+  Note : cette option n'affecte **pas** les liaisons `class` et `style`.
 
 ### comments
 
-> New in 2.4.0+
+> Nouveau dans la 2.4.0+
 
-- **Type:** `boolean`
+- **Type :** `boolean`
 
-- **Default:** `false`
+- **Par défaut :** `false`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Restrictions :** Cette option est uniquement disponible dans le build complet, avec la compilation dans le navigateur.
 
-- **Details:**
+- **Détails :**
 
-  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+  Quand mis à `true`, cela va conserver et faire le rendu HTML des commentaires trouvés dans les templates. Le comportement par défaut est de les enlever.
 
 ## Propriétés d'instance
 
@@ -1257,7 +1257,7 @@ if (version === 2) {
 
 ### vm.$scopedSlots
 
-> Nouveauté en 2.1.0+
+> Nouveau dans la 2.1.0+
 
 - **Type :** `{ [name: string]: props => VNode | Array<VNode> }`
 
@@ -1302,7 +1302,7 @@ if (version === 2) {
 
 ### vm.$attrs
 
-- **Type:** `{ [key: string]: string }`
+- **Type :** `{ [key: string]: string }`
 
 - **Read only**
 
@@ -1312,7 +1312,7 @@ if (version === 2) {
 
 ### vm.$listeners
 
-- **Type:** `{ [key: string]: Function | Array<Function> }`
+- **Type :** `{ [key: string]: Function | Array<Function> }`
 
 - **Read only**
 
@@ -1375,7 +1375,7 @@ if (version === 2) {
     deep: true
   })
   vm.monObjet.valeurImbriquée = 123
-  // la fonction callback est déclenchée
+  // la fonction de rappel est déclenchée
   ```
 
 - **Option: immediate**
@@ -1386,7 +1386,7 @@ if (version === 2) {
   vm.$watch('a', callback, {
     immediate: true
   })
-  // la fonction callback est immédiatement déclenchée avec la valeur actuelle de `a`
+  // la fonction `callback` est immédiatement déclenchée avec la valeur actuelle de `a`
   ```
 
 <h3 id="vm-set">vm.$set( cible, clé, valeur )</h3>
@@ -1426,7 +1426,7 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Écoute un événement personnalisé sur l'instance `vm`. Les événements peuvent être déclenchés avec `vm.$emit`. La fonction de callback recevra tous les arguments additionnels passés dans ces méthodes de déclenchement d'événement.
+  Écoute un événement personnalisé sur l'instance `vm`. Les événements peuvent être déclenchés avec `vm.$emit`. La fonction de rappel recevra tous les arguments additionnels passés dans ces méthodes de déclenchement d'événement.
 
 - **Exemple :**
 
@@ -1462,7 +1462,7 @@ if (version === 2) {
 
   - Si seul l'argument événément est fourni, supprime tous les écouteurs de cet événement;
 
-  - Si l'événement et le callback sont fournis, supprime l'écouteur uniquement pour cet événément et ce callback spécifique.
+  - Si l'événement et la fonction de rappel sont fournis, supprime l'écouteur uniquement pour cet événément et cette fonction de rappel spécifique.
 
 <h3 id="vm-emit">vm.$emit( événement, [...arguments] )</h3>
 
@@ -1470,7 +1470,7 @@ if (version === 2) {
   - `{string} événement`
   - `[...arguments]`
 
-  Déclenche un événement sur l'instance actuelle. Tous les arguments additionnels sont passés à la fonction callback de l'écouteur.
+  Déclenche un événement sur l'instance actuelle. Tous les arguments additionnels sont passés à la fonction de rappel de l'écouteur.
 
 ## Méthodes d'Instance / Cycle de Vie
 
@@ -1527,7 +1527,7 @@ if (version === 2) {
 
   Reporte l'éxécution de la fonction `callback` au prochain cycle de mise à jour du DOM. Utilisez ceci immédiatement après avoir changé des données pour attendre la mise à jour du DOM. C'est la même chose que la fonction globale `Vue.nextTick`, sauf que le contexte `this` dans la fonction `callback` est automatiquement lié à l'instance appelant cette méthode.
 
-  > Nouveau en 2.1.0+ : retourne une Promise si aucun callback n'est fourni et si les Promise sont supportés dans l'environnement d'exécution.
+  > Nouveau dans la 2.1.0+ : retourne une Promise si aucune fonction de rappel n'est fourni et si les Promise sont supportés dans l'environnement d'exécution.
 
 - **Exemple :**
 
@@ -1638,7 +1638,7 @@ if (version === 2) {
 
 - **Utilisation :**
 
-  Dénote un bloc « else » pour `v-if` ou pour une chaîne `v-if`/`v-else-if`.
+  Dénote un bloc « else » pour `v-if` ou pour une chaîne `v-if` / `v-else-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1954,7 +1954,7 @@ if (version === 2) {
   </div>
   <!-- composant -->
   <mon-composant v-once :commentaire="msg"></mon-composant>
-  <!-- directive v-for -->
+  <!-- directive `v-for` -->
   <ul>
     <li v-for="i in liste" v-once>{{i}}</li>
   </ul>
@@ -2039,8 +2039,8 @@ if (version === 2) {
   <!-- le composant change quand la vue actuelle change -->
   <component v-bind:is="vueActuelle"></component>
 
-  <!-- nécessaire car <ma-ligne> sera invalide à l'intérieur -->
-  <!-- d'un élément <table> et donc sera écarté -->
+  <!-- nécessaire car `<ma-ligne>` sera invalide à l'intérieur -->
+  <!-- d'un élément `<table>` et donc sera écarté -->
   <table>
     <tr is="ma-ligne"></tr>
   </table>
@@ -2200,7 +2200,7 @@ if (version === 2) {
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- utilisé avec <transition> -->
+  <!-- utilisé avec `<transition>` -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2222,12 +2222,12 @@ if (version === 2) {
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- expression régulière (utiliser v-bind) -->
+  <!-- expression régulière (utiliser `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (utiliser v-bind) -->
+  <!-- Array (utiliser `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
