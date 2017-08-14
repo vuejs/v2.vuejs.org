@@ -112,10 +112,6 @@ offline:
       handler: networkFirst
       options:
         origin: ad.doubleclick.net
-    - urlPattern: /*
-      handler: networkFirst
-      options:
-        origin: srv.carbonads.net
     # CDNs - should be cacheFirst, since they should be used specific versions so should not change
     - urlPattern: /*
       handler: cacheFirst

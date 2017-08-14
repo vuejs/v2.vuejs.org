@@ -62,7 +62,6 @@ a.button
 
 .highlight
   overflow-x: auto
-  position: relative
   padding: 0
   background-color: $codebg
   padding: .8em .8em .4em
@@ -84,9 +83,9 @@ a.button
     .line
       min-height: $code-line-height
   &.html, &.js, &.bash, &.css
-    .code:after
+    .code:before
       position: absolute
-      top: 0
+      margin-top: -1em
       right: 0
       color: #ccc
       text-align: right
@@ -95,13 +94,13 @@ a.button
       line-height: 15px
       height: 15px
       font-weight: 600
-  &.html .code:after
+  &.html .code:before
     content: 'HTML'
-  &.js .code:after
+  &.js .code:before
     content: 'JS'
-  &.bash .code:after
+  &.bash .code:before
     content: 'Shell'
-  &.css .code:after
+  &.css .code:before
     content: 'CSS'
 
 #main

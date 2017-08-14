@@ -69,7 +69,7 @@ In addition to text interpolation, we can also bind element attributes like this
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date()
+    message: 'You loaded this page on ' + new Date().toLocaleString()
   }
 })
 ```
@@ -83,7 +83,7 @@ var app2 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date()
+    message: 'You loaded this page on ' + new Date().toLocaleString()
   }
 })
 </script>

@@ -1288,7 +1288,7 @@ In our case, I'll make that point the `tree-folder` component. We know the child
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
 }
 ```
 
