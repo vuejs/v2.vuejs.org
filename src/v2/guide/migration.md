@@ -16,9 +16,9 @@ order: 26
 
 2. Après cela, naviguez à travers la table de contenu de cette page dans la barre de navigation. Si vous voyez un sujet qui vous concerne, mais que l'outil d'aide à la migration n'a pas repéré, occupez-vous en.
 
-3. Si vous avez des cas de test, exécutez les et voyez ce qui ne fonctionne plus et échoue. Si vous n'avez pas de cas de test, ouvrez simplement votre application dans votre navigateur et garder un œil sur les avertissements et erreurs que vous trouverrez en faisant un tour de l'application.
+3. Si vous avez des cas de test, exécutez les et voyez ce qui ne fonctionne plus et échoue. Si vous n'avez pas de cas de test, ouvrez simplement votre application dans votre navigateur et garder un œil sur les avertissements et erreurs que vous trouverez en faisant un tour de l'application.
 
-4. Maintenant, votre application devrait être pleinement migré. Si vous n'êtes toujours pas satisfait de divers points, vous pouvez lire le reste de cette page (ou juste plonger dans le nouveau [guide de démarrage](index.html)). Beaucoup de partie seront vite parcourue puisque vous êtes familier aux concepts de base.
+4. Maintenant, votre application devrait être pleinement migré. Si vous n'êtes toujours pas satisfait de divers points, vous pouvez lire le reste de cette page (ou juste plonger dans le nouveau [guide de démarrage](index.html)). Beaucoup de parties seront vite parcourues puisque vous êtes familier aux concepts de base.
 
 > Combien de temps va prendre la migration d'une application Vue 1.x vers une application Vue 2.0 ?
 
@@ -28,13 +28,13 @@ Cela dépend de plusieurs critères comme :
 
 - de combien de fois vous êtes distrait et que vous commencez à jouer avec une nouvelle fonctionnalité cool (😉 Pas de jugement, ça nous est arrivé à nous pendant la construction de la version 2.0),
 
-- du nombre de fonctionnalités obsolètes que vous utilisez. La plupard d'entre elles peuvent être corrigé avec une action de type trouver-remplacer (« find-and-replace »), mais d'autres peuvent prendre quelques minutes. Si vous ne suivez actuellement pas les meilleures pratiques, Vue 2.0 vous forcera encore plus à les respecter. Cela est une bonne chose sur le long terme, mais signifie également de refactoriser (un peu tard) des parties.
+- du nombre de fonctionnalités obsolètes que vous utilisez. La plupard d'entre elles peuvent être corrigées avec une action de type trouver-remplacer (« find-and-replace »), mais d'autres peuvent prendre quelques minutes. Si vous ne suivez actuellement pas les meilleures pratiques, Vue 2.0 vous forcera encore plus à les respecter. Cela est une bonne chose sur le long terme, mais signifie également de refactoriser (un peu tard) des parties.
 
 > Si je mets à jour vers Vue 2, dois-je aussi mettre à jour Vuex et Vue-Router ?
 
 Seul Vue-Router 2 est compatible avec Vue 2, donc oui, vous allez devoir suivre le [guide de migration pour Vue-Router](migration-vue-router.html) également. Heureusement, un grand nombre d'applications n'ont pas beaucoup de code en lien avec le routeur, cela ne devrait donc pas prendre plus d'une heure.
 
-En ce qui concerne Vuex, la version 0.8 est compatible avec Vue 2, vous n'êtes donc pas obligé de le mettre à jour. La seule raison pour que vous souhaitiez faire la mise à jour dès maintenant serait de tirer partie des nouvelles fonctionnalités de Vuex 2, comme les modules ou des codes pré-conçus (« boilerplate ») moins verbeux.
+En ce qui concerne Vuex, la version 0.8 est compatible avec Vue 2, vous n'êtes donc pas obligé de le mettre à jour. La seule raison pour que vous souhaitiez faire la mise à jour dès maintenant serait de tirer partie des nouvelles fonctionnalités de Vuex 2, comme les modules ou les codes pré-conçus (« boilerplate ») moins verbeux.
 
 ## Templates
 
@@ -47,7 +47,7 @@ Tous les composants doivent avoir seulement un seul élément racine. Les instan
 <p>bar</p>
 ```
 
-Il est recommandé de simplement d'entourer le contenu complet dans un nouvel élément, comme cela :
+Il est recommandé d'entourer simplement le contenu complet dans un nouvel élément, comme cela :
 
 ``` html
 <div>
@@ -59,7 +59,7 @@ Il est recommandé de simplement d'entourer le contenu complet dans un nouvel é
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos d'éléments multiple à la racine dans un template.</p>
+  <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos d'éléments multiple à la racine dans un template.</p>
 </div>
 {% endraw %}
 
@@ -89,7 +89,7 @@ Utilisez le hook `mounted` à la place.
 
 ### `attached` <sup>retiré</sup>
 
-Utiliser une vérification du DOM dans les autres hooks. Par exemple, remplacez :
+Utilisez une vérification du DOM dans les autres hooks. Par exemple, remplacez :
 
 ``` js
 attached: function () {
@@ -116,7 +116,7 @@ mounted: function () {
 
 ### `detached` <sup>retiré</sup>
 
-Utiliser une vérification du DOM dans les autres hooks. Par exemple, remplacez :
+Utilisez une vérification du DOM dans les autres hooks. Par exemple, remplacez :
 
 ``` js
 detached: function () {
@@ -154,7 +154,7 @@ Utilisez le nouveau hook `beforeCreate` à la place. Il fait la même chose. Il 
 
 ### `ready` <sup>remplacé</sup>
 
-Utilisez le hook `mounted` à la place. Il est a noté qu'avec `mounted`, il n'y a aucune garanti de présence dans le document (DOM réel). Pour s'en assurer, il faut inclure `Vue.nextTick` / `vm.$nextTick`. Par exemple :
+Utilisez le hook `mounted` à la place. Il est a noté qu'avec `mounted`, il n'y a aucune garantie de présence dans le document (DOM réel). Pour s'en assurer, il faut inclure `Vue.nextTick` / `vm.$nextTick`. Par exemple :
 
 ``` js
 mounted: function () {
@@ -197,7 +197,7 @@ Quand vous utilisez une `key`, l'ordre des arguments pour les objets était `(ke
 
 ### `$index` et `$key` <sup>retirés</sup>
 
-Les variables implicites `$index` et `$key` ont été enlevée à la faveur de leur définition explicite dans `v-for`. Ceci rend le code plus simple à lire pour les développeurs moins expérimentés avec Vue. Il en résulte également des comportements plus prévisible dans les cas de boucles imbriquées.
+Les variables implicites `$index` et `$key` ont été enlevées à la faveur de leur définition explicite dans `v-for`. Ceci rend le code plus simple à lire pour les développeurs moins expérimentés avec Vue. Il en résulte également des comportements plus prévisibles dans les cas de boucles imbriquées.
 
 {% raw %}
 <div class="upgrade-path">
@@ -286,7 +286,7 @@ Cela a plusieurs avantages :
 
 ### Option de prop `twoWay` <sup>retirée</sup>
 
-Les props sont maintenant toujours unidirectionnelle et descendante. Pour produire une modification dans la portée parente, un composant a besoin d'explicitement émettre un évènement au lieu de créer une liaison implicite. Pour plus d'informations, consultez :
+Les props sont maintenant toujours unidirectionnelles et descendantes. Pour produire une modification dans la portée parente, un composant a besoin d'explicitement émettre un évènement au lieu de créer une liaison implicite. Pour plus d'informations, consultez :
 
 - [Événements de composant personnalisés](components.html#Evenements-personnalises)
 - [Composants de champ de formulaire personnalisés](components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises) (utilisant les événements de composant)
@@ -301,7 +301,7 @@ Les props sont maintenant toujours unidirectionnelle et descendante. Pour produi
 
 ### Modificateur `.once` et `.sync` de `v-bind` <sup>retiré</sup>
 
-Les props sont maintenant toujours unidirectionnelle et descendante. Pour produire une modification dans la portée parente, un composant a besoin d'explicitement émettre un évènement au lieu de créer une liaison implicite. Pour plus d'informations, consultez :
+Les props sont maintenant toujours unidirectionnelles et descendantes. Pour produire une modification dans la portée parente, un composant a besoin d'explicitement émettre un évènement au lieu de créer une liaison implicite. Pour plus d'informations, consultez :
 
 - [Événements de composant personnalisés](components.html#Evenements-personnalises)
 - [Composants de champ de formulaire personnalisés](components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises) (utilisant les événements de composant)
@@ -326,7 +326,7 @@ Dans la majorité des cas, muter une prop peut être remplacé par une de ces so
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos des mutations du prop.</p>
+  <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos des mutations du prop.</p>
 </div>
 {% endraw %}
 
@@ -337,7 +337,7 @@ Sur une instance racine de Vue (c.-à-d. crée avec `new Vue({ ... })`), vous de
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter du fait que les props de l'instance racine ne sont plus passées.</p>
+  <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter du fait que les props de l'instance racine ne sont plus passées.</p>
 </div>
 {% endraw %}
 
@@ -345,7 +345,7 @@ Sur une instance racine de Vue (c.-à-d. crée avec `new Vue({ ... })`), vous de
 
 ### `cache: false` <sup>dépréciée</sup>
 
-L'invalidation de cache pour les propriétés calculées va être retiré dans les futures versions majeures de Vue. Remplacez toute les propriétés calculées non avec invalidation de cache par des méthodes, cela produira le même résultat.
+L'invalidation de cache pour les propriétés calculées va être retiré dans les futures versions majeures de Vue. Remplacez toute les propriétés calculées avec invalidation de cache par des méthodes, cela produira le même résultat.
 
 Pan exemple :
 
@@ -383,7 +383,7 @@ methods: {
 
 ### Évaluation à vrai ou faux avec `v-bind` <sup>changée</sup>
 
-Quand elles sont utilisées dans `v-bind`, seule les valeurs `null`, `undefined` et `false` sont évaluées à `false`. Cela signifie que `0` ou une chaîne vide sera rendue à vrai. Donc par exemple `v-bind:draggable="''"` va donner  `draggable="true"`.
+Quand elles sont utilisées dans `v-bind`, seules les valeurs `null`, `undefined` et `false` sont évaluées à `false`. Cela signifie que `0` ou une chaîne vide sera rendue à vrai. Donc par exemple `v-bind:draggable="''"` va donner  `draggable="true"`.
 
 Pour les attributs énumérés, en plus des valeurs précédentes évaluées à `false`, la chaîne de caractères `"false"` sera aussi rendue comme `attr="false"`.
 
@@ -392,7 +392,7 @@ Pour les attributs énumérés, en plus des valeurs précédentes évaluées à 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectée par ce changement.</p>
+  <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectées par ce changement.</p>
 </div>
 {% endraw %}
 
@@ -407,7 +407,7 @@ Quand vous utilisez un composant, `v-on` n'écoutera que les évènements `$emit
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectée par ce changement.</p>
+  <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectées par ce changement.</p>
 </div>
 {% endraw %}
 
@@ -515,7 +515,7 @@ new Vue({
 })
 ```
 
-Un autre avantage de cette approche est que parfois la rétention n'est pas la méthode de limitation d'exécution la plus appropriée. Par exemple, quand vous interrogez une API pour des suggestions de recherche, attendre que l'utilisateur se soit arrêter de taper pour commencer à lui offrir des suggestions n'est pas une expérience utilisateur idéale. Ce que vous souhaiteriez probablement à la place est une fonction de découplage (« throttle »). Maintenant, avec l'utilisation d'une bibliothèque comme loadash, refactoriser le code en utilisant la fonction `throttle` ne prend que quelques secondes.
+Un autre avantage de cette approche est que parfois la rétention n'est pas la méthode de limitation d'exécution la plus appropriée. Par exemple, quand vous interrogez une API pour des suggestions de recherche, attendre que l'utilisateur se soit arrêté de taper pour commencer à lui offrir des suggestions n'est pas une expérience utilisateur idéale. Ce que vous souhaiteriez probablement à la place est une fonction de découplage (« throttle »). Maintenant, avec l'utilisation d'une bibliothèque comme loadash, refactoriser le code en utilisant la fonction `throttle` ne prend que quelques secondes.
 
 {% raw %}
 <div class="upgrade-path">
@@ -578,7 +578,7 @@ vous devrez vous assurer que la valeur initiale pour `text` est `"hello world"`.
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos d'éléments des valeurs de l'attribut <code>value</code> avec <code>v-model</code>.</p>
+  <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos d'éléments des valeurs de l'attribut <code>value</code> avec <code>v-model</code>.</p>
 </div>
 {% endraw %}
 
@@ -609,7 +609,7 @@ Comme vous pouvez le voir, la liaison bidirectionnelle de `v-model` n'a plus de 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectée par ce changement.</p>
+  <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectées par ce changement.</p>
 </div>
 {% endraw %}
 
@@ -636,9 +636,9 @@ Si vous voulez vraiment ré-écrire un autre `!important`, vous devrez utiliser 
 
 ### `v-el` et `v-ref` <sup>remplacés</sup>
 
-Pour plus de simplicité, `v-el` et `v-ref` ont été fusionné en l'attribut `ref`, accessible depuis l'instance d'un composant via `$refs`. Cela signifie que `v-el:my-element` devient `ref="myElement"` et que `v-ref:my-component` devient `ref="myComponent"`. Quand il est utilisé sur un élément normal, le `ref` se réfère à l'élément du DOM, et quand il est utilisé sur un composant, le `ref` se réfère à l'instance du composant.
+Pour plus de simplicité, `v-el` et `v-ref` ont été fusionnés en l'attribut `ref`, accessible depuis l'instance d'un composant via `$refs`. Cela signifie que `v-el:my-element` devient `ref="myElement"` et que `v-ref:my-component` devient `ref="myComponent"`. Quand il est utilisé sur un élément normal, le `ref` se réfère à l'élément du DOM, et quand il est utilisé sur un composant, le `ref` se réfère à l'instance du composant.
 
-Puisque `v-ref` n'est plus une directive, mais un attribut spéciale, il peut également être défini dynamiquement. Cela spécialement utile avec `v-for`. Par exemple :
+Puisque `v-ref` n'est plus une directive, mais un attribut spécial, il peut également être défini dynamiquement. Cela spécialement utile avec `v-for`. Par exemple :
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
@@ -650,7 +650,7 @@ Précédemment, `v-el` / `v-ref` utilisé avec un `v-for` produisait un tableau 
 <p v-for="item in items" ref="items"></p>
 ```
 
-À la différence de la 1.x, les `$refs` ne sont pas réactive, car elles sont enregistrées / mises à jour durant le processus de rendu lui-même. Les rendre ré-active demanderait de dupliquer le rendu à chaque changement.
+À la différence de la 1.x, les `$refs` ne sont pas réactives, car elles sont enregistrées / mises à jour durant le processus de rendu lui-même. Les rendre ré-active demanderait de dupliquer le rendu à chaque changement.
 
 D'un autre côté, `$refs` est conçu avant tout pour un accès programmatique en JavaScript, il n'est donc pas recommandé de les relier dans les templates, car cela signifierait de se référer à un état qui n'est plus en phase avec l'instance elle même. Cela violerait le vue-modèle piloté par les données de Vue.
 
@@ -684,14 +684,14 @@ Vous pouvez utilisez :
 </div>
 {% endraw %}
 
-## Directives personnalisées <sup>simplifiée</sup>
+## Directives personnalisées <sup>simplifiées</sup>
 
-Les directives ont une portée de responsabilité grandement réduite : elles sont maintenant uniquement utilisée pour appliquer des manipulation de DOM à bas niveau. Dans la plupard des cas, vous devriez préférez des composants comme abstraction principale de code réutilisable.
+Les directives ont une portée de responsabilité grandement réduite : elles sont maintenant uniquement utilisées pour appliquer des manipulation de DOM à bas niveau. Dans la plupart des cas, vous devriez préférez des composants comme abstraction principale de codes réutilisables.
 
-Certaine des différences les plus notables inclues :
+Certaines des différences les plus notables inclues :
 
-- Les directives n'ont plus d'instances. Cela signifie qu'il n'y a plus de `this` dans les hooks des directives. À la place, elles reçoivent tout ce dont elles ont besoin en tant qu'arguments. Si vraiment vous devez faire persister des états à travers les hooks, vous pouvez le faire avec `el`.
-- Les options comme `acceptStatement`, `deep`, `priority`, etc. ont toutes été retirées. Pour remplacer les directives `twoWay`, consultez [cette exemple](#filtres-bidirectionnels-replacés).
+- Les directives n'ont plus d'instances. Cela signifie qu'il n'y a plus de `this` dans les hooks des directives. À la place, elles reçoivent tout ce dont elles ont besoin en tant qu'argument. Si vous devez vraiment faire persister des états à travers les hooks, vous pouvez le faire avec `el`.
+- Les options comme `acceptStatement`, `deep`, `priority`, etc. ont toutes été retirées. Pour remplacer les directives `twoWay`, consultez [cet exemple](#filtres-bidirectionnels-replacés).
 - Certains des hooks ont un comportement différent. D'autres hooks sont nouveaux.
 
 Heureusement, puisque les nouvelles directives sont plus simples, vous pouvez les maîtriser plus facilement. Lisez le nouveau [guide des directives](custom-directive.html) pour en apprendre plus.
@@ -722,7 +722,7 @@ avec :
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de modificateur <code>.literal</code> sur les directives.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de modificateurs <code>.literal</code> sur les directives.</p>
 </div>
 {% endraw %}
 
@@ -752,7 +752,7 @@ Avec le nouveau système de transition, vous pouvez maintenant [utiliser les com
 
 ### Attribut de transition `stagger` <sup>retiré</sup>
 
-Si vous avez besoin de écheloner les transitions, vous pouvez contrôler le timing en accédant ou changeant une `data-index` ou attribut similaire sur un élément. Consultez [un exemple ici](transitions.html#Echelonnage-des-transitions-de-liste).
+Si vous avez besoin d'écheloner les transitions, vous pouvez contrôler le timing en accédant ou changeant une `data-index` ou attribut similaire sur un élément. Consultez [un exemple ici](transitions.html#Echelonnage-des-transitions-de-liste).
 
 {% raw %}
 <div class="upgrade-path">
@@ -765,11 +765,11 @@ Si vous avez besoin de écheloner les transitions, vous pouvez contrôler le tim
 
 ### Option `events` <sup>retirée</sup>
 
-L'option `events` a été retirée. Les gestionnaires d'évènements doivent maintenant être abonné dans le hook `created` à la place. Consultez [le guide `$dispatch` et `$broadcast`](#dispatch-et-broadcast-remplaces) pour plus de détails.
+L'option `events` a été retirée. Les gestionnaires d'évènements doivent maintenant être abonnés dans le hook `created` à la place. Consultez [le guide `$dispatch` et `$broadcast`](#dispatch-et-broadcast-remplaces) pour plus de détails.
 
 ### `Vue.directive('on').keyCodes` <sup>remplacé</sup>
 
-La nouvelle, et plus concise, manière de configuré `keyCodes` à travers `Vue.config.keyCodes`. Par exemple :
+La nouvelle, et plus concise, manière de configurer `keyCodes` à travers `Vue.config.keyCodes`. Par exemple :
 
 ``` js
 // enable v-on:keyup.f1
@@ -784,13 +784,13 @@ Vue.config.keyCodes.f1 = 112
 
 ### `$dispatch` et `$broadcast` <sup>remplacés</sup>
 
-`$dispatch` et `$broadcast` on été remplacés en faveur d'une communication plus explicite entre composants et des solutions de gestion d'état plus maintenable, comme [Vuex](https://github.com/vuejs/vuex).
+`$dispatch` et `$broadcast` on été remplacés en faveur d'une communication plus explicite entre composants et des solutions de gestion d'état plus maintenables, comme [Vuex](https://github.com/vuejs/vuex).
 
 Le problème est que le flux d'évènement dépend de la structure de l'arbre des composants qui peut être dur à appréhender et très fragile quand l'arbre devient large. Ils ne s'adaptaient pas correctement et nous ne voulons pas qu'ils amènent plus de bien que de mal. `$dispatch` et `$broadcast` ne résolvaient pas non plus la communication entre les composants voisins.
 
-L'un des usages les plus communs de ces méthodes était la communication entre un parent et ses enfants directs. Dans ces cas, vous pouvez en fait [écouter un `$emit` depuis un enfant avec `v-on`](components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises). Cela vous permet de garder la commodité des événements en étant plus explicite.
+L'un des usages les plus communs de ces méthodes était la communication entre un parent et ses enfants directs. Dans ces cas, vous pouvez en fait [écouter un `$emit` depuis un enfant avec `v-on`](components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises). Cela vous permet de garder la commodité des évènements en étant plus explicite.
 
-Cependant, quand on communique entre descendant ou ancêtres distant, `$emit` ne nous aidera pas. À la place, le plus simple serait de centraliser les changements dans un canal d'évènements centralisé. Cela vous apporte la possibilité de communiquer entre composants sans vous soucier de là où ils sont dans l'arbre des composants (même entre voisins !). Parce que les instances de Vue implémente une interface de émission d'évènement, vous pouvez en fait utiliser une instance de Vue vide pour réaliser cela.
+Cependant, quand on communique entre descendant ou ancêtres distant, `$emit` ne nous aidera pas. À la place, le plus simple serait de centraliser les changements dans un canal d'évènements centralisé. Cela vous apporte la possibilité de communiquer entre composants sans vous soucier de là où ils sont dans l'arbre des composants (même entre voisins !). Parce que les instances de Vue implémentes une interface de émission d'évènement, vous pouvez en fait utiliser une instance de Vue vide pour réaliser cela.
 
 Par exemple, imaginons que nous avons une application de liste de tâches comme celle là :
 
@@ -870,9 +870,9 @@ Ce modèle peut servir de remplacement à `$dispatch` et `$broadcast` dans des s
 
 ### Filtres en dehors des interpolations de texte <sup>retiré</sup>
 
-Les filtres peuvent maintenant seulement être utilisé à l'intérieur des interpolations de texte (Ouverture et fermeture `{% raw %}{{ }}{% endraw %}`). Avant, il était possible d'utiliser ses filtres sur `v-model`, `v-on`, etc mais cela menait à plus de complexité et d'inconvénient. Pour filtrer les listes sur `v-for`, il est plus logique de déplacer cela dans la partie propriétés calculées du JavaScript, ainsi cela peut-être ré-utilisé à travers votre composant.
+Les filtres peuvent maintenant seulement être utilisés à l'intérieur des interpolations de texte (Ouverture et fermeture `{% raw %}{{ }}{% endraw %}`). Avant, il était possible d'utiliser ses filtres sur `v-model`, `v-on`, etc mais cela menait à plus de complexité et d'inconvénient. Pour filtrer les listes sur `v-for`, il est plus logique de déplacer cela dans la partie propriétés calculées du JavaScript, ainsi cela peut-être ré-utilisé à travers votre composant.
 
-En général, chaque fois que quelque chose peut-être fait en JavaScript, nous voulons éviter d'introduire une syntaxe spéciale comme les filtres pour prendre en charge les mêmes choses. Voici comment vous pouvez remplacer les directives de filtres de Vue :
+En général, chaque fois que quelque chose peut-être fait en JavaScript, nous voulons éviter d'introduire une syntaxe spéciale comme les filtres pour prendre en charge les mêmes choses. Voici comment vous pouvez remplacer les directives de filtre de Vue :
 
 #### Remplacer le filtre `debounce`
 
@@ -930,7 +930,7 @@ computed: {
 
 #### Remplacer le filtre `filterBy`
 
-Instead of:
+Au lieu de :
 
 ``` html
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
@@ -953,7 +953,7 @@ computed: {
 }
 ```
 
-La fonction JavaScript navive `.filter` peut également gérer des opérations de filtrage plus complexes, car vous avez accès à toute la puissance de JavaScript dans les propriétés calculées. Par exemple, si vous souhaiter trouver tous les utilisateurs actif avec une concordance non sensible à la casse de leurs nom et email :
+La fonction JavaScript navive `.filter` peut également gérer des opérations de filtrage plus complexes, car vous avez accès à toute la puissance de JavaScript dans les propriétés calculées. Par exemple, si vous souhaitez trouver tous les utilisateurs actifs avec une concordance non sensible à la casse de leurs nom et email :
 
 ``` js
 var self = this
@@ -1003,7 +1003,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 ### Syntaxe d'argument de filtre <sup>changée</sup>
 
-La syntaxe pour les arguments de filtres est maintenant plus consistante avec l'invocation des fonctions JavaScript. Donc au lieu d'utiliser des délimitations avec espace pour les argument :
+La syntaxe pour les arguments de filtre est maintenant plus consistante avec l'invocation des fonctions JavaScript. Donc au lieu d'utiliser des délimitations avec espace pour les arguments :
 
 ``` html
 <p>{{ date | formatDate 'YY-MM-DD' timeZone }}</p>
@@ -1018,13 +1018,13 @@ Nous entourons les arguments avec des parenthèses et les délimitons avec des v
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de vieille syntaxe de filtre. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de vieilles syntaxes de filtre. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
 
-### Filtres de texte intégré <sup>retiré</sup>
+### Filtres de texte intégré <sup>retirés</sup>
 
-Bien que les filtres dans les interpolations de texte soit toujours autorisé, tous les filtres on été retiré. À la place, nous recommandons d'utiliser des bibliothèques spéciales pour résoudre les problèmes dans chaque domaine (par ex. [`date-fns`](https://date-fns.org/) pour le format des dates et [`accounting`](http://openexchangerates.github.io/accounting.js/) pour le format des devises).
+Bien que les filtres dans les interpolations de texte soit toujours autorisés, tous les filtres ont été retirés. À la place, nous recommandons d'utiliser des bibliothèques spéciales pour résoudre les problèmes dans chaque domaine (par ex. [`date-fns`](https://date-fns.org/) pour le format des dates et [`accounting`](http://openexchangerates.github.io/accounting.js/) pour le format des devises).
 
 Vous trouverez de quoi remplacer chaque filtre de texte dans la liste ci-dessous. L'exemple de code peut exister dans des fonctions utilitaires personnalisées, méthodes ou propriétés calculées.
 
@@ -1052,7 +1052,7 @@ text.toLowerCase()
 
 #### Remplacer le filtre `pluralize`
 
-Le package [pluralize](https://www.npmjs.com/package/pluralize) sur npm adresse ses problèmes très bien, mais si vous voulez uniquement mettre au pluriel un mot spécifique ou que vous voulez une sortie spéciale pour dès cas comme `0`, vous pouvez facilement définir votre propre fonction de mise au pluriel. Par exemple :
+Le package [pluralize](https://www.npmjs.com/package/pluralize) sur npm adresse très bien ces problèmes, mais si vous voulez uniquement mettre au pluriel un mot spécifique ou que vous voulez une sortie spéciale pour dès cas comme `0`, vous pouvez facilement définir votre propre fonction de mise au pluriel. Par exemple :
 
 ``` js
 function pluralizeKnife (count) {
@@ -1068,7 +1068,7 @@ function pluralizeKnife (count) {
 
 #### Remplacer le filtre `currency`
 
-Pour toutes les implémentation basique, vous pouvez juste faire quelque chose comme ceci :
+Pour toutes les implémentations basiques, vous pouvez juste faire quelque chose comme ceci :
 
 ``` js
 '$' + price.toFixed(2)
@@ -1085,19 +1085,19 @@ Dans beaucoup de cas cependant, vous allez toujours tomber sur des comportements
 
 ### Filtres bidirectionnels <sup>remplacés</sup>
 
-Beaucoup d'utilisateurs adorent utiliser des filtres bidirectionnels avec `v-model` pour créer des champs intéressant avec très peu de code. Si simple _d'apparence_, les filtres bidirectionnels peuvent aussi cacher un grand niveau de complexité et encourager une expérience utilisateur pauvre en rendant lente la mises à jour des états. À la place, créer un champ dans un composant est recommandé et permet de mieux appréhender son utilisation et d'y ajouter tout ce qu'il faut pour de la création de champs personnalisés.
+Beaucoup d'utilisateurs adorent utiliser des filtres bidirectionnels avec `v-model` pour créer des champs intéressants avec très peu de code. Si simple _d'apparence_, les filtres bidirectionnels peuvent aussi cacher un grand niveau de complexité et encourager une expérience utilisateur pauvre en rendant lente la mises à jour des états. À la place, créer un champ dans un composant est recommandé et permet de mieux appréhender son utilisation et d'y ajouter tout ce qu'il faut pour de la création de champs personnalisés.
 
 Par exemple, nous allons migrer un filtre de devise bidirectionnel :
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-Il fonctionne plutôt bien, mais la rétention de mise à jour d'état peut causer des comportements étrange. Par exemple, cliquez sur l'onglet `Result` et essayez d'entrer la valeur `9.999` dans l'un des champs. Quand le champ perd le focus, sa valeur va être mise à jour à `$10.00`. Quand vous regardez le total calculé cependant, vous verrez que `9.999` est toujours stocké dans nos données. La version de la réalité que l'utilisateur voit est hors de synchro !
+Il fonctionne plutôt bien, mais la rétention de mise à jour d'état peut causer des comportements étranges. Par exemple, cliquez sur l'onglet `Result` et essayez d'entrer la valeur `9.999` dans l'un des champs. Quand le champ perd le focus, sa valeur va être mise à jour à `$10.00`. Quand vous regardez le total calculé cependant, vous verrez que `9.999` est toujours stocké dans nos données. La version de la réalité que l'utilisateur voit est hors de synchro !
 
 Pour commencer a utiliser une solution plus robuste en utilisant Vue 2.0, commençons par entourer ce filtre dans un nouveau composant `<currency-input>` :
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/943zfbsh/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-Celui-ci nous permet d'ajouter des comportements qu'un filtre seul ne pourrait pas encapsuler, comme sélectionner le contenu d'un champ lors du focus. Maintenant, la prochaine étape va être d'extraire la logique métier du filtre. Ci-dessous, nous allons tous mettre dans un [objet `currencyValidator`](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e) externe :
+Celui-ci nous permet d'ajouter des comportements qu'un filtre seul ne pourrait pas encapsuler, comme sélectionner le contenu d'un champ lors du focus. Maintenant, la prochaine étape va être d'extraire la logique métier du filtre. Ci-dessous, nous allons tout mettre dans un [objet `currencyValidator`](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e) externe :
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/9c32kev2/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -1116,12 +1116,12 @@ Vous pouvez remarquer que :
 
 - Tous les aspects de notre champ sont plus explicites, en utilisant les hooks de cycle de vie et les évènements du DOM à la place du mécanisme masqué des filtres bidirectionnels.
 - Nous pouvons maintenant utiliser `v-model` directement sur nos champs personnalisés, cela ne signifie pas uniquement qu'ils ont plus de consistances avec les champs standards, mais cela signifie également qu'ils sont mieux adaptés à Vuex.
-- Comme nous n'utilisons plus d'options de filtre nécessitant qu'une valeur soit retournée, notre devise peut fonctionner de manière asynchrone. Cela signifie que si vous avez beaucoup d'applications qui fonctionne avec des devises, vous pouvez facilement refactoriser les logiques dans un microservice.
+- Comme nous n'utilisons plus d'options de filtre nécessitant qu'une valeur soit retournée, notre devise peut fonctionner de manière asynchrone. Cela signifie que si vous avez beaucoup d'applications qui fonctionnent avec des devises, vous pouvez facilement refactoriser les logiques dans un microservice.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de filtres utilisant des directive comme <code>v-model</code>. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de filtres utilisant des directives comme <code>v-model</code>. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
 
@@ -1134,7 +1134,7 @@ Il n'est plus possible d'avoir deux `<slot>` avec le même nom dans le même tem
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos de slots <code>v-model</code> dupliqué.</p>
+  <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos de slots <code>v-model</code> dupliqué.</p>
 </div>
 {% endraw %}
 
@@ -1199,7 +1199,7 @@ L'interpolation dans les attributs ne fonctionne plus. Par exemple :
 <button class="btn btn-{{ size }}"></button>
 ```
 
-Doit maintenant être mis à jour pour être utiliser dans une expression avec `v-bind` :
+Doit maintenant être mis à jour pour être utilisé dans une expression avec `v-bind` :
 
 ``` html
 <button v-bind:class="'btn btn-' + size"></button>
@@ -1222,7 +1222,7 @@ computed: {
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'interpolation utilisez dans les attributs.</p>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'interpolation utilisée dans les attributs.</p>
 </div>
 {% endraw %}
 
@@ -1252,14 +1252,14 @@ Les liaisons à un seul rendu (`{% raw %}{{* foo }}{% endraw %}`) ont été remp
 
 ### `vm.$watch` <sup>changé</sup>
 
-Les observateurs créent via `vm.$watch` sont maintenant levé avant le rendu des composants associés. Cela vous laisse le temps de mettre à jour l'état avant le rendu du composant, retirant de fait les mises à jour inutiles. Par exemple, vous pouvez observer une prop d'un composant et mettre à jour les données de ce composant quand la prop change.
+Les observateurs créés via `vm.$watch` sont maintenant levés avant le rendu des composants associés. Cela vous laisse le temps de mettre à jour l'état avant le rendu du composant, retirant de fait les mises à jour inutiles. Par exemple, vous pouvez observer une prop d'un composant et mettre à jour les données de ce composant quand la prop change.
 
 Si vous aviez précédemment relié `vm.$watch` à quelque chose du DOM après les mises à jour des composants, vous pouvez maintenant le faire dans le hook de cycle de vie `updated`.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter du fait que les observateurs sont liés a un ancien comportement.</p>
+  <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter du fait que les observateurs sont liés à un ancien comportement.</p>
 </div>
 {% endraw %}
 
@@ -1328,7 +1328,7 @@ methods: {
 
 ### `Vue.set` et `Vue.delete` sur les instances de Vue <sup>retiré</sup>
 
-`Vue.set` et `Vue.delete` ne fonctionnent plus avec les instances de Vue. Il est maintenant obligatoire de déclarer toutes les propriétés de haut niveau en tant que propriétés réactive dans l'option `data`. Si vous voulez supprimer des propriétés d'une instance de Vue ou de de ses `$data`, mettez les à `null`.
+`Vue.set` et `Vue.delete` ne fonctionnent plus avec les instances de Vue. Il est maintenant obligatoire de déclarer toutes les propriétés de haut niveau en tant que propriétés réactives dans l'option `data`. Si vous voulez supprimer des propriétés d'une instance de Vue ou des `$data`, mettez les à `null`.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1339,7 +1339,7 @@ methods: {
 
 ### Remplacement de `vm.$data` <sup>retiré</sup>
 
-Il est maintenant interdit de remplacer l'objet `$data` d'une instance racine de Vue. Cela permet d'éviter les effets de bord dans le système de réactivité et perment a l'état du composant d'être plus prévisible (spécialement avec les systèmes de vérification de type).
+Il est maintenant interdit de remplacer l'objet `$data` d'une instance racine de Vue. Cela permet d'éviter les effets de bord dans le système de réactivité et permet a l'état du composant d'être plus prévisible (spécialement avec les systèmes de vérification de type).
 
 {% raw %}
 <div class="upgrade-path">
@@ -1399,7 +1399,7 @@ Utilisez l'API native du DOM :
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
 ```
 
-Or if `myElement` is the last child:
+ou si `myElement` est le dernier enfant :
 
 ``` js
 myElement.parentNode.appendChild(vm.$el)
@@ -1431,7 +1431,7 @@ vm.$el.remove()
 
 ### `vm.$eval` <sup>retiré</sup>
 
-Pas réellement utilie. Si vous avez des difficultés liés à cette fonctionnalité et que vous n'êtes pas certain de savoir comment faire autrement, vous pouvez poster sur [le forum](https://forum.vuejs.org/c/french) et partager vos idées.
+Pas réellement utile. Si vous avez des difficultés liés à cette fonctionnalité et que vous n'êtes pas certain de savoir comment faire autrement, vous pouvez poster sur [le forum](https://forum.vuejs.org/c/french) et partagez vos idées.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1442,7 +1442,7 @@ Pas réellement utilie. Si vous avez des difficultés liés à cette fonctionnal
 
 ### `vm.$interpolate` <sup>retiré</sup>
 
-Pas réellement utilie. Si vous avez des difficultés liés à cette fonctionnalité et que vous n'êtes pas certain de savoir comment faire autrement, vous pouvez poster sur [le forum](https://forum.vuejs.org/c/french) et partager vos idées.
+Pas réellement utile. Si vous avez des difficultés liées à cette fonctionnalité et que vous n'êtes pas certain de savoir comment faire autrement, vous pouvez poster sur [le forum](https://forum.vuejs.org/c/french) et partager vos idées.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1466,7 +1466,7 @@ Utilisez le [Devtools de Vue](https://github.com/vuejs/vue-devtools) pour une ex
 
 ### `replace: false` <sup>retiré</sup>
 
-Les composants remplace maintenant les éléments sur lesquels il sont liés. Pour simuler le comportement de `replace: false`, vous devez encadrer votre composant racine avec un élément similaire à celui que vous remplacez. Par exemple :
+Les composants remplacent maintenant les éléments sur lesquels ils sont liés. Pour simuler le comportement de `replace: false`, vous devez encadrer votre composant racine avec un élément similaire à celui que vous remplacez. Par exemple :
 
 ``` js
 new Vue({
@@ -1501,7 +1501,7 @@ new Vue({
 
 ### `Vue.config.debug` <sup>retirée</sup>
 
-N'est plus nécessaire car les avertissements se trouve dans la pile des traces par défaut maintenant.
+N'est plus nécessaire car les avertissements se trouvent dans la pile des traces par défaut maintenant.
 
 {% raw %}
 <div class="upgrade-path">
@@ -1552,7 +1552,7 @@ L'option `el` ne peut plus être utilisée avec `Vue.extend`. Elle est seulement
 {% raw %}
 <div class="upgrade-path">
   <h4>Mise en évidence</h4>
-  <p>Lancez votre suite de test ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos de l'option <code>el</code> avec <code>Vue.extend</code>.</p>
+  <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos de l'option <code>el</code> avec <code>Vue.extend</code>.</p>
 </div>
 {% endraw %}
 
@@ -1569,9 +1569,9 @@ Utilisez des composants à la place.
 
 ### `Vue.partial` <sup>retirée</sup>
 
-Les partiels ont été retirée en faveur d'un flux de donnée plus explicite entre les composants, en utilisant les props. Partout où vous utilisiez des partiels dans des zones de performances critiques, la recommandation est simplement d'utiliser un [composant normal](components.html) à la place. Au cas où vous liez dynamiquement le `name` du partiel, vous pouvez utiliser un [composant dynamique](components.html#Composants-dynamiques).
+Les partiels ont été retirés en faveur d'un flux de donnée plus explicite entre les composants, en utilisant les props. Partout où vous utilisiez des partiels dans des zones de performances critiques, la recommandation est simplement d'utiliser un [composant normal](components.html) à la place. Au cas où vous liez dynamiquement le `name` du partiel, vous pouvez utiliser un [composant dynamique](components.html#Composants-dynamiques).
 
-Si vous utilisiez des partiels dans des parties de votre application aux performances critiques, vous devriez les améliorer avec des [composants fonctionnels](render-function.html#Composants-fonctionnels). Elles seront entièrement en JavaScript ou JSX dans un fichier dédié (plutôt que dans un fichier `.vue`) et seront sans état et sans instance, exactement comme les partials. Cela rendra le rendu extrêmement rapide.
+Si vous utilisiez des partiels dans des parties de votre application aux performances critiques, vous devriez les améliorer avec des [composants fonctionnels](render-function.html#Composants-fonctionnels). Elles seront entièrement en JavaScript ou JSX dans un fichier dédié (plutôt que dans un fichier `.vue`) et seront sans état et sans instance, exactement comme les partiels. Cela rendra le rendu extrêmement rapide.
 
 Le bénéfice des composants fonctionnels face aux partiels est qu'ils peuvent être bien plus dynamique, car ils vous permettent d'accéder à toute la puissance de JavaScript. Il y a un coût à cette puissance cependant. Si vous n'avez jamais utilisé un framework avec des composants de rendu avant, cela peut prendre un peu de temps pour l'apprentissage.
 
