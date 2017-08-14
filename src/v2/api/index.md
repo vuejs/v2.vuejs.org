@@ -1601,6 +1601,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
+
 - **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Raw-HTML)
 
 ### v-show
@@ -1811,7 +1812,6 @@ if (version === 2) {
 
 - **Modifiers:**
   - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
-
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
   - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
@@ -2209,7 +2209,6 @@ if (version === 2) {
   ```
 
   Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
-
 
 - **`include` and `exclude`**
 
