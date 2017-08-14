@@ -700,6 +700,7 @@ if (version === 2) {
 
   - **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
 
+## Options / Cycle de vie des hooks
 
 <p class="tip">Tous les hooks du cycle de vie ont automatiquement leur contexte `this` rattaché à l'instance, afin que vous puissiez accéder aux données, propriétés calculées et méthodes. Cela signifie que __vous ne devriez pas utiliser une fonction fléchée pour définir une méthode du cycle de vie__  (p. ex. `created: () => this.fetchTodos()`). La raison est que les fonctions fléchées utilisent le contexte parent, donc `this` ne sera pas l'instance de Vue comme vous pouvez vous y attendre et `this.fetchTodos` sera `undefined`.</p>
 
@@ -1017,7 +1018,6 @@ if (version === 2) {
   Permet au composant de s'invoquer lui-même récursivement dans son template. Notez que lorsqu'un composant est déclaré globalement avec `Vue.component()`, l'identifiant global est automatiquement assigné à sa propriété `name`.
 
   Un autre bénéfice du fait de spécifier une option `name` est le débogage. Les composants nommés donnent des messages d'avertissement plus utiles. De plus, lorsque vous inspectez une application via les [vue-devtools](https://github.com/vuejs/vue-devtools), les composants non nommés s'afficheront en tant que `<AnonymousComponent>`, ce qui n'est pas très instructif. En fournissant une option `name`, vous obtiendrez bien plus d'informations dans l'arbre de composants.
-
 
 ### delimiters
 
@@ -1601,6 +1601,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
+
 - **Voir aussi :** [Syntaxe de liaison de données - Interpolations](../guide/syntax.html#Interpetation-du-HTML)
 
 ### v-show

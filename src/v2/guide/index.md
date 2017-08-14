@@ -60,7 +60,7 @@ En plus de l'interpolation de texte, nous pouvons également lier les attributs 
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Passez votre souris sur moi pendant quelques secondes 
+    Passez votre souris sur moi pendant quelques secondes
     pour voir mon titre lié dynamiquement !
   </span>
 </div>
@@ -69,7 +69,7 @@ En plus de l'interpolation de texte, nous pouvons également lier les attributs 
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'Vous avez affiché cette page le ' + new Date()
+    message: 'Vous avez affiché cette page le ' + new Date().toLocaleString()
   }
 })
 ```
@@ -83,7 +83,7 @@ var app2 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'Vous avez affiché cette page le ' + new Date()
+    message: 'Vous avez affiché cette page le ' + new Date().toLocaleString()
   }
 })
 </script>
@@ -95,7 +95,7 @@ Si vous ouvrez votre console JavaScript une nouvelle fois et entrez `app2.messag
 
 ## Conditions et boucles
 
-Il est assez simple de permuter la présence d'un élément : 
+Il est assez simple de permuter la présence d'un élément :
 
 ``` html
 <div id="app-3">
