@@ -1015,63 +1015,63 @@ if (version === 2) {
   }
   ```
 
-## Options / Misc
+## Opções / Miscelânea
 
 ### name
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **Restrição:** somente é respeitada quando usada como uma opção do componente.
 
-- **Details:**
+- **Detalhes:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  Permite que o componente invoque a si mesmo recursivamente no seu *template*. Note que quando um componente é registrado globalmente com `Vue.component()`, seu ID global é automaticamente especificado com seu nome.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Outro benefício de se especificar a opção `name` é depuração. Componentes nomeados resultarão em mensagens de aviso mais prestativas. Além disso, ao se inspecionar uma aplicação em [vue-devtools](https://github.com/vuejs/vue-devtools), componentes não nomeados aparecerão como `<AnonymousComponent>`, o que não é muito informativo. Ao fornecer a opção `name`, você terá uma árvore de componentes muito mais informativa.
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **Default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **Padrão:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Restrições:** Esta opção só está disponível na *build* completa, com compilação no navegador.
 
-- **Details:**
+- **Detalhes:**
 
-  Change the plain text interpolation delimiters.
+  Altera os delimitadores de interpolação de texto simples.
 
-- **Example:**
+- **Exemplo:**
 
   ``` js
   new Vue({
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Mudando os delimitadores para o estilo do ES6 template string
   ```
 
 ### functional
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Details:**
+- **Detalhes:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+  Faz com que um componente seja *stateless* (ou seja, não possui `data`) and *instanceless* (ou seja, não possui o contexto `this`). Componentes com esta opção habilitada serão apenas uma função `render` que retorna nós virtuais, fazendo com que sejam muito menos custosos para renderizar.
 
-- **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
+- **Veja também:** [Componentes funcionais](../guide/render-function.html#Functional-Components)
 
 ### model
 
-> New in 2.2.0
+> Novo em 2.2.0
 
-- **Type:** `{ prop?: string, event?: string }`
+- **Tipo:** `{ prop: string, event: string }`
 
-- **Details:**
+- **Detalhes:**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  Permite que um componente personalize a propriedade e o evento usados quando `v-model` é utilizado. Por padrão, `v-model` em um componente usa `value` como a propriedade e `input` como o evento, mas alguns tipos de *inputs* (como *checkbox* e *radio buttons*) podem querer usar a propriedade `value` com outro propósito. Usar a opção `model` pode evitar conflitos nesses casos.
 
-- **Example:**
+- **Exemplo:**
 
   ``` js
   Vue.component('my-checkbox', {
@@ -1080,9 +1080,9 @@ if (version === 2) {
       event: 'change'
     },
     props: {
-      // this allows using the `value` prop for a different purpose
+      // Isto permite usar a propriedade `value` com um propósito diferente
       value: String,
-      // use `checked` as the prop which take the place of `value`
+      // Usando `checked` como a propriedade, ao invés de `value`
       checked: {
         type: Number,
         default: 0
@@ -1096,7 +1096,7 @@ if (version === 2) {
   <my-checkbox v-model="foo" value="some value"></my-checkbox>
   ```
 
-  The above will be equivalent to:
+  O código acima equivale a:
 
   ``` html
   <my-checkbox
@@ -1108,31 +1108,31 @@ if (version === 2) {
 
 ### inheritAttrs
 
-> New in 2.4.0+
+> Novo em 2.4.0+
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `true`
+- **Padrão:** `true`
 
-- **Details:**
+- **Detalhes:**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough" and be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property (also new in 2.4) and can be explicitly bound to a non-root element using `v-bind`.
+  Por padrão, atributos *binded* ao escopo do componente pai que não são reconhecidos como *props* serão aplicados ao elemento raíz do componente filho como atributos normais de HTML. Quando um componente é implementado com o objetivo de envolver um elemento-alvo ou outro componente, este comportamento nem sempre é o mais desejado. Ao especificar `inheritAttrs` para `false`, este comportamento padrão pode ser desabilitado. Os atributos estarão disponíveis pela propriedade de instância `$attrs` (também nova na versão 2.4) e podem ser explicitamente vinculados a um elemento que não seja a raíz utilizando `v-bind`.
 
-  Note: this option does **not** affect `class` and `style` bindings.
+  Nota: esta opção **não** afeta *bindings* de `class` e `style`.
 
 ### comments
 
-> New in 2.4.0+
+> Novo em 2.4.0+
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Padrão:** `false`
 
-- **Restrictions:** This option is only available in the full build, with in-browser compilation.
+- **Restrições:** Esta opção só está disponível na *build* completa, com compilação no navegador.
 
-- **Details:**
+- **Detalhes:**
 
-  When set to `true`, will preserve and render HTML comments found in templates. The default behavior is discarding them.
+  Quando especificada para `true`, esta opção irá preservar e renderizar comentários HTML encontrados nos *templates*. O comportamento padrão é discartá-los.
 
 ## Instance Properties
 
