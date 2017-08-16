@@ -52,7 +52,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Options / Assets (Tradução: @kimuraz. Revisão: **pendente**)
 - [ ] Options / Composition (Trandução: @kimuraz. Revisão: **pendente**)
 - [ ] Options / Misc (Tradução: @vitorbaraujo. Revisão: **pendente**)
-- [ ] Instance Properties (Tradução: @vitorbaraujo. Revisão: **pendente**)
+- [x] Instance Properties (Tradução: @vitorbaraujo. Revisão: **pendente**)
 - [ ] Instance Methods / Data
 - [ ] Instance Methods / Events
 - [ ] Instance Methods / Lifecycle
