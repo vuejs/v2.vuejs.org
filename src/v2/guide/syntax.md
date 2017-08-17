@@ -38,7 +38,7 @@ As chaves duplas interpretam os dados como texto simples, e não HTML. Para que 
 
 Os conteúdos deste `div` serão substituídos com o valor da propriedade `rawHtml`, interpretada como HTML puro - _data bindings_ são ignorados. Note que você não pode utilizar a diretiva `v-html` para compor _templates_ parciais, porque o Vue não é uma _engine_ baseada em _templates_ através de String. Ao invés disso, componentes são a maneira indicada para a composição e reutilização de elementos de UI.
 
-<p class="tip">Dinamicamente renderizar HTML sem precauções pode ser muito perigoso, pois pode levar a [ataques XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Utilize a interpolação de HTML apenas em conteúdos que você confia e **nunca** em conteúdos enviados por seus usuários.</p>
+<p class="tip">Dinamicamente renderizar HTML sem precauções pode ser muito perigoso, pois pode levar a [ataques XSS](https://pt.wikipedia.org/wiki/Cross-site_scripting). Utilize a interpolação de HTML apenas em conteúdos que você confia e **nunca** em conteúdos enviados por seus usuários.</p>
 
 ### Atributos
 
