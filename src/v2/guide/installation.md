@@ -33,7 +33,7 @@ Simplesmente faça o _download_ e inclua a _tag_ `<script>` com o caminho corret
 
 **Recomendado:** [unpkg.com/vue/dist/vue.js](https://unpkg.com/vue/dist/vue.js), reflete a última versão assim que ela é disponibilizada no `npm`. Inclusive, pode navegar pelo código-fonte do pacote em [https://unpkg.com/vue/](https://unpkg.com/vue/).
 
-Também disponível no [jsDelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) ou no [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mas estes dois serviços levam algum tempo para sincronizar com a última versão quando lançada.
+Também disponível no [jsDelivr](https://cdn.jsdelivr.net/npm/vue/dist/vue.js) ou no [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mas estes dois serviços levam algum tempo para sincronizar com a última versão quando lançada.
 
 ## NPM
 

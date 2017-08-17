@@ -110,8 +110,8 @@ React é conhecido por sua curva de aprendizado. Antes que você possa realmente
 
 Enquanto Vue escala ascendentemente tão bem quanto, se não até melhor que o React, ele também é capaz de reduzir a escala tão bem quanto jQuery. É isso mesmo - tudo que você precisa fazer é colocar uma única _tag_ `<script>` na página:
 
-```html
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+``` html
+<script src="https://unpkg.com/vue"></script>
 ```
 
 Então você pode começar a escrever código Vue e ainda distribuir a versão minificada em produção sem se sentir culpado ou ter que se preocupar sobre problemas de performance.

@@ -486,7 +486,7 @@ Toda instância Vue implementa uma [interface de eventos](../api/#Instance-Metho
 - Ouvir um evento usando `$on(eventName)`
 - Disparar um evento usando `$emit(eventName)`
 
-<p class="tip">Observe que o sistema de eventos do Vue é separado da [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) do navegador. Embora eles funcionem de maneira semelhante, o `$on` e o `$emit` __não__ são apelidos para o `addEventListener` e o `dispatchEvent`.</p>
+<p class="tip">Observe que o sistema de eventos do Vue é separado da [EventTarget API](https://developer.mozilla.org/pt-BR/docs/Web/API/EventTarget) do navegador. Embora eles funcionem de maneira semelhante, o `$on` e o `$emit` __não__ são apelidos para o `addEventListener` e o `dispatchEvent`.</p>
 
 Além disso, um componente pai pode ouvir eventos emitidos do componente filho usando o `v-on` diretamente no _template_ onde o componente filho é usado.
 
@@ -1289,7 +1289,7 @@ No nosso caso, faremos esse ponto no componente `tree-folder`. Nós sabemos que 
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
 }
 ```
 

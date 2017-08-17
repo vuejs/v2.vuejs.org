@@ -202,8 +202,8 @@ Por exemplo:
 <!-- e de coleções de métodos utilitários com propósitos gerais, o  -->
 <!-- núcleo Vue permanece pequeno não os reinventando. Isto também  -->
 <!-- lhe dá a liberdade de usar apenas o que estiver familiarizado. -->
-<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
-<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
 var watchExampleVM = new Vue({
   el: '#watch-example',
@@ -262,8 +262,8 @@ Resultado:
   </p>
   <p>{{ answer }}</p>
 </div>
-<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
-<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
 var watchExampleVM = new Vue({
   el: '#watch-example',

@@ -71,7 +71,7 @@ Além de simples interpolação de texto, podemos interligar atributos de elemen
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'Você carregou esta página em ' + new Date()
+    message: 'Você carregou esta página em ' + new Date().toLocaleString()
   }
 })
 ```
@@ -85,7 +85,7 @@ var app2 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'Você carregou esta página em ' + new Date()
+    message: 'Você carregou esta página em ' + new Date().toLocaleString()
   }
 })
 </script>

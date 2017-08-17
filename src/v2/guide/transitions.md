@@ -299,7 +299,7 @@ Estes irão sobrescrever os nomes convencionais das classes. Isso é especialmen
 Aqui segue um exemplo:
 
 ``` html
-<link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 
 <div id="example-3">
   <button @click="show = !show">
@@ -325,7 +325,7 @@ new Vue({
 ```
 
 {% raw %}
-<link href="https://unpkg.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="exemplo-3" class="demo">
   <button @click="show = !show">
     Alterna renderização

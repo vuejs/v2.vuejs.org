@@ -95,7 +95,7 @@ type: api
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // trace is the component hierarchy trace
+    // `trace` is the component hierarchy trace
   }
   ```
 
@@ -132,7 +132,7 @@ type: api
     // camelCase won`t work
     mediaPlayPause: 179,
     // instead you can use kebab-case with double quotation marks
-    "media-play-pause" : 179,
+    "media-play-pause": 179,
     up: [38, 87]
   }
   ```
@@ -360,7 +360,7 @@ type: api
 
   Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
 
-- **See also:** [Global Mixins](../guide/mixins.html#Global-Mixin)
+- **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
@@ -549,8 +549,7 @@ if (version === 2) {
   vm.aDouble // -> 4
   ```
 
-- **See also:**
-  - [Computed Properties](../guide/computed.html)
+- **See also:** [Computed Properties](../guide/computed.html)
 
 ### methods
 
@@ -577,7 +576,7 @@ if (version === 2) {
   vm.a // 2
   ```
 
-- **See also:** [Methods and Event Handling](../guide/events.html)
+- **See also:** [Event Handling](../guide/events.html)
 
 ### watch
 
@@ -614,7 +613,7 @@ if (version === 2) {
 
   <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
 
-- **See also:** [Instance Methods - vm.$watch](#vm-watch)
+- **See also:** [Instance Methods / Data - vm.$watch](#vm-watch)
 
 ## Opções / DOM
 
@@ -653,13 +652,13 @@ if (version === 2) {
   <p class="tip">De uma perspective de segurança, você devia usar apenas Vue templates que você pode confiar. Nunca use conteúdo gerado pelo usuário como seu template.</p>
 
 - **Ver também:**
-  - [Diagrama do Ciclo de Vida](../guide/instance.html#Lifecycle-Diagram)
-  - [Distribuição de Conteúdo](../guide/components.html#Content-Distribution-with-Slots)
+  - [Diagrama do Ciclo de Vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
+  - [Distribuição de Conteúdo](../guide/components.html#Distribuicao-de-Conteudo-com-Slots)
 
 ### render
 
   - **Tipo:** `(createElement: () => VNode) => VNode`
-  <p class="tip">If render function is present in the Vue option, the template will be ignored.</p>
+  <p class="tip">Se a função `render` estiver presente nas opções Vue, o _template_ será ignorado.</p>
 
   - **Detalhes:**
 
@@ -669,8 +668,7 @@ if (version === 2) {
 
     <p class="tip">The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element which is specified by the `el` option.</p>
 
-  - **Ver também:**
-    - [Funções de Renderização](../guide/render-function.html)
+  - **Ver também:** [Funções de Renderização](../guide/render-function.html)
 
 ### renderError
 
@@ -697,12 +695,16 @@ if (version === 2) {
     }).$mount('#app')
     ```
 
+<<<<<<< HEAD
   - **See also:**
 <<<<<<< HEAD
     - [Render Functions](../guide/render-function)
 >>>>>>> refs/remotes/vuejs/master:src/v2/api/index.md
 =======
     - [Render Functions](../guide/render-function.html)
+>>>>>>> refs/remotes/vuejs/master
+=======
+  - **See also:** [Render Functions](../guide/render-function.html)
 >>>>>>> refs/remotes/vuejs/master
 
 ## Opções / Lifecycle Hooks
@@ -845,8 +847,12 @@ if (version === 2) {
 
   Um hash de diretivas que será disponibilizado para a instância do Vue.
 
+<<<<<<< HEAD
 - **Veja tambem:**
   - [Custom Directives](../guide/custom-directive.html)
+=======
+- **See also:** [Custom Directives](../guide/custom-directive.html)
+>>>>>>> refs/remotes/vuejs/master
 
 ### filters
 
@@ -856,8 +862,12 @@ if (version === 2) {
 
   Um hash de filtros que será disponibilizado para a instância do Vue.
 
+<<<<<<< HEAD
 - **Veja também:**
   - [`Vue.filter`](#Vue-filter)
+=======
+- **See also:** [`Vue.filter`](#Vue-filter)
+>>>>>>> refs/remotes/vuejs/master
 
 ### components
 
@@ -867,8 +877,12 @@ if (version === 2) {
 
   Um hash de componentes que será disponibilizado para a instância do Vue.
 
+<<<<<<< HEAD
 - **Veja também:**
   - [Components](../guide/components.html)
+=======
+- **See also:** [Components](../guide/components.html)
+>>>>>>> refs/remotes/vuejs/master
 
 ## Options / Composition
 
@@ -923,7 +937,7 @@ if (version === 2) {
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call Vue.extend on either
+  // extend CompA without having to call `Vue.extend` on either
   var CompB = {
     extends: CompA,
     ...
@@ -1144,7 +1158,7 @@ if (version === 2) {
 
   The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
 
-- **See also:** [Options - data](#data)
+- **See also:** [Options / Data - data](#data)
 
 ### vm.$props
 
@@ -1263,7 +1277,7 @@ if (version === 2) {
 - **See also:**
   - [`<slot>` Component](#slot-1)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+  - [Render Functions - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
@@ -1282,7 +1296,7 @@ if (version === 2) {
 - **See also:**
   - [`<slot>` Component](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+  - [Render Functions - Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
@@ -1296,7 +1310,7 @@ if (version === 2) {
 
 - **See also:**
   - [Child Component Refs](../guide/components.html#Child-Component-Refs)
-  - [ref](#ref)
+  - [Special Attributes - ref](#ref)
 
 ### vm.$isServer
 
@@ -1396,7 +1410,7 @@ if (version === 2) {
   vm.$watch('a', callback, {
     immediate: true
   })
-  // callback is fired immediately with current value of `a`
+  // `callback` is fired immediately with current value of `a`
   ```
 
 <h3 id="vm-set">vm.$set( target, key, value )</h3>
@@ -1461,7 +1475,7 @@ if (version === 2) {
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
 - **Arguments:**
-  - `{string} [event]`
+  - `{string | Array<string>} event` (array only supported in 2.2.2+)
   - `{Function} [callback]`
 
 - **Usage:**
@@ -1594,7 +1608,11 @@ if (version === 2) {
   <span>{{msg}}</span>
   ```
 
+<<<<<<< HEAD
 - **Veja também:** [Sintaxe de Templates - Interpolações](../guide/syntax.html#Text)
+=======
+- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Text)
+>>>>>>> refs/remotes/vuejs/master
 
 ### v-html
 
@@ -1612,7 +1630,11 @@ if (version === 2) {
   <div v-html="html"></div>
   ```
 
+<<<<<<< HEAD
 - **Veja também:** [Sintaxe de Templates - Interpolações](../guide/syntax.html#HTML)
+=======
+- **See also:** [Data Binding Syntax - Interpolations](../guide/syntax.html#Raw-HTML)
+>>>>>>> refs/remotes/vuejs/master
 
 ### v-show
 
@@ -1659,8 +1681,12 @@ if (version === 2) {
   </div>
   ```
 
+<<<<<<< HEAD
 - **Veja também:**
   - [Renderização Condicional - v-else](../guide/conditional.html#v-else)
+=======
+- **See also:** [Conditional Rendering - v-else](../guide/conditional.html#v-else)
+>>>>>>> refs/remotes/vuejs/master
 
 ### v-else-if
 
@@ -1809,9 +1835,15 @@ if (version === 2) {
   <my-component @click.native="onClick"></my-component>
   ```
 
+<<<<<<< HEAD
 - **Veja também:**
   - [Manipulação de Eventos](../guide/events.html)
   - [Componentes - Eventos Personalizados](../guide/components.html#Eventos-Personalizados)
+=======
+- **See also:**
+  - [Event Handling](../guide/events.html)
+  - [Components - Custom Events](../guide/components.html#Custom-Events)
+>>>>>>> refs/remotes/vuejs/master
 
 ### v-bind
 
@@ -1821,12 +1853,19 @@ if (version === 2) {
 
 - **Argumento:** `attrOrProp (opcional)`
 
+<<<<<<< HEAD
 - **Modificadores:**
   - `.prop` - Faz o bind como uma propriedade DOM ao invés de um atributo ([qual a diferença?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Se a tag é um componente, então `.prop` especificará a propriedade no `$el` do componente.
   - `.camel` - (2.1.0+) transforma o nome do atributo de kebab-case para camelCase.
   - `.sync` - (2.3.0+) um simplificador de sintaxe que se expande em um manipulador `v-on` para atualizar o valor vinculado.
 
 - **Uso:**
+=======
+- **Modifiers:**
+  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
+  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
+  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
+>>>>>>> refs/remotes/vuejs/master
 
   Dinamicamente faz o bind de um ou mais atributos ou propriedades de um componente a uma expressão.
 
@@ -1881,10 +1920,17 @@ if (version === 2) {
 
   `.camel` não é necessário se você está usando templates de string ou compilando com `vue-loader`/`vueify`.
 
+<<<<<<< HEAD
 - **Veja também:**
   - [Interligações em Classes e Estilos](../guide/class-and-style.html)
   - [Componentes - Propriedades de Componente](../guide/components.html#Propriedades)
   - [Componentes - O Modificador `.sync`](../guide/components.html#O-Modificador-sync)
+=======
+- **See also:**
+  - [Class and Style Bindings](../guide/class-and-style.html)
+  - [Components - Props](../guide/components.html#Props)
+  - [Components - `.sync` Modifier](../guide/components.html#sync-Modifier)
+>>>>>>> refs/remotes/vuejs/master
 
 ### v-model
 
@@ -1965,15 +2011,25 @@ if (version === 2) {
   </div>
   <!-- componente -->
   <my-component v-once :comment="msg"></my-component>
+<<<<<<< HEAD
   <!-- diretiva v-for -->
+=======
+  <!-- `v-for` directive -->
+>>>>>>> refs/remotes/vuejs/master
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
   ```
 
+<<<<<<< HEAD
 - **Veja também:**
   - [Sintaxe de Templates - Texto](../guide/syntax.html#Text)
   - [Componentes - Componentes Estáticos Baratos com v-once](../guide/components.html#Componentes-Estaticos-Baratos-com-v-once)
+=======
+- **See also:**
+  - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
+  - [Components - Cheap Static Components with `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
+>>>>>>> refs/remotes/vuejs/master
 
 ## Atributos Especiais
 
@@ -2050,8 +2106,13 @@ if (version === 2) {
   <!-- component é alterado quando o currentView é alterado -->
   <component v-bind:is="currentView"></component>
 
+<<<<<<< HEAD
   <!-- necessário, porque <my-row> seria inválido dentro -->
   <!-- do elemento <table> e seria "elevado" para fora (hoisted out) -->
+=======
+  <!-- necessary because `<my-row>` would be invalid inside -->
+  <!-- a `<table>` element and so would be hoisted out      -->
+>>>>>>> refs/remotes/vuejs/master
   <table>
     <tr is="my-row"></tr>
   </table>
@@ -2211,7 +2272,7 @@ if (version === 2) {
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- used together with <transition> -->
+  <!-- used together with `<transition>` -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2220,7 +2281,6 @@ if (version === 2) {
   ```
 
   Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
-
 
 - **`include` and `exclude`**
 
@@ -2234,12 +2294,12 @@ if (version === 2) {
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use v-bind) -->
+  <!-- regex (use `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use v-bind) -->
+  <!-- Array (use `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
