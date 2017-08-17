@@ -86,7 +86,7 @@ No [diretório `dist/`do pacote NPM](https://unpkg.com/vue@latest/dist/) você e
 
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: formato de módulos ECMAScript destinado a empacotadores modernos como [webpack 2](https://webpack.js.org) ou [rollup](http://rollupjs.org/). O arquivo padrão para estes empacotadores (`pkg.module`) é a distribuição apenas Runtime em formato ES Module (`vue.runtime.esm.js`).
 
-### Compilador + Runtime vs. Runtime
+### Runtime + Compilador vs. Runtime
 
 Se você precisar compilar _templates_ em tempo real no cliente (por exemplo, passando uma String na opção `template`, ou usando elementos pré-existentes no DOM através do HTML como _template_), você vai precisar do compilador e, portanto, do _build_ completo:
 
