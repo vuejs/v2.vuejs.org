@@ -44,12 +44,12 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [X] Meet the Team (Tradução: @ErickPetru)
 
 **API**
-- [x] Global Config (Tradução: @theus. Revisão: @theus)
+- [x] Global Config (Tradução: @theus. Revisão: @ErickPetru)
 - [ ] Global API (Tradução: @derevandal. Revisão: **pendente**)
 - [ ] Options / Data (Tradução: @derevandal. Revisão: **pendente**)
-- [ ] Options / DOM (Tradução: @guilherme-dev. Revisão: @derevandal)
+- [X] Options / DOM (Tradução: @guilherme-dev. Revisão: @ErickPetru)
 - [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: @derevandal)
-- [ ] Options / Assets (Tradução: @kimuraz. Revisão: **pendente**)
+- [X] Options / Assets (Tradução: @kimuraz. Revisão: @ErickPetru)
 - [ ] Options / Composition (Trandução: @kimuraz. Revisão: **pendente**)
 - [ ] Options / Misc (Tradução: @vitorbaraujo. Revisão: **pendente**)
 - [ ] Instance Properties (Tradução: @vitorbaraujo. Revisão: **pendente**)
@@ -59,8 +59,8 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Directives (Tradução: @tarciozemel)
 - [ ] Special Attributes (Tradução: @kessiacastro. Revisão: **pendente**)
 - [ ] Built-In Components
-- [ ] VNode Interface
-- [ ] Server-Side Rendering
+- [X] VNode Interface (Tradução: @ErickPetru)
+- [X] Server-Side Rendering (Tradução: @ErickPetru)
 
 **Examples**
 - [ ] Markdown Editor (Tradução: @vitorarjol. Revisão: **pendente**)
