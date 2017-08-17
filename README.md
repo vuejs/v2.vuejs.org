@@ -53,9 +53,9 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Options / Composition (Trandução: @kimuraz. Revisão: **pendente**)
 - [ ] Options / Misc (Tradução: @vitorbaraujo. Revisão: **pendente**)
 - [ ] Instance Properties (Tradução: @vitorbaraujo. Revisão: **pendente**)
-- [ ] Instance Methods / Data
-- [ ] Instance Methods / Events
-- [ ] Instance Methods / Lifecycle
+- [ ] Instance Methods / Data (Tradução: @vitorbaraujo. Revisão: **pendente**)
+- [ ] Instance Methods / Events (Tradução: @vitorbaraujo. Revisão: **pendente**)
+- [ ] Instance Methods / Lifecycle (Tradução: @vitorbaraujo. Revisão: **pendente**)
 - [ ] Directives (Tradução: @tarciozemel)
 - [ ] Special Attributes (Tradução: @kessiacastro. Revisão: **pendente**)
 - [ ] Built-In Components

@@ -1148,47 +1148,51 @@ if (version === 2) {
 
   Quando especificada para `true`, esta opção irá preservar e renderizar comentários HTML encontrados nos *templates*. O comportamento padrão é discartá-los.
 
-## Instance Properties
+## Propriedades de Instância
 
 ### vm.$data
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalhes:**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  O objeto *data* que a instância Vue está observando. A instância do Vue provê acesso a estas propriedades no seu objeto *data*.
 
+<<<<<<< HEAD
 - **See also:** [Options / Data - data](#data)
+=======
+- **Veja também:** [Options - data](#data)
+>>>>>>> origin/master
 
 ### vm.$props
 
-> New in 2.2.0+
+> Novo em 2.2.0+
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalhes:**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+  Um objeto que representa as *props* atuais que um componente recebeu. A instância do Vue provê acesso a estas propriedades no seu objeto *props*.
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **Tipo:** `HTMLElement`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  The root DOM element that the Vue instance is managing.
+  O elemento DOM raíz que a instância do Vue está gerenciando.
 
 ### vm.$options
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  As opções de instânciação usadas para a instância atual do Vue. Isto é útil quando se deseja incluir propriedades customizadas nas opções:
 
   ``` js
   new Vue({
@@ -1201,61 +1205,61 @@ if (version === 2) {
 
 ### vm.$parent
 
-- **Type:** `Vue instance`
+- **Tipo:** `Instância do Vue`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  The parent instance, if the current instance has one.
+  A instância pai, se a instância atual contém uma.
 
 ### vm.$root
 
-- **Type:** `Vue instance`
+- **Tipo:** `Instância do Vue`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  A instância raíz do Vue da árvore do componente atual. Se a instância atual não tem uma instância pai, este valor vai ser ele mesmo.
 
 ### vm.$children
 
-- **Type:** `Array<Vue instance>`
+- **Tipo:** `Array<Instância do Vue>`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  Os componentes filhos diretos da instância atual. **Note que não há ordem garantida para `$children`, e esta propriedade não é reativa.** Se você está tentando usar `$chilren`para *binding* de dados, considere usar um Array e `v-for` para gerar os componentes filhos, e use o Array como a fonte da verdade.
 
 ### vm.$slots
 
-- **Type:** `{ [name: string]: ?Array<VNode> }`
+- **Type:** `{ [name: string]: Array<VNode> }`
 
 - **Read only**
 
 - **Details:**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Usado para acessar programaticamente o conteúdo [distribuído pelos *slots*](../guide/components.html#Content-Distribution-with-Slots). Cada [*slot* nomeado](../guide/components.html#Named-Slots) tem sua propriedade correspondente (por exemplo, o conteúdo do `slot="foo"` poderá ser acessado via `vm.$slots.foo`). A propriedade `default` contém todo nó que não está inserido em nenhum *slot* nomeado.
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  É bastante útil acessar `vm.$slots` quando se está escrevendo um componente com uma [função de renderização](../guide/render-function.html).
 
-- **Example:**
+- **Exemplo:**
 
   ```html
   <blog-post>
     <h1 slot="header">
-      About Me
+      Sobre mim
     </h1>
 
-    <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
+    <p>Aqui há conteúdo da página que será incluído em vm.$slots.default, pois não está dentro de nenhum slot nomeado.</p>
 
     <p slot="footer">
       Copyright 2016 Evan You
     </p>
 
-    <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
+    <p>Se eu tenho algum conteúdo aqui embaixo, este também será incluído em vm.$slots.default.</p>.
   </blog-post>
   ```
 
@@ -1274,75 +1278,96 @@ if (version === 2) {
   })
   ```
 
+<<<<<<< HEAD
 - **See also:**
   - [`<slot>` Component](#slot-1)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
   - [Render Functions - Slots](../guide/render-function.html#Slots)
+=======
+- **Veja também:**
+  - [Componente `<slot>`](#slot-1)
+  - [Distribuição de conteúdo com *Slots*](../guide/components.html#Content-Distribution-with-Slots)
+  - [Funções de renderização: *Slots*](../guide/render-function.html#Slots)
+>>>>>>> origin/master
 
 ### vm.$scopedSlots
 
-> New in 2.1.0+
+> Novo em 2.1.0+
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **Tipo:** `{ [name: string]: props => VNode | Array<VNode> }`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  Usado para acessar programaticamente [*scoped slots*](../guide/components.html#Scoped-Slots). Para cada *slot*, incluindo o *slot* `default`, o objeto contém uma função correspondente que retorna *VNodes*.
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  É bastante útil acessar `vm.$scopedSlots` quando se está escrevendo um componente com uma [função de renderização](../guide/render-function.html).
 
+<<<<<<< HEAD
 - **See also:**
   - [`<slot>` Component](#slot-1)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
   - [Render Functions - Slots](../guide/render-function.html#Slots)
+=======
+- **Veja também:**
+  - [Componente `<slot>`](#slot-1)
+  - [*Scoped Slots*](../guide/components.html#Scoped-Slots)
+  - [Funções de renderização: *Slots*](../guide/render-function.html#Slots)
+>>>>>>> origin/master
 
 ### vm.$refs
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  An object that holds child components that have `ref` registered.
+  Um objeto que mantém componentes filhos que têm `ref` registrados.
 
+<<<<<<< HEAD
 - **See also:**
   - [Child Component Refs](../guide/components.html#Child-Component-Refs)
   - [Special Attributes - ref](#ref)
+=======
+- **Veja também:**
+  - [Referências a componentes filhos](../guide/components.html#Child-Component-Refs)
+  - [*ref*](#ref)
+>>>>>>> origin/master
 
 ### vm.$isServer
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  Whether the current Vue instance is running on the server.
+  Retorna se a instância atual do Vue está sendo executada no servidor.
 
-- **See also:** [Server-Side Rendering](../guide/ssr.html)
+- **Veja também:** [Renderização do lado do servidor](../guide/ssr.html)
 
 ### vm.$attrs
 
-- **Type:** `{ [key: string]: string }`
+- **Tipo:** `{ [key: string]: string }`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  Contains parent-scope attribute bindings (except for `class` and `style`) that are not recognized (and extracted) as props. When a component doesn't have any declared props, this essentially contains all parent-scope bindings (except for `class` and `style`), and can be passed down to an inner component via `v-bind="$attrs"` - useful when creating higher-order components.
+  Contém *bindings* de atributos do escopo do componente pai (exceto para `class` e `style`) que não são reconhecido como *props*. Quando um componente não tem nenhum *props* declarado, esta propriedade essencialmente contém todos os *bindings* do escopo do componente pai (exceto para `class` e `style`), e pode ser passada para os componentes internos via `v-bind="$attrs"` - útil quando se quer criar componentes de ordem superior.
 
 ### vm.$listeners
 
-- **Type:** `{ [key: string]: Function | Array<Function> }`
+- **Tipo:** `{ [key: string]: Function | Array<Function> }`
 
-- **Read only**
+- **Somente leitura**
 
-- **Details:**
+- **Detalhes:**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating higher-order components.
+  Contém ouvintes de eventos (*event listeners*) advindos de `v-on` do escopo do componente pai. Esta propriedade pode ser para os componentes internos via `v-on="$listeners"` - útil quando se quer criar componentes de ordem superior.
+
 
 ## Instance Methods / Data
 
@@ -1999,7 +2024,7 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  Renderiza o elemento e componente **somente uma vez**. Em re-renderizações subsequentes, o elemento/componente e todos seus filhos serão tratados como conteúdo estático e pulados. Isso pode ser usado para otimizar o desempenho da atualização. 
+  Renderiza o elemento e componente **somente uma vez**. Em re-renderizações subsequentes, o elemento/componente e todos seus filhos serão tratados como conteúdo estático e pulados. Isso pode ser usado para otimizar o desempenho da atualização.
 
   ```html
   <!-- elemento único -->
