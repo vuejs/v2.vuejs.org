@@ -17,6 +17,10 @@ Vue does **not** support IE8 and below, because it uses ECMAScript 5 features th
 
 Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
 
+## Vue Devtools
+
+When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+
 ## Direct `<script>` Include
 
 Simply download and include with a script tag. `Vue` will be registered as a global variable.

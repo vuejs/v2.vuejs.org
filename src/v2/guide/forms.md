@@ -343,8 +343,8 @@ vm.pick === vm.a
 
 ``` js
 // when selected:
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## Modifiers
