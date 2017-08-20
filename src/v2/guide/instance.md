@@ -31,7 +31,7 @@ Root Instance
       |- TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
 
 ## Data and Methods
 
