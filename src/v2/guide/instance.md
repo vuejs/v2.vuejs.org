@@ -73,7 +73,7 @@ data: {
   visitCount: 0,
   hideCompletedTodos: false,
   todos: [],
-  errorMessage: null
+  error: null
 }
 ```
 
