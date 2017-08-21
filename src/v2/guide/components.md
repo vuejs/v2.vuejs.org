@@ -440,7 +440,7 @@ Un atttribut non-prop est un attribut qui est passé au composant, mais qui n'a 
 
 Bien que définir explicitement les props soit conseillé pour passer les informations à un composant enfant, les auteurs des bibliothèques de composant ne suivent pas forcément cette règle dans leurs composants. C'est pour cela que les composants peuvent accepter des attributs arbitraires, qui sont ajoutés à l'élément racine du composant.
 
-Par exemple, imaginez que nous utilision un composant tiers `bs-date-input` avec un plugin Bootstrap qui nécessite un attribut `data-3d-date-picker` sur l'`input`. Nous pouvons ajouter cet attribut dans l'instance de notre composant :
+Par exemple, imaginez que nous utilisions un composant tiers `bs-date-input` avec un plugin Bootstrap qui nécessite un attribut `data-3d-date-picker` sur l'`input`. Nous pouvons ajouter cet attribut dans l'instance de notre composant :
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
@@ -470,7 +470,7 @@ Dans ce cas, deux valeurs différentes pour `class` sont définies :
 - `form-control`, qui est la classe du composant dans ce template
 - `date-picker-theme-dark`, qui est la classe passée au composant depuis son parent
 
-Pour la plupard des attributs, la valeur fournie au composant va remplacer la valeur mise initialement dans le composant. Donc par exemple, passer `type="large"` va remplacer `type="date"` et probablement le rendre inutilisable ! Heureusement, les attributs `class` et `style` sont plus mâlin, aussi les deux valeurs sont mergées, fournissant la valeur finale suivante : `form-control date-picker-theme-dark`.
+Pour la plupart des attributs, la valeur fournie au composant va remplacer la valeur mise initialement dans le composant. Donc par exemple, passer `type="large"` va remplacer `type="date"` et probablement le rendre inutilisable ! Heureusement, les attributs `class` et `style` sont plus malins, aussi les deux valeurs sont mergées, fournissant la valeur finale suivante : `form-control date-picker-theme-dark`.
 
 ## Événements personnalisés
 
@@ -577,7 +577,7 @@ Il y a des fois où vous souhaitez écouter un événement natif sur l'élément
 
 > 2.3.0+
 
-Dans certains cas, nous pourrions avoir besoin d'une « liaison bidirectionnelle » pour une prop. En fait, dans Vue 1.x, c'est exactement ce que le modificateur `.sync` permettait. Quand un composant enfant mute une prop qui a `.sync`, la valeur est remontée au parent. C'est pratique, cependant cela peut conduire a des soucis de maintenance sur le long terme car cela brise l'assemption du flux de donnée unidirectionnelle : le code qui mute dans des props enfants affecte l'état du parent.
+Dans certains cas, nous pourrions avoir besoin d'une « liaison bidirectionnelle » pour une prop. En fait, dans Vue 1.x, c'est exactement ce que le modificateur `.sync` permettait. Quand un composant enfant mute une prop qui a `.sync`, la valeur est remontée au parent. C'est pratique, cependant cela peut conduire a des soucis de maintenance sur le long terme car cela brise l'hypothèse du flux de donnée unidirectionnelle : le code qui mute dans des props enfants affecte l'état du parent.
 
 C'est pour cela que nous avions retiré le modificateur `.sync` dans la version 2.0. Cependant, nous trouvons tout de même qu'il existe des cas où celle-ci est très utile, nottament pour les composants réutilisables. Ce dont nous avions besoin était **de rendre le code d'un enfant qui affecte l'état d'un parent plus cohérent et explicite.**
 
@@ -838,7 +838,7 @@ De façon similaire, le contenu distribué sera compilé dans la portée parente
 
 ### Slot unique
 
-Le contenu parent sera **évincé** si le template du composant enfant contient au moins une balise `<slot>`. Quand il n'y a qu'un seul slot sans attributs, tout le fragment de contenu sera inséré à sa position dans le DOM, remplaçant le slot lui-même.
+Le contenu parent sera **évincé** si le template du composant enfant contient au moins une balise `<slot>`. Quand il n'y a qu'un seul slot sans attribut, tout le fragment de contenu sera inséré à sa position dans le DOM, remplaçant le slot lui-même.
 
 Tout ce qui était contenu à la base dans les balises `<slot>` est considéré comme **du contenu par défaut**. Le contenu par défaut est compilé dans la portée enfant et ne sera affiché que si l'élément l'incluant est vide et qu'il n'y a pas de contenu à insérer.
 
@@ -881,7 +881,7 @@ Le résultat du rendu sera :
 
 ### Slots nommés
 
-Les éléments `<slot>` on un attribut spécial, `name`, qui peut être utilisé pour personnaliser la façon dont le contenu doit être distribué. Vous pouvez avoir de multiples slots avec des noms différents. Un slot nommé ira avec n'importe quel élément possédant l'attribut `slot` correspondant dans le fragment de contenu.
+Les éléments `<slot>` ont un attribut spécial, `name`, qui peut être utilisé pour personnaliser la façon dont le contenu doit être distribué. Vous pouvez avoir de multiples slots avec des noms différents. Un slot nommé ira avec n'importe quel élément possédant l'attribut `slot` correspondant dans le fragment de contenu.
 
 Il peut encore y avoir un slot non nommé, c'est le **slot par défaut**  qui va servir de fourre-tout pour tout le contenu ne concordant avec aucun nom. S'il n'y a pas de slot par défaut, le contenu ne concordant pas est évincé.
 
@@ -1093,7 +1093,7 @@ var child = parent.$refs.profile
 
 Quand `ref` est utilisé conjointement avec `v-for`, la référence que vous obtenez sera un tableau ou un objet contenant les composants enfants reflétant la source de donnée.
 
-<p class="tip">Les `$refs` sont seulement renseignés après le rendu du composant, et ne sont pas réactives. Elles sont seulement destinées à servir de porte dérobée pour la manipulation directe d'enfant (vous devriez éviter d'utiliser `$refs` dans vos templates et propriétés calculées).</p>
+<p class="tip">Les `$refs` sont seulement renseignées après le rendu du composant, et ne sont pas réactives. Elles sont seulement destinées à servir de porte dérobée pour la manipulation directe d'enfant (vous devriez éviter d'utiliser `$refs` dans vos templates et propriétés calculées).</p>
 
 ### Composants asynchrones
 
@@ -1110,7 +1110,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-La fonction de farique reçoit une fonction de rappel `resolve` qui devra être appelée quand vous aurez récupéré la définition de votre composant depuis le serveur. Vous pouvez également appeler `reject(reason)` pour indiquer que le chargement a échoué. La fonction `setTimeout` est simplement là en tant qu'exemple ; la manière de récupérer le composant est entièrement à votre charge. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec [la fonctionnalité de scission de code de webpack](https://webpack.js.org/guides/code-splitting-require/) :
+La fabrique de fonctions reçoit une fonction de rappel `resolve` qui devra être appelée quand vous aurez récupéré la définition de votre composant depuis le serveur. Vous pouvez également appeler `reject(reason)` pour indiquer que le chargement a échoué. La fonction `setTimeout` est simplement là en tant qu'exemple ; la manière de récupérer le composant est entièrement à votre charge. Une approche recommandée est d'utiliser les composants asynchrones conjointement avec [la fonctionnalité de scission de code de webpack](https://webpack.js.org/guides/code-splitting-require/) :
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1141,7 +1141,7 @@ new Vue({
 })
 ```
 
-<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser ldes composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour. ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
+<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser les composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour. ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
 
 ### Composants asynchrones avancés
 
