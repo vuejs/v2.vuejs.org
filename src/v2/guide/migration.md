@@ -14,11 +14,11 @@ order: 26
 
 1. Commencez par lancer l'[outil d'aide à la migration](https://github.com/vuejs/vue-migration-helper) sur un projet courant. Nous avons soigneusement minifié et compressé un développement Vue dans une simple interface en ligne de commande. À chaque fois qu'il va reconnaître une fonctionnalité obsolète, il va vous le faire savoir, vous offrir des suggestions et vous fournir des liens pour plus d'informations.
 
-2. Après cela, naviguez à travers la table de contenu de cette page dans la barre de navigation. Si vous voyez un sujet qui vous concerne, mais que l'outil d'aide à la migration n'a pas repéré, occupez-vous en.
+2. Après cela, parcourez la table des matières de cette page dans la barre de navigation. Si vous voyez un sujet qui vous concerne, mais que l'outil d'aide à la migration ne l'a pas repéré, vérifiez-le.
 
 3. Si vous avez des cas de test, exécutez les et voyez ce qui ne fonctionne plus et échoue. Si vous n'avez pas de cas de test, ouvrez simplement votre application dans votre navigateur et garder un œil sur les avertissements et erreurs que vous trouverez en faisant un tour de l'application.
 
-4. Maintenant, votre application devrait être pleinement migré. Si vous n'êtes toujours pas satisfait de divers points, vous pouvez lire le reste de cette page (ou juste plonger dans le nouveau [guide de démarrage](index.html)). Beaucoup de parties seront vite parcourues puisque vous êtes familier aux concepts de base.
+4. Maintenant, votre application devrait être pleinement migrée. Si vous n'êtes toujours pas satisfait de divers points, vous pouvez lire le reste de cette page (ou juste plonger dans le nouveau [guide de démarrage](index.html)). Beaucoup de parties seront vite parcourues puisque vous êtes familier aux concepts de base.
 
 > Combien de temps va prendre la migration d'une application Vue 1.x vers une application Vue 2.0 ?
 
@@ -28,11 +28,11 @@ Cela dépend de plusieurs critères comme :
 
 - de combien de fois vous êtes distrait et que vous commencez à jouer avec une nouvelle fonctionnalité cool (😉 Pas de jugement, ça nous est arrivé à nous pendant la construction de la version 2.0),
 
-- du nombre de fonctionnalités obsolètes que vous utilisez. La plupard d'entre elles peuvent être corrigées avec une action de type trouver-remplacer (« find-and-replace »), mais d'autres peuvent prendre quelques minutes. Si vous ne suivez actuellement pas les meilleures pratiques, Vue 2.0 vous forcera encore plus à les respecter. Cela est une bonne chose sur le long terme, mais signifie également de refactoriser (un peu tard) des parties.
+- du nombre de fonctionnalités obsolètes que vous utilisez. La plupart d'entre elles peuvent être corrigées avec une action de type trouver-remplacer (« find-and-replace »), mais d'autres peuvent prendre quelques minutes. Si vous ne suivez actuellement pas les meilleures pratiques, Vue 2.0 vous forcera encore plus à les respecter. Cela est une bonne chose sur le long terme, mais signifie également (un peu tard) une refactorisation importante.
 
-> Si je mets à jour vers Vue 2, dois-je aussi mettre à jour Vuex et Vue-Router ?
+> Si je passe à Vue 2, dois-je aussi mettre à jour Vuex et Vue-Router ?
 
-Seul Vue-Router 2 est compatible avec Vue 2, donc oui, vous allez devoir suivre le [guide de migration pour Vue-Router](migration-vue-router.html) également. Heureusement, un grand nombre d'applications n'ont pas beaucoup de code en lien avec le routeur, cela ne devrait donc pas prendre plus d'une heure.
+Seul Vue-Router 2 est compatible avec Vue 2, donc oui, vous allez devoir également suivre le [guide de migration pour Vue-Router](migration-vue-router.html) également. Heureusement, un grand nombre d'applications n'ont pas beaucoup de code en lien avec le routeur, cela ne devrait donc pas prendre plus d'une heure.
 
 En ce qui concerne Vuex, la version 0.8 est compatible avec Vue 2, vous n'êtes donc pas obligé de le mettre à jour. La seule raison pour que vous souhaitiez faire la mise à jour dès maintenant serait de tirer partie des nouvelles fonctionnalités de Vuex 2, comme les modules ou les codes pré-conçus (« boilerplate ») moins verbeux.
 
@@ -58,7 +58,7 @@ Il est recommandé d'entourer simplement le contenu complet dans un nouvel élé
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos d'éléments multiple à la racine dans un template.</p>
 </div>
 {% endraw %}
@@ -71,7 +71,7 @@ Utilisez le hook `created` à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver toutes les occurrences de ce hook.</p>
 </div>
 {% endraw %}
@@ -82,7 +82,7 @@ Utilisez le hook `mounted` à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver toutes les occurrences de ce hook.</p>
 </div>
 {% endraw %}
@@ -109,7 +109,7 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver toutes les occurrences de ce hook.</p>
 </div>
 {% endraw %}
@@ -136,18 +136,18 @@ destroyed: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver toutes les occurrences de ce hook.</p>
 </div>
 {% endraw %}
 
 ### `init` <sup>renommé</sup>
 
-Utilisez le nouveau hook `beforeCreate` à la place. Il fait la même chose. Il a été renommé pour plus de consistence avec les autres méthodes du cycle de vie.
+Utilisez le nouveau hook `beforeCreate` à la place. Il fait la même chose. Il a été renommé pour plus de consistance avec les autres méthodes du cycle de vie.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver toutes les occurrences de ce hook.</p>
 </div>
 {% endraw %}
@@ -166,7 +166,7 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver toutes les occurrences de ce hook.</p>
 </div>
 {% endraw %}
@@ -179,7 +179,7 @@ Quand vous utilisiez un `index`, l'ordre des arguments pour les tableaux était 
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'ordre des arguments obsolètes. Notez que si le nom de votre index est quelque chose de non habituel comme <code>position</code> ou <code>num</code>, l'outil d'aide ne les trouvera pas.</p>
 </div>
 {% endraw %}
@@ -190,7 +190,7 @@ Quand vous utilisez une `key`, l'ordre des arguments pour les objets était `(ke
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'ordre des arguments obsolètes. Notez que si le nom de votre clé est quelque chose comme <code>name</code> ou <code>property</code>, l'outil d'aide ne les trouvera pas.</p>
 </div>
 {% endraw %}
@@ -201,8 +201,8 @@ Les variables implicites `$index` et `$key` ont été enlevées à la faveur de 
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
-  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences de ces variables retirées. Si vous en oubliez certaine, vous devriez voir des <strong>erreurs console</strong> comme <code>Uncaught ReferenceError: $index is not defined</code>.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences de ces variables retirées. Si vous en oubliez certaines, vous devriez voir des <strong>erreurs console</strong> comme <code>Uncaught ReferenceError: $index is not defined</code>.</p>
 </div>
 {% endraw %}
 
@@ -222,18 +222,18 @@ vous aurez maintenant :
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences de <code>track-by</code>.</p>
 </div>
 {% endraw %}
 
-### `v-for` et nombres <sup>changé</sup>
+### `v-for` et plage de valeurs <sup>changé</sup>
 
 Précédemment, `v-for="number in 10"` devait avoir `number` qui commençait à `0` et qui finissait à `9`. Maintenant il commence à `1` et finit à `10`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Cherchez dans votre code avec l'expression régulière <code>/\w+ in \d+/</code>. Partout ou cette expression sort dans du code <code>v-for</code>, vérifiez si cela vous affecte.</p>
 </div>
 {% endraw %}
@@ -279,7 +279,7 @@ Cela a plusieurs avantages :
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences de l'option <code>coerce</code>.</p>
 </div>
 {% endraw %}
@@ -294,7 +294,7 @@ Les props sont maintenant toujours unidirectionnelles et descendantes. Pour prod
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences de l'option <code>twoWay</code>.</p>
 </div>
 {% endraw %}
@@ -309,14 +309,14 @@ Les props sont maintenant toujours unidirectionnelles et descendantes. Pour prod
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences des modificateurs <code>.once</code> et <code>.sync</code>.</p>
 </div>
 {% endraw %}
 
 ### Mutation de prop <sup>déprécié</sup>
 
-Muter une prop localement est maintenant considéré comme un anti-pattern, c.-à-d. déclarer une prop et l'affecter ainsi `this.myProp = 'someOtherValue'` dans le composant. À cause du nouveau mécanisme de rendu, à chaque nouveau rendu du composant parent, les variables locales du composant enfant seront ré-écrites.
+Muter une prop localement est maintenant considéré comme un anti-pattern, c.-à-d. déclarer une prop et l'affecter ainsi `this.myProp = 'someOtherValue'` dans le composant. À cause du nouveau mécanisme de rendu, à chaque nouveau rendu du composant parent, les changements locaux du composant enfant seront écrasés.
 
 Dans la majorité des cas, muter une prop peut être remplacé par une de ces solutions :
 
@@ -325,7 +325,7 @@ Dans la majorité des cas, muter une prop peut être remplacé par une de ces so
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos des mutations du prop.</p>
 </div>
 {% endraw %}
@@ -336,7 +336,7 @@ Sur une instance racine de Vue (c.-à-d. crée avec `new Vue({ ... })`), vous de
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter du fait que les props de l'instance racine ne sont plus passées.</p>
 </div>
 {% endraw %}
@@ -347,7 +347,7 @@ Sur une instance racine de Vue (c.-à-d. crée avec `new Vue({ ... })`), vous de
 
 L'invalidation de cache pour les propriétés calculées va être retiré dans les futures versions majeures de Vue. Remplacez toute les propriétés calculées avec invalidation de cache par des méthodes, cela produira le même résultat.
 
-Pan exemple :
+Par exemple :
 
 ``` js
 template: '<p>message : {{ timeMessage }}</p>',
@@ -374,12 +374,12 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences de l'option <code>cache: false</code>.</p>
 </div>
 {% endraw %}
 
-## Directives pré-conçues
+## Directives intégrées
 
 ### Évaluation à vrai ou faux avec `v-bind` <sup>changée</sup>
 
@@ -391,7 +391,7 @@ Pour les attributs énumérés, en plus des valeurs précédentes évaluées à 
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectées par ce changement.</p>
 </div>
 {% endraw %}
@@ -406,16 +406,16 @@ Quand vous utilisez un composant, `v-on` n'écoutera que les évènements `$emit
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectées par ce changement.</p>
 </div>
 {% endraw %}
 
 ### Paramètre d'attribut `debounce` pour `v-model` <sup>retiré</sup>
 
-Une fonction de rétention (« debounce ») est utilisée pour limiter le nombre de fois qu'une fonction a opérations lourdes est exécutée a une fois. L'attribut `debounce` pour le paramètre `v-model` est taillé pour des cas simples, mais en fait il fait la rétention des __mises à jour d'état__ plutôt que des opérations lourdes elles-même. C'est une différence subtile, mais cela amène des limitations quand l'application grandit.
+Une fonction de rétention (« debounce ») est utilisée pour limiter la fréquence d'exécution des requêtes Ajax et des autres opérations coûteuses. L'attribut `debounce` de Vue pour le paramètre `v-model` est taillé pour des cas simples, mais en fait il fait la rétention des __mises à jour d'état__ plutôt que des opérations lourdes elles-même. C'est une différence subtile, mais cela amène des limitations quand l'application grandit.
 
-Ces limitations peuvent être mise en évidence avec un indicateur de recherche, comme celui de cet exemple :
+Ces limitations peuvent être mises en évidence avec un indicateur de recherche, comme celui de cet exemple :
 
 {% raw %}
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
@@ -519,7 +519,7 @@ Un autre avantage de cette approche est que parfois la rétention n'est pas la m
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences du paramètre d'attribut <code>debounce</code>.</p>
 </div>
 {% endraw %}
@@ -542,7 +542,7 @@ Nous utiliserons :
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences des paramètres d'attributs <code>lazy</code> ou <code>number</code>.</p>
 </div>
 {% endraw %}
@@ -577,7 +577,7 @@ vous devrez vous assurer que la valeur initiale pour `text` est `"hello world"`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos d'éléments des valeurs de l'attribut <code>value</code> avec <code>v-model</code>.</p>
 </div>
 {% endraw %}
@@ -608,7 +608,7 @@ Comme vous pouvez le voir, la liaison bidirectionnelle de `v-model` n'a plus de 
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter si des parties de votre application sont affectées par ce changement.</p>
 </div>
 {% endraw %}
@@ -629,16 +629,16 @@ Si vous voulez vraiment ré-écrire un autre `!important`, vous devrez utiliser 
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences des liaisons de style avec <code>!important</code>.</p>
 </div>
 {% endraw %}
 
 ### `v-el` et `v-ref` <sup>remplacés</sup>
 
-Pour plus de simplicité, `v-el` et `v-ref` ont été fusionnés en l'attribut `ref`, accessible depuis l'instance d'un composant via `$refs`. Cela signifie que `v-el:my-element` devient `ref="myElement"` et que `v-ref:my-component` devient `ref="myComponent"`. Quand il est utilisé sur un élément normal, le `ref` se réfère à l'élément du DOM, et quand il est utilisé sur un composant, le `ref` se réfère à l'instance du composant.
+Pour plus de simplicité, `v-el` et `v-ref` ont été fusionnés dans l'attribut `ref`, accessible depuis l'instance d'un composant via `$refs`. Cela signifie que `v-el:my-element` devient `ref="myElement"` et que `v-ref:my-component` devient `ref="myComponent"`. Quand il est utilisé sur un élément normal, le `ref` se réfère à l'élément du DOM, et quand il est utilisé sur un composant, le `ref` se réfère à l'instance du composant.
 
-Puisque `v-ref` n'est plus une directive, mais un attribut spécial, il peut également être défini dynamiquement. Cela spécialement utile avec `v-for`. Par exemple :
+Puisque `v-ref` n'est plus une directive, mais un attribut spécial, il peut également être défini dynamiquement. Ceci est particulièrement utile en combinaison avec `v-for`. Par exemple :
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
@@ -650,13 +650,13 @@ Précédemment, `v-el` / `v-ref` utilisé avec un `v-for` produisait un tableau 
 <p v-for="item in items" ref="items"></p>
 ```
 
-À la différence de la 1.x, les `$refs` ne sont pas réactives, car elles sont enregistrées / mises à jour durant le processus de rendu lui-même. Les rendre ré-active demanderait de dupliquer le rendu à chaque changement.
+À la différence de la 1.x, les `$refs` ne sont pas réactives, car elles sont enregistrées / mises à jour durant le processus de rendu lui-même. Les rendre réactives demanderait de dupliquer le rendu à chaque changement.
 
 D'un autre côté, `$refs` est conçu avant tout pour un accès programmatique en JavaScript, il n'est donc pas recommandé de les relier dans les templates, car cela signifierait de se référer à un état qui n'est plus en phase avec l'instance elle même. Cela violerait le vue-modèle piloté par les données de Vue.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences de <code>v-el</code> ou de <code>v-ref</code>.</p>
 </div>
 {% endraw %}
@@ -679,16 +679,16 @@ Vous pouvez utilisez :
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des occurrences de <code>v-else</code> avec <code>v-show</code>.</p>
 </div>
 {% endraw %}
 
 ## Directives personnalisées <sup>simplifiées</sup>
 
-Les directives ont une portée de responsabilité grandement réduite : elles sont maintenant uniquement utilisées pour appliquer des manipulation de DOM à bas niveau. Dans la plupart des cas, vous devriez préférez des composants comme abstraction principale de codes réutilisables.
+Les directives ont une portée de responsabilité grandement réduite : elles sont maintenant uniquement utilisées pour appliquer des manipulations de DOM de bas niveau. Dans la plupart des cas, il faut utiliser des composants comme principale abstraction de codes réutilisables.
 
-Certaines des différences les plus notables inclues :
+Certaines des différences les plus notables incluent :
 
 - Les directives n'ont plus d'instances. Cela signifie qu'il n'y a plus de `this` dans les hooks des directives. À la place, elles reçoivent tout ce dont elles ont besoin en tant qu'argument. Si vous devez vraiment faire persister des états à travers les hooks, vous pouvez le faire avec `el`.
 - Les options comme `acceptStatement`, `deep`, `priority`, etc. ont toutes été retirées. Pour remplacer les directives `twoWay`, consultez [cet exemple](#filtres-bidirectionnels-replacés).
@@ -698,7 +698,7 @@ Heureusement, puisque les nouvelles directives sont plus simples, vous pouvez le
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de directives définies. L'outil d'aide va toutes vous les pointers, comme dans la plupart des cas vous allez devoir les refactoriser dans un composant.</p>
 </div>
 {% endraw %}
@@ -721,7 +721,7 @@ avec :
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de modificateurs <code>.literal</code> sur les directives.</p>
 </div>
 {% endraw %}
@@ -734,7 +734,7 @@ Le système de transition de Vue a changé drastiquement et maintenant il faut u
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'attribut <code>transition</code>.</p>
 </div>
 {% endraw %}
@@ -745,7 +745,7 @@ Avec le nouveau système de transition, vous pouvez maintenant [utiliser les com
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'attribut de <code>Vue.transition</code>.</p>
 </div>
 {% endraw %}
@@ -756,7 +756,7 @@ Si vous avez besoin d'écheloner les transitions, vous pouvez contrôler le timi
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'attribut de <code>transition</code>. Au cours de votre mise à jour, vous pouvez également passer à la nouvelle stratégie d'échelonnage.</p>
 </div>
 {% endraw %}
@@ -777,20 +777,20 @@ Vue.config.keyCodes.f1 = 112
 ```
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de vieilles configurations de syntaxe <code>keyCode</code>.</p>
 </div>
 {% endraw %}
 
 ### `$dispatch` et `$broadcast` <sup>remplacés</sup>
 
-`$dispatch` et `$broadcast` on été remplacés en faveur d'une communication plus explicite entre composants et des solutions de gestion d'état plus maintenables, comme [Vuex](https://github.com/vuejs/vuex).
+`$dispatch` et `$broadcast` ont été remplacés en faveur d'une communication plus explicite entre composants et des solutions de gestion d'état plus maintenables, comme [Vuex](https://github.com/vuejs/vuex).
 
-Le problème est que le flux d'évènement dépend de la structure de l'arbre des composants qui peut être dur à appréhender et très fragile quand l'arbre devient large. Ils ne s'adaptaient pas correctement et nous ne voulons pas qu'ils amènent plus de bien que de mal. `$dispatch` et `$broadcast` ne résolvaient pas non plus la communication entre les composants voisins.
+Le problème est que le flux d'évènement dépend de la structure de l'arbre des composants qui peut être dur à appréhender et très fragile quand l'arbre devient large. Il ne s'adaptait pas correctement et nous ne voulons pas qu'il amène plus de mal que de bien. `$dispatch` et `$broadcast` ne résolvaient pas non plus la communication entre les composants voisins.
 
 L'un des usages les plus communs de ces méthodes était la communication entre un parent et ses enfants directs. Dans ces cas, vous pouvez en fait [écouter un `$emit` depuis un enfant avec `v-on`](components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises). Cela vous permet de garder la commodité des évènements en étant plus explicite.
 
-Cependant, quand on communique entre descendant ou ancêtres distant, `$emit` ne nous aidera pas. À la place, le plus simple serait de centraliser les changements dans un canal d'évènements centralisé. Cela vous apporte la possibilité de communiquer entre composants sans vous soucier de là où ils sont dans l'arbre des composants (même entre voisins !). Parce que les instances de Vue implémentes une interface de émission d'évènement, vous pouvez en fait utiliser une instance de Vue vide pour réaliser cela.
+Cependant, quand on communique entre descendant ou ancêtres distant, `$emit` ne nous aidera pas. À la place, le plus simple serait de centraliser les changements dans un canal d'évènements centralisé. Cela vous apporte la possibilité de communiquer entre composants sans vous soucier de là où ils sont dans l'arbre des composants (même entre voisins !). Parce que les instances de Vue implémentent une interface d'émission d'évènement, vous pouvez en fait utiliser une instance de Vue vide pour réaliser cela.
 
 Par exemple, imaginons que nous avons une application de liste de tâches comme celle là :
 
@@ -809,7 +809,7 @@ Nous pourrions gérer la communication entre ces composants avec ce simple canal
 var eventHub = new Vue()
 ```
 
-Maintenant dans nos composants, nous pouvons utilisez `$emit`, `$on` et `$off` pour respectivement émettre des évènements, écouter des évènements et netoyer les écouteurs d'évènements :
+Maintenant dans nos composants, nous pouvons utilisez `$emit`, `$on` et `$off` pour respectivement émettre des évènements, écouter des évènements et nettoyer les écouteurs d'évènements :
 
 ``` js
 // NewTodoInput
@@ -839,7 +839,7 @@ created: function () {
   eventHub.$on('add-todo', this.addTodo)
   eventHub.$on('delete-todo', this.deleteTodo)
 },
-// Il est bon de netoyer les écouteurs d'évènements avant
+// Il est bon de nettoyer les écouteurs d'évènements avant
 // la destruction du composant.
 beforeDestroy: function () {
   eventHub.$off('add-todo', this.addTodo)
@@ -861,7 +861,7 @@ Ce modèle peut servir de remplacement à `$dispatch` et `$broadcast` dans des s
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>$dispatch</code> et <code>$broadcast</code>.</p>
 </div>
 {% endraw %}
@@ -953,7 +953,7 @@ computed: {
 }
 ```
 
-La fonction JavaScript navive `.filter` peut également gérer des opérations de filtrage plus complexes, car vous avez accès à toute la puissance de JavaScript dans les propriétés calculées. Par exemple, si vous souhaitez trouver tous les utilisateurs actifs avec une concordance non sensible à la casse de leurs nom et email :
+La fonction JavaScript navive `.filter` peut également gérer des opérations de filtrage plus complexes, car vous avez accès à toute la puissance de JavaScript dans les propriétés calculées. Par exemple, si vous souhaitez trouver tous les utilisateurs actifs avec une concordance non sensible à la casse de leur nom et de leur email :
 
 ``` js
 var self = this
@@ -988,7 +988,7 @@ computed: {
 }
 ```
 
-Vous pouvez même ordoner par multiples colonnes :
+Vous pouvez même ordonner par plusieurs colonnes :
 
 ``` js
 _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
@@ -996,7 +996,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de filtres utilisés dans les directives. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
@@ -1017,7 +1017,7 @@ Nous entourons les arguments avec des parenthèses et les délimitons avec des v
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de vieilles syntaxes de filtre. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
@@ -1078,14 +1078,14 @@ Dans beaucoup de cas cependant, vous allez toujours tomber sur des comportements
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de filtres obsolètes. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
 
 ### Filtres bidirectionnels <sup>remplacés</sup>
 
-Beaucoup d'utilisateurs adorent utiliser des filtres bidirectionnels avec `v-model` pour créer des champs intéressants avec très peu de code. Si simple _d'apparence_, les filtres bidirectionnels peuvent aussi cacher un grand niveau de complexité et encourager une expérience utilisateur pauvre en rendant lente la mises à jour des états. À la place, créer un champ dans un composant est recommandé et permet de mieux appréhender son utilisation et d'y ajouter tout ce qu'il faut pour de la création de champs personnalisés.
+Beaucoup d'utilisateurs adorent utiliser des filtres bidirectionnels avec `v-model` pour créer des champs intéressants avec très peu de code. Si simple _d'apparence_, les filtres bidirectionnels peuvent aussi cacher un grand niveau de complexité et encourager une expérience utilisateur pauvre en rendant lente la mise à jour des états. À la place, la création d'un champ dans un composant est recommandée et permet de mieux appréhender son utilisation et d'y ajouter tout ce qu'il faut pour de la création de champs personnalisés.
 
 Par exemple, nous allons migrer un filtre de devise bidirectionnel :
 
@@ -1120,7 +1120,7 @@ Vous pouvez remarquer que :
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de filtres utilisant des directives comme <code>v-model</code>. Si vous en oubliez, vous devriez également voir des <code>erreurs dans la console</code>.</p>
 </div>
 {% endraw %}
@@ -1133,18 +1133,18 @@ Il n'est plus possible d'avoir deux `<slot>` avec le même nom dans le même tem
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos de slots <code>v-model</code> dupliqué.</p>
 </div>
 {% endraw %}
 
 ### Attribut de stylisation `slot` <sup>retiré</sup>
 
-Le contenu inséré via un `<slot>` nommé ne préservera plus l'attribut `slot`. Utilisez un élément englobant pour le styliser, ou pour des cas avancés, modifiez le contenu insérré programmatiquement en utilisant des [fonctions de rendu](render-function.html).
+Le contenu inséré via un `<slot>` nommé ne préservera plus l'attribut `slot`. Utilisez un élément englobant pour le styliser, ou pour des cas avancés, modifiez le contenu inséré programmatiquement en utilisant des [fonctions de rendu](render-function.html).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des sélecteurs CSS ciblant des slots nommées (par ex : <code>[slot="my-slot-name"]</code>).</p>
 </div>
 {% endraw %}
@@ -1184,7 +1184,7 @@ Quand vous les utilisez avec `<transition>`, assurez-vous de les imbriquer ainsi
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver les attributs <code>keep-alive</code>.</p>
 </div>
 {% endraw %}
@@ -1221,7 +1221,7 @@ computed: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'interpolation utilisée dans les attributs.</p>
 </div>
 {% endraw %}
@@ -1232,7 +1232,7 @@ L'interpolations HTML (`{% raw %}{{{ foo }}}{% endraw %}`) a été retirée. La 
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des interpolations.</p>
 </div>
 {% endraw %}
@@ -1243,7 +1243,7 @@ Les liaisons à un seul rendu (`{% raw %}{{* foo }}{% endraw %}`) ont été remp
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des liaisons un seul rendu.</p>
 </div>
 {% endraw %}
@@ -1258,7 +1258,7 @@ Si vous aviez précédemment relié `vm.$watch` à quelque chose du DOM après l
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests si vous en avez. Les <strong>tests en échec</strong> devraient vous alerter du fait que les observateurs sont liés à un ancien comportement.</p>
 </div>
 {% endraw %}
@@ -1269,7 +1269,7 @@ Si vous aviez précédemment relié `vm.$watch` à quelque chose du DOM après l
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'utilisations obsolètes.</p>
 </div>
 {% endraw %}
@@ -1280,7 +1280,7 @@ Si vous aviez précédemment relié `vm.$watch` à quelque chose du DOM après l
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'utilisations obsolètes.</p>
 </div>
 {% endraw %}
@@ -1291,7 +1291,7 @@ Utilisez `Vue.set` à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>.$set</code> sur un tableau. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong> sur la méthode manquante.</p>
 </div>
 {% endraw %}
@@ -1321,7 +1321,7 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>.$remove</code> sur un tableau. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong> sur la méthode manquante.</p>
 </div>
 {% endraw %}
@@ -1332,7 +1332,7 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>Vue.set</code> ou <code>Vue.delete</code> sur une instance de Vue. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong> sur la méthode manquante.</p>
 </div>
 {% endraw %}
@@ -1343,7 +1343,7 @@ Il est maintenant interdit de remplacer l'objet `$data` d'une instance racine de
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$data</code> écrasées. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
@@ -1354,7 +1354,7 @@ Retrouvez simplement la donnée réactive.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$get</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
@@ -1371,7 +1371,7 @@ myElement.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$appendTo</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
@@ -1386,7 +1386,7 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$before</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
@@ -1407,7 +1407,7 @@ myElement.parentNode.appendChild(vm.$el)
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$after</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
@@ -1422,7 +1422,7 @@ vm.$el.remove()
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$remove</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
@@ -1435,7 +1435,7 @@ Pas réellement utile. Si vous avez des difficultés liés à cette fonctionnali
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$eval</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
@@ -1446,18 +1446,18 @@ Pas réellement utile. Si vous avez des difficultés liées à cette fonctionnal
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$interpolate</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
 
 ### `vm.$log` <sup>retiré</sup>
 
-Utilisez le [Devtools de Vue](https://github.com/vuejs/vue-devtools) pour une expérience de débogue optimale.
+Utilisez le [Devtools de Vue](https://github.com/vuejs/vue-devtools) pour une expérience de débogage optimale.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>vm.$log</code>. Si vous en oubliez, vous devriez voir des <strong>erreurs console</strong>.</p>
 </div>
 {% endraw %}
@@ -1492,7 +1492,7 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>replace: false</code>.</p>
 </div>
 {% endraw %}
@@ -1505,7 +1505,7 @@ N'est plus nécessaire car les avertissements se trouvent dans la pile des trace
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>Vue.config.debug</code>.</p>
 </div>
 {% endraw %}
@@ -1516,7 +1516,7 @@ Async est maintenant requis pour les performances de rendu.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>Vue.config.async</code>.</p>
 </div>
 {% endraw %}
@@ -1527,7 +1527,7 @@ Cela a été retravaillé en temps qu'[option de composant](../api/#delimiters).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>Vue.config.delimiters</code>.</p>
 </div>
 {% endraw %}
@@ -1538,7 +1538,7 @@ L'interpolation HTML a été [retirée en faveur de `v-html`](#Interpolation-HTM
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>Vue.config.unsafeDelimiters</code>. Après cela, l'outil d'aide va aussi trouver les instances d'interpolation HTML, ainsi vous pourrez les remplacer avec `v-html`.</p>
 </div>
 {% endraw %}
@@ -1551,7 +1551,7 @@ L'option `el` ne peut plus être utilisée avec `Vue.extend`. Elle est seulement
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez votre suite de tests ou votre application après mise à jour et vérifiez les <strong>avertissements de console</strong> à propos de l'option <code>el</code> avec <code>Vue.extend</code>.</p>
 </div>
 {% endraw %}
@@ -1562,7 +1562,7 @@ Utilisez des composants à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>Vue.elementDirective</code>.</p>
 </div>
 {% endraw %}
@@ -1571,13 +1571,13 @@ Utilisez des composants à la place.
 
 Les partiels ont été retirés en faveur d'un flux de donnée plus explicite entre les composants, en utilisant les props. Partout où vous utilisiez des partiels dans des zones de performances critiques, la recommandation est simplement d'utiliser un [composant normal](components.html) à la place. Au cas où vous liez dynamiquement le `name` du partiel, vous pouvez utiliser un [composant dynamique](components.html#Composants-dynamiques).
 
-Si vous utilisiez des partiels dans des parties de votre application aux performances critiques, vous devriez les améliorer avec des [composants fonctionnels](render-function.html#Composants-fonctionnels). Elles seront entièrement en JavaScript ou JSX dans un fichier dédié (plutôt que dans un fichier `.vue`) et seront sans état et sans instance, exactement comme les partiels. Cela rendra le rendu extrêmement rapide.
+Si vous utilisiez des partiels dans des parties de votre application aux performances critiques, vous devriez les améliorer avec des [composants fonctionnels](render-function.html#Composants-fonctionnels). Ils seront entièrement en JavaScript ou JSX dans un fichier dédié (plutôt que dans un fichier `.vue`) et seront sans état et sans instance, exactement comme les partiels. Cela rendra le rendu extrêmement rapide.
 
-Le bénéfice des composants fonctionnels face aux partiels est qu'ils peuvent être bien plus dynamique, car ils vous permettent d'accéder à toute la puissance de JavaScript. Il y a un coût à cette puissance cependant. Si vous n'avez jamais utilisé un framework avec des composants de rendu avant, cela peut prendre un peu de temps pour l'apprentissage.
+Le bénéfice des composants fonctionnels face aux partiels est qu'ils peuvent être bien plus dynamiques, car ils vous permettent d'accéder à toute la puissance de JavaScript. Il y a un coût à cette puissance cependant. Si vous n'avez jamais utilisé un framework avec des composants de rendu avant, cela peut prendre un peu de temps pour l'apprentissage.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Mise en évidence</h4>
+  <h4>Comment procéder ?</h4>
   <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de <code>Vue.partial</code>.</p>
 </div>
 {% endraw %}
