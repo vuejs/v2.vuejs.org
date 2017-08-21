@@ -4,7 +4,7 @@ type: guide
 order: 305
 ---
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions**. Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions** (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
 
 ``` html
 <!-- in mustaches -->
@@ -13,8 +13,6 @@ Vue.js allows you to define filters that can be used to apply common text format
 <!-- in v-bind -->
 <div v-bind:id="rawId | formatId"></div>
 ```
-
-<p class="tip">Vue 2.x filters can only be used inside mustache interpolations and `v-bind` expressions (the latter supported in 2.1.0+), because filters are primarily designed for text transformation purposes. For more complex data transforms in other directives, you should use [Computed properties](computed.html) instead.</p>
 
 The filter function always receives the expression's value (the result of the former chain) as its first argument. In this example, the `capitalize` filter function will receive the value of `message` as its argument.
 
