@@ -133,7 +133,7 @@ type : api
     f1: 112,
     // La camelCase ne marche pas
     mediaPlayPause: 179,
-    // à la place vous devez utiliser la kebab-case avec un guillement double
+    // à la place vous devez utiliser la kebab-case avec des guillemets doubles
     "media-play-pause": 179,
     up: [38, 87]
   }
@@ -913,7 +913,7 @@ if (version === 2) {
   ``` js
   var CompA = { ... }
 
-  // étend CompA sans avoir à appeler `Vue.extend` sur l'un ou l'autre
+  // étend `CompA` sans avoir à appeler `Vue.extend` sur l'un ou l'autre
   var CompB = {
     extends: CompA,
     ...
@@ -1451,7 +1451,7 @@ if (version === 2) {
 <h3 id="vm-off">vm.$off( [événement, callback] )</h3>
 
 - **Arguments :**
-  - `{string} [événement]`
+  - `{string | Array<string>} événement` (les tableaux sont seulement supportés dans la 2.2.2+)
   - `{Function} [callback]`
 
 - **Utilisation :**
@@ -1811,7 +1811,7 @@ if (version === 2) {
 - **Argument :** `attrOuProp (optionnel)`
 
 - **Modificateurs :**
-  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([quelle difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `prop` assignera la propriété sur l'élément `$el` du composant.
+  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([Quelle difference ?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `.prop` assignera la propriété sur l'élément `$el` du composant.
   - `.camel` - (2.1.0+) transforme un nom d'attribut en kebab-case en sa version camelCase.
   - `.sync` - (2.3.0+) du sucre syntaxique pour ajouter un un gestionnaire `v-on` qui met à jour la valeur liée.
 

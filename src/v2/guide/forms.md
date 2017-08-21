@@ -169,7 +169,7 @@ Select à choix unique :
 
 ``` html
 <select v-model="selected">
-  <option disabled value="">Sélectionner :</option>
+  <option disabled value="">Choisissez</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
@@ -187,7 +187,7 @@ new Vue({
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
-    <option disabled value="">Please select one</option>
+    <option disabled value="">Choisissez</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>

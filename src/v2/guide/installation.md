@@ -33,7 +33,7 @@ Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera d�
 
 Recommandé : [https://unpkg.com/vue](https://unpkg.com/vue), qui reflète la dernière version aussitôt qu'elle est publiée sur npm. Vous pouvez également parcourir la source du package npm sur [https://unpkg.com/vue/](https://unpkg.com/vue/).
 
-Également disponible sur [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) ou [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mais ces deux services mettent du temps à se synchroniser ce qui signifie que la dernière version peut ne pas être encore disponible.
+Également disponible sur [jsDelivr](https://cdn.jsdelivr.net/npm/vue/dist/vue.js) ou [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mais ces deux services mettent du temps à se synchroniser ce qui signifie que la dernière version peut ne pas être encore disponible.
 
 ## npm
 

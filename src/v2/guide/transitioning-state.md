@@ -18,7 +18,7 @@ Tous ces éléments sont déjà stockés sous forme de nombres bruts, ou peuvent
 Les observateurs nous permettent d'animer les changements de toute propriété numérique dans une autre propriété. Cela peut paraître compliqué dans l'abstrait, donc plongeons-nous dans un exemple en utilisant [Tween.js](https://github.com/tweenjs/tween.js):
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -57,7 +57,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -96,8 +96,8 @@ new Vue({
 Lorsque vous mettez à jour le nombre, la modification est animée en dessous de l'input. Cela fait une belle démonstration, mais qu'en est-il de quelque-chose qui n'est pas directement stocké comme un nombre, comme n'importe quelle couleur CSS valide par exemple ? Voici comment nous pourrions accomplir cela avec l'ajout de [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
-<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
 
 <div id="example-7">
   <input
@@ -176,8 +176,8 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
-<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
 <div id="example-7" class="demo">
   <input
     v-model="colorQuery"
@@ -393,7 +393,7 @@ Consulter [ce fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) pour voir le c
 La gestion de nombreuses transitions d'états peut augmenter rapidement la complexité d'une instance ou d'un composant Vue. Heureusement, de nombreuses animations peuvent être extraites dans des composants enfants dédiés. Faisons cela avec l'entier animé de notre exemple précédent :
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 
 <div id="example-8">
   <input v-model.number="firstNumber" type="number" step="20"> +
@@ -471,7 +471,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 <div id="example-8" class="demo">
   <input v-model.number="firstNumber" type="number" step="20"> +
   <input v-model.number="secondNumber" type="number" step="20"> =

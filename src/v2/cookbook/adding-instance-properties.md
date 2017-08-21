@@ -188,6 +188,6 @@ new Vue({
 
 ### Quand utiliser un système de modules
 
-Quand vous avez accès à un système de modules, vous pouvez facilement organiser le code partagé à travers des modules, puis `require`/`import` ces modules partout où ils sont nécessaires. C'est l'approche la plus explicite car chaque fichier obtient alors une liste de dépendances. Vous savez _exactement_ d'où vient chacune d'entre elles.
+Quand vous avez accès à un système de modules, vous pouvez facilement organiser le code partagé à travers des modules, puis `require` / `import` ces modules partout où ils sont nécessaires. C'est l'approche la plus explicite car chaque fichier obtient alors une liste de dépendances. Vous savez _exactement_ d'où vient chacune d'entre elles.
 
 Bien que certainement plus verbeux, cette approche est assurément la plus maintenable, particulièrement quand vous travaillez avec d'autres développeurs et/ou construisez une grosse application.

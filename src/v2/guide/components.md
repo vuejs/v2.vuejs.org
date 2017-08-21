@@ -483,7 +483,7 @@ Chaque instance de Vue implémente une [interface d'événements](../api/#Instan
 - Écouter un événement en utilisant `$on(eventName)`
 - Déclencher un événement en utilisant `$emit(eventName)`
 
-<p class="tip">Notez que le système d'événement de Vue est différent de celui du navigateur [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Bien qu'il fonctionne de manière similaire, `$on` et `$emit` __ne__ sont __pas__ des alias pour `addEventListener` et `dispatchEvent`.</p>
+<p class="tip">Notez que le système d'événement de Vue est différent de celui de l'API navigateur [EventTarget](https://developer.mozilla.org/fr/docs/Web/API/EventTarget). Bien qu'il fonctionne de manière similaire, `$on` et `$emit` __ne__ sont __pas__ des alias pour `addEventListener` et `dispatchEvent`.</p>
 
 De plus, un composant parent peut écouter des événements émis depuis un composant enfant en utilisant `v-on` directement sur le template où le composant enfant est utilisé.
 
