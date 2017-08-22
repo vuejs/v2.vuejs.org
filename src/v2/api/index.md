@@ -97,7 +97,7 @@ type: api
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // 追踪组件继承
+    // `trace` 是组件层级结构的追踪信息
   }
   ```
 
@@ -143,7 +143,7 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  给 v-on 自定义键位别名。
+  给 `v-on` 自定义键位别名。
 
 ### performance
 
@@ -262,13 +262,11 @@ type: api
 
   删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
 
-  > 在 2.2.0+ 中同样支持在数组上工作。
-
   <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
-- **参考：** [深入响应式原理](../guide/reactivity.html)
+- **参考：**[深入响应式原理](../guide/reactivity.html)
 
-### Vue.directive( id, [definition] )
+<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
 - **参数：**
   - `{string} id`
@@ -389,11 +387,11 @@ type: api
 
 - **参考：** [Render 函数](../guide/render-function.html)
 
-### Vue.version
+<h3 id="Vue-version">Vue.version</h3>
 
 - **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
-- **用法：**
+- **用法**：
 
 ```js
 var version = Number(Vue.version.split('.')[0])
@@ -915,7 +913,7 @@ if (version === 2) {
   ``` js
   var CompA = { ... }
 
-  // 在没有调用 Vue.extend 时候继承 CompA
+  // 在没有调用 `Vue.extend` 时候继承 CompA
   var CompB = {
     extends: CompA,
     ...
@@ -962,7 +960,6 @@ if (version === 2) {
   ```
 
   利用 ES2015 Symbols、函数 `provide` 和对象 `inject`：
-
   ``` js
   const s = Symbol()
 
@@ -983,7 +980,6 @@ if (version === 2) {
   > 接下来 2 个例子只工作在 Vue 2.2.1 或更高版本。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
 
   使用一个注入的值作为一个属性的默认值：
-
   ```js
   const Child = {
     inject: ['foo'],
@@ -1390,7 +1386,7 @@ if (version === 2) {
   vm.$watch('a', callback, {
     immediate: true
   })
-  // 立即以 `a` 的当前值触发回调
+  // 立即以 `a` 的当前值触发 `callback` 回调
   ```
 
 ### vm.$set( target, key, value )
@@ -1455,7 +1451,7 @@ if (version === 2) {
 ### vm.$off( [event, callback] )
 
 - **参数：**
-  - `{string} [event]`
+  - `{string | Array<string>} event`（仅在 2.2.2+ 支持数组）
   - `{Function} [callback]`
 
 - **用法：**
@@ -1605,6 +1601,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
+
 - **参考：** [数据绑定语法 - 插值](../guide/syntax.html#原始-HTML-Raw-HTML)
 
 ### v-show
@@ -1616,8 +1613,6 @@ if (version === 2) {
   根据表达式之真假值，切换元素的 `display` CSS 属性。
 
   当条件变化时该指令触发过渡效果。
-
-  <p class="tip">当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。详见[列表渲染教程](../guide/list.html#v-for-with-v-if)</p>
 
 - **参考：** [条件渲染 - v-show](../guide/conditional.html#v-show)
 
@@ -1643,7 +1638,7 @@ if (version === 2) {
 
 - **用法：**
 
-  为 `v-if` 或者 `v-else-if` 添加 “else 块”。
+  为 `v-if` 或者 `v-if`/`v-else-if` 添加 “else 块”。
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1959,7 +1954,7 @@ if (version === 2) {
   </div>
   <!-- 组件 -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- v-for 指令-->
+  <!-- `v-for` 指令-->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
@@ -2044,8 +2039,8 @@ if (version === 2) {
   <!-- component changes when currentView changes -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because <my-row> would be invalid inside -->
-  <!-- a <table> element and so would be hoisted out      -->
+  <!-- necessary because `<my-row>` would be invalid inside -->
+  <!-- a `<table>` element and so would be hoisted out      -->
   <table>
     <tr is="my-row"></tr>
   </table>
@@ -2205,7 +2200,7 @@ if (version === 2) {
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- 和 <transition> 一起使用 -->
+  <!-- 和 `<transition>` 一起使用 -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2227,12 +2222,12 @@ if (version === 2) {
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- 正则表达式 (使用 v-bind) -->
+  <!-- 正则表达式 (使用 `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use v-bind) -->
+  <!-- Array (use `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
@@ -2242,7 +2237,7 @@ if (version === 2) {
 
   <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
-- **参考：** [动态组件 - keep-alive](../guide/components.html#keep-alive)
+- **参考：**[动态组件 - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
@@ -2255,15 +2250,15 @@ if (version === 2) {
 
   详细用法，请参考下面教程的链接。
 
-- **参考：** [使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
+- **参考：**[使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
 
 ## VNode接口
 
-- 请参考[VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- 请参考 [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)。
 
 ## 服务端渲染
 
-- 请参考[vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- 请参考 [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。
 
 ***
 

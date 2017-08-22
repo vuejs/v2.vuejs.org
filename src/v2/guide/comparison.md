@@ -111,7 +111,7 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 就好比 Vue 向上扩展像是 React，Vue 向下扩展后就类似于 jQuery。你只要把如下标签放到页面就可以运行：
 
 ``` html
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue"></script>
 ```
 
 然后你就可以编写 Vue 代码并应用到生产环境中，你只要用 min 版 Vue 文件替换掉就不用担心其他的性能问题。

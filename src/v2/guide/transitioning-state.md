@@ -18,7 +18,7 @@ Vue 的过渡系统提供了很多简便方法，可以在进入、离开时，�
 watcher 可以观察到从任何数值属性到另一个属性的变化，然后进行动画。这一抽象听起来很复杂，所以让我们深入一个使用 [Tween.js](https://github.com/tweenjs/tween.js) 的例子：
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -57,7 +57,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -96,8 +96,8 @@ new Vue({
 当更新数值时，输入框下方就会对数值的更改进行动画。这是一个不错的 demo 示例，但是，对于不能直接存储为数字的值，比如有效的 CSS 颜色值？以下是我们如何通过添加 [Color.js](https://github.com/brehaut/color-js) 来实现对非数值进行动画：
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
-<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
 
 <div id="example-7">
   <input
@@ -176,8 +176,8 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
-<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
 <div id="example-7" class="demo">
   <input
     v-model="colorQuery"
@@ -393,7 +393,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete c
 管理太多的状态过渡，会快速增加 Vue 实例或者组件的复杂性。幸运的是，许多动画可以提取到专用的子组件中。让我们用前面的整数动画来举例：
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 
 <div id="example-8">
   <input v-model.number="firstNumber" type="number" step="20"> +
@@ -471,7 +471,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 <div id="example-8" class="demo">
   <input v-model.number="firstNumber" type="number" step="20"> +
   <input v-model.number="secondNumber" type="number" step="20"> =

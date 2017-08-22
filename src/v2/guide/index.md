@@ -255,7 +255,7 @@ var app6 = new Vue({
 
 ## 由组件组合而成的应用程序
 
-组件系统是 Vue 的另一个重要概念，因为它是一种抽象，可以让我们使用小型、自包含和通常可复用的组件，把这些组合来构建大型应用程序。仔细想想，几乎任意类型的应用程序界面，都可以抽象为一个组件树：
+组件系统是 Vue 的另一个重要概念，因为它是一种抽象，可以让我们使用小型、自成体系和通常可复用的组件，把这些组合来构建大型应用程序。仔细想想，几乎任意类型的应用程序界面，都可以抽象为一个组件树：
 
 ![Component Tree](/images/components.png)
 
@@ -363,7 +363,7 @@ var app7 = new Vue({
 </div>
 ```
 
-## 与自定义元素(Custom Element)的关系
+## 与自定义元素的关系
 
 你可能已经注意到，Vue 组件非常类似于 [Web 组件规范](http://www.w3.org/wiki/WebComponents/)中的**自定义元素(Custom Element)**。这是因为 Vue 的组件语法不加限制地效仿参照了此规范。例如 Vue 组件实现了 [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 和 `is` 特殊属性。然而，还是有一些关键区别：
 

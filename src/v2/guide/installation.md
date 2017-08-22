@@ -33,7 +33,7 @@ Vue.js **不支持** IE8 及其以下版本，因为 Vue.js 使用的 ECMAScript
 
 推荐使用：[https://unpkg.com/vue](https://unpkg.com/vue)，在 npm 发布后，立刻就能够展现最新版本。你还可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包的源码。
 
-还可以使用 [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)，但是这两个服务需要一段时间才能同步，所以可能会无法获取最新版本。
+还可以使用 [jsDelivr](https://cdn.jsdelivr.net/npm/vue/dist/vue.js) 或 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)，但是这两个服务需要一段时间才能同步，所以可能会无法获取最新版本。
 
 ## NPM
 
