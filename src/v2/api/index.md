@@ -262,13 +262,11 @@ type: api
 
   删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
 
-  > 在 2.2.0+ 中同样支持在数组上工作。
-
   <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
-- **参考：** [深入响应式原理](../guide/reactivity.html)
+- **参考：**[深入响应式原理](../guide/reactivity.html)
 
-### Vue.directive( id, [definition] )
+<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
 - **参数：**
   - `{string} id`
@@ -389,11 +387,11 @@ type: api
 
 - **参考：** [Render 函数](../guide/render-function.html)
 
-### Vue.version
+<h3 id="Vue-version">Vue.version</h3>
 
 - **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
-- **用法：**
+- **用法**：
 
 ```js
 var version = Number(Vue.version.split('.')[0])
@@ -962,7 +960,6 @@ if (version === 2) {
   ```
 
   利用 ES2015 Symbols、函数 `provide` 和对象 `inject`：
-
   ``` js
   const s = Symbol()
 
@@ -983,7 +980,6 @@ if (version === 2) {
   > 接下来 2 个例子只工作在 Vue 2.2.1 或更高版本。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
 
   使用一个注入的值作为一个属性的默认值：
-
   ```js
   const Child = {
     inject: ['foo'],
@@ -1456,8 +1452,6 @@ if (version === 2) {
 
 - **参数：**
   - `{string | Array<string>} event`（仅在 2.2.2+ 支持数组）
-- **参数：**
-  - `{string} [event]`
   - `{Function} [callback]`
 
 - **用法：**
@@ -1620,8 +1614,6 @@ if (version === 2) {
 
   当条件变化时该指令触发过渡效果。
 
-  <p class="tip">当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。详见[列表渲染教程](../guide/list.html#v-for-with-v-if)</p>
-
 - **参考：** [条件渲染 - v-show](../guide/conditional.html#v-show)
 
 ### v-if
@@ -1646,7 +1638,7 @@ if (version === 2) {
 
 - **用法：**
 
-  为 `v-if` 或者 `v-else-if` 添加 “else 块”。
+  为 `v-if` 或者 `v-if`/`v-else-if` 添加 “else 块”。
 
   ```html
   <div v-if="Math.random() > 0.5">
