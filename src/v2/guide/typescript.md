@@ -84,7 +84,7 @@ export default {
 } as ComponentOptions<Vue>
 ```
 
-## 고전적인 스타일의 Vue 컴포넌트
+## Class 스타일 Vue 컴포넌트
 
 Vue 컴포넌트 옵션은 타입에 대해 쉽게 주석을 추가할 수 있습니다.
 
@@ -143,4 +143,64 @@ export default class MyComponent extends Vue {
 }
 ```
 
-이렇게 다른 문법을 사용하여 컴포넌트 정의가 더 짧을뿐만 아니라 TypeScript도 명시적인 인터페이스 선언없이 `message` 및 `onClick` 타입을 판단 할 수 있습니다. 이를 통해 계산된 속성, 라이프 사이클 훅 및 렌더링 함수의 타입을 처리 할 수 있습니다. 자세한 사용법은 [vue-class-component 문서](https://github.com/vuejs/vue-class-component#vue-class-component)를 참조하세요.
+이 문법을 대신 사용하면 컴포넌트 정의가 더 짧을뿐만 아니라, TypeScript가 명시적인 인터페이스 선언없이 `message` 및 `onClick` 타입을 판단할 수 있습니다. 이를 통해 계산된 속성, 라이프 사이클 훅 및 렌더링 함수의 타입을 처리 할 수 있습니다. 자세한 사용법은 [vue-class-component 문서](https://github.com/vuejs/vue-class-component#vue-class-component)를 참조하세요.
+
+## Vue Plugin의 타입 선언
+
+플러그인은 Vue에 전역 혹은 인스턴스 property와 컴포넌트 옵션을 추가할 수 있습니다. 이러한 경우 TypeScript에서 플러그인을 컴파일하려면 유형 선언이 필요합니다. 다행스럽게도 TypeScript에는 이미 존재하는 타입을 보충하기 위한 [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)이라는 기능이 있습니다.
+
+예를 들어, instance property인 `$myProperty`를 `string` 타입으로 선안하고자 하는 경우:
+
+``` ts
+// 1. 'vue'를 보충된 타입 선언 전에 import해야 합니다.
+import Vue from 'vue'
+
+// 2. 보충하고자 하는 타입이 있는 파일을 지정하세요.
+//    Vue의 constructor type은 types/vue.d.ts에 있습니다.
+declare module 'vue/types/vue' {
+  // 3. Vue에 보강할 내용을 선언하세요.
+  interface Vue {
+    $myProperty: string
+  }
+}
+```
+
+위의 코드를 선언 파일 형태로 (`my-property.d.ts` 처럼) include하면, `$myProperty`를 Vue instance 내에서 사용할 수 있습니다.
+
+```ts
+var vm = new Vue()
+console.log(vm.$myProperty) // 이 코드는 성공적으로 컴파일될 것입니다.
+```
+
+추가적인 전역 property나 컴포넌트 옵션을 선언할 수도 있습니다.
+
+```ts
+import Vue from 'vue'
+
+declare module 'vue/types/vue' {
+  // `interface` 대신 `namespace`를 사용함으로써
+  // 전역 property를 선언할 수 있습니다.
+  namespace Vue {
+    const $myGlobal: string
+  }
+}
+
+// ComponentOptions는 types/options.d.ts에 선언되어 있습니다.
+declare module 'vue/types/options' {
+  interface ComponentOptions<V extends Vue> {
+    myOption?: string
+  }
+}
+```
+
+위 선언들을 통해 다음과 같은 코드를 컴파일할 수 있게 됩니다.
+
+```ts
+// 전역 property
+console.log(Vue.$myGlobal)
+
+// 추가적인 component option
+var vm = new Vue({
+  myOption: 'Hello'
+})
+```
