@@ -97,7 +97,7 @@ type: api
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // 追踪组件继承
+    // `trace` 是组件层级结构的追踪信息
   }
   ```
 
@@ -143,7 +143,7 @@ type: api
   <input type="text" @keyup.media-play-pause="method">
   ```
 
-  给 v-on 自定义键位别名。
+  给 `v-on` 自定义键位别名。
 
 ### performance
 
@@ -915,7 +915,7 @@ if (version === 2) {
   ``` js
   var CompA = { ... }
 
-  // 在没有调用 Vue.extend 时候继承 CompA
+  // 在没有调用 `Vue.extend` 时候继承 CompA
   var CompB = {
     extends: CompA,
     ...
@@ -1390,7 +1390,7 @@ if (version === 2) {
   vm.$watch('a', callback, {
     immediate: true
   })
-  // 立即以 `a` 的当前值触发回调
+  // 立即以 `a` 的当前值触发 `callback` 回调
   ```
 
 ### vm.$set( target, key, value )
@@ -1454,6 +1454,8 @@ if (version === 2) {
 
 ### vm.$off( [event, callback] )
 
+- **参数：**
+  - `{string | Array<string>} event`（仅在 2.2.2+ 支持数组）
 - **参数：**
   - `{string} [event]`
   - `{Function} [callback]`
@@ -1605,6 +1607,7 @@ if (version === 2) {
   ```html
   <div v-html="html"></div>
   ```
+
 - **参考：** [数据绑定语法 - 插值](../guide/syntax.html#原始-HTML-Raw-HTML)
 
 ### v-show
@@ -1959,7 +1962,7 @@ if (version === 2) {
   </div>
   <!-- 组件 -->
   <my-component v-once :comment="msg"></my-component>
-  <!-- v-for 指令-->
+  <!-- `v-for` 指令-->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>
   </ul>
@@ -2044,8 +2047,8 @@ if (version === 2) {
   <!-- component changes when currentView changes -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because <my-row> would be invalid inside -->
-  <!-- a <table> element and so would be hoisted out      -->
+  <!-- necessary because `<my-row>` would be invalid inside -->
+  <!-- a `<table>` element and so would be hoisted out      -->
   <table>
     <tr is="my-row"></tr>
   </table>
@@ -2205,7 +2208,7 @@ if (version === 2) {
     <comp-b v-else></comp-b>
   </keep-alive>
 
-  <!-- 和 <transition> 一起使用 -->
+  <!-- 和 `<transition>` 一起使用 -->
   <transition>
     <keep-alive>
       <component :is="view"></component>
@@ -2227,12 +2230,12 @@ if (version === 2) {
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- 正则表达式 (使用 v-bind) -->
+  <!-- 正则表达式 (使用 `v-bind`) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use v-bind) -->
+  <!-- Array (use `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
@@ -2242,7 +2245,7 @@ if (version === 2) {
 
   <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
-- **参考：** [动态组件 - keep-alive](../guide/components.html#keep-alive)
+- **参考：**[动态组件 - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
@@ -2255,15 +2258,15 @@ if (version === 2) {
 
   详细用法，请参考下面教程的链接。
 
-- **参考：** [使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
+- **参考：**[使用 slots 分发内容](../guide/components.html#使用Slots分发内容)
 
 ## VNode接口
 
-- 请参考[VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- 请参考 [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)。
 
 ## 服务端渲染
 
-- 请参考[vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- 请参考 [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。
 
 ***
 
