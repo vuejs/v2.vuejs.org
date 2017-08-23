@@ -6,7 +6,7 @@ order: 5
 
 ## computed 属性(Computed Properties)
 
-在模板中使用表达式是非常方便直接的，然而这只适用于简单的操作。在你的模板中放入太多的逻辑，会使模板过度膨胀和难以维护。例如：
+在模板中使用表达式是非常方便直接的，然而这只适用于简单的操作。在模板中放入太多的逻辑，会使模板过度膨胀和难以维护。例如：
 
 ``` html
 <div id="example">
@@ -14,7 +14,7 @@ order: 5
 </div>
 ```
 
-在这个地方，模板不再简洁和如声明式直观。你必须看一段时间才能意识到，这里是想要显示变量 `message` 的翻转字符串。当你想要在模板中多次引用此处的翻转字符串时，就会更加难以处理。
+在这个地方，模板不再简洁和如声明式直观。你必须仔细观察一段时间才能意识到，这里是想要显示变量 `message` 的翻转字符串。当你想要在模板中多次引用此处的翻转字符串时，就会更加难以处理。
 
 这就是为什么对于所有复杂逻辑，你都应该使用 **computed 属性(computed property)**。
 
@@ -75,7 +75,7 @@ console.log(vm.reversedMessage) // -> 'eybdooG'
 
 你可以打开浏览器的控制台，然后如示例中操作 vm。会发现 `vm.reversedMessage` 的值总是依赖于 `vm.message` 的值。
 
-你可以像绑定普通属性一样，将 computed 属性的数据，绑定(data-bind)到模板中的表达式上。Vue 能够意识到 `vm.reversedMessage` 依赖于 `vm.message`，也会在 `vm.message` 修改后，更新所有依赖于 `vm.reversedMessage` 的数据绑定。最恰到好处的部分是，我们是通过声明式来创建这种依赖关系：computed 属性的 getter 函数并无外部影响(side effect)，因此也更加易于测试和易于推断。
+你可以像绑定普通属性一样，将 computed 属性的数据，绑定(data-bind)到模板中的表达式上。Vue 能够意识到 `vm.reversedMessage` 依赖于 `vm.message`，也会在 `vm.message` 修改后，更新所有依赖于 `vm.reversedMessage` 的数据绑定。最恰到好处的部分是，我们是通过声明式来创建这种依赖关系：computed 属性的 getter 函数并无副作用(side effect)，因此也更加易于测试和易于推断。
 
 ### computed 缓存 vs method 方法(Computed Caching vs Methods)
 
@@ -108,7 +108,7 @@ computed: {
 
 相比之下，每当触发重新渲染(re-render)时，method 调用方式将**总是**再次执行函数。
 
-为什么我们需要将依赖数据缓存起来？假设一种场景，我们有一个高性能开销(expensive)的 computed 属性 **A**，在 computed 属性的 getter 函数内部，需要遍历循环一个巨大数组，并进行大量计算。然后还有其他 computed 属性直接或间接依赖于 **A**。如果没有缓存，我们将不可避免地多次执行 **A** 的 getter 函数，这远多余我们实际需要执行的次数！然而在某些场景下，你可能不希望有缓存，请使用 method 方法替代。
+为什么我们需要将依赖数据缓存起来？假设一种场景，我们有一个高性能开销(expensive)的 computed 属性 **A**，在 computed 属性的 getter 函数内部，需要遍历循环一个巨大数组，并进行大量计算。然后还有其他 computed 属性直接或间接依赖于 **A**。如果没有缓存，我们将不可避免地多次执行 **A** 的 getter 函数，这远多余实际需要执行的次数！然而在某些场景下，你可能不希望有缓存，请使用 method 方法替代。
 
 ### computed 属性 vs watch 属性(Computed vs Watched Property)
 
