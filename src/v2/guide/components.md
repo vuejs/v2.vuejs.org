@@ -1057,7 +1057,7 @@ Vue 组件的 API 来自三部分 - props, events 和 slots ：
 
 - **Props** 允许外部环境传递数据给组件
 
-- **Events** 允许组件对外部环境产生影响(side effects)
+- **Events** 允许组件对外部环境产生副作用(side effects)
 
 - **Slots** 允许外部环境将额外的内容组合在组件中。
 
