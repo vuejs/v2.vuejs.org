@@ -82,11 +82,12 @@ Vue.use(VueRouter)
 
 ***
 
-### 译注：
+> 译注：
 
-> 如果检测到 `Vue` 是可访问的全局变量，这些插件会自动调用 `Vue.use()`
+* 如果检测到 `Vue` 是可访问的全局变量，这些插件会自动调用 `Vue.use()`
 
 可以参考 https://github.com/vuejs/vue-router/blob/dev/src/index.js#L233
+
 ``` javascript
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter)
