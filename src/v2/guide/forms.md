@@ -60,7 +60,6 @@ new Vue({
 </script>
 {% endraw %}
 
-
 {% raw %}
 <p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
 {% endraw %}
@@ -134,7 +133,6 @@ new Vue({
 {% endraw %}
 
 ### Radio
-
 
 ``` html
 <input type="radio" id="one" value="One" v-model="picked">
@@ -383,10 +381,3 @@ If you want user input to be trimmed automatically, you can add the `trim` modif
 > If you're not yet familiar with Vue's components, just skip this for now.
 
 HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
-
-
-
-
-
-
-
