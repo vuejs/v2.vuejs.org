@@ -190,7 +190,7 @@ Et également un troisième pour l'index :
 
 <p class="tip">Quand vous itérez sur un objet, l'ordre est basé sur l'ordre d'énumération de `Object.keys()` et il **n'**y a **aucune** garantie de cohérence à travers toutes les implémentations des moteurs JavaScript.</p>
 
-### `v-for` et nombres
+### `v-for` et plage de valeurs
 
 `v-for` peut également prendre un nombre entier. Dans ce cas, il répétera le template autant de fois qu'indiqué.
 
@@ -363,7 +363,7 @@ new Vue({
 
 ### `v-for` avec `v-if`
 
-Quand ils existent sur le même nœud, `v-for` a une priorité plus élevée que `v-if`. Cela signifie que `v-if` va être exécuté indépendamment à chaque itération de boucle. C'est très utile quand vous voulez faire le rendu de seulement certains noeuds, comme ci-dessous : 
+Quand ils existent sur le même nœud, `v-for` a une priorité plus élevée que `v-if`. Cela signifie que `v-if` va être exécuté indépendamment à chaque itération de boucle. C'est très utile quand vous voulez faire le rendu de seulement certains noeuds, comme ci-dessous :
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
