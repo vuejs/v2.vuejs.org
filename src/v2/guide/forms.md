@@ -60,7 +60,6 @@ new Vue({
 </script>
 {% endraw %}
 
-
 {% raw %}
 <p class="tip">L'interpolation sur les zones de texte (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) ne fonctionnera pas. Utilisez <code>v-model</code> à la place.</p>
 {% endraw %}
@@ -91,19 +90,21 @@ new Vue({
 Checkboxes multiples, liées au même tableau (Array) :
 
 ``` html
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>Noms cochés : {{ checkedNames }}</span>
+<div id='example-3'>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Noms cochés : {{ checkedNames }}</span>
+<div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-3',
   data: {
     checkedNames: []
   }
@@ -132,7 +133,6 @@ new Vue({
 {% endraw %}
 
 ### Radio
-
 
 ``` html
 <input type="radio" id="one" value="Un" v-model="picked">
@@ -381,10 +381,3 @@ Si vous voulez que les espaces superflus des saisies utilisateur soient automati
 > Si vous n'êtes pas encore familier avec les composants de Vue, passez cette section pour le moment.
 
 Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des champs avec un comportement complètement personnalisé. Ces champs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez la section ["champs personnalisés"](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
-
-
-
-
-
-
-
