@@ -149,7 +149,7 @@ export default class MyComponent extends Vue {
 
 플러그인은 Vue에 전역 혹은 인스턴스 property와 컴포넌트 옵션을 추가할 수 있습니다. 이러한 경우 TypeScript에서 플러그인을 컴파일하려면 유형 선언이 필요합니다. 다행스럽게도 TypeScript에는 이미 존재하는 타입을 보충하기 위한 [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)이라는 기능이 있습니다.
 
-예를 들어, instance property인 `$myProperty`를 `string` 타입으로 선안하고자 하는 경우:
+예를 들어, instance property인 `$myProperty`를 `string` 타입으로 선언하고자 하는 경우:
 
 ``` ts
 // 1. 'vue'를 보충된 타입 선언 전에 import해야 합니다.
