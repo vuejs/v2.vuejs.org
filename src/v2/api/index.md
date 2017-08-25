@@ -1424,12 +1424,12 @@ if (version === 2) {
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **Argumentos:**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+  - `{string | Array<string>} event` (array somente é suportado em 2.2.0+)
   - `{Function} callback`
 
 - **Uso:**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  Escuta um evento customizado na *vm* atual. Eventos podem ser lançados utilizando `vm.$emit`. A função de *callback* irá receber todos os argumentos adicionais passados nos métodos que lançam eventos.
 
 - **Exemplo:**
 
@@ -1449,23 +1449,23 @@ if (version === 2) {
 
 - **Uso:**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  Escuta um evento customizado, porém somente uma vez. O *listener* será removido assim que for acionado pela primeira vez.
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
 - **Argumentos:**
-  - `{string | Array<string>} event` (array only supported in 2.2.2+)
+  - `{string | Array<string>} event` (array somente é suportado em 2.2.2+)
   - `{Function} [callback]`
 
 - **Uso:**
 
-  Remove custom event listener(s).
+  Remove *listener(s)* de eventos customizados.
 
-  - If no arguments are provided, remove all event listeners;
+  - Se nenhum argumento é passado, esta função irá remover todos os *listeners*;
 
-  - If only the event is provided, remove all listeners for that event;
+  - Se apenas o evento é passado, esta função irá remover todos os *listeners* para este evento;
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - Se tanto o evento quanto o *callback* forem passados, esta função somente irá remover o *listener* para este *callback* específico.
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
@@ -1473,7 +1473,7 @@ if (version === 2) {
   - `{string} event`
   - `[...args]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Lança um evento na instância atual. Qualquer argumento adicional será passado para a função de *callback* do *listener*.
 
 ## Métodos da Instância / Ciclo-de-Vida
 
