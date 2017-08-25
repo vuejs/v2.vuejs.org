@@ -4,7 +4,7 @@ type: guide
 order: 5
 ---
 
-## computed 属性(Computed Properties)
+## computed 属性
 
 在模板中使用表达式是非常方便直接的，然而这只适用于简单的操作。在模板中放入太多的逻辑，会使模板过度膨胀和难以维护。例如：
 
@@ -22,8 +22,8 @@ order: 5
 
 ``` html
 <div id="example">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>初始 message 是："{{ message }}"</p>
+  <p>计算后的翻转 message 是："{{ reversedMessage }}"</p>
 </div>
 ```
 
@@ -36,7 +36,7 @@ var vm = new Vue({
   computed: {
     // 一个 computed 属性的 getter 函数
     reversedMessage: function () {
-      // `this` points to the vm instance
+      // `this` 指向 vm 实例
       return this.message.split('').reverse().join('')
     }
   }
@@ -47,8 +47,8 @@ var vm = new Vue({
 
 {% raw %}
 <div id="example" class="demo">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>初始 message 是："{{ message }}"</p>
+  <p>计算后的翻转 message 是："{{ reversedMessage }}"</p>
 </div>
 <script>
 var vm = new Vue({
@@ -77,16 +77,16 @@ console.log(vm.reversedMessage) // -> 'eybdooG'
 
 你可以像绑定普通属性一样，将 computed 属性的数据，绑定(data-bind)到模板中的表达式上。Vue 能够意识到 `vm.reversedMessage` 依赖于 `vm.message`，也会在 `vm.message` 修改后，更新所有依赖于 `vm.reversedMessage` 的数据绑定。最恰到好处的部分是，我们是通过声明式来创建这种依赖关系：computed 属性的 getter 函数并无副作用(side effect)，因此也更加易于测试和易于推断。
 
-### computed 缓存 vs method 方法(Computed Caching vs Methods)
+### computed 缓存 vs method 方法
 
 你可能已经注意到，我们可以在表达式中通过调用 method 方法的方式，也能够实现与 computed 属性相同的结果：
 
 ``` html
-<p>Reversed message: "{{ reverseMessage() }}"</p>
+<p>翻转 message 是："{{ reverseMessage() }}"</p>
 ```
 
 ``` js
-// in component
+// 在组件中
 methods: {
   reverseMessage: function () {
     return this.message.split('').reverse().join('')
@@ -110,7 +110,7 @@ computed: {
 
 为什么我们需要将依赖数据缓存起来？假设一种场景，我们有一个高性能开销(expensive)的 computed 属性 **A**，在 computed 属性的 getter 函数内部，需要遍历循环一个巨大数组，并进行大量计算。然后还有其他 computed 属性直接或间接依赖于 **A**。如果没有缓存，我们将不可避免地多次执行 **A** 的 getter 函数，这远多余实际需要执行的次数！然而在某些场景下，你可能不希望有缓存，请使用 method 方法替代。
 
-### computed 属性 vs watch 属性(Computed vs Watched Property)
+### computed 属性 vs watch 属性
 
 Vue 其实还提供了一种更加通用的方式，来观察和响应 Vue 实例上的数据变化：**watch 属性**。`watch` 属性是很吸引人的使用方式，然而，当你有一些数据需要随着另外一些数据变化时，过度滥用 watch 属性会造成一些问题 - 尤其是那些具有 AngularJS 开发背景的开发人员。因此，更推荐的方式是，使用 computed 属性，而不是命令式(imperative)的 `watch` 回调函数。思考下面这个示例：
 
@@ -164,11 +164,11 @@ computed 属性默认只设置 getter 函数，不过在需要时，还可以提
 // ...
 computed: {
   fullName: {
-    // getter
+    // getter 函数
     get: function () {
       return this.firstName + ' ' + this.lastName
     },
-    // setter
+    // setter 函数
     set: function (newValue) {
       var names = newValue.split(' ')
       this.firstName = names[0]
@@ -190,7 +190,7 @@ computed: {
 ``` html
 <div id="watch-example">
   <p>
-    Ask a yes/no question:
+    问一个答案是 yes/no 的问题：
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -209,12 +209,12 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: '你要先提出问题，我才能给你答案！'
   },
   watch: {
     // 只要 question 发生改变，此函数就会执行
     question: function (newQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = '等待输入停止……'
       this.getAnswer()
     }
   },
@@ -228,11 +228,11 @@ var watchExampleVM = new Vue({
     // 请访问：https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
-        if (this.question.indexOf('?') === -1) {
-          this.answer = 'Questions usually contain a question mark. ;-)'
+        if (this.question.indexOf('？') === -1) {
+          this.answer = '问题通常需要包含一个中文问号。;-)'
           return
         }
-        this.answer = 'Thinking...'
+        this.answer = '思考中……'
         var vm = this
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
@@ -268,11 +268,11 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: '你要先提出问题，我才能给你答案！'
   },
   watch: {
     question: function (newQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = '等待输入停止……'
       this.getAnswer()
     }
   },
@@ -281,10 +281,10 @@ var watchExampleVM = new Vue({
       function () {
         var vm = this
         if (this.question.indexOf('?') === -1) {
-          vm.answer = 'Questions usually contain a question mark. ;-)'
+          vm.answer = '问题通常需要包含一个中文问号。;-)'
           return
         }
-        vm.answer = 'Thinking...'
+        vm.answer = '思考中……'
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
             vm.answer = _.capitalize(response.data.answer)
