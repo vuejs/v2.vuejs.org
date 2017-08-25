@@ -1338,58 +1338,58 @@ if (version === 2) {
 
 - **Uso:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
+  Observa (em busca de mudanças) uma expressão ou uma função computada na instância do Vue. A função de *callback* é chamada com o novo e o antigo valor. A expressão somente aceita caminhos delimitados por pontos. Para expressões mais complexas, utilize uma função.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+  <p class="tip">Nota: quando se está alterando (ao invés de substituindo) um objeto ou um *Array*, o valor antigo será igual ao novo valor, pois eles referenciam o mesmo objeto/*Array*. O Vue não mantém uma cópia dos valores antes de serem mutados.</p>
 
 - **Exemplo:**
 
   ``` js
-  // keypath
+  // caminho da chave
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // faz alguma coisa
   })
 
-  // function
+  // função
   vm.$watch(
     function () {
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // faz alguma coisa
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` retorna uma função *unwatch*, que para de lançar o *callback*:
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // depois, destruirá o watcher
   unwatch()
   ```
 
-- **Option: deep**
+- **Opção: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  Para também detectar valores aninhados dentro de objetos, você deve passar `deep: true` nas opções. Note que você não precisa fazer isso para mutações em *Array*.
 
   ``` js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // callback é acionado
   ```
 
-- **Option: immediate**
+- **Opção: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Passar `immediate: true` nas opções irá acionar a função de *callback* imediatamente com o novo valor da expressão:
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` is fired immediately with current value of `a`
+  // `callback` é acionada imediatamente com o novo valor de 'a'
   ```
 
 <h3 id="vm-set">vm.$set( target, key, value )</h3>
@@ -1399,11 +1399,11 @@ if (version === 2) {
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Retorno:** o valor determinado.
 
 - **Uso:**
 
-  This is the **alias** of the global `Vue.set`.
+  Esta método é um ***alias*** para a função global `Vue.set`.
 
 - **Ver também:** [Vue.set](#Vue-set)
 
@@ -1415,7 +1415,7 @@ if (version === 2) {
 
 - **Uso:**
 
-  This is the **alias** of the global `Vue.delete`.
+  Este método é um ***alias*** para a função global `Vue.delete`.
 
 - **Ver também:** [Vue.delete](#Vue-delete)
 
