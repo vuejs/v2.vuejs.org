@@ -280,7 +280,7 @@ var watchExampleVM = new Vue({
     getAnswer: _.debounce(
       function () {
         var vm = this
-        if (this.question.indexOf('?') === -1) {
+        if (this.question.indexOf('？') === -1) {
           vm.answer = '问题通常需要包含一个中文问号。;-)'
           return
         }
