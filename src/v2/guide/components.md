@@ -1143,7 +1143,7 @@ new Vue({
 })
 ```
 
-<p class="tip">비동기 컴포넌트를 사용하려는 <strong>Browserify</strong> 사용자인 경우, 작성자는 불행히도 비동기로드가 Browserify에서 지원하지 않는 것이라고 분명하게 [분명하게 주장합니다.](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) 적어도 공식적으로. Browserify 커뮤니티는 기존 및 복잡한 응용 프로그램에 도움이 될 수있는 [몇 가지 해결 방법](https://github.com/vuejs/vuejs.org/issues/620)을 발견했습니다. 다른 모든 시나리오의 경우 기본 제공되는 비동기식 지원을 위해 Webpack을 사용하는 것이 좋습니다.</p>
+<p class="tip">비동기 컴포넌트를 사용하려는 <strong>Browserify</strong> 사용자인 경우, 작성자는 불행히도 비동기로드가 Browserify에서 지원하지 않는 것이라고 [분명하게 주장합니다.](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) 적어도 공식적으로. Browserify 커뮤니티는 기존 및 복잡한 응용 프로그램에 도움이 될 수있는 [몇 가지 해결 방법](https://github.com/vuejs/vuejs.org/issues/620)을 발견했습니다. 다른 모든 시나리오의 경우 기본 제공되는 비동기식 지원을 위해 Webpack을 사용하는 것이 좋습니다.</p>
 
 ### 고급 비동기 컴포넌트
 
