@@ -239,7 +239,7 @@ var watchExampleVM = new Vue({
             vm.answer = _.capitalize(response.data.answer)
           })
           .catch(function (error) {
-            vm.answer = 'Error! Could not reach the API. ' + error
+            vm.answer = '错误！API 无法处理。' + error
           })
       },
       // 这是用户停止输入操作后所等待的毫秒数。
@@ -256,7 +256,7 @@ var watchExampleVM = new Vue({
 {% raw %}
 <div id="watch-example" class="demo">
   <p>
-    Ask a yes/no question:
+    问一个答案是 yes/no 的问题：
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
