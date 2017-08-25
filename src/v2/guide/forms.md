@@ -60,7 +60,9 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">Interpolação em _textarea_ (<code>&lt;textarea&gt;{% raw %}{{message}}{% endraw %}&lt;/textarea&gt;</code>) não funciona. Em vez disso, sempre use <code>v-model</code>.</p>
+{% raw %}
+<p class="tip">Interpolação em <i>textareas</i> (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) não funciona. Em vez disso, sempre use <code>v-model</code>.</p>
+{% endraw %}
 
 ### Checkbox
 
@@ -88,19 +90,21 @@ new Vue({
 Múltiplos _checkboxes_, associados a um mesmo Array:
 
 ``` html
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>Nomes assinalados: {{ checkedNames }}</span>
+<div id="example-3">
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Nomes assinalados: {{ checkedNames }}</span>
+</div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-3',
   data: {
     checkedNames: []
   }

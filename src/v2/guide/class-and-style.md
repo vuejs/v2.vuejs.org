@@ -82,7 +82,7 @@ computed: {
 Podemos passar um Array para `v-bind:class` para aplicar uma lista de classes:
 
 ``` html
-<div v-bind:class="[activeClass, errorClass]">
+<div v-bind:class="[activeClass, errorClass]"></div>
 ```
 ``` js
 data: {
@@ -100,7 +100,7 @@ Que renderizará:
 Se você preferir também alternar entre uma classe na lista condicionalmente, use uma expressão ternária:
 
 ``` html
-<div v-bind:class="[isActive ? activeClass : '', errorClass]">
+<div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
 Isso semple aplicará `errorClass`, mas somente aplicará `activeClass` quando `isActive` for `true`.
@@ -108,7 +108,7 @@ Isso semple aplicará `errorClass`, mas somente aplicará `activeClass` quando `
 No entanto, isso pode ser um tanto prolixo se você tiver várias classes condicionais. Por isso também é possível usar a sintaxe de objeto dentro da sintaxe de Array:
 
 ``` html
-<div v-bind:class="[{ active: isActive }, errorClass]">
+<div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
 ### Em Componentes
@@ -186,7 +186,7 @@ Novamente, a sintaxe de objeto é frequentemente usada em conjunto com dados com
 A sintaxe Array para `v-bind:style` permite que você aplique múltiplos objetos de estilo para o mesmo elemento:
 
 ``` html
-<div v-bind:style="[baseStyles, overridingStyles]">
+<div v-bind:style="[baseStyles, overridingStyles]"></div>
 ```
 
 ### Auto-Prefixação
@@ -200,7 +200,7 @@ Quando você usa uma propriedade CSS que requer [prefixos de fabricantes](https:
 Nas versões 2.3.0+ você pode prover um Array com múltiplos valores (prefixados) para estilizar um atributo, por exemplo:
 
 ``` html
-<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
+<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
 Isto irá renderizar apenas o último valor do Array que o navegador suportar. Neste exemplo, irá renderizar `display: flex` nos navegadores que suportam a versão sem prefixo do módulo Flexbox.
