@@ -1338,58 +1338,58 @@ if (version === 2) {
 
 - **Uso:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
+  Observa (em busca de mudanças) uma expressão ou uma função computada na instância do Vue. A função de *callback* é chamada com o novo e o antigo valor. A expressão somente aceita caminhos delimitados por pontos. Para expressões mais complexas, utilize uma função.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+  <p class="tip">Nota: quando se está alterando (ao invés de substituindo) um objeto ou um *Array*, o valor antigo será igual ao novo valor, pois eles referenciam o mesmo objeto/*Array*. O Vue não mantém uma cópia dos valores antes de serem mutados.</p>
 
 - **Exemplo:**
 
   ``` js
-  // keypath
+  // caminho da chave
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // faz alguma coisa
   })
 
-  // function
+  // função
   vm.$watch(
     function () {
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // faz alguma coisa
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` retorna uma função *unwatch*, que para de lançar o *callback*:
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // depois, destruirá o watcher
   unwatch()
   ```
 
-- **Option: deep**
+- **Opção: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  Para também detectar valores aninhados dentro de objetos, você deve passar `deep: true` nas opções. Note que você não precisa fazer isso para mutações em *Array*.
 
   ``` js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // callback é acionado
   ```
 
-- **Option: immediate**
+- **Opção: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Passar `immediate: true` nas opções irá acionar a função de *callback* imediatamente com o novo valor da expressão:
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // `callback` is fired immediately with current value of `a`
+  // `callback` é acionada imediatamente com o novo valor de 'a'
   ```
 
 <h3 id="vm-set">vm.$set( target, key, value )</h3>
@@ -1399,11 +1399,11 @@ if (version === 2) {
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Retorno:** o valor determinado.
 
 - **Uso:**
 
-  This is the **alias** of the global `Vue.set`.
+  Esta método é um ***alias*** para a função global `Vue.set`.
 
 - **Ver também:** [Vue.set](#Vue-set)
 
@@ -1415,7 +1415,7 @@ if (version === 2) {
 
 - **Uso:**
 
-  This is the **alias** of the global `Vue.delete`.
+  Este método é um ***alias*** para a função global `Vue.delete`.
 
 - **Ver também:** [Vue.delete](#Vue-delete)
 
@@ -1424,12 +1424,12 @@ if (version === 2) {
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **Argumentos:**
-  - `{string | Array<string>} event` (array only supported in 2.2.0+)
+  - `{string | Array<string>} event` (array somente é suportado em 2.2.0+)
   - `{Function} callback`
 
 - **Uso:**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  Escuta um evento customizado na *vm* atual. Eventos podem ser lançados utilizando `vm.$emit`. A função de *callback* irá receber todos os argumentos adicionais passados nos métodos que lançam eventos.
 
 - **Exemplo:**
 
@@ -1449,23 +1449,23 @@ if (version === 2) {
 
 - **Uso:**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  Escuta um evento customizado, porém somente uma vez. O *listener* será removido assim que for acionado pela primeira vez.
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
 - **Argumentos:**
-  - `{string | Array<string>} event` (array only supported in 2.2.2+)
+  - `{string | Array<string>} event` (array somente é suportado em 2.2.2+)
   - `{Function} [callback]`
 
 - **Uso:**
 
-  Remove custom event listener(s).
+  Remove *listener(s)* de eventos customizados.
 
-  - If no arguments are provided, remove all event listeners;
+  - Se nenhum argumento é passado, esta função irá remover todos os *listeners*;
 
-  - If only the event is provided, remove all listeners for that event;
+  - Se apenas o evento é passado, esta função irá remover todos os *listeners* para este evento;
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - Se tanto o evento quanto o *callback* forem passados, esta função somente irá remover o *listener* para este *callback* específico.
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
@@ -1473,7 +1473,7 @@ if (version === 2) {
   - `{string} event`
   - `[...args]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Lança um evento na instância atual. Qualquer argumento adicional será passado para a função de *callback* do *listener*.
 
 ## Métodos da Instância / Ciclo-de-Vida
 
@@ -1483,15 +1483,15 @@ if (version === 2) {
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **Returns:** `vm` - the instance itself
+- **Returns:** `vm` - a própria instância
 
 - **Uso:**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  Se a instância do Vue não recebeu a opção `el` durante a instanciação, ela estará em um estado "não montado", sem um elemento DOM associado. `vm.$mount()` pode ser usada para começar a montagem de uma instância não montada do Vue.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  Se o argumento `elementOrSelector` não for passado, o *template* será renderizado como um elemento "fora do documento", e você terá que usar a API nativa do DOM para inserí-lo no documento.
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  O método retorna a própria instância, para que você possa encadear outros métodos de instâncias depois dele.
 
 - **Exemplo:**
 
@@ -1500,26 +1500,26 @@ if (version === 2) {
     template: '<div>Hello!</div>'
   })
 
-  // create and mount to #app (will replace #app)
+  // cria e monta em #app (irá substituir #app)
   new MyComponent().$mount('#app')
 
-  // the above is the same as:
+  // a linha acima é o mesmo que:
   new MyComponent({ el: '#app' })
 
-  // or, render off-document and append afterwards:
+  // ou renderiza como "fora do documento" e anexa depois:
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(component.$el)
   ```
 
 - **Ver também:**
-  - [Lifecycle Diagram](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
-  - [Server-Side Rendering](../guide/ssr.html)
+  - [Diagrama do ciclo de vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
+  - [Renderização no lado do servidor](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
 - **Uso:**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Força a instância do Vue a renderizar novamente. Note que isso não afeta todos os componentes filhos, apenas a própria instância e os componentes filhos com conteúdo em inseridos em seus respectivos *slots*.
 
 <h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
@@ -1528,9 +1528,9 @@ if (version === 2) {
 
 - **Uso:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Adia a execução do *callback* para o próximo ciclo de atualização. Use esta função imediatamente após você alterar algum dado para esperar pela atualização do DOM. Este método é o mesmo que a função global `Vue.nextTick`, exceto que o contexto do `this` no *callback* é automaticamente vinculado (*bound*) à instância que chama este método.
 
-  > Novo em 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > Novo em 2.1.0+: retorna uma Promise se nenhum *callback* é provido, e Promise é suportada no ambiente de execução.
 
 - **Exemplo:**
 
@@ -1540,12 +1540,12 @@ if (version === 2) {
     methods: {
       // ...
       example: function () {
-        // modify data
+        // modifica um dado
         this.message = 'changed'
-        // DOM is not updated yet
+        // DOM ainda não está atualizada
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // DOM agora está atualizada
+          // `this` é vinculado (bound) à instância atual
           this.doSomethingElse()
         })
       }
@@ -1555,19 +1555,19 @@ if (version === 2) {
 
 - **Ver também:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+  - [Fila de atualização *Async*](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
 - **Uso:**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  Destrói completamente a *vm*. Limpa todas as suas conexões com outras *vms*, desvincula (*unbind*) todas as suas diretivas e desliga todos os *listeners* de eventos.
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  Aciona os *hooks* `beforeDestroy` e `destroyed`.
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">Em casos normais você não deve chamar este método. Prefira controlar o ciclo de vida dos componentes filhos em um modelo direcionado a dados utilizando `v-if` e `v-for`.</p>
 
-- **Ver também:** [Lifecycle Diagram](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
+- **Ver também:** [Diagrama do ciclo de vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
 
 ## Diretivas
 
