@@ -1,5 +1,5 @@
 ---
-title: class 与 style 绑定
+title: class 和 style 绑定
 type: guide
 order: 6
 ---
