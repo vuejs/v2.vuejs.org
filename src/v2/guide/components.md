@@ -456,7 +456,7 @@ Imagine this is the template for `bs-date-input`:
 <input type="date" class="form-control">
 ```
 
-To add specify a theme for our date picker plugin, we might need to add a specific class, like this:
+To specify a theme for our date picker plugin, we might need to add a specific class, like this:
 
 ``` html
 <bs-date-input
