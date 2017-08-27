@@ -481,7 +481,7 @@ Nós aprendemos que o pai pode passar dados para o filho usando propriedades, ma
 
 ### Usando `v-on` com Eventos Personalizados
 
-Toda instância Vue implementa uma [interface de eventos](../api/#Instance-Methods-Events), o que significa que ela pode:
+Toda instância Vue implementa uma [interface de eventos](../api/#Metodos-da-Instancia-Eventos), o que significa que ela pode:
 
 - Ouvir um evento usando `$on(eventName)`
 - Disparar um evento usando `$emit(eventName)`
