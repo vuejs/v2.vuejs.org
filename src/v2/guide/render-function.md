@@ -84,9 +84,55 @@ Vue.component('anchored-heading', {
 
 Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
 
+## Nodes, Trees, and the Virtual DOM
+
+Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+
+```html
+<div>
+  <h1>My title</h1>
+  Some text content
+  <!-- TODO: Add tagline  -->
+</div>
+```
+
+When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything, just as you might build a family tree to keep track of your extended family.
+
+The tree of DOM nodes for the HTML above looks like this:
+
+![DOM Tree Visualization](/images/dom-tree.png)
+
+Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And just as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+
+Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. You just tell Vue what HTML you want on the page, in a template:
+
+```html
+<h1>{{ blogTitle }}</h1>
+```
+
+Or a render function:
+
+``` js
+render: function (createElement) {
+  return createElement('h1', this.blogTitle)
+}
+```
+
+And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+
+### The Virtual DOM
+
+Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+
+``` js
+return createElement('h1', this.blogTitle)
+```
+
+What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+
 ## `createElement` Arguments
 
-The second thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+The next thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
 
 ``` js
 // @returns {VNode}
