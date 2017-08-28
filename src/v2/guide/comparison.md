@@ -54,7 +54,7 @@ Les fonctions de rendu de JSX ont quelques avantages :
 
 Dans Vue, nous avons également des [fonctions de rendu](render-function.html) et même [un support de JSX](render-function.html#JSX), car parfois, nous avons besoin de cette puissance. Cependant, pour une expérience par défaut nous offrons les templates comme une alternative simple. N'importe quel HTML valide est également un template Vue valide, ce qui mène à ces quelques avantages induits :
 
-- Pour beaucoup de développeurs qui travail en HTML, les templates semblent tout simplement plus naturels à écrire. La préférence en elle-même est quelque chose de subjectif, mais si cela rend les développeurs plus productifs alors le bénéfice est objectif.
+- Pour beaucoup de développeurs qui travaillent en HTML, les templates semblent tout simplement plus naturels à écrire. La préférence en elle-même est quelque chose de subjectif, mais si cela rend les développeurs plus productifs alors le bénéfice est objectif.
 
 - Les templates basés sur du HTML sont plus simple à migrer progressivement depuis une application existante qui souhaiterait tirer avantage des fonctionnalités de réactivités de Vue.
 
