@@ -1,7 +1,7 @@
 ---
-title: Production Deployment Tips
+title: Production Deployment
 type: guide
-order: 20
+order: 401
 ---
 
 ## Turn on Production Mode

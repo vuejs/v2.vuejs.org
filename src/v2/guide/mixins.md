@@ -1,7 +1,7 @@
 ---
 title: Mixins
 type: guide
-order: 17
+order: 301
 ---
 
 ## Basics
@@ -28,7 +28,7 @@ var Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // -> "hello from mixin!"
+var component = new Component() // => "hello from mixin!"
 ```
 
 ## Option Merging
@@ -49,8 +49,8 @@ new Vue({
   }
 })
 
-// -> "mixin hook called"
-// -> "component hook called"
+// => "mixin hook called"
+// => "component hook called"
 ```
 
 Options that expect object values, for example `methods`, `components` and `directives`, will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
@@ -79,9 +79,9 @@ var vm = new Vue({
   }
 })
 
-vm.foo() // -> "foo"
-vm.bar() // -> "bar"
-vm.conflicting() // -> "from self"
+vm.foo() // => "foo"
+vm.bar() // => "bar"
+vm.conflicting() // => "from self"
 ```
 
 Note that the same merge strategies are used in `Vue.extend()`.
@@ -104,7 +104,7 @@ Vue.mixin({
 new Vue({
   myOption: 'hello!'
 })
-// -> "hello!"
+// => "hello!"
 ```
 
 <p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](plugins.html) to avoid duplicate application.</p>

@@ -1,7 +1,7 @@
 ---
-title: Transition Effects
+title: Enter/Leave & List Transitions
 type: guide
-order: 13
+order: 201
 ---
 
 ## Overview

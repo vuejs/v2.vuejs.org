@@ -1,7 +1,7 @@
 ---
 title: State Management
 type: guide
-order: 22
+order: 502
 ---
 
 ## Official Flux-Like Implementation

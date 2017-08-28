@@ -1,7 +1,7 @@
 ---
-title: Render Functions
+title: Render Functions & JSX
 type: guide
-order: 15
+order: 303
 ---
 
 ## Basics

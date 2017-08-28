@@ -1,7 +1,7 @@
 ---
 title: Comparison with Other Frameworks
 type: guide
-order: 29
+order: 701
 ---
 
 This is definitely the most difficult page in the guide to write, but we do feel it's important. Odds are, you've had problems you tried to solve and you've used another library to solve them. You're here because you want to know if Vue can solve your specific problems better. That's what we hope to answer for you.

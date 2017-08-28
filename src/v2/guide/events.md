@@ -75,7 +75,7 @@ var example2 = new Vue({
 })
 
 // you can invoke methods in JavaScript too
-example2.greet() // -> 'Hello Vue.js!'
+example2.greet() // => 'Hello Vue.js!'
 ```
 
 Result:

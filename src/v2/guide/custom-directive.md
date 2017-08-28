@@ -1,7 +1,7 @@
 ---
 title: Custom Directives
 type: guide
-order: 16
+order: 302
 ---
 
 ## Intro
