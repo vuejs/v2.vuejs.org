@@ -456,7 +456,7 @@ Vue.component('example', {
 <input type="date" class="form-control">
 ```
 
-为了给日期选择器插件添加一个指定的主题，我们可能需要向组件添加一个指定的 class 类名，就像这样：
+为了给日期选择器插件指定一个主题，我们可能需要向组件添加一个特定的 class 类名，就像这样：
 
 ``` html
 <bs-date-input

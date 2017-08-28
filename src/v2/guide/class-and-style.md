@@ -82,7 +82,7 @@ computed: {
 我们可以向 `v-bind:class` 传入一个数组，来与 class 列表对应：
 
 ``` html
-<div v-bind:class="[activeClass, errorClass]">
+<div v-bind:class="[activeClass, errorClass]"></div>
 ```
 ``` js
 data: {
@@ -100,7 +100,7 @@ data: {
 如果你还想根据条件，切换 class 列表中某个 class，可以通过三元表达式(ternary expression)来实现：
 
 ``` html
-<div v-bind:class="[isActive ? activeClass : '', errorClass]">
+<div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
 这里会直接添加 `errorClass`，但是只有在 `isActive` 值是 `true` 时，才会添加 `activeClass`。
@@ -108,7 +108,7 @@ data: {
 然而，如果有多个条件  class 时，就会显得有些繁琐。这也就是为什么还可以在数组语法中使用对象语法：
 
 ``` html
-<div v-bind:class="[{ active: isActive }, errorClass]">
+<div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
 ### 在组件中使用
@@ -186,7 +186,7 @@ data: {
 `v-bind:style` 的数组语法，可以在同一个元素上，使用多个 style 对象：
 
 ``` html
-<div v-bind:style="[baseStyles, overridingStyles]">
+<div v-bind:style="[baseStyles, overridingStyles]"></div>
 ```
 
 ### 自动添加前缀
@@ -200,7 +200,7 @@ data: {
 从 2.3.0+ 起，你可以为每个 style 属性提供一个含有多个（前缀）值的数组，例如：
 
 ``` html
-<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
+<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
 最终，这只会从数组中找出「最后一个浏览器所支持的值」进行渲染。在这个示例中，对于支持「无需前缀版本的 flexbox」的浏览器，最终将渲染为 `display: flex`。
