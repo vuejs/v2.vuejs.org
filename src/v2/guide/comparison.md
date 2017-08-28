@@ -38,7 +38,7 @@ Au final cela permet d'éviter l'utilisation d'un large éventail d'optimisation
 
 ### HTML & CSS
 
-Avec React tout est JavaScript. Pas seulement la structure HTML exprimée via JSX, mais également le CSS qui tend également à être gérer avec du JavaScript. Cette approche a ses propres bénéfices, mais vient également avec son lot de compromis qui ne devraient pas mériter tant d'attention de la part de chaque développeur.
+Avec React tout est JavaScript. Pas seulement la structure HTML exprimée via JSX, mais également le CSS qui tend également à être géré avec du JavaScript. Cette approche a ses propres bénéfices, mais vient également avec son lot de compromis qui ne devraient pas mériter tant d'attention de la part de chaque développeur.
 
 Vue adopte les technologies classiques du Web et construit par-dessus celles-ci. Pour vous montrer ce que cela signifie, nous allons nous plonger dans plusieurs exemples.
 
