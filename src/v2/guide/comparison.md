@@ -124,6 +124,8 @@ React Native enables you to write native-rendered apps for iOS and Android using
 
 At this moment, Weex is still in active development and is not as mature and battle-tested as React Native, but its development is driven by the production needs of the largest e-commerce business in the world, and the Vue team will also actively collaborate with the Weex team to ensure a smooth experience for Vue developers.
 
+Another option Vue developers have is [NativeScript](https://www.nativescript.org/), which allows you to build truly native mobile apps for iOS and Android using plain JavaScript, Angular, or Vue. With NativeScript you create your UI layer with HTML-like markup, write your business logic with JavaScript, and style your app with CSS. NativeScript has a [community-supported Vue plugin](https://github.com/rigor789/nativescript-vue) that allows you to leverage the Vue framework. Sponsored by [Progress](https://www.progress.com/), NativeScript focuses on enabling the web developer to create native cross-platform apps from one codebase.
+
 ### With MobX
 
 MobX has become quite popular in the React community and it actually uses a nearly identical reactivity system to Vue. To a limited extent, the React + MobX workflow can be thought of as a more verbose Vue, so if you're using that combination and are enjoying it, jumping into Vue is probably the next logical step.
