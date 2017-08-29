@@ -1,6 +1,5 @@
 ---
 title: 진입/진출 그리고 리스트 트랜지션
-title: Enter/Leave & List Transitions
 type: guide
 order: 201
 ---
