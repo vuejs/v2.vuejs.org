@@ -483,9 +483,9 @@ Props가 아닌 속성은 컴포넌트로 전달되지만 해당 props는 정의
 - `$on(eventName)`을 사용하여 이벤트를 감지 하십시오.
 - `$emit(eventName)`을 사용하여 이벤트를 트리거 하십시오.
 
-<p class="tip">Vue의 이벤트 시스템은 브라우저의 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)와 별개입니다. 비슷하게 작동하지만 `$on` 과 `$emit` 는 `addEventListener` 와 `dispatchEvent`의 별칭이 아닙니다.</p>
+<p class="tip">Vue의 이벤트 시스템은 브라우저의 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)와 별개입니다. 비슷하게 작동하지만 `$on` 과 `$emit` 는 `addEventListener` 와 `dispatchEvent`의 별칭이 __아닙니다__.</p>
 
-또한, 부모 컴포넌트는 자식 컴포넌트가 사용되는 템플릿에서 직접 `v-on` 을 사용하여 자식 컴포넌트에서 보내진 이벤트를 들을 수 있습니다.
+또한, 부모 컴포넌트는 자식 컴포넌트가 사용되는 템플릿에서 직접 `v-on` 을 사용하여 자식 컴포넌트에서 보내진 이벤트를 청취할 수 있습니다.
 
 
 <p class="tip">`$on`은 자식에서 호출한 이벤트는 감지하지 않습니다. `v-on`을 템플릿에 반드시 지정해야 합니다. 아래의 예제를 보십시오.</p>
@@ -502,14 +502,14 @@ Props가 아닌 속성은 컴포넌트로 전달되지만 해당 props는 정의
 
 ``` js
 Vue.component('button-counter', {
-  template: '<button v-on:click="increment">{{ counter }}</button>',
+  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
   data: function () {
     return {
       counter: 0
     }
   },
   methods: {
-    increment: function () {
+    incrementCounter: function () {
       this.counter += 1
       this.$emit('increment')
     }
@@ -537,14 +537,14 @@ new Vue({
 </div>
 <script>
 Vue.component('button-counter', {
-  template: '<button v-on:click="increment">{{ counter }}</button>',
+  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
   data: function () {
     return {
       counter: 0
     }
   },
   methods: {
-    increment: function () {
+    incrementCounter: function () {
       this.counter += 1
       this.$emit('increment')
     }
@@ -1291,7 +1291,7 @@ Finder나 파일 탐색기와 같이 파일 디렉토리 트리를 작성한다�
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
 }
 ```
 

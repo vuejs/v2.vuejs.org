@@ -1,7 +1,7 @@
 ---
 title: TypeScript 지원
 type: guide
-order: 25
+order: 404
 ---
 
 ## Webpack 2 사용자를 위한 2.2.0이상 버전의 타입스크립트의 중요 변경사항
@@ -143,6 +143,7 @@ export default class MyComponent extends Vue {
 }
 ```
 
+<<<<<<< HEAD
 이 문법을 대신 사용하면 컴포넌트 정의가 더 짧을뿐만 아니라, TypeScript가 명시적인 인터페이스 선언없이 `message` 및 `onClick` 타입을 판단할 수 있습니다. 이를 통해 계산된 속성, 라이프 사이클 훅 및 렌더링 함수의 타입을 처리 할 수 있습니다. 자세한 사용법은 [vue-class-component 문서](https://github.com/vuejs/vue-class-component#vue-class-component)를 참조하세요.
 
 ## Vue Plugin의 타입 선언
@@ -159,13 +160,31 @@ import Vue from 'vue'
 //    Vue의 constructor type은 types/vue.d.ts에 있습니다.
 declare module 'vue/types/vue' {
   // 3. Vue에 보강할 내용을 선언하세요.
+=======
+With this syntax alternative, our component definition is not only shorter, but TypeScript can also infer the types of `message` and `onClick` without explicit interface declarations. This strategy even allows you to handle types for computed properties, lifecycle hooks, and render functions. For full usage details, see [the vue-class-component docs](https://github.com/vuejs/vue-class-component#vue-class-component).
+
+## Declaring Types of Vue Plugins
+
+Plugins may add to Vue's global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. Fortunately, there's a TypeScript feature to augment existing types called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+
+For example, to declare an instance property `$myProperty` with type `string`:
+
+``` ts
+// 1. Make sure to import 'vue' before declaring augmented types
+import Vue from 'vue'
+
+// 2. Specify a file with the types you want to augment
+//    Vue has the constructor type in types/vue.d.ts
+declare module 'vue/types/vue' {
+  // 3. Declare augmentation for Vue
+>>>>>>> upstream/master
   interface Vue {
     $myProperty: string
   }
 }
 ```
 
-위의 코드를 선언 파일 형태로 (`my-property.d.ts` 처럼) include하면, `$myProperty`를 Vue instance 내에서 사용할 수 있습니다.
+위의 코드를 선언 파일 형태로 (`my-property.d.ts` 처럼) include하면, `$myProperty`를 Vue 인스턴스 내에서 사용할 수 있습니다.
 
 ```ts
 var vm = new Vue()

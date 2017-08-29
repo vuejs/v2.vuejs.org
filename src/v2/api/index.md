@@ -365,7 +365,7 @@ type: api
 
   전역으로 mixin을 적용합니다. 생성된 모든 Vue 인스턴스에 영향을 줍니다. 플러그인 작성자가 컴포넌트에 사용자 정의 동작을 주입하는데 플러그인을 사용할 수 있습니다. **애플리케이션 코드**에서는 추천하지 않습니다.
 
-- **참고:** [전역 Mixins](../guide/mixins.html#Global-Mixin)
+- **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
@@ -438,8 +438,8 @@ if (version === 2) {
   var vm = new Vue({
     data: data
   })
-  vm.a // -> 1
-  vm.$data === data // -> true
+  vm.a // => 1
+  vm.$data === data // => true
 
   // Vue.extend()에서 반드시 함수를 사용해야 합니다.
   var Component = Vue.extend({
@@ -549,10 +549,10 @@ if (version === 2) {
       }
     }
   })
-  vm.aPlus   // -> 2
+  vm.aPlus   // => 2
   vm.aPlus = 3
-  vm.a       // -> 2
-  vm.aDouble // -> 4
+  vm.a       // => 2
+  vm.aDouble // => 4
   ```
 
 - **참고:**
@@ -615,7 +615,7 @@ if (version === 2) {
       }
     }
   })
-  vm.a = 2 // -> new: 2, old: 1
+  vm.a = 2 // => new: 2, old: 1
   ```
 
   <p class="tip">__화살표 함수를 감시자에 사용하면 안됩니다.__ (예를 들어, `searchQuery: newValue => this.updateAutocomplete(newValue)`) 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 `this`는 Vue 인스턴스가 아니며 `this.updateAutocomplete`는 정의되지 않습니다. </p>
@@ -754,6 +754,15 @@ if (version === 2) {
 
   `el`이 새로 생성된 `vm.$el`로 대체된 인스턴스가 마운트 된 직후 호출됩니다. 루트 인스턴스가 문서 내의 엘리먼트에 마운트 되어 있으면, `mounted`가 호출 될 때 `vm.$el`도 문서 안에 있게 됩니다.
 
+  `mounted`는 모든 자식 컴포넌트가 마운트 된 상태를 보장하지 **않습니다**. `mounted` 내부에서 [vm.$nextTick](#vm-nextTick)를 사용하면 전체가 렌더링된 상태를 보장합니다.
+  ``` js
+  mounted: function () {
+    this.$nextTick(function () {
+      // 모든 화면이 렌더링된 후 실행합니다.
+    })
+  }
+  ```
+
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
 - **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
@@ -780,6 +789,17 @@ if (version === 2) {
   데이터 변경 후 호출되어 가상 DOM이 다시 렌더링되고 패치 됩니다.
 
   이 훅이 호출되면 엘리먼트의 DOM이 업데이트 된 상태가 되어 이 훅에서 DOM 종속적인 연산을 할 수 있습니다. 그러나 대부분의 경우 무한루프가 발생할 수 있으므로 훅에서 상태를 변경하면 안됩니다. 상태 변화에 반응하기 위해서 [계산된 속성](#computed) 또는 [감시자(#watch)를 사용하는 것이 더 좋습니다.
+
+  `mounted`는 모든 자식 컴포넌트가 재-렌더링 된 상태를 보장하지 **않습니다**. `mounted` 내부에서 [vm.$nextTick](#vm-nextTick)를 사용하면 전체가 업데이트된 상태를 보장합니다.
+  
+  ``` js
+  updated: function () {
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been re-rendered
+    })
+  }
+  ```
 
   **이 훅은 서버측 렌더링 중 호출되지 않습니다**
 
@@ -872,9 +892,6 @@ if (version === 2) {
 - **참고:**
   - [컴포넌트](../guide/components.html)
 
-
-## 옵션 / 컴포지션
-
 ### parent
 
 - **타입:** `Vue instance`
@@ -905,8 +922,8 @@ if (version === 2) {
     created: function () { console.log(2) },
     mixins: [mixin]
   })
-  // -> 1
-  // -> 2
+  // => 1
+  // => 2
   ```
 
 - **참고:** [Mixins](../guide/mixins.html)
@@ -968,7 +985,7 @@ if (version === 2) {
   var Child = {
     inject: ['foo'],
     created () {
-      console.log(this.foo) // -> "bar"
+      console.log(this.foo) // => "bar"
     }
     // ...
   }
@@ -1188,7 +1205,7 @@ if (version === 2) {
   new Vue({
     customOption: 'foo',
     created: function () {
-      console.log(this.$options.customOption) // -> 'foo'
+      console.log(this.$options.customOption) // => 'foo'
     }
   })
   ```
@@ -1453,7 +1470,7 @@ if (version === 2) {
     console.log(msg)
   })
   vm.$emit('test', 'hi')
-  // -> "hi"
+  // => "hi"
   ```
 
 <h3 id="vm-once">vm.$once( event, callback )</h3>
@@ -2248,7 +2265,7 @@ if (version === 2) {
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- Array (use v-bind) -->
+  <!-- Array (use `v-bind`) -->
   <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>

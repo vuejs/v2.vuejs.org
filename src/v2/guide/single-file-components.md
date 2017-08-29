@@ -1,7 +1,7 @@
 ---
 title: 단일 파일 컴포넌트
 type: guide
-order: 19
+order: 402
 ---
 
 ## 소개

@@ -1,15 +1,67 @@
 ---
 title: 반응형에 대해 깊이 알아보기
 type: guide
-order: 12
+order: -1
 ---
 
-우리는 대부분의 기본적인 내용을 다루었습니다. 이제 깊이 알아 볼 때 입니다! Vue의 가장 두드러진 특징 중 하나는 눈을 어지럽히지 않는 반응형 시스템 입니다. 모델은 단순한 JavaScript 객체 입니다. 수정하면 뷰가 갱신됩니다. 이것은 상태 관리를 매우 간단하고 직관적으로 만듭니다. 이를 이해하는 것은 매우 중요합니다. 이 섹션에서는 Vue의 반응 시스템에 대한 하위 수준의 세부 정보를 살펴 보겠습니다.
+!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! NOTE FOR TRANSLATORS !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! Don't bother translating changes to this page yet, !!
+!! as it's not visible on the frontend and will     !!
+!! eventually be adapted into a page - or perhaps   !!
+!! a completely separate guide - for potential      !!
+!! contributors to Vue.                             !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
 
 ## 변경 내용을 추적하는 방법
 
+When Vue initializes, it walks through all of its data properties and proxies them with getters and setters. That means:
 
-일반 JavaScript 객체를 `data` 옵션으로 Vue 인스턴스에 전달하면 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)를 이용해 Vue는 모든 속성을 거쳐 getter / setter 변환합니다. 이것은 ES5 전용이며 하위 버전에 없는 기능이기 때문에 Vue가 IE8 이하를 지원하지 않습니다.
+``` js
+data: {
+  greeting: 'Hi'
+}
+```
+
+``` js
+Object.defineProperty(vm.$data, 'greeting', {
+  get () {
+    // ...
+    // Notify that getter was called,
+    // for dependency tracking
+    // ...
+    return vm._data.greeting
+  },
+  set (newValue) {
+    // ...
+    // Notify that setter was called,
+    // for change notification
+    // ...
+    vm._data.greeting = newValue
+  }
+})
+```
+
+These proxies are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format these proxied properties differently. That means when you log them:
+
+``` js
+var vm = new Vue({
+  data: {
+    greeting: 'Hi'
+  }
+})
+
+console.log(vm.$data)
+```
+
+What you see may be more difficult to browse:
+
+![](/images/logged-proxied-data.png)
+
+Fortunately, installing the [vue-devtools](https://github.com/vuejs/vue-devtools) will provide you a browsable tree of components, where you can inspect their data in a more user-friendly interface.
 
 getter / setter 는 사용자에게는 보이지 않으나 속성에 액세스 하거나 수정할 때 Vue가 종속성 추적 및 변경 알림을 수행할 수 있습니다. 한가지 주의 사항은 변환된 데이터 객체가 기록될 때 브라우저가 getter / setter 형식을 다르게 처리하므로 친숙한 인터페이스를 사용하기 위해  [vue-devtools](https://github.com/vuejs/vue-devtools)를 설치하는 것이 좋습니다.
 

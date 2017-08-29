@@ -119,49 +119,6 @@ Boolean 속성에 대해서도 작동합니다. 조건이 거짓 값이면 속�
 
 나중에 `v-on`과 `v-model`을 더 자세히 살펴볼 때 수식어를 더 많이 사용할 것 입니다.
 
-## 필터
-
-Vue.js에서는 일반 텍스트 서식을 적용할 때 사용할 수 있는 필터를 정의할 수 있습니다. 필터는 **Mustache 보간과 `v-bind` 표현식** 두 곳에서 사용할 수 있습니다. 필터는 JavaScript 표현식의 끝에 추가해야 하며 "파이프" 기호로 표시됩니다.
-
-``` html
-<!-- Mustaches 사용시 -->
-{{ message | capitalize }}
-
-<!-- v-bind 사용시 -->
-<div v-bind:id="rawId | formatId"></div>
-```
-
-<p class="tip">Vue 2.x 필터는 Mustache 보간과 `v-bind` 표현식 (2.1.0 이후 지원)에서 사용할 수 있습니다. 왜냐하면 필터는 주로 텍스트 변환 목적으로 설계되었기 때문입니다. 다른 디렉티브에서 보다 복잡한 데이터 변환을 하는 경우 [계산된 속성](computed.html)을 사용해야 합니다.</p>
-
-필터 함수는 항상 표현식의 값을 첫번째 전달 인자로 받습니다.
-
-``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  }
-})
-```
-
-필터는 체이닝 가능합니다.
-
-``` html
-{{ message | filterA | filterB }}
-```
-
-필터는 JavaScript 함수이므로 전달인자를 사용할 수 있습니다.
-
-``` html
-{{ message | filterA('arg1', arg2) }}
-```
-
-여기서, 일반 문자열 `'arg1'`은 두번째 인자로 필터에 전달되고 `'arg2'`는 필터의 세번째 인자로 전달됩니다.
-
 ## 약어
 
 `v-` 접두사는 템플릿의 Vue 특정 속성을 식별하기 위한 시각적인 신호 역할을 합니다. 이 기능은 Vue.js를 사용하여 기존의 마크업에 동적인 동작을 적용할 때 유용하지만 일부 자주 사용되는 디렉티브에 대해 너무 장황하다고 느껴질 수 있습니다. 동시에 Vue.js가 모든 템플릿을 관리하는 [SPA](https://en.wikipedia.org/wiki/Single-page_application)를 만들 때 `v-` 접두어의 필요성이 떨어집니다. 따라서 가장 자주 사용되는 두개의 디렉티브인 `v-bind`와 `v-on`에 대해 특별한 약어를 제공합니다.
@@ -175,7 +132,6 @@ new Vue({
 <!-- 약어 -->
 <a :href="url"></a>
 ```
-
 
 ### `v-on` 약어
 

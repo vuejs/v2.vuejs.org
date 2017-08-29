@@ -1,7 +1,7 @@
 ---
 title: Vue 1.x에서 마이그레이션
 type: guide
-order: 26
+order: 601
 ---
 
 ## FAQ

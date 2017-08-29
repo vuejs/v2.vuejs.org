@@ -4,7 +4,7 @@ type: guide
 order: 8
 ---
 
-## `v-for`
+## Mapping an Array to Elements with `v-for`
 
 `v-for` 디렉티브를 사용하여 배열을 기반으로 리스트를 렌더링 할 수 있습니다. `v-for` 디렉티브는 `item in items` 형태로 특별한 문법이 필요합니다. 여기서 `items`는 원본 데이터 배열이고 `item`은 반복되는 배열 엘리먼트의 **별칭** 입니다.
 
@@ -131,7 +131,7 @@ var example2 = new Vue({
 `v-for`를 사용하여 객체의 속성을 반복할 수도 있습니다.
 
 ``` html
-<ul id="repeat-object" class="demo">
+<ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
@@ -140,7 +140,7 @@ var example2 = new Vue({
 
 ``` js
 new Vue({
-  el: '#repeat-object',
+  el: '#v-for-object',
   data: {
     object: {
       firstName: 'John',
@@ -154,14 +154,14 @@ new Vue({
 결과:
 
 {% raw %}
-<ul id="repeat-object" class="demo">
+<ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
 </ul>
 <script>
 new Vue({
-  el: '#repeat-object',
+  el: '#v-for-object',
   data: {
     object: {
       firstName: 'John',
@@ -177,7 +177,7 @@ new Vue({
 
 ``` html
 <div v-for="(value, key) in object">
-  {{ key }} : {{ value }}
+  {{ key }}: {{ value }}
 </div>
 ```
 
@@ -204,11 +204,22 @@ new Vue({
 결과:
 
 {% raw %}
-<div id="range" class="demo">
-  <span v-for="n in 10">{{ n }} </span>
+<div id="v-for-object-value-key" class="demo">
+  <div v-for="(value, key) in object">
+    {{ key }}: {{ value }}
+  </div>
 </div>
 <script>
-new Vue({ el: '#range' })
+new Vue({
+  el: '#v-for-object-value-key',
+  data: {
+    object: {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
+    }
+  }
+})
 </script>
 {% endraw %}
 
@@ -241,95 +252,25 @@ new Vue({ el: '#range' })
 간단한 할일 목록 예제를 보겠습니다.
 
 ``` html
-<div id="todo-list-example">
-  <input
-    v-model="newTodoText"
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
-  <ul>
-    <li
-      is="todo-item"
-      v-for="(todo, index) in todos"
-      v-bind:key="index"
-      v-bind:title="todo"
-      v-on:remove="todos.splice(index, 1)"
-    ></li>
-  </ul>
+<div v-for="(value, key, index) in object">
+  {{ index }}. {{ key }}: {{ value }}
 </div>
-```
-
-``` js
-Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
-  props: ['title']
-})
-
-new Vue({
-  el: '#todo-list-example',
-  data: {
-    newTodoText: '',
-    todos: [
-      'Do the dishes',
-      'Take out the trash',
-      'Mow the lawn'
-    ]
-  },
-  methods: {
-    addNewTodo: function () {
-      this.todos.push(this.newTodoText)
-      this.newTodoText = ''
-    }
-  }
-})
 ```
 
 {% raw %}
-<div id="todo-list-example" class="demo">
-  <input
-    v-model="newTodoText"
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
-  <ul>
-    <li
-      is="todo-item"
-      v-for="(todo, index) in todos"
-      v-bind:key="index"
-      v-bind:title="todo"
-      v-on:remove="todos.splice(index, 1)"
-    ></li>
-  </ul>
+<div id="v-for-object-value-key-index" class="demo">
+  <div v-for="(value, key, index) in object">
+    {{ index }}. {{ key }}: {{ value }}
+  </div>
 </div>
 <script>
-Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
-  props: ['title']
-})
 new Vue({
-  el: '#todo-list-example',
+  el: '#v-for-object-value-key-index',
   data: {
-    newTodoText: '',
-    todos: [
-      'Do the dishes',
-      'Take out the trash',
-      'Mow the lawn'
-    ]
-  },
-  methods: {
-    addNewTodo: function () {
-      this.todos.push(this.newTodoText)
-      this.newTodoText = ''
+    object: {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -358,6 +299,10 @@ new Vue({
   </li>
 </ul>
 ```
+
+<p class="tip">
+객체를 순회할 때, 키의 순서는 `Object.keys()`에서 정합니다. JavaScript 엔진의 구현에 따라 정렬되므로 일관성이 **없습니다**.
+</p>
 
 ## `key`
 
@@ -429,6 +374,65 @@ example1.items.splice(indexOfItem, 1, newValue)
 example1.items.splice(newLength)
 ```
 
+## 객체 변경 감지에 관한 주의사항
+
+모던 JavaScript의 한계로 **Vue는 속성 추가 및 삭제**를 감지하지 못합니다. 예를들어,
+
+``` js
+var vm = new Vue({
+  data: {
+    a: 1
+  }
+})
+// `vm.a` 는 반응형입니다.
+
+vm.b = 2
+// `vm.b` 는 반응형이 아닙니다.
+```
+
+Vue는 이미 만들어진 인스턴스에 새로운 루트레벨의 반응형 속성을 동적으로 추가하는 것을 허용하지 않습니다. 그러나 `Vue.set(object, key, value)` 메소드를 사용하여 중첩된 객체에 반응형 속성을 추가할 수 있습니다.
+
+``` js
+var vm = new Vue({
+  data: {
+    userProfile: {
+      name: 'Anika'
+    }
+  }
+})
+```
+
+다음과 같이 중첩된 `userProfile` 객체에 새로운 속성 `age`를 추가합니다.
+
+
+``` js
+Vue.set(vm.userProfile, 'age', 27)
+```
+
+인스턴스 메소드인 `vm.$set`를 사용할 수도 있습니다. 이는 전역 `Vue.set`의 별칭입니다.
+
+``` js
+this.$set(this.userProfile, 'age', 27)
+```
+
+때로는 `Object.assign()`이나 `_.extend()`를 사용해 기존의 객체에 새 속성을 할당할 수 있습니다. 이 경우 두 객체의 속성을 사용해 새 객체를 만들어야 합니다.
+
+``` js
+Object.assign(this.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+```
+
+새로운 반응형 속성을 다음과 같이 추가합니다.
+
+``` js
+this.userProfile = Object.assign({}, this.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+```
+
 ## 필터링 / 정렬 된 결과 표시하기
 
 때로 원본 데이터를 실제로 변경하거나 재설정하지 않고 배열의 필터링 된 버전이나 정렬된 버전을 표시해야 할 필요가 있습니다. 이 경우 필터링 된 배열이나 정렬된 배열을 반환하는 계산된 속성을 만들 수 있습니다.
@@ -470,3 +474,210 @@ methods: {
   }
 }
 ```
+
+## `v-for` with a Range
+
+`v-for` can also take an integer. In this case it will repeat the template that many times.
+
+``` html
+<div>
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+```
+
+Result:
+
+{% raw %}
+<div id="range" class="demo">
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+<script>
+  new Vue({ el: '#range' })
+</script>
+{% endraw %}
+
+## `v-for` on a `<template>`
+
+Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+
+``` html
+<ul>
+  <template v-for="item in items">
+    <li>{{ item.msg }}</li>
+    <li class="divider"></li>
+  </template>
+</ul>
+```
+
+## `v-for` with `v-if`
+
+When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
+
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+```
+
+The above only renders the todos that are not complete.
+
+If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+
+``` html
+<ul v-if="todos.length">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+<p v-else>No todos left!</p>
+```
+
+## `v-for` with a Component
+
+> This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
+
+You can directly use `v-for` on a custom component, like any normal element:
+
+``` html
+<my-component v-for="item in items" :key="item.id"></my-component>
+```
+
+> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
+
+However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+
+``` html
+<my-component
+  v-for="(item, index) in items"
+  v-bind:item="item"
+  v-bind:index="index"
+  v-bind:key="item.id"
+></my-component>
+```
+
+The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+
+Here's a complete example of a simple todo list:
+
+``` html
+<div id="todo-list-example">
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+```
+
+``` js
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="todo-list-example" class="demo">
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+<script>
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    }
+  }
+})
+</script>
+{% endraw %}

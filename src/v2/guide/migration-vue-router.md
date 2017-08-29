@@ -1,7 +1,7 @@
 ---
 title: Vue Router 0.7.x으로 부터 마이그레이션
 type: guide
-order: 27
+order: 602
 ---
 
 > Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 [Vue Router 문서](http://router.vuejs.org/en/)를 참조하십시오.
@@ -127,6 +127,30 @@ router.match = createMatcher(
   <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여 <code>router.on</code>가 호출되는지 확인하십시오.</p>
 </div>
 {% endraw %}
+
+### `router.beforeEach` <sup>changed</sup>
+
+`router.beforeEach`는 이제 비동기적으로 작동하며 세번째 전달인자로 `next` 함수를 받습니다.
+
+``` js
+router.beforeEach(function (transition) {
+  if (transition.to.path === '/forbidden') {
+    transition.abort()
+  } else {
+    transition.next()
+  }
+})
+```
+
+``` js
+router.beforeEach(function (to, from, next) {
+  if (to.path === '/forbidden') {
+    next(false)
+  } else {
+    next()
+  }
+})
+```
 
 ### `subRoutes` <sup>이름 변경</sup>
 

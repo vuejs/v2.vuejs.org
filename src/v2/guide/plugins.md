@@ -1,7 +1,7 @@
 ---
 title: 플러그인
 type: guide
-order: 18
+order: 304
 ---
 
 ## 플러그인 작성
@@ -11,7 +11,7 @@ order: 18
 
 1. 약간의 전역 메소드 또는 속성 추가 예. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
-2. 하나 이상의 글로벌 에셋 추가 : 디렉티브 / 필터 / 전환 등. [vue-touch](https://github.com/vuejs/vue-touch)
+2. 하나 이상의 글로벌 에셋 추가 : 디렉티브 / 필터 / 전환 등. [vue-router](https://github.com/vuejs/vue-router)
 
 3. 글로벌 mixin으로 일부 컴포넌트 옵션을 추가하십시오. 예. [vuex](https://github.com/vuejs/vuex)
 

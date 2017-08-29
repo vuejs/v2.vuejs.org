@@ -1,7 +1,7 @@
 ---
 title: 믹스인
 type: guide
-order: 17
+order: 301
 ---
 
 ## 기초
@@ -28,7 +28,7 @@ var Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // -> "hello from mixin!"
+var component = new Component() // => "hello from mixin!"
 ```
 
 ## 옵션 병합
@@ -48,8 +48,8 @@ new Vue({
   }
 })
 
-// -> "mixin hook called"
-// -> "component hook called"
+// => "mixin hook called"
+// => "component hook called"
 ```
 
 `methods`,`components`,`directives`와 같은 객체 값을 요구하는 옵션은 같은 객체에 병합됩니다. 이러한 객체에 충돌하는 키가있을 경우 컴포넌트의 옵션이 우선 순위를 갖습니다.
@@ -78,9 +78,9 @@ var vm = new Vue({
   }
 })
 
-vm.foo() // -> "foo"
-vm.bar() // -> "bar"
-vm.conflicting() // -> "from self"
+vm.foo() // => "foo"
+vm.bar() // => "bar"
+vm.conflicting() // => "from self"
 ```
 
 같은 병합 전략이`Vue.extend()`에서 사용된다는 것에주의하십시오.
@@ -103,7 +103,7 @@ Vue.mixin({
 new Vue({
   myOption: 'hello!'
 })
-// -> "hello!"
+// => "hello!"
 ```
 
 <p class="tip">글로벌 mixin은 써드파티 컴포넌트를 포함하여 생성 된 모든 단일 Vue 인스턴스에 영향을 주기 때문에 적게 이용하고 신중하게 사용하십시오. 대부분의 경우 위 예제에서와 같이 사용자 지정 옵션 처리에만 사용해야합니다. 중복 적용을 피하기 위해 [Plugins](plugins.html)로 제공하는 것도 좋은 생각입니다.</p>

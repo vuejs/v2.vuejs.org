@@ -68,9 +68,9 @@ var vm = new Vue({
 여기서 우리는 계산된 속성인 `reversedMessage`를 선언했습니다. 우리가 제공하는 함수는 `vm.reversedMessage`속성에 대한 getter 함수로 사용됩니다.
 
 ``` js
-console.log(vm.reversedMessage) // -> '요세하녕안'
-vm.message = '잘가'
-console.log(vm.reversedMessage) // -> '가잘'
+console.log(vm.reversedMessage) // => 'olleH'
+vm.message = 'Goodbye'
+console.log(vm.reversedMessage) // => 'eybdooG'
 ```
 
 콘솔을 열고 예제를 직접 해볼 수 있습니다. `vm.reversedMessage`의 값은 항상 `vm.message`의 값에 의존합니다.
@@ -258,8 +258,8 @@ Result:
   </p>
   <p>{{ answer }}</p>
 </div>
-<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
-<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
 var watchExampleVM = new Vue({
   el: '#watch-example',

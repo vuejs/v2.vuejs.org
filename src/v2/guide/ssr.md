@@ -1,7 +1,7 @@
 ---
 title: 서버사이드 렌더링
 type: guide
-order: 24
+order: 503
 ---
 
 ## 완전한 서버사이드 렌더링(SSR) 가이드

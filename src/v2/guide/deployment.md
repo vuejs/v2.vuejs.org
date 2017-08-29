@@ -1,7 +1,7 @@
 ---
 title: 프로덕션 배포 팁
 type: guide
-order: 20
+order: 401
 ---
 
 ## 프로덕션 모드를 켜세요

@@ -1,7 +1,7 @@
 ---
-title: 렌더 함수
+title: Render Functions & JSX
 type: guide
-order: 15
+order: 303
 ---
 
 ## 기본
@@ -84,9 +84,55 @@ Vue.component('anchored-heading', {
 
 훨씬 간단 합니다! 이 코드는 더 짧지만 Vue 인스턴스 속성에 더 익숙해야합니다. 이 경우 `anchored-heading` 안에 `Hello world!`와 같이 `slot` 속성 없이 자식을 패스 할 때 그 자식들은 `$slots.default` 에있는 컴포넌트 인스턴스에 저장된다는 것을 알아야합니다. 아직 구현하지 않았다면 **render 함수로 들어가기 전에 [instance properties API](../api/#vm-slots)를 읽는 것이 좋습니다.**
 
+## 노드, 트리, 그리고 버추얼 DOM
+
+렌더 함수를 알아보기 전에 브라우저 작동 방식을 알아야합니다. 아래 HTML 예제를 보세요
+
+```html
+<div>
+  <h1>My title</h1>
+  Some text content
+  <!-- TODO: Add tagline  -->
+</div>
+```
+
+브라우저가 이 코드를 읽게 되면, 모든 내용을 추적하기 위해 가계도처럼 ["DOM 노드" 트리](https://javascript.info/dom-nodes)를 만듭니다.
+
+위 HTML의 DOM 노드 트리는 아래와 같습니.
+
+![DOM Tree Visualization](/images/dom-tree.png)
+
+모든 엘리먼트는 노드입니다. 각 텍스트도 노드입니다. 심지어 주석도 노드입니다! 노드는 페이지를 이루는 각각의 조각입니다. 그리고 트리에서 보듯 각 노드는 자식을 가질 수 있습니다. (즉, 각 조각들은 다른 조각들을 포함할 수 있습니다.)
+
+노드를 효율적으로 갱신하는 것은 어렵지만 수동으로 할 필요는 없습니다. 템플릿에서 Vue가 페이지에서 수정하기 원하는 HTML만 지정하면 됩니다.
+
+```html
+<h1>{{ blogTitle }}</h1>
+```
+
+또는 렌더 함수에서
+
+``` js
+render: function (createElement) {
+  return createElement('h1', this.blogTitle)
+}
+```
+
+두가지 경우 모두 Vue는 페이지를 자동으로 갱신합니다. `blogTitle`의 변경 또한 마찬가지입니다.
+
+### 버추얼 DOM
+
+Vu는 실제 DOM에 필요한 변경사항을 추적하기 위해 **virtual DOM**을 만듭니다. 이를 자세히 살펴보면 아래와 같습니다.
+
+``` js
+return createElement('h1', this.blogTitle)
+```
+
+`createElement`는 실제로 무엇을 반환할까요? 실제 DOM 엘리먼트와 _정확하게_ 일치하지는 않습니다. Vue에게 자식노드에 대한 설명을 포함하여 페이지에서 렌더링해야하는 노드의 종류를 설명하는 정보를 포함하기 때문에 더 정확하게 `createNodeDescription`이라는 이름을 지정할 수 있습니다. 이 노드에 관한 설명을 **VNode**로 축약된 가상 노드라고 부릅니다. "버추얼 DOM"은 Vue 컴포넌트 트리로 만들어진 VNode 트리입니다.
+
 ## `createElement` 전달인자
 
-두 번째로 익숙해 져야 할 것은 `createElement` 함수에서 템플릿 기능을 사용하는 방법입니다. 다음은 `createElement`가 받아들이는 인수들입니다.
+다음으로 살펴볼 것은 `createElement` 함수에서 템플릿 기능을 사용하는 방법입니다. 다음은 `createElement`가 받아들이는 전달인자입니다.
 
 ``` js
 // @returns {VNode}

@@ -75,7 +75,7 @@ var example2 = new Vue({
 })
 
 // 또한 JavaScript를 이용해서 메소드를 호출할 수 있습니다.
-example2.greet() // -> 'Hello Vue.js!'
+example2.greet() // => 'Hello Vue.js!'
 ```
 
 결과:

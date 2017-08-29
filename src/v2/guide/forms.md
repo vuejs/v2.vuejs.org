@@ -92,19 +92,21 @@ new Vue({
 여러개의 체크박스는 같은 배열을 바인딩 할 수 있습니다
 
 ``` html
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>체크한 이름: {{ checkedNames }}</span>
+<div id='example-3'>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>체크한 이름: {{ checkedNames }}</span>
+<div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-3',
   data: {
     checkedNames: []
   }
@@ -133,7 +135,6 @@ new Vue({
 {% endraw %}
 
 ### 라디오
-
 
 ``` html
 <input type="radio" id="one" value="One" v-model="picked">

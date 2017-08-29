@@ -17,6 +17,10 @@ Vue는 ECMAScript 5 기능을 사용하기 때문에 IE8 이하 버전을 **지�
 
 각 버전에 대한 자세한 릴리즈 노트는 [GitHub](https://github.com/vuejs/vue/releases)에서 보실 수 있습니다.
 
+## Vue Devtools
+
+Vue를 사용할 때, 브라우저에 [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools)를 설치하세요. Vue 앱을 보다 사용자 친화적으로 검사하고 디버그할 수 있습니다.
+
 ## 직접 `<script>`에 추가
 
 다운로드 받아 script 태그에 추가하기만 하면 됩니다. `Vue`는 전역 변수로 등록됩니다.

@@ -1,7 +1,7 @@
 ---
 title: 상태 관리
 type: guide
-order: 22
+order: 502
 ---
 
 ## 공식 Flux-유사 구현

@@ -1,7 +1,8 @@
 ---
-title: 전환 효과
+title: 진입/진출 그리고 리스트 트랜지션
+title: Enter/Leave & List Transitions
 type: guide
-order: 13
+order: 201
 ---
 
 ## 개요
@@ -300,7 +301,7 @@ new Vue({
 예제 입니다.
 
 ``` html
-<link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 
 <div id="example-3">
   <button @click="show = !show">
@@ -326,7 +327,7 @@ new Vue({
 ```
 
 {% raw %}
-<link href="https://unpkg.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
     Toggle render
@@ -1515,7 +1516,7 @@ Vue.component('my-special-transition', {
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
-<div id="dynamic-fade-demo">
+<div id="dynamic-fade-demo" class="demo">
   Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
   Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
   <transition
@@ -1526,7 +1527,14 @@ Vue.component('my-special-transition', {
   >
     <p v-if="show">hello</p>
   </transition>
-  <button v-on:click="stop = true">Stop it!</button>
+  <button
+    v-if="stop"
+    v-on:click="stop = false; show = false"
+  >Start animating</button>
+  <button
+    v-else
+    v-on:click="stop = true"
+  >Stop it!</button>
 </div>
 ```
 
@@ -1538,7 +1546,7 @@ new Vue({
     fadeInDuration: 1000,
     fadeOutDuration: 1000,
     maxFadeDuration: 1500,
-    stop: false
+    stop: true
   },
   mounted: function () {
     this.show = false
@@ -1590,7 +1598,14 @@ new Vue({
   >
     <p v-if="show">hello</p>
   </transition>
-  <button v-on:click="stop = true">Stop it!</button>
+  <button
+    v-if="stop"
+    v-on:click="stop = false; show = false"
+  >Start animating</button>
+  <button
+    v-else
+    v-on:click="stop = true"
+  >Stop it!</button>
 </div>
 <script>
 new Vue({
@@ -1600,7 +1615,7 @@ new Vue({
     fadeInDuration: 1000,
     fadeOutDuration: 1000,
     maxFadeDuration: 1500,
-    stop: false
+    stop: true
   },
   mounted: function () {
     this.show = false

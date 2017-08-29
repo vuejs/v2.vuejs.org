@@ -83,7 +83,7 @@ computed: {
 우리는 배열을 `v-bind:class` 에 전달하여 클래스 목록을 지정할 수 있습니다.
 
 ``` html
-<div v-bind:class="[activeClass, errorClass]">
+<div v-bind:class="[activeClass, errorClass]"></div>
 ```
 ``` js
 data: {
@@ -101,7 +101,7 @@ data: {
 목록에 있는 클래스를 조건부 토글하려면 삼항 연산자를 이용할 수 있습니다.
 
 ``` html
-<div v-bind:class="[isActive ? activeClass : '', errorClass]">
+<div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
 이것은 항상 `errorClass`를 적용하지만 `isActive`가 `true`일 때 `activeClass`만 적용됩니다.
@@ -109,7 +109,7 @@ data: {
 그러나 여러 조건부 클래스가 있는 경우 장황해질 수 있습니다. 그래서 배열 구문 내에서 객체 구문을 사용할 수 있습니다.
 
 ``` html
-<div v-bind:class="[{ active: isActive }, errorClass]">
+<div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
 ### 컴포넌트와 함께 사용하는 방법
@@ -189,7 +189,7 @@ data: {
 `v-bind:style`에 대한 배열 구문은 같은 스타일의 엘리먼트에 여러 개의 스타일 객체를 사용할 수 있게 합니다.
 
 ``` html
-<div v-bind:style="[baseStyles, overridingStyles]">
+<div v-bind:style="[baseStyles, overridingStyles]"></div>
 ```
 
 ### 자동 접두사
@@ -203,7 +203,7 @@ data: {
 2.3버전 부터 스타일 속성에 접두사가 있는 여러 값을 배열로 전달할 수 있습니다. 예제입니다.
 
 ``` html
-<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
+<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
 브라우저가 지원하는 배열의 마지막 값만 렌더링합니다. 이 예제에서는 flexbox의 접두어가 붙지않은 버전을 지원하는 브라우저에 대해 `display : flex`를 렌더링합니다.
