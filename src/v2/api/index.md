@@ -892,9 +892,9 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  Especifica a instância pai para instância que será criada. Estabelece a relação pai-filho entre as duas. O pai será acessível como `this.$parent` para o filho, e o filho será inserido no vetor `$children` do pai.
 
-  <p class="tip">Use `$parent` and `$children` sparingly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">Use `$parent` e `$children` com moderação - eles servem, na maioria das vezes, como saída de emergência. Use, preferencialmente, propriedades e eventos para comunicação pai-filho.</p>
 
 ### mixins
 
@@ -902,9 +902,9 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  A opção `mixins` aceita um vetor de objetos mixin. Esses objetos _mixin_ podem conter options da instância assim com as instâncias de objetos normais, e ele serão combinados com as eventuais opções usando a mesma lógica de combinação no `Vue.extend()`. Por exemplo, Se seu _mixin_ contém um gatilho _created_ e o componente por si só também contém um, as duas funções serão chamadas.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Os gatilhos de _mixin_ são chamados na ordem em que são fornecidos, e chamados antes dos hooks do próprio componente.
 
 - **Exemplo:**
 
@@ -928,16 +928,16 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  Possibilita estender outro componente declarativamente (pode ser tanto um objeto plano com opções ou um construtor) sem ter que usar `Vue.extend`. Isso visa primeiramente tornar mais fácil extensão entre componentes _single_ _file_.
 
-  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+  Isso é parecido com `mixins`, a diferença é que as opções do componente tem maior prioridade sobre a fonte do componente que ele está estendendo.
 
 - **Exemplo:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call `Vue.extend` on either
+  // estende CompA sem ter que invocar Vue.extend
   var CompB = {
     extends: CompA,
     ...
@@ -954,15 +954,15 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+  <p class="tip">`provide` e `inject` são primeiramente fornecidos para casos de uso avançados de _plugins_ / componentes. NÃO é aconselhável seu uso em código de aplicação genérica.</p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  Esse par de opções é usado para possibilitar que um componente pai sirva de injetor de dependência para todos os filhos, independente de quão funda é a hierarquia do componente, desde que eles sejam usados no mesmo escopo pai. Se você é familiar com o React, isso é muito similar ao recurso _React's_ _context_.
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  A opção `provide` deve ser um objeto ou uma função que retorna um objeto. Esse objeto contém as propriedades que estão disponíveis para serem injetadas em seus descendentes. Você pode usar ES2015 _Symbols_ como chaves nesse objeto, mas só em ambientes que suportam nativamente `Symbol` e `Reflect.ownKeys`.
 
-  The `inject` options should be either an Array of strings or an object where the keys stand for the local binding name, and the value being the key (string or Symbol) to search for in available injections.
+  A opção `inject` deve ser tanto um vetor de _Strings_ ou um objeto onde as chaves referenciam os nomes de _bind_ local, e os valores sendo as chaves (_String_ ou _Symbol_) para buscar nas inserções disponíveis.
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+  > Nota: os binds `provide` e `inject` não são reativos. Isso é intencional. Porém, se você passar um objeto observed, a propriedades desse objeto se mantém reativas.
 
 - **Exemplo:**
 
@@ -983,7 +983,7 @@ if (version === 2) {
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  Com ES2015 _Symbols_, função `provide` e objeto `inject`:
   ``` js
   const s = Symbol()
 
@@ -1001,9 +1001,9 @@ if (version === 2) {
   }
   ```
 
-  > The next 2 examples work with Vue 2.2.1+. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > Os próximos 2 exemplos funcionam com Vue 2.2.1+. Anteriormente a essa versão, os valores injetados eram resolvidos depois da inicialização de `propriedades` e `data`
 
-  Using an injected value as the default for a prop:
+  Usando um valor injetado como padrão para uma propriedade:
   ```js
   const Child = {
     inject: ['foo'],
@@ -1017,7 +1017,7 @@ if (version === 2) {
   }
   ```
 
-  Using an injected value as data entry:
+  Usando um valor injetado como valor de entrada para _data_:
   ```js
   const Child = {
     inject: ['foo'],
