@@ -40,7 +40,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Migration from Vue Router 0.7.x (Tradução: @ErickPetru. Revisão: @anteriovieira)
 - [ ] Migration from Vuex 0.6.x to 1.0 (Tradução: @ErickPetru. Revisão: @anteriovieira)
 - [X] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [X] Join the Vue.js Community! (Tradução: @ErickPetru. Revisão: @anteriovieira)
+- [X] Join the Vue.js Community! (Tradução: @ErickPetru. Revisão: @anteriovieira. Revisão: @juniorfreitas2)
 - [X] Meet the Team (Tradução: @ErickPetru. Revisão: @anteriovieira)
 
 **API**

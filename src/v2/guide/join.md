@@ -12,16 +12,14 @@ Agora iremos responder tanto o que a comunidade pode fazer por você, quanto o q
 
 ### Obtendo Suporte
 
-<<<<<<< HEAD
 - [Fórum](http://forum.vuejs.org/) (_inglês_): O melhor lugar para fazer perguntas e obter respostas sobre Vue e seu ecossistema diretamente para alguns dos desenvolvedores mais experientes.
 - [Canal no Gitter](https://gitter.im/vuejs/vue) (_inglês_): Um local para desenvolvedores se encontrarem e conversarem. Você pode fazer perguntas ali também, mas o fórum é uma plataforma melhor, já que as discussões são organizadas em tópicos.
 - [Canal no Slack](https://vuejs-brasil.slack.com/) (_português_): Se a conversa em inglês não é muito sua praia, convidamos para o canal em português, com espaço para dúvidas e compartilhamento de coisas úteis.
 - [GitHub](https://github.com/vuejs) (_inglês_): Se você tiver um _bug_ para reportar ou um recurso para solicitar, é para isso que _issues_ do GitHub estão lá. Também agradecemos _pull requests_!
-=======
+
 - [Forum](http://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
 - [Chat](https://chat.vuejs.org/): A place for Vue devs to meet and chat in real time.
 - [Github](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. We also welcome pull requests!
->>>>>>> refs/remotes/vuejs/master
 
 ### Explorando o Ecossistema
 
