@@ -56,7 +56,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-Acabamos de criar nosso primeiro aplicativo Vue! Isso parece muito similar a simplesmente renderizar uma _template string_, mas Vue fez bastante trabalho por debaixo dos panos. Os dados e o DOM estão agora interligados e tudo se tornou **reativo**. Como podemos ter certeza? Apenas abra o _console_ JavaScript de seu navegador (agora mesmo, nesta página) e atribua um valor diferente em `app.message`. Você verá o exemplo renderizado acima se atualizando.
+Acabamos de criar nosso primeiro aplicativo Vue! Isso parece muito similar a simplesmente renderizar uma _template string_, mas Vue fez bastante trabalho em seu interior. Os dados e o DOM estão agora interligados e tudo se tornou **reativo**. Como podemos ter certeza? Apenas abra o _console_ JavaScript de seu navegador (agora mesmo, nesta página) e atribua um valor diferente em `app.message`. Você verá o exemplo renderizado acima se atualizando.
 
 Além de simples interpolação de texto, podemos interligar atributos de elementos:
 

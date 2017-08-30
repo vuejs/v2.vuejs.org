@@ -10,7 +10,7 @@ Cobrimos a maioria das noções básicas - agora é hora de dar um mergulho prof
 
 Quando você passa um objeto JavaScript simples para uma instância do Vue, como a opção `data`, o Vue irá percorrer todas as suas propriedades e convertê-las para getter/setters usando [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). Esta é uma característica un-shimmable encontrada somente a partir do ES5, razão pela qual o Vue não suporta o IE8 e versões anteriores.
 
-Os getter/setters são invisíveis para o usuário, mas debaixo do capô, eles permitem ao Vue executar o rastreamento de dependência e notificações de alteração quando propriedades são acessadas ou modificadas. Uma ressalva é que consoles de browsers formatam getter/setters diferentemente quando alteram objetos de dados, então você pode querer instalar o [vue-devtools](https://github.com/vuejs/vue-devtools)  para ter uma interface de inspeção mais amigável.
+Os getter/setters são invisíveis para o usuário, mas em seu interior, eles permitem ao Vue executar o rastreamento de dependência e notificações de alteração quando propriedades são acessadas ou modificadas. Uma ressalva é que consoles de browsers formatam getter/setters diferentemente quando alteram objetos de dados, então você pode querer instalar o [vue-devtools](https://github.com/vuejs/vue-devtools)  para ter uma interface de inspeção mais amigável.
 
 Cada instância de componente tem um observador de instância, **watcher**, correspondente, que registra todas as propriedades "tocadas" durante a renderização do componente e depedências. Mais tarde, quando o setter de uma dependência é acionado, ele notifica o watcher que então faz com que o componente seja re-renderizado.
 
