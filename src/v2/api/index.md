@@ -2,31 +2,31 @@
 type: api
 ---
 
-## Global Config
+## Configuración Global
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` es un objeto que contiene las configuraciones globales de Vue. Puede modificar las propiedades enumeradas a continuación antes de iniciar su aplicación:
 
 ### silent
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `false`
+- **Por defecto:** `false`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Suprime todos los registros y advertencias de Vue.
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Tipo:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Por defecto:** `{}`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -40,52 +40,52 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  Define estrategias de fusión personalizadas para las opciones.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  La estrategia de fusión recibe el valor de esa opción definida en las instancias padre e hijo como primer y segundo argumento, respectivamente. La instancia Vue de contexto se pasa como tercer argumento.
 
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Ver también:** [Estrategias de Fusión Personalizadas](../guide/mixins.html#Estrategias-de-Fusión-Personalizadas)
 
 ### devtools
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **Por defecto:** `true` (`false` en compilaciones de producción)
 
-- **Usage:**
+- **Uso:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // asegúrese de configurarlo de forma síncrona inmediatamente después de cargar Vue
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  Configura el permiso de inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opción es `true` en compilaciones de desarrollo y `false` en compilaciones de producción. Puede configurarlo a `true` para habilitar la inspección en compilaciones de producción.
 
 ### errorHandler
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Default:** Error is thrown in place
+- **Por defecto:** Lanza un error al instante
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm) {
-    // handle error
+    // manejar error
   }
   ```
 
-  Assign a handler for uncaught errors during component render and watchers. The handler gets called with the error and the Vue instance.
+  Asigna un manejador para errores no detectados durante el renderizado y la observación del componente. Se llama al manejador con el error y la instancia Vue.
 
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > Esta opción utiliza [Sentry](https://sentry.io), un servicio de seguimiento de errores que cuenta con [integración oficial](https://sentry.io/for/vue/).
 
 ### ignoredElements
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **Default:** `[]`
+- **Por defecto:** `[]`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.ignoredElements = [
@@ -93,15 +93,15 @@ type: api
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  Ignora elementos personalizados definidos fuera de Vue (p. ej., si usa las APIs de Web Components). De lo contrario, lanzará una advertencia _`Unknown custom element`_ (_Elemento personalizado desconocido_), asumiendo que ha olvidado registrar un componente global o que ha escrito mal un nombre.
 
 ### keyCodes
 
-- **Type:** `{ [key: string]: number | Array<number> }`
+- **Tipo:** `{ [key: string]: number | Array<number> }`
 
-- **Default:** `{}`
+- **Por defecto:** `{}`
 
-- **Usage:**
+- **Uso:**
 
   ``` js
   Vue.config.keyCodes = {
@@ -111,8 +111,8 @@ type: api
     up: [38, 87]
   }
   ```
-
-  Define custom key alias(es) for v-on.
+  
+  Define alias de teclas personalizadas para v-on.
 
 ## Global API
 
