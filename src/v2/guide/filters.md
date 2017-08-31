@@ -1,10 +1,10 @@
 ---
-title: Filters
+title: 过滤器
 type: guide
 order: 305
 ---
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions** (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+在 Vue.js 中，可以定义过滤器(filter)，常用于格式化文本。过滤器可以在两种场景中使用：**双花括号插值(mustache interpolation)和 `v-bind` 表达式（后者在 2.1.0+ 版本支持）**。过滤器应该追加到 JavaScript 表达式的末尾，以“管道符号(pipe symbol)”表示：
 
 ``` html
 <!-- in mustaches -->
@@ -14,7 +14,7 @@ Vue.js allows you to define filters that can be used to apply common text format
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-The filter function always receives the expression's value (the result of the former chain) as its first argument. In this example, the `capitalize` filter function will receive the value of `message` as its argument.
+过滤器函数总是接收表达式的值（值的结果是，过滤器链中的上一个过滤器返回的值），作为第一个参数。在这个例子中 `capitalize` 过滤器函数，将 `message` 的值作为参数接收。
 
 ``` js
 new Vue({
@@ -29,18 +29,24 @@ new Vue({
 })
 ```
 
-Filters can be chained:
+可以如下链式调用过滤器：
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-In this case, `filterA`, defined with a single argument, will receive the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
+在这个例子中，`filterA` 被定义为接收单个参数的过滤器函数，表达式 `message` 的值将作为参数传入到函数中，然后继续调用同样被定义为接收单个参数的过滤器函数 `filterB`，将 `filterA` 的结果传递到 `filterB` 中。
 
-Filters are JavaScript functions, therefore they can take arguments:
+由于过滤器函数是 JavaScript 函数，也因此可以接收多个参数：
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into the `filterA` as its second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+这里，`filterA` 被定义为接收三个参数的过滤器函数。其中 `message` 的值作为第一个参数，普通字符串 `'arg1'` 作为第二个参数，表达式 `arg2` 取值后的值作为第三个参数。
+
+***
+
+> 原文：https://vuejs.org/v2/guide/filters.html
+
+***
