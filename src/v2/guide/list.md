@@ -110,7 +110,7 @@ var example2 = new Vue({
 <div v-for="item of items"></div>
 ```
 
-### 使用 `v-for` 遍历对象
+## 使用 `v-for` 遍历对象
 
 也可以使用 `v-for` 来遍历对象的属性。
 
