@@ -120,11 +120,11 @@ Since you don't need to know about JSX, ES2015, or build systems to get started 
 
 ### Native Rendering
 
-React Native enables you to write native-rendered apps for iOS and Android using the same React component model. This is great in that as a developer, you can apply your knowledge of a framework across multiple platforms. On this front, Vue has an official collaboration with [Weex](https://alibaba.github.io/weex/), a cross-platform UI framework developed by Alibaba Group, which uses Vue as its JavaScript framework runtime. This means with Weex, you can use the same Vue component syntax to author components that can not only be rendered in the Browser, but also natively on iOS and Android!
+React Native enables you to write native-rendered apps for iOS and Android using the same React component model. This is great in that as a developer, you can apply your knowledge of a framework across multiple platforms. On this front, Vue has an official collaboration with [Weex](https://alibaba.github.io/weex/), a cross-platform UI framework developed by Alibaba Group, which uses Vue as its JavaScript framework runtime. This means with Weex, you can use the same Vue component syntax to author components that can not only be rendered in the browser, but also natively on iOS and Android!
 
 At this moment, Weex is still in active development and is not as mature and battle-tested as React Native, but its development is driven by the production needs of the largest e-commerce business in the world, and the Vue team will also actively collaborate with the Weex team to ensure a smooth experience for Vue developers.
 
-Another option Vue developers have is [NativeScript](https://www.nativescript.org/), which allows you to build truly native mobile apps for iOS and Android using plain JavaScript, Angular, or Vue. With NativeScript you create your UI layer with HTML-like markup, write your business logic with JavaScript, and style your app with CSS. NativeScript has a [community-supported Vue plugin](https://github.com/rigor789/nativescript-vue) that allows you to leverage the Vue framework. Sponsored by [Progress](https://www.progress.com/), NativeScript focuses on enabling the web developer to create native cross-platform apps from one codebase.
+Another option Vue developers will soon have is [NativeScript](https://www.nativescript.org/), via a [community-driven plugin](https://github.com/rigor789/nativescript-vue).
 
 ### With MobX
 
