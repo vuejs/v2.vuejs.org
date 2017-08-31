@@ -406,9 +406,9 @@ methods: {
 </script>
 {% endraw %}
 
-## `v-for` on a `<template>`
+## 在 `<template>` 上使用 `v-for`
 
-Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+类似于在 `<template>` 上使用 `v-if`，你还可以在 `<template>` 标签上使用 `v-for`，来渲染多个元素块。例如：
 
 ``` html
 <ul>
@@ -419,9 +419,9 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-## `v-for` with `v-if`
+## 带有 `v-if` 的 `v-for`
 
-When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
+当它们都处于同一节点时，`v-for` 的优先级高于 `v-if`。这意味着，`v-if` 将分别在循环中的每次迭代上运行。当你只想将_某些_项渲染为节点时，这会非常有用，如下：
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
@@ -429,9 +429,9 @@ When they exist on the same node, `v-for` has a higher priority than `v-if`. Tha
 </li>
 ```
 
-The above only renders the todos that are not complete.
+以上只渲染 todos 中未完成的项。
 
-If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+如果你的意图与此相反，是根据条件跳过执行循环，可以将 `v-if` 放置于包裹元素上（或放置于 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt) 上）。例如：
 
 ``` html
 <ul v-if="todos.length">
