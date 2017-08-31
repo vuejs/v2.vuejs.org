@@ -1,7 +1,7 @@
 ---
-title: Render 函数
+title: Render 函数 & JSX
 type: guide
-order: 15
+order: 303
 ---
 
 ## 基础
@@ -84,9 +84,55 @@ Vue.component('anchored-heading', {
 
 现在显得简单清晰！一定程度上。代码变得简短很多，但是需要更加熟悉 Vue 实例属性。在这种情况下，你必须知道在不使用 `slot` 属性向组件中传递内容时（比如 `anchored-heading` 中的 `Hello world!`），这些子节点会被存储到组件实例的 `$slots.default` 中。如果你对此还不够了解，**在深入 render 函数之前，建议先阅读[实例属性 API](../api/#实例属性)。**
 
+## nodes, trees 和 virtual DOM
+
+在我们深入 render 函数之前，略微了解浏览器的工作原理是比较重要的事情。以如下 HTML 为例：
+
+```html
+<div>
+  <h1>My title</h1>
+  Some text content
+  <!-- TODO: Add tagline  -->
+</div>
+```
+
+在浏览器读取这段代码时，会构建一个 [“DOM 节点”树(tree of "DOM nodes")](https://javascript.info/dom-nodes)，以帮助浏览器跟踪所有情况，就像通过创建一个家谱树，来跟踪一个大家族。
+
+对于以上 HTML，其 DOM 节点树如下：
+
+![DOM Tree Visualization](/images/dom-tree.png)
+
+每个元素都是一个节点。每一段文字都是一个节点。甚至注释也都是节点！节点只是页面的一部分。正如在一棵家谱树中一样，每个节点都可以有子节点（也就是说，每个节点都可以包含多个子节点）。
+
+有效地更新所有这些节点可能是很困难的，但幸运的是，你无需手动执行。只需在 Vue 模板中，添加在页面中你需要用到的 HTML：
+
+```html
+<h1>{{ blogTitle }}</h1>
+```
+
+或者通过一个 render 函数：
+
+``` js
+render: function (createElement) {
+  return createElement('h1', this.blogTitle)
+}
+```
+
+在这两种场景中，Vue 会自动保持页面更新，更确切地说，在 `blogTitle` 修改时，也同样能够及时更新。
+
+### virtual DOM
+
+Vue 通过实现一个 **virtual DOM**，来跟踪那些「真正需要对 DOM 所做的修改」。仔细看看这一行：
+
+``` js
+return createElement('h1', this.blogTitle)
+```
+
+`createElement` 实际返回的是什么呢？_准确地说_，返回的并非一个真正的 DOM 元素。可能更确切地说，应该将其命名为 `createNodeDescription`（译注：createNodeDescription，创建节点描述），包含「哪些节点应该由 Vue 渲染在页面上」的相关描述信息，也包括所有子节点的相关描述。我们将以上这个节点描述称为 "virtual node"（译注：virtual node，虚拟节点），通常缩写为 **VNode**。"virtual DOM" 就是由 Vue 组件树构建出来的，被称为整个 VNodes 树。
+
 ## `createElement` 参数
 
-第二件你必须熟悉的事情是，如何在 `createElement` 函数中使用模板功能。以下是 `createElement` 接受的参数：
+接下来你必须熟悉的事情是，如何在 `createElement` 函数中使用模板功能。以下是 `createElement` 接受的参数：
 
 ``` js
 // @returns {VNode}

@@ -1,7 +1,7 @@
 ---
 title: TypeScript 支持
 type: guide
-order: 25
+order: 404
 ---
 
 ## 向 TS + webpack 2 用户通知 Vue 2.2.0+ 的重要修改

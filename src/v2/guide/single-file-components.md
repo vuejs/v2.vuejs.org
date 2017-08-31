@@ -1,7 +1,7 @@
 ---
 title: 单文件组件
 type: guide
-order: 19
+order: 402
 ---
 
 ## 介绍

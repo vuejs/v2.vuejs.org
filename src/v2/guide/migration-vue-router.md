@@ -1,11 +1,10 @@
 ---
 title: 从 Vue Router 0.7.x 迁移
 type: guide
-order: 27
+order: 602
 ---
 
-> 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue ，你也需要更新 Vue Router 。这也是我们在主文档中将迁移路径的详情添加进来的原因。
-有关使用 Vue Router 2 的完整教程，请参阅 [ Vue Router 文档](http://router.vuejs.org/en/)。
+> 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue ，你也需要更新 Vue Router 。这也是我们在主文档中将迁移路径的详情添加进来的原因。有关使用 Vue Router 2 的完整教程，请参阅 [Vue Router 文档](http://router.vuejs.org/en/)。
 
 ## Router 初始化
 
@@ -129,7 +128,31 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
-### `subRoutes` <sup>换名</sup>
+### `router.beforeEach` <sup>changed</sup>
+
+`router.beforeEach` now works asynchronously and takes a `next` function as its third argument.
+
+``` js
+router.beforeEach(function (transition) {
+  if (transition.to.path === '/forbidden') {
+    transition.abort()
+  } else {
+    transition.next()
+  }
+})
+```
+
+``` js
+router.beforeEach(function (to, from, next) {
+  if (to.path === '/forbidden') {
+    next(false)
+  } else {
+    next()
+  }
+})
+```
+
+### `subRoutes` <sup>重命名</sup>
 
 出于 Vue Router 和其他路由库一致性的考虑，重命名为[`children`](http://router.vuejs.org/en/essentials/nested-routes.html)
 
@@ -221,7 +244,6 @@ alias: ['/manage', '/administer', '/administrate']
   }
 }
 ```
-
 
 如果在一个路由上访问一个属性，你仍然会通过 meta 。举个例子：
 
@@ -517,7 +539,6 @@ scrollBehavior: function (to, from, savedPosition) {
 
 `$route`属性是响应式的，所有你可以就使用一个 watcher 去响应路由的改变，就像这样：
 
-
 ``` js
 watch: {
   '$route': 'fetchData'
@@ -571,9 +592,15 @@ methods: {
 }
 ```
 
+{% raw %}
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>$loadingRouteData</code> meta property.</p>
+</div>
+{% endraw %}
 
 ***
 
-> 原文： http://vuejs.org/guide/migration-vue-router.html
+> 原文：https://vuejs.org/v2/guide/migration-vue-router.html
 
 ***

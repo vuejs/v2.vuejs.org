@@ -1,5 +1,5 @@
 ---
-title: 过渡效果
+title: 进入、离开和列表的过渡
 type: guide
 order: 13
 ---

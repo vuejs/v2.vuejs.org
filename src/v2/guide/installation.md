@@ -17,6 +17,10 @@ Vue.js **不支持** IE8 及其以下版本，因为 Vue.js 使用的 ECMAScript
 
 每个版本的详细更新日志见 [GitHub](https://github.com/vuejs/vue/releases)。
 
+## Vue Devtools
+
+在使用 Vue 时，我们推荐你在浏览器中安装 [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) ，可以通过更加友好的用户界面，来审查和调试你的 Vue 应用程序。
+
 ## 直接引入 `<script>` 标签
 
 通过 script 标签直接下载并引入，`Vue` 会被注册为一个全局变量。

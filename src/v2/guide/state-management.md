@@ -1,7 +1,7 @@
 ---
 title: 状态管理
 type: guide
-order: 22
+order: 502
 ---
 
 ## 类 Flux 状态管理的官方实现

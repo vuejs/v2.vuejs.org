@@ -1,7 +1,7 @@
 ---
 title: 混合
 type: guide
-order: 17
+order: 301
 ---
 
 ## 基础
@@ -28,7 +28,7 @@ var Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // -> "来自 mixin 对象的 hello！"
+var component = new Component() // => "来自 mixin 对象的 hello！"
 ```
 
 ## 选项合并(Option Merging)
@@ -49,8 +49,8 @@ new Vue({
   }
 })
 
-// -> "mixin 对象的钩子函数被调用"
-// -> "组件的钩子函数被调用"
+// => "mixin 对象的钩子函数被调用"
+// => "组件的钩子函数被调用"
 ```
 
 例如，`methods`, `components` 和 `directives`，这些值为对象的选项(option)，则会被合并到相应的选项对象上。但是，在二者的键名(key)发生冲突时，就会优先使用组件选项对象中键值对：
@@ -79,9 +79,9 @@ var vm = new Vue({
   }
 })
 
-vm.foo() // -> "foo"
-vm.bar() // -> "bar"
-vm.conflicting() // -> "from self"
+vm.foo() // => "foo"
+vm.bar() // => "bar"
+vm.conflicting() // => "from self"
 ```
 
 注意，在 `Vue.extend()` 中，Vue 也使用了与此相同的合并策略。
@@ -104,7 +104,7 @@ Vue.mixin({
 new Vue({
   myOption: 'hello!'
 })
-// -> "hello!"
+// => "hello!"
 ```
 
 <p class="tip">请少量且小心谨慎地使用全局混合，因为这会影响到之后创建的每个 Vue 实例，包括第三方组件也会受到影响。在多数情况下，如同以上示例中所演示的，你应该只将全局混合，用于自定义选项的处理逻辑。还有一个比较不错的做法，就是在[插件](plugins.html)中使用全局混合，然后通过调用插件来复用组件功能，以避免应用程序中的重复部分。</p>
