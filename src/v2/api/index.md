@@ -231,8 +231,6 @@ type: api
 
   > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
 
-- **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
-
 <h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
 - **Arguments:**
@@ -246,9 +244,7 @@ type: api
 
   Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
 
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
-
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+  <p class="tip">Note the object cannot be a Vue instance, or the root data object of a Vue instance.</p>
 
 <h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
@@ -263,8 +259,6 @@ type: api
   Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
 
   <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
-
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
@@ -448,8 +442,6 @@ if (version === 2) {
   ```
 
   <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
-
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### props
 
@@ -1574,7 +1566,6 @@ if (version === 2) {
 
 - **See also:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
