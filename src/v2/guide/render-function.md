@@ -122,7 +122,7 @@ render: function (createElement) {
 
 ### 버추얼 DOM
 
-Vu는 실제 DOM에 필요한 변경사항을 추적하기 위해 **virtual DOM**을 만듭니다. 이를 자세히 살펴보면 아래와 같습니다.
+Vue는 실제 DOM에 필요한 변경사항을 추적하기 위해 **virtual DOM**을 만듭니다. 이를 자세히 살펴보면 아래와 같습니다.
 
 ``` js
 return createElement('h1', this.blogTitle)
