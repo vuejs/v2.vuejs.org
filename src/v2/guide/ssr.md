@@ -1,7 +1,7 @@
 ---
 title: Server-Side Rendering
 type: guide
-order: 503
+order: 603
 ---
 
 ## The Complete SSR Guide

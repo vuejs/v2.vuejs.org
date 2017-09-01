@@ -1,18 +1,8 @@
 ---
 title: Reactivity in Depth
 type: guide
-order: -1
+order: 401
 ---
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! NOTE FOR TRANSLATORS !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! Don't bother translating changes to this page yet, !!
-!! as it's not visible on the frontend and will     !!
-!! eventually be adapted into a page - or perhaps   !!
-!! a completely separate guide - for potential      !!
-!! contributors to Vue.                             !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
 
