@@ -1,7 +1,7 @@
 ---
 title: Single File Components
 type: guide
-order: 402
+order: 502
 ---
 
 ## Introduction
