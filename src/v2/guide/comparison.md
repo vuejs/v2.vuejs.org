@@ -120,11 +120,11 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 
 ### 本地渲染
 
-### 本地渲染
-
 ReactNative 能使你用相同的 React 组件模型编写有本地渲染能力的 APP（iOS 和 Android）。能同时跨多平台开发，对开发者是非常棒的。相应地，Vue 和 [Weex](https://alibaba.github.io/weex/) 会进行官方合作，Weex 是阿里的跨平台用户界面开发框架，Weex 的 JavaScript 框架运行时用的就是 Vue。这意味着在 Weex 的帮助下，你使用 Vue 语法开发的组件不仅仅可以运行在浏览器端，还能被用于开发 iOS 和 Android 上的原生应用。
 
 在现在，Weex 还在积极发展，成熟度也不能和 ReactNative 相抗衡。但是，Weex 的发展是由世界上最大的电子商务企业的需求在驱动，Vue 团队也会和 Weex 团队积极合作确保为开发者带来良好的开发体验。
+
+很快 Vue 开发人员将能够通过由[社区驱动的 NativeScript Vue Plugin 插件](https://github.com/rigor789/nativescript-vue)，来使用 [NativeScript](https://www.nativescript.org/)。
 
 ### MobX
 
