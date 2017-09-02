@@ -1,67 +1,16 @@
 ---
 title: Reactivity in Depth
 type: guide
-order: -1
+order: 601
 ---
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! NOTE FOR TRANSLATORS !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! Don't bother translating changes to this page yet, !!
-!! as it's not visible on the frontend and will     !!
-!! eventually be adapted into a page - or perhaps   !!
-!! a completely separate guide - for potential      !!
-!! contributors to Vue.                             !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
+Now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
 
 ## How Changes Are Tracked
 
-When Vue initializes, it walks through all of its data properties and proxies them with getters and setters. That means:
+When you pass a plain JavaScript object to a Vue instance as its `data` option, Vue will walk through all of its properties and convert them to getter/setters using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue doesn't support IE8 and below.
 
-``` js
-data: {
-  greeting: 'Hi'
-}
-```
-
-``` js
-Object.defineProperty(vm.$data, 'greeting', {
-  get () {
-    // ...
-    // Notify that getter was called,
-    // for dependency tracking
-    // ...
-    return vm._data.greeting
-  },
-  set (newValue) {
-    // ...
-    // Notify that setter was called,
-    // for change notification
-    // ...
-    vm._data.greeting = newValue
-  }
-})
-```
-
-These proxies are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format these proxied properties differently. That means when you log them:
-
-``` js
-var vm = new Vue({
-  data: {
-    greeting: 'Hi'
-  }
-})
-
-console.log(vm.$data)
-```
-
-What you see may be more difficult to browse:
-
-![](/images/logged-proxied-data.png)
-
-Fortunately, installing the [vue-devtools](https://github.com/vuejs/vue-devtools) will provide you a browsable tree of components, where you can inspect their data in a more user-friendly interface.
+The getter/setters are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format getter/setters differently when converted data objects are logged, so you may want to install [vue-devtools](https://github.com/vuejs/vue-devtools) for a more inspection-friendly interface.
 
 Every component instance has a corresponding **watcher** instance, which records any properties "touched" during the component's render as dependencies. Later on when a dependency's setter is triggered, it notifies the watcher, which in turn causes the component to re-render.
 

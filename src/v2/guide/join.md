@@ -1,7 +1,7 @@
 ---
 title: Join the Vue.js Community!
 type: guide
-order: 702
+order: 802
 ---
 
 Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
