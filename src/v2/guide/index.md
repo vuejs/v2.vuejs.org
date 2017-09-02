@@ -53,7 +53,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to just rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+We have already created our very first Vue app! This looks pretty similar to just rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open your browser's JavaScript console (right now, on this page) and set `app.__vue__.message` to a different value. You should see the rendered example above update accordingly.
 
 In addition to text interpolation, we can also bind element attributes like this:
 
@@ -91,7 +91,7 @@ var app2 = new Vue({
 
 Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+If you open up your JavaScript console again and enter `app2.__vue__.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
 
 ## Conditionals and Loops
 
@@ -126,7 +126,7 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Go ahead and enter `app3.__vue__.seen = false` in the console. You should see the message disappear.
 
 This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
 
@@ -175,7 +175,7 @@ var app4 = new Vue({
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+In the console, enter `app4.__vue__.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
 
 ## Handling User Input
 
