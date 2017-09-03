@@ -79,7 +79,7 @@ Refer to the respective build tool documentations to see how it's done:
 
 - [Webpack + vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
-- [Rollup + rollup-plugin-vue](https://github.com/znck/rollup-plugin-vue#options)
+- [Rollup + rollup-plugin-vue](https://vuejs.github.io/rollup-plugin-vue/#/en/2.3/?id=custom-handler)
 
 ## Tracking Runtime Errors
 
