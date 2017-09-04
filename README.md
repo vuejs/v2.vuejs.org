@@ -130,6 +130,7 @@ Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira, 
 - *Custom Elements* = Elementos Personalizados
 - *Performance* = Desempenho
 - *Watchers* = Observadores
+- *Under the hood* = Em seu interior
 
 ### Termos não traduzidos
 

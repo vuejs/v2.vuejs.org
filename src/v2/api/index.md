@@ -1156,7 +1156,7 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  O objeto _data_ que a instância Vue está observando. A instância do Vue provê acesso a estas propriedades no seu objeto *data*.
+  O objeto _data_ que a instância do Vue está observando. A instância do Vue provê acesso a estas propriedades no seu objeto *data*.
 
 - **Ver também:** [Opções / Dados - data](#data)
 
@@ -1188,7 +1188,7 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  As opções de instânciação usadas para a instância atual do Vue. Isto é útil quando se deseja incluir propriedades personalizadas nas opções:
+  As opções de instanciação usadas para a instância atual do Vue. Isto é útil quando se deseja incluir propriedades personalizadas nas opções:
 
   ``` js
   new Vue({
@@ -1217,7 +1217,7 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  A instância raíz do Vue da árvore do componente atual. Se a instância atual não tem uma instância pai, este valor vai ser ele mesmo.
+  A instância do Vue raíz da árvore do componente atual. Se a instância atual não tem uma instância pai, este valor vai ser ele mesmo.
 
 ### vm.$children
 
@@ -1227,7 +1227,7 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  Os componentes filhos diretos da instância atual. **Note que não há ordem garantida para `$children`, e esta propriedade não é reativa.** Se você está tentando usar `$chilren`para *binding* de dados, considere usar um Array e `v-for` para gerar os componentes filhos, e use o Array como a fonte da verdade.
+  Os componentes filhos diretos da instância atual. **Note que não há ordem garantida para `$children`, e esta propriedade não é reativa.** Se você está tentando usar `$children`para *binding* de dados, considere usar um Array e `v-for` para gerar os componentes filhos, e use o Array como a fonte da verdade.
 
 ### vm.$slots
 

@@ -284,7 +284,7 @@ export default {
 
 ## Identificação das Rotas
 
-Agora a identificação das rotas utiliza [path-to-regexp](https://github.com/pillarjs/path-to-regexp) por baixo dos panos, tornando-a muito mais flexível do que anteriormente.
+Agora a identificação das rotas utiliza [path-to-regexp](https://github.com/pillarjs/path-to-regexp) em seu interior, tornando-a muito mais flexível do que anteriormente.
 
 
 ### Um ou Mais Parâmetros Nomeados <sup>alterado</sup>
