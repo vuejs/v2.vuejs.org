@@ -36,11 +36,12 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Unit Testing (Tradução: @capaci. Revisão: @anteriovieira)
 - [X] Server-Side Rendering (Tradução: @ErickPetru. Revisão: @ErickPetru)
 - [ ] TypeScript Support (Tradução: @anteriovieira)
+- [X] Reactivity in Depth (Tradução: @ErickPetru. Revisão: @ErickPetru)
 - [ ] Migration from Vue 1.x (Tradução: @anteriovieira)
 - [ ] Migration from Vue Router 0.7.x (Tradução: @ErickPetru. Revisão: @anteriovieira)
 - [ ] Migration from Vuex 0.6.x to 1.0 (Tradução: @ErickPetru. Revisão: @anteriovieira)
 - [X] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [X] Join the Vue.js Community! (Tradução: @ErickPetru. Revisão: @anteriovieira. Revisão: @juniorfreitas2)
+- [X] Join the Vue.js Community! (Tradução: @ErickPetru. Revisão: @anteriovieira, @juniorfreitas2)
 - [X] Meet the Team (Tradução: @ErickPetru. Revisão: @anteriovieira)
 
 **API**
