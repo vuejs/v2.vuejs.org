@@ -17,6 +17,10 @@ Vue **não** suporta IE8 e versões anteriores, porque são usadas funcionalidad
 
 Notas detalhadas para cada versão lançada estão disponíveis no [GitHub](https://github.com/vuejs/vue/releases).
 
+## Vue Devtools
+
+Ao de mais nada, ao utilizar Vue também recomendamos que você instale a extensão [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) em seu navegador, lhe permitindo inspecionar e depurar suas aplicações Vue em uma interface mais amigável.
+
 ## Inclusão Direta com `<script>`
 
 Simplesmente faça o _download_ e inclua a _tag_ `<script>` com o caminho correto. `Vue` será registrado como uma variável global.

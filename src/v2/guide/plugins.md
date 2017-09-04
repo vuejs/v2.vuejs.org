@@ -1,7 +1,7 @@
 ---
 title: Plugins
 type: guide
-order: 18
+order: 304
 ---
 
 ## Escrevendo um Plugin

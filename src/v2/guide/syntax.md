@@ -118,51 +118,6 @@ Modificadores são sufixos especiais denotados por um ponto, que indicam que aqu
 
 Veremos mais casos de uso de modificadores quando explorarmos mais `v-on` e `v-model`.
 
-### Filtros
-
-O Vue.js permite que se defina filtros utilizáveis para aplicar formatações em textos. Filtros são permitidos em dois lugares: **interpolações de chaves duplas ou expressões `v-bind`**. Filtros devem ser acrescidos ao final de uma expressão JavaScript, denotados pelo símbolo _"pipe"_:
-
-``` html
-<!-- em chaves duplas -->
-{{ message | capitalize }}
-
-<!-- em v-bind -->
-<div v-bind:id="rawId | formatId"></div>
-```
-
-<p class="tip">Filtros no Vue 2.x podem ser utilizados somente em interpolações _mustache_ e expressões `v-bind` (estas suportadas em 2.1.0+), pois foram projetados com o propósito de formatações textuais comuns. Cenários mais complexos de transformações em outras diretivas dependem de [dados computados](/guide/computed.html), e não filtros.</p>
-
-A função de filtro sempre recebe o valor da expressão (o resultado da cadeia até aquele momento) como o primeiro parâmetro. Neste exemplo, a função do filtro `capitalize` irá receber o valor de `message` como seu argumento.
-
-``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  }
-})
-```
-
-Filtros podem ser encadeados:
-
-``` html
-{{ message | filterA | filterB }}
-```
-
-Neste caso, `filterA`, definido com um argumento simples, irá receber o valor de `message`, e então o filtro `filterB` irá calcular a partir do resultado de `filterA` passado como um argumento simples para `filterB`.
-
-Filtros são funções Javascript, então eles podem aceitar parâmetros:
-
-``` html
-{{ message | filterA('arg1', arg2) }}
-```
-
-Neste exemplo `filterA` é definido com uma função recebendo dois argumentos. O valor de `message` será seu primeiro argumento. O literal textual `'arg1'` será o segundo argumento e o valor da expressão `arg2` será calculado e seu resultado passado como terceiro parâmetro.
-
 ## Abreviações
 
 O prefixo `v-` serve como dica visual para identificar atributos específicos do Vue nos _templates_. Isso é útil quando se está utilizando o Vue para aplicar comportamento dinâmico em HTML existente, mas você pode achar um pouco verboso se precisar usar frequentemente. Em casos como no desenvolvimento de uma [SPA](https://en.wikipedia.org/wiki/Single-page_application), o uso desse prefixo é menos importante, já que o Vue efetivamente gerencia todos os _templates_. Assim, podemos utilizar abreviações especiais para as duas diretivas mais utilizadas, que são o `v-bind` e o `v-on`:

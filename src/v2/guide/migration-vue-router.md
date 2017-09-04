@@ -1,7 +1,7 @@
 ---
 title: Migração do Vue Router 0.7.x
 type: guide
-order: 27
+order: 602
 ---
 
 > Somente Vue Router 2 é compatível com Vue 2, então se você estiver atualizando o Vue, terá de atualizar também o Vue Router. Esta é a razão pela qual incluímos detalhes de migração aqui na documentação principal. Para um guia completo em como usar o novo Vue Router, veja a [documentação do Vue Router](http://router.vuejs.org/en/).
@@ -83,7 +83,6 @@ A sintaxe com Array oferece mais precisão na definição de rotas, uma vez que 
 </div>
 {% endraw %}
 
-
 ### `router.on` <sup>removido</sup>
 
 Se você precisar programaticamente gerar rotas quando iniciar a aplicação, é possível fazer isso acrescentando dinamicamente definições a um Array de rotas. Por exemplo:
@@ -130,6 +129,29 @@ router.match = createMatcher(
 </div>
 {% endraw %}
 
+### `router.beforeEach` <sup>alterado</sup>
+
+`router.beforeEach` agora trabalha assincronamente e recebe uma função `next` como seu terceiro argumento.
+
+``` js
+router.beforeEach(function (transition) {
+  if (transition.to.path === '/forbidden') {
+    transition.abort()
+  } else {
+    transition.next()
+  }
+})
+```
+
+``` js
+router.beforeEach(function (to, from, next) {
+  if (to.path === '/forbidden') {
+    next(false)
+  } else {
+    next()
+  }
+})
+```
 
 ### `subRoutes` <sup>renomeado</sup>
 

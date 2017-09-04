@@ -1,7 +1,7 @@
 ---
-title: Funções de Renderização
+title: Funções de Renderização & JSX
 type: guide
-order: 15
+order: 303
 ---
 
 ## Introdução
@@ -84,9 +84,55 @@ Vue.component('anchored-heading', {
 
 Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filho em seu componente, sem especificar um atributo `slot`, como o `Olá Mundo!` dentro de `anchored-heading`, esses elementos estão acessíveis na instância do componente através de `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção da API de [propriedades da instância](../api/#Instance-Properties) antes de se aprofundar em funções `render`**.
 
+## Nós, Árvores e DOM Virtual
+
+Antes de nos aprofundarmos nas funções de renderização, é importante saber um pouco sobre como os navegadores trabalham. Considere este HTML como exemplo:
+
+```html
+<div>
+  <h1>My title</h1>
+  Some text content
+  <!-- TODO: Add tagline -->
+</div>
+```
+
+Quando um navegador lê esse código, ele compila uma [árvore de "nós DOM"](https://javascript.info/dom-nodes) para ajudar a manter o controle sobre todas as coisas, assim como você poderia querer construir uma árvore genealógica para manter o controle sobre a estensão de sua família.
+
+A árvore de nós DOM para o HTML acima aparentaria isso:
+
+![Visualização da Árvore DOM](/images/dom-tree.png)
+
+Cada elemento é um nó. Cada pedaço de texto é um nó. Até mesmo comentários são nós! Um nó é simplesmente um pedaço da página. E assim como na árvore genealógica, cada nó tem filhos (ou seja, cada pedaço pode conter outros pedaços dentro).
+
+Atualizar todos esses nós eficientemente pode ser difícil, mas por sorte você nunca precisará fazer isso manualmente. Você apenas avisa o Vue qual HTML você quer em uma página, através de um _template_:
+
+```html
+<h1>{{ blogTitle }}</h1>
+```
+
+Ou uma função de renderização:
+
+``` js
+render: function (createElement) {
+  return createElement('h1', this.blogTitle)
+}
+```
+
+E em ambos os casos, Vue automaticamente mantém a página atualização, mesmo se `blogTitle` mudar.
+
+### DOM Virtual
+
+Vue realiza isto través da construção de um **DOM Virtual** para manter o controle das mudanças que ele precisa aplicar no DOM real. Dê uma olhada mais de perto nesta linha:
+
+``` js
+return createElement('h1', this.blogTitle)
+```
+
+O que a função `createElement` retornará? Não é _exatamente_ um elemento DOM real. Poderíamos chamar mais precisamente de `createNodeDescription`, uma vez que conterá a descrição para o Vue do tipo de nó a renderizar na página, incluindo as descrições de quaisquer nós filhos. Nós chamamos esta descrição de "nó virtual", usualmente abreviado em inglês como **VNode**. "DOM Virtual" é como nós chamamos a árvore de VNodes completa, construída através da árvore de componentes Vue.
+
 ## Parâmetros para `createElement`
 
-A segunda coisa com a qual você precisa se familiarizar é como utilizar os recursos disponíveis em _templates_ na função `createElement`. Estes são os parâmetros que `createElement` aceita:
+A próxima coisa com a qual você precisa se familiarizar é como utilizar os recursos disponíveis em _templates_ na função `createElement`. Estes são os parâmetros que `createElement` aceita:
 
 ``` js
 // @returns {VNode}

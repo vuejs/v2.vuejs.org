@@ -436,8 +436,8 @@ if (version === 2) {
   var vm = new Vue({
     data: data
   })
-  vm.a // -> 1
-  vm.$data === data // -> true
+  vm.a // => 1
+  vm.$data === data // => true
 
   // must use function when in Vue.extend()
   var Component = Vue.extend({
@@ -545,10 +545,10 @@ if (version === 2) {
       }
     }
   })
-  vm.aPlus   // -> 2
+  vm.aPlus   // => 2
   vm.aPlus = 3
-  vm.a       // -> 2
-  vm.aDouble // -> 4
+  vm.a       // => 2
+  vm.aDouble // => 4
   ```
 
 - **Ver também:** [Computed Properties](../guide/computed.html)
@@ -610,7 +610,7 @@ if (version === 2) {
       }
     }
   })
-  vm.a = 2 // -> new: 2, old: 1
+  vm.a = 2 // => new: 2, old: 1
   ```
 
   <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
@@ -742,7 +742,18 @@ if (version === 2) {
 
 - **Detalhes:**
 
-  Invocado logo após a instância ter sido montada onde `el` é substituído pelo recente criado `vm.$el`. Se a instância raiz é montada em um elemento in-document, `vm.$el` também será in-document quando `mounted` é invocada.
+  Invocado logo após a instância ter sido montada, onde `el` é substituído pelo recém criado `vm.$el`. Se a instância raiz é montada em um elemento já presente no documento, `vm.$el` também estará presente no documento quando `mounted` for invocada.
+
+  Observe que o `mounted` **não** garante que todos os componentes filhos também já tenham sido montados. Se você quiser esperar até que toda a camada _view_ do componente em questão tiver sido renderizada, você pode utilizar [vm.$nextTick](#vm-nextTick) dentro do `mounted`:
+
+  ``` js
+  mounted: function () {
+    this.$nextTick(function () {
+      // Código que irá rodar apenas após toda
+      // a árvore do componente ter sido renderizada
+    })
+  }
+  ```
 
   **Este gatilho não é invocado em Renderização no Lado do Servidor.**
 
@@ -772,6 +783,17 @@ if (version === 2) {
 
   O DOM do componente estará no estado `updated` quando este gatilho for invocado, assim você pode realizar operações dependentes de DOM neste gatilho.
   Entretanto, na maioria dos casos você deveria evitar mudar o estado deste gatilho, melhor utilizar [propriedades computadas](#computed) ou [observadores](#watch).
+
+  Observe que o `updated` **não** garante que todos os componentes filhos também já tenham sido montados. Se você quiser esperar até que toda a camada _view_ do componente em questão tiver sido renderizada, você pode utilizar [vm.$nextTick](#vm-nextTick) dentro do `updated`:
+
+  ``` js
+  updated: function () {
+    this.$nextTick(function () {
+      // Código que irá rodar apenas após toda
+      // a árvore do componente ter sido re-renderizada
+    })
+  }
+  ```
 
   **Este gatilho não é invocado em Renderização no Lado do Servidor.**
 
@@ -894,8 +916,8 @@ if (version === 2) {
     created: function () { console.log(2) },
     mixins: [mixin]
   })
-  // -> 1
-  // -> 2
+  // => 1
+  // => 2
   ```
 
 - **Ver também:** [Mixins](../guide/mixins.html)
@@ -955,7 +977,7 @@ if (version === 2) {
   var Child = {
     inject: ['foo'],
     created () {
-      console.log(this.foo) // -> "bar"
+      console.log(this.foo) // => "bar"
     }
     // ...
   }
@@ -1172,7 +1194,7 @@ if (version === 2) {
   new Vue({
     customOption: 'foo',
     created: function () {
-      console.log(this.$options.customOption) // -> 'foo'
+      console.log(this.$options.customOption) // => 'foo'
     }
   })
   ```
@@ -1438,7 +1460,7 @@ if (version === 2) {
     console.log(msg)
   })
   vm.$emit('test', 'hi')
-  // -> "hi"
+  // => "hi"
   ```
 
 <h3 id="vm-once">vm.$once( event, callback )</h3>
@@ -1512,8 +1534,8 @@ if (version === 2) {
   ```
 
 - **Ver também:**
-  - [Diagrama do ciclo de vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
-  - [Renderização no lado do servidor](../guide/ssr.html)
+  - [Diagrama do Ciclo de Vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
+  - [Renderização no Lado do Servidor](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
@@ -1567,7 +1589,7 @@ if (version === 2) {
 
   <p class="tip">Em casos normais você não deve chamar este método. Prefira controlar o ciclo de vida dos componentes filhos em um modelo direcionado a dados utilizando `v-if` e `v-for`.</p>
 
-- **Ver também:** [Diagrama do ciclo de vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
+- **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
 
 ## Diretivas
 

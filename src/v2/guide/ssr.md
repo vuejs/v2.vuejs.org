@@ -1,7 +1,7 @@
 ---
 title: Renderizando no Lado do Servidor
 type: guide
-order: 24
+order: 503
 ---
 
 ## Guia Completo de SSR

@@ -1,12 +1,12 @@
 ---
 title: Mixins
 type: guide
-order: 17
+order: 301
 ---
 
 ## Introdução
 
-Mixins são uma forma flexível de distribuir funcionalidade reutilizável em diversos componentes Vue. Um objeto mixin pode conter quaisquer opções de componente. Quando um componente utiliza um mixin, todas as opções do mixin irão ser combinadas ("mixed") com as opções do próprio componente.
+Mixins são uma forma flexível de distribuir funcionalidade reutilizável em diversos componentes Vue. Um objeto _mixin_ pode conter quaisquer opções de componente. Quando um componente utiliza um _mixin_, todas as opções deste serão misturadas (em inglês, _mixed in_) com as opções do próprio componente.
 
 Exemplo:
 
@@ -28,41 +28,41 @@ var Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // -> "Bem-vindo ao mixin!"
+var component = new Component() // => "Bem-vindo ao mixin!"
 ```
 
 ## Mesclagem de Opções
 
-Quando um mixin e o próprio componente contêm opções que se sobrepõem, eles serão mesclados ("merged") usando estratégias apropriadas. Por exemplo, funções hook com o mesmo nome serão mescladas em uma array de modo que ambas as funções sejam chamadas. As funções hook declaradas no mixin serão chamadas **antes** dos hooks declarados no próprio componente:
+Quando um _mixin_ e o próprio componente contêm opções que se sobrepõem, eles serão mesclados usando estratégias apropriadas. Por exemplo, funções de gatilho com nome equivalente serão mescladas em um Array de modo que ambas as funções sejam executadas. As funções de gatilho declaradas no _mixin_ serão executadas **antes** dos gatilhos declarados no próprio componente:
 
 ``` js
 var mixin = {
   created: function () {
-    console.log('hook do mixin')
+    console.log('gatilho do mixin')
   }
 }
 
 new Vue({
   mixins: [mixin],
   created: function () {
-    console.log('hook do componente')
+    console.log('gatilho do componente')
   }
 })
 
-// -> "hook do mixin"
-// -> "hook do component"
+// => "gatilho do mixin"
+// => "gatilho do componente"
 ```
 
-Opções que aceitam objetos, por exemplo `methods`, `components` e `directives`, serão mescladas num único objeto. As opções do próprio componente terão prioridade quando houver conflito nas chaves desses objetos:
+Opções que aceitam objetos, como `methods`, `components` e `directives`, serão mescladas em um único objeto. As opções do próprio componente terão prioridade, caso ocorra algum conflito nas chaves desses objetos:
 
 ``` js
 var mixin = {
   methods: {
     foo: function () {
-      console.log('foo')
+      console.log('algo')
     },
     conflicting: function () {
-      console.log('no mixin')
+      console.log('escrito pelo mixin')
     }
   }
 }
@@ -71,27 +71,27 @@ var vm = new Vue({
   mixins: [mixin],
   methods: {
     bar: function () {
-      console.log('bar')
+      console.log('outra coisa')
     },
     conflicting: function () {
-      console.log('no componente')
+      console.log('escrito pelo componente')
     }
   }
 })
 
-vm.foo() // -> "foo"
-vm.bar() // -> "bar"
-vm.conflicting() // -> "no componente"
+vm.foo() // => "algo"
+vm.bar() // => "outra coisa"
+vm.conflicting() // => "escrito pelo componente"
 ```
 
-Note que são as mesmas estratégias utilizadas em `Vue.extend()`.
+Observe que são as mesmas estratégias utilizadas em `Vue.extend()`.
 
 ## Mixin Global
 
-Você também pode aplicar um mixin globalmente. Use com cautela! Assim que aplicar um mixin globalmente, irá afetar **todas** as instâncias Vue criadas depois. Quando utilizado apropriadamente, isto pode ser usado para injetar lógica de processamento para opções customizadas:
+Você também pode aplicar um _mixin_ globalmente. Use com cautela! Assim que aplicar um _mixin_ globalmente, isto irá afetar **todas** as instâncias Vue criadas depois. Quando utilizado apropriadamente, permite injetar lógica de processamento para opções customizadas:
 
 ``` js
-// injeta um handler para a opção customizada `myOption`
+// injeta um manipulador para a opção customizada `myOption`
 Vue.mixin({
   created: function () {
     var myOption = this.$options.myOption
@@ -104,11 +104,11 @@ Vue.mixin({
 new Vue({
   myOption: 'beleza!'
 })
-// -> "beleza!"
+
+// => "beleza!"
 ```
 
-
-<p class="tip">Use mixins globais raramente e cuidadosamente, porque eles afetam cada uma das instâncias Vue criadas, incluindo os componentes de terceiros. Na maioria dos casos, você deveria utilizá-los somente para tratar opções customizadas, como demonstrado no exemplo acima. É também uma boa ideia disponibilizá-los como [Plugins](plugins.html), para evitar uso duplicado.</p>
+<p class="tip">Utilize _mixins_ globais raramente e cuidadosamente, porque eles afetam cada uma das instâncias Vue criadas, incluindo os componentes de terceiros. Na maioria dos casos, você deveria utilizá-los somente para tratar opções customizadas, como demonstrado no exemplo acima. É também uma boa ideia disponibilizá-los como [Plugins](plugins.html), para evitar uso duplicado.</p>
 
 ## Estratégias de Mesclagem de Opções Customizadas
 
@@ -127,7 +127,7 @@ var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-Um exemplo mais avançado pode ser encontrado na estratégia de mesclagem do [Vuex 1.x](https://github.com/vuejs/vuex):
+Um exemplo mais avançado pode ser encontrado nesta estratégia de mesclagem do [Vuex 1.x](https://github.com/vuejs/vuex):
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed

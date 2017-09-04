@@ -4,7 +4,7 @@ Este é o repositório oficial da tradução em português brasileiro do _site_ 
 
 ## Situação da tradução
 
-A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido, mas alguns conteúdos carecem de revisão após as atualizações 2.2 e 2.3 do Vue. Além disso, o conteúdo da API está quase todo em inglês, carecendo de colaboração para tradução. A situação de cada página do _site_:
+A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido, mas alguns conteúdos carecem de revisão após as atualizações mais recentes do Vue. O conteúdo da API ainda possui partes em inglês, carecendo de colaboração para tradução. A situação de cada página:
 
 **Website**
 - [x] Tela Principal (Tradução: @danielschmitz, @ErickPetru. Revisão: @ErickPetru)
@@ -22,13 +22,13 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [X] Event Handling (Tradução: @gidenilson. Revisão: @ErickPetru)
 - [X] Form Input Bindings(Tradução: @gidenilson. Revisão: @ErickPetru)
 - [X] Components (Tradução: @thiagorossener, Revisão: @ErickPetru)
-- [ ] Reactivity in Depth (Tradução: @gidenilson, @alaexandesigner. Revisão: @anteriovieira)
-- [ ] Transition Effects (Tradução: @jbruni, @NicholasPedroso. Revisão: @anteriovieira)
-- [ ] Transitioning State (Tradução: @anteriovieira)
-- [X] Render Functions (Tradução: @jbruni. Revisão: @ErickPetru)
+- [ ] Enter/Leave & List Transitions (Tradução: @jbruni, @NicholasPedroso. Revisão: @anteriovieira)
+- [ ] State Transitions (Tradução: @anteriovieira)
+- [X] Mixins (Tradução: @jbruni. Revisão: @ErickPetru)
 - [X] Custom Directives (Tradução: @gidenilson. Revisão: @ErickPetru)
-- [ ] Mixins (Tradução: @jbruni. Revisão: @anteriovieira)
+- [X] Render Functions & JSX (Tradução: @jbruni. Revisão: @ErickPetru)
 - [x] Plugins (Tradução: @jbruni. Revisão: @ErickPetru)
+- [x] Filters (Tradução: @ErickPetru)
 - [X] Single File Components (Tradução: @ErickPetru. Revisão: @ErickPetru)
 - [X] Production Deployment Tips (Tradução: @vitorarjol. Revisão: @ErickPetru)
 - [X] Routing (Tradução: @natanaelphp. Revisão: @ErickPetru)

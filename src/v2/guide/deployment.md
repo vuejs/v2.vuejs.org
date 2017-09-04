@@ -1,7 +1,7 @@
 ---
 title: Publicando em Produção
 type: guide
-order: 20
+order: 401
 ---
 
 ## Habilitando o Modo de Produção

@@ -1,7 +1,7 @@
 ---
 title: Comparação com Outros Frameworks
 type: guide
-order: 29
+order: 701
 ---
 
 Esta é definitivamente a página mais difícil de ser escrita do guia, mas sentimos que é importante. É muito provável que você já teve problemas, tentou resolvê-los e já usou outra biblioteca para resolvê-los. Você está aqui pois quer saber se Vue pode resolver seus problemas específicos de uma forma melhor. É isto que esperamos lhe responder.

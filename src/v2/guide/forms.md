@@ -347,8 +347,8 @@ vm.pick === vm.a
 
 ``` js
 // quando está assinalado:
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## Modificadores

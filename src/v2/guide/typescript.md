@@ -1,7 +1,7 @@
 ---
 title: Suporte ao TypeScript
 type: guide
-order: 25
+order: 404
 ---
 
 ## Important 2.2.0+ Change Notice for TS + webpack 2 users

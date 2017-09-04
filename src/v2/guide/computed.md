@@ -68,9 +68,9 @@ var vm = new Vue({
 Aqui nós declaramos um dado computado denominado `reversedMessage`. A função que fornecemos será usada como uma função _getter_ para a propriedade `vm.reversedMessage`.
 
 ``` js
-console.log(vm.reversedMessage) // -> 'olleH'
+console.log(vm.reversedMessage) // => 'olleH'
 vm.message = 'Goodbye'
-console.log(vm.reversedMessage) // -> 'eybdooG'
+console.log(vm.reversedMessage) // => 'eybdooG'
 ```
 
 Pode abrir o _console_ e testar o exemplo você mesmo. O valor de `vm.reversedMessage` sempre dependerá do valor em `vm.message`.

@@ -1,7 +1,7 @@
 ---
 title: Gerenciamento de Estado
 type: guide
-order: 22
+order: 502
 ---
 
 ## Implementação Oficial Estilo Flux

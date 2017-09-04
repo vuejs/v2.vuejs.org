@@ -1,7 +1,7 @@
 ---
-title: 'Efeitos de Transição'
+title: 'Transições de Visibilidade e Listas'
 type: guide
-order: 13
+order: 201
 ---
 
 ## Visão Geral

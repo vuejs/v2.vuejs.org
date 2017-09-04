@@ -4,9 +4,9 @@ type: guide
 order: 3
 ---
 
-## Construtor
+## Criando a Instância Vue
 
-Toda aplicação Vue é inicializada através da criação de uma **instância raiz do Vue** com a função construtora `Vue`:
+Toda aplicação Vue é inicializada através da criação de uma nova **instância Vue** com a função `Vue`:
 
 ``` js
 var vm = new Vue({
@@ -16,92 +16,114 @@ var vm = new Vue({
 
 Embora não seja estritamente associado com o [padrão MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), o _design_ do Vue foi parcialmente inspirado por ele. Como convenção, muitas vezes usamos a variável `vm` (abreviação de _ViewModel_) para se referir à instância Vue.
 
-Quando você cria uma instância, é necessário passar um **objeto de opções** que contém opções para dados, _template_, elementos, métodos, gatilhos de ciclo de vida, dentre outros. A lista completa de opções pode ser encontrada na [API](../api/#Options-Data).
+Quando você cria uma instância Vue, é necessário passar um **objeto de opções**. A maior parte deste guia descreve como você pode utilizar estas opções para criar os comportamentos desejados. Para referência, você também pode navegar pela lista completa de opções na [documentação da API](../api/#Opcoes-Dados).
 
-O construtor `Vue` pode ser estendido para a criação de **contrutores de componentes** reutilizáveis com opções pré-definidas:
+Uma aplicação Vue consiste em uma **instância Vue raiz** criada com `new Vue`, opcionalmente organizada em uma árvore de componentes reutilizáveis aninhados. Por exemplo, um aplicativo de tarefas a realizar (do tipo _todo list_) poderia ter uma árvore de componentes como esta:
 
-``` js
-var MyComponent = Vue.extend({
-  // opções da extensão
-})
-
-// todas as instâncias de `MyComponent` são criadas
-// com as definições pré definidas pelas opções
-var myComponentInstance = new MyComponent()
+```
+Instância Raiz
+|- TodoList
+   |- TodoItem
+      |- DeleteTodoButton
+      |- EditTodoButton
+   |- TodoListFooter
+      |- ClearTodosButton
+      |- TodoListStatistics
 ```
 
-Embora seja possível criar instâncias repetidamente, na maioria das vezes é recomendado compô-las declarativamente em _templates_ com elementos personalizados. Vamos falar sobre [o sistema de componentes](components.html) com mais detalhes depois. Por enquanto, você precisa apenas saber que todos os componentes Vue são essencialmente extensões da instância Vue.
+Falaremos sobre o [sistema de componentes](components.html) em detalhes futuramente. Por enquanto, saiba apenas que todos os componentes Vue também são instâncias, e aceitam o mesmo esquema de opções (exceto por algumas poucas opções específicas da raiz).
 
-## Propriedades e Métodos
+## Dados e Métodos
 
-Cada instância Vue conecta todas as propriedades encontradas no objeto `data`.
+Quando uma instância Vue é criada,  ela adiciona todas as propriedades encontradas no objeto `data` ao **sistema de reatividade** do Vue. Quando os valores de qualquer destas propriedades muda, a camada visual "reage", atualizando-se para condizer com os novos valores. 
 
 ``` js
+// Nosso objeto de dados
 var data = { a: 1 }
+
+// O objeto é adicionado à instância Vue
 var vm = new Vue({
   data: data
 })
 
-vm.a === data.a // -> true
+// É uma referência ao mesmo objeto!
+vm.a === data.a // => true
 
-// atribuindo à propriedade também afeta os dados originais
+// Atribuir à propriedade na instância
+// também afeta o dado original
 vm.a = 2
-data.a // -> 2
+data.a // => 2
 
 // ... e vice-versa
 data.a = 3
-vm.a // -> 3
+vm.a // => 3
 ```
 
-Deve-se notar que somente estas propriedades relacionadas são **reativas**, ou seja, qualquer modificação em seus valores irá disparar uma atualização na _view_. Se você definir uma nova propriedade a uma instância após ela ter sido criada, não haverá atualizações reativas para ela. Vamos discutir o sistema de reatividade em detalhes mais tarde.
+Quando este dado for modificado, a camada visual irá re-renderizar. Deve-se observar que propriedades em `data` são **reativas** somente se já existem desde quando a instância foi criada. Significa que se você adicionar uma nova propriedade, como:
 
-Além das propriedade `data`, a instância Vue expõe uma variedade de propriedades e métodos muito úteis. Estas propriedades e métodos são prefixadas com `$` para se diferenciar das propriedades que foram definidas pelo desenvolvedor. Por exemplo:
+``` js
+vm.b = 'hi'
+```
+
+Então as mudanças em `b` não irão disparar qualquer atualização na interface. Se você sabe que precisará de uma propriedade no futuro, mas ela inicia vazia ou não existente, apenas especifique algum valor inicial para ela. Por exemplo:
+
+``` js
+data: {
+  newTodoText: '',
+  visitCount: 0,
+  hideCompletedTodos: false,
+  todos: [],
+  error: null
+}
+```
+
+Em adição às propriedades de dados, instâncias Vue expõem uma quantidade relevante de propriedades e métodos. Estas são diferenciadas pelo prefixo `$` para não confundí-las com propriedades definidas pelo usuário. Por exemplo:
 
 ``` js
 var data = { a: 1 }
 var vm = new Vue({
-  el: '#example',
+  el: '#exemplo',
   data: data
 })
 
-vm.$data === data // -> true
-vm.$el === document.getElementById('example') // -> true
+vm.$data === data // => true
+vm.$el === document.getElementById('exemplo') // => true
 
 // $watch é um método da instância
-vm.$watch('a', function (newVal, oldVal) {
-  // este callback será chamado quando `vm.a` mudar
+vm.$watch('a', function (newValue, oldValue) {
+  // Esta função será executada quando `vm.a` mudar
 })
 ```
 
-<p class="tip">
-Não utilize [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) em uma propriedade de instância ou _callback_ (ex: `vm.$watch('a', (newVal, oldVal) => this.myMethod())`). Como as _arrow functions_ são vinculadas ao contexto pai, o `this` não representará a instância Vue como você espera, ou seja, `this.myMethod` estará indefinida.
-</p>
-
-Consulte a [API](../api/#Instance-Properties) para a lista completa de propriedades e métodos da instância.
+No futuro, você pode consultar a [documentação da API](../api/#Propriedades-de-Instancia) para a lista completa de propriedades e métodos da instância.
 
 ## Ciclo de Vida da Instância
 
-Cada instância Vue passa por uma série de etapas em sua inicialização - por exemplo, é necessário configurar o observador do `data`, compilar o _template_, montar a instância no DOM, atualizar o DOM quando os dados forem alterados.
+Cada instância Vue passa por uma série de etapas em sua inicialização - por exemplo, é necessário configurar a observação de dados, compilar o _template_, montar a instância no DOM, atualizar o DOM quando os dados forem alterados. Ao longo do caminho, ocorrerá a invocação de alguns **gatilhos de ciclo de vida**, oferecendo a oportunidade de executar lógicas personalizadas em etapas específicas.
 
-Ao longo do caminho, Vue irá também invocar alguns **gatilhos de ciclo-de-vida**, nos quais você terá oportunidade de executar uma lógicas personalizadas. Por exemplo, `created` é chamado após a instancia do Vue ser criada:
+Por exemplo, o gatilho [`created`](../api/#created) pode ser utilizado para executar código logo após a instância ser criada:
 
 ``` js
-var vm = new Vue({
+new Vue({
   data: {
     a: 1
   },
   created: function () {
-    // `this` aponta para a instância vm
-    console.log('a é ' + this.a)
+    // `this` aponta para a instância
+    console.log('a é: ' + this.a)
   }
 })
-// -> "a é 1"
+// => "a é: 1"
 ```
 
-Existem outros gatilhos (em inglês, _hooks_) chamados em diferentes etapas do ciclo de vida, por exemplo `mounted`, `updated`, e `destroyed`. Todas as etapas do ciclo de vida são chamadas com o `this` no contexto da instância Vue sendo invocada. Alguns usuários podem se questionar se o conceito de _controllers_ está presente no mundo Vue, e a resposta é: não existem _controllers_. Sua lógica personalizada para um componente estará nestes _hooks_ do ciclo de vida.
+Existem outros gatilhos (em inglês, _hooks_) chamados em diferentes etapas do ciclo de vida da instância, como [`mounted`](../api/#mounted), [`updated`](../api/#updated) e [`destroyed`](../api/#destroyed). Qualquer gatilho de ciclo de vida é executado com seu contexto `this` apontando para a instância Vue que o invocou.
+
+<p class="tip">
+Não utilize [arrow functions](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions) em propriedades de opções ou _callback_, como em `created: () => console.log(this.a)` ou `vm.$watch('a', newValue => this.myMethod())`. Como as _arrow functions_ são vinculadas ao contexto pai, `this` não representará a instância Vue como você pode esperar, ou seja, `this.a` ou `this.myMethod` estarão indefinidos.
+</p>
 
 ## Diagrama do Ciclo de Vida
 
-Abaixo está um diagrama para o ciclo de vida de uma instância Vue. Você não precisa entender completamente tudo o que está acontecendo no ciclo, mas este diagrama poderá ser útil no futuro.
+Abaixo está um diagrama para o ciclo de vida da instância. Você não precisa entender completamente tudo o que está acontecendo neste momento, mas conforme você aprender e construir mais coisas, este diagrama será uma referência útil.
 
-![Ciclo de vida](/images/lifecycle.png)
+![Ciclo de Vida da Instância Vue](/images/lifecycle.png)
