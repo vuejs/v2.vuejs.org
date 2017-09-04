@@ -1,7 +1,7 @@
 ---
 title: Comparação com Outros Frameworks
 type: guide
-order: 701
+order: 801
 ---
 
 Esta é definitivamente a página mais difícil de ser escrita do guia, mas sentimos que é importante. É muito provável que você já teve problemas, tentou resolvê-los e já usou outra biblioteca para resolvê-los. Você está aqui pois quer saber se Vue pode resolver seus problemas específicos de uma forma melhor. É isto que esperamos lhe responder.
@@ -26,7 +26,7 @@ A comunidade React [tem sido fundamental](https://github.com/vuejs/vuejs.org/iss
 
 ### Desempenho
 
-Tanto React quanto Vue oferecem desempenho equivalente na maioria dos casos que encontramos, eventualmente com Vue um pouco à frente por causa de sua implementação Virtual DOM mais leve. Se você está interessado em números, pode dar uma olhada neste [comparativo independente](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) que foca no desempenho bruto de renderização/atualização. Observe que não se leva em conta estruturas complexas de componentes, portanto encare-o apenas como uma referência e não um veredito.
+Tanto React quanto Vue oferecem desempenho equivalente na maioria dos casos que encontramos, eventualmente com Vue um pouco à frente por causa de sua implementação Virtual DOM mais leve. Se você está interessado em números, pode dar uma olhada neste [comparativo independente](https://rawgit.com/krausest/js-_framework_-benchmark/master/webdriver-ts/table.html) que foca no desempenho bruto de renderização/atualização. Observe que não se leva em conta estruturas complexas de componentes, portanto encare-o apenas como uma referência e não um veredito.
 
 #### Esforços de Otimização
 
@@ -120,11 +120,13 @@ E já que você não precisa obrigatoriamente saber sobre JSX, ES2015 ou sistema
 
 ### Renderização Nativa
 
-ReactNative lhe permite escrever aplicativos nativamente renderizados para iOS e Android usando o mesmo modelo de componentes do React. É ótimo que, como desenvolvedor, você possa aplicar o conhecimento de um framework entre múltiplas plataformas. Nesta frente, Vue possui uma colaboração oficial com [Weex](https://alibaba.github.io/weex/), um framework de UI multiplataforma desenvolvido por Alibaba Group, o qual utiliza Vue como seu JavaScript framework runtime. Isso significa que, com Weex, você pode utilizar a mesma sintaxe de componentes Vue para criar componentes que podem ser renderizados não apenas no navegador, mas também nativamente em iOS e Android!
+React Native lhe permite escrever aplicativos nativamente renderizados para iOS e Android usando o mesmo modelo de componentes do React. É ótimo que, como desenvolvedor, você possa aplicar o conhecimento de um _framework_ entre múltiplas plataformas. Nesta frente, Vue possui uma colaboração oficial com [Weex](https://alibaba.github.io/weex/), um _framework_ de UI multiplataforma desenvolvido por Alibaba Group, o qual utiliza Vue como seu motor JavaScript. Isso significa que, com Weex, você pode utilizar a mesma sintaxe de componentes Vue para criar componentes que podem ser renderizados não apenas no navegador, mas também nativamente em iOS e Android!
 
 No presente momento, Weex ainda é um projeto em desenvolvimento ativo e não está tão maduro e testado na prática quanto o ReactNative, mas o desenvolvimento é dirigido às necessidades de produção do maior negócio de comércio eletrônico do mundo, e a equipe Vue colaborará ativamente com a equipe Weex para garantir a experiência mais suave possível aos desenvolvedores Vue.
 
-### React + MobX
+Outra opção que desenvolvedores Vue terão em breve é utilizar o [NativeScript](https://www.nativescript.org/), através de um [plugin](https://github.com/rigor789/nativescript-vue) desenvolvido pela comunidade.
+
+### Utilizando MobX
 
 MobX se tornou bem popular na comunidade React e, de fato, utiliza um sistema de reatividade quase idêntico ao Vue. De forma simplista, o fluxo de trabalho React + MobX pode ser pensado como um Vue com código mais prolixo. Por isso, se você estiver usando essa combinação e estiver gostando, saltar para o Vue é, provavelmente, o próximo passo lógico.
 
@@ -188,7 +190,7 @@ A curva de aprendizado do Angular é muito mais acentuada. A superfície da API 
 
 ## Ember
 
-Ember é um framework completo projetado para ser altamente opinativo. Ele fornece uma série de convenções estabelecidas e, uma vez que você fique bastante familiarizado com elas, pode se tornar muito produtivo. No entanto, também significa que a curva de aprendizado é elevada e a flexibilidade é sofrível. É uma escolha para você colocar na balança entre adotar um framework fortemente opinativo ou uma biblioteca com um conjunto de ferramentas de baixo acoplamento que funcionam em conjunto. Este último cenário lhe dá mais liberdade, mas também requer que você tome mais decisões arquitetônicas.
+Ember é um _framework_ completo projetado para ser altamente opinativo. Ele fornece uma série de convenções estabelecidas e, uma vez que você fique bastante familiarizado com elas, pode se tornar muito produtivo. No entanto, também significa que a curva de aprendizado é elevada e a flexibilidade é sofrível. É uma escolha para você colocar na balança entre adotar um _framework_ fortemente opinativo ou uma biblioteca com um conjunto de ferramentas de baixo acoplamento que funcionam em conjunto. Este último cenário lhe dá mais liberdade, mas também requer que você tome mais decisões arquitetônicas.
 
 Com isto dito, seria provavelmente mais adequado uma comparação entre o núcleo do Vue e as camadas de [templates](https://guides.emberjs.com/v2.7.0/templates/handlebars-basics/) e de [modelo de objetos](https://guides.emberjs.com/v2.7.0/object-model/) do Ember:
 
@@ -196,7 +198,7 @@ Com isto dito, seria provavelmente mais adequado uma comparação entre o núcle
 
 - A sintaxe de _templates_ do Vue se arma com o poder total de expressões JavaScript, enquanto a sintaxe de expressões e _helpers_ do Handlebars é bastante limitada.
 
-- Em termos de performance, Vue supera Ember [por uma margem justa](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html), mesmo após a atualização mais recente do motor Glimmer no Ember 2. Vue realiza atualizações em lote automaticamente, enquanto no Ember você precisa lidar manualmente com laços de execução em situações de desempenho crítico.
+- Em termos de performance, Vue supera Ember [por uma margem justa](https://rawgit.com/krausest/js-_framework_-benchmark/master/webdriver-ts/table.html), mesmo após a atualização mais recente do motor Glimmer no Ember 2. Vue realiza atualizações em lote automaticamente, enquanto no Ember você precisa lidar manualmente com laços de execução em situações de desempenho crítico.
 
 ## Knockout
 

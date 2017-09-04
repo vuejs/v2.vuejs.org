@@ -301,7 +301,7 @@ vm.b = 2
 // `vm.b` NÃO é reativo
 ```
 
-Vue não permite dinamicamente adicionar novas propriedades reativas em nivel raiz para uma instância já criada. Entretanto, é possível adicionar propriedades reativas a objetos internos usando o método `Vue.set(object, key, value)`. Por exemplo, dado o código:
+Vue não permite dinamicamente adicionar novas propriedades reativas em nível raiz para uma instância já criada. Entretanto, é possível adicionar propriedades reativas a objetos internos usando o método `Vue.set(object, key, value)`. Por exemplo, dado o código:
 
 ``` js
 var vm = new Vue({

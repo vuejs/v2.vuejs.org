@@ -1,7 +1,7 @@
 ---
 title: Migração do Vue Router 0.7.x
 type: guide
-order: 602
+order: 702
 ---
 
 > Somente Vue Router 2 é compatível com Vue 2, então se você estiver atualizando o Vue, terá de atualizar também o Vue Router. Esta é a razão pela qual incluímos detalhes de migração aqui na documentação principal. Para um guia completo em como usar o novo Vue Router, veja a [documentação do Vue Router](http://router.vuejs.org/en/).

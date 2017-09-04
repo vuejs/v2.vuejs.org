@@ -1,7 +1,7 @@
 ---
 title: Migração do Vuex 0.6.x para 1.0
 type: guide
-order: 603
+order: 703
 ---
 
 > Vuex 2.0 foi lançado, mas este guia só cobre a migração para a versão 1.0? É um mero erro de digitação? Aliás, parece que Vuex 1.0 e 2.0 foram lançados simultaneamente! O que está acontecendo? Qual dos dois devo usar e qual deles é compatível com Vue 2.0?
