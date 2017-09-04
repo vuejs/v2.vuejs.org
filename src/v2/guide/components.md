@@ -617,7 +617,7 @@ is just syntactic sugar for:
   v-on:input="something = $event.target.value">
 ```
 
-When used with a component, this simplifies to:
+When used with a component, it instead simplifies to:
 
 ``` html
 <custom-input
