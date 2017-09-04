@@ -181,26 +181,6 @@ new Vue({
 </div>
 ```
 
-그리고 또 인덱스도 제공합니다
-
-``` html
-<div v-for="(value, key, index) in object">
-  {{ index }}. {{ key }} : {{ value }}
-</div>
-```
-
-<p class="tip">객체를 반복할 때 순서는 `Object.keys()`의 키 나열 순서에 따라 결정됩니다. 이 순서는 JavaScript 엔진 구현간에 **일관적이지는 않습니다.**</p>
-
-### Range `v-for`
-
-`v-for`는 정수를 사용할 수 있습니다. 이 경우 템플릿을 여러번 반복 합니다.
-
-``` html
-<div>
-  <span v-for="n in 10">{{ n }} </span>
-</div>
-```
-
 결과:
 
 {% raw %}
@@ -219,6 +199,61 @@ new Vue({
       age: 30
     }
   }
+})
+</script>
+{% endraw %}
+
+그리고 또 인덱스도 제공합니다
+
+``` html
+<div v-for="(value, key, index) in object">
+  {{ index }}. {{ key }} : {{ value }}
+</div>
+```
+
+결과:
+
+{% raw %}
+<div id="v-for-object-value-key-index" class="demo">
+  <div v-for="(value, key, index) in object">
+    {{ index }}. {{ key }}: {{ value }}
+  </div>
+</div>
+<script>
+new Vue({
+  el: '#v-for-object-value-key-index',
+  data: {
+    object: {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
+    }
+  }
+})
+</script>
+{% endraw %}
+
+<p class="tip">객체를 반복할 때 순서는 `Object.keys()`의 키 나열 순서에 따라 결정됩니다. 이 순서는 JavaScript 엔진 구현간에 **일관적이지는 않습니다.**</p>
+
+### Range `v-for`
+
+`v-for`는 정수를 사용할 수 있습니다. 이 경우 템플릿을 여러번 반복 합니다.
+
+``` html
+<div>
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+```
+
+결과:
+
+{% raw %}
+<div id="v-for-range" class="demo">
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+<script>
+new Vue({
+  el: '#v-for-range'
 })
 </script>
 {% endraw %}
