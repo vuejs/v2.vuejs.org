@@ -59,7 +59,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [ ] Instance Methods / Lifecycle (Tradução: @vitorbaraujo. Revisão: @anteriovieira)
 - [ ] Directives (Tradução: @tarciozemel)
 - [ ] Special Attributes (Tradução: @kessiacastro. Revisão: @anteriovieira)
-- [ ] Built-In Components
+- [ ] Built-In Components (Tradução: @rubenmarcus)
 - [X] VNode Interface (Tradução: @ErickPetru)
 - [X] Server-Side Rendering (Tradução: @ErickPetru)
 
