@@ -121,7 +121,7 @@ Therefore, prefer using string templates whenever possible.
 
 ### `data` Must Be a Function
 
-Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be function. In fact, if you try this:
+Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be a function. In fact, if you try this:
 
 ``` js
 Vue.component('my-component', {
