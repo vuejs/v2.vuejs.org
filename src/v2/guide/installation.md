@@ -19,7 +19,7 @@ Notas detalhadas para cada versão lançada estão disponíveis no [GitHub](http
 
 ## Vue Devtools
 
-Ao de mais nada, ao utilizar Vue também recomendamos que você instale a extensão [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) em seu navegador, lhe permitindo inspecionar e depurar suas aplicações Vue em uma interface mais amigável.
+Antes de mais nada, ao utilizar Vue também recomendamos que você instale a extensão [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) em seu navegador, lhe permitindo inspecionar e depurar suas aplicações Vue em uma interface mais amigável.
 
 ## Inclusão Direta com `<script>`
 
