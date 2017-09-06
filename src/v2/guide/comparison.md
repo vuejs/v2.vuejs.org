@@ -68,9 +68,11 @@ On a higher level, we can divide components into two categories: presentational 
 
 #### Component-Scoped CSS
 
-Unless you spread components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), scoping CSS in React is often done via CSS-in-JS solutions. There are many competing solutions out there, each with its own caveats. A common issue is that features such as hover states, media queries, and pseudo-selectors either require heavy dependencies to reinvent what CSS already does - or they simply are not supported. If not optimized carefully, CSS-in-JS can also introduce non-trivial runtime performance cost. Most importantly, it deviates from the experience of authoring normal CSS.
+Unless you spread components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), scoping CSS in React is often done via CSS-in-JS solutions (for example, [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous), and [emotion](https://github.com/emotion-js/emotion)). Popular CSS-in-JS libraries have introduced a new component-oriented styling paradigm that is different from the normal CSS authoring process. While you end up using many of the same techniques, it can be intimidating unless you are already familiar. Additionally, although there is some support for extracting static css sheets during build time, it is still common that a runtime will need to be included in the bundle for styling to work properly--some believe that the dynamism of having access to JavaScript while constructing their styling is worth the increased bundle size and runtime cost.
 
-Vue on the other hand, gives you full access to CSS within [single-file components](single-file-components.html):
+If you are a fan of CSS-in-JSS, many of the popular CSS-in-JS libraries have Vue support (for example [styled-components-vue](https://github.com/styled-components/vue-styled-components) and [vue-emotion](https://github.com/egoist/vue-emotion)). The main difference between React and Vue here is that the default method of styling in Vue is through more familiar `style` tags in [single-file components](single-file-components.html).
+
+[Single-file components](single-file-components.html) give you full access to CSS in the same file as the rest of your component code.
 
 ``` html
 <style scoped>
@@ -84,9 +86,7 @@ Vue on the other hand, gives you full access to CSS within [single-file componen
 
 The optional `scoped` attribute automatically scopes this CSS to your component by adding a unique attribute (such as `data-v-21e5b78`) to elements and compiling `.list-container:hover` to something like `.list-container[data-v-21e5b78]:hover`.
 
-If you are already familiar with CSS Modules, Vue single file components also have [first-class support for it](http://vue-loader.vuejs.org/en/features/css-modules.html).
-
-Finally, just as with HTML, you also have the option of writing your CSS using any preprocessors (or post-processors) you'd like, allowing you to leverage existing libraries in those ecosystems. You can also perform design-centric operations such as color manipulation during your build process, rather than importing specialized JavaScript libraries that would increase the size of your build and complexity of your application.
+Lastly, Vue's single-file component styling solution is very flexible. Through [vue-loader](https://github.com/vuejs/vue-loader), Vue supports using any preprocessor, post-processor, and even [CSS Modules](http://vue-loader.vuejs.org/en/features/css-modules.html). This makes getting your favorite setup running as painless as possible.
 
 ### Scale
 
