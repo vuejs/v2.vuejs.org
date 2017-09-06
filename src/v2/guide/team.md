@@ -1,7 +1,7 @@
 ---
 title: Meet the Team
 type: guide
-order: 31
+order: 803
 ---
 
 {% raw %}

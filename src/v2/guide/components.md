@@ -121,7 +121,7 @@ Therefore, prefer using string templates whenever possible.
 
 ### `data` Must Be a Function
 
-Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be function. In fact, if you try this:
+Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be a function. In fact, if you try this:
 
 ``` js
 Vue.component('my-component', {
@@ -456,7 +456,7 @@ Imagine this is the template for `bs-date-input`:
 <input type="date" class="form-control">
 ```
 
-To add specify a theme for our date picker plugin, we might need to add a specific class, like this:
+To specify a theme for our date picker plugin, we might need to add a specific class, like this:
 
 ``` html
 <bs-date-input
@@ -617,7 +617,7 @@ is just syntactic sugar for:
   v-on:input="something = $event.target.value">
 ```
 
-When used with a component, this simplifies to:
+When used with a component, it instead simplifies to:
 
 ``` html
 <custom-input

@@ -436,8 +436,8 @@ if (version === 2) {
   var vm = new Vue({
     data: data
   })
-  vm.a // -> 1
-  vm.$data === data // -> true
+  vm.a // => 1
+  vm.$data === data // => true
 
   // must use function when in Vue.extend()
   var Component = Vue.extend({
@@ -545,10 +545,10 @@ if (version === 2) {
       }
     }
   })
-  vm.aPlus   // -> 2
+  vm.aPlus   // => 2
   vm.aPlus = 3
-  vm.a       // -> 2
-  vm.aDouble // -> 4
+  vm.a       // => 2
+  vm.aDouble // => 4
   ```
 
 - **See also:** [Computed Properties](../guide/computed.html)
@@ -610,7 +610,7 @@ if (version === 2) {
       }
     }
   })
-  vm.a = 2 // -> new: 2, old: 1
+  vm.a = 2 // => new: 2, old: 1
   ```
 
   <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
@@ -744,6 +744,17 @@ if (version === 2) {
 
   Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
 
+  Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `mounted`:
+
+  ``` js
+  mounted: function () {
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been rendered
+    })
+  }
+  ```
+
   **This hook is not called during server-side rendering.**
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
@@ -771,6 +782,17 @@ if (version === 2) {
   Called after a data change causes the virtual DOM to be re-rendered and patched.
 
   The component's DOM will have been updated when this hook is called, so you can perform DOM-dependent operations here. However, in most cases you should avoid changing state inside the hook. To react to state changes, it's usually better to use a [computed property](#computed) or [watcher](#watch) instead.
+
+  Note that `updated` does **not** guarantee that all child components have also been re-rendered. If you want to wait until the entire view has been re-rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `updated`:
+
+  ``` js
+  updated: function () {
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been re-rendered
+    })
+  }
+  ```
 
   **This hook is not called during server-side rendering.**
 
@@ -892,8 +914,8 @@ if (version === 2) {
     created: function () { console.log(2) },
     mixins: [mixin]
   })
-  // -> 1
-  // -> 2
+  // => 1
+  // => 2
   ```
 
 - **See also:** [Mixins](../guide/mixins.html)
@@ -953,7 +975,7 @@ if (version === 2) {
   var Child = {
     inject: ['foo'],
     created () {
-      console.log(this.foo) // -> "bar"
+      console.log(this.foo) // => "bar"
     }
     // ...
   }
@@ -1170,7 +1192,7 @@ if (version === 2) {
   new Vue({
     customOption: 'foo',
     created: function () {
-      console.log(this.$options.customOption) // -> 'foo'
+      console.log(this.$options.customOption) // => 'foo'
     }
   })
   ```
@@ -1435,7 +1457,7 @@ if (version === 2) {
     console.log(msg)
   })
   vm.$emit('test', 'hi')
-  // -> "hi"
+  // => "hi"
   ```
 
 <h3 id="vm-once">vm.$once( event, callback )</h3>

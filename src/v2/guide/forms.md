@@ -60,7 +60,6 @@ new Vue({
 </script>
 {% endraw %}
 
-
 {% raw %}
 <p class="tip">Interpolation on textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>) won't work. Use <code>v-model</code> instead.</p>
 {% endraw %}
@@ -91,19 +90,21 @@ new Vue({
 Multiple checkboxes, bound to the same Array:
 
 ``` html
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>Checked names: {{ checkedNames }}</span>
+<div id='example-3'>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+<div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-3',
   data: {
     checkedNames: []
   }
@@ -132,7 +133,6 @@ new Vue({
 {% endraw %}
 
 ### Radio
-
 
 ``` html
 <input type="radio" id="one" value="One" v-model="picked">
@@ -343,8 +343,8 @@ vm.pick === vm.a
 
 ``` js
 // when selected:
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## Modifiers
@@ -381,10 +381,3 @@ If you want user input to be trimmed automatically, you can add the `trim` modif
 > If you're not yet familiar with Vue's components, just skip this for now.
 
 HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
-
-
-
-
-
-
-

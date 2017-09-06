@@ -68,9 +68,9 @@ var vm = new Vue({
 Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
 
 ``` js
-console.log(vm.reversedMessage) // -> 'olleH'
+console.log(vm.reversedMessage) // => 'olleH'
 vm.message = 'Goodbye'
-console.log(vm.reversedMessage) // -> 'eybdooG'
+console.log(vm.reversedMessage) // => 'eybdooG'
 ```
 
 You can open the console and play with the example vm yourself. The value of `vm.reversedMessage` is always dependent on the value of `vm.message`.
