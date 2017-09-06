@@ -1,20 +1,20 @@
 ---
 title: 深入响应式原理
 type: guide
-order: -1
+order: 601
 ---
 
-我们已经涵盖了大部分的基础知识 - 现在是时候深入底层原理了！Vue 最显著的特性之一便是不太引人注意的响应式系统(reactivity system)。模型层(model)只是普通 JavaScript 对象，修改它则更新视图(view)。这会让状态管理变得非常简单且直观，不过理解它的工作原理以避免一些常见的问题也是很重要的。在本节中，我们将开始深入挖掘 Vue 响应式系统的底层细节。
+现在是时候深入底层原理了！Vue 最显著的特性之一便是不太引人注意的响应式系统(reactivity system)。模型层(model)只是普通 JavaScript 对象，修改它则更新视图(view)。这会让状态管理变得非常简单且直观，不过理解它的工作原理以避免一些常见的问题也是很重要的。在本节中，我们将开始深入挖掘 Vue 响应式系统的底层细节。
 
 ## 如何追踪变化
 
 把一个普通 Javascript 对象传给 Vue 实例的 `data` 选项，Vue 将遍历此对象所有的属性，并使用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 把这些属性全部转为 getter/setter。Object.defineProperty 是仅 ES5 支持，且无法 shim 的特性，这也就是为什么 Vue 不支持 IE8 以及更低版本浏览器的原因。
 
-用户看不到 getter/setter，但是在内部它们让 Vue 追踪依赖，在属性被访问和修改时通知变化。这里需要注意的问题是浏览器控制台在打印数据对象时 getter/setter 的格式化并不同，所以你可能需要安装 [vue-devtools](https://github.com/vuejs/vue-devtools) 来获取更加友好的检查接口。
+用户看不到 getter/setter，但是在内部它们让 Vue 追踪依赖，在属性被访问和修改时通知变化。这里需要注意的问题是浏览器控制台在打印数据对象时 getter/setter 的格式并不同，所以你可能需要安装 [vue-devtools](https://github.com/vuejs/vue-devtools) 来获取更加友好的检查接口。
 
 每个组件实例都有相应的 **watcher** 实例对象，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 `setter` 被调用时，会通知 `watcher` 重新计算，从而致使它关联的组件得以更新。
 
-![data](/images/data.png)
+![Reactivity Cycle](/images/data.png)
 
 ## 变化检测问题
 
@@ -22,24 +22,23 @@ order: -1
 
 ``` js
 var vm = new Vue({
-  data:{
-  a:1
+  data: {
+    a: 1
   }
 })
-
-// `vm.a` 是响应的
+// `vm.a` 是响应式的
 
 vm.b = 2
-// `vm.b` 是非响应的
+// `vm.b` 不是响应式的
 ```
 
 Vue 不允许在已经创建的实例上动态添加新的根级响应式属性(root-level reactive property)。然而它可以使用 `Vue.set(object, key, value)` 方法将响应属性添加到嵌套的对象上：
 
 ``` js
 Vue.set(vm.someObject, 'b', 2)
-
 ```
-您还可以使用 `vm.$set` 实例方法，这也是全局 `Vue.set` 方法的别名：
+
+你还可以使用 `vm.$set` 实例方法，这也是全局 `Vue.set` 方法的别名：
 
 ``` js
 this.$set(this.someObject,'b',2)
@@ -83,6 +82,7 @@ vm.message = 'Hello!'
 ```html
 <div id="example">{{message}}</div>
 ```
+
 ``` js
 var vm = new Vue({
   el: '#example',
@@ -96,6 +96,7 @@ Vue.nextTick(function () {
   vm.$el.textContent === 'new message' // true
 })
 ```
+
 在组件内使用 `vm.$nextTick()` 实例方法特别方便，因为它不需要全局 `Vue` ，并且回调函数中的 `this` 将自动绑定到当前的 Vue 实例上：
 ``` js
 Vue.component('example', {

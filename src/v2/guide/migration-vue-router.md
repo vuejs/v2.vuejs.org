@@ -1,7 +1,7 @@
 ---
 title: 从 Vue Router 0.7.x 迁移
 type: guide
-order: 602
+order: 702
 ---
 
 > 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue ，你也需要更新 Vue Router 。这也是我们在主文档中将迁移路径的详情添加进来的原因。有关使用 Vue Router 2 的完整教程，请参阅 [Vue Router 文档](http://router.vuejs.org/en/)。
