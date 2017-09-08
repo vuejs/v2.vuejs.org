@@ -327,6 +327,19 @@ new Vue({
 </script>
 {% endraw %}
 
+When you need to pass an entire object as a set of props (like the spread operator), you can use `v-bind` without specifying a key.
+
+``` js
+Vue.component('person', {
+  props: ['name', 'age'],
+  template: '<span>{{ name }} ({{ age }})</span>'
+})
+```
+
+``` html
+<child v-bind="{ name: 'Bob', age: 25 }"></child>
+```
+
 ### Literal vs. Dynamic
 
 A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
