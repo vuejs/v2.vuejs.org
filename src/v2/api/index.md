@@ -256,7 +256,7 @@ type: api
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > 仅在 2.2.0+ 版本中支持 Array + index 用法。
+  > 仅在 2.2.0+ 版本中支持：还支持 Array + index 用法。
 
 - **用法：**
 
