@@ -256,7 +256,7 @@ type: api
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > Only works with Array + index in 2.2.0+.
+  > Only in 2.2.0+: Also works with Array + index.
 
 - **Usage:**
 
