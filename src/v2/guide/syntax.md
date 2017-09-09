@@ -28,7 +28,7 @@ Vous pouvez également réaliser des interpolations à usage unique (qui ne se m
 <span v-once>Ceci ne changera jamais : {{ msg }}</span>
 ```
 
-### Interpétation du HTML
+### Interprétation du HTML
 
 Les doubles moustaches interprètent la donnée en tant que texte brut, pas en tant que HTML. Pour afficher réellement du HTML, vous aurez besoin d'utiliser la directive `v-html`
 
