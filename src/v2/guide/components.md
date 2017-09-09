@@ -327,12 +327,12 @@ new Vue({
 </script>
 {% endraw %}
 
-If you want to pass all the properties in an object as props, you can use `v-bind` without an argument (`v-bind` instead of `v-bind:prop-name`. For example, given a `todo` object:
+If you want to pass all the properties in an object as props, you can use `v-bind` without an argument (`v-bind` instead of `v-bind:prop-name`). For example, given a `todo` object:
 
 ``` js
-todo: { 
-  text: 'Learn Vue', 
-  isComplete: false 
+todo: {
+  text: 'Learn Vue',
+  isComplete: false
 }
 ```
 
@@ -345,7 +345,7 @@ Then:
 Will be equivalent to:
 
 ``` html
-<todo-item 
+<todo-item
   v-bind:text="todo.text"
   v-bind:is-complete="todo.isComplete"
 ></todo-item>
