@@ -1,16 +1,16 @@
 ---
-title: Migration from Vue Router 0.7.x (En)
+title: Migration depuis Vue Router 0.7.x
 type: guide
 order: 27
 ---
 
-> Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](http://router.vuejs.org/en/).
+> Seul Vue Router 2 est compatible avec Vue 2, donc si vous mettez à jour Vue, vous devez mettre à jour Vue Router également. C'est pourquoi nous avons inclus des détails sur le chemin de migration ici dans les documentations principales. Pour un guide complet sur l'utilisation du nouveau Vue Router, consultez [la documentation Vue Router](http://router.vuejs.org/fr/).
 
-## Router Initialization
+## Initialisation du Routeur
 
-### `router.start` <sup>replaced</sup>
+### `router.start` <sup>remplacée</sup>
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>There is no longer a special API to initialize an app with Vue Router. That means instead of:</p>
+Il n'y a plus d'API dédiée pour initialiser Vue Router. Cela signifie qu'à la place d'utiliser :
 
 ``` js
 router.start({
@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-You'll just pass a router property to a Vue instance:
+Vous avez juste a passer la propriété routeur à l'instance de Vue :
 
 ``` js
 new Vue({
@@ -28,7 +28,7 @@ new Vue({
 })
 ```
 
-Or, if you're using the runtime-only build of Vue:
+Ou, si vous utilisez le build runtime de Vue :
 
 ``` js
 new Vue({
@@ -40,8 +40,8 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.start</code>.</p>
 </div>
 {% endraw %}
 
