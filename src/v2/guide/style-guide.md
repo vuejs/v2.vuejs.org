@@ -1,7 +1,7 @@
 ---
-title: Style Guide
+title: Style Guide & Linter
 type: guide
-order: 30
+order: 402
 ---
 
 This is an official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
@@ -46,65 +46,56 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 ## Priority A Rules: Essential (Error Prevention)
 
-### Keyed v-if, v-else
 
-Always use `key` with `v-if` + `v-else`, if they are the same element.
 
-### Keyed v-for
 
-Always use `key` with `v-for`.
+### Multi-word component names
 
-### Component data
+**Component names should always be multi-word (containing at least one hyphen).**
 
-Component `data` must be a function.
-
-<sg-enforcement type="runtime"></sg-enforcement>
-
-When using the `data` property on a component (i.e. anywhere except on `new Vue`), the value must be a function that returns an object.
+This prevents conflicts with existing and future HTML elements, since all HTML elements are a single word.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
 
 ``` js
-Vue.component('some-comp', {
-  data: {
-    foo: 'bar'
-  }
+Vue.component('todo', {
+  // ...
 })
+```
+
+``` js
+export default {
+  name: 'Todo',
+  // ...
+}
 ```
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
 #### Good
+
 ``` js
-Vue.component('some-comp', {
-  data: function () {
-    return {
-      foo: 'bar'
-    }
-  }
+Vue.component('todo-item', {
+  // ...
 })
 ```
 
 ``` js
-// In a .vue file
 export default {
-  data () {
-    return {
-      foo: 'bar'
-    }
-  }
+  name: 'TodoItem',
+  // ...
 }
 ```
-
-``` js
-new Vue({
-  data: {
-    foo: 'bar'
-  }
-})
-```
 {% raw %}</div>{% endraw %}
+
+
+
+### Component data
+
+**Component `data` must be a function.**
+
+When using the `data` property on a component (i.e. anywhere except on `new Vue`), the value must be a function that returns an object.
 
 {% raw %}
 <details>
@@ -147,11 +138,82 @@ data: function () {
 ```
 {% raw %}</details>{% endraw %}
 
-### Prop definitions should be detailed
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
 
-**Enforcement**: <a href="https://github.com/vuejs/eslint-plugin-vue/issues/19" target="_blank"><span class="style-rule-tag">linting rule (in progress)</span></a>
+``` js
+Vue.component('some-comp', {
+  data: {
+    foo: 'bar'
+  }
+})
+```
+
+``` js
+export default {
+  data: {
+    foo: 'bar'
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+``` js
+Vue.component('some-comp', {
+  data: function () {
+    return {
+      foo: 'bar'
+    }
+  }
+})
+```
+
+``` js
+// In a .vue file
+export default {
+  data () {
+    return {
+      foo: 'bar'
+    }
+  }
+}
+```
+
+``` js
+// It's OK to use an object directly in a root
+// Vue instance, since only a single instance
+// will ever exist.
+new Vue({
+  data: {
+    foo: 'bar'
+  }
+})
+```
+{% raw %}</div>{% endraw %}
+
+
+
+### Prop definitions
+
+**Prop definitions should be as detailed as possible.**
 
 In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+
+- They document the API of the component, so that it's easy to see how the component is meant to be used.
+- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+
+{% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -178,12 +240,62 @@ props: {
     type: String,
     required: true,
     validate: function (value) {
-      return ['syncing', 'synced', 'version-conflict', 'error'].indexOf(value) !== -1
+      return [
+        'syncing',
+        'synced',
+        'version-conflict',
+        'error'
+      ].indexOf(value) !== -1
     }
   }
 }
 ```
 {% raw %}</div>{% endraw %}
+
+
+
+### Keyed `v-for`
+
+**Always use `key` with `v-for`.**
+
+It's _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<ul>
+  <li v-for="todo in todos">
+    {{ todo.text }}
+  </td>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<ul>
+  <li
+    v-for="todo in todos"
+    :key="todo.id"
+  >
+    {{ todo.text }}
+  </td>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+
+
+### Component style scoping
+
+**For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
+
+This is only relevant for single-file components. It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+
+**3rd-party libraries should prefer a class-based strategy, instead of using the `scoped` attribute.**
 
 {% raw %}
 <details>
@@ -192,20 +304,11 @@ props: {
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
 
 {% raw %}</details>{% endraw %}
-
-### Component style scoping
-
-For applications, styles in the top-level `App` component and in layout components may be global, but all other components should always be scoped. This may be through Vue's `scoped` attribute in a single-file component, or via a class-based strategy such as [BEM](http://getbem.com/).
-
-3rd-party libraries should prefer a class-based strategy, instead of using the `scoped` attribute.
-
-<sg-enforcement type="none"></sg-enforcement>
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -228,11 +331,17 @@ For applications, styles in the top-level `App` component and in layout componen
 
 ``` html
 <template>
-  <button class="btn btn-close">X</button>
+  <button class="button button-close">X</button>
 </template>
 
+<!-- Using the scoped attribute -->
 <style scoped>
-.btn-close {
+.button {
+  border: none;
+  border-radius: 2px;
+}
+
+.button-close {
   background-color: red;
 }
 </style>
@@ -240,39 +349,41 @@ For applications, styles in the top-level `App` component and in layout componen
 
 ``` html
 <template>
-  <button class="c-ButtonClose c-ButtonClose">
-    <i class="c-ButtonClose__icon c-ButtonClose__icon--icon-close"></i>
-  </button>
+  <button :class="[$style.button, $style.buttonClose]">X</button>
 </template>
 
-<!--
-The scoped attribute may be excluded if you use
-another scoping strategy, such as BEM.
--->
-<style scoped>
-.c-ButtonClose {
+<!-- Using CSS modules -->
+<style module>
+.button {
+  border: none;
+  border-radius: 2px;
+}
+
+.buttonClose {
+  background-color: red;
+}
+</style>
+```
+
+``` html
+<template>
+  <button class="c-Button c-Button--close">X</button>
+</template>
+
+<!-- Using the BEM convention -->
+<style>
+.c-Button {
+  border: none;
+  border-radius: 2px;
+}
+
+.c-Button--close {
   background-color: red;
 }
 </style>
 ```
 {% raw %}</div>{% endraw %}
 
-{% raw %}
-<details>
-<summary>
-  <h4>Detailed Explanation</h4>
-</summary>
-{% endraw %}
-
-If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
-
-Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
-
-{% raw %}</details>{% endraw %}
-
-### Multi-word component names
-
-Component names should always be multi-word (containing at least one hyphen), to avoid conflicts with existing and future HTML elements.
 
 
 
@@ -530,6 +641,55 @@ Computed properties should be ordered first by dependency, then alphabetically.
 
 ## Priority D Rules: Use with Caution (Potentially Dangerous Patterns)
 
+
+
+
+### Keyed v-if, v-else
+
+Always use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).
+
+<sg-enforcement type=""></sg-enforcement>
+
+By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<div v-if="error">
+  Error: {{ error }}
+</div>
+<div v-else>
+  {{ results }}
+</div>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<div v-if="error" key="search-status">
+  Error: {{ error }}
+</div>
+<div v-else key="search-results">
+  {{ results }}
+</div>
+```
+
+``` html
+<p v-if="error">
+  Error: {{ error }}
+</p>
+<div v-else>
+  {{ results }}
+</div>
+```
+{% raw %}</div>{% endraw %}
+
+
+
+
 ### Scoped element selectors
 
 Scoped element selectors should be avoided.
@@ -583,13 +743,22 @@ The problem is that large numbers of [element-attribute selectors](http://steves
 
 {% raw %}</details>{% endraw %}
 
+
+
+
 ### Complex prop types
 
 Props should prefer simple types (i.e. `String`, `Number`, `Boolean`) over complex objects.
 
+
+
+
 ### Parent-child communication
 
 Props and events should be preferred for parent-child component communication (avoid `this.$parent` and mutating props).
+
+
+
 
 ### Global state management
 
