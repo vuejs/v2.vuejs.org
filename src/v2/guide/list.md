@@ -488,6 +488,8 @@ Here's a complete example of a simple todo list:
 </div>
 ```
 
+<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
+
 ``` js
 Vue.component('todo-item', {
   template: '\
