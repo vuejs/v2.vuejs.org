@@ -533,6 +533,8 @@ new Vue({
 })
 ```
 
+> `$emit` is an instance method that triggers an event on the current instance. Reference [vm.$emit](../api/#vm-emit).
+
 {% raw %}
 <div id="todo-list-example" class="demo">
   <input
