@@ -6,7 +6,7 @@ order: 403
 
 ## Configuração
 
-Qualquer coisa compatível com um sistema de build à base de módulos irá funcionar, mas se você está procurando uma recomendação específica, tente o test runner [Karma] (http://karma-runner.github.io). Ele tem vários plugins disponibilizados pela comunidade, incluindo suporte para [Webpack] (https://github.com/webpack/karma-webpack) e [Browserify] (https://github.com/Nikku/karma-browserify). Para uma configuração detalhada, consulte a respectiva documentação de cada plugin, embora estes exemplos de configurações do Karma para [Webpack] (https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js) e [Browserify] (https://github.com/vuejs/vueify-example/blob/master/karma.conf.js) possam ajudar você a começar.
+Qualquer coisa compatível com um sistema de build à base de módulos irá funcionar, mas se você está procurando uma recomendação específica, tente o test runner [Karma](http://karma-runner.github.io). Ele tem vários plugins disponibilizados pela comunidade, incluindo suporte para [Webpack](https://github.com/webpack/karma-webpack) e [Browserify](https://github.com/Nikku/karma-browserify). Para uma configuração detalhada, consulte a respectiva documentação de cada plugin, embora estes exemplos de configurações do Karma para [Webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js) e [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js) possam ajudar você a começar.
 
 ## Declarações Simples
 
@@ -85,7 +85,7 @@ Várias saídas de renderização dos componentes são determinadas, principalme
   }
 </script>
 ```
-Você pode definir a sua saída de renderização com diferentes propriedades, usando a opção `proposData`:
+Você pode definir a sua saída de renderização com diferentes propriedades, usando a opção `propsData`:
 
 ``` js
 import Vue from 'vue'
