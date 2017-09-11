@@ -68,11 +68,11 @@ Beaucoup de personnes argumentent sur le fait que vous devez apprendre un langag
 
 #### CSS à portée limitée au composant
 
-À moins que vous ne répartissiez les composants dans plusieurs fichiers (par exemple avec les [Modules CSS](https://github.com/gajus/react-css-modules)), limiter la portée du CSS dans React est souvent fait par des solutions « CSS-in-JS » (par ex : [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous) et [emotion](https://github.com/emotion-js/emotion)). Ceci introduit un nouveau paradigme de style orienté composant qui est différent du processus de création de CSS normal. De plus, bien qu'il y ai un support pour extraire le CSS dans un seul fichier de style lors de la phase de build, il est encore courant qu'une exécution doive être faite niveau paquetage pour que le style fonctionne correctement. Alors que vous gagnez un accès au dynamisme de JavaScript pendant la construction de vos styles, la contrepartie est souvent un paquetage plus lourd et un coup d'exécution.
+À moins que vous ne répartissiez les composants dans plusieurs fichiers (par exemple avec les [Modules CSS](https://github.com/gajus/react-css-modules)), limiter la portée du CSS dans React est souvent fait par des solutions « CSS-in-JS » (par ex : [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous) et [emotion](https://github.com/emotion-js/emotion)). Ceci introduit un nouveau paradigme de style orienté composant qui est différent du processus de création de CSS normal. De plus, bien qu'il y ait une option pour extraire le CSS dans un seul fichier de style lors de la phase de build, il est encore courant qu'une exécution doive être faite niveau paquetage pour que le style fonctionne correctement. Alors que vous gagnez un accès au dynamisme de JavaScript pendant la construction de vos styles, la contrepartie est souvent un paquetage plus lourd et un coup d'exécution.
 
 Si vous êtes un grand fan de « CSS-in-JS », beaucoup de bibliothèques supportent Vue (par ex. [styled-components-vue](https://github.com/styled-components/vue-styled-components) et [vue-emotion](https://github.com/egoist/vue-emotion)). La grande différence entre React et Vue ici est que la méthode de style par défaut de Vue est plus familière avec l'utilisation d'une balise `<style>` dans [un composant monofichier](single-file-components.html).
 
-[un composant monofichier](single-file-components.html) vous donne l'accès complet au CSS au sein d'un même fichier comme le reste du code du composant.
+[Un composant monofichier](single-file-components.html) vous donne l'accès complet au CSS au sein d'un même fichier comme le reste du code du composant.
 
 ``` html
 <style scoped>
@@ -124,7 +124,7 @@ React Native vous permet d'écrire des applications natives iOS et Android en ut
 
 Actuellement, Weex est toujours activement en développement et n'est pas aussi mature et bien testé que React Native, son développement est soutenu par les besoins en production du plus gros business e-commerce au monde, et l'équipe de Vue est aussi en étroite collaboration avec l'équipe de Weex pour assurer un passage en douceur pour les développeurs depuis Vue.
 
-Une autre option que les développeurs Vue auront bientôt sera l'utilisation de [NativeScript](https://www.nativescript.org/), via un [plugin communautaire](https://github.com/rigor789/nativescript-vue).
+Une autre option que les développeurs Vue auront bientôt est l'utilisation de [NativeScript](https://www.nativescript.org/), via un [plugin communautaire](https://github.com/rigor789/nativescript-vue).
 
 ### Avec MobX
 

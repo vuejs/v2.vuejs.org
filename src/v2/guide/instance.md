@@ -16,9 +16,9 @@ var vm = new Vue({
 
 Bien que n'étant pas strictement associée au patron d'architecture [MVVM pattern](https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-vue_mod%C3%A8le), la conception de Vue s'en est en partie inspirée. Par convention, nous utilisons souvent la variable `vm` (abréviation pour ViewModel) pour faire référence à nos instances de Vue.
 
-Quand vous créez une instance de Vue, vous devez passer un **objet d'options**. Ce guide décrit en majorité comment vous pouvez utiliser ces options pour créer les comportements que vous souhaitez. Vous pouvez également parcourir la liste de référence complète [dans la documentation de l'API](../api/#Options-Data).
+Quand vous créez une instance de Vue, vous devez passer un **objet d'options**. Ce guide décrit en majorité comment vous pouvez utiliser ces options pour créer les comportements que vous souhaitez. Vous pouvez également parcourir la liste complète de référence [dans la documentation de l'API](../api/#Options-Data).
 
-Une application Vue consiste en une **instance racine de Vue** créée avec `new Vue` et optionnellement organisée en un arbre de composants imbriqués et réutilisables. Par exemple, l'arbre d'une application de liste de tâche pourrait ressembler à cela :
+Une application Vue consiste en une **instance racine de Vue** créée avec `new Vue` et optionnellement organisée en un arbre de composants imbriqués et réutilisables. Par exemple, l'arbre d'une application de liste de tâches pourrait ressembler à cela :
 
 ```
 Instance racine

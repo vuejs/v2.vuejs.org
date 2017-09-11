@@ -744,13 +744,13 @@ if (version === 2) {
 
   Appelé juste après que l'instance ait été montée, là où `el` est remplacé par le nouvellement créé `vm.$el`. Si l'instance à la racine est montée sur un élément du document, alors `vm.$el` sera aussi dans le document quand `mounted` est appelé.
 
-  Notez que `mounted` **ne** garantit **pas** que tous les composants ont été montés. Si vous souhaitez attendre jusqu'à ce que le rendu de la vue entière ai été fait, vous pouvez utiliser [vm.$nextTick](#vm-nextTick) à l'intérieur de `mounted` :
+  Notez que `mounted` **ne** garantit **pas** que tous les composants aient été montés. Si vous souhaitez attendre jusqu'à ce que le rendu de la vue entière ait été fait, vous pouvez utiliser [vm.$nextTick](#vm-nextTick) à l'intérieur de `mounted` :
 
   ``` js
   mounted: function () {
     this.$nextTick(function () {
-      // Ce code va être exécuté seulement après
-      // que la vue entière ai été rendue
+      // Ce code va être exécuté seulement
+      // une fois le rendu de la vue entière terminé
     })
   }
   ```
@@ -783,13 +783,13 @@ if (version === 2) {
 
   Le DOM du composant aura été mis à jour quand ce hook est appelé, donc vous pouvez effectuer des opérations dépendantes du DOM ici. Cependant, dans la plupart des cas, vous devriez éviter de changer l'état dans ce hook. Pour réagir à des changements d'état, il vaut généralement mieux utiliser une [propriété calculée](#computed) ou un [observateur](#watch) à la place.
 
-  Notez que `updated` **ne** garantit **pas** que tous les composants ont été montés. Si vous souhaitez attendre jusqu'à ce que le rendu de la vue entière ai été fait, vous pouvez utiliser [vm.$nextTick](#vm-nextTick) à l'intérieur de `updated` :
+  Notez que `updated` **ne** garantit **pas** que tous les composants aient été montés. Si vous souhaitez attendre jusqu'à ce que le rendu de la vue entière ait été fait, vous pouvez utiliser [vm.$nextTick](#vm-nextTick) à l'intérieur de `updated` :
 
   ``` js
   updated: function () {
     this.$nextTick(function () {
-      // Ce code va être exécuté seulement après
-      // que la vue entière ai été rendue
+      // Ce code va être exécuté seulement
+      // une fois le rendu de la vue entière terminé
     })
   }
   ```

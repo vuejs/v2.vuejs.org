@@ -327,7 +327,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Si vous souhaitez passer toutes les propriétés dans un objet en tant que props, vous devez utiliser `v-bind` sans un argument  (`v-bind` au lieu de `v-bind:prop-name`). Par exemple, avec un objet `todo` :
+Si vous souhaitez passer toutes les propriétés dans un objet en tant que props, vous devez utiliser `v-bind` sans arguments  (`v-bind` au lieu de `v-bind:prop-name`). Par exemple, avec un objet `todo` :
 
 ``` js
 todo: {
