@@ -1,0 +1,39 @@
+#benchmark-results {
+  margin-bottom: 2em;
+}
+#benchmark-results ul {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 0;
+}
+#benchmark-results .framework,
+#benchmark-results .time,
+#benchmark-results .bar,
+#benchmark-results .inner {
+  display: inline-block;
+}
+#benchmark-results .framework {
+  width: 4.2em;
+  margin-right: 1em;
+  font-weight: 600;
+}
+#benchmark-results .time {
+  width: 4.2em;
+  margin-right: 1em;
+}
+#benchmark-results .bar {
+  width: 60%;
+}
+#benchmark-results .bar.min .inner {
+  background-color: #e74c3c;
+}
+#benchmark-results .inner {
+  height: 3px;
+  vertical-align: middle;
+  background-color: #3498db;
+}
+@media screen and (max-width: 600px) {
+  #benchmark-results .bar {
+    width: 45%;
+  }
+}

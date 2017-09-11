@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Common Beginner Gotchas — Vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <link rel="alternate" hreflang="x-default" href="https://vuejs.org/2016/02/06/common-gotchas/">
+        <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/2016/02/06/common-gotchas/">
+        <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/2016/02/06/common-gotchas/">
+        <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/2016/02/06/common-gotchas/">
+        <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/2016/02/06/common-gotchas/">
+        <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/2016/02/06/common-gotchas/">
+        <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/2016/02/06/common-gotchas/">
+
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="Common Beginner Gotchas — Vue.js">
+        <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+        <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Common Beginner Gotchas — Vue.js">
+        <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+        <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+        <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+        <link rel="icon" href="/images/logo.png" type="image/png">
+
+        <meta name="msapplication-TileColor" content="#4fc08d">
+        <meta name="theme-color" content="#4fc08d">
+
+        <meta name="msapplication-config" content="browserconfig.xml">
+        <link rel="manifest" href="/manifest.json">
+
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- main page styles -->
+        <link rel="stylesheet" href="/css/page.css">
+
+        <!-- this needs to be loaded before guide's inline scripts -->
+        <script src="/js/vue.js"></script>
+        <script>window.PAGE_TYPE = ""</script>
+
+        <!-- ga -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-46852172-1', 'vuejs.org');
+          ga('send', 'pageview');
+        </script>
+    </head>
+    <body class="docs">        <div id="mobile-bar" >
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png">
+    <span>Vue.js</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/v2/guide/" class="nav-link">Guide</a></li>
+<li><a href="/v2/api/" class="nav-link">API</a></li>
+<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Help</h4></li>
+    <li><ul>
+      <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank">Forum</a></li>
+      <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank">Chat</a></li>
+      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">Templates</a></li>
+    </ul></li>
+    <li><h4>News</h4></li>
+    <li><ul>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
+    </ul></li>
+    <li><h4>Core Plugins</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+    </ul></li>
+    <li><h4>Resource Lists</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">Official Repos</a></li>
+      <li><a href="https://curated.vuejs.org/" class="nav-link" target="_blank">Vue Curated</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Awesome Vue</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://cn.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">中文</a></li>
+    <li><a href="https://jp.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">日本語</a></li>
+    <li><a href="https://ru.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">Русский</a></li>
+    <li><a href="https://kr.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">Français</a></li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+</li>
+
+  </ul>
+</div>
+
+        
+            <div id="main" class="fix-sidebar">
+                
+                    <div class="sidebar blog">
+    <div class="sidebar-inner">
+        <ul class="main-menu">
+            <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/v2/guide/" class="nav-link">Guide</a></li>
+<li><a href="/v2/api/" class="nav-link">API</a></li>
+<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">Ecosystem</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Help</h4></li>
+    <li><ul>
+      <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank">Forum</a></li>
+      <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank">Chat</a></li>
+      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">Templates</a></li>
+    </ul></li>
+    <li><h4>News</h4></li>
+    <li><ul>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
+    </ul></li>
+    <li><h4>Core Plugins</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+    </ul></li>
+    <li><h4>Resource Lists</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">Official Repos</a></li>
+      <li><a href="https://curated.vuejs.org/" class="nav-link" target="_blank">Vue Curated</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Awesome Vue</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://cn.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">中文</a></li>
+    <li><a href="https://jp.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">日本語</a></li>
+    <li><a href="https://ru.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">Русский</a></li>
+    <li><a href="https://kr.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">한국어</a></li>
+    <li><a href="https://br.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">Português</a></li>
+    <li><a href="https://fr.vuejs.org/2016/02/06/common-gotchas/" class="nav-link" target="_blank">Français</a></li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
+</li>
+
+        </ul>
+        <div class="list">
+            <h2>
+                Recent Posts
+                <a href="/atom.xml" target="_blank" style="vertical-align: middle; margin-left: 5px">
+                    <img src="/images/feed.png" style="width:15px;height:15px">
+                </a>
+            </h2>
+            <ul style="padding:0">
+            
+                <li>
+                    <a href="/2016/04/27/announcing-2.0/" class="sidebar-link">Announcing Vue.js 2.0</a>
+                </li>
+            
+                <li>
+                    <a href="/2016/03/14/march-update/" class="sidebar-link">March 2016 Update</a>
+                </li>
+            
+                <li>
+                    <a href="/2016/02/06/common-gotchas/" class="sidebar-link current">Common Beginner Gotchas</a>
+                </li>
+            
+                <li>
+                    <a href="/2015/12/28/vue-cli/" class="sidebar-link">Announcing vue-cli</a>
+                </li>
+            
+                <li>
+                    <a href="/2015/10/28/why-no-template-url/" class="sidebar-link">Why Vue.js doesn't support templateURL</a>
+                </li>
+            
+                <li>
+                    <a href="/2015/10/26/1.0.0-release/" class="sidebar-link">Vue.js 1.0.0 Released</a>
+                </li>
+            
+                <li>
+                    <a href="/2015/06/11/012-release/" class="sidebar-link">Vue.js 0.12 released!</a>
+                </li>
+            
+                <li>
+                    <a href="/2014/12/08/011-component/" class="sidebar-link">0.11 Component Tips</a>
+                </li>
+            
+                <li>
+                    <a href="/2014/11/09/vue-011-release/" class="sidebar-link">Vue.js 0.11 released!</a>
+                </li>
+            
+                <li>
+                    <a href="/2014/07/29/vue-next/" class="sidebar-link">Vue.js 0.10.6, and what's next</a>
+                </li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content with-sidebar blog post">
+    <div id="ad">
+  <script>
+    (function () {
+      var s = document.createElement('script')
+      s.setAttribute('async', '')
+      s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs'
+      s.id = '_carbonads_js'
+      document.getElementById('ad').appendChild(s)
+    })()
+  </script>
+</div>
+
+    <h1>Common Beginner Gotchas</h1>
+    <h4>Feb 6, 2016</h4>
+    <p>There are few types of questions that we frequently see from users who are new to Vue.js. Although they are all mentioned somewhere in the guide, they are easy to miss and can be hard to find when you do get bitten by the gotchas. Therefore we are aggregating them in this post and hopefully it can save you some time!</p>
+<a id="more"></a>
+<h3 id="Why-isn’t-the-DOM-updating"><a href="#Why-isn’t-the-DOM-updating" class="headerlink" title="Why isn’t the DOM updating?"></a>Why isn’t the DOM updating?</h3><p>Most of the time, when you change a Vue instance’s data, the view updates. But there are two edge cases:</p>
+<ol>
+<li><p>When you are <strong>adding a new property</strong> that wasn’t present when the data was observed. Due to the limitation of ES5 and to ensure consistent behavior across browsers, Vue.js cannot detect property addition/deletions. The best practice is to always declare properties that need to be reactive upfront. In cases where you absolutely need to add or delete properties at runtime, use the global <a href="/api/#Vue-set"><code>Vue.set</code></a> or <a href="/api/#Vue-delete"><code>Vue.delete</code></a> methods.</p>
+</li>
+<li><p>When you modify an Array by directly setting an index (e.g. <code>arr[0] = val</code>) or modifying its <code>length</code> property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method <code>arr.$set(index, value)</code> which is just syntax sugar for <code>arr.splice(index, 1, value)</code>.</p>
+</li>
+</ol>
+<p>Further reading: <a href="/guide/reactivity.html">Reactivity in Depth</a> and <a href="http://vuejs.org/guide/list.html#Array-Change-Detection">Array Change Detection</a>.</p>
+<h3 id="When-is-the-DOM-updated"><a href="#When-is-the-DOM-updated" class="headerlink" title="When is the DOM updated?"></a>When is the DOM updated?</h3><p>Vue.js uses an asynchronous queue to batch DOM updates. This means when you modify some data, the DOM updates do not happen instantly: they are applied asynchronously when the queue is flushed. So how do you know when the DOM has been updated? Use <code>Vue.nextTick</code> right after you modify the data. The callback function you pass to it will be called once the queue has been flushed.</p>
+<p>Further reading: <a href="/guide/reactivity.html#Async-Update-Queue">Async Update Queue</a>.</p>
+<h3 id="Why-does-data-need-to-be-a-function"><a href="#Why-does-data-need-to-be-a-function" class="headerlink" title="Why does data need to be a function?"></a>Why does <code>data</code> need to be a function?</h3><p>In the basic examples, we declare the <code>data</code> directly as a plain object. This is because we are creating only a single instance with <code>new Vue()</code>. However, when defining a <strong>component</strong>, <code>data</code> must be declared as a function that returns the initial data object. Why? Because there will be many instances created using the same definition. If we still use a plain object for <code>data</code>, that same object will be <strong>shared by reference</strong> across all instance created! By providing a <code>data</code> function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.</p>
+<p>Further reading: <a href="/guide/components.html#Component-Option-Caveats">Component Option Caveats</a>.</p>
+<h3 id="HTML-case-insensitivity"><a href="#HTML-case-insensitivity" class="headerlink" title="HTML case insensitivity"></a>HTML case insensitivity</h3><p>All Vue.js templates are valid, parsable HTML markup, and Vue.js relies on spec-compliant parsers to process its templates. However, as specified in the standard, HTML is case-insensitive when matching tag and attribute names. This means camelCase attributes like <code>:myProp=&quot;123&quot;</code> will be matched as <code>:myprop=&quot;123&quot;</code>. As a rule of thumb, you should use camelCase in JavaScript and kebab-case in templates. For example a prop defined in JavaScript as <code>myProp</code> should be bound in templates as <code>:my-prop</code>.</p>
+<p>Further reading: <a href="http://vuejs.org/guide/components.html#camelCase-vs-kebab-case">camelCase vs. kebab-case</a>.</p>
+<p>We are also discussing the possibility of eliminating this inconsistency by resolving props and components in a case-insensitive manner. Join the conversation <a href="https://github.com/vuejs/vue/issues/2308" target="_blank" rel="external">here</a>.</p>
+
+</div>
+
+                
+            </div>
+            <script src="/js/smooth-scroll.min.js"></script>
+        
+
+        <!-- main custom script for sidebars, version selects etc. -->
+        <script src="/js/css.escape.js"></script>
+        <script src="/js/common.js"></script>
+
+        <!-- search -->
+        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/css/search.css">
+        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+        <script>
+        [
+          '#search-query-nav',
+          '#search-query-sidebar',
+          '#search-query-menu'
+        ].forEach(function (selector) {
+          if (!document.querySelector(selector)) return
+          // search index defaults to v2
+          var match = window.location.pathname.match(/^\/(v\d+)/)
+          var version = match ? match[1] : 'v2'
+          docsearch({
+            appId: 'BH4D9OD16A',
+            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+            indexName: 'vuejs',
+            inputSelector: selector,
+            algoliaOptions: { facetFilters: ["version:" + version] }
+          })
+        })
+        </script>
+
+        <!-- fastclick -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body)
+        }, false)
+        </script>
+    </body>
+</html>
