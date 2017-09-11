@@ -1,7 +1,7 @@
 ---
 title: Comparaison avec les autres frameworks
 type: guide
-order: 29
+order: 801
 ---
 
 C'est définitivement la page du guide la plus difficile à écrire, mais nous avons le sentiment que c'est important. Il y a de fortes chances pour que vous ayez des problèmes à résoudre et que vous utilisiez une autre bibliothèque pour les résoudre. Vous êtes ici parce que vous voulez savoir si Vue peut encore mieux résoudre vos problèmes spécifiques. C'est la réponse que nous espérons pouvoir vous apporter.
@@ -38,7 +38,7 @@ Au final cela permet d'éviter l'utilisation d'un large éventail d'optimisation
 
 ### HTML & CSS
 
-Avec React tout est JavaScript. Pas seulement la structure HTML exprimée via JSX, mais également le CSS qui tend également à être gérer avec du JavaScript. Cette approche a ses propres bénéfices, mais vient également avec son lot de compromis qui ne devraient pas mériter tant d'attention de la part de chaque développeur.
+Avec React tout est JavaScript. Pas seulement la structure HTML exprimée via JSX, mais également le CSS qui tend également à être géré avec du JavaScript. Cette approche a ses propres bénéfices, mais vient également avec son lot de compromis qui ne devraient pas mériter tant d'attention de la part de chaque développeur.
 
 Vue adopte les technologies classiques du Web et construit par-dessus celles-ci. Pour vous montrer ce que cela signifie, nous allons nous plonger dans plusieurs exemples.
 
@@ -54,7 +54,7 @@ Les fonctions de rendu de JSX ont quelques avantages :
 
 Dans Vue, nous avons également des [fonctions de rendu](render-function.html) et même [un support de JSX](render-function.html#JSX), car parfois, nous avons besoin de cette puissance. Cependant, pour une expérience par défaut nous offrons les templates comme une alternative simple. N'importe quel HTML valide est également un template Vue valide, ce qui mène à ces quelques avantages induits :
 
-- Pour beaucoup de développeurs qui travail en HTML, les templates semblent tout simplement plus naturels à écrire. La préférence en elle-même est quelque chose de subjectif, mais si cela rend les développeurs plus productifs alors le bénéfice est objectif.
+- Pour beaucoup de développeurs qui travaillent en HTML, les templates semblent tout simplement plus naturels à écrire. La préférence en elle-même est quelque chose de subjectif, mais si cela rend les développeurs plus productifs alors le bénéfice est objectif.
 
 - Les templates basés sur du HTML sont plus simple à migrer progressivement depuis une application existante qui souhaiterait tirer avantage des fonctionnalités de réactivités de Vue.
 
@@ -68,9 +68,11 @@ Beaucoup de personnes argumentent sur le fait que vous devez apprendre un langag
 
 #### CSS à portée limitée au composant
 
-À moins que vous ne répartissiez les composants dans plusieurs fichiers (par exemple avec les [Modules CSS](https://github.com/gajus/react-css-modules)), limiter la portée du CSS dans React est souvent fait par des solutions « CSS-in-JS ». Il y a beaucoup de solutions en compétition, chacune avec leurs propres inconvénients. Un problème courant est que les fonctionnalités comme les états de survol, les "media queries", et les pseudo-sélecteurs requièrent soit de lourdes dépendances pour réinventer ce que le CSS fait déjà — soit ne sont simplement pas supportées. S'il n'est pas optimisé avec précaution, le « CSS-in-JS » peut aussi impacter de manière non négligeable les performances à l'exécution. Plus important encore, cela change l'expérience première offerte par du CSS standard.
+À moins que vous ne répartissiez les composants dans plusieurs fichiers (par exemple avec les [Modules CSS](https://github.com/gajus/react-css-modules)), limiter la portée du CSS dans React est souvent fait par des solutions « CSS-in-JS » (par ex : [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous) et [emotion](https://github.com/emotion-js/emotion)). Ceci introduit un nouveau paradigme de style orienté composant qui est différent du processus de création de CSS normal. De plus, bien qu'il y ait une option pour extraire le CSS dans un seul fichier de style lors de la phase de build, il est encore courant qu'une exécution doive être faite niveau paquetage pour que le style fonctionne correctement. Alors que vous gagnez un accès au dynamisme de JavaScript pendant la construction de vos styles, la contrepartie est souvent un paquetage plus lourd et un coup d'exécution.
 
-Vue, en revanche, vous donne l'accès complet au CSS au sein de [simples fichiers composants](https://vuejs.org/v2/guide/single-file-components.html) :
+Si vous êtes un grand fan de « CSS-in-JS », beaucoup de bibliothèques supportent Vue (par ex. [styled-components-vue](https://github.com/styled-components/vue-styled-components) et [vue-emotion](https://github.com/egoist/vue-emotion)). La grande différence entre React et Vue ici est que la méthode de style par défaut de Vue est plus familière avec l'utilisation d'une balise `<style>` dans [un composant monofichier](single-file-components.html).
+
+[Un composant monofichier](single-file-components.html) vous donne l'accès complet au CSS au sein d'un même fichier comme le reste du code du composant.
 
 ``` html
 <style scoped>
@@ -84,9 +86,7 @@ Vue, en revanche, vous donne l'accès complet au CSS au sein de [simples fichier
 
 L'attribut optionnel `scoped` encapsule automatiquement ce CSS dans votre composant en ajoutant un unique attribut (comme par exemple `data-v-21e5b78`) à l'élément en compilant `.list-container:hover` en `.list-container[data-v-21e5b78]:hover`.
 
-Si vous êtes déjà familier avec les Modules CSS, les fichiers de composants Vue ont également un [support de première classe pour ceux-ci](http://vue-loader.vuejs.org/en/features/css-modules.html).
-
-Enfin, exactement comme en HTML, vous avez également la possibilité d'écrire votre CSS en utilisant les préprocesseurs ou post-processeurs de votre choix, vous permettant de tirer parti des bibliothèques existantes dans ces écosystèmes. Vous pouvez aussi effectuer des opérations centrées sur le design comme la manipulation de couleur durant votre chaîne de *build*, au lieu d'importer des bibliothèques JavaScript spécialisées qui vont augmenter le poids de votre *build* et complexifier votre application.
+Enfin, le style dans un composant monofichier Vue est vraiment flexible. Avec [vue-loader](https://github.com/vuejs/vue-loader), vous pouvez utiliser n'importe quel préprocesseur, post-processeur et même une intégration profonde avec les [Modules CSS](http://vue-loader.vuejs.org/en/features/css-modules.html) ; le tout dans un élément `<style>`.
 
 ### Adaptabilité
 
@@ -123,6 +123,8 @@ Puisque vous n'avez pas besoin de connaître JSX, ES2015 ou les outils de *build
 React Native vous permet d'écrire des applications natives iOS et Android en utilisant le même modèle de composant que React. C'est génial car en tant que développeur, vous pouvez appliquer vos connaissances d'un framework sur de multiple plateformes. De ce côté, Vue a une collaboration officielle avec [Weex](https://alibaba.github.io/weex/), un framework de développement d'UI multiplateforme développé par le groupe Alibaba, qui utilise Vue en tant que framework JavaScript d'exécution. Cela signifie qu'avec Weex, vous pouvez utiliser la même syntaxe de composant Vue pour concevoir des composants qui peuvent non seulement être utilisés sur navigateur mais également nativement sur iOS ou Android !
 
 Actuellement, Weex est toujours activement en développement et n'est pas aussi mature et bien testé que React Native, son développement est soutenu par les besoins en production du plus gros business e-commerce au monde, et l'équipe de Vue est aussi en étroite collaboration avec l'équipe de Weex pour assurer un passage en douceur pour les développeurs depuis Vue.
+
+Une autre option que les développeurs Vue auront bientôt est l'utilisation de [NativeScript](https://www.nativescript.org/), via un [plugin communautaire](https://github.com/rigor789/nativescript-vue).
 
 ### Avec MobX
 

@@ -1,7 +1,7 @@
 ---
 title: Composants monofichiers
 type: guide
-order: 19
+order: 402
 ---
 
 ## Introduction
@@ -60,7 +60,7 @@ Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des appli
 
 Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple). Suivez les instructions et vous devriez avoir en un clin d’œil un projet Vue avec des composants `.vue` , ES2015 et le rechargement à chaud !
 
-Ce template de projet utilise [webpack](https://webpack.js.org/), un empaqueteur de modules qui prend des « modules » et les empaquette dans votre application finale. Pour en apprendre plus sur webpack, [cette vidéo](https://www.youtube.com/watch?v=WQue1AN93YU) est une bonne introduction. Une fois que vous aurez les bases, vous pourrez aussi parcourir [ce cours webpack avancé sur Egghead.io](https://egghead.io/courses/using-webpack-for-production-javascript-applications).
+Ce template de projet utilise [webpack](https://webpack.js.org/), un empaqueteur de modules qui prend des « modules » et les empaquette dans votre application finale. Pour en apprendre plus sur webpack, consultez [la documentation officielle](https://webpack.js.org/configuration/) et la [Webpack Academy](https://webpack.academy/p/the-core-concepts).
 
 Dans webpack, chaque module peut être transformé par un « loader » avant d'être inclus dans le paquetage, et Vue offre le plugin [vue-loader](https://github.com/vuejs/vue-loader) pour traduire les composants monofichiers `.vue`. Le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple) a déjà tout configuré pour vous, mais si vous souhaitez en apprendre plus sur le fonctionnement des composants `.vue` avec webpack, vous pouvez lire [la documentation de vue-loader](https://vue-loader.vuejs.org).
 

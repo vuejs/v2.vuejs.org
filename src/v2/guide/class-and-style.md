@@ -71,7 +71,7 @@ computed: {
   classObject: function () {
     return {
       active: this.isActive && !this.error,
-      'text-danger': this.error && this.error.type === 'fatal',
+      'text-danger': this.error && this.error.type === 'fatal'
     }
   }
 }
@@ -82,7 +82,7 @@ computed: {
 Il est possible de passer un tableau à `v-bind:class` pour appliquer une liste de classes :
 
 ``` html
-<div v-bind:class="[activeClass, errorClass]">
+<div v-bind:class="[activeClass, errorClass]"></div>
 ```
 ``` js
 data: {
@@ -100,7 +100,7 @@ Ce qui rendra :
 Si vous voulez permuter une classe de la liste en fonction d'une condition, vous pouvez le faire avec une expression ternaire :
 
 ``` html
-<div v-bind:class="[isActive ? activeClass : '', errorClass]">
+<div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
 Ceci appliquera toujours la classe `errorClass`, mais appliquera `activeClass` uniquement quand `isActive` vaut `true`.
@@ -108,7 +108,7 @@ Ceci appliquera toujours la classe `errorClass`, mais appliquera `activeClass` u
 En revanche, ce peut être un peu verbeux si vous avez plusieurs classes conditionnelles. C'est pourquoi il est aussi possible d'utiliser la syntaxe objet dans la syntaxe tableau :
 
 ``` html
-<div v-bind:class="[{ active: isActive }, errorClass]">
+<div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
 ### Avec des Composants
@@ -186,7 +186,7 @@ Encore une fois, la syntaxe objet est souvent utilisée en conjonction avec des 
 La syntaxe tableau pour `v-bind:style` permet d'appliquer plusieurs objets de style à un même élément.
 
 ``` html
-<div v-bind:style="[baseStyles, overridingStyles]">
+<div v-bind:style="[baseStyles, overridingStyles]"></div>
 ```
 
 ### Préfixage automatique
@@ -200,7 +200,7 @@ Quand vous utilisez une propriété CSS qui nécessite un [préfixe vendeur](htt
 Introduit dans la 2.3.0+, vous pouvez fournir de multiples valeurs de préfixes à une propriété style, par exemple :
 
 ``` html
-<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
+<div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
 Ceci rendra uniquement la dernière valeur dans le tableau supportée par le navigateur. Dans cet exemple, cela rendra `display: flex` pour les navigateurs qui supportent la version sans préfixe de flexbox.

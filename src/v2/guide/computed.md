@@ -68,9 +68,9 @@ var vm = new Vue({
 Ici, nous avons déclaré une propriété calculée `reversedMessage`. La fonction que nous avons fournie sera utilisée comme une fonction accesseur (getter) pour la propriété `vm.reversedMessage` :
 
 ``` js
-console.log(vm.reversedMessage) // -> 'ruojnoB'
+console.log(vm.reversedMessage) // => 'ruojnoB'
 vm.message = 'Au revoir'
-console.log(vm.reversedMessage) // -> 'riover uA'
+console.log(vm.reversedMessage) // => 'riover uA'
 ```
 
 Vous pouvez ouvrir la console et jouer vous-même avec l'exemple de vm. La valeur de `vm.reversedMessage` dépend toujours de la valeur de `vm.message`.
@@ -251,7 +251,7 @@ var watchExampleVM = new Vue({
 </script>
 ```
 
-Result:
+Résultat :
 
 {% raw %}
 <div id="watch-example" class="demo">
@@ -287,7 +287,7 @@ var watchExampleVM = new Vue({
         vm.answer = 'Je réfléchis...'
         axios.get('https://yesno.wtf/api')
           .then(function (response) {
-            vm.answer = _.capitalize(response.data.answer)
+            vm.answer = _.capitalize(response.data.answer.replace(/yes/g, 'oui').replace(/no/g, 'non'))
           })
           .catch(function (error) {
             vm.answer = "Erreur ! Impossible d'accéder à l'API." + error

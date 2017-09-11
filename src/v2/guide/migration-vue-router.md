@@ -1,7 +1,7 @@
 ---
 title: Migration depuis Vue Router 0.7.x
 type: guide
-order: 27
+order: 702
 ---
 
 > Seul Vue Router 2 est compatible avec Vue 2, donc si vous mettez à jour Vue, vous devez mettre à jour Vue Router également. C'est pourquoi nous avons inclus des détails sur le chemin de migration ici dans les documentations principales. Pour un guide complet sur l'utilisation du nouveau Vue Router, consultez [la documentation Vue Router](http://router.vuejs.org/fr/).
@@ -127,6 +127,30 @@ router.match = createMatcher(
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.on</code> being called.</p>
 </div>
 {% endraw %}
+
+### `router.beforeEach` <sup>changed</sup>
+
+`router.beforeEach` now works asynchronously and takes a `next` function as its third argument.
+
+``` js
+router.beforeEach(function (transition) {
+  if (transition.to.path === '/forbidden') {
+    transition.abort()
+  } else {
+    transition.next()
+  }
+})
+```
+
+``` js
+router.beforeEach(function (to, from, next) {
+  if (to.path === '/forbidden') {
+    next(false)
+  } else {
+    next()
+  }
+})
+```
 
 ### `subRoutes` <sup>renamed</sup>
 

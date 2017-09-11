@@ -256,7 +256,7 @@ type : api
   - `{Object | Array} cible`
   - `{string | number} clé`
 
-  > Fonctionne uniquement avec Array + index dans la 2.2.0+.
+  > Seulement dans la 2.2.0+ : fonctionne aussi avec Array + index.
 
 - **Utilisation :**
 
@@ -436,8 +436,8 @@ if (version === 2) {
   var vm = new Vue({
     data: data
   })
-  vm.a // -> 1
-  vm.$data === data // -> true
+  vm.a // => 1
+  vm.$data === data // => true
 
   // data doit être une fonction lorsqu'utilisée dans Vue.extend()
   var Composant = Vue.extend({
@@ -545,10 +545,10 @@ if (version === 2) {
       }
     }
   })
-  vm.aPlus   // -> 2
+  vm.aPlus   // => 2
   vm.aPlus = 3
-  vm.a       // -> 2
-  vm.aDouble // -> 4
+  vm.a       // => 2
+  vm.aDouble // => 4
   ```
 
 - **Voir aussi :** [Propriétés calculées](../guide/computed.html)
@@ -610,7 +610,7 @@ if (version === 2) {
       }
     }
   })
-  vm.a = 2 // -> nouveau : 2, ancien : 1
+  vm.a = 2 // => nouveau : 2, ancien : 1
   ```
 
   <p class="tip">Notez que __vous ne devriez pas utiliser de fonctions fléchées pour définir un observateur__ (exemple: `saisie: nouvelleValeur => this.actualiserSuggestions(nouvelleValeur)`). La raison est que les fonctions fléchées sont liées au contexte parent, donc `this` ne correspondra pas à l'instance de Vue et `this.actualiserSuggestions` vaudra `undefined`.</p>
@@ -744,6 +744,17 @@ if (version === 2) {
 
   Appelé juste après que l'instance ait été montée, là où `el` est remplacé par le nouvellement créé `vm.$el`. Si l'instance à la racine est montée sur un élément du document, alors `vm.$el` sera aussi dans le document quand `mounted` est appelé.
 
+  Notez que `mounted` **ne** garantit **pas** que tous les composants aient été montés. Si vous souhaitez attendre jusqu'à ce que le rendu de la vue entière ait été fait, vous pouvez utiliser [vm.$nextTick](#vm-nextTick) à l'intérieur de `mounted` :
+
+  ``` js
+  mounted: function () {
+    this.$nextTick(function () {
+      // Ce code va être exécuté seulement
+      // une fois le rendu de la vue entière terminé
+    })
+  }
+  ```
+
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
 - **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
@@ -771,6 +782,17 @@ if (version === 2) {
   Appelé après qu'un changement d'une donnée ait causé un nouveau rendu et patch du DOM virtuel.
 
   Le DOM du composant aura été mis à jour quand ce hook est appelé, donc vous pouvez effectuer des opérations dépendantes du DOM ici. Cependant, dans la plupart des cas, vous devriez éviter de changer l'état dans ce hook. Pour réagir à des changements d'état, il vaut généralement mieux utiliser une [propriété calculée](#computed) ou un [observateur](#watch) à la place.
+
+  Notez que `updated` **ne** garantit **pas** que tous les composants aient été montés. Si vous souhaitez attendre jusqu'à ce que le rendu de la vue entière ait été fait, vous pouvez utiliser [vm.$nextTick](#vm-nextTick) à l'intérieur de `updated` :
+
+  ``` js
+  updated: function () {
+    this.$nextTick(function () {
+      // Ce code va être exécuté seulement
+      // une fois le rendu de la vue entière terminé
+    })
+  }
+  ```
 
   **Ce hook n'est pas appelé durant le rendu côté serveur.**
 
@@ -892,8 +914,8 @@ if (version === 2) {
     created: function () { console.log(2) },
     mixins: [mixin]
   })
-  // -> 1
-  // -> 2
+  // => 1
+  // => 2
   ```
 
 - **Voir aussi :** [Mixins](../guide/mixins.html)
@@ -953,7 +975,7 @@ if (version === 2) {
   var Enfant = {
     inject: ['foo'],
     created () {
-      console.log(this.foo) // -> "bar"
+      console.log(this.foo) // => "bar"
     }
     // ...
   }
@@ -1170,7 +1192,7 @@ if (version === 2) {
   new Vue({
     optionPersonnalisée: 'foo',
     created: function () {
-      console.log(this.$options.optionPersonnalisée) // -> 'foo'
+      console.log(this.$options.optionPersonnalisée) // => 'foo'
     }
   })
   ```
@@ -1435,7 +1457,7 @@ if (version === 2) {
     console.log(msg)
   })
   vm.$emit('test', 'salut')
-  // -> "salut"
+  // => "salut"
   ```
 
 <h3 id="vm-once">vm.$once( événement, callback )</h3>

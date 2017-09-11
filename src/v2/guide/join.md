@@ -1,7 +1,7 @@
 ---
 title: Rejoignez la communauté Vue.js !
 type: guide
-order: 30
+order: 802
 ---
 
 La communauté Vue grandit incroyablement vite et si vous lisez ceci, il y a de fortes chances pour que vous soyez prêt à la rejoindre. Alors... Soyez la ou le bienvenu(e) !

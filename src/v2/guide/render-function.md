@@ -1,7 +1,7 @@
 ---
-title: Fonctions de rendu
+title: Fonctions de rendu et JSX
 type: guide
-order: 15
+order: 303
 ---
 
 ## Les bases
@@ -83,6 +83,52 @@ Vue.component('anchored-heading', {
 ```
 
 C'est bien plus simple ! Le code est plus court mais demande une plus grande familiarité avec les propriétés d'une instance de Vue. Dans ce cas, vous devez savoir que lorsque vous passez des enfants dans attribut `slot` dans un composant, comme le `Hello world !` à l'intérieur de `anchored-heading`, ces enfants sont stockés dans l'instance du composant via la propriété `$slots.default`. Si vous ne l'avez pas encore fait, **il est recommandé d'en lire plus sur les [propriétés d'instance de l'API](../api/#Proprietes-dinstance) avant d'entrer plus en profondeur dans les fonctions de rendu.**
+
+## Nœuds, arbres, et DOM virtuel
+
+Avant de rentrer en profondeur dans les fonctions de rendu, il est important de savoir comment un navigateur fonctionne. Prenons cet HTML comme exemple :
+
+```html
+<div>
+  <h1>Mon titre</h1>
+  Divers contenus
+  <!-- À faire : ajouter une balise -->
+</div>
+```
+
+Quand votre navigateur lit ce code, il construit un [arbre de nœud de DOM](https://javascript.info/dom-nodes) pour l'aider à garder une trace de tout, comme vous ferriez un arbre généalogique pour garder une trace de votre famille étendue.
+
+L'arbre des nœuds du DOM pour le HTML ci-dessus ressemblerait à cela :
+
+![Visualisation de l'arbre du DOM](/images/dom-tree.png)
+
+Chaque élément est un nœud. Chaque morceau de texte est un nœud. Même les commentaires sont des nœuds ! Un nœud est juste un morceau de la page. Et comme dans un arbre généalogique, chaque nœud peut avoir des enfants (c.-à-d. que chaque morceau peut contenir d'autres morceaux).
+
+Mettre à jour tous ces nœuds efficacement peut être difficile, mais heureusement, vous n'avez jamais à le faire manuellement. Vous avez juste à dire à Vue quel HTML vous voulez pour votre page dans un template :
+
+```html
+<h1>{{ blogTitle }}</h1>
+```
+
+Ou quelle fonction de rendu :
+
+``` js
+render: function (createElement) {
+  return createElement('h1', this.blogTitle)
+}
+```
+
+Et dans les deux cas, Vue va automatiquement garder la page à jour, même quand `blogTitle` change.
+
+### Le DOM virtuel
+
+Vue arrive à cela grâce à la construction d'un **DOM virtuel** pour garder les traces des changements qui doivent être fait sur le vrai DOM. Prettons attention à cette ligne :
+
+``` js
+return createElement('h1', this.blogTitle)
+```
+
+Qu'est-ce que `createElement` retourne exactement ? Ce n'est pas _réellement_ un vrai élément de DOM. Cela pourrait être nommé plus justement `createNodeDescription`, car il contient des informations décrivant à Vue quel sorte de rendu de nœud il va falloir sur la page, incluant les descriptions des nœuds enfants. Nous appelons cette description de nœud un « nœud virtuel », usuellement abrégé en **VNode** (pour « virtual node »). « DOM virtuel » est le nom de l'arbre des VNodes construit par un arbre de composants Vue.
 
 ## Les arguments de `createElement`
 

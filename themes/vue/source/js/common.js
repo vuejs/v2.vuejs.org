@@ -170,7 +170,7 @@
       var section = window.location.pathname.match(/\/v\d\/(\w+?)\//)[1]
       if (version === 'SELF') return
       window.location.assign(
-        'http://' +
+        'https://' +
         version +
         (version && '.') +
         'vuejs.org/' + section + '/'
