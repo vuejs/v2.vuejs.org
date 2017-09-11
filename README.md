@@ -46,7 +46,7 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 
 **API**
 - [x] Global Config (Tradução: @theus. Revisão: @ErickPetru)
-- [ ] Global API (Tradução: @derevandal. Revisão: @anteriovieira)
+- [ ] Global API (Tradução: @Gutem. Revisão: @anteriovieira)
 - [ ] Options / Data (Tradução: @derevandal. Revisão: @anteriovieira)
 - [X] Options / DOM (Tradução: @guilherme-dev. Revisão: @ErickPetru)
 - [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: @derevandal)
