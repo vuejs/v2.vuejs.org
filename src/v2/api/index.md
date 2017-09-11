@@ -256,7 +256,7 @@ type : api
   - `{Object | Array} cible`
   - `{string | number} clé`
 
-  > Seulement dans la 2.2.0+ : Fonctionne aussi avec Array + index.
+  > Seulement dans la 2.2.0+ : fonctionne aussi avec Array + index.
 
 - **Utilisation :**
 

@@ -1,5 +1,5 @@
 ---
-title: État de transitions
+title: Transitions d'état
 type: guide
 order: 202
 ---

@@ -100,17 +100,17 @@ Quand votre navigateur lit ce code, il construit un [arbre de nœud de DOM](http
 
 L'arbre des nœuds du DOM pour le HTML ci-dessus ressemblerait à cela :
 
-![Visualisation de l'arbre due DOM](/images/dom-tree.png)
+![Visualisation de l'arbre du DOM](/images/dom-tree.png)
 
-Chaque élément est un nœud. Chaque morceau de texte est un nœud. Même les commentaires sont des nœuds ! Un nœud est juste un morceau de la page. Et comme dans un arbre généalogique, chaque nœud peut avoir des enfants (c.-à-d. que chaque morceau peut contenir d'autre morceau).
+Chaque élément est un nœud. Chaque morceau de texte est un nœud. Même les commentaires sont des nœuds ! Un nœud est juste un morceau de la page. Et comme dans un arbre généalogique, chaque nœud peut avoir des enfants (c.-à-d. que chaque morceau peut contenir d'autres morceaux).
 
-Mettre à jour tout ces nœuds efficacement peut être difficile, mais heureusement, vous n'avez jamais à le faire manuellement. Vous avez juste à dire à Vue quel HTML vous voulez pour votre page dans un template :
+Mettre à jour tous ces nœuds efficacement peut être difficile, mais heureusement, vous n'avez jamais à le faire manuellement. Vous avez juste à dire à Vue quel HTML vous voulez pour votre page dans un template :
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Ou une fonction de rendu :
+Ou quelle fonction de rendu :
 
 ``` js
 render: function (createElement) {
@@ -133,7 +133,6 @@ Qu'est-ce que `createElement` retourne exactement ? Ce n'est pas _réellement_ u
 ## Les arguments de `createElement`
 
 La seconde chose à laquelle vous allez devoir vous familiariser est la manière d'utiliser les fonctionnalités des templates avec la fonction `createElement`. Voici les arguments que la fonction `createElement` accepte :
->>>>>>> upstream/master
 
 ``` js
 // @returns {VNode}

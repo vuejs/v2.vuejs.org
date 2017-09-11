@@ -18,7 +18,7 @@ Bien que n'étant pas strictement associée au patron d'architecture [MVVM patte
 
 Quand vous créez une instance de Vue, vous devez passer un **objet d'options**. Ce guide décrit en majorité comment vous pouvez utiliser ces options pour créer les comportements que vous souhaitez. Vous pouvez également parcourir la liste de référence complète [dans la documentation de l'API](../api/#Options-Data).
 
-Une application Vue consiste en une **instance racine de Vue** créée avec `new Vue` et optionnellement organisée en un arbre de composant imbriqués et réutilisables. Par exemple, l'arbre d'une application de liste de tâche pourrait ressembler à cela :
+Une application Vue consiste en une **instance racine de Vue** créée avec `new Vue` et optionnellement organisée en un arbre de composants imbriqués et réutilisables. Par exemple, l'arbre d'une application de liste de tâche pourrait ressembler à cela :
 
 ```
 Instance racine
@@ -59,13 +59,13 @@ data.a = 3
 vm.a // => 3
 ```
 
-Quand ces données changent, le rendu de la vue est refait. Il est a noté que les propriétés dans `data` sont **réactive** si elles existaient quand l'instance a été créée. Cela signifie que si vous ajoutez une nouvelle propriété ainsi :
+Quand ces données changent, le rendu de la vue est refait. Il est à noter que les propriétés dans `data` sont **réactive** si elles existaient quand l'instance a été créée. Cela signifie que si vous ajoutez une nouvelle propriété ainsi :
 
 ``` js
 vm.b = 'salut'
 ```
 
-les changements de `b` ne déclencheront aucune mise à jour. Si vous savez que vous aurez besoin d'une propriété plus tard, mais qu'elle commence par une valeur vide ou non existante, vous avez juste besoin de la créer avec n'importe quelle valeur initiale. Par exemple :
+les changements de `b` ne déclencheront aucune mise à jour. Si vous savez que vous aller avoir besoin d'une propriété plus tard qui n'a pas de valeur dès le début, vous avez juste besoin de la créer avec n'importe quelle valeur initiale. Par exemple :
 
 ``` js
 data: {
