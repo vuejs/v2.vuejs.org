@@ -198,7 +198,7 @@ type: api
       }
     }
   })
-  // cria uma instancia de Profile e monta isto em um elemento
+  // cria uma instância de Profile e monta isto em um elemento
   new Profile().$mount('#mount-point')
   ```
 
@@ -218,20 +218,20 @@ type: api
 
 - **Uso:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+  Adia o callback para ser executado depois do próximo ciclo de atualização do DOM. Use imediatamente após modificar algum dado para esperar a atualização do DOM.
 
   ``` js
-  // modify data
+  // modifica dados
   vm.msg = 'Hello'
-  // DOM not updated yet
+  // DOM ainda não atualizado
   Vue.nextTick(function () {
-    // DOM updated
+    // DOM atualizado
   })
   ```
 
-  > Novo em 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > Novo em 2.1.0+: retorna uma Promise se nenhum callback é fornecido e Promise for suportada no ambiente de execução.
 
-- **Ver também:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+- **Ver também:** [Fila de Atualização Assíncrona](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
