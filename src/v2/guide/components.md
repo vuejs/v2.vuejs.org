@@ -327,6 +327,30 @@ new Vue({
 </script>
 {% endraw %}
 
+如果你想要将一个对象中的所有属性都作为 props 传递，可以使用不带参数的 `v-bind`（将 `v-bind:prop-name` 替换为 `v-bind`）。例如，给定一个 `todo` 对象：
+
+``` js
+todo: {
+  text: 'Learn Vue',
+  isComplete: false
+}
+```
+
+然后：
+
+``` html
+<todo-item v-bind="todo"></todo-item>
+```
+
+Will be equivalent to:
+
+``` html
+<todo-item
+  v-bind:text="todo.text"
+  v-bind:is-complete="todo.isComplete"
+></todo-item>
+```
+
 ### 字面量传值 vs. 动态传值(Literal vs. Dynamic)
 
 一个初学者易于常犯的错误是，试图通过字面量语法向下传递一个数值：

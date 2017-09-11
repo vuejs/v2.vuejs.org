@@ -68,9 +68,11 @@ On a higher level, we can divide components into two categories: presentational 
 
 #### CSS 的组件作用域
 
-除非你把组件分布在多个文件上（例如 [CSS Modules](https://github.com/gajus/react-css-modules)），要不在 React 中作用域内的 CSS 就会产生警告。非常简单的 CSS 还可以工作，但是稍微复杂点的，比如悬停状态、媒体查询、伪类选择符等要么通过沉重的依赖来重做要么就直接不能用。
+除非你把组件分布在多个文件上（例如 [CSS Modules](https://github.com/gajus/react-css-modules)），要不在 React 中作用域内的 CSS 就会产生警告。（例如 [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous) 和 [emotion](https://github.com/emotion-js/emotion)）。This introduces a new component-oriented styling paradigm that is different from the normal CSS authoring process. Additionally, although there is support for extracting CSS into a single stylesheet at build time, it is still common that a runtime will need to be included in the bundle for styling to work properly. While you gain acess to the dynamism of JavaScript while constructing your styles, the tradeoff is often increased bundle size and runtime cost.
 
-而 Vue 可以让你在每个[单文件组件](single-file-components.html)中完全访问 CSS。
+If you are a fan of CSS-in-JSS, many of the popular CSS-in-JS libraries support Vue (e.g. [styled-components-vue](https://github.com/styled-components/vue-styled-components) and [vue-emotion](https://github.com/egoist/vue-emotion)). The main difference between React and Vue here is that the default method of styling in Vue is through more familiar `style` tags in [single-file components](single-file-components.html).
+
+[Single-file components](single-file-components.html) give you full access to CSS in the same file as the rest of your component code.
 
 ``` html
 <style scoped>
@@ -84,13 +86,11 @@ On a higher level, we can divide components into two categories: presentational 
 
 这个可选 `scoped` 属性会自动添加一个唯一的属性（比如 `data-v-21e5b78`）为组件内 CSS 指定作用域，编译的时候 `.list-container:hover` 会被编译成类似 `.list-container[data-v-21e5b78]:hover`。
 
-如果你已经熟悉 CSS Modules，Vue 单文件组件也有 [first-class 支持它](http://vue-loader.vuejs.org/en/features/css-modules.html)。
+Lastly, the styling in Vue's single-file component's is very flexible. Through [vue-loader](https://github.com/vuejs/vue-loader), you can use any preprocessor, post-processor, and even deep integration with [CSS Modules](http://vue-loader.vuejs.org/en/features/css-modules.html) -- all within the `<style>` element.
 
-最后，就像 HTML 一样，你可以选择自己偏爱的 CSS 预处理器（或后处理器）编写 CSS，这些生态系统允许您利用现有的库。这可以让你围绕设计为中心展开工作，例如在构建过程中进行颜色操作，而不用引入专门的库来增加你应用的体积和复杂度。
+### 扩展
 
-### 规模
-
-#### 向上扩展
+#### 扩展升级
 
 Vue 和 React 都提供了强大的路由来应对大型应用。React 社区在状态管理方面非常有创新精神（比如 Flux、Redux），而这些状态管理模式甚至 [Redux 本身](https://github.com/egoist/revue)也可以非常容易的集成在 Vue 应用中。实际上，Vue 更进一步地采用了这种模式（[Vuex](https://github.com/vuejs/vuex)），相信更加深入集成 Vue 的状态管理解决方案 Vuex 能为你带来更好的开发体验。
 
