@@ -240,15 +240,15 @@ type: api
   - `{string | number} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Returna:** o valor atribuído.
 
 - **Uso:**
 
-  Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
+  Atribui uma propriedade em um objeto. Se o objeto é reativo, certifique-se que a propriedade é criada como uma propriedade reativa e dispara atualizações na view. Isto é usado primariamente para contornar a limitação que o Vue não consegue detectar adições de propriedades.
 
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
+  **Note que o objeto não pode ser uma instância do Vue ou o dado de um objeto root de uma instância do Vue.**
 
-- **Ver também:** [Reactivity in Depth](../guide/reactivity.html)
+- **Ver também:** [Reatividade em Profundidade](../guide/reactivity.html)
 
 <h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
