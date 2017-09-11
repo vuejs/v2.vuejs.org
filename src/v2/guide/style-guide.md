@@ -1,14 +1,14 @@
 ---
-title: Style Guide & Linter
+title: Style Guide
 type: guide
 order: 402
 ---
 
 This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't care whether you use semicolons or trailing commas. We don't care whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
 
-For every rule, we'll also provide tips for enforcement. Sometimes, you'll simply have to be disciplined, but wherever possible, we'll show you how to use ESLint and other automated processes to make enforcement simpler.
+> **Soon, we'll also provide tips for enforcement.** Sometimes you'll simply have to be disciplined, but wherever possible, we'll try to show you how to use ESLint and other automated processes to make enforcement simpler.
 
 Finally, we've split rules into four categories:
 
@@ -1024,9 +1024,51 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 ## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
+
+
 ### Component options order
 
-Component options should be ordered consistently.
+**Component options should be ordered consistently.**
+
+The specific order is
+
+- Side effects
+  - el
+
+- Config
+  - name
+  - functional
+  - delimiters
+  - inheritAttrs
+  - comments
+  - parent
+
+- Composition
+  - extends
+  - mixins
+
+- Assets
+  - components
+  - directives
+  - filters
+
+- Interface
+  - model
+  - props/propsData
+
+- Local Properties
+  - data
+  - computed
+  - methods
+
+- Events
+  - watch
+  - Lifecycle (in the order they are called)
+
+- Rendering
+  - template/render
+  - renderError
+
 
 ### Element attribute order
 
@@ -1161,7 +1203,9 @@ The problem is that large numbers of [element-attribute selectors](http://steves
 
 ### Complex prop types
 
-Props should prefer simple types (i.e. `String`, `Number`, `Boolean`) over complex objects.
+**Props should prefer simple types (i.e. `String`, `Number`, `Boolean`) or custom prototypes over complex objects.**
+
+This is in the spirit of being as explicity as possible
 
 
 

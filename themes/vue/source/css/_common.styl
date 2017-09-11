@@ -63,11 +63,11 @@ a.button
 
 .highlight
   overflow-x: auto
-  padding: 0
   background-color: $codebg
-  padding: .8em .8em .4em
+  padding: .4em 0 0
   line-height: 1.1em
   border-radius: $radius
+  position: relative
   table, tr, td
     width: 100%
     border-collapse: collapse
@@ -86,7 +86,7 @@ a.button
   &.html, &.js, &.bash, &.css
     .code:before
       position: absolute
-      margin-top: -1em
+      top: 0
       right: 0
       color: #ccc
       text-align: right
