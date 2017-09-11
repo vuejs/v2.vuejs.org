@@ -347,9 +347,9 @@ type: api
 
 - **Uso:**
 
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+  Instala um plugin do Vue.js. Se o plugin é um Objeto, ele deve expor um método `install`. Se for uma função, ela será tratada como o método install. O método install será chamado com Vue como argumento.
 
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+  Quando este método é chamado no memso plugin múltiplas vezes, o plugin só será instalado uma única vez.
 
 - **Ver também:** [Plugins](../guide/plugins.html)
 
