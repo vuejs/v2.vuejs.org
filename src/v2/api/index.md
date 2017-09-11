@@ -371,7 +371,7 @@ type: api
 
 - **Uso:**
 
-  Compiles a template string into a render function. **Only available in the full build.**
+  Compila um template string em uma função de renderização. **Somente disponível no build completo.**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -385,7 +385,7 @@ type: api
   })
   ```
 
-- **Ver também:** [Render Functions](../guide/render-function.html)
+- **Ver também:** [Funções de Renderização](../guide/render-function.html)
 
 <h3 id="Vue-version">Vue.version</h3>
 
