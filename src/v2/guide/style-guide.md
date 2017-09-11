@@ -4,7 +4,7 @@ type: guide
 order: 402
 ---
 
-This is an official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
+This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
 
 For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't care whether you use semicolons or trailing commas. We don't care whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
 
@@ -51,7 +51,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 ### Multi-word component names
 
-**Component names should always be multi-word (containing at least one hyphen).**
+**Component names should always be multi-word.**
 
 This prevents conflicts with existing and future HTML elements, since all HTML elements are a single word.
 
@@ -296,6 +296,8 @@ It's _always_ required on components, in order to maintain internal component st
 This is only relevant for single-file components. It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
 
 **Component libraries should prefer a class-based strategy, instead of using the `scoped` attribute.**
+
+This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
 
 {% raw %}
 <details>
@@ -628,7 +630,7 @@ components/
 
 **Components with no content should be self-closing in single-file components, string templates, and JSX - but never in DOM templates.**
 
-Components that self-close communicate that they not only have no content, but are **meant** to have content. This extra expressive power and the cleaner code it allows make it preferred.
+Components that self-close communicate that they not only have no content, but are **meant** to have content. It's the difference between a blank page in a book and one labeled "This page intentionally left blank." Your code is also cleaner without the unnecessary closing tag.
 
 Unfortunately, HTML doesn't allow custom elements to be self-closing - only [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). That's why the strategy is only possible when Vue's template compiler can reach the template before the DOM, then serve the DOM spec-compliant HTML.
 
