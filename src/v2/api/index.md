@@ -305,15 +305,15 @@ type: api
 
 - **Uso:**
 
-  Register or retrieve a global filter.
+  Registra ou recupera um filtro global.
 
   ``` js
-  // register
+  // registra
   Vue.filter('my-filter', function (value) {
-    // return processed value
+    // retorna o valor processado
   })
 
-  // getter, return the filter if registered
+  // getter, retorna o filtro se registrado
   var myFilter = Vue.filter('my-filter')
   ```
 
