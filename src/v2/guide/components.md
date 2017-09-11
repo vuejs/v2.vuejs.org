@@ -342,7 +342,7 @@ todo: {
 <todo-item v-bind="todo"></todo-item>
 ```
 
-Will be equivalent to:
+等同于如下：
 
 ``` html
 <todo-item
