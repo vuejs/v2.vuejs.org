@@ -41,7 +41,7 @@ Quand une instance de Vue est créée, cela ajoute toutes les propriétés trouv
 // Notre objet de données
 var data = { a: 1 }
 
-// L'objet est ajouté a une instance de Vue
+// L'objet est ajouté à une instance de Vue
 var vm = new Vue({
   data: data
 })
@@ -59,7 +59,7 @@ data.a = 3
 vm.a // => 3
 ```
 
-Quand ces données changent, le rendu de la vue est refait. Il est à noter que les propriétés dans `data` sont **réactive** si elles existaient quand l'instance a été créée. Cela signifie que si vous ajoutez une nouvelle propriété ainsi :
+Quand ces données changent, le rendu de la vue est refait. Il est à noter que les propriétés dans `data` sont **réactives** si elles existaient quand l'instance a été créée. Cela signifie que si vous ajoutez une nouvelle propriété ainsi :
 
 ``` js
 vm.b = 'salut'
