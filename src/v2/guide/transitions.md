@@ -1,7 +1,7 @@
 ---
-title: Effets de transition
+title: Transitions d'entrée, de sortie et de liste
 type: guide
-order: 13
+order: 201
 ---
 
 ## Vue d'ensemble

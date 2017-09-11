@@ -1,7 +1,7 @@
 ---
 title: Gestion de l'état
 type: guide
-order: 22
+order: 502
 ---
 
 ## Implémentation officielle semblable à Flux

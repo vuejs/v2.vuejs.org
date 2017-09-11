@@ -68,9 +68,9 @@ var vm = new Vue({
 Ici, nous avons déclaré une propriété calculée `reversedMessage`. La fonction que nous avons fournie sera utilisée comme une fonction accesseur (getter) pour la propriété `vm.reversedMessage` :
 
 ``` js
-console.log(vm.reversedMessage) // -> 'ruojnoB'
+console.log(vm.reversedMessage) // => 'ruojnoB'
 vm.message = 'Au revoir'
-console.log(vm.reversedMessage) // -> 'riover uA'
+console.log(vm.reversedMessage) // => 'riover uA'
 ```
 
 Vous pouvez ouvrir la console et jouer vous-même avec l'exemple de vm. La valeur de `vm.reversedMessage` dépend toujours de la valeur de `vm.message`.

@@ -327,6 +327,30 @@ new Vue({
 </script>
 {% endraw %}
 
+Si vous souhaitez passer toutes les propriétés dans un objet en tant que props, vous devez utiliser `v-bind` sans un argument  (`v-bind` au lieu de `v-bind:prop-name`). Par exemple, avec un objet `todo` :
+
+``` js
+todo: {
+  text: 'Apprendre Vue',
+  isComplete: false
+}
+```
+
+Alors :
+
+``` html
+<todo-item v-bind="todo"></todo-item>
+```
+
+Est équivalent à :
+
+``` html
+<todo-item
+  v-bind:text="todo.text"
+  v-bind:is-complete="todo.isComplete"
+></todo-item>
+```
+
 ### Littérale vs. Dynamique
 
 Une erreur répandue chez les débutants est d'essayer de passer un nombre en utilisant la syntaxe littérale :

@@ -1,7 +1,7 @@
 ---
-title: État de transition
+title: État de transitions
 type: guide
-order: 14
+order: 202
 ---
 
 Le système de transition de Vue offre de nombreuses façons simples d'animer l'entrée, la sortie et les listes, mais qu'en est-il de l'animation de vos propres données ? Par exemple :

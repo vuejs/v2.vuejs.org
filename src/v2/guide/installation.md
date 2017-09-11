@@ -17,6 +17,10 @@ Vue **ne** supporte **pas** IE8 et les versions antérieures, car il utilise des
 
 Les notes de version détaillées pour chaque version sont disponibles sur [GitHub](https://github.com/vuejs/vue/releases).
 
+## Vue Devtools
+
+Quand vous utilisez Vue, nous vous recommandons également d'installer [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) dans votre navigateur. Cela vous permetta d'inspecter et de débogguer vos applications Vue dans une interface dédiée et intuitive.
+
 ## Inclusion directe `<script>`
 
 Il suffit de télécharger et de l'inclure avec une balise script. `Vue` sera déclaré comme une variable globale.

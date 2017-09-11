@@ -343,8 +343,8 @@ vm.pick === vm.a
 
 ``` js
 // lorsque c'est sélectionné :
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## Modificateurs
@@ -380,4 +380,4 @@ Si vous voulez que les espaces superflus des saisies utilisateur soient automati
 
 > Si vous n'êtes pas encore familier avec les composants de Vue, passez cette section pour le moment.
 
-Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des champs avec un comportement complètement personnalisé. Ces champs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez la section ["champs personnalisés"](components.html#Form-Input-Components-using-Custom-Events) dans le guide des composants.
+Les types de champ standards HTML ne couvriront pas toujours vos besoins. Heureusement, les composants de Vue vous permettent de construire des champs avec un comportement complètement personnalisé. Ces champs fonctionnent même avec `v-model` ! Pour en apprendre plus, lisez la section [champs personnalisés](components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises) dans le guide des composants.

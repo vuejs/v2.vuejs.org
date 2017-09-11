@@ -1,7 +1,7 @@
 ---
-title: Astuces de déploiement en production
+title: Déploiement en production
 type: guide
-order: 20
+order: 401
 ---
 
 ## Passer en mode production
@@ -77,9 +77,9 @@ Lors de l'utilisation de composants monofichiers, le CSS à l'intérieur des com
 
 Référez-vous aux documentations respectives des outils de build pour voir comment cela est fait :
 
-- [webpack + vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) (le template webpack `vue-cli` a cela pré-configuré)
+- [webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (le template webpack `vue-cli` a cela pré-configuré)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
-- [Rollup + rollup-plugin-vue](https://github.com/znck/rollup-plugin-vue#options)
+- [Rollup + rollup-plugin-vue](https://vuejs.github.io/rollup-plugin-vue/#/en/2.3/?id=custom-handler)
 
 ## Suivre les erreurs d'exécution
 
