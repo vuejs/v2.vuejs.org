@@ -325,20 +325,20 @@ type: api
 
 - **Uso:**
 
-  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
+  Registra ou recupera um componente global. O registro também atribui, automaticametne, o objeto `name` do componente com o `id` passado.
 
   ``` js
-  // register an extended constructor
+  // registra um construtor extendido
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // register an options object (automatically call Vue.extend)
+  // registra um objeto com opções (automaticamente chama Vue.extend)
   Vue.component('my-component', { /* ... */ })
 
-  // retrieve a registered component (always return constructor)
+  // recupera um componente registrado (sempre retorna um construtor)
   var MyComponent = Vue.component('my-component')
   ```
 
-- **Ver também:** [Components](../guide/components.html)
+- **Ver também:** [Componentes](../guide/components.html)
 
 <h3 id="Vue-use">Vue.use( plugin )</h3>
 
