@@ -488,6 +488,8 @@ Here's a complete example of a simple todo list:
 </div>
 ```
 
+> In some cases, components may appear as a native html element extended with the special `is` attribute; in other cases, `is` would be used to address errors caused by elements (e.g. `ul`, `ol`, `table`) that have restrictions on what other elements can appear inside of them. Refer to [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) for more information.
+
 ``` js
 Vue.component('todo-item', {
   template: '\
