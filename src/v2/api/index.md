@@ -274,10 +274,10 @@ type: api
 
 - **Uso:**
 
-  Register or retrieve a global directive.
+  Registra ou recupera uma diretiva global.
 
   ``` js
-  // register
+  // registra
   Vue.directive('my-directive', {
     bind: function () {},
     inserted: function () {},
@@ -286,16 +286,16 @@ type: api
     unbind: function () {}
   })
 
-  // register (simple function directive)
+  // registra (diretiva de função simples)
   Vue.directive('my-directive', function () {
-    // this will be called as `bind` and `update`
+    // isto será chamado como `bind` e `update`
   })
 
-  // getter, return the directive definition if registered
+  // getter, retorna a definição da diretiva se registrada
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **Ver também:** [Custom Directives](../guide/custom-directive.html)
+- **Ver também:** [Diretivas Personalizadas](../guide/custom-directive.html)
 
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
