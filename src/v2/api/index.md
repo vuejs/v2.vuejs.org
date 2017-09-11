@@ -360,9 +360,9 @@ type: api
 
 - **Uso:**
 
-  Apply a mixin globally, which affects every Vue instance created afterwards. This can be used by plugin authors to inject custom behavior into components. **Not recommended in application code**.
+  Aplica um mixin globalmente, o qual afeta toda instância do Vue criada posteriormente. Isto pode ser usado por autores de plugins para injetar um comportamento personalizado em componentes. **Não recomendado no código da aplicação**.
 
-- **Ver também:** [Global Mixin](../guide/mixins.html#Global-Mixin)
+- **Ver também:** [Mixin Global](../guide/mixins.html#Global-Mixin)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
