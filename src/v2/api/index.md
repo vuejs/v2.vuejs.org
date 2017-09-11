@@ -256,15 +256,15 @@ type: api
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > Only works with Array + index in 2.2.0+.
+  > Somente funciona com Array + index em 2.2.0+.
 
 - **Uso:**
 
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+  Remove uma propriedade de um objeto. Se o objeto é reativo, certifique-se que a remoção dispara atualizações na view. Isto é usado primariamente para contornar a limitação que o Vue não consegue detectar remoção de propriedades, mas você raramente precisará usar isto.
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">O objeto a ser removido não pode ser uma instância do Vue ou o dado de um objeto root de uma instância do Vue</p>
 
-- **Ver também:** [Reactivity in Depth](../guide/reactivity.html)
+- **Ver também:** [Reatividade em Profundidade](../guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
@@ -449,7 +449,7 @@ if (version === 2) {
 
   <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
 
-- **Ver também:** [Reactivity in Depth](../guide/reactivity.html)
+- **Ver também:** [Reatividade em Profundidade](../guide/reactivity.html)
 
 ### props
 
