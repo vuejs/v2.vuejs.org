@@ -541,13 +541,13 @@ new Vue({
 
 <p>Dans les composants enfants, nous pouvons utiliser n'importe quelle combinaison de stratégies de transition qui ont été abordées dans cette page, ainsi que celles offertes par le [système intégré de transition](transitions.html) de Vue. En utilisant les deux, il existe très peu de limites à ce qui peut être accompli.</p><p class="tip">**La partie suivante est est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
 
-## Bringing Designs to Life
+## Donner vie à ses créations
 
-To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+Animer, par définition, signifie donner vie. Malheureusement, quand les designers créent des icônes, logos et mascottes, ils fournissent généralement des images statiques ou des SVGs. Aussi l'octochat de GitHub, l'oiseau de Twitter et bien d'autres logos en forme de créature ne semblent pas réellement vivant.
 
-Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+Vue peut vous aider. Puisque les SVGs ne sont que des données, nous avons uniquement besoin de voir à quoi ressemble ses créatures quand elles sont exitées, pensives, en intéraction, etc. Ensuite Vue vous aidera aux transitions entre ces états, faisant de vos pages d'accueils, vos animations d'attente et de vos notifications quelque chose de vivant.
 
-Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
+Un exemple de cela dans de Sarah Drasner ci-dessous, utilisant une combinaison de changement d'état intéractif et d'état en boucle animée.
 
-<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">Voir le pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Wall-E contrôlé par Vue</a> par Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) sur <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
