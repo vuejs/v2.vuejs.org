@@ -38,7 +38,7 @@ En ce qui concerne Vuex, la version 0.8 est compatible avec Vue 2, vous n'êtes 
 
 ## Templates
 
-### Instances fragmentées <sup>retirées</sup>
+### Instances fragmentées <sup>supprimées</sup>
 
 Tous les composants doivent avoir seulement un seul élément racine. Les instances fragmentées ne sont plus permises. Si vous aviez un template comme ceci :
 
@@ -65,7 +65,7 @@ Il est recommandé d'entourer simplement le contenu complet dans un nouvel élé
 
 ## Hooks de cycle de vie
 
-### `beforeCompile` <sup>retiré</sup>
+### `beforeCompile` <sup>supprimé</sup>
 
 Utilisez le hook `created` à la place.
 
@@ -87,7 +87,7 @@ Utilisez le hook `mounted` à la place.
 </div>
 {% endraw %}
 
-### `attached` <sup>retiré</sup>
+### `attached` <sup>supprimé</sup>
 
 Utilisez une vérification du DOM dans les autres hooks. Par exemple, remplacez :
 
@@ -114,7 +114,7 @@ mounted: function () {
 </div>
 {% endraw %}
 
-### `detached` <sup>retiré</sup>
+### `detached` <sup>supprimé</sup>
 
 Utilisez une vérification du DOM dans les autres hooks. Par exemple, remplacez :
 
@@ -195,7 +195,7 @@ Quand vous utilisez une `key`, l'ordre des arguments pour les objets était `(ke
 </div>
 {% endraw %}
 
-### `$index` et `$key` <sup>retirés</sup>
+### `$index` et `$key` <sup>supprimés</sup>
 
 Les variables implicites `$index` et `$key` ont été enlevées à la faveur de leur définition explicite dans `v-for`. Ceci rend le code plus simple à lire pour les développeurs moins expérimentés avec Vue. Il en résulte également des comportements plus prévisibles dans les cas de boucles imbriquées.
 
@@ -240,7 +240,7 @@ Précédemment, `v-for="number in 10"` devait avoir `number` qui commençait à 
 
 ## Props
 
-### Option de prop `coerce` <sup>retirée</sup>
+### Option de prop `coerce` <sup>supprimée</sup>
 
 Si vous voulez coercer une prop, mettez en place une propriété calculée basée dessus. Par exemple au lieu de :
 
@@ -284,7 +284,7 @@ Cela a plusieurs avantages :
 </div>
 {% endraw %}
 
-### Option de prop `twoWay` <sup>retirée</sup>
+### Option de prop `twoWay` <sup>supprimée</sup>
 
 Les props sont maintenant toujours unidirectionnelles et descendantes. Pour produire une modification dans la portée parente, un composant a besoin d'explicitement émettre un évènement au lieu de créer une liaison implicite. Pour plus d'informations, consultez :
 
@@ -299,7 +299,7 @@ Les props sont maintenant toujours unidirectionnelles et descendantes. Pour prod
 </div>
 {% endraw %}
 
-### Modificateur `.once` et `.sync` de `v-bind` <sup>retiré</sup>
+### Modificateur `.once` et `.sync` de `v-bind` <sup>supprimé</sup>
 
 Les props sont maintenant toujours unidirectionnelles et descendantes. Pour produire une modification dans la portée parente, un composant a besoin d'explicitement émettre un évènement au lieu de créer une liaison implicite. Pour plus d'informations, consultez :
 
@@ -411,7 +411,7 @@ Quand vous utilisez un composant, `v-on` n'écoutera que les évènements `$emit
 </div>
 {% endraw %}
 
-### Paramètre d'attribut `debounce` pour `v-model` <sup>retiré</sup>
+### Paramètre d'attribut `debounce` pour `v-model` <sup>supprimé</sup>
 
 Une fonction de rétention (« debounce ») est utilisée pour limiter la fréquence d'exécution des requêtes Ajax et des autres opérations coûteuses. L'attribut `debounce` de Vue pour le paramètre `v-model` est taillé pour des cas simples, mais en fait il fait la rétention des __mises à jour d'état__ plutôt que des opérations lourdes elles-même. C'est une différence subtile, mais cela amène des limitations quand l'application grandit.
 
@@ -547,7 +547,7 @@ Nous utiliserons :
 </div>
 {% endraw %}
 
-### Attribut `value` avec `v-model` <sup>retiré</sup>
+### Attribut `value` avec `v-model` <sup>supprimé</sup>
 
 `v-model` ne se préoccupe plus de la valeur initiale de l'attribut `value`. Pour plus de prédictibilité, il utilisera toujours la donnée utilisée dans l'instance de Vue comme source de vérité.
 
@@ -582,7 +582,7 @@ vous devrez vous assurer que la valeur initiale pour `text` est `"hello world"`.
 </div>
 {% endraw %}
 
-### Itération de valeur primitive avec `v-model` et `v-for` <sup>retiré</sup>
+### Itération de valeur primitive avec `v-model` et `v-for` <sup>supprimé</sup>
 
 Les cas de figure comme celui-ci ne fonctionnent plus :
 
@@ -613,7 +613,7 @@ Comme vous pouvez le voir, la liaison bidirectionnelle de `v-model` n'a plus de 
 </div>
 {% endraw %}
 
-### `v-bind:style` avec la syntaxe objet et `!important` <sup>retiré</sup>
+### `v-bind:style` avec la syntaxe objet et `!important` <sup>supprimé</sup>
 
 Ceci ne fonctionne plus :
 
@@ -661,7 +661,7 @@ D'un autre côté, `$refs` est conçu avant tout pour un accès programmatique e
 </div>
 {% endraw %}
 
-### `v-else` avec `v-show` <sup>retiré</sup>
+### `v-else` avec `v-show` <sup>supprimé</sup>
 
 `v-else` n'est plus supporté avec `v-show`. Utilisez `v-if` avec une expression négative à la place. Par exemple, au lieu de :
 
@@ -703,7 +703,7 @@ Heureusement, puisque les nouvelles directives sont plus simples, vous pouvez le
 </div>
 {% endraw %}
 
-### Modificateur de directive `.literal` <sup>retiré</sup>
+### Modificateur de directive `.literal` <sup>supprimé</sup>
 
 Le modificateur `.literal` a été supprimé, la même chose peut être facilement réalisée en fournissant une chaîne de caractères littérale en tant que valeur.
 
@@ -750,7 +750,7 @@ Avec le nouveau système de transition, vous pouvez maintenant [utiliser les com
 </div>
 {% endraw %}
 
-### Attribut de transition `stagger` <sup>retiré</sup>
+### Attribut de transition `stagger` <sup>supprimé</sup>
 
 Si vous avez besoin d'écheloner les transitions, vous pouvez contrôler le timing en accédant ou changeant une `data-index` ou attribut similaire sur un élément. Consultez [un exemple ici](transitions.html#Echelonnage-des-transitions-de-liste).
 
@@ -763,7 +763,7 @@ Si vous avez besoin d'écheloner les transitions, vous pouvez contrôler le timi
 
 ## Évènements
 
-### Option `events` <sup>retirée</sup>
+### Option `events` <sup>supprimée</sup>
 
 L'option `events` a été retirée. Les gestionnaires d'évènements doivent maintenant être abonnés dans le hook `created` à la place. Consultez [le guide `$dispatch` et `$broadcast`](#dispatch-et-broadcast-remplaces) pour plus de détails.
 
@@ -868,7 +868,7 @@ Ce modèle peut servir de remplacement à `$dispatch` et `$broadcast` dans des s
 
 ## Filtres
 
-### Filtres en dehors des interpolations de texte <sup>retiré</sup>
+### Filtres en dehors des interpolations de texte <sup>supprimé</sup>
 
 Les filtres peuvent maintenant seulement être utilisés à l'intérieur des interpolations de texte (Ouverture et fermeture `{% raw %}{{ }}{% endraw %}`). Avant, il était possible d'utiliser ses filtres sur `v-model`, `v-on`, etc mais cela menait à plus de complexité et d'inconvénient. Pour filtrer les listes sur `v-for`, il est plus logique de déplacer cela dans la partie propriétés calculées du JavaScript, ainsi cela peut-être ré-utilisé à travers votre composant.
 
@@ -1022,7 +1022,7 @@ Nous entourons les arguments avec des parenthèses et les délimitons avec des v
 </div>
 {% endraw %}
 
-### Filtres de texte intégré <sup>retirés</sup>
+### Filtres de texte intégré <sup>supprimés</sup>
 
 Bien que les filtres dans les interpolations de texte soit toujours autorisés, tous les filtres ont été retirés. À la place, nous recommandons d'utiliser des bibliothèques spéciales pour résoudre les problèmes dans chaque domaine (par ex. [`date-fns`](https://date-fns.org/) pour le format des dates et [`accounting`](http://openexchangerates.github.io/accounting.js/) pour le format des devises).
 
@@ -1127,7 +1127,7 @@ Vous pouvez remarquer que :
 
 ## Slots
 
-### Slots dupliqués <sup>retirés</sup>
+### Slots dupliqués <sup>supprimés</sup>
 
 Il n'est plus possible d'avoir deux `<slot>` avec le même nom dans le même template. Quand le rendu d'un slot est fait, il est réputé déjà rendu et son rendu ne doit plus être refait dans le même arbre de rendu. Si vous devez faire le rendu d'un même contenu, à des endroits différents, passez le contenu en tant que prop.
 
@@ -1138,7 +1138,7 @@ Il n'est plus possible d'avoir deux `<slot>` avec le même nom dans le même tem
 </div>
 {% endraw %}
 
-### Attribut de stylisation `slot` <sup>retiré</sup>
+### Attribut de stylisation `slot` <sup>supprimé</sup>
 
 Le contenu inséré via un `<slot>` nommé ne préservera plus l'attribut `slot`. Utilisez un élément englobant pour le styliser, ou pour des cas avancés, modifiez le contenu inséré programmatiquement en utilisant des [fonctions de rendu](render-function.html).
 
@@ -1191,7 +1191,7 @@ Quand vous les utilisez avec `<transition>`, assurez-vous de les imbriquer ainsi
 
 ## Interpolation
 
-### Interpolation dans les attributs <sup>retirée</sup>
+### Interpolation dans les attributs <sup>supprimée</sup>
 
 L'interpolation dans les attributs ne fonctionne plus. Par exemple :
 
@@ -1226,7 +1226,7 @@ computed: {
 </div>
 {% endraw %}
 
-### Interpolation HTML <sup>retirée</sup>
+### Interpolation HTML <sup>supprimée</sup>
 
 L'interpolations HTML (`{% raw %}{{{ foo }}}{% endraw %}`) a été retirée. La [directive `v-html`](../api/#v-html) est maintenant préférée.
 
@@ -1285,7 +1285,7 @@ Si vous aviez précédemment relié `vm.$watch` à quelque chose du DOM après l
 </div>
 {% endraw %}
 
-### `Array.prototype.$set` <sup>retiré</sup>
+### `Array.prototype.$set` <sup>supprimé</sup>
 
 Utilisez `Vue.set` à la place.
 
@@ -1296,7 +1296,7 @@ Utilisez `Vue.set` à la place.
 </div>
 {% endraw %}
 
-### `Array.prototype.$remove` <sup>retiré</sup>
+### `Array.prototype.$remove` <sup>supprimé</sup>
 
 Utilisez `Array.prototype.splice` à la place. Par exemple :
 
@@ -1326,7 +1326,7 @@ methods: {
 </div>
 {% endraw %}
 
-### `Vue.set` et `Vue.delete` sur les instances de Vue <sup>retiré</sup>
+### `Vue.set` et `Vue.delete` sur les instances de Vue <sup>supprimé</sup>
 
 `Vue.set` et `Vue.delete` ne fonctionnent plus avec les instances de Vue. Il est maintenant obligatoire de déclarer toutes les propriétés de haut niveau en tant que propriétés réactives dans l'option `data`. Si vous voulez supprimer des propriétés d'une instance de Vue ou des `$data`, mettez les à `null`.
 
@@ -1337,7 +1337,7 @@ methods: {
 </div>
 {% endraw %}
 
-### Remplacement de `vm.$data` <sup>retiré</sup>
+### Remplacement de `vm.$data` <sup>supprimé</sup>
 
 Il est maintenant interdit de remplacer l'objet `$data` d'une instance racine de Vue. Cela permet d'éviter les effets de bord dans le système de réactivité et permet a l'état du composant d'être plus prévisible (spécialement avec les systèmes de vérification de type).
 
@@ -1348,7 +1348,7 @@ Il est maintenant interdit de remplacer l'objet `$data` d'une instance racine de
 </div>
 {% endraw %}
 
-### `vm.$get` <sup>retiré</sup>
+### `vm.$get` <sup>supprimé</sup>
 
 Retrouvez simplement la donnée réactive.
 
@@ -1361,7 +1361,7 @@ Retrouvez simplement la donnée réactive.
 
 ## Méthodes d'intance centrés sur le DOM
 
-### `vm.$appendTo` <sup>retiré</sup>
+### `vm.$appendTo` <sup>supprimé</sup>
 
 Utilisez l'API native du DOM :
 
@@ -1376,7 +1376,7 @@ myElement.appendChild(vm.$el)
 </div>
 {% endraw %}
 
-### `vm.$before` <sup>retiré</sup>
+### `vm.$before` <sup>supprimé</sup>
 
 Utilisez l'API native du DOM :
 
@@ -1391,7 +1391,7 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 </div>
 {% endraw %}
 
-### `vm.$after` <sup>retiré</sup>
+### `vm.$after` <sup>supprimé</sup>
 
 Utilisez l'API native du DOM :
 
@@ -1412,7 +1412,7 @@ myElement.parentNode.appendChild(vm.$el)
 </div>
 {% endraw %}
 
-### `vm.$remove` <sup>retiré</sup>
+### `vm.$remove` <sup>supprimé</sup>
 
 Utilisez l'API native du DOM :
 
@@ -1429,7 +1429,7 @@ vm.$el.remove()
 
 ## Meta méthodes d'instance
 
-### `vm.$eval` <sup>retiré</sup>
+### `vm.$eval` <sup>supprimé</sup>
 
 Pas réellement utile. Si vous avez des difficultés liés à cette fonctionnalité et que vous n'êtes pas certain de savoir comment faire autrement, vous pouvez poster sur [le forum](https://forum.vuejs.org/c/french) et partagez vos idées.
 
@@ -1440,7 +1440,7 @@ Pas réellement utile. Si vous avez des difficultés liés à cette fonctionnali
 </div>
 {% endraw %}
 
-### `vm.$interpolate` <sup>retiré</sup>
+### `vm.$interpolate` <sup>supprimé</sup>
 
 Pas réellement utile. Si vous avez des difficultés liées à cette fonctionnalité et que vous n'êtes pas certain de savoir comment faire autrement, vous pouvez poster sur [le forum](https://forum.vuejs.org/c/french) et partager vos idées.
 
@@ -1451,7 +1451,7 @@ Pas réellement utile. Si vous avez des difficultés liées à cette fonctionnal
 </div>
 {% endraw %}
 
-### `vm.$log` <sup>retiré</sup>
+### `vm.$log` <sup>supprimé</sup>
 
 Utilisez le [Devtools de Vue](https://github.com/vuejs/vue-devtools) pour une expérience de débogage optimale.
 
@@ -1464,7 +1464,7 @@ Utilisez le [Devtools de Vue](https://github.com/vuejs/vue-devtools) pour une ex
 
 ## Instance DOM Options
 
-### `replace: false` <sup>retiré</sup>
+### `replace: false` <sup>supprimé</sup>
 
 Les composants remplacent maintenant les éléments sur lesquels ils sont liés. Pour simuler le comportement de `replace: false`, vous devez encadrer votre composant racine avec un élément similaire à celui que vous remplacez. Par exemple :
 
@@ -1499,7 +1499,7 @@ new Vue({
 
 ## Configuration globale
 
-### `Vue.config.debug` <sup>retirée</sup>
+### `Vue.config.debug` <sup>supprimée</sup>
 
 N'est plus nécessaire car les avertissements se trouvent dans la pile des traces par défaut maintenant.
 
@@ -1510,7 +1510,7 @@ N'est plus nécessaire car les avertissements se trouvent dans la pile des trace
 </div>
 {% endraw %}
 
-### `Vue.config.async` <sup>retirée</sup>
+### `Vue.config.async` <sup>supprimée</sup>
 
 Async est maintenant requis pour les performances de rendu.
 
@@ -1532,7 +1532,7 @@ Cela a été retravaillé en temps qu'[option de composant](../api/#delimiters).
 </div>
 {% endraw %}
 
-### `Vue.config.unsafeDelimiters` <sup>retirée</sup>
+### `Vue.config.unsafeDelimiters` <sup>supprimée</sup>
 
 L'interpolation HTML a été [retirée en faveur de `v-html`](#Interpolation-HTML-retirée).
 
@@ -1545,7 +1545,7 @@ L'interpolation HTML a été [retirée en faveur de `v-html`](#Interpolation-HTM
 
 ## API globale
 
-### `Vue.extend` avec `el` <sup>retirée</sup>
+### `Vue.extend` avec `el` <sup>supprimée</sup>
 
 L'option `el` ne peut plus être utilisée avec `Vue.extend`. Elle est seulement valide en tant qu'option de création d'instance.
 
@@ -1556,7 +1556,7 @@ L'option `el` ne peut plus être utilisée avec `Vue.extend`. Elle est seulement
 </div>
 {% endraw %}
 
-### `Vue.elementDirective` <sup>retirée</sup>
+### `Vue.elementDirective` <sup>supprimée</sup>
 
 Utilisez des composants à la place.
 
@@ -1567,7 +1567,7 @@ Utilisez des composants à la place.
 </div>
 {% endraw %}
 
-### `Vue.partial` <sup>retirée</sup>
+### `Vue.partial` <sup>supprimée</sup>
 
 Les partiels ont été retirés en faveur d'un flux de donnée plus explicite entre les composants, en utilisant les props. Partout où vous utilisiez des partiels dans des zones de performances critiques, la recommandation est simplement d'utiliser un [composant normal](components.html) à la place. Au cas où vous liez dynamiquement le `name` du partiel, vous pouvez utiliser un [composant dynamique](components.html#Composants-dynamiques).
 

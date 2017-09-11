@@ -45,11 +45,11 @@ new Vue({
 </div>
 {% endraw %}
 
-## Route Definitions
+## Définition des routes
 
-### `router.map` <sup>replaced</sup>
+### `router.map` <sup>remplacée</sup>
 
-Routes are now defined as an array on a [`routes` option](http://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
+Les routes sont maintenant définie dans un tableau dans [une option `routes`](http://router.vuejs.org/fr/essentials/getting-started.html#javascript) lors de l'instanciation du routeur. Donc ces routes par exemple :
 
 ``` js
 router.map({
@@ -62,7 +62,7 @@ router.map({
 })
 ```
 
-Will instead be defined with:
+Seront à présent défini ainsi :
 
 ``` js
 var router = new VueRouter({
@@ -73,26 +73,26 @@ var router = new VueRouter({
 })
 ```
 
-The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.
+La syntaxe par tableau permet une plus grande prédictabilité de la concordance des routes, puisque l'itération sur un objet ne garantit pas le même ordre d'affichage sur tous les navigateurs.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.map</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.map</code>.</p>
 </div>
 {% endraw %}
 
-### `router.on` <sup>removed</sup>
+### `router.on` <sup>supprimée</sup>
 
-If you need to programmatically generate routes when starting up your app, you can do so by dynamically pushing definitions to a routes array. For example:
+Si vous avez besoin programatiquement de génerer les routes au démarrage de votre application, vous pouvez le faire dynamiquement en augmentant les définitions de route dans votre tableau. Par exemple :
 
 ``` js
-// Normal base routes
+// Base de routes normale
 var routes = [
   // ...
 ]
 
-// Dynamically generated routes
+// Routes générées dynamiquement
 marketingPages.forEach(function (page) {
   routes.push({
     path: '/marketing/' + page.slug
@@ -110,7 +110,7 @@ var router = new Router({
 })
 ```
 
-If you need to add new routes after the router has been instantiated, you can replace the router's matcher with a new one that includes the route you'd like to add:
+Si vous avez besoin d'ajouter une nouvelle route après que le routeur soit instancié, vous pouvez remplacer le concordeur de route du routeur avec un nouveau contenant la route que vous souhaitez ajouter :
 
 ``` js
 router.match = createMatcher(
@@ -123,14 +123,14 @@ router.match = createMatcher(
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.on</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.on</code>.</p>
 </div>
 {% endraw %}
 
-### `router.beforeEach` <sup>changed</sup>
+### `router.beforeEach` <sup>changée</sup>
 
-`router.beforeEach` now works asynchronously and takes a `next` function as its third argument.
+`router.beforeEach` fonctionne maintenant de manière asynchrone et prend une fonction de rappel `next` en tant que troisième argument.
 
 ``` js
 router.beforeEach(function (transition) {
@@ -152,20 +152,20 @@ router.beforeEach(function (to, from, next) {
 })
 ```
 
-### `subRoutes` <sup>renamed</sup>
+### `subRoutes` <sup>renomée</sup>
 
-[Renamed to `children`](http://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
+[Renommé en `children`](http://router.vuejs.org/fr/essentials/nested-routes.html) pour plus de consistence entre Vue et les autres bibliothèques de routage.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subRoutes</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>subRoutes</code>.</p>
 </div>
 {% endraw %}
 
-### `router.redirect` <sup>replaced</sup>
+### `router.redirect` <sup>remplacée</sup>
 
-This is now an [option on route definitions](http://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
+C'est maintenant une [option des définitions de route](http://router.vuejs.org/fr/essentials/redirect-and-alias.html). Ainsi par exemple, vous devez mettre à jour :
 
 ``` js
 router.redirect({
@@ -173,7 +173,7 @@ router.redirect({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+pour une définition comme ci-dessous dans votre configuration de `routes` :
 
 ``` js
 {
@@ -184,14 +184,16 @@ to a definition like below in your `routes` configuration:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.redirect</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.redirect</code>.</p>
 </div>
 {% endraw %}
 
-### `router.alias` <sup>replaced</sup>
+### `router.alias` <sup>remplacée</sup>
 
-This is now an [option on the definition for the route](http://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
+C'est m
+
+C'est maintenant une [option des définitions de route](http://router.vuejs.org/fr/essentials/redirect-and-alias.html) que vous devrez mettre sous alias. Ainsi par exemple, vous devez mettre à jour :
 
 ``` js
 router.alias({
@@ -199,7 +201,7 @@ router.alias({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+pour une définition comme ci-dessous dans votre configuration de `routes` :
 
 ``` js
 {
@@ -209,7 +211,7 @@ to a definition like below in your `routes` configuration:
 }
 ```
 
-If you need multiple aliases, you can also use an array syntax:
+Si vous avez besoin de plusieurs alias, vous pouvez aussi utiliser la syntaxe de tableau :
 
 ``` js
 alias: ['/manage', '/administer', '/administrate']
@@ -217,14 +219,14 @@ alias: ['/manage', '/administer', '/administrate']
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.alias</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.alias</code>.</p>
 </div>
 {% endraw %}
 
-### Arbitrary Route Properties <sup>replaced</sup>
+### Propriété de route personnalisées <sup>remplacées</sup>
 
-Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:
+Les propriétés de route personnalisées doivent maintenant être imbriquées dans une nouvelle propriété meta pour éviter les conflits avec les fonctionnalités futures. Ainsi par exemple, si vous aviez défini :
 
 ``` js
 '/admin': {
@@ -233,7 +235,7 @@ Arbitrary route properties must now be scoped under the new meta property, to av
 }
 ```
 
-Then you would now update it to:
+Et bien vous devrez définir maintenant :
 
 ``` js
 {
@@ -245,7 +247,7 @@ Then you would now update it to:
 }
 ```
 
-Then when later accessing this property on a route, you will still go through meta. For example:
+Puis quand vous accéderez à cette propriété pour une route, vous pourrez toujours y accéder via `meta`. Par exemple :
 
 ``` js
 if (route.meta.requiresAuth) {
@@ -255,20 +257,21 @@ if (route.meta.requiresAuth) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of arbitrary route properties not scoped under meta.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de propirétés personnalisées non imbriquées dans meta.</p>
 </div>
 {% endraw %}
 
-### [] Syntax for Arrays in Queries <sup>removed</sup>
+### Syntaxe `[]` pour les tableaux dans les QueryString <sup>retirée</sup>
 
-When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
+Quand vous passez des tableaux à des paramètres de QueryString la syntaxe `/foo?users[]=Tom&users[]=Jerry` ne fonctionne plus. À la place, la nouvelle syntaxe sera `/foo?users=Tom&users=Jerry`. En interne `$route.query.users` sera toujours un tableau, mais s'il n'y a qu'un seul paramètre dans la query `/foo?users=Tom`, quand vous accéderez à cette route, il n'y aura aucun moyen pour le routeur de savoir si nous souhaitons que `users` soit un tableau. À cause de cela, il faut ajouter une propriété calculée et remplacer toutes les références de `$route.query.users` avec ça :
+
 
 ```javascript
 export default {
   // ...
   computed: {
-    // users will always be an array
+    // `users` sera toujours un tableau
     users () {
       const users = this.$route.query.users
       return Array.isArray(users) ? users : [users]
