@@ -1833,7 +1833,7 @@ type : api
 - **Argument :** `attrOuProp (optionnel)`
 
 - **Modificateurs :**
-  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([Quelle difference ?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `.prop` assignera la propriété sur l'élément `$el` du composant.
+  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([Quelle difference ?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `.prop` assignera la propriété sur l'élément `$el` du composant.
   - `.camel` - (2.1.0+) transforme un nom d'attribut en kebab-case en sa version camelCase.
   - `.sync` - (2.3.0+) du sucre syntaxique pour ajouter un un gestionnaire `v-on` qui met à jour la valeur liée.
 

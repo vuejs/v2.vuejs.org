@@ -86,7 +86,7 @@ Si vous êtes un grand fan de « CSS-in-JS », beaucoup de bibliothèques supp
 
 L'attribut optionnel `scoped` encapsule automatiquement ce CSS dans votre composant en ajoutant un unique attribut (comme par exemple `data-v-21e5b78`) à l'élément en compilant `.list-container:hover` en `.list-container[data-v-21e5b78]:hover`.
 
-Enfin, le style dans un composant monofichier Vue est vraiment flexible. Avec [vue-loader](https://github.com/vuejs/vue-loader), vous pouvez utiliser n'importe quel préprocesseur, post-processeur et même une intégration profonde avec les [Modules CSS](http://vue-loader.vuejs.org/en/features/css-modules.html) ; le tout dans un élément `<style>`.
+Enfin, le style dans un composant monofichier Vue est vraiment flexible. Avec [vue-loader](https://github.com/vuejs/vue-loader), vous pouvez utiliser n'importe quel préprocesseur, post-processeur et même une intégration profonde avec les [Modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html) ; le tout dans un élément `<style>`.
 
 ### Adaptabilité
 
