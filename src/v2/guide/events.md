@@ -44,7 +44,7 @@ var example1 = new Vue({
 
 ## Method Event Handlers
 
-The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the `v-on` attribute simply isn't feasible. That's why `v-on` can also accept the name of a method you'd like to call.
+The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the `v-on` attribute isn't feasible. That's why `v-on` can also accept the name of a method you'd like to call.
 
 For example:
 
@@ -282,7 +282,7 @@ These modifiers restrict the handler to events triggered by a specific mouse but
 
 You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
 
-1. It's easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
+1. It's easier to locate the handler function implementations within your JS code by skimming the HTML template.
 
 2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
 
