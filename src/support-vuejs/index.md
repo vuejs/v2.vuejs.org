@@ -3,9 +3,9 @@
 Vue.js est un projet open source sous licence MIT qui est complètement libre d'utilisation.
 Cependant, les efforts nécessaires à la maintenance et au développement de nouvelles fonctionnalités pour le projet ne sont pas possibles sans un soutien financier approprié. Vous pouvez soutenir les développements Vue.js des manières suivantes :
 
-- [Devenir un donateur ou un sponsor via Patreon](https://www.patreon.com/evanyou) (offre un support direct à Evan You pour un travail à temps complet sur Vue)
+- [Devenir un donateur ou un sponsor via Patreon](https://www.patreon.com/evanyou) (sert directement à supporter le travail à plein temps d'Evan You sur Vue)
 
-- [Devenir un donateur ou un sponsor via OpenCollective](https://opencollective.com/vuejs) (offre un apport de fond transparent pour le support de la communauté et des évènements)
+- [Devenir un donateur ou un sponsor via OpenCollective](https://opencollective.com/vuejs) (offre un apport de fond transparent pour supporter la communauté et des évènements)
 
 - [Don ponctuel via PayPal](https://www.paypal.me/evanyou)
 
