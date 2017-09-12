@@ -488,6 +488,8 @@ Voici un exemple complet d'une simple liste de tâches :
 </div>
 ```
 
+<p class="tip">Notez l'attribut `is="todo-item"`. Il est nécessaire dans le template du DOM, car seul les éléments `<li>` sont valides à l'intérieur des `<ul>`. Cela fait la même chose que `<todo-item>`, mais permet de contourner les erreurs potentielles d'analyse des navigateurs. Consultez les [limitations de l’analyse d’un template à partir du DOM](components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM) pour en savoir plus.</p>
+
 ``` js
 Vue.component('todo-item', {
   template: '\

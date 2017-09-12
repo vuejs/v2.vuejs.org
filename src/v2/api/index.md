@@ -393,17 +393,17 @@ type : api
 
 - **Utilisation :**
 
-```js
-var version = Number(Vue.version.split('.')[0])
+  ```js
+  var version = Number(Vue.version.split('.')[0])
 
-if (version === 2) {
-  // Vue v2.x.x
-} else if (version === 1) {
-  // Vue v1.x.x
-} else {
-  // Versions non supportées de Vue
-}
-```
+  if (version === 2) {
+    // Vue v2.x.x
+  } else if (version === 1) {
+    // Vue v1.x.x
+  } else {
+    // Versions non supportées de Vue
+  }
+  ```
 
 ## Options / Data
 
