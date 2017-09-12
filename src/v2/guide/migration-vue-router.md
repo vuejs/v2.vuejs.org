@@ -191,8 +191,6 @@ par une définition comme ci-dessous dans votre configuration de `routes` :
 
 ### `router.alias` <sup>remplacée</sup>
 
-C'est m
-
 C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html) que vous devrez mettre sous alias. Ainsi par exemple, vous devez mettre à jour :
 
 ``` js
