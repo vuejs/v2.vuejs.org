@@ -122,13 +122,13 @@ Et dans les deux cas, Vue va automatiquement garder la page à jour, même quand
 
 ### Le DOM virtuel
 
-Vue arrive à cela grâce à la construction d'un **DOM virtuel** pour garder les traces des changements qui doivent être fait sur le vrai DOM. Prettons attention à cette ligne :
+Vue arrive à cela grâce à la construction d'un **DOM virtuel** pour garder les traces des changements qui doivent être fait sur le vrai DOM. Prêtons attention à cette ligne :
 
 ``` js
 return createElement('h1', this.blogTitle)
 ```
 
-Qu'est-ce que `createElement` retourne exactement ? Ce n'est pas _réellement_ un vrai élément de DOM. Cela pourrait être nommé plus justement `createNodeDescription`, car il contient des informations décrivant à Vue quel sorte de rendu de nœud il va falloir sur la page, incluant les descriptions des nœuds enfants. Nous appelons cette description de nœud un « nœud virtuel », usuellement abrégé en **VNode** (pour « virtual node »). « DOM virtuel » est le nom de l'arbre des VNodes construit par un arbre de composants Vue.
+Qu'est-ce que `createElement` retourne exactement ? Ce n'est pas _réellement_ un vrai élément de DOM. Cela pourrait être nommé plus justement `createNodeDescription`, car il contient des informations décrivant à Vue quelle sorte de rendu de nœud il va falloir faire sur la page en incluant les descriptions des nœuds enfants. Nous appelons cette description de nœud un « nœud virtuel », usuellement abrégé en **VNode** (pour « virtual node »). « DOM virtuel » est le nom de l'arbre des VNodes construit par un arbre de composants Vue.
 
 ## Les arguments de `createElement`
 

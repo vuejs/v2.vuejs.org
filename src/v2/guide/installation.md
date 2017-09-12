@@ -88,7 +88,7 @@ Dans le [dossier `dist/` du package npm](https://unpkg.com/vue@latest/dist/) vou
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: Les builds CommonJS sont prévus pour une utilisation avec les vieux outils de paquetage (« bundle ») comme [browserify](http://browserify.org/) ou [webpack 1](https://webpack.github.io). Le fichier par défaut pour ces outils (`pkg.main`) est le build CommonJS Runtime (`vue.runtime.common.js`).
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: Les builds ES module sont prévus pour une utilisation avec les outils de paquetage modernes comme [webpack 2](https://webpack.js.org) ou [rollup](http://rollupjs.org/). Le fichier par défaut pour ces outils (`pkg.module`) est le build ES Module Runtime (`vue.runtime.esm.js`).
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: Les builds ES module sont prévus pour une utilisation avec les outils de paquetage modernes comme [webpack 2](https://webpack.js.org) ou [rollup](https://rollupjs.org/). Le fichier par défaut pour ces outils (`pkg.module`) est le build ES Module Runtime (`vue.runtime.esm.js`).
 
 ### Runtime + Compiler vs. Runtime seul
 

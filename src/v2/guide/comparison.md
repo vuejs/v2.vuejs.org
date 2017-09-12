@@ -86,7 +86,7 @@ Si vous êtes un grand fan de « CSS-in-JS », beaucoup de bibliothèques supp
 
 L'attribut optionnel `scoped` encapsule automatiquement ce CSS dans votre composant en ajoutant un unique attribut (comme par exemple `data-v-21e5b78`) à l'élément en compilant `.list-container:hover` en `.list-container[data-v-21e5b78]:hover`.
 
-Enfin, le style dans un composant monofichier Vue est vraiment flexible. Avec [vue-loader](https://github.com/vuejs/vue-loader), vous pouvez utiliser n'importe quel préprocesseur, post-processeur et même une intégration profonde avec les [Modules CSS](http://vue-loader.vuejs.org/en/features/css-modules.html) ; le tout dans un élément `<style>`.
+Enfin, le style dans un composant monofichier Vue est vraiment flexible. Avec [vue-loader](https://github.com/vuejs/vue-loader), vous pouvez utiliser n'importe quel préprocesseur, post-processeur et même une intégration profonde avec les [Modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html) ; le tout dans un élément `<style>`.
 
 ### Adaptabilité
 
@@ -176,7 +176,7 @@ Pour finir, sans être profondément intégré à TypeScript comme peut l'être 
 
 En termes de performance, les deux frameworks sont exceptionnellement rapides et il n'y a pas assez de données de cas réels pour se faire une idée tranchée. Cependant, si vous êtes déterminés à comparer des valeurs, Vue 2.0 semble devant Angular selon le [benchmark d'une tierce-partie](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
 
-Les versions récentes d'Angular, avec une *compilation AOT* et du *tree-shaking* sont capables de diminuer leurs tailles considérablement. Cependant, un projet complet Vue 2, avec Vuex et vue-router inclus (~30ko gzippé), est toujours significativement plus léger qu'une application AOT compilée et générée par `angular-cli` (~130ko gzippée).
+Les versions récentes d'Angular, avec une *compilation AOT* et du *tree-shaking* sont capables de diminuer leurs tailles considérablement. Cependant, un projet complet Vue 2, avec Vuex et Vue Router inclus (~30ko gzippé), est toujours significativement plus léger qu'une application AOT compilée et générée par `angular-cli` (~130ko gzippée).
 
 ### Flexibilité
 

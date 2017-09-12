@@ -365,7 +365,7 @@ Pour une grosse application, il est nécessaire de la diviser entièrement en co
 
 ### Parallèle avec les Custom Elements
 
-Vous avez peut-être remarqué que les composants de Vue sont très similaires aux **_Custom Elements_**, qui sont une partie de la [spécification des *Web Components*](http://www.w3.org/wiki/WebComponents/). C'est parce que la syntaxe de Vue est vaguement inspirée de cette spécification. Par exemple, les composants de Vue implémentent l'[API Slot](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) et l'attribut spécial `is`. Cependant, il y a quelques différences essentielles :
+Vous avez peut-être remarqué que les composants de Vue sont très similaires aux **_Custom Elements_**, qui sont une partie de la [spécification des *Web Components*](https://www.w3.org/wiki/WebComponents/). C'est parce que la syntaxe de Vue est vaguement inspirée de cette spécification. Par exemple, les composants de Vue implémentent l'[API Slot](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) et l'attribut spécial `is`. Cependant, il y a quelques différences essentielles :
 
 1. La spécification des *Web Components* est toujours à l'état de brouillon, et n'est pas implémentée nativement dans tous les navigateurs. En comparaison, les composants de Vue n'ont besoin d'aucun *polyfill* et fonctionnent de la même manière dans tous les navigateurs supportés (IE9 et supérieurs). Quand cela est nécessaire, les composants de Vue peuvent également être implémentés à l'intérieur d'un élément personnalisé natif.
 

@@ -393,17 +393,17 @@ type : api
 
 - **Utilisation :**
 
-```js
-var version = Number(Vue.version.split('.')[0])
+  ```js
+  var version = Number(Vue.version.split('.')[0])
 
-if (version === 2) {
-  // Vue v2.x.x
-} else if (version === 1) {
-  // Vue v1.x.x
-} else {
-  // Versions non supportées de Vue
-}
-```
+  if (version === 2) {
+    // Vue v2.x.x
+  } else if (version === 1) {
+    // Vue v1.x.x
+  } else {
+    // Versions non supportées de Vue
+  }
+  ```
 
 ## Options / Data
 
@@ -1833,7 +1833,7 @@ if (version === 2) {
 - **Argument :** `attrOuProp (optionnel)`
 
 - **Modificateurs :**
-  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([Quelle difference ?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `.prop` assignera la propriété sur l'élément `$el` du composant.
+  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([Quelle difference ?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `.prop` assignera la propriété sur l'élément `$el` du composant.
   - `.camel` - (2.1.0+) transforme un nom d'attribut en kebab-case en sa version camelCase.
   - `.sync` - (2.3.0+) du sucre syntaxique pour ajouter un un gestionnaire `v-on` qui met à jour la valeur liée.
 

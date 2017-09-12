@@ -425,7 +425,7 @@ var router = new VueRouter({
 
 ### `saveScrollPosition` <sup>remplacée</sup>
 
-Ceci a été remplacé par l'[option `scrollBehavior](https://router.vuejs.org/fr/advanced/scroll-behavior.html) qui accepte une fonction, ainsi le comportement de défilement est complètement personnalisable, même par route. Ceci ouvre de nouvelles possibilités, mais pour simplement reproduire les anciens comportements :
+Ceci a été remplacé par l'[option `scrollBehavior`](https://router.vuejs.org/fr/advanced/scroll-behavior.html) qui accepte une fonction, ainsi le comportement de défilement est complètement personnalisable, même par route. Ceci ouvre de nouvelles possibilités, mais pour simplement reproduire les anciens comportements :
 
 ``` js
 saveScrollPosition: true

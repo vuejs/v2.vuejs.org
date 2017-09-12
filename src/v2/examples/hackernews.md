@@ -4,7 +4,7 @@ type: examples
 order: 12
 ---
 
-> Ceci est un build clone du site HackerNews (HN) utilisant l'API Firebase HN officielle, Vue 2.0 + vue-router + vuex, avec un rendu côté serveur.
+> Ceci est un build clone du site HackerNews (HN) utilisant l'API Firebase HN officielle, Vue 2.0 + Vue Router + Vuex, avec un rendu côté serveur.
 
 {% raw %}
 <div style="max-width:600px">
@@ -22,7 +22,7 @@ order: 12
 ## Fonctionnalités
 
 - Rendu Côté Serveur
-  - Vue + vue-router + vuex fonctionnant ensemble
+  - Vue + Vue Router + Vuex fonctionnant ensemble
   - Données serveur préchargées
   - État Client et Hydratation du DOM
 - Composant Vue Monofichier
