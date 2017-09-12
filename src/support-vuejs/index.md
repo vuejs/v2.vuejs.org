@@ -57,6 +57,6 @@ Cependant, les efforts nécessaires à la maintenance et au développement de no
 
 Si vous êtes une entreprise et que vous utilisez Vue pour des produits générant du revenu, cela fait sence d'être sponsor du développement de Vue : **cela assure que les projet dans lesquels vous l'utilisez restent stables et activement maintenus.** Cela améliore également votre visibilité auprès de la communauté Vue et vous rend plus attractif pour les développeurs Vue.
 
-Si vous avez une entreprise qui construit ces produits autour de Vue.js, je suis également ouvert à toutes conversations concernant le sponsoring personnalisé ou contrats de consultation. [Contactez-moi sur Twitter](https://twitter.com/youyuxi).
+Si vous avez une entreprise qui construit ses produits autour de Vue.js, je suis également ouvert à toutes conversations concernant le sponsoring personnalisé ou contrats de consultation. [Contactez-moi sur Twitter](https://twitter.com/youyuxi).
 
 Si vous êtes un simple utilisateur qui apprécie la productivité apportée par Vue, considerez que les donnations sont un geste de soutient, comme offrir un café de temps à autre :)
