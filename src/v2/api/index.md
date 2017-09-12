@@ -586,7 +586,7 @@ type: api
 
 - **Detalhes:**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+  Um objeto onde as chaves são expressões para observar e os valores são os callbacks correspondentes. O valor pode ser uma string do nome do método, ou um Objeto que contém opções adicionais. A instância Vue chamará `$watch()` para cada entrada no objeto na inicialização.
 
 - **Exemplo:**
 
@@ -601,9 +601,9 @@ type: api
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
-      // string method name
+      // nome do método como string
       b: 'someMethod',
-      // deep watcher
+      // observador profundo
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
@@ -613,7 +613,7 @@ type: api
   vm.a = 2 // => new: 2, old: 1
   ```
 
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  <p class="tip">Note que __você não deve usar arrow function para definir um observador__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.updateAutocomplete` será undefined.</p>
 
 - **Ver também:** [Métodos da Instância / Data - vm.$watch](#vm-watch)
 
