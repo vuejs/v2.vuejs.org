@@ -583,14 +583,87 @@ ul.demo li {
 .benchmark-table td {
   padding: 3px 7px;
 }
-.sponsors-page a,
-.sponsors-page img {
+#sponsors {
+  text-align: center;
+  padding: 35px 40px 45px;
+  background-color: #f6f6f6;
+}
+#sponsors .inner {
+  max-width: 700px;
+  margin: 0px auto;
+}
+#sponsors h3 {
+  color: #999;
+  margin: 0 0 10px;
+}
+#sponsors a {
+  margin: 20px 15px 0;
+  position: relative;
+}
+#sponsors a,
+#sponsors img {
+  width: 100px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#sponsors img {
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
+  opacity: 0.66;
+}
+#sponsors img:hover {
+  filter: none;
+  opacity: 1;
+}
+#sponsors a.vip {
+  display: block;
+  margin: 30px auto 15px;
+  width: 200px;
+}
+#sponsors a.vip img {
+  width: 200px;
+}
+#sponsors .become-sponsor {
+  margin-top: 40px;
+  font-size: 0.9em;
+  font-weight: 700;
+  width: auto;
+  background-color: transparent;
+}
+#sponsors .open-collective-sponsors {
+  margin-top: 60px;
+}
+#sponsors .open-collective-sponsors a,
+#sponsors .open-collective-sponsors img {
+  width: auto;
+  max-width: 100px;
+  max-height: 60px;
+}
+#sponsors .open-collective-sponsors img {
+  border-radius: 50%;
+}
+#sponsors .open-collective-sponsors h4 {
+  color: #999;
+  margin-bottom: 0;
+}
+.content .sponsor-section {
+  text-align: cneter;
+  margin-top: 0;
+  margin-bottom: 60px;
+}
+.content .patreon-sponsors a,
+.content .patreon-sponsors img {
   width: 120px;
   display: inline-block;
   vertical-align: middle;
 }
-.sponsors-page a {
+.content .patreon-sponsors a {
   margin: 10px 20px;
+}
+.content .open-collective-sponsors img {
+  border-radius: 50%;
+  max-height: 80px;
+  margin-right: 20px;
 }
 .content.guide[class*="migration"] h2 > sup,
 .content.guide[class*="migration"] h3 > sup {

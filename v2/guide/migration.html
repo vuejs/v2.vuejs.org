@@ -107,6 +107,7 @@
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
       <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+      <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
     </ul></li>
     <li><h4>Resource Lists</h4></li>
     <li><ul>
@@ -172,6 +173,7 @@
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
       <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+      <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
     </ul></li>
     <li><h4>Resource Lists</h4></li>
     <li><ul>
@@ -810,9 +812,9 @@
 </li>
 </ul>
 <blockquote>
-<p>If I upgrade to Vue 2, will I also have to upgrade Vuex and Vue-Router?</p>
+<p>If I upgrade to Vue 2, will I also have to upgrade Vuex and Vue Router?</p>
 </blockquote>
-<p>Only Vue-Router 2 is compatible with Vue 2, so yes, you’ll have to follow the <a href="migration-vue-router.html">migration path for Vue-Router</a> as well. Fortunately, most applications don’t have a lot of router code, so this likely won’t take more than an hour.</p>
+<p>Only Vue Router 2 is compatible with Vue 2, so yes, you’ll have to follow the <a href="migration-vue-router.html">migration path for Vue Router</a> as well. Fortunately, most applications don’t have a lot of router code, so this likely won’t take more than an hour.</p>
 <p>As for Vuex, even version 0.8 is compatible with Vue 2, so you’re not forced to upgrade. The only reason you may want to upgrade immediately is to take advantage of the new features in Vuex 2, such as modules and reduced boilerplate.</p>
 <h2 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h2><h3 id="Fragment-Instances-removed"><a href="#Fragment-Instances-removed" class="headerlink" title="Fragment Instances removed"></a>Fragment Instances <sup>removed</sup></h3><p>Every component must have exactly one root element. Fragment instances are no longer allowed. If you have a template like this:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>bar<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -1439,14 +1441,14 @@ new Vue({
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>vm.$remove</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
 </div>
 
-<h2 id="Meta-Instance-Methods"><a href="#Meta-Instance-Methods" class="headerlink" title="Meta Instance Methods"></a>Meta Instance Methods</h2><h3 id="vm-eval-removed"><a href="#vm-eval-removed" class="headerlink" title="vm.$eval removed"></a><code>vm.$eval</code> <sup>removed</sup></h3><p>No real use. If you do happen to rely on this feature somehow and aren’t sure how to work around it, post on <a href="http://forum.vuejs.org/" target="_blank" rel="external">the forum</a> for ideas.</p>
+<h2 id="Meta-Instance-Methods"><a href="#Meta-Instance-Methods" class="headerlink" title="Meta Instance Methods"></a>Meta Instance Methods</h2><h3 id="vm-eval-removed"><a href="#vm-eval-removed" class="headerlink" title="vm.$eval removed"></a><code>vm.$eval</code> <sup>removed</sup></h3><p>No real use. If you do happen to rely on this feature somehow and aren’t sure how to work around it, post on <a href="https://forum.vuejs.org/" target="_blank" rel="external">the forum</a> for ideas.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>vm.$eval</code>. If you miss any, you'll see <strong>console errors</strong>.</p>
 </div>
 
-<h3 id="vm-interpolate-removed"><a href="#vm-interpolate-removed" class="headerlink" title="vm.$interpolate removed"></a><code>vm.$interpolate</code> <sup>removed</sup></h3><p>No real use. If you do happen to rely on this feature somehow and aren’t sure how to work around it, post on <a href="http://forum.vuejs.org/" target="_blank" rel="external">the forum</a> for ideas.</p>
+<h3 id="vm-interpolate-removed"><a href="#vm-interpolate-removed" class="headerlink" title="vm.$interpolate removed"></a><code>vm.$interpolate</code> <sup>removed</sup></h3><p>No real use. If you do happen to rely on this feature somehow and aren’t sure how to work around it, post on <a href="https://forum.vuejs.org/" target="_blank" rel="external">the forum</a> for ideas.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>

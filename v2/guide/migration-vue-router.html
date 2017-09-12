@@ -107,6 +107,7 @@
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
       <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+      <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
     </ul></li>
     <li><h4>Resource Lists</h4></li>
     <li><ul>
@@ -172,6 +173,7 @@
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
       <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+      <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
     </ul></li>
     <li><h4>Resource Lists</h4></li>
     <li><ul>
@@ -781,7 +783,7 @@
       <h1>Migration from Vue Router 0.7.x</h1>
     
     <blockquote>
-<p>Only Vue Router 2 is compatible with Vue 2, so if you’re updating Vue, you’ll have to update Vue Router as well. That’s why we’ve included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the <a href="http://router.vuejs.org/en/" target="_blank" rel="external">Vue Router docs</a>.</p>
+<p>Only Vue Router 2 is compatible with Vue 2, so if you’re updating Vue, you’ll have to update Vue Router as well. That’s why we’ve included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the <a href="https://router.vuejs.org/en/" target="_blank" rel="external">Vue Router docs</a>.</p>
 </blockquote>
 <h2 id="Router-Initialization"><a href="#Router-Initialization" class="headerlink" title="Router Initialization"></a>Router Initialization</h2><h3 id="router-start-replaced"><a href="#router-start-replaced" class="headerlink" title="router.start replaced"></a><code>router.start</code> <sup>replaced</sup></h3><p>There is no longer a special API to initialize an app with Vue Router. That means instead of:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.start(&#123;</div><div class="line">  template: <span class="string">'&lt;router-view&gt;&lt;/router-view&gt;'</span></div><div class="line">&#125;, <span class="string">'#app'</span>)</div></pre></td></tr></table></figure>
@@ -795,7 +797,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
 </div>
 
-<h2 id="Route-Definitions"><a href="#Route-Definitions" class="headerlink" title="Route Definitions"></a>Route Definitions</h2><h3 id="router-map-replaced"><a href="#router-map-replaced" class="headerlink" title="router.map replaced"></a><code>router.map</code> <sup>replaced</sup></h3><p>Routes are now defined as an array on a <a href="http://router.vuejs.org/en/essentials/getting-started.html#javascript" target="_blank" rel="external"><code>routes</code> option</a> at router instantiation. So these routes for example:</p>
+<h2 id="Route-Definitions"><a href="#Route-Definitions" class="headerlink" title="Route Definitions"></a>Route Definitions</h2><h3 id="router-map-replaced"><a href="#router-map-replaced" class="headerlink" title="router.map replaced"></a><code>router.map</code> <sup>replaced</sup></h3><p>Routes are now defined as an array on a <a href="https://router.vuejs.org/en/essentials/getting-started.html#javascript" target="_blank" rel="external"><code>routes</code> option</a> at router instantiation. So these routes for example:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.map(&#123;</div><div class="line">  <span class="string">'/foo'</span>: &#123;</div><div class="line">    component: Foo</div><div class="line">  &#125;,</div><div class="line">  <span class="string">'/bar'</span>: &#123;</div><div class="line">    component: Bar</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Will instead be defined with:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  routes: [</div><div class="line">    &#123; <span class="attr">path</span>: <span class="string">'/foo'</span>, <span class="attr">component</span>: Foo &#125;,</div><div class="line">    &#123; <span class="attr">path</span>: <span class="string">'/bar'</span>, <span class="attr">component</span>: Bar &#125;</div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -819,14 +821,14 @@
 <h3 id="router-beforeEach-changed"><a href="#router-beforeEach-changed" class="headerlink" title="router.beforeEach changed"></a><code>router.beforeEach</code> <sup>changed</sup></h3><p><code>router.beforeEach</code> now works asynchronously and takes a <code>next</code> function as its third argument.</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">transition</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (transition.to.path === <span class="string">'/forbidden'</span>) &#123;</div><div class="line">    transition.abort()</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    transition.next()</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">to, from, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (to.path === <span class="string">'/forbidden'</span>) &#123;</div><div class="line">    next(<span class="literal">false</span>)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    next()</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h3 id="subRoutes-renamed"><a href="#subRoutes-renamed" class="headerlink" title="subRoutes renamed"></a><code>subRoutes</code> <sup>renamed</sup></h3><p><a href="http://router.vuejs.org/en/essentials/nested-routes.html" target="_blank" rel="external">Renamed to <code>children</code></a> for consistency within Vue and with other routing libraries.</p>
+<h3 id="subRoutes-renamed"><a href="#subRoutes-renamed" class="headerlink" title="subRoutes renamed"></a><code>subRoutes</code> <sup>renamed</sup></h3><p><a href="https://router.vuejs.org/en/essentials/nested-routes.html" target="_blank" rel="external">Renamed to <code>children</code></a> for consistency within Vue and with other routing libraries.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>subRoutes</code> option.</p>
 </div>
 
-<h3 id="router-redirect-replaced"><a href="#router-redirect-replaced" class="headerlink" title="router.redirect replaced"></a><code>router.redirect</code> <sup>replaced</sup></h3><p>This is now an <a href="http://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="external">option on route definitions</a>. So for example, you will update:</p>
+<h3 id="router-redirect-replaced"><a href="#router-redirect-replaced" class="headerlink" title="router.redirect replaced"></a><code>router.redirect</code> <sup>replaced</sup></h3><p>This is now an <a href="https://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="external">option on route definitions</a>. So for example, you will update:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.redirect(&#123;</div><div class="line">  <span class="string">'/tos'</span>: <span class="string">'/terms-of-service'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>to a definition like below in your <code>routes</code> configuration:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  path: <span class="string">'/tos'</span>,</div><div class="line">  redirect: <span class="string">'/terms-of-service'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -836,7 +838,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of <code>router.redirect</code> being called.</p>
 </div>
 
-<h3 id="router-alias-replaced"><a href="#router-alias-replaced" class="headerlink" title="router.alias replaced"></a><code>router.alias</code> <sup>replaced</sup></h3><p>This is now an <a href="http://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="external">option on the definition for the route</a> you’d like to alias to. So for example, you will update:</p>
+<h3 id="router-alias-replaced"><a href="#router-alias-replaced" class="headerlink" title="router.alias replaced"></a><code>router.alias</code> <sup>replaced</sup></h3><p>This is now an <a href="https://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="external">option on the definition for the route</a> you’d like to alias to. So for example, you will update:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.alias(&#123;</div><div class="line">  <span class="string">'/manage'</span>: <span class="string">'/admin'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>to a definition like below in your <code>routes</code> configuration:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  path: <span class="string">'/admin'</span>,</div><div class="line">  component: AdminPanel,</div><div class="line">  alias: <span class="string">'/manage'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -870,7 +872,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the obsolete route syntax.</p>
 </div>
 
-<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><h3 id="v-link-replaced"><a href="#v-link-replaced" class="headerlink" title="v-link replaced"></a><code>v-link</code> <sup>replaced</sup></h3><p>The <code>v-link</code> directive has been replaced with a new <a href="http://router.vuejs.org/en/api/router-link.html" target="_blank" rel="external"><code>&lt;router-link&gt;</code> component</a>, as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:</p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><h3 id="v-link-replaced"><a href="#v-link-replaced" class="headerlink" title="v-link replaced"></a><code>v-link</code> <sup>replaced</sup></h3><p>The <code>v-link</code> directive has been replaced with a new <a href="https://router.vuejs.org/en/api/router-link.html" target="_blank" rel="external"><code>&lt;router-link&gt;</code> component</a>, as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"'/about'"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>You’ll need to update it like this:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -881,7 +883,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>v-link</code> directive.</p>
 </div>
 
-<h3 id="v-link-active-replaced"><a href="#v-link-active-replaced" class="headerlink" title="v-link-active replaced"></a><code>v-link-active</code> <sup>replaced</sup></h3><p>The <code>v-link-active</code> directive has also been replaced by the <code>tag</code> attribute on <a href="http://router.vuejs.org/en/api/router-link.html" target="_blank" rel="external">the <code>&lt;router-link&gt;</code> component</a>. So for example, you’ll update this:</p>
+<h3 id="v-link-active-replaced"><a href="#v-link-active-replaced" class="headerlink" title="v-link-active replaced"></a><code>v-link-active</code> <sup>replaced</sup></h3><p>The <code>v-link-active</code> directive has also been replaced by the <code>tag</code> attribute on <a href="https://router.vuejs.org/en/api/router-link.html" target="_blank" rel="external">the <code>&lt;router-link&gt;</code> component</a>. So for example, you’ll update this:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-link-active</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"'/about'"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>to this:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">tag</span>=<span class="string">"li"</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -892,7 +894,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>v-link-active</code> directive.</p>
 </div>
 
-<h2 id="Programmatic-Navigation"><a href="#Programmatic-Navigation" class="headerlink" title="Programmatic Navigation"></a>Programmatic Navigation</h2><h3 id="router-go-changed"><a href="#router-go-changed" class="headerlink" title="router.go changed"></a><code>router.go</code> <sup>changed</sup></h3><p>For consistency with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="external">HTML5 History API</a>, <code>router.go</code> is now only used for <a href="https://router.vuejs.org/en/essentials/navigation.html#routergon" target="_blank" rel="external">back/forward navigation</a>, while <a href="http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation" target="_blank" rel="external"><code>router.push</code></a> is used to navigate to a specific page.</p>
+<h2 id="Programmatic-Navigation"><a href="#Programmatic-Navigation" class="headerlink" title="Programmatic Navigation"></a>Programmatic Navigation</h2><h3 id="router-go-changed"><a href="#router-go-changed" class="headerlink" title="router.go changed"></a><code>router.go</code> <sup>changed</sup></h3><p>For consistency with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="external">HTML5 History API</a>, <code>router.go</code> is now only used for <a href="https://router.vuejs.org/en/essentials/navigation.html#routergon" target="_blank" rel="external">back/forward navigation</a>, while <a href="https://router.vuejs.org/en/essentials/navigation.html#routerpushlocation" target="_blank" rel="external"><code>router.push</code></a> is used to navigate to a specific page.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
@@ -906,7 +908,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>hashbang: false</code> option.</p>
 </div>
 
-<h3 id="history-true-replaced"><a href="#history-true-replaced" class="headerlink" title="history: true replaced"></a><code>history: true</code> <sup>replaced</sup></h3><p>All routing mode options have been condensed into a single <a href="http://router.vuejs.org/en/api/options.html#mode" target="_blank" rel="external"><code>mode</code> option</a>. Update:</p>
+<h3 id="history-true-replaced"><a href="#history-true-replaced" class="headerlink" title="history: true replaced"></a><code>history: true</code> <sup>replaced</sup></h3><p>All routing mode options have been condensed into a single <a href="https://router.vuejs.org/en/api/options.html#mode" target="_blank" rel="external"><code>mode</code> option</a>. Update:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  history: <span class="string">'true'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>to:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  mode: <span class="string">'history'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -916,7 +918,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>history: true</code> option.</p>
 </div>
 
-<h3 id="abstract-true-replaced"><a href="#abstract-true-replaced" class="headerlink" title="abstract: true replaced"></a><code>abstract: true</code> <sup>replaced</sup></h3><p>All routing mode options have been condensed into a single <a href="http://router.vuejs.org/en/api/options.html#mode" target="_blank" rel="external"><code>mode</code> option</a>. Update:</p>
+<h3 id="abstract-true-replaced"><a href="#abstract-true-replaced" class="headerlink" title="abstract: true replaced"></a><code>abstract: true</code> <sup>replaced</sup></h3><p>All routing mode options have been condensed into a single <a href="https://router.vuejs.org/en/api/options.html#mode" target="_blank" rel="external"><code>mode</code> option</a>. Update:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  abstract: <span class="string">'true'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>to:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</div><div class="line">  mode: <span class="string">'abstract'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -926,7 +928,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>abstract: true</code> option.</p>
 </div>
 
-<h2 id="Route-Options-Misc"><a href="#Route-Options-Misc" class="headerlink" title="Route Options: Misc"></a>Route Options: Misc</h2><h3 id="saveScrollPosition-replaced"><a href="#saveScrollPosition-replaced" class="headerlink" title="saveScrollPosition replaced"></a><code>saveScrollPosition</code> <sup>replaced</sup></h3><p>This has been replaced with a <a href="http://router.vuejs.org/en/advanced/scroll-behavior.html" target="_blank" rel="external"><code>scrollBehavior</code> option</a> that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:</p>
+<h2 id="Route-Options-Misc"><a href="#Route-Options-Misc" class="headerlink" title="Route Options: Misc"></a>Route Options: Misc</h2><h3 id="saveScrollPosition-replaced"><a href="#saveScrollPosition-replaced" class="headerlink" title="saveScrollPosition replaced"></a><code>saveScrollPosition</code> <sup>replaced</sup></h3><p>This has been replaced with a <a href="https://router.vuejs.org/en/advanced/scroll-behavior.html" target="_blank" rel="external"><code>scrollBehavior</code> option</a> that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">saveScrollPosition: <span class="literal">true</span></div></pre></td></tr></table></figure>
 <p>You can replace it with:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">scrollBehavior: <span class="function"><span class="keyword">function</span> (<span class="params">to, from, savedPosition</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> savedPosition || &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -957,14 +959,14 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>suppressTransitionError: true</code> option.</p>
 </div>
 
-<h2 id="Route-Hooks"><a href="#Route-Hooks" class="headerlink" title="Route Hooks"></a>Route Hooks</h2><h3 id="activate-replaced"><a href="#activate-replaced" class="headerlink" title="activate replaced"></a><code>activate</code> <sup>replaced</sup></h3><p>Use <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards" target="_blank" rel="external"><code>beforeRouteEnter</code></a> in the component instead.</p>
+<h2 id="Route-Hooks"><a href="#Route-Hooks" class="headerlink" title="Route Hooks"></a>Route Hooks</h2><h3 id="activate-replaced"><a href="#activate-replaced" class="headerlink" title="activate replaced"></a><code>activate</code> <sup>replaced</sup></h3><p>Use <a href="https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards" target="_blank" rel="external"><code>beforeRouteEnter</code></a> in the component instead.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>beforeRouteEnter</code> hook.</p>
 </div>
 
-<h3 id="canActivate-replaced"><a href="#canActivate-replaced" class="headerlink" title="canActivate replaced"></a><code>canActivate</code> <sup>replaced</sup></h3><p>Use <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard" target="_blank" rel="external"><code>beforeEnter</code></a> in the route instead.</p>
+<h3 id="canActivate-replaced"><a href="#canActivate-replaced" class="headerlink" title="canActivate replaced"></a><code>canActivate</code> <sup>replaced</sup></h3><p>Use <a href="https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard" target="_blank" rel="external"><code>beforeEnter</code></a> in the route instead.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
@@ -978,7 +980,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>deactivate</code> hook.</p>
 </div>
 
-<h3 id="canDeactivate-replaced"><a href="#canDeactivate-replaced" class="headerlink" title="canDeactivate replaced"></a><code>canDeactivate</code> <sup>replaced</sup></h3><p>Use <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards" target="_blank" rel="external"><code>beforeRouteLeave</code></a> in the component instead.</p>
+<h3 id="canDeactivate-replaced"><a href="#canDeactivate-replaced" class="headerlink" title="canDeactivate replaced"></a><code>canDeactivate</code> <sup>replaced</sup></h3><p>Use <a href="https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards" target="_blank" rel="external"><code>beforeRouteLeave</code></a> in the component instead.</p>
 
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>

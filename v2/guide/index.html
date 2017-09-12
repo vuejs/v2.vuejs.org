@@ -107,6 +107,7 @@
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
       <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+      <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
     </ul></li>
     <li><h4>Resource Lists</h4></li>
     <li><ul>
@@ -172,6 +173,7 @@
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
       <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+      <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
     </ul></li>
     <li><h4>Resource Lists</h4></li>
     <li><ul>
@@ -944,7 +946,7 @@ var app7 = new Vue({
 <p>This is just a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our <code>&lt;todo-item&gt;</code> component with more complex template and logic without affecting the parent app.</p>
 <p>In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components <a href="components.html">later in the guide</a>, but here’s an (imaginary) example of what an app’s template might look like with components:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">app-nav</span>&gt;</span><span class="tag">&lt;/<span class="name">app-nav</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">app-view</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">app-sidebar</span>&gt;</span><span class="tag">&lt;/<span class="name">app-sidebar</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">app-content</span>&gt;</span><span class="tag">&lt;/<span class="name">app-content</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">app-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="Relation-to-Custom-Elements"><a href="#Relation-to-Custom-Elements" class="headerlink" title="Relation to Custom Elements"></a>Relation to Custom Elements</h3><p>You may have noticed that Vue components are very similar to <strong>Custom Elements</strong>, which are part of the <a href="http://www.w3.org/wiki/WebComponents/" target="_blank" rel="external">Web Components Spec</a>. That’s because Vue’s component syntax is loosely modeled after the spec. For example, Vue components implement the <a href="https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md" target="_blank" rel="external">Slot API</a> and the <code>is</code> special attribute. However, there are a few key differences:</p>
+<h3 id="Relation-to-Custom-Elements"><a href="#Relation-to-Custom-Elements" class="headerlink" title="Relation to Custom Elements"></a>Relation to Custom Elements</h3><p>You may have noticed that Vue components are very similar to <strong>Custom Elements</strong>, which are part of the <a href="https://www.w3.org/wiki/WebComponents/" target="_blank" rel="external">Web Components Spec</a>. That’s because Vue’s component syntax is loosely modeled after the spec. For example, Vue components implement the <a href="https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md" target="_blank" rel="external">Slot API</a> and the <code>is</code> special attribute. However, there are a few key differences:</p>
 <ol>
 <li><p>The Web Components Spec is still in draft status, and is not natively implemented in every browser. In comparison, Vue components don’t require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.</p>
 </li>
