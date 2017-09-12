@@ -518,7 +518,7 @@ type: api
 
 - **Detalhes:**
 
-  Dados Computados para serem misturadas na instância Vue. Todos os getters e setters tem o seu contexto `this` automaticamente ligado a instância Vue.
+  Dados Computados para serem misturadas na instância Vue. Todos os getters e setters tem o seu contexto `this` automaticamente feito bind a instância Vue.
 
   <p class="tip">Note que __você não deve usar arrow function para definir um dado computado__ (ex.: `aDouble: () => this.a * 2`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.a` será undefined.</p>
 
@@ -559,9 +559,9 @@ type: api
 
 - **Detalhes:**
 
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+  Métodos para serem misturadas na instância Vue. Você pode acessar esses métodos diretamente na instância VM ou usar eles expressões de diretivas. Todos os métodos terão seu contexto `this` feito bind a instância Vue. 
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Note que __você não deve usar arrow function para definir um método__ (ex.: `plus: () => this.a++`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.a` será undefined.</p>
 
 - **Exemplo:**
 
@@ -578,7 +578,7 @@ type: api
   vm.a // 2
   ```
 
-- **Ver também:** [Event Handling](../guide/events.html)
+- **Ver também:** [Manipulação de Eventos](../guide/events.html)
 
 ### watch
 
