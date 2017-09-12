@@ -457,22 +457,22 @@ type: api
 
 - **Detalhes:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Uma lista/hash de atributos que são expostos para aceitar dados do componente pai. Tem tanto uma sintaxe baseada em Array como, alternativamente, uma sintaxe baseada em Objeto que permite configurações avançadas como checagem de tipos, validações personalizadas e valores padrões.
 
 - **Exemplo:**
 
   ``` js
-  // simple syntax
+  // sintaxe simples 
   Vue.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // sintaxe de objeto com validação  
   Vue.component('props-demo-advanced', {
     props: {
-      // just type check
+      // somente checagem de tipos 
       height: Number,
-      // type check plus other validations
+      // checagem de tipos com validações
       age: {
         type: Number,
         default: 0,
