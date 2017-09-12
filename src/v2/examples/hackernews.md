@@ -22,7 +22,7 @@ order: 12
 ## Fonctionnalités
 
 - Rendu Côté Serveur
-  - Vue + vue-router + vuex fonctionnant ensemble
+  - Vue + Vue Router + Vuex fonctionnant ensemble
   - Données serveur préchargées
   - État Client et Hydratation du DOM
 - Composant Vue Monofichier

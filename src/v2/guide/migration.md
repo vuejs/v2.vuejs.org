@@ -30,9 +30,9 @@ Cela dépend de plusieurs critères comme :
 
 - du nombre de fonctionnalités obsolètes que vous utilisez. La plupart d'entre elles peuvent être corrigées avec une action de type trouver-remplacer (« find-and-replace »), mais d'autres peuvent prendre quelques minutes. Si vous ne suivez actuellement pas les meilleures pratiques, Vue 2.0 vous forcera encore plus à les respecter. Cela est une bonne chose sur le long terme, mais signifie également (un peu tard) une refactorisation importante.
 
-> Si je passe à Vue 2, dois-je aussi mettre à jour Vuex et Vue-Router ?
+> Si je passe à Vue 2, dois-je aussi mettre à jour Vuex et Vue Router ?
 
-Seul Vue-Router 2 est compatible avec Vue 2, donc oui, vous allez devoir également suivre le [guide de migration pour Vue-Router](migration-vue-router.html). Heureusement, un grand nombre d'applications n'ont pas beaucoup de code en lien avec le routeur, cela ne devrait donc pas prendre plus d'une heure.
+Seul Vue Router 2 est compatible avec Vue 2, donc oui, vous allez devoir également suivre le [guide de migration pour Vue Router](migration-vue-router.html). Heureusement, un grand nombre d'applications n'ont pas beaucoup de code en lien avec le routeur, cela ne devrait donc pas prendre plus d'une heure.
 
 En ce qui concerne Vuex, la version 0.8 est compatible avec Vue 2, vous n'êtes donc pas obligé de le mettre à jour. La seule raison pour que vous souhaitiez faire la mise à jour dès maintenant serait de tirer partie des nouvelles fonctionnalités de Vuex 2, comme les modules ou les codes pré-conçus (« boilerplate ») moins verbeux.
 
