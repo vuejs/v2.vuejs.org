@@ -518,11 +518,11 @@ type: api
 
 - **Detalhes:**
 
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+  Dados Computados para serem misturadas na instância Vue. Todos os getters e setters tem o seu contexto `this` automaticamente ligado a instância Vue.
 
-  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Note que __você não deve usar arrow function para definir um dado computado__ (ex.: `aDouble: () => this.a * 2`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.a` será undefined.</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
+  Dados Computados são cacheadas, e somente re-computados quando dependencias reativas mudam. Note que se uma certa dependência está fora do escopo da instância (ex.: não reativa), o dado computado __não__ será atualizado.
 
 - **Exemplo:**
 
@@ -530,11 +530,11 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only, just need a function
+      // somente get, somente precisa de uma função
       aDouble: function () {
         return this.a * 2
       },
-      // both get and set
+      // get e set
       aPlus: {
         get: function () {
           return this.a + 1
@@ -551,7 +551,7 @@ type: api
   vm.aDouble // => 4
   ```
 
-- **Ver também:** [Computed Properties](../guide/computed.html)
+- **Ver também:** [Dados Computados](../guide/computed.html)
 
 ### methods
 
