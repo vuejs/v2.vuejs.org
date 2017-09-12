@@ -286,7 +286,7 @@ type: api
     unbind: function () {}
   })
 
-  // register (simple function directive)
+  // register (function directive)
   Vue.directive('my-directive', function () {
     // this will be called as `bind` and `update`
   })
@@ -415,7 +415,7 @@ type: api
 
 - **Details:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
+  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with their own stateful behavior.
 
   Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
 
@@ -423,7 +423,7 @@ type: api
 
   Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
 
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
+  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
 
   If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
 
@@ -457,7 +457,7 @@ type: api
 
 - **Details:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
 - **Example:**
 
@@ -470,7 +470,7 @@ type: api
   // object syntax with validation
   Vue.component('props-demo-advanced', {
     props: {
-      // just type check
+      // type check
       height: Number,
       // type check plus other validations
       age: {
@@ -530,7 +530,7 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only, just need a function
+      // get only
       aDouble: function () {
         return this.a * 2
       },
@@ -710,7 +710,7 @@ type: api
 
 - **Details:**
 
-  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
@@ -742,7 +742,7 @@ type: api
 
 - **Details:**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Called after the instance has been mounted, where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
 
   Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `mounted`:
 
@@ -900,7 +900,7 @@ type: api
 
 - **Details:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
   Mixin hooks are called in the order they are provided, and called before the component's own hooks.
 
@@ -1069,7 +1069,7 @@ type: api
 
 - **Details:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
 
 - **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
 
@@ -1357,7 +1357,7 @@ type: api
 
 - **Usage:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
+  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
 
 <p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
 
@@ -1763,7 +1763,7 @@ type: api
 
 - **Usage:**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
+  Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
 
   Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
@@ -2131,7 +2131,7 @@ type: api
 
 - **Usage:**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
+  `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
 
   ```html
   <!-- simple element -->
