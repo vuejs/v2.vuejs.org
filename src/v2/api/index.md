@@ -411,35 +411,35 @@ type: api
 
 - **Tipo:** `Object | Function`
 
-- **Restriction:** Only accepts `Function` when used in a component definition.
+- **Restriçao:** Somente aceita `Function` quando usado na definição de um componente.
 
 - **Detalhes:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
+  O objeto `data` para a instância do Vue. Vue, recursivamente, converterá esta propriedade em getter/setters para tornar isto "reativo". **O objeto deve ser simples**: objetos nativos como API do navegador e propriedades _prototype_ são ignoradas. A regra geral é: data deverá ser somente dados - não é recomendável observar objetos com seu proprio comportamento stateful.
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  Como observado, você não pode adicionar propriedades reativas ao objeto data raiz. É recomendado declarar todas as propriedades 'nível raiz' reativas com antecedencia, antes da criação da instância.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  Depois que a instância é criada, o objeto data original pode ser acessado como `vm.$data`. A instância Vue também faz proxy de todas as propriedade achadas no objeto data, então `vm.a` será equivalente a `vm.$data.a`.
 
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  Propriedades que comecem com `_` ou `$` **não** será feito proxy na instância do Vue porque eles podem conflitar com métodos de API ou propriedades internas do Vue. Você terá de acessar elas com `vm.$data._property`.
 
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
+  Quando definindo um **componente**, `data` deve ser declarado como uma função que retorna o estado inicial do objeto data, porque haverá muitas instâncias criadas usando a mesma definição. Se ainda estivermos usando um objeto simples para `data`, este mesmo objeto será **compartilhado por referência** por todas as instâncias criadas! Providenciando uma função `data`, toda vez que uma nova instância é criada, podemos simplesmente chamar isto para retornar uma nova cópia do dado inicial.
 
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
+  Se necessário, uma cópia profunda do objeto original pode ser obtida passando `vm.$data` através de `JSON.parse(JSON.stringify(...))`.
 
 - **Exemplo:**
 
   ``` js
   var data = { a: 1 }
 
-  // direct instance creation
+  // Criação direta de instância
   var vm = new Vue({
     data: data
   })
   vm.a // => 1
   vm.$data === data // => true
 
-  // must use function when in Vue.extend()
+  // deve-se usar function quando em uso com Vue.extend()
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -447,7 +447,7 @@ type: api
   })
   ```
 
-  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
+  <p class="tip">Note que __você não deve usar arrow function com a propriedade `data`__ (ex.: `data: () => { return { a: this.myProp }}`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.myProp` será undefined.</p>
 
 - **Ver também:** [Reatividade em Profundidade](../guide/reactivity.html)
 
@@ -491,7 +491,7 @@ type: api
 
 - **Tipo:** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restriçao:** only respected in instance creation via `new`.
 
 - **Detalhes:**
 
