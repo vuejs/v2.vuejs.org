@@ -491,11 +491,11 @@ type: api
 
 - **Tipo:** `{ [key: string]: any }`
 
-- **Restriçao:** only respected in instance creation via `new`.
+- **Restriçao:** somente respeitado em criação de instâncias via `new`.
 
 - **Detalhes:**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  Passa props a uma instância durante a sua criação. A intenção disso é primariamente tornar testes unitários mais fáceis.
 
 - **Exemplo:**
 
