@@ -30,9 +30,9 @@ It depends on a few factors:
 
 - Which obsolete features you're using. Most can be upgraded with find-and-replace, but others might take a few minutes. If you're not currently following best practices, Vue 2.0 will also try harder to force you to. This is a good thing in the long run, but could also mean a significant (though possibly overdue) refactor.
 
-> If I upgrade to Vue 2, will I also have to upgrade Vuex and Vue-Router?
+> If I upgrade to Vue 2, will I also have to upgrade Vuex and Vue Router?
 
-Only Vue-Router 2 is compatible with Vue 2, so yes, you'll have to follow the [migration path for Vue-Router](migration-vue-router.html) as well. Fortunately, most applications don't have a lot of router code, so this likely won't take more than an hour.
+Only Vue Router 2 is compatible with Vue 2, so yes, you'll have to follow the [migration path for Vue Router](migration-vue-router.html) as well. Fortunately, most applications don't have a lot of router code, so this likely won't take more than an hour.
 
 As for Vuex, even version 0.8 is compatible with Vue 2, so you're not forced to upgrade. The only reason you may want to upgrade immediately is to take advantage of the new features in Vuex 2, such as modules and reduced boilerplate.
 

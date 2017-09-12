@@ -4,7 +4,7 @@ type: examples
 order: 12
 ---
 
-> This is a HackerNews clone built upon HN's official Firebase API, Vue 2.0 + vue-router + vuex, with server-side rendering.
+> This is a HackerNews clone built upon HN's official Firebase API, Vue 2.0 + Vue Router + Vuex, with server-side rendering.
 
 {% raw %}
 <div style="max-width:600px">
@@ -22,7 +22,7 @@ order: 12
 ## Features
 
 - Server Side Rendering
-  - Vue + vue-router + vuex working together
+  - Vue + Vue Router + Vuex working together
   - Server-side data pre-fetching
   - Client-side state & DOM hydration
 - Single-file Vue Components
