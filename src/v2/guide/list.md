@@ -217,7 +217,7 @@ new Vue({
 
 ## `key`
 
-When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will simply patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
+When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
 
 This default mode is efficient, but only suitable **when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
 
@@ -251,7 +251,7 @@ You can open the console and play with the previous examples' `items` array by c
 
 ### Replacing an Array
 
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can just replace the old array with the new one:
+Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can replace the old array with the new one:
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -319,7 +319,7 @@ You could add a new `age` property to the nested `userProfile` object with:
 Vue.set(vm.userProfile, 'age', 27)
 ```
 
-You can also use the `vm.$set` instance method, which is just an alias for the global `Vue.set`:
+You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
 
 ``` js
 this.$set(this.userProfile, 'age', 27)
@@ -366,7 +366,7 @@ computed: {
 }
 ```
 
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can just use a method:
+In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
