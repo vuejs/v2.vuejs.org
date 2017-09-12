@@ -4,7 +4,7 @@ type: guide
 order: 702
 ---
 
-> Seul Vue Router 2 est compatible avec Vue 2, donc si vous mettez à jour Vue, vous devez mettre à jour Vue Router également. C'est pourquoi nous avons inclus des détails sur le chemin de migration ici dans les documentations principales. Pour un guide complet sur l'utilisation du nouveau Vue Router, consultez [la documentation Vue Router](http://router.vuejs.org/fr/).
+> Seul Vue Router 2 est compatible avec Vue 2, donc si vous mettez à jour Vue, vous devez mettre à jour Vue Router également. C'est pourquoi nous avons inclus des détails de migration ici dans les documentations principales. Pour un guide complet sur l'utilisation du nouveau Vue Router, consultez [la documentation Vue Router](https://router.vuejs.org/fr/).
 
 ## Initialisation du Routeur
 
@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-Vous avez juste a passer la propriété routeur à l'instance de Vue :
+Vous avez juste à passer la propriété `router` à l'instance de Vue :
 
 ``` js
 new Vue({
@@ -49,7 +49,7 @@ new Vue({
 
 ### `router.map` <sup>remplacée</sup>
 
-Les routes sont maintenant définie dans un tableau dans [une option `routes`](http://router.vuejs.org/fr/essentials/getting-started.html#javascript) lors de l'instanciation du routeur. Donc ces routes par exemple :
+Les routes sont maintenant définies dans un tableau dans [une option `routes`](https://router.vuejs.org/fr/essentials/getting-started.html#javascript) lors de l'instanciation du routeur. Donc ces routes par exemple :
 
 ``` js
 router.map({
@@ -62,7 +62,7 @@ router.map({
 })
 ```
 
-Seront à présent défini ainsi :
+Seront à présent définies ainsi :
 
 ``` js
 var router = new VueRouter({
@@ -73,7 +73,7 @@ var router = new VueRouter({
 })
 ```
 
-La syntaxe par tableau permet une plus grande prédictabilité de la concordance des routes, puisque l'itération sur un objet ne garantit pas le même ordre d'affichage sur tous les navigateurs.
+La syntaxe par tableau permet une plus grande prédictibilité de la concordance des routes, puisque l'itération sur un objet ne garantit pas le même ordre d'affichage sur tous les navigateurs.
 
 {% raw %}
 <div class="upgrade-path">
@@ -84,7 +84,7 @@ La syntaxe par tableau permet une plus grande prédictabilité de la concordance
 
 ### `router.on` <sup>supprimée</sup>
 
-Si vous avez besoin programatiquement de génerer les routes au démarrage de votre application, vous pouvez le faire dynamiquement en augmentant les définitions de route dans votre tableau. Par exemple :
+Si vous avez besoin programmatiquement de générer les routes au démarrage de votre application, vous pouvez le faire dynamiquement en augmentant les définitions de route dans votre tableau. Par exemple :
 
 ``` js
 // Base de routes normale
@@ -110,7 +110,7 @@ var router = new Router({
 })
 ```
 
-Si vous avez besoin d'ajouter une nouvelle route après que le routeur soit instancié, vous pouvez remplacer le concordeur de route du routeur avec un nouveau contenant la route que vous souhaitez ajouter :
+Si vous avez besoin d'ajouter une nouvelle route après que le routeur soit instancié, vous pouvez remplacer l'objet de concordance des routes du routeur par un nouveau contenant la route que vous souhaitez ajouter :
 
 ``` js
 router.match = createMatcher(
@@ -152,9 +152,9 @@ router.beforeEach(function (to, from, next) {
 })
 ```
 
-### `subRoutes` <sup>renomée</sup>
+### `subRoutes` <sup>renommée</sup>
 
-[Renommé en `children`](http://router.vuejs.org/fr/essentials/nested-routes.html) pour plus de consistence entre Vue et les autres bibliothèques de routage.
+[Renommée en `children`](https://router.vuejs.org/fr/essentials/nested-routes.html) pour plus de consistance entre Vue et les autres bibliothèques de routage.
 
 {% raw %}
 <div class="upgrade-path">
@@ -165,7 +165,7 @@ router.beforeEach(function (to, from, next) {
 
 ### `router.redirect` <sup>remplacée</sup>
 
-C'est maintenant une [option des définitions de route](http://router.vuejs.org/fr/essentials/redirect-and-alias.html). Ainsi par exemple, vous devez mettre à jour :
+C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html). Ainsi par exemple, vous devez mettre à jour :
 
 ``` js
 router.redirect({
@@ -173,7 +173,7 @@ router.redirect({
 })
 ```
 
-pour une définition comme ci-dessous dans votre configuration de `routes` :
+par une définition comme ci-dessous dans votre configuration de `routes` :
 
 ``` js
 {
@@ -193,7 +193,7 @@ pour une définition comme ci-dessous dans votre configuration de `routes` :
 
 C'est m
 
-C'est maintenant une [option des définitions de route](http://router.vuejs.org/fr/essentials/redirect-and-alias.html) que vous devrez mettre sous alias. Ainsi par exemple, vous devez mettre à jour :
+C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html) que vous devrez mettre sous alias. Ainsi par exemple, vous devez mettre à jour :
 
 ``` js
 router.alias({
@@ -201,7 +201,7 @@ router.alias({
 })
 ```
 
-pour une définition comme ci-dessous dans votre configuration de `routes` :
+par une définition comme ci-dessous dans votre configuration de `routes` :
 
 ``` js
 {
@@ -224,7 +224,7 @@ alias: ['/manage', '/administer', '/administrate']
 </div>
 {% endraw %}
 
-### Propriété de route personnalisées <sup>remplacées</sup>
+### Propriétés de route personnalisées <sup>remplacées</sup>
 
 Les propriétés de route personnalisées doivent maintenant être imbriquées dans une nouvelle propriété meta pour éviter les conflits avec les fonctionnalités futures. Ainsi par exemple, si vous aviez défini :
 
@@ -264,7 +264,7 @@ if (route.meta.requiresAuth) {
 
 ### Syntaxe `[]` pour les tableaux dans les QueryString <sup>retirée</sup>
 
-Quand vous passez des tableaux à des paramètres de QueryString la syntaxe `/foo?users[]=Tom&users[]=Jerry` ne fonctionne plus. À la place, la nouvelle syntaxe sera `/foo?users=Tom&users=Jerry`. En interne `$route.query.users` sera toujours un tableau, mais s'il n'y a qu'un seul paramètre dans la query `/foo?users=Tom`, quand vous accéderez à cette route, il n'y aura aucun moyen pour le routeur de savoir si nous souhaitons que `users` soit un tableau. À cause de cela, il faut ajouter une propriété calculée et remplacer toutes les références de `$route.query.users` avec ça :
+Quand vous passez des tableaux à des paramètres de QueryString la syntaxe `/foo?users[]=Tom&users[]=Jerry` ne fonctionne plus. À la place, la nouvelle syntaxe sera `/foo?users=Tom&users=Jerry`. En interne `$route.query.users` sera toujours un tableau, mais s'il n'y a qu'un seul paramètre dans la query `/foo?users=Tom`, quand vous accéderez à cette route, il n'y aura aucun moyen pour le routeur de savoir si nous souhaitons que `users` soit un tableau. À cause de cela, il faut ajouter une propriété calculée et remplacer toutes les références de `$route.query.users` par cela :
 
 
 ```javascript
@@ -299,7 +299,7 @@ La syntaxe a quelque peu changée, ainsi `/category/*tags` par exemple, doit êt
 
 ### `v-link` <sup>remplacée</sup>
 
-La directive `v-link` a été remplacée par le [composant `<router-link>`](http://router.vuejs.org/fr/api/router-link.html) car ce type de travail relève du domaine des composants dans Vue 2. Cela signifie que chaque fois que vous avez un lien comme celui-ci :
+La directive `v-link` a été remplacée par le [composant `<router-link>`](https://router.vuejs.org/fr/api/router-link.html) car ce type de travail relève du domaine des composants dans Vue 2. Cela signifie que chaque fois que vous avez un lien comme celui-ci :
 
 ``` html
 <a v-link="'/about'">À propos</a>
@@ -351,7 +351,7 @@ Le `<a>` sera dans ce cas le lien (et amènera sur l'adresse correcte), mais la 
 
 ### `router.go` <sup>changée</sup>
 
-Pour plus de consistance avec l'[API HTML5 History](https://developer.mozilla.org/fr-FR/docs/Web/API/History_API) `router.go` est maintenant utilisé pour [la navigation en arrière où en avant](https://router.vuejs.org/fr/essentials/navigation.html#routergon) alors que [`router.push`](http://router.vuejs.org/fr/essentials/navigation.html#routerpushlocation) est utiliser pour naviguer vers une page spécifique.
+Pour plus de consistance avec l'[API HTML5 History](https://developer.mozilla.org/fr-FR/docs/Web/API/History_API) `router.go` est maintenant utilisé pour [la navigation en arrière où en avant](https://router.vuejs.org/fr/essentials/navigation.html#routergon) alors que [`router.push`](https://router.vuejs.org/fr/essentials/navigation.html#routerpushlocation) est utilisé pour naviguer vers une page spécifique.
 
 {% raw %}
 <div class="upgrade-path">
@@ -364,7 +364,7 @@ Pour plus de consistance avec l'[API HTML5 History](https://developer.mozilla.or
 
 ### `hashbang: false` <sup>supprimée</sup>
 
-Les hashbangs ne sont plus requis par Google pour le parcours d'URL, il ne sont donc plus l'utilasation par défaut (ou même une option) pour la stratégie de hash.
+Les hashbangs ne sont plus requis par Google pour le parcours d'URL, il ne sont donc plus l’utilisation par défaut (ou même une option) pour la stratégie de hash.
 
 {% raw %}
 <div class="upgrade-path">
@@ -375,7 +375,7 @@ Les hashbangs ne sont plus requis par Google pour le parcours d'URL, il ne sont 
 
 ### `history: true` <sup>replacée</sup>
 
-Tous les options de mode ont été condensées dans un seule [option `mode`](http://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
+Tous les options de mode ont été condensées dans un seule [option `mode`](https://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
 
 ``` js
 var router = new VueRouter({
@@ -383,7 +383,7 @@ var router = new VueRouter({
 })
 ```
 
-par :
+avec :
 
 ``` js
 var router = new VueRouter({
@@ -400,7 +400,7 @@ var router = new VueRouter({
 
 ### `abstract: true` <sup>remplacée</sup>
 
-Tous les options de mode ont été condensées dans un seule [option `mode`](http://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
+Tous les options de mode ont été condensées dans un seule [option `mode`](https://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
 
 ``` js
 var router = new VueRouter({
@@ -408,7 +408,7 @@ var router = new VueRouter({
 })
 ```
 
-par :
+avec :
 
 ``` js
 var router = new VueRouter({
@@ -427,7 +427,7 @@ var router = new VueRouter({
 
 ### `saveScrollPosition` <sup>remplacée</sup>
 
-Ceci a été remplacé par l'[option `scrollBehavior](http://router.vuejs.org/fr/advanced/scroll-behavior.html) qui accepte une fonction, ainsi le comportement de défilement est complètement personnalisable, même par route. Ceci ouvre de nouvelles possibilités, mais pour simplement reproduire les anciens comportement :
+Ceci a été remplacé par l'[option `scrollBehavior](https://router.vuejs.org/fr/advanced/scroll-behavior.html) qui accepte une fonction, ainsi le comportement de défilement est complètement personnalisable, même par route. Ceci ouvre de nouvelles possibilités, mais pour simplement reproduire les anciens comportements :
 
 ``` js
 saveScrollPosition: true
@@ -448,9 +448,9 @@ scrollBehavior: function (to, from, savedPosition) {
 </div>
 {% endraw %}
 
-### `root` <sup>rennomée</sup>
+### `root` <sup>renommée</sup>
 
-Renommé pour `base` pour plus de consistance avec l'[élément HTML `<base>`](https://developer.mozilla.org/fr-FR/docs/Web/HTML/Element/base).
+Renommée par `base` pour plus de consistance avec l'[élément HTML `<base>`](https://developer.mozilla.org/fr-FR/docs/Web/HTML/Element/base).
 
 {% raw %}
 <div class="upgrade-path">
@@ -472,7 +472,7 @@ Cette option n'est plus nécessaire maintenant que le système de transition de 
 
 ### `suppressTransitionError` <sup>supprimée</sup>
 
-Supprimé grâce à une simplification des hooks. Si vous devez réellement supprimer les erreurs de transition, vous pouvez utiliser [`try`...`catch`](https://developer.mozilla.org/fr-FR/docs/Web/JavaScript/Reference/Statements/try...catch) à la place.
+Supprimée grâce à une simplification des hooks. Si vous devez réellement supprimer les erreurs de transition, vous pouvez utiliser [`try`...`catch`](https://developer.mozilla.org/fr-FR/docs/Web/JavaScript/Reference/Statements/try...catch) à la place.
 
 {% raw %}
 <div class="upgrade-path">
@@ -540,7 +540,7 @@ Il n'existe plus de cas comme celui-ci dans le nouveau Vue Router.
 
 ### `data` <sup>remplacée</sup>
 
-La propriété `$route` est maintenant réactive, donc vous pouvez juste utiliser un observateur pour réagir au changement de route, comme ceci :
+La propriété `$route` est maintenant réactive donc vous pouvez juste utiliser un observateur pour réagir au changement de route comme ceci :
 
 ``` js
 watch: {
