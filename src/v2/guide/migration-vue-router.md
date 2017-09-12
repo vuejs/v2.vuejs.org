@@ -84,7 +84,7 @@ La syntaxe par tableau permet une plus grande prédictibilité de la concordance
 
 ### `router.on` <sup>supprimée</sup>
 
-Si vous avez besoin programmatiquement de générer les routes au démarrage de votre application, vous pouvez le faire dynamiquement en augmentant les définitions de route dans votre tableau. Par exemple :
+Si vous avez besoin programmatiquement de générer les routes au démarrage de votre application, vous pouvez le faire dynamiquement en ajoutant les définitions de route dans votre tableau. Par exemple :
 
 ``` js
 // Base de routes normale
