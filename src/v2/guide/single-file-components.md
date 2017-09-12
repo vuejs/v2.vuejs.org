@@ -17,7 +17,7 @@ This can work very well for small to medium-sized projects, where JavaScript is 
 
 All of these are solved by **single-file components** with a `.vue` extension, made possible with build tools such as Webpack or Browserify.
 
-Here's a simple example of a file we'll call `Hello.vue`:
+Here's an example of a file we'll call `Hello.vue`:
 
 <img src="/images/vue-component.png" style="display: block; margin: 30px auto">
 
@@ -31,7 +31,7 @@ As promised, we can also use preprocessors such as Pug, Babel (with ES2015 modul
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-These specific languages are just examples. You could just as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
+These specific languages are only examples. You could as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
 
 ### What About Separation of Concerns?
 
