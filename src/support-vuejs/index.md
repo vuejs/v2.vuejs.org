@@ -7,7 +7,7 @@ Cependant, les efforts nécessaires à la maintenance et au développement de no
 
 - [Devenir un donnateur ou un sponsor via OpenCollective](https://opencollective.com/vuejs) (offre un apport de fond transparent pour le support de la communauté et des évènements)
 
-- [Don ponctuel via PayPal](https://www.paypal.me/evanyou) (offrir un café à Evan You)
+- [Don ponctuel via PayPal](https://www.paypal.me/evanyou)
 
 ## Les sponsors premiums actuels :
 
