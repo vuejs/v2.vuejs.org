@@ -10,7 +10,7 @@ order: 702
 
 ### `router.start` <sup>remplacée</sup>
 
-Il n'y a plus d'API dédiée pour initialiser Vue Router. Cela signifie qu'à la place d'utiliser :
+Il n'y a plus d'API dédiée pour initialiser Vue Router. Cela signifie qu'au lieu d'utiliser :
 
 ``` js
 router.start({
@@ -45,7 +45,7 @@ new Vue({
 </div>
 {% endraw %}
 
-## Définition des routes
+## Définition de route
 
 ### `router.map` <sup>remplacée</sup>
 
@@ -87,7 +87,7 @@ La syntaxe par tableau permet une plus grande prédictibilité de la concordance
 Si vous avez besoin programmatiquement de générer les routes au démarrage de votre application, vous pouvez le faire dynamiquement en ajoutant les définitions de route dans votre tableau. Par exemple :
 
 ``` js
-// Base de routes normale
+// Base de routes statiques
 var routes = [
   // ...
 ]
@@ -264,7 +264,6 @@ if (route.meta.requiresAuth) {
 
 Quand vous passez des tableaux à des paramètres de QueryString la syntaxe `/foo?users[]=Tom&users[]=Jerry` ne fonctionne plus. À la place, la nouvelle syntaxe sera `/foo?users=Tom&users=Jerry`. En interne `$route.query.users` sera toujours un tableau, mais s'il n'y a qu'un seul paramètre dans la query `/foo?users=Tom`, quand vous accéderez à cette route, il n'y aura aucun moyen pour le routeur de savoir si nous souhaitons que `users` soit un tableau. À cause de cela, il faut ajouter une propriété calculée et remplacer toutes les références de `$route.query.users` par cela :
 
-
 ```javascript
 export default {
   // ...
@@ -345,11 +344,11 @@ Le `<a>` sera dans ce cas le lien (et amènera sur l'adresse correcte), mais la 
 </div>
 {% endraw %}
 
-## Navigation programmatique
+## Navigation par programmation
 
 ### `router.go` <sup>changée</sup>
 
-Pour plus de consistance avec l'[API HTML5 History](https://developer.mozilla.org/fr-FR/docs/Web/API/History_API) `router.go` est maintenant utilisé pour [la navigation en arrière où en avant](https://router.vuejs.org/fr/essentials/navigation.html#routergon) alors que [`router.push`](https://router.vuejs.org/fr/essentials/navigation.html#routerpushlocation) est utilisé pour naviguer vers une page spécifique.
+Pour plus de consistance avec l'[API HTML5 History](https://developer.mozilla.org/fr-FR/docs/Web/API/History_API) `router.go` est maintenant utilisé pour [la navigation en arrière ou en avant](https://router.vuejs.org/fr/essentials/navigation.html#routergon) alors que [`router.push`](https://router.vuejs.org/fr/essentials/navigation.html#routerpushlocation) est utilisé pour naviguer vers une page spécifique.
 
 {% raw %}
 <div class="upgrade-path">
