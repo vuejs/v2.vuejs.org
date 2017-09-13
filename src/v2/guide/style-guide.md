@@ -644,7 +644,7 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 
 ``` html
 <!-- In DOM templates -->
-<my-component/>
+<my-component/s>
 ```
 {% raw %}</div>{% endraw %}
 
@@ -690,7 +690,7 @@ PascalCase in templates improves readability, because it's easier to tell at a g
 
 ``` html
 <!-- In DOM templates -->
-<MyComponent/>
+<MyComponent></MyComponent>
 ```
 {% raw %}</div>{% endraw %}
 
@@ -704,7 +704,7 @@ PascalCase in templates improves readability, because it's easier to tell at a g
 
 ``` html
 <!-- In DOM templates -->
-<my-component/>
+<my-component></my-component>
 ```
 {% raw %}</div>{% endraw %}
 
