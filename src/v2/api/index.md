@@ -411,35 +411,35 @@ type: api
 
 - **Tipo:** `Object | Function`
 
-- **Restriction:** Only accepts `Function` when used in a component definition.
+- **Restriçao:** Somente aceita `Function` quando usado na definição de um componente.
 
 - **Detalhes:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
+  O objeto `data` para a instância do Vue. Vue, recursivamente, converterá esta propriedade em getter/setters para tornar isto "reativo". **O objeto deve ser simples**: objetos nativos como API do navegador e propriedades _prototype_ são ignoradas. A regra geral é: data deverá ser somente dados - não é recomendável observar objetos com seu proprio comportamento stateful.
 
-  Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
+  Como observado, você não pode adicionar propriedades reativas ao objeto data raiz. É recomendado declarar todas as propriedades 'nível raiz' reativas com antecedencia, antes da criação da instância.
 
-  After the instance is created, the original data object can be accessed as `vm.$data`. The Vue instance also proxies all the properties found on the data object, so `vm.a` will be equivalent to `vm.$data.a`.
+  Depois que a instância é criada, o objeto data original pode ser acessado como `vm.$data`. A instância Vue também faz proxy de todas as propriedade achadas no objeto data, então `vm.a` será equivalente a `vm.$data.a`.
 
-  Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
+  Propriedades que comecem com `_` ou `$` **não** será feito proxy na instância do Vue porque eles podem conflitar com métodos de API ou propriedades internas do Vue. Você terá de acessar elas com `vm.$data._property`.
 
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
+  Quando definindo um **componente**, `data` deve ser declarado como uma função que retorna o estado inicial do objeto data, porque haverá muitas instâncias criadas usando a mesma definição. Se ainda estivermos usando um objeto simples para `data`, este mesmo objeto será **compartilhado por referência** por todas as instâncias criadas! Providenciando uma função `data`, toda vez que uma nova instância é criada, podemos simplesmente chamar isto para retornar uma nova cópia do dado inicial.
 
-  If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
+  Se necessário, uma cópia profunda do objeto original pode ser obtida passando `vm.$data` através de `JSON.parse(JSON.stringify(...))`.
 
 - **Exemplo:**
 
   ``` js
   var data = { a: 1 }
 
-  // direct instance creation
+  // Criação direta de instância
   var vm = new Vue({
     data: data
   })
   vm.a // => 1
   vm.$data === data // => true
 
-  // must use function when in Vue.extend()
+  // deve-se usar function quando em uso com Vue.extend()
   var Component = Vue.extend({
     data: function () {
       return { a: 1 }
@@ -447,7 +447,7 @@ type: api
   })
   ```
 
-  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
+  <p class="tip">Note que __você não deve usar arrow function com a propriedade `data`__ (ex.: `data: () => { return { a: this.myProp }}`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.myProp` será undefined.</p>
 
 - **Ver também:** [Reatividade em Profundidade](../guide/reactivity.html)
 
@@ -457,22 +457,22 @@ type: api
 
 - **Detalhes:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  Uma lista/hash de atributos que são expostos para aceitar dados do componente pai. Tem tanto uma sintaxe baseada em Array como, alternativamente, uma sintaxe baseada em Objeto que permite configurações avançadas como checagem de tipos, validações personalizadas e valores padrões.
 
 - **Exemplo:**
 
   ``` js
-  // simple syntax
+  // sintaxe simples 
   Vue.component('props-demo-simple', {
     props: ['size', 'myMessage']
   })
 
-  // object syntax with validation
+  // sintaxe de objeto com validação  
   Vue.component('props-demo-advanced', {
     props: {
-      // just type check
+      // somente checagem de tipos 
       height: Number,
-      // type check plus other validations
+      // checagem de tipos com validações
       age: {
         type: Number,
         default: 0,
@@ -491,11 +491,11 @@ type: api
 
 - **Tipo:** `{ [key: string]: any }`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restriçao:** somente respeitado em criação de instâncias via `new`.
 
 - **Detalhes:**
 
-  Pass props to an instance during its creation. This is primarily intended to make unit testing easier.
+  Passa props a uma instância durante a sua criação. A intenção disso é primariamente tornar testes unitários mais fáceis.
 
 - **Exemplo:**
 
@@ -518,11 +518,11 @@ type: api
 
 - **Detalhes:**
 
-  Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+  Dados Computados para serem misturadas na instância Vue. Todos os getters e setters tem o seu contexto `this` automaticamente feito bind a instância Vue.
 
-  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Note que __você não deve usar arrow function para definir um dado computado__ (ex.: `aDouble: () => this.a * 2`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.a` será undefined.</p>
 
-  Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
+  Dados Computados são cacheadas, e somente re-computados quando dependencias reativas mudam. Note que se uma certa dependência está fora do escopo da instância (ex.: não reativa), o dado computado __não__ será atualizado.
 
 - **Exemplo:**
 
@@ -530,11 +530,11 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only, just need a function
+      // somente get, somente precisa de uma função
       aDouble: function () {
         return this.a * 2
       },
-      // both get and set
+      // get e set
       aPlus: {
         get: function () {
           return this.a + 1
@@ -551,7 +551,7 @@ type: api
   vm.aDouble // => 4
   ```
 
-- **Ver também:** [Computed Properties](../guide/computed.html)
+- **Ver também:** [Dados Computados](../guide/computed.html)
 
 ### methods
 
@@ -559,9 +559,9 @@ type: api
 
 - **Detalhes:**
 
-  Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+  Métodos para serem misturadas na instância Vue. Você pode acessar esses métodos diretamente na instância VM ou usar eles expressões de diretivas. Todos os métodos terão seu contexto `this` feito bind a instância Vue. 
 
-  <p class="tip">Note that __you should not use an arrow function to define a method__ (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  <p class="tip">Note que __você não deve usar arrow function para definir um método__ (ex.: `plus: () => this.a++`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.a` será undefined.</p>
 
 - **Exemplo:**
 
@@ -578,7 +578,7 @@ type: api
   vm.a // 2
   ```
 
-- **Ver também:** [Event Handling](../guide/events.html)
+- **Ver também:** [Manipulação de Eventos](../guide/events.html)
 
 ### watch
 
@@ -586,7 +586,7 @@ type: api
 
 - **Detalhes:**
 
-  An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+  Um objeto onde as chaves são expressões para observar e os valores são os callbacks correspondentes. O valor pode ser uma string do nome do método, ou um Objeto que contém opções adicionais. A instância Vue chamará `$watch()` para cada entrada no objeto na inicialização.
 
 - **Exemplo:**
 
@@ -601,9 +601,9 @@ type: api
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
-      // string method name
+      // nome do método como string
       b: 'someMethod',
-      // deep watcher
+      // observador profundo
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
@@ -613,7 +613,7 @@ type: api
   vm.a = 2 // => new: 2, old: 1
   ```
 
-  <p class="tip">Note that __you should not use an arrow function to define a watcher__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.updateAutocomplete` will be undefined.</p>
+  <p class="tip">Note que __você não deve usar arrow function para definir um observador__ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). A razão é que arrow functions fazem bind do contexto pai, então `this` não será a instância Vue como você está esperando e `this.updateAutocomplete` será undefined.</p>
 
 - **Ver também:** [Métodos da Instância / Data - vm.$watch](#vm-watch)
 
