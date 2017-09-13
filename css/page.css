@@ -646,6 +646,10 @@ ul.demo li {
   color: #999;
   margin-bottom: 0;
 }
+#sponsors.active img {
+  filter: none;
+  opacity: 1;
+}
 .content .sponsor-section {
   text-align: cneter;
   margin-top: 0;
