@@ -32,7 +32,7 @@
 
     <div class="point">
       <h2>广泛灵活</h2>
-      <p>简单小巧的核心，渐进式技术栈，足以应付任何规模的应用。</p>
+      <p>具有渐进增量的生态系统，可以从库自由扩展为全特性的框架。</p>
     </div>
 
     <div class="point">
@@ -46,6 +46,12 @@
   </div>
 </div>
 
+<div id="sponsors">
+  <div class="inner">
+    <%- partial('partials/sponsors') %>
+  </div>
+</div>
+
 <div id="footer">
   <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
     <img src="/images/shuttleworth.png" style="width:200px">
@@ -55,15 +61,36 @@
 </div>
 
 <script>
-var topScrolled = false
-window.addEventListener('scroll', function () {
-  if (window.pageYOffset > 165 && !topScrolled) {
-    topScrolled = true
-    document.getElementById('mobile-bar').classList.remove('top')
-  } else if (window.pageYOffset <= 165 && topScrolled) {
-    topScrolled = false
-    document.getElementById('mobile-bar').classList.add('top')
-  }
-})
+(function () {
+  var topScrolled = false
+  var sponsors = document.getElementById('sponsors')
+  var sponsorTop = sponsors.offsetTop
+  var sponsorActive = false
+
+  window.addEventListener('resize', function () {
+    sponsorTop = sponsors.offsetTop
+  })
+
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 165 && !topScrolled) {
+      topScrolled = true
+      document.getElementById('mobile-bar').classList.remove('top')
+    } else if (window.pageYOffset <= 165 && topScrolled) {
+      topScrolled = false
+      document.getElementById('mobile-bar').classList.add('top')
+    }
+    if (window.pageYOffset > sponsorTop - 100) {
+      if (!sponsorActive) {
+        sponsorActive = true
+        sponsors.classList.add('active')
+      }
+    } else {
+      if (sponsorActive) {
+        sponsorActive = false
+        sponsors.classList.remove('active')
+      }
+    }
+  })
+})()
 window.location.href = '/v2/guide' // 直接从首页跳转入教程首页
 </script>

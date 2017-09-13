@@ -4,7 +4,7 @@ type: examples
 order: 12
 ---
 
-> HackerNews 克隆是基于 HN 的官方 firebase API 、Vue 2.0 、vue-router 和 vuex 来构建的，使用服务器端渲染。
+> HackerNews 克隆是基于 HN 的官方 firebase API 、Vue 2.0 、Vue Router 和 Vuex 来构建的，使用服务器端渲染。
 
 {% raw %}
 <div style="max-width:600px">
@@ -22,7 +22,7 @@ order: 12
 ## 特性
 
 - 服务器端渲染
-  - Vue + vue-router + vuex
+  - Vue + Vue Router + Vuex
   - 服务端数据提前获取
   - 客户端状态 & DOM 合并
 - 单文件 Vue 组件

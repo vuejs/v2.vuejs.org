@@ -71,7 +71,7 @@ computed: {
   classObject: function () {
     return {
       active: this.isActive && !this.error,
-      'text-danger': this.error && this.error.type === 'fatal',
+      'text-danger': this.error && this.error.type === 'fatal'
     }
   }
 }

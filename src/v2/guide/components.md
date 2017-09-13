@@ -327,6 +327,30 @@ new Vue({
 </script>
 {% endraw %}
 
+如果你想要将一个对象中的所有属性都作为 props 传递，可以使用不带参数的 `v-bind`（将 `v-bind:prop-name` 替换为 `v-bind`）。例如，给定一个 `todo` 对象：
+
+``` js
+todo: {
+  text: 'Learn Vue',
+  isComplete: false
+}
+```
+
+然后：
+
+``` html
+<todo-item v-bind="todo"></todo-item>
+```
+
+等同于如下：
+
+``` html
+<todo-item
+  v-bind:text="todo.text"
+  v-bind:is-complete="todo.isComplete"
+></todo-item>
+```
+
 ### 字面量传值 vs. 动态传值(Literal vs. Dynamic)
 
 一个初学者易于常犯的错误是，试图通过字面量语法向下传递一个数值：
@@ -1283,7 +1307,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 Failed to mount component: template or render function not defined.（译注：无法挂载组件：模板或 render 函数未定义。）
 ```
 
-为了解释这是如何产生的，我将称我们的组件为 A 和 B。模块系统看到它需要导入 A，但是首先 A 需要导入 B，但是 B 又需要导入 A，A 又需要导入 B，等等，如此形成了一个死循环，模块系统并不知道在先不解析一个组件的情况下，如何解析另一个组件。为了修复这个问题，我们需要给模块系统一个切入点，我们可以告诉它，A 需要导入 B，但是没有必要先解析 B。
+为了解释这是如何产生的，我们可以将组件称为 A 和 B。模块系统看到它需要导入 A，但是首先 A 需要导入 B，但是 B 又需要导入 A，A 又需要导入 B，等等，如此形成了一个死循环，模块系统并不知道在先不解析一个组件的情况下，如何解析另一个组件。为了修复这个问题，我们需要给模块系统一个切入点，我们可以告诉它，A 需要导入 B，但是没有必要先解析 B。
 
 在我们的例子中，将 `tree-folder` 组件做为切入起点。我们知道制造矛盾的是 `tree-folder-contents` 子组件，所以我们在 `tree-folder` 组件的生命周期钩子函数 `beforeCreate` 中去注册 `tree-folder-contents` 组件：
 

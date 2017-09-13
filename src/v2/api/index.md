@@ -256,7 +256,7 @@ type: api
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > 仅在 2.2.0+ 版本中支持 Array + index 用法。
+  > 仅在 2.2.0+ 版本中支持：还支持 Array + index 用法。
 
 - **用法：**
 
@@ -393,17 +393,17 @@ type: api
 
 - **用法**：
 
-```js
-var version = Number(Vue.version.split('.')[0])
+  ```js
+  var version = Number(Vue.version.split('.')[0])
 
-if (version === 2) {
-  // Vue v2.x.x
-} else if (version === 1) {
-  // Vue v1.x.x
-} else {
-  // Unsupported versions of Vue
-}
-```
+  if (version === 2) {
+    // Vue v2.x.x
+  } else if (version === 1) {
+    // Vue v1.x.x
+  } else {
+    // Unsupported versions of Vue
+  }
+  ```
 
 ## 选项 / 数据
 
@@ -1833,7 +1833,7 @@ if (version === 2) {
 - **参数：** `attrOrProp (optional)`
 
 - **修饰符：**
-  - `.prop` - 被用于绑定 DOM 属性（[有什么不同？](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
+  - `.prop` - 被用于绑定 DOM 属性（[有什么不同？](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
   - `.sync` - (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 `v-on` 侦听器。
 

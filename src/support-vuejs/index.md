@@ -1,7 +1,13 @@
 # 支持 Vue.js 的开发
 
 Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
-然而，维护和开发项目新功能需要耗费大量的精力，如果没有适当的资金支持，就不可能长期坚持下去。你可以通过 [Patreon](https://www.patreon.com/evanyou) 支付（按月方式，提供不同级别的赞助）或 [PayPal](https://www.paypal.me/evanyou) 赞助（单次方式）来支持 Vue.js 的开发。
+然而，维护和开发项目新功能需要耗费大量的精力，如果没有适当的资金支持，就不可能长期坚持下去。你可以通过以下几种方式来支持 Vue.js 的开发：
+
+- [使用 Patreon 成为支持者或赞助商](https://www.patreon.com/evanyou)（用于直接支持 Evan You 对 Vue 的全职开发工作）
+
+- [使用 OpenCollective 成为支持者或赞助商](https://opencollective.com/vuejs) (goes into a fund with transparent expense models supporting community efforts and events)
+
+- [PayPal 赞助](https://www.paypal.me/evanyou)（单次方式）。
 
 ## 当前高级赞助商：
 
@@ -13,6 +19,12 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
   </a>
 </p>
 
+### OpenCollective 白金赞助商（2000 美元/月）
+
+<p class="open-collective-sponsors sponsor-section">
+  <a href="https://opencollective.com/vuejs/platinumsponsor/0/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/1/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/2/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/3/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/4/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/5/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/5/avatar.svg"></a>
+</p>
+
 ### 中国区白金赞助商（1000 美元/月）
 
 <p style="text-align: center;">
@@ -21,9 +33,9 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
   </a>
 </p>
 
-### 黄金赞助商（500 美元/月）
+### Patreon 黄金赞助商（500 美元/月）
 
-<p style="text-align: center; margin-top: 0; margin-bottom: 60px" class="sponsors-page">
+<p class="patreon-sponsors sponsor-section">
   <a href="https://deepstreamhub.com" target="_blank" style="width:140px;top:1px">
     <img src="/images/deepstream.png" style="width:140px">
   </a><a href="https://jsfiddle.net">
@@ -44,13 +56,17 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
     <img src="/images/vuejobs.svg">
   </a><a href="https://leanpub.com/vuejs2" target="_blank">
     <img src="/images/tmvuejs2.png">
-  </a><a href="https://famebroker.com" target="_blank" style="width:135px">
-    <img src="/images/famebroker.png" style="width:135px">
   </a><a href="https://component.io" target="_blank" style="width:140px">
     <img src="/images/component_io.png" style="width:140px">
   </a><a href="https://www.v2ex.com/t/379389" target="_blank" style="width:120px;">
     <img src="/images/v2exer.png" style="width:120px;">
   </a>
+</p>
+
+### OpenCollective 黄金赞助商（500 美元/月）
+
+<p class="open-collective-sponsors sponsor-section">
+  <a href="https://opencollective.com/vuejs/goldsponsor/0/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/1/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/2/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/3/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/4/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/5/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/5/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/6/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/6/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/7/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/7/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/8/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/8/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/9/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/9/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/10/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/10/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/11/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/11/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/12/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/12/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/13/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/13/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/14/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/14/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/15/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/15/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/16/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/16/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/17/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/17/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/18/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/18/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/19/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/19/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/20/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/20/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/21/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/21/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/22/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/22/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/23/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/23/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/24/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/24/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/25/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/25/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/26/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/26/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/27/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/27/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/28/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/28/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/29/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/29/avatar.svg"></a>
 </p>
 
 如果你是企业经营者，并且将 Vue 用在商业营收产品中，那么赞助 Vue 具有商业上的益处：**可以确保你的产品所依赖的项目，能够保持健康和得到积极的维护**，也能帮助你在 Vue 社区里获得更高的曝光度，从而更容易地吸引到 Vue 开发者。
