@@ -488,7 +488,7 @@ methods: {
 </div>
 ```
 
-<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
+<p class="tip">注意 `is="todo-item"` 属性。这在 DOM 模板中是必需的，因为在 `<ul>` 中，只有 `<li>` 是有效元素。这与调用 `<todo-item>` 的实际结果相同，但是却可以解决浏览器潜在的解析错误。了解更多信息，请查看 [DOM 模板解析注意事项](components.html#components.html#DOM-模板解析注意事项)。</p>
 
 ``` js
 Vue.component('todo-item', {

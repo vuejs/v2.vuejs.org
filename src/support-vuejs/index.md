@@ -5,7 +5,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 - [使用 Patreon 成为支持者或赞助商](https://www.patreon.com/evanyou)（用于直接支持 Evan You 对 Vue 的全职开发工作）
 
-- [使用 OpenCollective 成为支持者或赞助商](https://opencollective.com/vuejs) (goes into a fund with transparent expense models supporting community efforts and events)
+- [使用 OpenCollective 成为支持者或赞助商](https://opencollective.com/vuejs)（加入一个有着公开透明费用模式的社区，以及通过努力工作和项目活动支持社区）
 
 - [PayPal 赞助](https://www.paypal.me/evanyou)（单次方式）。
 

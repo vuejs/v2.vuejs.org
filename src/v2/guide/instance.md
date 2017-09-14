@@ -99,7 +99,7 @@ vm.$watch('a', function (newValue, oldValue) {
 
 ## 实例生命周期钩子函数
 
-每个 Vue 实例在被创建之前，都要经过一系列的初始化过程 - 例如，Vue 实例需要设置数据观察(set up data observation)、编译模版(compile the template)、在 DOM 挂载实例(mount the instance to the DOM)，以及在数据变化时更新 DOM(update the DOM when data change)。在这个过程中，Vue 实例还会调用执行一些**生命周期钩子函数**，这样用户能够在特定阶段添加自己的代码。
+每个 Vue 实例在被创建之前，都要经过一系列的初始化过程 - 例如，Vue 实例需要设置数据观察(set up data observation)、编译模板(compile the template)、在 DOM 挂载实例(mount the instance to the DOM)，以及在数据变化时更新 DOM(update the DOM when data change)。在这个过程中，Vue 实例还会调用执行一些**生命周期钩子函数**，这样用户能够在特定阶段添加自己的代码。
 
 例如，在实例创建后将调用 [`created`](../api/#created) 钩子函数：
 
