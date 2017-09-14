@@ -187,7 +187,7 @@ On a higher level, we can divide components into two categories: presentational 
 
 React는 가파른 학습 곡선으로 유명합니다. 실제로 시작하기 전에 JSX와 아마도 ES2015+에 대해 알아야합니다. 많은 예제가 React의 클래스 구문을 사용하기 때문입니다. Babel Standalone을 기술적으로 사용하여 브라우저에서 코드를 라이브 컴파일 할 수는 있지만 작성에 적합하지 않기 때문에 빌드 시스템에 대해서도 배워야합니다.
 
-Vue는 React보다 좋지는 않지만 잘 확장되지만 jQuery와 마찬가지로 확장됩니다. 그렇습니다. 한 스크립트 태그를 페이지에 드롭하면됩니다.
+Vue는 React만큼 확장성이 뛰어나지 않지만, Jquery처럼 복잡한 설정 없이 스크립트 태그를 붙이는 것으로 Vue를 사용할 수 있습니다.
 
 ``` html
 <script src="https://unpkg.com/vue"></script>
