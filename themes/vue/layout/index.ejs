@@ -32,7 +32,7 @@
 
     <div class="point">
       <h2>Polyvalent</h2>
-      <p>Noyau simple et minimal, avec une solution flexible qui peut supporter des applications de toutes tailles.</p>
+      <p>Un écosystème incrémentalement adoptable faisant le pont entre une bibliothèque et un framework complet.</p>
     </div>
 
     <div class="point">
@@ -48,10 +48,7 @@
 
 <div id="sponsors">
   <div class="inner">
-    <h3>FIÈREMENT SPONSORISÉ PAR</h3>
     <%- partial('partials/sponsors') %>
-    <br>
-    <a class="become-sponsor button white" href="/support-vuejs/">Apporter son soutien</a>
   </div>
 </div>
 
@@ -64,14 +61,35 @@
 </div>
 
 <script>
-var topScrolled = false
-window.addEventListener('scroll', function () {
-  if (window.pageYOffset > 165 && !topScrolled) {
-    topScrolled = true
-    document.getElementById('mobile-bar').classList.remove('top')
-  } else if (window.pageYOffset <= 165 && topScrolled) {
-    topScrolled = false
-    document.getElementById('mobile-bar').classList.add('top')
-  }
-})
+(function () {
+  var topScrolled = false
+  var sponsors = document.getElementById('sponsors')
+  var sponsorTop = sponsors.offsetTop
+  var sponsorActive = false
+
+  window.addEventListener('resize', function () {
+    sponsorTop = sponsors.offsetTop
+  })
+
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 165 && !topScrolled) {
+      topScrolled = true
+      document.getElementById('mobile-bar').classList.remove('top')
+    } else if (window.pageYOffset <= 165 && topScrolled) {
+      topScrolled = false
+      document.getElementById('mobile-bar').classList.add('top')
+    }
+    if (window.pageYOffset > sponsorTop - 100) {
+      if (!sponsorActive) {
+        sponsorActive = true
+        sponsors.classList.add('active')
+      }
+    } else {
+      if (sponsorActive) {
+        sponsorActive = false
+        sponsors.classList.remove('active')
+      }
+    }
+  })
+})()
 </script>
