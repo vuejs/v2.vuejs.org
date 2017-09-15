@@ -30,9 +30,9 @@ order: 701
 
 - 取决于你使用了哪些旧有的特性。大部分可以通过查找和替换(find-and-replace)来实现升级，但有一些可能还是要花点时间。如果你没有遵循最佳实践，Vue 2.0 会尽力强迫你去遵循。这有利于项目的长期运行，但也可能意味着重大重构（尽管有些需要重构的部分可能已经过时）。
 
-> 如果我升级到到 Vue 2 ，我还必须同时升级 Vuex 和 Vue-Router？
+> 如果我升级到到 Vue 2 ，我还必须同时升级 Vuex 和 Vue Router？
 
-只有 Vue-Router 2 与 Vue 2 保持兼容，所以 Vue-Router 是需要升级的，你必须遵循 [Vue-Router 迁移方式](migration-vue-router.html)来处理。幸运的是， 大多数应用没有很多 router 相关代码，所以迁移可能不会超过一个小时。
+只有 Vue Router 2 与 Vue 2 保持兼容，所以 Vue Router 是需要升级的，你必须遵循 [Vue-Router 迁移方式](migration-vue-router.html)来处理。幸运的是， 大多数应用没有很多 router 相关代码，所以迁移可能不会超过一个小时。
 
 对于 Vuex ，版本 0.8+ 与 Vue 2 保持兼容，所以部分不必强制升级。可以促使你立即升级的唯一理由，是你想要使用那些 Vuex 2 中新的高级特性，比如模块(modules)和减少的样板文件(reduced boilerplate)。
 
@@ -1430,7 +1430,7 @@ vm.$el.remove()
 
 ### `vm.$eval` <sup>移除</sup>
 
-尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 [the forum](http://forum.vuejs.org/)。
+尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 [the forum](https://forum.vuejs.org/)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1441,7 +1441,7 @@ vm.$el.remove()
 
 ### `vm.$interpolate` <sup>移除</sup>
 
-尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 [the forum](http://forum.vuejs.org/)。
+尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 [the forum](https://forum.vuejs.org/)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1585,6 +1585,6 @@ Partials 已被移除,取而代之的是更明确的组件之间的数据流--pr
 
 ***
 
-> 原文： http:/   /vuejs.org/guide/migration.html
+> 原文： https://vuejs.org/v2/guide/migration.html
 
 ***

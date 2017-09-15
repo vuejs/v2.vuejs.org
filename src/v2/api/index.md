@@ -393,17 +393,17 @@ type: api
 
 - **用法**：
 
-```js
-var version = Number(Vue.version.split('.')[0])
+  ```js
+  var version = Number(Vue.version.split('.')[0])
 
-if (version === 2) {
-  // Vue v2.x.x
-} else if (version === 1) {
-  // Vue v1.x.x
-} else {
-  // Unsupported versions of Vue
-}
-```
+  if (version === 2) {
+    // Vue v2.x.x
+  } else if (version === 1) {
+    // Vue v1.x.x
+  } else {
+    // Unsupported versions of Vue
+  }
+  ```
 
 ## 选项 / 数据
 
@@ -1833,7 +1833,7 @@ if (version === 2) {
 - **参数：** `attrOrProp (optional)`
 
 - **修饰符：**
-  - `.prop` - 被用于绑定 DOM 属性（[有什么不同？](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
+  - `.prop` - 被用于绑定 DOM 属性（[有什么不同？](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)）。如果标签是一个组件，那么 `.prop` 将在组件的 `$el` 上设置属性。
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
   - `.sync` - (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 `v-on` 侦听器。
 
@@ -2035,7 +2035,7 @@ if (version === 2) {
 
   当 `v-for` 用于元素或组件的时候，引用信息将是包含 DOM 节点或组件实例的数组。
 
-  关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模版中做数据绑定。
+  关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模板中做数据绑定。
 
 - **参考：** [子组件 Refs](../guide/components.html#子组件索引)
 
@@ -2053,7 +2053,7 @@ if (version === 2) {
 
 - **期望类型：** `string`
 
-  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 内模板到限制](../guide/components.html#DOM 模版解析说明)来工作。
+  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)来工作。
 
   示例：
 
@@ -2072,7 +2072,7 @@ if (version === 2) {
 
 - **参考：**
   - [动态组件](../guide/components.html#动态组件)
-  - [DOM 模版解析说明](../guide/components.html#DOM 模版解析说明)
+  - [DOM 模板解析注意事项](../guide/components.html#DOM-模板解析注意事项)
 
 ## 内置的组件
 

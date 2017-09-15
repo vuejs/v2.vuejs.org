@@ -1,5 +1,6 @@
 @import "_settings"
 @import "_syntax"
+@import "_ad"
 
 body
   font-family: $body-font
@@ -95,49 +96,19 @@ a.button
       height: 15px
       font-weight: 600
   &.html .code:before
-    content: 'HTML'
+    content: "HTML"
   &.js .code:before
-    content: 'JS'
+    content: "JS"
   &.bash .code:before
-    content: 'Shell'
+    content: "Shell"
   &.css .code:before
-    content: 'CSS'
+    content: "CSS"
 
 #main
   position: relative
   z-index: 1
   padding: 0 60px 30px
   overflow-x: hidden
-
-#ad
-  width: 125px
-  // text-align: center
-  position: fixed
-  z-index: 99
-  bottom: 10px
-  right: 10px
-  padding: 10px
-  background-color: #fff
-  border-radius: 3px
-  font-size: 13px
-  a
-    display: inline-block
-    color: $light
-    font-weight: normal
-  span
-    color: $light
-    display: inline-block
-    margin-bottom: 5px
-  img
-    width: 125px
-  .carbon-img, .carbon-text
-    display: block
-    margin-bottom: 6px
-    font-weight: normal
-    color: $medium
-  .carbon-poweredby
-    color: #aaa
-    font-weight: normal
 
 #nav
   .nav-link

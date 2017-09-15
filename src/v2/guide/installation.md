@@ -88,7 +88,7 @@ $ npm run dev
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**：CommonJS 版本用于较早期的打包器(bundler)（例如 [browserify](http://browserify.org/) 或 [webpack 1](https://webpack.github.io) 等）中。用于这些打包器的默认文件(`pkg.main`)，是只含有运行时(Runtime only)的 CommonJS 构建版本(`vue.runtime.common.js`)。
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**：ES 模块版本构建用于现代打包器（例如 [webpack 2](https://webpack.js.org) 或 [rollup](http://rollupjs.org/) 等）中。用于这些打包器的默认文件(`pkg.module`)，是只含有运行时(Runtime only)的 ES Module 构建版本(`vue.runtime.esm.js`)。
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**：ES 模块版本构建用于现代打包器（例如 [webpack 2](https://webpack.js.org) 或 [rollup](https://rollupjs.org/) 等）中。用于这些打包器的默认文件(`pkg.module`)，是只含有运行时(Runtime only)的 ES Module 构建版本(`vue.runtime.esm.js`)。
 
 ### 运行时+编译器(Runtime + Compiler)版本 vs 只含有运行时版本(Runtime-only)
 

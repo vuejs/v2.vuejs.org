@@ -91,7 +91,7 @@ new Vue({
 
 其他可注册的 Vue 功能，也可以使用与此相同的封装方式，例如指令。
 
-### DOM 模版解析说明
+### DOM 模板解析注意事项
 
 当使用 DOM 作为模板时（例如，使用 `el` 选项，将现有内容挂载到一个元素上），你会受到一些源自 HTML 运行机制的限制，因为 Vue 只有在浏览器解析和标准化 HTML **之后**，才可以获取到模板内容。尤其是像 `<ul>`, `<ol>`, `<table>` 和 `<select>` 这样的元素，限制了出现在其中的元素，而像 `<option>` 这样的元素，只能出现在相应的元素中。
 
@@ -114,7 +114,7 @@ new Vue({
 **应当注意，在使用以下字符串模板之一的场景中，这些限制将不再适用**：
 
 - `<script type="text/x-template">`
-- JavaScript 内联模版字符串
+- JavaScript 内联模板字符串
 - `.vue` 组件
 
 因此，尽可能使用字符串模板。
@@ -219,8 +219,8 @@ new Vue({
 
 在 Vue 中，父子组件之间的关系可以概述为：**props 向下，events 向上**。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 发送消息给父组件。让我们来看下它们是如何运行的。
 
-<p style="text-align: center">
-  <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
+<p style="text-align: center;">
+  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
 </p>
 
 ## Props
@@ -817,7 +817,7 @@ bus.$on('id-selected', function (id) {
 
 1. `<app>` 组件不知道它会接收到什么内容。内容是由调用 `<app>` 的组件决定的。
 
-2. `<app>` 组件极有可能有它自己的模版。
+2. `<app>` 组件极有可能有它自己的模板。
 
 为了能够使合成组件正常运行，我们需要一种组织方式，将父组件的“内容”和子组件自身的模板掺杂在一起。这个过程被称为**内容分发(content distribution)**（或着，如果你熟悉 Angular，也可以叫作“互相嵌入(transclusion)”）。Vue.js 实现了一个内容分发 API，参照了当前 [Web 组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素，作为原始内容的插槽。
 
@@ -925,7 +925,7 @@ Vue.component('child-component', {
 </div>
 ```
 
-父组件模版：
+父组件模板：
 
 ``` html
 <app-layout>
@@ -1117,7 +1117,7 @@ var child = parent.$refs.profile
 
 当 `ref` 和 `v-for` 一起使用时，ref 是一个数组，包含相应的子组件。
 
-<p class="tip">`$refs` 只在组件渲染完成后才填充，并且它是非响应式的。它仅仅作为一个直接访问子组件的应急方案——应当避免在模版或计算属性中使用 `$refs`。</p>
+<p class="tip">`$refs` 只在组件渲染完成后才填充，并且它是非响应式的。它仅仅作为一个直接访问子组件的应急方案 - 应当避免在模板或计算属性中使用 `$refs`。</p>
 
 ### 异步组件
 
@@ -1207,16 +1207,16 @@ components: {
 }
 ```
 
-在 HTML 模版中，请使用 kebab-case 形式：
+在 HTML 模板中，请使用 kebab-case 形式：
 
 ``` html
-<!-- 在HTML模版中始终使用 kebab-case -->
+<!-- 在HTML模板中始终使用 kebab-case -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <pascal-cased-component></pascal-cased-component>
 ```
 
-当使用_字符串_模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用下面的方式来引用你的组件：
+当使用_字符串_模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模板中，你可以使用下面的方式来引用你的组件：
 
 - kebab-case
 - camelCase 或 kebab-case 如果组件已经被定义为 camelCase
@@ -1249,7 +1249,7 @@ components: {
 <my-component/>
 ```
 
-当然，这只在字符串模版中有效。因为自闭的自定义元素是无效的 HTML，浏览器原生的解析器也无法识别它。
+当然，这只在字符串模板中有效。因为自闭的自定义元素是无效的 HTML，浏览器原生的解析器也无法识别它。
 
 ### 递归组件
 
@@ -1319,7 +1319,7 @@ beforeCreate: function () {
 
 这样问题就解决了！
 
-### 内联模版
+### 内联模板
 
 如果子组件有 `inline-template` 特性，组件将把它的内容当作它的模板，而不是把它当作分发内容。这让模板更灵活。
 
@@ -1336,7 +1336,7 @@ beforeCreate: function () {
 
 ### X-Templates
 
-另一种定义模版的方式是在 JavaScript 标签里使用 `text/x-template` 类型，并且指定一个 id。例如：
+另一种定义模板的方式是在 JavaScript 标签里使用 `text/x-template` 类型，并且指定一个 id。例如：
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -1350,7 +1350,7 @@ Vue.component('hello-world', {
 })
 ```
 
-这在有很多模版或者小的应用中有用，否则应该避免使用，因为它将模版和组件的其他定义隔离了。
+这在有很多模板或者小的应用中有用，否则应该避免使用，因为它将模板和组件的其他定义隔离了。
 
 ### 对低开销的静态组件使用 `v-once`
 
@@ -1373,16 +1373,16 @@ Vue.component('terms-of-service', {
 
 - 字符串模板(string template)和非字符串模板(non-string template)
 
-  参考[本章节 - DOM 模版解析说明](#DOM-模版解析说明)：
+  参考[本章节 - DOM 模板解析注意事项](#DOM-模板解析注意事项)：
   1. 字符串模板(string template)
 
     - `<script type="text/x-template">`
-    - JavaScript 内联模版字符串
+    - JavaScript 内联模板字符串
     - `.vue` 组件
 
   1. 非字符串模板(non-string template)
 
-    - DOM 模版
+    - DOM 模板
 
 ***
 

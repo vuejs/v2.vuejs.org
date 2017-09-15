@@ -4,7 +4,7 @@ type: guide
 order: 702
 ---
 
-> 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue ，你也需要更新 Vue Router 。这也是我们在主文档中将迁移路径的详情添加进来的原因。有关使用 Vue Router 2 的完整教程，请参阅 [Vue Router 文档](http://router.vuejs.org/en/)。
+> 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue ，你也需要更新 Vue Router 。这也是我们在主文档中将迁移路径的详情添加进来的原因。有关使用 Vue Router 2 的完整教程，请参阅 [Vue Router 文档](https://router.vuejs.org/en/)。
 
 ## Router 初始化
 
@@ -49,7 +49,7 @@ new Vue({
 
 ### `router.map` <sup>替换</sup>
 
-路由现在被定义为一个在 router 实例里的一个[`routes` 选项](http://router.vuejs.org/en/essentials/getting-started.html#javascript)数组。所以这些路由：
+路由现在被定义为一个在 router 实例里的一个 [`routes` 选项](https://router.vuejs.org/en/essentials/getting-started.html#javascript)数组。所以这些路由：
 
 ``` js
 router.map({
@@ -154,7 +154,7 @@ router.beforeEach(function (to, from, next) {
 
 ### `subRoutes` <sup>重命名</sup>
 
-出于 Vue Router 和其他路由库一致性的考虑，重命名为[`children`](http://router.vuejs.org/en/essentials/nested-routes.html)
+出于 Vue Router 和其他路由库一致性的考虑，重命名为 [`children`](https://router.vuejs.org/en/essentials/nested-routes.html)
 
 {% raw %}
 <div class="upgrade-path">
@@ -165,7 +165,7 @@ router.beforeEach(function (to, from, next) {
 
 ### `router.redirect` <sup>替换</sup>
 
-现在用一个[路由定义的选项](http://router.vuejs.org/en/essentials/redirect-and-alias.html)作为代替。 举个例子，你将会更新：
+现在用一个[路由定义的选项](https://router.vuejs.org/en/essentials/redirect-and-alias.html)作为代替。 举个例子，你将会更新：
 
 ``` js
 router.redirect({
@@ -191,7 +191,7 @@ router.redirect({
 
 ### `router.alias` <sup>替换</sup>
 
-现在是你进行 alias 操作的[路由定义里的一个选项](http://router.vuejs.org/en/essentials/redirect-and-alias.html)。举个例子，你需要在你的`routes`定义里将：
+现在是你进行 alias 操作的[路由定义里的一个选项](https://router.vuejs.org/en/essentials/redirect-and-alias.html)。举个例子，你需要在你的 `routes` 定义里将：
 
 ``` js
 router.alias({
@@ -296,7 +296,7 @@ export default {
 
 ### `v-link` <sup>替换</sup>
 
-`v-link`指令已经被一个新的[`<router-link>` 组件](http://router.vuejs.org/en/api/router-link.html)指令替代，这一部分的工作已经被 Vue 2 中的组件完成。这将意味着在任何情况下，如果你拥有这样一个链接：
+`v-link` 指令已经被一个新的 [`<router-link>` 组件](https://router.vuejs.org/en/api/router-link.html)指令替代，这一部分的工作已经被 Vue 2 中的组件完成。这将意味着在任何情况下，如果你拥有这样一个链接：
 
 ``` html
 <a v-link="'/about'">About</a>
@@ -319,7 +319,7 @@ export default {
 
 ### `v-link-active` <sup>替换</sup>
 
-`v-link-active`也被[ `<router-link>` 组件](http://router.vuejs.org/en/api/router-link.html)上的`tag`属性替代了。举个例子，你需要更新：
+`v-link-active` 也被 [ `<router-link>` 组件](https://router.vuejs.org/en/api/router-link.html)上的 `tag` 属性替代了。举个例子，你需要更新：
 
 ``` html
 <li v-link-active>
@@ -348,7 +348,7 @@ export default {
 
 ### `router.go` <sup>改变</sup>
 
-为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为 [后退/前进导航](https://router.vuejs.org/en/essentials/navigation.html#routergon)，[`router.push` ](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
+为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为 [后退/前进导航](https://router.vuejs.org/en/essentials/navigation.html#routergon)，[`router.push` ](https://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
 
 {% raw %}
 <div class="upgrade-path">
@@ -372,7 +372,7 @@ Hashbangs 将不再为谷歌需要去爬去一个网址，所以他们将不再�
 
 ### `history: true` <sup>替换</sup>
 
-所有路由模型选项将被简化成一个单个的[`mode` 选项](http://router.vuejs.org/en/api/options.html#mode)。 你需要更新：
+所有路由模型选项将被简化成一个单个的 [`mode` 选项](https://router.vuejs.org/en/api/options.html#mode)。 你需要更新：
 
 ``` js
 var router = new VueRouter({
@@ -397,7 +397,7 @@ var router = new VueRouter({
 
 ### `abstract: true` <sup>替换</sup>
 
-所有路由模型选项将被简化成一个单个的[`mode` 选项](http://router.vuejs.org/en/api/options.html#mode)。 你需要更新：
+所有路由模型选项将被简化成一个单个的 [`mode` 选项](https://router.vuejs.org/en/api/options.html#mode)。 你需要更新：
 
 ``` js
 var router = new VueRouter({
@@ -424,7 +424,7 @@ var router = new VueRouter({
 
 ### `saveScrollPosition` <sup>替换</sup>
 
-它已经被替换为可以接受一个函数的[`scrollBehavior` 选项](http://router.vuejs.org/en/advanced/scroll-behavior.html)，所以滑动行为可以完全的被定制化处理 - 甚至为每次路由进行定制也可以满足。这将会开启很多新的可能，但是简单的复制旧的行为:
+它已经被替换为可以接受一个函数的 [`scrollBehavior` 选项](https://router.vuejs.org/en/advanced/scroll-behavior.html)，所以滑动行为可以完全的被定制化处理 - 甚至为每次路由进行定制也可以满足。这将会开启很多新的可能，但是简单的复制旧的行为:
 
 ``` js
 saveScrollPosition: true
@@ -482,7 +482,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `activate` <sup>替换</sup>
 
-使用[`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards)这一组件进行替代。
+使用 [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) 这一组件进行替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -493,7 +493,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `canActivate` <sup>替换</sup>
 
-使用[`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。
+使用 [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -515,7 +515,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `canDeactivate` <sup>替换</sup>
 
-在组件中使用[`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) 作为替代。
+在组件中使用 [`beforeRouteLeave`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) 作为替代。
 
 {% raw %}
 <div class="upgrade-path">

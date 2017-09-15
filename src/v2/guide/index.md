@@ -365,7 +365,7 @@ var app7 = new Vue({
 
 ## 与自定义元素的关系
 
-你可能已经注意到，Vue 组件非常类似于 [Web 组件规范](http://www.w3.org/wiki/WebComponents/)中的**自定义元素(Custom Element)**。这是因为 Vue 的组件语法不加限制地效仿参照了此规范。例如 Vue 组件实现了 [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 和 `is` 特殊属性。然而，还是有一些关键区别：
+你可能已经注意到，Vue 组件非常类似于 [Web 组件规范](https://www.w3.org/wiki/WebComponents/)中的**自定义元素(Custom Element)**。这是因为 Vue 的组件语法不加限制地效仿参照了此规范。例如 Vue 组件实现了 [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 和 `is` 特殊属性。然而，还是有一些关键区别：
 
 1. Web 组件规范仍然处于草案阶段，而且尚未被浏览器原生实现。相比之下，Vue 组件不需要任何 polyfill 修补，并且在所有支持的浏览器（IE9 及更高版本）之下表现一致。必要时，Vue 组件也能够包含于原生自定义元素规范之内。
 
