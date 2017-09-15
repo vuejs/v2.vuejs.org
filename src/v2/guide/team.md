@@ -674,7 +674,7 @@ order: 803
         orgUrl: 'https://www.orchard-id.com/'
       },
       reposPersonal: [
-        'vuejs-fr/vuejs.org', 'Haeresis/node-atlas-hello-vue'
+        'vuejs-fr/*', 'Haeresis/node-atlas-hello-vue'
       ],
       links: [
         'https://node-atlas.js.org/', 'https://blog.lesieur.name/'
