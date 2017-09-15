@@ -38,7 +38,7 @@ new Vue({
 
 ``` html
 <span>Le message multiligne est :</span>
-<p style="white-space: pre-line">{{ message }}</p>
+<p style="white-space: pre-line;">{{ message }}</p>
 <br>
 <textarea v-model="message" placeholder="ajoutez plusieurs lignes"></textarea>
 ```
@@ -46,7 +46,7 @@ new Vue({
 {% raw %}
 <div id="example-textarea" class="demo">
   <span>Le message multiligne est :</span>
-  <p style="white-space: pre-line">{{ message }}</p>
+  <p style="white-space: pre-line;">{{ message }}</p>
   <br>
   <textarea v-model="message" placeholder="ajoutez plusieurs lignes"></textarea>
 </div>
@@ -219,7 +219,7 @@ Select à choix multiples (lié à un tableau) :
 ```
 {% raw %}
 <div id="example-6" class="demo">
-  <select v-model="selected" multiple style="width: 50px">
+  <select v-model="selected" multiple style="width: 50px;">
     <option>A</option>
     <option>B</option>
     <option>C</option>

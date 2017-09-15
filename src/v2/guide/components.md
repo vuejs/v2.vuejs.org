@@ -219,8 +219,8 @@ Les composants sont destinés à être utilisés ensemble, le plus souvent dans 
 
 Dans Vue.js, la relation parent-enfant peut être résumée ainsi : **descente de props, remontée d'événements**. Le parent passe les données à l'enfant via les **props**, et l'enfant envoie des messages à son parent via les **événements**. Voyons comment cela fonctionne ci-dessous.
 
-<p style="text-align: center">
-  <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
+<p style="text-align: center;">
+  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
 </p>
 
 ## Props
