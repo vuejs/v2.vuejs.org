@@ -219,8 +219,8 @@ new Vue({
 
 在 Vue 中，父子组件之间的关系可以概述为：**props 向下，events 向上**。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 发送消息给父组件。让我们来看下它们是如何运行的。
 
-<p style="text-align: center">
-  <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
+<p style="text-align: center;">
+  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
 </p>
 
 ## Props

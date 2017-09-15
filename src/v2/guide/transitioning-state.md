@@ -541,13 +541,13 @@ new Vue({
 
 在子组件中，我们可以使用本页面所涵盖的所有过渡策略进行组合，再通过 Vue 提供的[内置过渡系统](transitions.html) 。将这些结合在一起，对于要实现的动画效果的限制很少。
 
-## Bringing Designs to Life
+## 赋予设计以生命
 
-To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+通过定义动画，可以给我们的设计带来生命。不幸的是，当设计师创建图标、logo 和吉祥物的时候，他们通常交付的都是图片或静态 SVG。所以，虽然 GitHub 章鱼猫、Twitter 小鸟以及其它许多 logo 都类似于生灵，它们看上去缺乏生气。
 
-Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+Vue 可以提供帮助。由于 SVG 的本质是数据，我们只需要用到这些动物活跃、思考或惊恐的图例。然后 Vue 使用这些图例，来实现这几种状态之间的过渡动画，以制作欢迎页面、加载指示、以及触发情感的提示信息。
 
-Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
+Sarah Drasner 提供了如下示例，通过把时间和交互组合，来驱动状态改变：
 
 <p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
