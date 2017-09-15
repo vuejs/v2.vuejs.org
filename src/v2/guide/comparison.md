@@ -88,9 +88,9 @@ If you are a fan of CSS-in-JS, many of the popular CSS-in-JS libraries support V
 
 Lastly, the styling in Vue's single-file component's is very flexible. Through [vue-loader](https://github.com/vuejs/vue-loader), you can use any preprocessor, post-processor, and even deep integration with [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html) -- all within the `<style>` element.
 
-### 规模
+### 扩展
 
-#### 向上扩展
+#### 扩展升级
 
 Vue 和 React 都提供了强大的路由来应对大型应用。React 社区在状态管理方面非常有创新精神（比如 Flux、Redux），而这些状态管理模式甚至 [Redux 本身](https://github.com/egoist/revue)也可以非常容易的集成在 Vue 应用中。实际上，Vue 更进一步地采用了这种模式（[Vuex](https://github.com/vuejs/vuex)），相信更加深入集成 Vue 的状态管理解决方案 Vuex 能为你带来更好的开发体验。
 
