@@ -1,16 +1,16 @@
 ---
-title: Migration from Vue Router 0.7.x (En)
+title: Migration depuis Vue Router 0.7.x
 type: guide
 order: 702
 ---
 
-> Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](https://router.vuejs.org/en/).
+> Seul Vue Router 2 est compatible avec Vue 2, donc si vous mettez à jour Vue, vous devez mettre à jour Vue Router également. C'est pourquoi nous avons inclus des détails de migration ici dans les documentations principales. Pour un guide complet sur l'utilisation du nouveau Vue Router, consultez [la documentation Vue Router](https://router.vuejs.org/fr/).
 
-## Router Initialization
+## Initialisation du Routeur
 
-### `router.start` <sup>replaced</sup>
+### `router.start` <sup>remplacée</sup>
 
-<p class="tip">**Cette page est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p><p>There is no longer a special API to initialize an app with Vue Router. That means instead of:</p>
+Il n'y a plus d'API dédiée pour initialiser Vue Router. Cela signifie qu'au lieu d'utiliser :
 
 ``` js
 router.start({
@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-You'll just pass a router property to a Vue instance:
+Vous avez juste à passer la propriété `router` à l'instance de Vue :
 
 ``` js
 new Vue({
@@ -28,7 +28,7 @@ new Vue({
 })
 ```
 
-Or, if you're using the runtime-only build of Vue:
+Ou, si vous utilisez le build runtime de Vue :
 
 ``` js
 new Vue({
@@ -40,16 +40,16 @@ new Vue({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.start</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.start</code>.</p>
 </div>
 {% endraw %}
 
-## Route Definitions
+## Définition de route
 
-### `router.map` <sup>replaced</sup>
+### `router.map` <sup>remplacée</sup>
 
-Routes are now defined as an array on a [`routes` option](https://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
+Les routes sont maintenant définies dans un tableau dans [une option `routes`](https://router.vuejs.org/fr/essentials/getting-started.html#javascript) lors de l'instanciation du routeur. Donc ces routes par exemple :
 
 ``` js
 router.map({
@@ -62,7 +62,7 @@ router.map({
 })
 ```
 
-Will instead be defined with:
+Seront à présent définies ainsi :
 
 ``` js
 var router = new VueRouter({
@@ -73,26 +73,26 @@ var router = new VueRouter({
 })
 ```
 
-The array syntax allows more predictable route matching, since iterating over an object is not guaranteed to use the same key order across browsers.
+La syntaxe par tableau permet une plus grande prédictibilité de la concordance des routes, puisque l'itération sur un objet ne garantit pas le même ordre d'affichage sur tous les navigateurs.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.map</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.map</code>.</p>
 </div>
 {% endraw %}
 
-### `router.on` <sup>removed</sup>
+### `router.on` <sup>supprimée</sup>
 
-If you need to programmatically generate routes when starting up your app, you can do so by dynamically pushing definitions to a routes array. For example:
+Si vous avez besoin programmatiquement de générer les routes au démarrage de votre application, vous pouvez le faire dynamiquement en ajoutant les définitions de route dans votre tableau. Par exemple :
 
 ``` js
-// Normal base routes
+// Base de routes statiques
 var routes = [
   // ...
 ]
 
-// Dynamically generated routes
+// Routes générées dynamiquement
 marketingPages.forEach(function (page) {
   routes.push({
     path: '/marketing/' + page.slug
@@ -110,7 +110,7 @@ var router = new Router({
 })
 ```
 
-If you need to add new routes after the router has been instantiated, you can replace the router's matcher with a new one that includes the route you'd like to add:
+Si vous avez besoin d'ajouter une nouvelle route après que le routeur soit instancié, vous pouvez remplacer l'objet de concordance des routes du routeur par un nouveau contenant la route que vous souhaitez ajouter :
 
 ``` js
 router.match = createMatcher(
@@ -123,14 +123,14 @@ router.match = createMatcher(
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.on</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.on</code>.</p>
 </div>
 {% endraw %}
 
-### `router.beforeEach` <sup>changed</sup>
+### `router.beforeEach` <sup>changée</sup>
 
-`router.beforeEach` now works asynchronously and takes a `next` function as its third argument.
+`router.beforeEach` fonctionne maintenant de manière asynchrone et prend une fonction de rappel `next` en tant que troisième argument.
 
 ``` js
 router.beforeEach(function (transition) {
@@ -152,20 +152,20 @@ router.beforeEach(function (to, from, next) {
 })
 ```
 
-### `subRoutes` <sup>renamed</sup>
+### `subRoutes` <sup>renommée</sup>
 
-[Renamed to `children`](https://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
+[Renommée en `children`](https://router.vuejs.org/fr/essentials/nested-routes.html) pour plus de consistance entre Vue et les autres bibliothèques de routage.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>subRoutes</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>subRoutes</code>.</p>
 </div>
 {% endraw %}
 
-### `router.redirect` <sup>replaced</sup>
+### `router.redirect` <sup>remplacée</sup>
 
-This is now an [option on route definitions](https://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
+C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html). Ainsi par exemple, vous devez mettre à jour :
 
 ``` js
 router.redirect({
@@ -173,7 +173,7 @@ router.redirect({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+par une définition comme ci-dessous dans votre configuration de `routes` :
 
 ``` js
 {
@@ -184,14 +184,14 @@ to a definition like below in your `routes` configuration:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.redirect</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.redirect</code>.</p>
 </div>
 {% endraw %}
 
-### `router.alias` <sup>replaced</sup>
+### `router.alias` <sup>remplacée</sup>
 
-This is now an [option on the definition for the route](https://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
+C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html) que vous devrez mettre sous alias. Ainsi par exemple, vous devez mettre à jour :
 
 ``` js
 router.alias({
@@ -199,7 +199,7 @@ router.alias({
 })
 ```
 
-to a definition like below in your `routes` configuration:
+par une définition comme ci-dessous dans votre configuration de `routes` :
 
 ``` js
 {
@@ -209,7 +209,7 @@ to a definition like below in your `routes` configuration:
 }
 ```
 
-If you need multiple aliases, you can also use an array syntax:
+Si vous avez besoin de plusieurs alias, vous pouvez aussi utiliser la syntaxe de tableau :
 
 ``` js
 alias: ['/manage', '/administer', '/administrate']
@@ -217,14 +217,14 @@ alias: ['/manage', '/administer', '/administrate']
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.alias</code> being called.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'appel de <code>router.alias</code>.</p>
 </div>
 {% endraw %}
 
-### Arbitrary Route Properties <sup>replaced</sup>
+### Propriétés de route personnalisées <sup>remplacées</sup>
 
-Arbitrary route properties must now be scoped under the new meta property, to avoid conflicts with future features. So for example, if you had defined:
+Les propriétés de route personnalisées doivent maintenant être imbriquées dans une nouvelle propriété meta pour éviter les conflits avec les fonctionnalités futures. Ainsi par exemple, si vous aviez défini :
 
 ``` js
 '/admin': {
@@ -233,7 +233,7 @@ Arbitrary route properties must now be scoped under the new meta property, to av
 }
 ```
 
-Then you would now update it to:
+Et bien vous devrez définir maintenant :
 
 ``` js
 {
@@ -245,7 +245,7 @@ Then you would now update it to:
 }
 ```
 
-Then when later accessing this property on a route, you will still go through meta. For example:
+Puis quand vous accéderez à cette propriété pour une route, vous pourrez toujours y accéder via `meta`. Par exemple :
 
 ``` js
 if (route.meta.requiresAuth) {
@@ -255,20 +255,20 @@ if (route.meta.requiresAuth) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of arbitrary route properties not scoped under meta.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de propriétés personnalisées non imbriquées dans meta.</p>
 </div>
 {% endraw %}
 
-### [] Syntax for Arrays in Queries <sup>removed</sup>
+### Syntaxe `[]` pour les tableaux dans les QueryString <sup>retirée</sup>
 
-When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
+Quand vous passez des tableaux à des paramètres de QueryString la syntaxe `/foo?users[]=Tom&users[]=Jerry` ne fonctionne plus. À la place, la nouvelle syntaxe sera `/foo?users=Tom&users=Jerry`. En interne `$route.query.users` sera toujours un tableau, mais s'il n'y a qu'un seul paramètre dans la query `/foo?users=Tom`, quand vous accéderez à cette route, il n'y aura aucun moyen pour le routeur de savoir si nous souhaitons que `users` soit un tableau. À cause de cela, il faut ajouter une propriété calculée et remplacer toutes les références de `$route.query.users` par cela :
 
 ```javascript
 export default {
   // ...
   computed: {
-    // users will always be an array
+    // `users` sera toujours un tableau
     users () {
       const users = this.$route.query.users
       return Array.isArray(users) ? users : [users]
@@ -277,102 +277,102 @@ export default {
 }
 ```
 
-## Route Matching
+## Concordance de routes
 
-Route matching now uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) under the hood, making it much more flexible than previously.
+La concordance de routes utilise maintenant [path-to-regexp](https://github.com/pillarjs/path-to-regexp) pour fonctionner, ce qui la rend plus flexible que précédemment.
 
-### One or More Named Parameters <sup>changed</sup>
+### Un ou plusieurs paramètres nommés <sup>changés</sup>
 
-The syntax has changed slightly, so `/category/*tags` for example, should be updated to `/category/:tags+`.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete route syntax.</p>
-</div>
-{% endraw %}
-
-## Links
-
-### `v-link` <sup>replaced</sup>
-
-The `v-link` directive has been replaced with a new [`<router-link>` component](https://router.vuejs.org/en/api/router-link.html), as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:
-
-``` html
-<a v-link="'/about'">About</a>
-```
-
-You'll need to update it like this:
-
-``` html
-<router-link to="/about">About</router-link>
-```
-
-Note that `target="_blank"` is not supported on `<router-link>`, so if you need to open a link in a new tab, you have to use `<a>` instead.
+La syntaxe a quelque peu changée, ainsi `/category/*tags` par exemple, doit être mis à jour pour `/category/:tags+`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-link</code> directive.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de syntaxe de route obsolète.</p>
 </div>
 {% endraw %}
 
-### `v-link-active` <sup>replaced</sup>
+## Liens
 
-The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](https://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
+### `v-link` <sup>remplacée</sup>
+
+La directive `v-link` a été remplacée par le [composant `<router-link>`](https://router.vuejs.org/fr/api/router-link.html) car ce type de travail relève du domaine des composants dans Vue 2. Cela signifie que chaque fois que vous avez un lien comme celui-ci :
+
+``` html
+<a v-link="'/about'">À propos</a>
+```
+
+Vous devez le mettre à jour ainsi :
+
+``` html
+<router-link to="/about">À propos</router-link>
+```
+
+Notez que `target="_blank"` n'est pas supporté sur `<router-link>` donc si vous avez besoin d'ouvrir un lien dans un nouvel onglet, vous devez utiliser `<a>` à la place.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de directive <code>v-link</code>.</p>
+</div>
+{% endraw %}
+
+### `v-link-active` <sup>remplacée</sup>
+
+La directive `v-link-active` a été remplacée par un attribut de balise sur [le composant `<router-link>`](https://router.vuejs.org/fr/api/router-link.html). Donc par exemple, vous devez mettre à jour ceci :
 
 ``` html
 <li v-link-active>
-  <a v-link="'/about'">About</a>
+  <a v-link="'/about'">À propos</a>
 </li>
 ```
 
-to this:
+par ceci :
 
 ``` html
 <router-link tag="li" to="/about">
-  <a>About</a>
+  <a>À propos</a>
 </router-link>
 ```
 
-The `<a>` will be the actual link (and will get the correct href), but the active class will be applied to the outer `<li>`.
+Le `<a>` sera dans ce cas le lien (et amènera sur l'adresse correcte), mais la classe active sera appliquée sur le `<li>` extérieur.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>v-link-active</code> directive.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de directive <code>v-link-active</code>.</p>
 </div>
 {% endraw %}
 
-## Programmatic Navigation
+## Navigation par programmation
 
-### `router.go` <sup>changed</sup>
+### `router.go` <sup>changée</sup>
 
-For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](https://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
+Pour plus de consistance avec l'[API HTML5 History](https://developer.mozilla.org/fr-FR/docs/Web/API/History_API) `router.go` est maintenant utilisé pour [la navigation en arrière ou en avant](https://router.vuejs.org/fr/essentials/navigation.html#routergon) alors que [`router.push`](https://router.vuejs.org/fr/essentials/navigation.html#routerpushlocation) est utilisé pour naviguer vers une page spécifique.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>router.go</code> being used where <code>router.push</code> should be used instead.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'utilisation de <code>router.go</code> là où <code>router.push</code> devrait être utilisé.</p>
 </div>
 {% endraw %}
 
-## Router Options: Modes
+## Options de Router : Modes
 
-### `hashbang: false` <sup>removed</sup>
+### `hashbang: false` <sup>supprimée</sup>
 
-Hashbangs are no longer required for Google to crawl a URL, so they are no longer the default (or even an option) for the hash strategy.
+Les hashbangs ne sont plus requis par Google pour le parcours d'URL, il ne sont donc plus l’utilisation par défaut (ou même une option) pour la stratégie de hash.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>hashbang: false</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>hashbang: false</code>.</p>
 </div>
 {% endraw %}
 
-### `history: true` <sup>replaced</sup>
+### `history: true` <sup>replacée</sup>
 
-All routing mode options have been condensed into a single [`mode` option](https://router.vuejs.org/en/api/options.html#mode). Update:
+Tous les options de mode ont été condensées dans un seule [option `mode`](https://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
 
 ``` js
 var router = new VueRouter({
@@ -380,7 +380,7 @@ var router = new VueRouter({
 })
 ```
 
-to:
+avec :
 
 ``` js
 var router = new VueRouter({
@@ -390,14 +390,14 @@ var router = new VueRouter({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>history: true</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>history: true</code>.</p>
 </div>
 {% endraw %}
 
-### `abstract: true` <sup>replaced</sup>
+### `abstract: true` <sup>remplacée</sup>
 
-All routing mode options have been condensed into a single [`mode` option](https://router.vuejs.org/en/api/options.html#mode). Update:
+Tous les options de mode ont été condensées dans un seule [option `mode`](https://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
 
 ``` js
 var router = new VueRouter({
@@ -405,7 +405,7 @@ var router = new VueRouter({
 })
 ```
 
-to:
+avec :
 
 ``` js
 var router = new VueRouter({
@@ -415,22 +415,22 @@ var router = new VueRouter({
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>abstract: true</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>abstract: true</code>.</p>
 </div>
 {% endraw %}
 
-## Route Options: Misc
+## Options de Route
 
-### `saveScrollPosition` <sup>replaced</sup>
+### `saveScrollPosition` <sup>remplacée</sup>
 
-This has been replaced with a [`scrollBehavior` option](https://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:
+Ceci a été remplacé par l'[option `scrollBehavior`](https://router.vuejs.org/fr/advanced/scroll-behavior.html) qui accepte une fonction, ainsi le comportement de défilement est complètement personnalisable, même par route. Ceci ouvre de nouvelles possibilités, mais pour simplement reproduire les anciens comportements :
 
 ``` js
 saveScrollPosition: true
 ```
 
-You can replace it with:
+vous pouvez remplacer ça par :
 
 ``` js
 scrollBehavior: function (to, from, savedPosition) {
@@ -440,104 +440,104 @@ scrollBehavior: function (to, from, savedPosition) {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>saveScrollPosition: true</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>saveScrollPosition: true</code>.</p>
 </div>
 {% endraw %}
 
-### `root` <sup>renamed</sup>
+### `root` <sup>renommée</sup>
 
-Renamed to `base` for consistency with [the HTML `<base>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).
+Renommée par `base` pour plus de consistance avec l'[élément HTML `<base>`](https://developer.mozilla.org/fr-FR/docs/Web/HTML/Element/base).
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>root</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>root</code>.</p>
 </div>
 {% endraw %}
 
-### `transitionOnLoad` <sup>removed</sup>
+### `transitionOnLoad` <sup>supprimée</sup>
 
-This option is no longer necessary now that Vue's transition system has explicit [`appear` transition control](transitions.html#Transitions-on-Initial-Render).
+Cette option n'est plus nécessaire maintenant que le système de transition de Vue a un [contrôle de transition `appear`](transitions.html#Transitions-sur-le-rendu-initial) explicite.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>transitionOnLoad: true</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>transitionOnLoad: true</code>.</p>
 </div>
 {% endraw %}
 
-### `suppressTransitionError` <sup>removed</sup>
+### `suppressTransitionError` <sup>supprimée</sup>
 
-Removed due to hooks simplification. If you really must suppress transition errors, you can use [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) instead.
+Supprimée grâce à une simplification des hooks. Si vous devez réellement supprimer les erreurs de transition, vous pouvez utiliser [`try`...`catch`](https://developer.mozilla.org/fr-FR/docs/Web/JavaScript/Reference/Statements/try...catch) à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>suppressTransitionError: true</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'options <code>suppressTransitionError: true</code>.</p>
 </div>
 {% endraw %}
 
-## Route Hooks
+## Hooks de Route
 
-### `activate` <sup>replaced</sup>
+### `activate` <sup>remplacée</sup>
 
-Use [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+Utilisez [`beforeRouteEnter`](https://router.vuejs.org/fr/advanced/navigation-guards.html#interception-par-composant) dans le composant à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>beforeRouteEnter</code> hook.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de hook <code>beforeRouteEnter</code>.</p>
 </div>
 {% endraw %}
 
-### `canActivate` <sup>replaced</sup>
+### `canActivate` <sup>remplacée</sup>
 
-Use [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) in the route instead.
+Utilisez [`beforeEnter`](https://router.vuejs.org/fr/advanced/navigation-guards.html#interception-par-route) dans le composant à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canActivate</code> hook.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de hook <code>canActivate</code>.</p>
 </div>
 {% endraw %}
 
-### `deactivate` <sup>removed</sup>
+### `deactivate` <sup>remplacée</sup>
 
-Use the component's [`beforeDestroy`](../api/#beforeDestroy) or [`destroyed`](../api/#destroyed) hooks instead.
+Utilisez le [`beforeDestroy`](../api/#beforeDestroy) du composant ou le hook [`destroyed`](../api/#destroyed) à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>deactivate</code> hook.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de hook <code>deactivate</code>.</p>
 </div>
 {% endraw %}
 
-### `canDeactivate` <sup>replaced</sup>
+### `canDeactivate` <sup>remplacée</sup>
 
-Use [`beforeRouteLeave`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
+Utilisez [`beforeRouteLeave`](https://router.vuejs.org/fr/advanced/navigation-guards.html#interception-par-composant) dans le composant à la place.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canDeactivate</code> hook.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de hook <code>canDeactivate</code>.</p>
 </div>
 {% endraw %}
 
-### `canReuse: false` <sup>removed</sup>
+### `canReuse: false` <sup>remplacée</sup>
 
-There's no longer a use case for this in the new Vue Router.
+Il n'existe plus de cas comme celui-ci dans le nouveau Vue Router.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>canReuse: false</code> option.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples d'option <code>canReuse: false</code>.</p>
 </div>
 {% endraw %}
 
-### `data` <sup>replaced</sup>
+### `data` <sup>remplacée</sup>
 
-The `$route` property is now reactive, so you can just use a watcher to react to route changes, like this:
+La propriété `$route` est maintenant réactive donc vous pouvez juste utiliser un observateur pour réagir au changement de route comme ceci :
 
 ``` js
 watch: {
@@ -552,14 +552,14 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>data</code> hook.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de hook <code>data</code>.</p>
 </div>
 {% endraw %}
 
-### `$loadingRouteData` <sup>removed</sup>
+### `$loadingRouteData` <sup>supprimée</sup>
 
-Define your own property (e.g. `isLoading`), then update the loading state in a watcher on the route. For example, if fetching data with [axios](https://github.com/mzabriskie/axios):
+Définissez votre propre propriété (par ex . `isLoading`) quand vous mettez à jour l'état de chargement d'un observateur sur une route. Par exemple, si vous récupérez les données avec [axios](https://github.com/mzabriskie/axios) :
 
 ``` js
 data: function () {
@@ -594,7 +594,7 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>$loadingRouteData</code> meta property.</p>
+  <h4>Comment procéder ?</h4>
+  <p>Lancez l'<a href="https://github.com/vuejs/vue-migration-helper">outil d'aide à la migration</a> sur votre code pour trouver des exemples de propriété meta <code>$loadingRouteData</code>.</p>
 </div>
 {% endraw %}
