@@ -20,7 +20,7 @@ The easiest way to try out Vue.js is using the [JSFiddle Hello World example](ht
 <script src="https://unpkg.com/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note that we **do not** recommend beginners to start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
 
 ## Declarative Rendering
 
@@ -89,7 +89,7 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
 
 If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
 
@@ -220,7 +220,7 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note in the method we simply update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Note that in this method we simply update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
 
 Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
 
@@ -349,7 +349,7 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-This is just a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+This is just a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with a more complex template and logic without affecting the parent app.
 
 In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
 
@@ -365,7 +365,7 @@ In a large application, it is necessary to divide the whole app into components 
 
 ### Relation to Custom Elements
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute, however there are a few key differences:
 
 1. The Web Components Spec is still in draft status, and is not natively implemented in every browser. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
 
