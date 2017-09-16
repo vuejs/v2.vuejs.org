@@ -14,7 +14,7 @@ Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous 
 
 - [Forum](https://forum.vuejs.org/french) : Le meilleur endroit pour poser des questions et obtenir des réponses à propos de Vue et de son écosystème.
 - [Chat](https://gitter.im/vuejs-fr/vue) | [En](https://chat.vuejs.org/) : Un lieu pour rencontrer et discuter avec des développeurs. Vous pouvez également poser vos questions ici, mais le forum est une meilleure plateforme, car les discussions sont catégorisées et indexées.
-- [GitHub](https://github.com/vuejs) : Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les issues Github sont là pour ça. Les pull requests sont également les bienvenues !
+- [GitHub](https://github.com/vuejs) : Si vous avez un bogue à reporter ou une demande de nouvelle fonctionnalité à faire, les rapports de bouge (« issues ») Github sont là pour ça. Les propositions de fusion (« pull requests ») sont également les bienvenues !
 
 ### Explorer l'écosystème
 
@@ -25,7 +25,7 @@ Maintenant nous allons voir ensemble ce que la communauté peut faire pour vous 
 
 ### Contribuer au code
 
-Comme pour n'importe quel projet, il y a des règles de contribution à respecter. Pour s'assurer que nous pouvons vous aider ou accepter votre pull request aussi rapidement que possible, merci de [lire le guide de contribution](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
+Comme pour n'importe quel projet, il y a des règles de contribution à respecter. Pour s'assurer que nous pouvons vous aider ou accepter votre proposition de fusion aussi rapidement que possible, merci de [lire le guide de contribution](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md).
 
 Après cela, vous serez fin prêt à contribuer sur les dépôts principaux de Vue :
 
@@ -40,7 +40,7 @@ Après cela, vous serez fin prêt à contribuer sur les dépôts principaux de V
 Hormis répondre aux questions ou partager des ressources sur le forum et le chat, il y a beaucoup d'autres manières d'améliorer et partager vos connaissances :
 
 - **Partagez des ressources pour l'apprentissage.** On dit souvent que la meilleure manière d'apprendre est d'enseigner. Si vous faites quelque chose d'intéressant avec Vue, renforcez votre expertise en écrivant un billet de blog, en proposant des travaux pratiques ou même en publiant un gist sur les réseaux sociaux.
-- **Surveillez les dépôts qui vous tiennent à cœur.** Cela vous enverra des notifications dès qu'il y aura une activité dans le dépôt, vous permettant de suivre les discussions en cours et les fonctionnalités à venir. C'est une approche très intéressante pour consolider votre expertise tout en aidant à résoudre des issues et des pull requests.
+- **Surveillez les dépôts qui vous tiennent à cœur.** Cela vous enverra des notifications dès qu'il y aura une activité dans le dépôt, vous permettant de suivre les discussions en cours et les fonctionnalités à venir. C'est une approche très intéressante pour consolider votre expertise tout en aidant à résoudre les bogues des rapports (« issues ») et des propositions de fusion (« pull requests »).
 
 ### Traduire les documentations
 
@@ -48,4 +48,4 @@ Vue s'est déjà répandu à travers le monde avec l'équipe principale présent
 
 Nous espérons qu'en ce moment, vous êtes en train de lire cette phrase dans votre langue préférée. Si ce n'est pas le cas, que diriez-vous de nous aider à changer cela en répliquant le [dépôt international](https://github.com/vuejs/vuejs.org/) ?
 
-Et si maintenir la traduction que vous êtes en train de lire vous intéresse, n'hésitez pas à répliquer le [dépôt français](https://github.com/vuejs-fr/vuejs.org/) et à proposer vos traductions ou corrections en pull request.
+Et si maintenir la traduction que vous êtes en train de lire vous intéresse, n'hésitez pas à répliquer le [dépôt français](https://github.com/vuejs-fr/vuejs.org/) et à proposer vos traductions ou corrections en propositions de fusion.
