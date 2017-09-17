@@ -16,6 +16,14 @@ $ hexo server
 
 Translation for this documentation project are currently maintained in separate repositories forked from this original one.
 
+### Spanish
+
+Spanish translation is maintained by CO-Vuejs.
+
+* Translation Repo — [/co-vuejs/es.vuejs.org](https://github.com/co-vuejs/es.vuejs.org)
+* Primary maintainers - [CamiloRincon](https://github.com/CamiloRincon), [adrianengine](https://github.com/adrianengine), [diegofelipemoreno](https://github.com/diegofelipemoreno)
+
+
 ### French
 
 French translation is maintained by Vuejs-FR.
