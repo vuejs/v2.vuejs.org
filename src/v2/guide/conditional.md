@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-Dans les templates en chaîne de caractères, par exemple Handlebars, nous pouvons écrire une structure conditionnelle comme ceci :
+Dans les templates en chaine de caractères, par exemple Handlebars, nous pouvons écrire une structure conditionnelle comme ceci :
 
 ``` html
 <!-- Template de Handlebars -->
@@ -59,7 +59,7 @@ Un élément `v-else` doit immédiatement suivre un élément `v-if` ou un élé
 
 > Nouveau dans la 2.1.0+
 
-Le `v-else-if`, comme le nom le suggère, sert comme une « structure sinon si » pour `v-if`. Il peut également être enchaîné plusieurs fois :
+Le `v-else-if`, comme le nom le suggère, sert comme une « structure sinon si » pour `v-if`. Il peut également être enchainé plusieurs fois :
 
 ```html
 <div v-if="type === 'A'">
@@ -170,7 +170,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Remarquez que les éléments `<label>` sont encore réutilisés efficacement, car ils n'ont pas d'attributs `key`.
+Remarquez que les éléments `<label>` sont réutilisés efficacement, car ils n'ont pas d'attributs `key`.
 
 ## `v-show`
 
@@ -186,13 +186,13 @@ La différence est qu'un élément avec `v-show` sera toujours restitué et rest
 
 ## `v-if` vs `v-show`
 
-`v-if` est un « vrai » rendu conditionnel car il garantit que les écouteurs d'événements et les composants enfants à l'intérieur de la structure conditionnelle sont correctement détruits et recréés lors des permutations.
+`v-if` est un « vrai » rendu conditionnel car il garantit que les écouteurs d'évènements et les composants enfants à l'intérieur de la structure conditionnelle sont correctement détruits et recréés lors des permutations.
 
 `v-if` est également **paresseux** : si la condition est fausse sur le rendu initial, il ne fera rien (la structure conditionnelle sera rendue quand la condition sera vraie pour la première fois).
 
 En comparaison, `v-show` est beaucoup plus simple (l’élément est toujours rendu indépendamment de la condition initiale, avec juste une simple permutation basée sur du CSS).
 
-D'une manière générale, `v-if` a des coûts à la permutations plus élevés alors que `v-show` a des coûts au rendu initial plus élevés. Donc préférez `v-show` si vous avez besoin de permuter quelque chose très souvent et préférez `v-if` si la condition ne change probablement pas à l'exécution.
+D'une manière générale, `v-if` a des couts à la permutation plus élevés alors que `v-show` a des couts au rendu initial plus élevés. Donc préférez `v-show` si vous avez besoin de permuter quelque chose très souvent et préférez `v-if` si la condition ne change probablement pas à l'exécution.
 
 ## `v-if` avec `v-for`
 

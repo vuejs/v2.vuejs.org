@@ -6,7 +6,7 @@ order: 502
 
 ## Implémentation officielle semblable à Flux
 
-Les grosses applications peuvent souvent augmenter en complexité du fait des multiples parties d'état disséminées à travers divers composants et les interactions entre eux. Pour résoudre ce problème, Vue offre [vuex](https://github.com/vuejs/vuex) : notre propre bibliothèque de gestion d'état inpiré par Elm. Il est même intégré à [vue-devtools](https://github.com/vuejs/vue-devtools), permettant le voyage dans le temps sans aucune configuration préalable.
+Les grosses applications peuvent souvent augmenter en complexité du fait des multiples parties d'état disséminées à travers divers composants et les interactions entre eux. Pour résoudre ce problème, Vue offre [vuex](https://github.com/vuejs/vuex) : notre propre bibliothèque de gestion d'état inspiré par Elm. Il est même intégré à [vue-devtools](https://github.com/vuejs/vue-devtools), permettant le voyage dans le temps sans aucune configuration préalable.
 
 ### Information pour les développeurs React
 
@@ -49,7 +49,7 @@ var store = {
 }
 ```
 
-Notez que toutes les actions qui changent l'état du store sont mises à l'intérieur du store lui-même. Ce type de gestion d'état centralisé permet de comprendre plus facilement quel type de mutations peuvent survenir et comment elles sont déclenchées. Maintenant, quand quelque-chose tourne mal, nous auront également un log sur ce qui a conduit à ce bogue.
+Notez que toutes les actions qui changent l'état du store sont mises à l'intérieur du store lui-même. Ce type de gestion d'état centralisé permet de comprendre plus facilement quel type de mutations peuvent survenir et comment elles sont déclenchées. Maintenant, quand quelque chose tourne mal, nous aurons également un log sur ce qui a conduit à ce bogue.
 
 De plus, chaque instance/composant peut gérer lui-même son propre état privé :
 

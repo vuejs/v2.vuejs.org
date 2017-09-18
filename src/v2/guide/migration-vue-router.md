@@ -154,7 +154,7 @@ router.beforeEach(function (to, from, next) {
 
 ### `subRoutes` <sup>renommée</sup>
 
-[Renommée en `children`](https://router.vuejs.org/fr/essentials/nested-routes.html) pour plus de consistance entre Vue et les autres bibliothèques de routage.
+[Renommée en `children`](https://router.vuejs.org/fr/essentials/nested-routes.html) pour plus de consistances entre Vue et les autres bibliothèques de routage.
 
 {% raw %}
 <div class="upgrade-path">
@@ -165,7 +165,7 @@ router.beforeEach(function (to, from, next) {
 
 ### `router.redirect` <sup>remplacée</sup>
 
-C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html). Ainsi par exemple, vous devez mettre à jour :
+C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html). Par exemple, vous devez mettre à jour :
 
 ``` js
 router.redirect({
@@ -191,7 +191,7 @@ par une définition comme ci-dessous dans votre configuration de `routes` :
 
 ### `router.alias` <sup>remplacée</sup>
 
-C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html) que vous devrez mettre sous alias. Ainsi par exemple, vous devez mettre à jour :
+C'est maintenant [une option des définitions de route](https://router.vuejs.org/fr/essentials/redirect-and-alias.html) que vous devrez mettre sous alias. Par exemple, vous devez mettre à jour :
 
 ``` js
 router.alias({
@@ -224,7 +224,7 @@ alias: ['/manage', '/administer', '/administrate']
 
 ### Propriétés de route personnalisées <sup>remplacées</sup>
 
-Les propriétés de route personnalisées doivent maintenant être imbriquées dans une nouvelle propriété meta pour éviter les conflits avec les fonctionnalités futures. Ainsi par exemple, si vous aviez défini :
+Les propriétés de route personnalisées doivent maintenant être imbriquées dans une nouvelle propriété meta pour éviter les conflits avec les fonctionnalités futures. Par exemple, si vous aviez défini :
 
 ``` js
 '/admin': {
@@ -245,7 +245,7 @@ Et bien vous devrez définir maintenant :
 }
 ```
 
-Puis quand vous accéderez à cette propriété pour une route, vous pourrez toujours y accéder via `meta`. Par exemple :
+Puis quand vous accèderez à cette propriété pour une route, vous pourrez toujours y accéder via `meta`. Par exemple :
 
 ``` js
 if (route.meta.requiresAuth) {
@@ -262,7 +262,7 @@ if (route.meta.requiresAuth) {
 
 ### Syntaxe `[]` pour les tableaux dans les QueryString <sup>retirée</sup>
 
-Quand vous passez des tableaux à des paramètres de QueryString la syntaxe `/foo?users[]=Tom&users[]=Jerry` ne fonctionne plus. À la place, la nouvelle syntaxe sera `/foo?users=Tom&users=Jerry`. En interne `$route.query.users` sera toujours un tableau, mais s'il n'y a qu'un seul paramètre dans la query `/foo?users=Tom`, quand vous accéderez à cette route, il n'y aura aucun moyen pour le routeur de savoir si nous souhaitons que `users` soit un tableau. À cause de cela, il faut ajouter une propriété calculée et remplacer toutes les références de `$route.query.users` par cela :
+Quand vous passez des tableaux à des paramètres de QueryString la syntaxe `/foo?users[]=Tom&users[]=Jerry` ne fonctionne plus. À la place, la nouvelle syntaxe sera `/foo?users=Tom&users=Jerry`. En interne `$route.query.users` sera toujours un tableau, mais s'il n'y a qu'un seul paramètre dans la query `/foo?users=Tom`, quand vous accèderez à cette route, il n'y aura aucun moyen pour le routeur de savoir si nous souhaitons que `users` soit un tableau. À cause de cela, il faut ajouter une propriété calculée et remplacer toutes les références de `$route.query.users` par cela :
 
 ```javascript
 export default {
@@ -283,7 +283,7 @@ La concordance de routes utilise maintenant [path-to-regexp](https://github.com/
 
 ### Un ou plusieurs paramètres nommés <sup>changés</sup>
 
-La syntaxe a quelque peu changée, ainsi `/category/*tags` par exemple, doit être mis à jour pour `/category/:tags+`.
+La syntaxe a quelque peu changé, ainsi `/category/*tags` par exemple, doit être mis à jour pour `/category/:tags+`.
 
 {% raw %}
 <div class="upgrade-path">
@@ -348,7 +348,7 @@ Le `<a>` sera dans ce cas le lien (et amènera sur l'adresse correcte), mais la 
 
 ### `router.go` <sup>changée</sup>
 
-Pour plus de consistance avec l'[API HTML5 History](https://developer.mozilla.org/fr-FR/docs/Web/API/History_API) `router.go` est maintenant utilisé pour [la navigation en arrière ou en avant](https://router.vuejs.org/fr/essentials/navigation.html#routergon) alors que [`router.push`](https://router.vuejs.org/fr/essentials/navigation.html#routerpushlocation) est utilisé pour naviguer vers une page spécifique.
+Pour plus de consistances avec l'[API HTML5 History](https://developer.mozilla.org/fr-FR/docs/Web/API/History_API) `router.go` est maintenant utilisé pour [la navigation en arrière ou en avant](https://router.vuejs.org/fr/essentials/navigation.html#routergon) alors que [`router.push`](https://router.vuejs.org/fr/essentials/navigation.html#routerpushlocation) est utilisé pour naviguer vers une page spécifique.
 
 {% raw %}
 <div class="upgrade-path">
@@ -372,7 +372,7 @@ Les hashbangs ne sont plus requis par Google pour le parcours d'URL, il ne sont 
 
 ### `history: true` <sup>replacée</sup>
 
-Tous les options de mode ont été condensées dans un seule [option `mode`](https://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
+Toutes les options de mode ont été condensées dans un seule [option `mode`](https://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
 
 ``` js
 var router = new VueRouter({
@@ -397,7 +397,7 @@ var router = new VueRouter({
 
 ### `abstract: true` <sup>remplacée</sup>
 
-Tous les options de mode ont été condensées dans un seule [option `mode`](https://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
+Toutes les options de mode ont été condensées dans un seule [option `mode`](https://router.vuejs.org/fr/api/options.html#mode). Mettez à jour :
 
 ``` js
 var router = new VueRouter({
@@ -447,7 +447,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `root` <sup>renommée</sup>
 
-Renommée par `base` pour plus de consistance avec l'[élément HTML `<base>`](https://developer.mozilla.org/fr-FR/docs/Web/HTML/Element/base).
+Renommée par `base` pour plus de consistances avec l'[élément HTML `<base>`](https://developer.mozilla.org/fr-FR/docs/Web/HTML/Element/base).
 
 {% raw %}
 <div class="upgrade-path">

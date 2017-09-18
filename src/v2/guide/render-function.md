@@ -122,13 +122,13 @@ Et dans les deux cas, Vue va automatiquement garder la page à jour, même quand
 
 ### Le DOM virtuel
 
-Vue arrive à cela grâce à la construction d'un **DOM virtuel** pour garder les traces des changements qui doivent être fait sur le vrai DOM. Prêtons attention à cette ligne :
+Vue arrive à cela grâce à la construction d'un **DOM virtuel** pour garder les traces des changements qui doivent être faits sur le vrai DOM. Prêtons attention à cette ligne :
 
 ``` js
 return createElement('h1', this.blogTitle)
 ```
 
-Qu'est-ce que `createElement` retourne exactement ? Ce n'est pas _réellement_ un vrai élément de DOM. Cela pourrait être nommé plus justement `createNodeDescription`, car il contient des informations décrivant à Vue quelle sorte de rendu de nœud il va falloir faire sur la page en incluant les descriptions des nœuds enfants. Nous appelons cette description de nœud un « nœud virtuel », usuellement abrégé en **VNode** (pour « virtual node »). « DOM virtuel » est le nom de l'arbre des VNodes construit par un arbre de composants Vue.
+Qu'est-ce que `createElement` retourne exactement ? Ce n'est pas _réellement_ un vrai élément de DOM. Cela pourrait être nommé plus justement `createNodeDescription`, car il contient des informations décrivant à Vue quelle sorte de rendu de nœud il va falloir faire sur la page en incluant les descriptions des nœuds enfants. Nous appelons cette description de nœud un « nœud virtuel », usuellement abrégé en **VNode** (pour « virtual node »). « DOM virtuel » est le nom de l'arbre des VNodes construits par un arbre de composants Vue.
 
 ## Les arguments de `createElement`
 
@@ -146,12 +146,12 @@ createElement(
   // Un objet de données correspondant aux attributs
   // que vous souhaitez utiliser dans le template. Optionnel.
   {
-    // (vu en détails dans la prochaine section)
+    // (vu en détail dans la prochaine section)
   },
 
   // {String | Array}
   // Des VNodes enfants, construit en utilisant `createElement()`,
-  // ou en utilisant des chaîne de caractère pour créer des 'text VNodes'. Optionnel.
+  // ou en utilisant des chaine de caractère pour créer des 'text VNodes'. Optionnel.
   [
     'Some text comes first.',
     createElement('h1', 'A headline'),
@@ -589,7 +589,7 @@ Pour ce composant, `children` va vous donner les deux paragraphes, `slots().defa
 
 ## Compilation de template
 
-Vous serez peut-être intéressé de savoir que les templates Vue sont en fait compilés en fonctions de rendu. C'est un détail d'implémentation dont vous n'avez en général pas à vous soucier, mais si vous souhaitez savoir comment un template spécifique est compilé, vous pourrez trouver cela intéressant. Vous trouverez ci-dessous une petite démo utilisant `Vue.compile` pour voir en live le rendu d'une chaîne de template :
+Vous serez peut-être intéressé de savoir que les templates Vue sont en fait compilés en fonctions de rendu. C'est un détail d'implémentation dont vous n'avez en général pas à vous soucier, mais si vous souhaitez savoir comment un template spécifique est compilé, vous pourrez trouver cela intéressant. Vous trouverez ci-dessous une petite démo utilisant `Vue.compile` pour voir en live le rendu d'une chaine de template :
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">

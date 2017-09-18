@@ -104,7 +104,7 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-Vous pouvez également utiliser `of` en tant que mot clé à la place de `in` pour être plus proche de la syntaxe JavaScript concernant l'utilisation des itérateurs :
+Vous pouvez également utiliser `of` en tant que mot-clé à la place de `in` pour être plus proche de la syntaxe JavaScript concernant l'utilisation des itérateurs :
 
 ``` html
 <div v-for="item of items"></div>
@@ -266,7 +266,7 @@ Vous pouvez penser que cela va forcer Vue à jeter le DOM existant et à faire d
 À cause des limitations en JavaScript, Vue **ne peut pas** détecter les changements suivants dans un tableau :
 
 1. Quand vous affectez directement un élément à un index. Par ex. : `vm.items[indexOfItem] = newValue`
-2. Quand vous modifiez la longeur du tableau. Par ex. : `vm.items.length = newLength`
+2. Quand vous modifiez la longueur du tableau. Par ex. : `vm.items.length = newLength`
 
 Pour contourner la première limitation, les deux exemples suivants accomplissent la même chose que `vm.items[indexOfItem] = newValue`, mais vont également déclencher des mises à jour de l'état dans le système de réactivité :
 
@@ -301,7 +301,7 @@ vm.b = 2
 // `vm.b` N'est PAS réactive
 ```
 
-Vue ne permet pas d'ajouter dynamiquement de nouvelles propriétés réactives au niveau racine sur des instances déjà créée. Cependant, il est possible d'ajouter des propriétés réactives aux objets imbriqués en utilisant la méthode `Vue.set(object, key, value)`. Par exemple avec :
+Vue ne permet pas d'ajouter dynamiquement de nouvelles propriétés réactives au niveau racine sur des instances déjà créées. Cependant, il est possible d'ajouter des propriétés réactives aux objets imbriqués en utilisant la méthode `Vue.set(object, key, value)`. Par exemple avec :
 
 ``` js
 var vm = new Vue({
@@ -325,7 +325,7 @@ Vous pouvez également utiliser la méthode d'instance `vm.$set`, qui est juste 
 this.$set(this.userProfile, 'age', 27)
 ```
 
-Parfois vous voudrez affecter plusieurs nouvelles propriétés à un objet existant, comme par exemple en utilisant `Object.assign()` ou `_.extend()`. Dans ce cas, vous devrez créer un nouvel objet avec les propriétés des deux objets. Donc au lieu de :
+Parfois vous voudrez affecter plusieurs nouvelles propriétés à un objet existant, par exemple en utilisant `Object.assign()` ou `_.extend()`. Dans ce cas, vous devrez créer un nouvel objet avec les propriétés des deux objets. Donc au lieu de :
 
 ``` js
 Object.assign(this.userProfile, {
@@ -366,7 +366,7 @@ computed: {
 }
 ```
 
-Dans les situations où les propriétés calculées ne sont pas utilisables (par ex. : à l'intérieur d'une boucle `v-for` imbriquée), vous pouvez juste utilisez une méthode :
+Dans les situations où les propriétés calculées ne sont pas utilisables (par ex. : à l'intérieur d'une boucle `v-for` imbriquée), vous pouvez juste utiliser une méthode :
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
@@ -387,7 +387,7 @@ methods: {
 
 ## `v-for` et plage de valeurs
 
-`v-for` peut également prendre un nombre entier. Dans ce cas, il répétera le template autant de fois qu'indiqué.
+`v-for` peut également prendre un nombre entier. Dans ce cas, il répètera le template autant de fois qu'indiqué.
 
 ``` html
 <div>
@@ -488,7 +488,7 @@ Voici un exemple complet d'une simple liste de tâches :
 </div>
 ```
 
-<p class="tip">Notez l'attribut `is="todo-item"`. Il est nécessaire dans le template du DOM, car seul les éléments `<li>` sont valides à l'intérieur des `<ul>`. Cela fait la même chose que `<todo-item>`, mais permet de contourner les erreurs potentielles d'analyse des navigateurs. Consultez les [limitations de l’analyse d’un template à partir du DOM](components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM) pour en savoir plus.</p>
+<p class="tip">Notez l'attribut `is="todo-item"`. Il est nécessaire dans le template du DOM, car seuls les éléments `<li>` sont valides à l'intérieur des `<ul>`. Cela fait la même chose que `<todo-item>`, mais permet de contourner les erreurs potentielles d'analyse des navigateurs. Consultez les [limitations de l’analyse d’un template à partir du DOM](components.html#Limitations-de-l’analyse-d’un-template-a-partir-du-DOM) pour en savoir plus.</p>
 
 ``` js
 Vue.component('todo-item', {

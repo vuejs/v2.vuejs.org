@@ -6,7 +6,7 @@ order: 11
 
 ## Les composants, qu’est-ce que c’est ?
 
-Les composants sont l'une des plus puissantes fonctionnalités de Vue. Ils vous permettent d'étendre les éléments de base du HTML pour encapsuler du code réutilisable. À un haut niveau, les composants sont des éléments personnalisables auxquels le compilateur de Vue attache un comportement. Dans certains cas, ils peuvent aussi apparaître comme des éléments HTML natifs étendus avec l'attribut spécial `is`.
+Les composants sont l'une des plus puissantes fonctionnalités de Vue. Ils vous permettent d'étendre les éléments de base du HTML pour encapsuler du code réutilisable. À un haut niveau, les composants sont des éléments personnalisables auxquels le compilateur de Vue attache un comportement. Dans certains cas, ils peuvent aussi apparaitre comme des éléments HTML natifs étendus avec l'attribut spécial `is`.
 
 ## Utilisation des composants
 
@@ -111,13 +111,13 @@ Le composant personnalisé `<my-row>` sera évalué comme du contenu invalide, c
 </table>
 ```
 
-**Il est à noter que ces limitations n'existent pas si vous utilisez des templates sous forme de chaîne de caractères en provenance d'une des sources suivantes** :
+**Il est à noter que ces limitations n'existent pas si vous utilisez des templates sous forme de chaine de caractères en provenance d'une des sources suivantes** :
 
 - les balises `<script type="text/x-template">`
-- les templates de chaîne de caractères littérales en JavaScript
+- les templates de chaine de caractères littérales en JavaScript
 - les composants `.vue`
 
-Donc, préférez l'utilisation des templates de chaîne de caractères lorsque c'est possible.
+Donc, préférez l'utilisation des templates de chaine de caractères lorsque c'est possible.
 
 ### `data` doit être une fonction
 
@@ -149,7 +149,7 @@ Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
   // data est techniquement une fonction, donc Vue ne va
   // pas se plaindre, mais nous allons retourner la même
-  // réference d'objet pour chaque instance de composant
+  // référence d'objet pour chaque instance de composant
   data: function () {
     return data
   }
@@ -215,9 +215,9 @@ new Vue({
 
 ### Composition de composants
 
-Les composants sont destinés à être utilisés ensemble, le plus souvent dans une relation parent-enfant : le composant A peut utiliser le composant B dans son propre template. Ils vont inévitablement avoir besoin de communiquer les uns avec les autres : le parent peut avoir besoin de passer des données à l'enfant, et l'enfant peut avoir besoin d'informer le parent que quelque chose s'est produit à l'intérieur. Cependant, il est également très important de garder le parent et l'enfant aussi découplés que possible via une interface clairement définie. Cela assure que le code de chaque composant peut être écrit de manière relativement isolée, cela les rend plus maintenables et potentiellement plus simples à ré-utiliser.
+Les composants sont destinés à être utilisés ensemble, le plus souvent dans une relation parent-enfant : le composant A peut utiliser le composant B dans son propre template. Ils vont inévitablement avoir besoin de communiquer les uns avec les autres : le parent peut avoir besoin de passer des données à l'enfant, et l'enfant peut avoir besoin d'informer le parent que quelque chose s'est produit à l'intérieur. Cependant, il est également très important de garder le parent et l'enfant aussi découplés que possible via une interface clairement définie. Cela assure que le code de chaque composant peut être écrit de manière relativement isolée, cela les rend plus maintenables et potentiellement plus simples à réutiliser.
 
-Dans Vue.js, la relation parent-enfant peut être résumée ainsi : **descente de props, remontée d'événements**. Le parent passe les données à l'enfant via les **props**, et l'enfant envoie des messages à son parent via les **événements**. Voyons comment cela fonctionne ci-dessous.
+Dans Vue.js, la relation parent-enfant peut être résumée ainsi : **descente de props, remontée d'évènements**. Le parent passe les données à l'enfant via les **props**, et l'enfant envoie des messages à son parent via les **évènements**. Voyons comment cela fonctionne ci-dessous.
 
 <p style="text-align: center;">
   <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
@@ -241,7 +241,7 @@ Vue.component('child', {
 })
 ```
 
-Alors nous pouvons lui passer une simple chaîne de caractères comme suit :
+Alors nous pouvons lui passer une simple chaine de caractères comme suit :
 
 ``` html
 <child message="bonjour !"></child>
@@ -268,7 +268,7 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-Les attributs HTML sont insensibles à la casse, donc quand vous utilisez des templates qui ne sont pas des chaînes de caractères, le nom de la prop en camelCase a besoin de son équivalent en kebab-case (délimité par des traits d'union) :
+Les attributs HTML sont insensibles à la casse, donc quand vous utilisez des templates qui ne sont pas des chaines de caractères, le nom de la prop en camelCase a besoin de son équivalent en kebab-case (délimité par des traits d'union) :
 
 ``` js
 Vue.component('child', {
@@ -283,7 +283,7 @@ Vue.component('child', {
 <child my-message="bonjour !"></child>
 ```
 
-Encore une fois, si vous utilisez les templates sous forme de chaîne de caractères, ces limitations ne s'appliquent pas.
+Encore une fois, si vous utilisez les templates sous forme de chaine de caractères, ces limitations ne s'appliquent pas.
 
 ### Props dynamiques
 
@@ -356,11 +356,11 @@ Est équivalent à :
 Une erreur répandue chez les débutants est d'essayer de passer un nombre en utilisant la syntaxe littérale :
 
 ``` html
-<!-- ceci passe une simple chaîne de caractères "1" -->
+<!-- ceci passe une simple chaine de caractères "1" -->
 <comp some-prop="1"></comp>
 ```
 
-Cependant, puisque c'est une prop littérale, sa valeur est passée en tant que simple chaîne de caractères `"1"` au lieu d'être un nombre. Si nous voulons passer un nombre JavaScript, nous avons besoin d'utiliser `v-bind` ainsi sa valeur est évaluée en tant qu'expression JavaScript :
+Cependant, puisque c'est une prop littérale, sa valeur est passée en tant que simple chaine de caractères `"1"` au lieu d'être un nombre. Si nous voulons passer un nombre JavaScript, nous avons besoin d'utiliser `v-bind` ainsi sa valeur est évaluée en tant qu'expression JavaScript :
 
 ``` html
 <!-- ceci passe un nombre -->
@@ -371,7 +371,7 @@ Cependant, puisque c'est une prop littérale, sa valeur est passée en tant que 
 
 Toutes les props forment une liaison **descendante unidirectionnelle** entre la propriété de l'enfant et celle du parent : quand la propriété parente est mise à jour, cela est signalé à l'enfant, mais pas dans l'autre sens. Cela empêche les composants enfants de modifier accidentellement l'état du parent, ce qui rendrait le flux de données de votre application difficile à appréhender.
 
-De plus, chaque fois que le composant parent est mis à jour, toutes les props dans le composant enfant vont être rafraîchis avec les dernières valeurs. Cela signifie qu'il **ne** faut **pas** essayer de changer une prop à l'intérieur d'un composant enfant. Si vous le faites, Vue vous avertira dans la console.
+De plus, chaque fois que le composant parent est mis à jour, toutes les props dans le composant enfant vont être rafraichies avec les dernières valeurs. Cela signifie qu'il **ne** faut **pas** essayer de changer une prop à l'intérieur d'un composant enfant. Si vous le faites, Vue vous avertira dans la console.
 
 Il y a habituellement deux cas où il est tentant de changer une prop :
 
@@ -407,7 +407,7 @@ Les réponses correctes pour ces cas d'utilisation sont :
 
 Il est possible pour un composant de spécifier les conditions à remplir pour les props qu'il reçoit. Si une condition n'est pas satisfaite, Vue émettra des alertes. C'est particulièrement utile quand vous créez un composant qui a pour vocation d'être utilisé par d'autres.
 
-Au lieu de définir les props en tant que tableau de chaîne de caractères, vous pouvez utiliser un objet avec des conditions de validation :
+Au lieu de définir les props en tant que tableau de chaine de caractères, vous pouvez utiliser un objet avec des conditions de validation :
 
 ``` js
 Vue.component('example', {
@@ -416,7 +416,7 @@ Vue.component('example', {
     propA: Number,
     // plusieurs types possibles
     propB: [String, Number],
-    // une chaîne de caractères est obligatoire
+    // une chaine de caractères est obligatoire
     propC: {
       type: String,
       required: true
@@ -460,7 +460,7 @@ Quand une validation de prop échoue, Vue produira un avertissement dans la cons
 
 ## Attribut non-prop
 
-Un atttribut non-prop est un attribut qui est passé au composant, mais qui n'a pas de prop correspondante défini.
+Un attribut non-prop est un attribut qui est passé au composant, mais qui n'a pas de prop correspondante définie.
 
 Bien que définir explicitement les props soit conseillé pour passer les informations à un composant enfant, les auteurs des bibliothèques de composant ne suivent pas forcément cette règle dans leurs composants. C'est pour cela que les composants peuvent accepter des attributs arbitraires, qui sont ajoutés à l'élément racine du composant.
 
@@ -480,7 +480,7 @@ Imaginez que ceci est un template pour `bs-date-input`:
 <input type="date" class="form-control">
 ```
 
-Pour ajouter un theme spécifique à notre plugin date picker, nous allons avoir besoin d'ajouter une classe, comme cela :
+Pour ajouter un thème spécifique à notre plugin date picker, nous allons avoir besoin d'ajouter une classe, comme cela :
 
 ``` html
 <bs-date-input
@@ -496,22 +496,22 @@ Dans ce cas, deux valeurs différentes pour `class` sont définies :
 
 Pour la plupart des attributs, la valeur fournie au composant va remplacer la valeur mise initialement dans le composant. Donc par exemple, passer `type="large"` va remplacer `type="date"` et probablement le rendre inutilisable ! Heureusement, les attributs `class` et `style` sont plus malins, aussi les deux valeurs sont mergées, fournissant la valeur finale suivante : `form-control date-picker-theme-dark`.
 
-## Événements personnalisés
+## Évènements personnalisés
 
-Nous avons appris que le parent peut passer des données à l'enfant en utilisant les props, mais comment allons-nous informer le parent quand quelque-chose survient ? C'est là que le système d'événement personnalisé de Vue entre en jeu.
+Nous avons appris que le parent peut passer des données à l'enfant en utilisant les props, mais comment allons-nous informer le parent quand quelque chose survient ? C'est là que le système d'évènement personnalisé de Vue entre en jeu.
 
-### Utilisation de `v-on` avec les événements personnalisés
+### Utilisation de `v-on` avec les évènements personnalisés
 
-Chaque instance de Vue implémente une [interface d'événements](../api/#Instance-Methods-Events), cela signifie qu'elle peut :
+Chaque instance de Vue implémente une [interface d'évènements](../api/#Instance-Methods-Events), cela signifie qu'elle peut :
 
-- Écouter un événement en utilisant `$on(eventName)`
-- Déclencher un événement en utilisant `$emit(eventName)`
+- Écouter un évènement en utilisant `$on(eventName)`
+- Déclencher un évènement en utilisant `$emit(eventName)`
 
-<p class="tip">Notez que le système d'événement de Vue est différent de celui de l'API navigateur [EventTarget](https://developer.mozilla.org/fr/docs/Web/API/EventTarget). Bien qu'il fonctionne de manière similaire, `$on` et `$emit` __ne__ sont __pas__ des alias pour `addEventListener` et `dispatchEvent`.</p>
+<p class="tip">Notez que le système d'évènement de Vue est différent de celui de l'API navigateur [EventTarget](https://developer.mozilla.org/fr/docs/Web/API/EventTarget). Bien qu'il fonctionne de manière similaire, `$on` et `$emit` __ne__ sont __pas__ des alias pour `addEventListener` et `dispatchEvent`.</p>
 
-De plus, un composant parent peut écouter des événements émis depuis un composant enfant en utilisant `v-on` directement sur le template où le composant enfant est utilisé.
+De plus, un composant parent peut écouter des évènements émis depuis un composant enfant en utilisant `v-on` directement sur le template où le composant enfant est utilisé.
 
-<p class="tip">Vous ne pouvez pas utiliser `$on` pour écouter les événements émis par les enfants. Vous devez utiliser `v-on` directement dans le template, comme dans l'exemple ci-dessous.</p>
+<p class="tip">Vous ne pouvez pas utiliser `$on` pour écouter les évènements émis par les enfants. Vous devez utiliser `v-on` directement dans le template, comme dans l'exemple ci-dessous.</p>
 
 Voici un exemple :
 
@@ -589,9 +589,9 @@ new Vue({
 
 Dans cet exemple, il est important de noter que le composant enfant est toujours complètement découplé de ce qui se passe en dehors de celui-ci. Tout ce qu'il fait, c'est rapporter des informations sur sa propre activité, juste au cas où le composant parent écouterait.
 
-#### Lier des événements natifs aux composants
+#### Lier des évènements natifs aux composants
 
-Il y a des fois où vous souhaitez écouter un événement natif sur l'élément racine d'un composant. Dans ce cas, vous devez utiliser le modificateur `.native` sur `v-on`. Par exemple :
+Il y a des fois où vous souhaitez écouter un évènement natif sur l'élément racine d'un composant. Dans ce cas, vous devez utiliser le modificateur `.native` sur `v-on`. Par exemple :
 
 ``` html
 <my-component v-on:click.native="doTheThing"></my-component>
@@ -601,9 +601,9 @@ Il y a des fois où vous souhaitez écouter un événement natif sur l'élément
 
 > 2.3.0+
 
-Dans certains cas, nous pourrions avoir besoin d'une « liaison bidirectionnelle » pour une prop. En fait, dans Vue 1.x, c'est exactement ce que le modificateur `.sync` permettait. Quand un composant enfant mute une prop qui a `.sync`, la valeur est remontée au parent. C'est pratique, cependant cela peut conduire a des soucis de maintenance sur le long terme car cela brise l'hypothèse du flux de donnée unidirectionnelle : le code qui mute dans des props enfants affecte l'état du parent.
+Dans certains cas, nous pourrions avoir besoin d'une « liaison bidirectionnelle » pour une prop. En fait, dans Vue 1.x, c'est exactement ce que le modificateur `.sync` permettait. Quand un composant enfant mute une prop qui a `.sync`, la valeur est remontée au parent. C'est pratique, cependant cela peut conduire à des soucis de maintenance sur le long terme car cela brise l'hypothèse du flux de donnée unidirectionnelle : le code qui mute dans des props enfants affecte l'état du parent.
 
-C'est pour cela que nous avions retiré le modificateur `.sync` dans la version 2.0. Cependant, nous trouvons tout de même qu'il existe des cas où celle-ci est très utile, nottament pour les composants réutilisables. Ce dont nous avions besoin était **de rendre le code d'un enfant qui affecte l'état d'un parent plus cohérent et explicite.**
+C'est pour cela que nous avions retiré le modificateur `.sync` dans la version 2.0. Cependant, nous trouvons tout de même qu'il existe des cas où celle-ci est très utile, notamment pour les composants réutilisables. Ce dont nous avions besoin était **de rendre le code d'un enfant qui affecte l'état d'un parent plus cohérent et explicite.**
 
 Dans la 2.3.0+ nous réintroduisons donc le modificateur `.sync` pour les props, mais cette fois, ce n'est qu'un sucre syntaxique pour étendre automatiquement un écouteur `v-on` additionnel :
 
@@ -619,15 +619,15 @@ est le raccourci de :
 <comp :foo="bar" @update:foo="val => bar = val"></comp>
 ```
 
-Pour un composant enfant qui met à jour la valeur de `foo`, il faut explicitement emettre un évènement au lieu de muter la prop :
+Pour un composant enfant qui met à jour la valeur de `foo`, il faut explicitement émettre un évènement au lieu de muter la prop :
 
 ``` js
 this.$emit('update:foo', newValue)
 ```
 
-### Composants de champ de formulaire utilisant les événements personnalisés
+### Composants de champ de formulaire utilisant les évènements personnalisés
 
-Les événements personnalisés peuvent aussi être utilisés pour créer des champs personnalisés qui fonctionnent avec `v-model`. Rappelez-vous :
+Les évènements personnalisés peuvent aussi être utilisés pour créer des champs personnalisés qui fonctionnent avec `v-model`. Rappelez-vous :
 
 ``` html
 <input v-model="something">
@@ -653,7 +653,7 @@ Quand il est utilisé avec un composant, cela peut être simplifié par :
 Donc pour qu'un composant fonctionne avec `v-model`, il doit :
 
 - accepter une `value` prop
-- émettre un événement `input` avec la nouvelle valeur.
+- émettre un évènement `input` avec la nouvelle valeur.
 
 Voyons cela par l'exemple avec une simple saisie de devise :
 
@@ -693,7 +693,7 @@ Vue.component('currency-input', {
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // Émettre la valeur du nombre à travers l'événement input
+      // Émettre la valeur du nombre à travers l'évènement input
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -749,7 +749,7 @@ L'implémentation ci-dessus est plutôt naïve cependant. Par exemple, les utili
 
 > Nouveau dans la 2.2.0+
 
-Par défaut, `v-model` sur un composant utilise `value` en tant que prop et peuvent vouloir utiliser `input` en tant qu'événement, mais plusieurs types de champ comme les cases à cocher et les boutons radio pourraient utiliser `value` pour un usage différent. Utiliser l'option `model` permet d'éviter les conflits dans ce genre de situations :
+Par défaut, `v-model` sur un composant utilise `value` en tant que prop et peuvent vouloir utiliser `input` en tant qu'évènement, mais plusieurs types de champ comme les cases à cocher et les boutons radio pourraient utiliser `value` pour un usage différent. Utiliser l'option `model` permet d'éviter les conflits dans ce genre de situations :
 
 ``` js
 Vue.component('my-checkbox', {
@@ -784,7 +784,7 @@ La partie ci-dessus sera équivalente à :
 
 ### Communication non parent-enfant
 
-Parfois deux composants peuvent avoir besoin de communiquer entre eux mais ne sont pas parent et enfant l'un de l'autre. Dans les scénarios simples, vous pouvez utiliser une instance de Vue vide comme canal d'événements central.
+Parfois deux composants peuvent avoir besoin de communiquer entre eux mais ne sont pas parent et enfant l'un de l'autre. Dans les scénarios simples, vous pouvez utiliser une instance de Vue vide comme canal d'évènements central.
 
 ``` js
 var bus = new Vue()
@@ -907,7 +907,7 @@ Le résultat du rendu sera :
 
 Les éléments `<slot>` ont un attribut spécial, `name`, qui peut être utilisé pour personnaliser la façon dont le contenu doit être distribué. Vous pouvez avoir de multiples slots avec des noms différents. Un slot nommé ira avec n'importe quel élément possédant l'attribut `slot` correspondant dans le fragment de contenu.
 
-Il peut encore y avoir un slot non nommé, c'est le **slot par défaut**  qui va servir de fourre-tout pour tout le contenu ne concordant avec aucun nom. S'il n'y a pas de slot par défaut, le contenu ne concordant pas est évincé.
+Il peut encore y avoir un slot non nommé, c'est le **slot par défaut**  qui va servir de fourretout pour tout le contenu ne concordant avec aucun nom. S'il n'y a pas de slot par défaut, le contenu ne concordant pas est évincé.
 
 Par exemple, avec un composant `app-layout` avec le template suivant :
 
@@ -1042,7 +1042,7 @@ var vm = new Vue({
 </component>
 ```
 
-Si vous préférez, vous pouvez aussi les lier directement à des composants objets :
+Si vous préférez, vous pouvez aussi les lier directement à des composants objet :
 
 ``` js
 var Home = {
@@ -1077,11 +1077,11 @@ Obtenez plus de détails sur `<keep-alive>` dans la [référence de l'API](../ap
 
 Lors de la création de composants, il est bon de garder à l’esprit que vous avez l’intention plus tard de les réutiliser ailleurs. Il est acceptable que les composants utilisés qu'une seule fois soient fortement couplés, mais des composants réutilisables doivent définir une interface publique claire et n'émettre aucune hypothèse sur le contexte dans lequel ils sont utilisés.
 
-L'API pour les composants de Vue se découpe en trois parties : les props, les événements et les slots :
+L'API pour les composants de Vue se découpe en trois parties : les props, les évènements et les slots :
 
 - Les **props** permettent à l'environnement extérieur de passer des données dans le composant
 
-- Les **événements** permettent au composant de déclencher des effets de bord dans l'environnement extérieur
+- Les **évènements** permettent au composant de déclencher des effets de bord dans l'environnement extérieur
 
 - Les **slots** permettent à l'environnement extérieur de composer le composant avec du contenu additionnel.
 
@@ -1101,7 +1101,7 @@ les syntaxes abrégées dédiées à `v-bind` et `v-on`, l'intention peut être 
 
 ### Les refs des composants enfants
 
-Malgré l'existence des props et des événements, parfois vous aurez toujours besoin d'accéder directement à un composant enfant en JavaScript. Pour parvenir à cela vous pouvez assigner un ID de référence au composant enfant en utilisant `ref`. Par exemple :
+Malgré l'existence des props et des évènements, parfois vous aurez toujours besoin d'accéder directement à un composant enfant en JavaScript. Pour parvenir à cela vous pouvez assigner un ID de référence au composant enfant en utilisant `ref`. Par exemple :
 
 ``` html
 <div id="parent">
@@ -1175,11 +1175,11 @@ Introduit dans la 2.3.0+, le générateur de composant asynchrone peut aussi ret
 
 ``` js
 const AsyncComp = () => ({
-  // Le composant a charger. Il peut être une Promesse (« Promise »)
+  // Le composant à charger. Il peut être une Promesse (« Promise »)
   component: import('./MyComp.vue'),
-  // Un composant a utiliser pendant que le composant asynchrone se charge
+  // Un composant à utiliser pendant que le composant asynchrone se charge
   loading: LoadingComp,
-  // Un composant a utiliser en cas d'échec de chargement du composant
+  // Un composant à utiliser en cas d'échec de chargement du composant
   error: ErrorComp,
   // Délai avant de montrer le composant de chargement (loading). Par défaut à : 200ms.
   delay: 200,
@@ -1189,7 +1189,7 @@ const AsyncComp = () => ({
 })
 ```
 
-Notez qu'en utilisant cela en tant que composant de `vue-router`, ces propriétés vont être ignorées car les composants asynchrones sont résolue avant que la navigation n'intervienne. Vous pouvez utiliser `vue-router` 2.4.0+ si vous souhaitez utiliser la syntaxe ci-dessus pour des composants de route.
+Notez qu'en utilisant cela en tant que composant de `vue-router`, ces propriétés vont être ignorées car les composants asynchrones sont résolus avant que la navigation n'intervienne. Vous pouvez utiliser `vue-router` 2.4.0+ si vous souhaitez utiliser la syntaxe ci-dessus pour des composants de route.
 
 ### Conventions de nommage d'un composant
 
@@ -1216,7 +1216,7 @@ components: {
 <pascal-cased-component></pascal-cased-component>
 ```
 
-Quand vous utilisez des template basés sur les _chaînes de caractères_ cependant, vous n'avez pas les restrictions liées à la sensibilité à la casse du HTML. Cela signifie que même dans le template, vous pouvez référencer vos composants et props en utilisant :
+Quand vous utilisez des templates basés sur les _chaines de caractères_ cependant, vous n'avez pas les restrictions liées à la sensibilité à la casse du HTML. Cela signifie que même dans le template, vous pouvez référencer vos composants et props en utilisant :
 
 - la kebab-case
 - la camelCase ou la kebab-case si le composant a été défini avec la camelCase
@@ -1243,13 +1243,13 @@ components: {
 
 Cela signifie que la PascalCase est la _convention de déclaration_ la plus universelle et que la kebab-case est la _convention d'utilisation_ la plus universelle.
 
-Si votre composant ne passe pas de contenu via des éléments `slot` vous pouvez même utiliser la syntaxe d'auto-fermeture `/` après le nom :
+Si votre composant ne passe pas de contenu via des éléments `slot` vous pouvez même utiliser la syntaxe d'autofermeture `/` après le nom :
 
 ``` html
 <my-component/>
 ```
 
-Encore une fois, cela fonctionne _seulement_ dans les templates sous forme de chaîne de caractères. Les éléments auto-fermants ne sont pas du HTML valide et l'analyseur HTML natif de votre navigateur ne le comprendra pas.
+Encore une fois, cela fonctionne _seulement_ dans les templates sous forme de chaine de caractères. Les éléments autofermants ne sont pas du HTML valide et l'analyseur HTML natif de votre navigateur ne le comprendra pas.
 
 ### Composants récursifs
 
@@ -1306,7 +1306,7 @@ Cependant, si vous réclamez/importez des composants en utilisant un __système 
 Failed to mount component: template or render function not defined
 ```
 
-Pour expliquer ce qui arrive, je vais appeler nos composants A et B. Le système de module voit de quoi A a besoin, d'abord A a besoin de B, mais B à besoin de A, mais A a besoin de B, etc, etc. Ça tourne en boucle, ne sachant pas comment complètement résoudre l'un ou l'autre des composants sans en résoudre un avant l'autre. Pour régler ça, nous avons besoin de donner au système de module un moyen de dire, « A a _éventuellement_ besoin de B, mais il n'y a pas de raison de résoudre B en premier. ».
+Pour expliquer ce qui arrive, je vais appeler nos composants A et B. Le système de module voit de quoi A a besoin, d'abord A a besoin de B, mais B a besoin de A, mais A a besoin de B, etc., etc. Ça tourne en boucle, ne sachant pas comment complètement résoudre l'un ou l'autre des composants sans en résoudre un avant l'autre. Pour régler ça, nous avons besoin de donner au système de module un moyen de dire, « A a _éventuellement_ besoin de B, mais il n'y a pas de raison de résoudre B en premier. ».
 
 Dans notre cas, je ferais cela avec le composant `tree-folder`. Nous savons que l'enfant crée un paradoxe dans le composant `tree-folder-contents`, nous allons donc attendre le hook `beforeCreate` du cycle de vie pour l'inscrire :
 
@@ -1351,7 +1351,7 @@ Vue.component('hello-world', {
 
 Cela peut être pratique pour des démos avec de gros templates ou dans des applications extrêmement petites, mais cela devrait être évité dans tous les autres cas, car cela sépare les templates du reste de la définition du composant.
 
-### Composants statiques peu coûteux avec `v-once`
+### Composants statiques peu couteux avec `v-once`
 
 Faire le rendu d'éléments HTML est vraiment rapide avec Vue, mais parfois vous pouvez avoir un composant qui contient **beaucoup** de contenu statique. Dans ces cas, vous pouvez vous assurer qu'il n'est évalué qu'une seule fois puis mis en cache avec la directive `v-once` sur l'élément racine, comme cela :
 

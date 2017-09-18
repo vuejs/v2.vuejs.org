@@ -14,7 +14,7 @@ Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-La fonction de filtre reçoit toujours la valeur de l'expression (le résultat de la chaîne) comme premier argument. Dans cet exemple, la fonction de filtre `capitalize` va recevoir la valeur de `message` dans son argument.
+La fonction de filtre reçoit toujours la valeur de l'expression (le résultat de la chaine) comme premier argument. Dans cet exemple, la fonction de filtre `capitalize` va recevoir la valeur de `message` dans son argument.
 
 ``` js
 new Vue({
@@ -29,13 +29,13 @@ new Vue({
 })
 ```
 
-Les filtres peuvent être chaînés :
+Les filtres peuvent être chainés :
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-Dans ce cas, `filterA`, définie avec un seul argument, va recevoir la valeur de `message`. Puis la fonction `filterB` va être appelée avec le résultat de `filterA` passé dans `filterB` en tant que simple argument.
+Dans ce cas, `filterA`, défini avec un seul argument, va recevoir la valeur de `message`. Puis la fonction `filterB` va être appelée avec le résultat de `filterA` passé dans `filterB` en tant que simple argument.
 
 Les filtres sont des fonctions JavaScript et peuvent donc recevoir des arguments :
 
@@ -43,4 +43,4 @@ Les filtres sont des fonctions JavaScript et peuvent donc recevoir des arguments
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Ici `filterA` est définie comme une fonction prenant trois arguments. La valeur de `message` va être passée en premier argument. La chaîne de caractères `'arg1'` sera passée au filtre `filterA` en tant que second argument, et la valeur de l'expression `arg2` sera évaluée et passée en tant que troisième argument.
+Ici `filterA` est définie comme une fonction prenant trois arguments. La valeur de `message` va être passée en premier argument. La chaine de caractères `'arg1'` sera passée au filtre `filterA` en tant que second argument, et la valeur de l'expression `arg2` sera évaluée et passée en tant que troisième argument.

@@ -6,7 +6,7 @@ order: 9
 
 ## Écouter des évènements
 
-Nous pouvons utiliser l'instruction `v-on` pour écouter les évènements du DOM afin d'éxécuter du JavaScript lorsque ces évènements surviennent.
+Nous pouvons utiliser l'instruction `v-on` pour écouter les évènements du DOM afin d'exécuter du JavaScript lorsque ces évènements surviennent.
 
 Par exemple :
 
@@ -50,7 +50,7 @@ Par exemple :
 
 ``` html
 <div id="example-2">
-  <!-- `greet` est le nom de la méthode definie ci-dessous -->
+  <!-- `greet` est le nom de la méthode définie ci-dessous -->
   <button v-on:click="greet">Greet</button>
 </div>
 ```
@@ -162,7 +162,7 @@ methods: {
 
 ## Modificateurs d'évènements
 
-C'est un besoin courant que de faire appel ā `event.preventDefault()` ou `event.stopPropagation()` à l'intérieur d'une déclaration de gestionnaire d'évènements. Bien que nous puissions réaliser ceci aisément à l'intérieur des méthodes, il serait préférable que les méthodes restent purement dediées à la logique des données au lieu d'avoir à gérer les détails des évènements du DOM.
+C'est un besoin courant que de faire appel ā `event.preventDefault()` ou `event.stopPropagation()` à l'intérieur d'une déclaration de gestionnaire d'évènements. Bien que nous puissions réaliser ceci aisément à l'intérieur des méthodes, il serait préférable que les méthodes restent purement dédiées à la logique des données au lieu d'avoir à gérer les détails des évènements du DOM.
 
 Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `v-on`. Rappelez-vous que les modificateurs sont des suffixes de directives indiqués par un point.
 
@@ -194,7 +194,7 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 <div v-on:click.self="doThat">...</div>
 ```
 
-<p class="tip">L'ordre a de l'importance quand vous utilisez des modificateurs car le code est généré dans le même ordre. Aussi utiliser `@click.prevent.self` va empécher **tous les clicks** alors que `@click.self.prevent` va uniquement empécher le click sur l'élément lui-même.</p>
+<p class="tip">L'ordre a de l'importance quand vous utilisez des modificateurs car le code est généré dans le même ordre. Aussi utiliser `@click.prevent.self` va empêcher **tous les clicks** alors que `@click.self.prevent` va uniquement empêcher le click sur l'élément lui-même.</p>
 
 > Nouveau dans la 2.1.4+
 
@@ -207,14 +207,14 @@ Au contraire des autres modificateurs, qui sont exclusifs aux évènements natif
 
 ## Modificateurs de code des touches
 
-Lorsque nous écoutons les évènements du clavier, nous avons régulièrement besoin de s'assurer du code des touches. Vue permet également d'ajouter un modificateur de touches pour `v-on`:
+Lorsque nous écoutons les évènements du clavier, nous avons régulièrement besoin de nous assurer du code des touches. Vue permet également d'ajouter un modificateur de touches pour `v-on`:
 
 ``` html
 <!-- faire appel à « vm.submit() » uniquement quand le code de la touche est `13` -->
 <input v-on:keyup.13="submit">
 ```
 
-Se rappeler de tous les codes des touches est compliqué, c'est pourquoi Vue propose des alias pour les touches les plus couramment employées :
+Se rappeler tous les codes des touches est compliqué, c'est pourquoi Vue propose des alias pour les touches les plus couramment employées :
 
 ``` html
 <!-- même exemple que le précédent -->
@@ -254,7 +254,7 @@ Vous pouvez utiliser les modificateurs suivants pour déclencher un évènement 
 - `.shift`
 - `.meta`
 
-> Note: Sur les claviers Macintosh, meta est la touche commande (⌘). Sur Windows, meta est la touche windows (⊞). Sur les claviers Sun Microsystems, meta est symbolisée par un diamant plein (◆). Sur certains claviers, spécifiquement sur les claviers des machines MIT et Lisp et leurs successeurs, comme le clavier « Knight » et « space-cadet », meta est ecrit « META ». Sur les claviers Symboliques, meta est etiqueté « META » ou « Meta ».
+> Note: Sur les claviers Macintosh, meta est la touche commande (⌘). Sur Windows, meta est la touche windows (⊞). Sur les claviers Sun Microsystems, meta est symbolisée par un diamant plein (◆). Sur certains claviers, spécifiquement sur les claviers des machines MIT et Lisp et leurs successeurs, comme le clavier « Knight » et « space-cadet », meta est écrit « META ». Sur les claviers Symboliques, meta est étiqueté « META » ou « Meta ».
 
 Par exemple :
 
@@ -280,7 +280,7 @@ Ces modificateurs n'autorisent la gestion de l'évènement que s'il a été déc
 
 ## Pourquoi des écouteurs dans le HTML ?
 
-Vous pourriez être inquiet du fait que l'ensemble de cette approche d'écoute d'évènements viole la bonne vieille règle de la séparation des préoccupations. Rassurez-vous - puisque toutes les fonctions et expressions sont strictement liées au « ViewModel » qui gère la vue courante, cela ne causera aucune difficulté de maintenance. En realité, il y a plusieurs avantages à utiliser `v-on` :
+Vous pourriez être inquiet du fait que l'ensemble de cette approche d'écoute d'évènements viole la bonne vieille règle de la séparation des préoccupations. Rassurez-vous - puisque toutes les fonctions et expressions sont strictement liées au « ViewModel » qui gère la vue courante, cela ne causera aucune difficulté de maintenance. En réalité, il y a plusieurs avantages à utiliser `v-on` :
 
 1. Il est plus facile de localiser l'implémentation des fonctions gestionnaires dans votre code JS en survolant le code HTML.
 

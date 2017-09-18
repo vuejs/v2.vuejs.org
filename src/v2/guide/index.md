@@ -53,7 +53,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-Nous venons tout juste de créer notre première application Vue ! Ça ressemble à un simple rendu de template en chaîne de caractères, mais sous le capot, Vue effectue un réel travail. Les données et le DOM sont maintenant couplés, et tout est à présent **réactif**. Comment s'en rendre compte ? Ouvrez juste la console JavaScript de votre navigateur (là maintenant, sur cette page) et attribuez à `app.message` différentes valeurs. Vous devriez voir le rendu de l'exemple en cours se mettre à jour en concordance.
+Nous venons tout juste de créer notre première application Vue ! Ça ressemble à un simple rendu de template en chaine de caractères, mais sous le capot, Vue effectue un réel travail. Les données et le DOM sont maintenant couplés, et tout est à présent **réactif**. Comment s'en rendre compte ? Ouvrez juste la console JavaScript de votre navigateur (là maintenant, sur cette page) et attribuez à `app.message` différentes valeurs. Vous devriez voir le rendu de l'exemple en cours se mettre à jour en concordance.
 
 En plus de l'interpolation de texte, nous pouvons également lier les attributs d'un élément comme ceci :
 
@@ -89,7 +89,7 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-Ici nous venons de rencontrer quelque chose de nouveau. L'attribut `v-bind` que vous voyez est appelé une **directive**. Les directives sont préfixées par `v-` pour indiquer que ce sont des attributs spéciaux fournis par Vue, et comme vous l'avez peut être deviné, elles appliquent un comportement réactif spécifique au DOM après rendu. Ici cela veut basiquement dire : « garde l'attribut `title` de cet élément à jour avec la propriété `message` de l'instance de Vue ».
+Ici nous venons de rencontrer quelque chose de nouveau. L'attribut `v-bind` que vous voyez est appelé une **directive**. Les directives sont préfixées par `v-` pour indiquer que ce sont des attributs spéciaux fournis par Vue, et comme vous l'avez peut-être deviné, elles appliquent un comportement réactif spécifique au DOM après rendu. Ici cela veut basiquement dire : « garde l'attribut `title` de cet élément à jour avec la propriété `message` de l'instance de Vue ».
 
 Si vous ouvrez votre console JavaScript une nouvelle fois et entrez `app2.message = 'un nouveau message'`, de nouveau vous verrez le HTML lié — dans notre cas l'attribut `title` — se mettre à jour.
 
@@ -126,7 +126,7 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Côté console entrez `app3.seen = false`. Vous devriez voir le message disparaître.
+Côté console entrez `app3.seen = false`. Vous devriez voir le message disparaitre.
 
 Cet exemple démontre que nous pouvons lier des données non seulement aux textes et attributs, mais également à la **structure** du DOM. De plus, Vue fournit un puissant système d'effets de transition qui peut automatiquement appliquer des [effets de transition](transitions.html) quand des éléments sont insérés/mis à jour/enlevés par Vue.
 
@@ -179,7 +179,7 @@ Dans la console, entrez `app4.todos.push({ text: 'Nouvel élément' })`. Vous de
 
 ## Gestion des entrées utilisateur
 
-Afin de permettre aux utilisateurs d’interagir avec votre application, nous pouvons utiliser la directive `v-on` pour attacher des écouteurs d’événements qui invoquent des méthodes sur nos instances de Vue :
+Afin de permettre aux utilisateurs d’interagir avec votre application, nous pouvons utiliser la directive `v-on` pour attacher des écouteurs d’évènements qui invoquent des méthodes sur nos instances de Vue :
 
 ``` html
 <div id="app-5">
@@ -255,7 +255,7 @@ var app6 = new Vue({
 
 ## Composer avec des composants
 
-Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de plus grosses applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interface applicative peuvent être abstraits en un arbre de composants.
+Le système de composant est un autre concept important de Vue, car c'est une abstraction qui nous permet de construire de plus grosses applications composées de plus petits composants réutilisables et autonomes. Quand on y pense, presque tous les types d'interfaces applicatives peuvent être abstraits en un arbre de composants.
 
 ![Arbre de composants](/images/components.png)
 
@@ -277,7 +277,7 @@ Maintenant nous pouvons l'insérer dans le template d'un autre composant :
 </ol>
 ```
 
-Mais cela donnerait comme rendu le même texte, ce qui n'est pas vraiment intéressant. Nous devrions être capable de passer les données de la portée parente dans le composant enfant. Modifions la définition du composant pour lui permettre d'accepter une [*prop*](components.html#Props) :
+Mais cela donnerait comme rendu le même texte, ce qui n'est pas vraiment intéressant. Nous devrions être capables de passer les données de la portée parente dans le composant enfant. Modifions la définition du composant pour lui permettre d'accepter une [*prop*](components.html#Props) :
 
 ``` js
 Vue.component('todo-item', {
@@ -369,7 +369,7 @@ Vous avez peut-être remarqué que les composants de Vue sont très similaires a
 
 1. La spécification des *Web Components* est toujours à l'état de brouillon, et n'est pas implémentée nativement dans tous les navigateurs. En comparaison, les composants de Vue n'ont besoin d'aucun *polyfill* et fonctionnent de la même manière dans tous les navigateurs supportés (IE9 et supérieurs). Quand cela est nécessaire, les composants de Vue peuvent également être implémentés à l'intérieur d'un élément personnalisé natif.
 
-2. Les composants de Vue fournissent des fonctionnalités importantes qui ne sont pas disponibles dans les éléments personnalisés  standards, notamment le flux de données entre composants, la communication par événements personnalisés et l'intégration avec les outils de *build*.
+2. Les composants de Vue fournissent des fonctionnalités importantes qui ne sont pas disponibles dans les éléments personnalisés  standards, notamment le flux de données entre composants, la communication par évènements personnalisés et l'intégration avec les outils de *build*.
 
 ## Prêt pour la suite ?
 

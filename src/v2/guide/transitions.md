@@ -22,7 +22,7 @@ Vue fournit un composant conteneur `transition`, vous permettant d'ajouter des t
 - Le rendu conditionnel (en utilisant `v-if`)
 - L'affichage conditionnel (en utilisant `v-show`)
 - Les composants dynamiques
-- Les nœuds racine de composant
+- Les nœuds racines de composant
 
 Voilà à quoi ressemble un exemple très simple en action :
 
@@ -94,17 +94,17 @@ Quand un élément, encapsulé dans un composant `transition`, est inséré ou e
 
 Il y a six classes appliquées pour les transitions entrantes/sortantes.
 
-1. `v-enter`: C'est l'état de départ pour *enter*. Il est ajouté avant que l'élément soit inséré, il est supprimé une fois que l'élément est inséré.
+1. `v-enter`: c'est l'état de départ pour *enter*. Il est ajouté avant que l'élément soit inséré, il est supprimé une fois que l'élément est inséré.
 
-2. `v-enter-active`: C'est l'état actif pour *enter*. Il est appliqué pendant toute la phase *enter*. Il est ajouté avant que l'élément soit inséré, il est supprimé lorsque la transition/animation est terminée. Cette classe peut être utilisée pour définir la durée, le retard et la courbe d'accélération pour la transition entrante.
+2. `v-enter-active`: c'est l'état actif pour *enter*. Il est appliqué pendant toute la phase *enter*. Il est ajouté avant que l'élément soit inséré, il est supprimé lorsque la transition/animation est terminée. Cette classe peut être utilisée pour définir la durée, le retard et la courbe d'accélération pour la transition entrante.
 
-3. `v-enter-to`: **Seulement disponible pour les versions 2.1.8+.** C'est l'état de fin pour *enter*. Il est ajouté une fois que l'élément est inséré (au même moment que `v-enter` est supprimé), il est supprimé lorsque la transition/animation est terminée.
+3. `v-enter-to`: **seulement disponible pour les versions 2.1.8+.** C'est l'état de fin pour *enter*. Il est ajouté une fois que l'élément est inséré (au même moment que `v-enter` est supprimé), il est supprimé lorsque la transition/animation est terminée.
 
-4. `v-leave`: C'est l'état de départ pour *leave*. Il est ajouté dès qu'une transition sortante est déclenchée, il est supprimé après une frame.
+4. `v-leave`: c'est l'état de départ pour *leave*. Il est ajouté dès qu'une transition sortante est déclenchée, il est supprimé après une frame.
 
-5. `v-leave-active`: C'est l'état actif pour *leave*. Il est appliqué pendant toute la phase *leave*. Il est ajouté dès qu'une transition sortante est déclenchée, il est supprimé lorsque la transition/animation est terminée. Cette classe peut être utilisée pour définir la durée, le retard et la courbe d'accélération pour la transition de sortie.
+5. `v-leave-active`: c'est l'état actif pour *leave*. Il est appliqué pendant toute la phase *leave*. Il est ajouté dès qu'une transition sortante est déclenchée, il est supprimé lorsque la transition/animation est terminée. Cette classe peut être utilisée pour définir la durée, le retard et la courbe d'accélération pour la transition de sortie.
 
-6. `v-leave-to`: **Seulement disponible pour les versions 2.1.8+.** C'est l'état de fin pour *leave*. Il est ajouté après que la transition sortante soit déclenchée (au même moment que `v-leave` est supprimé), il est supprimé lorsque la transition/animation est terminée.
+6. `v-leave-to`: **seulement disponible pour les versions 2.1.8+.** C'est l'état de fin pour *leave*. Il est ajouté après que la transition sortante soit déclenchée (au même moment que `v-leave` est supprimé), il est supprimé lorsque la transition/animation est terminée.
 
 ![Diagramme de transition](/images/transition.png)
 
@@ -138,7 +138,7 @@ new Vue({
 
 ``` css
 /* Les animations d'entrée (« enter ») et de sortie (« leave »)  */
-/* peuvent utiliser differentes fonctions de durée et de temps.  */
+/* peuvent utiliser différentes fonctions de durée et de temps.  */
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
@@ -185,7 +185,7 @@ new Vue({
 
 ### CSS Animations
 
-Les animations CSS sont appliquées de la même manière que les transitions CSS, la différence étant que `v-enter` n'est pas supprimé immédiatement après l'insertion de l'élément, mais par un événement `animationend`.
+Les animations CSS sont appliquées de la même manière que les transitions CSS, la différence étant que `v-enter` n'est pas supprimé immédiatement après l'insertion de l'élément, mais par un évènement `animationend`.
 
 Voici un exemple, en supprimant les règles CSS préfixées pour des raisons de concision :
 
@@ -193,7 +193,7 @@ Voici un exemple, en supprimant les règles CSS préfixées pour des raisons de 
 <div id="example-2">
   <button @click="show = !show">Permuter l'affichage</button>
   <transition name="bounce">
-    <p v-if="show">Regarde moi !</p>
+    <p v-if="show">Regarde-moi !</p>
   </transition>
 </div>
 ```
@@ -231,7 +231,7 @@ new Vue({
 <div id="example-2" class="demo">
   <button @click="show = !show">Permuter l'affichage</button>
   <transition name="bounce">
-    <p v-show="show">Regarde moi !</p>
+    <p v-show="show">Regarde-moi !</p>
   </transition>
 </div>
 
@@ -442,7 +442,7 @@ Ces hooks peuvent être utilisés en combinaison avec des transitions/animations
 
 <p class="tip">Lors de l'utilisation de transitions uniquement JavaScript, **les fonctions de rappel `done` sont obligatoires pour les hooks `enter` et `leave`**. Dans le cas contraire, elles seront appelées de façon synchrone et la transition se terminera immédiatement.</p>
 
-<p class="tip">C'est aussi une bonne idée d'ajouter explicitement `v-bind:css="false"` pour les transitions uniquement JavaScript afin que Vue puisse ignorer la détection CSS. Cela empêche également les règles CSS d'interfèrer accidentellement avec la transition.</p>
+<p class="tip">C'est aussi une bonne idée d'ajouter explicitement `v-bind:css="false"` pour les transitions uniquement JavaScript afin que Vue puisse ignorer la détection CSS. Cela empêche également les règles CSS d'interférer accidentellement avec la transition.</p>
 
 Maintenant, nous allons plonger dans un exemple. Voici une simple transition JavaScript à l'aide de Velocity.js :
 
@@ -594,7 +594,7 @@ Plus loin, nous parlons de [transition entre les composants](#transition-entre-l
 </transition>
 ```
 
-Cela fonctionne bien, mais il y a une mise en garde à connaître :
+Cela fonctionne bien, mais il y a une mise en garde à connaitre :
 
 <p class="tip">Lors de la permutation entre des éléments qui ont **le même nom de balise**, vous devez indiquer à Vue qu'ils sont des éléments distincts en lui donnant des attributs `key` uniques.  Sinon, le compilateur de Vue ne remplacera que le contenu de l'élément dans le but d'être efficace. Cependant, même si c'est techniquement inutile, **c'est considéré comme une bonne pratique de toujours avoir une clé pour chaque élément dans un composant `<transition>`.**</p>
 
@@ -952,7 +952,7 @@ Jusqu'à présent, nous avons réalisé des transitions pour :
 - des nœuds individuels
 - des nœuds multiples où un seul est rendu à la fois
 
-Alors, qu'en est-il lorsque nous avons une liste complète d'éléments où nous voulons faire un rendu simultané, par exemple avec `v-for` ? Dans ce cas, nous allons utiliser le composant `<transition-group>`. Cependant avant de plonger dans un exemple, il y a quelques éléments importants à connaître sur ce composant :
+Alors, qu'en est-il lorsque nous avons une liste complète d'éléments où nous voulons faire un rendu simultané, par exemple avec `v-for` ? Dans ce cas, nous allons utiliser le composant `<transition-group>`. Cependant avant de plonger dans un exemple, il y a quelques éléments importants à connaitre sur ce composant :
 
 - Contrairement à `<transition>`, il rend un élément réel : par défaut un `<span>`. Vous pouvez modifier l'élément rendu avec l'attribut `tag`.
 - Les éléments à l'intérieur **doivent toujours avoir** un attribut `key` unique
@@ -1238,7 +1238,7 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">Un point important est a noter : ces transitions FLIP ne fonctionnent pas si des éléments sont configurés avec `display: inline`. Comme alternative, vous pouvez utiliser `display: inline-block` ou placer des éléments dans un contexte flexible.</p>
+<p class="tip">Un point important est a noter : ces transitions FLIP ne fonctionnent pas si des éléments sont configurés avec `display: inline`. Comme alternative, vous pouvez utiliser `display: inline-block` où placer des éléments dans un contexte flexible.</p>
 
 Ces animations FLIP ne se limitent pas à un seul axe. Les éléments dans une grille multidimensionnelle peuvent être transitionnés [aussi facilement](https://jsfiddle.net/chrisvfritz/sLrhk1bc/) :
 
@@ -1515,7 +1515,7 @@ Oui, même les transitions dans Vue sont pilotées par les données ! Le plus si
 
 Cela peut être utile quand vous avez défini des transitions/animations CSS à l'aide des conventions de classes de transition de Vue et que vous souhaitez simplement basculer entre elles.
 
-En vérité, tout attribut de transition peut être dynamiquement lié. Et il ne s'agit pas seulement des attributs. Étant donné que les hooks d'événements ne sont que des méthodes, ils ont accès à toutes les données dans le contexte. Cela signifie que selon l'état de votre composant, vos transitions JavaScript peuvent se comporter différemment.
+En vérité, tout attribut de transition peut être dynamiquement lié. Et il ne s'agit pas seulement des attributs. Étant donné que les hooks d'évènements ne sont que des méthodes, ils ont accès à toutes les données dans le contexte. Cela signifie que selon l'état de votre composant, vos transitions JavaScript peuvent se comporter différemment.
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>

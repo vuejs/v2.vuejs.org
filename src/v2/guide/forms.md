@@ -10,7 +10,7 @@ Vous pouvez utiliser la directive `v-model` pour créer une liaison de données 
 
 <p class="tip">`v-model` ne prend pas en compte la valeur initiale des attributs `value`, `checked` ou `selected` fournis par un champ. Elle traitera toujours les données de l'instance de vue comme la source de vérité. Vous devez déclarer la valeur initiale dans votre JavaScript, dans l'option `data` de votre composant.</p>
 
-<p class="tip" id="vmodel-ime-tip">Pour les langues qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen etc...), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie.</p>
+<p class="tip" id="vmodel-ime-tip">Pour les langues qui requièrent une [méthode de saisie (IME)](https://fr.wikipedia.org/wiki/M%C3%A9thode_d%27entr%C3%A9e) (chinois, japonais, coréen, etc.), vous remarquerez que `v-model` ne sera pas mise à jour durant l'exécution de la méthode de saisie.</p>
 
 ### Texte
 
@@ -204,7 +204,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">Si la valeur initiale de votre expression dans `v-model` ne correspond à aucune des options, l'élément `<select>` va faire le rendu dans un état « non sélectionné ». Sur iOS cela va conduire l'utilisateur à ne pas pouvoir sélectionner le premier élément car aucun événement `change` n'est déclenché dans ce cas. Il est cependant recommandé de fournir une option désactivée avec une valeur vide comme dans l'exemple ci-dessous.</p>
+<p class="tip">Si la valeur initiale de votre expression dans `v-model` ne correspond à aucune des options, l'élément `<select>` va faire le rendu dans un état « non sélectionné ». Sur iOS cela va conduire l'utilisateur à ne pas pouvoir sélectionner le premier élément car aucun évènement `change` n'est déclenché dans ce cas. Il est cependant recommandé de fournir une option désactivée avec une valeur vide comme dans l'exemple ci-dessous.</p>
 
 Select à choix multiples (lié à un tableau) :
 
@@ -286,22 +286,22 @@ new Vue({
 
 ## Liaisons des attributs value
 
-Pour les boutons radio, les cases à cocher et les listes d'options, les valeurs de liaison de `v-model` sont habituellement des chaînes de caractères statiques (ou des booléens pour une case à cocher) :
+Pour les boutons radio, les cases à cocher et les listes d'options, les valeurs de liaison de `v-model` sont habituellement des chaines de caractères statiques (ou des booléens pour une case à cocher) :
 
 ``` html
-<!-- `picked` sera une chaîne de caractères "a" quand le bouton radio sera sélectionné -->
+<!-- `picked` sera une chaine de caractères "a" quand le bouton radio sera sélectionné -->
 <input type="radio" v-model="picked" value="a">
 
 <!-- `toggle` est soit true soit false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` sera une chaîne de caractères "abc" quand l'option sera sélectionnée -->
+<!-- `selected` sera une chaine de caractères "abc" quand l'option sera sélectionnée -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-Mais parfois nous pouvons souhaiter lier la valeur à une propriété dynamique de l'instance de Vue. Nous pouvons réaliser cela en utilisant `v-bind`. De plus, utiliser `v-bind` nous permet de lier la valeur de l'input à des valeurs qui ne sont pas des chaînes de caractères.
+Mais parfois nous pouvons souhaiter lier la valeur à une propriété dynamique de l'instance de Vue. Nous pouvons réaliser cela en utilisant `v-bind`. De plus, utiliser `v-bind` nous permet de lier la valeur de l'input à des valeurs qui ne sont pas des chaines de caractères.
 
 ### Checkbox
 
@@ -351,7 +351,7 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-Par défaut, `v-model` synchronise le champ avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [mentionné plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place : 
+Par défaut, `v-model` synchronise le champ avec les données après chaque évènement `input` (à l'exception de l'exécution d'une méthode de saisie comme [mentionné plus haut](#vmodel-ime-tip)). Vous pouvez ajouter le modificateur `lazy` pour synchroniser après les évènements `change` à la place :
 
 ``` html
 <!-- synchronisé après le "change" au lieu du "input" -->
@@ -366,7 +366,7 @@ Si vous voulez que la saisie utilisateur soit automatiquement convertie en nombr
 <input v-model.number="age" type="number">
 ```
 
-C'est souvent utile, parce que même avec `type="number"`, la valeur des éléments input HTML retourne toujours une chaîne de caractères.
+C'est souvent utile, parce que même avec `type="number"`, la valeur des éléments input HTML retourne toujours une chaine de caractères.
 
 ### `.trim`
 
