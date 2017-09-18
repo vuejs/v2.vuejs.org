@@ -20,7 +20,7 @@ Vue.js（读音 /vjuː/，类似于 **view** 的读音）是一套构建用户�
 <script src="https://unpkg.com/vue"></script>
 ```
 
-查看[安装](installation.html)页面来了解安装 Vue 的其他选项。注意，我们**不推荐**新手从 `vue-cli` 开始项目，特别是当你对基于 Node.js 的构建工具不够熟悉时。
+查看[安装](installation.html)页面来了解安装 Vue 的其他选项。注意：我们**不推荐**新手从 `vue-cli` 开始项目，特别是当你对基于 Node.js 的构建工具不够熟悉时。
 
 ## 声明式渲染
 
