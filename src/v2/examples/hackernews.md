@@ -28,7 +28,7 @@ order: 12
 - Composant Vue Monofichier
   - Rechargement à chaud en développement
   - Extraction CSS pour la production
-- Mise à jour en temps-réel de liste avec animation de réordonnement.
+- Mise à jour en temps réel de liste avec animation de réordonnement.
 
 ## Présentation d'architecture
 
