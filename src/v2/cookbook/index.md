@@ -14,7 +14,7 @@ En quoi le *cookbook* est-il différent du guide ? Pourquoi est-ce nécessaire ?
 
 - __Plus focalisé__ : Dans le guide, nous racontons essentiellement une histoire. Chaque section se construit sur la base des précédentes et présume la connaissance de celles-ci. Dans le *cookbook*, chaque recette peut et devrait se suffire à elle-même. Cela signifie que les recettes peuvent se focaliser sur un aspect spécifique de Vue, plutôt que d'avoir à donner un aperçu global.
 
-- __Plus de profondeur__ : Pour éviter de rendre le guide trop long, nous essayons d'inclure seulement les exemples les plus simples possibles pour vous aider à comprendre chaque fonctionnalité. Puis nous passons à autre chose. Dans le *cookbook*, nous pouvons inclure des exemples plus complexes, combinant les fonctionnalités de façon intéressante. Chaque recette peut être aussi longue et détaillée que besoin, afin de pleinement explorer son sujet.
+- __Plus de profondeur__ : Pour éviter de rendre le guide trop long, nous essayons d'inclure seulement les exemples les plus simples possible pour vous aider à comprendre chaque fonctionnalité. Puis nous passons à autre chose. Dans le *cookbook*, nous pouvons inclure des exemples plus complexes, combinant les fonctionnalités de façon intéressante. Chaque recette peut être aussi longue et détaillée que besoin, afin de pleinement explorer son sujet.
 
 - __Enseigner JavaScript__ : Dans le guide, nous supposons que le lecteur est au moins moyennement familier avec la norme ES5 de JavaScript. Par exemple, nous n'expliquerons pas comment `Array.prototype.filter` fonctionne au sein d'une propriété calculée qui filtre une liste. Dans le *cookbook* en revanche, des fonctionnalités essentielles de JavaScript (y-compris ES6/2015+) peuvent être explorées et expliquées pour montrer comment elles nous aident à construire de meilleures applications Vue.
 
@@ -34,9 +34,8 @@ Les recettes doivent généralement :
 
 > 5. Décrire le problème plutôt que de supposer que le lecteur est familier avec
 
-> 6. Expliquer le processus au delà du simple résultat final
+> 6. Expliquer le processus au-delà du simple résultat final
 
-> 7. Expliquer le pour et le contre de votre approche, en indiquant dans quels cas elle est apropriée ou non
+> 7. Expliquer le pour et le contre de votre approche, en indiquant dans quels cas elle est appropriée ou non
 
 > 8. Mentionner des solutions alternatives si c'est pertinent, mais garder les explications en profondeur pour une autre recette.
-

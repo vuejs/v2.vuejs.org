@@ -58,7 +58,7 @@ new Vue({
 })
 ```
 
-Cela sera `"Le nom d'une autre app"`, puis `"Mon App"`, car `this.appName` est écrasée ([en quelques sortes](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) par `data` quand l'instance est créée. Nous limitons la portée des propriétés avec `$` pour éviter ça. Vous pouvez même utiliser votre propre convention si vous préférez, comme `$_appName` ou `ΩappName`, pour en plus prévenir les conflits avec les plugins et les fonctionnalités futures.
+Cela sera `"Le nom d'une autre app"`, puis `"Mon App"`, car `this.appName` est écrasée ([en quelque sorte](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) par `data` quand l'instance est créée. Nous limitons la portée des propriétés avec `$` pour éviter ça. Vous pouvez même utiliser votre propre convention si vous préférez, comme `$_appName` ou `ΩappName`, pour en plus prévenir les conflits avec les plugins et les fonctionnalités futures.
 
 ## Un exemple en situation réelle : Remplacer Vue Resource par Axios
 
@@ -123,7 +123,7 @@ new Vue({
 })
 ```
 
-Notez que la liaison du contexte ne fonctionnera __pas__ si vous utiliez une fonction fléchée ES6/2015, puisqu'elles gardent implicitement le contexte parent. Cela signifie que la version avec une fonction fléchée :
+Notez que la liaison du contexte ne fonctionnera __pas__ si vous utilisez une fonction fléchée ES6/2015, puisqu'elles gardent implicitement le contexte parent. Cela signifie que la version avec une fonction fléchée :
 
 ``` js
 Vue.prototype.$reverseText = propertyName => {
@@ -141,7 +141,7 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 Tant que vous êtes vigilants sur la portée des propriétés du prototype, utiliser ce *pattern* est plutôt sûr - c'est-à-dire, peu probable de produire des bugs.
 
-Cependant, il peut parfois semer la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exemple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue !". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque-chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
+Cependant, il peut parfois semer la confusion auprès des autres développeurs. Ils peuvent voir `this.$http`, par exemple, et penser, "Oh, je ne savais pas qu'il s'agissait d'une fonctionnalité de Vue !". Ensuite ils vont sur un projet différent et sont confus quand `this.$http` est non défini. Ou alors ils cherchent sur Google comment faire quelque chose, mais ne trouvent pas de résultats car ils ne réalisent pas qu'ils utilisent Axios sous un alias.
 
 __C'est certes plus commode mais moins explicite.__ En regardant simplement un composant, il est impossible de dire d'où `$http` vient. Vue lui-même ? Un plugin ? Un collègue ?
 
@@ -171,7 +171,7 @@ var App = Object.freeze({
 
 <p class="tip">Si vous avez levé un sourcil à `Object.freeze`, cela sert à empêcher l'objet d'être modifié dans le futur. Il s'agit essentiellement de rendre toutes ses propriétés constantes, les protégeant de futurs bugs d'état.</p>
 
-Maintenant la source de ces propriétés partagées est bien plus évidente : il y a un objet `App` défini quelque-part dans l'application. Pour le trouver, les développeurs ont seulement besoin de rechercher la référence dans le projet.
+Maintenant la source de ces propriétés partagées est bien plus évidente : il y a un objet `App` défini quelque part dans l'application. Pour le trouver, les développeurs ont seulement besoin de rechercher la référence dans le projet.
 
 Un autre avantage est que `App` peut maintenant être utilisé _n'importe où_ dans le code, qu'il soit lié à Vue ou non. Cela inclue les valeurs attachées directement aux options des instances, plutôt qu'avoir à entrer dans une fonction pour accéder aux propriétés avec `this` :
 
