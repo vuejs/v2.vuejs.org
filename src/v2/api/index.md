@@ -97,7 +97,7 @@ type : api
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // `trace` est la trace de hierarchie de composant
+    // `trace` est la trace de hiérarchie de composant
   }
   ```
 
@@ -349,7 +349,7 @@ type : api
 
   Installe un plugin Vue.js. Si l'argument plugin est de type Object, il doit exposer une méthode  `install`. S'il s'agit d'une fonction, elle sera utilisée comme méthode d'installation. Cette méthode d'installation sera appelée avec Vue en tant qu'argument.
 
-  Quand cette méthode est appelée avec le même plugin plusieurs fois, le plugin ne sera installée qu'une seule fois.
+  Quand cette méthode est appelée avec le même plugin plusieurs fois, le plugin ne sera installé qu'une seule fois.
 
 - **Voir aussi :** [Plugins](../guide/plugins.html)
 
@@ -389,7 +389,7 @@ type : api
 
 <h3 id="Vue-version">Vue.version</h3>
 
-- **Détails :** Donne la version de Vue installée sous forme de `String`. C'est particulièrement utile pour les plugins et les composants de la communauté, où vous pouvez être amenés à utiliser différentes stratégies pour différentes versions.
+- **Détails :** donne la version de Vue installée sous forme de `String`. C'est particulièrement utile pour les plugins et les composants de la communauté, où vous pouvez être amenés à utiliser différentes stratégies pour différentes versions.
 
 - **Utilisation :**
 
@@ -423,16 +423,16 @@ type : api
 
   Les propriétés commençant par `_` ou `$` ne seront **pas** proxyfiées par l'instance de Vue car elles pourraient entrer en conflit avec certaines propriétés internes et méthodes d'API de Vue. Vous devrez y accéder via `vm.$data._propriete`.
 
-  Lors de la définition d'un **composant**, la propriété `data` doit être déclarée en tant que fonction retournant l'objet de données initial, car il y aura plusieurs instances créées utilisant la même définition. Si nous utilisons un objet classique pour `data`, le même objet sera **partagé par référence** à toutes les instances créées! En fournissant une fonction `data` , chaque fois qu'une nouvelle instance est créée, nous l'appelons simplement afin de récupérer une copie fraîche des données initiales.
+  Lors de la définition d'un **composant**, la propriété `data` doit être déclarée en tant que fonction retournant l'objet de données initial, car il y aura plusieurs instances créées utilisant la même définition. Si nous utilisons un objet classique pour `data`, le même objet sera **partagé par référence** à toutes les instances créées! En fournissant une fonction `data` , chaque fois qu'une nouvelle instance est créée, nous l'appelons simplement afin de récupérer une copie fraiche des données initiales.
 
-  Si nécessaire, un clône profond de l'objet original peut être obtenu en passant `vm.$data` à travers `JSON.parse(JSON.stringify(...))`.
+  Si nécessaire, un clone profond de l'objet original peut être obtenu en passant `vm.$data` à travers `JSON.parse(JSON.stringify(...))`.
 
 - **Exemple :**
 
   ``` js
   var data = { a: 1 }
 
-  // création directe d'instance
+  // création directe d'instances
   var vm = new Vue({
     data: data
   })
@@ -586,7 +586,7 @@ type : api
 
 - **Détails :**
 
-  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de rappel exécutée quand cette expression change. On parle alors d'observateur ou *watcher* pour décrire ce lien. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un objet avec des options avancées. L'instance de Vue appelera `$watch()` pour chaque clé de l'objet à l'initialisation.
+  Un objet où les clés sont des expressions à surveiller et où la valeur associée est la fonction de rappel exécutée quand cette expression change. On parle alors d'observateur ou *watcher* pour décrire ce lien. La valeur peut également être une `String` correspondant au nom d'une méthode de l'instance, ou un objet avec des options avancées. L'instance de Vue appellera `$watch()` pour chaque clé de l'objet à l'initialisation.
 
 - **Exemple :**
 
@@ -647,9 +647,9 @@ type : api
 
 - **Détails :**
 
-  Un template sous forme de chaîne de caractères qui sera utilisé comme balisage HTML pour l'instance de Vue. Le template viendra **remplacer** l'élément monté. Tout code HTML existant à l'intérieur de l'élément monté sera ignoré, à moins que des emplacements de distribution de contenu (slots) soient présents dans le template.
+  Un template sous forme de chaine de caractères qui sera utilisé comme balisage HTML pour l'instance de Vue. Le template viendra **remplacer** l'élément monté. Tout code HTML existant à l'intérieur de l'élément monté sera ignoré, à moins que des emplacements de distribution de contenu (slots) soient présents dans le template.
 
-  Si la chaîne de caractères commence par `#`, elle sera évaluée comme `querySelector` et le `innerHTML` de l'élément sélectionné sera utilisé comme template. Cela permet d'utiliser l'astuce du `<script type="x-template">` pour inclure des templates.
+  Si la chaine de caractères commence par `#`, elle sera évaluée comme `querySelector` et le `innerHTML` de l'élément sélectionné sera utilisé comme template. Cela permet d'utiliser l'astuce du `<script type="x-template">` pour inclure des templates.
 
   <p class="tip">D'un point de vue sécurité, vous devriez uniquement utiliser des templates Vue auxquels vous pouvez faire confiance. N'utilisez jamais du contenu généré côté utilisateur comme template.</p>
 
@@ -665,7 +665,7 @@ type : api
 
   - **Détails :**
 
-    Une alternative aux templates en chaîne de caractères vous permettant d'exploiter toute la puissance programmatique de JavaScript. La fonction de rendu `render` reçoit une méthode `createElement` comme premier argument servant à créer des `VNode`s.
+    Une alternative aux templates en chaine de caractères vous permettant d'exploiter toute la puissance programmatique de JavaScript. La fonction de rendu `render` reçoit une méthode `createElement` comme premier argument servant à créer des `VNode`s.
 
     Si le composant est un composant fonctionnel, la fonction `render` recevra aussi un argument supplémentaire `context`, qui donne accès aux données contextuelles puisque les composants fonctionnels sont sans instance.
 
@@ -890,7 +890,7 @@ type : api
 
 - **Détails :**
 
-  Spécifie l'instance parente pour l'instance qui va être crée. Établit une relation parent-enfant entre les deux. Le parent sera accessible via `this.$parent` pour l'enfant, et l'enfant sera ajouté à la liste `$children` du parent.
+  Spécifie l'instance parente pour l'instance qui va être créée. Établit une relation parent-enfant entre les deux. Le parent sera accessible via `this.$parent` pour l'enfant, et l'enfant sera ajouté à la liste `$children` du parent.
 
   <p class="tip">Utilisez `$parent` et `$children` avec parcimonie - ils servent surtout comme écoutille de secours. Préférez l'utilisation de propriétés et d'évènements pour la communication parent-enfant.</p>
 
@@ -900,7 +900,7 @@ type : api
 
 - **Détails :**
 
-  L'option `mixins` accepte une liste d'objets *mixin*. Ces objets *mixin* peuvent contenir des options d'instance tout comme des objets d'instance normaux, et elles seront fusionnées avec les éventuelles options existantes en utilisant la même stratégie de fusion que dans `Vue.extend()`. Par exemple, si votre *mixin* contient un hook `created` et que le composant lui-même en a égélement un, les deux fonctions seront appelées.
+  L'option `mixins` accepte une liste d'objets *mixin*. Ces objets *mixin* peuvent contenir des options d'instance tout comme des objets d'instance normaux, et elles seront fusionnées avec les éventuelles options existantes en utilisant la même stratégie de fusion que dans `Vue.extend()`. Par exemple, si votre *mixin* contient un hook `created` et que le composant lui-même en a également un, les deux fonctions seront appelées.
 
   Les hooks de *mixin* sont appelés dans l'ordre dans lequel ils sont fournis, et appelés avant les propres hooks du composant.
 
@@ -954,7 +954,7 @@ type : api
 
   <p class="tip">`provide` et `inject` sont fournis principalement pour des cas d'utilisation avancés dans les bibliothèques de plugins / composants. Il n'est PAS recommandé de les utiliser dans du code applicatif générique.</p>
 
-  Ces deux options sont utilisées ensemble pour permettre à un composant parent de servir d'injecteur de dépendances pour tous ses descendants, peu importe la profondeur de la hiérarchie de composants, tant qu'ils sont dans la même chaîne parente. Si vous êtes familiers avec React, c'est très similaire à la fonctionnalité de contexte dans React.
+  Ces deux options sont utilisées ensemble pour permettre à un composant parent de servir d'injecteur de dépendances pour tous ses descendants, peu importe la profondeur de la hiérarchie de composants, tant qu'ils sont dans la même chaine parente. Si vous êtes familiers avec React, c'est très similaire à la fonctionnalité de contexte dans React.
 
   L'option `provide` doit être un objet ou une fonction retournant un objet. Cet objet contient les propriétés qui sont disponibles pour l'injection dans ses descendants. Vous pouvez utiliser des `Symbol` ES2015 comme clés dans cet objet, mais seulement dans les environnements supportant nativement `Symbol` et `Reflect.ownKeys`.
 
@@ -1069,7 +1069,7 @@ type : api
 
 - **Détails :**
 
-  Rend le composant sans état (pas de propriété `data`) et sans instance (pas de contexte `this`). Il s'agit simplement d'une fonction `render` qui retourne des nœuds virtuels, ce qui réduit fortement les coûts en performance au rendu pour ce type de composants.
+  Rend le composant sans état (pas de propriété `data`) et sans instance (pas de contexte `this`). Il s'agit simplement d'une fonction `render` qui retourne des nœuds virtuels, ce qui réduit fortement les couts en performance au rendu pour ce type de composants.
 
 - **Voir aussi :** [Composants fonctionnels](../guide/render-function.html#Composants-fonctionnels)
 
@@ -1081,7 +1081,7 @@ type : api
 
 - **Détails :**
 
-  Permet à un composant personnalisé de définir la prop et l'événement utilisé quand il est utilisé avec `v-model`. Par défaut, `v-model` sur un composant utilise `value` comme prop et `input` comme événement, mais certains types de champs de saisie comme les cases à cocher et les boutons radio peuvent vouloir utiliser la prop `value` à d'autres fins. Utiliser l'option `model` peut éviter le conflit dans ce genre de cas.
+  Permet à un composant personnalisé de définir la prop et l'évènement utilisé quand il est utilisé avec `v-model`. Par défaut, `v-model` sur un composant utilise `value` comme prop et `input` comme évènement, mais certains types de champs de saisie comme les cases à cocher et les boutons radio peuvent vouloir utiliser la prop `value` à d'autres fins. Utiliser l'option `model` peut éviter le conflit dans ce genre de cas.
 
 - **Exemple :**
 
@@ -1128,7 +1128,7 @@ type : api
 
 - **Détails :**
 
-  Par défaut, les attributs de portée parente qui ne sont pas reconnu en tant que props vont « échouer » et être appliquées à l'élément racine du composant enfant en tant qu'attribut HTML normal. Quand on crée un composant qui encapsule un élément cible ou un autre composant, cela peut ne pas être le comportement souhaité. En mettant `inheritAttrs` à `false`, ce comportement par défaut peut être désactivé. Les attributs sont disponibles via la propriété d'instance `$attrs` (aussi nouvelle en 2.4) et peuvent être explicitement liée a un élément non racine en utilisant `v-bind`.
+  Par défaut, les attributs de portée parente qui ne sont pas reconnus en tant que props vont « échouer » et être appliqués à l'élément racine du composant enfant en tant qu'attribut HTML normal. Quand on crée un composant qui encapsule un élément cible ou un autre composant, cela peut ne pas être le comportement souhaité. En mettant `inheritAttrs` à `false`, ce comportement par défaut peut être désactivé. Les attributs sont disponibles via la propriété d'instance `$attrs` (aussi nouvelle en 2.4) et peuvent être explicitement liée a un élément non-racine en utilisant `v-bind`.
 
   Note : cette option n'affecte **pas** les liaisons `class` et `style`.
 
@@ -1166,7 +1166,7 @@ type : api
 
 - **Détails :**
 
-  Un objet représentant les props actuelles qu'un composant a reçu. L'instance de Vue agit comme un proxy pour accéder aux propriétés sur son objet `props`.
+  Un objet représentant les props actuelles qu'un composant a reçues. L'instance de Vue agit comme un proxy pour accéder aux propriétés sur son objet `props`.
 
 ### vm.$el
 
@@ -1287,7 +1287,7 @@ type : api
 
 - **Détails :**
 
-  Utilisé pour accéder programmatiquement aux [slots avec portée](../guide/components.html#Slots-avec-portee). Pour chaque slot, y-compris celui par défaut `default`, l'objet contient une fonction correspondante qui retourne des nœuds virtuels `VNode`.
+  Utilisé pour accéder programmatiquement aux [slots avec portée](../guide/components.html#Slots-avec-portee). Pour chaque slot, y compris celui par défaut `default`, l'objet contient une fonction correspondante qui retourne des nœuds virtuels `VNode`.
 
   Accéder à `vm.$scopedSlots` est surtout utile lors de l'écriture d'un composant avec une [fonction de rendu](../guide/render-function.html).
 
@@ -1330,7 +1330,7 @@ type : api
 
 - **Détails :**
 
-  Contient les attributs liés de portée parente (à l'exeption de `class` et `style`) qui ne sont pas reconnus (et extrait) en tant que props. Quand un composant n'a aucune props de déclarée, il contient essentiellement toutes les liaisons de portée parente (à l'exeption de `class` et `style`), et peut être passé à l'intérieur d'un composant enfant via `v-bind="$attrs"`. Ceci est utile pour la création de composants d'ordre supérieur.
+  Contient les attributs liés de portée parente (à l'exception de `class` et `style`) qui ne sont pas reconnus (et extrait) en tant que props. Quand un composant n'a aucune props de déclarée, il contient essentiellement toutes les liaisons de portée parente (à l'exception de `class` et `style`), et peut être passé à l'intérieur d'un composant enfant via `v-bind="$attrs"`. Ceci est utile pour la création de composants d'ordre supérieur.
 
 ### vm.$listeners
 
@@ -1438,17 +1438,17 @@ type : api
 
 - **Voir aussi :** [Vue.delete](#Vue-delete)
 
-## Méthodes et Événements d'Instance
+## Méthodes et Évènements d'Instance
 
-<h3 id="vm-on">vm.$on( événement, callback )</h3>
+<h3 id="vm-on">vm.$on( évènement, callback )</h3>
 
 - **Arguments :**
-  - `{string | Array<string>} événement` (`Array` supportée unique depuis la 2.2.0)
+  - `{string | Array<string>} évènement` (`Array` supportée unique depuis la 2.2.0)
   - `{Function} callback`
 
 - **Utilisation :**
 
-  Écoute un événement personnalisé sur l'instance `vm`. Les événements peuvent être déclenchés avec `vm.$emit`. La fonction de rappel recevra tous les arguments additionnels passés dans ces méthodes de déclenchement d'événement.
+  Écoute un évènement personnalisé sur l'instance `vm`. Les évènements peuvent être déclenchés avec `vm.$emit`. La fonction de rappel recevra tous les arguments additionnels passés dans ces méthodes de déclenchement d'évènement.
 
 - **Exemple :**
 
@@ -1460,39 +1460,39 @@ type : api
   // => "salut"
   ```
 
-<h3 id="vm-once">vm.$once( événement, callback )</h3>
+<h3 id="vm-once">vm.$once( évènement, callback )</h3>
 
 - **Arguments :**
-  - `{string} événement`
+  - `{string} évènement`
   - `{Function} callback`
 
 - **Utilisation :**
 
-  Écoute un événement personnalisé, mais qu'une seule fois. L'écouteur sera supprimé une fois déclenché pour la première fois.
+  Écoute un évènement personnalisé, mais qu'une seule fois. L'écouteur sera supprimé une fois déclenché pour la première fois.
 
-<h3 id="vm-off">vm.$off( [événement, callback] )</h3>
+<h3 id="vm-off">vm.$off( [évènement, callback] )</h3>
 
 - **Arguments :**
-  - `{string | Array<string>} événement` (les tableaux sont seulement supportés dans la 2.2.2+)
+  - `{string | Array<string>} évènement` (les tableaux sont seulement supportés dans la 2.2.2+)
   - `{Function} [callback]`
 
 - **Utilisation :**
 
-  Supprime un ou des écouteurs d'événements.
+  Supprime un ou des écouteurs d'évènements.
 
-  - Si aucun argument n'est fourni, supprime tous les écouteurs d'événements;
+  - Si aucun argument n'est fourni, supprime tous les écouteurs d'évènements;
 
-  - Si seul l'argument événément est fourni, supprime tous les écouteurs de cet événement;
+  - Si seul l'argument événément est fourni, supprime tous les écouteurs de cet évènement;
 
-  - Si l'événement et la fonction de rappel sont fournis, supprime l'écouteur uniquement pour cet événément et cette fonction de rappel spécifique.
+  - Si l'évènement et la fonction de rappel sont fournis, supprime l'écouteur uniquement pour cet événément et cette fonction de rappel spécifique.
 
-<h3 id="vm-emit">vm.$emit( événement, [...arguments] )</h3>
+<h3 id="vm-emit">vm.$emit( évènement, [...arguments] )</h3>
 
 - **Arguments :**
-  - `{string} événement`
+  - `{string} évènement`
   - `[...arguments]`
 
-  Déclenche un événement sur l'instance actuelle. Tous les arguments additionnels sont passés à la fonction de rappel de l'écouteur.
+  Déclenche un évènement sur l'instance actuelle. Tous les arguments additionnels sont passés à la fonction de rappel de l'écouteur.
 
 ## Méthodes d'Instance / Cycle de Vie
 
@@ -1510,7 +1510,7 @@ type : api
 
   Si l'argument `élémentOuSelecteur` n'est pas fourni, le rendu du template se fera dans un élément hors du document, et vous devrez utiliser les API natives du DOM pour l'insérer vous-même dans le document.
 
-  La méthode retourne l'instance elle-même afin que vous puissiez chaîner d'autres méthodes d'instance ensuite.
+  La méthode retourne l'instance elle-même afin que vous puissiez chainer d'autres méthodes d'instance ensuite.
 
 - **Exemple :**
 
@@ -1547,9 +1547,9 @@ type : api
 
 - **Utilisation :**
 
-  Reporte l'éxécution de la fonction `callback` au prochain cycle de mise à jour du DOM. Utilisez ceci immédiatement après avoir changé des données pour attendre la mise à jour du DOM. C'est la même chose que la fonction globale `Vue.nextTick`, sauf que le contexte `this` dans la fonction `callback` est automatiquement lié à l'instance appelant cette méthode.
+  Reporte l'exécution de la fonction `callback` au prochain cycle de mise à jour du DOM. Utilisez ceci immédiatement après avoir changé des données pour attendre la mise à jour du DOM. C'est la même chose que la fonction globale `Vue.nextTick`, sauf que le contexte `this` dans la fonction `callback` est automatiquement lié à l'instance appelant cette méthode.
 
-  > Nouveau dans la 2.1.0+ : retourne une Promise si aucune fonction de rappel n'est fourni et si les Promise sont supportés dans l'environnement d'exécution.
+  > Nouveau dans la 2.1.0+ : retourne une Promise si aucune fonction de rappel n'est fournie et si les Promise sont supportés dans l'environnement d'exécution.
 
 - **Exemple :**
 
@@ -1580,7 +1580,7 @@ type : api
 
 - **Utilisation :**
 
-  Détruit complètement une instance de Vue `vm`. Supprime ses connexions avec d'autres instances de Vue, détache toutes ses directives, désactive tous les écouteurs d'événements.
+  Détruit complètement une instance de Vue `vm`. Supprime ses connexions avec d'autres instances de Vue, détache toutes ses directives, désactive tous les écouteurs d'évènements.
 
   Déclenche les hooks `beforeDestroy` et `destroyed`.
 
@@ -1644,7 +1644,7 @@ type : api
 
 - **Utilisation :**
 
-  Fait le rendu conditionnel de l'élément selon si la valeur de l'expression est [truthy](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) ou non. L'element et les directives / composants qu'il contient sont détruits et reconstruits durant la permutation. Si l'élément est un `<template>`, son contenu sera extrait en tant que bloc conditionnel.
+  Fait le rendu conditionnel de l'élément selon si la valeur de l'expression est [truthy](https://developer.mozilla.org/fr/docs/Glossaire/Truthy) ou non. L'élément et les directives / composants qu'il contient sont détruits et reconstruits durant la permutation. Si l'élément est un `<template>`, son contenu sera extrait en tant que bloc conditionnel.
 
   Cette directive déclenche des transitions quand sa condition change.
 
@@ -1660,7 +1660,7 @@ type : api
 
 - **Utilisation :**
 
-  Dénote un bloc « else » pour `v-if` ou pour une chaîne `v-if` / `v-else-if`.
+  Dénote un bloc « else » pour `v-if` ou pour une chaine `v-if` / `v-else-if`.
 
   ```html
   <div v-if="Math.random() > 0.5">
@@ -1683,7 +1683,7 @@ type : api
 
 - **Utilisation :**
 
-  Dénote un bloc « else if » pour `v-if`. Peut être enchaîné plusieurs fois.
+  Dénote un bloc « else if » pour `v-if`. Peut être enchainé plusieurs fois.
 
   ```html
   <div v-if="type === 'A'">
@@ -1716,7 +1716,7 @@ type : api
   </div>
   ```
 
-  Comme alternative, vous pouvez aussi spécifier un alias pour l'index courant dans l'itération (ou la clé si utilisé sur un `Object`):
+  Comme alternative, vous pouvez aussi spécifier un alias pour l'index courant dans l'itération (ou la clé si utilisée sur un `Object`):
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -1751,25 +1751,25 @@ type : api
 - **Modificateurs :**
   - `.stop` - appelle `event.stopPropagation()`.
   - `.prevent` - appelle `event.preventDefault()`.
-  - `.capture` - ajoute l'écouteur d'événement en mode capture.
-  - `.self` - déclenche le gestionnaire d'événement uniquement si l'événement provient de cet élément.
-  - `.{keyCode | keyAlias}` - déclenche le gestionnaire d'événement uniquement pour certaines touches du clavier.
-  - `.native` - écoute un événement natif sur l'élément racine d'un composant.
-  - `.once` - déclenche le gestionnaire d'événement une seule fois maximum.
-  - `.left` - (2.2.0+) déclenche le gestionnaire d'événement uniquement pour les événements du bouton gauche de la souris.
-  - `.right` - (2.2.0+) déclenche le gestionnaire d'événement uniquement pour les événements du bouton droit de la souris.
-  - `.middle` - (2.2.0+) déclenche le gestionnaire d'événement uniquement pour les événements du bouton du milieu de la souris.
-  - `.passive` - (2.3.0+) attache un événement du DOM avec `{ passive: true }`.
+  - `.capture` - ajoute l'écouteur d'évènement en mode capture.
+  - `.self` - déclenche le gestionnaire d'évènement uniquement si l'évènement provient de cet élément.
+  - `.{keyCode | keyAlias}` - déclenche le gestionnaire d'évènement uniquement pour certaines touches du clavier.
+  - `.native` - écoute un évènement natif sur l'élément racine d'un composant.
+  - `.once` - déclenche le gestionnaire d'évènement une seule fois maximum.
+  - `.left` - (2.2.0+) déclenche le gestionnaire d'évènement uniquement pour les évènements du bouton gauche de la souris.
+  - `.right` - (2.2.0+) déclenche le gestionnaire d'évènement uniquement pour les évènements du bouton droit de la souris.
+  - `.middle` - (2.2.0+) déclenche le gestionnaire d'évènement uniquement pour les évènements du bouton du milieu de la souris.
+  - `.passive` - (2.3.0+) attache un évènement du DOM avec `{ passive: true }`.
 
 - **Utilisation :**
 
-  Attache un écouteur d'événement à l'élément. Le type d'événement écouté est indiqué comme argument. L'expression peut être soit un nom de méthode, soit une ligne d'instruction, ou simplement omise si des modificateurs sont présents.
+  Attache un écouteur d'évènement à l'élément. Le type d'évènement écouté est indiqué comme argument. L'expression peut être soit un nom de méthode, soit une ligne d'instruction, ou simplement omise si des modificateurs sont présents.
 
-  À partir de la 2.4.0+, `v-on` supporte aussi la liaison à un objet de paires événement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
+  À partir de la 2.4.0+, `v-on` supporte aussi la liaison à un objet de paires évènement/écouteur sans argument. Notez que lorsque vous utilisez la syntaxe objet, elle ne supporte aucun modificateur.
 
-  Quand utilisé sur un élément HTML standard, il écoute uniquement les **événements natifs du DOM**. Quand utilisé sur un élement personnalisé de composant, il écoute également les **événements personnalisés** émis depuis ce composant enfant.
+  Quand utilisé sur un élément HTML standard, il écoute uniquement les **évènements natifs du DOM**. Quand utilisé sur un élément personnalisé de composant, il écoute également les **évènements personnalisés** émis depuis ce composant enfant.
 
-  Lorsque des événements natifs du DOM sont écoutés, la méthode reçoit l'événement natif comme unique argument. Si la valeur de la directive est une ligne d'instruction, l'instruction a accès à la propriété spéciale `$event` : `v-on:click="handle('ok', $event)"`.
+  Lorsque des évènements natifs du DOM sont écoutés, la méthode reçoit l'évènement natif comme unique argument. Si la valeur de la directive est une ligne d'instruction, l'instruction a accès à la propriété spéciale `$event` : `v-on:click="handle('ok', $event)"`.
 
 - **Exemple :**
 
@@ -1795,7 +1795,7 @@ type : api
   <!-- empêche le comportement par défaut sans expression -->
   <form @submit.prevent></form>
 
-  <!-- enchaîner les modificateurs -->
+  <!-- enchainer les modificateurs -->
   <button @click.stop.prevent="faireCeci"></button>
 
   <!-- modificateur de touche avec un keyAlias -->
@@ -1804,11 +1804,11 @@ type : api
   <!-- modificateur de touche avec un keyCode -->
   <input @keyup.13="onEnter">
 
-  <!-- l'événement click sera déclenché une seule fois maximum -->
+  <!-- l'évènement click sera déclenché une seule fois maximum -->
   <button v-on:click.once="faireCeci"></button>
   ```
 
-  Écouter des événements personnalisés sur un composant enfant (le gestionnaire est appelé quand `mon-evenement` est émis depuis l'enfant):
+  Écouter des évènements personnalisés sur un composant enfant (le gestionnaire est appelé quand `mon-evenement` est émis depuis l'enfant):
 
   ```html
   <mon-composant @mon-evenement="faireCeci"></mon-composant>
@@ -1816,13 +1816,13 @@ type : api
   <!-- ligne d'instruction -->
   <mon-composant @mon-evenement="faireCeci(123, $event)"></mon-composant>
 
-  <!-- événement natif sur le composant -->
+  <!-- évènement natif sur le composant -->
   <mon-composant @click.native="onClick"></mon-composant>
   ```
 
 - **Voir aussi :**
   - [Gestion des évènements](../guide/events.html)
-  - [Composants - Événements personnalisés](../guide/components.html#Evenements-personnalises)
+  - [Composants - Évènements personnalisés](../guide/components.html#Evenements-personnalises)
 
 ### v-bind
 
@@ -1833,19 +1833,19 @@ type : api
 - **Argument :** `attrOuProp (optionnel)`
 
 - **Modificateurs :**
-  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([Quelle difference ?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `.prop` assignera la propriété sur l'élément `$el` du composant.
+  - `.prop` - Associe une propriété du DOM plutôt qu'un attribut. ([Quelle différence ?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Si le tag est un composant, alors `.prop` assignera la propriété sur l'élément `$el` du composant.
   - `.camel` - (2.1.0+) transforme un nom d'attribut en kebab-case en sa version camelCase.
-  - `.sync` - (2.3.0+) du sucre syntaxique pour ajouter un un gestionnaire `v-on` qui met à jour la valeur liée.
+  - `.sync` - (2.3.0+) du sucre syntaxique pour ajouter un gestionnaire `v-on` qui met à jour la valeur liée.
 
 - **Utilisation :**
 
-  Lie dynamiquement un ou plusieurs attributs HTML ou props de composant à une expression.
+  Lie dynamiquement un ou plusieurs attributs HTML ou props de composants à une expression.
 
-  Quand utilisé pour lier un attribut `class` ou `style`, la directive supporte des types additionnels de valeur tels que `Array` ou `Object`. Consultez la section du guide en lien ci-dessous pour plus de détails.
+  Quand utilisér pour lier un attribut `class` ou `style`, la directive supporte des types additionnels de valeur tels que `Array` ou `Object`. Consultez la section du guide en lien ci-dessous pour plus de détails.
 
-  Quand utilisé pour lier à une prop de composant, la prop doit être bien déclarée dans le composant enfant.
+  Quand utilisée pour lier à une prop de composant, la prop doit être bien déclarée dans le composant enfant.
 
-  Utilisé sans argument, la directive peut lier un objet contenant des paires clé-valeur d'attributs. Notez que dans ce mode, `class` et `style` ne supportent pas les `Array` ou `Object`.
+  Utilisée sans argument, la directive peut lier un objet contenant des paires clé-valeur d'attributs. Notez que dans ce mode, `class` et `style` ne supportent pas les `Array` ou `Object`.
 
 - **Exemple :**
 
@@ -1856,7 +1856,7 @@ type : api
   <!-- notation abrégée -->
   <img :src="imageSrc">
 
-  <!-- avec de la concaténation de chaînes de caractères -->
+  <!-- avec de la concaténation de chaines de caractères -->
   <img :src="'/path/to/images/' + fileName">
 
   <!-- liaison de classes -->
@@ -1890,7 +1890,7 @@ type : api
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` n'est pas nécessaire si vous utilisez des templates en chaîne de caractères ou si vous les compilez avec `vue-loader`/`vueify`.
+  `.camel` n'est pas nécessaire si vous utilisez des templates en chaine de caractères ou si vous les compilez avec `vue-loader`/`vueify`.
 
 - **Voir aussi :**
   - [Liaisons de classe et de style](../guide/class-and-style.html)
@@ -1908,9 +1908,9 @@ type : api
   - composants
 
 - **Modificateurs :**
-  - [`.lazy`](../guide/forms.html#lazy) - écoute les événements `change` au lieu de `input`
-  - [`.number`](../guide/forms.html#number) - convertit en nombres les chaînes de caractères en entrée
-  - [`.trim`](../guide/forms.html#trim) - retire les blancs autour des chaînes de caractères en entrée
+  - [`.lazy`](../guide/forms.html#lazy) - écoute les évènements `change` au lieu de `input`
+  - [`.number`](../guide/forms.html#number) - convertit en nombres les chaines de caractères en entrée
+  - [`.trim`](../guide/forms.html#trim) - retire les blancs autour des chaines de caractères en entrée
 
 - **Utilisation :**
 
@@ -1918,7 +1918,7 @@ type : api
 
 - **Voir aussi :**
   - [Liaisons sur les champs de formulaire](../guide/forms.html)
-  - [Composants - Composants de champ de formulaire utilisant les événements personnalisés](../guide/components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises)
+  - [Composants - Composants de champ de formulaire utilisant les évènements personnalisés](../guide/components.html#Composants-de-champ-de-formulaire-utilisant-les-evenements-personnalises)
 
 ### v-pre
 
@@ -1926,7 +1926,7 @@ type : api
 
 - **Utilisation :**
 
-  Omet la compilation pour cet élément et tous ses enfants. Vous pouvez utiliser ceci pour afficher à l'utilisateur des expressions `{{ moustache }}`. Utilisé sur un grand nombre de nœuds sans directives, cela peut aussi accélerer la compilation.
+  Omet la compilation pour cet élément et tous ses enfants. Vous pouvez utiliser ceci pour afficher à l'utilisateur des expressions `{{ moustache }}`. Utilisé sur un grand nombre de nœuds sans directives, cela peut aussi accélérer la compilation.
 
 - **Exemple :**
 
@@ -1984,7 +1984,7 @@ type : api
 
 - **Voir aussi :**
   - [Syntaxe de liaison de données - Interpolations](../guide/syntax.html#Texte)
-  - [Composants - Composants statiques peu coûteux avec `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
+  - [Composants - Composants statiques peu couteux avec `v-once`](../guide/components.html#Cheap-Static-Components-with-v-once)
 
 ## Attributs spéciaux
 
@@ -2023,7 +2023,7 @@ type : api
 
 - **Attend comme valeur :** `string`
 
-  `ref` est utilisé pour inscrire une référence à un élément ou à un composant enfant. La référence sera inscrite sous l'objet `$refs` du composant parent. Lorsqu'utilisé sur un élément du DOM, la référence sera cet élément; lorsqu'utilisé sur un composant enfant, la référence sera l'instance du composant :
+  `ref` est utilisé pour inscrire une référence à un élément ou à un composant enfant. La référence sera inscrite sous l'objet `$refs` du composant parent. Lorsqu'utilisée sur un élément du DOM, la référence sera cet élément; lorsqu'utilisée sur un composant enfant, la référence sera l'instance du composant :
 
   ``` html
   <!-- vm.$refs.p sera le nœud du DOM -->
@@ -2035,7 +2035,7 @@ type : api
 
   Quand utilisé sur des éléments/composants avec `v-for`, la référence inscrite sera un `Array` contenant les nœuds du DOM ou les instances de composant.
 
-  Une note importante à propos du timing de l'inscription de la référence: étant donné que les refs elles-même résultent de la fonction de rendu, vous ne pouvez pas y accéder au rendu initial - elles n'existent pas encore ! `$refs` est également non réactif, c'est pourquoi vous ne devriez pas essayer de les utiliser dans des templates pour de la liaison de données.
+  Une note importante à propos du timing de l'inscription de la référence: étant donné que les refs elles-mêmes résultent de la fonction de rendu, vous ne pouvez pas y accéder au rendu initial - elles n'existent pas encore ! `$refs` est également non réactif, c'est pourquoi vous ne devriez pas essayer de les utiliser dans des templates pour de la liaison de données.
 
 - **Voir aussi :** [Les refs des composants enfants](../guide/components.html#Les-refs-des-composants-enfants)
 
@@ -2084,7 +2084,7 @@ type : api
 
 - **Utilisation :**
 
-  Un « méta-composant » pour le rendu de composants dynamiques. Le composant réel obtenu est déterminé par la prop `is` :
+  Un « métacomposant » pour le rendu de composants dynamiques. Le composant réel obtenu est déterminé par la prop `is` :
 
   ```html
   <!-- un composant dynamique contrôlé par -->
@@ -2102,8 +2102,8 @@ type : api
 - **Props:**
   - `name` - string, utilisé pour générer automatiquement des noms de classes CSS pour les transitions. p. ex. `name: 'fade'` donnera `.fade-enter`, `.fade-enter-active`, etc. Valeur par défaut : `"v"`.
   - `appear` - booléen, indique si la transition doit être appliquée ou non au rendu initial. Valeur par défaut: `false`.
-  - `css` - booléen, indique si les classes CSS de transition doivent être appliquées ou non. Valeur par défaut: `true`. Si assigné à `false`, seuls les hooks JavaScript inscrits via les événements du composant seront déclenchés.
-  - `type` - string, spécifie le type d'événement de transition à attendre pour déterminer le timing de fin de transition. Les valeurs disponibles sont `"transition"` and `"animation"`. Par défaut, il détectera automatiquement le type ayant la durée la plus longue.
+  - `css` - booléen, indique si les classes CSS de transition doivent être appliquées ou non. Valeur par défaut: `true`. Si assigné à `false`, seuls les hooks JavaScript inscrits via les évènements du composant seront déclenchés.
+  - `type` - string, spécifie le type d'évènement de transition à attendre pour déterminer le timing de fin de transition. Les valeurs disponibles sont `"transition"` and `"animation"`. Par défaut, il détectera automatiquement le type ayant la durée la plus longue.
   - `mode` - string, contrôle la séquence de timing des transitions entrantes/sortantes. Les modes disponibles sont `"out-in"` et `"in-out"`; par défaut en simultané.
   - `enter-class` - string
   - `leave-class` - string
@@ -2131,7 +2131,7 @@ type : api
 
 - **Utilisation :**
 
-  `<transition>` sert d'effets de transition pour un  **unique** élément/composant. Le rendu de `<transition>` ne donne pas un élément supplémentaire dans le DOM, et n'apparaît pas non plus dans la hiérarchie du composant inspecté. Il applique simplement le comportement de transition au contenu imbriqué à l'intérieur.
+  `<transition>` sert d'effets de transition pour un  **unique** élément/composant. Le rendu de `<transition>` ne donne pas un élément supplémentaire dans le DOM, et n'apparait pas non plus dans la hiérarchie du composant inspecté. Il applique simplement le comportement de transition au contenu imbriqué à l'intérieur.
 
   ```html
   <!-- élément simple -->
@@ -2144,7 +2144,7 @@ type : api
     <component :is="view"></component>
   </transition>
 
-  <!-- hooks d'événement -->
+  <!-- hooks d'évènement -->
   <div id="transition-demo">
     <transition @after-enter="transitionComplete">
       <div v-show="ok">contenu permuté</div>
@@ -2173,8 +2173,8 @@ type : api
   - `move-class` - surcharge la classe CSS appliquée durant le mouvement de transition.
   - expose les mêmes props que `<transition>` à l'exception de `mode`.
 
-- **Événements:**
-  - expose les mêmes événements que `<transition>`.
+- **Évènements:**
+  - expose les mêmes évènements que `<transition>`.
 
 - **Utilisation :**
 
@@ -2202,7 +2202,7 @@ type : api
 
 - **Utilisation :**
 
-  Quand il entoure un composant dynamique, `<keep-alive>` met en cache les instances de composant inactives sans les détruire. Tout comme `<transition>`, `<keep-alive>` est un composant abstrait : le rendu ne donne pas d'élément supplémentaire dans le DOM, et il n'apparaît pas dans la chaîne de composants du parent.
+  Quand il entoure un composant dynamique, `<keep-alive>` met en cache les instances de composant inactives sans les détruire. Tout comme `<transition>`, `<keep-alive>` est un composant abstrait : le rendu ne donne pas d'élément supplémentaire dans le DOM, et il n'apparait pas dans la chaine de composants du parent.
 
   Lorsqu'un composant est permuté à l'intérieur de `<keep-alive>`, ses hooks de cycle de vie `activated` et `deactivated` seront appelés en conséquence.
 
@@ -2230,7 +2230,7 @@ type : api
   </transition>
   ```
 
-  Notez que `<keep-alive>` est conçu pour le cas où il a un seul composant enfant direct qui est permuté. Il ne fonctionne pas si vous avez `v-for` à l'intérieur. Quand il y a de multiples enfants condtionnels, comme ci-dessus, `<keep-alive>` requiert qu'un seul enfant soit visible à la fois.
+  Notez que `<keep-alive>` est conçu pour le cas où il a un seul composant enfant direct qui est permuté. Il ne fonctionne pas si vous avez `v-for` à l'intérieur. Quand il y a de multiples enfants conditionnels, comme ci-dessus, `<keep-alive>` requiert qu'un seul enfant soit visible à la fois.
 
 - **`include` et `exclude`**
 

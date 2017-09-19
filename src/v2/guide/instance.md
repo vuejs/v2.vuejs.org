@@ -116,7 +116,7 @@ new Vue({
 // => "a is: 1"
 ```
 
-Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple [`mounted`](../api/#mounted), [`updated`](../api/#updated) et [`destroyed`](../api/#destroyed). Tous ces hooks de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque.
+Il y a aussi d'autres hooks qui seront appelés à différentes étapes du cycle de vie d'une instance, par exemple [`mounted`](../api/#mounted), [`updated`](../api/#updated) et [`destroyed`](../api/#destroyed). Tous ces hooks de cycle de vie sont appelés avec leur `this` pointant sur l'instance de la vue qui les invoque.
 
 <p class="tip">N'utilisez pas les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) sur une propriété ou fonction de rappel d'une instance  (par exemple `vm.$watch('a', newVal => this.myMethod())`). Comme les fonctions fléchées sont liées au contexte parent, `this` ne sera pas l'instance de Vue comme vous pourriez vous y attendre et `this.myMethod` sera indéfinie.</p>
 
@@ -124,4 +124,4 @@ Il y aussi d'autres hooks qui seront appelés à différentes étapes du cycle d
 
 Ci-dessous se trouve le diagramme d'un cycle de vie d'une instance. Vous n'avez pas besoin de tout comprendre de A à Z à ce stade, mais ce diagramme pourra vous être utile dans le futur.
 
-![Le cyle de vie d'une instance de Vue](/images/lifecycle.png)
+![Le cycle de vie d'une instance de Vue](/images/lifecycle.png)

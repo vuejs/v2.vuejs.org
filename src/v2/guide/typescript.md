@@ -6,7 +6,7 @@ order: 404
 
 ## Changements importants dans la 2.2.0+ pour les utilisateurs TS + webpack 2
 
-Dans Vue 2.2.0+ nous avons introduit des fichiers de distribution en tant que modules ES, qui seront utilisés par défaut par webpack 2. Malheureusement, cela a introduit un changement de non retrocompatiblilité non souhaité car avec TypeScript + webpack 2, `import Vue = require('vue')` retourne maintenant un objet module ES synthétique au lieu de Vue lui-même.
+Dans Vue 2.2.0+ nous avons introduit des fichiers de distribution en tant que modules ES, qui seront utilisés par défaut par webpack 2. Malheureusement, cela a introduit un changement de non-rétrocompatibilité non souhaité car avec TypeScript + webpack 2, `import Vue = require('vue')` retourne maintenant un objet module ES synthétique au lieu de Vue lui-même.
 
 Nous avons prévu de bouger toutes les déclarations officielles d'export dans le style ES dans le futur. Veuillez consulter [la configuration recommandée](#Configuration-recommandee) ci-dessous qui est parée pour les évolutions futures.
 
@@ -45,7 +45,7 @@ plutôt que comme cela :
 import Vue = require('vue')
 ```
 
-La premiere (syntaxe de module ES) est recommandée car elle est cohérente avec les recommandations d'usage ES. Nous planifions à l'avenir de changer toutes les déclarations officielles pour utiliser les exports dans le style ES.
+La première (syntaxe de module ES) est recommandée car elle est cohérente avec les recommandations d'usage ES. Nous planifions à l'avenir de changer toutes les déclarations officielles pour utiliser les exports dans le style ES.
 
 De plus, si vous utilisez TypeScript avec webpack 2, les options suivantes sont également recommandées :
 
@@ -99,7 +99,7 @@ export default {
   methods: {
     onClick: function () {
       // TypeScript sait que `this` est de type `MyComponentTypeScript`
-      // et que `this.message` sera une chaîne de caractères
+      // et que `this.message` sera une chaine de caractères
       window.alert(this.message)
     }
   }
@@ -110,11 +110,11 @@ export default {
 
 Malheureusement, il y a quelques limitations ici :
 
-- __TypeScript ne peut pas déduire tous les types de l'API de Vue__ Par exemple, il ne sait pas que la propriété `message` renvoyée dans notre fonction `data` sera ajoutée à l'instance `MyComponent`. Cela signifie que si nous attribuons un nombre ou une valeur booléenne à `message`, les linters et les compilateurs ne seraient pas en mesure d'émettre une erreur, en pointant le fait qu'il s'agit normalement d'une chaîne de caractères.
+- __TypeScript ne peut pas déduire tous les types de l'API de Vue__ Par exemple, il ne sait pas que la propriété `message` renvoyée dans notre fonction `data` sera ajoutée à l'instance `MyComponent`. Cela signifie que si nous attribuons un nombre ou une valeur booléenne à `message`, les linters et les compilateurs ne seraient pas en mesure d'émettre une erreur, en pointant le fait qu'il s'agit normalement d'une chaine de caractères.
 
-- À cause de la précédente limitation, __l'annotation de types peut être verbeuse__. La seule raison pour laquelle nous devons déclarer manuellement `message` en tant que chaîne de caractères est parce que TypeScript ne peut pas déduire le type dans ce cas.
+- À cause de la précédente limitation, __l'annotation de types peut être verbeuse__. La seule raison pour laquelle nous devons déclarer manuellement `message` en tant que chaine de caractères est parce que TypeScript ne peut pas déduire le type dans ce cas.
 
-Fort heureusement, [vue-class-component](https://github.com/vuejs/vue-class-component) peut résoudre ses deux problèmes. C'est une bibliothèque de support officielle qui permet de déclarer les composants comme des classes natives en JavaScript, avec le décorateur `@Component`. Pour l'exemple, ré-écrivons le composant ci-dessus :
+Fort heureusement, [vue-class-component](https://github.com/vuejs/vue-class-component) peut résoudre ses deux problèmes. C'est une bibliothèque de support officielle qui permet de déclarer les composants comme des classes natives en JavaScript, avec le décorateur `@Component`. Pour l'exemple, réécrivons le composant ci-dessus :
 
 ``` ts
 import Vue from 'vue'
@@ -136,11 +136,11 @@ export default class MyComponent extends Vue {
 }
 ```
 
-Avec cette syntaxe alternative, nos définitions de composant ne sont pas seulement plus courtes, mais TypeScript peut aussi connaître les types de `message` et `onClick` avec des interfaces de déclarations explicites. Cette stratégie peut même vous permettre de gérer des types pour les propriétés calculées, les hooks de cycle de vie et les fonctions de rendu. Pour une utilisation plus détaillée, référez-vous à [la documentation de vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component).
+Avec cette syntaxe alternative, nos définitions de composant ne sont pas seulement plus courtes, mais TypeScript peut aussi connaitre les types de `message` et `onClick` avec des interfaces de déclarations explicites. Cette stratégie peut même vous permettre de gérer des types pour les propriétés calculées, les hooks de cycle de vie et les fonctions de rendu. Pour une utilisation plus détaillée, référez-vous à [la documentation de vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component).
 
 ## Déclaration des types des plugins Vue
 
-Les plugins peuvent ajouter des propriétés d'instance de Vue, des propriétés globales de Vue et des options de composant de Vue. Dans ces cas, les déclarations de type sont nécessaire pour permettre aux plugins de compiler en TypeScript. Fort heureusement, il y a une fonctionnalité TypeScript pour augmenter les types existant appelée [module d'augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+Les plugins peuvent ajouter des propriétés d'instance de Vue, des propriétés globales de Vue et des options de composant de Vue. Dans ces cas, les déclarations de type sont nécessaires pour permettre aux plugins de compiler en TypeScript. Fort heureusement, il y a une fonctionnalité TypeScript pour augmenter les types existants appelée [module d'augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
 Par exemple, pour déclarer une propriété d'instance `$myProperty` avec le type `string` :
 

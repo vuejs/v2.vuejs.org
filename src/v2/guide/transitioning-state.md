@@ -15,7 +15,7 @@ Tous ces éléments sont déjà stockés sous forme de nombres bruts, ou peuvent
 
 ## Animation de l'état avec des observateurs
 
-Les observateurs nous permettent d'animer les changements de toute propriété numérique dans une autre propriété. Cela peut paraître compliqué dans l'abstrait, donc plongeons-nous dans un exemple en utilisant [Tween.js](https://github.com/tweenjs/tween.js):
+Les observateurs nous permettent d'animer les changements de toute propriété numérique dans une autre propriété. Cela peut paraitre compliqué dans l'abstrait, donc plongeons-nous dans un exemple en utilisant [Tween.js](https://github.com/tweenjs/tween.js):
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -93,7 +93,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Lorsque vous mettez à jour le nombre, la modification est animée en dessous de l'input. Cela fait une belle démonstration, mais qu'en est-il de quelque-chose qui n'est pas directement stocké comme un nombre, comme n'importe quelle couleur CSS valide par exemple ? Voici comment nous pourrions accomplir cela avec l'ajout de [Color.js](https://github.com/brehaut/color-js):
+Lorsque vous mettez à jour le nombre, la modification est animée en dessous de l'input. Cela fait une belle démonstration, mais qu'en est-il de quelque chose qui n'est pas directement stocké comme un nombre, comme n'importe quelle couleur CSS valide par exemple ? Voici comment nous pourrions accomplir cela avec l'ajout de [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -543,11 +543,11 @@ new Vue({
 
 ## Donner vie à ses créations
 
-Animer, par définition, signifie donner vie. Malheureusement, quand les designers créent des icônes, logos et mascottes, ils fournissent généralement des images statiques ou des SVGs. Aussi l'octochat de GitHub, l'oiseau de Twitter et bien d'autres logos en forme de créature ne semblent pas réellement vivant.
+Animer, par définition, signifie donner vie. Malheureusement, quand les designers créent des icônes, logos et mascottes, ils fournissent généralement des images statiques ou des SVGs. Aussi l'octochat de GitHub, l'oiseau de Twitter et bien d'autres logos en forme de créature ne semblent pas réellement vivants.
 
-Vue peut vous aider. Puisque les SVGs ne sont que des données, nous avons uniquement besoin de voir à quoi ressemble ses créatures quand elles sont exitées, pensives, en intéraction, etc. Ensuite Vue vous aidera aux transitions entre ces états, faisant de vos pages d'accueils, vos animations d'attente et de vos notifications quelque chose de vivant.
+Vue peut vous aider. Puisque les SVGs ne sont que des données, nous avons uniquement besoin de voir à quoi ressemblent ces créatures quand elles sont excitées, pensives, en interaction, etc. Ensuite Vue vous aidera aux transitions entre ces états, faisant de vos pages d'accueil, vos animations d'attente et de vos notifications quelque chose de vivant.
 
-Un exemple de cela dans de Sarah Drasner ci-dessous, utilisant une combinaison de changement d'état intéractif et d'état en boucle animée.
+Un exemple de cela dans de Sarah Drasner ci-dessous, utilisant une combinaison de changement d'état interactif et d'état en boucle animée.
 
 <p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">Voir le pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Wall-E contrôlé par Vue</a> par Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) sur <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

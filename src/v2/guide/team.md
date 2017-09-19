@@ -132,7 +132,7 @@ order: 803
     </p>
 
     <p>
-      Le développement de Vue et son écosystème est assuré par une équipe internationale. Certains d'entre eux ont choisi d'apparaître ci-dessous.
+      Le développement de Vue et son écosystème est assuré par une équipe internationale. Certains d'entre eux ont choisi d'apparaitre ci-dessous.
     </p>
 
     <p v-if="userPosition" class="success">
@@ -172,7 +172,7 @@ order: 803
     </p>
 
     <p>
-      Certains membres de la communauté Vue l'ont tellement enrichie, qu'ils méritent une mention spéciale. Nous avons développé une relation plus intime avec ces partenaires clés, en nous coordonnant souvent sur les nouvelles fonctionnalités et les nouveautés.
+      Certains membres de la communauté Vue l'ont tellement enrichi, qu'ils méritent une mention spéciale. Nous avons développé une relation plus intime avec ces partenaires clés, en nous coordonnant souvent sur les nouvelles fonctionnalités et les nouveautés.
     </p>
 
     <p v-if="userPosition" class="success">
