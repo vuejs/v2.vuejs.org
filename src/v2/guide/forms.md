@@ -99,7 +99,7 @@ Multiple checkboxes, bound to the same Array:
   <label for="mike">Mike</label>
   <br>
   <span>Checked names: {{ checkedNames }}</span>
-<div>
+</div>
 ```
 
 ``` js
