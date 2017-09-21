@@ -14,7 +14,6 @@ Finally, we've split rules into four categories:
 
 
 
-
 ## Rule Categories
 
 ### Priority A: Essential
@@ -43,9 +42,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 
 
-
 ## Priority A Rules: Essential (Error Prevention)
-
 
 
 
@@ -104,35 +101,24 @@ When using the `data` property on a component (i.e. anywhere except on `new Vue`
 </summary>
 {% endraw %}
 
-When the value of `data` is an object, it's shared across all instances of a component. In a component that lazy-loads images, we might start with this object:
+When the value of `data` is an object, it's shared across all instances of a component. Imagine, for example, a `TodoList` component with this data:
 
 ``` js
 data: {
-  displayedImageUrl: '/images/loading.gif',
-  status: 'off-screen',
-  isLoaded: false
+  listTitle: '',
+  todos: []
 }
 ```
 
-Now let's say we're using this component to list user profile images:
+We might want to reuse this component, allowing users to maintain multiple lists (e.g. for shopping, wishlists, daily chores, etc). There's a problem though. Since every instance of the component references the same data object, changing the title of one list will also change the title of every other list. The same is true for adding/editing/deleting a todo.
 
-``` html
-<lazy-image
-  v-for="user in users"
-  url="user.profile.image"
-></lazy-image>
-```
-
-There might be 100 images, but they won't all fit on screen at the same time, which is why we're using our `lazy-image` component to only download an image once it's visible. The problem is, the component won't work correctly with a shared `data` object. As soon as the first image comes into view and its `status` is updated to `'on-screen'`, _all_ images will think they're on screen and they'll all be fetched at once.
-
-To instead generate a unique object for each component instance, an object must be returned in a function:
+Instead, we want each component instance to only manage its own data. For that to happen,each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
 
 ``` js
 data: function () {
   return {
-    url: '/images/loading.jpg',
-    status: 'off-screen',
-    isLoaded: false
+    listTitle: '',
+    todos: []
   }
 }
 ```
@@ -389,6 +375,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 ## Priority B Rules: Strongly Recommended (Improving Readability)
+
 
 
 ### Component files
