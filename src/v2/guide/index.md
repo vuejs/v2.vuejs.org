@@ -301,9 +301,9 @@ Now we can pass the todo into each repeated component using `v-bind`:
       which will be explained later.
     -->
     <todo-item
-      v-for="item in groceryList"
-      v-bind:todo="item"
-      v-bind:key="item.id">
+      v-for="todo in todoList"
+      v-bind:todo="todo"
+      v-bind:key="todo.id">
     </todo-item>
   </ol>
 </div>
@@ -317,7 +317,7 @@ Vue.component('todo-item', {
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    groceryList: [
+    todoList: [
       { id: 0, text: 'Vegetables' },
       { id: 1, text: 'Cheese' },
       { id: 2, text: 'Whatever else humans are supposed to eat' }
@@ -328,7 +328,7 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
+    <todo-item v-for="todo in todoList" v-bind:todo="todo" :key="todo.id"></todo-item>
   </ol>
 </div>
 <script>
@@ -339,7 +339,7 @@ Vue.component('todo-item', {
 var app7 = new Vue({
   el: '#app-7',
   data: {
-    groceryList: [
+    todoList: [
       { id: 0, text: 'Vegetables' },
       { id: 1, text: 'Cheese' },
       { id: 2, text: 'Whatever else humans are supposed to eat' }
