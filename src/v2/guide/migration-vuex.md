@@ -15,7 +15,7 @@ They have slightly different target users however.
 
 __Vuex 2.0__ is a radical redesign and simplification of the API, for those who are starting new projects or want to be on the cutting edge of client-side state management. __It is not covered by this migration guide__, so you should check out [the Vuex 2.0 docs](https://vuex.vuejs.org/en/index.html) if you'd like to learn more about it.
 
-__Vuex 1.0__ is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who just want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see [the Vuex 1.0 docs](https://github.com/vuejs/vuex/tree/1.0/docs/en).
+__Vuex 1.0__ is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see [the Vuex 1.0 docs](https://github.com/vuejs/vuex/tree/1.0/docs/en).
 
 ## `store.watch` with String Property Path <sup>replaced</sup>
 
@@ -73,7 +73,7 @@ See example [the plugins docs](https://github.com/vuejs/vuex/blob/1.0/docs/en/pl
 
 ## Middlewares <sup>replaced</sup>
 
-Middlewares are replaced by plugins. A plugin is simply a function that receives the store as the only argument, and can listen to the mutation event on the store:
+Middlewares are replaced by plugins. A plugin is a function that receives the store as the only argument, and can listen to the mutation event on the store:
 
 ``` js
 const myPlugins = store => {

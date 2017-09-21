@@ -65,7 +65,7 @@ When this data changes, the view will re-render. It should be noted that propert
 vm.b = 'hi'
 ```
 
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll just need to set some initial value. For example:
+Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
 
 ``` js
 data: {

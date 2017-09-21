@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-You'll just pass a router property to a Vue instance:
+You pass a router property to a Vue instance:
 
 ``` js
 new Vue({
@@ -424,7 +424,7 @@ var router = new VueRouter({
 
 ### `saveScrollPosition` <sup>replaced</sup>
 
-This has been replaced with a [`scrollBehavior` option](https://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:
+This has been replaced with a [`scrollBehavior` option](https://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to replicate the old behavior of:
 
 ``` js
 saveScrollPosition: true
@@ -537,7 +537,7 @@ There's no longer a use case for this in the new Vue Router.
 
 ### `data` <sup>replaced</sup>
 
-The `$route` property is now reactive, so you can just use a watcher to react to route changes, like this:
+The `$route` property is now reactive, so you can use a watcher to react to route changes, like this:
 
 ``` js
 watch: {

@@ -235,8 +235,8 @@ A prop is a custom attribute for passing information from parent components. A c
 Vue.component('child', {
   // declare the props
   props: ['message'],
-  // just like data, the prop can be used inside templates
-  // and is also made available in the vm as this.message
+  // like data, the prop can be used inside templates and
+  // is also made available in the vm as this.message
   template: '<span>{{ message }}</span>'
 })
 ```
@@ -297,7 +297,7 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-It's often simpler to use the shorthand syntax for `v-bind`:
+You can also use the shorthand syntax for `v-bind`:
 
 ``` html
 <child :my-message="parentMsg"></child>
@@ -369,13 +369,13 @@ However, since this is a literal prop, its value is passed down as a plain strin
 
 ### One-Way Data Flow
 
-All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about.
+All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
 
 In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
 
 There are usually two cases where it's tempting to mutate a prop:
 
-1. The prop is used to only pass in an initial value, the child component simply wants to use it as a local data property afterwards;
+1. The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.
 
 2. The prop is passed in as a raw value that needs to be transformed.
 
@@ -605,7 +605,7 @@ In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x thi
 
 This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
 
-In 2.3.0+ we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
+In 2.3.0+ we re-introduced the `.sync` modifier for props, but this time it is only syntax sugar that automatically expands into an additional `v-on` listener:
 
 The following
 
@@ -633,7 +633,7 @@ Custom events can also be used to create custom inputs that work with `v-model`.
 <input v-model="something">
 ```
 
-is just syntactic sugar for:
+is syntactic sugar for:
 
 ``` html
 <input
@@ -655,7 +655,7 @@ So for a component to work with `v-model`, it should (these can be configured in
 - accept a `value` prop
 - emit an `input` event with the new value
 
-Let's see it in action with a very simple currency input:
+Let's see it in action with a simple currency input:
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -963,7 +963,7 @@ The content distribution API is a very useful mechanism when designing component
 
 A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
 
-In a child component, simply pass data into a slot as if you are passing props to a component:
+In a child component, pass data into a slot as if you are passing props to a component:
 
 ``` html
 <div class="child">
@@ -1134,7 +1134,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1165,7 +1165,7 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
+<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
 
 ### Advanced Async Components
 
