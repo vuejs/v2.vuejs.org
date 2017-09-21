@@ -545,54 +545,54 @@ type: api
 
 - **Vea También:** [Métodos de instancia - vm.$watch](#vm-watch)
 
-## Options / DOM
+## Opciones / DOM
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Tipo:** `string | HTMLElement`
 
-- **Restriction:** only respected in instance creation via `new`.
+- **Restricción:** sólo respetado en una instancia creada con `new`.
 
-- **Details:**
+- **Detalles:**
 
-  Provide the Vue instance an existing DOM element to mount on. It can be a CSS selector string or an actual HTMLElement.
+  Provee a la instancia Vue con un elemento existente del DOM para ser montada. Puede ser un string de selector CSS o un elemento HTML.
 
-  After the instance is mounted, the resolved element will be accessible as `vm.$el`.
+  Depués que la instancia sea montada, el elemento resuelto se podrá acceder como `vm.$el`.
 
-  If this option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+  Si esta opción está disponible en la instanciación, la instancia inmediatamente iniciará la compilación; de otra forma, el usuario deberá llamar explícitamente a `vm.$mount()` para inicial la compilación manualmente.
 
-  <p class="tip">The provided element merely serves as a mounting point. Unlike in Vue 1.x, the mounted element will be replaced with Vue-generated DOM in all cases. It is therefore not recommended to mount the root instance to `<html>` or `<body>`.</p>
+  <p class="tip">El elemento elegido únicamente sirve como punto de montura. A contrario de Vue 1.x, el elemento montado será reemplazado con DOM generado por Vue en todos los casos. De modo que no es recomendable montar la instancia raíz en un `<html>` o un `<body>`.</p>
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### template
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Details:**
+- **Detalles:**
 
-  A string template to be used as the markup for the Vue instance. The template will **replace** the mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
+  Es una plantilla string para ser usada como el código HTML de la instancia Vue. La plantilla **reemplazará** el elemento montado. Cualquier código HTML existente dentro del elemento montado será ignorado, a menos que los slots de distribución de contenido se encuentren presentes en la plantilla.
 
-  If the string starts with `#` it will be used as a querySelector and use the selected element's innerHTML as the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+  Si el string inicia con `#` será usado como un `querySelector` y usará el `innerHTML` del elemento como plantilla string. Esto permite el uso del truco común `<script type="x-template">` para incluir plantillas.
 
-  <p class="tip">From a security perspective, you should only use Vue templates that you can trust. Never use user-generated content as your template.</p>
+  <p class="tip">Desde una perspectiva de seguridad, usted debería usar únicamente plantillas Vue en las que confía. Nunca use contenido generado por el usuario como plantilla.</p>
 
 - **Vea También:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Content Distribution](../guide/components.html#Content-Distribution-with-Slots)
+  - [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+  - [Distribución de contenido](../guide/components.html#Distribucion-de-Contenido-con-Slots)
 
 ### render
 
-  - **Type:** `Function`
+  - **Tipo:** `Function`
 
-  - **Details:**
+  - **Detalles:**
 
-    An alternative to string templates allowing you to leverage the full programmatic power of JavaScript. The render function receives a `createElement` method as it's first argument used to create `VNode`s.
+    Una alternativa a las plantillas de string, le permite usar el poder programático completo de JavaScript. La función render recibe un método `createElement` como su primer argumento, usado para crear los `VNode`.
 
-    If the component is a functional component, the render function also receives an extra argument `context`, which provides access to contextual data since functional components are instance-less.
+    Si el componente es un componente funcional, la función render también recibe un argumento extra `context`, el cual provee acceso a los datos contextuales, ya que los componentes funcionales no poseen instancia.
 
   - **Vea También:**
-    - [Render Functions](../guide/render-function)
+    - [Funciones de renderizado](../guide/render-function)
 
 ## Options / Lifecycle Hooks
 
