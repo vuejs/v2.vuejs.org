@@ -99,7 +99,7 @@ It's easy to toggle the presence of an element, too:
 
 ``` html
 <div id="app-3">
-  <p v-if="seen">Now you see me</p>
+  <span v-if="seen">Now you see me</span>
 </div>
 ```
 
