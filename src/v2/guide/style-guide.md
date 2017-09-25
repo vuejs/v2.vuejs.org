@@ -621,16 +621,72 @@ components/
 
 ### Order of words in component names
 
-**Component names should start with the least specific word and end with the most specific, generally including nouns before adjectives.**
+**Component names should start with the highest-level (often most general) words and end with descriptive modifying words.**
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+You may be wondering:
+
+> "Why would we force component names to use less natural language?"
+
+In natural English, adjectives and other descriptors do typically appear before the nouns, while exceptions require connector words. For example:
+
+- Coffee _with_ milk
+- Soup _of the_ day
+- Visitor _to the_ museum
+
+You can definitely include these connector words in component names if you'd like, but the order is still important.
+
+Also note that **what's considered "highest-level" will be contextual to your app**. For example, imagine an app with a search form. It may include components like this one:
+
+```
+components/
+|- ClearSearchButton.vue
+|- ExcludeFromSearchInput.vue
+|- LaunchOnStartupCheckbox.vue
+|- RunSearchButton.vue
+|- SearchInput.vue
+|- TermsCheckbox.vue
+```
+
+As you might notice, it's quite difficult to see which components are specific to the search. Now let's rename the components according to the rule:
+
+```
+components/
+|- SearchButtonClear.vue
+|- SearchButtonRun.vue
+|- SearchInputExcludeGlob.vue
+|- SearchInputQuery.vue
+|- SettingsCheckboxLaunchOnStartup.vue
+|- SettingsCheckboxTerms.vue
+```
+
+Since editors typically organize files alphabetically, all the important relationships between components are now evident at a glance.
+
+You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We don't recommend this, for a few reasons:
+
+- It takes more time to navigate through nested sub-directories, than scrolling through a single `components` directory.
+- Name conflicts (e.g. multiple `ButtonDelete.vue` components) make it more difficult to quickly navigate to a specific component in a code editor.
+- Refactoring becomes more difficult, because find-and-replace often isn't sufficient to update relative references to a moved component.
+
+{% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
 
 ```
 components/
-|- CheckboxInput.vue
-|- DeleteButton.vue
-|- EditableTodoList.vue
+|- ClearSearchButton.vue
+|- ExcludeFromSearchInput.vue
+|- LaunchOnStartupCheckbox.vue
+|- RunSearchButton.vue
+|- SearchInput.vue
+|- TermsCheckbox.vue
 ```
 {% raw %}</div>{% endraw %}
 
@@ -639,9 +695,12 @@ components/
 
 ```
 components/
-|- InputCheckbox.vue
-|- ButtonDelete.vue
-|- TodoListEditable.vue
+|- SearchButtonClear.vue
+|- SearchButtonRun.vue
+|- SearchInputQuery.vue
+|- SearchInputExcludeGlob.vue
+|- SettingsCheckboxTerms.vue
+|- SettingsCheckboxLaunchOnStartup.vue
 ```
 {% raw %}</div>{% endraw %}
 
