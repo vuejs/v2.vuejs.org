@@ -1,80 +1,80 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Components — Vue.js</title>
-        <meta charset="utf-8">
-        <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <title>Components — Vue.js</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-        <link rel="alternate" hreflang="x-default" href="https://vuejs.org/v2/guide/components.html">
-        <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/v2/guide/components.html">
-        <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/v2/guide/components.html">
-        <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/v2/guide/components.html">
-        <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/v2/guide/components.html">
-        <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/v2/guide/components.html">
-        <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/guide/components.html">
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/v2/guide/components.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/v2/guide/components.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/v2/guide/components.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/v2/guide/components.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/v2/guide/components.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/v2/guide/components.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/guide/components.html">
 
-        <meta property="og:type" content="article">
-        <meta property="og:title" content="Components — Vue.js">
-        <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
-        <meta property="og:image" content="https://vuejs.org//images/logo.png">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Components — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
 
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Components — Vue.js">
-        <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
-        <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Components — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
-        <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
-        <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
-        <link rel="icon" href="/images/logo.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
 
-        <meta name="msapplication-TileColor" content="#4fc08d">
-        <meta name="theme-color" content="#4fc08d">
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
 
-        <meta name="msapplication-config" content="browserconfig.xml">
-        <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
 
-        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
 
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-        <!-- main page styles -->
-        <link rel="stylesheet" href="/css/page.css">
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
 
-        <!-- this needs to be loaded before guide's inline scripts -->
-        <script src="/js/vue.js"></script>
-        <script>window.PAGE_TYPE = "guide"</script>
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+    <script>window.PAGE_TYPE = "guide"</script>
 
-        <!-- ga -->
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          ga('create', 'UA-46852172-1', 'vuejs.org');
-          ga('send', 'pageview');
-        </script>
-    </head>
-    <body class="docs">        <div id="mobile-bar" >
-            <a class="menu-button"></a>
-            <a class="logo" href="/"></a>
-        </div>
-        <div id="header">
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body class="docs">    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
   <a id="logo" href="/">
     <img src="/images/logo.png">
     <span>Vue.js</span>
@@ -85,9 +85,17 @@
     <input type="text" id="search-query-nav" class="search-query st-default-search-input">
   </form>
 </li>
-<li><a href="/v2/guide/" class="nav-link current">Guide</a></li>
-<li><a href="/v2/api/" class="nav-link">API</a></li>
-<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/v2/guide/" class="nav-link current">Guide</a></li>
+      <li><a href="/v2/api/" class="nav-link">API</a></li>
+      <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>
+
 <li class="nav-dropdown-container ecosystem">
   <a class="nav-link">Ecosystem</a><span class="arrow"></span>
   <ul class="nav-dropdown">
@@ -120,6 +128,20 @@
 
 
 
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">Team</a>
+</li>
+<li class="nav-dropdown-container support-vue">
+  <a class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
+      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
+      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+    </ul></li>
+  </ul>
+</li>
+
 <li class="nav-dropdown-container language">
   <a class="nav-link">Translations</a><span class="arrow"></span>
   <ul class="nav-dropdown">
@@ -132,28 +154,33 @@
   </ul>
 </li>
 
-<li>
-  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-</li>
 
   </ul>
 </div>
 
+    
+      <div id="main" class="fix-sidebar">
         
-            <div id="main" class="fix-sidebar">
-                
-                    
-    <div class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="main-menu">
-            <li>
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li>
   <form id="search-form">
     <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
   </form>
 </li>
-<li><a href="/v2/guide/" class="nav-link current">Guide</a></li>
-<li><a href="/v2/api/" class="nav-link">API</a></li>
-<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/v2/guide/" class="nav-link current">Guide</a></li>
+      <li><a href="/v2/api/" class="nav-link">API</a></li>
+      <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>
+
 <li class="nav-dropdown-container ecosystem">
   <a class="nav-link">Ecosystem</a><span class="arrow"></span>
   <ul class="nav-dropdown">
@@ -186,6 +213,20 @@
 
 
 
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">Team</a>
+</li>
+<li class="nav-dropdown-container support-vue">
+  <a class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
+      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
+      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+    </ul></li>
+  </ul>
+</li>
+
 <li class="nav-dropdown-container language">
   <a class="nav-link">Translations</a><span class="arrow"></span>
   <ul class="nav-dropdown">
@@ -198,574 +239,571 @@
   </ul>
 </li>
 
-<li>
-  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-</li>
 
-        </ul>
-        <div class="list">
-            <div class="main-sponsor">
-                <span>Platinum Sponsor</span><br>
-                <a href="https://stdlib.com" target="_blank" class="logo">
-                    <img src="/images/stdlib.png">
-                </a>
-            </div>
-            <a class="become-backer" href="/support-vuejs">
-                Become a Sponsor
-            </a>
-            <h2>
-                Guide
-                
-                    <select class="version-select">
-                        <option value="SELF" selected>2.x</option>
-                        <option value="v1">1.0</option>
-                        <option value="012">0.12</option>
-                        <option value="011">0.11</option>
-                    </select>
-                
-            </h2>
-            <ul class="menu-root">
-    
-        
-        
-            
-                <li><h3>Essentials</h3></li>
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/installation.html" class="sidebar-link">Installation</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/index.html" class="sidebar-link">Introduction</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/instance.html" class="sidebar-link">The Vue Instance</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/syntax.html" class="sidebar-link">Template Syntax</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/computed.html" class="sidebar-link">Computed Properties and Watchers</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/class-and-style.html" class="sidebar-link">Class and Style Bindings</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/list.html" class="sidebar-link">List Rendering</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/events.html" class="sidebar-link">Event Handling</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/forms.html" class="sidebar-link">Form Input Bindings</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/components.html" class="sidebar-link current">Components</a>
-        </li>
-    
-        
-        
-            
-            
-                <li><h3>Transitions & Animation</h3></li>
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/transitions.html" class="sidebar-link">Enter/Leave & List Transitions</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/transitioning-state.html" class="sidebar-link">State Transitions</a>
-        </li>
-    
-        
-        
-            
-            
-            
-                <li><h3>Reusability & Composition</h3></li>
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/mixins.html" class="sidebar-link">Mixins</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/custom-directive.html" class="sidebar-link">Custom Directives</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/render-function.html" class="sidebar-link">Render Functions & JSX</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/plugins.html" class="sidebar-link">Plugins</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/filters.html" class="sidebar-link">Filters</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-                <li><h3>Tooling</h3></li>
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/deployment.html" class="sidebar-link">Production Deployment</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/single-file-components.html" class="sidebar-link">Single File Components</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/unit-testing.html" class="sidebar-link">Unit Testing</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/typescript.html" class="sidebar-link">TypeScript Support</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-                <li><h3>Scaling Up</h3></li>
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/routing.html" class="sidebar-link">Routing</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/state-management.html" class="sidebar-link">State Management</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/ssr.html" class="sidebar-link">Server-Side Rendering</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-                <li><h3>Internals</h3></li>
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/reactivity.html" class="sidebar-link">Reactivity in Depth</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-                <li><h3>Migrating</h3></li>
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/migration.html" class="sidebar-link">Migration from Vue 1.x</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/migration-vue-router.html" class="sidebar-link">Migration from Vue Router 0.7.x</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/migration-vuex.html" class="sidebar-link">Migration from Vuex 0.6.x to 1.0</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-                <li><h3>Meta</h3></li>
-            
-        
-        
-        <li>
-            <a href="/v2/guide/comparison.html" class="sidebar-link">Comparison with Other Frameworks</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/join.html" class="sidebar-link">Join the Vue.js Community!</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/team.html" class="sidebar-link">Meet the Team</a>
-        </li>
+    </ul>
+    <div class="list">
+      <div class="main-sponsor">
+        <span>Platinum Sponsor</span><br>
+        <a href="https://stdlib.com" target="_blank" class="logo">
+          <img src="/images/stdlib.png">
+        </a>
+      </div>
+      <a class="become-backer" href="/support-vuejs">
+        Become a Sponsor
+      </a>
+      <h2>
+        Guide
+        
+          <select class="version-select">
+            <option value="SELF" selected>2.x</option>
+            <option value="v1">1.0</option>
+            <option value="012">0.12</option>
+            <option value="011">0.11</option>
+          </select>
+        
+      </h2>
+      <ul class="menu-root">
+  
     
     
+      
+        <li><h3>Essentials</h3></li>
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/index.html" class="sidebar-link">Introduction</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/instance.html" class="sidebar-link">The Vue Instance</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/syntax.html" class="sidebar-link">Template Syntax</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/computed.html" class="sidebar-link">Computed Properties and Watchers</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/class-and-style.html" class="sidebar-link">Class and Style Bindings</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/list.html" class="sidebar-link">List Rendering</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/events.html" class="sidebar-link">Event Handling</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/forms.html" class="sidebar-link">Form Input Bindings</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/components.html" class="sidebar-link current">Components</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Transitions & Animation</h3></li>
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/transitions.html" class="sidebar-link">Enter/Leave & List Transitions</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/transitioning-state.html" class="sidebar-link">State Transitions</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Reusability & Composition</h3></li>
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/mixins.html" class="sidebar-link">Mixins</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/custom-directive.html" class="sidebar-link">Custom Directives</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/render-function.html" class="sidebar-link">Render Functions & JSX</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/plugins.html" class="sidebar-link">Plugins</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/filters.html" class="sidebar-link">Filters</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Tooling</h3></li>
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/deployment.html" class="sidebar-link">Production Deployment</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/single-file-components.html" class="sidebar-link">Single File Components</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/unit-testing.html" class="sidebar-link">Unit Testing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/typescript.html" class="sidebar-link">TypeScript Support</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3>Scaling Up</h3></li>
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/state-management.html" class="sidebar-link">State Management</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/ssr.html" class="sidebar-link">Server-Side Rendering</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+        <li><h3>Internals</h3></li>
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/reactivity.html" class="sidebar-link">Reactivity in Depth</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>Migrating</h3></li>
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/migration.html" class="sidebar-link">Migration from Vue 1.x</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/migration-vue-router.html" class="sidebar-link">Migration from Vue Router 0.7.x</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/migration-vuex.html" class="sidebar-link">Migration from Vuex 0.6.x to 1.0</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>Meta</h3></li>
+      
+    
+    
+    <li>
+      <a href="/v2/guide/comparison.html" class="sidebar-link">Comparison with Other Frameworks</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/join.html" class="sidebar-link">Join the Vue.js Community!</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/team.html" class="sidebar-link">Meet the Team</a>
+    </li>
+  
+  
 </ul>
 
-        </div>
     </div>
+  </div>
 </div>
 
 
 <div class="content guide with-sidebar components-guide">
+  
     
-      
-        <div id="ad">
+      <div id="ad">
   <script>
     (function () {
       var s = document.createElement('script')
@@ -777,12 +815,12 @@
   </script>
 </div>
 
-      
     
-    
-      <h1>Components</h1>
-    
-    <h2 id="What-are-Components"><a href="#What-are-Components" class="headerlink" title="What are Components?"></a>What are Components?</h2><p>Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue’s compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special <code>is</code> attribute.</p>
+  
+  
+    <h1>Components</h1>
+  
+  <h2 id="What-are-Components"><a href="#What-are-Components" class="headerlink" title="What are Components?"></a>What are Components?</h2><p>Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue’s compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special <code>is</code> attribute.</p>
 <h2 id="Using-Components"><a href="#Using-Components" class="headerlink" title="Using Components"></a>Using Components</h2><h3 id="Registration"><a href="#Registration" class="headerlink" title="Registration"></a>Registration</h3><p>We’ve learned in the previous sections that we can create a new Vue instance with:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#some-element'</span>,</div><div class="line">  <span class="comment">// options</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>To register a global component, you can use <code>Vue.component(tagName, options)</code>. For example:</p>
@@ -869,11 +907,11 @@ new Vue({
 
 <h3 id="Composing-Components"><a href="#Composing-Components" class="headerlink" title="Composing Components"></a>Composing Components</h3><p>Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component’s code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.</p>
 <p>In Vue, the parent-child component relationship can be summarized as <strong>props down, events up</strong>. The parent passes data down to the child via <strong>props</strong>, and the child sends messages to the parent via <strong>events</strong>. Let’s see how they work next.</p>
-<p style="text-align: center"><br>  <img style="width:300px" src="/images/props-events.png" alt="props down, events up"><br></p>
+<p style="text-align: center;"><br>  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up"><br></p>
 
 <h2 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h2><h3 id="Passing-Data-with-Props"><a href="#Passing-Data-with-Props" class="headerlink" title="Passing Data with Props"></a>Passing Data with Props</h3><p>Every component instance has its own <strong>isolated scope</strong>. This means you cannot (and should not) directly reference parent data in a child component’s template. Data can be passed down to child components using <strong>props</strong>.</p>
 <p>A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the <a href="../api/#props"><code>props</code> option</a>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'child'</span>, &#123;</div><div class="line">  <span class="comment">// declare the props</span></div><div class="line">  props: [<span class="string">'message'</span>],</div><div class="line">  <span class="comment">// just like data, the prop can be used inside templates</span></div><div class="line">  <span class="comment">// and is also made available in the vm as this.message</span></div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'child'</span>, &#123;</div><div class="line">  <span class="comment">// declare the props</span></div><div class="line">  props: [<span class="string">'message'</span>],</div><div class="line">  <span class="comment">// like data, the prop can be used inside templates and</span></div><div class="line">  <span class="comment">// is also made available in the vm as this.message</span></div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Then we can pass a plain string to it like so:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">child</span> <span class="attr">message</span>=<span class="string">"hello!"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Result:</p>
@@ -899,7 +937,7 @@ new Vue({
 <p>Again, if you’re using string templates, then this limitation does not apply.</p>
 <h3 id="Dynamic-Props"><a href="#Dynamic-Props" class="headerlink" title="Dynamic Props"></a>Dynamic Props</h3><p>Similar to binding a normal attribute to an expression, we can also use <code>v-bind</code> for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"parentMsg"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">child</span> <span class="attr">v-bind:my-message</span>=<span class="string">"parentMsg"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>It’s often simpler to use the shorthand syntax for <code>v-bind</code>:</p>
+<p>You can also use the shorthand syntax for <code>v-bind</code>:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">child</span> <span class="attr">:my-message</span>=<span class="string">"parentMsg"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Result:</p>
 
@@ -933,11 +971,11 @@ new Vue({
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- this passes down a plain string "1" --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">some-prop</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>However, since this is a literal prop, its value is passed down as a plain string <code>&quot;1&quot;</code> instead of an actual number. If we want to pass down an actual JavaScript number, we need to use <code>v-bind</code> so that its value is evaluated as a JavaScript expression:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- this passes down an actual number --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">v-bind:some-prop</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="One-Way-Data-Flow"><a href="#One-Way-Data-Flow" class="headerlink" title="One-Way Data Flow"></a>One-Way Data Flow</h3><p>All props form a <strong>one-way-down</strong> binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent’s state, which can make your app’s data flow harder to reason about.</p>
+<h3 id="One-Way-Data-Flow"><a href="#One-Way-Data-Flow" class="headerlink" title="One-Way Data Flow"></a>One-Way Data Flow</h3><p>All props form a <strong>one-way-down</strong> binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent’s state, which can make your app’s data flow harder to understand.</p>
 <p>In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should <strong>not</strong> attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.</p>
 <p>There are usually two cases where it’s tempting to mutate a prop:</p>
 <ol>
-<li><p>The prop is used to only pass in an initial value, the child component simply wants to use it as a local data property afterwards;</p>
+<li><p>The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.</p>
 </li>
 <li><p>The prop is passed in as a raw value that needs to be transformed.</p>
 </li>
@@ -1039,7 +1077,7 @@ new Vue({
 </blockquote>
 <p>In some cases we may need “two-way binding” for a prop - in fact, in Vue 1.x this is exactly what the <code>.sync</code> modifier provided. When a child component mutates a prop that has <code>.sync</code>, the value change will be reflected in the parent. This is convenient, however it leads to maintenance issues in the long run because it breaks the one-way data flow assumption: the code that mutates child props are implicitly affecting parent state.</p>
 <p>This is why we removed the <code>.sync</code> modifier when 2.0 was released. However, we’ve found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is <strong>making the code in the child that affects parent state more consistent and explicit.</strong></p>
-<p>In 2.3.0+ we re-introduced the <code>.sync</code> modifier for props, but this time it is just syntax sugar that automatically expands into an additional <code>v-on</code> listener:</p>
+<p>In 2.3.0+ we re-introduced the <code>.sync</code> modifier for props, but this time it is only syntax sugar that automatically expands into an additional <code>v-on</code> listener:</p>
 <p>The following</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">comp</span> <span class="attr">:foo.sync</span>=<span class="string">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>is expanded into:</p>
@@ -1048,7 +1086,7 @@ new Vue({
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">this</span>.$emit(<span class="string">'update:foo'</span>, newValue)</div></pre></td></tr></table></figure>
 <h3 id="Form-Input-Components-using-Custom-Events"><a href="#Form-Input-Components-using-Custom-Events" class="headerlink" title="Form Input Components using Custom Events"></a>Form Input Components using Custom Events</h3><p>Custom events can also be used to create custom inputs that work with <code>v-model</code>. Remember:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"something"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>is just syntactic sugar for:</p>
+<p>is syntactic sugar for:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span></span></div><div class="line"><span class="tag">  <span class="attr">v-bind:value</span>=<span class="string">"something"</span></span></div><div class="line"><span class="tag">  <span class="attr">v-on:input</span>=<span class="string">"something = $event.target.value"</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>When used with a component, it instead simplifies to:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">custom-input</span></span></div><div class="line"><span class="tag">  <span class="attr">:value</span>=<span class="string">"something"</span></span></div><div class="line"><span class="tag">  @<span class="attr">input</span>=<span class="string">"value =&gt; &#123; something = value &#125;"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -1057,7 +1095,7 @@ new Vue({
 <li>accept a <code>value</code> prop</li>
 <li>emit an <code>input</code> event with the new value</li>
 </ul>
-<p>Let’s see it in action with a very simple currency input:</p>
+<p>Let’s see it in action with a simple currency input:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">currency-input</span> <span class="attr">v-model</span>=<span class="string">"price"</span>&gt;</span><span class="tag">&lt;/<span class="name">currency-input</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'currency-input'</span>, &#123;</div><div class="line">  template: <span class="string">'\</span></div><div class="line"><span class="string">    &lt;span&gt;\</span></div><div class="line"><span class="string">      $\</span></div><div class="line"><span class="string">      &lt;input\</span></div><div class="line"><span class="string">        ref="input"\</span></div><div class="line"><span class="string">        v-bind:value="value"\</span></div><div class="line"><span class="string">        v-on:input="updateValue($event.target.value)"&gt;\</span></div><div class="line"><span class="string">    &lt;/span&gt;\</span></div><div class="line"><span class="string">  '</span>,</div><div class="line">  props: [<span class="string">'value'</span>],</div><div class="line">  methods: &#123;</div><div class="line">    <span class="comment">// Instead of updating the value directly, this</span></div><div class="line">    <span class="comment">// method is used to format and place constraints</span></div><div class="line">    <span class="comment">// on the input's value</span></div><div class="line">    updateValue: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> formattedValue = value</div><div class="line">        <span class="comment">// Remove whitespace on either side</span></div><div class="line">        .trim()</div><div class="line">        <span class="comment">// Shorten to 2 decimal places</span></div><div class="line">        .slice(</div><div class="line">          <span class="number">0</span>,</div><div class="line">          value.indexOf(<span class="string">'.'</span>) === <span class="number">-1</span></div><div class="line">            ? value.length</div><div class="line">            : value.indexOf(<span class="string">'.'</span>) + <span class="number">3</span></div><div class="line">        )</div><div class="line">      <span class="comment">// If the value was not already normalized,</span></div><div class="line">      <span class="comment">// manually override it to conform</span></div><div class="line">      <span class="keyword">if</span> (formattedValue !== value) &#123;</div><div class="line">        <span class="keyword">this</span>.$refs.input.value = formattedValue</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// Emit the number value through the input event</span></div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'input'</span>, <span class="built_in">Number</span>(formattedValue))</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
@@ -1161,7 +1199,7 @@ new Vue({
 <p>New in 2.1.0+</p>
 </blockquote>
 <p>A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.</p>
-<p>In a child component, simply pass data into a slot as if you are passing props to a component:</p>
+<p>In a child component, pass data into a slot as if you are passing props to a component:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">text</span>=<span class="string">"hello from child"</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>In the parent, a <code>&lt;template&gt;</code> element with a special attribute <code>scope</code> must exist, indicating that it is a template for a scoped slot. The value of <code>scope</code> is the name of a temporary variable that holds the props object passed from the child:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">child</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">scope</span>=<span class="string">"props"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>hello from parent<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; props.text &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">child</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -1199,13 +1237,13 @@ new Vue({
 
 <h3 id="Async-Components"><a href="#Async-Components" class="headerlink" title="Async Components"></a>Async Components</h3><p>In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it’s actually needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component actually needs to be rendered and will cache the result for future re-renders. For example:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'async-example'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// Pass the component definition to the resolve callback</span></div><div class="line">    resolve(&#123;</div><div class="line">      template: <span class="string">'&lt;div&gt;I am async!&lt;/div&gt;'</span></div><div class="line">    &#125;)</div><div class="line">  &#125;, <span class="number">1000</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>The factory function receives a <code>resolve</code> callback, which should be called when you have retrieved your component definition from the server. You can also call <code>reject(reason)</code> to indicate the load has failed. The <code>setTimeout</code> here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with <a href="https://webpack.js.org/guides/code-splitting/" target="_blank" rel="external">Webpack’s code-splitting feature</a>:</p>
+<p>The factory function receives a <code>resolve</code> callback, which should be called when you have retrieved your component definition from the server. You can also call <code>reject(reason)</code> to indicate the load has failed. The <code>setTimeout</code> here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with <a href="https://webpack.js.org/guides/code-splitting/" target="_blank" rel="external">Webpack’s code-splitting feature</a>:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'async-webpack-example'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</div><div class="line">  <span class="comment">// This special require syntax will instruct Webpack to</span></div><div class="line">  <span class="comment">// automatically split your built code into bundles which</span></div><div class="line">  <span class="comment">// are loaded over Ajax requests.</span></div><div class="line">  <span class="built_in">require</span>([<span class="string">'./my-async-component'</span>], resolve)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>You can also return a <code>Promise</code> in the factory function, so with Webpack 2 + ES2015 syntax you can do:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(</div><div class="line">  <span class="string">'async-webpack-example'</span>,</div><div class="line">  () =&gt; <span class="keyword">import</span>(<span class="string">'./my-async-component'</span>)</div><div class="line">)</div></pre></td></tr></table></figure>
 <p>When using <a href="components.html#Local-Registration">local registration</a>, you can also directly provide a function that returns a <code>Promise</code>:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  components: &#123;</div><div class="line">    <span class="string">'my-component'</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./my-async-component'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p class="tip">If you’re a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately <a href="https://github.com/substack/node-browserify/issues/58#issuecomment-21978224" target="_blank" rel="external">made it clear</a> that async loading “is not something that Browserify will ever support.” Officially, at least. The Browserify community has found <a href="https://github.com/vuejs/vuejs.org/issues/620" target="_blank" rel="external">some workarounds</a>, which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
+<p class="tip">If you’re a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately <a href="https://github.com/substack/node-browserify/issues/58#issuecomment-21978224" target="_blank" rel="external">made it clear</a> that async loading “is not something that Browserify will ever support.” Officially, at least. The Browserify community has found <a href="https://github.com/vuejs/vuejs.org/issues/620" target="_blank" rel="external">some workarounds</a>, which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
 
 <h3 id="Advanced-Async-Components"><a href="#Advanced-Async-Components" class="headerlink" title="Advanced Async Components"></a>Advanced Async Components</h3><blockquote>
 <p>New in 2.3.0+</p>
@@ -1257,16 +1295,16 @@ new Vue({
 <h3 id="Cheap-Static-Components-with-v-once"><a href="#Cheap-Static-Components-with-v-once" class="headerlink" title="Cheap Static Components with v-once"></a>Cheap Static Components with <code>v-once</code></h3><p>Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains <strong>a lot</strong> of static content. In these cases, you can ensure that it’s only evaluated once and then cached by adding the <code>v-once</code> directive to the root element, like this:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.component(<span class="string">'terms-of-service'</span>, &#123;</div><div class="line">  template: <span class="string">'\</span></div><div class="line"><span class="string">    &lt;div v-once&gt;\</span></div><div class="line"><span class="string">      &lt;h1&gt;Terms of Service&lt;/h1&gt;\</span></div><div class="line"><span class="string">      ... a lot of static content ...\</span></div><div class="line"><span class="string">    &lt;/div&gt;\</span></div><div class="line"><span class="string">  '</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
-    
-      <div class="guide-links">
-        
-          <span>← <a href="/v2/guide/forms.html">Form Input Bindings</a></span>
-        
-        
-      </div>
-    
-    <div class="footer">
-      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  
+    <div class="guide-links">
+      
+        <span>← <a href="/v2/guide/forms.html">Form Input Bindings</a></span>
+      
+      
+    </div>
+  
+  <div class="footer">
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){
@@ -1280,52 +1318,52 @@ new Vue({
   })();
 </script>
 
-      Caught a mistake or want to contribute to the documentation?
-      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/guide/components.md" target="_blank">
-        Edit this page on Github!
-      </a>
-    </div>
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/guide/components.md" target="_blank">
+      Edit this page on Github!
+    </a>
+  </div>
 </div>
 
-                
-            </div>
-            <script src="/js/smooth-scroll.min.js"></script>
         
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
 
-        <!-- main custom script for sidebars, version selects etc. -->
-        <script src="/js/css.escape.js"></script>
-        <script src="/js/common.js"></script>
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
 
-        <!-- search -->
-        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="/css/search.css">
-        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-        <script>
-        [
-          '#search-query-nav',
-          '#search-query-sidebar',
-          '#search-query-menu'
-        ].forEach(function (selector) {
-          if (!document.querySelector(selector)) return
-          // search index defaults to v2
-          var match = window.location.pathname.match(/^\/(v\d+)/)
-          var version = match ? match[1] : 'v2'
-          docsearch({
-            appId: 'BH4D9OD16A',
-            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-            indexName: 'vuejs',
-            inputSelector: selector,
-            algoliaOptions: { facetFilters: ["version:" + version] }
-          })
-        })
-        </script>
+    <!-- search -->
+    <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] }
+      })
+    })
+    </script>
 
-        <!-- fastclick -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body)
-        }, false)
-        </script>
-    </body>
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
 </html>

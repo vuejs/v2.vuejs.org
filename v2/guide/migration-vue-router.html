@@ -1,80 +1,80 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Migration from Vue Router 0.7.x — Vue.js</title>
-        <meta charset="utf-8">
-        <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <head>
+    <title>Migration from Vue Router 0.7.x — Vue.js</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-        <link rel="alternate" hreflang="x-default" href="https://vuejs.org/v2/guide/migration-vue-router.html">
-        <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/v2/guide/migration-vue-router.html">
-        <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/v2/guide/migration-vue-router.html">
-        <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/v2/guide/migration-vue-router.html">
-        <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/v2/guide/migration-vue-router.html">
-        <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/v2/guide/migration-vue-router.html">
-        <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/guide/migration-vue-router.html">
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/v2/guide/migration-vue-router.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/v2/guide/migration-vue-router.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/v2/guide/migration-vue-router.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/v2/guide/migration-vue-router.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/v2/guide/migration-vue-router.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/v2/guide/migration-vue-router.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/guide/migration-vue-router.html">
 
-        <meta property="og:type" content="article">
-        <meta property="og:title" content="Migration from Vue Router 0.7.x — Vue.js">
-        <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
-        <meta property="og:image" content="https://vuejs.org//images/logo.png">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Migration from Vue Router 0.7.x — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
 
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Migration from Vue Router 0.7.x — Vue.js">
-        <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
-        <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Migration from Vue Router 0.7.x — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
 
-        <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
-        <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
-        <link rel="icon" href="/images/logo.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
 
-        <meta name="msapplication-TileColor" content="#4fc08d">
-        <meta name="theme-color" content="#4fc08d">
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
 
-        <meta name="msapplication-config" content="browserconfig.xml">
-        <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
 
-        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'>
 
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-        <!-- main page styles -->
-        <link rel="stylesheet" href="/css/page.css">
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
 
-        <!-- this needs to be loaded before guide's inline scripts -->
-        <script src="/js/vue.js"></script>
-        <script>window.PAGE_TYPE = "guide"</script>
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+    <script>window.PAGE_TYPE = "guide"</script>
 
-        <!-- ga -->
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          ga('create', 'UA-46852172-1', 'vuejs.org');
-          ga('send', 'pageview');
-        </script>
-    </head>
-    <body class="docs">        <div id="mobile-bar" >
-            <a class="menu-button"></a>
-            <a class="logo" href="/"></a>
-        </div>
-        <div id="header">
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body class="docs">    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
   <a id="logo" href="/">
     <img src="/images/logo.png">
     <span>Vue.js</span>
@@ -85,9 +85,17 @@
     <input type="text" id="search-query-nav" class="search-query st-default-search-input">
   </form>
 </li>
-<li><a href="/v2/guide/" class="nav-link current">Guide</a></li>
-<li><a href="/v2/api/" class="nav-link">API</a></li>
-<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/v2/guide/" class="nav-link current">Guide</a></li>
+      <li><a href="/v2/api/" class="nav-link">API</a></li>
+      <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>
+
 <li class="nav-dropdown-container ecosystem">
   <a class="nav-link">Ecosystem</a><span class="arrow"></span>
   <ul class="nav-dropdown">
@@ -120,6 +128,20 @@
 
 
 
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">Team</a>
+</li>
+<li class="nav-dropdown-container support-vue">
+  <a class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
+      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
+      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+    </ul></li>
+  </ul>
+</li>
+
 <li class="nav-dropdown-container language">
   <a class="nav-link">Translations</a><span class="arrow"></span>
   <ul class="nav-dropdown">
@@ -132,28 +154,33 @@
   </ul>
 </li>
 
-<li>
-  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-</li>
 
   </ul>
 </div>
 
+    
+      <div id="main" class="fix-sidebar">
         
-            <div id="main" class="fix-sidebar">
-                
-                    
-    <div class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="main-menu">
-            <li>
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li>
   <form id="search-form">
     <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
   </form>
 </li>
-<li><a href="/v2/guide/" class="nav-link current">Guide</a></li>
-<li><a href="/v2/api/" class="nav-link">API</a></li>
-<li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="/v2/guide/" class="nav-link current">Guide</a></li>
+      <li><a href="/v2/api/" class="nav-link">API</a></li>
+      <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>
+
 <li class="nav-dropdown-container ecosystem">
   <a class="nav-link">Ecosystem</a><span class="arrow"></span>
   <ul class="nav-dropdown">
@@ -186,6 +213,20 @@
 
 
 
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">Team</a>
+</li>
+<li class="nav-dropdown-container support-vue">
+  <a class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
+      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
+      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+    </ul></li>
+  </ul>
+</li>
+
 <li class="nav-dropdown-container language">
   <a class="nav-link">Translations</a><span class="arrow"></span>
   <ul class="nav-dropdown">
@@ -198,574 +239,571 @@
   </ul>
 </li>
 
-<li>
-  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Shop</a>
-</li>
 
-        </ul>
-        <div class="list">
-            <div class="main-sponsor">
-                <span>Platinum Sponsor</span><br>
-                <a href="https://stdlib.com" target="_blank" class="logo">
-                    <img src="/images/stdlib.png">
-                </a>
-            </div>
-            <a class="become-backer" href="/support-vuejs">
-                Become a Sponsor
-            </a>
-            <h2>
-                Guide
-                
-                    <select class="version-select">
-                        <option value="SELF" selected>2.x</option>
-                        <option value="v1">1.0</option>
-                        <option value="012">0.12</option>
-                        <option value="011">0.11</option>
-                    </select>
-                
-            </h2>
-            <ul class="menu-root">
-    
-        
-        
-            
-                <li><h3>Essentials</h3></li>
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/installation.html" class="sidebar-link">Installation</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/index.html" class="sidebar-link">Introduction</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/instance.html" class="sidebar-link">The Vue Instance</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/syntax.html" class="sidebar-link">Template Syntax</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/computed.html" class="sidebar-link">Computed Properties and Watchers</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/class-and-style.html" class="sidebar-link">Class and Style Bindings</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/list.html" class="sidebar-link">List Rendering</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/events.html" class="sidebar-link">Event Handling</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/forms.html" class="sidebar-link">Form Input Bindings</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/components.html" class="sidebar-link">Components</a>
-        </li>
-    
-        
-        
-            
-            
-                <li><h3>Transitions & Animation</h3></li>
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/transitions.html" class="sidebar-link">Enter/Leave & List Transitions</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/transitioning-state.html" class="sidebar-link">State Transitions</a>
-        </li>
-    
-        
-        
-            
-            
-            
-                <li><h3>Reusability & Composition</h3></li>
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/mixins.html" class="sidebar-link">Mixins</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/custom-directive.html" class="sidebar-link">Custom Directives</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/render-function.html" class="sidebar-link">Render Functions & JSX</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/plugins.html" class="sidebar-link">Plugins</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/filters.html" class="sidebar-link">Filters</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-                <li><h3>Tooling</h3></li>
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/deployment.html" class="sidebar-link">Production Deployment</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/single-file-components.html" class="sidebar-link">Single File Components</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/unit-testing.html" class="sidebar-link">Unit Testing</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/typescript.html" class="sidebar-link">TypeScript Support</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-                <li><h3>Scaling Up</h3></li>
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/routing.html" class="sidebar-link">Routing</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/state-management.html" class="sidebar-link">State Management</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/ssr.html" class="sidebar-link">Server-Side Rendering</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-                <li><h3>Internals</h3></li>
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/reactivity.html" class="sidebar-link">Reactivity in Depth</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-                <li><h3>Migrating</h3></li>
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/migration.html" class="sidebar-link">Migration from Vue 1.x</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/migration-vue-router.html" class="sidebar-link current">Migration from Vue Router 0.7.x</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/migration-vuex.html" class="sidebar-link">Migration from Vuex 0.6.x to 1.0</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-                <li><h3>Meta</h3></li>
-            
-        
-        
-        <li>
-            <a href="/v2/guide/comparison.html" class="sidebar-link">Comparison with Other Frameworks</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/join.html" class="sidebar-link">Join the Vue.js Community!</a>
-        </li>
-    
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        <li>
-            <a href="/v2/guide/team.html" class="sidebar-link">Meet the Team</a>
-        </li>
+    </ul>
+    <div class="list">
+      <div class="main-sponsor">
+        <span>Platinum Sponsor</span><br>
+        <a href="https://stdlib.com" target="_blank" class="logo">
+          <img src="/images/stdlib.png">
+        </a>
+      </div>
+      <a class="become-backer" href="/support-vuejs">
+        Become a Sponsor
+      </a>
+      <h2>
+        Guide
+        
+          <select class="version-select">
+            <option value="SELF" selected>2.x</option>
+            <option value="v1">1.0</option>
+            <option value="012">0.12</option>
+            <option value="011">0.11</option>
+          </select>
+        
+      </h2>
+      <ul class="menu-root">
+  
     
     
+      
+        <li><h3>Essentials</h3></li>
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/index.html" class="sidebar-link">Introduction</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/instance.html" class="sidebar-link">The Vue Instance</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/syntax.html" class="sidebar-link">Template Syntax</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/computed.html" class="sidebar-link">Computed Properties and Watchers</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/class-and-style.html" class="sidebar-link">Class and Style Bindings</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/list.html" class="sidebar-link">List Rendering</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/events.html" class="sidebar-link">Event Handling</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/forms.html" class="sidebar-link">Form Input Bindings</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/components.html" class="sidebar-link">Components</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Transitions & Animation</h3></li>
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/transitions.html" class="sidebar-link">Enter/Leave & List Transitions</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/transitioning-state.html" class="sidebar-link">State Transitions</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Reusability & Composition</h3></li>
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/mixins.html" class="sidebar-link">Mixins</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/custom-directive.html" class="sidebar-link">Custom Directives</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/render-function.html" class="sidebar-link">Render Functions & JSX</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/plugins.html" class="sidebar-link">Plugins</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/filters.html" class="sidebar-link">Filters</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Tooling</h3></li>
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/deployment.html" class="sidebar-link">Production Deployment</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/single-file-components.html" class="sidebar-link">Single File Components</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/unit-testing.html" class="sidebar-link">Unit Testing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/typescript.html" class="sidebar-link">TypeScript Support</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3>Scaling Up</h3></li>
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/state-management.html" class="sidebar-link">State Management</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/ssr.html" class="sidebar-link">Server-Side Rendering</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+        <li><h3>Internals</h3></li>
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/reactivity.html" class="sidebar-link">Reactivity in Depth</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>Migrating</h3></li>
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/migration.html" class="sidebar-link">Migration from Vue 1.x</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/migration-vue-router.html" class="sidebar-link current">Migration from Vue Router 0.7.x</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/migration-vuex.html" class="sidebar-link">Migration from Vuex 0.6.x to 1.0</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>Meta</h3></li>
+      
+    
+    
+    <li>
+      <a href="/v2/guide/comparison.html" class="sidebar-link">Comparison with Other Frameworks</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/join.html" class="sidebar-link">Join the Vue.js Community!</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    <li>
+      <a href="/v2/guide/team.html" class="sidebar-link">Meet the Team</a>
+    </li>
+  
+  
 </ul>
 
-        </div>
     </div>
+  </div>
 </div>
 
 
 <div class="content guide with-sidebar migration-vue-router-guide">
+  
     
-      
-        <div id="ad">
+      <div id="ad">
   <script>
     (function () {
       var s = document.createElement('script')
@@ -777,17 +815,17 @@
   </script>
 </div>
 
-      
     
-    
-      <h1>Migration from Vue Router 0.7.x</h1>
-    
-    <blockquote>
+  
+  
+    <h1>Migration from Vue Router 0.7.x</h1>
+  
+  <blockquote>
 <p>Only Vue Router 2 is compatible with Vue 2, so if you’re updating Vue, you’ll have to update Vue Router as well. That’s why we’ve included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the <a href="https://router.vuejs.org/en/" target="_blank" rel="external">Vue Router docs</a>.</p>
 </blockquote>
 <h2 id="Router-Initialization"><a href="#Router-Initialization" class="headerlink" title="Router Initialization"></a>Router Initialization</h2><h3 id="router-start-replaced"><a href="#router-start-replaced" class="headerlink" title="router.start replaced"></a><code>router.start</code> <sup>replaced</sup></h3><p>There is no longer a special API to initialize an app with Vue Router. That means instead of:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">router.start(&#123;</div><div class="line">  template: <span class="string">'&lt;router-view&gt;&lt;/router-view&gt;'</span></div><div class="line">&#125;, <span class="string">'#app'</span>)</div></pre></td></tr></table></figure>
-<p>You’ll just pass a router property to a Vue instance:</p>
+<p>You pass a router property to a Vue instance:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  router: router,</div><div class="line">  template: <span class="string">'&lt;router-view&gt;&lt;/router-view&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>Or, if you’re using the runtime-only build of Vue:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  router: router,</div><div class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(<span class="string">'router-view'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -928,7 +966,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>abstract: true</code> option.</p>
 </div>
 
-<h2 id="Route-Options-Misc"><a href="#Route-Options-Misc" class="headerlink" title="Route Options: Misc"></a>Route Options: Misc</h2><h3 id="saveScrollPosition-replaced"><a href="#saveScrollPosition-replaced" class="headerlink" title="saveScrollPosition replaced"></a><code>saveScrollPosition</code> <sup>replaced</sup></h3><p>This has been replaced with a <a href="https://router.vuejs.org/en/advanced/scroll-behavior.html" target="_blank" rel="external"><code>scrollBehavior</code> option</a> that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to simply replicate the old behavior of:</p>
+<h2 id="Route-Options-Misc"><a href="#Route-Options-Misc" class="headerlink" title="Route Options: Misc"></a>Route Options: Misc</h2><h3 id="saveScrollPosition-replaced"><a href="#saveScrollPosition-replaced" class="headerlink" title="saveScrollPosition replaced"></a><code>saveScrollPosition</code> <sup>replaced</sup></h3><p>This has been replaced with a <a href="https://router.vuejs.org/en/advanced/scroll-behavior.html" target="_blank" rel="external"><code>scrollBehavior</code> option</a> that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to replicate the old behavior of:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">saveScrollPosition: <span class="literal">true</span></div></pre></td></tr></table></figure>
 <p>You can replace it with:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">scrollBehavior: <span class="function"><span class="keyword">function</span> (<span class="params">to, from, savedPosition</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> savedPosition || &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -994,7 +1032,7 @@
   <p>Run the <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="external">migration helper</a> on your codebase to find examples of the <code>canReuse: false</code> option.</p>
 </div>
 
-<h3 id="data-replaced"><a href="#data-replaced" class="headerlink" title="data replaced"></a><code>data</code> <sup>replaced</sup></h3><p>The <code>$route</code> property is now reactive, so you can just use a watcher to react to route changes, like this:</p>
+<h3 id="data-replaced"><a href="#data-replaced" class="headerlink" title="data replaced"></a><code>data</code> <sup>replaced</sup></h3><p>The <code>$route</code> property is now reactive, so you can use a watcher to react to route changes, like this:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">watch: &#123;</div><div class="line">  <span class="string">'$route'</span>: <span class="string">'fetchData'</span></div><div class="line">&#125;,</div><div class="line">methods: &#123;</div><div class="line">  fetchData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
 <div class="upgrade-path">
@@ -1011,18 +1049,18 @@
 </div>
 
 
-    
-      <div class="guide-links">
-        
-          <span>← <a href="/v2/guide/migration.html">Migration from Vue 1.x</a></span>
-        
-        
-          <span style="float:right"><a href="/v2/guide/migration-vuex.html">Migration from Vuex 0.6.x to 1.0</a> →</span>
-        
-      </div>
-    
-    <div class="footer">
-      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  
+    <div class="guide-links">
+      
+        <span>← <a href="/v2/guide/migration.html">Migration from Vue 1.x</a></span>
+      
+      
+        <span style="float: right;"><a href="/v2/guide/migration-vuex.html">Migration from Vuex 0.6.x to 1.0</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <div class="bsa-cpc"></div>
 <script>
   (function(){
@@ -1036,52 +1074,52 @@
   })();
 </script>
 
-      Caught a mistake or want to contribute to the documentation?
-      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/guide/migration-vue-router.md" target="_blank">
-        Edit this page on Github!
-      </a>
-    </div>
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/guide/migration-vue-router.md" target="_blank">
+      Edit this page on Github!
+    </a>
+  </div>
 </div>
 
-                
-            </div>
-            <script src="/js/smooth-scroll.min.js"></script>
         
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
 
-        <!-- main custom script for sidebars, version selects etc. -->
-        <script src="/js/css.escape.js"></script>
-        <script src="/js/common.js"></script>
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
 
-        <!-- search -->
-        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="/css/search.css">
-        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-        <script>
-        [
-          '#search-query-nav',
-          '#search-query-sidebar',
-          '#search-query-menu'
-        ].forEach(function (selector) {
-          if (!document.querySelector(selector)) return
-          // search index defaults to v2
-          var match = window.location.pathname.match(/^\/(v\d+)/)
-          var version = match ? match[1] : 'v2'
-          docsearch({
-            appId: 'BH4D9OD16A',
-            apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-            indexName: 'vuejs',
-            inputSelector: selector,
-            algoliaOptions: { facetFilters: ["version:" + version] }
-          })
-        })
-        </script>
+    <!-- search -->
+    <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] }
+      })
+    })
+    </script>
 
-        <!-- fastclick -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body)
-        }, false)
-        </script>
-    </body>
+    <!-- fastclick -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
 </html>

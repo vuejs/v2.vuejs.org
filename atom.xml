@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vuejs.org/"/>
-  <updated>2017-09-01T15:02:33.000Z</updated>
+  <updated>2017-09-25T14:37:04.000Z</updated>
   <id>https://vuejs.org/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="https://vuejs.org/2016/04/27/announcing-2.0/"/>
     <id>https://vuejs.org/2016/04/27/announcing-2.0/</id>
     <published>2016-04-27T17:33:00.000Z</published>
-    <updated>2017-09-01T15:02:33.000Z</updated>
+    <updated>2017-09-25T14:37:04.000Z</updated>
     
     <content type="html"><![CDATA[<p>Today I am thrilled to announce the first public preview of Vue.js 2.0, which brings along many exciting improvements and new features. Let’s take a peek at what’s in store!</p>
 <a id="more"></a>
-<h2 id="Even-Leaner-Even-Faster"><a href="#Even-Leaner-Even-Faster" class="headerlink" title="Even Leaner, Even Faster"></a>Even Leaner, Even Faster</h2><p>Vue.js has always focused on staying light and fast, but 2.0 pushes it even further. The rendering layer is now based on a lightweight virtual-DOM implementation (based on <a href="https://github.com/paldepind/snabbdom" target="_blank" rel="external">Snabbdom</a>) that improves initial rendering speed and memory consumption by up to 2~4x in most scenarios (check out <a href="https://github.com/vuejs/vue/tree/next/benchmarks" target="_blank" rel="external">these benchmarks</a>). The template-to-virtual-DOM compiler and the runtime can be separated, so you can pre-compile templates and ship your app with only the runtime, which is less than 12kb min+gzip (as a reference, React 15 is 44kb min+gzip). The compiler also works in the browser, which means you can still drop in one script tag and start hacking, just like before. Even with the compiler included, the build is sitting at 17kb min+gzip, still lighter than the current 1.0 build.</p>
+<h2 id="Even-Leaner-Even-Faster"><a href="#Even-Leaner-Even-Faster" class="headerlink" title="Even Leaner, Even Faster"></a>Even Leaner, Even Faster</h2><p>Vue.js has always focused on staying light and fast, but 2.0 pushes it even further. The rendering layer is now based on a lightweight virtual-DOM implementation (based on <a href="https://github.com/paldepind/snabbdom" target="_blank" rel="external">Snabbdom</a>) that improves initial rendering speed and memory consumption by up to 2~4x in most scenarios (check out <a href="https://github.com/vuejs/vue/tree/next/benchmarks" target="_blank" rel="external">these benchmarks</a>). The template-to-virtual-DOM compiler and the runtime can be separated, so you can pre-compile templates and ship your app with only the runtime, which is less than 12KB min+gzip (as a reference, React 15 is 44KB min+gzip). The compiler also works in the browser, which means you can still drop in one script tag and start hacking, just like before. Even with the compiler included, the build is sitting at 17KB min+gzip, still lighter than the current 1.0 build.</p>
 <h2 id="Not-Your-Average-Virtual-DOM"><a href="#Not-Your-Average-Virtual-DOM" class="headerlink" title="Not Your Average Virtual-DOM"></a>Not Your Average Virtual-DOM</h2><p>Now, just virtual-DOM sounds boring because there are so many implementations out there - but this one is different. Combined with Vue’s reactivity system, it provides optimized re-rendering out of the box without you having to do anything. Each component keeps track of its reactive dependencies during its render, so the system knows precisely when to re-render, and which components to re-render. No need for <code>shouldComponentUpdate</code> or immutable data structures - <strong>it just works</strong>.</p>
 <p>In addition, Vue 2.0 applies some advanced optimizations during the template-to-virtual-DOM compilation phase:</p>
 <ol>
@@ -92,7 +92,7 @@
     <link href="https://vuejs.org/2016/02/06/common-gotchas/"/>
     <id>https://vuejs.org/2016/02/06/common-gotchas/</id>
     <published>2016-02-06T15:00:00.000Z</published>
-    <updated>2017-09-01T15:02:33.000Z</updated>
+    <updated>2017-09-25T14:37:04.000Z</updated>
     
     <content type="html"><![CDATA[<p>There are few types of questions that we frequently see from users who are new to Vue.js. Although they are all mentioned somewhere in the guide, they are easy to miss and can be hard to find when you do get bitten by the gotchas. Therefore we are aggregating them in this post and hopefully it can save you some time!</p>
 <a id="more"></a>
@@ -100,13 +100,13 @@
 <ol>
 <li><p>When you are <strong>adding a new property</strong> that wasn’t present when the data was observed. Due to the limitation of ES5 and to ensure consistent behavior across browsers, Vue.js cannot detect property addition/deletions. The best practice is to always declare properties that need to be reactive upfront. In cases where you absolutely need to add or delete properties at runtime, use the global <a href="/api/#Vue-set"><code>Vue.set</code></a> or <a href="/api/#Vue-delete"><code>Vue.delete</code></a> methods.</p>
 </li>
-<li><p>When you modify an Array by directly setting an index (e.g. <code>arr[0] = val</code>) or modifying its <code>length</code> property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method <code>arr.$set(index, value)</code> which is just syntax sugar for <code>arr.splice(index, 1, value)</code>.</p>
+<li><p>When you modify an Array by directly setting an index (e.g. <code>arr[0] = val</code>) or modifying its <code>length</code> property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method <code>arr.$set(index, value)</code> which is syntax sugar for <code>arr.splice(index, 1, value)</code>.</p>
 </li>
 </ol>
 <p>Further reading: <a href="/guide/reactivity.html">Reactivity in Depth</a> and <a href="http://vuejs.org/guide/list.html#Array-Change-Detection">Array Change Detection</a>.</p>
 <h3 id="When-is-the-DOM-updated"><a href="#When-is-the-DOM-updated" class="headerlink" title="When is the DOM updated?"></a>When is the DOM updated?</h3><p>Vue.js uses an asynchronous queue to batch DOM updates. This means when you modify some data, the DOM updates do not happen instantly: they are applied asynchronously when the queue is flushed. So how do you know when the DOM has been updated? Use <code>Vue.nextTick</code> right after you modify the data. The callback function you pass to it will be called once the queue has been flushed.</p>
 <p>Further reading: <a href="/guide/reactivity.html#Async-Update-Queue">Async Update Queue</a>.</p>
-<h3 id="Why-does-data-need-to-be-a-function"><a href="#Why-does-data-need-to-be-a-function" class="headerlink" title="Why does data need to be a function?"></a>Why does <code>data</code> need to be a function?</h3><p>In the basic examples, we declare the <code>data</code> directly as a plain object. This is because we are creating only a single instance with <code>new Vue()</code>. However, when defining a <strong>component</strong>, <code>data</code> must be declared as a function that returns the initial data object. Why? Because there will be many instances created using the same definition. If we still use a plain object for <code>data</code>, that same object will be <strong>shared by reference</strong> across all instance created! By providing a <code>data</code> function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.</p>
+<h3 id="Why-does-data-need-to-be-a-function"><a href="#Why-does-data-need-to-be-a-function" class="headerlink" title="Why does data need to be a function?"></a>Why does <code>data</code> need to be a function?</h3><p>In the basic examples, we declare the <code>data</code> directly as a plain object. This is because we are creating only a single instance with <code>new Vue()</code>. However, when defining a <strong>component</strong>, <code>data</code> must be declared as a function that returns the initial data object. Why? Because there will be many instances created using the same definition. If we still use a plain object for <code>data</code>, that same object will be <strong>shared by reference</strong> across all instance created! By providing a <code>data</code> function, every time a new instance is created we can call it to return a fresh copy of the initial data.</p>
 <p>Further reading: <a href="/guide/components.html#Component-Option-Caveats">Component Option Caveats</a>.</p>
 <h3 id="HTML-case-insensitivity"><a href="#HTML-case-insensitivity" class="headerlink" title="HTML case insensitivity"></a>HTML case insensitivity</h3><p>All Vue.js templates are valid, parsable HTML markup, and Vue.js relies on spec-compliant parsers to process its templates. However, as specified in the standard, HTML is case-insensitive when matching tag and attribute names. This means camelCase attributes like <code>:myProp=&quot;123&quot;</code> will be matched as <code>:myprop=&quot;123&quot;</code>. As a rule of thumb, you should use camelCase in JavaScript and kebab-case in templates. For example a prop defined in JavaScript as <code>myProp</code> should be bound in templates as <code>:my-prop</code>.</p>
 <p>Further reading: <a href="http://vuejs.org/guide/components.html#camelCase-vs-kebab-case">camelCase vs. kebab-case</a>.</p>

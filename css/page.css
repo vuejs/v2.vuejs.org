@@ -164,7 +164,7 @@ pre .xml .cdata {
   display: none;
 }
 body {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -197,7 +197,7 @@ strong {
 }
 code,
 pre {
-  font-family: 'Roboto Mono', Monaco, courier, monospace;
+  font-family: "Roboto Mono", Monaco, courier, monospace;
   font-size: 0.8em;
   background-color: #f8f8f8;
   -webkit-font-smoothing: initial;
@@ -273,16 +273,16 @@ a.button.white {
   font-weight: 600;
 }
 .highlight.html .code:before {
-  content: 'HTML';
+  content: "HTML";
 }
 .highlight.js .code:before {
-  content: 'JS';
+  content: "JS";
 }
 .highlight.bash .code:before {
-  content: 'Shell';
+  content: "Shell";
 }
 .highlight.css .code:before {
-  content: 'CSS';
+  content: "CSS";
 }
 #main {
   position: relative;
@@ -293,13 +293,14 @@ a.button.white {
 #nav .nav-link {
   cursor: pointer;
 }
-#nav .nav-dropdown-container .nav-link:hover {
+#nav .nav-dropdown-container .nav-link:hover:not(.current) {
   border-bottom: none;
 }
 #nav .nav-dropdown-container:hover .nav-dropdown {
   display: block;
 }
-#nav .nav-dropdown-container.language {
+#nav .nav-dropdown-container.language,
+#nav .nav-dropdown-container.ecosystem {
   margin-left: 20px;
 }
 #nav .nav-dropdown-container .arrow {
@@ -403,8 +404,24 @@ body.docs #nav {
 .nav-link.current {
   border-bottom: 3px solid #42b983;
 }
-.nav-link.shop {
+.nav-link.team {
   margin-left: 10px;
+}
+.nav-dropdown .nav-link:hover,
+.nav-dropdown .nav-link.current {
+  border-bottom: none;
+}
+.nav-dropdown .nav-link.current::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid #42b983;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  left: 8px;
 }
 .new-label {
   position: absolute;
@@ -416,7 +433,7 @@ body.docs #nav {
   height: 16px;
   font-size: 9px;
   font-weight: bold;
-  font-family: 'Roboto Mono', Monaco, courier, monospace;
+  font-family: "Roboto Mono", Monaco, courier, monospace;
   padding: 1px 4px 0 6px;
   border-radius: 4px;
 }
@@ -443,7 +460,7 @@ body.docs #nav {
   font-size: 1.5em;
   line-height: 40px;
   color: #2c3e50;
-  font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
 }
 #logo img {
@@ -916,7 +933,7 @@ ul.demo li {
   color: #4682b4;
 }
 #team-members .vuer .profile .user-match:after {
-  content: '\f06a';
+  content: "\f06a";
   font-family: FontAwesome;
   font-size: 0.75em;
   vertical-align: super;
@@ -942,7 +959,7 @@ ul.demo li {
   font-weight: 600;
 }
 #team-members .vuer .profile dt::after {
-  content: '';
+  content: "";
   margin-right: 7px;
 }
 #team-members .vuer .profile dt i {
@@ -963,7 +980,7 @@ ul.demo li {
 }
 #team-members .vuer .profile dd::after {
   display: block;
-  content: ' ';
+  content: " ";
   margin-top: 0.6em;
 }
 #team-members .vuer .profile li {
@@ -971,11 +988,11 @@ ul.demo li {
 }
 #team-members .vuer .profile li::after {
   display: inline-block;
-  content: '·';
+  content: "·";
   margin: 0 8px;
 }
 #team-members .vuer .profile li:last-child::after {
-  content: '';
+  content: "";
 }
 #team-members .vuer .profile .social a {
   display: inline-block;
@@ -1090,7 +1107,7 @@ i.rotating-clockwise {
 }
 .content h2:before,
 .content h3:before {
-  content: '';
+  content: "";
   display: block;
   margin-top: -91px;
   height: 91px;
@@ -1201,7 +1218,7 @@ i.rotating-clockwise {
   text-align: center;
   line-height: 20px;
   font-weight: bold;
-  font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
 }
 .content p.tip code,
@@ -1216,14 +1233,14 @@ i.rotating-clockwise {
   border-left-color: #f66;
 }
 .content p.tip:before {
-  content: '!';
+  content: "!";
   background-color: #f66;
 }
 .content p.success {
   border-left-color: #42b983;
 }
 .content p.success:before {
-  content: '\f00c';
+  content: "\f00c";
   font-family: FontAwesome;
   background-color: #42b983;
 }
@@ -1295,7 +1312,7 @@ i.rotating-clockwise {
   }
   .content h2:before,
   .content h3:before {
-    content: '';
+    content: "";
     display: block;
     margin-top: -70px;
     height: 70px;
