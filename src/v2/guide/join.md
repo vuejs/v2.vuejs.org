@@ -15,6 +15,7 @@ Agora iremos responder tanto o que a comunidade pode fazer por você, quanto o q
 - [Fórum](http://forum.vuejs.org/) (_inglês_): O melhor lugar para fazer perguntas e obter respostas sobre Vue e seu ecossistema diretamente para alguns dos desenvolvedores mais experientes.
 - [Canal no Gitter](https://gitter.im/vuejs/vue) (_inglês_): Um local para desenvolvedores se encontrarem e conversarem. Você pode fazer perguntas ali também, mas o fórum é uma plataforma melhor, já que as discussões são organizadas em tópicos.
 - [Canal no Slack](https://vuejs-brasil.slack.com/) (_português_): Se a conversa em inglês não é muito sua praia, convidamos para o canal em português, com espaço para dúvidas e compartilhamento de coisas úteis.
+- [Telegram](https://t.me/vuejsbrasil) (_português_) Grupo de discussão e aprendizado sobre Vue.js no Telegram em _pt_BR_
 - [GitHub](https://github.com/vuejs) (_inglês_): Se você tiver um _bug_ para reportar ou um recurso para solicitar, é para isso que _issues_ do GitHub estão lá. Também agradecemos _pull requests_!
 
 - [Forum](http://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
