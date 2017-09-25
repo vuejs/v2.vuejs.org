@@ -246,6 +246,40 @@ props: {
 
 It's _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
 
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+Let's say you have a list of todos:
+
+``` js
+data: function () {
+  return {
+    todos: [
+      {
+        id: 1,
+        text: 'Learn to use v-for'
+      },
+      {
+        id: 2,
+        text: 'Learn to use key'
+      }
+    ]
+  }
+}
+```
+
+Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+
+The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
+
+In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
+
+{% raw %}</details>{% endraw %}
+
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
 
@@ -452,9 +486,9 @@ components/
 
 
 
-### Generic component names
+### Base component names
 
-**Generic components that apply app-specific styling and conventions should begin with the `App` prefix.**
+**Base components that apply app-specific styling and conventions should begin with the `App` prefix.**
 
 {% raw %}
 <details>
@@ -617,7 +651,7 @@ components/
 
 **Components with no content should be self-closing in single-file components, string templates, and JSX - but never in DOM templates.**
 
-Components that self-close communicate that they not only have no content, but are **meant** to have content. It's the difference between a blank page in a book and one labeled "This page intentionally left blank." Your code is also cleaner without the unnecessary closing tag.
+Components that self-close communicate that they not only have no content, but are **meant** to have no content. It's the difference between a blank page in a book and one labeled "This page intentionally left blank." Your code is also cleaner without the unnecessary closing tag.
 
 Unfortunately, HTML doesn't allow custom elements to be self-closing - only [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). That's why the strategy is only possible when Vue's template compiler can reach the template before the DOM, then serve the DOM spec-compliant HTML.
 
@@ -1086,7 +1120,7 @@ Computed properties should be ordered first by dependency, then alphabetically.
 
 
 
-### Keyed v-if, v-else
+### Keyed `v-if`, `v-else`
 
 Always use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).
 
