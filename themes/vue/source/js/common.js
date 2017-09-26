@@ -25,7 +25,7 @@
       (function changeOpenChat() {
           var name = document.getElementsByClassName("gitter-open-chat-button")[0];
           if (name) {
-              name.innerHTML = 'Chat rapide';
+              name.innerHTML = 'Feedbacks';
               name.classList.add("is-displayed");
           } else {
               setTimeout(changeOpenChat, 200);
