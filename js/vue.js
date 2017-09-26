@@ -1,5 +1,5 @@
 /*!
- * Vue.js v2.4.0
+ * Vue.js v2.4.4
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -33,7 +33,11 @@ function isFalse (v) {
  * Check if value is primitive
  */
 function isPrimitive (value) {
-  return typeof value === 'string' || typeof value === 'number'
+  return (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'boolean'
+  )
 }
 
 /**
@@ -164,12 +168,9 @@ var capitalize = cached(function (str) {
 /**
  * Hyphenate a camelCase string.
  */
-var hyphenateRE = /([^-])([A-Z])/g;
+var hyphenateRE = /\B([A-Z])/g;
 var hyphenate = cached(function (str) {
-  return str
-    .replace(hyphenateRE, '$1-$2')
-    .replace(hyphenateRE, '$1-$2')
-    .toLowerCase()
+  return str.replace(hyphenateRE, '-$1').toLowerCase()
 });
 
 /**
@@ -256,14 +257,30 @@ function genStaticKeys (modules) {
  * if they are plain objects, do they have the same shape?
  */
 function looseEqual (a, b) {
+  if (a === b) { return true }
   var isObjectA = isObject(a);
   var isObjectB = isObject(b);
   if (isObjectA && isObjectB) {
     try {
-      return JSON.stringify(a) === JSON.stringify(b)
+      var isArrayA = Array.isArray(a);
+      var isArrayB = Array.isArray(b);
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every(function (e, i) {
+          return looseEqual(e, b[i])
+        })
+      } else if (!isArrayA && !isArrayB) {
+        var keysA = Object.keys(a);
+        var keysB = Object.keys(b);
+        return keysA.length === keysB.length && keysA.every(function (key) {
+          return looseEqual(a[key], b[key])
+        })
+      } else {
+        /* istanbul ignore next */
+        return false
+      }
     } catch (e) {
-      // possible circular reference
-      return a === b
+      /* istanbul ignore next */
+      return false
     }
   } else if (!isObjectA && !isObjectB) {
     return String(a) === String(b)
@@ -572,7 +589,7 @@ var isAndroid = UA && UA.indexOf('android') > 0;
 var isIOS = UA && /iphone|ipad|ipod|ios/.test(UA);
 var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
 
-// Firefix has a "watch" function on Object.prototype...
+// Firefox has a "watch" function on Object.prototype...
 var nativeWatch = ({}).watch;
 
 var supportsPassive = false;
@@ -654,13 +671,13 @@ var nextTick = (function () {
       // "force" the microtask queue to be flushed by adding an empty timer.
       if (isIOS) { setTimeout(noop); }
     };
-  } else if (typeof MutationObserver !== 'undefined' && (
+  } else if (!isIE && typeof MutationObserver !== 'undefined' && (
     isNative(MutationObserver) ||
     // PhantomJS and iOS 7.x
     MutationObserver.toString() === '[object MutationObserverConstructor]'
   )) {
     // use MutationObserver where native Promise is not available,
-    // e.g. PhantomJS IE11, iOS7, Android 4.4
+    // e.g. PhantomJS, iOS7, Android 4.4
     var counter = 1;
     var observer = new MutationObserver(nextTickHandler);
     var textNode = document.createTextNode(String(counter));
@@ -960,9 +977,9 @@ function defineReactive$$1 (
         dep.depend();
         if (childOb) {
           childOb.dep.depend();
-        }
-        if (Array.isArray(value)) {
-          dependArray(value);
+          if (Array.isArray(value)) {
+            dependArray(value);
+          }
         }
       }
       return value
@@ -1128,7 +1145,7 @@ function mergeDataOrFn (
     return function mergedDataFn () {
       return mergeData(
         typeof childVal === 'function' ? childVal.call(this) : childVal,
-        parentVal.call(this)
+        typeof parentVal === 'function' ? parentVal.call(this) : parentVal
       )
     }
   } else if (parentVal || childVal) {
@@ -1139,7 +1156,7 @@ function mergeDataOrFn (
         : childVal;
       var defaultData = typeof parentVal === 'function'
         ? parentVal.call(vm)
-        : undefined;
+        : parentVal;
       if (instanceData) {
         return mergeData(instanceData, defaultData)
       } else {
@@ -1244,11 +1261,10 @@ strats.props =
 strats.methods =
 strats.inject =
 strats.computed = function (parentVal, childVal) {
-  if (!childVal) { return Object.create(parentVal || null) }
   if (!parentVal) { return childVal }
   var ret = Object.create(null);
   extend(ret, parentVal);
-  extend(ret, childVal);
+  if (childVal) { extend(ret, childVal); }
   return ret
 };
 strats.provide = mergeDataOrFn;
@@ -1543,7 +1559,12 @@ function assertType (value, type) {
   var valid;
   var expectedType = getType(type);
   if (simpleCheckRE.test(expectedType)) {
-    valid = typeof value === expectedType.toLowerCase();
+    var t = typeof value;
+    valid = t === expectedType.toLowerCase();
+    // for primitive wrapper objects
+    if (!valid && t === 'object') {
+      valid = value instanceof type;
+    }
   } else if (expectedType === 'Object') {
     valid = isPlainObject(value);
   } else if (expectedType === 'Array') {
@@ -1741,7 +1762,7 @@ function createTextVNode (val) {
 // used for static nodes and slot nodes because they may be reused across
 // multiple renders, cloning them avoids errors when DOM manipulations rely
 // on their elm reference.
-function cloneVNode (vnode) {
+function cloneVNode (vnode, deep) {
   var cloned = new VNode(
     vnode.tag,
     vnode.data,
@@ -1757,14 +1778,17 @@ function cloneVNode (vnode) {
   cloned.key = vnode.key;
   cloned.isComment = vnode.isComment;
   cloned.isCloned = true;
+  if (deep && vnode.children) {
+    cloned.children = cloneVNodes(vnode.children);
+  }
   return cloned
 }
 
-function cloneVNodes (vnodes) {
+function cloneVNodes (vnodes, deep) {
   var len = vnodes.length;
   var res = new Array(len);
   for (var i = 0; i < len; i++) {
-    res[i] = cloneVNode(vnodes[i]);
+    res[i] = cloneVNode(vnodes[i], deep);
   }
   return res
 }
@@ -1778,8 +1802,10 @@ var normalizeEvent = cached(function (name) {
   name = once$$1 ? name.slice(1) : name;
   var capture = name.charAt(0) === '!';
   name = capture ? name.slice(1) : name;
+  var plain = !(passive || once$$1 || capture);
   return {
     name: name,
+    plain: plain,
     once: once$$1,
     capture: capture,
     passive: passive
@@ -1805,6 +1831,11 @@ function createFnInvoker (fns) {
   return invoker
 }
 
+// #6552
+function prioritizePlainEvents (a, b) {
+  return a.plain ? -1 : b.plain ? 1 : 0
+}
+
 function updateListeners (
   on,
   oldOn,
@@ -1813,10 +1844,13 @@ function updateListeners (
   vm
 ) {
   var name, cur, old, event;
+  var toAdd = [];
+  var hasModifier = false;
   for (name in on) {
     cur = on[name];
     old = oldOn[name];
     event = normalizeEvent(name);
+    if (!event.plain) { hasModifier = true; }
     if (isUndef(cur)) {
       "development" !== 'production' && warn(
         "Invalid handler for event \"" + (event.name) + "\": got " + String(cur),
@@ -1826,10 +1860,18 @@ function updateListeners (
       if (isUndef(cur.fns)) {
         cur = on[name] = createFnInvoker(cur);
       }
-      add(event.name, cur, event.once, event.capture, event.passive);
+      event.handler = cur;
+      toAdd.push(event);
     } else if (cur !== old) {
       old.fns = cur;
       on[name] = old;
+    }
+  }
+  if (toAdd.length) {
+    if (hasModifier) { toAdd.sort(prioritizePlainEvents); }
+    for (var i = 0; i < toAdd.length; i++) {
+      var event$1 = toAdd[i];
+      add(event$1.name, event$1.handler, event$1.once, event$1.capture, event$1.passive);
     }
   }
   for (name in oldOn) {
@@ -2144,11 +2186,17 @@ function resolveAsyncComponent (
 
 /*  */
 
+function isAsyncPlaceholder (node) {
+  return node.isComment && node.asyncFactory
+}
+
+/*  */
+
 function getFirstComponentChild (children) {
   if (Array.isArray(children)) {
     for (var i = 0; i < children.length; i++) {
       var c = children[i];
-      if (isDef(c) && isDef(c.componentOptions)) {
+      if (isDef(c) && (isDef(c.componentOptions) || isAsyncPlaceholder(c))) {
         return c
       }
     }
@@ -2235,8 +2283,8 @@ function eventsMixin (Vue) {
     }
     // array of events
     if (Array.isArray(event)) {
-      for (var i$1 = 0, l = event.length; i$1 < l; i$1++) {
-        this$1.$off(event[i$1], fn);
+      for (var i = 0, l = event.length; i < l; i++) {
+        this$1.$off(event[i], fn);
       }
       return vm
     }
@@ -2249,14 +2297,16 @@ function eventsMixin (Vue) {
       vm._events[event] = null;
       return vm
     }
-    // specific handler
-    var cb;
-    var i = cbs.length;
-    while (i--) {
-      cb = cbs[i];
-      if (cb === fn || cb.fn === fn) {
-        cbs.splice(i, 1);
-        break
+    if (fn) {
+      // specific handler
+      var cb;
+      var i$1 = cbs.length;
+      while (i$1--) {
+        cb = cbs[i$1];
+        if (cb === fn || cb.fn === fn) {
+          cbs.splice(i$1, 1);
+          break
+        }
       }
     }
     return vm
@@ -2308,10 +2358,15 @@ function resolveSlots (
   var defaultSlot = [];
   for (var i = 0, l = children.length; i < l; i++) {
     var child = children[i];
+    var data = child.data;
+    // remove slot attribute if the node is resolved as a Vue slot node
+    if (data && data.attrs && data.attrs.slot) {
+      delete data.attrs.slot;
+    }
     // named slots should only be respected if the vnode was rendered in the
     // same context.
     if ((child.context === context || child.functionalContext === context) &&
-      child.data && child.data.slot != null
+      data && data.slot != null
     ) {
       var name = child.data.slot;
       var slot = (slots[name] || (slots[name] = []));
@@ -2564,11 +2619,11 @@ function updateChildComponent (
   }
   vm.$options._renderChildren = renderChildren;
 
-  // update $attrs and $listensers hash
+  // update $attrs and $listeners hash
   // these are also reactive so they may trigger child update if the child
   // used them during render
-  vm.$attrs = parentVnode.data && parentVnode.data.attrs;
-  vm.$listeners = listeners;
+  vm.$attrs = (parentVnode.data && parentVnode.data.attrs) || emptyObject;
+  vm.$listeners = listeners || emptyObject;
 
   // update props
   if (propsData && vm.$options.props) {
@@ -3151,7 +3206,7 @@ function initData (vm) {
     {
       if (methods && hasOwn(methods, key)) {
         warn(
-          ("method \"" + key + "\" has already been defined as a data property."),
+          ("Method \"" + key + "\" has already been defined as a data property."),
           vm
         );
       }
@@ -3184,21 +3239,28 @@ var computedWatcherOptions = { lazy: true };
 function initComputed (vm, computed) {
   "development" !== 'production' && checkOptionType(vm, 'computed');
   var watchers = vm._computedWatchers = Object.create(null);
+  // computed properties are just getters during SSR
+  var isSSR = isServerRendering();
 
   for (var key in computed) {
     var userDef = computed[key];
     var getter = typeof userDef === 'function' ? userDef : userDef.get;
-    {
-      if (getter === undefined) {
-        warn(
-          ("No getter function has been defined for computed property \"" + key + "\"."),
-          vm
-        );
-        getter = noop;
-      }
+    if ("development" !== 'production' && getter == null) {
+      warn(
+        ("Getter is missing for computed property \"" + key + "\"."),
+        vm
+      );
     }
-    // create internal watcher for the computed property.
-    watchers[key] = new Watcher(vm, getter, noop, computedWatcherOptions);
+
+    if (!isSSR) {
+      // create internal watcher for the computed property.
+      watchers[key] = new Watcher(
+        vm,
+        getter || noop,
+        noop,
+        computedWatcherOptions
+      );
+    }
 
     // component-defined computed properties are already defined on the
     // component prototype. We only need to define computed properties defined
@@ -3215,19 +3277,35 @@ function initComputed (vm, computed) {
   }
 }
 
-function defineComputed (target, key, userDef) {
+function defineComputed (
+  target,
+  key,
+  userDef
+) {
+  var shouldCache = !isServerRendering();
   if (typeof userDef === 'function') {
-    sharedPropertyDefinition.get = createComputedGetter(key);
+    sharedPropertyDefinition.get = shouldCache
+      ? createComputedGetter(key)
+      : userDef;
     sharedPropertyDefinition.set = noop;
   } else {
     sharedPropertyDefinition.get = userDef.get
-      ? userDef.cache !== false
+      ? shouldCache && userDef.cache !== false
         ? createComputedGetter(key)
         : userDef.get
       : noop;
     sharedPropertyDefinition.set = userDef.set
       ? userDef.set
       : noop;
+  }
+  if ("development" !== 'production' &&
+      sharedPropertyDefinition.set === noop) {
+    sharedPropertyDefinition.set = function () {
+      warn(
+        ("Computed property \"" + key + "\" was assigned to but it has no setter."),
+        this
+      );
+    };
   }
   Object.defineProperty(target, key, sharedPropertyDefinition);
 }
@@ -3251,22 +3329,28 @@ function initMethods (vm, methods) {
   "development" !== 'production' && checkOptionType(vm, 'methods');
   var props = vm.$options.props;
   for (var key in methods) {
-    vm[key] = methods[key] == null ? noop : bind(methods[key], vm);
     {
       if (methods[key] == null) {
         warn(
-          "method \"" + key + "\" has an undefined value in the component definition. " +
+          "Method \"" + key + "\" has an undefined value in the component definition. " +
           "Did you reference the function correctly?",
           vm
         );
       }
       if (props && hasOwn(props, key)) {
         warn(
-          ("method \"" + key + "\" has already been defined as a prop."),
+          ("Method \"" + key + "\" has already been defined as a prop."),
           vm
         );
       }
+      if ((key in vm) && isReserved(key)) {
+        warn(
+          "Method \"" + key + "\" conflicts with an existing Vue instance method. " +
+          "Avoid defining component methods that start with _ or $."
+        );
+      }
     }
+    vm[key] = methods[key] == null ? noop : bind(methods[key], vm);
   }
 }
 
@@ -3384,7 +3468,10 @@ function resolveInject (inject, vm) {
     // inject is :any because flow is not smart enough to figure out cached
     var result = Object.create(null);
     var keys = hasSymbol
-        ? Reflect.ownKeys(inject)
+        ? Reflect.ownKeys(inject).filter(function (key) {
+          /* istanbul ignore next */
+          return Object.getOwnPropertyDescriptor(inject, key).enumerable
+        })
         : Object.keys(inject);
 
     for (var i = 0; i < keys.length; i++) {
@@ -3398,7 +3485,7 @@ function resolveInject (inject, vm) {
         }
         source = source.$parent;
       }
-      if ("development" !== 'production' && !hasOwn(result, key)) {
+      if ("development" !== 'production' && !source) {
         warn(("Injection \"" + key + "\" not found"), vm);
       }
     }
@@ -3419,7 +3506,7 @@ function createFunctionalComponent (
   var propOptions = Ctor.options.props;
   if (isDef(propOptions)) {
     for (var key in propOptions) {
-      props[key] = validateProp(key, propOptions, propsData || {});
+      props[key] = validateProp(key, propOptions, propsData || emptyObject);
     }
   } else {
     if (isDef(data.attrs)) { mergeProps(props, data.attrs); }
@@ -3434,7 +3521,7 @@ function createFunctionalComponent (
     props: props,
     children: children,
     parent: context,
-    listeners: data.on || {},
+    listeners: data.on || emptyObject,
     injections: resolveInject(Ctor.options.inject, context),
     slots: function () { return resolveSlots(children, context); }
   });
@@ -3591,8 +3678,12 @@ function createComponent (
     return createFunctionalComponent(Ctor, propsData, data, context, children)
   }
 
-  // keep listeners
+  // extract listeners, since these needs to be treated as
+  // child component listeners instead of DOM listeners
   var listeners = data.on;
+  // replace with listeners with .native modifier
+  // so it gets processed during parent component patch.
+  data.on = data.nativeOn;
 
   if (isTrue(Ctor.options.abstract)) {
     // abstract components do not keep anything
@@ -3754,7 +3845,7 @@ function _createElement (
   var vnode, ns;
   if (typeof tag === 'string') {
     var Ctor;
-    ns = config.getTagNamespace(tag);
+    ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
     if (config.isReservedTag(tag)) {
       // platform built-in elements
       vnode = new VNode(
@@ -4050,12 +4141,13 @@ function initRender (vm) {
   // $attrs & $listeners are exposed for easier HOC creation.
   // they need to be reactive so that HOCs using them are always updated
   var parentData = parentVnode && parentVnode.data;
+
   /* istanbul ignore else */
   {
-    defineReactive$$1(vm, '$attrs', parentData && parentData.attrs, function () {
+    defineReactive$$1(vm, '$attrs', parentData && parentData.attrs || emptyObject, function () {
       !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
     }, true);
-    defineReactive$$1(vm, '$listeners', parentData && parentData.on, function () {
+    defineReactive$$1(vm, '$listeners', vm.$options._parentListeners || emptyObject, function () {
       !isUpdatingChildComponent && warn("$listeners is readonly.", vm);
     }, true);
   }
@@ -4074,9 +4166,13 @@ function renderMixin (Vue) {
     var _parentVnode = ref._parentVnode;
 
     if (vm._isMounted) {
-      // clone slot nodes on re-renders
+      // if the parent didn't update, the slot nodes will be the ones from
+      // last render. They need to be cloned to ensure "freshness" for this render.
       for (var key in vm.$slots) {
-        vm.$slots[key] = cloneVNodes(vm.$slots[key]);
+        var slot = vm.$slots[key];
+        if (slot._rendered) {
+          vm.$slots[key] = cloneVNodes(slot, true /* deep */);
+        }
       }
     }
 
@@ -4617,7 +4713,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.4.0';
+Vue$3.version = '2.4.4';
 
 /*  */
 
@@ -4626,7 +4722,7 @@ Vue$3.version = '2.4.0';
 var isReservedAttr = makeMap('style,class');
 
 // attributes that should be using props for binding
-var acceptValue = makeMap('input,textarea,option,select');
+var acceptValue = makeMap('input,textarea,option,select,progress');
 var mustUseProp = function (tag, type, attr) {
   return (
     (attr === 'value' && acceptValue(tag)) && type !== 'button' ||
@@ -4815,6 +4911,8 @@ function isUnknownElement (tag) {
   }
 }
 
+var isTextInputType = makeMap('text,number,password,search,email,tel,url');
+
 /*  */
 
 /**
@@ -4961,8 +5059,6 @@ function registerRef (vnode, isRemoval) {
  *
  * modified by Evan You (@yyx990803)
  *
-
-/*
  * Not type-checking this because this file is perf-critical and the cost
  * of making flow understand it is not worth it.
  */
@@ -4988,14 +5084,12 @@ function sameVnode (a, b) {
   )
 }
 
-// Some browsers do not support dynamically changing type for <input>
-// so they need to be treated as different nodes
 function sameInputType (a, b) {
   if (a.tag !== 'input') { return true }
   var i;
   var typeA = isDef(i = a.data) && isDef(i = i.attrs) && i.type;
   var typeB = isDef(i = b.data) && isDef(i = i.attrs) && i.type;
-  return typeA === typeB
+  return typeA === typeB || isTextInputType(typeA) && isTextInputType(typeB)
 }
 
 function createKeyToOldIdx (children, beginIdx, endIdx) {
@@ -5327,10 +5421,11 @@ function createPatchFunction (backend) {
         newStartVnode = newCh[++newStartIdx];
       } else {
         if (isUndef(oldKeyToIdx)) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx); }
-        idxInOld = isDef(newStartVnode.key) ? oldKeyToIdx[newStartVnode.key] : null;
+        idxInOld = isDef(newStartVnode.key)
+          ? oldKeyToIdx[newStartVnode.key]
+          : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx);
         if (isUndef(idxInOld)) { // New element
           createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
-          newStartVnode = newCh[++newStartIdx];
         } else {
           elmToMove = oldCh[idxInOld];
           /* istanbul ignore if */
@@ -5344,13 +5439,12 @@ function createPatchFunction (backend) {
             patchVnode(elmToMove, newStartVnode, insertedVnodeQueue);
             oldCh[idxInOld] = undefined;
             canMove && nodeOps.insertBefore(parentElm, elmToMove.elm, oldStartVnode.elm);
-            newStartVnode = newCh[++newStartIdx];
           } else {
             // same key but different element. treat as new element
             createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
-            newStartVnode = newCh[++newStartIdx];
           }
         }
+        newStartVnode = newCh[++newStartIdx];
       }
     }
     if (oldStartIdx > oldEndIdx) {
@@ -5358,6 +5452,13 @@ function createPatchFunction (backend) {
       addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
     } else if (newStartIdx > newEndIdx) {
       removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
+    }
+  }
+
+  function findIdxInOld (node, oldCh, start, end) {
+    for (var i = start; i < end; i++) {
+      var c = oldCh[i];
+      if (isDef(c) && sameVnode(node, c)) { return i }
     }
   }
 
@@ -5468,27 +5569,46 @@ function createPatchFunction (backend) {
         if (!elm.hasChildNodes()) {
           createChildren(vnode, children, insertedVnodeQueue);
         } else {
-          var childrenMatch = true;
-          var childNode = elm.firstChild;
-          for (var i$1 = 0; i$1 < children.length; i$1++) {
-            if (!childNode || !hydrate(childNode, children[i$1], insertedVnodeQueue)) {
-              childrenMatch = false;
-              break
+          // v-html and domProps: innerHTML
+          if (isDef(i = data) && isDef(i = i.domProps) && isDef(i = i.innerHTML)) {
+            if (i !== elm.innerHTML) {
+              /* istanbul ignore if */
+              if ("development" !== 'production' &&
+                typeof console !== 'undefined' &&
+                !bailed
+              ) {
+                bailed = true;
+                console.warn('Parent: ', elm);
+                console.warn('server innerHTML: ', i);
+                console.warn('client innerHTML: ', elm.innerHTML);
+              }
+              return false
             }
-            childNode = childNode.nextSibling;
-          }
-          // if childNode is not null, it means the actual childNodes list is
-          // longer than the virtual children list.
-          if (!childrenMatch || childNode) {
-            if ("development" !== 'production' &&
-              typeof console !== 'undefined' &&
-              !bailed
-            ) {
-              bailed = true;
-              console.warn('Parent: ', elm);
-              console.warn('Mismatching childNodes vs. VNodes: ', elm.childNodes, children);
+          } else {
+            // iterate and compare children lists
+            var childrenMatch = true;
+            var childNode = elm.firstChild;
+            for (var i$1 = 0; i$1 < children.length; i$1++) {
+              if (!childNode || !hydrate(childNode, children[i$1], insertedVnodeQueue)) {
+                childrenMatch = false;
+                break
+              }
+              childNode = childNode.nextSibling;
             }
-            return false
+            // if childNode is not null, it means the actual childNodes list is
+            // longer than the virtual children list.
+            if (!childrenMatch || childNode) {
+              /* istanbul ignore if */
+              if ("development" !== 'production' &&
+                typeof console !== 'undefined' &&
+                !bailed
+              ) {
+                bailed = true;
+                console.warn('Parent: ', elm);
+                console.warn('Mismatching childNodes vs. VNodes: ', elm.childNodes, children);
+              }
+              return false
+            }
           }
         }
       }
@@ -5579,14 +5699,28 @@ function createPatchFunction (backend) {
           // component root element replaced.
           // update parent placeholder node element, recursively
           var ancestor = vnode.parent;
+          var patchable = isPatchable(vnode);
           while (ancestor) {
-            ancestor.elm = vnode.elm;
-            ancestor = ancestor.parent;
-          }
-          if (isPatchable(vnode)) {
-            for (var i = 0; i < cbs.create.length; ++i) {
-              cbs.create[i](emptyNode, vnode.parent);
+            for (var i = 0; i < cbs.destroy.length; ++i) {
+              cbs.destroy[i](ancestor);
             }
+            ancestor.elm = vnode.elm;
+            if (patchable) {
+              for (var i$1 = 0; i$1 < cbs.create.length; ++i$1) {
+                cbs.create[i$1](emptyNode, ancestor);
+              }
+              // #6513
+              // invoke insert hooks that may have been merged by create hooks.
+              // e.g. for directives that uses the "inserted" hook.
+              var insert = ancestor.data.hook.insert;
+              if (insert.merged) {
+                // start at index 1 to avoid re-invoking component mounted hook
+                for (var i$2 = 1; i$2 < insert.fns.length; i$2++) {
+                  insert.fns[i$2]();
+                }
+              }
+            }
+            ancestor = ancestor.parent;
           }
         }
 
@@ -5770,7 +5904,12 @@ function setAttr (el, key, value) {
     if (isFalsyAttrValue(value)) {
       el.removeAttribute(key);
     } else {
-      el.setAttribute(key, key);
+      // technically allowfullscreen is a boolean attribute for <iframe>,
+      // but Flash expects a value of "true" when used on <embed> tag
+      value = key === 'allowfullscreen' && el.tagName === 'EMBED'
+        ? 'true'
+        : key;
+      el.setAttribute(key, value);
     }
   } else if (isEnumeratedAttr(key)) {
     el.setAttribute(key, isFalsyAttrValue(value) || value === 'false' ? 'false' : 'true');
@@ -6277,7 +6416,7 @@ function genCheckboxModel (
     'if(Array.isArray($$a)){' +
       "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
           '$$i=_i($$a,$$v);' +
-      "if($$c){$$i<0&&(" + value + "=$$a.concat($$v))}" +
+      "if($$el.checked){$$i<0&&(" + value + "=$$a.concat([$$v]))}" +
       "else{$$i>-1&&(" + value + "=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}" +
     "}else{" + (genAssignmentCode(value, '$$c')) + "}",
     null, true
@@ -6413,14 +6552,11 @@ function remove$2 (
 }
 
 function updateDOMListeners (oldVnode, vnode) {
-  var isComponentRoot = isDef(vnode.componentOptions);
-  var oldOn = isComponentRoot ? oldVnode.data.nativeOn : oldVnode.data.on;
-  var on = isComponentRoot ? vnode.data.nativeOn : vnode.data.on;
-  if (isUndef(oldOn) && isUndef(on)) {
+  if (isUndef(oldVnode.data.on) && isUndef(vnode.data.on)) {
     return
   }
-  on = on || {};
-  oldOn = oldOn || {};
+  var on = vnode.data.on || {};
+  var oldOn = oldVnode.data.on || {};
   target$1 = vnode.elm;
   normalizeEvents(on);
   updateListeners(on, oldOn, add$1, remove$2, vnode.context);
@@ -6494,7 +6630,11 @@ function shouldUpdateValue (
 function isDirty (elm, checkVal) {
   // return true when textbox (.number and .trim) loses focus and its value is
   // not equal to the updated value
-  return document.activeElement !== elm && elm.value !== checkVal
+  var notInFocus = true;
+  // #6157
+  // work around IE bug when accessing document.activeElement in an iframe
+  try { notInFocus = document.activeElement !== elm; } catch (e) {}
+  return notInFocus && elm.value !== checkVal
 }
 
 function isInputChanged (elm, newVal) {
@@ -6645,7 +6785,7 @@ function updateStyle (oldVnode, vnode) {
   var style = normalizeStyleBinding(vnode.data.style) || {};
 
   // store normalized style under a different key for next diff
-  // make sure to clone it if it's reactive, since the user likley wants
+  // make sure to clone it if it's reactive, since the user likely wants
   // to mutate it.
   vnode.data.normalizedStyle = isDef(style.__ob__)
     ? extend({}, style)
@@ -7250,8 +7390,6 @@ var patch = createPatchFunction({ nodeOps: nodeOps, modules: modules });
  * properties to Elements.
  */
 
-var isTextInputType = makeMap('text,number,password,search,email,tel,url');
-
 /* istanbul ignore if */
 if (isIE9) {
   // http://www.matts411.com/post/internet-explorer-9-oninput/
@@ -7266,14 +7404,8 @@ if (isIE9) {
 var model$1 = {
   inserted: function inserted (el, binding, vnode) {
     if (vnode.tag === 'select') {
-      var cb = function () {
-        setSelected(el, binding, vnode.context);
-      };
-      cb();
-      /* istanbul ignore if */
-      if (isIE || isEdge) {
-        setTimeout(cb, 0);
-      }
+      setSelected(el, binding, vnode.context);
+      el._vOptions = [].map.call(el.options, getValue);
     } else if (vnode.tag === 'textarea' || isTextInputType(el.type)) {
       el._vModifiers = binding.modifiers;
       if (!binding.modifiers.lazy) {
@@ -7300,17 +7432,33 @@ var model$1 = {
       // it's possible that the value is out-of-sync with the rendered options.
       // detect such cases and filter out values that no longer has a matching
       // option in the DOM.
-      var needReset = el.multiple
-        ? binding.value.some(function (v) { return hasNoMatchingOption(v, el.options); })
-        : binding.value !== binding.oldValue && hasNoMatchingOption(binding.value, el.options);
-      if (needReset) {
-        trigger(el, 'change');
+      var prevOptions = el._vOptions;
+      var curOptions = el._vOptions = [].map.call(el.options, getValue);
+      if (curOptions.some(function (o, i) { return !looseEqual(o, prevOptions[i]); })) {
+        // trigger change event if
+        // no matching option found for at least one value
+        var needReset = el.multiple
+          ? binding.value.some(function (v) { return hasNoMatchingOption(v, curOptions); })
+          : binding.value !== binding.oldValue && hasNoMatchingOption(binding.value, curOptions);
+        if (needReset) {
+          trigger(el, 'change');
+        }
       }
     }
   }
 };
 
 function setSelected (el, binding, vm) {
+  actuallySetSelected(el, binding, vm);
+  /* istanbul ignore if */
+  if (isIE || isEdge) {
+    setTimeout(function () {
+      actuallySetSelected(el, binding, vm);
+    }, 0);
+  }
+}
+
+function actuallySetSelected (el, binding, vm) {
   var value = binding.value;
   var isMultiple = el.multiple;
   if (isMultiple && !Array.isArray(value)) {
@@ -7344,12 +7492,7 @@ function setSelected (el, binding, vm) {
 }
 
 function hasNoMatchingOption (value, options) {
-  for (var i = 0, l = options.length; i < l; i++) {
-    if (looseEqual(getValue(options[i]), value)) {
-      return false
-    }
-  }
-  return true
+  return options.every(function (o) { return !looseEqual(o, value); })
 }
 
 function getValue (option) {
@@ -7392,7 +7535,7 @@ var show = {
     var transition$$1 = vnode.data && vnode.data.transition;
     var originalDisplay = el.__vOriginalDisplay =
       el.style.display === 'none' ? '' : el.style.display;
-    if (value && transition$$1 && !isIE9) {
+    if (value && transition$$1) {
       vnode.data.show = true;
       enter(vnode, function () {
         el.style.display = originalDisplay;
@@ -7410,7 +7553,7 @@ var show = {
     if (value === oldValue) { return }
     vnode = locateNode(vnode);
     var transition$$1 = vnode.data && vnode.data.transition;
-    if (transition$$1 && !isIE9) {
+    if (transition$$1) {
       vnode.data.show = true;
       if (value) {
         enter(vnode, function () {
@@ -7512,10 +7655,6 @@ function hasParentTransition (vnode) {
 
 function isSameChild (child, oldChild) {
   return oldChild.key === child.key && oldChild.tag === child.tag
-}
-
-function isAsyncPlaceholder (node) {
-  return node.isComment && node.asyncFactory
 }
 
 var Transition = {
@@ -8085,29 +8224,14 @@ var he = {
  */
 
 // Regular Expressions for parsing tags and attributes
-var singleAttrIdentifier = /([^\s"'<>/=]+)/;
-var singleAttrAssign = /(?:=)/;
-var singleAttrValues = [
-  // attr value double quotes
-  /"([^"]*)"+/.source,
-  // attr value, single quotes
-  /'([^']*)'+/.source,
-  // attr value, no quotes
-  /([^\s"'=<>`]+)/.source
-];
-var attribute = new RegExp(
-  '^\\s*' + singleAttrIdentifier.source +
-  '(?:\\s*(' + singleAttrAssign.source + ')' +
-  '\\s*(?:' + singleAttrValues.join('|') + '))?'
-);
-
+var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
 // could use https://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-QName
 // but for Vue templates we can enforce a simple charset
 var ncname = '[a-zA-Z_][\\w\\-\\.]*';
-var qnameCapture = '((?:' + ncname + '\\:)?' + ncname + ')';
-var startTagOpen = new RegExp('^<' + qnameCapture);
+var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
+var startTagOpen = new RegExp(("^<" + qnameCapture));
 var startTagClose = /^\s*(\/?)>/;
-var endTag = new RegExp('^<\\/' + qnameCapture + '[^>]*>');
+var endTag = new RegExp(("^<\\/" + qnameCapture + "[^>]*>"));
 var doctype = /^<!DOCTYPE [^>]+>/i;
 var comment = /^<!--/;
 var conditionalComment = /^<!\[/;
@@ -8151,9 +8275,6 @@ function parseHTML (html, options) {
     last = html;
     // Make sure we're not in a plaintext content element like script/style
     if (!lastTag || !isPlainTextElement(lastTag)) {
-      if (shouldIgnoreFirstNewline(lastTag, html)) {
-        advance(1);
-      }
       var textEnd = html.indexOf('<');
       if (textEnd === 0) {
         // Comment:
@@ -8199,6 +8320,9 @@ function parseHTML (html, options) {
         var startTagMatch = parseStartTag();
         if (startTagMatch) {
           handleStartTag(startTagMatch);
+          if (shouldIgnoreFirstNewline(lastTag, html)) {
+            advance(1);
+          }
           continue
         }
       }
@@ -8807,6 +8931,8 @@ function processSlot (el) {
     var slotTarget = getBindingAttr(el, 'slot');
     if (slotTarget) {
       el.slotTarget = slotTarget === '""' ? '"default"' : slotTarget;
+      // preserve slot as an attribute for native shadow DOM compat
+      addAttr(el, 'slot', slotTarget);
     }
     if (el.tag === 'template') {
       el.slotScope = getAndRemoveAttr(el, 'scope');
@@ -8859,8 +8985,8 @@ function processAttrs (el) {
             );
           }
         }
-        if (!el.component && (
-          isProp || platformMustUseProp(el.tag, el.attrsMap.type, name)
+        if (isProp || (
+          !el.component && platformMustUseProp(el.tag, el.attrsMap.type, name)
         )) {
           addProp(el, name, value);
         } else {
@@ -9343,7 +9469,7 @@ function genOnce (el, state) {
       );
       return genElement(el, state)
     }
-    return ("_o(" + (genElement(el, state)) + "," + (state.onceId++) + (key ? ("," + key) : "") + ")")
+    return ("_o(" + (genElement(el, state)) + "," + (state.onceId++) + "," + key + ")")
   } else {
     return genStatic(el, state)
   }
@@ -9646,7 +9772,7 @@ function genText (text) {
 }
 
 function genComment (comment) {
-  return ("_e('" + (comment.text) + "')")
+  return ("_e(" + (JSON.stringify(comment.text)) + ")")
 }
 
 function genSlot (el, state) {
