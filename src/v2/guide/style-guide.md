@@ -313,7 +313,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
 
-This is only relevant for single-file components. It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+This is only relevant for [single-file components](single-file-components.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
 
 **Component libraries should prefer a class-based strategy, instead of using the `scoped` attribute.**
 
@@ -452,7 +452,7 @@ components/
 
 ### SFC filename casing
 
-**Filenames of single-file components should either be always PascalCase or always kebab-case.**
+**Filenames of [single-file components](single-file-components.html) should either be always PascalCase or always kebab-case.**
 
 PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive filesystems, which is why kebab-case is also perfectly acceptable.
 
@@ -708,7 +708,7 @@ components/
 
 ### Self-closing components
 
-**Components with no content should be self-closing in single-file components, string templates, and JSX - but never in DOM templates.**
+**Components with no content should be self-closing in [single-file components](single-file-components.html), string templates, and [JSX](render-function.html#JSX) - but never in DOM templates.**
 
 Components that self-close communicate that they not only have no content, but are **meant** to have no content. It's the difference between a blank page in a book and one labeled "This page intentionally left blank." Your code is also cleaner without the unnecessary closing tag.
 
@@ -746,7 +746,7 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 
 ### Component name casing in templates
 
-**Component names should always be PascalCase in single-file components and string templates - but kebab-case in DOM templates.**
+**Component names should always be PascalCase in [single-file components](single-file-components.html) and string templates - but kebab-case in DOM templates.**
 
 PascalCase in templates improves readability, because it's easier to tell at a glance what's an element and what's a component. Unfortunately, PascalCase is invalid for a custom element in HTML, so a DOM template must still use kebab-case.
 
@@ -790,9 +790,9 @@ PascalCase in templates improves readability, because it's easier to tell at a g
 
 
 
-### Component name casing in JS/JSX
+### Component name casing in JS/[JSX](render-function.html#JSX)
 
-**Component names in JS/JSX should always be PascalCase, though may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
+**Component names in JS/[JSX](render-function.html#JSX) should always be PascalCase, though may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
 
 {% raw %}
 <details>
@@ -896,7 +896,7 @@ components/
 
 ### Prop name casing
 
-**Prop names should always use camelCase during declaration, but kebab-case in templates and JSX.**
+**Prop names should always use camelCase during declaration, but kebab-case in templates and [JSX](render-function.html#JSX).**
 
 We're simply following the conventions of each language. Within JavaScript, camelCase is more natural. Within HTML, kebab-case is.
 
@@ -932,7 +932,7 @@ props: {
 
 **Elements with multiple attributes should span multiple lines, with one attribute per line.**
 
-In JavaScript, splitting objects with multiple properties over multiple lines is generally considered a good convention, because it's much easier to read. Our templates and JSX deserve the same consideration.
+In JavaScript, splitting objects with multiple properties over multiple lines is generally considered a good convention, because it's much easier to read. Our templates and [JSX](render-function.html#JSX) deserve the same consideration.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
