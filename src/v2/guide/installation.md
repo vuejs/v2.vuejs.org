@@ -4,9 +4,9 @@ type: guide
 order: 1
 vue_version: 2.4.4
 dev_size: "262.63"
-min_size: "80.76"
-gz_size: "29.35"
-ro_gz_size: "20.60"
+min_size: "80.86"
+gz_size: "29.40"
+ro_gz_size: "20.70"
 ---
 
 ### Compatibility Note
