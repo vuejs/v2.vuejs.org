@@ -235,8 +235,8 @@ Une prop est un attribut personnalisé permettant de passer des informations dep
 Vue.component('child', {
   // déclarer les props
   props: ['message'],
-  // tout comme les data, une prop peut être utilisée à l'intérieur de templates
-  // et est également disponible dans la vm via this.message
+  // tout comme un élément de `data`, une prop peut être utilisée à l'intérieur de templates
+  // et est également disponible dans l'instance via `this.message`
   template: '<span>{{ message }}</span>'
 })
 ```
@@ -375,7 +375,7 @@ De plus, chaque fois que le composant parent est mis à jour, toutes les props d
 
 Il y a habituellement deux cas où il est tentant de changer une prop :
 
-1. La prop est utilisée uniquement pour passer une valeur d'initialisation, le composant enfant veut simplement l'utiliser par la suite comme une propriété de donnée locale à partir de ce moment ;
+1. La prop est utilisée uniquement pour passer une valeur d'initialisation. Le composant enfant veut simplement l'utiliser par la suite comme une propriété de donnée locale à partir de ce moment.
 
 2. La prop est passée comme une valeur brute qui doit être transformée.
 
@@ -1165,7 +1165,7 @@ new Vue({
 })
 ```
 
-<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser les composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour. ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
+<p class="tip">Si vous êtes un utilisateur de <strong>Browserify</strong> et que vous souhaitez utiliser les composants asynchrones, son créateur a malheureusement [été clair](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) sur le fait que le chargement asynchrone « n'est pas quelque chose que Browserify supportera un jour ». Officiellement, du moins. La communauté Browserify a trouvé [plusieurs solutions de contournement](https://github.com/vuejs/vuejs.org/issues/620), qui peuvent être utiles pour des applications complexes déjà existantes. Pour tous les autres scénarios, nous vous recommandons simplement d'utiliser webpack pour un support de première classe des composants asynchrones, intégré par défaut.</p>
 
 ### Composants asynchrones avancés
 

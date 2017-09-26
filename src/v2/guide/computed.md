@@ -201,7 +201,7 @@ Par exemple :
 <!-- Puisqu'il y a déjà un riche écosystème de bibliothèques ajax      -->
 <!-- et de collections de méthodes d'utilité générale, en ne les       -->
 <!-- réinventant pas, le noyau de Vue peut rester petit. Cela vous     -->
-<!-- donne aussi la liberté d’utiliser tout ce qui vous est familier. -->
+<!-- donne aussi la liberté d'utiliser tout ce qui vous est familier. -->
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>

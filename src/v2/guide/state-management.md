@@ -30,7 +30,7 @@ const vmB = new Vue({
 
 Maintenant, quelle que soit la manière dont `sourceOfTruth` sera mutée, les instances `vmA` et `vmB` mettront à jour leurs vues automatiquement. Les sous-composants à l'intérieur de chacune de ces instances y auront aussi accès via la propriété `this.$root.$data`. Maintenant, nous avons une unique source de vérité, mais le débogage serait un cauchemar. N'importe quel fragment de donnée pourrait être changé par n'importe quelle partie de notre application, à n'importe quel moment, et sans laisser de trace.
 
-Pour nous aider à résoudre ce problème, nous pouvons adopter un simple **modèle de stockage (« store »)** :
+Pour nous aider à résoudre ce problème, nous pouvons adopter un simple **modèle de stockage** appelé le store :
 
 ``` js
 var store = {

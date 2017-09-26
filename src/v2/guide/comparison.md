@@ -62,7 +62,7 @@ Dans Vue, nous avons également des [fonctions de rendu](render-function.html) e
 
 - Vous pouvez même utiliser des préprocesseurs comme Pug (anciennement connu en tant que Jade) pour créer vos templates de Vue.
 
-Beaucoup de personnes argumentent sur le fait que vous devez apprendre un langage spécifique pour écrire vos templates, nous pensons que cette différence est superficielle. Premièrement, JSX ne signifie pas que les utilisateurs ne doivent rien apprendre en plus. Cette syntaxe additionnelle au-dessus du JavaScript à beau être simple à apprendre pour quiconque connait le JavaScript, il n'est pas vrai de dire qu'elle ne nécessite pas un apprentissage supplémentaire. De la même manière, les templates sont juste une syntaxe additionnelle au-dessus du HTML et qui ont un cout d'apprentissage assez bas pour ceux connaissant déjà le HTML. Avec cet autre langage spécifique, nous sommes aussi capables d'aider les utilisateurs à faire plus de choses avec moins de code (par ex. les modificateurs `v-on`). La même tache demanderait bien plus de code en utilisant une syntaxe JSX ou des fonctions de rendu.
+Beaucoup de personnes argumentent sur le fait que vous devez apprendre un langage spécifique pour écrire vos templates. Nous pensons que cette différence est superficielle. Premièrement, JSX ne signifie pas que les utilisateurs ne doivent rien apprendre en plus. Cette syntaxe additionnelle au-dessus du JavaScript à beau être simple à apprendre pour quiconque connait le JavaScript, il n'est pas vrai de dire qu'elle ne nécessite pas un apprentissage supplémentaire. De la même manière, les templates sont juste une syntaxe additionnelle au-dessus du HTML et qui ont un cout d'apprentissage assez bas pour ceux connaissant déjà le HTML. Avec cet autre langage spécifique, nous sommes aussi capables d'aider les utilisateurs à faire plus de choses avec moins de code (par ex. les modificateurs `v-on`). La même tache demanderait bien plus de code en utilisant une syntaxe JSX ou des fonctions de rendu.
 
 À un haut niveau, nous pouvons diviser les composants en deux catégories : ceux de présentation et ceux de logique. Nous recommandons d'utiliser les templates pour les composants de présentation et les fonctions de rendu (ou JSX) pour les composants de logique. Le pourcentage de chaque type dépend du type d'application que vous construisez, bien qu'en général nous trouvions plus de composants de présentation.
 
@@ -111,7 +111,7 @@ React est renommé pour sa courbe d'apprentissage abrupte. Avant de pouvoir rée
 Bien que Vue s'élève au niveau d'utilisation de React, voire le dépasse, il peut tout aussi bien se réduire au niveau d'utilisation de jQuery. C'est exact — tout ce que vous avez à faire est de placer une balise script dans une page :
 
 ``` html
-<script src="https://unpkg.com/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
 Ensuite vous pouvez commencer à écrire du code Vue et même livrer la version minifiée sans vous sentir coupable ou vous soucier des problèmes de performance.
@@ -154,7 +154,7 @@ Vue fait une distinction plus claire entre directives et composants. Les directi
 
 ### Performance
 
-Vue a de meilleures performances et il est bien plus optimisé car il n'utilise pas le *dirty checking*. AngularJS devient lent quand il y a un grand nombre d'observateurs, car chaque fois que quelque chose change dans le *scope*, tous les observateurs ont besoin d'être réévalués. De plus, le *digest cycle* peut avoir besoin de s'exécuter plusieurs fois pour se « stabiliser » si un observateur déclenche une autre mutation. Les utilisateurs d'AngularJS ont parfois recours à des techniques ésotériques pour contourner le *digest cycle*, et dans certaines situations, il n'y a simplement aucun moyen pour optimiser un *scope* avec beaucoup d'observateurs.
+Vue a de meilleures performances et il est bien plus optimisé car il n'utilise pas de *dirty checking*. AngularJS devient lent quand il y a un grand nombre d'observateurs, car chaque fois que quelque chose change dans le *scope*, tous les observateurs ont besoin d'être réévalués. De plus, le *digest cycle* peut avoir besoin de s'exécuter plusieurs fois pour se « stabiliser » si un observateur déclenche une autre mutation. Les utilisateurs d'AngularJS ont parfois recours à des techniques ésotériques pour contourner le *digest cycle*, et dans certaines situations, il n'y a simplement aucun moyen pour optimiser un *scope* avec beaucoup d'observateurs.
 
 Vue ne souffre pas de tout ça car il utilise un système transparent de suivi de dépendances avec mise en file d'attente asynchrone — tous les changements se déclenchent indépendamment à moins qu'ils aient des relations de dépendance explicites.
 

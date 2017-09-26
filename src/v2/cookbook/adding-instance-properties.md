@@ -22,7 +22,7 @@ new Vue({
 })
 ```
 
-Alors `"Mon App"` sera affiché en console. C'est aussi simple !
+Alors `"Mon App"` sera affiché en console !
 
 ## L'importance de la portée des propriétés d'instances
 
@@ -45,9 +45,9 @@ Alors qu'est-ce qui sera affiché ci-dessous d'après vous ?
 ``` js
 new Vue({
   data: {
-    // Oups - appName est *aussi* le nom de la
+    // Oups - `appName` est *aussi* le nom de la
     // propriété d'instance que nous venons de définir !
-    appName: "Le nom d'une autre app"
+    appName: 'Le nom d'une autre app'
   },
   beforeCreate: function () {
     console.log(this.appName)

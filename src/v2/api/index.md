@@ -286,7 +286,7 @@ type : api
     unbind: function () {}
   })
 
-  // inscrit une directive comme simple fonction
+  // inscription (directive comme simple fonction)
   Vue.directive('ma-directive', function () {
     // cette fonction sera appelée comme `bind` et `update` ci-dessus
   })
@@ -415,7 +415,7 @@ type : api
 
 - **Détails :**
 
-  L'objet de données pour l'instance de Vue. Vue va de manière récursive convertir ses propriétés en des accesseurs/mutateurs (*getter/setters*) afin de les rendre « réactives ». **L'objet doit être un simple objet de base**: les objets natifs tels que les API du navigateur et les propriétés issues du prototype sont ignorées. Une règle d'or est que la donnée doit juste être de la donnée - il n'est pas recommandé d'observer des objets ayant leur propre comportement avec états.
+  L'objet de données pour l'instance de Vue. Vue va de manière récursive convertir ses propriétés en des accesseurs / mutateurs (*getter/setters*) afin de les rendre « réactives ». **L'objet doit être un simple objet de base**: les objets natifs tels que les API du navigateur et les propriétés issues du prototype sont ignorées. Une règle d'or est que la donnée doit juste être de la donnée. Il n'est pas recommandé d'observer des objets ayant leur propre comportement avec états.
 
   Une fois observé, vous ne pouvez plus ajouter de propriétés réactives à l'objet de données racine. C'est pourquoi il est recommandé de déclarer dès le départ toutes les propriétés réactives à la racine de l'objet de données, avant de créer l'instance.
 
@@ -423,7 +423,7 @@ type : api
 
   Les propriétés commençant par `_` ou `$` ne seront **pas** proxyfiées par l'instance de Vue car elles pourraient entrer en conflit avec certaines propriétés internes et méthodes d'API de Vue. Vous devrez y accéder via `vm.$data._propriete`.
 
-  Lors de la définition d'un **composant**, la propriété `data` doit être déclarée en tant que fonction retournant l'objet de données initial, car il y aura plusieurs instances créées utilisant la même définition. Si nous utilisons un objet classique pour `data`, le même objet sera **partagé par référence** à toutes les instances créées! En fournissant une fonction `data` , chaque fois qu'une nouvelle instance est créée, nous l'appelons simplement afin de récupérer une copie fraiche des données initiales.
+  Lors de la définition d'un **composant**, la propriété `data` doit être déclarée en tant que fonction retournant l'objet de données initial, car il y aura plusieurs instances créées utilisant la même définition. Si nous utilisons un objet classique pour `data`, le même objet sera **partagé par référence** à toutes les instances créées ! En fournissant une fonction `data` , chaque fois qu'une nouvelle instance est créée, nous l'appelons simplement afin de récupérer une copie fraiche des données initiales.
 
   Si nécessaire, un clone profond de l'objet original peut être obtenu en passant `vm.$data` à travers `JSON.parse(JSON.stringify(...))`.
 
@@ -457,7 +457,7 @@ type : api
 
 - **Détails :**
 
-  Une liste ou un objet décrivant les attributs exposés par le composant afin de passer des données depuis le composant parent. Ce paramètre a une syntaxe simple basée sur un tableau (`Array`) et une syntaxe alternative basée sur un `Object` qui permet une configuration avancée telle qu'une vérification de typage, des contrôles de validation personnalisés et des valeurs par défaut.
+  Une liste ou un objet décrivant les attributs exposés par le composant afin de passer des données depuis le composant parent. Ce paramètre a une syntaxe simple basée sur un tableau (`Array`) et une syntaxe alternative basée sur un objet (`Object`) qui permet une configuration avancée telle qu'une vérification de typage, des contrôles de validation personnalisés et des valeurs par défaut.
 
 - **Exemple :**
 
@@ -530,7 +530,7 @@ type : api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // accesseur uniquement, on a juste besoin d'une fonction
+      // accesseur uniquement
       aDouble: function () {
         return this.a * 2
       },
@@ -710,7 +710,7 @@ type : api
 
 - **Détails :**
 
-  Appelé de manière synchrone juste après que l'instance ait été initialisée, et avant l'observation des données et l'installation des évènements/observateurs.
+  Appelé de manière synchrone juste après que l'instance ait été initialisée, et avant l'observation des données et l'installation des évènements / observateurs.
 
 - **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
@@ -900,7 +900,7 @@ type : api
 
 - **Détails :**
 
-  L'option `mixins` accepte une liste d'objets *mixin*. Ces objets *mixin* peuvent contenir des options d'instance tout comme des objets d'instance normaux, et elles seront fusionnées avec les éventuelles options existantes en utilisant la même stratégie de fusion que dans `Vue.extend()`. Par exemple, si votre *mixin* contient un hook `created` et que le composant lui-même en a également un, les deux fonctions seront appelées.
+  L'option `mixins` accepte une liste d'objets mixin. Ces objets mixin peuvent contenir des options d'instance tout comme des objets d'instance normaux, et elles seront fusionnées avec les éventuelles options existantes en utilisant la même stratégie de fusion que dans `Vue.extend()`. Par exemple, si votre mixin contient un hook `created` et que le composant lui-même en a également un, les deux fonctions seront appelées.
 
   Les hooks de *mixin* sont appelés dans l'ordre dans lequel ils sont fournis, et appelés avant les propres hooks du composant.
 
@@ -1357,7 +1357,7 @@ type : api
 
 - **Utilisation :**
 
-  Observe les changements sur l'instance de Vue à partir d'une expression ou d'une fonction calculée. La fonction `callback` est appelée avec la nouvelle et l'ancienne valeur. L'expression accepte uniquement les chemins simples délimités par des points. Pour des expressions plus complexes, utilisez plutôt une fonction.
+  Observe les changements sur l'instance de Vue à partir d'une expression ou d'une fonction calculée. La fonction de rappel est appelée avec la nouvelle et l'ancienne valeur. L'expression accepte uniquement les chemins simples délimités par des points. Pour des expressions plus complexes, utilisez plutôt une fonction.
 
 <p class="tip">Note: lors de la modification (et non la réassignation) d'un <code>Object</code> ou d'un <code>Array</code>, l'ancienne valeur sera la même que la nouvelle valeur car ils référencient le même <code>Object</code>/<code>Array</code>. Vue ne conserve pas de copie de la valeur avant modification.</p>
 
@@ -2131,7 +2131,7 @@ type : api
 
 - **Utilisation :**
 
-  `<transition>` sert d'effets de transition pour un  **unique** élément/composant. Le rendu de `<transition>` ne donne pas un élément supplémentaire dans le DOM, et n'apparait pas non plus dans la hiérarchie du composant inspecté. Il applique simplement le comportement de transition au contenu imbriqué à l'intérieur.
+  `<transition>` sert d'effets de transition pour un  **unique** élément / composant. Le rendu de `<transition>` ne donne pas un élément supplémentaire dans le DOM, et n'apparait pas non plus dans la hiérarchie du composant inspecté. Il applique simplement le comportement de transition au contenu imbriqué à l'intérieur.
 
   ```html
   <!-- élément simple -->

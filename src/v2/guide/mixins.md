@@ -126,7 +126,7 @@ var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-Un exemple plus avancé peut être trouvé dans la stratégie de fusion de [Vuex](https://github.com/vuejs/vuex) 1.x:
+Un exemple plus avancé peut être trouvé dans la stratégie de fusion de [Vuex](https://github.com/vuejs/vuex) 1.x :
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed

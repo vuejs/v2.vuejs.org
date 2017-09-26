@@ -65,7 +65,7 @@ Quand ces données changent, le rendu de la vue est refait. Il est à noter que 
 vm.b = 'salut'
 ```
 
-les changements de `b` ne déclencheront aucune mise à jour. Si vous savez que vous aller avoir besoin d'une propriété plus tard qui n'a pas de valeur dès le début, vous avez juste besoin de la créer avec n'importe quelle valeur initiale. Par exemple :
+Les changements de `b` ne déclencheront aucune mise à jour. Si vous savez que vous aller avoir besoin d'une propriété plus tard qui n'a pas de valeur dès le début, vous avez juste besoin de la créer avec n'importe quelle valeur initiale. Par exemple :
 
 ``` js
 data: {

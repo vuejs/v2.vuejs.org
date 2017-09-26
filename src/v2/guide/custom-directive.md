@@ -6,7 +6,7 @@ order: 302
 
 ## Introduction
 
-En supplément de l'ensemble de directives fournies par défaut (`v-model` et `v-show`), Vue vous permet également d'enregistrer vos propres directives. Notez qu'avec Vue 2, les composants sont la forme principale de réutilisabilité et d'abstraction du code. Il y a cependant des cas où vous aurez juste besoin d'un accès de bas niveau aux éléments du DOM, et c'est là que les directives personnalisées vous seraient utiles. Un exemple pourrait être la prise du focus sur un élément de champ, comme celui-ci :
+En supplément de l'ensemble de directives fournies par défaut (`v-model` et `v-show`), Vue vous permet également d'enregistrer vos propres directives. Notez qu'avec Vue 2.0, les composants sont la forme principale de réutilisabilité et d'abstraction du code. Il y a cependant des cas où vous aurez juste besoin d'un accès de bas niveau aux éléments du DOM, et c'est là que les directives personnalisées vous seraient utiles. Un exemple pourrait être la prise du focus sur un élément de champ, comme celui-ci :
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">

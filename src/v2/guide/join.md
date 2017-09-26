@@ -40,7 +40,7 @@ Après cela, vous serez fin prêt à contribuer sur les dépôts principaux de V
 Hormis répondre aux questions ou partager des ressources sur le forum et le chat, il y a beaucoup d'autres manières d'améliorer et partager vos connaissances :
 
 - **Partagez des ressources pour l'apprentissage.** On dit souvent que la meilleure manière d'apprendre est d'enseigner. Si vous faites quelque chose d'intéressant avec Vue, renforcez votre expertise en écrivant un billet de blog, en proposant des travaux pratiques ou même en publiant un gist sur les réseaux sociaux.
-- **Surveillez les dépôts qui vous tiennent à cœur.** Cela vous enverra des notifications dès qu'il y aura une activité dans le dépôt, vous permettant de suivre les discussions en cours et les fonctionnalités à venir. C'est une approche très intéressante pour consolider votre expertise tout en aidant à résoudre les bogues des rapports (« issues ») et des propositions de fusion (« pull requests »).
+- **Surveillez les dépôts qui vous tiennent à cœur.** Cela vous enverra des notifications dès qu'il y aura une activité dans le dépôt, vous permettant de suivre les discussions en cours et les fonctionnalités à venir. C'est une approche très intéressante pour consolider votre expertise tout en aidant à résoudre les bogues des rapports et les propositions de fusion.
 
 ### Traduire les documentations
 

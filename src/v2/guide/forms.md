@@ -100,6 +100,7 @@ Checkboxes multiples, liées au même tableau (Array) :
   <br>
   <span>Noms cochés : {{ checkedNames }}</span>
 <div>
+>>>>>>> upstream/master
 ```
 
 ``` js

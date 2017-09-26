@@ -6,9 +6,9 @@ order: 2
 
 ## Vue.js, qu'est-ce que c'est ?
 
-Vue (prononcé /vjuː/, comme le terme anglais _**view**_) est un **framework évolutif** pour construire des interfaces utilisateur. À la différence des autres frameworks monolithiques, Vue a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, et il est vraiment simple de l'intégrer avec d'autres bibliothèques ou projets existants. D'un autre côté, Vue est tout à fait capable de faire tourner des applications web monopages quand il est couplé avec [des outils modernes](single-file-components.html) et [des bibliothèques complémentaires](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (prononcé /vjuː/, comme le terme anglais **view**) est un **framework évolutif** pour construire des interfaces utilisateur. À la différence des autres frameworks monolithiques, Vue a été conçu et pensé pour pouvoir être adopté de manière incrémentale. Le cœur de la bibliothèque est concentré uniquement sur la partie vue, et il est vraiment simple de l'intégrer avec d'autres bibliothèques ou projets existants. D'un autre côté, Vue est tout à fait capable de faire tourner des applications web monopages quand il est couplé avec [des outils modernes](single-file-components.html) et [des bibliothèques complémentaires](https://github.com/vuejs/awesome-vue#components--libraries).
 
-Si vous êtes un développeur *frontend* confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques/frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
+Si vous êtes un développeur *frontend* confirmé et que vous souhaitez comparer Vue avec les autres bibliothèques / frameworks, jetez un œil à la [Comparaison avec les autres frameworks](comparison.html).
 
 ## Pour commencer
 
@@ -220,7 +220,7 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Notez que dans la méthode, nous avons seulement mis à jour l'état de l'application sans toucher au DOM — toutes les manipulations de DOM sont prises en charge par Vue, ainsi le code que vous écrivez se concentre sur la logique sous-jacente.
+Notez que dans la méthode, nous avons seulement mis à jour l'état de l'application sans toucher au DOM. Toutes les manipulations de DOM sont prises en charge par Vue, ainsi le code que vous écrivez se concentre sur la logique sous-jacente.
 
 Vue fournit aussi la directive `v-model` qui fait de la liaison de données bidirectionnelle entre les champs d'un formulaire et l'état de l'application. Une simple formalité :
 
@@ -373,4 +373,4 @@ Vous avez peut-être remarqué que les composants de Vue sont très similaires a
 
 ## Prêt pour la suite ?
 
-Nous venons juste d'introduire brièvement les fonctionnalités les plus basiques du cœur de Vue.js — le reste de ce guide va les traiter plus en détail, ainsi que d'autres fonctionnalités avancées. Assurez-vous donc de le lire jusqu'au bout !
+Nous venons juste d'introduire brièvement les fonctionnalités les plus basiques du cœur de Vue.js. Le reste de ce guide va les traiter plus en détail, ainsi que d'autres fonctionnalités avancées. Assurez-vous donc de le lire jusqu'au bout !

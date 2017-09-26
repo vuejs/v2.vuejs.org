@@ -126,7 +126,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Ce n'est pas toujours souhaitable cependant, c'est pourquoi Vue vous offre un moyen de dire, « Ces deux éléments sont complètement distincts - ne les réutilise pas. ». Ajoutez juste un attribut `key` avec des valeurs uniques :
+Ce n'est pas toujours souhaitable cependant, c'est pourquoi Vue vous offre un moyen de dire, « Ces deux éléments sont complètement distincts, ne les réutilise pas ». Ajoutez juste un attribut `key` avec des valeurs uniques :
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -190,7 +190,7 @@ La différence est qu'un élément avec `v-show` sera toujours restitué et rest
 
 `v-if` est également **paresseux** : si la condition est fausse sur le rendu initial, il ne fera rien (la structure conditionnelle sera rendue quand la condition sera vraie pour la première fois).
 
-En comparaison, `v-show` est beaucoup plus simple (l’élément est toujours rendu indépendamment de la condition initiale, avec juste une simple permutation basée sur du CSS).
+En comparaison, `v-show` est beaucoup plus simple. L'élément est toujours rendu indépendamment de la condition initiale, avec juste une simple permutation basée sur du CSS.
 
 D'une manière générale, `v-if` a des couts à la permutation plus élevés alors que `v-show` a des couts au rendu initial plus élevés. Donc préférez `v-show` si vous avez besoin de permuter quelque chose très souvent et préférez `v-if` si la condition ne change probablement pas à l'exécution.
 

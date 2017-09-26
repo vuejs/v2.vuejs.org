@@ -31,7 +31,11 @@ Et comme promis, nous pouvons aussi utiliser des préprocesseurs tels que Pug, B
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto;">
 
+<<<<<<< HEAD
 Ces langages spécifiques ne sont que des exemples; vous pourriez tout aussi aisément utiliser Bublé, Typescript, SCSS, PostCSS - ou tout autre préprocesseur qui vous aide à être productif. Si vous utilisez webpack avec `vue-loader`, vous aurez aussi un outil de premier choix pour les modules CSS.
+=======
+These specific languages are only examples. You could as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
+>>>>>>> upstream/master
 
 ### Qu'en est-il de la séparation des préoccupations (Separation of concerns) ?
 

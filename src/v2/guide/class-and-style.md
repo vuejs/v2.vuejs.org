@@ -4,7 +4,7 @@ type: guide
 order: 6
 ---
 
-Un besoin classique de la liaison de données est la manipulation de la liste des classes d'un élément, ainsi que ses styles en ligne. Puisque ce sont tous deux des attributs, il est possible d'utiliser `v-bind`  pour les gérer : il faut simplement générer une chaine de caractère avec nos expressions. Cependant la concaténation de chaine de caractères est fastidieuse, et source d'erreur. Pour cette raison, Vue fournit des améliorations spécifiques quand `v-bind` est utilisé avec `class` et `style`. En plus des chaines de caractères, l'expression peut évaluer des objets ou des tableaux.
+Un besoin classique de la liaison de données est la manipulation de la liste des classes d'un élément, ainsi que ses styles en ligne. Puisque ce sont tous deux des attributs, il est possible d'utiliser `v-bind`  pour les gérer : il faut simplement générer une chaine de caractère avec nos expressions. Cependant la concaténation de chaine de caractères est fastidieuse et source d'erreur. Pour cette raison, Vue fournit des améliorations spécifiques quand `v-bind` est utilisé avec `class` et `style`. En plus des chaines de caractères, l'expression peut évaluer des objets ou des tableaux.
 
 ## Liaison de Classes HTML
 
