@@ -1106,71 +1106,87 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-### Component options order
+### Component/instance options order
 
-**Component options should be ordered consistently.**
+**Component/instance options should be ordered consistently.**
 
-The specific order is
+This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
 
-- Side effects
-  - el
+1. **Side Effects** (triggers effects outside the component)
+  - `el`
 
-- Config
-  - name
-  - functional
-  - delimiters
-  - inheritAttrs
-  - comments
-  - parent
+2. **Global Awareness** (requires knowledge beyond the component)
+  - `name`
+  - `parent`
 
-- Composition
-  - extends
-  - mixins
+3. **Component Type** (changes the type of the component)
+  - `functional`
 
-- Assets
-  - components
-  - directives
-  - filters
+4. **Composition** (merges properties into the options)
+  - `extends`
+  - `mixins`
 
-- Interface
-  - model
-  - props/propsData
+6. **Interface** (the interface to the component)
+  - `inheritAttrs`
+  - `model`
+  - `props`/`propsData`
 
-- Local Properties
-  - data
-  - computed
-  - methods
+3. **Render Modifiers** (changes the way components render)
+  - `delimiters`
+  - `comments`
 
-- Events
-  - watch
-  - Lifecycle (in the order they are called)
+9. **Rendering** (the declarative description of the component output)
+  - `template`/`render`
+  - `renderError`
 
-- Rendering
-  - template/render
-  - renderError
+5. **Template Dependencies** (assets used in templates)
+  - `components`
+  - `directives`
+  - `filters`
 
+7. **Local State** (local reactive properties)
+  - `data`
+  - `computed`
+
+8. **Reactive Events** (callbacks triggered by reactive events)
+  - Lifecycle Events (in the order they are called)
+  - `watch`
+
+8. **Non-Reactive Properties** (instance properties independent from the reactivity system)
+  - `methods`
 
 ### Element attribute order
 
-The attributes of elements (including components) should be ordered consistently.
+**The attributes of elements (including components) should be ordered consistently.**
+
+1. Conditionals
+  - `v-if`
+  - `v-show`
+
+1. Unique Properties
+  - `id`
+
+1. Other Attributes
+
+1. Events
 
 ### Directive shorthands
 
-Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.
+**Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
 
 ### SFC top-level element order
 
-Single file components should always order `template`, `script`, and `style` consistently.
+**[Single-file components](single-file-components.html) should always order `template`, `script`, and `style` tags consistently.**
+
+The chosen order is not very important, except that the `<template>` or `<script>` should be first, since at least one of them will always be necessary.
 
 ### Component method order
 
-Component methods should always be ordered alphabetically.
+**Component methods should always be ordered alphabetically.**
 
 ### Computed property order
 
-Computed properties should be ordered first by dependency, then alphabetically.
-
-
+**Computed properties should be ordered first by dependency, then alphabetically.**
 
 
 
@@ -1178,12 +1194,9 @@ Computed properties should be ordered first by dependency, then alphabetically.
 
 
 
-
 ### Keyed `v-if`, `v-else`
 
-Always use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).
-
-<sg-enforcement type=""></sg-enforcement>
+**Always use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
 
 By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
 
@@ -1224,12 +1237,9 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 
 
-
 ### Scoped element selectors
 
-Scoped element selectors should be avoided.
-
-**Enforcement**: <span class="style-rule-tag">self-discipline</span>
+**Scoped element selectors should be avoided.**
 
 Prefer class selectors over element selectors in scoped styles, because large numbers of scoped element selectors have poor performance.
 
@@ -1280,7 +1290,6 @@ The problem is that large numbers of [element-attribute selectors](http://steves
 
 
 
-
 ### Complex prop types
 
 **Props should prefer simple types (i.e. `String`, `Number`, `Boolean`) or custom prototypes over complex objects.**
@@ -1289,17 +1298,17 @@ This is in the spirit of being as explicity as possible
 
 
 
-
 ### Parent-child communication
 
-Props and events should be preferred for parent-child component communication (avoid `this.$parent` and mutating props).
-
+**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
 
 
 
 ### Global state management
 
-Vuex should be preferred for global state management (avoid `this.$root` or using global event bus)
+**Vuex should be preferred for global state management, instead of `this.$root` or a global event bus.**
+
+
 
 
 
