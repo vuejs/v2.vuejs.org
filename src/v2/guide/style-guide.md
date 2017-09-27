@@ -28,7 +28,7 @@ These rules have been found to vastly improve readability in most projects. If y
 
 ### Priority C: Recommended
 
-Where multiple, equally good options exist, an arbitrary choice has to be made. In these rules, we describe each acceptable option and then suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and then suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
 
 1. train your brain to more easily parse most of the community code you encounter
 2. be able to copy and paste most community code examples without modification
@@ -408,6 +408,91 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 
+### Private property names
+
+**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
+
+As for the `$` prefix, it's purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+
+Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
+
+{% raw %}</details>{% endraw %}
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` js
+var myGreatMixin = {
+  // ...
+  methods: {
+    update: function () {
+      // ...
+    }
+  }
+}
+```
+
+``` js
+var myGreatMixin = {
+  // ...
+  methods: {
+    _update: function () {
+      // ...
+    }
+  }
+}
+```
+
+``` js
+var myGreatMixin = {
+  // ...
+  methods: {
+    $update: function () {
+      // ...
+    }
+  }
+}
+```
+
+``` js
+var myGreatMixin = {
+  // ...
+  methods: {
+    $_update: function () {
+      // ...
+    }
+  }
+}
+```
+
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+var myGreatMixin = {
+  // ...
+  methods: {
+    $_myGreatMixin_update: function () {
+      // ...
+    }
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+
+
 ## Priority B Rules: Strongly Recommended (Improving Readability)
 
 
@@ -450,7 +535,7 @@ components/
 
 
 
-### SFC filename casing
+### Single-file component filename casing
 
 **Filenames of [single-file components](single-file-components.html) should either be always PascalCase or always kebab-case.**
 
@@ -1084,7 +1169,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 ```
 
 ``` html
-<AppSidebar :style={background:sidebarWidth+'px'}>
+<AppSidebar :style={width:sidebarWidth+'px'}>
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1096,7 +1181,63 @@ While attribute values without any spaces are not required to have quotes in HTM
 ```
 
 ``` html
-<AppSidebar :style="{ background: sidebarWidth + 'px' }">
+<AppSidebar :style="{ width: sidebarWidth + 'px' }">
+```
+{% raw %}</div>{% endraw %}
+
+
+
+### Directive shorthands
+
+**Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<input
+  v-bind:value="newTodoText"
+  :placeholder="newTodoInstructions"
+>
+```
+
+``` html
+<input
+  v-on:input="onInput"
+  @focus="onFocus"
+>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<input
+  :value="newTodoText"
+  :placeholder="newTodoInstructions"
+>
+```
+
+``` html
+<input
+  v-bind:value="newTodoText"
+  v-bind:placeholder="newTodoInstructions"
+>
+```
+
+``` html
+<input
+  @input="onInput"
+  @focus="onFocus"
+>
+```
+
+``` html
+<input
+  v-on:input="onInput"
+  v-on:focus="onFocus"
+>
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1126,67 +1267,193 @@ This is the default order we recommend for component options. They're split into
   - `extends`
   - `mixins`
 
-6. **Interface** (the interface to the component)
+5. **Interface** (the interface to the component)
   - `inheritAttrs`
   - `model`
   - `props`/`propsData`
 
-3. **Render Modifiers** (changes the way components render)
+6. **Render Modifiers** (changes the way the component renders)
   - `delimiters`
   - `comments`
 
-9. **Rendering** (the declarative description of the component output)
+7. **Rendering** (the declarative description of the component output)
   - `template`/`render`
   - `renderError`
 
-5. **Template Dependencies** (assets used in templates)
+8. **Template Dependencies** (assets used in the template)
   - `components`
   - `directives`
   - `filters`
 
-7. **Local State** (local reactive properties)
+9. **Local State** (local reactive properties)
   - `data`
   - `computed`
 
-8. **Reactive Events** (callbacks triggered by reactive events)
+10. **Reactive Events** (callbacks triggered by reactive events)
   - Lifecycle Events (in the order they are called)
   - `watch`
 
-8. **Non-Reactive Properties** (instance properties independent from the reactivity system)
+11. **Non-Reactive Properties** (instance properties independent of the reactivity system)
   - `methods`
+
+
 
 ### Element attribute order
 
 **The attributes of elements (including components) should be ordered consistently.**
 
-1. Conditionals
-  - `v-if`
-  - `v-show`
+This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
 
-1. Unique Properties
+1. **Definition** (provides the component options)
+  - `is`
+
+2. **Conditionals** (whether the element is rendered/shown)
+  - `v-if`
+  - `v-else-if`
+  - `v-else`
+  - `v-show`
+  - `v-cloak`
+
+3. **Render Modifiers** (changes the way the element renders)
+  - `v-for`
+  - `v-pre`
+  - `v-once`
+
+4. **Global Awareness** (requires knowledge beyond the component)
   - `id`
 
-1. Other Attributes
+5. **Unique Attributes** (attributes that require unique values)
+  - `ref`
+  - `key`
+  - `slot`
 
-1. Events
+6. **Two-Way Binding** (combining binding and events)
+  - `v-model`
 
-### Directive shorthands
+7. **Other Attributes** (all unspecified bound & unbound attributes)
 
-**Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
+8. **Events** (component event listeners)
+  - `v-on`
 
-### SFC top-level element order
+9. **Content** (overrides the content of the element)
+  - `v-html`
+  - `v-text`
 
-**[Single-file components](single-file-components.html) should always order `template`, `script`, and `style` tags consistently.**
 
-The chosen order is not very important, except that the `<template>` or `<script>` should be first, since at least one of them will always be necessary.
 
-### Component method order
+### Single-file component top-level element order
 
-**Component methods should always be ordered alphabetically.**
+**[Single-file components](single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, as at least one of the other two is always necessary.**
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<style>/* ... */</style>
+<template>...</template>
+<script>/* ... */</script>
+```
+
+``` html
+<!-- ComponentA.vue -->
+<script>/* ... */</script>
+<template>...</template>
+<style>/* ... */</style>
+
+<!-- ComponentB.vue -->
+<template>...</template>
+<script>/* ... */</script>
+<style>/* ... */</style>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<!-- ComponentA.vue -->
+<template>...</template>
+<script>/* ... */</script>
+<style>/* ... */</style>
+
+<!-- ComponentB.vue -->
+<template>...</template>
+<script>/* ... */</script>
+<style>/* ... */</style>
+```
+
+``` html
+<!-- ComponentA.vue -->
+<script>/* ... */</script>
+<template>...</template>
+<style>/* ... */</style>
+
+<!-- ComponentB.vue -->
+<script>/* ... */</script>
+<template>...</template>
+<style>/* ... */</style>
+```
+{% raw %}</div>{% endraw %}
+
+
 
 ### Computed property order
 
-**Computed properties should be ordered first by dependency, then alphabetically.**
+**Computed properties should be ordered alphabetically, if not already using another ordering strategy.**
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` js
+computed: {
+  totalTodosCount () { /* ... */ }
+  sortedTodoList () { /* ... */ },
+  allTodosComplete () { /* ... */ },
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+computed: {
+  allTodosComplete () { /* ... */ },
+  sortedTodoList () { /* ... */ },
+  totalTodosCount () { /* ... */ }
+}
+```
+{% raw %}</div>{% endraw %}
+
+
+
+### Component method order
+
+**Component methods should be ordered alphabetically, if not already using another ordering strategy.**
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` js
+methods: {
+  editTodo () { /* ... */ }
+  deleteTodo () { /* ... */ },
+  addTodo () { /* ... */ },
+}
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+methods: {
+  addTodo () { /* ... */ },
+  deleteTodo () { /* ... */ },
+  editTodo () { /* ... */ }
+}
+```
+{% raw %}</div>{% endraw %}
 
 
 
@@ -1237,11 +1504,24 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 
 
-### Scoped element selectors
+### `scoped` element selectors
 
-**Scoped element selectors should be avoided.**
+**`scoped` element selectors should be avoided.**
 
-Prefer class selectors over element selectors in scoped styles, because large numbers of scoped element selectors have poor performance.
+Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors have poor performance.
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
+
+The problem is that large numbers of [element-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than [class-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
+
+{% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -1275,42 +1555,207 @@ button {
 ```
 {% raw %}</div>{% endraw %}
 
-{% raw %}
-<details>
-<summary>
-  <h4>Detailed Explanation</h4>
-</summary>
-{% endraw %}
-
-To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
-
-The problem is that large numbers of [element-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than [class-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
-
-{% raw %}</details>{% endraw %}
-
-
-
-### Complex prop types
-
-**Props should prefer simple types (i.e. `String`, `Number`, `Boolean`) or custom prototypes over complex objects.**
-
-This is in the spirit of being as explicity as possible
-
 
 
 ### Parent-child communication
 
 **Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
 
+An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
+
+The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<!-- TodoItem.vue -->
+<template>
+  <input v-model="todo.text">
+</template>
+
+<script>
+export default {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  }
+}
+</script>
+```
+
+``` html
+<!-- TodoItem.vue -->
+<template>
+  <span>
+    {{ todo.text }}
+    <button @click="removeTodo">
+      X
+    </button>
+  </span>
+</template>
+
+<script>
+export default {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    removeTodo () {
+      const todoIndex = this.$parent.todos.indexOf(todo)
+      this.$parent.todos.splice(todoIndex, 1)
+    }
+  }
+}
+</script>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<!-- TodoItem.vue -->
+<template>
+  <input
+    :value="todo.text"
+    @input="$emit('input', $event.target.value)"
+  >
+</template>
+
+<script>
+export default {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  }
+}
+</script>
+```
+
+``` html
+<!-- TodoItem.vue -->
+<template>
+  <span>
+    {{ todo.text }}
+    <button @click="$emit('delete')">
+      X
+    </button>
+  </span>
+</template>
+
+<script>
+export default {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  }
+}
+</script>
+```
+{% raw %}</div>{% endraw %}
+
 
 
 ### Global state management
 
-**Vuex should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
 
+Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
 
+{% raw %}</details>{% endraw %}
 
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
 
+``` js
+// main.js
+new Vue({
+  data: {
+    todos: []
+  },
+  created () {
+    this.$on('remove-todo', this.removeTodo)
+  },
+  methods: {
+    removeTodo (todo) {
+      const todoIdToRemove = todo.id
+      this.todos = this.todos.filter(todo => todo.id !== todoIdToRemove)
+    }
+  }
+})
+```
+
+``` html
+<!-- TodoItem.vue -->
+<template>
+  <span>
+    {{ todo.text }}
+    <button @click="$root.$emit('remove-todo', todo)">
+      X
+    </button>
+  </span>
+</template>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+// store/modules/todos.js
+export default {
+  state: {
+    list: []
+  },
+  mutations: {
+    REMOVE_TODO (state, todoId) {
+      state.list = state.list.filter(todo => todo.id !== todoId)
+    }
+  },
+  actions: {
+    removeTodo ({ commit, state }, todo) {
+      commit('REMOVE_TODO', todo.id)
+    }
+  }
+}
+```
+
+``` html
+<!-- TodoItem.vue -->
+<template>
+  <span>
+    {{ todo.text }}
+    <button @click="removeTodo(todo)">
+      X
+    </button>
+  </span>
+</template>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  props: {
+    todo: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: mapActions(['removeTodo'])
+}
+</script>
+```
+{% raw %}</div>{% endraw %}
 
 
 
