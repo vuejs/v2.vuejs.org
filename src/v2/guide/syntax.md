@@ -118,6 +118,8 @@ Modifiers are special postfixes denoted by a dot, which indicate that a directiv
 
 We will see more use of modifiers later when we take a more thorough look at `v-on` and `v-model`.
 
+You can find detailed info about modifiers [here](https://vuejs.org/v2/guide/events.html#Event-Modifiers).
+
 ## Shorthands
 
 The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building an [SPA](https://en.wikipedia.org/wiki/Single-page_application) where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
