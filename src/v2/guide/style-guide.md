@@ -315,7 +315,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 This is only relevant for [single-file components](single-file-components.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
 
-**Component libraries should prefer a class-based strategy, instead of using the `scoped` attribute.**
+**Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.**
 
 This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
 
@@ -1504,11 +1504,11 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 
 
-### `scoped` element selectors
+### Element selectors with `scoped`
 
-**`scoped` element selectors should be avoided.**
+**Element selectors should be avoided with `scoped`.**
 
-Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors have poor performance.
+Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors are slow.
 
 {% raw %}
 <details>
