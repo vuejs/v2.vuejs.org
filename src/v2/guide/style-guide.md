@@ -1263,38 +1263,38 @@ This is the default order we recommend for component options. They're split into
 3. **Component Type** (changes the type of the component)
   - `functional`
 
-4. **Composition** (merges properties into the options)
-  - `extends`
-  - `mixins`
-
-5. **Interface** (the interface to the component)
-  - `inheritAttrs`
-  - `model`
-  - `props`/`propsData`
-
-6. **Render Modifiers** (changes the way the component renders)
+4. **Template Modifiers** (changes the way templates are compiled)
   - `delimiters`
   - `comments`
 
-7. **Rendering** (the declarative description of the component output)
-  - `template`/`render`
-  - `renderError`
-
-8. **Template Dependencies** (assets used in the template)
+5. **Template Dependencies** (assets used in the template)
   - `components`
   - `directives`
   - `filters`
 
-9. **Local State** (local reactive properties)
+6. **Composition** (merges properties into the options)
+  - `extends`
+  - `mixins`
+
+7. **Interface** (the interface to the component)
+  - `inheritAttrs`
+  - `model`
+  - `props`/`propsData`
+
+8. **Local State** (local reactive properties)
   - `data`
   - `computed`
 
-10. **Reactive Events** (callbacks triggered by reactive events)
-  - Lifecycle Events (in the order they are called)
+9. **Events** (callbacks triggered by reactive events)
   - `watch`
+  - Lifecycle Events (in the order they are called)
 
-11. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
   - `methods`
+
+11. **Rendering** (the declarative description of the component output)
+  - `template`/`render`
+  - `renderError`
 
 
 
