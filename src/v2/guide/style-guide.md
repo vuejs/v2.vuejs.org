@@ -753,9 +753,9 @@ components/
 
 Since editors typically organize files alphabetically, all the important relationships between components are now evident at a glance.
 
-You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We don't recommend this, for a few reasons:
+You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We only recommend this approach in apps of 100+ components, for these reasons:
 
-- It takes more time to navigate through nested sub-directories, than scrolling through a single `components` directory.
+- It generally takes more time to navigate through nested sub-directories, than scrolling through a single `components` directory.
 - Name conflicts (e.g. multiple `ButtonDelete.vue` components) make it more difficult to quickly navigate to a specific component in a code editor.
 - Refactoring becomes more difficult, because find-and-replace often isn't sufficient to update relative references to a moved component.
 
