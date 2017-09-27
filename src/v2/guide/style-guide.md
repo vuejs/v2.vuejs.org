@@ -809,7 +809,7 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 
 ``` html
 <!-- In DOM templates -->
-<my-component/s>
+<my-component/>
 ```
 {% raw %}</div>{% endraw %}
 
