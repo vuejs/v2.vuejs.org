@@ -46,7 +46,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 
 
-### Multi-word component names
+### Multi-word component names <sup data-p="a">essential</sup>
 
 **Component names should always be multi-word.**
 
@@ -88,7 +88,7 @@ export default {
 
 
 
-### Component data
+### Component data <sup data-p="a">essential</sup>
 
 **Component `data` must be a function.**
 
@@ -181,7 +181,7 @@ new Vue({
 
 
 
-### Prop definitions
+### Prop definitions <sup data-p="a">essential</sup>
 
 **Prop definitions should be as detailed as possible.**
 
@@ -240,7 +240,7 @@ props: {
 
 
 
-### Keyed `v-for`
+### Keyed `v-for` <sup data-p="a">essential</sup>
 
 **Always use `key` with `v-for`.**
 
@@ -309,7 +309,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### Component style scoping
+### Component style scoping <sup data-p="a">essential</sup>
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
 
@@ -408,7 +408,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 
-### Private property names
+### Private property names <sup data-p="a">essential</sup>
 
 **Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
 
@@ -497,7 +497,7 @@ var myGreatMixin = {
 
 
 
-### Component files
+### Component files <sup data-p="b">strongly recommended</sup>
 
 **Whenever a build system is available to concatenate files, each component should be in its own file.**
 
@@ -535,7 +535,7 @@ components/
 
 
 
-### Single-file component filename casing
+### Single-file component filename casing <sup data-p="b">strongly recommended</sup>
 
 **Filenames of [single-file components](single-file-components.html) should either be always PascalCase or always kebab-case.**
 
@@ -571,7 +571,7 @@ components/
 
 
 
-### Base component names
+### Base component names <sup data-p="b">strongly recommended</sup>
 
 **Base components that apply app-specific styling and conventions should begin with the `App` prefix.**
 
@@ -634,7 +634,7 @@ components/
 
 
 
-### Single-instance component names
+### Single-instance component names <sup data-p="b">strongly recommended</sup>
 
 **Components that should only ever have a single active instance should begin with the `The` prefix, to denote that there can be only one.**
 
@@ -662,7 +662,7 @@ components/
 
 
 
-### Tightly coupled component names
+### Tightly coupled component names <sup data-p="b">strongly recommended</sup>
 
 **Child components that are tightly coupled with their parent should include the parent component name as a prefix.**
 
@@ -704,7 +704,7 @@ components/
 
 
 
-### Order of words in component names
+### Order of words in component names <sup data-p="b">strongly recommended</sup>
 
 **Component names should start with the highest-level (often most general) words and end with descriptive modifying words.**
 
@@ -791,7 +791,7 @@ components/
 
 
 
-### Self-closing components
+### Self-closing components <sup data-p="b">strongly recommended</sup>
 
 **Components with no content should be self-closing in [single-file components](single-file-components.html), string templates, and [JSX](render-function.html#JSX) - but never in DOM templates.**
 
@@ -829,7 +829,7 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 
 
 
-### Component name casing in templates
+### Component name casing in templates <sup data-p="b">strongly recommended</sup>
 
 **Component names should always be PascalCase in [single-file components](single-file-components.html) and string templates - but kebab-case in DOM templates.**
 
@@ -875,7 +875,7 @@ PascalCase in templates improves readability, because it's easier to tell at a g
 
 
 
-### Component name casing in JS/[JSX](render-function.html#JSX)
+### Component name casing in JS/JSX <sup data-p="b">strongly recommended</sup>
 
 **Component names in JS/[JSX](render-function.html#JSX) should always be PascalCase, though may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
 
@@ -951,7 +951,7 @@ export default {
 
 
 
-### Abbreviations in component names
+### Abbreviations in component names <sup data-p="b">strongly recommended</sup>
 
 **Component names should prefer full words over abbreviations.**
 
@@ -979,7 +979,7 @@ components/
 
 
 
-### Prop name casing
+### Prop name casing <sup data-p="b">strongly recommended</sup>
 
 **Prop names should always use camelCase during declaration, but kebab-case in templates and [JSX](render-function.html#JSX).**
 
@@ -1013,7 +1013,9 @@ props: {
 ```
 {% raw %}</div>{% endraw %}
 
-### Multi-attribute elements
+
+
+### Multi-attribute elements <sup data-p="b">strongly recommended</sup>
 
 **Elements with multiple attributes should span multiple lines, with one attribute per line.**
 
@@ -1052,7 +1054,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 
 
-### Complex expressions in templates
+### Complex expressions in templates <sup data-p="b">strongly recommended</sup>
 
 **Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
 
@@ -1090,7 +1092,7 @@ computed: {
 
 
 
-### Complex computed properties
+### Complex computed properties <sup data-p="b">strongly recommended</sup>
 
 **Complex computed properties should be split into as many simpler properties as possible.**
 
@@ -1155,7 +1157,7 @@ computed: {
 
 
 
-### Quoted attribute values
+### Quoted attribute values <sup data-p="b">strongly recommended</sup>
 
 **Non-empty HTML attribute values should always be inside quotes (single or double, whichever is not used in JS).**
 
@@ -1187,7 +1189,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-### Directive shorthands
+### Directive shorthands <sup data-p="b">strongly recommended</sup>
 
 **Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
 
@@ -1247,7 +1249,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-### Component/instance options order
+### Component/instance options order <sup data-p="c">recommended</sup>
 
 **Component/instance options should be ordered consistently.**
 
@@ -1298,7 +1300,7 @@ This is the default order we recommend for component options. They're split into
 
 
 
-### Element attribute order
+### Element attribute order <sup data-p="c">recommended</sup>
 
 **The attributes of elements (including components) should be ordered consistently.**
 
@@ -1341,7 +1343,7 @@ This is the default order we recommend for component options. They're split into
 
 
 
-### Single-file component top-level element order
+### Single-file component top-level element order <sup data-p="c">recommended</sup>
 
 **[Single-file components](single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, as at least one of the other two is always necessary.**
 
@@ -1397,7 +1399,7 @@ This is the default order we recommend for component options. They're split into
 
 
 
-### Computed property order
+### Computed property order <sup data-p="c">recommended</sup>
 
 **Computed properties should be ordered alphabetically, if not already using another ordering strategy.**
 
@@ -1427,7 +1429,7 @@ computed: {
 
 
 
-### Component method order
+### Component method order <sup data-p="c">recommended</sup>
 
 **Component methods should be ordered alphabetically, if not already using another ordering strategy.**
 
@@ -1461,7 +1463,7 @@ methods: {
 
 
 
-### Keyed `v-if`, `v-else`
+### `v-if`/`v-if-else`/`v-else` without `key` <sup data-p="d">use with caution</sup>
 
 **Always use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
 
@@ -1504,7 +1506,7 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 
 
-### Element selectors with `scoped`
+### Element selectors with `scoped` <sup data-p="d">use with caution</sup>
 
 **Element selectors should be avoided with `scoped`.**
 
@@ -1557,9 +1559,9 @@ button {
 
 
 
-### Parent-child communication
+### Parent-child communication <sup data-p="d">use with caution</sup>
 
-**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
+**Props and events should be preferred for parent-child component communication, over of `this.$parent` or mutating props.**
 
 An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
 
@@ -1666,7 +1668,7 @@ export default {
 
 
 
-### Global state management
+### Global state management <sup data-p="d">use with caution</sup>
 
 **[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
 
