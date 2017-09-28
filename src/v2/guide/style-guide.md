@@ -1383,8 +1383,8 @@ When components begin to feel cramped or difficult to read, adding spaces betwee
 props: {
   value: {
     type: String,
-    required: true,
-  }
+    required: true
+  },
 
   focused: {
     type: Boolean,
@@ -1412,12 +1412,12 @@ computed: {
 props: {
   value: {
     type: String,
-    required: true,
+    required: true
   },
   focused: {
     type: Boolean,
     default: false
-  }
+  },
   label: String,
   icon: String
 },
