@@ -1,20 +1,20 @@
 ---
-title: Filters
+title: 필터
 type: guide
 order: 305
 ---
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions** (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+Vue는 텍스트 형식화를 적용할 수 있는 필터를 지원합니다. 이 필터들은 **중괄호 보간법 혹은 `v-bind`표현법** 을 이용할 때 사용가능합니다. (`v-bind` 표현법에서는 2.1.0+ 부터 사용 가능합니다.) 필터는 자바스크립트 표현식 마지막에 "파이프"심볼과 함께 추가되어야 합니다.
 
 ``` html
-<!-- in mustaches -->
+<!-- 중괄호 보간법 -->
 {{ message | capitalize }}
 
-<!-- in v-bind -->
+<!-- v-bind 표현 -->
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-The filter function always receives the expression's value (the result of the former chain) as its first argument. In this example, the `capitalize` filter function will receive the value of `message` as its argument.
+필터함수는 언제나 표현법에 사용될 값을 첫번째 인수로 받습니다. 이 예제에서의 `capitalize` 필터 함수는 `message`의 값을 첫번째 인수로 받을 것입니다
 
 ``` js
 new Vue({
@@ -29,18 +29,18 @@ new Vue({
 })
 ```
 
-Filters can be chained:
+필터는 연쇄적으로 사용될 수 있습니다.
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-In this case, `filterA`, defined with a single argument, will receive the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
+위와 같은 경우에, 하나의 인수를 받는 `filterA`는 `message`값을 받을 것이고 `filterA`가 `message`와 함께 실행된 결과가 `filterB`에 넘겨질 것입니다.
 
-Filters are JavaScript functions, therefore they can take arguments:
+필터는 기본적으로 자바스크립트 함수이기 때문에 두개 이상의 인수를 받을 수 있습니다.
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Here `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into the `filterA` as its second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+여기서 `filterA`는 세개의 인수를 받는 함수로 정의되었습니다. `message`의 값은 첫번째 인수로 전달될 것이며, 순수 문자열인 `'arg1'`은 두번째 인수로 전달될 것이며, 자바스크립트 표현식인 `arg2`는 표현식이 실행된 이후에 세번째 인수로 전달될 것입니다.
