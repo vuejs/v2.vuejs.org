@@ -1334,6 +1334,9 @@ This is the default order we recommend for component options. They're split into
 1. **Definition** (provides the component options)
   - `is`
 
+2. **List Rendering** (creates multiple variations of the same element)
+  - `v-for`
+
 2. **Conditionals** (whether the element is rendered/shown)
   - `v-if`
   - `v-else-if`
@@ -1342,7 +1345,6 @@ This is the default order we recommend for component options. They're split into
   - `v-cloak`
 
 3. **Render Modifiers** (changes the way the element renders)
-  - `v-for`
   - `v-pre`
   - `v-once`
 
