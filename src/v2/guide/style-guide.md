@@ -573,7 +573,7 @@ components/
 
 ### Base component names <sup data-p="b">strongly recommended</sup>
 
-**Base components that apply app-specific styling and conventions should begin with the `App` prefix.**
+**Base components (a.k.a. presentational, dumb, or pure components) that apply app-specific styling and conventions should all begin with a specific prefix, such as `Base`, `App`, or `V`.**
 
 {% raw %}
 <details>
@@ -585,28 +585,37 @@ components/
 These components lay the foundation for consistent styling and behavior in your application. They can only contain:
 
 - HTML elements,
-- other `App`-prefixed components, and
+- other `Base`-prefixed components, and
 - 3rd-party UI components.
 
-They'll often contain the name of the element they wrap (e.g. `AppButton`, `AppTable`), unless no element exists for their specific purpose (e.g. `AppIcon`). If you build similar components for a more specific context, they will almost always consume these components (e.g. `AppButton` may be used in `ButtonSubmit`).
+They'll never contain:
+
+- global state (e.g. from a Vuex store)
+-
+
+Their names often include the name of an element they wrap (e.g. `BaseButton`, `BaseTable`), unless no element exists for their specific purpose (e.g. `BaseIcon`). If you build similar components for a more specific context, they will almost always consume these components (e.g. `BaseButton` may be used in `ButtonSubmit`).
 
 Some advantages of this convention:
 
 - When organized alphabetically in editors, your app's base components are all listed together, making them easier to identify.
 
-- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. The `App` prefix makes this simple in Webpack:
+- Since component names should always be multi-word, this convention prevents you from having to choose an arbitrary prefix for simple component wrappers (e.g. `MyButton`, `VueButton`).
+
+- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. A prefix makes this possible with Webpack:
 
   ``` js
-  function globalizeAppComponents () {
-    const requireComponent = require.context("./src", true, /^App[A-Z]/)
-    requireComponent.keys().forEach(file => {
-      const appComponentConfig = requireComponent(file)
-      Vue.component(appComponentConfig.name, appComponentConfig)
-    })
-  }
+  var requireComponent = require.context("./src", true, /^Base[A-Z]/)
+  requireComponent.keys().forEach(function (fileName) {
+    var baseComponentConfig = requireComponent(fileName)
+    baseComponentConfig = baseComponentConfig.default || baseComponentConfig
+    var baseComponentName = baseComponentConfig.name || (
+      fileName
+        .replace(/^.+\//, '')
+        .replace(/\.\w+$/, '')
+    )
+    Vue.component(baseComponentName, baseComponentConfig)
+  })
   ```
-
-- Since component names should always be multi-word, this convention prevents you from having to add an arbitrary prefix to simple component wrappers (e.g. `MyButton`, `VueButton`).
 
 {% raw %}</details>{% endraw %}
 
@@ -626,9 +635,23 @@ components/
 
 ```
 components/
+|- BaseButton.vue
+|- BaseTable.vue
+|- BaseIcon.vue
+```
+
+```
+components/
 |- AppButton.vue
 |- AppTable.vue
 |- AppIcon.vue
+```
+
+```
+components/
+|- VButton.vue
+|- VTable.vue
+|- VIcon.vue
 ```
 {% raw %}</div>{% endraw %}
 
@@ -753,7 +776,7 @@ components/
 
 Since editors typically organize files alphabetically, all the important relationships between components are now evident at a glance.
 
-You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We only recommend this approach in apps of 100+ components, for these reasons:
+You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We only recommend this approach in very large apps of 100+ components, for these reasons:
 
 - It generally takes more time to navigate through nested sub-directories, than scrolling through a single `components` directory.
 - Name conflicts (e.g. multiple `ButtonDelete.vue` components) make it more difficult to quickly navigate to a specific component in a code editor.
@@ -1019,7 +1042,7 @@ props: {
 
 **Elements with multiple attributes should span multiple lines, with one attribute per line.**
 
-In JavaScript, splitting objects with multiple properties over multiple lines is generally considered a good convention, because it's much easier to read. Our templates and [JSX](render-function.html#JSX) deserve the same consideration.
+In JavaScript, splitting objects with multiple properties over multiple lines is widely considered a good convention, because it's much easier to read. Our templates and [JSX](render-function.html#JSX) deserve the same consideration.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -1065,9 +1088,9 @@ Complex expressions in your templates make them less declarative. We should stri
 
 ``` html
 {{
-  fullName.split(' ').map(word =>
-    word[0].toUpperCase() + word.slice(1)
-  ).join(' ')
+  fullName.split(' ').map(function (word) {
+    return word[0].toUpperCase() + word.slice(1)
+  }).join(' ')
 }}
 ```
 {% raw %}</div>{% endraw %}
@@ -1076,15 +1099,17 @@ Complex expressions in your templates make them less declarative. We should stri
 #### Good
 
 ``` html
+<!-- In a template -->
 {{ normalizedFullName }}
 ```
 
 ``` js
+// The complex expression has been moved to a computed property
 computed: {
-  normalizedFullName () {
-    return this.fullName.split(' ').map(word =>
-      word[0].toUpperCase() + word.slice(1)
-    ).join(' ')
+  normalizedFullName: function () {
+    return this.fullName.split(' ').map(function (word) {
+      return word[0].toUpperCase() + word.slice(1)
+    }).join(' ')
   }
 }
 ```
@@ -1345,7 +1370,7 @@ This is the default order we recommend for component options. They're split into
 
 ### Single-file component top-level element order <sup data-p="c">recommended</sup>
 
-**[Single-file components](single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, as at least one of the other two is always necessary.**
+**[Single-file components](single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -1394,66 +1419,6 @@ This is the default order we recommend for component options. They're split into
 <script>/* ... */</script>
 <template>...</template>
 <style>/* ... */</style>
-```
-{% raw %}</div>{% endraw %}
-
-
-
-### Computed property order <sup data-p="c">recommended</sup>
-
-**Computed properties should be ordered alphabetically, if not already using another ordering strategy.**
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
-
-``` js
-computed: {
-  totalTodosCount () { /* ... */ }
-  sortedTodoList () { /* ... */ },
-  allTodosComplete () { /* ... */ },
-}
-```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
-
-``` js
-computed: {
-  allTodosComplete () { /* ... */ },
-  sortedTodoList () { /* ... */ },
-  totalTodosCount () { /* ... */ }
-}
-```
-{% raw %}</div>{% endraw %}
-
-
-
-### Component method order <sup data-p="c">recommended</sup>
-
-**Component methods should be ordered alphabetically, if not already using another ordering strategy.**
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
-
-``` js
-methods: {
-  editTodo () { /* ... */ }
-  deleteTodo () { /* ... */ },
-  addTodo () { /* ... */ },
-}
-```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
-
-``` js
-methods: {
-  addTodo () { /* ... */ },
-  deleteTodo () { /* ... */ },
-  editTodo () { /* ... */ }
-}
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1465,7 +1430,7 @@ methods: {
 
 ### `v-if`/`v-if-else`/`v-else` without `key` <sup data-p="d">use with caution</sup>
 
-**Always use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
+**It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
 
 By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
 
@@ -1561,7 +1526,7 @@ button {
 
 ### Parent-child communication <sup data-p="d">use with caution</sup>
 
-**Props and events should be preferred for parent-child component communication, over of `this.$parent` or mutating props.**
+**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
 
 An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
 
@@ -1570,37 +1535,20 @@ The problem is, there are also many _simple_ cases where these patterns may offe
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
 
-``` html
-<!-- TodoItem.vue -->
-<template>
-  <input v-model="todo.text">
-</template>
-
-<script>
-export default {
+``` js
+Vue.component('TodoItem', {
   props: {
     todo: {
       type: Object,
       required: true
     }
-  }
-}
-</script>
+  },
+  template: '<input v-model="todo.text">'
+})
 ```
 
-``` html
-<!-- TodoItem.vue -->
-<template>
-  <span>
-    {{ todo.text }}
-    <button @click="removeTodo">
-      X
-    </button>
-  </span>
-</template>
-
-<script>
-export default {
+``` js
+Vue.component('TodoItem', {
   props: {
     todo: {
       type: Object,
@@ -1609,60 +1557,61 @@ export default {
   },
   methods: {
     removeTodo () {
-      const todoIndex = this.$parent.todos.indexOf(todo)
-      this.$parent.todos.splice(todoIndex, 1)
+      var vm = this
+      vm.$parent.todos = vm.$parent.todos.filter(function (todo) {
+        return todo.id !== vm.todo.id
+      })
     }
-  }
-}
-</script>
+  },
+  template: `
+    <span>
+      {{ todo.text }}
+      <button @click="removeTodo">
+        X
+      </button>
+    </span>
+  `
+})
 ```
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
 #### Good
 
-``` html
-<!-- TodoItem.vue -->
-<template>
-  <input
-    :value="todo.text"
-    @input="$emit('input', $event.target.value)"
-  >
-</template>
-
-<script>
-export default {
+``` js
+Vue.component('TodoItem', {
   props: {
     todo: {
       type: Object,
       required: true
     }
-  }
-}
-</script>
+  },
+  template: `
+    <input
+      :value="todo.text"
+      @input="$emit('input', $event.target.value)"
+    >
+  `
+})
 ```
 
-``` html
-<!-- TodoItem.vue -->
-<template>
-  <span>
-    {{ todo.text }}
-    <button @click="$emit('delete')">
-      X
-    </button>
-  </span>
-</template>
-
-<script>
-export default {
+``` js
+Vue.component('TodoItem', {
   props: {
     todo: {
       type: Object,
       required: true
     }
-  }
-}
-</script>
+  },
+  template: `
+    <span>
+      {{ todo.text }}
+      <button @click="$emit('delete')">
+        X
+      </button>
+    </span>
+  `
+})
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1685,28 +1634,18 @@ new Vue({
   data: {
     todos: []
   },
-  created () {
+  created: function () {
     this.$on('remove-todo', this.removeTodo)
   },
   methods: {
-    removeTodo (todo) {
-      const todoIdToRemove = todo.id
-      this.todos = this.todos.filter(todo => todo.id !== todoIdToRemove)
+    removeTodo: function (todo) {
+      var todoIdToRemove = todo.id
+      this.todos = this.todos.filter(function (todo) {
+        return todo.id !== todoIdToRemove
+      })
     }
   }
 })
-```
-
-``` html
-<!-- TodoItem.vue -->
-<template>
-  <span>
-    {{ todo.text }}
-    <button @click="$root.$emit('remove-todo', todo)">
-      X
-    </button>
-  </span>
-</template>
 ```
 {% raw %}</div>{% endraw %}
 
