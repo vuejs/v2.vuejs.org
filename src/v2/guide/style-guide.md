@@ -1370,6 +1370,70 @@ This is the default order we recommend for component options. They're split into
 
 
 
+### Empty lines in component/instance options <sup data-p="c">recommended</sup>
+
+**You may want to add one empty line between multi-line properties, particularly if the options can no longer fit on your screen without scrolling.**
+
+When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` js
+props: {
+  value: {
+    type: String,
+    required: true,
+  }
+
+  focused: {
+    type: Boolean,
+    default: false
+  },
+
+  label: String,
+  icon: String
+},
+
+computed: {
+  formattedValue: function () {
+    // ...
+  },
+
+  inputClasses: function () {
+    // ...
+  }
+}
+```
+
+``` js
+// No spaces are also fine, as long as the component
+// is still easy to read and navigate.
+props: {
+  value: {
+    type: String,
+    required: true,
+  },
+  focused: {
+    type: Boolean,
+    default: false
+  }
+  label: String,
+  icon: String
+},
+computed: {
+  formattedValue: function () {
+    // ...
+  },
+  inputClasses: function () {
+    // ...
+  }
+}
+```
+{% raw %}</div>{% endraw %}
+
+
+
 ### Single-file component top-level element order <sup data-p="c">recommended</sup>
 
 **[Single-file components](single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
