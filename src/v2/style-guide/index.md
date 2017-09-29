@@ -48,7 +48,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 ### Multi-word component names <sup data-p="a">essential</sup>
 
-**Component names should always be multi-word.**
+**Component names should always be multi-word, except for root `App` components.**
 
 This prevents conflicts with existing and future HTML elements, since all HTML elements are a single word.
 
