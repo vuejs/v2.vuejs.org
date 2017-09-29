@@ -10,7 +10,7 @@ order: 502
 
 ### React 개발자를 위한 안내
 
-만약 당신이 React로 부터 왔다면, vuex가 그 생태계에서 가장 인기있는 Flux 구현 인 [redux](https://github.com/reactjs/redux)와 어떻게 비교되는지 궁금할 것입니다. Redux는 실제로 뷰 레이어(view-layer)에 무관하므로 몇 가지 [간단한 바인딩](https://github.com/egoist/revue)을 해준다면 Vue에서도 Redux를 쉽게 사용할 수 있습니다. Vuex가 Redux와 다른 점이라면 Vue app에 대해서 알고 있다는 점입니다. 이를 통해 더 직관적인 API와 향상된 개발경험을 Vue에 통합할 수 있습니다.
+만약 당신이 React로 부터 왔다면, vuex가 그 생태계에서 가장 인기있는 Flux 구현 인 [redux](https://github.com/reactjs/redux)와 어떻게 비교되는지 궁금할 것입니다. Redux는 실제로 뷰 레이어(view-layer)에 무관하므로 몇 가지 [간단한 바인딩](https://github.com/egoist/revue)을 해준다면 Vue에서도 Redux를 쉽게 사용할 수 있습니다. Vuex가 Redux와 다른 점이라면 Vue app에 대해서 _알고 있다_는 점입니다. 이를 통해 더 직관적인 API와 향상된 개발경험을 Vue에 통합할 수 있습니다.
 
 ## 간단한 상태 관리 시작하기
 
