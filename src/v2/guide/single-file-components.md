@@ -19,7 +19,7 @@ order: 402
 
 다음은 `Hello.vue` 파일의 간단한 예입니다.
 
-<img src="/images/vue-component.png" style="display: block; margin: 30px auto">
+<img src="/images/vue-component.png" style="display: block; margin: 30px auto;">
 
 이제 우리는 할 수 있습니다:
 
@@ -29,7 +29,7 @@ order: 402
 
 약속대로 Jade, Babel (ES2015 모듈을 포함합니다), Stylus와 같은 전처리기를 사용해 더 깨끗하고 기능이 풍부한 컴포넌트를 사용할 수 있습니다.
 
-<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
+<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto;">
 
 이러한 특정 언어는 예제일 뿐입니다. Bublé, TypeScript, SCSS, PostCSS 또는 생산성 향상에 도움을 주는 다른 전처리기를 쉽게 사용할 수 있습니다. Webpack을 `vue-loader`와 함께 사용하면 CSS 모듈에 대한 1등급 클래스를 지원합니다.
 
@@ -60,7 +60,7 @@ order: 402
 
 위 내용을 얻으려면 하루정도 걸립니다. 이 후에 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 을 확인하는 것을 추천합니다. 설명을 따라 가면 `.vue` 컴포넌트, ES2015 및 핫 리로드가 포함된 Vue 프로젝트를 즉시 사용할 수 있게 됩니다.
 
-템플릿은 여러 "모듈"을 가져와 최종 응용프로그램에 묶는 모듈 번들러인 [Webpack](https://webpack.github.io/)을 사용합니다. Webpack 자체에 대한 자세한 내용을 보려면 [이 동영상](https://www.youtube.com/watch?v=WQue1AN93YU)에서 좋은 소개를 볼 수 있습니다. 일단 기본을 익히면 [Egghead.io의 고급 Webpack 코스](https://egghead.io/courses/using-webpack-for-production-javascript-applications)를 확인하십시오.
+템플릿은 여러 "모듈"을 가져와 최종 응용프로그램에 묶는 모듈 번들러인 [Webpack](https://webpack.github.io/)을 사용합니다. Webpack 자체에 대한 자세한 내용을 보려면 [이 동영상](https://www.youtube.com/watch?v=WQue1AN93YU)에서 좋은 소개를 볼 수 있습니다. 일단 기본을 익히면 [Egghead.io의 고급 Webpack 코스](https://egghead.io/courses/using-webpack-for-production-javascript-applications)과 [Webpack Academy](https://webpack.academy/p/the-core-concepts)를 확인하십시오.
 
 Webpack에서 각 모듈은 번들에 포함되기 전에 "loader"에 의해 변형될 수 있으며 Vue는 [vue-loader](https://github.com/vuejs/vue-loader) 플러그인을 제공하여 `.vue` 단일 파일 컴포넌트를 처리합니다. [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 템플릿은 이미 모든 것을 설정 되어 있지만 `.vue` 컴포넌트 작동 방식을 알고 싶다면 [vue-loader 문서](https://vue-loader.vuejs.org)를 읽으시면 됩니다.
 
