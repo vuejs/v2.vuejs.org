@@ -1,10 +1,10 @@
 <li class="nav-dropdown-container learn">
-  <a class="nav-link<%- page.path.match(/(guide(?!\/team.html$)|api|examples|cookbook)/) ? ' current' : '' %>">Learn</a><span class="arrow"></span>
+  <a class="nav-link<%- page.path.match(/(guide(?!\/team.html$)|api|examples|cookbook)/) ? ' current' : '' %>">배우기</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
-      <li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guide</a></li>
+      <li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">가이드</a></li>
       <li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
-      <li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Examples</a></li>
+      <li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">예제</a></li>
     </ul></li>
   </ul>
 </li>

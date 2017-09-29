@@ -1,4 +1,4 @@
 site_description: "Vue.js - 상호 작용하는 인터페이스 구축을 위한 직관적이고, 빠르고, 구성 가능한 MVVM"
 google_analytics: UA-89623208-1
 root_domain: vuejs.org
-vue_version: 2.4.0
+vue_version: 2.4.4
