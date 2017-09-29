@@ -117,7 +117,7 @@ Boolean 속성에 대해서도 작동합니다. 조건이 거짓 값이면 속�
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-나중에 `v-on`과 `v-model`을 더 자세히 살펴볼 때 수식어를 더 많이 사용할 것 입니다.
+나중에 [`v-on`](https://vuejs.org/v2/guide/events.html#Event-Modifiers)과 [`v-model`](https://vuejs.org/v2/guide/forms.html#Modifiers)을 더 자세히 살펴볼 때 수식어를 더 많이 사용할 것 입니다.
 
 ## 약어
 
