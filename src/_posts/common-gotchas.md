@@ -13,7 +13,7 @@ Most of the time, when you change a Vue instance's data, the view updates. But t
 
 1. When you are **adding a new property** that wasn't present when the data was observed. Due to the limitation of ES5 and to ensure consistent behavior across browsers, Vue.js cannot detect property addition/deletions. The best practice is to always declare properties that need to be reactive upfront. In cases where you absolutely need to add or delete properties at runtime, use the global [`Vue.set`](/api/#Vue-set) or [`Vue.delete`](/api/#Vue-delete) methods.
 
-2. When you modify an Array by directly setting an index (e.g. `arr[0] = val`) or modifying its `length` property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method `arr.$set(index, value)` which is just syntax sugar for `arr.splice(index, 1, value)`.
+2. When you modify an Array by directly setting an index (e.g. `arr[0] = val`) or modifying its `length` property. Similarly, Vue.js cannot pickup these changes. Always modify arrays by using an Array instance method, or replacing it entirely. Vue provides a convenience method `arr.$set(index, value)` which is syntax sugar for `arr.splice(index, 1, value)`.
 
 Further reading: [Reactivity in Depth](/guide/reactivity.html) and [Array Change Detection](http://vuejs.org/guide/list.html#Array-Change-Detection).
 
@@ -25,7 +25,7 @@ Further reading: [Async Update Queue](/guide/reactivity.html#Async-Update-Queue)
 
 ### Why does `data` need to be a function?
 
-In the basic examples, we declare the `data` directly as a plain object. This is because we are creating only a single instance with `new Vue()`. However, when defining a **component**, `data` must be declared as a function that returns the initial data object. Why? Because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instance created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
+In the basic examples, we declare the `data` directly as a plain object. This is because we are creating only a single instance with `new Vue()`. However, when defining a **component**, `data` must be declared as a function that returns the initial data object. Why? Because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instance created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
 
 Further reading: [Component Option Caveats](/guide/components.html#Component-Option-Caveats).
 
