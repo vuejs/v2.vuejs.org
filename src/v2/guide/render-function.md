@@ -192,7 +192,7 @@ createElement(
   domProps: {
     innerHTML: 'baz'
   },
-  // `v-on:keyup.enter`와 같은 수정자가 지원되지 않으나
+  // `v-on:keyup.enter`와 같은 수식어가 지원되지 않으나
   // 이벤트 핸들러는 `on` 아래에 중첩됩니다.
   // 수동으로 핸들러에서 keyCode를 확인해야 합니다.
   on: {
@@ -350,11 +350,11 @@ render: function (createElement) {
 
 이것은 더 깊은 수준으로 건드려야 하지만 `v-model`에 비해 상호 작용에 대한 세부 사항을 훨씬 더 많이 제어 할 수 있습니다.
 
-### 이벤트 및 키 수정자
+### 이벤트 및 키 수식어
 
 `.passive`, `.capture` 및 `.once` 이벤트 수식어를 위해 Vue는 `on`과 함께 사용할 수있는 접두사를 제공합니다
 
-| 수정자| 접두어 |
+| 수식어| 접두어 |
 | ------ | ------ |
 | `.passive` | `&` |
 | `.capture` | `!` |
@@ -371,17 +371,17 @@ on: {
 }
 ```
 
-다른 모든 이벤트 및 키 수정자의 경우 처리기에서 이벤트 메서드를 간단하게 사용할 수 있으므로 고유한 접두사는 필요하지 않습니다.
+다른 모든 이벤트 및 키 수식어의 경우 처리기에서 이벤트 메서드를 간단하게 사용할 수 있으므로 고유한 접두사는 필요하지 않습니다.
 
-| 수정자 | 동등한 핸들러 |
+| 수식어 | 동등한 핸들러 |
 | ------ | ------ |
 | `.stop` | `event.stopPropagation()` |
 | `.prevent` | `event.preventDefault()` |
 | `.self` | `if (event.target !== event.currentTarget) return` |
-| 키:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (`13`을 다른 키 수정자의 [다른 키 코드](http://keycode.info/)로 변경합니다.) |
+| 키:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (`13`을 다른 키 수식어의 [다른 키 코드](http://keycode.info/)로 변경합니다.) |
 | Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (`ctrlKey`를 `altKey`, `shiftKey` 또는 `metaKey`로 각각 변경하십시오.) |
 
-다음은 위의 수정자들이 사용된 예제 입니다.
+다음은 위의 수식어들이 사용된 예제 입니다.
 
 ```javascript
 on: {
