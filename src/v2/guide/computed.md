@@ -200,7 +200,7 @@ computed: {
 ``` html
 <!-- 이미 Ajax 라이브러리의 풍부한 생태계와 범용 유틸리티 메소드 컬렉션이 있기 때문에, -->
 <!-- Vue 코어는 다시 만들지 않아 작게 유지됩니다. -->
-<!-- 이것은 또한 당신이 사용하기 친숙할 것을 선택할 수 있는 자유를 줍니다. -->
+<!-- 이것은 이미 익숙한 것을 선택할 수 있는 자유를 줍니다. -->
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script>
