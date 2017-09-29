@@ -1,7 +1,7 @@
 ---
 title: Vue Router 0.7.x으로 부터 마이그레이션
 type: guide
-order: 602
+order: 702
 ---
 
 > Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 [Vue Router 문서](http://router.vuejs.org/en/)를 참조하십시오.
