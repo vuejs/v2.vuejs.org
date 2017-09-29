@@ -1,7 +1,7 @@
 ---
 title: 다른 프레임워크와의 비교
 type: guide
-order: 701
+order: 801
 ---
 
 이 섹션은 작성하기 가장 까다로운 페이지이지만, 중요하다고 생각합니다. 당신은 해결하려는 문제가 있었을 것이고 문제를 해결하기 위해 다른 라이브러리를 사용했을 것입니다. 그리고 Vue가 특정 문제를 더 잘 해결할 수 있는지 알고 싶기 때문에 이 것을 보고 있을 것입니다. 이것이 우리가 당신을 위해 말하고자하는 것입니다.
@@ -99,7 +99,7 @@ Vue와 React 모두 거의 대부분의 일반적인 애플리케이션에서 �
 
 React에서는 모든 것이 JavaScript만으로 매우 심플하고 우아한 느낌을 줍니다. 불행한 현실은 JavaScript내에서 HTML과 CSS를 사용하면서 기존 모델의 일부 문제를 해결 할 때 자체적으로 고통을 초래할 수 있다는 것입니다. Vue에서 대신 우리는 웹 기술을 수용하고 그 위에 구축했습니다. 그 의미를 보여주기 위해 몇 가지 예를 살펴 보겠습니다.
 
-Vue embraces classic web technologies and builds on top of them. To show you what that means, we'll dive into some examples.
+Vue는 고전의 웹 기술을 받아들이고 그 위에서 만듭니다. 이 의미를 설명하기 위해 몇가지 예를 살펴보겠습니다.
 
 React에서 모든 컴포넌트는 JavaScript 내에서 작동하는 선언적 XML 유사 구문 인 JSX를 사용하여 렌더링 함수 내에서 UI를 표현합니다. 다음은 [React 커뮤니티에 의해 심사받은 예](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684) 입니다.
 
@@ -120,7 +120,7 @@ render () {
     children = <p>No items found.</p>
   }
 ```
-In React, all components express their UI within render functions using JSX, a declarative XML-like syntax that works within JavaScript.
+React에서 모든 컴포넌트는 JavaScript에서 작동하는 선언적 XML 유사 구문인 JSX를 사용해 렌더링 함수 안에서 UI를 표현합니다.
 
 JSX로 렌더하는 경우 몇 가지 장점이 있습니다.
 
@@ -129,7 +129,7 @@ JSX로 렌더하는 경우 몇 가지 장점이 있습니다.
 
 Vue에서 우리는 또한 [렌더링 함수](render-function.html)와 심지어 [JSX 지원](render-function.html#JSX)을 가지고 있습니다. 때로는 그 강력함이 필요하기 때문입니다. 그러나 기본적으로 우리는 더 간단한 대안으로 템플릿을 제공합니다.
 
-- For many developers who have been working with HTML, templates simply feel more natural to read and write. The preference itself can be somewhat subjective, but if it makes the developer more productive then the benefit is objective.
+- HTML로 작업해온 많은 개발자에게 템플릿은 읽고 쓰는 것이 자연스럽습니다. 기본 설정 자체는 다소 주관적일 수 있으나 개발자가 생산성을 높일 수 있습니다.
 
 몇 가지 장점은 다음과 같습니다.
 
@@ -141,13 +141,14 @@ Vue에서 우리는 또한 [렌더링 함수](render-function.html)와 심지어
 
 이는 개발자가 작성하는 것이 훨씬 쉬울뿐만 아니라 설계자와 경험이 부족한 개발자도 파싱 및 코드 작성을 훨씬 쉽게 할 수 있습니다.
 
-HTML 호환 템플릿의 또 다른 이점은 Pug(이전에는 Jade로 알려짐)와 같은 전처리기를 사용하여 Vue 템플릿을 제작할 수 있다는 것입니다.
+템플릿을 작성하기 위한 추가적인 DSL(Domain-Specific Language)를 배워야한다고 말하는 사람들도 있습니다. 이 차이는 표면적입니다. 첫째로 JSX는 사용자가 아무것도 배울 것이 없다는 것을 의미하지 않습니다. 즉, 일반 JavaScript 위에 추가 구문이 있으므로 JavaScript에 익숙한 사람은 쉽게 배울 수 있지만 본질적으로 바로 사용한다는 것은 잘못된 것입니다. 마찬가지로, 템플릿은 일반적인 HTML위에 추가 구문일 뿐이므로 이미 HTML에 익숙한 사용자들에게는 학습 비용이 매우 적습니다. DSL을 사용하면 사용자가 적은 코드 (예 `v-on`)으로 더 많은 것을 처리할 수 있습니다. 동일한 작업에는 일반적인 JSX 또는 렌더링 함수를 사용할 떄 더 많은 코드를 포함할 수 있습니다.
 
-On a higher level, we can divide components into two categories: presentational ones and logical ones. We recommend using templates for presentational components and render function / JSX for logical ones. The percentage of these components depends on the type of app you are building, but in general we find presentational ones to be much more common.
-
+상위 레벨에서, 우리는 컴포넌트를 두개의 카테고리, 즉 프레젠테이션과 논리적으로 분류할 수 있습니다. 프레젠테이션 컴포넌트 용 템플릿을 사용하고 논리적 컴포넌트 / JSX를 렌더링 하는 것이 좋습니다. 이러한 컴포넌트의 비율은 구축중인 앱의 형태에 따라 다르지만 일반적으로 프레젠테이션 방식을 사용합니다.
 #### 컴포넌트 범위의 CSS
 
-컴포넌트를 여러 파일 (예: [CSS 모듈](https://github.com/gajus/react-css-modules))로 분산하지 않는 한 React의 CSS 범위 지정은 종종 JS 안의 CSS 솔루션을 통해 수행됩니다. 각기 다른 경고가 있는 많은 경쟁 솔루션이 있습니다. 일반적인 문제는 호버 상태, 미디어 쿼리 및 의사 선택기와 같은 기능은 CSS가 이미 수행 한 것을 재 작성하기 위해 많은 의존성이 필요하거나 단순히 지원되지 않는 것입니다. 신중하게 최적화하지 않으면 JS 안의 CSS는 드문 런타임 성능 비용을 도입 할 수 있습니다. 가장 중요한 점은 정상적인 CSS를 작성한 경험에서 벗어나는 것입니다.
+컴포넌트를 여러 파일 (예: [CSS 모듈](https://github.com/gajus/react-css-modules))을 통해 배포하지 않는 한 React의 CSS 범위 지정은 CSS-in-JS 방식으로 해결합니다. (e.g. [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous), 그리고 [emotion](https://github.com/emotion-js/emotion)) 이는 일반적인 CSS 작성 프로세스와는 다른 새로운 컴포넌트 지향 스타일링 패러다임을 도입합니다. 또한 빌드타임에 단일 스타일시트에 CSS를 추출할 수 있는 지원이 있지만 스타일이 제대로 작동하려면 런타임이 번들에 포함되어야하는 것이 일반적입니다. 스타일을 작성하는 동안 JavaScript의 역동적인 기능을 사용할 수 있지만 번들 크기 및 런타임 비용은 종종 높아집니다.
+
+CSS-in-JS의 팬이라면 Vue를 지원하는 라이브러리(예 [styled-components-vue](https://github.com/styled-components/vue-styled-components)와 [vue-emotion](https://github.com/egoist/vue-emotion)). React와 Vue의 가장 큰 차이점은 Vue의 기본 스타일 지정 방법은 [단일 파일 컴포넌트](single-file-components.html)에서 보다 익숙한 `style` 태그를 사용한다는 것 입니다.
 
 반면에 Vue는 [단일 파일 컴포넌트](single-file-components.html) 내에서 CSS에 대한 모든 액세스 권한을 제공합니다.
 
@@ -163,9 +164,7 @@ On a higher level, we can divide components into two categories: presentational 
 
 옵션인 `scoped` 속성은 엘리먼트에 유일한 속성(예 : `data-v-21e5b78`)을 추가하고 `.list-container:hover`를 `.list-container[data-v-21e5b78]:hover`로 컴파일 합니다.
 
-이미 CSS 모듈에 익숙하다면, Vue 단일 파일 컴포넌트에도 [1급 클래스](http://vue-loader.vuejs.org/en/features/css-modules.html)가 있습니다.
-
-마지막으로, HTML과 마찬가지로 원하는 프리프로세서 (또는 포스트프로세서)를 사용하여 CSS를 작성하여 해당 생태계의 기존 라이브러리를 활용할 수 있습니다. 또한 빌드 프로세스 동안 색상 조작과 같은 디자인 중심의 작업을 수행 할 수 있습니다. 특수한 JavaScript 라이브러리를 가져 오지 않으면 빌드 크기와 애플리케이션의 복잡성이 증가합니다.
+마지막으로 Vue의 단일 파일 컴포넌트의 스타일은 매우 유연합니다. [vue-loader](https://github.com/vuejs/vue-loader)를 통해 전처리기, 포스트 프로세서 및 [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html)와의 긴밀한 통합을 할 수 있습니다.  모든 스타일은 `<style>` 엘리먼트 안에 있습니다.
 
 ### 규모
 
@@ -190,7 +189,7 @@ React는 가파른 학습 곡선으로 유명합니다. 실제로 시작하기 �
 Vue는 React만큼 확장성이 뛰어나지 않지만, jQuery처럼 복잡한 설정 없이 스크립트 태그를 붙이는 것으로 Vue를 사용할 수 있습니다.
 
 ``` html
-<script src="https://unpkg.com/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
 Vue 코드를 작성하고 성능 문제에 대해 걱정할 필요없이 걱정하지 않고 최소화 버전을 배포 버전에 제공 할 수 있습니다.
@@ -203,7 +202,9 @@ ReactNative를 사용하면 같은 React 컴포넌트 모델을 사용하여 iOS
 
 현재 Weex는 아직 개발 중이며 ReactNative만큼 성숙하고 전투적인 테스트를 거치지는 않았지만 개발은 세계 최대의 전자 상거래 비즈니스의 생산 요구에 의해 주도되고 있고 Vue 팀은 적극적으로 협력 할 것입니다. Weex 팀과 함께 Vue 개발자를위한 원활한 경험을 보장합니다.
 
-### MobX과 함께
+[NativeScript](https://www.nativescript.org/)는 또 다른 대안입니다. [커뮤니티 주도 플러그인](https://github.com/rigor789/nativescript-vue)이 개발 중입니다.
+
+### MobX
 
 MobX는 React 커뮤니티에서 꽤 유명해졌고 실제로 Vue와 거의 같은 반응형 시스템을 사용합니다. 제한된 범위 내에서 React + MobX 워크플로우는 좀 더 장황한 Vue로 생각할 수 있습니다. 따라서 이 조합을 사용하고 있고 그것을 즐기고 있다면 Vue로 넘어오는 것이 아마도 다음 단계일 것입니다.
 
@@ -217,7 +218,7 @@ Vue는 API와 디자인면에서 Angular 1보다 훨씬 간단합니다. 평범�
 
 ### 유연성과 모듈성
 
-Angular 1은 애플리케이션을 어떻게 구성해야 하는지에 대한 강요가 강하고 Vue는 더욱 유연하고 모듈방식의 솔루션입니다. 이로 인해 Vue는 다양한 프로젝트에보다 적합하게 적용될 수 있으며, 때로는 코딩을 시작하기 위해 의사 결정을 내리는데 유용 할 때가 있습니다.
+Angular는 애플리케이션을 어떻게 구성해야 하는지에 대한 강요가 강하고 Vue는 더욱 유연하고 모듈방식의 솔루션입니다. 이로 인해 Vue는 다양한 프로젝트에보다 적합하게 적용될 수 있으며, 때로는 코딩을 시작하기 위해 의사 결정을 내리는데 유용 할 때가 있습니다.
 
 그렇기 때문에 핫 모듈 리로딩, 린트 (linting), CSS 추출과 같은 고급 기능에 대한 액세스 권한을 부여하는 동시에 빠르게 설정할 수있는 [Webpack 템플릿](https://github.com/vuejs-templates/webpack)을 제공합니다.
 
@@ -243,7 +244,9 @@ Angular 2는 완전히 새로운 것이기 때문에 별도의 섹션을 만들�
 
 ### TypeScript
 
-Angular 1은 소규모 애플리케이션에 사용할 수 있지만 Angular 2는 대규모 애플리케이션을 쉽게 사용할 수 있도록 초점을 이동했습니다. 이 중 일부는 TypeScript를 필요로 하므로 Java 및 C#과 같은 언어의 타입 안전성을 원하는 개발자에게 매우 유용합니다.
+Angular는 TypeScript가 필수적입니다. 문서 또한 TypeScript 기반입니다. TypeScript를 사용하면 Java와 C#을 다루던 사용자에게 생산성을 올려주고 정적 타입 체크 등의 많은 이익이 있습니다. 그러나 모든 사람들이 TypeScript를 사용하려고 하지는 않습니다. 
+
+많은 소규모 사례에서 TypeScript를 사용하면 생산성 향상보다 더 많은 오버헤드가 발생할 수 있습니다. 이 경우 TypeScript 없이 Angular를 사용하는 것이 어려울 수 있기 때문에 Vue를 사용하는 것이 좋습니다.
 
 Vue는 [엔터프라이즈 환경](https://github.com/vuejs/awesome-vue#enterprise-usage)에도 매우 적합하며 [공식 Typings](https://github.com/vuejs/vue/tree/dev/types) 및 [공식 decorator](https://github.com/vuejs/vue-class-component)를 통해 TypeScript와 함께 사용할 수도 있습니다.
 
@@ -251,7 +254,7 @@ Vue는 [엔터프라이즈 환경](https://github.com/vuejs/awesome-vue#enterpri
 
 성능면에서 볼 때 두 프레임워크는 모두 매우 빠르며 실제 사용 사례의 데이터가 충분하지는 않아 결론을 내지 못합니다. 그러나 일부 숫자를 확인하려는 경우 Vue 2.0은 이 [써드파티 벤치 마크](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)에 따라 Angular 2보다 앞서있는 것으로 보입니다.
 
-규모의 측면에서 Angular 2는 오프라인 컴파일 및 트리셰이킹으로 인해 상당히 작아질 수 있지만 컴파일러가 포함된 완전한 기능을 하는 Vue 2.0이 더 작습니다. (Vue 2.0은 23kb, Angular 2 50kb). 사용하지 않는 기능에 대한 코드를 제거하는 트리셰이킹으로 인해 Angular 2 앱의 크기가 작다는 점에 유의하십시오. 프레임워크에서 더 많은 기능을 가져 와서 사용할 때 결국 실제 크기로 다시 확장됩니다.
+최신 AOT 컴파일과 트리셰이킹을 포함한 Angular는 크기가 매우 작어졌습니다. 그럼에도 불구하고 모든 기능을 갖춘 Vue 2 프로젝트(~30kb gzipped)는 `angular-cli`(~130kb gzipped)보다 훨씬 작습니다.
 
 ### 유연성
 
@@ -261,7 +264,7 @@ Vue는 Angular 2보다 훨씬 덜 강요적이며, 다양한 빌드 시스템에
 
 Vue를 시작하려면 HTML 및 ES5 JavaScript (즉, 일반 자바 스크립트)에 익숙해야합니다. 이러한 기본 기술을 사용하면 [안내서][the guide](./)를 읽는 하루 만에 작은 애플리케이션을 작성할 수 있습니다.
 
-Angular 2의 학습 곡선은 TypeScript가 없어도 훨씬 가파릅니다. [빠른 시작 가이드](https://angular.io/docs/js/latest/quickstart.html)는 Hello World에 대해 설명하기 위해 ES2015 JavaScript, 18 가지 종속성이있는 NPM, 4 가지 파일 및 3,000 단어를 사용하는 앱으로 시작됩니다. [Vue의 Hello World](https://jsfiddle.net/chrisvfritz/50wL7mdz/)가 조금 더 간단하다고해도 과언이 아닐 것입니다. 아마 그 때문에 우리는 가이드의 전체 페이지를 소모할 필요조차 없습니다.
+Angular의 학습곡선은 훨씬 가파릅니다. 프레임워크 API는 방대하며 생산성이 올라가기 전에 매우 많은 것들을 알아야합니다. Angular의 복잡성은 대규모 앱을 목표로 합니다. 하지만 경험이 부족한 개발자가 선택하기에 훨씬 어렵습니다.
 
 ## Ember
 
