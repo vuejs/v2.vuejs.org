@@ -1,67 +1,16 @@
 ---
 title: 반응형에 대해 깊이 알아보기
 type: guide
-order: -1
+order: 601
 ---
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! NOTE FOR TRANSLATORS !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! Don't bother translating changes to this page yet, !!
-!! as it's not visible on the frontend and will     !!
-!! eventually be adapted into a page - or perhaps   !!
-!! a completely separate guide - for potential      !!
-!! contributors to Vue.                             !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
+Now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
 
 ## 변경 내용을 추적하는 방법
 
-When Vue initializes, it walks through all of its data properties and proxies them with getters and setters. That means:
+When you pass a plain JavaScript object to a Vue instance as its `data` option, Vue will walk through all of its properties and convert them to getter/setters using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue doesn't support IE8 and below.
 
-``` js
-data: {
-  greeting: 'Hi'
-}
-```
-
-``` js
-Object.defineProperty(vm.$data, 'greeting', {
-  get () {
-    // ...
-    // Notify that getter was called,
-    // for dependency tracking
-    // ...
-    return vm._data.greeting
-  },
-  set (newValue) {
-    // ...
-    // Notify that setter was called,
-    // for change notification
-    // ...
-    vm._data.greeting = newValue
-  }
-})
-```
-
-These proxies are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format these proxied properties differently. That means when you log them:
-
-``` js
-var vm = new Vue({
-  data: {
-    greeting: 'Hi'
-  }
-})
-
-console.log(vm.$data)
-```
-
-What you see may be more difficult to browse:
-
-![](/images/logged-proxied-data.png)
-
-Fortunately, installing the [vue-devtools](https://github.com/vuejs/vue-devtools) will provide you a browsable tree of components, where you can inspect their data in a more user-friendly interface.
+The getter/setters are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format getter/setters differently when converted data objects are logged, so you may want to install [vue-devtools](https://github.com/vuejs/vue-devtools) for a more inspection-friendly interface.
 
 getter / setter 는 사용자에게는 보이지 않으나 속성에 액세스 하거나 수정할 때 Vue가 종속성 추적 및 변경 알림을 수행할 수 있습니다. 한가지 주의 사항은 변환된 데이터 객체가 기록될 때 브라우저가 getter / setter 형식을 다르게 처리하므로 친숙한 인터페이스를 사용하기 위해  [vue-devtools](https://github.com/vuejs/vue-devtools)를 설치하는 것이 좋습니다.
 
@@ -91,7 +40,11 @@ Vue는 이미 만들어진 인스턴스에 새로운 루트 수준의 반응 속
 Vue.set(vm.someObject, 'b', 2)
 ```
 
+<<<<<<< HEAD:src/v2/guide/reactivity.md.hidden
 `Vm.$set` 인스턴스 메소드를 사용할 수도 있습니다. 이 메소드는 전역 `Vue.set` 에 대한 별칭입니다.
+=======
+You can also use the `vm.$set` instance method, which is an alias to the global `Vue.set`:
+>>>>>>> upstream/master:src/v2/guide/reactivity.md
 
 ``` js
 this.$set(this.someObject, 'b', 2)
@@ -108,7 +61,11 @@ this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 
 ## 반응형 속성 선언하기
 
+<<<<<<< HEAD:src/v2/guide/reactivity.md.hidden
 Vue는 루트 수준의 반응성 속성을 동적으로 추가 할 수 없으므로 모든 루트 수준의 반응성 데이터 속성을 빈 값으로라도 초기에 선언하여 Vue 인스턴스를 초기화해야합니다.
+=======
+Since Vue doesn't allow dynamically adding root-level reactive properties, you have to initialize Vue instances by declaring all root-level reactive data properties upfront, even with an empty value:
+>>>>>>> upstream/master:src/v2/guide/reactivity.md
 
 ``` js
 var vm = new Vue({
