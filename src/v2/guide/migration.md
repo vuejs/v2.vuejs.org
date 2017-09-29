@@ -1,7 +1,7 @@
 ---
 title: Vue 1.x에서 마이그레이션
 type: guide
-order: 601
+order: 701
 ---
 
 ## FAQ
@@ -715,7 +715,7 @@ You can use:
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
-는 단순히
+이 것은 
 
 ```html
 <p v-my-directive="'foo bar baz'"></p>
