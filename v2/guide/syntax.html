@@ -99,6 +99,7 @@
 <li class="nav-dropdown-container ecosystem">
   <a class="nav-link">Ecosystem</a><span class="arrow"></span>
   <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/roadmap" class="nav-link" target="_blank">Roadmap</a></li>
     <li><h4>Help</h4></li>
     <li><ul>
       <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank">Forum</a></li>
@@ -184,6 +185,7 @@
 <li class="nav-dropdown-container ecosystem">
   <a class="nav-link">Ecosystem</a><span class="arrow"></span>
   <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/roadmap" class="nav-link" target="_blank">Roadmap</a></li>
     <li><h4>Help</h4></li>
     <li><ul>
       <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank">Forum</a></li>
@@ -854,7 +856,7 @@
 <p>Here the argument is the event name to listen to. We will talk about event handling in more detail too.</p>
 <h3 id="Modifiers"><a href="#Modifiers" class="headerlink" title="Modifiers"></a>Modifiers</h3><p>Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the <code>.prevent</code> modifier tells the <code>v-on</code> directive to call <code>event.preventDefault()</code> on the triggered event:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>We will see more use of modifiers later when we take a more thorough look at <code>v-on</code> and <code>v-model</code>.</p>
+<p>You’ll see other examples of modifiers later, <a href="https://vuejs.org/v2/guide/events.html#Event-Modifiers">for <code>v-on</code></a> and <a href="https://vuejs.org/v2/guide/forms.html#Modifiers">for <code>v-model</code></a>, when we explore those features.</p>
 <h2 id="Shorthands"><a href="#Shorthands" class="headerlink" title="Shorthands"></a>Shorthands</h2><p>The <code>v-</code> prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the <code>v-</code> prefix becomes less important when you are building an <a href="https://en.wikipedia.org/wiki/Single-page_application" target="_blank" rel="external">SPA</a> where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, <code>v-bind</code> and <code>v-on</code>:</p>
 <h3 id="v-bind-Shorthand"><a href="#v-bind-Shorthand" class="headerlink" title="v-bind Shorthand"></a><code>v-bind</code> Shorthand</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- full syntax --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- shorthand --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="v-on-Shorthand"><a href="#v-on-Shorthand" class="headerlink" title="v-on Shorthand"></a><code>v-on</code> Shorthand</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- full syntax --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click</span>=<span class="string">"doSomething"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- shorthand --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> @<span class="attr">click</span>=<span class="string">"doSomething"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
