@@ -256,7 +256,7 @@ type: api
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-  > Only works with Array + index in 2.2.0+.
+  > Only in 2.2.0+: Also works with Array + index.
 
 - **사용방법:**
 
@@ -427,6 +427,8 @@ if (version === 2) {
 
   `_` 또는 `$`로 시작하는 속성은 Vue의 내부 속성 및 API 메소드와 충돌할 수 있으므로 Vue 인스턴스에서 **프록시 되지 않습니다**. `vm.$data._property`로 접근 해야 합니다.
 
+  **컴포넌트**를 정의할 때 `data`는 데이터를 반환하는 함수로 선언해야합니다. `data`를 위해 일반 객체를 사용하면 생성된 모든 인스턴스에서 동일한 객체가 **참조로 공유**됩니다. `data` 함수를 제공함으로써 새로운 인스턴스가 생성될 때마다 호출하여 초기 데이터의 새 복사본을 반환할 수 있습니다.
+
   필요한 경우, `vm.$data`를 `JSON.parse(JSON.stringify(...))`를 통해 전달함으로써 원본 객체의 복사본을 얻을 수 있습니다.
 
 - **예제:**
@@ -534,7 +536,7 @@ if (version === 2) {
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get만 가능합니다. 함수가 필요합니다.
+      // get만 가능합니다.
       aDouble: function () {
         return this.a * 2
       },
