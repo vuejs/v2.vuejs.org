@@ -512,7 +512,7 @@ methods: {
 
 ## `v-for` with a Range
 
-`v-for` can also take an integer. In this case it will repeat the template that many times.
+`v-for` 는 숫자를 사용할 수 있습니다. 이 경우 템플릿을 여러번 반복합니다.
 
 ``` html
 <div>
@@ -520,7 +520,7 @@ methods: {
 </div>
 ```
 
-Result:
+결과:
 
 {% raw %}
 <div id="range" class="demo">
@@ -533,7 +533,7 @@ Result:
 
 ## `v-for` on a `<template>`
 
-Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+템플릿 `v-if`와 마찬가지로, `<template>`태그를 사용해 여러 엘리먼트의 블럭을 렌더링 할 수 있습니다.
 
 ``` html
 <ul>
@@ -546,7 +546,7 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 
 ## `v-for` with `v-if`
 
-When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
+동일한 노드에 두가지 모두 있다면, `v-for`가 `v-if`보다 높은 우선순위를 갖습니다. 즉, `v-if`는 루프가 반복될 때마다 실행됩니다. 이는 _일부_ 항목만 렌더링 하려는 경우 유용합니다.
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
@@ -554,9 +554,9 @@ When they exist on the same node, `v-for` has a higher priority than `v-if`. Tha
 </li>
 ```
 
-The above only renders the todos that are not complete.
+위의 경우 완료되지 않은 할일만 렌더링합니다.
 
-If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+위 방법 대신 실행을 조건부로 하는 것이 목적이라면 래퍼 엘리먼트(또는 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt))을 사용하세요.
 
 ``` html
 <ul v-if="todos.length">
@@ -567,19 +567,19 @@ If instead, your intent is to conditionally skip execution of the loop, you can 
 <p v-else>No todos left!</p>
 ```
 
-## `v-for` with a Component
+## `v-for` 와 컴포넌트
 
-> This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
+> 이 섹션에서는 [컴포넌트](components.html)를 안다고 가정합니다. 부담없이 건너뛰어도 됩니다.
 
-You can directly use `v-for` on a custom component, like any normal element:
+`v-for`를 사용자 정의 컴포넌트에 직접 사용할 수 있습니다.
 
 ``` html
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
+> 2.2.0 이상에서 `v-for`는 [`key`](list.html#key) 가 필수 입니다.
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+그러나 컴포넌트에는 자체 범위가 분리되어있기 때문에 컴포넌트에 데이터를 자동으로 전달하지는 않습니다. 반복할 데이터를 컴포넌트로 전달하려면 props도 사용해야합니다.
 
 ``` html
 <my-component
@@ -590,9 +590,9 @@ However, this won't automatically pass any data to the component, because compon
 ></my-component>
 ```
 
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+컴포넌트에 `item`을 자동으로 주입하지 않는 이유는 컴포넌트가 `v-for`의 작동 방식과 밀접하게 결합되기 때문입니다. 데이터의 출처를 명확히 하면 다른 상황에서 컴포넌트를 재사용할 수 있습니다.
 
-Here's a complete example of a simple todo list:
+간단한 할일 목록 전체 예제 입니다.
 
 ``` html
 <div id="todo-list-example">
