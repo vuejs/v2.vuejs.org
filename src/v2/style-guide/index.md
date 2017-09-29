@@ -1,8 +1,8 @@
 ---
-title: Style Guide
-type: guide
-order: 402
+type: style-guide
 ---
+
+# Style Guide
 
 This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
 
@@ -22,7 +22,7 @@ These rules help prevent errors, so learn and abide by them at all costs. Except
 
 ### Priority B: Strongly Recommended
 
-These rules have been found to vastly improve readability in most projects. If you violate them, your code will still run, but other developers may give you the evil eye [at conferences](https://conf.vuejs.org/).
+These rules have been found to vastly improve readability in most projects. If you violate them, your code will still run, but other developers may give you the evil eye [at conferences](https://github.com/vuejs/roadmap#events).
 
 [![Fry from Futurama glaring](https://i.imgur.com/PcOnLxn.jpg)](http://futurama.wikia.com/wiki/Template:FOX_Image)
 
