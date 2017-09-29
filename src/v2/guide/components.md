@@ -219,8 +219,8 @@ new Vue({
 
 Vue.js에서 부모-자식 컴포넌트 관계는 **props는 아래로, events 위로** 라고 요약 할 수 있습니다. 부모는 **props**를 통해 자식에게 데이터를 전달하고 자식은 **events**를 통해 부모에게 메시지를 보냅니다. 어떻게 작동하는지 보겠습니다.
 
-<p style="text-align: center">
-  <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
+<p style="text-align: center;">
+  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
 </p>
 
 ## Props
@@ -327,6 +327,30 @@ new Vue({
 </script>
 {% endraw %}
 
+객체의 모든 속성을 props로 전달하려면, 인자없이 `v-bind`를 쓸 수 있습니다. (`v-bind:prop-name` 대신 `v-bind`). 예를 들어 `todo` 객체가 있다면,
+
+``` js
+todo: {
+  text: 'Learn Vue',
+  isComplete: false
+}
+```
+
+Then:
+
+``` html
+<todo-item v-bind="todo"></todo-item>
+```
+
+Will be equivalent to:
+
+``` html
+<todo-item
+  v-bind:text="todo.text"
+  v-bind:is-complete="todo.isComplete"
+></todo-item>
+```
+
 ### 리터럴 vs. 동적
 
 초보자가 흔히 범하는 실수는 리터럴 구문을 사용하여 숫자를 전달하려고 시도하는 것입니다.
@@ -346,8 +370,6 @@ new Vue({
 ### 단방향 데이터 흐름
 
 모든 props는 하위 속성과 상위 속성 사이의 **단방향** 바인딩을 형성합니다. 상위 속성이 업데이트되면 하위로 흐르게 되지만 그 반대는 안됩니다. 이렇게하면 하위 컴포넌트가 실수로 부모의 상태를 변경하여 앱의 데이터 흐름을 추론하기 더 어렵게 만드는 것을 **방지할 수** 있습니다.
-
-또한 상위 컴포넌트가 업데이트 될 때마다 하위 컴포넌트의 모든 props가 최신 값으로 갱신됩니다. 즉, 하위 컴포넌트 내부에서 prop을 변형하려고 시도하면 안됩니다. 만약 그럴 경우, Vue가 콘솔에서 경고합니다.
 
 일반적으로 prop을 변경시키고 싶은 유혹을 불러 일으킬 수있는 두 가지 경우가 있습니다.
 
