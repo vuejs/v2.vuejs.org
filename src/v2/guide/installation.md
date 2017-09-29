@@ -2,11 +2,11 @@
 title: 설치방법
 type: guide
 order: 1
-vue_version: 2.4.0
-dev_size: "257.91"
-min_size: "79.71"
-gz_size: "28.96"
-ro_gz_size: "20.18"
+vue_version: 2.4.4
+dev_size: "262.63"
+min_size: "80.86"
+gz_size: "29.40"
+ro_gz_size: "20.70"
 ---
 
 ### 호환성 정보
@@ -90,7 +90,6 @@ CLI는 Node.js 및 관련 빌드 도구에 대한 사전 지식을 필요로 합
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS 빌드는 [browserify](http://browserify.org/) 또는 [webpack 1](https://webpack.github.io)와 같은 이전 번들과 함께 사용하기 위한 것입니다. 이러한 번들(`pkg.main`)의 기본 파일은 런타임 전용 CommonJS 빌드(`vue.runtime.common.js`)입니다.
 
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: ES 모듈 빌드는 [webpack 2](https://webpack.js.org) 또는 [rollup](http://rollupjs.org/)과 같은 최신 번들과 함께 사용하기 위한 것입니다. 이러한 번들(`pkg.module`)의 기본 파일은 런타임 전용 ES 모듈 빌드(`vue.runtime.esm.js`)입니다.
-
 
 ### Runtime + Compiler vs. Runtime-only
 
