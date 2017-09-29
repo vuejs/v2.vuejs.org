@@ -48,30 +48,48 @@
 
 <div id="sponsors">
   <div class="inner">
-    <h3>우리의 스폰서입니다!</h3>
     <%- partial('partials/sponsors') %>
-    <br>
-    <a class="become-sponsor button white" href="<%- url_for("/support-vuejs/") %>">후원하기</a>
   </div>
 </div>
 
 <div id="footer">
   <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
-    <img src="/images/shuttleworth.png" style="width:200px">
+    <img src="/images/shuttleworth.png" style="width: 200px;">
   </a>
   <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
 
 <script>
-var topScrolled = false
-window.addEventListener('scroll', function () {
-  if (window.pageYOffset > 165 && !topScrolled) {
-    topScrolled = true
-    document.getElementById('mobile-bar').classList.remove('top')
-  } else if (window.pageYOffset <= 165 && topScrolled) {
-    topScrolled = false
-    document.getElementById('mobile-bar').classList.add('top')
-  }
-})
+(function () {
+  var topScrolled = false
+  var sponsors = document.getElementById('sponsors')
+  var sponsorTop = sponsors.offsetTop
+  var sponsorActive = false
+
+  window.addEventListener('resize', function () {
+    sponsorTop = sponsors.offsetTop
+  })
+
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 165 && !topScrolled) {
+      topScrolled = true
+      document.getElementById('mobile-bar').classList.remove('top')
+    } else if (window.pageYOffset <= 165 && topScrolled) {
+      topScrolled = false
+      document.getElementById('mobile-bar').classList.add('top')
+    }
+    if (window.pageYOffset > sponsorTop - 100) {
+      if (!sponsorActive) {
+        sponsorActive = true
+        sponsors.classList.add('active')
+      }
+    } else {
+      if (sponsorActive) {
+        sponsorActive = false
+        sponsors.classList.remove('active')
+      }
+    }
+  })
+})()
 </script>
