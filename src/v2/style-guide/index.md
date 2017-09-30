@@ -112,7 +112,7 @@ data: {
 
 We might want to reuse this component, allowing users to maintain multiple lists (e.g. for shopping, wishlists, daily chores, etc). There's a problem though. Since every instance of the component references the same data object, changing the title of one list will also change the title of every other list. The same is true for adding/editing/deleting a todo.
 
-Instead, we want each component instance to only manage its own data. For that to happen,each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
+Instead, we want each component instance to only manage its own data. For that to happen, each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
 
 ``` js
 data: function () {
@@ -287,7 +287,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 <ul>
   <li v-for="todo in todos">
     {{ todo.text }}
-  </td>
+  </li>
 </ul>
 ```
 {% raw %}</div>{% endraw %}
@@ -302,7 +302,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
     :key="todo.id"
   >
     {{ todo.text }}
-  </td>
+  </li>
 </ul>
 ```
 {% raw %}</div>{% endraw %}
@@ -582,16 +582,13 @@ components/
 </summary>
 {% endraw %}
 
-These components lay the foundation for consistent styling and behavior in your application. They can only contain:
+These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
 
 - HTML elements,
 - other `Base`-prefixed components, and
 - 3rd-party UI components.
 
-They'll never contain:
-
-- global state (e.g. from a Vuex store)
--
+But they'll **never** contain global state (e.g. from a Vuex store).
 
 Their names often include the name of an element they wrap (e.g. `BaseButton`, `BaseTable`), unless no element exists for their specific purpose (e.g. `BaseIcon`). If you build similar components for a more specific context, they will almost always consume these components (e.g. `BaseButton` may be used in `ButtonSubmit`).
 
