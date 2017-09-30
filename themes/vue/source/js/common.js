@@ -165,11 +165,15 @@
 
     // build sidebar
     var currentPageAnchor = sidebar.querySelector('.sidebar-link.current')
-    var isAPI = document.querySelector('.content').classList.contains('api')
-    if (currentPageAnchor || isAPI) {
+    var contentClasses = document.querySelector('.content').classList
+    var isAPIOrStyleGuide = (
+      contentClasses.contains('api') ||
+      contentClasses.contains('style-guide')
+    )
+    if (currentPageAnchor || isAPIOrStyleGuide) {
       var allHeaders = []
       var sectionContainer
-      if (isAPI) {
+      if (isAPIOrStyleGuide) {
         sectionContainer = document.querySelector('.menu-root')
       } else {
         sectionContainer = document.createElement('ul')
@@ -184,7 +188,7 @@
           allHeaders.push(h)
           allHeaders.push.apply(allHeaders, h3s)
           if (h3s.length) {
-            sectionContainer.appendChild(makeSubLinks(h3s, isAPI))
+            sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
           }
         })
       } else {
