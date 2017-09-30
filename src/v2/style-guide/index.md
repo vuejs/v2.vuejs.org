@@ -2,7 +2,7 @@
 type: style-guide
 ---
 
-# Style Guide
+# Style Guide <sup class="beta">beta</sup>
 
 This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
 
@@ -28,7 +28,7 @@ These rules have been found to vastly improve readability in most projects. If y
 
 ### Priority C: Recommended
 
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and then suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
 
 1. train your brain to more easily parse most of the community code you encounter
 2. be able to copy and paste most community code examples without modification
