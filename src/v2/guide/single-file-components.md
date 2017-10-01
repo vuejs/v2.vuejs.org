@@ -25,7 +25,7 @@ Now we get:
 
 - [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [CommonJS modules](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
-- [Component-scoped CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+- [Component-scoped CSS](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
 As promised, we can also use preprocessors such as Pug, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
