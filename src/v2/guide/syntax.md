@@ -116,7 +116,7 @@ Modifiers are special postfixes denoted by a dot, which indicate that a directiv
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-You'll see other examples of modifiers later, [for `v-on`](https://vuejs.org/v2/guide/events.html#Event-Modifiers) and [for `v-model`](https://vuejs.org/v2/guide/forms.html#Modifiers), when we explore those features.
+You'll see other examples of modifiers later, [for `v-on`](events.html#Event-Modifiers) and [for `v-model`](forms.html#Modifiers), when we explore those features.
 
 ## Shorthands
 
