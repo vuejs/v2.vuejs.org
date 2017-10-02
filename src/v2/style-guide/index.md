@@ -973,7 +973,7 @@ export default {
 
 
 
-### Abbreviations in component names <sup data-p="b">strongly recommended</sup>
+### Full-word component names <sup data-p="b">strongly recommended</sup>
 
 **Component names should prefer full words over abbreviations.**
 
