@@ -849,7 +849,13 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 
 **Component names should always be PascalCase in [single-file components](single-file-components.html) and string templates - but kebab-case in DOM templates.**
 
-PascalCase in templates improves readability, because it's easier to tell at a glance what's an element and what's a component. Unfortunately, PascalCase is invalid for a custom element in HTML, so a DOM template must still use kebab-case.
+PascalCase has a few advantages over kebab-case:
+
+- Editors can autocomplete component names in templates, because PascalCase is also used in JavaScript.
+- `<MyComponent>` is more visually distinct from a single-word HTML element than `<my-component>`, because there are two character differences (the two capitals), rather than just one (a hyphen).
+- If you use any non-Vue custom elements in your templates, such as a web component, PascalCase ensures that your Vue components remain distinctly visible.
+
+Unfortunately, due to HTML's case insensitivity, DOM templates must still use kebab-case.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
