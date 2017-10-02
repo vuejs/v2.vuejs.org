@@ -1524,14 +1524,6 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 </div>
 ```
 
-``` html
-<p v-if="error">
-  Error: {{ error }}
-</p>
-<div v-else>
-  {{ results }}
-</div>
-```
 {% raw %}</div>{% endraw %}
 
 
