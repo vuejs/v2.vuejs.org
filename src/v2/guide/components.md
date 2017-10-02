@@ -1312,7 +1312,7 @@ In our case, let's make that point the `tree-folder` component. We know the chil
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
 }
 ```
 
