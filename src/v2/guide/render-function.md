@@ -118,7 +118,7 @@ render: function (createElement) {
 }
 ```
 
-E em ambos os casos, Vue automaticamente mantém a página atualização, mesmo se `blogTitle` mudar.
+E em ambos os casos, Vue automaticamente mantém a página atualizada, mesmo se `blogTitle` mudar.
 
 ### DOM Virtual
 
