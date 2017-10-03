@@ -1,66 +1,21 @@
-# vuejs.org
+# vi.vuejs.org
 
-This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
+Đây là phiên bản tiếng Việt chính thức của [trang chủ Vue.js](https://vuejs.org), có địa chỉ web là [https://vi.vuejs.org](https://vi.vuejs.org). Cũng như bản gốc tiếng Anh, bản dịch này được viết bằng [hexo](http://hexo.io/). Nội dung của trang được viết với định dạng [Markdown](https://guides.github.com/features/mastering-markdown/) và chứa trong thư mục `src`. Mọi đóng góp dù lớn hay nhỏ cũng đều được hoan nghênh.
 
-## Developing
+Để tham gia phát triển phiên bản này, các bạn chỉ cần làm theo các bước sau:
 
-Start a dev server at `localhost:4000`:
+1. Fork repo này
+1. Cài đặt hexo: `npm install -g hexo-cli`
+1. Cài đặt tất cả các gói phụ thuộc (dependencies): `npm i` hoặc `yarn`
+1. Mở server dev ở [`localhost:4000`](http://localhost:4000): `hexo server`
 
-```
-$ npm install -g hexo-cli
-$ npm install
-$ hexo server
-```
+Mọi chỉnh sửa trong thư mục `src` sẽ reload server hexo để bạn có thể kiểm tra trực tiếp mà không cần refresh trình duyệt.
 
-## On Translations
+## Thành viên
 
-Translation for this documentation project are currently maintained in separate repositories forked from this original one.
+Phiên bản tiếng Việt được phụ trách phát triển bởi:
 
-### French
-
-French translation is maintained by Vuejs-FR.
-
-* Translation Repo — [/vuejs-fr/vuejs.org](https://github.com/vuejs-fr/vuejs.org)
-
-### Italian
-
-* Translation Repo - [/vuejs/it.vuejs.org](https://github.com/vuejs/it.vuejs.org)
-
-### Japanese
-
-Japanese translation is maintained by [Vue.js japan user group](https://github.com/vuejs-jp)
-
-* Translation Repo - [/vuejs/jp.vuejs.org](https://github.com/vuejs/jp.vuejs.org)
-* Primary maintainer - [kazupon](https://github.com/kazupon)
-
-### Korean
-
-Korean translation is maintained by [Vue.js Korean User group](https://github.com/vuejs-kr).
-
-* Translation Repo - [/vuejs-kr/kr.vuejs.org](https://github.com/vuejs-kr/kr.vuejs.org)
-* Primary maintainer - [ChangJoo Park](https://github.com/ChangJoo-Park)
-
-### Mandarin
-
-* Translation Repo - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
-
-### Português-Br
-
-Português-Br translation is maintained by [Vuejs-Br](https://github.com/vuejs-br).
-
-* Translation Repo - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
-
-### Russian
-
-Russian translation is maintained by Translation Gang.
-
-* Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
-* Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
-
-### Want to help with the translation?
-
-If you feel okay with translating sorta alone, you can fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and go for it.
-
-If you are more of a team player, Translation Gang might be for you. Let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
-
-And thank you in advance ;)
+* [Phan An](https://github.com/phanan)
+* [Nguyễn Văn Được](https://github.com/nguyenvanduocit)
+* [Nguyễn Tất Thiện](https://github.com/tatthien)
+* và [các thành viên khác](https://github.com/vuejs-vn/vuejs.org/graphs/contributors?from=2017-09-03)
