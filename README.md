@@ -9,7 +9,7 @@
 1. Cài đặt tất cả các gói phụ thuộc (dependencies): `npm i` hoặc `yarn`
 1. Mở server dev ở [`localhost:4000`](http://localhost:4000): `hexo server`
 
-Mọi chỉnh sửa trong thư mục `src` sẽ reload server hexo để bạn có thể kiểm tra trực tiếp mà không cần refresh trình duyệt.
+Mọi chỉnh sửa trong thư mục `src` sẽ khởi động lại server hexo để bạn có thể kiểm tra trực tiếp mà không cần refresh trình duyệt.
 
 ## Thành viên
 
