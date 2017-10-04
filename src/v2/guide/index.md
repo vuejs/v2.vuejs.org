@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Giới thiệu
 type: guide
 order: 2
 ---
