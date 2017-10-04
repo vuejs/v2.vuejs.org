@@ -4,91 +4,21 @@ Este é o repositório oficial da tradução em português brasileiro do _site_ 
 
 ## Situação da tradução
 
-A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido, mas alguns conteúdos carecem de revisão após as atualizações mais recentes do Vue. O conteúdo da API ainda possui partes em inglês, carecendo de colaboração para tradução. A situação de cada página:
-
-**Website**
-- [x] Tela Principal (Tradução: @danielschmitz, @ErickPetru. Revisão: @ErickPetru)
-- [x] Menus e barras (Tradução: @ErickPetru. Revisão: @ErickPetru)
-
-**Guide**
-- [X] Installation (Tradução: @danielschmitz, @ErickPetru. Revisão: @ErickPetru)
-- [X] Introduction (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [X] The Vue Instance (Tradução: @danielschmitz. Revisão: @ErickPetru)
-- [X] Template Syntax (Tradução: @vitorarjol. Revisão: @ErickPetru)
-- [X] Computed Properties and Watchers (Tradução: @danielschmitz. Revisão: @ErickPetru)
-- [X] Class and Style Bindings (Tradução: @gidenilson. Revisão: @ErickPetru)
-- [X] Conditional Rendering (Tradução: @gidenilson. Revisão: @ErickPetru)
-- [X] List Rendering (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [X] Event Handling (Tradução: @gidenilson. Revisão: @ErickPetru)
-- [X] Form Input Bindings(Tradução: @gidenilson. Revisão: @ErickPetru)
-- [X] Components (Tradução: @thiagorossener, Revisão: @ErickPetru)
-- [ ] Enter/Leave & List Transitions (Tradução: @jbruni, @NicholasPedroso. Revisão: @anteriovieira)
-- [ ] State Transitions (Tradução: @anteriovieira)
-- [X] Mixins (Tradução: @jbruni. Revisão: @ErickPetru)
-- [X] Custom Directives (Tradução: @gidenilson. Revisão: @ErickPetru)
-- [X] Render Functions & JSX (Tradução: @jbruni. Revisão: @ErickPetru)
-- [x] Plugins (Tradução: @jbruni. Revisão: @ErickPetru)
-- [x] Filters (Tradução: @ErickPetru)
-- [X] Single File Components (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [X] Production Deployment Tips (Tradução: @vitorarjol. Revisão: @ErickPetru)
-- [X] Routing (Tradução: @natanaelphp. Revisão: @ErickPetru)
-- [ ] State Management (Tradução: @ErickPetru. Revisão: @anteriovieira)
-- [ ] Unit Testing (Tradução: @capaci. Revisão: @anteriovieira)
-- [X] Server-Side Rendering (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [ ] TypeScript Support (Tradução: @anteriovieira)
-- [X] Reactivity in Depth (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [ ] Migration from Vue 1.x (Tradução: @anteriovieira)
-- [ ] Migration from Vue Router 0.7.x (Tradução: @ErickPetru. Revisão: @anteriovieira)
-- [ ] Migration from Vuex 0.6.x to 1.0 (Tradução: @ErickPetru. Revisão: @anteriovieira)
-- [X] Comparison with Other Frameworks (Tradução: @ErickPetru. Revisão: @ErickPetru)
-- [X] Join the Vue.js Community! (Tradução: @ErickPetru. Revisão: @anteriovieira, @juniorfreitas2)
-- [X] Meet the Team (Tradução: @ErickPetru. Revisão: @anteriovieira)
-
-**API**
-- [x] Global Config (Tradução: @theus. Revisão: @ErickPetru)
-- [x] Global API (Tradução: @Gutem.)
-- [x] Options / Data (Tradução: @Gutem.)
-- [X] Options / DOM (Tradução: @guilherme-dev. Revisão: @ErickPetru)
-- [ ] Options / Lifecycle Hooks (Tradução: @guilherme-dev. Revisão: @derevandal)
-- [X] Options / Assets (Tradução: @kimuraz. Revisão: @ErickPetru)
-- [ ] Options / Composition (Trandução: @kimuraz. Revisão: @anteriovieira)
-- [ ] Options / Misc (Tradução: @vitorbaraujo. Revisão: @anteriovieira)
-- [ ] Instance Properties (Tradução: @vitorbaraujo. Revisão: @anteriovieira)
-- [ ] Instance Methods / Data (Tradução: @vitorbaraujo. Revisão: @anteriovieira)
-- [ ] Instance Methods / Events (Tradução: @vitorbaraujo. Revisão: @anteriovieira)
-- [ ] Instance Methods / Lifecycle (Tradução: @vitorbaraujo. Revisão: @anteriovieira)
-- [ ] Directives (Tradução: @tarciozemel)
-- [ ] Special Attributes (Tradução: @kessiacastro. Revisão: @anteriovieira)
-- [ ] Built-In Components (Tradução: @rubenmarcus)
-- [X] VNode Interface (Tradução: @ErickPetru)
-- [X] Server-Side Rendering (Tradução: @ErickPetru)
-
-**Examples**
-- [ ] Markdown Editor (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] GitHub Commits (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] Firebase + Validation (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] Grid Component (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] Tree View (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] SVG Graph (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] Modal Component (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] Elastic Header (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] Wrapper Component (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] TodoMVC (Tradução: @vitorarjol. Revisão: @anteriovieira)
-- [ ] HackerNews Clone (Tradução: @vitorarjol. Revisão: @anteriovieira)
+A tradução ainda é um trabalho em progresso. Grande parte do Guia foi traduzido e revizado, mas alguns conteúdos carecem de revisão após as atualizações mais recentes do Vue. O conteúdo da API ainda possui partes em inglês, carecendo de colaboração para tradução.
 
 ## Como colaborar?
 
-Problemas pontuais nas traduções já realizadas, como erros de grafia ou frases demasiadamente confusas, podem ser reportados apenas enviando *issues* neste repositório.
+Problemas pontuais nas traduções já realizadas, como erros de grafia ou frases confusas, podem ser reportados apenas enviando _issues_ neste repositório. Deixe claro sobre qual página se refere o problema e, preferencialmente, ofereça uma sugestão para a correção desejada.
 
-Para participar ativamente traduzindo/revisando os conteúdos, siga os passos:
+Se você se sente à vontade para traduzir/revisar conteúdos por conta, siga os passos:
 
-- Faça um _fork_ deste repositório para sua própria conta;
-- Edite o arquivo `README` registrando seu usuário ao lado da página que deseja traduzir/revisar;
-- Faça um _pull request_ do `README` para que todos aqui sejam notificados e não ocorram trabalhos repetidos em paralelo.
-- Ao finalizar, faça um novo _pull request_ com os arquivos modificados por você.
-- Não se esqueça de fazer um _merge_ para obter as alterações mais recentes antes de recomeçar o processo assumindo outra tradução/revisão.
+- Faça um _fork_ deste _repo_ para sua própria conta;
+- Crie um _issue_ neste _repo_, do tipo `work-in-progress`, para informar o que você está fazendo;
+- Faça as traduções/revisões nos arquivos que se propôs, usando o editor que quiser;
+- Ao finalizar, faça um _pull request_ com os arquivos modificados, **com a descrição do _commit_ em inglês**;
+- Não se esqueça de obter as alterações mais recentes antes de recomeçar o processo.
 
-Caso não consiga terminar por completo algum arquivo, mas queira enviar o trabalho parcial, pedimos que abra uma nova _Issue_ logo após a submissão para informar quais problemas persistem no arquivo enviado.
+Caso não consiga terminar por completo algum arquivo, mas queira enviar o trabalho parcial, deixe isso claro na _issue_ de seu trabalho após a submissão, para informar quais problemas persistem no arquivo enviado.
 
 ## Ambiente de desenvolvimento
 
@@ -102,20 +32,21 @@ $ hexo server
 
 ## Considerações para padronização
 
-A fim de obtermos uma documentação padronizada, seguem recomendações do que fazer:
+Para uma documentação padronizada, seguem recomendações do que fazer:
 
 - Traduzir os comentários dos códigos-fonte;
-- Traduzir os textos informativos dos códigos-fonte, por exemplo: `<div id="level-1">Nível 1</div>`;
-- Seguir maiúsculas e minúsculas conforme o original em inglês, mantendo a notação sempre que possível;
-- Utilizar alguma extensão para ortografia e gramática, para evitar que erros deste tipo passem;
-- Embora não obrigatório, sugere-se usar _itálico_ em expressões sem tradução (por exemplo, _view layer_);
-- Quando for submeter, **sempre escreva os comentários do _commit_ em INGLÊS**.
+- Traduzir textos informativos dos códigos-fonte, por exemplo: `<div id="level-1">Nível 1</div>`;
+- Seguir maiúsculas e minúsculas conforme o original em inglês sempre que possível;
+- Utilizar alguma extensão para ortografia e gramática, para evitar que erros deste tipo;
+- Usar _itálico_ em expressões sem tradução (por exemplo, _view layer_);
+- Quando for submeter, sempre escreva os comentários do _commit_ em inglês.
 
-E algumas recomendações do que não fazer:
+E algumas recomendações do que **não** fazer:
 
 - Não traduzir nomes de variáveis, métodos, dados, _ids_, classes etc. nos códigos-fonte.
-- Não faça _pull request_ diretamente para `vuejs/master`, o processo de tradução deve passar por esse repositório.
-- Não faça _pull_ ou _merge_ diretamente de `vuejs/master`, faça apenas deste repositório para seu _fork_ pessoal.
+- Não grafar em itálico tipos de dados ou valores primitivos;
+- Não faça _pull request_ diretamente para `vuejs/master`, a tradução deve passar por esse repositório.
+- Não faça _pull_ diretamente de `vuejs/master`, apenas deste repositório para seu _fork_ pessoal.
 
 ### Traduções padronizadas
 
@@ -132,13 +63,32 @@ Alguns termos recorrentes no guia devem ser traduzidos sempre da mesma maneira, 
 - *Performance* = Desempenho
 - *Watchers* = Observadores
 - *Under the hood* = Em seu interior
+- *Server-Side Rendering* = Renderização no Lado do Servidor
+- *Hooks* = Gatilhos
+- *Bind* = Vínculo (ou Interligação)
 
 ### Termos não traduzidos
 
-Atualmente recomenda-se que estes termos sejam mantidos em inglês: _getter_, _setter_, _standalone_, _runtime_, _build_, _alias_, _store_, _scaffolding_ _loader_, _bind_, _loop_, true, false, Number, String, _template_, _wrapper_, _hot-reload_, _hook_.
+Atualmente recomenda-se que estes termos sejam mantidos em inglês:
 
-### Discussões entre a equipe
+- _getter_
+- _setter_
+- _standalone_
+- _runtime_
+- _store_
+- _scaffolding_
+- _loader_
+- _loop_
+- _template_
+- _wrapper_
+- _hot-reload_
+- true
+- false
+- Number
+- String
+- Boolean
+- Array
 
-Durante a tradução, se sentir necessidade de sugerir novos termos para alguma das listas de padronização, abra uma nova _Issue_ para discussão. Se precisar apontar problemas específicos em algum item já traduzido, o caminho também é esse.
+## Como se envolver com a comunidade?
 
-Se for necessário se apronfundar em discussões maiores, tirar dúvidas ou mesmo interagir de qualquer outra forma com a equipe, participe de nosso [canal de tradução no Slack](https://vuejs-brasil.slack.com/messages/traducao).
+Se você não chegou até aqui para colaborar, mas sim para pedir ajuda sobre alguma coisa da documentação oficial do Vue, a Comunidade Brasileira criou [uma lista](https://github.com/vuejs-br/comunidades) com todos locais oficialmente reconhecidos. Saiba que a comunidade Vue é muito receptiva (no Brasil e no mundo), então não se acanhe para se envolver mais.
