@@ -9,14 +9,14 @@
 <div id="hero">
   <div class="inner">
     <div class="left">
-      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="Logo Vue.js">
     </div><div class="right">
       <h2 class="vue">Vue.js</h2>
       <h1>
-        The Progressive<br>JavaScript Framework
+        Framework JavaScript<br>linh động
       </h1>
       <p>
-        <a class="button" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
+        <a class="button" href="<%- url_for("/v2/guide/") %>">BẮT ĐẦU</a>
         <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
       </p>
     </div>
@@ -26,21 +26,28 @@
 <div id="highlights">
   <div class="inner">
     <div class="point">
-      <h2>Approachable</h2>
-      <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
-    </div>
-
-    <div class="point">
-      <h2>Versatile</h2>
-      <p>An incrementally adoptable ecosystem that scales between a library and a full-featured framework.</p>
-    </div>
-
-    <div class="point">
-      <h2>Performant</h2>
+      <h2>Gần gũi</h2>
       <p>
-        20KB min+gzip Runtime<br>
-        Blazing Fast Virtual DOM<br>
-        Minimal Optimization Efforts
+        Bạn đã biết HTML, CSS và JavaScript? 
+        Hãy đọc <a href="<%- url_for("/v2/guide/") %>">hướng dẫn</a> và bắt đầu lập trình ứng dụng 
+        một cách nhanh chóng với Vue.js!
+      </p>
+    </div>
+
+    <div class="point">
+      <h2>Đa năng</h2>
+      <p>
+        Một hệ sinh thái linh hoạt với các thành phần từ căn bản đến nâng cao, 
+        từ một thư viện đơn giản đến một framework đầy đủ tính năng.
+      </p>
+    </div>
+
+    <div class="point">
+      <h2>Mạnh mẽ</h2>
+      <p>
+        Chỉ 20KB minify+gzip<br>
+        Xử lí cực nhanh với Virtual DOM<br>
+        Tối ưu dễ dàng
       </p>
     </div>
   </div>
@@ -54,10 +61,12 @@
 
 <div id="footer">
   <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
-    <img src="/images/shuttleworth.png" style="width: 200px;">
+    <img src="/images/shuttleworth.png" style="width: 200px;" alt="Shuttleworth">
   </a>
-  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
-  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
+  <p>
+    Phát hành với giấy phép <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a><br>
+    Bản quyền &copy; 2014-<%- new Date().getFullYear() %> Evan You
+  </p>
 </div>
 
 <script>
