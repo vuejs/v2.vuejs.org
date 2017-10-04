@@ -3,20 +3,10 @@
     <input type="text" id="search-query-<%- context %>" class="search-query st-default-search-input">
   </form>
 </li>
-<<<<<<< HEAD
-<li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guia</a></li>
-<li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
-<li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Exemplos</a></li>
-=======
 <%- partial('partials/learn_dropdown') %>
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 <%- partial('partials/ecosystem_dropdown') %>
 <li>
-<<<<<<< HEAD
-  <a href="https://vue.threadless.com" target="_blank" class="nav-link shop">Loja</a>
-=======
-  <a href="<%- url_for("/v2/guide/team.html") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">Team</a>
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  <a href="<%- url_for("/v2/guide/team.html") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">Equipe</a>
 </li>
 <%- partial('partials/support_vue_dropdown') %>
 <%- partial('partials/language_dropdown') %>

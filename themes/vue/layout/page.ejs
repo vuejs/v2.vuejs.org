@@ -17,30 +17,9 @@
     <% } else { %>
       <%- partial('partials/ad') %>
     <% } %>
-<<<<<<< HEAD
-    <% if (page.title.trim()) { %>
-      <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
-    <% } %>
-    <%- page.content %>
-    <% if (page.type === 'guide') { %>
-      <div class="guide-links">
-        <% site.pages.find({ type: page.type, order: page.order - 1 }).each(function (page) { %>
-          <span>← <a href="<%- url_for(page.path) %>"><%- page.title %></a></span>
-        <% }) %>
-        <% site.pages.find({ type: page.type, order: page.order + 1 }).each(function (page) { %>
-          <span style="float:right"><a href="<%- url_for(page.path) %>"><%- page.title %></a> →</span>
-        <% }) %>
-      </div>
-    <% } %>
-    <div class="footer">
-      Encontrou um problema ou quer contribuir com a documentação?
-      <a href="https://github.com/vuejs-br/br.vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
-        Edite esta página no Github!
-      </a>
-=======
   <% } %>
   <% if (page.title.trim()) { %>
-    <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
+    <h1><%- page.title %><%- page.type === 'examples' ? ' Exemplo' : '' %></h1>
   <% } %>
   <%- page.content %>
   <% if (page.type === 'guide') { %>
@@ -51,14 +30,13 @@
       <% site.pages.find({ type: page.type, order: page.order + 1 }).each(function (page) { %>
         <span style="float: right;"><a href="<%- url_for(page.path) %>"><%- page.title %></a> →</span>
       <% }) %>
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
     </div>
   <% } %>
   <div class="footer">
     <%- partial('partials/ad-text') %>
-    Caught a mistake or want to contribute to the documentation?
-    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
-      Edit this page on Github!
+    Encontrou um erro ou quer contribuir com a documentação?
+    <a href="https://github.com/vuejs-br/br.vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
+      Edite esta página no Github!
     </a>
   </div>
 </div>

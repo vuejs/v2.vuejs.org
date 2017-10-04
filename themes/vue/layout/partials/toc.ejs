@@ -1,103 +1,49 @@
 <ul class="menu-root">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
-        <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
-        <% if (type === 'guide') { %>
-            <% if (fileName === 'installation') { %>
-                <li><h3>Essenciais</h3></li>
-            <% } %>
-            <% if (fileName === 'transitions') { %>
-                <li><h3>Transições & Animação</h3></li>
-            <% } %>
-            <% if (fileName === 'mixins') { %>
-                <li><h3>Reusabilidade & Composição</h3></li>
-            <% } %>
-            <% if (fileName === 'deployment') { %>
-                <li><h3>Ferramentas</h3></li>
-            <% } %>
-            <% if (fileName === 'routing') { %>
-                <li><h3>Aumentando a Escala</h3></li>
-            <% } %>
-            <% if (fileName === 'reactivity') { %>
-                <li><h3>Internamente</h3></li>
-            <% } %>
-            <% if (fileName === 'migration') { %>
-                <li><h3>Migração</h3></li>
-            <% } %>
-            <% if (fileName === 'comparison') { %>
-                <li><h3>Diversos</h3></li>
-            <% } %>
-        <% } %>
-        <% if (type === 'cookbook') { %>
-            <% if (p.order === 1.1) { %>
-                <li><h3>Instância Vue</h3></li>
-            <% } %>
-            <!-- Move cookbook sections here once they have -->
-            <!-- at least one recipe -->
-        <% } %>
-        <li>
-            <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
-        </li>
-    <% }) %>
-    <% if (type === 'cookbook') { %>
-        <li><h3>Componentes</h3></li>
-        <li><h4>Formulários</h4></li>
-        <li><h4>Integrações</h4></li>
-        <li><h3>Transições</h3></li>
-        <li><h3>Diretivas</h3></li>
-        <li><h3>Vue Router</h3></li>
-        <li><h3>Vuex</h3></li>
-=======
-  <% type !== 'api' && site.pages.find({type: type}).sort('order').each(function (p) { %>
-=======
   <% ['api', 'style-guide'].indexOf(type) === -1 && site.pages.find({type: type}).sort('order').each(function (p) { %>
->>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
     <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
     <% if (type === 'guide') { %>
       <% if (fileName === 'installation') { %>
-        <li><h3>Essentials</h3></li>
+        <li><h3>Essenciais</h3></li>
       <% } %>
       <% if (fileName === 'transitions') { %>
-        <li><h3>Transitions & Animation</h3></li>
+        <li><h3>Transições & Animações</h3></li>
       <% } %>
       <% if (fileName === 'mixins') { %>
-        <li><h3>Reusability & Composition</h3></li>
+        <li><h3>Reuso & Composição</h3></li>
       <% } %>
       <% if (fileName === 'deployment') { %>
-        <li><h3>Tooling</h3></li>
+        <li><h3>Ferramentas</h3></li>
       <% } %>
       <% if (fileName === 'routing') { %>
-        <li><h3>Scaling Up</h3></li>
+        <li><h3>Escalonando</h3></li>
       <% } %>
       <% if (fileName === 'reactivity') { %>
-        <li><h3>Internals</h3></li>
+        <li><h3>Internamente</h3></li>
       <% } %>
       <% if (fileName === 'migration') { %>
-        <li><h3>Migrating</h3></li>
+        <li><h3>Migração</h3></li>
       <% } %>
       <% if (fileName === 'comparison') { %>
-        <li><h3>Meta</h3></li>
+        <li><h3>Diversos</h3></li>
       <% } %>
     <% } %>
     <% if (type === 'cookbook') { %>
       <% if (p.order === 1.1) { %>
-        <li><h3>Vue Instance</h3></li>
+        <li><h3>Instância Vue</h3></li>
       <% } %>
       <!-- Move cookbook sections here once they have -->
       <!-- at least one recipe -->
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
     <% } %>
     <li>
       <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
     </li>
   <% }) %>
   <% if (type === 'cookbook') { %>
-    <li><h3>Components</h3></li>
-    <li><h4>Form Inputs</h4></li>
-    <li><h4>3rd-Party Integrations</h4></li>
-    <li><h3>Transitions</h3></li>
-    <li><h3>Directives</h3></li>
+    <li><h3>Componentes</h3></li>
+    <li><h4>Formulários</h4></li>
+    <li><h4>Integrações</h4></li>
+    <li><h3>Transições</h3></li>
+    <li><h3>Diretivas</h3></li>
     <li><h3>Vue Router</h3></li>
     <li><h3>Vuex</h3></li>
   <% } %>
