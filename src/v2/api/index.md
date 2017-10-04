@@ -229,7 +229,11 @@ type: api
   })
   ```
 
+<<<<<<< HEAD
   > Novo em 2.1.0+: retorna uma Promise se nenhum callback é fornecido e Promise for suportada no ambiente de execução.
+=======
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+>>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
 
 - **Ver também:** [Fila de Atualização Assíncrona](../guide/reactivity.html#Async-Update-Queue)
 
@@ -1604,7 +1608,11 @@ type: api
 
   Adia a execução do *callback* para o próximo ciclo de atualização. Use esta função imediatamente após você alterar algum dado para esperar pela atualização do DOM. Este método é o mesmo que a função global `Vue.nextTick`, exceto que o contexto do `this` no *callback* é automaticamente vinculado (*bound*) à instância que chama este método.
 
+<<<<<<< HEAD
   > Novo em 2.1.0+: retorna uma Promise se nenhum *callback* é provido, e Promise é suportada no ambiente de execução.
+=======
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+>>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
 
 - **Exemplo:**
 

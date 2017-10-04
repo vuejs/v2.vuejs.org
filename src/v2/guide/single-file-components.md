@@ -27,9 +27,15 @@ Here's an example of a file we'll call `Hello.vue`:
 
 Agora nós obtivemos:
 
+<<<<<<< HEAD
 - [Syntax highlighting completo](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [Modularização com CommonJS](https://webpack.github.io/docs/commonjs.html)
 - [Escopo de CSS por componente](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+=======
+- [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#source-code-editing)
+- [CommonJS modules](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
+- [Component-scoped CSS](https://vue-loader.vuejs.org/en/features/scoped-css.html)
+>>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
 
 Como prometido, podemos também utilizar pré-processadores como Pug (Jade), Babel (com módulos ES2015+) e Stylus para componentes mais limpos e mais ricos em recursos.
 

@@ -116,7 +116,11 @@ Modificadores são sufixos especiais denotados por um ponto, que indicam que aqu
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
+<<<<<<< HEAD
 Veremos mais casos de uso de modificadores quando explorarmos mais `v-on` e `v-model`.
+=======
+You'll see other examples of modifiers later, [for `v-on`](events.html#Event-Modifiers) and [for `v-model`](forms.html#Modifiers), when we explore those features.
+>>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
 
 ## Abreviações
 
