@@ -63,6 +63,44 @@ A tradução ainda é um trabalho em progresso. Quase todo o Guia foi traduzido,
 - [X] VNode Interface (Tradução: @ErickPetru)
 - [X] Server-Side Rendering (Tradução: @ErickPetru)
 
+**Style Guide**
+- [ ] Style Guide
+- [ ] Rule Categories / Priority A: Essential
+- [ ] Rule Categories / Priority B: Strongly Recommended
+- [ ] Rule Categories / Priority A: Recommended
+- [ ] Rule Categories / Priority A: Use with Caution
+- [ ] Priority A Rules: Essential / Multi-word component names
+- [ ] Priority A Rules: Essential / Component data
+- [ ] Priority A Rules: Essential / Prop definitions
+- [ ] Priority A Rules: Essential / Keyed v-for
+- [ ] Priority A Rules: Essential / Component style scoping
+- [ ] Priority A Rules: Essential / Private property names
+- [ ] Priority B Rules: Strongly Recommended / Component files
+- [ ] Priority B Rules: Strongly Recommended / Single-file component filename casing
+- [ ] Priority B Rules: Strongly Recommended / Base component names
+- [ ] Priority B Rules: Strongly Recommended / Single-instance component names
+- [ ] Priority B Rules: Strongly Recommended / Tightly coupled component names
+- [ ] Priority B Rules: Strongly Recommended / Order of words in component names
+- [ ] Priority B Rules: Strongly Recommended / Self-closing components
+- [ ] Priority B Rules: Strongly Recommended / Component name casing in templates
+- [ ] Priority B Rules: Strongly Recommended / Component name casing in JS/JSX
+- [ ] Priority B Rules: Strongly Recommended / Abbreviations in component names
+- [ ] Priority B Rules: Strongly Recommended / Prop name casing
+- [ ] Priority B Rules: Strongly Recommended / Multi-attribute elements
+- [ ] Priority B Rules: Strongly Recommended / Complex expressions in templates
+- [ ] Priority B Rules: Strongly Recommended / Complex computed properties
+- [ ] Priority B Rules: Strongly Recommended / Quoted attribute values
+- [ ] Priority B Rules: Strongly Recommended / Directive shorthands
+- [ ] Priority C Rules: Recommended / Component/instance options order
+- [ ] Priority C Rules: Recommended / Element attribute order
+- [ ] Priority C Rules: Recommended / Empty lines in component/instance options
+- [ ] Priority C Rules: Recommended / Single-file component top-level element order
+- [ ] Priority D Rules: Use with Caution / v-if/v-if-else/v-else without key
+- [ ] Priority D Rules: Use with Caution / Element selectors with scoped
+- [ ] Priority D Rules: Use with Caution / Parent-child communication
+- [ ] Priority D Rules: Use with Caution / Global state management
+
+
 **Examples**
 - [ ] Markdown Editor (Tradução: @vitorarjol. Revisão: @anteriovieira)
 - [ ] GitHub Commits (Tradução: @vitorarjol. Revisão: @anteriovieira)
