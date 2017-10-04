@@ -44,7 +44,11 @@ var example1 = new Vue({
 
 ## Métodos em Manipuladores
 
+<<<<<<< HEAD
 A lógica para muitos manipuladores de evento será mais complexa, sendo assim manter diretamente código JavaScript no valor do atributo `v-on` simplesmente não é viável. É por isso que `v-on` também pode aceitar o nome de um método que você gostaria de chamar.
+=======
+The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the `v-on` attribute isn't feasible. That's why `v-on` can also accept the name of a method you'd like to call.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 Por exemplo:
 
@@ -282,7 +286,11 @@ Estes modificadores restrigem o manipulador a eventos disparados por um botão e
 
 Você pode estar pensando que esta abordagem de escutas de evento viola as boas e velhas práticas sobre "separação de responsabilidades". Fique tranquilo - como todas as funções de manipuladores e expressões Vue são estritamente ligadas ao _ViewModel_ que está manipulando o modo de exibição atual, essa abordagem não causará qualquer dificuldade de manutenção. Na verdade, há vários benefícios em usar `v-on` no _template_:
 
+<<<<<<< HEAD
 1. É mais fácil de localizar as implementações de função de manipulador dentro de seu código JS simplesmente deslizando o dedo sobre o _template_ HTML.
+=======
+1. It's easier to locate the handler function implementations within your JS code by skimming the HTML template.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 2. Como você não tem que manualmente anexar escutas a eventos em JS, seu código de _ViewModel_ pode conter apenas a lógica pura e está livre de manipulação DOM. Isto torna mais fácil de testar.
 

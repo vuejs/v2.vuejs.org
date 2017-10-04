@@ -15,7 +15,11 @@ Entretanto, eles tem públicos-alvo significativamente diferentes:
 
 __Vuex 2.0__ é um *redesign* radical incluindo uma simplificação da API, para aqueles que estiverem iniciando novos projetos ou queiram estar na vanguarda do gerenciamento de estado client-side. __Ele não é coberto por este guia de migração__, então você deve verificar a [documentação do Vuex 2.0](https://vuex.vuejs.org/en/index.html) se estiver interessado em aprender mais sobre.
 
+<<<<<<< HEAD
 __Vuex 1.0__ é majoritariamente retro-compatível, exigindo poucas mudanças para a migração. É recomendado para aqueles com grande base de códigos-fonte ou que desejam uma migração suave em pequenos passos até o Vue 2.0. Este guia é dedicado a facilitar o processo, mas só inclui notas de migração. Para o guia de uso completo, visite a [documentação do Vuex 1.0](https://github.com/vuejs/vuex/tree/1.0/docs/en).
+=======
+__Vuex 1.0__ is mostly backwards-compatible, so requires very few changes to upgrade. It is recommended for those with large existing codebases or who want the smoothest possible upgrade path to Vue 2.0. This guide is dedicated to facilitating that process, but only includes migration notes. For the complete usage guide, see [the Vuex 1.0 docs](https://github.com/vuejs/vuex/tree/1.0/docs/en).
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 
 ## `store.watch` com Propriedade String <sup>substituído</sup>
@@ -73,9 +77,13 @@ Veja o exemplo na [documentação de plugins](https://github.com/vuejs/vuex/blob
 {% endraw %}
 
 
+<<<<<<< HEAD
 ## Middlewares <sup>substituído</sup>
 
 Middlewares foram substituídos por plugins. Um plugin é simplesmente uma função que recebe o *store* como seu único argumento, podendo então se subscrever ao evento de mutação ocorrida nele:
+=======
+Middlewares are replaced by plugins. A plugin is a function that receives the store as the only argument, and can listen to the mutation event on the store:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 const myPlugin = store => {

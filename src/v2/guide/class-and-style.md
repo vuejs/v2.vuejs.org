@@ -4,7 +4,11 @@ type: guide
 order: 6
 ---
 
+<<<<<<< HEAD
 Uma necessidade comum de interligação de dados com _templates_ é manipular as classes dos elementos e/ou seus estilos _inline_. Uma vez que ambos são atributos, podemos usar `v-bind` para lidar com eles, mas precisaríamos montar uma String final com nossas expressões. No entanto, mexer com concatenação é irritante e propenso a erros. Por esta razão, Vue fornece aprimoramentos especiais quando `v-bind` é usado com `class` e `style`. Além de Strings, as expressões também podem avaliar Objetos ou Arrays.
+=======
+A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ## Vinculando em Classes HTML
 
@@ -71,7 +75,7 @@ computed: {
   classObject: function () {
     return {
       active: this.isActive && !this.error,
-      'text-danger': this.error && this.error.type === 'fatal',
+      'text-danger': this.error && this.error.type === 'fatal'
     }
   }
 }

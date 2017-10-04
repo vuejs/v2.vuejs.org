@@ -65,7 +65,11 @@ Quando este dado for modificado, a camada visual irá re-renderizar. Deve-se obs
 vm.b = 'hi'
 ```
 
+<<<<<<< HEAD
 Então as mudanças em `b` não irão disparar qualquer atualização na interface. Se você sabe que precisará de uma propriedade no futuro, mas ela inicia vazia ou não existente, apenas especifique algum valor inicial para ela. Por exemplo:
+=======
+Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 data: {

@@ -6,7 +6,11 @@ order: 5
 
 ## Dados Computados
 
+<<<<<<< HEAD
 Expressões dentro de _templates_ são convenientes, mas elas deveriam ser utilizadas somente para operações. De fato, _templates_ são destinados a descrever a estrutura da sua _view_. Colocar muita lógica neles pode fazer com que fiquem inchados e que a sua manutenção fique mais complicada. Por exemplo:
+=======
+In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <div id="example">
@@ -75,7 +79,11 @@ console.log(vm.reversedMessage) // => 'eybdooG'
 
 Pode abrir o _console_ e testar o exemplo você mesmo. O valor de `vm.reversedMessage` sempre dependerá do valor em `vm.message`.
 
+<<<<<<< HEAD
 É possível vincular os dados computados em _templates_ como se fossem dados comuns. Vue sabe que `vm.reversedMessage` depende de `vm.message`, então ele irá atualizar qualquer ligação que dependa de `vm.reversedMessage` sempre que `vm.message` for alterado. E o melhor é que criamos tal relação de dependência de forma declarativa: a função _getter_ computada é pura e sem efeitos colaterais, o que a torna fácil de testar e de compreender.
+=======
+You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ### Cache de `computed` vs. Métodos
 
@@ -198,10 +206,17 @@ Por exemplo:
 ```
 
 ``` html
+<<<<<<< HEAD
 <!-- Como já existe um rico ecossistema de bibliotecas para Ajax    -->
 <!-- e de coleções de métodos utilitários com propósitos gerais, o  -->
 <!-- núcleo Vue permanece pequeno não os reinventando. Isto também  -->
 <!-- lhe dá a liberdade de usar apenas o que estiver familiarizado. -->
+=======
+<!-- Since there is already a rich ecosystem of ajax libraries    -->
+<!-- and collections of general-purpose utility methods, Vue core -->
+<!-- is able to remain small by not reinventing them. This also   -->
+<!-- gives you the freedom to use what you're familiar with. -->
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>

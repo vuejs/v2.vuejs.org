@@ -17,9 +17,13 @@ Isto pode funcionar bem em projetos pequenos e médios, onde o JavaScript só é
 
 Tudo isso é resolvido através dos **Componentes Single-File** com a extensão `.vue`, possibilitados graças a ferramentas de *build* como Webpack ou Browserify.
 
+<<<<<<< HEAD
 Aqui está um simples exemplo de um arquivo que chamaremos de `Hello.vue`:
+=======
+Here's an example of a file we'll call `Hello.vue`:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
-<img src="/images/vue-component.png" style="display: block; margin: 30px auto">
+<img src="/images/vue-component.png" style="display: block; margin: 30px auto;">
 
 Agora nós obtivemos:
 
@@ -29,9 +33,13 @@ Agora nós obtivemos:
 
 Como prometido, podemos também utilizar pré-processadores como Pug (Jade), Babel (com módulos ES2015+) e Stylus para componentes mais limpos e mais ricos em recursos.
 
-<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
+<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto;">
 
+<<<<<<< HEAD
 Estas linguagens específicas são meros exemplos. Poderíamos tão facilmente usar Buble, TypeScript, SCSS, PostCSS - ou qualquer outro que acreditarmos nos tornar mais produtivos. Se usar Webpack com `vue-loader`, também há suporte de primeira classe a CSS Modules.
+=======
+These specific languages are only examples. You could as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ### E a Separação de Responsabilidades?
 

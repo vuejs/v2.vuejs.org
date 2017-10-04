@@ -4,7 +4,11 @@ type: guide
 order: 601
 ---
 
+<<<<<<< HEAD
 Agora é hora de dar um mergulho mais profundo! Uma das características mais distintas do Vue é seu sistema de reatividade não obstrusivo. Modelos de dados são simplesmente objetos JavaScript puros. Quando você os modifica, a camada visual se atualiza. Isto torna o gerenciamento de estado muito simples e intuitivo, mas também pode ser muito importante entender como funciona para evitar algumas pegadinhas. Nesta seção, estaremos nos aprofundando em alguns detalhes de baixo-nível do sistema de reatividade do Vue.
+=======
+Now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ## Como as Alterações são Monitoradas
 
@@ -38,7 +42,11 @@ Vue não permite dinamicamente adicionar novas propriedades reativas em nível r
 Vue.set(vm.someObject, 'b', 2)
 ```
 
+<<<<<<< HEAD
 Também há o método de instância `vm.$set`, apenas um atalho para o global `Vue.set`:
+=======
+You can also use the `vm.$set` instance method, which is an alias to the global `Vue.set`:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 this.$set(this.someObject, 'b', 2)
@@ -55,7 +63,11 @@ Também existem algumas limitações quanto ao rastreamento de alterações em A
 
 ## Declarando Propriedades Reativas
 
+<<<<<<< HEAD
 Como Vue não conseguir adicionar dinamicamente propriedades reativas em nível raiz, você deve inicializar instâncias Vue declarando todas as propriedades com valores iniciais, mesmo que usando valores vazios:
+=======
+Since Vue doesn't allow dynamically adding root-level reactive properties, you have to initialize Vue instances by declaring all root-level reactive data properties upfront, even with an empty value:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 var vm = new Vue({

@@ -126,7 +126,11 @@ new Vue({
 </script>
 {% endraw %}
 
+<<<<<<< HEAD
 Nem sempre este comportamento é desejado. Vue oferece um jeito de dizer "estes elementos são completamente separados, não os reutilize". É só usar atributos `key` com valores únicos:
+=======
+This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Add a `key` attribute with unique values:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -180,7 +184,11 @@ Outra opção para mostrar condicionalmente um elemento é a diretiva `v-show`. 
 <h1 v-show="ok">Olá!</h1>
 ```
 
+<<<<<<< HEAD
 A diferença é que um elemento com `v-show` sempre será renderizado e incluído no DOM; `v-show` simplesmente alterna a propriedade CSS `display` do elemento.
+=======
+The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 <p class="tip">Observe que `v-show` não oferece suporte à utilização em `<template>`, nem funciona com `v-else`.</p>
 
@@ -190,7 +198,11 @@ A diferença é que um elemento com `v-show` sempre será renderizado e incluíd
 
 `v-if` também é **preguiçoso**: se a condição for _false_ na renderização inicial, nada será feito - o bloco condicional não será processado até que a condição se torne _true_ pela primeira vez.
 
+<<<<<<< HEAD
 Em comparação, `v-show` é muito mais simples - o elemento sempre será renderizado independetemente da condição inicial, com alternância baseada simplesmente em CSS.
+=======
+In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 De modo geral, `v-if` tem custo maior durante alternâncias de visibilidade, enquanto `v-show` tem custo maior na renderização inicial. Então prefira `v-show` se precisar alternar a visibilidade de algo com muita frequencia; e prefira `v-if` se a condição não tem tanta probabilidade de se modificar durante a execução.
 

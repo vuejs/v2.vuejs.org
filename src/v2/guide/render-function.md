@@ -24,7 +24,11 @@ Para o código HTML acima, você decide que quer esta interface para o seu compo
 <anchored-heading :nivel="1">Olá Mundo!</anchored-heading>
 ```
 
+<<<<<<< HEAD
 Quando você começar a criar o componente de modo que gere os cabeçalhos de acordo com a propriedade `nivel`, rapidamente chegará a algo assim:
+=======
+When you get started with a component that only generates a heading based on the `level` prop, you quickly arrive at this:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -102,9 +106,15 @@ A árvore de nós DOM para o HTML acima aparentaria isso:
 
 ![Visualização da Árvore DOM](/images/dom-tree.png)
 
+<<<<<<< HEAD
 Cada elemento é um nó. Cada pedaço de texto é um nó. Até mesmo comentários são nós! Um nó é simplesmente um pedaço da página. E assim como na árvore genealógica, cada nó tem filhos (ou seja, cada pedaço pode conter outros pedaços dentro).
 
 Atualizar todos esses nós eficientemente pode ser difícil, mas por sorte você nunca precisará fazer isso manualmente. Você apenas avisa o Vue qual HTML você quer em uma página, através de um _template_:
+=======
+Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+
+Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. Instead, you tell Vue what HTML you want on the page, in a template:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ```html
 <h1>{{ blogTitle }}</h1>
@@ -150,8 +160,13 @@ createElement(
   },
 
   // {String | Array}
+<<<<<<< HEAD
   // VNodes filhos, mas usando `createElement()`,
   // ou apenas Strings para 'VNodes textuais'. Opcional.
+=======
+  // Children VNodes, built using `createElement()`,
+  // or using strings to get 'text VNodes'. Optional.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
   [
     'Algum texto vem primeiro.',
     createElement('h1', 'Um título')
@@ -374,7 +389,11 @@ on: {
 }
 ```
 
+<<<<<<< HEAD
 Para todos os outros eventos e modificadores de teclado, nenhum prefixo proprietário é necessário, pois você pode simplesmente usar métodos do objeto `event` no código.
+=======
+For all other event and key modifiers, no proprietary prefix is necessary, because you can use event methods in the handler:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 | Modificador | Equivalente no Código |
 | ------ | ------ |
@@ -494,7 +513,11 @@ Para mais informações sobre como JSX é mapeado para JavaScript, veja a [docum
 
 ## Componentes Funcionais
 
+<<<<<<< HEAD
 O componente de cabeçalho com _link_ que criamos anteriormente é relativamente simples. Ele não gerencia nenhum estado próprio, não observa nenhum estado passado para si, e não tem nenhum método ligado ao ciclo de vida da instância. Realmente, é apenas uma função com algumas propriedades.
+=======
+The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 Em casos como este, nós podemos marcar componentes como `functional`, o que significa que eles são _stateless_ (sem estado, ou seja, sem `data`) e são _instanceless_ (sem instância, ou seja, sem o contexto `this`). Um **componente funcional** tem este formato:
 
@@ -524,9 +547,21 @@ Tudo que um componente funcional necessitar é passado através de `context`, o 
 - `listeners`: (2.3.0+) Um objeto contendo escutas a eventos registradas pelo pai. É simplesmente um atalho para `data.on`
 - `injections`: (2.3.0+) Se estiver usando a opção [`inject`](../api/#provide-inject), aqui estarão as injeções resolvidas
 
+<<<<<<< HEAD
 Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com _link_ iria requerer somente acrescentar o parâmetro `context`, e atualizar `this.$slots.default` para `context.children`, e por fim atualizar `this.level` para `context.props.level`.
 
 Como componentes funcionais são apenas funções, eles são muito mais leves para renderizar. Entretanto, por carecer de uma instância persistente, eles não são exibidos na árvore de componentes do [Vue devtools](https://github.com/vuejs/vue-devtools).
+=======
+- `props`: An object of the provided props
+- `children`: An array of the VNode children
+- `slots`: A function returning a slots object
+- `data`: The entire data object passed to the component
+- `parent`: A reference to the parent component
+- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
+- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
+
+After adding `functional: true`, updating the render function of our anchored heading component would require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 Eles também são muito úteis como componentes encapsuladores. Por exemplo, quando você precisa:
 
@@ -581,7 +616,11 @@ Você pode ser perguntar por que nós precisamos de ambos - `slots()` e `childre
 </meu-componente-funcional>
 ```
 
+<<<<<<< HEAD
 Para este componente, `children` lhe fornecerá ambos os parágrafos, enquanto `slots().default` lhe fornecerá apenas o segundo, e `slots().foo` lhe fornecerá apenas o primeiro. Tendo tanto `children` quanto `slots()` lhe permite escolher se este componente precisa saber sobre os _slots_ ou talvez apenas delegar tal responsabilidade para outro componente simplesmente passando adiante `children`.
+=======
+For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ## Compilação de Templates
 

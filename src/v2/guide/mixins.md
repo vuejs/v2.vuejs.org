@@ -112,7 +112,11 @@ new Vue({
 
 ## Estratégias de Mesclagem de Opções Customizadas
 
+<<<<<<< HEAD
 Quando opções customizadas são mescladas, elas usam a estratégia padrão, que simplesmente sobrepõe o valor existente. Se você quiser que uma opção seja mesclada usando uma lógica customizada, você precisa vincular uma função em `Vue.config.optionMergeStrategies`:
+=======
+When custom options are merged, they use the default strategy which overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `Vue.config.optionMergeStrategies`:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -120,7 +124,11 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 }
 ```
 
+<<<<<<< HEAD
 Para a maioria das opções baseadas em objetos, você pode simplesmente utilizar a mesma estratégia usada por `methods`:
+=======
+For most object-based options, you can use the same strategy used by `methods`:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 var strategies = Vue.config.optionMergeStrategies

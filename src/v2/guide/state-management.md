@@ -10,11 +10,19 @@ Aplicações grandes podem também crescer em complexidade, principalmente devid
 
 ### Informação para Desenvolvedores React
 
+<<<<<<< HEAD
 Se você vem do React, é possível que esteja se perguntando como vuex se compara ao [redux](https://github.com/reactjs/redux), a mais popular implementação Flux naquele ecossistema. Redux é agnóstico em relação à camada *view*, podendo ser facilmente utilizado com Vue através de alguns [bindings simples](https://github.com/egoist/revue). Vuex é diferente, uma vez que ele **sabe** que está em uma aplicação Vue. Isto permite melhor integração com o Vue, oferecendo uma API mais intuitiva e uma experiência de desenvolvimento otimizada.
+=======
+If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://github.com/egoist/revue). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ## Gerenciamento de Estado do Zero
 
+<<<<<<< HEAD
 Muitas vezes as pessoas se esquecem que a "fonte da verdade" em aplicações Vue são os próprios objetos `data` - uma instância Vue simplesmente faz uma referência a eles. Sendo assim, se você tiver um trecho de estado que deve ser compartilhado entre múltiplas instâncias, pode simplesmente compartilhar o mesmo objeto de dados:
+=======
+It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can share it by identity:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 const sourceOfTruth = {}
@@ -30,7 +38,11 @@ const vmB = new Vue({
 
 Agora, a qualquer momento que `sourceOfTruth` for modificado, tanto `vmA` quanto `vmB` atualizarão suas interfaces automaticamente. Subcomponentes dentro de cada uma destas instâncias também poderão acessar estes dados através de `this.$root.$data`. Temos, portanto, uma fonte da verdade única, mas depurar seria um pesadelo. Qualquer parte dos dados poderia ser modificada por qualquer parte da aplicação a qualquer momento, sem deixar nenhum rastro.
 
+<<<<<<< HEAD
 Para ajudar a resolver, podemos adotar um **store pattern** simples:
+=======
+To help solve this problem, we can adopt a **store pattern**:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 var store = {

@@ -256,7 +256,11 @@ type: api
   - `{Object | Array} target`
   - `{string | number} key/index`
 
+<<<<<<< HEAD
   > Somente funciona com Array + index em 2.2.0+.
+=======
+  > Only in 2.2.0+: Also works with Array + index.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 - **Uso:**
 
@@ -286,7 +290,11 @@ type: api
     unbind: function () {}
   })
 
+<<<<<<< HEAD
   // registra (diretiva de função simples)
+=======
+  // register (function directive)
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
   Vue.directive('my-directive', function () {
     // isto será chamado como `bind` e `update`
   })
@@ -401,7 +409,11 @@ type: api
   } else if (version === 1) {
     // Vue v1.x.x
   } else {
+<<<<<<< HEAD
     // Versões não suportadas do Vue
+=======
+    // Unsupported versions of Vue
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
   }
   ```
 
@@ -415,7 +427,11 @@ type: api
 
 - **Detalhes:**
 
+<<<<<<< HEAD
   O objeto `data` para a instância do Vue. Vue, recursivamente, converterá esta propriedade em getter/setters para tornar isto "reativo". **O objeto deve ser simples**: objetos nativos como API do navegador e propriedades _prototype_ são ignoradas. A regra geral é: data deverá ser somente dados - não é recomendável observar objetos com seu proprio comportamento stateful.
+=======
+  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with their own stateful behavior.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
   Como observado, você não pode adicionar propriedades reativas ao objeto data raiz. É recomendado declarar todas as propriedades 'nível raiz' reativas com antecedencia, antes da criação da instância.
 
@@ -423,7 +439,11 @@ type: api
 
   Propriedades que comecem com `_` ou `$` **não** será feito proxy na instância do Vue porque eles podem conflitar com métodos de API ou propriedades internas do Vue. Você terá de acessar elas com `vm.$data._property`.
 
+<<<<<<< HEAD
   Quando definindo um **componente**, `data` deve ser declarado como uma função que retorna o estado inicial do objeto data, porque haverá muitas instâncias criadas usando a mesma definição. Se ainda estivermos usando um objeto simples para `data`, este mesmo objeto será **compartilhado por referência** por todas as instâncias criadas! Providenciando uma função `data`, toda vez que uma nova instância é criada, podemos simplesmente chamar isto para retornar uma nova cópia do dado inicial.
+=======
+  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
   Se necessário, uma cópia profunda do objeto original pode ser obtida passando `vm.$data` através de `JSON.parse(JSON.stringify(...))`.
 
@@ -457,7 +477,11 @@ type: api
 
 - **Detalhes:**
 
+<<<<<<< HEAD
   Uma lista/hash de atributos que são expostos para aceitar dados do componente pai. Tem tanto uma sintaxe baseada em Array como, alternativamente, uma sintaxe baseada em Objeto que permite configurações avançadas como checagem de tipos, validações personalizadas e valores padrões.
+=======
+  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 - **Exemplo:**
 
@@ -470,7 +494,11 @@ type: api
   // sintaxe de objeto com validação  
   Vue.component('props-demo-advanced', {
     props: {
+<<<<<<< HEAD
       // somente checagem de tipos 
+=======
+      // type check
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
       height: Number,
       // checagem de tipos com validações
       age: {
@@ -530,7 +558,11 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
+<<<<<<< HEAD
       // somente get, somente precisa de uma função
+=======
+      // get only
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
       aDouble: function () {
         return this.a * 2
       },
@@ -710,7 +742,11 @@ type: api
 
 - **Detalhes:**
 
+<<<<<<< HEAD
   Invocado sincronicamente logo após a instância ser inicializada, antes da observação de dados e configuração event/watcher.
+=======
+  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
 
@@ -742,7 +778,11 @@ type: api
 
 - **Detalhes:**
 
+<<<<<<< HEAD
   Invocado logo após a instância ter sido montada, onde `el` é substituído pelo recém criado `vm.$el`. Se a instância raiz é montada em um elemento já presente no documento, `vm.$el` também estará presente no documento quando `mounted` for invocada.
+=======
+  Called after the instance has been mounted, where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
   Observe que o `mounted` **não** garante que todos os componentes filhos também já tenham sido montados. Se você quiser esperar até que toda a camada _view_ do componente em questão tiver sido renderizada, você pode utilizar [vm.$nextTick](#vm-nextTick) dentro do `mounted`:
 
@@ -902,7 +942,11 @@ type: api
 
 - **Detalhes:**
 
+<<<<<<< HEAD
   A opção `mixins` aceita um vetor de objetos mixin. Esses objetos _mixin_ podem conter options da instância assim com as instâncias de objetos normais, e ele serão combinados com as eventuais opções usando a mesma lógica de combinação no `Vue.extend()`. Por exemplo, Se seu _mixin_ contém um gatilho _created_ e o componente por si só também contém um, as duas funções serão chamadas.
+=======
+  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
   Os gatilhos de _mixin_ são chamados na ordem em que são fornecidos, e chamados antes dos hooks do próprio componente.
 
@@ -1071,7 +1115,11 @@ type: api
 
 - **Detalhes:**
 
+<<<<<<< HEAD
   Faz com que um componente seja *stateless* (ou seja, não possui `data`) and *instanceless* (ou seja, não possui o contexto `this`). Componentes com esta opção habilitada serão apenas uma função `render` que retorna nós virtuais, fazendo com que sejam muito menos custosos para renderizar.
+=======
+  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 - **Ver também:** [Componentes funcionais](../guide/render-function.html#Functional-Components)
 
@@ -1360,7 +1408,11 @@ type: api
 
 - **Uso:**
 
+<<<<<<< HEAD
   Observa (em busca de mudanças) uma expressão ou uma função computada na instância do Vue. A função de *callback* é chamada com o novo e o antigo valor. A expressão somente aceita caminhos delimitados por pontos. Para expressões mais complexas, utilize uma função.
+=======
+  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
   <p class="tip">Nota: quando se está alterando (ao invés de substituindo) um objeto ou um *Array*, o valor antigo será igual ao novo valor, pois eles referenciam o mesmo objeto/*Array*. O Vue não mantém uma cópia dos valores antes de serem mutados.</p>
 
@@ -1766,7 +1818,11 @@ type: api
 
 - **Uso:**
 
+<<<<<<< HEAD
   Atribui um escutador de evento ao elemento. O tipo de evento é denotado pelo argumento. A expressão pode ser um nome de método, uma declaração em linha ou simplesmente omitida quando há modificadores presentes.
+=======
+  Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
   Começando na 2.4.0+, `v-on` também suporta interligação a um objeto de pares evento/escutador sem argumentos. Note que, quando se usa a sintaxe de objeto, não há suporte para quaisquer modificadores.
 
@@ -1835,10 +1891,17 @@ type: api
 
 - **Argumento:** `attrOrProp (opcional)`
 
+<<<<<<< HEAD
 - **Modificadores:**
   - `.prop` - Interliga como uma propriedade DOM ao invés de um atributo ([qual a diferença?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Se a _tag_ é um componente, então `.prop` irá definir a propriedade no `$el` do componente.
   - `.camel` - (2.1.0+) transforma o nome do atributo de kebab-case para camelCase.
   - `.sync` - (2.3.0+) um açúcar sintático que se expande em um `v-on` para atualizar o valor vinculado.
+=======
+- **Modifiers:**
+  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
+  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
+  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 - **Uso:**
 
@@ -2134,7 +2197,7 @@ type: api
 
 - **Uso:**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
+  `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
 
   ```html
   <!-- simple element -->

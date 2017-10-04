@@ -30,9 +30,13 @@ Vue.component('my-component', {
 })
 ```
 
+<<<<<<< HEAD
 <p class="tip">Observe que o Vue não força as regras da [W3C](http://www.w3.org/TR/custom-elements/#custom-elements-core-concepts) para nomes de _tags_ personalizadas (tudo minúsculo, com hífen entre palavras) embora seguir essa convenção seja considerado uma boa prática.</p>
 
 Uma vez registrado, um componente pode ser usado em uma instância como um elemento personalizado `<my-component></my-component>`. Tenha certeza que o elemento é registrado **antes** de ser instanciado na raiz do Vue. Aqui está um exemplo completo:
+=======
+<p class="tip">Note that Vue does not enforce the [W3C rules](https://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 
 ``` html
@@ -123,7 +127,11 @@ Portanto, para casos simples, prefira usar _Template Strings_ sempre que for pos
 
 ### Opção `data` Deve Ser uma Função
 
+<<<<<<< HEAD
 A maioria das opções que podem ser informadas no construtor de uma instância Vue também podem ser usadas em um componente, com um caso em especial: a opção `data` deve ser uma função. De fato, se você tentar isso:
+=======
+Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be a function. In fact, if you try this:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 Vue.component('my-component', {
@@ -221,8 +229,13 @@ Componentes existem para serem usados em conjunto, comumente em relacionamentos 
 
 No Vue, o relacionamento pai-filho pode ser resumido como **propriedades para baixo, eventos para cima**. O pai passa dados para baixo por meio de **propriedades**, e o filho envia mensagens para o pai por meio de **eventos**. Vamos ver como eles funcionam a seguir.
 
+<<<<<<< HEAD
 <p style="text-align: center">
   <img style="width:300px" src="/images/props-events.png" alt="propriedades para baixo, eventos para cima">
+=======
+<p style="text-align: center;">
+  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 </p>
 
 ## Propriedades
@@ -237,8 +250,13 @@ Uma propriedade é um atributo personalizado para passar informação a partir d
 Vue.component('child', {
   // declara as propriedades
   props: ['message'],
+<<<<<<< HEAD
   // assim como os dados, a propriedade pode ser usada dentro de templates
   // e também se torna disponível na instância como this.message
+=======
+  // like data, the prop can be used inside templates and
+  // is also made available in the vm as this.message
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
   template: '<span>{{ message }}</span>'
 })
 ```
@@ -300,7 +318,11 @@ Semelhante à ligação de um atributo normal a uma expressão, nós podemos tam
 </div>
 ```
 
+<<<<<<< HEAD
 Muitas vezes, é mais simples usar a sintaxe abreviada para o `v-bind`:
+=======
+You can also use the shorthand syntax for `v-bind`:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <child :my-message="parentMsg"></child>
@@ -330,7 +352,35 @@ new Vue({
 </script>
 {% endraw %}
 
+<<<<<<< HEAD
 ### Literal vs. Dinâmico
+=======
+If you want to pass all the properties in an object as props, you can use `v-bind` without an argument (`v-bind` instead of `v-bind:prop-name`). For example, given a `todo` object:
+
+``` js
+todo: {
+  text: 'Learn Vue',
+  isComplete: false
+}
+```
+
+Then:
+
+``` html
+<todo-item v-bind="todo"></todo-item>
+```
+
+Will be equivalent to:
+
+``` html
+<todo-item
+  v-bind:text="todo.text"
+  v-bind:is-complete="todo.isComplete"
+></todo-item>
+```
+
+### Literal vs. Dynamic
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 Um erro comum que iniciantes costumam fazer é tentar passar um valor numérico usando a sintaxe literal:
 
@@ -348,13 +398,21 @@ No entanto, como isso é uma propriedade literal, o valor é passado como uma St
 
 ### Fluxo de Dados Unidirecional
 
+<<<<<<< HEAD
 Todas as propriedades formam uma ligação **unidirecional** entre a propriedade do filho e o dado do pai: quando o pai é atualizado, o valor irá fluir para o filho, mas não o caminho inverso. Isso previne os componentes filhos de acidentalmente alterarem o estado dos pais, o que pode dificultar o entendimento dos dados de sua aplicação.
+=======
+All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 Além disso, sempre que o componente pai é atualizado, as propriedades do componente filho estarão atualizadas com o valor mais recente. Você **não** deveria tentar alterar uma propriedade dentro do componente filho. Se fizer isso, o Vue irá te avisar no _console_.
 
 Geralmente há dois casos em que é tentador alterar uma propriedade:
 
+<<<<<<< HEAD
 1. A propriedade é usada só para passar um valor inicial, o componente filho simplesmente quer usá-la como um dado local posteriormente;
+=======
+1. The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 2. A propriedade é passada como um valor bruto que precisa ser transformado.
 
@@ -584,7 +642,11 @@ Em alguns casos nós podemos precisar de uma "ligação bidirecional" para uma p
 
 Por isso removemos o modificador `.sync` quando a versão 2.0 foi lançada. No entanto, descobrimos que, de fato, existem casos em que isso pode ser útil, especialmente quando publicando componentes reutilizáveis. O que precisamos mudar é **fazer um código no filho que afeta o estado do pai de forma mais consistente e explícita.**
 
+<<<<<<< HEAD
 Na versão 2.3.0+ re-introduzimos o modificador `.sync` para propriedades, mas desta vez ele é só "açúcar sintático", o qual automaticamente se expande para uma escuta `v-on` adicional.
+=======
+In 2.3.0+ we re-introduced the `.sync` modifier for props, but this time it is only syntax sugar that automatically expands into an additional `v-on` listener:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 Por exemplo, o seguinte:
 
@@ -612,7 +674,11 @@ Eventos personalizados também podem ser usados para criar _inputs_ personalizad
 <input v-model="something">
 ```
 
+<<<<<<< HEAD
 É só um "açúcar sintático" para:
+=======
+is syntactic sugar for:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <input
@@ -634,7 +700,11 @@ Então, para funcionar com o `v-model`, ele deveria (pode ser configurado em 2.2
 - aceitar uma propriedade `value`
 - emitir um evento `input` com um novo valor
 
+<<<<<<< HEAD
 Vamos vê-lo em ação com um _input_ monetário muito simples:
+=======
+Let's see it in action with a simple currency input:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -941,7 +1011,11 @@ A API de distribuição de conteúdo é um mecanismo muito útil ao projetar com
 
 Um _slot_ com escopo é um tipo especial de _slot_ que funciona como um _template_ reusável (em que podemos passar dados para ele) em vez de elementos já renderizados.
 
+<<<<<<< HEAD
 Em um componente filho, simplesmente passe os dados para um _slot_ como se você estivesse passando propriedades para um componente:
+=======
+In a child component, pass data into a slot as if you are passing props to a component:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <div class="child">
@@ -1111,7 +1185,11 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
+<<<<<<< HEAD
 A função de fábrica recebe uma função _callback_ `resolve`, que deve ser chamada quando você recuperar a definição do componente do servidor. Você também pode chamar `reject(reason)` para indicar que o carregamento falhou. O `setTimeout` aqui é simplesmente para demonstração: como recuperar o componente fica totalmente por sua conta. Uma abordagem recomendada é usar juntamente com a [ferramenta de divisão de código do Webpack](https://webpack.js.org/guides/code-splitting/):
+=======
+The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1142,7 +1220,11 @@ new Vue({
 })
 ```
 
+<<<<<<< HEAD
 <p class="tip">Se você é usuário de <strong>Browserify</strong> e gostaria de usar componentes assíncronos, seu criador infelizmente [deixou claro](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) que carregamento assíncrono "não é algo que o Browserify irá suportar". Oficialmente, pelo menos. A comunidade Browserify encontrou [algumas soluções alternativas](https://github.com/vuejs/vuejs.org/issues/620), que podem ser úteis para aplicações existentes e complexas. Para todos os outros cenários, nós recomendamos simplesmente usar o Webpack, com um suporte assíncrono de primeira classe.</p>
+=======
+<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ### Componentes Assíncronos Avançados
 
@@ -1283,9 +1365,15 @@ Entretanto, se você está pegando/importando componentes usando um __sistem de 
 Failed to mount component: template or render function not defined.
 ```
 
+<<<<<<< HEAD
 Para explicar o que está acontecendo, chamaremos nossos componentes de A e B. O sistema de módulos enxerga que precisa de A, mas primeiro A precisa de B, mas B precisa de A, mas A precisa de B, etc, etc. Ele fica preso em um _loop_, não sabendo completamente como resolver nenhum dos componentes sem primeiro resolver o outro. Para consertar isso, nós precisamos dar ao sistema de módulos um ponto em que ele possa dizer, "A precisa de B _eventualmente_, mas não há necessidade de resolver o B primeiro."
 
 No nosso caso, faremos esse ponto no componente `tree-folder`. Nós sabemos que o filho que cria o paradoxo é o componente `tree-folder-contents`, então esperaremos até que o gatilho de ciclo de vida `beforeCreate` o registre:
+=======
+To explain what's happening, let's call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+
+In our case, let's make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` js
 beforeCreate: function () {

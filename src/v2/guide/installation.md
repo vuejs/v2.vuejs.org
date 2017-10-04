@@ -30,14 +30,24 @@ Simplesmente faça o _download_ e inclua a _tag_ `<script>` com o caminho corret
 <div id="downloads">
 <a class="button" href="/js/vue.js" download>Versão Desenvolvedor</a><span class="light info">Mensagens de erro completas e modo de depuração</span>
 
+<<<<<<< HEAD
 <a class="button" href="/js/vue.min.js" download>Versão de Produção</a><span class="light info">Sem mensagens de erro, {{gz_size}}kb min+gzip</span>
+=======
+<a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 </div>
 
 ### CDN
 
+<<<<<<< HEAD
 **Recomendado:** [unpkg.com/vue/dist/vue.js](https://unpkg.com/vue/dist/vue.js), reflete a última versão assim que ela é disponibilizada no `npm`. Inclusive, pode navegar pelo código-fonte do pacote em [https://unpkg.com/vue/](https://unpkg.com/vue/).
 
 Também disponível no [jsDelivr](https://cdn.jsdelivr.net/npm/vue/dist/vue.js) ou no [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js), mas estes dois serviços levam algum tempo para sincronizar com a última versão quando lançada.
+=======
+Recommended: [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue), which will reflect the latest version as soon as it is published to npm. You can also browse the source of the npm package at [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
+
+Also available on [unpkg](https://unpkg.com/vue) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ## NPM
 
@@ -67,7 +77,11 @@ $ npm run dev
 
 ## Explicação das Distribuições
 
+<<<<<<< HEAD
 No [diretório `dist/`do pacote NPM](https://unpkg.com/vue@latest/dist/) você encontrará muitas distribuições diferentes do Vue.js. Aqui está uma visão geral das variações entre cada uma delas:
+=======
+In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 | | UMD | CommonJS | ES Module |
 | --- | --- | --- | --- |
@@ -84,11 +98,19 @@ No [diretório `dist/`do pacote NPM](https://unpkg.com/vue@latest/dist/) você e
 
 - **Runtime**: código responsável por criar instâncias Vue, renderizar e atualizar o Virtual DOM, etc. Basicamente, tudo menos o compilador.
 
+<<<<<<< HEAD
 - **[UMD](https://github.com/umdjs/umd)**: definição de módulos universal, pode ser usada diretamente no navegador através de uma _tag_ `<script>`. O arquivo padrão no Unpkg CDN (no endereço [unpkg.com/vue](https://unpkg.com/vue)) é a distribuição Compilador + Runtime em formato UMD (`vue.js`).
+=======
+- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: formato destinado a empacotadores antigos como [browserify](http://browserify.org/) ou [webpack 1](https://webpack.github.io). O arquivo padrão para estes empacotadores (`pkg.main`) é a distribuição apenas Runtime em formato CommonJS (`vue.runtime.common.js`).
 
+<<<<<<< HEAD
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: formato de módulos ECMAScript destinado a empacotadores modernos como [webpack 2](https://webpack.js.org) ou [rollup](http://rollupjs.org/). O arquivo padrão para estes empacotadores (`pkg.module`) é a distribuição apenas Runtime em formato ES Module (`vue.runtime.esm.js`).
+=======
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: ES module builds are intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [rollup](https://rollupjs.org/). The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ### Runtime + Compilador vs. Runtime
 

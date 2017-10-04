@@ -24,7 +24,11 @@ Vue disponibiliza um componente encapsulador (wrapper) `transition` , permitindo
 - Componentes dinâmicos
 - Componentesde nós de raíz
 
+<<<<<<< HEAD
 Isto é o como um simples exemplo deve parecer em ação:
+=======
+This is what an example looks like in action:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <div id="demo">
@@ -114,7 +118,11 @@ Cada uma destas classes serão prefixadas com o nome da transição. Aqui, o pre
 
 ### Transição CSS
 
+<<<<<<< HEAD
 Um dos tipos mais comum de transição utiliza CSS transitions. Segue um exemplo simples:
+=======
+One of the most common transition types uses CSS transitions. Here's an example:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <div id="exemplo-1">
@@ -444,7 +452,11 @@ Estes ganchos (hooks) podem ser utilizados em combinação com transição/anima
 
 <p class="tip">Para transição de JavaScript apenas, é uma boa ideia adicionar explicitamente `v-bind:css="false"` para que o Vue possa pular a detecção de CSS. Isso também previne que regras CSS interfiram acidentalmente na transição.</p>
 
+<<<<<<< HEAD
 Agora vamos analisar um exemplo. Segue uma simples transição JavaScript utilizando Velocity.js:
+=======
+Now let's dive into an example. Here's a JavaScript transition using Velocity.js:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <!--
@@ -823,7 +835,11 @@ new Vue({
 </style>
 {% endraw %}
 
+<<<<<<< HEAD
 Com a adição de um simples atributo, nós corrigimos nossa transição original sem a necessidade de adicionar nenhum estilo especial.
+=======
+With one attribute addition, we've fixed that original transition without having to add any special styling.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 O modo `in-out` não é utilizado com frequência, mas às vezes pode ser útil para um efeito de transição ligeiramente diferente. Vamos tentar combiná-lo com a transição slide-fade que trabalhamos anteriormente:
 
@@ -875,8 +891,12 @@ Bem legal, certo?
 
 ## Transições Entre Componentes
 
+<<<<<<< HEAD
 Transições entre Componentes é ainda mais simples - nós não precisamos do atributo `key`.
 Nós apenas o encapsulamos em um [componente dinâmico](components.html#Dynamic-Components):
+=======
+Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we wrap a [dynamic component](components.html#Dynamic-Components):
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -959,7 +979,11 @@ Então que tal ter uma lista de itens e renderizá-los simultaneamente com o `v-
 
 ### Transição de Entrada/Saída de Lista
 
+<<<<<<< HEAD
 Agora vamos analisar um exemplo simples, utilizando as mesmas classes CSS que utilizamos anteriormente para transições de entrada e saída:
+=======
+Now let's dive into an example, transitioning entering and leaving using the same CSS classes we've used previously:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <div id="list-demo" class="demo">
@@ -1124,7 +1148,11 @@ new Vue({
 </style>
 {% endraw %}
 
+<<<<<<< HEAD
 Isto pode parecer mágica, mas por trás das cortinas, Vue está apenas utilizando uma simples técnica de animação chamada  [FLIP](https://aerotwist.com/blog/flip-your-animations/) para realizar a transição suave da posição antiga para a posição atual dos elementos, utilizando transforms.
+=======
+This might seem like magic, but under the hood, Vue is using an animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 Nós podemos combinar esta técnica com a nossa implementação anterior para animar qualquer mudança na nossa lista!
 
@@ -1240,7 +1268,11 @@ new Vue({
 
 <p class="tip">É importante notar que as transições FLIP não funcionam com elementos `display: inline`. Como alternativa, você pode usar `display: inline-block` ou colocar os elementos dentro de um contexto flex.</p>
 
+<<<<<<< HEAD
 Estas animações FLIP também não são limitadas à um único eixo. Itens em um grid multidimensional pode ser transicionados [facilmente](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+=======
+These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can be [transitioned too](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
@@ -1513,9 +1545,15 @@ Sim, até as transições no Vue são orientadas a dados (data-driven)! O exempl
 </transition>
 ```
 
+<<<<<<< HEAD
 Isto pode ser útil quando você define as transições/animações CSS utilizando as classes de transições do Vue e simplesmente queira alternar entre elas.
 
 No entanto, qualquer atributo de transição pode ser vinculado de forma dinâmica. E não são apenas atributos. Já que os ganchos de eventos são apenas métodos, eles têm acesso a quaisquer dados no contexto. Isso significa que, dependendo do estado do seu componente, suas transições JavaScript podem se comportar de forma diferente.
+=======
+This can be useful when you've defined CSS transitions/animations using Vue's transition class conventions and want to switch between them.
+
+Really though, any transition attribute can be dynamically bound. And it's not only attributes. Since event hooks are methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>

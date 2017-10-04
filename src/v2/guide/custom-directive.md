@@ -6,7 +6,11 @@ order: 302
 
 ## Introdução
 
+<<<<<<< HEAD
 Adicionalmente ao conjunto de diretivas incluídas em seu núcleo, Vue permite registrar suas próprias diretivas personalizadas. Note que no Vue 2.0+, a forma primária de abstração e reuso de código são componentes, no entanto, pode haver casos em que você só precisa de um acesso de baixo nível ao DOM em elementos simples, e aí diretivas personalizadas seriam úteis. Um exemplo seria colocar o foco a um elemento _input_ como este:
+=======
+In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
+>>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
