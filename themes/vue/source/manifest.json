@@ -1,6 +1,6 @@
 {
   "background_color": "#ffffff",
-  "description": "The Progressive JavaScript Framework",
+  "description": "Framework JavaScript linh động",
   "display": "standalone",
   "icons": [
     {
@@ -40,7 +40,7 @@
       "density": "4.0"
     }
   ],
-  "lang": "en-US",
+  "lang": "vi-VN",
   "name": "Vue.js",
   "short_name": "Vue",
   "start_url": "./menu",
