@@ -232,11 +232,11 @@ a.button.white {
 }
 .highlight {
   overflow-x: auto;
-  padding: 0;
   background-color: #f8f8f8;
-  padding: 0.8em 0.8em 0.4em;
+  padding: 0.4em 0 0;
   line-height: 1.1em;
   border-radius: 2px;
+  position: relative;
 }
 .highlight table,
 .highlight tr,
@@ -262,7 +262,7 @@ a.button.white {
 .highlight.bash .code:before,
 .highlight.css .code:before {
   position: absolute;
-  margin-top: -1em;
+  top: 0;
   right: 0;
   color: #ccc;
   text-align: right;
@@ -363,6 +363,51 @@ a.button.white {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 5px solid #ccc;
+}
+sup.beta.beta {
+  font-size: 0.6em;
+  margin-left: 0.7em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.rotating-clockwise {
+  animation: 3s rotating-clockwise linear infinite;
+}
+i.rotating-clockwise {
+  display: inline-block;
+  animation-duration: 2s;
+}
+@-moz-keyframes rotating-clockwise {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotating-clockwise {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes rotating-clockwise {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating-clockwise {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 #header {
   background-color: #fff;
@@ -679,7 +724,6 @@ ul.demo li {
   margin: 10px 20px;
 }
 .content .open-collective-sponsors img {
-  border-radius: 50%;
   max-height: 80px;
   margin-right: 20px;
 }
@@ -1013,44 +1057,102 @@ ul.demo li {
     margin-left: 0;
   }
 }
-.rotating-clockwise {
-  animation: 3s rotating-clockwise linear infinite;
+.style-guide .style-example,
+.style-guide details,
+.style-guide .style-enforcement {
+  border-radius: 2px;
+  margin: 1.6em 0;
+  padding: 1.6em;
 }
-i.rotating-clockwise {
+.style-guide .style-example h4,
+.style-guide details h4,
+.style-guide .style-enforcement h4 {
+  margin-top: 0;
+}
+.style-guide .style-example figure:last-child,
+.style-guide details figure:last-child,
+.style-guide .style-enforcement figure:last-child,
+.style-guide .style-example p:last-child,
+.style-guide details p:last-child,
+.style-guide .style-enforcement p:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.style-guide .style-example.example-bad {
+  background: #f3eded;
+}
+.style-guide .style-example.example-bad h4 {
+  color: #a67878;
+}
+.style-guide .style-example.example-good {
+  background: #eaedec;
+}
+.style-guide .style-example.example-good h4 {
+  color: #677b72;
+}
+.style-guide details,
+.style-guide .style-enforcement {
+  background-color: #eee;
+}
+.style-guide details {
+  position: relative;
+}
+.style-guide summary {
+  cursor: pointer;
+  padding: 1.6em;
+  margin: -1.6em;
+  outline: none;
+}
+.style-guide summary > h4 {
   display: inline-block;
-  animation-duration: 2s;
+  margin: 0;
 }
-@-moz-keyframes rotating-clockwise {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.style-guide .style-enforcement table {
+  width: 100%;
+  background-color: #f8f8f8;
+  border-radius: 2px;
 }
-@-webkit-keyframes rotating-clockwise {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.style-guide .style-enforcement th,
+.style-guide .style-enforcement td {
+  padding: 0.4em;
+  text-align: center;
 }
-@-o-keyframes rotating-clockwise {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.style-guide .style-enforcement th {
+  padding-bottom: 0.2em;
 }
-@keyframes rotating-clockwise {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.style-guide .style-enforcement td {
+  padding-top: 0.2em;
+}
+.style-guide .style-rule-tag {
+  background-color: #f8f8f8;
+  border-radius: 2px;
+  font-size: 0.9em;
+  color: #677b72;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.1em 0.4em;
+}
+.style-guide a > .style-rule-tag {
+  color: #42b983;
+}
+.style-guide sup {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  margin-left: 1em;
+  pointer-events: all;
+  position: absolute;
+}
+.style-guide [data-p="a"] {
+  color: #6b2a2a;
+}
+.style-guide [data-p="b"] {
+  color: #8c480a;
+}
+.style-guide [data-p="c"] {
+  color: #2b5a99;
+}
+.style-guide [data-p="d"] {
+  content: #3f536d;
 }
 #header {
   box-shadow: 0 0 1px rgba(0,0,0,0.25);
@@ -1251,6 +1353,9 @@ i.rotating-clockwise {
   padding-top: 2em;
   border-top: 1px solid #e5e5e5;
   font-size: 0.9em;
+}
+#main.fix-sidebar {
+  position: static;
 }
 #main.fix-sidebar .sidebar {
   position: fixed;

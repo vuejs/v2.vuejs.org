@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -91,6 +92,7 @@
     <li><ul>
       <li><a href="/v2/guide/" class="nav-link">Guide</a></li>
       <li><a href="/v2/api/" class="nav-link current">API</a></li>
+      <li><a href="/v2/style-guide/" class="nav-link">Style Guide</a></li>
       <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -177,6 +179,7 @@
     <li><ul>
       <li><a href="/v2/guide/" class="nav-link">Guide</a></li>
       <li><a href="/v2/api/" class="nav-link current">API</a></li>
+      <li><a href="/v2/style-guide/" class="nav-link">Style Guide</a></li>
       <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -431,7 +434,7 @@
 <p>Defer the callback to be executed after the next DOM update cycle. Use it immediately after you’ve changed some data to wait for the DOM update.</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// modify data</span></div><div class="line">vm.msg = <span class="string">'Hello'</span></div><div class="line"><span class="comment">// DOM not updated yet</span></div><div class="line">Vue.nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// DOM updated</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <blockquote>
-<p>New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.</p>
+<p>New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don’t support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.</p>
 </blockquote>
 </li>
 <li><p><strong>See also:</strong> <a href="../guide/reactivity.html#Async-Update-Queue">Async Update Queue</a></p>
@@ -1331,7 +1334,7 @@
 <li><p><strong>Usage:</strong></p>
 <p>Defer the callback to be executed after the next DOM update cycle. Use it immediately after you’ve changed some data to wait for the DOM update. This is the same as the global <code>Vue.nextTick</code>, except that the callback’s <code>this</code> context is automatically bound to the instance calling this method.</p>
 <blockquote>
-<p>New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.</p>
+<p>New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don’t support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.</p>
 </blockquote>
 </li>
 <li><p><strong>Example:</strong></p>

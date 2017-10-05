@@ -232,11 +232,11 @@ a.button.white {
 }
 .highlight {
   overflow-x: auto;
-  padding: 0;
   background-color: #f8f8f8;
-  padding: 0.8em 0.8em 0.4em;
+  padding: 0.4em 0 0;
   line-height: 1.1em;
   border-radius: 2px;
+  position: relative;
 }
 .highlight table,
 .highlight tr,
@@ -262,7 +262,7 @@ a.button.white {
 .highlight.bash .code:before,
 .highlight.css .code:before {
   position: absolute;
-  margin-top: -1em;
+  top: 0;
   right: 0;
   color: #ccc;
   text-align: right;
@@ -363,6 +363,12 @@ a.button.white {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 5px solid #ccc;
+}
+sup.beta.beta {
+  font-size: 0.6em;
+  margin-left: 0.7em;
+  text-transform: uppercase;
+  opacity: 0.6;
 }
 #header {
   background-color: #fff;
@@ -712,7 +718,6 @@ body.docs #nav {
   margin: 10px 20px;
 }
 .content .open-collective-sponsors img {
-  border-radius: 50%;
   max-height: 80px;
   margin-right: 20px;
 }
