@@ -1078,9 +1078,9 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 ### Complex expressions in templates <sup data-p="b">strongly recommended</sup>
 
-**Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
+**Component templates should only include simple expressions, with more complex expressions refactored into filters or computed properties.**
 
-Complex expressions in your templates make them less declarative. We should strive to describe _what_ should appear, not _how_ we're computing that value. Computed properties and methods also allow the code to be reused.
+Complex expressions in your templates make them less declarative. We should strive to describe _what_ should appear, not _how_ we're computing that value. Filters and Computed properties also allow the code to be reused.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -1099,14 +1099,14 @@ Complex expressions in your templates make them less declarative. We should stri
 
 ``` html
 <!-- In a template -->
-{{ normalizedFullName }}
+{{ fullName | normalizedFullName }}
 ```
 
 ``` js
-// The complex expression has been moved to a computed property
-computed: {
-  normalizedFullName: function () {
-    return this.fullName.split(' ').map(function (word) {
+// The complex expression has been moved to a filter
+filters: {
+  normalizedFullName: function (fullName) {
+    return fullName.split(' ').map(function (word) {
       return word[0].toUpperCase() + word.slice(1)
     }).join(' ')
   }
