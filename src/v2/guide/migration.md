@@ -977,7 +977,7 @@ Instead of:
 Use [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (or possibly [`sortBy`](https://lodash.com/docs/4.15.0#sortBy)) in a computed property:
 
 ``` html
-<p v-for="user in orderedUsers">{{ user.name }}</p>
+<p v-for="user in orderedUsers()">{{ user.name }}</p>
 ```
 
 ``` js
