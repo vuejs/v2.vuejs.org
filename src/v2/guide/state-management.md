@@ -1,20 +1,20 @@
 ---
-title: State Management
+title: Gestion de l'état
 type: guide
 order: 502
 ---
 
-## Official Flux-Like Implementation
+## Implémentation officielle semblable à Flux
 
-Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers [vuex](https://github.com/vuejs/vuex): our own Elm-inspired state management library. It even integrates into [vue-devtools](https://github.com/vuejs/vue-devtools), providing zero-setup access to time travel.
+Les grosses applications peuvent souvent augmenter en complexité du fait des multiples parties d'état disséminées à travers divers composants et les interactions entre eux. Pour résoudre ce problème, Vue offre [vuex](https://github.com/vuejs/vuex) : notre propre bibliothèque de gestion d'état inspiré par Elm. Il est même intégré à [vue-devtools](https://github.com/vuejs/vue-devtools), permettant le voyage dans le temps sans aucune configuration préalable.
 
-### Information for React Developers
+### Information pour les développeurs React
 
-If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://github.com/egoist/revue). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+Si vous venez de React, vous pouvez vous demander comment Vuex se compare à [Redux](https://github.com/reactjs/redux) (l'implémentation de Flux la plus populaire dans cet écosystème). Redux est en fait agnostique de la couche vue, et peut donc être facilement utilisé avec Vue à l'aide de plusieurs [liaisons simples](https://github.com/egoist/revue). Vuex est différent dans le sens où il _sait_ qu'il est dans une application Vue. Cela lui permet de mieux s'intégrer avec Vue, offrant une API plus intuitive et une meilleure expérience de développement.
 
-## Simple State Management from Scratch
+## Gestion d'état simple à partir de rien
 
-It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can share it by identity:
+On n'insiste souvent pas assez sur le fait que, dans des applications Vue, c'est l'objet `data` qui fait office de « source de vérité ». Une instance de Vue ne fait que proxifier l'accès à cet objet. Par conséquent, si vous avez une partie d'état qui doit être partagée par plusieurs instances, vous pouvez simplement la partager par référence :
 
 ``` js
 const sourceOfTruth = {}
@@ -28,30 +28,30 @@ const vmB = new Vue({
 })
 ```
 
-Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their views automatically. Subcomponents within each of these instances would also have access via `this.$root.$data`. We have a single source of truth now, but debugging would be a nightmare. Any piece of data could be changed by any part of our app at any time, without leaving a trace.
+Maintenant, quelle que soit la manière dont `sourceOfTruth` sera mutée, les instances `vmA` et `vmB` mettront à jour leurs vues automatiquement. Les sous-composants à l'intérieur de chacune de ces instances y auront aussi accès via la propriété `this.$root.$data`. Maintenant, nous avons une unique source de vérité, mais le débogage serait un cauchemar. N'importe quel fragment de donnée pourrait être changé par n'importe quelle partie de notre application, à n'importe quel moment, et sans laisser de trace.
 
-To help solve this problem, we can adopt a **store pattern**:
+Pour nous aider à résoudre ce problème, nous pouvons adopter un simple **modèle de stockage** appelé le store :
 
 ``` js
 var store = {
   debug: true,
   state: {
-    message: 'Hello!'
+    message: 'Bonjour !'
   },
   setMessageAction (newValue) {
-    if (this.debug) console.log('setMessageAction triggered with', newValue)
+    if (this.debug) console.log('setMessageAction déclenchée avec', newValue)
     this.state.message = newValue
   },
   clearMessageAction () {
-    if (this.debug) console.log('clearMessageAction triggered')
+    if (this.debug) console.log('clearMessageAction déclenchée')
     this.state.message = ''
   }
 }
 ```
 
-Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how are they triggered. Now when something goes wrong, we'll also have a log of what happened leading up to the bug.
+Notez que toutes les actions qui changent l'état du store sont mises à l'intérieur du store lui-même. Ce type de gestion d'état centralisé permet de comprendre plus facilement quel type de mutations peuvent survenir et comment elles sont déclenchées. Maintenant, quand quelque chose tourne mal, nous aurons également un log sur ce qui a conduit à ce bogue.
 
-In addition, each instance/component can still own and manage its own private state:
+De plus, chaque instance/composant peut gérer lui-même son propre état privé :
 
 ``` js
 var vmA = new Vue({
@@ -69,10 +69,10 @@ var vmB = new Vue({
 })
 ```
 
-![State Management](/images/state.png)
+![Gestion de l'état](/images/state.png)
 
-<p class="tip">It's important to note that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for mutations to be observed.</p>
+<p class="tip">Il est important de noter que vous ne devriez jamais remplacer l'objet d'état original dans vos actions. Les composants et le store ont besoin de partager une référence au même objet pour que les mutations puissent être observées.</p>
 
-As we continue developing the convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we eventually arrive at the [Flux](https://facebook.github.io/flux/) architecture. The benefit of this convention is we can record all state mutations happening to the store and implement advanced debugging helpers such as mutation logs, snapshots, and history re-rolls / time travel.
+Alors que nous continuons à développer la convention selon laquelle il n'est jamais permis à un composant de directement muter un état qui appartient au store, mais devrait à la place propager des évènements pour notifier le store qu'une action a été entreprise ; nous arriverons éventuellement à une architecture [Flux](https://facebook.github.io/flux/). Le bénéfice de cette convention est que nous pouvons enregistrer toutes les mutations d'état survenant sur le store et implémenter des fonctions utilitaires avancées de débogage telles que des logs de mutations, des clichés instantanés, et du voyage dans le temps sur l'historique des actions.
 
-This brings us full circle back to [vuex](https://github.com/vuejs/vuex), so if you've read this far it's probably time to try it out!
+Nous avons fait le tour de la présentation de [vuex](https://github.com/vuejs/vuex), aussi si vous êtes arrivé jusqu'ici, il est probablement temps de l'essayer !

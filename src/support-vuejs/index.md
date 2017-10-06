@@ -1,17 +1,17 @@
-# Support Vue.js Development
+# Soutenir le développement de Vue.js
 
-Vue.js is an MIT licensed open source project and completely free to use.
-However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development via the following methods:
+Vue.js est un projet open source sous licence MIT qui est complètement libre d'utilisation.
+Cependant, les efforts nécessaires à la maintenance et au développement de nouvelles fonctionnalités pour le projet ne sont pas possibles sans un soutien financier approprié. Vous pouvez soutenir les développements Vue.js des manières suivantes :
 
-- [Become a backer or sponsor via Patreon](https://www.patreon.com/evanyou) (goes directly to support Evan You's full-time work on Vue)
+- [Devenir un donateur ou un sponsor via Patreon](https://www.patreon.com/evanyou) (sert directement à soutenir le travail à plein temps d'Evan You sur Vue)
 
-- [Become a backer or sponsor via OpenCollective](https://opencollective.com/vuejs) (goes into a fund with transparent expense models supporting community efforts and events)
+- [Devenir un donateur ou un sponsor via OpenCollective](https://opencollective.com/vuejs) (offre un apport de fond transparent pour soutenir la communauté et financer des évènements)
 
-- [One-time donation via PayPal](https://www.paypal.me/evanyou).
+- [Don ponctuel via PayPal](https://www.paypal.me/evanyou)
 
-## Current Premium Sponsors:
+## Les sponsors premiums actuels :
 
-### Platinum ($2000/mo)
+### Sponsor de platine ($2000/mois)
 
 <p style="text-align: center;">
   <a href="https://stdlib.com">
@@ -19,13 +19,13 @@ However, the amount of effort needed to maintain and develop new features for th
   </a>
 </p>
 
-### OpenCollective Platinum ($2000/mo)
+### Platine OpenCollective ($2000/mois)
 
 <p class="open-collective-sponsors sponsor-section">
   <a href="https://opencollective.com/vuejs/platinumsponsor/0/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/1/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/2/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/3/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/4/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/5/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/5/avatar.svg"></a>
 </p>
 
-### Patreon Gold ($500/mo)
+### Or Patreon ($500/mois)
 
 <p class="patreon-sponsors sponsor-section">
   <a href="https://deepstreamhub.com" target="_blank" style="width: 140px; top: 1px;">
@@ -63,14 +63,14 @@ However, the amount of effort needed to maintain and develop new features for th
   </a>
 </p>
 
-### OpenCollective Gold ($500/mo)
+###  Or OpenCollective ($500+/mois)
 
 <p class="open-collective-sponsors sponsor-section">
   <a href="https://opencollective.com/vuejs/goldsponsor/0/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/1/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/2/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/3/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/4/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/5/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/5/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/6/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/6/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/7/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/7/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/8/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/8/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/9/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/9/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/10/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/10/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/11/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/11/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/12/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/12/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/13/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/13/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/14/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/14/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/15/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/15/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/16/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/16/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/17/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/17/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/18/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/18/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/19/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/19/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/20/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/20/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/21/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/21/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/22/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/22/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/23/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/23/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/24/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/24/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/25/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/25/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/26/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/26/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/27/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/27/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/28/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/28/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/29/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/29/avatar.svg"></a>
 </p>
 
-If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: **it ensures the project that your product relies on stays healthy and actively maintained.** It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
+Si vous êtes une entreprise et que vous utilisez Vue pour des produits générant du revenu, cela fait sens d'être sponsor du développement de Vue : **cela assure que le projet sur lequel repose votre produit reste sain et activement maintenu.** Cela améliore également votre visibilité auprès de la communauté Vue et vous rend plus attractif pour les développeurs Vue.
 
-If you are a business that is building core products using Vue.js, I am also open to conversations regarding custom sponsorship / consulting arrangements. [Get in touch on Twitter](https://twitter.com/youyuxi).
+Si vous avez une entreprise qui construit ses produits autour de Vue.js, je suis également ouvert à toutes conversations concernant le sponsoring personnalisé ou contrats de consultation. [Contactez-moi sur Twitter](https://twitter.com/youyuxi).
 
-If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while :)
+Si vous êtes un simple utilisateur qui apprécie la productivité apportée par Vue, considerez que les donations sont un geste de soutien, comme offrir un café de temps à autre :)

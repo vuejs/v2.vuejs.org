@@ -3,25 +3,25 @@
     <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
     <% if (type === 'guide') { %>
       <% if (fileName === 'installation') { %>
-        <li><h3>Essentials</h3></li>
+        <li><h3>Essentiel</h3></li>
       <% } %>
       <% if (fileName === 'transitions') { %>
-        <li><h3>Transitions & Animation</h3></li>
+        <li><h3>Transitions & animation</h3></li>
       <% } %>
       <% if (fileName === 'mixins') { %>
-        <li><h3>Reusability & Composition</h3></li>
+        <li><h3>Réusabilité & composition</h3></li>
       <% } %>
       <% if (fileName === 'deployment') { %>
-        <li><h3>Tooling</h3></li>
+        <li><h3>Outils</h3></li>
       <% } %>
       <% if (fileName === 'routing') { %>
-        <li><h3>Scaling Up</h3></li>
+        <li><h3>Évolutions</h3></li>
       <% } %>
       <% if (fileName === 'reactivity') { %>
-        <li><h3>Internals</h3></li>
+        <li><h3>Mécanismes</h3></li>
       <% } %>
       <% if (fileName === 'migration') { %>
-        <li><h3>Migrating</h3></li>
+        <li><h3>Migration</h3></li>
       <% } %>
       <% if (fileName === 'comparison') { %>
         <li><h3>Meta</h3></li>
@@ -29,7 +29,7 @@
     <% } %>
     <% if (type === 'cookbook') { %>
       <% if (p.order === 1.1) { %>
-        <li><h3>Vue Instance</h3></li>
+        <li><h3>Instance de Vue</h3></li>
       <% } %>
       <!-- Move cookbook sections here once they have -->
       <!-- at least one recipe -->
@@ -39,9 +39,9 @@
     </li>
   <% }) %>
   <% if (type === 'cookbook') { %>
-    <li><h3>Components</h3></li>
-    <li><h4>Form Inputs</h4></li>
-    <li><h4>3rd-Party Integrations</h4></li>
+    <li><h3>Composants</h3></li>
+    <li><h4>Champs de formulaire</h4></li>
+    <li><h4>Integrations tierces</h4></li>
     <li><h3>Transitions</h3></li>
     <li><h3>Directives</h3></li>
     <li><h3>Vue Router</h3></li>

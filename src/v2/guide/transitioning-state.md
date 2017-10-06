@@ -1,21 +1,21 @@
 ---
-title: State Transitions
+title: Transitions d'état
 type: guide
 order: 202
 ---
 
-Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
+Le système de transition de Vue offre de nombreuses façons simples d'animer l'entrée, la sortie et les listes, mais qu'en est-il de l'animation de vos propres données ? Par exemple :
 
-- numbers and calculations
-- colors displayed
-- the positions of SVG nodes
-- the sizes and other properties of elements
+- les nombres et les calculs
+- les couleurs affichées
+- les positions des nœuds SVG
+- les tailles et les autres propriétés des éléments
 
-All of these are either already stored as raw numbers or can be converted into numbers. Once we do that, we can animate these state changes using 3rd-party libraries to tween state, in combination with Vue's reactivity and component systems.
+Tous ces éléments sont déjà stockés sous forme de nombres bruts, ou peuvent être convertis en nombres. Dès lors, nous pouvons animer ces modifications de l'état à l'aide de bibliothèques tierces vers un état intermédiaire, en combinaison avec la réactivité de Vue et les systèmes de composants.
 
-## Animating State with Watchers
+## Animation de l'état avec des observateurs
 
-Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using [Tween.js](https://github.com/tweenjs/tween.js):
+Les observateurs nous permettent d'animer les changements de toute propriété numérique dans une autre propriété. Cela peut paraitre compliqué dans l'abstrait, donc plongeons-nous dans un exemple en utilisant [Tween.js](https://github.com/tweenjs/tween.js):
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -93,7 +93,7 @@ new Vue({
 </script>
 {% endraw %}
 
-When you update the number, the change is animated below the input. This makes for a nice demo, but what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with the addition of [Color.js](https://github.com/brehaut/color-js):
+Lorsque vous mettez à jour le nombre, la modification est animée en dessous de l'input. Cela fait une belle démonstration, mais qu'en est-il de quelque chose qui n'est pas directement stocké comme un nombre, comme n'importe quelle couleur CSS valide par exemple ? Voici comment nous pourrions accomplir cela avec l'ajout de [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -103,10 +103,10 @@ When you update the number, the change is animated below the input. This makes f
   <input
     v-model="colorQuery"
     v-on:keyup.enter="updateColor"
-    placeholder="Enter a color"
+    placeholder="Entrer une couleur"
   >
-  <button v-on:click="updateColor">Update</button>
-  <p>Preview:</p>
+  <button v-on:click="updateColor">Mettre à jour</button>
+  <p>Aperçu :</p>
   <span
     v-bind:style="{ backgroundColor: tweenedCSSColor }"
     class="example-7-color-preview"
@@ -182,10 +182,10 @@ new Vue({
   <input
     v-model="colorQuery"
     v-on:keyup.enter="updateColor"
-    placeholder="Enter a color"
+    placeholder="Entrer une couleur"
   >
-  <button v-on:click="updateColor">Update</button>
-  <p>Preview:</p>
+  <button v-on:click="updateColor">Mettre à jour</button>
+  <p>Aperçu :</p>
   <span
     v-bind:style="{ backgroundColor: tweenedCSSColor }"
     class="example-7-color-preview"
@@ -251,9 +251,9 @@ new Vue({
 </style>
 {% endraw %}
 
-## Dynamic State Transitions
+## Transitions d'état dynamiques
 
-As with Vue's transition components, the data backing state transitions can be updated in real time, which is especially useful for prototyping! Even using a simple SVG polygon, you can achieve many effects that would be difficult to conceive of until you've played with the variables a little.
+Tout comme pour les composants de transition de Vue, les transitions d'état de données peuvent être mises à jour en temps réel, ce qui est particulièrement utile pour le prototypage ! Même en utilisant un polygone SVG simple, vous pouvez obtenir de nombreux effets qu'il serait difficile de concevoir tant que vous n'avez pas un peu joué avec les variables.
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
@@ -262,7 +262,7 @@ As with Vue's transition components, the data backing state transitions can be u
     <polygon :points="points" class="demo-polygon"></polygon>
     <circle cx="100" cy="100" r="90" class="demo-circle"></circle>
   </svg>
-  <label>Sides: {{ sides }}</label>
+  <label>Faces : {{ sides }}</label>
   <input
     class="demo-range-input"
     type="range"
@@ -270,7 +270,7 @@ As with Vue's transition components, the data backing state transitions can be u
     max="500"
     v-model.number="sides"
   >
-  <label>Minimum Radius: {{ minRadius }}%</label>
+  <label>Rayon minimum : {{ minRadius }}%</label>
   <input
     class="demo-range-input"
     type="range"
@@ -278,7 +278,7 @@ As with Vue's transition components, the data backing state transitions can be u
     max="90"
     v-model.number="minRadius"
   >
-  <label>Update Interval: {{ updateInterval }} milliseconds</label>
+  <label>Intervalle de mise à jour : {{ updateInterval }} millisecondes</label>
   <input
     class="demo-range-input"
     type="range"
@@ -386,11 +386,11 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete code behind the above demo.
+Consulter [ce fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) pour voir le code complet derrière la démo ci-dessus.
 
-## Organizing Transitions into Components
+## Organisation des transitions dans les composants
 
-Managing many state transitions can quickly increase the complexity of a Vue instance or component. Fortunately, many animations can be extracted out into dedicated child components. Let's do this with the animated integer from our earlier example:
+La gestion de nombreuses transitions d'états peut augmenter rapidement la complexité d'une instance ou d'un composant Vue. Heureusement, de nombreuses animations peuvent être extraites dans des composants enfants dédiés. Faisons cela avec l'entier animé de notre exemple précédent :
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -408,11 +408,11 @@ Managing many state transitions can quickly increase the complexity of a Vue ins
 ```
 
 ``` js
-// This complex tweening logic can now be reused between
-// any integers we may wish to animate in our application.
-// Components also offer a clean interface for configuring
-// more dynamic transitions and complex transition
-// strategies.
+// Cette logique d'interpolation complexe peut maintenant être réutilisée entre
+// les entiers que nous souhaitons animer dans notre application.
+// Les composants offrent également une interface propre pour configurer
+// des transitions plus dynamiques et des stratégies complexes
+// de transition.
 Vue.component('animated-integer', {
   template: '<span>{{ tweeningValue }}</span>',
   props: {
@@ -455,7 +455,7 @@ Vue.component('animated-integer', {
   }
 })
 
-// All complexity has now been removed from the main Vue instance!
+// Toute la complexité a été supprimée de l'instance principale de Vue !
 new Vue({
   el: '#example-8',
   data: {
@@ -539,15 +539,15 @@ new Vue({
 </script>
 {% endraw %}
 
-Within child components, we can use any combination of transition strategies that have been covered on this page, along with those offered by Vue's [built-in transition system](transitions.html). Together, there are very few limits to what can be accomplished.
+<p>Dans les composants enfants, nous pouvons utiliser n'importe quelle combinaison de stratégies de transition qui ont été abordées dans cette page, ainsi que celles offertes par le [système intégré de transition](transitions.html) de Vue. En utilisant les deux, il existe très peu de limites à ce qui peut être accompli.</p><p class="tip">**La partie suivante est est en cours de traduction française. Revenez une autre fois pour lire une traduction achevée ou [participez à la traduction française ici](https://github.com/vuejs-fr/vuejs.org).**</p>
 
-## Bringing Designs to Life
+## Donner vie à ses créations
 
-To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+Animer, par définition, signifie donner vie. Malheureusement, quand les designers créent des icônes, logos et mascottes, ils fournissent généralement des images statiques ou des SVGs. Aussi l'octochat de GitHub, l'oiseau de Twitter et bien d'autres logos en forme de créature ne semblent pas réellement vivants.
 
-Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+Vue peut vous aider. Puisque les SVGs ne sont que des données, nous avons uniquement besoin de voir à quoi ressemblent ces créatures quand elles sont excitées, pensives, en interaction, etc. Ensuite Vue vous aidera aux transitions entre ces états, faisant de vos pages d'accueil, vos animations d'attente et de vos notifications quelque chose de vivant.
 
-Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
+Un exemple de cela dans de Sarah Drasner ci-dessous, utilisant une combinaison de changement d'état interactif et d'état en boucle animée.
 
-<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">Voir le pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Wall-E contrôlé par Vue</a> par Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) sur <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
