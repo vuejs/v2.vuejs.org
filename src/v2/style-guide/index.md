@@ -30,7 +30,7 @@ Where multiple, equally good options exist, an arbitrary choice can be made to e
 
 1. train your brain to more easily parse most of the community code you encounter
 2. be able to copy and paste most community code examples without modification
-2. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
+3. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
 
 ### Priority D: Use with Caution
 
@@ -352,7 +352,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button class="button button-close">X</button>
 </template>
 
-<!-- Using the scoped attribute -->
+<!-- Using the `scoped` attribute -->
 <style scoped>
 .button {
   border: none;
