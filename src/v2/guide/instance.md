@@ -1,5 +1,5 @@
 ---
-title: The Vue Instance
+title: Đối tượng Vue
 type: guide
 order: 3
 ---
