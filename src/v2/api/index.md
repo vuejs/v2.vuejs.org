@@ -594,193 +594,193 @@ type: api
   - **Vea También:**
     - [Funciones de renderizado](../guide/render-function)
 
-## Options / Lifecycle Hooks
+## Opciones / Hooks de ciclo de vida
 
-All lifecycle hooks automatically have their `this` context bound to the instance, so that you can access data, computed properties, and methods. This means __you should not use an arrow function to define a lifecycle method__ (e.g. `created: () => this.fetchTodos()`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.fetchTodos` will be undefined.
+Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a su contexto `this`, de modo que usted puede acceder a los datos, a las propiedades calculadas, y a los métodos. Esto quiere decir __que usted no debe usar funciones flecha para definir un método de ciclo de vida__ (p.e. `created: () => this.fetchTodos()`). La razón es que las funciones flecha asignan el contexto padre a `this`, de modo que `this` no será la instancia Vue como se esperaría y `this.fetchTodos` no estará definido.
 
 ### beforeCreate
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+  Llamado síncronamente justo después que la instacia es inicializada, antes de la observación de datos y la preparación de eventos/observadores.
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### created
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Llamado síncronamente después que la instancia es creada. En este punto, la instancia ha finalizado de procesar las opciones, lo que significa que lo siguiente ha sido preparado: observación de datos, propiedades calculadas, métodos, callbacks de observación/eventos. Sin embargo, no se ha iniciado la fase de montaje, y la propiedad `$el` no estará disponible.
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### beforeMount
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called right before the mounting begins: the `render` function is about to be called for the first time.
+  Llamado justo después que la fase de montaje inicia: la función `render` será llamada a continuación por primera vez.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### mounted
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Llamado después que la instancia acaba de ser montada donde `el` es reemplazado por el recién creado `vm.$el`. Si la instancia raíz es montada en un elemento en documento, `vm.$el` será también en documento cuando `mounted` sea llamado.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### beforeUpdate
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  Llamado cuando los datos cambian, antes que el DOM virtual sea re-renderizado y parchado.
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
+  Puede realizar cambios de estado adicionales en este hook, esto no activará re-renderizados adicionales.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### updated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called after a data change causes the virtual DOM to be re-rendered and patched.
+  Llamado después que un cambio en datos causa que el DOM virtual sea re-renderizado y parchado.
 
-  The component's DOM will be in updated state when this hook is called, so you can perform DOM-dependent operations in this hook. However, in most cases you should avoid changing state in this hook, because it may lead to an infinite update loop.
+  El DOM del componente estará en un estado actualizado cuando este hook sea llamado, de modo que usted pueda realizar operaciones que dependan del DOM en este hook. Sin embargo, en la mayoría de casos usted debe evitar cambiar el estado en este hook, ya que puede conducir a un ciclo de actualizaciones infinito.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### activated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called when a kept-alive component is activated.
+  Llamado cuando un componente a mantener vivo es activado.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook no es llamado durante renderización en servidor.**
 
 - **Vea También:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+  - [Componentes construídos - keep-alive](#keep-alive)
+  - [Componentes dinámicos - keep-alive](../guide/components.html#keep-alive)
 
 ### deactivated
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called when a kept-alive component is deactivated.
+  Llamado cuando un componente a mantener vivo es desactivado.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook no es llamado durante renderización en servidor.**
 
 - **Vea También:**
-  - [Built-in Components - keep-alive](#keep-alive)
-  - [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+  - [Componentes construídos - keep-alive](#keep-alive)
+  - [Componentes dinámicos - keep-alive](../guide/components.html#keep-alive)
 
 ### beforeDestroy
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+  Llamado justo antes que una instancia Vue sea destruída. En este punto la instancia es todavía completamente funcional.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### destroyed
 
-- **Type:** `Function`
+- **Tipo:** `Function`
 
-- **Details:**
+- **Detalles:**
 
-  Called after a Vue instance has been destroyed. When this hook is called, all directives of the Vue instance have been unbound, all event listeners have been removed, and all child Vue instances have also been destroyed.
+  Llamado después que una instancia Vue haya sido destruída. Cuando este hook es llamado, todas las directivas de la instancia Vue ya han sido desasignadas, todos los listeners de eventos han sido removidos, y todas las intancias Vue hijos también han sido destruídas.
 
-  **This hook is not called during server-side rendering.**
+  **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
-## Options / Assets
+## Opciones / Recursos
 
 ### directives
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  A hash of directives to be made available to the Vue instance.
+  Un objeto de directivas para poner a disposición de la instancia Vue.
 
 - **Vea También:**
-  - [Custom Directives](../guide/custom-directive.html)
-  - [Assets Naming Convention](../guide/components.html#Assets-Naming-Convention)
+  - [Directivas Personalizadas](../guide/custom-directive.html)
+  - [Convenciones para Nombramiento de Recursos](../guide/components.html#Convenciones-para-Nombramiento-de-Componentes)
 
 ### filters
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  A hash of filters to be made available to the Vue instance.
+  Un objeto de filtros para poner a disposición de la intancia Vue.
 
 - **Vea También:**
   - [`Vue.filter`](#Vue-filter)
 
 ### components
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  A hash of components to be made available to the Vue instance.
+  Un objeto de componentes para poner a dispocisión de la instancia Vue.
 
 - **Vea También:**
   - [Components](../guide/components.html)
 
-## Options / Misc
+## Opciones / Misceláneos
 
 ### parent
 
-- **Type:** `Vue instance`
+- **Tipo:** `Vue instance`
 
-- **Details:**
+- **Detalles:**
 
-  Specify the parent instance for the instance to be created. Establishes a parent-child relationship between the two. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent's `$children` array.
+  Especifica la instancia padre de la instancia a ser creada. Establece una relación padre-hijo entre ambas. El padre será accesible como `this.$parent` para el hijo, y el hijo será agregado al array `$children` del padre.
 
-  <p class="tip">Use `$parent` and `$children` sparringly - they mostly serve as an escape-hatch. Prefer using props and events for parent-child communication.</p>
+  <p class="tip">Use `$parent` con precaución - funciona principalmente como una compuerta de escape. Siempre prefiera usar props y eventos para comunicación entre padre e hijos.</p>
 
 ### mixins
 
-- **Type:** `Array<Object>`
+- **Tipo:** `Array<Object>`
 
-- **Details:**
+- **Detalles:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  La opción `mixins` acepta un array de objetos mixin. Dichos objetos mixin pueden contener opciones de instancia tal como los objetos de instancia normales, y pueden ser integradas con las eventuales opciones usando la misma lógica de integración de opciones presente en `Vue.extend()`. p.e. Si su mixin contiene un hook `created` y el componente mismo tiene uno a su vez, ambas funciones serán llamadas.
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  Los hooks en los mixins serán llamados en el mismo orden que fueron creados, y serán llamados antes de los propios hooks del componente.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var mixin = {
@@ -798,32 +798,32 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### name
 
-- **Type:** `string`
+- **Tipo:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **Restricción:** únicamente respetado cuando se usa como opción de componente.
 
-- **Details:**
+- **Detalles:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  Permite al componente invocarse a sí mismo recursivamente en su plantilla. Tenga en cuenta que cuando un componente es registrado globalmente con `Vue.component()`, el ID global es asignado automáticamente como su nombre.
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  Otro beneficio de especificar una opción `name` se presenta en la depuración. Usar componentes nombrados resulta en mensajes de advertencia más útiles. Tambien, cuando se inspecciona la aplicación con las [herramientas vue](https://github.com/vuejs/vue-devtools), los componentes sin nombre aparecerán como `<AnonymousComponent>`, lo cual no es muy informativo. Al proveer la opción `name`, obtendrá un árbol de componentes mucho más informativo.
 
 ### extends
 
-- **Type:** `Object | Function`
+- **Tipo:** `Object | Function`
 
-- **Details:**
+- **Detalles:**
 
-  Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
+  Permite extender un componente de forma declarativa (ya sea unas opciones sencillas o un constructor) sin tener que usar `Vue.extend`. Esto se hace principalmente para facilitar la herencia entre componentes de un archivo.
 
-  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+  Es similar a `mixins`, la diferencia siendo que que las propias opciones del componente toman una prioridad más alta que las del componente que está siendo extendido.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var CompA = { ... }
 
-  // extend CompA without having to call Vue.extend on either
+  // extiende CompA sin tener que llamar Vue.extend en alguno de los dos
   var CompB = {
     extends: CompA,
     ...
@@ -832,33 +832,33 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 ### delimiters
 
-- **Type:** `Array<string>`
+- **Tipo:** `Array<string>`
 
-- **default:** `{% raw %}["{{", "}}"]{% endraw %}`
+- **Valor por defecto:** `{% raw %}["{{", "}}"]{% endraw %}`
 
-- **Details:**
+- **Detalles:**
 
-  Change the plain text interpolation delimiters. **This option is only available in the standalone build.**
+  Cambia los delimitadores usados en la interpolación de texto. **Sólo disponible en la versión independiente.**
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   new Vue({
     delimiters: ['${', '}']
   })
 
-  // Delimiters changed to ES6 template string style
+  // Delimitadores cambiados al estilo de plantillas string de ES6
   ```
 
 ### functional
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Details:**
+- **Detalles:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+  Causa que un componente no tenga estado (sin `data`) y no tenga instancia (sin contexto `this`). Éste tipo de componente son sencillamente una función `render` que retorna nodos virtuales, haciéndolos mucho más económicos de renderizar.
 
-- **Vea También:** [Functional Components](../guide/render-function.html#Functional-Components)
+- **Vea También:** [Componentes funcionales](../guide/render-function.html#Componentes-Funcionales)
 
 ## Instance Properties
 
