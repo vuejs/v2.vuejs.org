@@ -4,24 +4,26 @@ type: guide
 order: 3
 ---
 
-## Creating a Vue Instance
+## Tạo một đối tượng Vue
 
-Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
+<p class="tip">Một số tài liệu kĩ thuật ở Việt Nam dịch "instance" là "thể hiện." Chúng tôi cho rằng cách dịch này nghe rất lạ tai với người Việt, nên sẽ dịch "instance" là "đối tượng" và giữ nguyên "object" là "object" như trong bản tiếng Anh.</p>
+
+Một ứng dụng Vue luôn được bắt đầu bằng cách khởi tạo một **đối tượng Vue** (Vue instance) sử dụng hàm `Vue`:
 
 ``` js
 var vm = new Vue({
-  // options
+  // các tùy chọn
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+Thiết kế của Vue chịu ảnh hưởng – mặt dù không liên kết chặt chẽ – từ pattern [MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel). Vì thế trong bản hướng dẫn này, chúng tôi quy ước sử dụng tên biến `vm` (viết tắt của ViewModel) cho một đối tượng Vue.
 
-When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
+Khi khởi tạo một đối tượng Vue, bạn truyền vào một object **`options`** với các tùy chọn. Phần lớn bản hướng dẫn này sẽ mô tả cách sử dụng các tùy chọn đó để tạo ra behavior (hành vi) mong muốn. Bạn cũng có thể tham khảo danh sách đầy đủ các tùy chọn ở trang [API](../api/#Options-Data).
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+Một ứng dụng Vue bao gồm một **đối tượng Vue gốc** (**root Vue instance**) được tạo với lệnh `new Vue`. Ứng dụng này cũng thường được sắp xếp thành một cây gồm các component lồng nhau và tái sử dụng được. Ví dụ, cây component của một ứng dụng todo có thể trông như thế này:
 
 ```
-Root Instance
+Root Vue instance
 |- TodoList
    |- TodoItem
       |- DeleteTodoButton
@@ -31,41 +33,41 @@ Root Instance
       |- TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+Chúng ta sẽ nói chi tiết về [hệ thống component](components.html) sau. Hiện tại, bạn chỉ cần biết rằng một component Vue cũng là một đối tượng Vue và do đó cũng nhận cùng một object `options` (trừ một số tùy chọn chỉ dành riêng cho root).
 
-## Data and Methods
+## Dữ liệu và phương thức
 
-When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
+Khi một đối tượng Vue được khởi tạo, tất cả các thuộc tính (property) được tìm thấy trong object `data` sẽ được thêm vào **reactivity system** (hiểu nôm na là "hệ thống phản ứng") của Vue. Điều này có nghĩa là view sẽ "react" (phản ứng) khi giá trị của các thuộc tính này thay đổi, và tự cập nhật tương ứng với các giá trị mới.
 
 ``` js
-// Our data object
+// Chúng ta khởi tạo một object "data"
 var data = { a: 1 }
 
-// The object is added to a Vue instance
+// Object này được truyền vào một đối tượng Vue
 var vm = new Vue({
   data: data
 })
 
-// These reference the same object!
+// vm.a và data.a cùng trỏ đến một đối tượng!
 vm.a === data.a // => true
 
-// Setting the property on the instance
-// also affects the original data
+// Thay đổi thuộc tính của vm cũng
+// ảnh hưởng đến dữ liệu ban đầu
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... và ngược lại
 data.a = 3
 vm.a // => 3
 ```
 
-When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
+Khi dữ liệu thay đổi, view sẽ render lại. Cũng nên lưu ý rằng một thuộc tính trong object `data` chỉ trở nên reactive nếu nó đã tồn tại khi chúng ta khởi tạo đối tượng Vue. Có nghĩa là nếu bạn thêm vào một thuộc tính mới như sau:
 
 ``` js
-vm.b = 'hi'
+vm.b = 'Aloha'
 ```
 
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+thì những thay đổi với `b` sẽ không kích hoạt thay đổi trên view. Vì thế, nếu bạn biết là sau này mình sẽ cần một thuộc tính nào đó nhưng khi khởi tạo Vue thì thuộc tính này là rỗng hoặc chưa tồn tại, bạn cần gán cho nó một giá trị ban đầu, ví dụ như thế này:
 
 ``` js
 data: {
@@ -77,7 +79,7 @@ data: {
 }
 ```
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
+Ngoài `data`, một đối tượng Vue cũng hỗ trợ một số thuộc tính và phương thức đối tượng (instance properties & methods) hữu dụng khác. Các thuộc tính và phương thức này được bắt đầu bằng kí hiệu `$` để phân biệt với thuộc tính và phương thức do người dùng định nghĩa. Ví dụ:
 
 ``` js
 var data = { a: 1 }
@@ -89,19 +91,19 @@ var vm = new Vue({
 vm.$data === data // => true
 vm.$el === document.getElementById('example') // => true
 
-// $watch is an instance method
+// $watch là một phương thức của đối tượng Vue
 vm.$watch('a', function (newValue, oldValue) {
-  // This callback will be called when `vm.a` changes
+  // Hàm callback này sẽ được gọi khi `vm.a` thay đổi
 })
 ```
 
-In the future, you can consult the [API reference](../api/#Instance-Properties) for a full list of instance properties and methods.
+Bạn cũng có thể tham khảo danh sách đầy đủ các thuộc tính và phương thức đối tượng trên trang [API](../api/#Instance-Properties).
 
-## Instance Lifecycle Hooks
+## Vòng đời của đối tượng
 
-Each Vue instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
+Khi được khởi tạo, một đối tượng Vue sẽ đi qua nhiều bước khác nhau - cài đặt quan sát dữ liệu (data observation), biên dịch template, gắn kết vào DOM, cập nhật DOM khi dữ liệu thay đổi v.v. Trong suốt tiến trình này, nó cũng sẽ thực thi một số hàm gọi là **lifecycle hooks**, giúp người dùng thêm code của mình vào các giai đoạn (stage) cụ thể trong vòng đời của đối tượng.
 
-For example, the [`created`](../api/#created) hook can be used to run code after an instance is created:
+Ví dụ, hook [`created`](../api/#created) có thể được dùng để thực thi code sau khi một đối tượng được khởi tạo:
 
 ``` js
 new Vue({
@@ -109,19 +111,19 @@ new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
-    console.log('a is: ' + this.a)
+    // `this` trỏ đến đối tượng Vue hiện hành
+    console.log('giá trị của a là ' + this.a)
   }
 })
-// => "a is: 1"
+// => "giá trị của a là 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, such as [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
+Các hook khác như [`mounted`](../api/#mounted), [`updated`](../api/#updated), và [`destroyed`](../api/#destroyed) cũng được gọi vào các giai đoạn khác nhau trong vòng đời của đối tượng. Tất cả các hook này đều được thực thi với ngữ cảnh `this` trỏ đến đối tượng Vue hiện hành.
 
-<p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect and `this.a` or `this.myMethod` will be undefined.</p>
+<p class="tip">Đừng dùng [hàm mũi tên (arrow functions)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) cho các thuộc tính tùy chọn hoặc callback như là `created: () => console.log(this.a)` hoặc `vm.$watch('a', newValue => this.myMethod())`. Vì hàm mũi tên được bind vào ngữ cảnh cha (parent context), `this` sẽ không trỏ đến đối tượng Vue hiện hành và do đó `this.a` hoặc `this.myMethod` sẽ không trả về giá trị mà bạn mong đợi.</p>
 
-## Lifecycle Diagram
+## Sơ đồ vòng đời
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+Dưới đây là sơ đồ vòng đời của một đối tượng Vue. Ngay lúc này thì bạn chưa cần hiểu mọi thứ trong đây, nhưng dần dần về sau khi bạn học và xây dựng thêm với Vue, sơ đồ này sẽ là một nguồn tham khảo rất hữu ích.
 
-![The Vue Instance Lifecycle](/images/lifecycle.png)
+![Vòng đời của một đối tượng Vue](/images/lifecycle.png)
