@@ -1,30 +1,30 @@
 ---
-title: Introduction
+title: Giới thiệu
 type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## Vue.js là gì?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Gọi tắt là Vue (phát âm là /vjuː/, giống như **view** trong tiếng Anh), Vue.js là một **framework linh động** (nguyên bản tiếng Anh: progressive – tiệm tiến) dùng để xây dựng giao diện người dùng (user interfaces). Khác với các framework nguyên khối (monolithic), Vue được thiết kế từ đầu theo hướng cho phép và khuyến khích việc phát triển ứng dụng theo từng bước. Khi phát triển lớp giao diện (view layer), người dùng chỉ cần dùng thư viện lõi (core library) của Vue, vốn rất dễ học và tích hợp với các thư viện hoặc dự án có sẵn. Cùng lúc đó, nếu kết hợp với những kĩ thuật hiện đại như [SFC (single file components)](single-file-components.html) và [các thư viện hỗ trợ](https://github.com/vuejs/awesome-vue#components--libraries), Vue cũng đáp ứng được dễ dàng nhu cầu xây dựng những ứng dụng một trang (SPA - Single-Page Applications) với độ phức tạp cao hơn nhiều.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Nếu bạn là một lập trình viên front-end giàu kinh nghiệm và muốn hiểu hơn về tương quan giữa Vue và các thư viện hay framework khác, hãy xem phần [So sánh với các framework khác](comparison.html).
 
-## Getting Started
+## Bắt đầu
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">Nếu bạn chưa quen với lập trình front-end, không nên bắt đầu bằng việc sử dụng một framework – hãy trang bị cho mình vốn kiến thức cơ bản trước đã. Đồng thời, nếu bạn đã có sẵn kinh nghiệm với các framework khác như React hoặc Angular thì tốt, nhưng nếu không thì cũng không sao cả.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">create an <code>index.html</code> file</a> and include Vue with:
+Để dùng thử Vue.js, không gì dễ hơn là bắt đầu với một [ví dụ Hello World trên JSFiddle](https://jsfiddle.net/vuejs/bc5rzva3/). Hãy mở ví dụ này trong một tab khác và làm theo những ví dụ cơ bản mà chúng tôi sẽ nhắc đến dần sau đây. Bạn cũng có thể <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">tạo một file <code>index.html</code></a> và nhúng thư viện Vue vào:
 
 ``` html
 <script src="https://unpkg.com/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+Trang [Cài đặt](installation.html) sẽ cung cấp cho bạn nhiều lựa chọn hơn để cài đặt Vue. Lưu ý rằng chúng tôi **không** khuyến khích việc dùng `vue-cli` khi bạn chỉ mới bắt đầu, nhất là nếu bạn chưa quen với các công cụ xây dựng (build tools) trên nền tảng Node.js.
 
-## Declarative Rendering
+## Render theo hướng khai báo
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+Tại trung tâm của Vue.js là một hệ thống cho phép chúng ta render (kết xuất) dữ liệu lên DOM theo hướng khai báo (declarative, thay vì hướng mệnh lệnh – imperative) sử dụng một cú pháp đơn giản:
 
 ``` html
 <div id="app">
@@ -35,7 +35,7 @@ At the core of Vue.js is a system that enables us to declaratively render data t
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Do you wanna build a Vue app?'
   }
 })
 ```
@@ -47,21 +47,20 @@ var app = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Do you wanna build a Vue app?'
   }
 })
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+Vậy là chúng ta đã viết xong một ứng dụng bằng Vue! Tuy rằng kết quả trên đây nhìn đơn giản chỉ như render một chuỗi kí tự ra màn hình, thật sự Vue đã thực hiện khá nhiều việc đằng sau hậu trường. Dữ liệu và DOM đã được liên kết với nhau, và mọi thứ giờ đây đã trở nên **reactive** (hiểu nôm na là "phản ứng," chúng tôi sẽ giải thích sâu hơn trong các chương kế tiếp). Để kiểm chứng, hãy mở console của trình duyệt và gán cho `app.message` một giá trị khác, ví dụ `app.message = 'OK bye'`. Bạn sẽ thấy ví dụ trên thay đổi tương ứng.
 
-In addition to text interpolation, we can also bind element attributes like this:
+Ngoài việc quản lí và chỉnh sửa văn bản, chúng ta cũng có thể bind (ràng buộc) các thuộc tính của phần tử web, như sau:
 
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+    Rê chuột lên đây một vài giây để xem thuộc tính `title` được bind!
   </span>
 </div>
 ```
@@ -69,37 +68,37 @@ In addition to text interpolation, we can also bind element attributes like this
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'Bạn đã mở trang này vào ' + new Date().toLocaleString()
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Rê chuột lên đây một vài giây để xem thuộc tính `title` được bind!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'Bạn đã mở trang này vào ' + new Date().toLocaleString()
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Thuộc tính `v-bind` mà bạn thấy trên đây được gọi là một **directive**. Một directive trong Vue được bắt đầu với `v-` để chỉ định rõ rằng đây là một thuộc tính riêng do Vue cung cấp, đồng thời thuộc tính này sẽ áp dụng một hành vi (behavior) đặc biệt lên kết quả DOM được render ra. Trong ví dụ này, directive `v-bind` về cơ bản là đang giữ thuộc tính `title` của phần tử web luôn luôn đồng nhất với property `message` của đối tượng Vue được khởi tạo.
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Bây giờ nếu bạn mở console JavaScript lần nữa và nhập vào `app2.message = 'Cái gì đó khác'`, bạn sẽ thấy HTML được bind – trong trường hợp này là thuộc tính `title` – được cập nhật tương ứng.
 
-## Conditionals and Loops
+## Điều kiện và vòng lặp
 
-It's easy to toggle the presence of an element, too:
+Giấu hoặc hiện một phần tử web với Vue cũng rất dễ dàng:
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Thoắt ẩn thoắt hiện</span>
 </div>
 ```
 
@@ -114,7 +113,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Thoắt ẩn thoắt hiện</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -126,11 +125,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Bây giờ nếu nhập `app3.seen = false` vào console, bạn sẽ thấy thông điệp trên đây biến mất.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+Ví dụ này cho thấy rằng chúng ta có thể bind dữ liệu vào không chỉ văn bản và thuộc tính, mà còn cả vào **cấu trúc** của DOM. Hơn thế nữa, Vue còn cung cấp một hệ thống mạnh mẽ để áp dụng các [hiệu ứng chuyển đổi](transitions.html) khi một phần tử web được thêm vào, cập nhật, hoặc gỡ bỏ khỏi DOM.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+Ngoài `v-bind` và `v-if` chúng ta còn có thêm nhiều directive nữa, với các tính năng đặc biệt khác nhau. Ví dụ, directive `v-for` có thể được dùng để trình bày một danh sách các item sử dụng dữ liệu từ một mảng:
 
 ``` html
 <div id="app-4">
@@ -146,9 +145,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Học JavaScript' },
+      { text: 'Học Vue' },
+      { text: 'Xây dựng cái gì đó hay ho' }
     ]
   }
 })
@@ -166,20 +165,20 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Học JavaScript' },
+      { text: 'Học Vue' },
+      { text: 'Xây dựng cái gì đó hay ho' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+Bây giờ nếu nhập `app4.todos.push({ text: 'Nghỉ ngơi' })`, bạn sẽ thấy danh sách có thêm một mục mới.
 
-## Handling User Input
+## Xử lí thông tin đầu vào của người dùng
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+Để người dùng tương tác với ứng dụng, chúng ta có thể dùng directive `v-on` để đính kèm các event listener (phần tử lắng nghe sự kiện) và gọi các method (phương thức) trên đối tượng Vue.
 
 ``` html
 <div id="app-5">
@@ -191,11 +190,11 @@ To let users interact with your app, we can use the `v-on` directive to attach e
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'qua lại khách chờ sông lặng sóng'
   },
   methods: {
     reverseMessage: function () {
-      this.message = this.message.split('').reverse().join('')
+      this.message = this.message.split(' ').reverse().join(' ')
     }
   }
 })
@@ -203,38 +202,39 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Đảo ngược thông điệp</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'qua lại khách chờ sông lặng sóng'
   },
   methods: {
     reverseMessage: function () {
-      this.message = this.message.split('').reverse().join('')
+      this.message = this.message.split(' ').reverse().join(' ')
     }
   }
 })
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Nếu để ý bạn sẽ thấy trong method này chúng ta đã thay đổi trạng thái của ứng dụng (app state) mà không hề động đến DOM - mọi thao tác trên DOM đều được Vue xử lí một cách hoàn toàn tự động, và code bạn viết chỉ cần tập trung vào phần logic bên dưới.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue cũng cung cấp directive `v-model` giúp cho việc ràng buộc hai chiều (two-way binding) giữa form input và trạng thái ứng dụng trở nên vô cùng dễ dàng:
 
 ``` html
 <div id="app-6">
   <p>{{ message }}</p>
   <input v-model="message">
+  <button v-on:click="changeMessage">Thay đổi thông điệp</button>
 </div>
 ```
 ``` js
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Hãy sửa thông điệp này'
   }
 })
 ```
@@ -247,58 +247,59 @@ var app6 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Hãy sửa thông điệp này'
   }
 })
 </script>
 {% endraw %}
 
-## Composing with Components
+## Biên soạn với các component
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+Hệ thống component (phần tử cấu thành) là một khái niệm quan trọng trong Vue, vì nó cho phép chúng ta xây dựng những ứng dụng quy mô lớn được tạo thành từ những phần tử nhỏ, độc lập, và thường là tái sử dụng được. Nếu bạn để ý, gần như bất kì một loại giao diện ứng dụng nào cũng có thể được trừu tượng hóa thành một tập hợp dạng cây của các phần tử con:
 
-![Component Tree](/images/components.png)
+![Cây phần tử](/images/components.png)
 
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+Một component trong Vue về bản chất là một đối tượng Vue với các tùy chọn cho trước. Đăng kí một component trong Vue rất đơn giản: 
 
 ``` js
-// Define a new component called todo-item
+// Định nghĩa một component todo-item
 Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
+  template: '<li>Đây là một đề mục todo</li>'
 })
 ```
 
-Now you can compose it in another component's template:
+Giờ thì bạn có thể sử dụng component `todo-item` trong template của các component khác:
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- Tạo một đối tượng của component todo-item -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+Có điều ví dụ này chưa được thú vị cho lắm, vì các đề mục todo hiện đang giống nhau hoàn toàn. Chúng ta có thể truyền dữ liệu từ scope (phạm vi) cha vào các component con bằng cách sử dụng một [prop](components.html#Props):
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  // Ở đây chúng ta khai báo cho component todo-item 
+  // nhận một "prop" (có thể hiểu là một thuộc tính tùy biến) 
+  // có tên là "todo".
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+Bây giờ chúng ta có thể truyền `todo` vào mỗi component bằng cách sử dụng `v-bind`:
 
 ``` html
 <div id="app-7">
+  <p>Những thứ họ mua:</p>
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      Ở đây chúng ta cung cấp một object "todo" cho mỗi component
+      "todo-item". Bằng cách này nội dung của từng component trở nên động.
+      Mỗi component cũng sẽ nhận một thuộc tính "key". Chúng ta sẽ
+      nói thêm về thuộc tính này sau.
     -->
     <todo-item
       v-for="item in groceryList"
@@ -318,15 +319,16 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Cà pháo' },
+      { id: 1, text: 'Mắm tôm' },
+      { id: 2, text: 'Miễn ăn được là được' }
     ]
   }
 })
 ```
 {% raw %}
 <div id="app-7" class="demo">
+  <p>Những thứ họ mua:</p>
   <ol>
     <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
   </ol>
@@ -340,18 +342,18 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Cà pháo' },
+      { id: 1, text: 'Mắm tôm' },
+      { id: 2, text: 'Miễn ăn được là được' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+Tất nhiên ví dụ trên không có nhiều ý nghĩa thực tiễn, nhưng điều quan trọng là chúng ta đã biết cách chia ứng dụng thành hai đơn vị nhỏ hơn, đồng thời phần tử con được tách rời khỏi phần tử cha và chỉ giao tiếp bằng `prop`. Bây giờ thì chúng ta đã có thể phát triển component `<todo-item>` thêm lên với nhiều template và logic phức tạp hơn mà không làm ảnh hưởng đến ứng dụng cha.
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
+Trong một ứng dụng lớn, việc chia thành các component nhỏ hơn để dễ quản lí việc phát triển ứng dụng là rất cần thiết. Chúng ta sẽ bàn thêm nhiều về component [trong một hướng dẫn sau này](components.html), nhưng hiện tại thì bạn có thể xem một ví dụ (tưởng tượng) về một template của ứng dụng khi sử dụng components:
 
 ``` html
 <div id="app">
@@ -363,14 +365,14 @@ In a large application, it is necessary to divide the whole app into components 
 </div>
 ```
 
-### Relation to Custom Elements
+### Mối quan hệ với Custom Element
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+Bạn có thể để ý thấy là component trong Vue rất giống với **Custom Element**, một phần của [chỉ dẫn kĩ thuật về Web Components](https://www.w3.org/wiki/WebComponents/). Lí do là cú pháp của component trong Vue mô phỏng theo chỉ dẫn này. Ví dụ, component trong Vue phát triển [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) và thuộc tính đặc biệt `is`. Tuy nhiên, giữa web component và Vue component có một số khác biệt mấu chốt:
 
-1. The Web Components Spec is still in draft status, and is not natively implemented in every browser. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
+1. Chỉ dẫn kĩ thuật về web component vẫn còn ở dạng sơ thảo, chưa được phát triển trong toàn bộ các trình duyệt. Ngược lại, Vue component hoạt động một cách thống nhất trên các trình duyệt được Vue hỗ trợ (từ IE9 trở lên) mà không cần polyfill. Ngoài ra, Vue component cũng có thể được gói (wrap) trong một custom element nếu cần.
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
+2. Vue component cung cấp một số chức năng quan trọng không có trong custom element đơn thuần, trong đó đáng lưu ý nhất là quản lí luồng dữ liệu giữa các component, giao tiếp bằng các sự kiện tùy biến (custom event) và tích hợp với các công cụ xây dựng.
 
-## Ready for More?
+## Bạn đã sẵn sàng để đọc thêm chưa?
 
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+Trên đây chúng ta đã lược qua những tính năng cơ bản nhất của Vue.js. Phần còn lại của bản hướng dẫn sẽ đi sâu vào những tính năng này, đồng thời đề cập một cách chi tiết đến những tính năng cao cấp hơn. Bạn nhớ đọc cho hết và đọc cho kĩ vào nhé!
