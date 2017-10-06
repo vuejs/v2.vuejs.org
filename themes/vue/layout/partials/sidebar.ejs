@@ -14,8 +14,14 @@
         Apporter son soutien
       </a>
       <h2>
-        <%- type === 'api' ? 'API' : (type.charAt(0).toUpperCase() + type.slice(1)) %>
-        <% if (type !== 'cookbook') { %>
+        <%-
+          type === 'api'
+            ? 'API'
+            : type === 'style-guide'
+              ? 'Style Guide<sup class="beta">beta</sup>'
+              : (type.charAt(0).toUpperCase() + type.slice(1))
+        %>
+        <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
           <select class="version-select">
             <option value="SELF" selected>2.x</option>
             <option value="v1">1.0</option>
