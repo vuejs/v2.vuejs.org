@@ -14,7 +14,7 @@ Nếu bạn là một lập trình viên front-end giàu kinh nghiệm và muố
 
 <p class="tip">Nếu bạn chưa quen với lập trình front-end, không nên bắt đầu bằng việc sử dụng một framework – hãy trang bị cho mình vốn kiến thức cơ bản trước đã. Đồng thời, nếu bạn đã có sẵn kinh nghiệm với các framework khác như React hoặc Angular thì tốt, nhưng nếu không thì cũng không sao cả.</p>
 
-Để dùng thử Vue.js, không gì dễ hơn là bắt đầu với một [ví dụ Hello World trên JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Hãy mở ví dụ này trong một tab khác và làm theo những ví dụ cơ bản mà chúng tôi sẽ nhắc đến dần sau đây. Bạn cũng có thể <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">tạo một file <code>index.html</code></a> và nhúng thư viện Vue vào:
+Để dùng thử Vue.js, không gì dễ hơn là bắt đầu với một [ví dụ Hello World trên JSFiddle](https://jsfiddle.net/vuejs/bc5rzva3/). Hãy mở ví dụ này trong một tab khác và làm theo những ví dụ cơ bản mà chúng tôi sẽ nhắc đến dần sau đây. Bạn cũng có thể <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">tạo một file <code>index.html</code></a> và nhúng thư viện Vue vào:
 
 ``` html
 <script src="https://unpkg.com/vue"></script>
