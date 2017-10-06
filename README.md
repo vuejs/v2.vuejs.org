@@ -19,6 +19,7 @@ Do có sự khác biệt về ngôn ngữ và những đặc thù của tiếng 
 * Đối với những từ hoặc cụm từ không dịch được, hãy thông báo để chúng tôi thảo luận với core team và chọn từ hay cụm từ có ý nghĩa tương đương. Một ví dụ là từ "Progressive" đã được dịch thoáng thành "linh hoạt" (flexible) sau khi thảo luận với Evan You.
 * Không nhất thiết phải dịch 1:1. Đôi khi chúng ta nên thêm hoặc bớt vài từ hoặc thậm chí là cả một câu để bản dịch được tự nhiên hơn, miễn là truyền tải được đúng và đủ ý.
 * Không nên dùng Title Case vì tiếng Việt ít dùng cách viết này, ví dụ nên viết "Ủng hộ Vue" thay vì "Ủng Hộ Vue."
+* Hạn chế dùng thể bị động vì thể này trong tiếng Việt thường nghe mất tự nhiên, mặc dù rất phổ biến trong tiếng Anh. Ví dụ để dịch "it's recommended," thay vì dịch thành "nó được khuyến khích sử dụng," hãy dịch thành "chúng tôi khuyến khích sử dụng (tên thư viện/framework)…"
 
 ## Thành viên
 
