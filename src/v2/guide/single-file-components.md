@@ -25,7 +25,7 @@ Maintenant nous avons :
 
 - [Une coloration syntaxique complète](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [Des modules CommonJS](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
-- [Du CSS à la portée limitée au composant](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+- [Du CSS dont la portée est limitée au composant](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
 Et comme promis, nous pouvons aussi utiliser des préprocesseurs tels que Pug, Babel (avec les modules ES2015), et Stylus pour obtenir des composants plus lisibles et plus riches en fonctionnalités.
 

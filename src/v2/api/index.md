@@ -229,7 +229,7 @@ type : api
   })
   ```
 
-  > Nouveauté de la 2.1.0+ : retourne une Promise si aucune fonction de rappel n'est fournie et si Promise est supporté par l'environnement d'exécution.
+  > Nouveauté de la 2.1.0+ : retourne une promesse si aucune fonction de rappel n'est fournie et si les promesses sont supportées par l'environnement d'exécution. Notez que Vue ne fournit pas de polyfill aux promesses. Aussi, si vous ciblez des navigateurs qui ne supportent pas les promesses nativement (on parle de toi, IE), vous pouvez fournir un polyfill vous-même.
 
 - **Voir aussi :** [File d’attente de mise à jour asynchrone](../guide/reactivity.html#File-d’attente-de-mise-a-jour-asynchrone)
 
@@ -1549,7 +1549,7 @@ type : api
 
   Reporte l'exécution de la fonction `callback` au prochain cycle de mise à jour du DOM. Utilisez ceci immédiatement après avoir changé des données pour attendre la mise à jour du DOM. C'est la même chose que la fonction globale `Vue.nextTick`, sauf que le contexte `this` dans la fonction `callback` est automatiquement lié à l'instance appelant cette méthode.
 
-  > Nouveau dans la 2.1.0+ : retourne une Promise si aucune fonction de rappel n'est fournie et si les Promise sont supportés dans l'environnement d'exécution.
+  > Nouveau dans la 2.1.0+ : retourne une promesse si aucune fonction de rappel n'est fournie et si les promesses ne sont pas supportées dans l'environnement d'exécution. Notez que Vue ne fournit pas de polyfill aux promesses. Aussi, si vous ciblez des navigateurs qui ne supportent pas les promesses nativement (on parle de toi, IE), vous pouvez fournir un polyfill vous-même.
 
 - **Exemple :**
 

@@ -116,7 +116,7 @@ Les modificateurs sont des suffixes spéciaux indiqués par un point, qui indiqu
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-Nous verrons plus de cas d'utilisation des modificateurs plus loin quand nous porterons un regard plus attentif sur `v-on` et `v-model`
+Nous verrons plus de cas d'utilisation des modificateurs plus loin quand nous porterons un regard plus attentif sur [`v-on`](events.html#Event-Modifiers) et [`v-model`](events.html#Modificateurs-d’evenements).
 
 ## Abréviations
 
