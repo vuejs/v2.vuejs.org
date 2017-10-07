@@ -11,37 +11,37 @@ ro_gz_size: "20.70"
 
 ### Khả năng tương thích
 
-Vue **không** hỗ trợ IE8 và các phiên bản thấp hơn, vì Vue sử dụng một số tính năng trong ECMAScript 5 mà IE8 không hỗ trợ. Tuy nhiên Vue hỗ trợ tất cả các [trình duyệt hỗ trợ đầy đủ ECMAScript 5](http://caniuse.com/#feat=es5).
+Do sử dụng một số tính năng ECMAScript 5 không được hỗ trợ trên IE8, Vue **không** hỗ trợ IE8 và các phiên bản thấp hơn. Tuy nhiên Vue hỗ trợ [mọi trình duyệt tương thích với ECMAScript 5](http://caniuse.com/#feat=es5).
 
-### Ghi chú về các bản phát hành
+### Ghi chú phát hành
 
 Mọi ghi chú chi tiết về các bản phát hành của mỗi phiên bản đều có trên [GitHub](https://github.com/vuejs/vue/releases).
 
 ## Vue Devtools
 
-Khi sử dụng Vue, chúng tôi khuyên bạn nên cài [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) vào trình duyệt. Add-on này giúp bạn kiểm tra và debug (kiểm lỗi) ứng dụng Vue với giao diện thân thiện.
+Chúng tôi khuyên bạn nên cài add-on [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) vào trình duyệt. Add-on này giúp bạn kiểm tra và debug (kiểm lỗi) ứng dụng Vue với giao diện thân thiện.
 
 ## Dùng thẻ `<script>` trực tiếp
 
 Chỉ cần tải file thư viện về rồi sử dụng nó trong thẻ script. `Vue` sẽ được đăng ký thành một biến toàn cục.
 
-<p class="tip">Nếu đang phát triển ứng dụng, đừng dùng phiên bản rút gọn vì bạn sẽ không thấy cảnh báo về những lỗi thường gặp.</p>
+<p class="tip">Nếu đang phát triển ứng dụng, đừng dùng bản rút gọn vì bạn sẽ không thấy cảnh báo về những lỗi thường gặp.</p>
 
 <div id="downloads">
-<a class="button" href="/js/vue.js" download>Phiên bản development</a><span class="light info">Với đầy đủ cảnh báo và chế độ debug</span>
+<a class="button" href="/js/vue.js" download>Bản development</a><span class="light info">Với đầy đủ cảnh báo và chế độ debug</span>
 
-<a class="button" href="/js/vue.min.js" download>Phiên bản production</a><span class="light info">Không có các cảnh báo, {{gz_size}}KB min+gzip</span>
+<a class="button" href="/js/vue.min.js" download>Bản production</a><span class="light info">Không có các cảnh báo, {{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
 
-Nên dùng: [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue), nó sẽ trỏ tới phiên bản mới nhất của Vue trên npm. Bạn có thể xem mã nguồn của package trên npm tại [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
+Nên dùng: [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue), nó sẽ trỏ tới bản mới nhất của Vue trên npm. Bạn có thể xem mã nguồn của package trên npm tại [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
 
 Ngoài ra, bạn cũng có thể sử dụng [unpkg](https://unpkg.com/vue) hoặc [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs cần nhiều thời gian để đồng bộ nên có thể nó chưa phải phiên bản mới nhất).
 
 ## NPM
 
-Chúng tôi khuyên bạn nên sử dụng NPM khi muốn xây dựng một ứng dụng lớn với Vue. NPM hoạt động rất tốt với các module bundler <small>(các công cụ đóng gói module)</small> như [Webpack](https://webpack.js.org/) hoặc [Browserify](http://browserify.org/). Vue cũng cung cấp công cụ hỗ trợ để viết các [single file component](single-file-components.html).
+Chúng tôi khuyên bạn nên sử dụng NPM khi muốn xây dựng một ứng dụng lớn với Vue. NPM hoạt động rất tốt với các module bundler (các công cụ đóng gói module) như [Webpack](https://webpack.js.org/) hoặc [Browserify](http://browserify.org/). Vue cũng cung cấp công cụ hỗ trợ để viết các [single file component](single-file-components.html).
 
 ``` bash
 # latest stable
@@ -50,14 +50,14 @@ $ npm install vue
 
 ## CLI
 
-Vue.js cung cấp một [CLI](https://github.com/vuejs/vue-cli) giúp nhanh chóng khởi tạo các ứng dụng Single Page Application mạnh mẽ. Nó cung cấp các cài đặt build cho một quy trình hiện đại về frontend. Chỉ tốn vài phút để cài đặt và chạy với các tính năng như hot-reload, lint-on-save và sẵn sàng để build ra sản phẩm:
+Vue.js cung cấp một [CLI](https://github.com/vuejs/vue-cli) giúp nhanh chóng khởi tạo nền tảng (scaffolding) cho các ứng dụng một trang. Vue-CLI chuẩn bị sẵn các cài đặt phong phú cho một quy trình front-end hiện đại. Chỉ mất vài phút, bạn đã có thể bắt đầu xây dựng ứng dụng với các tính năng như hot-reload, tinh chỉnh code khi save (lint-on-save), và các bản build sẵn sàng để deploy lên production:
 
 ``` bash
-# install vue-cli
+# cài đặt vue-cli
 $ npm install --global vue-cli
-# create a new project using the "webpack" template
+# tạo một dự án mới với template "webpack"
 $ vue init webpack my-project
-# install dependencies and go!
+# cài đặt các thư viện phụ thuộc và bắt tay vào việc!
 $ cd my-project
 $ npm install
 $ npm run dev
@@ -67,22 +67,22 @@ $ npm run dev
 
 ## Giải thích về các bản build
 
-Trong thư mục [`dist/` của package trên NPM](https://cdn.jsdelivr.net/npm/vue/dist/) bạn sẽ thấy nhiều bản build khác nhau của Vue.js. Dưới đây là các điểm khác biệt cơ bản giữa các phiên bản này:
+Trong thư mục [`dist/` của gói trên NPM](https://cdn.jsdelivr.net/npm/vue/dist/) bạn sẽ thấy nhiều bản build khác nhau của Vue.js. Dưới đây là các điểm khác biệt cơ bản giữa các phiên bản này:
 
 | | UMD | CommonJS | ES Module |
 | --- | --- | --- | --- |
 | **Full** | vue.js | vue.common.js | vue.esm.js |
-| **Chỉ có runtime** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
+| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
 | **Full (production)** | vue.min.js | - | - |
-| **Chỉ có runtime (production)** | vue.runtime.min.js | - | - |
+| **Runtime-only (production)** | vue.runtime.min.js | - | - |
 
 ### Ý nghĩa
 
-- **Full**: các bản build có cả `compiler` và `runtime`.
+- **Full**: các bản build có cả trình biên dịch và runtime.
 
-- **Compiler**: đoạn mã có trách nhiệm biên dịch các chuỗi template ra thành các hàm render trong JavaScript.
+- **Trình biên dịch**: code có trách nhiệm biên dịch các chuỗi template ra thành các hàm render JavaScript.
 
-- **Runtime**: đoạn mã có trách nhiệm tạo ra đối tượng Vue, render và cập nhật virtual DOM, v.v.. Cơ bản là tất cả mọi thứ ngoại trừ compiler.
+- **Runtime**: code có trách nhiệm khởi tạo đối tượng Vue, render và cập nhật virtual DOM v.v.. Cơ bản là tất cả mọi thứ ngoại trừ trình biên dịch.
 
 - **[UMD](https://github.com/umdjs/umd)**: các bản build UMD có thể được sử dụng trực tiếp trong trình duyệt thông qua thẻ `<script>`. Mặc định thì file trên CDN jsDelivr - [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) là bản runtime + Compiler UMD (`vue.js`).
 
@@ -90,7 +90,7 @@ Trong thư mục [`dist/` của package trên NPM](https://cdn.jsdelivr.net/npm/
 
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: các bản build ES Module được dành cho các bundler hiện đại như [webpack 2](https://webpack.js.org) hoặc [rollup](https://rollupjs.org/). File mặc định cho các bundler này (`pkg.module`) là bản chỉ có runtime ES Module (`vue.runtime.esm.js`).
 
-### Runtime + Compiler so với chỉ có runtime
+### Runtime + trình biên dịch so với runtime-only
 
 Nếu bạn cần biên dịch các template ở phía client (ví dụ như truyền chuỗi vào option `template`, hoặc gắn Vue vào element và sử dụng DOM của nó làm template), bạn sẽ cần trình biên dịch có trong bản build đầy đủ (full):
 
@@ -110,7 +110,7 @@ new Vue({
 
 Khi sử dụng `vue-loader` hoặc `vueify`, template trong các file `*.vue` sẽ được biên dịch thành JavaScript ngay lúc build. Bạn không cần đóng gói compiler kèm theo ứng dụng thành phẩm, do đó bạn có thể sử dụng bản build chỉ có runtime.
 
-Vì bản build chỉ có runtime nhẹ hơn 30% so với bản đầy đủ, bạn nên sử dụng nó bất cứ khi nào có thể. Nếu bạn vẫn muốn sử dụng bản đầy đủ, bạn cần phải cấu hình một bí danh(alias) trong bundler:
+Vì bản build chỉ có runtime nhẹ hơn 30% so với bản đầy đủ, bạn nên sử dụng nó bất cứ khi nào có thể. Nếu bạn vẫn muốn sử dụng bản đầy đủ, bạn cần phải cấu hình một alias (tên khác) trong bundler:
 
 #### Webpack
 
@@ -155,11 +155,11 @@ Thêm vào file `package.json`:
 
 ### Chế độ development và production
 
-Chế độ development/production đã được định sẵn trong các bản build UMD: bản chưa minify có chế độ development, bản đã minify có chế độ production.
+Chế độ development/production đã được định sẵn trong các bản build UMD: bản chưa minify dành cho development, bản đã minify dành cho production.
 
-Các bản build CommonJS và ES Module được dùng cho các bundler, vì vậy chúng không có bản đã minify. Bạn phải tự minify nó.
+Các bản build CommonJS và ES Module được dùng cho các bundler, vì vậy chúng không có bản đã minify. Bạn phải tự minify nếu cần.
 
-Các bản build CommonJS và ES Module này dựa vào `process.env.NODE_ENV` để xác định chế độ chạy. Bạn nên cấu hình bundler phù hợp để thay thế biến môi trường nhằm điều khiển chế độ chạy vủa Vue. Thay `process.env.NODE_ENV` bằng một chuỗi ký tự (string literals) cũng sẽ cho phép các công cụ minify như UglifyJS loại bỏ các khối code chỉ vốn chỉ sử dụng trong chế độ development, giúp giảm dung lượng file.
+Các bản build CommonJS và ES Module này cũng dựa vào giá trị `process.env.NODE_ENV` để xác định chế độ chạy. Bạn nên cấu hình bundler phù hợp để thay thế biến môi trường này nhằm điều khiển chế độ chạy của Vue. Thay `process.env.NODE_ENV` bằng một chuỗi ký tự (string literals) như `'production'` cũng sẽ cho phép các công cụ minify như UglifyJS loại bỏ các đoạn code vốn chỉ sử dụng trong chế độ development, giúp giảm dung lượng file.
 
 #### Webpack
 
@@ -210,13 +210,13 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 
 ### Môi trường CSP
 
-Một số môi trường như Google Chrome Apps, áp dụng Content Security Policy (CSP), không cho sử dụng `new Function()` để thực thi biểu thức. Bản build đầy đủ sử dụng tính năng này để biên dịch template, vậy nên nó sẽ không hoạt động trong các môi trường này.
+Một số môi trường như Google Chrome Apps áp dụng Content Security Policy (CSP, chính sách bảo mật nội dung), không cho sử dụng lệnh `new Function()`. Bản build đầy đủ sử dụng lệnh này để biên dịch template, nên sẽ không hoạt động được trong các môi trường kể trên.
 
-Mặt khác, bản build chỉ có runtime có thể tương thích với CSP. Khi sử dụng bản build này với [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) hoặc [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), template của bạn sẽ được biên dịch thành hàm `render` và nó sẽ hoạt động hoàn hảo trong các môi trường CSP.
+Mặt khác, bản build chỉ có runtime có thể tương thích với CSP. Khi sử dụng bản build này với [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) hoặc [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), template của bạn sẽ được biên dịch thành hàm `render` và sẽ hoạt động hoàn hảo trong các môi trường CSP.
 
 ## Bản build dev
 
-**Quan trọng**: các file đã được build trong thư mục `/dist` trên GitHub chỉ được tạo ra khi release. Bạn sẽ phải tự build lấy nếu muốn dùng phiên bản từ mã nguồn mới nhất. 
+**Quan trọng**: các file đã được build trong thư mục `/dist` trên GitHub chỉ được tạo ra khi phát hành một phiên bản mới. Bạn sẽ phải tự build lấy nếu muốn dùng phiên bản từ mã nguồn gần nhất. 
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
