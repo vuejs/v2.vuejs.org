@@ -118,6 +118,9 @@ data: function () {
   }
 }
 ```
+
+You should not use an arrow function with the `data` property (e.g. `data: () => ({...})`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you might expect and can lead to future problems with scope. The simplified function sytax can be used instead (e.g. `data () { return {...} }`).
+
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
@@ -136,6 +139,15 @@ export default {
   data: {
     foo: 'bar'
   }
+}
+```
+
+``` js
+export default {
+  props: [ 'myProp' ],
+  data: () => ({
+    foo: this.myProp
+  })
 }
 ```
 {% raw %}</div>{% endraw %}
