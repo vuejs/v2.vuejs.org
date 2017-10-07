@@ -103,7 +103,7 @@ If you would like to also toggle a class in the list conditionally, you can do i
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-This will always apply `errorClass`, but will only apply `activeClass` when `isActive` is `true`.
+This will always apply `errorClass`, but will only apply `activeClass` when `isActive` is truthy.
 
 However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside array syntax:
 
