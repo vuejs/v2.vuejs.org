@@ -684,6 +684,42 @@ components/
 
 If a component only makes sense in the context of a single parent component, that relationship should be evident in its name. Since editors typically organize files alphabetically, this also keeps these related files next to each other.
 
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+You might be tempted to solve this problem by nesting child components in directories named after their parent. For example:
+
+```
+components/
+|- TodoList/
+   |- Item/
+      |- index.vue
+      |- Button.vue
+   |- index.vue
+```
+
+or:
+
+```
+components/
+|- TodoList/
+   |- Item/
+      |- Button.vue
+   |- Item.vue
+|- TodoList.vue
+```
+
+This isn't recommended, as it results in:
+
+- Many files with similar names, making rapid file switching in code editors more difficult.
+- Many nested sub-directories, which increases the time it takes to browse components in an editor's sidebar.
+
+{% raw %}</details>{% endraw %}
+
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
 
