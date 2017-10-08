@@ -1,115 +1,105 @@
 ---
-title: Conditional Rendering
+title: Render theo điều kiện
 type: guide
 order: 7
 ---
 
 ## `v-if`
 
-In string templates, for example Handlebars, we would write a conditional block like this:
+Trong các thư viện biên dịch template như [Handlebars](http://handlebarsjs.com/), thông thường chúng ta sẽ viết các khối điều kiện (conditional block) như sau:
 
 ``` html
-<!-- Handlebars template -->
 {{#if ok}}
-  <h1>Yes</h1>
+  <h1>Mọi việc ổn cả</h1>
 {{/if}}
 ```
 
-In Vue, we use the `v-if` directive to achieve the same:
+Để làm điều này với Vue, chúng ta sử dụng directive `v-if`:
 
 ``` html
-<h1 v-if="ok">Yes</h1>
+<h1 v-if="ok">Mọi việc ổn cả</h1>
 ```
 
-It is also possible to add an "else" block with `v-else`:
+Chúng ta cũng có thể thêm khối "else" bằng `v-else`:
 
 ``` html
-<h1 v-if="ok">Yes</h1>
-<h1 v-else>No</h1>
+<h1 v-if="ok">Mọi việc ổn cả</h1>
+<h1 v-else>Có gì đó sai sai</h1>
 ```
 
-### Conditional Groups with `v-if` on `<template>`
+### Nhóm điều kiện với `v-if` trên thẻ `<template>`
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+Vì là một directive, `v-if` phải được dùng trên một phần tử đơn lẻ (single element) như `<p>` hoặc `<div>`. Nếu chúng ta muốn bật tắt một nhóm các phần tử thì sao? Chỉ cần dùng `v-if` trên một phần tử `<template>` với vai trò wrap (bọc) các phần tử lại thành một nhóm. Kết quả render cuối cùng sẽ không có phần tử `<template>` này.
 
 ``` html
 <template v-if="ok">
-  <h1>Title</h1>
-  <p>Paragraph 1</p>
-  <p>Paragraph 2</p>
+  <h1>Anh chàng chăn lợn</h1>
+  <p>Ơ này, Augustin thân mến ơi</p>
+  <p>Mọi việc đều như ý, như ý, như ý</p>
 </template>
 ```
 
 ### `v-else`
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+Như trên đã nhắc đến, ta có thể dùng directive `v-else` để chỉ định một khối "else" cho `v-if`:
 
 ``` html
 <div v-if="Math.random() > 0.5">
-  Now you see me
+  Tài
 </div>
 <div v-else>
-  Now you don't
+  Xỉu
 </div>
 ```
 
-A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+Để được coi là hợp lệ, phần tử có `v-else` phải theo ngay sau một phần tử `v-if` hoặc `v-else-if`.
 
 ### `v-else-if`
 
-> New in 2.1.0+
+> 2.1.0+
 
-The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+Directive `v-else-if` đóng vai trò một khối "else if" cho `v-if`. Directive này có thể được dùng nhiều lần nối tiếp nhau:
 
 ```html
-<div v-if="type === 'A'">
-  A
-</div>
-<div v-else-if="type === 'B'">
-  B
-</div>
-<div v-else-if="type === 'C'">
-  C
-</div>
-<div v-else>
-  Not A/B/C
-</div>
+<div v-if="type === 'A'">A</div>
+<div v-else-if="type === 'B'">B</div>
+<div v-else-if="type === 'C'">C</div>
+<div v-else-if="type === 'D'">D</div>
+<div v-else>Chiến Sĩ không thể nhớ nổi</div>
 ```
 
-Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+Tương tự với `v-else`, phần tử với `v-else-if` phải theo ngay sau một phần tử `v-if` hoặc `v-else-if`.
 
-### Controlling Reusable Elements with `key`
+### Điều khiển việc tái sử dụng phần tử với `key`
 
-Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages. For example, if you allow users to toggle between multiple login types:
+Vue cố gắng render các phần tử một cách hiệu quả đến mức có thể, với một trong những cách làm là sử dụng lại thay vì tạo mới từ đầu. Ngoài việc giúp cho Vue thao tác cực kì nhanh, điều này còn mang lại một số lợi ích đáng kể khác. Ví dụ, nếu bạn cho phép người dùng được đăng nhập bằng username hoặc email:
 
 ``` html
 <template v-if="loginType === 'username'">
   <label>Username</label>
-  <input placeholder="Enter your username">
+  <input placeholder="Nhập username">
 </template>
 <template v-else>
   <label>Email</label>
-  <input placeholder="Enter your email address">
+  <input placeholder="Nhập địa chỉ email">
 </template>
 ```
 
-Then switching the `loginType` in the code above will not erase what the user has already entered. Since both templates use the same elements, the `<input>` is not replaced - just its `placeholder`.
-
-Check it out for yourself by entering some text in the input, then pressing the toggle button:
+thì việc chuyển đổi giá trị của `loginType` trong đoạn code trên sẽ không xóa đi thông tin mà người dùng đã điền vào. Vì cả hai `<template>` dùng các phần tử giống nhau, phần tử `<input>` sẽ không bị thay thế, chỉ có thuộc tính `placeholder` là thay đổi. Bạn có thể kiểm tra điều này bằng cách điền vào một ít thông tin bất kì rồi bấm vào nút bên dưới:
 
 {% raw %}
 <div id="no-key-example" class="demo">
   <div>
     <template v-if="loginType === 'username'">
       <label>Username</label>
-      <input placeholder="Enter your username">
+      <input placeholder="Nhập username">
     </template>
     <template v-else>
       <label>Email</label>
-      <input placeholder="Enter your email address">
+      <input placeholder="Nhập địa chỉ email">
     </template>
   </div>
-  <button @click="toggleLoginType">Toggle login type</button>
+  <button @click="toggleLoginType">Thay đổi kiểu đăng nhập</button>
 </div>
 <script>
 new Vue({
@@ -126,34 +116,34 @@ new Vue({
 </script>
 {% endraw %}
 
-This isn't always desirable though, so Vue offers a way for you to say, "These two elements are completely separate - don't re-use them." Add a `key` attribute with unique values:
+Tuy nhiên không phải lúc nào đây cũng là điều bạn mong muốn. Vì thế, Vue cung cấp một thuộc tính gọi là `key`. Khi dùng `key` với giá trị độc nhất (unique), về căn bản bạn đang dặn Vue "xem hai phần tử này là hoàn toàn khác nhau và đừng dùng lại":
 
 ``` html
 <template v-if="loginType === 'username'">
   <label>Username</label>
-  <input placeholder="Enter your username" key="username-input">
+  <input placeholder="Nhập username" key="username-input">
 </template>
 <template v-else>
   <label>Email</label>
-  <input placeholder="Enter your email address" key="email-input">
+  <input placeholder="Nhập địa chỉ email" key="email-input">
 </template>
 ```
 
-Now those inputs will be rendered from scratch each time you toggle. See for yourself:
+Bây giờ thì hai phần tử `<input>` này sẽ được render lại từ đầu mỗi khi giá trị `loginType` được thay đổi. Bạn có thể kiểm chứng:
 
 {% raw %}
 <div id="key-example" class="demo">
   <div>
     <template v-if="loginType === 'username'">
       <label>Username</label>
-      <input placeholder="Enter your username" key="username-input">
+      <input placeholder="Nhập username" key="username-input">
     </template>
     <template v-else>
       <label>Email</label>
-      <input placeholder="Enter your email address" key="email-input">
+      <input placeholder="Nhập địa chỉ email" key="email-input">
     </template>
   </div>
-  <button @click="toggleLoginType">Toggle login type</button>
+  <button @click="toggleLoginType">Thay đổi kiểu đăng nhập</button>
 </div>
 <script>
 new Vue({
@@ -170,30 +160,30 @@ new Vue({
 </script>
 {% endraw %}
 
-Note that the `<label>` elements are still efficiently re-used, because they don't have `key` attributes.
+Lưu ý rằng các phần tử `<label>` vẫn được sử dụng lại vì không có thuộc tính `key`.
 
 ## `v-show`
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+Một lựa chọn nữa cho việc hiện hoặc ẩn một phần tử web theo điều kiện là directive `v-show`. Cách dùng `v-show` cũng tương tự với `v-if`:
 
 ``` html
-<h1 v-show="ok">Hello!</h1>
+<h1 v-show="ok">Xin chào!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
+Điểm khác biệt giữa `v-show` và `v-if` là phần tử được đánh dấu với `v-show` sẽ luôn luôn được render và chứa trong DOM; `v-show` chỉ bật tắt thuộc tính `display` của phần tử này.
 
-<p class="tip">Note that `v-show` doesn't support the `<template>` syntax, nor does it work with `v-else`.</p>
+<p class="tip">`v-show` không hỗ trợ cú pháp `<template>` và cũng không hoạt động với `v-else`.</p>
 
-## `v-if` vs `v-show`
+## `v-if` và `v-show` – khi nào thì dùng gì
 
-`v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+`v-if` là render theo điều kiện "thật sự," vì nó bảo đảm các event listener và component con bên trong khối điều kiện được hủy và khởi tạo lại trong quá trình bật/tắt.
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+`v-if` cũng **lười biếng** (lazy): nếu giá trị của điều kiện là `false` trong lần render đầu tiên, nó sẽ không làm gì cả - khối điều kiện sẽ không được render cho đến khi điều kiện trở thành `true` lần đầu tiên.
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
+Trong khi đó, `v-show` đơn giản hơn nhiều - phần tử sẽ được render bất kể điều kiện là đúng hay sai, và chỉ được hiện/giấu đi bằng CSS.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+Nói chung, `v-if` có phí tổn bật/tắt cao, còn `v-show` có phí tổn render cao. Vì thế, nếu bạn cần bật/tắt thường xuyên, hãy dùng `v-show`. Ngược lại, nếu điều kiện ít khi thay đổi trong suốt vòng đời của ứng dụng, hãy dùng `v-if`.
 
-## `v-if` with `v-for`
+## `v-if` dùng với `v-for`
 
-When used together with `v-if`, `v-for` has a higher priority than `v-if`. See the <a href="../guide/list.html#V-for-and-v-if">list rendering guide</a> for details.
+Khi dùng chung với `v-if`, `v-for` có độ ưu tiên cao hơn. Xem chi tiết tại <a href="../guide/list.html#V-for-and-v-if">hướng dẫn về render danh sách</a>.
