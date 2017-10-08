@@ -1080,7 +1080,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 
 
-### Complex expressions in templates <sup data-p="b">strongly recommended</sup>
+### Simple expressions in templates <sup data-p="b">strongly recommended</sup>
 
 **Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
 
