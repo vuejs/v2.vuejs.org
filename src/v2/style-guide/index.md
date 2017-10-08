@@ -1120,7 +1120,7 @@ computed: {
 
 
 
-### Complex computed properties <sup data-p="b">strongly recommended</sup>
+### Simple computed properties <sup data-p="b">strongly recommended</sup>
 
 **Complex computed properties should be split into as many simpler properties as possible.**
 
