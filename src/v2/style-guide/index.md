@@ -953,7 +953,8 @@ In JavaScript, PascalCase is the convention for classes and prototype constructo
 However, for applications that use **only** global component definitions via `Vue.component`, we recommend kebab-case instead. The reasons are:
 
 - It's rare that global components are ever referenced in JavaScript, so following a convention for JavaScript makes less sense.
-- These applications always include many in-DOM components, where kebab-case [**must** be used](#Component-name-casing-in-templates).
+- These applications always include many in-DOM templates, where [kebab-case **must** be used](#Component-name-casing-in-templates-strongly-recommended).
+
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
