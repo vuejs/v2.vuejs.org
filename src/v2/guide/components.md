@@ -10,7 +10,7 @@ order: 11
 
 ## 컴포넌트 사용하기
 
-### 등록
+### 전역 등록
 
 이전 섹션에서 다음을 사용하여 새 Vue 인스턴스를 만들 수 있음을 알게되었습니다.
 
@@ -1313,7 +1313,7 @@ Finder나 파일 탐색기와 같이 파일 디렉토리 트리를 작성한다�
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
 }
 ```
 

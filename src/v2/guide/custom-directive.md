@@ -43,6 +43,9 @@ Vue.directive('focus', {
 directives: {
   focus: {
     // 디렉티브 정의
+    inserted: function (el) {
+      el.focus()
+    }
   }
 }
 ```

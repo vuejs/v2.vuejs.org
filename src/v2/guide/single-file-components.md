@@ -23,9 +23,15 @@ order: 402
 
 이제 우리는 할 수 있습니다:
 
+<<<<<<< HEAD
 - [완전한 구문 강조](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [CommonJS 모듈](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [컴포넌트에만 제한된 CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+=======
+- [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#source-code-editing)
+- [CommonJS modules](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
+- [Component-scoped CSS](https://vue-loader.vuejs.org/en/features/scoped-css.html)
+>>>>>>> 8764809927d6c4578ab024ab82ed722312691f95
 
 약속대로 Jade, Babel (ES2015 모듈을 포함합니다), Stylus와 같은 전처리기를 사용해 더 깨끗하고 기능이 풍부한 컴포넌트를 사용할 수 있습니다.
 
@@ -50,6 +56,11 @@ order: 402
 
 
 ## 시작하기
+
+### 예제 샌드박스
+
+지금 당장 싱글 파일 컴포넌트를 사용하고 싶다면 CodeSandbox의 [단순한 할일 앱](https://codesandbox.io/s/o29j95wx9)을 확인하세요.
+
 
 ### JavaScript에서 모듈 빌드 시스템을 처음 사용하는 사용자를 위한 내용
 

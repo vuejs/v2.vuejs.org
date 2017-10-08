@@ -254,7 +254,7 @@ Vue는 [엔터프라이즈 환경](https://github.com/vuejs/awesome-vue#enterpri
 
 성능면에서 볼 때 두 프레임워크는 모두 매우 빠르며 실제 사용 사례의 데이터가 충분하지는 않아 결론을 내지 못합니다. 그러나 일부 숫자를 확인하려는 경우 Vue 2.0은 이 [써드파티 벤치 마크](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)에 따라 Angular 2보다 앞서있는 것으로 보입니다.
 
-최신 AOT 컴파일과 트리셰이킹을 포함한 Angular는 크기가 매우 작어졌습니다. 그럼에도 불구하고 모든 기능을 갖춘 Vue 2 프로젝트(~30kb gzipped)는 `angular-cli`(~130kb gzipped)보다 훨씬 작습니다.
+최신 [AOT compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation)과 [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking)을 포함한 Angular는 크기가 매우 작어졌습니다. 그럼에도 불구하고 모든 기능을 갖춘 Vue 2 프로젝트(~30kb gzipped)는 `angular-cli`(~130kb gzipped)보다 훨씬 작습니다.
 
 ### 유연성
 

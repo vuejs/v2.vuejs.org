@@ -57,7 +57,9 @@ However, the amount of effort needed to maintain and develop new features for th
   </a><a href="http://www.frontenddevelopermeetups.com/" target="_blank" style="width: 120px;">
     <img src="/images/frontend-meetups.png" style="width: 120px;">
   </a><a href="https://onsen.io/vue/" target="_blank" style="width: 125px;">
-    <img src="/images/onsen-ui.png" style="width: 125px">
+    <img src="/images/onsen-ui.png" style="width: 125px;">
+  </a><a href="http://tooltwist.com/" target="_blank" style="width: 125px;">
+    <img src="/images/tooltwist.png" style="width: 125px">
   </a>
 </p>
 
