@@ -1,3 +1,4 @@
+preserve_hierarchy: false
 files:
   - source: '**/*.md'
     translation: '%original_path%/%original_file_name%'
