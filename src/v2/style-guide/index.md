@@ -84,20 +84,20 @@ export default {
 
 
 
-### Component data <sup data-p="a">essential</sup>
+### Données du composant data <sup data-p="a">essentiel</sup>
 
-**Component `data` must be a function.**
+**La propriété `data` doit être une fonction.**
 
-When using the `data` property on a component (i.e. anywhere except on `new Vue`), the value must be a function that returns an object.
+Quand vous utilisez la propriété `data` dans un composant (par ex. partout sauf sur `new Vue`), la valeur doit être une fonction qui retourne un objet.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-When the value of `data` is an object, it's shared across all instances of a component. Imagine, for example, a `TodoList` component with this data:
+Quand la valeur de la propriété `data` est un objet, elle est partagée à travers toutes les instances du composant. Imaginez, par exemple, un composant `TodoList` avec ces données :
 
 ``` js
 data: {
@@ -106,9 +106,9 @@ data: {
 }
 ```
 
-We might want to reuse this component, allowing users to maintain multiple lists (e.g. for shopping, wishlists, daily chores, etc). There's a problem though. Since every instance of the component references the same data object, changing the title of one list will also change the title of every other list. The same is true for adding/editing/deleting a todo.
+Nous voudrions réutiliser ce composant pour permettre aux utilisateurs de maintenir plusieurs listes (par ex. une liste de course, une liste de souhait, une liste de tâche, etc). Il y a cependant un problème. Comme toutes les instances du composant font référence au même objet de donnée, changer le titre de l'une des listes va aussi changer le titre de toutes les autres. Et c'est également vrai pour l'ajout, l'édition ou la suppression dans la liste.
 
-Instead, we want each component instance to only manage its own data. For that to happen, each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
+À la place, nous voulons que chaque composant instancie ces données pour soi. Pour que cela soit possible, chaque instance doit générer un objet de données unique. En JavaScript, ceci peut-être accompli en retournant l'objet depuis une fonction :
 
 ``` js
 data: function () {
@@ -121,7 +121,7 @@ data: function () {
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 Vue.component('some-comp', {
@@ -141,7 +141,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 ``` js
 Vue.component('some-comp', {
   data: function () {
@@ -153,7 +153,7 @@ Vue.component('some-comp', {
 ```
 
 ``` js
-// In a .vue file
+// Dans un fichier `.vue`
 export default {
   data () {
     return {
@@ -164,9 +164,9 @@ export default {
 ```
 
 ``` js
-// It's OK to use an object directly in a root
-// Vue instance, since only a single instance
-// will ever exist.
+// Par contre l'usage par objet est possible dans
+// l'instance racine de Vue, car il n'y a qu'une
+// instance racine qui existe
 new Vue({
   data: {
     foo: 'bar'
@@ -177,28 +177,28 @@ new Vue({
 
 
 
-### Prop definitions <sup data-p="a">essential</sup>
+### Définitions de prop <sup data-p="a">essentiel</sup>
 
-**Prop definitions should be as detailed as possible.**
+**Les définitions de prop devraient être aussi détaillé que possible.**
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+Dans du code acté, les définitions de prop devraient être toujours aussi détaillé que possible, en spcifiant au moins les type(s).
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+Les [definitions de prop](https://vuejs.org/v2/guide/components.html#Prop-Validation) détaillée ont deux avantages :
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- Elles documentent l'API du composant, il est ainsi possible de voir comment le composant est prévu d'être utilisé.
+- En développement, Vue va vous avertir si le composant fournit un type de props incorrectement formaté et vous aider ainsi à trouver des sources d'erreur.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 // This is only OK when prototyping
@@ -207,7 +207,7 @@ props: ['status']
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 props: {
@@ -216,7 +216,7 @@ props: {
 ```
 
 ``` js
-// Even better!
+// Même mieux !
 props: {
   status: {
     type: String,
@@ -245,7 +245,7 @@ props: {
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
@@ -318,7 +318,7 @@ This makes overriding internal styles easier, with human-readable class names th
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
@@ -411,7 +411,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
@@ -574,7 +574,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
@@ -687,7 +687,7 @@ If a component only makes sense in the context of a single parent component, tha
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
@@ -763,7 +763,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
@@ -944,7 +944,7 @@ OR
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
@@ -1164,7 +1164,7 @@ computed: {
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
@@ -1586,7 +1586,7 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
