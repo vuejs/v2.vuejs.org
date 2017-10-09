@@ -16,7 +16,7 @@ Et donc, voici les quatre catégories de règles que nous avons retenues :
 
 ## Catégories de règle
 
-### Priorité A : Capitale
+### Priorité A : Essentiel
 
 Ces règles aident à éviter les erreurs, donc apprenez et respectez les à tout prix. Des exceptions peuvent exister, mais elles devraient être rare et prise uniquement avec un œil expert sur le JavaScript et Vue.
 
@@ -38,11 +38,11 @@ Certaines fonctionnalités de Vue existe pour régler des cas exceptionnelles ou
 
 
 
-## Règles de priorité A : Capitale (Prévenir les erreurs)
+## Règles de priorité A : Essentiel (Prévenir les erreurs)
 
 
 
-### Nom de composant à mots multiples <sup data-p="a">capitale</sup>
+### Nom de composant à mots multiples <sup data-p="a">essentiel</sup>
 
 **Les noms de composant devraient toujours être des mots multiples, à l'exception du composant racine `App`.**
 
