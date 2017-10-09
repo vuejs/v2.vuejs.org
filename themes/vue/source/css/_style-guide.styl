@@ -36,6 +36,11 @@ $style-guide-priority-d-color = white
     background-color #eee
   details
     position relative
+    &:not([open]) summary
+      &::after
+        content "..."
+      &:hover
+        background rgba(255, 255, 255, .3)
   summary
     cursor pointer
     padding 1.6em

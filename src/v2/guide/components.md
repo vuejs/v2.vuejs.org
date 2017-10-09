@@ -10,7 +10,7 @@ Les composants sont l'une des plus puissantes fonctionnalités de Vue. Ils vous 
 
 ## Utilisation des composants
 
-### Inscription
+### Inscription globale
 
 Nous avons appris dans les sections précédentes que nous pouvions créer une nouvelle instance de Vue avec :
 

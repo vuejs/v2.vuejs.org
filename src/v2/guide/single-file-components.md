@@ -50,6 +50,10 @@ Si vous n'aimez pas l'idée des composants monofichiers, vous pouvez toujours ti
 
 ## Bien commencer
 
+### Exemple bac à sable
+
+Si vous voulez dès maintenant commencer à jouer avec des composants monofichiers, consultez [cette simple application de liste de tâches](https://codesandbox.io/s/o29j95wx9) sur CodeSandbox.
+
 ### Pour les utilisateurs qui ne connaissent pas les systèmes de *build* de modules en JavaScript
 
 Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des applications JavaScript avancées. Cela implique d'apprendre à utiliser quelques nouveaux outils si vous ne les connaissez pas déjà :
@@ -58,11 +62,9 @@ Avec les composants `.vue`, nous entrons de plain-pied dans le domaine des appli
 
 - **JavaScript moderne avec ES2015/16**: lisez le guide Babel [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). Vous n'avez pas besoin de mémoriser chacune des fonctionnalités maintenant, mais gardez cette page en référence pour pouvoir y revenir.
 
-Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple). Suivez les instructions et vous devriez avoir en un clin d’œil un projet Vue avec des composants `.vue` , ES2015 et le rechargement à chaud !
+Une fois que vous aurez pris une journée pour vous plonger dans ces ressources, nous vous recommandons d'essayer le template de projet [webpack](https://vuejs-templates.github.io/webpack). Suivez les instructions et vous devriez avoir en un clin d’œil un projet Vue avec des composants `.vue` , ES2015 et le rechargement à chaud !
 
-Ce template de projet utilise [webpack](https://webpack.js.org/), un empaqueteur de modules qui prend des « modules » et les empaquète dans votre application finale. Pour en apprendre plus sur webpack, consultez [la documentation officielle](https://webpack.js.org/configuration/) et la [Webpack Academy](https://webpack.academy/p/the-core-concepts).
-
-Dans webpack, chaque module peut être transformé par un « loader » avant d'être inclus dans le paquetage, et Vue offre le plugin [vue-loader](https://github.com/vuejs/vue-loader) pour traduire les composants monofichiers `.vue`. Le template de projet [webpack-simple](https://github.com/vuejs-templates/webpack-simple) a déjà tout configuré pour vous, mais si vous souhaitez en apprendre plus sur le fonctionnement des composants `.vue` avec webpack, vous pouvez lire [la documentation de vue-loader](https://vue-loader.vuejs.org).
+Pour en apprendre plus sur webpack, consultez [la documentation officielle](https://webpack.js.org/configuration/) et la [Webpack Academy](https://webpack.academy/p/the-core-concepts). Dans webpack, chaque module peut être transformé par un « loader » avant d'être inclus dans le paquetage, et Vue offre le plugin [vue-loader](https://github.com/vuejs/vue-loader) pour traduire les composants monofichiers `.vue`.
 
 ### Pour les utilisateurs avancés
 

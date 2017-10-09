@@ -43,6 +43,9 @@ Si vous préférez enregistrer à la place la directive en local, les composants
 directives: {
   focus: {
     // définition de la directive
+    inserted: function (el) {
+      el.focus()
+    }
   }
 }
 ```
