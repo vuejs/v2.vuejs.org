@@ -1,4 +1,4 @@
 preserve_hierarchy: false
 files:
   - source: '**/*.*'
-    translation: '**/%original_file_name%'
+    translation: '%original_path%/%original_file_name%'
