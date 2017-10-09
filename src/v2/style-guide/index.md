@@ -8,48 +8,48 @@ Ceci est le guide des conventions officielles pour du code spécifique à Vue. S
 
 En grande partie, nous allons éviter les conventions à propos du JavaScript ou du HTML en eux-même. Nous ne nous soucions pas de votre utilisation des points-virgules ou de la place de la virgule en début de ligne. Nous ne nous soucierons pas non plus de savoir si votre HTML utilise des apostrophes ou des guillemets pour les valeurs des attributs. Quelques exceptions seront faites cependant, quand nous trouvons qu'un pattern spécifique est utile dans le contexte de Vue.
 
-> **Soon, we'll also provide tips for enforcement.** Sometimes you'll simply have to be disciplined, but wherever possible, we'll try to show you how to use ESLint and other automated processes to make enforcement simpler.
+> **Bientôt, nous fournirons des astuces pour la mise en application.** Même si certains point son une simple question de discipline, nous essayerons de vous montrer comment utiliser ESLint et d'autres processus automatisé pour mettre en place simplement ces conventions.
 
-Finally, we've split rules into four categories:
-
-
-
-## Rule Categories
-
-### Priority A: Essential
-
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
-
-### Priority B: Strongly Recommended
-
-These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
-
-### Priority C: Recommended
-
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
-
-1. train your brain to more easily parse most of the community code you encounter
-2. be able to copy and paste most community code examples without modification
-3. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
-
-### Priority D: Use with Caution
-
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+Et donc, voici les quatre catégories de règles que nous avons retenues :
 
 
 
-## Priority A Rules: Essential (Error Prevention)
+## Catégories de règle
+
+### Priorité A : Capitale
+
+Ces règles aident à éviter les erreurs, donc apprenez et respectez les à tout prix. Des exceptions peuvent exister, mais elles devraient être rare et prise uniquement avec un œil expert sur le JavaScript et Vue.
+
+### Priorité B : Fortement recommandée
+
+Ces règles ont été établie pour améliorer la lisibilité et / ou l'expérience des développeurs dans la majorité des projets. Votre code fonctionnera toujours si vous ne les suivez pas, mais ces écarts doivent être rares et justifiés.
+
+### Priorité C : Recommandée
+
+Là ou de multible et équivalente options existe, un choix arbitraire a été fait pour assurer la consistence. Dans ces règles, nous décrivons chaque option acceptable et suggérons un choix par défaut. Cela signifie que vous pouvez faire des choix différent sur votre propre base de code, aussi longtemps que vous êtes consistant et avez de bonnes raisons. Mais garder toujours les bonnes raisons à l'esprit ! En vous alignant sur les standards de la communauté vous pourrez :
+
+1. amérioler votre cerveau à analyser plus facilement la plupard des codes communautaires rencontrés,
+2. capable de copier et coller la plupard des exemples de code sans modification,
+3. trouver de nouvelles recrues déjà habitués à votre style de codage préféré, au moins en ce qui concerne Vue.
+
+### Priorité D : Faire attention
+
+Certaines fonctionnalités de Vue existe pour régler des cas exceptionnelles ou rendre la migration d'une vielle version de code plus simple. Mais utiliser sans parciemonie, elle rendrons votre code difficile à maintenir et même deviendront une source de bogues. Ces règles mette en lumière des fonctionnalités potentiellement risquées, décrivant quand et pourquoi elle doivent être évitées.
 
 
 
-### Multi-word component names <sup data-p="a">essential</sup>
+## Règles de priorité A : Capitale (Prévenir les erreurs)
 
-**Component names should always be multi-word, except for root `App` components.**
 
-This [prevents conflicts](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
+
+### Nom de composant à mots multiples <sup data-p="a">capitale</sup>
+
+**Les noms de composant devraient toujours être des mots multiples, à l'exception du composant racine `App`.**
+
+Ceci afin de [prévenir les conflits](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) avec des éléments HTML futur ou existant car toutes les balises HTML sont en un seul mot.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 Vue.component('todo', {
@@ -66,7 +66,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 Vue.component('todo-item', {
