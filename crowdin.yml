@@ -1,3 +1,11 @@
 files:
   - source: '**/*.md'
     translation: '%original_path%/%original_file_name%'
+  - source: '**/*.ejs'
+    translation: '%original_path%/%original_file_name%'
+  - source: '**/*.yml'
+    translation: '%original_path%/%original_file_name%'
+  - source: '**/*.png'
+    translation: '%original_path%/%original_file_name%'
+  - source: '**/*.jpg'
+    translation: '%original_path%/%original_file_name%'
