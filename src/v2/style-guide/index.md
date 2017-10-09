@@ -4,9 +4,9 @@ type: style-guide
 
 # Conventions <sup class="beta">beta</sup>
 
-This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
+Ceci est le guide des conventions officielles pour du code spécifique à Vue. Si vous utilisez Vue dans vos projets, c'est la référence pour éviter les erreurs, les mauvaises décisions ou les anti-patterns. Nous ne pensons cependant pas qu'un guide de conventions soit pertinent pour toutes les équipes ou tous les projets, ce que nous encourageons ici est basé sur nos expériences passées, les technologies que nous côtoyons ainsi que nos valeurs personnelles.
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+En grande partie, nous allons éviter les conventions à propos du JavaScript ou du HTML en eux-même. Nous ne nous soucions pas de votre utilisation des points-virgules ou de la place de la virgule en début de ligne. Nous ne nous soucierons pas non plus de savoir si votre HTML utilise des apostrophes ou des guillemets pour les valeurs des attributs. Quelques exceptions seront faites cependant, quand nous trouvons qu'un pattern spécifique est utile dans le contexte de Vue.
 
 > **Soon, we'll also provide tips for enforcement.** Sometimes you'll simply have to be disciplined, but wherever possible, we'll try to show you how to use ESLint and other automated processes to make enforcement simpler.
 
