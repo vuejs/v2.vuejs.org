@@ -1150,6 +1150,7 @@ You can also return a `Promise` in the factory function, so with Webpack 2 + ES2
 ``` js
 Vue.component(
   'async-webpack-example',
+  // The `import` function returns a `Promise`.
   () => import('./my-async-component')
 )
 ```
