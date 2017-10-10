@@ -40,11 +40,7 @@ Vue는 이미 만들어진 인스턴스에 새로운 루트 수준의 반응 속
 Vue.set(vm.someObject, 'b', 2)
 ```
 
-<<<<<<< HEAD:src/v2/guide/reactivity.md.hidden
 `Vm.$set` 인스턴스 메소드를 사용할 수도 있습니다. 이 메소드는 전역 `Vue.set` 에 대한 별칭입니다.
-=======
-You can also use the `vm.$set` instance method, which is an alias to the global `Vue.set`:
->>>>>>> upstream/master:src/v2/guide/reactivity.md
 
 ``` js
 this.$set(this.someObject, 'b', 2)
@@ -61,11 +57,7 @@ this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 
 ## 반응형 속성 선언하기
 
-<<<<<<< HEAD:src/v2/guide/reactivity.md.hidden
 Vue는 루트 수준의 반응성 속성을 동적으로 추가 할 수 없으므로 모든 루트 수준의 반응성 데이터 속성을 빈 값으로라도 초기에 선언하여 Vue 인스턴스를 초기화해야합니다.
-=======
-Since Vue doesn't allow dynamically adding root-level reactive properties, you have to initialize Vue instances by declaring all root-level reactive data properties upfront, even with an empty value:
->>>>>>> upstream/master:src/v2/guide/reactivity.md
 
 ``` js
 var vm = new Vue({
