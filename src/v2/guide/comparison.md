@@ -226,3 +226,4 @@ Riot 3.0 provides a similar component-based development model (which is called a
 
 - Better performance. Riot [traverses a DOM tree](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) rather than using a virtual DOM, so suffers from the same performance issues as AngularJS.
 - More mature tooling support. Vue provides official support for [webpack](https://github.com/vuejs/vue-loader) and [Browserify](https://github.com/vuejs/vueify), while Riot relies on community support for build system integration.
+- More versatile eventhandling, allowing parameters: `<div @click="action('param')"></div>` instead of `<div onclick={action}>`.
