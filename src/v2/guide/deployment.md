@@ -45,7 +45,23 @@ module.exports = {
   ``` bash
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   ```
+- Or use [envify](https://github.com/hughsk/envify) in your gulp build pipeline:
 
+  ``` js
+  // use the envify custom module to specify environment variables
+  var envify = require('envify/custom');
+  ...
+  browserify(browserifyOptions)
+    .transform(vueify),
+    .transform(
+      {
+        global: true, // required in order to process node_modules files (including the vue module)
+      }, 
+      envify({NODE_ENV: 'production'})
+    )
+    .bundle()
+    ... // rest of gulp stream processing
+  ```
 #### Rollup
 
 Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
