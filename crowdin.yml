@@ -2,12 +2,5 @@ preserve_hierarchy: false
 files:
   - source: '**/*.*'
     ignore:
-      - themes/**/*.ejs
-      - '*.js'
-      - .*
-      - src/_posts/**/*.*
-      - '*.styl'
-      - icons/*.*
-      - package.json
-      - package-lock.json
+      - themes
     translation: '%original_path%/%original_file_name%'
