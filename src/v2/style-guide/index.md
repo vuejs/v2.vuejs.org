@@ -1760,13 +1760,16 @@ new Vue({
 
 ``` js
 // store/modules/todos.js
+import Vue from 'vue'
+
 export default {
   state: {
     list: []
   },
   mutations: {
     REMOVE_TODO (state, todoId) {
-      state.list = state.list.filter(todo => todo.id !== todoId)
+      const index = state.list.findIndex(todo => todo.id === todoId)
+      Vue.delete(state.list, index)
     }
   },
   actions: {
