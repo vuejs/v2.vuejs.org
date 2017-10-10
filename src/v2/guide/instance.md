@@ -120,7 +120,7 @@ new Vue({
 
 Các hook khác như [`mounted`](../api/#mounted), [`updated`](../api/#updated), và [`destroyed`](../api/#destroyed) cũng được gọi vào các giai đoạn khác nhau trong vòng đời của đối tượng. Tất cả các hook này đều được thực thi với ngữ cảnh `this` trỏ đến đối tượng Vue hiện hành.
 
-<p class="tip">Đừng dùng [hàm mũi tên (arrow functions)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) cho các thuộc tính tùy chọn hoặc callback như là `created: () => console.log(this.a)` hoặc `vm.$watch('a', newValue => this.myMethod())`. Vì hàm mũi tên được bind vào ngữ cảnh cha (parent context), `this` sẽ không trỏ đến đối tượng Vue hiện hành và do đó `this.a` hoặc `this.myMethod` sẽ không trả về giá trị mà bạn mong đợi.</p>
+<p class="tip">Đừng dùng [hàm mũi tên (arrow functions)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) cho các thuộc tính tùy chọn hoặc callback như là `created: () => console.log(this.a)` hoặc `vm.$watch('a', newValue => this.myMethod())`. Vì hàm mũi tên được bind vào ngữ cảnh cha (parent context), `this` sẽ không trỏ đến đối tượng Vue hiện hành. Do vậy `this.a` hoặc `this.myMethod` sẽ không trả về giá trị mà bạn mong đợi, mà thay vào đó thường là các lỗi `Uncaught TypeError: Cannot read property of undefined` hoặc `Uncaught TypeError: this.myMethod is not a function`.</p>
 
 ## Sơ đồ vòng đời
 
