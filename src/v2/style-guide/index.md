@@ -678,7 +678,7 @@ components/
 
 
 
-### 강한 연관성을 갖는 컴포넌트 이름 <sup data-p="b">매우 추천함</sup>
+### 강한 연관성을 가진 컴포넌트 이름 <sup data-p="b">매우 추천함</sup>
 
 **Child components that are tightly coupled with their parent should include the parent component name as a prefix.**
 
