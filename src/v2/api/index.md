@@ -595,7 +595,8 @@ type: api
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (val, oldVal) {
@@ -607,6 +608,11 @@ type: api
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
+      },
+      // the callback will be called immediately after the start of the observation
+      d: {
+        handler: function (val, oldVal) { /* ... */ },
+        immediate: true
       }
     }
   })
