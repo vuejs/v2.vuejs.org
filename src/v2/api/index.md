@@ -856,6 +856,28 @@ type: api
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
+### errorCaptured
+
+> New in 2.5.0+
+
+- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+
+- **Details:**
+
+  Called when an error from any desendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+
+  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+
+  **Error Propagation Rules**
+
+  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+
+  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+
+  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+
+  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially syaing "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+
 ## Options / Assets
 
 ### directives
