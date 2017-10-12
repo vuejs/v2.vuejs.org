@@ -105,7 +105,7 @@ type: api
 
 ### ignoredElements
 
-- **Type:** `Array<string>`
+- **Type:** `Array<string | RegExp>`
 
 - **Default:** `[]`
 
@@ -113,7 +113,11 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'my-custom-web-component',
+    'another-web-component',
+    // Use a RegExp to ignore all elements that start with "ion-"
+    // 2.5+ only
+    /^ion-/
   ]
   ```
 
