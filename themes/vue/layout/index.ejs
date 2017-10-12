@@ -1,20 +1,22 @@
 <div class="sidebar">
-  <ul class="main-menu">
-    <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-  </ul>
+  <div class="sidebar-inner-index">
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
+  </div>
 </div>
 
 <div id="hero">
   <div class="inner">
     <div class="left">
-      <img class="hero-logo" src="/images/logo.png">
+      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>">
     </div><div class="right">
       <h2 class="vue">Vue.js</h2>
       <h1>
         The Progressive<br>JavaScript Framework
       </h1>
       <p>
-        <a class="button" href="/v2/guide/">GET STARTED</a>
+        <a class="button" href="<%- url_for("/v2/guide/") %>">GET STARTED</a>
         <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
       </p>
     </div>
@@ -30,13 +32,13 @@
 
     <div class="point">
       <h2>Versatile</h2>
-      <p>Simple, minimal core with an incrementally adoptable stack that can handle apps of any scale.</p>
+      <p>An incrementally adoptable ecosystem that scales between a library and a full-featured framework.</p>
     </div>
 
     <div class="point">
       <h2>Performant</h2>
       <p>
-        17kb min+gzip Runtime<br>
+        20KB min+gzip Runtime<br>
         Blazing Fast Virtual DOM<br>
         Minimal Optimization Efforts
       </p>
@@ -46,27 +48,48 @@
 
 <div id="sponsors">
   <div class="inner">
-    <h3>PROUDLY SPONSORED BY</h3>
     <%- partial('partials/sponsors') %>
-    <br>
-    <a class="become-sponsor button white" href="/support-vuejs/">Become a Backer</a>
   </div>
 </div>
 
 <div id="footer">
-  Released under the <a href="https://opensource.org/licenses/MIT" href="_blank">MIT License</a><br>
-  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You
+  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
+    <img src="/images/shuttleworth.png" style="width: 200px;">
+  </a>
+  <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a><br>
+  Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
 
 <script>
-var topScrolled = false
-window.addEventListener('scroll', function () {
-  if (window.pageYOffset > 165 && !topScrolled) {
-    topScrolled = true
-    document.getElementById('mobile-bar').classList.remove('top')
-  } else if (window.pageYOffset <= 165 && topScrolled) {
-    topScrolled = false
-    document.getElementById('mobile-bar').classList.add('top')
-  }
-})
+(function () {
+  var topScrolled = false
+  var sponsors = document.getElementById('sponsors')
+  var sponsorTop = sponsors.offsetTop
+  var sponsorActive = false
+
+  window.addEventListener('resize', function () {
+    sponsorTop = sponsors.offsetTop
+  })
+
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 165 && !topScrolled) {
+      topScrolled = true
+      document.getElementById('mobile-bar').classList.remove('top')
+    } else if (window.pageYOffset <= 165 && topScrolled) {
+      topScrolled = false
+      document.getElementById('mobile-bar').classList.add('top')
+    }
+    if (window.pageYOffset > sponsorTop - 100) {
+      if (!sponsorActive) {
+        sponsorActive = true
+        sponsors.classList.add('active')
+      }
+    } else {
+      if (sponsorActive) {
+        sponsorActive = false
+        sponsors.classList.remove('active')
+      }
+    }
+  })
+})()
 </script>

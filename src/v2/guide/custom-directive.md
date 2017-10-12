@@ -1,12 +1,12 @@
 ---
 title: Custom Directives
 type: guide
-order: 16
+order: 302
 ---
 
 ## Intro
 
-In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you just need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
+In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -24,7 +24,7 @@ new Vue({
 </script>
 {% endraw %}
 
-When the page loads, that element gains focus. In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
+When the page loads, that element gains focus (note: autofocus doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
 
 ``` js
 // Register a global custom directive called v-focus
@@ -61,9 +61,9 @@ A directive definition object can provide several hook functions (all optional):
 
 - `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not necessarily in-document).
 
-- `update`: called after the containing component has updated, __but possibly before its children have updated__. The directive's value may or may not have changed, but you can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
+- `update`: called after the containing component's VNode has updated, __but possibly before its children have updated__. The directive's value may or may not have changed, but you can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
 
-- `componentUpdated`: called after the containing component __and its children__ have updated.
+- `componentUpdated`: called after the containing component's VNode __and the VNodes of its children__ have updated.
 
 - `unbind`: called only once, when the directive is unbound from the element.
 
@@ -89,7 +89,7 @@ Directive hooks are passed these arguments:
 An example of a custom directive using some of these properties:
 
 ``` html
-<div id="hook-arguments-example" v-demo:hello.a.b="message"></div>
+<div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
 ```
 
 ``` js
@@ -115,7 +115,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="hook-arguments-example" v-demo:hello.a.b="message" class="demo"></div>
+<div id="hook-arguments-example" v-demo:foo.a.b="message" class="demo"></div>
 <script>
 Vue.directive('demo', {
   bind: function (el, binding, vnode) {

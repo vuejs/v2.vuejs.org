@@ -1,7 +1,7 @@
 ---
 title: Mixins
 type: guide
-order: 17
+order: 301
 ---
 
 ## Basics
@@ -28,7 +28,7 @@ var Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // -> "hello from mixin!"
+var component = new Component() // => "hello from mixin!"
 ```
 
 ## Option Merging
@@ -49,8 +49,8 @@ new Vue({
   }
 })
 
-// -> "mixin hook called"
-// -> "component hook called"
+// => "mixin hook called"
+// => "component hook called"
 ```
 
 Options that expect object values, for example `methods`, `components` and `directives`, will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
@@ -79,16 +79,16 @@ var vm = new Vue({
   }
 })
 
-vm.foo() // -> "foo"
-vm.bar() // -> "bar"
-vm.conflicting() // -> "from self"
+vm.foo() // => "foo"
+vm.bar() // => "bar"
+vm.conflicting() // => "from self"
 ```
 
 Note that the same merge strategies are used in `Vue.extend()`.
 
 ## Global Mixin
 
-You can also apply a mixin globally. Use caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
+You can also apply a mixin globally. Use with caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
 
 ``` js
 // inject a handler for `myOption` custom option
@@ -104,14 +104,14 @@ Vue.mixin({
 new Vue({
   myOption: 'hello!'
 })
-// -> "hello!"
+// => "hello!"
 ```
 
 <p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](plugins.html) to avoid duplicate application.</p>
 
 ## Custom Option Merge Strategies
 
-When custom options are merged, they use the default strategy, which simply overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `Vue.config.optionMergeStrategies`:
+When custom options are merged, they use the default strategy which overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `Vue.config.optionMergeStrategies`:
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -119,7 +119,7 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 }
 ```
 
-For most object-based options, you can simply use the same strategy used by `methods`:
+For most object-based options, you can use the same strategy used by `methods`:
 
 ``` js
 var strategies = Vue.config.optionMergeStrategies

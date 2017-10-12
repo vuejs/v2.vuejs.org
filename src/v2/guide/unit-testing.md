@@ -1,16 +1,16 @@
 ---
 title: Unit Testing
 type: guide
-order: 23
+order: 403
 ---
 
 ## Setup and Tooling
 
-Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation, try the [Karma](http://karma-runner.github.io) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup, please refer to each project's respective documentation, though these example Karma configurations for [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) and [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) may help you get started.
+Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation try the [Karma](http://karma-runner.github.io) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup please refer to each project's respective documentation. These example Karma configurations for [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) and [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) can help you get started.
 
 ## Simple Assertions
 
-In terms of code structure for testing, you don't have to do anything special in your components to make them testable. Just export the raw options:
+You don't have to do anything special in your components to make them testable. Export the raw options:
 
 ``` html
 <template>
@@ -31,7 +31,7 @@ In terms of code structure for testing, you don't have to do anything special in
 </script>
 ```
 
-When you test that component, all you have to do is import the object along with Vue to make many common assertions:
+Then import the component options along with Vue, and you can make many common assertions:
 
 ``` js
 // Import Vue and the component being tested
@@ -71,7 +71,7 @@ describe('MyComponent', () => {
 
 ## Writing Testable Components
 
-A lot of components' render output are primarily determined by the props they receive. In fact, if a component's render output solely depends on its props, it becomes quite straightforward to test, similar to asserting the return value of a pure function with different arguments. Take an contrived example:
+A component's render output is primarily determined by the props they receive. If a component's render output solely depends on its props it becomes straightforward to test, similar to asserting the return value of a pure function with different arguments. Take a simplified example:
 
 ``` html
 <template>
@@ -94,12 +94,12 @@ import MyComponent from './MyComponent.vue'
 // helper function that mounts and returns the rendered text
 function getRenderedText (Component, propsData) {
   const Ctor = Vue.extend(Component)
-  const vm = new Ctor({ propsData }).$mount()
+  const vm = new Ctor({ propsData: propsData }).$mount()
   return vm.$el.textContent
 }
 
 describe('MyComponent', () => {
-  it('render correctly with different props', () => {
+  it('renders correctly with different props', () => {
     expect(getRenderedText(MyComponent, {
       msg: 'Hello'
     })).toBe('Hello')
@@ -129,4 +129,4 @@ it('updates the rendered message when vm.message updates', done => {
 })
 ```
 
-We are planning to work on a collection of common test helpers that makes it even simpler to render components with different constraints (e.g. shallow rendering that ignores child components) and assert their output.
+We are planning to work on a collection of common test helpers to make it easier to render components with different constraints (e.g. shallow rendering that ignores child components) and assert their output.

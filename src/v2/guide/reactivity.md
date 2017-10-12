@@ -1,10 +1,10 @@
 ---
 title: Reactivity in Depth
 type: guide
-order: 12
+order: 601
 ---
 
-We've covered most of the basics - now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
+Now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
 
 ## How Changes Are Tracked
 
@@ -38,7 +38,7 @@ Vue does not allow dynamically adding new root-level reactive properties to an a
 Vue.set(vm.someObject, 'b', 2)
 ```
 
-You can also use the `vm.$set` instance method, which is just an alias to the global `Vue.set`:
+You can also use the `vm.$set` instance method, which is an alias to the global `Vue.set`:
 
 ``` js
 this.$set(this.someObject, 'b', 2)
@@ -55,7 +55,7 @@ There are also a few array-related caveats, which were discussed earlier in the 
 
 ## Declaring Reactive Properties
 
-Since Vue doesn't allow dynamically adding root-level reactive properties, you have to initialize Vue instances by declaring all root-level reactive data properties upfront, even just with an empty value:
+Since Vue doesn't allow dynamically adding root-level reactive properties, you have to initialize Vue instances by declaring all root-level reactive data properties upfront, even with an empty value:
 
 ``` js
 var vm = new Vue({

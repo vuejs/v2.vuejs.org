@@ -1,63 +1,63 @@
-#demo, .demo
-    border 1px solid #eee
-    border-radius $radius
-    padding 25px 35px
-    margin-top 1em
-    margin-bottom 40px
-    font-size 1.2em
-    line-height 1.5em
-    -webkit-user-select none
-    -moz-user-select none
-    -ms-user-select none
-    user-select none
-    overflow-x auto
-    h1
-        margin 0 0 .5em
-        font-size 1.8em
-    ul, ol
-        padding-left 1.5em
-        padding-bottom .2em !important
-        &:first-child
-            margin-top 0
-        &:last-child
-            margin-bottom 0
-    li
-        color $medium
-        // !!TODO: Check to make sure this isn't here for a good reason.
-        // cursor pointer
-        // -ms-user-select none
-        // -moz-user-select none
-        // -webkit-user-select none
-        &.done
-            color $light
-            text-decoration line-through
-    p
-        margin 0 !important
-        padding 0 !important
-        &:first-child
-            margin-top 0
-        &:last-child
-            margin-bottom 0
-    textarea
-        width 100%
-        resize vertical
+#demo, .demo, .content .demo
+  border: 1px solid #eee
+  border-radius: $radius
+  padding: 25px 35px
+  margin-top: 1em
+  margin-bottom: 40px
+  font-size: 1.2em
+  line-height: 1.5em
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  overflow-x: auto
+  h1
+    margin: 0 0 .5em
+    font-size: 1.8em
+  ul, ol
+    padding-left: 1.5em
+    padding-bottom: .2em !important
+    &:first-child
+      margin-top: 0
+    &:last-child
+      margin-bottom: 0
+  li
+    color: $medium
+    // !!TODO: Check to make sure this isn't here for a good reason.
+    // cursor: pointer
+    // -ms-user-select: none
+    // -moz-user-select: none
+    // -webkit-user-select: none
+    &.done
+      color: $light
+      text-decoration: line-through
+  p
+    margin: 0 !important
+    padding: 0 !important
+    &:first-child
+      margin-top: 0
+    &:last-child
+      margin-bottom: 0
+  textarea
+    width: 100%
+    resize: vertical
 
 
 
 ul#demo, ul.demo
-    li
-        margin-left 1.5em
+  li
+    margin-left: 1.5em
 
 @media screen and (max-width: 900px)
-    #demo, .demo
-        margin-left 0
+  #demo, .demo
+    margin-left: 0
 
 .benchmark-table
-    margin: 0 auto
-    text-align center
+  margin: 0 auto
+  text-align: center
 
-    tbody > tr > th
-        text-align right
+  tbody > tr > th
+    text-align: right
 
-    th, td
-        padding: 3px 7px
+  th, td
+    padding: 3px 7px

@@ -1,7 +1,7 @@
 ---
 title: TodoMVC
 type: examples
-order: 9
+order: 11
 ---
 
 > Esta es una implementación totalmente compatible con las especificaciones de TodoMVC en menos de 120 líneas de JavaScipt (excluyendo comentarios y líneas en blanco).

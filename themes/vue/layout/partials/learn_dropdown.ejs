@@ -1,0 +1,11 @@
+<li class="nav-dropdown-container learn">
+  <a class="nav-link<%- page.path.match(/\/(guide(?!\/team.html$)|api|style-guide|examples|cookbook)(\/|$)/) ? ' current' : '' %>">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><ul>
+      <li><a href="<%- url_for("/v2/guide/") %>" class="nav-link<%- page.path.match(/\/guide(\/|$)/) ? ' current' : '' %>">Guide</a></li>
+      <li><a href="<%- url_for("/v2/api/") %>" class="nav-link<%- page.path.match(/\/api(\/|$)/) ? ' current' : '' %>">API</a></li>
+      <li><a href="<%- url_for("/v2/style-guide/") %>" class="nav-link<%- page.path.match(/\/style-guide(\/|$)/) ? ' current' : '' %>">Style Guide</a></li>
+      <li><a href="<%- url_for("/v2/examples/") %>" class="nav-link<%- page.path.match(/\/examples(\/|$)/) ? ' current' : '' %>">Examples</a></li>
+    </ul></li>
+  </ul>
+</li>

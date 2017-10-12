@@ -1,170 +1,137 @@
 @import "_common"
 @import "_header"
-@import '_sidebar'
+@import "_sidebar"
+@import "_sponsor"
 
 $width = 900px
 $space = 50px
 
 body
-    background-color darken($light, 10%)
+  background-color: darken($light, 10%)
 
 #logo
-    span
-        font-size 1.2em
-    img
-        display none
+  span
+    font-size: 1.2em
+  img
+    display: none
 
 .sidebar
-    display none
+  display: none
 
 #mobile-bar
-    &.top
-        background-color transparent
-        box-shadow none
-        .logo
-            display none
+  &.top
+    background-color: transparent
+    box-shadow: none
+    .logo
+      display: none
 
 #hero
-    padding $space 40px
-    background-color #fff
-    .inner
-        max-width $width
-        margin 0 auto
-    .left, .right
-        display inline-block
-        vertical-align top
-    .left
-        width 39%
-    .right
-        width 61%
-    .hero-logo
-        width 215px
-        height 215px
-        float right
-        margin-right 60px
-    h1
-        font-weight 300
-        margin 0
-        font-size 3.2em
-    h2
-        font-family $logo-font
-        font-weight 500
-        font-size 2.4em
-        margin 0 0 10px
-        display none
-    .button
-        margin 1em 0
-        font-size 1.05em
-        font-weight 600
-        letter-spacing .1em
-        &:first-child
-            margin-right 1em
-    .social-buttons
-        list-style-type none
-        padding 0
-        li
-            display inline-block
-            vertical-align middle
-            margin-right 15px
+  padding: $space 40px
+  background-color: #fff
+  .inner
+    max-width: $width
+    margin: 0 auto
+  .left, .right
+    display: inline-block
+    vertical-align: top
+  .left
+    width: 39%
+  .right
+    width: 61%
+  .hero-logo
+    width: 215px
+    height: 215px
+    float: right
+    margin-right: 60px
+  h1
+    font-weight: 300
+    margin: 0
+    font-size: 3.2em
+  h2
+    font-family: $logo-font
+    font-weight: 500
+    font-size: 2.4em
+    margin: 0 0 10px
+    display: none
+  .button
+    margin: 1em 0
+    font-size: 1.05em
+    font-weight: 600
+    letter-spacing: .1em
+    min-width: 8em
+    text-align: center
+    &:first-child
+      margin-right: 1em
+  .social-buttons
+    list-style-type: none
+    padding: 0
+    li
+      display: inline-block
+      vertical-align: middle
+      margin-right: 15px
 
 #highlights
-    background-color #fff
-    padding-bottom 70px
-    .inner
-        max-width $width
-        margin 0 auto
-        text-align center
-    .point
-        width 33%
-        display inline-block
-        vertical-align top
-        box-sizing border-box
-        padding 0 2em
-        h2
-            color $green
-            font-size 1.5em
-            font-weight 400
-            margin 0
-            padding .5em 0
-        p
-            color $light
-
-#sponsors
-    text-align center
-    padding 35px 40px 45px
-    background-color #f6f6f6
-    .inner
-        max-width 700px
-        margin 0px auto
-    h3
-        color #999
-        font-size .9em
-        margin 0 0 10px
-    a
-        margin 20px 15px 0
-        position relative
-    a, img
-        width 100px
-        display inline-block
-        vertical-align middle
-    img
-        transition all .3s ease
-        filter contrast(0%)
-        &:hover
-            filter none
-    a.vip
-        display block
-        margin 30px auto 15px
-        width 200px
-        img
-            width 200px
-    .become-sponsor
-        margin-top 40px
-        font-size .9em
-        font-weight 700
-        width auto
-        background-color transparent
+  background-color: #fff
+  padding-bottom: 70px
+  .inner
+    max-width: $width
+    margin: 0 auto
+    text-align: center
+  .point
+    width: 33%
+    display: inline-block
+    vertical-align: top
+    box-sizing: border-box
+    padding: 0 2em
+    h2
+      color: $green
+      font-size: 1.5em
+      font-weight: 400
+      margin: 0
+      padding: .5em 0
+    p
+      color: $light
 
 #footer
-    padding $space 0
-    color #fff
-    text-align center
-    a
-        font-weight 700
-        color #fff
+  padding: $space 0
+  color: #fff
+  text-align: center
+  a
+    font-weight: 700
+    color: #fff
 
 @media screen and (max-width: $width)
-    body
-        -webkit-text-size-adjust none
-        font-size 14px
-    .sidebar
-        display block
-    #header
-        display none
-    #mobile-bar
-        display block
-    #hero
-        padding $space 40px 30px
-        .hero-logo
-            float none
-            margin 30px 0 15px
-            width 140px
-            height 140px
-        .left, .right
-            text-align center
-            width 100%
-        h1
-            font-size 2em
-        h2
-            display block
-        .button
-            font-size .9em
-    #highlights
-        .point
-            display block
-            margin 0 auto
-            width 300px
-            padding 0 40px 30px
-            &:before
-                content "—"
-                color $green
+  body
+    -webkit-text-size-adjust: none
+    font-size: 14px
+  .sidebar
+    display: block
+  #header
+    display: none
+  #mobile-bar
+    display: block
+  #hero
+    padding: $space 40px 30px
+    .hero-logo
+      float: none
+      margin: 30px 0 15px
+      width: 140px
+      height: 140px
+    .left, .right
+      text-align: center
+      width: 100%
+    h1
+      font-size: 2em
+    h2
+      display: block
+    .button
+      font-size: .9em
+  #highlights
+    .point
+      display: block
+      margin: 0 auto
+      width: 300px
+      padding: 0 40px 30px
+      &:before
+        content: "—"
+        color: $green

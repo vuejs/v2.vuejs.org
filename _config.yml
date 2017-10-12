@@ -12,7 +12,7 @@ language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://vuejs.org
+url: https://vuejs.org
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -92,6 +92,47 @@ markdown:
   breaks: true
   smartLists: true
   smartypants: true
+
+# Offline
+## Config passed to sw-precache
+## https://github.com/JLHwung/hexo-offline
+offline:
+  maximumFileSizeToCacheInBytes: 10485760
+  staticFileGlobs:
+    - public/**/*.{js,html,css,png,jpg,jpeg,gif,svg,eot,ttf,woff,woff2,json,xml}
+  stripPrefix: public
+  verbose: true
+  runtimeCaching:
+    # Ad Sources - should be networkFirst
+    - urlPattern: /*
+      handler: networkFirst
+      options:
+        origin: sendgrid.sp1.convertro.com
+    - urlPattern: /*
+      handler: networkFirst
+      options:
+        origin: ad.doubleclick.net
+    # CDNs - should be cacheFirst, since they should be used specific versions so should not change
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: cdn.jsdelivr.net
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: fonts.googleapis.com
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: fonts.gstatic.com
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: cdnjs.cloudflare.com
+    - urlPattern: /*
+      handler: cacheFirst
+      options:
+        origin: maxcdn.bootstrapcdn.com
 
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deployment.html

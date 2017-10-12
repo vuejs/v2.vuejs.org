@@ -1,7 +1,7 @@
 ---
-title: Transitioning State
+title: State Transitions
 type: guide
-order: 14
+order: 202
 ---
 
 Vue's transition system offers many simple ways to animate entering, leaving, and lists, but what about animating your data itself? For example:
@@ -15,10 +15,10 @@ All of these are either already stored as raw numbers or can be converted into n
 
 ## Animating State with Watchers
 
-Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using Tween.js:
+Watchers allow us to animate changes of any numerical property into another property. That may sound complicated in the abstract, so let's dive into an example using [Tween.js](https://github.com/tweenjs/tween.js):
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -36,10 +36,12 @@ new Vue({
   watch: {
     number: function(newValue, oldValue) {
       var vm = this
-      function animate (time) {
-        requestAnimationFrame(animate)
-        TWEEN.update(time)
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
       }
+
       new TWEEN.Tween({ tweeningNumber: oldValue })
         .easing(TWEEN.Easing.Quadratic.Out)
         .to({ tweeningNumber: newValue }, 500)
@@ -47,6 +49,7 @@ new Vue({
           vm.animatedNumber = this.tweeningNumber.toFixed(0)
         })
         .start()
+
       animate()
     }
   }
@@ -54,7 +57,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -69,10 +72,12 @@ new Vue({
   watch: {
     number: function(newValue, oldValue) {
       var vm = this
-      function animate (time) {
-        requestAnimationFrame(animate)
-        TWEEN.update(time)
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
       }
+
       new TWEEN.Tween({ tweeningNumber: oldValue })
         .easing(TWEEN.Easing.Quadratic.Out)
         .to({ tweeningNumber: newValue }, 500)
@@ -80,6 +85,7 @@ new Vue({
           vm.animatedNumber = this.tweeningNumber.toFixed(0)
         })
         .start()
+
       animate()
     }
   }
@@ -87,11 +93,11 @@ new Vue({
 </script>
 {% endraw %}
 
-When you update the number, the change is animated below the input. This makes for a nice demo, but what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with the addition of Color.js:
+When you update the number, the change is animated below the input. This makes for a nice demo, but what about something that isn't directly stored as a number, like any valid CSS color for example? Here's how we could accomplish this with the addition of [Color.js](https://github.com/brehaut/color-js):
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
-<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
 
 <div id="example-7">
   <input
@@ -129,13 +135,16 @@ new Vue({
   },
   watch: {
     color: function () {
-      function animate (time) {
-        requestAnimationFrame(animate)
-        TWEEN.update(time)
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
       }
+
       new TWEEN.Tween(this.tweenedColor)
         .to(this.color, 750)
         .start()
+
       animate()
     }
   },
@@ -167,8 +176,8 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
-<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
 <div id="example-7" class="demo">
   <input
     v-model="colorQuery"
@@ -202,13 +211,16 @@ new Vue({
   },
   watch: {
     color: function () {
-      function animate (time) {
-        requestAnimationFrame(animate)
-        TWEEN.update(time)
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
       }
+
       new TWEEN.Tween(this.tweenedColor)
         .to(this.color, 750)
         .start()
+
       animate()
     }
   },
@@ -241,7 +253,7 @@ new Vue({
 
 ## Dynamic State Transitions
 
-Just as with Vue's transition components, the data backing state transitions can be updated in real time, which is especially useful for prototyping! Even using a simple SVG polygon, you can achieve many effects that would be difficult to conceive of until you've played with the variables a little.
+As with Vue's transition components, the data backing state transitions can be updated in real time, which is especially useful for prototyping! Even using a simple SVG polygon, you can achieve many effects that would be difficult to conceive of until you've played with the variables a little.
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
@@ -381,7 +393,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete c
 Managing many state transitions can quickly increase the complexity of a Vue instance or component. Fortunately, many animations can be extracted out into dedicated child components. Let's do this with the animated integer from our earlier example:
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 
 <div id="example-8">
   <input v-model.number="firstNumber" type="number" step="20"> +
@@ -425,16 +437,19 @@ Vue.component('animated-integer', {
   methods: {
     tween: function (startValue, endValue) {
       var vm = this
-      function animate (time) {
-        requestAnimationFrame(animate)
-        TWEEN.update(time)
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
       }
+
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
         .onUpdate(function () {
           vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
         .start()
+
       animate()
     }
   }
@@ -456,7 +471,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 <div id="example-8" class="demo">
   <input v-model.number="firstNumber" type="number" step="20"> +
   <input v-model.number="secondNumber" type="number" step="20"> =
@@ -492,16 +507,19 @@ Vue.component('animated-integer', {
   methods: {
     tween: function (startValue, endValue) {
       var vm = this
-      function animate (time) {
-        requestAnimationFrame(animate)
-        TWEEN.update(time)
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
       }
+
       new TWEEN.Tween({ tweeningValue: startValue })
         .to({ tweeningValue: endValue }, 500)
         .onUpdate(function () {
           vm.tweeningValue = this.tweeningValue.toFixed(0)
         })
         .start()
+
       animate()
     }
   }
@@ -522,3 +540,14 @@ new Vue({
 {% endraw %}
 
 Within child components, we can use any combination of transition strategies that have been covered on this page, along with those offered by Vue's [built-in transition system](transitions.html). Together, there are very few limits to what can be accomplished.
+
+## Bringing Designs to Life
+
+To animate, by one definition, means to bring to life. Unfortunately, when designers create icons, logos, and mascots, they're usually delivered as images or static SVGs. So although GitHub's octocat, Twitter's bird, and many other logos resemble living creatures, they don't really seem alive.
+
+Vue can help. Since SVGs are just data, we only need examples of what these creatures look like when excited, thinking, or alarmed. Then Vue can help transition between these states, making your welcome pages, loading indicators, and notifications more emotionally compelling.
+
+Sarah Drasner demonstrates this in the demo below, using a combination of timed and interactivity-driven state changes:
+
+<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

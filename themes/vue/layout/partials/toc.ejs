@@ -1,0 +1,50 @@
+<ul class="menu-root">
+  <% ['api', 'style-guide'].indexOf(type) === -1 && site.pages.find({type: type}).sort('order').each(function (p) { %>
+    <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
+    <% if (type === 'guide') { %>
+      <% if (fileName === 'installation') { %>
+        <li><h3>Essentials</h3></li>
+      <% } %>
+      <% if (fileName === 'transitions') { %>
+        <li><h3>Transitions & Animation</h3></li>
+      <% } %>
+      <% if (fileName === 'mixins') { %>
+        <li><h3>Reusability & Composition</h3></li>
+      <% } %>
+      <% if (fileName === 'deployment') { %>
+        <li><h3>Tooling</h3></li>
+      <% } %>
+      <% if (fileName === 'routing') { %>
+        <li><h3>Scaling Up</h3></li>
+      <% } %>
+      <% if (fileName === 'reactivity') { %>
+        <li><h3>Internals</h3></li>
+      <% } %>
+      <% if (fileName === 'migration') { %>
+        <li><h3>Migrating</h3></li>
+      <% } %>
+      <% if (fileName === 'comparison') { %>
+        <li><h3>Meta</h3></li>
+      <% } %>
+    <% } %>
+    <% if (type === 'cookbook') { %>
+      <% if (p.order === 1.1) { %>
+        <li><h3>Vue Instance</h3></li>
+      <% } %>
+      <!-- Move cookbook sections here once they have -->
+      <!-- at least one recipe -->
+    <% } %>
+    <li>
+      <a href="<%- url_for(p.path) %>" class="sidebar-link<%- page.title === p.title ? ' current' : '' %><%- p.is_new ? ' new' : '' %>"><%- p.title %></a>
+    </li>
+  <% }) %>
+  <% if (type === 'cookbook') { %>
+    <li><h3>Components</h3></li>
+    <li><h4>Form Inputs</h4></li>
+    <li><h4>3rd-Party Integrations</h4></li>
+    <li><h3>Transitions</h3></li>
+    <li><h3>Directives</h3></li>
+    <li><h3>Vue Router</h3></li>
+    <li><h3>Vuex</h3></li>
+  <% } %>
+</ul>

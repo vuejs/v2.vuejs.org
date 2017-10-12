@@ -27,13 +27,31 @@
     }
 
     function createSourceSearchPath(query) {
-      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent(query) + '+&type=Code'
+      query = query
+        .replace(/\([^\)]*?\)/g, '')
+        .replace(/(Vue\.)(\w+)/g, '$1$2" OR "$2')
+        .replace(/vm\./g, 'Vue.prototype.')
+      return 'https://github.com/search?utf8=%E2%9C%93&q=repo%3Avuejs%2Fvue+extension%3Ajs+' + encodeURIComponent('"' + query + '"') + '&type=Code'
     }
   }
 
+  function parseRawHash (hash) {
+    // Remove leading hash
+    if (hash.charAt(0) === '#') {
+      hash = hash.substr(1)
+    }
+
+    // Escape characthers
+    try {
+      hash = decodeURIComponent(hash)
+    } catch (e) {}
+    return CSS.escape(hash)
+  }
+
   function initLocationHashFuzzyMatching () {
-    var hash = window.location.hash
-    if (!hash) return
+    var rawHash = window.location.hash
+    if (!rawHash) return
+    var hash = parseRawHash(rawHash)
     var hashTarget = document.getElementById(hash)
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
@@ -46,7 +64,7 @@
         if (distanceA > distanceB) return 1
         return 0
       })
-      window.location.hash = possibleHashes[0]
+      window.location.hash = '#' + possibleHashes[0]
     }
 
     function normalizeHash (rawHash) {
@@ -74,7 +92,7 @@
   }
 
   /**
-   * Mobile burger menu button for toggling sidebar
+   * Mobile burger menu button and gesture for toggling sidebar
    */
 
   function initMobileMenu () {
@@ -91,6 +109,27 @@
         sidebar.classList.remove('open')
       }
     })
+
+    // Toggle sidebar on swipe
+    var start = {}, end = {}
+
+    document.body.addEventListener('touchstart', function (e) {
+      start.x = e.changedTouches[0].clientX
+      start.y = e.changedTouches[0].clientY
+    })
+
+    document.body.addEventListener('touchend', function (e) {
+      end.y = e.changedTouches[0].clientY
+      end.x = e.changedTouches[0].clientX
+
+      var xDiff = end.x - start.x
+      var yDiff = end.y - start.y
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0 && start.x <= 80) sidebar.classList.add('open')
+        else sidebar.classList.remove('open')
+      }
+    })
   }
 
   /**
@@ -105,7 +144,7 @@
       var section = window.location.pathname.match(/\/v\d\/(\w+?)\//)[1]
       if (version === 'SELF') return
       window.location.assign(
-        'http://' +
+        'https://' +
         version +
         (version && '.') +
         'vuejs.org/' + section + '/'
@@ -126,11 +165,15 @@
 
     // build sidebar
     var currentPageAnchor = sidebar.querySelector('.sidebar-link.current')
-    var isAPI = document.querySelector('.content').classList.contains('api')
-    if (currentPageAnchor || isAPI) {
+    var contentClasses = document.querySelector('.content').classList
+    var isAPIOrStyleGuide = (
+      contentClasses.contains('api') ||
+      contentClasses.contains('style-guide')
+    )
+    if (currentPageAnchor || isAPIOrStyleGuide) {
       var allHeaders = []
       var sectionContainer
-      if (isAPI) {
+      if (isAPIOrStyleGuide) {
         sectionContainer = document.querySelector('.menu-root')
       } else {
         sectionContainer = document.createElement('ul')
@@ -145,7 +188,7 @@
           allHeaders.push(h)
           allHeaders.push.apply(allHeaders, h3s)
           if (h3s.length) {
-            sectionContainer.appendChild(makeSubLinks(h3s, isAPI))
+            sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
           }
         })
       } else {
@@ -158,7 +201,10 @@
 
       var animating = false
       sectionContainer.addEventListener('click', function (e) {
-        e.preventDefault()
+
+        // Not prevent hashchange for smooth-scroll
+        // e.preventDefault()
+
         if (e.target.classList.contains('section-link')) {
           sidebar.classList.remove('open')
           setActive(e.target)
@@ -210,7 +256,16 @@
 
     function makeLink (h) {
       var link = document.createElement('li')
-      var text = h.textContent.replace(/\(.*\)$/, '')
+      window.arst = h
+      var text = [].slice.call(h.childNodes).map(function (node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.nodeValue
+        } else if (['CODE', 'SPAN'].indexOf(node.tagName) !== -1) {
+          return node.textContent
+        } else {
+          return ''
+        }
+      }).join('').replace(/\(.*\)$/, '')
       link.innerHTML =
         '<a class="section-link" data-scroll href="#' + h.id + '">' +
           htmlEscape(text) +

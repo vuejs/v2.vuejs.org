@@ -3,8 +3,10 @@
     <input type="text" id="search-query-<%- context %>" class="search-query st-default-search-input">
   </form>
 </li>
-<li><a href="/v2/guide/" class="nav-link<%- page.path.match(/guide/) ? ' current' : '' %>">Guide</a></li>
-<li><a href="/v2/api/" class="nav-link<%- page.path.match(/api/) ? ' current' : '' %>">API</a></li>
-<li><a href="/v2/examples/" class="nav-link<%- page.path.match(/examples/) ? ' current' : '' %>">Examples</a></li>
+<%- partial('partials/learn_dropdown') %>
 <%- partial('partials/ecosystem_dropdown') %>
+<li>
+  <a href="<%- url_for("/v2/guide/team.html") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">Team</a>
+</li>
+<%- partial('partials/support_vue_dropdown') %>
 <%- partial('partials/language_dropdown') %>

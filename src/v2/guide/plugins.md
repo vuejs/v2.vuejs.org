@@ -1,18 +1,18 @@
 ---
 title: Plugins
 type: guide
-order: 18
+order: 304
 ---
 
 ## Writing a Plugin
 
 Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:
 
-1. Add some global methods or properties. e.g. [vue-element](https://github.com/vuejs/vue-element)
+1. Add some global methods or properties. e.g. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
 2. Add one or more global assets: directives/filters/transitions etc. e.g. [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. Add some component options by global mixin. e.g. [vuex](https://github.com/vuejs/vuex)
+3. Add some component options by global mixin. e.g. [vue-router](https://github.com/vuejs/vue-router)
 
 4. Add some Vue instance methods by attaching them to Vue.prototype.
 
@@ -44,7 +44,7 @@ MyPlugin.install = function (Vue, options) {
   })
 
   // 4. add an instance method
-  Vue.prototype.$myMethod = function (options) {
+  Vue.prototype.$myMethod = function (methodOptions) {
     // something logic ...
   }
 }
@@ -78,4 +78,4 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins) for a huge collection of community-contributed plugins and libraries.
+Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.
