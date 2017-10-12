@@ -2117,6 +2117,18 @@ type: api
 
 - **See also:** [Named Slots](../guide/components.html#Named-Slots)
 
+### slot-scope
+
+- **Expects:** `function argument expression`
+
+- **Usage:**
+
+  Use to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression.
+
+  This attribute does not support dynamic binding.
+
+- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
+
 ### is
 
 - **Expects:** `string`

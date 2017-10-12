@@ -971,12 +971,12 @@ In a child component, pass data into a slot as if you are passing props to a com
 </div>
 ```
 
-In the parent, a `<template>` element with a special attribute `scope` must exist, indicating that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+In the parent, a `<template>` element with a special attribute `slot-scope` must exist, indicating that it is a template for a scoped slot. The value of `slot-scope` will be used as the name of a temporary variable that holds the props object passed from the child:
 
 ``` html
 <div class="parent">
   <child>
-    <template scope="props">
+    <template slot-scope="props">
       <span>hello from parent</span>
       <span>{{ props.text }}</span>
     </template>
@@ -995,14 +995,19 @@ If we render the above, the output will be:
 </div>
 ```
 
+> In 2.5.0+, `slot-scope` is no longer limited to `<template>` and can be used on any element or component.
+
 A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
 
 ``` html
 <my-awesome-list :items="items">
   <!-- scoped slot can be named too -->
-  <template slot="item" scope="props">
-    <li class="my-fancy-item">{{ props.text }}</li>
-  </template>
+  <li
+    slot="item"
+    slot-scope="props"
+    class="my-fancy-item">
+    {{ props.text }}
+  </li>
 </my-awesome-list>
 ```
 
@@ -1016,6 +1021,16 @@ And the template for the list component:
     <!-- fallback content here -->
   </slot>
 </ul>
+```
+
+#### Destructuring
+
+`scope-slot`'s value is in fact a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments (in single-file components or in modern browsers) you can also use ES2015 destructuring in the expression:
+
+``` html
+<child>
+  <span slot-scope="{ text }">{{ text }}</span>
+</child>
 ```
 
 ## Dynamic Components
