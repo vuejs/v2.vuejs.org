@@ -21,7 +21,7 @@ In Vue, we use the `v-if` directive to achieve the same:
 <h1 v-if="ok">Yes</h1>
 ```
 
-It is also possible to add an "else" block with `v-else`:
+It is also possible to add an "else block" with `v-else`:
 
 ``` html
 <h1 v-if="ok">Yes</h1>
