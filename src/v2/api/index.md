@@ -1957,6 +1957,8 @@ type: api
   ```
 
   The `<div>` will not be visible until the compilation is done.
+  
+  **Note:** When using `v-cloak` with [Slots](https://vuejs.org/v2/api/#slot-1), be sure to use `v-cloak` inside the file you are including the component from, the slot will be overwritten.
 
 ### v-once
 
