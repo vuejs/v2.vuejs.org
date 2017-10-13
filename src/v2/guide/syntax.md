@@ -103,7 +103,7 @@ Here `href` is the argument, which tells the `v-bind` directive to bind the elem
 Another example is the `v-on` directive, which listens to DOM events:
 
 ``` html
-<a v-on:click="doSomething">
+<a v-on:click="doSomething"></a>
 ```
 
 Here the argument is the event name to listen to. We will talk about event handling in more detail too.
