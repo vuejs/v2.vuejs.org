@@ -72,7 +72,7 @@ export default {
 
 ## Class-Style Vue Components
 
-If you prefer a class-based API when declaring components, you can use the officially maintained [vue-class-component](https://github.com/vuejs/vue-class-componen) decorator:
+If you prefer a class-based API when declaring components, you can use the officially maintained [vue-class-component](https://github.com/vuejs/vue-class-component) decorator:
 
 ``` ts
 import Vue from 'vue'
