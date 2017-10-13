@@ -182,7 +182,7 @@ Another option for conditionally displaying an element is the `v-show` directive
 
 The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
 
-<p class="tip">Note that `v-show` doesn't support the `<template>` syntax, nor does it work with `v-else`.</p>
+<p class="tip">Note that `v-show` doesn't support the `<template>` element, nor does it work with `v-else`.</p>
 
 ## `v-if` vs `v-show`
 
