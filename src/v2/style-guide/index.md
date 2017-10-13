@@ -306,17 +306,15 @@ De notre expérience, il est mieux de _toujours_ ajouter une clé unique. De cet
 
 
 
-### Component style scoping <sup data-p="a">essentiel</sup>
+### Style des composants à portée limitée <sup data-p="a">essentiel</sup>
 
-**Pour les applications, le style du niveau `App` au sommet et pour les composants de la mises en page doivent être globaux, mais tous les autres styles des composants devraient être à portée limitée au composant.**
+**Pour les applications, le style du niveau `App` au sommet et des composants de mises en page doivent être globaux, mais tous les autres styles des composants devraient être à portée limitée au composant.**
 
-Ceci n'est pertinent que dans le cas des [fichiers monofichiers](../guide/single-file-components.html). Cela _ne_ nécessite _pas_ l'ajout de [l'attribut `scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html).
+Ceci n'est pertinent que dans le cas de l'utilisation de [fichiers monofichiers](../guide/single-file-components.html). Cela _ne_ nécessite _pas_ l'ajout de [l'attribut `scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). La portée limitée peut être faites avec les [modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html), une stratégie basée sur les classes comme [BEM](http://getbem.com/) ou d'autres bibliothèques ou conventions du même genre.
 
-This is only relevant for [single-file components](../guide/single-file-components.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+**Les composant de bibliothèques, cependant, devrait utiliser une stratégie basé sur les classes plutôt que d'utiliser d'attribut  `scoped`.**
 
-**Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.**
-
-This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
+Cela permet de surcharger les styles internes facilement, avec des noms de classes lisible par les humains avec un niveau de spécificité peu élevé qui entre en conflit vraiment très rarement.
 
 {% raw %}
 <details>
@@ -325,14 +323,14 @@ This makes overriding internal styles easier, with human-readable class names th
 </summary>
 {% endraw %}
 
-If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
+Si vous développer un grand projet, et travaillez avec d'autres développeurs, ou parfois que vous incluez du HTML / CSS tiers (par ex. de Auth0), une portée limitée consistante va assurer que vos styles soient uniquement appliqué aux composants que vous souhaitiez.
 
-Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
+Au dela de l'attribut `scoped`, utiliser des noms de classe uniques vous assure que les CSS des bibliothèques tierces ne soient pas appliqués à votre propre HTML. Par exemple, beaucoup de projet utilise les classes de nom `button`, `btn` ou `icon` donc même si vous n'utilisez pas de stratégie comme BEM, ajouter un préfix dédié à l'application ou au composant (par ex. `ButtonClose-icon`) peut vous approter une certaine protection.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <template>
@@ -348,14 +346,14 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <template>
   <button class="button button-close">X</button>
 </template>
 
-<!-- Using the `scoped` attribute -->
+<!-- Utilisez l'attribut `scoped` -->
 <style scoped>
 .button {
   border: none;
@@ -373,7 +371,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button :class="[$style.button, $style.buttonClose]">X</button>
 </template>
 
-<!-- Using CSS modules -->
+<!-- Utilisez les modules CSS -->
 <style module>
 .button {
   border: none;
@@ -391,7 +389,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button class="c-Button c-Button--close">X</button>
 </template>
 
-<!-- Using the BEM convention -->
+<!-- Utilisez des conventions BEM -->
 <style>
 .c-Button {
   border: none;
@@ -407,9 +405,9 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 
-### Private property names <sup data-p="a">essential</sup>
+### Noms de propriété privés names <sup data-p="a">essentiel</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**Toujours utilisez le préfixe `$_` pour les propriétés privés personnalisées dans un plugin, mixin, etc. Cela permet d'éviter les conflits avec le code d'autres développeurs. Il est également possible d'iclure un nom de portée (comme par exemple : `$_yourPluginName_`).**
 
 {% raw %}
 <details>
@@ -418,16 +416,16 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 </summary>
 {% endraw %}
 
-Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
+Vue utilise le préfixe `_` pour définir ses propres propriétés privés, aussi utuliser le même préfixe comme (par ex. `_update`) risque de réécrire les propriétés d'instance. Même si vous vérifiez que Vue n'utilise pas actuellement un nom de propriété particulier, il n'y a aucune garantie que le conflit n'apparaisse pas dans des versions futures.
 
-As for the `$` prefix, it's purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+En ce qui concerne le préfixe `$`, il suppose d'être, dans l'écosystème Vue, une propriété d'instance spéciale exposée à l'utilisateur, aussi l'utiliser pour les propriétés _privés_ ne serait pas un bon choix non plus.
 
-Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
+À la place, nous recommandons de combiner les deux préfixes en un `$_`, comme une convention pour définir des propriétés personnelles privées et garantir qu'il n'y ai aucun conflit avec Vue.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 var myGreatMixin = {
@@ -476,7 +474,7 @@ var myGreatMixin = {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 var myGreatMixin = {
