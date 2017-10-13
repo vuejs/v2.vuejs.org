@@ -101,24 +101,31 @@
 <li class="nav-dropdown-container ecosystem">
   <a class="nav-link">Ecosystem</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://github.com/vuejs/roadmap" class="nav-link" target="_blank">Roadmap</a></li>
     <li><h4>Help</h4></li>
     <li><ul>
       <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank">Forum</a></li>
       <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank">Chat</a></li>
-      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">Templates</a></li>
     </ul></li>
-    <li><h4>News</h4></li>
-    <li><ul>
-      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
-      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
-      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
-    </ul></li>
-    <li><h4>Core Plugins</h4></li>
+    <li><h4>Tooling</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>Core Libraries</h4></li>
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
       <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
       <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
+    </ul></li>
+    <li><h4>News</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs/roadmap" class="nav-link" target="_blank">Roadmap</a></li>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
     </ul></li>
     <li><h4>Resource Lists</h4></li>
     <li><ul>
@@ -128,8 +135,6 @@
     </ul></li>
   </ul>
 </li>
-
-
 
 <li>
   <a href="/v2/guide/team.html" class="nav-link team">Team</a>
@@ -188,24 +193,31 @@
 <li class="nav-dropdown-container ecosystem">
   <a class="nav-link">Ecosystem</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://github.com/vuejs/roadmap" class="nav-link" target="_blank">Roadmap</a></li>
     <li><h4>Help</h4></li>
     <li><ul>
       <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank">Forum</a></li>
       <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank">Chat</a></li>
-      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">Templates</a></li>
     </ul></li>
-    <li><h4>News</h4></li>
-    <li><ul>
-      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
-      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
-      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
-    </ul></li>
-    <li><h4>Core Plugins</h4></li>
+    <li><h4>Tooling</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>Core Libraries</h4></li>
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
       <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
       <li><a href="https://ssr.vuejs.org/" class="nav-link" target="_blank">Vue Server Renderer</a></li>
+    </ul></li>
+    <li><h4>News</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs/roadmap" class="nav-link" target="_blank">Roadmap</a></li>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">Blog</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">Jobs</a></li>
     </ul></li>
     <li><h4>Resource Lists</h4></li>
     <li><ul>
@@ -215,8 +227,6 @@
     </ul></li>
   </ul>
 </li>
-
-
 
 <li>
   <a href="/v2/guide/team.html" class="nav-link team">Team</a>
@@ -924,10 +934,8 @@
 <p>Polymer custom elements are authored in HTML files, which limits you to plain JavaScript/CSS (and language features supported by today’s browsers). In comparison, Vue’s single file components allows you to easily use ES2015+ and any CSS preprocessors you want.</p>
 <p>When deploying to production, Polymer recommends loading everything on-the-fly with HTML Imports, which assumes browsers implementing the spec, and HTTP/2 support on both server and client. This may or may not be feasible depending on your target audience and deployment environment. In cases where this is not desirable, you will have to use a special tool called Vulcanizer to bundle your Polymer elements. On this front, Vue can combine its async component feature with webpack’s code-splitting feature to easily split out parts of the application bundle to be lazy-loaded. This ensures compatibility with older browsers while retaining great app loading performance.</p>
 <p>It is also totally feasible to offer deeper integration between Vue with Web Component specs such as Custom Elements and Shadow DOM style encapsulation - however at this moment we are still waiting for the specs to mature and be widely implemented in all mainstream browsers before making any serious commitments.</p>
-<h2 id="Riot"><a href="#Riot" class="headerlink" title="Riot"></a>Riot</h2><p>Riot 2.0 provides a similar component-based development model (which is called a “tag” in Riot), with a minimal and beautifully designed API. Riot and Vue probably share a lot in design philosophies. However, despite being a bit heavier than Riot, Vue does offer some significant advantages:</p>
+<h2 id="Riot"><a href="#Riot" class="headerlink" title="Riot"></a>Riot</h2><p>Riot 3.0 provides a similar component-based development model (which is called a “tag” in Riot), with a minimal and beautifully designed API. Riot and Vue probably share a lot in design philosophies. However, despite being a bit heavier than Riot, Vue does offer some significant advantages:</p>
 <ul>
-<li><a href="transitions.html">Transition effect system</a>. Riot has none.</li>
-<li>A far more powerful router. Riot’s routing API is extremely minimal.</li>
 <li>Better performance. Riot <a href="http://riotjs.com/compare/#virtual-dom-vs-expressions-binding" target="_blank" rel="external">traverses a DOM tree</a> rather than using a virtual DOM, so suffers from the same performance issues as AngularJS.</li>
 <li>More mature tooling support. Vue provides official support for <a href="https://github.com/vuejs/vue-loader" target="_blank" rel="external">webpack</a> and <a href="https://github.com/vuejs/vueify" target="_blank" rel="external">Browserify</a>, while Riot relies on community support for build system integration.</li>
 </ul>

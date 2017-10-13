@@ -1097,6 +1097,12 @@ ul.demo li {
 .style-guide details {
   position: relative;
 }
+.style-guide details:not([open]) summary::after {
+  content: "...";
+}
+.style-guide details:not([open]) summary:hover {
+  background: rgba(255,255,255,0.3);
+}
 .style-guide summary {
   cursor: pointer;
   padding: 1.6em;
@@ -1370,7 +1376,7 @@ ul.demo li {
     margin-left: 290px;
   }
   #ad {
-    z-index: 7;
+    z-index: 1;
     position: relative;
     padding: 0;
     bottom: 0;
