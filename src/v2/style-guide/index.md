@@ -236,11 +236,11 @@ props: {
 
 
 
-### Keyed `v-for` <sup data-p="a">essential</sup>
+### Des clés pour `v-for` <sup data-p="a">essentiel</sup>
 
-**Always use `key` with `v-for`.**
+**Toujours utiliser `key` avec `v-for`.**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+`key` avec `v-for` est _toujours_ requis sur les composants afin de maintenir l'état des composant interne aligné au sous arbres. Même pour les éléments, c'est une bonne pratique pour garder un comportement prédictible pour de la [consistance d'objet](https://bost.ocks.org/mike/constancy/) dans les animations.
 
 {% raw %}
 <details>
@@ -250,6 +250,7 @@ props: {
 {% endraw %}
 
 Let's say you have a list of todos:
+Imaginons que nous ayouns une liste de tâches :
 
 ``` js
 data: function () {
@@ -257,27 +258,27 @@ data: function () {
     todos: [
       {
         id: 1,
-        text: 'Learn to use v-for'
+        text: 'Apprendre à utiliser `v-for`'
       },
       {
         id: 2,
-        text: 'Learn to use key'
+        text: 'Apperndre à utiliser `key`'
       }
     ]
   }
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+Puis nous les trions par ordre alphabétique. Quand le DOM est mis à jour, Vue va optimiser le rendu en exécutant les mutations dans le DOM les moins couteuse possible. Cela signifie de supprimer le premier élement de la liste, puis de l'ajouter de nouveau à la fin de la liste.
 
-The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
+Le problème c'est qu'il y a des cas où il est important de ne pas supprimer les éléments et de les laisser dans le DOM. Par exemple, vous pourriez utiliser `<transition-group>` animer un tri de liste, ou garder le focus sur un élément rendu qui est un `<input>`. Dans ces cas, ajouter une clé unique pour chaque élément (par ex. `:key="todo.id"`) va dire à Vue comment être plus prédictif.
 
-In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
+De notre expérience, il est mieux de _toujours_ ajouter une clé unique. De cette manière vous et votre équipe n'aurez jamais à vous soucier des effets de bord. Ensuite, dans les rares scénarios critiques de performance où la constance des objets n'est pas nécessaire, vous pourrez faire une exception en connaissance de cause.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <ul>
@@ -289,7 +290,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <ul>
@@ -305,9 +306,11 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### Component style scoping <sup data-p="a">essential</sup>
+### Component style scoping <sup data-p="a">essentiel</sup>
 
-**For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
+**Pour les applications, le style du niveau `App` au sommet et pour les composants de la mises en page doivent être globaux, mais tous les autres styles des composants devraient être à portée limitée au composant.**
+
+Ceci n'est pertinent que dans le cas des [fichiers monofichiers](../guide/single-file-components.html). Cela _ne_ nécessite _pas_ l'ajout de [l'attribut `scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html).
 
 This is only relevant for [single-file components](../guide/single-file-components.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
 
