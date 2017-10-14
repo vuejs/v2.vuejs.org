@@ -4,7 +4,7 @@ type: guide
 order: 404
 ---
 
-> In Vue 2.5.0 we have greatly improved our type declarations to work with the default object-based API. At the same time it introduces a few changes that require upgrade actions. Read [this blog post](https://medium.com/the-vue-point/upcoming-typescript-changes-in-vue-2-5-e9bd7e2ecf08) for more details.
+> In Vue 2.5.0+ we have greatly improved our type declarations to work with the default object-based API. At the same time it introduces a few changes that require upgrade actions. Read [this blog post](https://medium.com/the-vue-point/upcoming-typescript-changes-in-vue-2-5-e9bd7e2ecf08) for more details.
 
 ## Official Declaration in NPM Packages
 
@@ -128,7 +128,7 @@ import Vue from 'vue'
 
 declare module 'vue/types/vue' {
   // Global properties can be declared
-  // on the VueConstructor interface
+  // on the `VueConstructor` interface
   interface VueConstructor {
     $myGlobal: string
   }
