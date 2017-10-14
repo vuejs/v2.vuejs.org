@@ -243,7 +243,8 @@ var watchExampleVM = new Vue({
           })
       },
       // This is the number of milliseconds we wait for the
-      // user to stop typing.
+      // user to stop typing so that we don't keep calling this function everytime
+      // the user types
       500
     )
   }
