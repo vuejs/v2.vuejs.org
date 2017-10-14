@@ -259,7 +259,7 @@ In the above example, the handler will only be called if `$event.key === 'PageDo
 
 ## System Modifier Keys
 
-> New in 2.1.0
+> New in 2.1.0+
 
 You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
 
@@ -284,7 +284,7 @@ For example:
 
 ### `.exact` Modifier
 
-> New in 2.5.0
+> New in 2.5.0+
 
 The `.exact` modifier should be used in combination with other system modifiers to indicate that the exact combination of modifiers must be pressed for the handler to fire.
 
