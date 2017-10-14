@@ -242,9 +242,9 @@ var watchExampleVM = new Vue({
             vm.answer = 'Error! Could not reach the API. ' + error
           })
       },
-      // This is the number of milliseconds we wait for the
-      // user to stop typing so that we don't keep calling this function everytime
-      // the user types
+      // We don't want to call this function every time the user types
+      // in the input. That's why we give a delay of 500 milliseconds so 
+      // that all typing is completed.
       500
     )
   }
