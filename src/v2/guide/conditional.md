@@ -182,7 +182,7 @@ Une autre option pour afficher conditionnellement un élément est la directive 
 
 La différence est qu'un élément avec `v-show` sera toujours restitué et restera dans le DOM ; `v-show` permute simplement la propriété CSS `display` de l'élément.
 
-<p class="tip">Notez que `v-show` ne prend pas en charge la syntaxe de `<template>` et ne fonctionne pas avec `v-else`.</p>
+<p class="tip">Notez que `v-show` ne prend pas en charge la syntaxe de l'élément `<template>` et ne fonctionne pas avec `v-else`.</p>
 
 ## `v-if` vs `v-show`
 

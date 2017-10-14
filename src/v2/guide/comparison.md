@@ -99,7 +99,7 @@ Une autre différence importante entre ces offres est que les bibliothèques acc
 Pour finir, Vue offre un [outil de génération de projet en ligne de commande](https://github.com/vuejs/vue-cli) qui rend trivial le démarrage d'un nouveau projet en utilisant le système de système de build de votre choix, incluant [webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), ou même sans [système de création](https://github.com/vuejs-templates/simple). React fait aussi des progrès de ce côté-là avec [create-react-app](https://github.com/facebookincubator/create-react-app), mais a pour le moment quelques limitations :
 
 - Il ne permet aucune configuration durant la génération du projet, là où les templates de projet Vue permettent une personnalisation à la façon [Yeoman](http://yeoman.io/).
-- Il ne propose qu'un seul template qui présume que vous concevez une application web monopage, là où Vue offre une large variété de templates pour différents objectifs et outils de *build*.
+- Il ne propose qu'un seul template qui présume que vous concevez une application web monopage, là où Vue offre une large variété de templates pour différents objectifs et outils de build.
 - Il ne permet pas la génération de projets depuis des templates faits par les utilisateurs, ce qui peut être particulièrement utile en entreprise avec des conventions préétablies.
 
 Il est important de noter que beaucoup de ces limitations sont des choix d'architecture intentionnels pris par l'équipe de create-react-app et qui ont également leurs avantages. Par exemple, tant que les besoins de votre projet sont très simples et que vous n'avez jamais besoin d' « éjecter » des choses pour personnaliser votre chaîne de build, vous aurez la possibilité de le mettre à jour en tant que dépendance. Vous pouvez en lire plus à propos de [la différence de philosophie ici](https://github.com/facebookincubator/create-react-app#philosophy).
@@ -116,7 +116,7 @@ Bien que Vue s'élève au niveau d'utilisation de React, voire le dépasse, il p
 
 Ensuite vous pouvez commencer à écrire du code Vue et même livrer la version minifiée sans vous sentir coupable ou vous soucier des problèmes de performance.
 
-Puisque vous n'avez pas besoin de connaitre JSX, ES2015 ou les outils de *build* pour commencer à travailler avec Vue, il faut généralement moins d'un jour à un développeur pour lire [le guide](./) et en savoir assez pour concevoir des applications complexes.
+Puisque vous n'avez pas besoin de connaitre JSX, ES2015 ou les outils de build pour commencer à travailler avec Vue, il faut généralement moins d'un jour à un développeur pour lire [le guide](./) et en savoir assez pour concevoir des applications complexes.
 
 ### Rendu natif
 
@@ -180,7 +180,7 @@ Les versions récentes d'Angular, avec une [compilation anticipée](https://fr.w
 
 ### Flexibilité
 
-Vue impose beaucoup moins de choix comparé à Angular, offrant un support officiel pour divers systèmes de *build*, avec aucune restriction sur la manière dont vous devez structurer votre application. Beaucoup de développeurs apprécient cette liberté, quand d'autres préfèrent avoir l'unique « bonne façon » de concevoir une application.
+Vue impose beaucoup moins de choix comparé à Angular, offrant un support officiel pour divers systèmes de build, avec aucune restriction sur la manière dont vous devez structurer votre application. Beaucoup de développeurs apprécient cette liberté, quand d'autres préfèrent avoir l'unique « bonne façon » de concevoir une application.
 
 ### Courbe d'apprentissage
 
@@ -222,9 +222,7 @@ Il est aussi totalement possible d'offrir une intégration profonde entre Vue et
 
 ## Riot
 
-Riot 2.0 fournit un modèle de développement similaire orienté composants (cela est appelé un *tag* dans Riot), avec une API minimaliste mais conçue de manière élégante. Riot et Vue partagent probablement beaucoup de choses dans leur philosophie d'architecture. Cependant, bien qu'étant un peu plus lourd que Riot, Vue offre certains avantages significatifs :
+Riot 3.0 fournit un modèle de développement similaire orienté composants (cela est appelé un « tag » dans Riot), avec une API minimaliste mais conçue de manière élégante. Riot et Vue partagent probablement beaucoup de choses dans leur philosophie d'architecture. Cependant, bien qu'étant un peu plus lourd que Riot, Vue offre certains avantages significatifs :
 
-- [Un système d'effets de transition](transitions.html). Riot n'en a pas.
-- Un routeur bien plus puissant. L'API de routage de Riot est extrêmement minimaliste.
 - De meilleures performances. Riot [utilise le DOM](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) plutôt qu'un DOM virtuel, et par conséquent il souffre des mêmes problèmes de performances que AngularJS.
-- Le support d'un outillage plus mature. Vue fournit un support officiel pour [webpack](https://github.com/vuejs/vue-loader) et [Browserify](https://github.com/vuejs/vueify), là où Riot s'appuie sur le soutien de la communauté pour l'intégration de systèmes de *build*.
+- Le support d'un outillage plus mature. Vue fournit un support officiel pour [webpack](https://github.com/vuejs/vue-loader) et [Browserify](https://github.com/vuejs/vueify), là où Riot s'appuie sur le soutien de la communauté pour l'intégration de systèmes de build.
