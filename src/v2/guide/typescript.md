@@ -4,7 +4,7 @@ type: guide
 order: 404
 ---
 
-> Dans Vue 2.5.0+ nous avons grandement amélioré notre déclaration des types pour fonctionner avec les objets par défaut basés sur l'API. Cela a également introduit quelques changements qui requierent une intervention manuelle. Lisez [ce billet de blog](https://medium.com/@OrchardID/changements-typescript-%C3%A0-venir-dans-vue-2-5-1a5568402b5b) pour plus de détails.
+> Dans Vue 2.5.0+ nous avons grandement amélioré nos déclarations de types pour fonctionner avec l'API par défaut basée sur les objets. Cela a également introduit quelques changements qui requièrent une intervention manuelle. Lisez [ce billet de blog](https://medium.com/@OrchardID/changements-typescript-%C3%A0-venir-dans-vue-2-5-1a5568402b5b) pour plus de détails.
 
 ## Déclaration officielle dans les packages npm
 
@@ -37,7 +37,7 @@ Voir [les options de compilation TypeScript](https://www.typescriptlang.org/docs
 
 Pour développer des applications Vue avec TypeScript, nous recommandons fortement d'utiliser [Visual Studio Code](https://code.visualstudio.com/) qui fournit un support de TypeScript nativement.
 
-Si vous utilisez des [composants monofichiers](./single-file-components.html), utilisez la super [extension Vetur](https://github.com/vuejs/vetur) qui fournit des déduction TypeScript à l'intérieur de vos composants monofichiers et bien d'autres fonctionnalités extras.
+Si vous utilisez des [composants monofichiers](./single-file-components.html), utilisez la super [extension Vetur](https://github.com/vuejs/vetur) qui fournit des déductions TypeScript à l'intérieur de vos composants monofichiers et bien d'autres fonctionnalités extras.
 
 ## Utilisation de base
 
@@ -52,7 +52,7 @@ const Component = Vue.extend({
 
 const Component = {
   // ceci N'aura PAS la déduction de type,
-  // car TypeScript ne serait pas dire si c'est une option pour un composant Vue.
+  // car TypeScript ne peut pas savoir qu'il s'agit d'options pour un composant Vue.
 }
 ```
 

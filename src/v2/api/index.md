@@ -868,19 +868,19 @@ type : api
 
 - **Détails :**
 
-  Appelé quand une erreur depuis n'importe quel composant enfant est capturée. Le hook reçoit trois arguments : l'erreur, l'instance du composant qui a déclenché l'erreur et une chaine de caractères contenant des informations sur l'endroit où l'erreur a été capturée. Le hook peut retourner `false` pour arrêter la propagation de l'erreur.
+  Appelé quand une erreur provenant de n'importe quel composant enfant est capturée. Le hook reçoit trois arguments : l'erreur, l'instance du composant qui a déclenché l'erreur et une chaine de caractères contenant des informations sur l'endroit où l'erreur a été capturée. Le hook peut retourner `false` pour arrêter la propagation de l'erreur.
 
   <p class="tip">Vous pouvez modifier l'état du composant dans ce hook. Il est cependant important d'avoir une condition dans votre template ou fonction de rendu qui court-circuite les autres composants quand une erreur est capturée. Autrement le composant va partir dans une boucle de rendu infinie.</p>
 
   **Règles de propagation d'erreur**
 
-  - Par défaut, toutes les erreurs sont toujours envoyées à l'objet global `config.errorHandler` si il est défini. Donc ces erreurs peuvent toujours être reportées à un service d'analyse centralisé.
+  - Par défaut, toutes les erreurs sont toujours envoyées à l'objet global `config.errorHandler` s'il est défini. Donc ces erreurs peuvent toujours être reportées à un service d'analyse centralisé.
 
-  - Si des hooks `errorCaptured` multiples existent sur une chaine de composant hérité ou sur une chaine parente, toutes seront invoquées sur la même erreur.
+  - Si des hooks `errorCaptured` multiples existent sur une chaine de composant hérité ou sur une chaine parente, toutes seront invoquées avec la même erreur.
 
-  - Si le hook `errorCaptured` renvoi lui-même une erreur, l'erreur originalement capturée et l'erreur courante seront toutes deux envoyées au `config.errorHandler` global.
+  - Si le hook `errorCaptured` renvoie lui-même une erreur, l'erreur originalement capturée et l'erreur courante seront toutes deux envoyées au `config.errorHandler` global.
 
-  - Un hook `errorCaptured` peut retourner `false` pour prévenir la propagation de l'erreur plus haut. Il est essentielle de dire « cette erreur a été traitée et doit être ignorée ». Cela empèchera n'importe quel hook `errorCaptured` supplémentaire ou le `config.errorHandler` d'être invoqué par cette erreur.
+  - Un hook `errorCaptured` peut retourner `false` pour empêcher la propagation de l'erreur vers le haut. Il est essentiel d'indiquer que « cette erreur a été traitée et doit être ignorée ». Cela empèchera n'importe quel hook `errorCaptured` supplémentaire ou le `config.errorHandler` d'être invoqué par cette erreur.
 
 ## Options / Ressources
 
@@ -1069,7 +1069,7 @@ type : api
   }
   ```
 
-  S'il est nécessaire de pouvoir être injecté depuis une propriété avec un nom différent, utilisez `from` pour indiquer la source de la propriété :
+  S'il est nécessaire de de pouvoir injecter via une propriété avec un nom différent, utilisez `from` pour indiquer la source de la propriété :
 
   ``` js
   const Child = {
@@ -1082,7 +1082,7 @@ type : api
   }
   ```
 
-  Similaire aux valeurs par défaut des props, vous devez utiliser une fabrique de fonction pour les valeurs non primitives :
+  De façon similaire aux valeurs par défaut des props, vous devez utiliser une fabrique de fonctions pour les valeurs non primitives :
 
   ``` js
   const Child = {
@@ -2123,7 +2123,7 @@ type : api
 
 - **Utilisation :**
 
-  Utilisé pour indiquer qu'un élément ou un composant a un slot avec portée. La valeur de l'attribut doit être une expression JavaScript valide qui apparaît à la position d'un argument dans la déclaration d'une fonction. Cela signifie que dans les environnements qui le supporte, vous pouvez utiliser une expression de destructuration dans l'expression.
+  Utilisé pour indiquer qu'un élément ou un composant a un slot avec portée. La valeur de l'attribut doit être une expression JavaScript valide qui apparaît à la position d'un argument dans la déclaration d'une fonction. Cela signifie que dans les environnements qui la supportent, vous pouvez utiliser une expression de destructuration dans l'expression.
 
   Cet attribut ne supporte pas les liaisons dynamiques.
 

@@ -1025,7 +1025,7 @@ Et le template pour le composant de liste :
 
 #### Destructuration
 
-La valeur de `scope-slot` est en fait une expression JavaScript valide qui apparaît à la position d'un argument dans la déclaration d'une fonction. Cela signifie que sur les environnements supportés (dans les composants monofichiers des navigateurs modernes) vous pouvez aussi utiliser la destructuration ES2015 dans une expression :
+La valeur de `scope-slot` est en fait une expression JavaScript valide qui apparaît à la position d'un argument dans la déclaration d'une fonction. Cela signifie que sur les environnements supportés (dans les composants monofichiers ou dans les navigateurs modernes) vous pouvez aussi utiliser la destructuration ES2015 dans une expression :
 
 ``` html
 <child>

@@ -243,11 +243,11 @@ Vous pouvez également [définir des raccourcis personnalisés pour vos modifica
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Modificateurs de raccourcis clavier automatiques
+## Modificateurs automatiques de touche clavier
 
 > Nouveau dans la 2.5.0+
 
-Vous pouvez également utiliser n'importe quelles noms de raccourcis clavier valide exposés via [`KeyboardEvent.key`](https://developer.mozilla.org/fr-FR/docs/Web/API/KeyboardEvent/key/Key_Values) en tant que modificateur en les écrivant au format kebab-case :
+Vous pouvez également utiliser n'importe quel nom de touche clavier valide fourni par [`KeyboardEvent.key`](https://developer.mozilla.org/fr-FR/docs/Web/API/KeyboardEvent/key/Key_Values) en tant que modificateur en les écrivant au format kebab-case :
 
 ``` html
 <input @keyup.page-down="onPageDown">
@@ -255,9 +255,9 @@ Vous pouvez également utiliser n'importe quelles noms de raccourcis clavier val
 
 Dans l'exemple ci-dessus, le gestionnaire va uniquement être appelé si `$event.key === 'PageDown'`.
 
-<p class="tip">Quelques raccourcis (`.esc` et les touches fléchées) ont des `key` différentes pour IE9, leurs alias préconçus devraient être préférés si vous souhaitez supporter IE9.</p>
+<p class="tip">Quelques raccourcis (`.esc` et les touches fléchées) ont des `key` différentes pour IE9. Vous devriez plutôt utiliser leurs alias fournis par la bibliothèque si vous souhaitez supporter IE9.</p>
 
-## Modificateurs de raccourcis clavier préconçu
+## Modificateurs de touches système
 
 > Nouveau dans la 2.1.0+
 
@@ -286,10 +286,10 @@ Par exemple :
 
 > Nouveau dans la 2.5.0
 
-Le modificateur `.exact` devrait être utilisé en complément des autres modificateurs préconçus pour indiquer que la combinaison exacte de modificateur doit être pressé pour que le gestionnaire se déclenche.
+Le modificateur `.exact` devrait être utilisé en complément des autres modificateurs de touches système pour indiquer que la combinaison exacte de touches doit être pressée pour que le gestionnaire se déclenche.
 
 ``` html
-<!-- ceci va émettre un évènement si les touches Alt et Shift sont aussi pressées -->
+<!-- ceci va aussi émettre un évènement si les touches Alt et Shift sont pressées -->
 <button @click.ctrl="onClick">A</button>
 
 <!-- ceci va émettre un évènement seulement si la touche Ctrl est pressée -->
