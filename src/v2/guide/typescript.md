@@ -4,7 +4,7 @@ type: guide
 order: 404
 ---
 
-> Dans Vue 2.5.0+ nous avons grandement amélioré notre déclaration des types pour fonctionner avec les objets par défaut basé sur l'API. Cela a également introduit quelque changement qui requiert des changements manuels. Lisez [ce billet de blog](https://medium.com/@OrchardID/changements-typescript-%C3%A0-venir-dans-vue-2-5-1a5568402b5b) pour plus de détails.
+> Dans Vue 2.5.0+ nous avons grandement amélioré notre déclaration des types pour fonctionner avec les objets par défaut basés sur l'API. Cela a également introduit quelques changements qui requierent une intervention manuelle. Lisez [ce billet de blog](https://medium.com/@OrchardID/changements-typescript-%C3%A0-venir-dans-vue-2-5-1a5568402b5b) pour plus de détails.
 
 ## Déclaration officielle dans les packages npm
 
@@ -12,7 +12,7 @@ Un système de typage statique peut aider à prévenir des erreurs d'exécutions
 
 Puisque ceux-ci sont [publiés sur npm](https://cdn.jsdelivr.net/npm/vue/types/), et que la dernière version de TypeScript sait comment résoudre des déclarations de type dans des packages npm, cela signifie qu'installer ceux-ci via npm ne requiert aucun outil supplémentaire pour utiliser TypeScript avec Vue.
 
-Nous avons également planifier de fournir prochainement une option dans `vue-cli` pour installer un projet Vue + TypeScript prêt à l'emploi.
+Nous avons également planifié de fournir prochainement une option dans `vue-cli` pour installer un projet Vue + TypeScript prêt à l'emploi.
 
 ## Configuration recommandée
 
@@ -52,7 +52,7 @@ const Component = Vue.extend({
 
 const Component = {
   // ceci N'aura PAS la déduction de type,
-  // car TypeScript dire si c'est une option pour un composant Vue.
+  // car TypeScript ne serait pas dire si c'est une option pour un composant Vue.
 }
 ```
 

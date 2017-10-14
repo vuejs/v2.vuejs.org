@@ -243,7 +243,7 @@ Vous pouvez également [définir des raccourcis personnalisés pour vos modifica
 Vue.config.keyCodes.f1 = 112
 ```
 
-### Modificateurs de raccourcis clavier automatique
+## Modificateurs de raccourcis clavier automatiques
 
 > Nouveau dans la 2.5.0+
 
@@ -286,7 +286,7 @@ Par exemple :
 
 > Nouveau dans la 2.5.0
 
-Le modificateur `.exact` devrait être utiliser en complément des autres modificateurs préconçu pour indiquer que la combinaison exacte de modificateur doit être pressé pour que le gestionnaire se déclenche.
+Le modificateur `.exact` devrait être utilisé en complément des autres modificateurs préconçus pour indiquer que la combinaison exacte de modificateur doit être pressé pour que le gestionnaire se déclenche.
 
 ``` html
 <!-- ceci va émettre un évènement si les touches Alt et Shift sont aussi pressées -->

@@ -613,7 +613,7 @@ type : api
         handler: function (valeur, ancienneValeur) { /* ... */ },
         deep: true
       },
-      // la fonction de retour va être appelée immédiatement après le début de l'observation
+      // la fonction de rappel va être appelée immédiatement après le début de l'observation
       d: {
         handler: function (valeur, ancienneValeur) { /* ... */ },
         immediate: true
@@ -868,7 +868,7 @@ type : api
 
 - **Détails :**
 
-  Appelé quand une erreur depuis n'importe quel composant enfant est capturé. Le hook reçoit trois arguments : l'erreur, l'instance du composant qui a déclenché l'erreur et une chaine de caractères contenant des informations sur l'endroit où l'erreur a été capturée. Le hook peut retourner `false` pour arrêter la propagation de l'erreur.
+  Appelé quand une erreur depuis n'importe quel composant enfant est capturée. Le hook reçoit trois arguments : l'erreur, l'instance du composant qui a déclenché l'erreur et une chaine de caractères contenant des informations sur l'endroit où l'erreur a été capturée. Le hook peut retourner `false` pour arrêter la propagation de l'erreur.
 
   <p class="tip">Vous pouvez modifier l'état du composant dans ce hook. Il est cependant important d'avoir une condition dans votre template ou fonction de rendu qui court-circuite les autres composants quand une erreur est capturée. Autrement le composant va partir dans une boucle de rendu infinie.</p>
 
@@ -1082,7 +1082,7 @@ type : api
   }
   ```
 
-  Similaire aux valeur par défaut des props, vous devez utiliser une fabrique de fonction pour les valeurs non primitives :
+  Similaire aux valeurs par défaut des props, vous devez utiliser une fabrique de fonction pour les valeurs non primitives :
 
   ``` js
   const Child = {
@@ -2127,7 +2127,7 @@ type : api
 
   Cet attribut ne supporte pas les liaisons dynamiques.
 
-- **Voir aussi :** [Slots à portée limitée](../guide/components.html#Scoped-Slots)
+- **Voir aussi :** [Slots avec portée](../guide/components.html#Slots-avec-portee)
 
 ### is
 
