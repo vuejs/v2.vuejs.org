@@ -497,7 +497,7 @@ Dưới đây là một ví dụ hoàn chỉnh của một ứng dụng todo:
 </div>
 ```
 
-<p class="tip">Lưu ý thuộc tính `is="todo-item"`. Điều này là cần thiết trong DOM template, vì chỉ có thẻ `<li>` là hợp lệ trong `<ul>`. Cách khai báo `<li is="todo-item">` có cùng kết quả như `<todo-item>`, nhưng tránh được lỗi có thể xảy trình duyệt parse (phân tích) template. Xem thêm [Lưu ý về parsing DOM template](components.html#DOM-Template-Parsing-Caveats).</p>
+<p class="tip">Lưu ý thuộc tính `is="todo-item"`. Điều này là cần thiết trong DOM template, vì chỉ có thẻ `<li>` là hợp lệ trong `<ul>`. Cách khai báo `<li is="todo-item">` có cùng kết quả như `<todo-item>`, nhưng tránh được lỗi có thể xảy trình duyệt parse (phân tích) template. Xem thêm [Lưu ý về việc parse DOM template](components.html#Luu-y-ve-viec-parse-DOM-template).</p>
 
 ``` js
 Vue.component('todo-item', {
