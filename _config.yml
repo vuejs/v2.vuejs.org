@@ -164,7 +164,8 @@ alias:
   guide/migration-vue-router.html: v2/guide/migration-vue-router.html
   guide/migration-vuex.html: v2/guide/migration-vuex.html
   guide/migration.html: v2/guide/migration.html
-  guide/mixins.html: v2/guide/mixins.html
+  guide/mixins.html: v2/guide/composition.html
+  v2/guide/mixins.html: v2/guide/composition.html
   guide/plugins.html: v2/guide/plugins.html
   guide/reactivity.html: v2/guide/reactivity.html
   guide/render-function.html: v2/guide/render-function.html
