@@ -1,17 +1,19 @@
 ---
-title: List Rendering
+title: Render danh sách
 type: guide
 order: 8
 ---
 
-## Mapping an Array to Elements with `v-for`
+## Map một mảng thành các phần tử web với `v-for`
 
-We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
+<p class="tip">Một số tài liệu kĩ thuật dịch "map" thành "ánh xạ" hoặc "đối ứng." Để đơn giản, trong bảng hướng dẫn này chúng tôi sẽ giữ nguyên từ tiếng Anh là "map."</p>
+
+Chúng ta có thể dùng directive `v-for` để render một danh sách các item dựa trên một mảng. Directive `v-for` đòi hỏi một cú pháp đặc biệt dưới dạng `item in items`, trong đó `items` là mảng dữ liệu nguồn và `item` trỏ đến phần tử mảng đang được duyệt đến:
 
 ``` html
 <ul id="example-1">
   <li v-for="item in items">
-    {{ item.message }}
+    {{ item.name }}
   </li>
 </ul>
 ```
@@ -21,19 +23,20 @@ var example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
+      { name: 'Cà phê' },
+      { name: 'Trà đặc' },
+      { name: 'Bò húc' }
     ]
   }
 })
 ```
 
-Result:
+Kết quả:
 
 {% raw %}
 <ul id="example-1" class="demo">
   <li v-for="item in items">
-    {{item.message}}
+    {{item.name}}
   </li>
 </ul>
 <script>
@@ -41,8 +44,9 @@ var example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
+      { name: 'Cà phê' },
+      { name: 'Trà đặc' },
+      { name: 'Bò húc' }
     ]
   },
   watch: {
@@ -54,12 +58,12 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
+Bên trong vòng lặp `v-for` chúng ta có toàn quyền truy xuất đến các thuộc tính của scope cha. `v-for` cũng hỗ trợ một tham số thứ hai (không bắt buộc) chỉ số thứ tự (index) của phần tử mảng hiện hành.
 
 ``` html
 <ul id="example-2">
   <li v-for="(item, index) in items">
-    {{ parentMessage }} - {{ index }} - {{ item.message }}
+    {{ parentMessage }} - {{ index }} - {{ item.name }}
   </li>
 </ul>
 ```
@@ -70,8 +74,9 @@ var example2 = new Vue({
   data: {
     parentMessage: 'Parent',
     items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
+      { name: 'Cà phê' },
+      { name: 'Trà đặc' },
+      { name: 'Bò húc' }
     ]
   }
 })
@@ -82,7 +87,7 @@ Result:
 {% raw%}
 <ul id="example-2" class="demo">
   <li v-for="(item, index) in items">
-    {{ parentMessage }} - {{ index }} - {{ item.message }}
+    {{ parentMessage }} - {{ index }} - {{ item.name }}
   </li>
 </ul>
 <script>
@@ -91,8 +96,9 @@ var example2 = new Vue({
   data: {
     parentMessage: 'Parent',
     items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
+      { name: 'Cà phê' },
+      { name: 'Trà đặc' },
+      { name: 'Bò húc' }
     ]
   },
   watch: {
@@ -104,15 +110,15 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
+Bạn cũng có thể dùng `of` để phân cách thay vì `in`. Cách này cũng gần hơn với cú pháp vòng lặp trong JavaScript.
 
 ``` html
 <div v-for="item of items"></div>
 ```
 
-## `v-for` with an Object
+## Dùng `v-for` với một object
 
-You can also use `v-for` to iterate through the properties of an object.
+Bạn cũng có thể dùng `v-for` để duyệt qua các thuộc tính của một object.
 
 ``` html
 <ul id="v-for-object" class="demo">
@@ -127,9 +133,11 @@ new Vue({
   el: '#v-for-object',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      // tất nhiên chúng ta đều biết ông Bành Tổ không phải
+      // họ Bành tên Tổ, nhưng đây chỉ là một ví dụ…
+      'họ': 'Bành',
+      'tên': 'Tổ',
+      'tuổi': 800
     }
   }
 })
@@ -148,16 +156,16 @@ new Vue({
   el: '#v-for-object',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      'họ': 'Bành',
+      'tên': 'Tổ',
+      'tuổi': 800
     }
   }
 })
 </script>
 {% endraw %}
 
-You can also provide a second argument for the key:
+Bạn cũng có thể cung cấp tham số thứ hai dùng cho khóa (key) của thuộc tính:
 
 ``` html
 <div v-for="(value, key) in object">
@@ -176,16 +184,16 @@ new Vue({
   el: '#v-for-object-value-key',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      'họ': 'Bành',
+      'tên': 'Tổ',
+      'tuổi': 800
     }
   }
 })
 </script>
 {% endraw %}
 
-And another for the index:
+Tham số thứ ba chỉ thứ tự của thuộc tính:
 
 ``` html
 <div v-for="(value, key, index) in object">
@@ -204,40 +212,41 @@ new Vue({
   el: '#v-for-object-value-key-index',
   data: {
     object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
+      'họ': 'Bành',
+      'tên': 'Tổ',
+      'tuổi': 800
     }
   }
 })
 </script>
 {% endraw %}
 
-<p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
+<p class="tip">Khi duyệt qua một object, thứ tự các thuộc tính được dựa trên kết quả trả về của `Object.keys()`. Kết quả này **không đảm bảo** được đồng nhất giữa các engine JavaScript khác nhau.</p>
 
 ## `key`
 
-When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
+Khi cập nhật một danh sách các phần tử được render với `v-for`, mặc định Vue sẽ sử dụng kĩ thuật "inline patch" (hiểu nôm na là "vá tại chỗ"). Điều này có nghĩa là nếu thứ tự của các item thay đổi, thay vì dịch chuyển các phần tử web theo thứ tự tương ứng, Vue sẽ patch mỗi phần tử tại chỗ và bảo đảm phản ánh đúng những gì cần phải render tại vị trí đó. Cách xử lí này tương tự với `track-by="$index"` trong Vue 1.x.
 
-This default mode is efficient, but only suitable **when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
+Kĩ thuật nói trên rất hiệu quả, nhưng chỉ thích hợp **khi danh sách cần render không phụ thuộc vào trạng thái của component con (child component state) hay trạng thái DOM tạm thời (ví dụ như thông tin người dùng nhập vào form)**.
 
-To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item. An ideal value for `key` would be the unique id of each item. This special attribute is a rough equivalent to `track-by` in 1.x, but it works like an attribute, so you need to use `v-bind` to bind it to dynamic values (using shorthand here):
+Để Vue có thể nhận ra từng node và nhờ đó có thể tái sử dụng và sắp xếp các phần tử, bạn cần cung cấp một thuộc tính `key` với giá trị độc nhất cho từng item (ví dụ, `id` sẽ là một giá trị `key` lí tưởng). `key` tương đương với `track-by` trong 1.x, nhưng vì nó là một thuộc tính, bạn cần dùng `v-bind` để bind nó vào các giá trị động như sau:
 
 ``` html
+<!-- ở đây ta dùng shorthand `:key` thay vì `v-bind:key` -->
 <div v-for="item in items" :key="item.id">
-  <!-- content -->
+  <!-- nội dung -->
 </div>
 ```
 
-It is recommended to provide a `key` with `v-for` whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.
+Chúng tôi khuyến khích sử dụng `key` bất cứ khi nào bạn dùng `v-for`, trừ phi nội dung DOM được duyệt qua quá đơn giản hoặc bạn đang cố ý sử dụng behavior mặc định của Vue để tăng tốc cho ứng dụng.
 
-Since it's a generic mechanism for Vue to identify nodes, the `key` also has other uses that are not specifically tied to `v-for`, as we will see later in the guide.
+Vì đây là cơ chế chung để Vue nhận dạng các node, `key` còn có một số cách dùng khác không thật liên quan `v-for`. Chúng ta sẽ bàn về vấn đề này ở một phần sau.
 
-## Array Change Detection
+## Phát hiện thay đổi trong mảng
 
-### Mutation Methods
+### Các phương thức biến đổi
 
-Vue wraps an observed array's mutation methods so they will also trigger view updates. The wrapped methods are:
+Vue wrap các phương thức biến đổi (mutation method) của một mảng được quan sát (observe) để việc gọi phương thức này cũng sẽ kích hoạt thay đổi trên view. Các phương thức được wrap gồm có:
 
 - `push()`
 - `pop()`
@@ -247,47 +256,47 @@ Vue wraps an observed array's mutation methods so they will also trigger view up
 - `sort()`
 - `reverse()`
 
-You can open the console and play with the previous examples' `items` array by calling their mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
+Bạn có thể mở console và thử thay đổi mảng `items` trong các ví dụ trên đây bằng cách thực thi các phương thức biến đổi, ví dụ `example1.items.push({ name: 'Nước chanh' })`.
 
-### Replacing an Array
+### Thay thế mảng
 
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can replace the old array with the new one:
+Các phương thức biến đổi, như tên gọi cho thấy, _biến đổi_ nội dung của mảng. Chúng ta cũng có những phương thức không biến đổi (non-mutating method) như `filter()`, `concat()`, `slice()`… Thay vì biến đổi nội dung của mảng gốc, các phương thức này **luôn trả về một mảng mới**. Khi làm việc với các phương thức này, bạn có thể thay mảng cũ bằng mảng mới:
 
 ``` js
 example1.items = example1.items.filter(function (item) {
-  return item.message.match(/Foo/)
+  return item.name.match(/à/)
 })
 ```
 
-You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
+Có thể bạn sẽ nghĩ là làm thế này Vue sẽ bỏ đi toàn bộ DOM có sẵn và render lại từ đầu, nhưng không phải thế. Vue thực hiện một số phỏng đoán thông minh để dùng lại DOM đến mức tối đa, vì thế thay thế một mảng bằng một mảng khác chứa các object chồng nhau là một cách làm rất hiệu quả.
 
-### Caveats
+### Một số điểm cần lưu ý
 
-Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
+Do một số hạn chế của JavaScript, Vue **không thể** phát hiện thấy những thay đổi sau đây đối với mảng:
 
-1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
-2. When you modify the length of the array, e.g. `vm.items.length = newLength`
+1. Khi bạn gán một phần tử trực tiếp vào một index, ví dụ `vm.items[index] = newValue`
+2. Khi bạn thay đổi kích thước của mảng, ví dụ `vm.items.length = newLength`
 
-To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
+Để khắc phục điểm thứ nhất, bạn có thể dùng một trong hai cách sau đây. Cả hai cách đều đạ được kết quả như `vm.items[indexOfItem] = newValue`, nhưng đồng thời cũng kích hoạt cập nhật trạng thái trong hệ thống reactivity của Vue:
 
 ``` js
 // Vue.set
-Vue.set(example1.items, indexOfItem, newValue)
+Vue.set(example1.items, index, newValue)
 ```
 ``` js
 // Array.prototype.splice
-example1.items.splice(indexOfItem, 1, newValue)
+example1.items.splice(index, 1, newValue)
 ```
 
-To deal with caveat 2, you can use `splice`:
+Để khắc phục điểm thứ hai, bạn có thể dùng `splice`:
 
 ``` js
 example1.items.splice(newLength)
 ```
 
-## Object Change Detection Caveats
+## Lưu ý về phát hiện thay đổi trong object
 
-Again due to limitations of modern JavaScript, **Vue cannot detect property addition or deletion**. For example:
+Một lần nữa, cũng do hạn chế của JavaScript, **Vue không thể phát hiện việc thêm hay xóa thuộc tính của object**. Ví dụ:
 
 ``` js
 var vm = new Vue({
@@ -295,59 +304,57 @@ var vm = new Vue({
     a: 1
   }
 })
-// `vm.a` is now reactive
+// `vm.a` reactive
 
 vm.b = 2
-// `vm.b` is NOT reactive
+// `vm.b` KHÔNG reactive
 ```
 
-Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method. For example, given:
+Vue không hỗ trợ việc thêm thuộc tính reactive ở cấp root cho một đối tượng Vue đã được khởi tạo. Tuy nhiên, chúng ta có thể thêm thuộc tính reactive vào một object con với phương thức `Vue.set(object, key, value)`. Ví dụ, nếu chúng ta có:
 
 ``` js
 var vm = new Vue({
   data: {
     userProfile: {
-      name: 'Anika'
+      name: 'Bành Tổ'
     }
   }
 })
 ```
 
-You could add a new `age` property to the nested `userProfile` object with:
+Bạn có thể thêm một thuộc tính `age` vào object `userProfile` như sau:
 
 ``` js
-Vue.set(vm.userProfile, 'age', 27)
+Vue.set(vm.userProfile, 'age', 800)
 ```
 
-You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
+Bạn cũng có thể dùng phương thức đối tượng (instance method) `vm.$set`, một alias cho phương thức toàn cục `Vue.set`:
 
 ``` js
-this.$set(this.userProfile, 'age', 27)
+this.$set(this.userProfile, 'age', 800)
 ```
 
-Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:
+Đôi khi bạn cũng muốn thêm vài thuộc tính cùng lúc vào một object có sẵn, sử dụng `Object.assign()` hoặc `_.extend()`. Trong những trường hợp này, nên tạo một object mới với các thuộc tính từ hai object kia. Có nghĩa là thay vì:
 
 ``` js
 Object.assign(this.userProfile, {
-  age: 27,
-  favoriteColor: 'Vue Green'
+  age: 800,
+  favoriteColor: 'Tím mộng mơ'
 })
 ```
 
-You would add new, reactive properties with:
+bạn sẽ thêm thuộc tính reactive mới bằng như sau:
 
 ``` js
 this.userProfile = Object.assign({}, this.userProfile, {
-  age: 27,
-  favoriteColor: 'Vue Green'
+  age: 800,
+  favoriteColor: 'Tím mộng mơ'
 })
 ```
 
-## Displaying Filtered/Sorted Results
+## Hiển thị kết quả đã được lọc hoặc sắp xếp
 
-Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
-
-For example:
+Đôi khi chúng ta muốn hiển thị một phiên bản đã được lọc (filter) hoặc sắp xếp (sort) của một mảng mà không thay đổi mảng đó. Trong trường hợp này, bạn có thể tạo một computed property trả về mảng đã được lọc hoặc sắp xếp. Ví dụ:
 
 ``` html
 <li v-for="n in evenNumbers">{{ n }}</li>
@@ -357,6 +364,7 @@ For example:
 data: {
   numbers: [ 1, 2, 3, 4, 5 ]
 },
+
 computed: {
   evenNumbers: function () {
     return this.numbers.filter(function (number) {
@@ -366,7 +374,7 @@ computed: {
 }
 ```
 
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
+Trong trường hợp không dùng được computed property (ví dụ trong các vòng lặp `v-for`), ta có thể dùng một phương thức:
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
@@ -376,6 +384,7 @@ In situations where computed properties are not feasible (e.g. inside nested `v-
 data: {
   numbers: [ 1, 2, 3, 4, 5 ]
 },
+
 methods: {
   even: function (numbers) {
     return numbers.filter(function (number) {
@@ -385,9 +394,9 @@ methods: {
 }
 ```
 
-## `v-for` with a Range
+## `v-for` dùng với một dãy
 
-`v-for` can also take an integer. In this case it will repeat the template that many times.
+`v-for` cũng có thể nhận một số nguyên `n`. Trong trường hợp này, template sẽ được lặp lại `n` lần:
 
 ``` html
 <div>
@@ -395,7 +404,7 @@ methods: {
 </div>
 ```
 
-Result:
+Kết quả
 
 {% raw %}
 <div id="range" class="demo">
@@ -406,9 +415,9 @@ Result:
 </script>
 {% endraw %}
 
-## `v-for` on a `<template>`
+## `v-for` dùng với thẻ `<template>`
 
-Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+Tương tự với `v-if`, bạn có thể dùng `v-for` trên một thẻ `<template>` để render một lúc nhiều phần tử. Ví dụ:
 
 ``` html
 <ul>
@@ -419,9 +428,9 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 </ul>
 ```
 
-## `v-for` with `v-if`
+## `v-for` dùng với `v-if`
 
-When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
+Khi được dùng trên dùng một node, `v-for` có độ ưu tiên cao hơn `v-if`, có nghĩa là `v-if` sẽ được thực thi một cách riêng biệt trên mỗi vòng lặp của `v-for`. Điều này có thể có ích khi bạn muốn render cho chỉ _một số_ item, như trong ví dụ sau:
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
@@ -429,9 +438,9 @@ When they exist on the same node, `v-for` has a higher priority than `v-if`. Tha
 </li>
 ```
 
-The above only renders the todos that are not complete.
+Ví dụ trên sẽ chỉ render những todo chưa hoàn thành.
 
-If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+Ngược lại, nếu bạn muốn bỏ qua việc thực thi vòng lặp `v-for` theo điều kiện, hãy dùng `v-if` trên một phần tử wrapper (hoặc [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). Ví dụ:
 
 ``` html
 <ul v-if="todos.length">
@@ -439,22 +448,22 @@ If instead, your intent is to conditionally skip execution of the loop, you can 
     {{ todo }}
   </li>
 </ul>
-<p v-else>No todos left!</p>
+<p v-else>Mọi việc đã hoàn thành.</p>
 ```
 
-## `v-for` with a Component
+## `v-for` dùng với component
 
-> This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
+> Phần này giả định rằng bạn đã có kiến thức về [Components](components.html). Nếu chưa, bạn có thể bỏ qua và quay lại sau.
 
-You can directly use `v-for` on a custom component, like any normal element:
+Bạn có thể dùng `v-for` trực tiếp trên một component như một phần tử bình thường:
 
 ``` html
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
+> Từ bản 2.2.0 trở đi, thuộc tính [`key`](list.html#key) là bắt buộc khi dùng `v-for` với một component,
 
-However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+Tuy nhiên trong ví dụ trên, dữ liệu sẽ không được tự động truyền vào component, vì mỗi commponent có scope (phạm vi) độc lập. Để truyền dữ liệu trên mỗi vòng lặp vào component, chúng ta dùng thêm `props`:
 
 ``` html
 <my-component
@@ -465,16 +474,16 @@ However, this won't automatically pass any data to the component, because compon
 ></my-component>
 ```
 
-The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+Lí do `item` không được truyền tự động vào component là bởi vì nếu làm vậy component sẽ bị gắn chặt vào `v-for`. Bằng cách bắt buộc khai báo nguồn dữ liệu một cách minh bạch (explicit), chúng ta có thể sử dụng lại component trong các tình huống khác.
 
-Here's a complete example of a simple todo list:
+Dưới đây là một ví dụ hoàn chỉnh của một ứng dụng todo:
 
 ``` html
 <div id="todo-list-example">
   <input
     v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
+    placeholder="Thêm việc cần làm"
   >
   <ul>
     <li
@@ -488,7 +497,7 @@ Here's a complete example of a simple todo list:
 </div>
 ```
 
-<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
+<p class="tip">Lưu ý thuộc tính `is="todo-item"`. Điều này là cần thiết trong DOM template, vì chỉ có thẻ `<li>` là hợp lệ trong `<ul>`. Cách khai báo `<li is="todo-item">` có cùng kết quả như `<todo-item>`, nhưng tránh được lỗi có thể xảy trình duyệt parse (phân tích) template. Xem thêm [Lưu ý về parsing DOM template](components.html#DOM-Template-Parsing-Caveats).</p>
 
 ``` js
 Vue.component('todo-item', {
@@ -508,18 +517,22 @@ new Vue({
     todos: [
       {
         id: 1,
-        title: 'Do the dishes',
+        title: 'luộc khoai',
       },
       {
         id: 2,
-        title: 'Take out the trash',
+        title: 'cùng chị giã gạo',
       },
       {
         id: 3,
-        title: 'Mow the lawn'
+        title: 'thổi cơm'
+      },
+      {
+        id: 4,
+        title: 'nhổ cỏ vườn'
       }
     ],
-    nextTodoId: 4
+    nextTodoId: 5
   },
   methods: {
     addNewTodo: function () {
@@ -535,10 +548,11 @@ new Vue({
 
 {% raw %}
 <div id="todo-list-example" class="demo">
+  <p>Khi mẹ vắng nhà, em:</p>
   <input
     v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
+    placeholder="Thêm việc cần làm"
   >
   <ul>
     <li
@@ -568,18 +582,22 @@ new Vue({
     todos: [
       {
         id: 1,
-        title: 'Do the dishes',
+        title: 'luộc khoai',
       },
       {
         id: 2,
-        title: 'Take out the trash',
+        title: 'cùng chị giã gạo',
       },
       {
         id: 3,
-        title: 'Mow the lawn'
+        title: 'thổi cơm'
+      },
+      {
+        id: 4,
+        title: 'nhổ cỏ vườn'
       }
     ],
-    nextTodoId: 4
+    nextTodoId: 5
   },
   methods: {
     addNewTodo: function () {
