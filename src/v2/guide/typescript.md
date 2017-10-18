@@ -56,19 +56,7 @@ const Component = {
 }
 ```
 
-Note that when using Vetur with SFCs, type inference will be automatically applied to the default export, so there's no need to wrap it in `Vue.extend`:
-
-``` html
-<template>
-  ...
-</template>
-
-<script lang="ts">
-export default {
-  // type inference enabled
-}
-</script>
-```
+Note that when using Vetur with SFCs, even though type inference will be automatically applied to the default export, `Vue.extend` will still need to wrap the exported object, otherwise Typescript will throw a compile error later.
 
 ## Class-Style Vue Components
 
