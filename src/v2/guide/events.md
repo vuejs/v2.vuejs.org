@@ -194,7 +194,7 @@ Trong rất nhiều trường hợp, chúng ta cần gọi `event.preventDefault
 
 <!-- 
   dùng "capture mode" khi thêm event listener
-  nghĩa là một sự kiện xảy ra với một phần tử bên trong sẽ được xủ lí ở đây 
+  nghĩa là một sự kiện xảy ra với một phần tử bên trong sẽ được xử lí ở đây 
   trước khi được xử lí bởi phần tử đó
   đọc thêm về event capturing: https://javascript.info/bubbling-and-capturing#capturing
 -->
