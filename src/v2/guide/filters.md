@@ -14,10 +14,10 @@ Vue.js allows you to define filters that can be used to apply common text format
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-The filter function always receives the expression's value (the result of the former chain) as its first argument. In this example, the `capitalize` filter function will receive the value of `message` as its argument.
+Define filters on the component where you'll use it, like this:
 
 ``` js
-new Vue({
+export default {
   // ...
   filters: {
     capitalize: function (value) {
@@ -26,8 +26,20 @@ new Vue({
       return value.charAt(0).toUpperCase() + value.slice(1)
     }
   }
+}
+```
+
+or globally on your Vue instance:
+
+``` js
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
 })
 ```
+
+The filter function always receives the expression's value (the result of the former chain) as its first argument. In the above example, the `capitalize` filter function will receive the value of `message` as its argument.
 
 Filters can be chained:
 
