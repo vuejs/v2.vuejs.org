@@ -64,9 +64,10 @@ Note that when using Vetur with SFCs, type inference will be automatically appli
 </template>
 
 <script lang="ts">
-export default {
-  // type inference enabled
-}
+import Vue, {ComponentOptions} from 'vue'
+  export default {
+    // type inference enabled
+  } as ComponentOptions<Vue>
 </script>
 ```
 
