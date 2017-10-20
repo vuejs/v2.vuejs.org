@@ -1025,7 +1025,7 @@ And the template for the list component:
 
 #### Destructuring
 
-`scope-slot`'s value is in fact a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments (in single-file components or in modern browsers) you can also use ES2015 destructuring in the expression:
+`slot-scope`'s value is in fact a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments (in single-file components or in modern browsers) you can also use ES2015 destructuring in the expression:
 
 ``` html
 <child>
