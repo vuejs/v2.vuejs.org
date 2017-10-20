@@ -56,8 +56,6 @@ const Component = {
 }
 ```
 
-Note that when using Vetur with SFCs, even though type inference will be automatically applied to the default export, `Vue.extend` will still need to wrap the exported object, otherwise Typescript will throw a compile error later.
-
 ## Class-Style Vue Components
 
 If you prefer a class-based API when declaring components, you can use the officially maintained [vue-class-component](https://github.com/vuejs/vue-class-component) decorator:
