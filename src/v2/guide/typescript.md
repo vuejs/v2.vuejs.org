@@ -56,20 +56,6 @@ const Component = {
 }
 ```
 
-Note that when using Vetur with SFCs, type inference will be automatically applied to the default export, so there's no need to wrap it in `Vue.extend`:
-
-``` html
-<template>
-  ...
-</template>
-
-<script lang="ts">
-export default {
-  // type inference enabled
-}
-</script>
-```
-
 ## Class-Style Vue Components
 
 If you prefer a class-based API when declaring components, you can use the officially maintained [vue-class-component](https://github.com/vuejs/vue-class-component) decorator:
