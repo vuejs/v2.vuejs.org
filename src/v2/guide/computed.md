@@ -16,7 +16,7 @@ Las expresiones en plantillas son muy convenientes, pero realmente se deberían 
 
 En este instante, la plantilla ya no es sencilla y declarativa. Tiene que verla por un segundo para entender que sólo muestra `message` invertido. El problema empeora si decide incluir el mensaje invertido en su plantilla más de una vez.
 
-Por eso es que para cualquier lógca compleja, debe usar una **propiedad calculada**.
+Por eso es que para cualquier lógica compleja, debe usar una **propiedad calculada**.
 
 ### Ejemplo Básico
 
