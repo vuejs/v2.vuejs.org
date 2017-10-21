@@ -116,7 +116,7 @@ type : api
     'mon-web-component',
     'un-autre-web-component',
     // Utilisez une `RegExp` pour ignorer tous les éléments qui commencent par « ion- »
-    // 2.5+ only
+    // 2.5+ seulement
     /^ion-/
   ]
   ```

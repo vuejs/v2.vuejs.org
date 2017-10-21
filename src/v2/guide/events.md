@@ -284,7 +284,7 @@ Par exemple :
 
 ### Modificateur `.exact`
 
-> Nouveau dans la 2.5.0
+> Nouveau dans la 2.5.0+
 
 Le modificateur `.exact` devrait être utilisé en complément des autres modificateurs de touches système pour indiquer que la combinaison exacte de touches doit être pressée pour que le gestionnaire se déclenche.
 
