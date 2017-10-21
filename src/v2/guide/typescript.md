@@ -31,6 +31,8 @@ We also plan to provide an option to scaffold a ready-to-go Vue + TypeScript pro
 }
 ```
 
+Note that you have to include `strict: true` (or at least `noImplicitThis: true` which is a part of `strict` flag) to leverage type checking of `this` in component methods otherwise it is always treated as `any` type.
+
 See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
 
 ## Development Tooling
