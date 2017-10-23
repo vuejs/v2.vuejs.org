@@ -57,6 +57,12 @@ Russian translation is maintained by Translation Gang.
 * Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
 
+### Spanish
+
+Spanish translation is maintained by VueJS-ES.
+
+* Translation Repo - [/vuejs-es/vuejs.org](https://github.com/vuejs-es/vuejs.org)
+
 ### Want to help with the translation?
 
 If you feel okay with translating sorta alone, you can fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and go for it.
