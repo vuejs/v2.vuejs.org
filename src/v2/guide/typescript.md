@@ -31,6 +31,8 @@ Nous avons également planifié de fournir prochainement une option dans `vue-cl
 }
 ```
 
+Notez que vous devez inclure `strict: true` (ou au moins `noImplicitThis: true` qui est une partie de `strict`) pour activer la vérification de type de `this` dans les méthodes de composant, autrement il sera toujours traiter comme un type `any`.
+
 Voir [les options de compilation TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html) pour plus de détails.
 
 ## Outils de développement
