@@ -196,4 +196,4 @@ new Vue({
 
 ## `v-if` 와 `v-for`
 
-v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.
+`v-if`와 함께 사용하는 경우, `v-for`는  `v-if`보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.

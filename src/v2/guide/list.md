@@ -4,7 +4,7 @@ type: guide
 order: 8
 ---
 
-## Mapping an Array to Elements with `v-for`
+## `v-for`로 엘리먼트에 배열 매핑하기
 
 `v-for` 디렉티브를 사용하여 배열을 기반으로 리스트를 렌더링 할 수 있습니다. `v-for` 디렉티브는 `item in items` 형태로 특별한 문법이 필요합니다. 여기서 `items`는 원본 데이터 배열이고 `item`은 반복되는 배열 엘리먼트의 **별칭** 입니다.
 
@@ -111,19 +111,6 @@ var example2 = new Vue({
 
 ``` html
 <div v-for="item of items"></div>
-```
-
-### `v-for` 템플릿
-
-템플릿 `v-if`와 마찬가지로, `v-for`와 함께 `<template>` 태그를 사용하여 여러 엘리먼트의 블럭을 렌더링 할 수 있습니다. 예를 들어,
-
-``` html
-<ul>
-  <template v-for="item in items">
-    <li>{{ item.msg }}</li>
-    <li class="divider"></li>
-  </template>
-</ul>
 ```
 
 ### `v-for`와 객체
@@ -234,110 +221,6 @@ new Vue({
 {% endraw %}
 
 <p class="tip">객체를 반복할 때 순서는 `Object.keys()`의 키 나열 순서에 따라 결정됩니다. 이 순서는 JavaScript 엔진 구현간에 **일관적이지는 않습니다.**</p>
-
-### Range `v-for`
-
-`v-for`는 정수를 사용할 수 있습니다. 이 경우 템플릿을 여러번 반복 합니다.
-
-``` html
-<div>
-  <span v-for="n in 10">{{ n }} </span>
-</div>
-```
-
-결과:
-
-{% raw %}
-<div id="v-for-range" class="demo">
-  <span v-for="n in 10">{{ n }} </span>
-</div>
-<script>
-new Vue({
-  el: '#v-for-range'
-})
-</script>
-{% endraw %}
-
-### 컴포넌트와 `v-for`
-
-
-> 이 섹션에서는 [컴포넌트](components.html)에 대한 지식이 있다고 가정합니다. 나중에 읽어도 좋습니다.
-
-일반 엘리먼트 처럼 사용자 정의 컴포넌트에서 `v-for`를 직접 사용할 수 있습니다.
-
-``` html
-<my-component v-for="item in items" :key="item.id"></my-component>
-```
-
-> 2.2.0버전 이후로, `v-for`를 사용할 때 [`key`](list.html#key)가 반드시 있어야 합니다.
-
-그러나 컴포넌트에서는 그 범위가 분리되어 있기 때문에 컴포넌트에 데이터를 자동으로 전달하지 않습니다. 반복된 데이터를 컴포넌트를 전달하려면 props를 사용해야 합니다.
-
-``` html
-<my-component
-  v-for="(item, index) in items"
-  v-bind:item="item"
-  v-bind:index="index"
-  v-bind:key="item.id">
-</my-component>
-```
-
-컴포넌트에 `item`을 자동으로 주입하지 않는 이유는 컴포넌트가 `v-for` 작동 방식과 밀접하게 결합되기 때문입니다. 데이터의 출처를 명시적으로 표현하면 다른 상황에서는 컴포넌트를 재사용할 수 있습니다.
-
-간단한 할일 목록 예제를 보겠습니다.
-
-``` html
-<div v-for="(value, key, index) in object">
-  {{ index }}. {{ key }}: {{ value }}
-</div>
-```
-
-{% raw %}
-<div id="v-for-object-value-key-index" class="demo">
-  <div v-for="(value, key, index) in object">
-    {{ index }}. {{ key }}: {{ value }}
-  </div>
-</div>
-<script>
-new Vue({
-  el: '#v-for-object-value-key-index',
-  data: {
-    object: {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30
-    }
-  }
-})
-</script>
-{% endraw %}
-
-### `v-for`와 `v-if`
-
-같은 노드에 존재할 때, `v-for`는 `v-if`보다 더 높은 우선 순위를 가집니다. 즉,`v-if`는 루프의 각 반복마다 실행될 것입니다. 이는 다음과 같이 _일부_ 항목 만 노드를 렌더링하려는 경우 매우 유용합니다.
-
-
-``` html
-<li v-for="todo in todos" v-if="!todo.isComplete">
-  {{ todo }}
-</li>
-```
-
-위의 경우에만 완료되지 않은 todo가 렌더링 됩니다.
-
-대신 루프의 실행을 조건부로 건너뛰는 것이 목적이면 `v-if`를 래퍼 엘리먼트로 옮기면(또는 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)사용) 됩니다.
-
-``` html
-<ul v-if="shouldRenderTodos">
-  <li v-for="todo in todos">
-    {{ todo }}
-  </li>
-</ul>
-```
-
-<p class="tip">
-객체를 순회할 때, 키의 순서는 `Object.keys()`에서 정합니다. JavaScript 엔진의 구현에 따라 정렬되므로 일관성이 **없습니다**.
-</p>
 
 ## `key`
 
@@ -510,7 +393,7 @@ methods: {
 }
 ```
 
-## `v-for` with a Range
+## Range `v-for`
 
 `v-for` 는 숫자를 사용할 수 있습니다. 이 경우 템플릿을 여러번 반복합니다.
 
@@ -531,7 +414,7 @@ methods: {
 </script>
 {% endraw %}
 
-## `v-for` on a `<template>`
+## `v-for` 템플릿
 
 템플릿 `v-if`와 마찬가지로, `<template>`태그를 사용해 여러 엘리먼트의 블럭을 렌더링 할 수 있습니다.
 
@@ -544,7 +427,7 @@ methods: {
 </ul>
 ```
 
-## `v-for` with `v-if`
+## `v-for` 와 `v-if`
 
 동일한 노드에 두가지 모두 있다면, `v-for`가 `v-if`보다 높은 우선순위를 갖습니다. 즉, `v-if`는 루프가 반복될 때마다 실행됩니다. 이는 _일부_ 항목만 렌더링 하려는 경우 유용합니다.
 
@@ -579,7 +462,7 @@ methods: {
 
 > 2.2.0 이상에서 `v-for`는 [`key`](list.html#key) 가 필수 입니다.
 
-그러나 컴포넌트에는 자체 범위가 분리되어있기 때문에 컴포넌트에 데이터를 자동으로 전달하지는 않습니다. 반복할 데이터를 컴포넌트로 전달하려면 props도 사용해야합니다.
+그러나 컴포넌트에는 자체 범위가 분리되어있기 때문에 컴포넌트에 데이터를 자동으로 전달하지는 않습니다. 반복할 데이터를 컴포넌트로 전달하려면 `props`도 사용해야합니다.
 
 ``` html
 <my-component

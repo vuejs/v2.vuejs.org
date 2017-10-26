@@ -82,13 +82,13 @@ console.log(vm.reversedMessage) // => 'eybdooG'
 표현식에서 메소드를 호출하여 같은 결과를 얻을 수 있다는 사실을 알고 있을 것입니다.
 
 ``` html
-<p>뒤집힌 메시지: "{{ reverseMessage() }}"</p>
+<p>뒤집힌 메시지: "{{ reversedMessage() }}"</p>
 ```
 
 ``` js
 // 컴포넌트 내부
 methods: {
-  reverseMessage: function () {
+  reversedMessage: function () {
     return this.message.split('').reverse().join('')
   }
 }
