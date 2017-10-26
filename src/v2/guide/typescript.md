@@ -139,3 +139,38 @@ var vm = new Vue({
   myOption: 'Hello'
 })
 ```
+
+## Annotating Return Type
+
+Vue's type definition is prone to [circular reference](https://github.com/Microsoft/TypeScript/issues/12846#issuecomment-270296195) of `this`.
+Annotating return type is highly recommended to avoid such error.
+
+```ts
+import Vue, { VNode } from 'vue'
+
+const Component = Vue.extend({
+  data() {
+    return {
+      msg: 'Hello'
+    }
+  },
+  methods: {
+    // need annotation due to `this` in return type
+    greet(): string {
+      return this.msg + ' world'
+    }
+  },
+  computed: {
+    // need annotation
+    greeting(): string {
+      return this.greet() + '!'
+    }
+  },
+  // `createElement` is inferred, but `render` needs return type
+  render(createElement): VNode {
+    return createElement('div', this.greeting)
+  }
+})
+```
+
+If you find type inference or member completion doesn't work, you can try annotating method return type.
