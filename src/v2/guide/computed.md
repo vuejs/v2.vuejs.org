@@ -68,7 +68,7 @@ var vm = new Vue({
 여기서 우리는 계산된 속성인 `reversedMessage`를 선언했습니다. 우리가 제공하는 함수는 `vm.reversedMessage`속성에 대한 getter 함수로 사용됩니다.
 
 ``` js
-console.log(vm.reversedMessage) // => 'olleH'
+console.log(vm.reversedMessage) // => '요세하녕안'
 vm.message = 'Goodbye'
 console.log(vm.reversedMessage) // => 'eybdooG'
 ```
