@@ -1,37 +1,37 @@
 ---
-title: Components
+title: Component
 type: guide
 order: 11
 ---
 
-## What are Components?
+## Component là gì?
 
-Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue's compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special `is` attribute.
+Component là một trong những tính năng mạnh nhất của Vue. Với component, chúng ta có thể mở rộng những phần tử HTML cơ bản để đóng gói (encapsulate) code có thể tái sử dụng. Nói một cách tổng quát, component là những phần tử web tùy biến (custom element) đã được trình biên dịch của Vue đính kèm các hành vi (behavior) vào. Trong một số trường hợp, component cũng có thể xuất hiện dưới dạng một phần tử HTML bình thường với một thuộc tính `is` đặc biệt.
 
-## Using Components
+## Sử dụng component
 
-### Global Registration
+### Đăng kí ở cấp toàn cục
 
-We've learned in the previous sections that we can create a new Vue instance with:
+Ở các phần trước, chúng ta đã biết rằng một đối tượng Vue có thể được khởi tạo bằng cách sau:
 
 ``` js
 new Vue({
   el: '#some-element',
-  // options
+  // các tùy chọn
 })
 ```
 
-To register a global component, you can use `Vue.component(tagName, options)`. For example:
+Để đăng kí một component ở cấp toàn cục, bạn có thể dùng cú pháp `Vue.component(tagName, options)`. Ví dụ:
 
 ``` js
 Vue.component('my-component', {
-  // options
+  // các tùy chọn
 })
 ```
 
-<p class="tip">Note that Vue does not enforce the [W3C rules](https://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
+<p class="tip">Vue không bắt buộc phải theo [các quy ước W3C](https://www.w3.org/TR/custom-elements/#concepts) về tên thẻ tùy biến (viết thường toàn bộ, phải sử dụng dấu gạch ngang) tuy rằng bạn cũng nên tuân thủ các quy tắc này.</p>
 
-Once registered, a component can be used in an instance's template as a custom element, `<my-component></my-component>`. Make sure the component is registered **before** you instantiate the root Vue instance. Here's the full example:
+Một khi đã đăng kí, component có thể được sử dụng dưới dạng một phần tử tùy biến trong template của một đối tượng Vue: `<my-component></my-component>`. Bạn nhớ đăng kí component **trước khi** khởi tạo đối tượng Vue gốc. Sau đây là ví dụ hoàn chỉnh:
 
 ``` html
 <div id="example">
@@ -40,22 +40,22 @@ Once registered, a component can be used in an instance's template as a custom e
 ```
 
 ``` js
-// register
+// đăng kí
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<div>Đây là một component!</div>'
 })
 
-// create a root instance
+// tạo đối tượng Vue gốc
 new Vue({
   el: '#example'
 })
 ```
 
-Which will render:
+Kết quả render ra sẽ là:
 
 ``` html
 <div id="example">
-  <div>A custom component!</div>
+  <div>Đây là một component!</div>
 </div>
 ```
 
@@ -65,37 +65,37 @@ Which will render:
 </div>
 <script>
 Vue.component('my-component', {
-  template: '<div>A custom component!</div>'
+  template: '<div>Đây là một component!</div>'
 })
 new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-### Local Registration
+### Đăng kí ở cấp cục bộ
 
-You don't have to register every component globally. You can make a component available only in the scope of another instance/component by registering it with the `components` instance option:
+Bạn không nhất thiết phải đăng kí toàn bộ các compoent ở cấp toàn cục. Thay vào đó, bạn có thể đăng kí một component bằng cách dùng tùy chọn `components` khi khởi tạo một đối tượng Vue. Với cách làm này, chỉ đối tượng Vue này mới có thể truy xuất đến component vừa đăng kí.
 
 ``` js
 var Child = {
-  template: '<div>A custom component!</div>'
+  template: '<div>Đây là một component!</div>'
 }
 
 new Vue({
   // ...
   components: {
-    // <my-component> will only be available in parent's template
+    // <my-component> chỉ hợp lệ trong template của đối tượng cha
     'my-component': Child
   }
 })
 ```
 
-The same encapsulation applies for other registerable Vue features, such as directives.
+Cách đóng gói (encapsulation) như trên cũng áp dụng với các tính năng có thể đăng kí của Vue, ví dụ như directive.
 
-### DOM Template Parsing Caveats
+### Lưu ý về việc parse DOM template
 
-When using the DOM as your template (e.g. using the `el` option to mount an element with existing content), you will be subject to some restrictions that are inherent to how HTML works, because Vue can only retrieve the template content **after** the browser has parsed and normalized it. Most notably, some elements such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<option>` can only appear inside certain other elements.
+Khi sử dụng DOM làm template (ví dụ dùng tùy chọn `el` để gắn một phần tử web đã có sẵn nội dung), bạn sẽ phải gặp phải một số hạn chế vốn có của HTML, vì Vue chỉ có thể nhận vào nội dung của template **sau khi** trình duyệt đã parse (phân tích) và normalize (bình thường hóa) template này. Đáng lưu ý nhất, bên trong các phần tử như `<ul>`, `<ol>`, `<table>` và `<select>` chúng ta chỉ có thể chứa một số phần tử nhất định (chẳng hạn `<ul>` chỉ chấp nhận `<li>`), trong khi đó các phần tử như `<option>` lại chỉ có thể được đặt trong một số phần tử nhất định khác như `<select>`, `<optgroup>`, hay `<datalist>`.
 
-This will lead to issues when using custom components with elements that have such restrictions, for example:
+  Điều này sẽ dẫn đến một số vấn đề khi dùng component với các phần tử có những hạn chế vừa nêu, ví dụ:
 
 ``` html
 <table>
@@ -103,7 +103,7 @@ This will lead to issues when using custom components with elements that have su
 </table>
 ```
 
-The custom component `<my-row>` will be hoisted out as invalid content, thus causing errors in the eventual rendered output. A workaround is to use the `is` special attribute:
+Ở đây component `<my-row>` sẽ bị xem là một phần tử không hợp lệ bên trong `<table>` và bị đẩy ra ngoài (hoisted out), dẫn đến lỗi khi render. Để giải quyết vấn đề này, ta có thể dùng thuộc tính đặc biệt `is`:
 
 ``` html
 <table>
@@ -111,28 +111,28 @@ The custom component `<my-row>` will be hoisted out as invalid content, thus cau
 </table>
 ```
 
-**It should be noted that these limitations do not apply if you are using string templates from one of the following sources**:
+**Cũng cần lưu ý rằng những hạn chế nêu trên không tồn tại nếu bạn sử dụng string template từ một trong các nguồn sau**:
 
 - `<script type="text/x-template">`
-- JavaScript inline template strings
-- `.vue` components
+- Template string bên trong JavaScript
+- Component dạng `.vue`
 
-Therefore, prefer using string templates whenever possible.
+Vì thế, hãy dùng string template bất cứ khi nào có thể.
 
-### `data` Must Be a Function
+### `data` phải là một hàm
 
-Most of the options that can be passed into the Vue constructor can be used in a component, with one special case: `data` must be a function. In fact, if you try this:
+Đa số các tùy chọn có thể truyền vào hàm dựng của Vue đều có thể dùng trong component, với một trường hợp đặc biệt: `data` phải là một hàm. Nếu bạn thử chạy ví dụ sau:
 
 ``` js
 Vue.component('my-component', {
   template: '<span>{{ message }}</span>',
   data: {
-    message: 'hello'
+    message: 'Xin chào'
   }
 })
 ```
 
-Then Vue will halt and emit warnings in the console, telling you that `data` must be a function for component instances. It's good to understand why the rules exist though, so let's cheat.
+thì Vue sẽ ngừng thực thi và hiển thị cảnh báo trong console, thông báo rằng `data` trong các đối tượng component thì `data` phải là một hàm. Dĩ nhiên nếu chúng ta hiểu lí do tại sao thì tốt hơn, nên hãy thử chơi gian một chút:
 
 ``` html
 <div id="example-2">
@@ -147,9 +147,10 @@ var data = { counter: 0 }
 
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  // data is technically a function, so Vue won't
-  // complain, but we return the same object
-  // reference for each component instance
+  // ở đây `data` về nguyên tắc vẫn là một hàm,
+  // nên Vue sẽ không phàn nàn gì, nhưng ta sẽ
+  // trả lại cùng một tham chiếu đến object `data`
+  // cho mỗi đối tượng component
   data: function () {
     return data
   }
@@ -180,7 +181,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Since all three component instances share the same `data` object, incrementing one counter increments them all! Ouch. Let's fix this by instead returning a fresh data object:
+Vì cả ba đối tượng component dùng chung một object `data` object, tăng giá trị của một bộ đếm số sẽ tăng cả ba! Chúng ta sẽ sửa lại bằng cách trả về một object data mới cho mỗi component:
 
 ``` js
 data: function () {
@@ -190,7 +191,7 @@ data: function () {
 }
 ```
 
-Now all our counters each have their own internal state:
+Bây giờ thì mỗi bộ đếm của chúng ta sẽ có một state (trạng thái) riêng:
 
 {% raw %}
 <div id="example-2-5" class="demo">
@@ -213,45 +214,45 @@ new Vue({
 </script>
 {% endraw %}
 
-### Composing Components
+### Biên soạn component
 
-Components are meant to be used together, most commonly in parent-child relationships: component A may use component B in its own template. They inevitably need to communicate to one another: the parent may need to pass data down to the child, and the child may need to inform the parent of something that happened in the child. However, it is also very important to keep the parent and the child as decoupled as possible via a clearly-defined interface. This ensures each component's code can be written and reasoned about in relative isolation, thus making them more maintainable and potentially easier to reuse.
+Component được tạo ra là để dùng chung với nhau, thường thấy nhất là trong những mối quan hệ cha-con: component A có thể dùng component B trong template của mình. Chắc chắn hai component này sẽ phải giao tiếp với nhau: đối tượng cha có thể sẽ cần truyền dữ liệu cho đối tượng con, và đối tượng con cũng cần thông báo cho đối tượng cha biết khi có điều gì đó xảy ra. Tuy nhiên, một điều cũng hết sức quan trọng là hai đối tượng cha-con này cũng cần được tách biệt đến mức có thể, thông qua một interface (giao diện) được định nghĩa rõ ràng via a clearly-defined interface. Điều này bảo đảm code của mỗi component được viết và quản lí một cách biệt lập, nhờ đó giúp việc bảo trì và tái sử dụng được dễ dàng hơn.
 
-In Vue, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
+Trong Vue, mối quan hệ component cha-con có thể được tóm tắt thành **props down, events up** (thuộc tính xuống, sự kiện lên). Component cha truyền data xuống component con bằng **props**, và component con gửi thông điệp cho component cha bằng **sự kiện**. Tiếp theo đây chúng ta sẽ xem chúng hoạt động như thế nào.
 
 <p style="text-align: center;">
   <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
 </p>
 
-## Props
+## Prop
 
-### Passing Data with Props
+### Truyền dữ liệu với prop
 
-Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
+Mỗi đối tượng component có một scope được cô lập (isolated) riêng. Điều này có nghĩa là bạn không thể (và cũng không nên) truy xuất đến dữ liệu cha trong template của component con. Thay vào đó, dữ liệu có thể được truyền từ cha xuống con bằng cách sử dụng các **prop**.
 
-A prop is a custom attribute for passing information from parent components. A child component needs to explicitly declare the props it expects to receive using the [`props` option](../api/#props):
+Một `prop`là một thuộc tính tùy biến để truyền thông tin từ các component cha. Một component con cần phải khai báo một cách minh bạch (explicitly) các `prop` mà nó trông đợi được nhận bằng [tùy chọn `props`](../api/#props):
 
 ``` js
 Vue.component('child', {
-  // declare the props
+  // khai báo props
   props: ['message'],
-  // like data, the prop can be used inside templates and
-  // is also made available in the vm as this.message
+  // giống như `data`, prop này có thể được dùng bên trong template
+  // và cũng có thể được truy xuất bên trong vm bằng this.message
   template: '<span>{{ message }}</span>'
 })
 ```
 
-Then we can pass a plain string to it like so:
+Sau đó chúng ta có thể truyền cho nó một chuỗi con như sau:
 
 ``` html
-<child message="hello!"></child>
+<child message="Xin chào!"></child>
 ```
 
 Result:
 
 {% raw %}
 <div id="prop-example-1" class="demo">
-  <child message="hello!"></child>
+  <child message="Xin chào!"></child>
 </div>
 <script>
 new Vue({
@@ -268,26 +269,26 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML attributes are case-insensitive, so when using non-string templates, camelCased prop names need to use their kebab-case (hyphen-delimited) equivalents:
+Các thuộc tính HTML không phân biệt hoa thường, vì vậy khi sử dụng template không phải là string template, tên của prop (được viết theo camelCase JavaScript) nên được chuyển thành dạng kebab-case trong HTML. Để dễ hiểu hơn, bạn có thể xem ví dụ sau đây:
 
 ``` js
 Vue.component('child', {
-  // camelCase in JavaScript
+  // camelCase trong JavaScript
   props: ['myMessage'],
   template: '<span>{{ myMessage }}</span>'
 })
 ```
 
 ``` html
-<!-- kebab-case in HTML -->
-<child my-message="hello!"></child>
+<!-- kebab-case trong HTML -->
+<child my-message="Xin chào!"></child>
 ```
 
-Again, if you're using string templates, then this limitation does not apply.
+Một lần nữa, nếu bạn đang dùng string template thì sẽ không tồn tại hạn chế này.
 
-### Dynamic Props
+### Prop động
 
-Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
+Tương tự như việc bind một thuộc tính thông thường vào một expression, chúng ta cũng có thể dùng `v-bind` để bind động props vào dữ liệu trên component cha. Bất cứ khi nào được cập nhật trong component cha, dữ liệu cũng sẽ được truyền xuống component con:
 
 ``` html
 <div>
@@ -297,13 +298,13 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-You can also use the shorthand syntax for `v-bind`:
+Bạn cũng có thể dùng cú pháp viết tắt của `v-bind`:
 
 ``` html
 <child :my-message="parentMsg"></child>
 ```
 
-Result:
+Kết quả:
 
 {% raw %}
 <div id="demo-2" class="demo">
@@ -315,7 +316,7 @@ Result:
 new Vue({
   el: '#demo-2',
   data: {
-    parentMsg: 'Message from parent'
+    parentMsg: 'Con ơi nhớ lấy câu này'
   },
   components: {
     child: {
@@ -327,22 +328,22 @@ new Vue({
 </script>
 {% endraw %}
 
-If you want to pass all the properties in an object as props, you can use `v-bind` without an argument (`v-bind` instead of `v-bind:prop-name`). For example, given a `todo` object:
+Nếu muốn truyền toàn bộ thuộc tính của một object thành props, bạn có thể dùng `v-bind` không có tham số (`v-bind` thay vì `v-bind:prop-name`). Ví dụ, nếu chúng ta có một object `todo`:
 
 ``` js
 todo: {
-  text: 'Learn Vue',
+  text: 'Học Vue',
   isComplete: false
 }
 ```
 
-Then:
+thì
 
 ``` html
 <todo-item v-bind="todo"></todo-item>
 ```
 
-Will be equivalent to:
+là tương đương với
 
 ``` html
 <todo-item
@@ -351,37 +352,37 @@ Will be equivalent to:
 ></todo-item>
 ```
 
-### Literal vs. Dynamic
+### Prop động và prop literal
 
-A common mistake beginners tend to make is attempting to pass down a number using the literal syntax:
+Một lỗi mà người mới học thường vấp phải là thử truyền xuống một con số sử dụng cú pháp literal (trực tiếp):
 
 ``` html
-<!-- this passes down a plain string "1" -->
+<!-- cách này sẽ truyền xuống chuỗi "1" -->
 <comp some-prop="1"></comp>
 ```
 
-However, since this is a literal prop, its value is passed down as a plain string `"1"` instead of an actual number. If we want to pass down an actual JavaScript number, we need to use `v-bind` so that its value is evaluated as a JavaScript expression:
+Tuy nhiên, vì đây là một prop literal, giá trị của nó được truyền xuống dưới dạng chuỗi `"1"` thay vì một con số thật sự. Muốn truyền xuống một giá trị kiểu number trong JavaScript, chúng ta cần dùng `v-bind` để cho giá trị của nó được xem như một biểu thức JavaScript:
+
 
 ``` html
-<!-- this passes down an actual number -->
+<!-- cách này sẽ truyền xuống một con số thật sự -->
 <comp v-bind:some-prop="1"></comp>
 ```
 
-### One-Way Data Flow
+### Luồng dữ liệu một chiều
 
-All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
+Tất cả các prop tạo ra một ràng buộc (binding) **đi xuống một chiều** giữa thuộc tính của cha và thuộc tính của con. Khi thuộc tính của cha được cập nhật, sự thay đổi này sẽ được truyền xuống dưới, nhưng không xảy ra điều ngược lại. Điều này ngăn không cho component con vô tình thay đổi trạng thái của cha (và làm luồng dữ liệu trở nên rối loạn).
 
-In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
+Thêm vào đó, mỗi khi component cha được cập nhật, toàn bộ prop trong component con sẽ được refresh với giá trị mới nhất. Điều này có nghĩa là bạn **không nên** thay đổi prop bên trong component con. Nếu bạn vẫn cố làm, Vue sẽ hiện cảnh báo trong console.
 
-There are usually two cases where it's tempting to mutate a prop:
+Thông thường thì có hai trường hợp bạn muốn thay đổi một prop:
 
-1. The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.
+1. Prop này được dùng để truyền một giá trị ban đầu, sau đó component con muốn dùng giá trị này như một thuộc tính dữ liệu cục bộ.
+2. Prop được truyền xuống dưới dạng giá trị thô (raw value) và cần được chuyển đổi
 
-2. The prop is passed in as a raw value that needs to be transformed.
+Cách làm đúng cho hai trường hợp trên là:
 
-The proper answer to these use cases are:
-
-1. Define a local data property that uses the prop's initial value as its initial value:
+1. Định nghĩa một thuộc tính dữ liệu cục bộ và dùng giá trị ban đầu của prop làm giá trị ban đầu của thuộc tính này:
 
   ``` js
   props: ['initialCounter'],
@@ -390,7 +391,7 @@ The proper answer to these use cases are:
   }
   ```
 
-2. Define a computed property that is computed from the prop's value:
+2. Đĩnh nghĩa một [computed property](computed.html) dựa trên giá trị của prop:
 
   ``` js
   props: ['size'],
@@ -401,40 +402,40 @@ The proper answer to these use cases are:
   }
   ```
 
-<p class="tip">Note that objects and arrays in JavaScript are passed by reference, so if the prop is an array or object, mutating the object or array itself inside the child **will** affect parent state.</p>
+<p class="tip">Lưu ý là object và array trong JavaScript được truyền bằng tham chiếu, vì vậy nếu prop là một array hay object, thay đổi array hay object này bên trong component con cũng sẽ ảnh hưởng đến component cha.</p>
 
-### Prop Validation
+### Kiểm chứng prop
 
-It is possible for a component to specify requirements for the props it is receiving. If a requirement is not met, Vue will emit warnings. This is especially useful when you are authoring a component that is intended to be used by others.
+Component có thể chỉ định một số yêu cầu (requirement) cho prop. Nếu có yêu cầu nào không được thỏa mãn, Vue sẽ cảnh báo. Điều này trở nên đặc biệt hữu ích khi component bạn đang viết là để cho người khác dùng.
 
-Instead of defining the props as an array of strings, you can use an object with validation requirements:
+Thay vì định nghĩa các prop dưới dạng một mảng chứa tên prop, bạn có thể dùng một object chứa các yêu cầu kiểm chứng (validation requirement).
 
 ``` js
 Vue.component('example', {
   props: {
-    // basic type check (`null` means accept any type)
+    // kiểm tra kiểu dữ liệu cơ bản (`null` chấp nhận tất cả các kiểu)
     propA: Number,
-    // multiple possible types
+    // chấp nhận một số kiểu dữ liệu cùng lúc
     propB: [String, Number],
-    // a required string
+    // một chuỗi bắt buộc
     propC: {
       type: String,
       required: true
     },
-    // a number with default value
+    // một con số với giá trị mặc định
     propD: {
       type: Number,
       default: 100
     },
-    // object/array defaults should be returned from a
-    // factory function
+    // giá trị mặc định cho object/array nên được trả về
+    // từ một hàm factory
     propE: {
       type: Object,
       default: function () {
-        return { message: 'hello' }
+        return { message: 'Xin chào' }
       }
     },
-    // custom validator function
+    // hàm kiểm tra tùy biến
     propF: {
       validator: function (value) {
         return value > 10
@@ -444,7 +445,7 @@ Vue.component('example', {
 })
 ```
 
-The `type` can be one of the following native constructors:
+Thuộc tính `type` có thể là một trong các hàm dựng native sau:
 
 - String
 - Number
@@ -454,33 +455,33 @@ The `type` can be one of the following native constructors:
 - Array
 - Symbol
 
-In addition, `type` can also be a custom constructor function and the assertion will be made with an `instanceof` check.
+Ngoài ra, `type` cũng có thể là một hàm dựng tùy biến (custom constructor), và Vue sẽ so sánh bằng lệnh `instanceof`.
 
-When prop validation fails, Vue will produce a console warning (if using the development build). Note that props are validated __before__ a component instance is created, so within `default` or `validator` functions, instance properties such as from `data`, `computed`, or `methods` will not be available.
+Khi prop không thỏa mãn một hay nhiều điều kiện đã đặt ra, Vue sẽ cảnh báo trong console (nếu bạn đang dùng [bản development](installation.html#Che-do-development-va-production)). Lưu ý rằng prop được kiểm chứng __trước khi__ đối tượng component được khởi tạo, vì vậy bên trong các hàm `default` hoặc `validator`, các thuộc tính đối tượng như `data`, `computed`, hay `methods` sẽ không khả dụng.
 
-## Non-Prop Attributes
+## Các thuộc tính non-prop
 
-A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+Thuộc tính non-prop là một thuộc tính được truyền vào component mà không có prop tương ứng được định nghĩa sẵn.
 
-While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
+Tuy props nên được định nghĩa một cách minh bạch bất cứ khi nào có thể, tác giả của các thư viện component không phải lúc nào cũng có thể thấy trước được ngữ cảnh mà component của mình được sử dụng. Đó là lí do component có thể nhận những giá trị "linh động" hơn, các giá trị này được thêm vào root của component.
 
-For example, imagine we're using a 3rd-party `bs-date-input` component with a Bootstrap plugin that requires a `data-3d-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+Ví dụ, thử tưởng tượng chúng ta sử dụng component bên thứ ba gọi là `bs-date-input` với một plugin Bootstrap. Plugin này yêu cầu một thuộc tính tên là `data-3d-date-picker` trên `input`. Chúng ta có thể thêm thuộc tính này vào đối tượng component của chúng ta như sau:
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
 ```
 
-And the `data-3d-date-picker="true"` attribute will automatically be added to the root element of `bs-date-input`.
+Ở đây thuộc tính `data-3d-date-picker="true"` sẽ được tự động gắn vào phần tử root của `bs-date-input`.
 
-### Replacing/Merging with Existing Attributes
+### Thay thế / sáp nhập với các thuộc tính sẵn có
 
-Imagine this is the template for `bs-date-input`:
+Ví dụ đây là template của `bs-date-input`:
 
 ``` html
 <input type="date" class="form-control">
 ```
 
-To specify a theme for our date picker plugin, we might need to add a specific class, like this:
+Để chỉ định một theme cho plugin date picker, có thể chúng ta sẽ phải thêm vào một `class` như sau:
 
 ``` html
 <bs-date-input
@@ -489,31 +490,31 @@ To specify a theme for our date picker plugin, we might need to add a specific c
 ></bs-date-input>
 ```
 
-In this case, two different values for `class` are defined:
+Như vậy ở đây có đến hai giá trị cho thuộc tính `class`:
 
-- `form-control`, which is set by the component in its template
-- `date-picker-theme-dark`, which is passed to the component by its parent
+- `form-control`, gán trong template của component
+- `date-picker-theme-dark`, truyền vào component con từ đối tượng cha
 
-For most attributes, the value provided to the component will replace the value set by the component. So for example, passing `type="large"` will replace `type="date"` and probably break it! Fortunately, the `class` and `style` attributes are a little smarter, so both values are merged, making the final value: `form-control date-picker-theme-dark`.
+Đối với đa số các thuộc tính, giá trị truyền vào sẽ thay thế cho giá trị được gắn sẵn trong component, có nghĩa là truyền vào `type="large"` sẽ thay thế `type="date"` (và có thể là làm hỏng luôn chương trình!) May thay, các thuộc tính `class` và `style` thông minh hơn một chút vã sẽ sáp nhập (merge) các giá trị lại với nhau, tạo thành kết quả cuối cùng: `class="form-control date-picker-theme-dark"`.
 
-## Custom Events
+## Các sự kiện tùy biến
 
-We have learned that the parent can pass data down to the child using props, but how do we communicate back to the parent when something happens? This is where Vue's custom event system comes in.
+Chúng ta đã biết rằng đối tượng cha có thể truyền dữ liệu xuống đối tượng con thông qua prop, nhưng nếu có gì đó xảy ra thì chúng ta làm thế nào để giao tiếp ngược lại từ đối tượng con lên đối tượng cha? Câu trả lời là hệ thống các sự kiện tùy biến (custom event) của Vue.
 
-### Using `v-on` with Custom Events
+### Sử dụng `v-on` với các sự kiện tùy biến
 
-Every Vue instance implements an [events interface](../api/#Instance-Methods-Events), which means it can:
+Mỗi đối tượng Vue đều phát triển một [giao diện sự kiện](../api/#Instance-Methods-Events), có nghĩa là nó có thể:
 
-- Listen to an event using `$on(eventName)`
-- Trigger an event using `$emit(eventName)`
+- Lắng nghe một sự kiện với `$on(eventName)`
+- Kích hoạt một sự kiện với `$emit(eventName)`
 
-<p class="tip">Note that Vue's event system is different from the browser's [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). Though they work similarly, `$on` and `$emit` are __not__ aliases for `addEventListener` and `dispatchEvent`.</p>
+<p class="tip">Lưu ý rằng hệ thống sự kiện của Vue khác với [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) của trình duyệt. Tuy cách hoạt động có vẻ giống nhau, `$on` và `$emit` __không phải__ là alias của `addEventListener` và `dispatchEvent`.</p>
 
-In addition, a parent component can listen to the events emitted from a child component using `v-on` directly in the template where the child component is used.
+Thêm vào đó, một component cha có thể lắng nghe các sự kiện được component con phát ra bằng cách sử dụng `v-on` trực tiếp trên template nơi component con được nhúng vào.
 
-<p class="tip">You cannot use `$on` to listen to events emitted by children. You must use `v-on` directly in the template, as in the example below.</p>
+<p class="tip">Bạn không thể dùng `$on` để lắng nghe sự kiện được component con phát ra. Thay vào đó, bạn phải dùng `v-on` trực tiếp trong template, như trong ví dụ dưới đây.</p>
 
-Here's an example:
+Đây là một ví dụ:
 
 ``` html
 <div id="counter-event-example">
@@ -587,53 +588,54 @@ new Vue({
 </script>
 {% endraw %}
 
-In this example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity, just in case a parent component might care.
+Trong ví dụ này, cần lưu ý rằng đối tượng con hoàn toàn không bị ràng buộc gì với thế giới bên ngoài. Nó chỉ làm đúng một việc là thông báo thông tin về hoạt động của chính mình – lắng nghe và xử lí thế nào hoàn toàn là việc của component cha.
 
-### Binding Native Events to Components
+### Bind sự kiện native vào component
 
-There may be times when you want to listen for a native event on the root element of a component. In these cases, you can use the `.native` modifier for `v-on`. For example:
+Đôi khi bạn cũng muốn lắng nghe một sự kiện native trên phần tử root của component. Trong những trường hợp này, bạn có thể sử dụng modifier `.native` cho `v-on`. Ví dụ:
 
 ``` html
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
-### `.sync` Modifier
+### Modifier `.sync`
 
 > 2.3.0+
 
-In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x this is exactly what the `.sync` modifier provided. When a child component mutates a prop that has `.sync`, the value change will be reflected in the parent. This is convenient, however it leads to maintenance issues in the long run because it breaks the one-way data flow assumption: the code that mutates child props are implicitly affecting parent state.
+Trong một số trường hợp có thể chúng ta cần "two-way binding" (ràng buộc hai chiều) cho một prop - thật ra, trong 1.x đây chính xác là mục đích của modifier `.sync`. Khi component con thay đổi một prop có modifier `.sync`, giá trị ở parent cũng sẽ thay đổi theo. Điều này tiện thì có tiện nhưng về lâu dài sẽ làm cho việc bảo trì phần mềm gặp khó khăn vì nó phá vỡ luồng dữ liệu một chiều: code thay đổi prop của con cũng lẳng lặng làm ảnh hưởng đến trạng thái của cha. Đây chính là lí do chúng tôi quyết định bỏ modifier `.sync` khi ra mắt phiên bản 2.0.
 
-This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
+Tuy nhiên, modifier `.sync` như trên vẫn có giá trị trong một số trường hợp nhất định, đặc biệt là khi ship những component tái sử dụng được. Cái chúng ta cần ở đây là **làm cho những đoạn code trong component con ảnh hưởng đến trạng thái của component cha được minh bạch (explicit) và ổn định (consistent) hơn.**
 
-In 2.3.0+ we re-introduced the `.sync` modifier for props, but this time it is only syntax sugar that automatically expands into an additional `v-on` listener:
+Từ bản 2.3.0 trở đi, chúng tôi giới thiệu lại modifier `.sync` cho prop, nhưng lần này `.sync` chỉ là một syntactic sugar (cú pháp đẹp/dễ nhìn) tự động mở rộng thêm thành một listener `v-on`:
 
-The following
+Đoạn code sau
 
 ``` html
 <comp :foo.sync="bar"></comp>
 ```
 
-is expanded into:
+sẽ được mở rộng ra thành:
 
 ``` html
 <comp :foo="bar" @update:foo="val => bar = val"></comp>
 ```
 
-For the child component to update `foo`'s value, it needs to explicitly emit an event instead of mutating the prop:
+Để có thể cập nhật giá trị của `foo`, component con phải phát ra một sự kiện một cách minh bạch thay vì trực tiếp thay đổi `foo`:
 
 ``` js
-this.$emit('update:foo', newValue)
+this.foo = 'baz' // cách làm sai, và Vue sẽ cảnh báo
+this.$emit('update:foo', newValue) // OK
 ```
 
-### Form Input Components using Custom Events
+### Sử dụng sự kiện tùy biến với form input component
 
-Custom events can also be used to create custom inputs that work with `v-model`. Remember:
+Các sự kiện tùy biến cũng có thể được dùng để tạo custom input hoạt động với `v-model`. Nhớ là:
 
 ``` html
 <input v-model="something">
 ```
 
-is syntactic sugar for:
+là syntactic sugar của:
 
 ``` html
 <input
@@ -641,7 +643,7 @@ is syntactic sugar for:
   v-on:input="something = $event.target.value">
 ```
 
-When used with a component, it instead simplifies to:
+Khi sử dụng với một component, nó được đơn giản hóa thành:
 
 ``` html
 <custom-input
@@ -650,12 +652,14 @@ When used with a component, it instead simplifies to:
 </custom-input>
 ```
 
-So for a component to work with `v-model`, it should (these can be configured in 2.2.0+):
+Vì thế để hoạt động với `v-model`, một component cần
 
-- accept a `value` prop
-- emit an `input` event with the new value
+- nhận một prop `value`
+- `$emit` một sự kiện `input` với giá trị mới
 
-Let's see it in action with a simple currency input:
+(những giá trị này tùy chỉnh được từ phiên bản 2.2.0 trở đi).
+
+Chúng ta hãy xem ví dụ sau:
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -674,26 +678,26 @@ Vue.component('currency-input', {
   ',
   props: ['value'],
   methods: {
-    // Instead of updating the value directly, this
-    // method is used to format and place constraints
-    // on the input's value
+    // Thay vì cập nhật giá trị trực tiếp, phương thức này
+    // được dùng để format và đặt một số ràng buộc lên giá trị
+    // của input
     updateValue: function (value) {
       var formattedValue = value
-        // Remove whitespace on either side
+        // Bỏ khoảng trắng ở hai bên
         .trim()
-        // Shorten to 2 decimal places
+        // Rút ngắn lại còn hai chữ số thập phân
         .slice(
           0,
           value.indexOf('.') === -1
             ? value.length
             : value.indexOf('.') + 3
         )
-      // If the value was not already normalized,
-      // manually override it to conform
+      // Nếu giá trị chưa được chuẩn hóa, ta ghi đè (override)
+      // để bắt nó chuẩn không cần chỉnh
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // Emit the number value through the input event
+      // Phát ra sự kiện input
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -741,15 +745,15 @@ new Vue({
 </script>
 {% endraw %}
 
-The implementation above is pretty naive though. For example, users are allowed to enter multiple periods and even letters sometimes - yuck! So for those that want to see a non-trivial example, here's a more robust currency filter:
+Ví dụ trên thật ra còn khá sơ sài, đơn cử như người dùng vẫn có thể nhập vào nhiều dấu chấm và đôi khi cả chữ cái. Sau đây là một ví dụ hoàn chỉnh hơn:
 
-<iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/phanan/1oqjojjx/1464/embedded/result,html,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-### Customizing Component `v-model`
+### Tùy biến `v-model` cho component
 
-> New in 2.2.0+
+> 2.2.0+
 
-By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
+Mặc định, `v-model` dùng cho một component sử dụng prop tên là `value` và sự kiện tên là `input`. Tuy nhiên, một số kiểu input như checkbox và radio button có thể dùng prop `value` vào mục đích khác. Trong những trường hợp như vậy, tùy chọn `model` sẽ giúp chúng ta tránh được xung đột:
 
 ``` js
 Vue.component('my-checkbox', {
@@ -759,7 +763,8 @@ Vue.component('my-checkbox', {
   },
   props: {
     checked: Boolean,
-    // this allows using the `value` prop for a different purpose
+    // ở đây chúng ta có thể sử dụng prop `value`
+    // vào một mục đích khác
     value: String
   },
   // ...
@@ -770,7 +775,7 @@ Vue.component('my-checkbox', {
 <my-checkbox v-model="foo" value="some value"></my-checkbox>
 ```
 
-The above will be equivalent to:
+Đoạn code trên là tương đồng với đoạn dưới đây:
 
 ``` html
 <my-checkbox
@@ -780,31 +785,31 @@ The above will be equivalent to:
 </my-checkbox>
 ```
 
-<p class="tip">Note that you still have to declare the `checked` prop explicitly.</p>
+<p class="tip">Lưu ý là bạn vẫn phải khai báo prop `checked` một cách minh bạch.</p>
 
-### Non Parent-Child Communication
+### Giao tiếp giữa hai component không phải cha-con
 
-Sometimes two components may need to communicate with one-another but they are not parent/child to each other. In simple scenarios, you can use an empty Vue instance as a central event bus:
+Đôi lúc hai component cần giao tiếp với nhau nhưng lại không có mối quan hệ cha-con (component không trực tiếp chứa component kia). Trong những trường hợp đơn giản, bạn có thể dùng một đối tượng Vue rỗng để làm một event bus (nôm na là kênh truyền tải sự kiện).
 
 ``` js
 var bus = new Vue()
 ```
 ``` js
-// in component A's method
+// trong phương thức của component A
 bus.$emit('id-selected', 1)
 ```
 ``` js
-// in component B's created hook
+// trong hook `created` của component B
 bus.$on('id-selected', function (id) {
   // ...
 })
 ```
 
-In more complex cases, you should consider employing a dedicated [state-management pattern](state-management.html).
+Trong những trường hợp phức tạp hơn, bạn nên xem xét sử dụng một [pattern quản lí trạng thái](state-management.html).
 
-## Content Distribution with Slots
+## Phân bố nội dung với slot
 
-When using components, it is often desired to compose them like this:
+Khi dùng component, thông thường ta sẽ muốn kết hợp như sau:
 
 ``` html
 <app>
@@ -813,17 +818,16 @@ When using components, it is often desired to compose them like this:
 </app>
 ```
 
-There are two things to note here:
+Ở đây có hai điểm cần lưu ý:
 
-1. The `<app>` component does not know what content it will receive. It is decided by the component using `<app>`.
+1. Component `<app>` không biết nội dung nó nhận được là gì. Thay vào đó, nội dung của `<app>` được quyết định bởi các component con, trong trường hợp này là `<app-header>` và `<app-footer>`.
+2. Thường thì component `<app>` có template riêng.
 
-2. The `<app>` component very likely has its own template.
+Để đạt được kết quả như trên, chúng ta cần có một cách để trộn lẫn nội dung và template của component cha. Quá trình này gọi là **phân bố nội dung** (content distribution, hay còn gọi là "transclusion" trong Angular). Vue.js phát triển một API phân bố nội dung dựa trên [bản quy tắc về Web Component](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) hiện hành, sử dụng phần tử đặc biệt `<slot>` để làm các _outlet_ phân bố cho nội dung ban đầu.
 
-To make the composition work, we need a way to interweave the parent "content" and the component's own template. This is a process called **content distribution** (or "transclusion" if you are familiar with Angular). Vue.js implements a content distribution API that is modeled after the current [Web Components spec draft](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), using the special `<slot>` element to serve as distribution outlets for the original content.
+### Scope khi biên dịch
 
-### Compilation Scope
-
-Before we dig into the API, let's first clarify which scope the contents are compiled in. Imagine a template like this:
+Trước khi đi sâu vào API, trước tiên chúng ta phải làm rõ: nội dung được biên dịch trong scope nào? Tưởng tượng chúng ta có một template như sau:
 
 ``` html
 <child-component>
@@ -831,24 +835,24 @@ Before we dig into the API, let's first clarify which scope the contents are com
 </child-component>
 ```
 
-Should the `message` be bound to the parent's data or the child data? The answer is the parent. A simple rule of thumb for component scope is:
+Trong trường hợp này thì `message` nên là dữ liệu của component cha hay component con? Câu trả lời là component cha. Một quy tắc cơ bản về scope của component là:
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in child scope.
+> Cái gì trong template của cha thì được biên dịch trong scope của cha, cái gì trong template của con thì được biên dịch trong scope của con.
 
-A common mistake is trying to bind a directive to a child property/method in the parent template:
+Một lỗi mà người dùng hay mắc phải là cố bind một directive vào một thuộc tính hay phương thức của component con trong template của cha:
 
 ``` html
-<!-- does NOT work -->
+<!-- cách này KHÔNG HOẠT ĐỘNG -->
 <child-component v-show="someChildProperty"></child-component>
 ```
 
-Assuming `someChildProperty` is a property on the child component, the example above would not work. The parent's template is not aware of the state of a child component.
+Giả định `someChildProperty` là một thuộc tính của component con, ví dụ trên sẽ không hoạt động. Template của component cha không biết gì về trạng thái của component con.
 
-If you need to bind child-scope directives on a component root node, you should do so in the child component's own template:
+Nếu muốn bind các directive với scope con trên node gốc của một component, bạn nên làm thế trong template của chính component con:
 
 ``` js
 Vue.component('child-component', {
-  // this does work, because we are in the right scope
+  // cách này sẽ hoạt động, vì chúng ta đang ở đúng scope
   template: '<div v-show="someChildProperty">Child</div>',
   data: function () {
     return {
@@ -858,169 +862,195 @@ Vue.component('child-component', {
 })
 ```
 
-Similarly, distributed content will be compiled in the parent scope.
+Tương tự như vậy, nội dung được phân bố sẽ được biên dịch trong scope của cha.
 
-### Single Slot
+### Slot đơn lẻ
 
-Parent content will be **discarded** unless the child component template contains at least one `<slot>` outlet. When there is only one slot with no attributes, the entire content fragment will be inserted at its position in the DOM, replacing the slot itself.
+Nội dung của component cha sẽ **bị loại bỏ** trừ phi template của component con chứa ít nhất một `<slot>`. Khi chỉ có một slot và slot này không có thuộc tính gì, toàn bộ phần nội dung sẽ được chèn vào vị trí của slot trong DOM, thay thế cho slot đó.
 
-Anything originally inside the `<slot>` tags is considered **fallback content**. Fallback content is compiled in the child scope and will only be displayed if the hosting element is empty and has no content to be inserted.
+Mọi thứ bên trong thẻ `<slot>` lúc ban đầu được xem như **nội dung dự phòng**. Nội dung dự phòng được biên dịch trong scope của component con và chỉ được hiển thị nếu phần tử host là rỗng và không có nội dung gì để chèn vào.
 
-Suppose we have a component called `my-component` with the following template:
+Giả sử ta có một component gọi là `child-component` với template như sau:
 
 ``` html
 <div>
-  <h2>I'm the child title</h2>
+  <h2>Lời của con</h2>
   <slot>
-    This will only be displayed if there is no content
-    to be distributed.
+    Dòng này sẽ chỉ được hiển thị nếu không có
+    nội dung nào được phân bố.
   </slot>
 </div>
 ```
 
-And a parent that uses the component:
+và một component cha sử dụng `child-component`:
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
-  <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
-  </my-component>
+  <h1>Lời của cha</h1>
+  <p>
+    “Theo cánh buồm đi mãi đến nơi xa,
+    Sẽ có cây, có cửa, có nhà,
+    Vẫn là đất nước của ta
+    Những nơi đó cha chưa hề đi đến.”
+  </p>
+  <child-component>
+    <p>
+      “Cha mượn cho con buồm trắng nhé
+      Để con đi”
+    </p>
+  </child-component>
 </div>
 ```
 
-The rendered result will be:
+Nội dung được render sẽ là:
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>Lời của cha</h1>
+  <p>
+    “Theo cánh buồm đi mãi đến nơi xa,
+    Sẽ có cây, có cửa, có nhà,
+    Vẫn là đất nước của ta
+    Những nơi đó cha chưa hề đi đến.”
+  </p>
   <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <h2>Lời của con</h2>
+    <p>
+      “Cha mượn cho con buồm trắng nhé
+      Để con đi”
+    </p>
   </div>
 </div>
 ```
 
-### Named Slots
+### Slot có tên
 
-`<slot>` elements have a special attribute, `name`, which can be used to further customize how content should be distributed. You can have multiple slots with different names. A named slot will match any element that has a corresponding `slot` attribute in the content fragment.
+Các phần tử `<slot>` có một thuộc tính đặc biệt là `name` (tên). Thuộc tính này được dùng để tùy biến thêm về cách phân bố nội dung. Bạn có thể có nhiều slot với các tên khác nhau.  Một slot có tên sẽ khớp với bất kì phần tử nào có thuộc tính `slot` tương ứng nằm trong phần nội dung.
 
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all outlet for any unmatched content. If there is no default slot, unmatched content will be discarded.
+Ngoài ra chúng ta vẫn có thể dùng một slot không có tên để là **slot mặc định**. Những nội dung không khớp với bất kì slot nào sẽ được chèn vào slot này. Nếu trong template không có slot mặc định, bất cứ nội dung nào không khớp sẽ bị bỏ đi.
 
-For example, suppose we have an `app-layout` component with the following template:
+Ví dụ, giả sử chúng ta có một component gọi là `app-layout` với template như sau:
 
 ``` html
 <div class="container">
   <header>
+    <!-- đây là một slot có tên -->
     <slot name="header"></slot>
   </header>
   <main>
+    <!--
+      đây là slot mặc định, slot không tên,
+      ta cũng có thể gọi là slot của Vũ Thành An
+    -->
     <slot></slot>
   </main>
   <footer>
+    <!-- đây lại là một slot có tên -->
     <slot name="footer"></slot>
   </footer>
 </div>
 ```
 
-Parent markup:
+HTML của cha trông như sau:
 
 ``` html
 <app-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <!-- nội dung này sẽ được chèn vào slot "header" -->
+  <h1 slot="header">Tiêu đề của trang</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <!-- nội dung này sẽ được chèn vào slot mặc định -->
+  <p>Một đoạn nội dung.</p>
+  <p>Thêm một đoạn nữa cho dài.</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <!-- nội dung này sẽ được chèn vào slot "footer" -->
+  <p slot="footer">Thông tin liên hệ</p>
 </app-layout>
 ```
 
-The rendered result will be:
+Kết quả cuối cùng sẽ là:
 
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>Tiêu đề của trang</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>Một đoạn nội dung.</p>
+    <p>Thêm một đoạn nữa cho dài.</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>Thông tin liên hệ</p>
   </footer>
 </div>
 ```
 
-The content distribution API is a very useful mechanism when designing components that are meant to be composed together.
+API phân bố nội dung là một cơ chế rất mạnh dùng để biên soạn những component được dùng chung với nhau.
 
-### Scoped Slots
+### Scoped slot
 
-> New in 2.1.0+
+> 2.1.0+
 
-A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+Scoped slot (slot có phạm vi) là một loại slot đặc biệt, hoạt động như một tempate tái sử dụng được (và có thể nhận dữ liệu tùy biến) thay vì một phần tử đã render sẵn.
 
-In a child component, pass data into a slot as if you are passing props to a component:
+Trong một component con, bạn có thể truyền dữ liệu vào slot giống như truyền prop vào component:
 
 ``` html
 <div class="child">
-  <slot text="hello from child"></slot>
+  <slot text="Con chào cha"></slot>
 </div>
 ```
 
-In the parent, a `<template>` element with a special attribute `scope` must exist, indicating that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+Trong đối tượng cha, một phần tử `<template>` với thuộc tính đặc biệt `scope` phải được khai báo, chỉ rõ rằng đây là một scoped slot. Giá trị của `scope` là tên của một biến tạm chứa object props được truyền từ component con:
 
 ``` html
 <div class="parent">
   <child>
+    <!-- ở đây ta đặt tên biến tạm là `props` -->
     <template scope="props">
-      <span>hello from parent</span>
+      <span>Cha chào con</span>
       <span>{{ props.text }}</span>
     </template>
   </child>
 </div>
 ```
 
-If we render the above, the output will be:
+Kết quả được render của ví dụ trên sẽ là:
 
 ``` html
 <div class="parent">
   <div class="child">
-    <span>hello from parent</span>
-    <span>hello from child</span>
+    <span>Cha chào con</span>
+    <span>Con chào cha</span>
   </div>
 </div>
 ```
 
-A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
+Một ví dụ điển hình hơn cho scoped slot là một danh sách các component cho phép người dùng tùy biến hiển thị của từng item:
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- scoped slot can be named too -->
+  <!-- scoped slot cũng có thể có tên -->
   <template slot="item" scope="props">
     <li class="my-fancy-item">{{ props.text }}</li>
   </template>
 </my-awesome-list>
 ```
 
-And the template for the list component:
+Và đây là template của component `my-awesome-list`:
 
 ``` html
 <ul>
   <slot name="item"
     v-for="item in items"
     :text="item.text">
-    <!-- fallback content here -->
+    <!-- nội dung dự phòng -->
   </slot>
 </ul>
 ```
 
-## Dynamic Components
+## Component động
 
-You can use the same mount point and dynamically switch between multiple components using the reserved `<component>` element and dynamically bind to its `is` attribute:
+Dùng một phần tử `<component>` và thuộc tính `is` được bind động, bạn có thể chuyển đổi một cách linh hoạt giữa nhiều component.
 
 ``` js
 var vm = new Vue({
@@ -1038,15 +1068,15 @@ var vm = new Vue({
 
 ``` html
 <component v-bind:is="currentView">
-  <!-- component changes when vm.currentView changes! -->
+  <!-- component thay đổi khi vm.currentView thay đổi! -->
 </component>
 ```
 
-If you prefer, you can also bind directly to component objects:
+Nếu muốn, bạn cũng có thể bind trực tiếp vào các object component:
 
 ``` js
 var Home = {
-  template: '<p>Welcome home!</p>'
+  template: '<p>Đã bấy lâu nay bác tới nhà</p>'
 }
 
 var vm = new Vue({
@@ -1059,33 +1089,33 @@ var vm = new Vue({
 
 ### `keep-alive`
 
-If you want to keep the switched-out components in memory so that you can preserve their state or avoid re-rendering, you can wrap a dynamic component in a `<keep-alive>` element:
+Khi chuyển đổi giữa các component, giữ các component đã bị thay thế trong bộ nhớ để bảo lưu trạng thái hoặc tránh phải render lại, bạn có thể chứa một component động bên trong thẻ `<keep-alive>`:
 
 ``` html
 <keep-alive>
   <component :is="currentView">
-    <!-- inactive components will be cached! -->
+    <!-- component bị thay thế sẽ được cache lại -->
   </component>
 </keep-alive>
 ```
 
-Check out more details on `<keep-alive>` in the [API reference](../api/#keep-alive).
+Đọc thêm về `<keep-alive>` trong phần [API](../api/#keep-alive).
 
-## Misc
+## Khác
 
-### Authoring Reusable Components
+### Viết component sử dụng lại được
 
-When authoring components, it's good to keep in mind whether you intend to reuse it somewhere else later. It's OK for one-off components to be tightly coupled, but reusable components should define a clean public interface and make no assumptions about the context it's used in.
+Khi viết một component, hãy luôn nghĩ đến việc bạn có muốn sử dụng lại component đó ở một nơi nào khác sau này hay không. Nếu chỉ để dùng một lần thì component bạn đang viết có thể được gắn chặt (tightly coupled) với ngữ cảnh hiện hành, nhưng nếu để dùng lại về sau thì component cần phải định nghĩa một giao diện (interface) rõ ràng và không có bất cứ giả định nào về ngữ cảnh xung quanh.
 
-The API for a Vue component comes in three parts - props, events, and slots:
+API dành cho một component trong Vue gồm có ba phần - prop, sự kiện, và slot:
 
-- **Props** allow the external environment to pass data into the component
+- **Prop** cho phép môi trường bên ngoài truyền dữ liệu vào trong component.
 
-- **Events** allow the component to trigger side effects in the external environment
+- **Sự kiện** cho phép component kích hoạt side effect (hiệu ứng lề) ở môi trường bên ngoài.
 
-- **Slots** allow the external environment to compose the component with extra content.
+- **Slot** cho phép môi trường bên ngoài thêm nội dung vào component.
 
-With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can be clearly and succinctly conveyed in the template:
+Với cú pháp tắt cho `v-bind` và `v-on`, những mục tiêu này có thể được truyền tải một cách rõ ràng và súc tích trong template:
 
 ``` html
 <my-component
@@ -1095,13 +1125,13 @@ With the dedicated shorthand syntaxes for `v-bind` and `v-on`, the intents can b
   @event-b="doThat"
 >
   <img slot="icon" src="...">
-  <p slot="main-text">Hello!</p>
+  <p slot="main-text">Xin chào!</p>
 </my-component>
 ```
 
-### Child Component Refs
+### Ref cho component con
 
-Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
+Mặc dù đã có prop và sự kiện, đôi khi bạn vẫn cần truy xuất trực tiếp đến một component trong JavaScript. Để làm điều này, bạn cần gán một tham chiếu cho component con với thuộc tính `ref`. Ví dụ:
 
 ``` html
 <div id="parent">
@@ -1111,41 +1141,41 @@ Despite the existence of props and events, sometimes you might still need to dir
 
 ``` js
 var parent = new Vue({ el: '#parent' })
-// access child component instance
+// truy xuất đến component con
 var child = parent.$refs.profile
 ```
 
-When `ref` is used together with `v-for`, the ref you get will be an array containing the child components mirroring the data source.
+Khi dùng chung với `v-for`, giá trị ref bạn nhận được sẽ là một mảng chứa các component con tương ứng với nguồn dữ liệu.
 
-<p class="tip">`$refs` are only populated after the component has been rendered, and it is not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid using `$refs` in templates or computed properties.</p>
+<p class="tip">`$refs` sẽ chỉ có giá trị sau khi component đã được render, và giá trị này không reactive. Bạn chỉ nên sử dụng `$refs` như là một biện pháp bất đắc dĩ để truy xuất đến component con.</p>
 
-### Async Components
+### Component không đồng bộ
 
-In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it's actually needed. To make that easier, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. Vue will only trigger the factory function when the component actually needs to be rendered and will cache the result for future re-renders. For example:
+Trong những ứng dụng lớn, chúng ta có thể phải chia ứng dụng ra thành nhiều phần nhỏ và chỉ tải một component từ server xuống khi cần thiết. Để hỗ trợ điều này, Vue cho phép bạn định nghĩa component bằng một hàm factory, hàm này sẽ chịu trách nhiệm resolve (phân giải) một cách không đồng bộ (async) định nghĩa về component của bạn. Vue sẽ chỉ kích hoạt hàm factory này khi component thật sự cần được render, và sẽ cache lại kết quả cho những lần render tiếp theo. Ví dụ:
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
-    // Pass the component definition to the resolve callback
+    // Truyền định nghĩa của component cho hàm callback
     resolve({
-      template: '<div>I am async!</div>'
+      template: '<div>Nội dung này được tải không đồng bộ.</div>'
     })
   }, 1000)
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+Như trên cho thấy, hàm factory nhận vào một hàm callback `resolve`. Bạn sẽ gọi hàm `resolve` sau khi tải xong định nghĩa của component từ server về. Bạn cũng có thể gọi `reject(reason)` để chỉ định là việc tải từ server đã thất bại. Hàm `setTimeout` ở đây chỉ có ý nghĩa demo; bạn có thể tải component theo bất kì cách nào mình muốn. Một hướng tiếp cận mà chúng tôi khuyên dùng là sử dụng component không đồng bộ với tính năng [code-splitting](https://webpack.js.org/guides/code-splitting/) của Webpack:
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // This special require syntax will instruct Webpack to
-  // automatically split your built code into bundles which
-  // are loaded over Ajax requests.
+  // Cú pháp `require` đặc biệt này sẽ hướng dẫn cho Webpack
+  // tự động chia code được build của bạn ra thành các gói nhỏ hơn
+  // (bundle) để tải về bằng AJAX.
   require(['./my-async-component'], resolve)
 })
 ```
 
-You can also return a `Promise` in the factory function, so with Webpack 2 + ES2015 syntax you can do:
+Bạn cũng có thể trả về một `Promise` bên trong hàm factory, nên với cú pháp Webpack 2 + ES2015 bạn có thể viết như sau:
 
 ``` js
 Vue.component(
@@ -1154,7 +1184,7 @@ Vue.component(
 )
 ```
 
-When using [local registration](components.html#Local-Registration), you can also directly provide a function that returns a `Promise`:
+Khi [đăng kí component ở cấp cục bộ](components.html#Dang-ki-o-cap-cuc-bo), bạn cũng có thể cung cấp một hàm trả về `Promise` một cách trực tiếp:
 
 ``` js
 new Vue({
@@ -1165,62 +1195,62 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
+<p class="tip">Nếu bạn sử dụng <strong>Browserify</strong> và muốn dùng component không đồng bộ, đáng tiếc là tác giả của Browserify đã [nói rõ](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) rằng tải không đồng bộ "sẽ không bao giờ được Browserify chính thức hỗ trợ." Cộng đồng Browserify đã tìm ra [một vài cách giải quyết](https://github.com/vuejs/vuejs.org/issues/620) có thể có ích cho những ứng dụng có sẵn và phức tạp. Trong những trường hợp khác (viết ứng dụng mới, hoặc ứng dụng sẵn có đủ đơn giản), chúng tôi khuyên bạn nên sử dụng Webpack.</p>
 
-### Advanced Async Components
+### Component không đồng bộ nâng cao
 
-> New in 2.3.0+
+> 2.3.0+
 
-Starting in 2.3.0+ the async component factory can also return an object of the following format:
+Bắt đầu từ bản 2.3.0, factory cho component không đồng bộ có thể trả về một object với định dạng sau:
 
 ``` js
 const AsyncComp = () => ({
-  // The component to load. Should be a Promise
+  // Component cần tải. Nên là một Promise
   component: import('./MyComp.vue'),
-  // A component to use while the async component is loading
+  // Component để dùng khi đang tải component không đồng bộ trên đây,
+  // tạm gọi là "component tải"
   loading: LoadingComp,
-  // A component to use if the load fails
+  // Component dùng khi tải bị lỗi, tạm gọi là "component lỗi"
   error: ErrorComp,
-  // Delay before showing the loading component. Default: 200ms.
+  // Khoảng thời gian đợi (delay) trước khi hiển thị component tải
+  // Mặc định là 200ms.
   delay: 200,
-  // The error component will be displayed if a timeout is
-  // provided and exceeded. Default: Infinity.
+  // Thời gian đợi trước khi hiện component lỗi
+  // Mặc định là Infinity
   timeout: 3000
 })
 ```
 
-Note that when used as a route component in `vue-router`, these properties will be ignored because async components are resolved upfront before the route navigation happens. You also need to use `vue-router` 2.4.0+ if you wish to use the above syntax for route components.
+Lưu ý rằng khi dùng như một route component trong `vue-router`, những thuộc tính này sẽ bị bỏ qua vì component không đồng bộ sẽ được resolve trước khi việc chuyển route xảy ra. Bạn cũng cần phiên bản `vue-router` 2.4.0 trở đi nếu muốn sử dụng cú pháp trên đây cho route component.
 
-### Component Naming Conventions
+### Quy chuẩn đặt tên cho component
 
-When registering components (or props), you can use kebab-case, camelCase, or PascalCase.
+Khi đăng kí component (hoặc prop), bạn có thể dùng kebab-case, camelCase, hoặc PascalCase.
 
 ``` js
-// in a component definition
 components: {
-  // register using kebab-case
+  // dùng kebab-case
   'kebab-cased-component': { /* ... */ },
-  // register using camelCase
+  // dùng camelCase
   'camelCasedComponent': { /* ... */ },
-  // register using PascalCase
+  // dùng PascalCase
   'PascalCasedComponent': { /* ... */ }
 }
 ```
 
-Within HTML templates though, you have to use the kebab-case equivalents:
+Tuy nhiên, trong template HTML, bạn phải dùng phiên bản kebab-case cho tên component:
 
 ``` html
-<!-- always use kebab-case in HTML templates -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <pascal-cased-component></pascal-cased-component>
 ```
 
-When using _string_ templates however, we're not bound by HTML's case-insensitive restrictions. That means even in the template, you can reference your components using:
+Khi sử dụng _string_ template, chúng ta không bị hạn chế bởi đặc tính không phân biệt hoa thường của HTML. Điều này có nghĩa là ngay cả trong template, bạn vẫn có thể tham chiếu đến component bằng:
 
 - kebab-case
-- camelCase or kebab-case if the component has been defined using camelCase
-- kebab-case, camelCase or PascalCase if the component has been defined using PascalCase
+- camelCase hoặc kebab-case nếu component được định nghĩa bằng camelCase
+- kebab-case, camelCase hoặc PascalCase nếu component đã được định nghĩa bằng PascalCase
 
 ``` js
 components: {
@@ -1241,44 +1271,44 @@ components: {
 <PascalCasedComponent></PascalCasedComponent>
 ```
 
-This means that the PascalCase is the most universal _declaration convention_ and kebab-case is the most universal _usage convention_.
+Điều này có nghĩa là PascalCase là _quy chuẩn khai báo_ thông dụng nhất, và kebab-case là _quy chuẩn sử dụng_ thông dụng nhất.
 
-If your component isn't passed content via `slot` elements, you can even make it self-closing with a `/` after the name:
+Nếu component của bạn không nhận nội dung thông qua `slot`, bạn còn có thể dùng dưới dạng thẻ tự đóng (self-closed) bằng kí tự `/`:
 
 ``` html
 <my-component/>
 ```
 
-Again, this _only_ works within string templates, as self-closing custom elements are not valid HTML and your browser's native parser will not understand them.
+Một lần nữa, cách này chỉ hoạt động với string template, vì trình duyệt không chấp nhận và sẽ không hiểu định dạng tự đóng đối với các phần tử tùy biến.
 
-### Recursive Components
+### Component đệ quy
 
-Components can recursively invoke themselves in their own template. However, they can only do so with the `name` option:
+Một component có thể tự chứa và gọi bản thân một cách đệ quy nếu bạn khai báo cho nó một thuộc tính `name`:
 
 ``` js
-name: 'unique-name-of-my-component'
+name: 'con-kien-ma-leo-canh-da'
 ```
 
-When you register a component globally using `Vue.component`, the global ID is automatically set as the component's `name` option.
+Khi bạn đăng kí component ở cấp toàn cục bằng lệnh `Vue.component`, một ID toàn cục sẽ được tự động gán vào `name`.
 
 ``` js
-Vue.component('unique-name-of-my-component', {
+Vue.component('con-kien-ma-leo-canh-da', {
   // ...
 })
 ```
 
-If you're not careful, recursive components can also lead to infinite loops:
+Nếu bạn không cẩn thận, component đệ quy có thể dẫn đến lặp vô tận.
 
 ``` js
-name: 'stack-overflow',
-template: '<div><stack-overflow></stack-overflow></div>'
+name: 'bi-ngo-la-co-dau-nanh',
+template: '<div><bi-ngo-la-co-dau-nanh/></div>'
 ```
 
-A component like the above will result in a "max stack size exceeded" error, so make sure recursive invocation is conditional (i.e. uses a `v-if` that will eventually be `false`).
+Một component như trên sẽ gây ra lỗi "max stack size exceeded", vì vậy hãy bảo đảm việc gọi đệ quy là có điều kiện (ví dụ sử dụng `v-if` và đến một lúc nào đó thì trả về `false`).
 
-### Circular References Between Components
+### Tham chiếu xoay vòng giữa các component
 
-Let's say you're building a file directory tree, like in Finder or File Explorer. You might have a `tree-folder` component with this template:
+Giả sử bạn bạn đang xây dựng một cây thư mục tương tự như File Explorer của Windows hoặc Finder của Mac. Bạn có lẽ sẽ có một component `tree-folder` với template sau:
 
 ``` html
 <p>
@@ -1287,7 +1317,7 @@ Let's say you're building a file directory tree, like in Finder or File Explorer
 </p>
 ```
 
-Then a `tree-folder-contents` component with this template:
+và một component `tree-folder-contents` component với template sau:
 
 ``` html
 <ul>
@@ -1298,17 +1328,17 @@ Then a `tree-folder-contents` component with this template:
 </ul>
 ```
 
-When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
+Nếu nhìn kĩ, bạn sẽ nhận ra rằng các component này thực tế sẽ _chứa lẫn nhau_ trong cây thư mục được render - điều này có thể coi là một nghịch lí (paradox). Nếu bạn đăng kí component ở cấp toàn cục với `Vue.component`, nghịch lí này sẽ được Vue giải quyết một cách tự động, và bạn có thể ngừng đọc tiếp ở đây.
 
-However, if you're requiring/importing components using a __module system__, e.g. via Webpack or Browserify, you'll get an error:
+Tuy nhiên, nếu đang nhúng component bằng lệnh `require` hoặc `import` trong một __hệ thống module__ bằng Webpack hoặc Browserify, bạn sẽ bị báo lỗi:
 
 ```
 Failed to mount component: template or render function not defined.
 ```
 
-To explain what's happening, let's call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc, etc. It's stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, "A needs B _eventually_, but there's no need to resolve B first."
+Để hiểu việc gì đang xảy ra, hãy gọi hai component ta đang có là A và B. Hệ thống module thấy rằng nó cần A, nhưng A lại cần B, nhưng B lại cần A, nhưng A lại cần B, và cứ thế mãi. Thành ra hệ thống này bị kẹt trong một vòng lặp vô tận, không biết phải resolve component nào trước. Để giải quyết vấn đề này, ta cần cung cấp cho hệ thống một điểm quyết định mà tại đó nó có thể nhận ra rằng "_Cuối cùng thì_ A sẽ cần B, nhưng hiện thì chưa cần phải resolve B trước."
 
-In our case, let's make that point the `tree-folder` component. We know the child that creates the paradox is the `tree-folder-contents` component, so we'll wait until the `beforeCreate` lifecycle hook to register it:
+Trở lại ví dụ của chúng ta, hãy tạo điểm quyết định đó trong component `tree-folder`. Biết rằng component con sẽ tạo nên nghịch lí là `tree-folder-contents`, chúng ta sẽ đợi đến hook vòng đời `beforeCreate` để đăng kí component này thay vì đăng kí ngay từ đầu:
 
 ``` js
 beforeCreate: function () {
@@ -1316,51 +1346,55 @@ beforeCreate: function () {
 }
 ```
 
-Problem solved!
+Thế là vấn đề đã được giải quyết!
 
-### Inline Templates
+### Inline Template
 
-When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
+Khi ta đặt thuộc tính đặc biệt `inline-template` vào một component con, component này sẽ dùng nội dung của nó làm template thay vì coi là nội dung được phân phối. Điều này giúp cho việc biên soạn template được linh hoạt hơn.
 
 ``` html
 <my-component inline-template>
   <div>
-    <p>These are compiled as the component's own template.</p>
-    <p>Not parent's transclusion content.</p>
+    <p>Những nội dung này được dùng làm template.</p>
   </div>
 </my-component>
 ```
 
-However, `inline-template` makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the `template` option or in a `template` element in a `.vue` file.
+Tuy nhiên, `inline-template` khiến cho scope của template khó quản lí và theo dõi hơn. Tốt nhất hãy luôn định nghĩa component với tùy chọn `template` hoặc sử dụng thẻ `template` trong một file `.vue`.
 
-### X-Templates
+### X-Template
 
-Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+Một cách nữa để định nghĩa template là chứa trong một thẻ `<script>` có thuộc tính `type` là `text/x-template`, sau đó tham chiếu đến template này bằng ID. Ví dụ:
 
 ``` html
-<script type="text/x-template" id="hello-world-template">
-  <p>Hello hello hello</p>
+<script type="text/x-template" id="teen-spirit-template">
+  <p>Hello hello hello how low</p>
 </script>
 ```
 
 ``` js
-Vue.component('hello-world', {
-  template: '#hello-world-template'
+Vue.component('teen-spirit', {
+  template: '#teen-spirit-template'
 })
 ```
 
-These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.
+Cách này có thể hữu ích cho những demo có template lớn hoặc cho những ứng dụng vô cùng nhỏ, nhưng với những trường hợp khác thì nên tránh,  vì template bị tách riêng ra khỏi phần còn lại của định nghĩa cho component.
 
-### Cheap Static Components with `v-once`
+### Component với `v-once`
 
-Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains **a lot** of static content. In these cases, you can ensure that it's only evaluated once and then cached by adding the `v-once` directive to the root element, like this:
+Vue render các phần tử HTML rất nhanh, nhưng đôi khi bạn muốn một component chứa **rất nhiều** nội dung tĩnh. Những lúc này, bạn có thể bảo đảm component được xử lí chỉ một lần rồi cache lại, bằng cách thêm directive `v-once` vào phần tử gốc của component như sau:
 
 ``` js
 Vue.component('terms-of-service', {
   template: '\
     <div v-once>\
-      <h1>Terms of Service</h1>\
-      ... a lot of static content ...\
+      <h1>Điều khoản dịch vụ</h1>\
+      ... Rất nhiều nội dung tĩnh ...\
+      ... mà thật sự ...\
+      ... không có ai ...\
+      ... buồn ...\
+      ... đọc ...\
+      ... cả ...\
     </div>\
   '
 })
