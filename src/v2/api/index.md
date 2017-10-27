@@ -1122,7 +1122,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Vea también:** [Vue.delete](#Vue-delete)
 
-## Instance Methods / Events
+## Métodos de instancia / Eventos
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
@@ -1132,9 +1132,9 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  Listen for a custom event on the current vm. Events can be triggered by `vm.$emit`. The callback will receive all the additional arguments passed into these event-triggering methods.
+  Se escucha a un evento personalizado en el vm actual. Los eventos pueden ser activados con `vm.$emit`. El callback recibirá todos los argumentos adicionales pasados a éstos métodos activadores de eventos.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   vm.$on('test', function (msg) {
@@ -1152,7 +1152,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
+  Se escucha a un evento personalizado, pero únicamente una vez. El listener será removido una vez sea activado por primera vez.
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
@@ -1162,13 +1162,13 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  Remove event listener(s).
+  Remueve el(los) listener(s) del evento.
 
-  - If no arguments are provided, remove all event listeners;
+  - Si se pasan argumentos, remueve todos los listeners de eventos;
 
-  - If only the event is provided, remove all listeners for that event;
+  - Si sólo se provee el evento, remueve todos los listeners para dicho evento;
 
-  - If both event and callback are given, remove the listener for that specific callback only.
+  - Si tanto el evento como el callback es dado, remueve el listener para ese callback específico.
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
@@ -1176,9 +1176,9 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   - `{string} event`
   - `[...args]`
 
-  Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
+  Activa un evento sobre la instancia actual. Cualquier argumento adicional será pasado a la función callback del listener.
 
-## Instance Methods / Lifecycle
+## Métodos de instancia / Ciclo de vida
 
 <h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
@@ -1186,43 +1186,43 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   - `{Element | string} [elementOrSelector]`
   - `{boolean} [hydrating]`
 
-- **Returns:** `vm` - the instance itself
+- **Returns:** `vm` - la instancia misma
 
 - **Modo de Uso:**
 
-  If a Vue instance didn't receive the `el` option at instantiation, it will be in "unmounted" state, without an associated DOM element. `vm.$mount()` can be used to manually start the mounting of an unmounted Vue instance.
+  Si una instancia Vue no recibió la opción `el` durante la instanciación, existirá en un estado "no-montado", sin un elemento DOM asociado. `vm.$mount()` puede ser usado para iniciar manualmente el montaje de una instancia Vue no montada.
 
-  If `elementOrSelector` argument is not provided, the template will be rendered as an off-document element, and you will have to use native DOM API to insert it into the document yourself.
+  Si el argumento `elementOrSelector` no es usado, la plantilla será renderizada como un elemento fuera del DOM, y se tendrá que usar el API DOM nativo para insertarlo en el documento.
 
-  The method returns the instance itself so you can chain other instance methods after it.
+  El método retorna la instancia misma, de modo que usted podrá encadenar otros métodos de instancia después.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   var MyComponent = Vue.extend({
     template: '<div>Hello!</div>'
   })
 
-  // create and mount to #app (will replace #app)
+  // crea y monta en #app (Reemplazará #app)
   new MyComponent().$mount('#app')
 
-  // the above is the same as:
+  // el código de arriba hace lo mismo que:
   new MyComponent({ el: '#app' })
 
-  // or, render off-document and append afterwards:
+  // o, renderiza fuera del DOM y es adicionado luego::
   var component = new MyComponent().$mount()
   document.getElementById('app').appendChild(component.$el)
   ```
 
-- **Vea también:**
-  - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
-  - [Server-Side Rendering](../guide/ssr.html)
+- **Vea También:**
+  - [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+  - [Renderizado en servidor](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
 - **Modo de Uso:**
 
-  Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
+  Obliga a la instancia Vue a ser renderizada de nuevo. Tenga en cuenta que esto no afecta todos los componentes hijos, únicamente a la instancia misma y a los componentes hijos con contenido insertado por slot:
 
 <h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
@@ -1231,11 +1231,11 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
+  Retrasa la ejecución del callback para ser ejecutado después del siguiente ciclo de atualización de DOM. Úselo inmediatamente después que haya cambiado datos que deban esperar la actualización de DOM. Ésta funcionalidad es la misma que ofrece `Vue.nextTick`, con la excepción que el contexto `this` del callback es automáticamente asignado a la instancia que hace el llamado a ésta función.
 
-  > New in 2.1.0: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > Nuevo en 2.1.0: retorna un Promise si no se ha definido un callback y Promise sea soportado en el ambiente de ejecución.
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
   new Vue({
@@ -1243,12 +1243,12 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
     methods: {
       // ...
       example: function () {
-        // modify data
+        // modifica los datos
         this.message = 'changed'
-        // DOM is not updated yet
+        // el DOM no ha sido actualizado todavía
         this.$nextTick(function () {
-          // DOM is now updated
-          // `this` is bound to the current instance
+          // el DOM está actualizado
+          // la instancia actual está asignada a `this`
           this.doSomethingElse()
         })
       }
@@ -1258,19 +1258,19 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Vea también:**
   - [Vue.nextTick](#Vue-nextTick)
-  - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+  - [Cola de actualización asíncrona](../guide/reactivity.html#Async-Update-Queue)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
 - **Modo de Uso:**
 
-  Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.
+  Destruye completamente un vm. Limpia todas sus conexionas a otros vm que existan, desasignando todas sus directivas, desactiva todos sus listeners de eventos.
 
-  Triggers the `beforeDestroy` and `destroyed` hooks.
+  Activa los hooks `beforeDestroy` y `destroyed`.
 
-  <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
+  <p class="tip">En casos de uso normal usted no debe necesitar llamar este método. Es preferible controlar el ciclo de vida de todos los componentes hijos de una forma orientada por datos usando `v-if` y `v-for`.</p>
 
-- **Vea también:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea También:** [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ## Directives
 
