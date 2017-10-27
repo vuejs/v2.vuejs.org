@@ -1000,7 +1000,7 @@ Trong một component con, bạn có thể truyền dữ liệu vào slot giốn
 </div>
 ```
 
-Trong đối tượng cha, một phần tử `<template>` với thuộc tính đặc biệt `scope` phải được khai báo, chỉ rõ rằng đây là một scoped slot. Giá trị của `scope` là tên của một biến tạm chứa object props được truyền từ component con:
+Trong đối tượng cha, một phần tử `<template>` với thuộc tính đặc biệt `slot-scope` phải được khai báo, chỉ rõ rằng đây là template cho một scoped slot. Giá trị của `slot-scope` sẽ được dùng làm tên của một biến tạm chứa object props được truyền từ component con:
 
 ``` html
 <div class="parent">
@@ -1025,6 +1025,8 @@ Kết quả được render của ví dụ trên sẽ là:
 </div>
 ```
 
+> Từ bản 2.5.0 trở đi, `slot-scope` có thể được dùng trên bất kì phần tử web hoặc component nào, không chỉ `<template>`.
+
 Một ví dụ điển hình hơn cho scoped slot là một danh sách các component cho phép người dùng tùy biến hiển thị của từng item:
 
 ``` html
@@ -1046,6 +1048,16 @@ Và đây là template của component `my-awesome-list`:
     <!-- nội dung dự phòng -->
   </slot>
 </ul>
+```
+
+#### Destructure
+
+Giá trị của `slot-scope` thật ra là một biểu thức JavaScript hợp lệ – có thể dùng làm tham số cho một hàm. Điều này có nghĩa là trong các môi trường được hỗ trợ (như single-file component hay các trình duyệt hiện đại) bạn có thể dùng tính năng destructure của ES2015 trong biểu thức:
+
+``` html
+<child>
+  <span slot-scope="{ text }">{{ text }}</span>
+</child>
 ```
 
 ## Component động
@@ -1180,6 +1192,7 @@ Bạn cũng có thể trả về một `Promise` bên trong hàm factory, nên v
 ``` js
 Vue.component(
   'async-webpack-example',
+  // Hàm `import` trả về một `Promise`.
   () => import('./my-async-component')
 )
 ```

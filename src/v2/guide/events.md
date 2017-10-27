@@ -40,7 +40,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Phương thức xử lí sự kiện 
+## Phương thức xử lí sự kiện
 
 Trong thực tế, logic để xử lí sự kiện thường phức tạp hơn, vì thế chứa JavaScript trực tiếp trong giá trị của thuộc tính `v-on` như trên là không khả thi. Đó là lí do `v-on` cũng có thể nhận tên của một phương thức mà bạn muốn gọi. Ví dụ:
 
@@ -174,14 +174,14 @@ Trong rất nhiều trường hợp, chúng ta cần gọi `event.preventDefault
 - `.once`
 
 ``` html
-<!-- 
-  sự kiện click sẽ không được propagate (lan truyền) 
+<!--
+  sự kiện click sẽ không được propagate (lan truyền)
   điều này tương đương với event.stopPropagation()
 -->
 <a v-on:click.stop="doThis"></a>
 
-<!-- 
-  sự kiện submit sẽ không reload trang 
+<!--
+  sự kiện submit sẽ không reload trang
   điều này tương đương với event.preventDefault()
 -->
 <form v-on:submit.prevent="onSubmit"></form>
@@ -192,15 +192,15 @@ Trong rất nhiều trường hợp, chúng ta cần gọi `event.preventDefault
 <!-- chỉ có modifier, không có phương thức xử lí -->
 <form v-on:submit.prevent></form>
 
-<!-- 
+<!--
   dùng "capture mode" khi thêm event listener
-  nghĩa là một sự kiện xảy ra với một phần tử bên trong sẽ được xử lí ở đây 
+  nghĩa là một sự kiện xảy ra với một phần tử bên trong sẽ được xử lí ở đây
   trước khi được xử lí bởi phần tử đó
   đọc thêm về event capturing: https://javascript.info/bubbling-and-capturing#capturing
 -->
 <div v-on:click.capture="doThis">...</div>
 
-<!-- 
+<!--
   chỉ kích hoạt phương thức xử lí nếu event.target là chính phần tử được click,
   chứ không phải là một phần tử con
 -->
@@ -256,7 +256,21 @@ Bạn cũng có thể [tự định nghĩa alias cho key modifier](../api/#keyCo
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Các phím modifier
+### Key modifier tự động
+
+> 2.5.0+
+
+Bạn cũng có thể sử dụng bất kì [tên phím hợp lệ](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) nào để làm modifier bằng cách chuyển sang kebab-case:
+
+``` html
+<input @keyup.page-down="onPageDown">
+```
+
+Trong ví dụ trên, hàm `onPageDown` chỉ được gọi nếu `$event.key === 'PageDown'`.
+
+<p class="tip">Một số ít phím (`esc` và các phím mũi tên) có giá trị `key` không thống nhất trên IE9. Nếu cần hỗ trợ IE9, bạn nên dùng các alias như trên đây.</p>
+
+## Các phím modifier hệ thống
 
 > Từ phiên bản 2.1.0 trở đi
 
@@ -280,6 +294,20 @@ Ví dụ:
 ```
 
 <p class="tip">Các phím modifier có cách hoạt động khác với phím thông thường, và khi dùng với sự kiện `keyup`, phím modifier phải được nhấn khi sự kiện được phát ra. Nói một cách khác, `keyup.ctrl` sẽ chỉ được kích hoạt khi bạn thả một phím khi vẫn đang ấn phím `ctrl`. Sự kiện này sẽ không được kích hoạt nếu bạn chỉ thả một mình phím `ctrl`.</p>
+
+### Modifier `.exact`
+
+> 2.5.0+
+
+Modifier `.exact` (chính xác) có thể được sử dụng kết hợp với các modifier khác để chỉ rõ rằng hàm xử lí sự kiện chỉ nên được thực thi khi _chính xác_ tổ hợp phím/chuột đó được bấm.
+
+``` html
+<!-- onClick vẫn sẽ được gọi nếu người dùng nhấn thêm phím Alt hoặc Shift -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- onClick chỉ được gọi nếu chỉ phím Ctrl được nhấn -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+```
 
 ### Modifier cho phím chuột
 

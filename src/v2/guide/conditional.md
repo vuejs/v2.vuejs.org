@@ -172,7 +172,7 @@ Một lựa chọn nữa cho việc hiện hoặc ẩn một phần tử web the
 
 Điểm khác biệt giữa `v-show` và `v-if` là phần tử được đánh dấu với `v-show` sẽ luôn luôn được render và chứa trong DOM; `v-show` chỉ bật tắt thuộc tính `display` của phần tử này.
 
-<p class="tip">`v-show` không hỗ trợ cú pháp `<template>` và cũng không hoạt động với `v-else`.</p>
+<p class="tip">`v-show` không hỗ trợ thẻ `<template>` và cũng không hoạt động với `v-else`.</p>
 
 ## `v-if` và `v-show` – khi nào thì dùng gì
 

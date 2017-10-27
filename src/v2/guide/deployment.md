@@ -46,6 +46,22 @@ module.exports = {
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   ```
 
+- Hoặc, khi dùng [envify](https://github.com/hughsk/envify) với Gulp:
+
+  ``` js
+  // dùng module envify/custom để chỉ định biến môi trường
+  var envify = require('envify/custom')
+
+  browserify(browserifyOptions)
+    .transform(vueify),
+    .transform(
+      // cần thiết để xử lí các file trong node_modules
+      { global: true },
+      envify({ NODE_ENV: 'production' })
+    )
+    .bundle()
+  ```
+
 #### Rollup
 
 Dùng [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):

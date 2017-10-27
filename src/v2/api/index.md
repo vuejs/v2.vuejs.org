@@ -105,7 +105,7 @@ type: api
 
 ### ignoredElements
 
-- **Type:** `Array<string>`
+- **Type:** `Array<string | RegExp>`
 
 - **Default:** `[]`
 
@@ -113,7 +113,11 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'my-custom-web-component',
+    'another-web-component',
+    // Use a `RegExp` to ignore all elements that start with "ion-"
+    // 2.5+ only
+    /^ion-/
   ]
   ```
 
@@ -595,7 +599,8 @@ type: api
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (val, oldVal) {
@@ -607,6 +612,11 @@ type: api
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
+      },
+      // the callback will be called immediately after the start of the observation
+      d: {
+        handler: function (val, oldVal) { /* ... */ },
+        immediate: true
       }
     }
   })
@@ -850,6 +860,28 @@ type: api
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
+### errorCaptured
+
+> New in 2.5.0+
+
+- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+
+- **Details:**
+
+  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+
+  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+
+  **Error Propagation Rules**
+
+  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+
+  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+
+  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+
+  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+
 ## Options / Assets
 
 ### directives
@@ -948,7 +980,7 @@ type: api
 
 - **Type:**
   - **provide:** `Object | () => Object`
-  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
 - **Details:**
 
@@ -1022,6 +1054,42 @@ type: api
     data () {
       return {
         bar: this.foo
+      }
+    }
+  }
+  ```
+
+  > In 2.5.0+ injections can be optional with default value:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: { default: 'foo' }
+    }
+  }
+  ```
+
+  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: 'foo'
+      }
+    }
+  }
+  ```
+
+  Similar to prop defaults, you need to use a factory function for non primitive values:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: () => [1, 2, 3]
       }
     }
   }
@@ -2048,6 +2116,18 @@ type: api
   For detailed usage, see the guide section linked below.
 
 - **See also:** [Named Slots](../guide/components.html#Named-Slots)
+
+### slot-scope
+
+- **Expects:** `function argument expression`
+
+- **Usage:**
+
+  Use to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression.
+
+  This attribute does not support dynamic binding.
+
+- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
 
 ### is
 
