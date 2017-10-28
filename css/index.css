@@ -582,15 +582,18 @@ body.docs #nav {
 }
 .sidebar .main-sponsor .logo {
   color: #7f8c8d;
-  margin: 10px 0;
-  padding: 10px 0;
+  margin-top: 20px;
   text-align: center;
   font-weight: bold;
+  display: block;
+}
+.sidebar .main-sponsor .logo:last-child {
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 .sidebar .main-sponsor img,
 .sidebar .main-sponsor a {
   width: 125px;
-  display: inline-block;
 }
 .sidebar .become-backer {
   border: 1px solid #42b983;

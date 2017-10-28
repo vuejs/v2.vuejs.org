@@ -258,9 +258,12 @@
     </ul>
     <div class="list">
       <div class="main-sponsor">
-        <span>Platinum Sponsor</span><br>
+        <span>Platinum Sponsors</span><br>
         <a href="https://stdlib.com" target="_blank" class="logo">
           <img src="/images/stdlib.png">
+        </a>
+        <a href="http://tooltwist.com/" target="_blank" class="logo">
+          <img src="/images/tooltwist.png">
         </a>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -946,7 +949,7 @@ new Vue({
 <p class="tip">A few keys (<code>.esc</code> and all arrow keys) have inconsistent <code>key</code> values in IE9, their built-in aliases should be preferred if you need to support IE9.</p>
 
 <h2 id="System-Modifier-Keys"><a href="#System-Modifier-Keys" class="headerlink" title="System Modifier Keys"></a>System Modifier Keys</h2><blockquote>
-<p>New in 2.1.0</p>
+<p>New in 2.1.0+</p>
 </blockquote>
 <p>You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:</p>
 <ul>
@@ -963,7 +966,7 @@ new Vue({
 <p class="tip">Note that modifier keys are different from regular keys and when used with <code>keyup</code> events, they have to be pressed when the event is emitted. In other words, <code>keyup.ctrl</code> will only trigger if you release a key while holding down <code>ctrl</code>. It won’t trigger if you release the <code>ctrl</code> key alone.</p>
 
 <h3 id="exact-Modifier"><a href="#exact-Modifier" class="headerlink" title=".exact Modifier"></a><code>.exact</code> Modifier</h3><blockquote>
-<p>New in 2.5.0</p>
+<p>New in 2.5.0+</p>
 </blockquote>
 <p>The <code>.exact</code> modifier should be used in combination with other system modifiers to indicate that the exact combination of modifiers must be pressed for the handler to fire.</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- this will fire even if Alt or Shift is also pressed --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.ctrl</span>=<span class="string">"onClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- this will only fire when only Ctrl is pressed --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.ctrl.exact</span>=<span class="string">"onCtrlClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>

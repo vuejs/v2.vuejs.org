@@ -258,9 +258,12 @@
     </ul>
     <div class="list">
       <div class="main-sponsor">
-        <span>Platinum Sponsor</span><br>
+        <span>Platinum Sponsors</span><br>
         <a href="https://stdlib.com" target="_blank" class="logo">
           <img src="/images/stdlib.png">
+        </a>
+        <a href="http://tooltwist.com/" target="_blank" class="logo">
+          <img src="/images/tooltwist.png">
         </a>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -373,7 +376,7 @@
 <li><p><strong>Default:</strong> <code>[]</code></p>
 </li>
 <li><p><strong>Usage:</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.config.ignoredElements = [</div><div class="line">  <span class="string">'my-custom-web-component'</span>,</div><div class="line">  <span class="string">'another-web-component'</span>,</div><div class="line">  <span class="comment">// Use a RegExp to ignore all elements that start with "ion-"</span></div><div class="line">  <span class="comment">// 2.5+ only</span></div><div class="line">  /^ion-<span class="regexp">/</span></div><div class="line"><span class="regexp">]</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.config.ignoredElements = [</div><div class="line">  <span class="string">'my-custom-web-component'</span>,</div><div class="line">  <span class="string">'another-web-component'</span>,</div><div class="line">  <span class="comment">// Use a `RegExp` to ignore all elements that start with "ion-"</span></div><div class="line">  <span class="comment">// 2.5+ only</span></div><div class="line">  /^ion-<span class="regexp">/</span></div><div class="line"><span class="regexp">]</span></div></pre></td></tr></table></figure>
 <p>Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an <code>Unknown custom element</code>, assuming that you forgot to register a global component or misspelled a component name.</p>
 </li>
 </ul>
@@ -857,7 +860,7 @@
 <li><p><strong>Type:</strong> <code>(err: Error, vm: Component, info: string) =&gt; ?boolean</code></p>
 </li>
 <li><p><strong>Details:</strong></p>
-<p>Called when an error from any desendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return <code>false</code> to stop the error from propagating further.</p>
+<p>Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return <code>false</code> to stop the error from propagating further.</p>
 <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
 
 <p><strong>Error Propagation Rules</strong></p>
@@ -868,7 +871,7 @@
 </li>
 <li><p>If the <code>errorCaptured</code> hook itself throws an error, both this error and the original captured error are sent to the global <code>config.errorHandler</code>.</p>
 </li>
-<li><p>An <code>errorCaptured</code> hook can return <code>false</code> to prevent the error from propagating further. This is essentially syaing “this error has been handled and should be ignored.” It will prevent any additional <code>errorCaptured</code> hooks or the global <code>config.errorHandler</code> from being invoked for this error.</p>
+<li><p>An <code>errorCaptured</code> hook can return <code>false</code> to prevent the error from propagating further. This is essentially saying “this error has been handled and should be ignored.” It will prevent any additional <code>errorCaptured</code> hooks or the global <code>config.errorHandler</code> from being invoked for this error.</p>
 </li>
 </ul>
 </li>

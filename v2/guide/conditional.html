@@ -258,9 +258,12 @@
     </ul>
     <div class="list">
       <div class="main-sponsor">
-        <span>Platinum Sponsor</span><br>
+        <span>Platinum Sponsors</span><br>
         <a href="https://stdlib.com" target="_blank" class="logo">
           <img src="/images/stdlib.png">
+        </a>
+        <a href="http://tooltwist.com/" target="_blank" class="logo">
+          <img src="/images/tooltwist.png">
         </a>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -919,7 +922,7 @@ new Vue({
 <h2 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h2><p>Another option for conditionally displaying an element is the <code>v-show</code> directive. The usage is largely the same:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">"ok"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>The difference is that an element with <code>v-show</code> will always be rendered and remain in the DOM; <code>v-show</code> only toggles the <code>display</code> CSS property of the element.</p>
-<p class="tip">Note that <code>v-show</code> doesn’t support the <code>&lt;template&gt;</code> syntax, nor does it work with <code>v-else</code>.</p>
+<p class="tip">Note that <code>v-show</code> doesn’t support the <code>&lt;template&gt;</code> element, nor does it work with <code>v-else</code>.</p>
 
 <h2 id="v-if-vs-v-show"><a href="#v-if-vs-v-show" class="headerlink" title="v-if vs v-show"></a><code>v-if</code> vs <code>v-show</code></h2><p><code>v-if</code> is “real” conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.</p>
 <p><code>v-if</code> is also <strong>lazy</strong>: if the condition is false on initial render, it will not do anything - the conditional block won’t be rendered until the condition becomes true for the first time.</p>
