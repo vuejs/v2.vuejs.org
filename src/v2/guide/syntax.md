@@ -95,7 +95,7 @@ Ici, la directive `v-if` retirerait / insèrerait l'élément `<p>` selon que l'
 Certaines directives peuvent prendre un "argument", indiqué par un deux-points après le nom de la directive. Par exemple, la directive `v-bind` est utilisée pour mettre à jour réactivement un attribut HTML :
 
 ``` html
-<a v-bind:href="url"></a>
+<a v-bind:href="url"> ... </a>
 ```
 
 Ici `href` est un argument, qui dit à la directive `v-bind` de lier l'attribut `href` de l'élément à la valeur de l'expression `url`.
@@ -103,7 +103,7 @@ Ici `href` est un argument, qui dit à la directive `v-bind` de lier l'attribut 
 Un autre exemple est la directive `v-on`, qui écoute les évènements du DOM :
 
 ``` html
-<a v-on:click="doSomething">
+<a v-on:click="doSomething"> ... </a>
 ```
 
 Ici l'argument est le nom de l'évènement à écouter. Nous parlerons aussi plus en détail de la gestion des évènements.
@@ -113,7 +113,7 @@ Ici l'argument est le nom de l'évènement à écouter. Nous parlerons aussi plu
 Les modificateurs sont des suffixes spéciaux indiqués par un point, qui indique qu'une directive devrait être liée d'une manière spécifique. Par exemple, le modificateur `.prevent` dit à la directive `v-on` d'appeler `event.preventDefault()` lorsque l'évènement survient.
 
 ``` html
-<form v-on:submit.prevent="onSubmit"></form>
+<form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
 Nous verrons plus de cas d'utilisation des modificateurs plus loin quand nous porterons un regard plus attentif sur [`v-on`](events.html#Event-Modifiers) et [`v-model`](events.html#Modificateurs-d’evenements).
@@ -126,20 +126,20 @@ Le préfixe `v-` sert d'indicateur visuel pour identifier les attributs spécifi
 
 ``` html
 <!-- syntaxe complète -->
-<a v-bind:href="url"></a>
+<a v-bind:href="url"> ... </a>
 
 <!-- abréviation -->
-<a :href="url"></a>
+<a :href="url"> ... </a>
 ```
 
 ### Abréviation pour `v-on`
 
 ``` html
 <!-- syntaxe complète -->
-<a v-on:click="doSomething"></a>
+<a v-on:click="doSomething"> ... </a>
 
 <!-- abréviation -->
-<a @click="doSomething"></a>
+<a @click="doSomething"> ... </a>
 ```
 
 Cela peut paraitre un peu différent du HTML classique, mais `:` et `@` sont des caractères valides pour des noms d'attributs et tous les navigateurs supportés par Vue.js peuvent l'interpréter correctement. De plus, ils n'apparaissent pas dans le balisage final. La syntaxe abrégée est totalement optionnelle, mais vous allez probablement l'apprécier quand vous en apprendrez plus sur son utilisation plus loin.

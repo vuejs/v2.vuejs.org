@@ -105,7 +105,7 @@ type : api
 
 ### ignoredElements
 
-- **Type :** `Array<string>`
+- **Type :** `Array<string | RegExp>`
 
 - **Par défaut :** `[]`
 
@@ -113,7 +113,11 @@ type : api
 
   ``` js
   Vue.config.ignoredElements = [
-    'mon-web-component', 'un-autre-web-component'
+    'mon-web-component',
+    'un-autre-web-component',
+    // Utilisez une `RegExp` pour ignorer tous les éléments qui commencent par « ion- »
+    // 2.5+ seulement
+    /^ion-/
   ]
   ```
 
@@ -595,7 +599,8 @@ type : api
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (valeur, ancienneValeur) {
@@ -607,6 +612,11 @@ type : api
       c: {
         handler: function (valeur, ancienneValeur) { /* ... */ },
         deep: true
+      },
+      // la fonction de rappel va être appelée immédiatement après le début de l'observation
+      d: {
+        handler: function (valeur, ancienneValeur) { /* ... */ },
+        immediate: true
       }
     }
   })
@@ -850,6 +860,28 @@ type : api
 
 - **Voir aussi :** [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
 
+### errorCaptured
+
+> Nouveau dans la 2.5.0+
+
+- **Type :** `(err: Error, vm: Component, info: string) => ?boolean`
+
+- **Détails :**
+
+  Appelé quand une erreur provenant de n'importe quel composant enfant est capturée. Le hook reçoit trois arguments : l'erreur, l'instance du composant qui a déclenché l'erreur et une chaine de caractères contenant des informations sur l'endroit où l'erreur a été capturée. Le hook peut retourner `false` pour arrêter la propagation de l'erreur.
+
+  <p class="tip">Vous pouvez modifier l'état du composant dans ce hook. Il est cependant important d'avoir une condition dans votre template ou fonction de rendu qui court-circuite les autres composants quand une erreur est capturée. Autrement le composant va partir dans une boucle de rendu infinie.</p>
+
+  **Règles de propagation d'erreur**
+
+  - Par défaut, toutes les erreurs sont toujours envoyées à l'objet global `config.errorHandler` s'il est défini. Donc ces erreurs peuvent toujours être reportées à un service d'analyse centralisé.
+
+  - Si des hooks `errorCaptured` multiples existent sur une chaine de composant hérité ou sur une chaine parente, toutes seront invoquées avec la même erreur.
+
+  - Si le hook `errorCaptured` renvoie lui-même une erreur, l'erreur originalement capturée et l'erreur courante seront toutes deux envoyées au `config.errorHandler` global.
+
+  - Un hook `errorCaptured` peut retourner `false` pour empêcher la propagation de l'erreur vers le haut. Il est essentiel d'indiquer que « cette erreur a été traitée et doit être ignorée ». Cela empèchera n'importe quel hook `errorCaptured` supplémentaire ou le `config.errorHandler` d'être invoqué par cette erreur.
+
 ## Options / Ressources
 
 ### directives
@@ -948,7 +980,7 @@ type : api
 
 - **Type :**
   - **provide :** `Object | () => Object`
-  - **inject :** `Array<string> | { [key: string]: string | Symbol }`
+  - **inject :** `Array<string> | { [key: string]: string | Symbol | Object }`
 
 - **Détails :**
 
@@ -1022,6 +1054,42 @@ type : api
     data () {
       return {
         bar: this.foo
+      }
+    }
+  }
+  ```
+
+  > Dans la 2.5.0+ les injections peuvent être optionnelles avec une valeur par défaut :
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: { default: 'foo' }
+    }
+  }
+  ```
+
+  S'il est nécessaire de de pouvoir injecter via une propriété avec un nom différent, utilisez `from` pour indiquer la source de la propriété :
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: 'foo'
+      }
+    }
+  }
+  ```
+
+  De façon similaire aux valeurs par défaut des props, vous devez utiliser une fabrique de fonctions pour les valeurs non primitives :
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: () => [1, 2, 3]
       }
     }
   }
@@ -2048,6 +2116,18 @@ type : api
   Pour un usage détaillé, veuillez consulter la section du guide en lien ci-dessous.
 
 - **Voir aussi :** [Slots nommés](../guide/components.html#Slots-nommes)
+
+### slot-scope
+
+- **Attend comme valeur :** `function argument expression`
+
+- **Utilisation :**
+
+  Utilisé pour indiquer qu'un élément ou un composant a un slot avec portée. La valeur de l'attribut doit être une expression JavaScript valide qui apparaît à la position d'un argument dans la déclaration d'une fonction. Cela signifie que dans les environnements qui la supportent, vous pouvez utiliser une expression de destructuration dans l'expression.
+
+  Cet attribut ne supporte pas les liaisons dynamiques.
+
+- **Voir aussi :** [Slots avec portée](../guide/components.html#Slots-avec-portee)
 
 ### is
 

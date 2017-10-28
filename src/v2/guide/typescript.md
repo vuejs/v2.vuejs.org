@@ -4,11 +4,7 @@ type: guide
 order: 404
 ---
 
-## Changements importants dans la 2.2.0+ pour les utilisateurs TS + webpack 2
-
-Dans Vue 2.2.0+ nous avons introduit des fichiers de distribution en tant que modules ES, qui seront utilisés par défaut par webpack 2. Malheureusement, cela a introduit un changement de non-rétrocompatibilité non souhaité car avec TypeScript + webpack 2, `import Vue = require('vue')` retourne maintenant un objet module ES synthétique au lieu de Vue lui-même.
-
-Nous avons prévu de bouger toutes les déclarations officielles d'export dans le style ES dans le futur. Veuillez consulter [la configuration recommandée](#Configuration-recommandee) ci-dessous qui est parée pour les évolutions futures.
+> Dans Vue 2.5.0+ nous avons grandement amélioré nos déclarations de types pour fonctionner avec l'API par défaut basée sur les objets. Cela a également introduit quelques changements qui requièrent une intervention manuelle. Lisez [ce billet de blog](https://medium.com/@OrchardID/changements-typescript-%C3%A0-venir-dans-vue-2-5-1a5568402b5b) pour plus de détails.
 
 ## Déclaration officielle dans les packages npm
 
@@ -16,105 +12,69 @@ Un système de typage statique peut aider à prévenir des erreurs d'exécutions
 
 Puisque ceux-ci sont [publiés sur npm](https://cdn.jsdelivr.net/npm/vue/types/), et que la dernière version de TypeScript sait comment résoudre des déclarations de type dans des packages npm, cela signifie qu'installer ceux-ci via npm ne requiert aucun outil supplémentaire pour utiliser TypeScript avec Vue.
 
+Nous avons également planifié de fournir prochainement une option dans `vue-cli` pour installer un projet Vue + TypeScript prêt à l'emploi.
+
 ## Configuration recommandée
 
 ``` js
 // tsconfig.json
 {
   "compilerOptions": {
-    // ... les autres options sont omises
-    "allowSyntheticDefaultImports": true,
-    "lib": [
-      "dom",
-      "es5",
-      "es2015.promise"
-    ]
-  }
-}
-```
-
-Notez que l'option `allowSyntheticDefaultImports` nous permet d'utiliser l'import comme ceci :
-
-``` js
-import Vue from 'vue'
-```
-
-plutôt que comme cela :
-
-``` js
-import Vue = require('vue')
-```
-
-La première (syntaxe de module ES) est recommandée car elle est cohérente avec les recommandations d'usage ES. Nous planifions à l'avenir de changer toutes les déclarations officielles pour utiliser les exports dans le style ES.
-
-De plus, si vous utilisez TypeScript avec webpack 2, les options suivantes sont également recommandées :
-
-``` js
-{
-  "compilerOptions": {
-    // ... les autres options sont omises
+    // alignement avec le support navigateur de Vue
+    "target": "es5",
+    // activation de la déduction stricte pour les propriétés de données sur `this`
+    "strict": true,
+    // si vous utilisez webpack 2+ ou rollup, permettre le tree shaking :
     "module": "es2015",
     "moduleResolution": "node"
   }
 }
 ```
 
-Ceci demande à TypeScript de laisser les instructions d'import de modules ES intactes, ce qui permet à webpack 2 de tirer parti du *tree-shaking* basé sur les modules ES.
+Notez que vous devez inclure `strict: true` (ou au moins `noImplicitThis: true` qui est une partie de `strict`) pour activer la vérification de type de `this` dans les méthodes de composant, autrement il sera toujours traiter comme un type `any`.
 
 Voir [les options de compilation TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html) pour plus de détails.
 
-## Utiliser la déclaration de type Vue
+## Outils de développement
 
-La définition de type de Vue exporte de nombreuses [déclarations de type](https://github.com/vuejs/vue/blob/dev/types/index.d.ts) utiles. Par exemple, pour annoter l'objet d'options d'un composant exporté (par ex. dans un fichier `.vue`) :
+Pour développer des applications Vue avec TypeScript, nous recommandons fortement d'utiliser [Visual Studio Code](https://code.visualstudio.com/) qui fournit un support de TypeScript nativement.
 
-``` ts
-import Vue, { ComponentOptions } from 'vue'
+Si vous utilisez des [composants monofichiers](./single-file-components.html), utilisez la super [extension Vetur](https://github.com/vuejs/vetur) qui fournit des déductions TypeScript à l'intérieur de vos composants monofichiers et bien d'autres fonctionnalités extras.
 
-export default {
-  props: ['message'],
-  template: '<span>{{ message }}</span>'
-} as ComponentOptions<Vue>
-```
+## Utilisation de base
 
-## Composants Vue sous forme de classe
-
-Les options de composant Vue peuvent facilement être annotées avec des types :
+Pour laisser TypeScript déduire proprement les types dans les options des composants Vue, vous devez définir vos composants avec `Vue.component` ou `Vue.extend` :
 
 ``` ts
-import Vue, { ComponentOptions }  from 'vue'
+import Vue from 'vue'
 
-// Déclarer le type de composant
-interface MyComponent extends Vue {
-  message: string
-  onClick (): void
+const Component = Vue.extend({
+  // déduction de type activée
+})
+
+const Component = {
+  // ceci N'aura PAS la déduction de type,
+  // car TypeScript ne peut pas savoir qu'il s'agit d'options pour un composant Vue.
 }
-
-export default {
-  template: '<button @click="onClick">Click!</button>',
-  data: function () {
-    return {
-      message: 'Bonjour !'
-    }
-  },
-  methods: {
-    onClick: function () {
-      // TypeScript sait que `this` est de type `MyComponentTypeScript`
-      // et que `this.message` sera une chaine de caractères
-      window.alert(this.message)
-    }
-  }
-// Nous devons explicitement annoter l'objet d'options exporté
-// avec le type `MyComponent`
-} as ComponentOptions<MyComponent>
 ```
 
-Malheureusement, il y a quelques limitations ici :
+Notez qu'en utilisant Vetur avec les composants monofichiers, la déduction de type va automatiquement appliquer un export par défaut. Il n'y a donc pas besoin d'encadrement avec `Vue.extend` :
 
-- __TypeScript ne peut pas déduire tous les types de l'API de Vue__ Par exemple, il ne sait pas que la propriété `message` renvoyée dans notre fonction `data` sera ajoutée à l'instance `MyComponent`. Cela signifie que si nous attribuons un nombre ou une valeur booléenne à `message`, les linters et les compilateurs ne seraient pas en mesure d'émettre une erreur, en pointant le fait qu'il s'agit normalement d'une chaine de caractères.
+``` html
+<template>
+  ...
+</template>
 
-- À cause de la précédente limitation, __l'annotation de types peut être verbeuse__. La seule raison pour laquelle nous devons déclarer manuellement `message` en tant que chaine de caractères est parce que TypeScript ne peut pas déduire le type dans ce cas.
+<script lang="ts">
+export default {
+  // déduction de type activée
+}
+</script>
+```
 
-Fort heureusement, [vue-class-component](https://github.com/vuejs/vue-class-component) peut résoudre ses deux problèmes. C'est une bibliothèque de support officielle qui permet de déclarer les composants comme des classes natives en JavaScript, avec le décorateur `@Component`. Pour l'exemple, réécrivons le composant ci-dessus :
+## Composants Vue basés sur les classes
+
+Si vous préférez une API basée sur les classes quand vous déclarez des composants, vous pouvez utiliser le décorateur officiel [vue-class-component](https://github.com/vuejs/vue-class-component) :
 
 ``` ts
 import Vue from 'vue'
@@ -135,8 +95,6 @@ export default class MyComponent extends Vue {
   }
 }
 ```
-
-Avec cette syntaxe alternative, nos définitions de composant ne sont pas seulement plus courtes, mais TypeScript peut aussi connaitre les types de `message` et `onClick` avec des interfaces de déclarations explicites. Cette stratégie peut même vous permettre de gérer des types pour les propriétés calculées, les hooks de cycle de vie et les fonctions de rendu. Pour une utilisation plus détaillée, référez-vous à [la documentation de vue-class-component](https://github.com/vuejs/vue-class-component#vue-class-component).
 
 ## Déclaration des types des plugins Vue
 
@@ -172,9 +130,9 @@ import Vue from 'vue'
 
 declare module 'vue/types/vue' {
   // Les propriétés globales peuvent être déclarées
-  // en utilisant `namespace` au lieu de `interface`
-  namespace Vue {
-    const $myGlobal: string
+  // sur l'interface `VueConstructor`
+  interface VueConstructor {
+    $myGlobal: string
   }
 }
 

@@ -971,12 +971,12 @@ Dans un composant enfant, passez simplement les données via le slot de la même
 </div>
 ```
 
-Dans le parent, un élément `<template>` avec un attribut spécial `scope` indique que c'est un template pour un slot avec portée. La valeur de `scope` est le nom de la variable temporaire qui contient l'objet des props passé à l'enfant :
+Dans le parent, un élément `<template>` avec un attribut spécial `slot-scope` indique que c'est un template pour un slot avec portée. La valeur de `slot-scope` est le nom de la variable temporaire qui contient l'objet des props passé à l'enfant :
 
 ``` html
 <div class="parent">
   <child>
-    <template scope="props">
+    <template slot-scope="props">
       <span>bonjour du parent</span>
       <span>{{ props.text }}</span>
     </template>
@@ -995,14 +995,19 @@ Si nous faisons le rendu de ce qui précède, la sortie sera :
 </div>
 ```
 
+> Dans la 2.5.0+, `slot-scope` n'est plus limité à `<template>` et peut-être utilisé avec n'importe quel élément ou composant.
+
 Un cas d'utilisation plus typique des slots avec portée serait un composant de liste qui permettrait à l'utilisateur du composant de personnaliser la manière de faire le rendu de chaque élément de la liste :
 
 ``` html
 <my-awesome-list :items="items">
   <!-- le slot avec portée peut également être nommé -->
-  <template slot="item" scope="props">
-    <li class="my-fancy-item">{{ props.text }}</li>
-  </template>
+  <li
+    slot="item"
+    slot-scope="props"
+    class="my-fancy-item">
+    {{ props.text }}
+  </li>
 </my-awesome-list>
 ```
 
@@ -1016,6 +1021,16 @@ Et le template pour le composant de liste :
     <!-- contenu par défaut ici -->
   </slot>
 </ul>
+```
+
+#### Destructuration
+
+La valeur de `scope-slot` est en fait une expression JavaScript valide qui apparait à la position d'un argument dans la déclaration d'une fonction. Cela signifie que sur les environnements supportés (dans les composants monofichiers ou dans les navigateurs modernes) vous pouvez aussi utiliser la destructuration ES2015 dans une expression :
+
+``` html
+<child>
+  <span slot-scope="{ text }">{{ text }}</span>
+</child>
 ```
 
 ## Composants dynamiques
@@ -1150,6 +1165,7 @@ Vous pouvez également retourner une `Promise` (promesse) dans la fabrique de fo
 ``` js
 Vue.component(
   'async-webpack-example',
+  // La fonction `import` retourne un objet `Promise`.
   () => import('./my-async-component')
 )
 ```

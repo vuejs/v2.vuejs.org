@@ -940,7 +940,7 @@ OR
 
 ### Component name casing in JS/JSX <sup data-p="b">strongly recommended</sup>
 
-**Component names in JS/[JSX](../guide/render-function.html#JSX) should always be PascalCase, though may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
+**Component names in JS/[JSX](../guide/render-function.html#JSX) should always be PascalCase, though they may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
 
 {% raw %}
 <details>

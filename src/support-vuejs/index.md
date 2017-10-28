@@ -59,7 +59,7 @@ Cependant, les efforts nécessaires à la maintenance et au développement de no
   </a><a href="https://onsen.io/vue/" target="_blank" style="width: 125px;">
     <img src="/images/onsen-ui.png" style="width: 125px;">
   </a><a href="http://tooltwist.com/" target="_blank" style="width: 125px;">
-    <img src="/images/tooltwist.png" style="width: 125px">
+    <img src="/images/tooltwist.png" style="width: 125px;">
   </a>
 </p>
 
