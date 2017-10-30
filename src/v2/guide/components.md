@@ -336,13 +336,13 @@ todo: {
 }
 ```
 
-Then:
+그런 다음,
 
 ``` html
 <todo-item v-bind="todo"></todo-item>
 ```
 
-Will be equivalent to:
+이것은 다음과 같은 동작을합니다.:
 
 ``` html
 <todo-item
@@ -360,7 +360,7 @@ Will be equivalent to:
 <comp some-prop="1"></comp>
 ```
 
-그러나 이것은 리터럴 prop이기 때문에 그 값은 실제 숫자가 아닌 일반 문자열 `"1"` 로 전달됩니다. 실제 JavScript 숫자를 전달하려면 값이 JavaScript 표현식으로 평가되도록 `v-bind`를 사용해야합니다.
+그러나 이것은 리터럴 prop이기 때문에 그 값은 실제 숫자가 아닌 일반 문자열 `"1"` 로 전달됩니다. 실제 JavaScript 숫자를 전달하려면 값이 JavaScript 표현식으로 평가되도록 `v-bind`를 사용해야합니다.
 
 ``` html
 <!-- 이것은 실제 숫자로 전달합니다. -->
@@ -453,8 +453,6 @@ Vue.component('example', {
 - Symbol
 
 또한, `type` 은 커스텀 생성자 함수가 될 수 있고, assertion은 `instanceof` 체크로 만들어 질 것입니다.
-
-prop 유효성 검사가 실패하면 Vue는 콘솔 경고를 생성합니다(개발 빌드를 사용하는 경우).
 
 props 검증이 실패하면 Vue는 콘솔에서 경고를 출력합니다(개발 빌드를 사용하는 경우). props는 컴포넌트 인스턴스가 __생성되기 전__에 검증되기 때문에 `default` 또는 `validator` 함수 내에서 `data`, `computed` 또는 `methods`와 같은 인스턴스 속성을 사용할 수 없습니다.
 

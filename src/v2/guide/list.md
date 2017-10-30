@@ -113,7 +113,7 @@ var example2 = new Vue({
 <div v-for="item of items"></div>
 ```
 
-### `v-for`와 객체
+## `v-for`와 객체
 
 `v-for`를 사용하여 객체의 속성을 반복할 수도 있습니다.
 
