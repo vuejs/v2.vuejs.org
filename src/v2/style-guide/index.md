@@ -38,7 +38,7 @@ Certaines fonctionnalités de Vue existe pour régler des cas exceptionnelles ou
 
 
 
-## Règles de priorité A : Essentiel (Prévenir les erreurs)
+## Règles de priorité A : essentiel (prévenir les erreurs)
 
 
 
@@ -490,7 +490,7 @@ var myGreatMixin = {
 
 
 
-## Règles de priorité B : Fortement recommandée (Améliorer la lisibilité)
+## Règles de priorité B : fortement recommandée (améliorer la lisibilité)
 
 
 
@@ -1312,114 +1312,113 @@ Alors que les valeurs d'attributs sans espace ne sont pas requise en HTML, cela 
 
 
 
-## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
+## Règles de priorité C : recommandée (minimiser les choix arbitraires et la surcharge cognitive)
 
 
 
-### Component/instance options order <sup data-p="c">recommended</sup>
+### Ordre des options de composants / instances <sup data-p="c">recommandée</sup>
 
-**Component/instance options should be ordered consistently.**
+**Les options des instances / composants devraient être ordonnée avec consistance.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
+Voici l'ordre par défaut que nous recommandons pour les options de composant. Elles sont séparés en catégories ainsi vous saurez où ajouter vos nouvelles propriétés des plugins.
 
-1. **Side Effects** (triggers effects outside the component)
+1. **Effets de bord** (créer des effets en dehors du composant)
   - `el`
 
-2. **Global Awareness** (requires knowledge beyond the component)
+2. **Attention globale** (nécessite des connaissances au-delà du composant)
   - `name`
   - `parent`
 
-3. **Component Type** (changes the type of the component)
+3. **Type de composant** (change le type du composant)
   - `functional`
 
-4. **Template Modifiers** (changes the way templates are compiled)
+4. **Modificateurs de template** (change la manière dont les templates sont compilés)
   - `delimiters`
   - `comments`
 
-5. **Template Dependencies** (assets used in the template)
+5. **Dépendances des templates** (les ressources utilisées dans le template)
   - `components`
   - `directives`
   - `filters`
 
-6. **Composition** (merges properties into the options)
+6. **Composition** (fusionner des propriétés en dans les options)
   - `extends`
   - `mixins`
 
-7. **Interface** (the interface to the component)
+7. **Interface** (l'interface du composant)
   - `inheritAttrs`
   - `model`
-  - `props`/`propsData`
+  - `props` / `propsData`
 
-8. **Local State** (local reactive properties)
+8. **État local** (propriétés réactives locales)
   - `data`
   - `computed`
 
-9. **Events** (callbacks triggered by reactive events)
+9. **Évènements** (fonctions de rappel déclenchées par des évènements réactifs)
   - `watch`
-  - Lifecycle Events (in the order they are called)
+  - Évènements du cycle de vie (dans leur ordre d'appel)
 
-10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+10. **Propriétés non réactives** (Propriété d'instance indépendantes du système de réactivité)
   - `methods`
 
-11. **Rendering** (the declarative description of the component output)
-  - `template`/`render`
+11. **Rendu** (description déclarative de la sortie du composant)
+  - `template` / `render`
   - `renderError`
 
 
 
-### Element attribute order <sup data-p="c">recommended</sup>
+### Ordre des attributs des élements <sup data-p="c">recommandée</sup>
 
-**The attributes of elements (including components) should be ordered consistently.**
+**Les attributs d'éléments (incluant les composants) devrait êrte ordonné avec consistance.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+Voici l'ordre par défaut que nous recommandons pour les options de composant. Elles sons séparés en catégories, ainsi vous saurez où ajouter vos attributs et directives personnalisées.
 
-1. **Definition** (provides the component options)
+1. **Définition** (fournit les options du composant)
   - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
+2. **Rendu de liste** (crée des variations multiples du même élément)
   - `v-for`
 
-2. **Conditionals** (whether the element is rendered/shown)
+3. **Conditions** (comment l'élément est rendu / affiché)
   - `v-if`
   - `v-else-if`
   - `v-else`
   - `v-show`
   - `v-cloak`
 
-3. **Render Modifiers** (changes the way the element renders)
+4. **Modificateurs de rendu** (change la manière de faire le rendu de l'élément)
   - `v-pre`
   - `v-once`
 
-4. **Global Awareness** (requires knowledge beyond the component)
+5. **Attention globale** (nécessite des connaissances au-delà du composant)
   - `id`
 
-5. **Unique Attributes** (attributes that require unique values)
+6. **Attributs uniques** (attributs nécessitant une valeur unique)
   - `ref`
   - `key`
   - `slot`
 
-6. **Two-Way Binding** (combining binding and events)
+7. **Liaison bidirectionnelle** (combiner les liaisons descendantes et les évènements montants)
   - `v-model`
 
-7. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **Autres attributs** (tous les attributs qui sont liés ou non liés)
 
-8. **Events** (component event listeners)
+9. **Évènements** (Gestionnaire d'évènement de composant)
   - `v-on`
 
-9. **Content** (overrides the content of the element)
+10. **Contenu** (écrase le contenu d'un élement)
   - `v-html`
   - `v-text`
 
 
 
-### Empty lines in component/instance options <sup data-p="c">recommended</sup>
+### Ligne vide dans les options d'instance / de composant <sup data-p="c">recommandée</sup>
 
-**You may want to add one empty line between multi-line properties, particularly if the options can no longer fit on your screen without scrolling.**
+**Vous pourriez ajouter une ligne vide entre de multiple propriétés, en particulier si la longeur de votre options dépasse la taille de l'écran.**
 
-When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
-
+Quand un composants commence à devenir difficile à lire, ajouter des espaces entres des propriétés multilignes peut les rendre de nouveau simple à lire. Dans divers éditeurs, comme Vim, formater les options ainsi peut rendre la navigation plus simple avec le clavier.
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 props: {
@@ -1449,8 +1448,8 @@ computed: {
 ```
 
 ``` js
-// No spaces are also fine, as long as the component
-// is still easy to read and navigate.
+// Sans espace est aussi bien, du moment que le composant
+// reste simple à lire et à parcourrir.
 props: {
   value: {
     type: String,
@@ -1476,12 +1475,12 @@ computed: {
 
 
 
-### Single-file component top-level element order <sup data-p="c">recommended</sup>
+### Ordre des balises principales des composants monofichiers <sup data-p="c">recommended</sup>
 
-**[Single-file components](../guide/single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[Les composants monofichiers](../guide/single-file-components.html) devraient toujours être remplis avec l'ordre des balises suivant `template`, `script`, et `style`, avec `<style>` en dernier, car au moins l'un des deux autres est toujours nécessaire.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <style>/* ... */</style>
@@ -1503,7 +1502,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <!-- ComponentA.vue -->
@@ -1532,18 +1531,18 @@ computed: {
 
 
 
-## Priority D Rules: Use with Caution (Potentially Dangerous Patterns)
+## Règles de priorité D : faire attention (potentiellement dangereux)
 
 
 
-### `v-if`/`v-if-else`/`v-else` without `key` <sup data-p="d">use with caution</sup>
+### `v-if` / `v-if-else` / `v-else` sans `key` <sup data-p="d">faire attention</sup>
 
-**It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
+**Il est généralement mieu d'utiliser `key` avec `v-if` + `v-else`, si les éléments sont de même type (c.-à-d. avec deux éléments `<div>`).**
 
-By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
+Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signifie que quand il alterne entre deux éléments du même type, il va simplement changer l'élément existant, sans en ajouter ou en retirer à la place. Cela peut avoir des [effets non souhaités](https://jsfiddle.net/chrisvfritz/bh8fLeds/) si ces éléments ne doivent pas être considérés comme les mêmes.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <div v-if="error">
@@ -1556,7 +1555,7 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <div v-if="error" key="search-status">
@@ -1579,11 +1578,11 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 
 
-### Element selectors with `scoped` <sup data-p="d">use with caution</sup>
+### Éviter les sélecteurs par nom de balise avec `scoped` <sup data-p="d">faire attention</sup>
 
-**Element selectors should be avoided with `scoped`.**
+**Les sélécteurs par nom de balise devraient être évités avec `scoped`.**
 
-Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors are slow.
+Préférez les sélecteurs de classes plutôt que les sélecteurs de nom dans des styles `scoped` car utiliser un large nombre de sélecteur par nom de balise est lent.
 
 {% raw %}
 <details>
@@ -1592,14 +1591,14 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 </summary>
 {% endraw %}
 
-To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
+Dans les styles avec portée, Vue ajoute un attribut unique à l'élément du composant, comme `data-v-f3f3eg9`. Quand les sélecteurs sont modifiés ils ne concordent que avec les éléments avec l'attribut en question (par ex. `button[data-v-f3f3eg9]`).
 
-The problem is that large numbers of [element-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than [class-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
+Le problème est qu'utiliser un grand nombre de [sélecteur par attribut d'élément]((http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (par ex. `button[data-v-f3f3eg9]`) va être considérablement plus lent que [par attribut classe](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (par ex. `.btn-close[data-v-f3f3eg9]`) et donc les sélecteurs par classes devraient être préféré autant que possible.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <template>
@@ -1615,7 +1614,7 @@ button {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <template>
@@ -1632,16 +1631,16 @@ button {
 
 
 
-### Implicit parent-child communication <sup data-p="d">use with caution</sup>
+### Communication parent-enfant implicite <sup data-p="d">faire attention</sup>
 
-**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
+**Les évènements et props devraient être préférés pour la communication entre composant parent-enfant, au lieu de l'utilisation de `this.$parent` ou les props mutés.**
 
-An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
+Une application Vue idéale est que les props descendent et que les évènements remontent. Rester dans cette convention rend vos composants plus simple à comprendre. Cependant, il y a quelques cas où la mutation des props ou `this.$parent` peut simplifier l'utilisation de deux composants qui sont fortement couplés.
 
-The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
+Le problème est qu'il y a beaucoup de _cas simples_ où leurs utilisations offre de la facilité. Attention : ne vous laissez pas séduire par la simplicité (rester capable de comprendre le flux de votre état) par l'utilisation de code plus simple (plus court).
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 Vue.component('TodoItem', {
@@ -1684,7 +1683,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 Vue.component('TodoItem', {
@@ -1725,16 +1724,16 @@ Vue.component('TodoItem', {
 
 
 
-### Non-flux state management <sup data-p="d">use with caution</sup>
+### Non gestion de l'état par flux <sup data-p="d">faire attention</sup>
 
-**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**[Vuex](https://github.com/vuejs/vuex) devrait être préféré pour une gestion globale d'étatà la place de  `this.$root` ou d'un canal global d'évènement.**
 
-Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+Gérer l'état avec `this.$root` et / ou utiliser un [canal d'évènement global](https://fr.vuejs.org/v2/guide/migration.html#dispatch-et-broadcast-remplaces) peut faciliter la tâche dans des cas vraiment simple. Cependant cela n'est pas approprié pour la plupard des applications. Vuex n'offre pas seulement une place centrale pour gérer l'état mais également des outils pour organiser, tracer et déboguer les changements d'états.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 // main.js
@@ -1758,7 +1757,7 @@ new Vue({
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 // store/modules/todos.js
@@ -1812,14 +1811,14 @@ export default {
 <script>
 (function () {
   var enforcementTypes = {
-    none: '<span title="There is unfortunately no way to automatically enforce this rule.">self-discipline</span>',
+    none: '<span title="Il n\'y a malheureusement aucan moyen de forcer ces règles.">auto discipline</span>',
     runtime: 'runtime error',
     linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank">plugin:vue/recommended</a>'
   }
   Vue.component('sg-enforcement', {
     template: '\
       <span>\
-        <strong>Enforcement</strong>:\
+        <strong>Forçage</strong>:\
         <span class="style-rule-tag" v-html="humanType"/>\
       </span>\
     ',
