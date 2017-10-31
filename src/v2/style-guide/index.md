@@ -249,7 +249,6 @@ props: {
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
 Imaginons que nous ayouns une liste de tâches :
 
 ``` js
