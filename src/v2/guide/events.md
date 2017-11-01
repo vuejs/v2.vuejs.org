@@ -199,7 +199,7 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 > Nouveau dans la 2.1.4+
 
 ``` html
-<!-- l'évènement « click » sera déclenché au moins une fois -->
+<!-- l'évènement « click » sera déclenché au plus une fois -->
 <a v-on:click.once="doThis"></a>
 ```
 
