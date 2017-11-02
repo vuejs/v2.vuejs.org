@@ -10,7 +10,7 @@ Nous allons en grande partie éviter les conventions à propos du JavaScript ou 
 
 > **Bientôt, nous fournirons des astuces pour la mise en application.** Même si certains points sont une simple question de discipline, nous essayerons de vous montrer comment utiliser ESLint et d'autres processus automatisés pour mettre simplement en place ces conventions.
 
-Et donc, voici les quatre catégories de règles que nous avons retenues :
+Nous avons donc divisé les règles en quatre catégories :
 
 
 
@@ -18,7 +18,7 @@ Et donc, voici les quatre catégories de règles que nous avons retenues :
 
 ### Priorité A : essentiel
 
-Ces règles aident à éviter les erreurs, donc apprenez-les et respectez-les à tout prix. Des exceptions peuvent exister, mais elles devraient être rares et prises uniquement avec un œil expert sur le JavaScript et Vue.
+Ces règles aident à éviter les erreurs, donc apprenez-les et respectez-les à tout prix. Des exceptions peuvent exister, mais elles devraient être rares et seulement faites par ceux qui ont une connaissance experte à la fois de JavaScript et de Vue.
 
 ### Priorité B : fortement recommandé
 
@@ -164,7 +164,7 @@ export default {
 ```
 
 ``` js
-// Par contre l'utilisation par objet est possible dans
+// Par contre l'utilisation directe d'un objet est possible dans
 // l'instance racine de Vue, car il n'y a qu'une
 // instance racine qui existe
 new Vue({
@@ -193,7 +193,7 @@ Dans du code acté, les définitions de prop devraient être toujours aussi dét
 Les [définitions de prop](https://vuejs.org/v2/guide/components.html#Prop-Validation) détaillées ont deux avantages :
 
 - Elles documentent l'API du composant, il est ainsi possible de voir comment le composant est prévu d'être utilisé.
-- En développement, Vue vous avertira si le composant fournit un type de prop incorrectement formaté et vous aidant ainsi à trouver des sources d'erreur.
+- En développement, Vue vous avertira si le composant fournit un type de prop incorrectement formaté et vous aidant ainsi à trouver des sources potentielles d'erreur.
 
 {% raw %}</details>{% endraw %}
 
@@ -268,11 +268,11 @@ data: function () {
 }
 ```
 
-Puis nous les trions par ordre alphabétique. Quand le DOM est mis à jour, Vue va optimiser le rendu en exécutant les mutations les moins couteuses possibles dans le DOM. Cela signifie de supprimer le premier élément de la liste, puis de l'ajouter de nouveau à la fin de la liste.
+Puis nous les trions par ordre alphabétique. Quand le DOM est mis à jour, Vue optimisera le rendu en exécutant les mutations les moins couteuses possibles dans le DOM. Cela signifie de supprimer le premier élément de la liste, puis de l'ajouter de nouveau à la fin de la liste.
 
 Le problème c'est qu'il y a des cas où il est important de ne pas supprimer les éléments et de les laisser dans le DOM. Par exemple, vous pourriez utiliser `<transition-group>` pour animer un tri de liste, ou garder le focus sur un élément rendu qui est un `<input>`. Dans ces cas, ajouter une clé unique pour chaque élément (par ex. `:key="todo.id"`) va dire à Vue comment être plus prédictif.
 
-De notre expérience, il est mieux de _toujours_ ajouter une clé unique. De cette manière vous et votre équipe n'aurez jamais à vous soucier des effets de bord. Ensuite, dans les rares scénarios critiques de performances où la constance des objets n'est pas nécessaire, vous pourrez faire une exception en connaissance de cause.
+De notre expérience, il est mieux de _toujours_ ajouter une clé unique. De cette manière vous et votre équipe n'aurez jamais à vous soucier des effets de bord. Ensuite, dans les rares scénarios critiques de performances où la consistance des objets n'est pas nécessaire, vous pourrez faire une exception en connaissance de cause.
 
 {% raw %}</details>{% endraw %}
 
@@ -307,7 +307,7 @@ De notre expérience, il est mieux de _toujours_ ajouter une clé unique. De cet
 
 ### Style des composants à portée limitée <sup data-p="a">essentiel</sup>
 
-**Pour les applications, le style du niveau `App` au sommet et des composants de mises en page doivent être globaux, mais tous les autres styles des composants devraient être à portée limitée au composant.**
+**Pour les applications, le style du niveau `App` au sommet et des composants de mises en page doivent être globaux, mais tous les autres styles des composants devraient être avec une portée limitée au composant.**
 
 Ceci n'est pertinent que dans le cas de l'utilisation de [composants monofichiers](../guide/single-file-components.html). Cela _ne_ nécessite _pas_ l'ajout de [l'attribut `scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). La portée limitée peut être faite avec les [modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html), une stratégie basée sur les classes comme [BEM](http://getbem.com/) ou d'autres bibliothèques ou conventions du même genre.
 
@@ -322,7 +322,7 @@ Cela permet de surcharger les styles internes facilement, avec des noms de class
 </summary>
 {% endraw %}
 
-Si vous développer un grand projet, et travaillez avec d'autres développeurs, ou parfois que vous incluez du HTML / CSS tiers (par ex. de Auth0), une portée limitée consistante va assurer que vos styles soient uniquement appliqués aux composants que vous souhaitez.
+Si vous développer un grand projet, et travaillez avec d'autres développeurs, ou parfois que vous incluez du HTML / CSS tiers (par ex. de Auth0), une portée limitée consistante assurera une application de vos styles uniquement aux composants souhaités.
 
 Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure que les CSS des bibliothèques tierces ne soient pas appliquées à votre propre HTML. Par exemple, beaucoup de projets utilisent les classes de nom `button`, `btn` ou `icon` donc même si vous n'utilisez pas de stratégie comme BEM, ajouter un préfixe dédié à l'application ou au composant (par ex. `ButtonClose-icon`) peut vous apporter une certaine protection.
 
@@ -888,8 +888,8 @@ Malheureusement, le HTML ne permet pas aux éléments personnalisés d'être aut
 
 La PascalCase a plusieurs avantages comparés à la kebab-case :
 
-- Les éditeurs peuvent automcompléter un nom de composant dans les templates car la PascalCase est également utilisée en JavaScript.
-- `<MyComponent>` est visuellement plus distinct qu'un élément HTML d'un seul mot comme `<my-component>` car il y a deux caractères de différenciation (les deux capitales) plutôt que juste un (l'hyphène).
+- Les éditeurs peuvent autocompléter un nom de composant dans les templates car la PascalCase est également utilisée en JavaScript.
+- `<MyComponent>` est visuellement plus distinct qu'un élément HTML d'un seul mot comme `<my-component>` car il y a deux caractères de différenciation (les deux capitales) plutôt que juste un (le trait d'union).
 - Si vous utilisez des composants personnalisés qui ne sont pas des éléments Vue dans vos templates, comme les Web Composants, la PascalCase vous assure que les composants Vue restent bien différentiables.
 
 Malheureusement, du fait de l'insensibilité à la casse du HTML, les templates du DOM doivent rester en kebab-case.
@@ -940,7 +940,7 @@ OU
 
 ### Casse des noms de composant en JS / JSX <sup data-p="b">fortement recommandé</sup>
 
-**Les noms de composant en JS / [JSX](../guide/render-function.html#JSX) devrait toujours être en PascalCase, cependant ils peuvent être en kebab-case à l'intérieur des chaines de caractères pour de simples applications qui utilise seulement des composants globaux avec `Vue.component`.**
+**Les noms de composant en JS / [JSX](../guide/render-function.html#JSX) devraient toujours être en PascalCase, cependant ils peuvent être en kebab-case à l'intérieur des chaines de caractères pour de simples applications qui utilisent seulement des composants globaux avec `Vue.component`.**
 
 {% raw %}
 <details>
@@ -954,7 +954,7 @@ En JavaScript, la PascalCase est la convention pour les classes et les prototype
 Cependant, pour les applications qui n'utilisent **que** des composants globaux via `Vue.component`, nous recommandons la kebab-case à la place. Les raisons sont :
 
 - Il est rare que les composants globaux soient référencés en JavaScript, donc suivre les conventions du JavaScript a moins de sens.
-- Ces applications inclus beaucoup de templates depuis le DOM, ou là [kebab-case **doit** être utilisée](#Casse-des-noms-de composant-dans-les-templates-fortement-recommande).
+- Ces applications incluent beaucoup de templates depuis le DOM, où la [kebab-case **doit** être utilisée](#Casse-des-noms-de-composant-dans-les-templates-fortement-recommande).
 
 {% raw %}</details>{% endraw %}
 
@@ -1015,9 +1015,9 @@ export default {
 
 
 
-### Nom de composant à nom complet <sup data-p="b">fortement recommandé</sup>
+### Nom de composant avec mot complet <sup data-p="b">fortement recommandé</sup>
 
-**Les noms de composant devraient préférer des noms complets à des abréviations.**
+**Les noms de composant devraient préférer des mots complets à des abréviations.**
 
 L'autocomplétion dans les éditeurs rend le cout d'un long nom de composant insignifiant alors que la clarté qu'il amène est sans valeur. Les abréviations non communes, en particulier, sont à éviter.
 
