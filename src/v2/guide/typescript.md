@@ -31,6 +31,8 @@ We also plan to provide an option to scaffold a ready-to-go Vue + TypeScript pro
 }
 ```
 
+Note that you have to include `strict: true` (or at least `noImplicitThis: true` which is a part of `strict` flag) to leverage type checking of `this` in component methods otherwise it is always treated as `any` type.
+
 See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for more details.
 
 ## Development Tooling
@@ -54,20 +56,6 @@ const Component = {
   // this will NOT have type inference,
   // because TypeScript can't tell this is options for a Vue component.
 }
-```
-
-Note that when using Vetur with SFCs, type inference will be automatically applied to the default export, so there's no need to wrap it in `Vue.extend`:
-
-``` html
-<template>
-  ...
-</template>
-
-<script lang="ts">
-export default {
-  // type inference enabled
-}
-</script>
 ```
 
 ## Class-Style Vue Components
@@ -153,3 +141,39 @@ var vm = new Vue({
   myOption: 'Hello'
 })
 ```
+
+## Annotating Return Types
+
+Because of the circular nature of Vue's declaration files, TypeScript may have difficulties inferring the types of certain methods.
+For this reason, you may need to annotate the return type on methods like `render` and those in `computed`.
+
+```ts
+import Vue, { VNode } from 'vue'
+
+const Component = Vue.extend({
+  data() {
+    return {
+      msg: 'Hello'
+    }
+  },
+  methods: {
+    // need annotation due to `this` in return type
+    greet(): string {
+      return this.msg + ' world'
+    }
+  },
+  computed: {
+    // need annotation
+    greeting(): string {
+      return this.greet() + '!'
+    }
+  },
+  // `createElement` is inferred, but `render` needs return type
+  render(createElement): VNode {
+    return createElement('div', this.greeting)
+  }
+})
+```
+
+If you find type inference or member completion isn't working, annotating certain methods may help address these problems.
+Using the `--noImplicitAny` option will help find many of these unannotated methods.
