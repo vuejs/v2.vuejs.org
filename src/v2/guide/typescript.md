@@ -158,7 +158,7 @@ var vm = new Vue({
 
 ## Annotation des types de retour
 
-Du fait de la nature circulaire de la déclaration des fichiers Vue, TypeScript peut avoir des difficultés à deviner les types de certaines méthodes. Pour ces raisons, vous devriez annoter les type de retour des méthodes comme `render` et celles dans `computed`.
+Du fait de la nature circulaire de la déclaration des fichiers Vue, TypeScript peut avoir des difficultés à deviner les types de certaines méthodes. Pour ces raisons, vous devriez annoter les types de retour des méthodes comme `render` et ceux dans `computed`.
 
 ```ts
 import Vue, { VNode } from 'vue'
@@ -170,7 +170,7 @@ const Component = Vue.extend({
     }
   },
   methods: {
-    // besoin d'une annotation à cause du fait que `this` fait parti du type de retour
+    // besoin d'une annotation car `this` fait parti du type de retour
     greet(): string {
       return this.msg + ' world'
     }
