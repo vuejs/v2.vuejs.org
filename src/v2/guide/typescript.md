@@ -156,10 +156,9 @@ var vm = new Vue({
 })
 ```
 
-## Annotating Return Types (EN)
+## Annotation des types de retour
 
-Because of the circular nature of Vue's declaration files, TypeScript may have difficulties inferring the types of certain methods.
-For this reason, you may need to annotate the return type on methods like `render` and those in `computed`.
+Du fait de la nature circulaire de la déclaration des fichiers Vue, TypeScript peut avoir des difficultés à deviner les types de certaines méthodes. Pour ces raisons, vous devriez annoter les type de retour des méthodes comme `render` et celles dans `computed`.
 
 ```ts
 import Vue, { VNode } from 'vue'
@@ -167,27 +166,26 @@ import Vue, { VNode } from 'vue'
 const Component = Vue.extend({
   data() {
     return {
-      msg: 'Hello'
+      msg: 'Bonjour'
     }
   },
   methods: {
-    // need annotation due to `this` in return type
+    // besoin d'une annotation à cause du fait que `this` fait parti du type de retour
     greet(): string {
       return this.msg + ' world'
     }
   },
   computed: {
-    // need annotation
+    // besoin d'une annotation
     greeting(): string {
       return this.greet() + '!'
     }
   },
-  // `createElement` is inferred, but `render` needs return type
+  // `createElement` est deviné, mais `render` à besoin d'une annotation de type de retour
   render(createElement): VNode {
     return createElement('div', this.greeting)
   }
 })
 ```
 
-If you find type inference or member completion isn't working, annotating certain methods may help address these problems.
-Using the `--noImplicitAny` option will help find many of these unannotated methods.
+Si vous vous apercevez que l'autocomplétion ne fonctionne pas, annoter certaines méthodes peut aider à résoudre ces problèmes. Utiliser l'option `--noImplicitAny` aidera à trouver bon nombre de ces méthodes non annotées.
