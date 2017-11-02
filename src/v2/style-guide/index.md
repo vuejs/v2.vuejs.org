@@ -404,7 +404,7 @@ Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure
 
 
 
-### Noms de propriété privées <sup data-p="a">essentiel</sup>
+### Noms de propriété privé <sup data-p="a">essentiel</sup>
 
 **Toujours utilisez le préfixe `$_` pour les propriétés privées personnalisées dans un plugin, mixin, etc. Cela permet d'éviter les conflits avec le code d'autres développeurs. Il est également possible d’inclure un nom de portée (par ex. `$_yourPluginName_`).**
 
