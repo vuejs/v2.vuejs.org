@@ -33,9 +33,9 @@ Et comme promis, nous pouvons aussi utiliser des préprocesseurs tels que Pug, B
 
 Ces langages spécifiques ne sont que des exemples; vous pourriez tout aussi aisément utiliser Bublé, Typescript, SCSS, PostCSS - ou tout autre préprocesseur qui vous aide à être productif. Si vous utilisez webpack avec `vue-loader`, vous aurez aussi un outil de premier choix pour les modules CSS.
 
-### Qu'en est-il de la séparation des préoccupations (Separation of concerns) ?
+### Qu'en est-il de la séparation des préoccupations ?
 
-Une chose importante à souligner est que **la séparation des préoccupations n'est pas identique à la séparation des fichiers**. Dans le développement des interfaces utilisateur modernes, nous avons constaté que plutôt que de diviser tout notre code en trois grosses couches distinctes interdépendantes, il était plus intuitif de le diviser en petits composants faiblement couplés, et de les combiner. Au sein d'un composant, son template, sa logique et ses styles sont intrinsèquement couplés, et les réunir rend en réalité le composant plus cohérent et facile à maintenir.
+Une chose importante à souligner est que **la séparation des préoccupations (« Separation of concerns ») n'est pas identique à la séparation des fichiers**. Dans le développement des interfaces utilisateur modernes, nous avons constaté que plutôt que de diviser tout notre code en trois grosses couches distinctes interdépendantes, il était plus intuitif de le diviser en petits composants faiblement couplés, et de les combiner. Au sein d'un composant, son template, sa logique et ses styles sont intrinsèquement couplés, et les réunir rend en réalité le composant plus cohérent et facile à maintenir.
 
 Si vous n'aimez pas l'idée des composants monofichiers, vous pouvez toujours tirer parti du rechargement à chaud et la précompilation pour mettre le CSS et le JavaScript dans des fichiers séparés.
 
