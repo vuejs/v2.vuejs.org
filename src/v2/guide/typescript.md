@@ -144,8 +144,7 @@ var vm = new Vue({
 
 ## Annotating Return Types
 
-Because of the circular nature of Vue's declaration files, TypeScript may have difficulties inferring the types of certain methods.
-For this reason, you may need to annotate the return type on methods like `render` and those in `computed`.
+Because of the circular nature of Vue's declaration files, TypeScript may have difficulties inferring the types of certain methods. For this reason, you may need to annotate the return type on methods like `render` and those in `computed`.
 
 ```ts
 import Vue, { VNode } from 'vue'
@@ -175,5 +174,4 @@ const Component = Vue.extend({
 })
 ```
 
-If you find type inference or member completion isn't working, annotating certain methods may help address these problems.
-Using the `--noImplicitAny` option will help find many of these unannotated methods.
+If you find type inference or member completion isn't working, annotating certain methods may help address these problems. Using the `--noImplicitAny` option will help find many of these unannotated methods.
