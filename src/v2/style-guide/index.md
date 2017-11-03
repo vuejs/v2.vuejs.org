@@ -34,7 +34,7 @@ Là où de multiples et équivalentes options existent, un choix arbitraire a é
 
 ### Priorité D : faire attention
 
-Certaines fonctionnalités de Vue existent pour régler des cas exceptionnels ou rendre la migration d'une vieille version de code plus simple. Mais utiliser sans parcimonie, elles rendront votre code difficile à maintenir et même deviendront une source de bogues. Ces règles mettent en lumière des fonctionnalités potentiellement risquées, décrivant quand et pourquoi elles doivent être évitées.
+Certaines fonctionnalités de Vue existent pour régler des cas exceptionnels ou rendre la migration d'une vieille version de code plus simple. Mais utiliser avec excès, elles rendront votre code difficile à maintenir et même deviendront une source de bogues. Ces règles mettent en lumière des fonctionnalités potentiellement risquées, décrivant quand et pourquoi elles doivent être évitées.
 
 
 
@@ -106,7 +106,7 @@ data: {
 }
 ```
 
-Nous voudrions réutiliser ce composant pour permettre aux utilisateurs de maintenir plusieurs listes (par ex. une liste de course, une liste de souhait, une liste de tâche, etc.). Il y a cependant un problème. Comme toutes les instances du composant font référence au même objet de donnée, changer le titre de l'une des listes va aussi changer le titre de toutes les autres. Et c'est également vrai pour l'ajout, l'édition ou la suppression dans la liste.
+nous pourrions vouloir réutiliser ce composant pour permettre aux utilisateurs de maintenir plusieurs listes (par ex. une liste de course, une liste de souhait, une liste de tâche, etc.). Il y a cependant un problème. Comme toutes les instances du composant font référence au même objet de donnée, changer le titre de l'une des listes va aussi changer le titre de toutes les autres. Et c'est également vrai pour l'ajout, l'édition ou la suppression dans la liste.
 
 À la place, nous voulons que chaque composant instancie ses données pour soi. Pour que cela soit possible, chaque instance doit générer un objet de données unique. En JavaScript, ceci peut être accompli en retournant l'objet depuis une fonction :
 
@@ -193,7 +193,7 @@ Dans du code acté, les définitions de prop devraient être toujours aussi dét
 Les [définitions de prop](https://vuejs.org/v2/guide/components.html#Prop-Validation) détaillées ont deux avantages :
 
 - Elles documentent l'API du composant, il est ainsi possible de voir comment le composant est prévu d'être utilisé.
-- En développement, Vue vous avertira si le composant fournit un type de prop incorrectement formaté et vous aidant ainsi à trouver des sources potentielles d'erreur.
+- En développement, Vue vous avertira si le composant fournit un type de prop incorrectement formaté, vous aidant ainsi à trouver des sources potentielles d'erreur.
 
 {% raw %}</details>{% endraw %}
 
@@ -240,7 +240,7 @@ props: {
 
 **Toujours utiliser `key` avec `v-for`.**
 
-`key` avec `v-for` est _toujours_ requis sur les composants afin de maintenir l'état des composants internes aligné aux sous-arbres. Même pour les éléments, c'est une bonne pratique pour garder un comportement prédictible pour de la [consistance d'objet](https://bost.ocks.org/mike/constancy/) dans les animations.
+`key` avec `v-for` est _toujours_ requis sur les composants afin de maintenir l'état des composants internes aligné aux sous-arbres. Même pour les éléments, c'est une bonne pratique pour garder un comportement prédictible pour de la [stabilité d'objet](https://bost.ocks.org/mike/constancy/) dans les animations.
 
 {% raw %}
 <details>
@@ -270,9 +270,9 @@ data: function () {
 
 Puis nous les trions par ordre alphabétique. Quand le DOM est mis à jour, Vue optimisera le rendu en exécutant les mutations les moins couteuses possibles dans le DOM. Cela signifie de supprimer le premier élément de la liste, puis de l'ajouter de nouveau à la fin de la liste.
 
-Le problème c'est qu'il y a des cas où il est important de ne pas supprimer les éléments et de les laisser dans le DOM. Par exemple, vous pourriez utiliser `<transition-group>` pour animer un tri de liste, ou garder le focus sur un élément rendu qui est un `<input>`. Dans ces cas, ajouter une clé unique pour chaque élément (par ex. `:key="todo.id"`) va dire à Vue comment être plus prédictif.
+Le problème est qu'il y a des cas où il est important de ne pas supprimer les éléments qui resteront dans le DOM. Par exemple, vous pourriez utiliser `<transition-group>` pour animer un tri de liste, ou garder le focus si l'élément rendu était un `<input>`. Dans ces cas, ajouter une clé unique pour chaque élément (par ex. `:key="todo.id"`) va dire à Vue comment être plus prédictif.
 
-De notre expérience, il est mieux de _toujours_ ajouter une clé unique. De cette manière vous et votre équipe n'aurez jamais à vous soucier des effets de bord. Ensuite, dans les rares scénarios critiques de performances où la consistance des objets n'est pas nécessaire, vous pourrez faire une exception en connaissance de cause.
+De notre expérience, il est toujours mieux de _toujours_ ajouter une clé unique. De cette manière vous et votre équipe n'aurez jamais à vous soucier des effets de bord. Ensuite, dans les rares scénarios critiques de performances où la stabilité des objets n'est pas nécessaire, vous pourrez faire une exception en connaissance de cause.
 
 {% raw %}</details>{% endraw %}
 
@@ -309,7 +309,7 @@ De notre expérience, il est mieux de _toujours_ ajouter une clé unique. De cet
 
 **Pour les applications, le style du niveau `App` au sommet et des composants de mises en page doivent être globaux, mais tous les autres styles des composants devraient être avec une portée limitée au composant.**
 
-Ceci n'est pertinent que dans le cas de l'utilisation de [composants monofichiers](../guide/single-file-components.html). Cela _ne_ nécessite _pas_ l'ajout de [l'attribut `scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). La portée limitée peut être faite avec les [modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html), une stratégie basée sur les classes comme [BEM](http://getbem.com/) ou d'autres bibliothèques ou conventions du même genre.
+Ceci n'est pertinent que pour les [composants monofichiers](../guide/single-file-components.html). Cela _ne_ nécessite _pas_ l'ajout de [l'attribut `scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). La portée limitée peut être faite avec les [modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html), une stratégie basée sur les classes comme [BEM](http://getbem.com/) ou d'autres bibliothèques / conventions du même genre.
 
 **Les composants de bibliothèques, cependant, devraient utiliser une stratégie basée sur les classes plutôt que d'utiliser l'attribut `scoped`.**
 
@@ -322,7 +322,7 @@ Cela permet de surcharger les styles internes facilement, avec des noms de class
 </summary>
 {% endraw %}
 
-Si vous développer un grand projet, et travaillez avec d'autres développeurs, ou parfois que vous incluez du HTML / CSS tiers (par ex. de Auth0), une portée limitée consistante assurera une application de vos styles uniquement aux composants souhaités.
+Si vous développez un grand projet, et travaillez avec d'autres développeurs, ou que parfois vous incluez du HTML / CSS tiers (par ex. de Auth0), une portée limitée consistante assurera une application de vos styles uniquement aux composants souhaités.
 
 Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure que les CSS des bibliothèques tierces ne soient pas appliquées à votre propre HTML. Par exemple, beaucoup de projets utilisent les classes de nom `button`, `btn` ou `icon` donc même si vous n'utilisez pas de stratégie comme BEM, ajouter un préfixe dédié à l'application ou au composant (par ex. `ButtonClose-icon`) peut vous apporter une certaine protection.
 
@@ -406,7 +406,7 @@ Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure
 
 ### Noms de propriété privé <sup data-p="a">essentiel</sup>
 
-**Toujours utilisez le préfixe `$_` pour les propriétés privées personnalisées dans un plugin, mixin, etc. Cela permet d'éviter les conflits avec le code d'autres développeurs. Il est également possible d’inclure un nom de portée (par ex. `$_yourPluginName_`).**
+**Utilisez toujours le préfixe `$_` pour les propriétés privées personnalisées dans un plugin, mixin, etc. Cela permet d'éviter les conflits avec le code d'autres développeurs. Il est également possible d’inclure un nom de portée (par ex. `$_yourPluginName_`).**
 
 {% raw %}
 <details>
@@ -415,9 +415,9 @@ Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure
 </summary>
 {% endraw %}
 
-Vue utilise le préfixe `_` pour définir ses propres propriétés privées. Aussi utiliser le même préfixe comme (par ex. `_update`) risque de réécrire les propriétés d'instance. Même si vous vérifiez que Vue n'utilise pas actuellement un nom de propriété particulier, il n'y a aucune garantie que le conflit n'apparaisse pas dans des versions futures.
+Vue utilise le préfixe `_` pour définir ses propres propriétés privées. Aussi utiliser le même préfixe comme (par ex. `_update`) risque d'écraser les propriétés d'instance. Même si vous vérifiez que Vue n'utilise pas actuellement un nom de propriété particulier, il n'y a aucune garantie que le conflit n'apparaisse pas dans des versions futures.
 
-En ce qui concerne le préfixe `$`, il suppose d'être, dans l'écosystème Vue. C'est une propriété d'instance spéciale exposée à l'utilisateur. Aussi l'utiliser pour les propriétés _privées_ ne serait pas un bon choix non plus.
+Concernant le préfixe `$`, il est réservé dans l'écosystème Vue à des propriétés spéciales d'instance exposées à l'utilisateur. L'utiliser pour des propriétés _privées_ ne serait pas un bon choix non plus.
 
 À la place, nous recommandons de combiner les deux préfixes en un `$_`, comme une convention pour définir des propriétés personnelles privées et garantir qu'il n'y ait aucun conflit avec Vue.
 
@@ -569,7 +569,7 @@ components/
 
 ### Base de nom de composant <sup data-p="b">fortement recommandé</sup>
 
-**Les composants de base (c.-à-d. les composants de présentation, de support ou purement fonctionnels) appliquent un style et des conventions spécifiques à l'application et devraient tous commencer avec un même préfixe, comme par exemple `Base`, `App`, ou `V`.**
+**Les composants de base (c.-à-d. les composants de présentation, de support ou purement fonctionnels) qui appliquent un style et des conventions spécifiques à l'application devraient tous commencer avec un même préfixe, comme par exemple `Base`, `App`, ou `V`.**
 
 {% raw %}
 <details>
@@ -586,15 +586,15 @@ Ces composants sont les fondations d'un système de style et de comportement con
 
 Mais ils ne doivent **jamais** contenir un état global (par ex. depuis un store Vuex).
 
-Leurs noms incluent souvent le nom d'un des éléments qu'ils englobent (par ex. `BaseButton`, `BaseTable`), sauf quand aucun élément n'existe pour ce qu'ils résolvent (par ex. `BaseIcon`). Si vous construisez des composants similaires pour un contexte plus spécifique, ils devront toujours utiliser le nom de ces composants (par ex. `BaseButton` pourrait être utilisé dans `ButtonSubmit`).
+Leurs noms incluent souvent le nom d'un des éléments qu'ils englobent (par ex. `BaseButton`, `BaseTable`), sauf quand aucun élément n'existe pour la tâche qu'ils accomplissent (par ex. `BaseIcon`). Si vous construisez des composants similaires pour un contexte plus spécifique, ils devront toujours utiliser ces composants (par ex. `BaseButton` pourrait être utilisé dans `ButtonSubmit`).
 
 Plusieurs avantages à ces conventions :
 
-- Quand ils sont listés alphabétiquement dans des éditeurs, vos composants de base sont tous listés ensemble, les rendants plus simples à identifier.
+- Quand ils sont listés alphabétiquement dans des éditeurs, vos composants de base sont tous listés ensemble, les rendant plus simples à identifier.
 
 - Comme un nom de composant devrait toujours être un nom multiple, cette convention vous aide à ne pas choisir un préfixe arbitraire comme nom de composant encapsulant (par ex. `MyButton`, `VueButton`).
 
-- Et parce que ces composants sont très fréquemment utilisés, vous pourriez vouloir simplement tous les importer pour y avoir accès partout. Un préfixe rend ça possible avec webpack :
+- Et parce que ces composants sont très fréquemment utilisés, vous pourriez vouloir simplement tous les importer pour y avoir accès partout. Un préfixe rend cela possible avec webpack :
 
   ``` js
   var requireComponent = require.context("./src", true, /^Base[A-Z]/)
@@ -654,7 +654,7 @@ components/
 
 **Les composants qui devraient uniquement avoir une seule instance active devraient commencer par le préfixe `The` pour démontrer qu'il ne peut y en avoir qu'un.**
 
-Cela ne signifie pas que le composant doit être utilisé seulement sur une page, mais qu'il ne peut y en avoir qu'_un par page_. Ces composants n'acceptent jamais de props car ils sont spécifiques à votre application et n'ont pas leur propre contexte dans l'application. Si vous ressentez le besoin d'ajouter des props, c'est une bonne indication. Cela reste une bonne indication pour signifier que c'est un composant réutilisable _qui actuellement_ n'est utilisé qu'une fois par page.
+Cela ne signifie pas que le composant doit être utilisé uniquement sur une seule page, mais qu'il ne peut y en avoir qu'_un par page_. Ces composants n'acceptent jamais de props car ils sont spécifiques à votre application et n'ont pas leur propre contexte dans l'application. Si vous ressentez le besoin d'ajouter des props, c'est une bonne indication. Cela reste une bonne indication pour informer que c'est un composant réutilisable n'est utilisé qu'une fois par page _pour le moment_.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Mauvais
@@ -678,7 +678,7 @@ components/
 
 
 
-### Coupler les noms de composant reliés <sup data-p="b">fortement recommandé</sup>
+### Noms de composants fortement couplés <sup data-p="b">fortement recommandé</sup>
 
 **Les composants qui sont fortement liés à leur parent devraient inclure le nom du parent en tant que préfixe.**
 
@@ -715,7 +715,7 @@ components/
 
 Cela n'est pas recommandé car :
 
-- Plusieurs fichiers pourraient avoir des noms similaires, rendant la navigation rapide entre les fichiers de l'éditeur de code plus difficile.
+- Plusieurs fichiers pourraient avoir des noms similaires, rendant la navigation entre fichiers au sein de l'éditeur de code plus difficile.
 - Plusieurs sous dossiers imbriqués augmentent le temps de navigation pour trouver un composant dans la barre de navigation.
 
 {% raw %}</details>{% endraw %}
@@ -758,7 +758,7 @@ components/
 
 ### Ordre des mots dans un nom de composant <sup data-p="b">fortement recommandé</sup>
 
-**Les noms de composant devraient commencer avec le mot le plus important en premier et se décliner avec le reste des mots de manière descriptive.**
+**Les noms de composant devraient commencer avec le mot le plus important en premier et se décliner avec des mots descriptifs.**
 
 {% raw %}
 <details>
@@ -844,11 +844,11 @@ components/
 
 
 
-### Les composants autofermant <sup data-p="b">fortement recommandé</sup>
+### Les composants autofermants <sup data-p="b">fortement recommandé</sup>
 
 **Les composants sans contenu devraient être autofermants dans les [composants monofichiers](../guide/single-file-components.html), les templates de chaine de caractères, et le [JSX](../guide/render-function.html#JSX) : mais jamais dans les templates du DOM.**
 
-Les composants qui sont autofermant n'indiquent pas seulement qu'ils n'ont pas de contenu, mais qu'ils sont **faits** pour ne pas en avoir. C'est la différence entre une page blanche dans un livre et une qui indiquerait « Cette page est intentionnellement vide ». Votre code est aussi plus clair sans balises fermantes inutiles.
+Les composants qui sont autofermants n'indiquent pas seulement qu'ils n'ont pas de contenu, mais qu'ils sont **faits** pour ne pas en avoir. C'est la différence entre une page blanche dans un livre et une qui indiquerait « Cette page est intentionnellement vide ». Votre code est aussi plus clair sans balises fermantes inutiles.
 
 Malheureusement, le HTML ne permet pas aux éléments personnalisés d'être autofermant. Seuls les [éléments vides officiels](https://www.w3.org/TR/html/syntax.html#void-elements) peuvent l'être. C'est pourquoi il est possible d'utiliser cette stratégie seulement quand les templates Vue sont compilés avant qu'ils soient injectés dans le DOM. Ensuite du code HTML valide aux spécifications est fourni au DOM.
 
@@ -894,7 +894,7 @@ La PascalCase a plusieurs avantages comparés à la kebab-case :
 
 Malheureusement, du fait de l'insensibilité à la casse du HTML, les templates du DOM doivent rester en kebab-case.
 
-Notez également que si vous avez déjà largement utilisé la kebab-case de manière consistante avec vos conventions HTML à travers tous vos projets, cela peut être plus important que les avantages listés plus haut. Dans de tel cas, **utiliser la kebab-case partout est également acceptable.**
+Notez également que si vous avez déjà largement utilisé la kebab-case de manière consistante avec vos conventions HTML à travers tous vos projets, cela peut être plus important que les avantages listés plus haut. Dans de tels cas, **utiliser la kebab-case partout est également acceptable.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Mauvais
@@ -1122,7 +1122,7 @@ En JavaScript, scinder les objets avec de multiples propriétés sur plusieurs l
 
 **Les templates de composant devraient seulement inclure de simples expressions, avec les expressions les plus complexes refactorisées dans des propriétés calculées ou des méthodes.**
 
-Les expressions complexes dans vos templates les rendent moins déclaratifs. Nous devrions voir _ce qui_ devrait apparaitre, pas _comment_ ça devrait apparaitre quand la valeur est calculée. Les propriétés calculées et les méthodes permettent également de rendre le code réutilisable.
+Les expressions complexes dans vos templates les rendent moins déclaratifs. Nous devrions voir _ce qui_ devrait apparaitre, et non _comment_ cette valeur est calculée. Les propriétés calculées et les méthodes permettent également de rendre le code réutilisable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Mauvais
@@ -1171,17 +1171,17 @@ computed: {
 
 Les propriétés calculées simples et bien nommées sont :
 
-- __Facile à tester__
+- __Plus facile à tester__
 
   Quand chaque propriété calculée contient seulement une expression simple, avec peu de dépendances, il est plus facile d'écrire des tests pour confirmer qu'elles fonctionnent correctement.
 
-- __Facile à lire__
+- __Plus facile à lire__
 
   Simplifier les propriétés calculées vous force à donner à chaque valeur un nom descriptif, même si elle ne sera pas réutilisée. Cela permet aux autres développeurs (et vous dans le futur) de plus facilement vous concentrer sur le code qui vous intéresse et de ne pas vous soucier du reste.
 
 - __Plus adaptable aux changements__
 
-  N'importe quelle valeur qui peut être nommée pourra être utile pour la vue. Par exemple, nous décidons d'afficher un message expliquant à l'utilisateur combien d'argent il a gagné. Nous pourrions décider de calculer les taxes associées, mais peut-être de les afficher indépendamment au lieu qu'elle soit une partie du prix final.
+  N'importe quelle valeur qui peut être nommée pourra être utile pour la vue. Par exemple, nous pourrions décider d'afficher un message expliquant à l'utilisateur combien d'argent ils ont économisé. Nous pourrions décider de calculer les taxes de vente associées, mais peut-être de les afficher indépendamment au lieu qu'elle soit une partie du prix final.
 
   Des propriétés calculées courtes et spécifiques permettent plus de liberté sur la manière dont les informations seront utilisées ce qui nécessite moins de refactorisation en cas de changements.
 
@@ -1370,7 +1370,7 @@ Voici l'ordre par défaut que nous recommandons pour les options de composant. E
 
 **Les attributs d'éléments (incluant les composants) devraient être ordonnés avec consistance.**
 
-Voici l'ordre par défaut que nous recommandons pour les options de composant. Elles sons séparés en catégories, ainsi vous saurez où ajouter vos attributs et directives personnalisées.
+Voici l'ordre par défaut que nous recommandons pour les options de composant. Elles sons séparées en catégories, ainsi vous saurez où ajouter vos attributs et directives personnalisées.
 
 1. **Définition** (fournit les options du composant)
   - `is`
@@ -1415,7 +1415,7 @@ Voici l'ordre par défaut que nous recommandons pour les options de composant. E
 
 **Vous pourriez ajouter une ligne vide entre de multiples propriétés, en particulier si la longueur de votre option dépasse la taille de l'écran.**
 
-Quand un composant commence à devenir difficile à lire, ajouter des espaces entre des propriétés sur plusieurs lignes peut les rendre de nouveau simples à lire. Dans divers éditeurs, comme Vim, formater les options ainsi peut rendre la navigation plus simple avec le clavier.
+Quand les composants commencent à devenir difficile à lire, ajouter des espaces entre des propriétés sur plusieurs lignes peut les rendre de nouveau simples à lire. Dans divers éditeurs, comme Vim, formater les options ainsi peut rendre la navigation plus simple avec le clavier.
 {% raw %}<div class="style-example example-good">{% endraw %}
 #### Bon
 
@@ -1476,7 +1476,7 @@ computed: {
 
 ### Ordre des balises principales des composants monofichiers <sup data-p="c">recommandé</sup>
 
-**[Les composants monofichiers](../guide/single-file-components.html) devraient toujours être remplis avec l'ordre des balises suivant `template`, `script`, et `style`, avec `<style>` en dernier, car au moins l'un des deux autres est toujours nécessaire.**
+**[Les composants monofichiers](../guide/single-file-components.html) devraient toujours ordonner de manière consistante les balises `<template>`, `<script>`, et `<style>`, avec `<style>` en dernier, car au moins l'un des deux autres est toujours nécessaire.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Mauvais
@@ -1536,9 +1536,9 @@ computed: {
 
 ### `v-if` / `v-if-else` / `v-else` sans `key` <sup data-p="d">faire attention</sup>
 
-**Il est généralement mieux d'utiliser `key` avec `v-if` + `v-else`, si les éléments sont de même type (c.-à-d. avec deux éléments `<div>` par ex.).**
+**Il est généralement préférable d'utiliser `key` avec `v-if` + `v-else`, si les éléments sont de même type (c.-à-d. avec deux éléments `<div>` par ex.).**
 
-Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signifie que quand il alterne entre deux éléments du même type, il va simplement changer l'élément existant, sans en ajouter ou en retirer à la place. Cela peut avoir des [effets non souhaités](https://jsfiddle.net/chrisvfritz/bh8fLeds/) si ces éléments ne doivent pas être considérés comme les mêmes.
+Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signifie que quand il commute entre deux éléments de même type, il va simplement modifier l'élément existant, plutôt que de l'enlever et d'en ajouter un nouveau à la place. Cela peut avoir des [effets non souhaités](https://jsfiddle.net/chrisvfritz/bh8fLeds/) si ces éléments ne doivent pas être considérés comme les mêmes.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Mauvais
@@ -1577,11 +1577,11 @@ Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signif
 
 
 
-### Éviter les sélecteurs par nom de balise avec `scoped` <sup data-p="d">faire attention</sup>
+### Sélecteurs par nom de balise avec `scoped` <sup data-p="d">faire attention</sup>
 
 **Les sélecteurs par nom de balise devraient être évités avec `scoped`.**
 
-Préférez les sélecteurs de classes plutôt que les sélecteurs de nom dans des styles `scoped` car utiliser un large nombre de sélecteurs par nom de balise est lent.
+Préférez les sélecteurs de classes plutôt que les sélecteurs de nom dans des styles `scoped` car utiliser un nombre important de sélecteurs par nom de balise est lent.
 
 {% raw %}
 <details>
@@ -1590,7 +1590,7 @@ Préférez les sélecteurs de classes plutôt que les sélecteurs de nom dans de
 </summary>
 {% endraw %}
 
-Dans les styles avec portée, Vue ajoute un attribut unique à l'élément du composant, comme `data-v-f3f3eg9`. Quand les sélecteurs sont modifiés, ils ne concordent qu'avec les éléments avec l'attribut en question (par ex. `button[data-v-f3f3eg9]`).
+Dans les styles avec portée, Vue ajoute un attribut unique à l'élément du composant, comme `data-v-f3f3eg9`. Les sélecteurs sont ainsi modifiés afin qu'ils ne concordent qu'avec les éléments dont l'attribut est sélectionné (par ex. `button[data-v-f3f3eg9]`).
 
 Le problème est qu'utiliser un grand nombre de [sélecteur par nom]((http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (par ex. `button[data-v-f3f3eg9]`) va être considérablement plus lent que [par attribut classe](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (par ex. `.btn-close[data-v-f3f3eg9]`) et donc les sélecteurs par classes devraient être préférés autant que possible.
 
@@ -1632,11 +1632,11 @@ button {
 
 ### Communication parent-enfant implicite <sup data-p="d">faire attention</sup>
 
-**Les évènements et props devraient être préférés pour la communication entre composants parent-enfant, au lieu de l'utilisation de `this.$parent` ou les props mutées.**
+**Les évènements et props devraient être préférés pour la communication entre composants parent-enfant, au lieu de l'utilisation de `this.$parent` ou la mutation des props.**
 
 Une application Vue idéale est une application où les props descendent et où les évènements remontent. Rester dans cette convention rend vos composants plus simples à à comprendre. Cependant, il y a quelques cas où la mutation des props ou `this.$parent` peut simplifier l'utilisation de deux composants qui sont fortement couplés.
 
-Le problème est qu'il y a beaucoup de _cas simples_ où leur utilisation offre de la facilité. Attention : ne vous laissez pas séduire par la simplicité (rester capable de comprendre le flux de votre état) par l'utilisation de code plus simple (plus court).
+Le problème est qu'il y a beaucoup de _cas simples_ où leur utilisation offre de la facilité. Attention : ne vous laissez pas séduire par une apparente simplicité (être capable de comprendre le flux de votre état) pour une vision court-termiste (écrire moins de code).
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Mauvais
@@ -1727,7 +1727,7 @@ Vue.component('TodoItem', {
 
 **[Vuex](https://github.com/vuejs/vuex) devrait être préféré pour une gestion globale d'état à la place de `this.$root` ou d'un canal global d'évènement.**
 
-Gérer l'état avec `this.$root` et / ou utiliser un [canal d'évènement global](https://fr.vuejs.org/v2/guide/migration.html#dispatch-et-broadcast-remplaces) peut faciliter la tâche dans des cas vraiment simple. Cependant cela n'est pas approprié pour la plupart des applications. Vuex n'offre pas seulement une place centrale pour gérer l'état mais également des outils pour organiser, tracer et déboguer les changements d'états.
+Gérer l'état avec `this.$root` et / ou utiliser un [canal d'évènement global](https://fr.vuejs.org/v2/guide/migration.html#dispatch-et-broadcast-remplaces) peut faciliter la tâche dans des cas vraiment simples. Cependant cela n'est pas approprié pour la plupart des applications. Vuex n'offre pas seulement une place centrale pour gérer l'état mais également des outils pour organiser, tracer et déboguer les changements d'états.
 
 {% raw %}</details>{% endraw %}
 
