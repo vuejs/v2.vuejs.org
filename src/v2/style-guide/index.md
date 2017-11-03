@@ -777,7 +777,6 @@ En anglais natif, les adjectifs et les autres descripteurs apparaissent généra
 - Soup _of the_ day
 - Visitor _to the_ museum
 
-
 Vous pouvez inclure ces connecteurs dans le nom de vos composants si vous le souhaitez, mais l'ordre reste important.
 
 Notez également que **ce qui va être considéré comme le mot le plus important est relatif à votre application**. Par exemple, imaginez une application avec un formulaire de recherche. Elle pourrait inclure les composants comme suit :
