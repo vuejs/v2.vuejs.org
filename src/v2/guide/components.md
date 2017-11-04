@@ -749,7 +749,7 @@ L'implémentation ci-dessus est plutôt naïve cependant. Par exemple, les utili
 
 > Nouveau dans la 2.2.0+
 
-Par défaut, `v-model` sur un composant utilise `value` en tant que prop et peuvent vouloir utiliser `input` en tant qu'évènement, mais plusieurs types de champ comme les cases à cocher et les boutons radio pourraient utiliser `value` pour un usage différent. Utiliser l'option `model` permet d'éviter les conflits dans ce genre de situations :
+Par défaut, `v-model` sur un composant utilise `value` en tant que prop et `input` en tant qu'évènement, mais plusieurs types de champ comme les cases à cocher et les boutons radio pourraient utiliser `value` pour un usage différent. Utiliser l'option `model` permet d'éviter les conflits dans ce genre de situations :
 
 ``` js
 Vue.component('my-checkbox', {
