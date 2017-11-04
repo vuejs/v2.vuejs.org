@@ -1,5 +1,5 @@
 ---
-title: 단일 파일 컴포넌트
+title: 싱글 파일 컴포넌트
 type: guide
 order: 402
 ---
@@ -15,7 +15,7 @@ order: 402
 - **CSS 지원 없음** HTML 및 JavaScript가 컴포넌트로 모듈화 되어 있으나 CSS가 빠져 있는 것을 말합니다.
 - **빌드 단계 없음** Pug (이전의 Jade) 및 Babel과 같은 전처리기가 아닌 HTML 및 ES5 JavaScript로 제한됩니다.
 
-위 모든 것들은 Webpack 또는 Browserify와 같은 빌드 도구를 이용해 `.vue` 확장자를 가진 **단일 파일 컴포넌트** 로 해결 됩니다.
+위 모든 것들은 Webpack 또는 Browserify와 같은 빌드 도구를 이용해 `.vue` 확장자를 가진 **싱글 파일 컴포넌트** 로 해결 됩니다.
 
 다음은 `Hello.vue` 파일의 간단한 예입니다.
 
@@ -37,7 +37,7 @@ order: 402
 
 주목해야 할 중요한 점은 **관심사 분리가 파일 타입 분리와 같지 않다는 것입니다.** 현대적인 UI 개발에서 코드베이스를 서로 얽혀있는 세 개의 거대한 레이어로 나누는 대신, 느슨하게 결합 된 컴포넌트로 나누고 구성하는 것이 더 중요합니다. 컴포넌트 내부에서 템플릿, 로직 및 스타일이 본질적으로 결합되어 배치되면 컴포넌트의 응집력과 유지 보수성이 향상됩니다.
 
-단일 파일 컴포넌트에 대한 아이디어가 마음에 들지 않더라도 JavaScript와 CSS를 별도의 파일로 분리하여 핫 리로드 및 사전 컴파일 기능을 활용할 수 있습니다.
+싱글 파일 컴포넌트에 대한 아이디어가 마음에 들지 않더라도 JavaScript와 CSS를 별도의 파일로 분리하여 핫 리로드 및 사전 컴파일 기능을 활용할 수 있습니다.
 
 ``` html
 <!-- my-component.vue -->
@@ -67,7 +67,7 @@ order: 402
 
 템플릿은 여러 "모듈"을 가져와 최종 응용프로그램에 묶는 모듈 번들러인 [Webpack](https://webpack.github.io/)을 사용합니다. Webpack 자체에 대한 자세한 내용을 보려면 [이 동영상](https://www.youtube.com/watch?v=WQue1AN93YU)에서 좋은 소개를 볼 수 있습니다. 일단 기본을 익히면 [Egghead.io의 고급 Webpack 코스](https://egghead.io/courses/using-webpack-for-production-javascript-applications)과 [Webpack Academy](https://webpack.academy/p/the-core-concepts)를 확인하십시오.
 
-Webpack에서 각 모듈은 번들에 포함되기 전에 "loader"에 의해 변형될 수 있으며 Vue는 [vue-loader](https://github.com/vuejs/vue-loader) 플러그인을 제공하여 `.vue` 단일 파일 컴포넌트를 처리합니다. [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 템플릿은 이미 모든 것을 설정 되어 있지만 `.vue` 컴포넌트 작동 방식을 알고 싶다면 [vue-loader 문서](https://vue-loader.vuejs.org)를 읽으시면 됩니다.
+Webpack에서 각 모듈은 번들에 포함되기 전에 "loader"에 의해 변형될 수 있으며 Vue는 [vue-loader](https://github.com/vuejs/vue-loader) 플러그인을 제공하여 `.vue` 싱글 파일 컴포넌트를 처리합니다. [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 템플릿은 이미 모든 것을 설정 되어 있지만 `.vue` 컴포넌트 작동 방식을 알고 싶다면 [vue-loader 문서](https://vue-loader.vuejs.org)를 읽으시면 됩니다.
 
 ### 고급 사용자를 위한 내용
 
