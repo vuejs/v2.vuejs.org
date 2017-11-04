@@ -210,6 +210,7 @@ order: 803
     'Lyon, France': [45.764043, 4.835659],
     'Mannheim, Germany': [49.487459, 8.466039],
     'Moscow, Russia': [55.755826, 37.617300],
+    'Munich, Germany': [48.137154, 11.576124],
     'Orlando, FL, USA': [28.538335, -81.379236],
     'Paris, France': [48.856614, 2.352222],
     'Seoul, South Korea': [37.566535, 126.977969],
@@ -421,7 +422,7 @@ order: 803
     {
       name: 'Phan An',
       title: 'Backend Designer & Process Poet',
-      city: 'London, UK',
+      city: 'Munich, Germany',
       languages: ['vi', 'en'],
       github: 'phanan',
       twitter: 'notphanan',
