@@ -2,11 +2,11 @@
 title: 설치방법
 type: guide
 order: 1
-vue_version: 2.4.4
-dev_size: "262.63"
-min_size: "80.86"
-gz_size: "29.40"
-ro_gz_size: "20.70"
+vue_version: 2.5.1
+dev_size: "271.12"
+min_size: "83.13"
+gz_size: "30.33"
+ro_gz_size: "21.04"
 ---
 
 ### 호환성 정보

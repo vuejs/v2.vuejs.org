@@ -96,7 +96,7 @@ Boolean 속성에 대해서도 작동합니다. 조건이 거짓 값이면 속�
 일부 디렉티브는 콜론으로 표시되는 "전달인자"를 사용할 수 있습니다. 예를 들어, `v-bind` 디렉티브는 반응적으로 HTML 속성을 갱신하는데 사용됩니다.
 
 ``` html
-<a v-bind:href="url"></a>
+<a v-bind:href="url"> ... </a>
 ```
 
 여기서 `href`는 전달인자로, 엘리먼트의 `href` 속성을 표현식 `url`의 값에 바인드하는 `v-bind` 디렉티브에게 알려줍니다.
@@ -104,7 +104,7 @@ Boolean 속성에 대해서도 작동합니다. 조건이 거짓 값이면 속�
 또 다른 예로 DOM 이벤트를 수신하는 `v-on` 디렉티브입니다.
 
 ``` html
-<a v-on:click="doSomething">
+<a v-on:click="doSomething"> ... </a>
 ```
 
 전달인자는 이벤트를 받을 이름입니다. 우리는 이벤트 핸들링에 대해 더 자세하게 살펴 볼 것입니다.
@@ -114,7 +114,7 @@ Boolean 속성에 대해서도 작동합니다. 조건이 거짓 값이면 속�
 수식어는 점으로 표시되는 특수 접미사로, 디렉티브를 특별한 방법으로 바인딩 해야 함을 나타냅니다. 예를 들어, `.prevent` 수식어는 트리거된 이벤트에서 `event.preventDefault()`를 호출하도록 `v-on` 디렉티브에게 알려줍니다.
 
 ``` html
-<form v-on:submit.prevent="onSubmit"></form>
+<form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
 나중에 [`v-on`](https://vuejs.org/v2/guide/events.html#Event-Modifiers)과 [`v-model`](https://vuejs.org/v2/guide/forms.html#Modifiers)을 더 자세히 살펴볼 때 수식어를 더 많이 사용할 것 입니다.
@@ -126,21 +126,21 @@ Boolean 속성에 대해서도 작동합니다. 조건이 거짓 값이면 속�
 ### `v-bind` 약어
 
 ``` html
-<!-- 전체 구문 -->
-<a v-bind:href="url"></a>
+<!-- 전체 문법 -->
+<a v-bind:href="url"> ... </a>
 
 <!-- 약어 -->
-<a :href="url"></a>
+<a :href="url"> ... </a>
 ```
 
 ### `v-on` 약어
 
 ``` html
-<!-- 전체 구문 -->
-<a v-on:click="doSomething"></a>
+<!-- 전체 문법 -->
+<a v-on:click="doSomething"> ... </a>
 
 <!-- 약어 -->
-<a @click="doSomething"></a>
+<a @click="doSomething"> ... </a>
 ```
 
 이들은 일반적인 HTML과 조금 다르게 보일 수 있습니다. 하지만 `:`와 `@`는 속성 이름에 유효한 문자이며 Vue.js를 지원하는 모든 브라우저는 올바르게 구문 분석을 할 수 있습니다. 또한 최종 렌더링 된 마크업에는 나타나지 않습니다. 약어는 완전히 선택사항이지만 나중에 익숙해지면 편할 것 입니다.

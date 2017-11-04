@@ -439,7 +439,7 @@ methods: {
 
 이러한 훅은 CSS 전환 / 애니메이션 또는 자체적으로 사용할 수 있습니다.
 
-<p class="tip">JavaScript 전용 전환을 하는 경우 **`done` 콜백은 `enter` 및 `leave` 훅에 필요합니다.** 그렇지 않으면 동기적으로 호출되고 전환 즉시 완료됩니다.</p>
+<p class="tip">JavaScript 전용 전환을 하는 경우 `enter` 및 `leave` 훅에서  **`done` 콜백이  필요합니다.** 그렇지 않으면 동기적으로 호출되고 전환 즉시 완료됩니다.</p>
 
 <p class="tip">Vue가 CSS 탐지를 건너 뛸 수 있도록 JavaScript 전용 전환에 `v-bind:css="false"`를 명시적으로 추가하는 것도 좋은 생각입니다. 이것은 CSS 규칙이 실수로 전환을 방해하는 것을 방지합니다.</p>
 

@@ -14,22 +14,31 @@ Vue는 텍스트 형식화를 적용할 수 있는 필터를 지원합니다. �
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-필터함수는 언제나 표현법에 사용될 값을 첫번째 인수로 받습니다. 이 예제에서의 `capitalize` 필터 함수는 `message`의 값을 첫번째 인수로 받을 것입니다
+컴포넌트 옵션에서 로컬 필터를 정의할 수 있습니다.
 
 ``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
+filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
   }
+}
+```
+
+or define a filter globally:
+
+``` js
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
 })
 ```
 
-필터는 연쇄적으로 사용될 수 있습니다.
+필터의 함수는 항상 표현식의 값(이전 체이닝의 결과)를 첫번째 전달인자로 받습니다. 위의 예제에서 `capitalize` 필터 함수는 `message`가 첫번째 전달인자로 받습니다.
+
+필터는 체이닝 할 수 있습니다.
 
 ``` html
 {{ message | filterA | filterB }}

@@ -105,7 +105,7 @@ type: api
 
 ### ignoredElements
 
-- **타입:** `Array<string>`
+- **타입:** `Array<string | RegExp>`
 
 - **기본값:** `[]`
 
@@ -113,7 +113,11 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'my-custom-web-component',
+    'another-web-component',
+    // `RegExp`를 이용해 "ion-" 으로 시작하는 모든 엘리먼트를 무시함
+    // 2.5+ only
+    /^ion-/
   ]
   ```
 
@@ -602,7 +606,8 @@ if (version === 2) {
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (val, oldVal) {
@@ -614,6 +619,11 @@ if (version === 2) {
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
+      },
+      // 콜백은 관찰이 시작된 직후 호출됩니다.
+      d: {
+        handler: function (val, oldVal) { /* ... */ },
+        immediate: true
       }
     }
   })
@@ -859,6 +869,28 @@ if (version === 2) {
 
 - **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
+### errorCaptured
+
+> 2.5.0+에서 추가됨
+
+- **타입:** `(err: Error, vm: Component, info: string) => ?boolean`
+
+- **상세:**
+
+  자손 컴퍼넌트로부터의 에러가 캡처되었을 때에 불립니다. 오류를 트리거 한 컴포넌트 인스턴스 및 오류가 캡처된 위치에 대한 정보가 들어있는 문자열의 세 가지 전달인자를 받습니다. 훅은 `false`를 반환하여 오류가 더 전파되지 않도록 할 수 있습니다.
+
+  <p class="tip">이 훅에서 컴포넌트 상태를 수정할 수 있습니다. 그러나 오류가 캡처되었을 때 다른 내용을 더이상 실행시키지 않는 조건부 템플릿을 사용하거나 렌더링 기능을 사용하는 것이 중요합니다. 그렇지 않으면 컴포넌트가 무한 렌더링 루프에 던져 질 것입니다.</p>
+
+  **에러 전파 규칙**
+  
+  - 기본적으로 모든 오류는 정의 된 경우 전역 `config.errorHandler`로 보내지므로 분석 서비스에 한 곳에 계속 보고할 수 있습니다.
+
+  - 여러 개의 'errorCaptured` 훅이 컴포넌트의 상속 체인이나 부모 체인에 존재하면, 모두 동일한 에러로 호출됩니다.
+
+  - `errorCaptured` 훅에서 에러를 throw 하면, 이 에러와 원래 캡쳐 된 에러 모두가 글로벌 `config.errorHandler`로 보내집니다.
+
+  - `errorCaptured` 훅은 오류가 더 전파되지 않도록 `false`를 반환 할 수 있습니다. 이것은 본질적으로 "이 오류가 처리되었으므로 무시해야합니다."를 의미합니다. 추가로 `errorCaptured` 훅이나 글로벌 `config.errorHandler`가 이 에러를 위해 호출되지 않도록합니다.
+
 ## 옵션 / 에셋
 
 ### directives
@@ -958,7 +990,7 @@ if (version === 2) {
 
 - **타입:**
   - **provide:** `Object | () => Object`
-  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
 - **상세:**
 
@@ -1034,6 +1066,42 @@ if (version === 2) {
     data () {
       return {
         bar: this.foo
+      }
+    }
+  }
+  ```
+
+  > 2.5.0+에서 주입은 기본 값을 옵션으로 제공할 수 있습니다.
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: { default: 'foo' }
+    }
+  }
+  ```
+
+  다른 이름의 속성에서 주입해야 하는 경우 `from`을 사용하여 소스 속성을 나타냅니다.
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: 'foo'
+      }
+    }
+  }
+  ```
+
+  prop의 기본값과 마찬가지로 원시형이 아닌 값에 대해서는 팩토리 함수를 사용해야합니다.
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: () => [1, 2, 3]
       }
     }
   }
@@ -2062,6 +2130,19 @@ if (version === 2) {
   자세한 사용법은 아래 링크 된 가이드 섹션을 참조하십시오.
 
 - **참고:** [명명된 슬롯](../guide/components.html#Named-Slots)
+
+### slot-scope
+
+- **예상됨:** `함수 전달인자 표현식`
+
+- **사용법:**
+
+  엘리먼트 또는 컴포넌트가 지정된 슬롯으로 표시하는데 사용됩니다. 속성 값은 함수 서명의 전달인자 위치에 나타날 수 있는 유효한 JavaScript 표현식이어야합니다. 즉, 지원되는 환경에서 ES2015 디스트럭처링을 사용할 수 있습니다.
+
+  This attribute does not support dynamic binding.
+  이 속성은 동적 바인딩을 지원하지 않습니다.
+
+- **함께 보기:** [범위를 가지는 슬롯](../guide/components.html#Scoped-Slots)
 
 ### is
 

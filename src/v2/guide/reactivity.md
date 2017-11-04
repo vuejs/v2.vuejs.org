@@ -4,13 +4,11 @@ type: guide
 order: 601
 ---
 
-Now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
+이제 조금 더 깊게 알아볼 차례입니다. Vue의 가장 두드러진 특징 중 하나는 눈에 잘 띄지 않는 반응형 시스템입니다. 모델은 단순한 JavaScript 객체입니다. 수정하면 화면이 갱신됩니다. 스테이트 관리를 간단하고 직관적으로 만들어주지만 공통점을 제거하기 위해 어떻게 작동하는지 이해하는 것도 중요합니다. 이 섹션에서는 Vue의 반응형 시스템의 세부사항을 다룹니다.
 
 ## 변경 내용을 추적하는 방법
 
-When you pass a plain JavaScript object to a Vue instance as its `data` option, Vue will walk through all of its properties and convert them to getter/setters using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue doesn't support IE8 and below.
-
-The getter/setters are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format getter/setters differently when converted data objects are logged, so you may want to install [vue-devtools](https://github.com/vuejs/vue-devtools) for a more inspection-friendly interface.
+Vue 인스턴스에 JavaScript 객체를 `data` 옵션으로 전달하면 Vue는 모든 속성에 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)를 사용하여 getter/setter로 변환합니다. 이는 Vue가 ES5를 사용할 수 없는 IE8 이하를 지원하지 않는 이유입니다.
 
 getter / setter 는 사용자에게는 보이지 않으나 속성에 액세스 하거나 수정할 때 Vue가 종속성 추적 및 변경 알림을 수행할 수 있습니다. 한가지 주의 사항은 변환된 데이터 객체가 기록될 때 브라우저가 getter / setter 형식을 다르게 처리하므로 친숙한 인터페이스를 사용하기 위해  [vue-devtools](https://github.com/vuejs/vue-devtools)를 설치하는 것이 좋습니다.
 

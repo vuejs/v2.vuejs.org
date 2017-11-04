@@ -49,6 +49,22 @@ module.exports = {
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   ```
 
+- 또는 Gulp와 [envify](https://github.com/hughsk/envify)를 함께 사용할 수 있습니다.
+
+  ``` js
+  // envify 사용자 정의 모듈을 사용하여 환경 변수 지정
+  var envify = require('envify/custom')
+
+  browserify(browserifyOptions)
+    .transform(vueify),
+    .transform(
+      // node_modules 파일을 처리하기 위해 필요합니다.
+      { global: true },
+      envify({ NODE_ENV: 'production' })
+    )
+    .bundle()
+  ```
+
 #### Rollup
 
 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)을 사용하세요.

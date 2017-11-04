@@ -300,9 +300,7 @@ Vue와 사용자 정의 엘리먼트 및 Shadow DOM 스타일 캡슐화와 같�
 
 ## Riot
 
-Riot 2.0은 작고 아름답게 디자인 된 API를 사용하여 유사한 컴포넌트 기반 개발 모델 (Riot에서 "태그"라고 함)을 제공합니다. Riot과 Vue는 디자인 철학에 많은 부분을 공유합니다. 그러나 Vue는 Riot보다 약간 무겁지만 몇 가지 중요한 이점을 제공합니다.
+Riot 3.0은 작고 아름답게 디자인 된 API를 사용하여 유사한 컴포넌트 기반 개발 모델 (Riot에서 "태그"라고 함)을 제공합니다. Riot과 Vue는 디자인 철학에 많은 부분을 공유합니다. 그러나 Vue는 Riot보다 약간 무겁지만 몇 가지 중요한 이점을 제공합니다.
 
-- [전환 효과 시스템](transitions.html). Riot에는 아무 것도 없습니다.
-- 훨씬 강력한 라우터. Riot의 라우팅 API는 극히 약합니다.
 - 더 나은 성능. 가상 DOM을 사용하는 것보다 Riot은 [DOM 트리 순회](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding)를 하므로 앵귤러 1과 같은 성능 문제가 있습니다.
 - 보다 성숙한 도구 지원. Vue는 [Webpack](https://github.com/vuejs/vue-loader)및 [Browserify](https://github.com/vuejs/vueify)에 대한 공식적으로 지원하지만 Riot는 빌드 시스템 통합을 커뮤니티 지원에 의존합니다.
