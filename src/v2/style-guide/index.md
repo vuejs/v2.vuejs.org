@@ -1415,6 +1415,7 @@ Voici l'ordre par défaut que nous recommandons pour les options de composant. E
 **Vous pourriez ajouter une ligne vide entre de multiples propriétés, en particulier si la longueur de votre option dépasse la taille de l'écran.**
 
 Quand les composants commencent à devenir difficile à lire, ajouter des espaces entre des propriétés sur plusieurs lignes peut les rendre de nouveau simples à lire. Dans divers éditeurs, comme Vim, formater les options ainsi peut rendre la navigation plus simple avec le clavier.
+
 {% raw %}<div class="style-example example-good">{% endraw %}
 #### Bon
 
