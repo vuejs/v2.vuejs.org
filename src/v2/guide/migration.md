@@ -728,11 +728,11 @@ You can use:
 </div>
 {% endraw %}
 
-## 전환 효과
+## 트랜지션 효과
 
 ### `transition` 속성 <sup>대체</sup>
 
-Vue의 전환 시스템은 상당히 크게 변경되어 이제 `transition` 속성보다는 `<transition>` 과 `<transition-group>` 래퍼 요소를 사용합니다. 자세한 내용은 새 [전환 안내](transitions.html)를 읽는 것이 좋습니다.
+Vue의 트랜지션 시스템은 상당히 크게 변경되어 이제 `transition` 속성보다는 `<transition>` 과 `<transition-group>` 래퍼 요소를 사용합니다. 자세한 내용은 새 [트랜지션 안내](transitions.html)를 읽는 것이 좋습니다.
 
 {% raw %}
 <div class="upgrade-path">
@@ -741,9 +741,9 @@ Vue의 전환 시스템은 상당히 크게 변경되어 이제 `transition` 속
 </div>
 {% endraw %}
 
-### `Vue.transition`의 재사용 가능한 전환 <sup>대체</sup>
+### `Vue.transition`의 재사용 가능한 트랜지션 <sup>대체</sup>
 
-새로운 전환 시스템을 사용하면 [재사용 가능한 전환을 위해 컴포넌트를 사용](transitions.html#Reusable-Transitions)할 수 있습니다.
+새로운 트랜지션 시스템을 사용하면 [재사용 가능한 트랜지션을 위해 컴포넌트를 사용](transitions.html#Reusable-Transitions)할 수 있습니다.
 
 {% raw %}
 <div class="upgrade-path">
@@ -752,14 +752,14 @@ Vue의 전환 시스템은 상당히 크게 변경되어 이제 `transition` 속
 </div>
 {% endraw %}
 
-### 전환 `stagger` 속성 <sup>제거됨</sup>
+### 트랜지션 `stagger` 속성 <sup>제거됨</sup>
 
-리스트 전환을 엇갈리게 할 필요가있는 경우, 요소의 `data-index` (또는 유사한 속성)를 설정하고 액세스하여 타이밍을 제어 할 수 있습니다. [예제](transitions.html#Staggering-List-Transitions)를 보십시오.
+리스트 트랜지션을 엇갈리게 할 필요가있는 경우, 요소의 `data-index` (또는 유사한 속성)를 설정하고 액세스하여 타이밍을 제어 할 수 있습니다. [예제](transitions.html#Staggering-List-Transitions)를 보십시오.
 
 {% raw %}
 <div class="upgrade-path">
   <h4>업그레이드 방법</h4>
-  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여the <code>transition</code> 속성의 예를 찾으십시오. 업데이트 하는 동안, 전환이 매우 요동칠 수 있습니다.</p>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper">마이그레이션 도우미</a>를 실행하여the <code>transition</code> 속성의 예를 찾으십시오. 업데이트 하는 동안, 트랜지션이 매우 요동칠 수 있습니다.</p>
 </div>
 {% endraw %}
 
@@ -1093,7 +1093,7 @@ function pluralizeKnife (count) {
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 대부분 잘 작동하지만 지연된 상태 업데이트로 인해 이상한 동작이 발생할 수 있습니다. 예를 들어,`Result` 탭을 클릭하고 그 입력 중 하나에 `9.999`를 입력하십시오. 입력 값이 사라지면 값은 `$ 10.00`으로 업데이트됩니다. 그러나 계산 된 합계를 보면 `9.999`가 데이터에 저장 되어 있는 것을 볼 수 있습니다. 사용자가 보는 현실의 버전이 동기화되지 않았습니다!
-Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 전환하려면 먼저이 필터를 새로운 `<currency-input>` 컴포넌트로 둘러 쌉시다.
+Vue 2.0을 사용하여 좀 더 강력한 솔루션으로 트랜지션하려면 먼저이 필터를 새로운 `<currency-input>` 컴포넌트로 둘러 쌉시다.
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/943zfbsh/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 

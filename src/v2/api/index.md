@@ -1713,7 +1713,7 @@ if (version === 2) {
 
   토글은 표현식 값의 참에 기반을 둔 `display` CSS 속성입니다.
 
-  이 디렉티브는 조건이 바뀌면 전환이 호출 됩니다.
+  이 디렉티브는 조건이 바뀌면 트랜지션이 호출 됩니다.
 
 - **참고:** [조건부 렌더링 - v-show](../guide/conditional.html#v-show)
 
@@ -1725,7 +1725,7 @@ if (version === 2) {
 
   표현식 값의 참 거짓을 기반으로 엘리먼트를 조건부 렌더링 합니다. 엘리먼트 및 포함된 디렉티브 / 컴포넌트는 토글하는 동안 삭제되고 다시 작성됩니다. 엘리먼트가 `<template>`엘리먼트인 경우 그 내용은 조건부 블록이 됩니다.
 
-  조건이 변경될 때 전환이 호출 됩니다.
+  조건이 변경될 때 트랜지션이 호출 됩니다.
 
 <p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
 
@@ -2089,7 +2089,7 @@ if (version === 2) {
   엘리먼트 / 컴포넌트를 재사용하지 않고 강제로 대체하는데에도 사용할 수 있습니다. 이것은 다음과 같은 경우 유용할 수 있습니다.
 
   - 컴포넌트의 라이프사이클 훅을 올바르게 트리거합니다.
-  - 전환효과 호출
+  - 트랜지션효과 호출
 
 예제:
 
@@ -2198,10 +2198,10 @@ if (version === 2) {
 ### transition
 
 - **Props:**
-  - `name` - string, 전환 CSS 클래스 이름을 자동으로 생성하는데 사용됩니다. 예: `name: 'fade'`는 자동으로 `.fade-enter`, `.fade-enter-active`로 확장됩니다. 기본값은 `"v"`입니다.
-  - `appear` - boolean, 초기 렌더링에서 전환 적용 여부를 정합니다. 기본값은 `false` 입니다.
-  - `css` - boolean, CSS 전환 클래스를 적용할 여부입니다. 기본 값은 `true`입니다. `false`로 설정하면 컴포넌트 이벤트를 통해 등록된 자바스크립트 훅만 호출됩니다.
-  - `type` - string, 전환 종료 타이밍을 결정하기 위해 대기할 전환 이벤트의 유형을 지정합니다. 사용 가능한 값은 `"transition"`과 `"animation"`입니다. 기본적으로 더 긴 지속시간을 갖는 유형을 자동으로 감지합니다.
+  - `name` - string, 트랜지션 CSS 클래스 이름을 자동으로 생성하는데 사용됩니다. 예: `name: 'fade'`는 자동으로 `.fade-enter`, `.fade-enter-active`로 확장됩니다. 기본값은 `"v"`입니다.
+  - `appear` - boolean, 초기 렌더링에서 트랜지션 적용 여부를 정합니다. 기본값은 `false` 입니다.
+  - `css` - boolean, CSS 트랜지션 클래스를 적용할 여부입니다. 기본 값은 `true`입니다. `false`로 설정하면 컴포넌트 이벤트를 통해 등록된 자바스크립트 훅만 호출됩니다.
+  - `type` - string, 트랜지션 종료 타이밍을 결정하기 위해 대기할 트랜지션 이벤트의 유형을 지정합니다. 사용 가능한 값은 `"transition"`과 `"animation"`입니다. 기본적으로 더 긴 지속시간을 갖는 유형을 자동으로 감지합니다.
   - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
   - `mode` - string, 트랜지션을 나가거나 들어가는 타이밍 순서를 제어합니다. 사용 가능한 모드는 `"out-in"`과 `"in-out"`입니다. 기본값은 동시에 발생합니다.
   - `enter-class` - string
@@ -2230,7 +2230,7 @@ if (version === 2) {
 
 - **사용방법:**
 
-  `<transition>`은 **단일** 엘리먼트 / 컴포넌트에 대한 전환 효과로 사용됩니다. `<transition>`은 추가 DOM 엘리먼트를 렌더링 하지 않으며 컴포넌트 계층에도 나타나지 않습니다. 내부의 래핑된 컨텐츠에 단순히 전환 효과를 적용합니다.
+  `<transition>`은 **단일** 엘리먼트 / 컴포넌트에 대한 트랜지션 효과로 사용됩니다. `<transition>`은 추가 DOM 엘리먼트를 렌더링 하지 않으며 컴포넌트 계층에도 나타나지 않습니다. 내부의 래핑된 컨텐츠에 단순히 트랜지션 효과를 적용합니다.
 
   ```html
   <!-- 단일 엘리먼트 -->
@@ -2269,7 +2269,7 @@ if (version === 2) {
 
 - **Props:**
   - `tag` - string, 기본값은 `span` 입니다.
-  - `move-class` - 이동 전환 중에 적용된 CSS클래스를 덮어 씁니다.
+  - `move-class` - 이동 트랜지션 중에 적용된 CSS클래스를 덮어 씁니다.
   - `mode`를 제외한 `<transition>`과 동일한 prop를 노출합니다.
 
 - **이벤트:**
@@ -2277,10 +2277,10 @@ if (version === 2) {
 
 - **사용방법:**
 
-  `<transition-group>`은 **여러** 엘리먼트 / 컴포넌트에 대한 전환 효과로 사용합니다. `<transition-group>`은 실제 DOM 엘리먼트를 렌더링 합니다. 기본값으로 `<span>`을 렌더링하고 `tag` 속성을 통해 렌더링 해야하는 엘리먼트를 설정할 수 있습니다.
+  `<transition-group>`은 **여러** 엘리먼트 / 컴포넌트에 대한 트랜지션 효과로 사용합니다. `<transition-group>`은 실제 DOM 엘리먼트를 렌더링 합니다. 기본값으로 `<span>`을 렌더링하고 `tag` 속성을 통해 렌더링 해야하는 엘리먼트를 설정할 수 있습니다.
   애니메이션이 제대로 작동되게 하려면 `<transition-group>`에 있는 모든 자식이 **유일 키** 가 되어야 합니다.
 
-  `<transition-group>`은 CSS transform을 통해 장면 전환을 지원합니다. 스크린에서 자식의 위치가 변경된 후 움직이는 CSS클래스 (`name` 속성에서 자동 생성되거나 `move-class` 속성으로 설정됨)가 적용됩니다. 움직이는 클래스가 적용될 때 CSS `transform` 속성이 "전환가능"하면, 엘리먼트는 [FLIP technique](https://aerotwist.com/blog/flip-your-animations/)을 사용하여 목적지로 부드럽게 움직입니다.
+  `<transition-group>`은 CSS transform을 통해 장면 트랜지션을 지원합니다. 스크린에서 자식의 위치가 변경된 후 움직이는 CSS클래스 (`name` 속성에서 자동 생성되거나 `move-class` 속성으로 설정됨)가 적용됩니다. 움직이는 클래스가 적용될 때 CSS `transform` 속성이 "트랜지션가능"하면, 엘리먼트는 [FLIP technique](https://aerotwist.com/blog/flip-your-animations/)을 사용하여 목적지로 부드럽게 움직입니다.
 
   ```html
   <transition-group tag="ul" name="slide">
