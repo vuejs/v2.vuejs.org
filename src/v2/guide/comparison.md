@@ -148,9 +148,9 @@ Vue에서 우리는 또한 [렌더링 함수](render-function.html)와 심지어
 
 컴포넌트를 여러 파일 (예: [CSS 모듈](https://github.com/gajus/react-css-modules))을 통해 배포하지 않는 한 React의 CSS 범위 지정은 CSS-in-JS 방식으로 해결합니다. (e.g. [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous), 그리고 [emotion](https://github.com/emotion-js/emotion)) 이는 일반적인 CSS 작성 프로세스와는 다른 새로운 컴포넌트 지향 스타일링 패러다임을 도입합니다. 또한 빌드타임에 단일 스타일시트에 CSS를 추출할 수 있는 지원이 있지만 스타일이 제대로 작동하려면 런타임이 번들에 포함되어야하는 것이 일반적입니다. 스타일을 작성하는 동안 JavaScript의 역동적인 기능을 사용할 수 있지만 번들 크기 및 런타임 비용은 종종 높아집니다.
 
-CSS-in-JS의 팬이라면 Vue를 지원하는 라이브러리(예 [styled-components-vue](https://github.com/styled-components/vue-styled-components)와 [vue-emotion](https://github.com/egoist/vue-emotion)). React와 Vue의 가장 큰 차이점은 Vue의 기본 스타일 지정 방법은 [단일 파일 컴포넌트](single-file-components.html)에서 보다 익숙한 `style` 태그를 사용한다는 것 입니다.
+CSS-in-JS의 팬이라면 Vue를 지원하는 라이브러리(예 [styled-components-vue](https://github.com/styled-components/vue-styled-components)와 [vue-emotion](https://github.com/egoist/vue-emotion)). React와 Vue의 가장 큰 차이점은 Vue의 기본 스타일 지정 방법은 [싱글 파일 컴포넌트](single-file-components.html)에서 보다 익숙한 `style` 태그를 사용한다는 것 입니다.
 
-반면에 Vue는 [단일 파일 컴포넌트](single-file-components.html) 내에서 CSS에 대한 모든 액세스 권한을 제공합니다.
+반면에 Vue는 [싱글 파일 컴포넌트](single-file-components.html) 내에서 CSS에 대한 모든 액세스 권한을 제공합니다.
 
 ``` html
 <style scoped>
@@ -164,7 +164,7 @@ CSS-in-JS의 팬이라면 Vue를 지원하는 라이브러리(예 [styled-compon
 
 옵션인 `scoped` 속성은 엘리먼트에 유일한 속성(예 : `data-v-21e5b78`)을 추가하고 `.list-container:hover`를 `.list-container[data-v-21e5b78]:hover`로 컴파일 합니다.
 
-마지막으로 Vue의 단일 파일 컴포넌트의 스타일은 매우 유연합니다. [vue-loader](https://github.com/vuejs/vue-loader)를 통해 전처리기, 포스트 프로세서 및 [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html)와의 긴밀한 통합을 할 수 있습니다.  모든 스타일은 `<style>` 엘리먼트 안에 있습니다.
+마지막으로 Vue의 싱글 파일 컴포넌트의 스타일은 매우 유연합니다. [vue-loader](https://github.com/vuejs/vue-loader)를 통해 전처리기, 포스트 프로세서 및 [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html)와의 긴밀한 통합을 할 수 있습니다.  모든 스타일은 `<style>` 엘리먼트 안에 있습니다.
 
 ### 규모
 
@@ -292,7 +292,7 @@ Polymer는 Google이 후원하는 또 다른 프로젝트이며 실제로 Vue의
 
 Polymer 1.0에서 팀은 성능을 보완하기 위해 데이터 바인딩 시스템을 매우 제한적으로 만들었습니다. 예를 들어, Polymer 템플릿에서 지원되는 유일한 표현식은 Boolean 부정 및 단일 메소드 호출입니다. 계산된 속성 구현 또한 매우 유연하지 않습니다.
 
-Polymer 사용자 정의 엘리먼트는 HTML 파일로 제작되어 일반 JavaScript/CSS(및 현재 브라우저에서 지원되는 언어 기능)로 제한됩니다. 이에 비해 Vue의 단일 파일 컴포넌트를 사용하면 ES2015+ 및 원하는 모든 CSS 전처리기를 쉽게 사용할 수 있습니다.
+Polymer 사용자 정의 엘리먼트는 HTML 파일로 제작되어 일반 JavaScript/CSS(및 현재 브라우저에서 지원되는 언어 기능)로 제한됩니다. 이에 비해 Vue의 싱글 파일 컴포넌트를 사용하면 ES2015+ 및 원하는 모든 CSS 전처리기를 쉽게 사용할 수 있습니다.
 
 프로덕션 환경으로 배포 할 때 Polymer는 브라우저에서 스펙을 구현한다고 가정하는 HTML 가져오기 및 서버와 클라이언트 모두에서 HTTP/2 지원을 사용하여 모든 것을 로드하는 것을 권장합니다. 이는 대상 사용자 및 배포 환경에 따라 가능할 수도 있고 그렇지 않을 수도 있습니다. 이것이 바람직하지 않은 경우에는 Vulcanizer라고하는 특수 도구를 사용하여 폴리머 엘리먼트를 묶어야합니다. 앞에서 볼 때 Vue는 비동기 컴포넌트 기능과 Webpack의 코드 분할 기능을 결합하여 애플리케이션 번들의 일부를 지연 로드 되도록 쉽게 분리 할 수 있습니다. 이를 통해 이전 브라우저와의 호환성을 유지하면서 앱 로드 성능을 높일 수 있습니다.
 
@@ -300,9 +300,7 @@ Vue와 사용자 정의 엘리먼트 및 Shadow DOM 스타일 캡슐화와 같�
 
 ## Riot
 
-Riot 2.0은 작고 아름답게 디자인 된 API를 사용하여 유사한 컴포넌트 기반 개발 모델 (Riot에서 "태그"라고 함)을 제공합니다. Riot과 Vue는 디자인 철학에 많은 부분을 공유합니다. 그러나 Vue는 Riot보다 약간 무겁지만 몇 가지 중요한 이점을 제공합니다.
+Riot 3.0은 작고 아름답게 디자인 된 API를 사용하여 유사한 컴포넌트 기반 개발 모델 (Riot에서 "태그"라고 함)을 제공합니다. Riot과 Vue는 디자인 철학에 많은 부분을 공유합니다. 그러나 Vue는 Riot보다 약간 무겁지만 몇 가지 중요한 이점을 제공합니다.
 
-- [전환 효과 시스템](transitions.html). Riot에는 아무 것도 없습니다.
-- 훨씬 강력한 라우터. Riot의 라우팅 API는 극히 약합니다.
 - 더 나은 성능. 가상 DOM을 사용하는 것보다 Riot은 [DOM 트리 순회](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding)를 하므로 앵귤러 1과 같은 성능 문제가 있습니다.
 - 보다 성숙한 도구 지원. Vue는 [Webpack](https://github.com/vuejs/vue-loader)및 [Browserify](https://github.com/vuejs/vueify)에 대한 공식적으로 지원하지만 Riot는 빌드 시스템 통합을 커뮤니티 지원에 의존합니다.

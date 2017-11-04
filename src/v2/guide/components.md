@@ -969,12 +969,12 @@ prop을 컴포넌트에게 전달하는 것처럼, 하위 컴포넌트에서 단
 </div>
 ```
 
-부모에서, 특별한 속성 `scope`을 가진 `<template>`엘리먼트가 존재해야 합니다. 이것은 범위를 가지는 슬롯을 위한 템플릿임을 나타냅니다. `scope`의 값은 자식으로부터 전달 된 props 객체를 담고있는 임시 변수의 이름입니다:
+부모에서, 특별한 속성 `scope-scope`를 가진 `<template>` 엘리먼트가 있어야 합니다. 이것은 범위를 가지는 슬롯을 위한 템플릿임을 나타냅니다. `slot-scope`의 값은 자식으로부터 전달 된 props 객체를 담고있는 임시 변수의 이름입니다:
 
 ``` html
 <div class="parent">
   <child>
-    <template scope="props">
+    <template slot-scope="props">
       <span>hello from parent</span>
       <span>{{ props.text }}</span>
     </template>
@@ -993,14 +993,19 @@ prop을 컴포넌트에게 전달하는 것처럼, 하위 컴포넌트에서 단
 </div>
 ```
 
-범위가 지정된 슬롯의 일반적인 사용 사례는 컴포넌트 사용자가 목록의 각 항목을 렌더링하는 방법을 사용자 지정할 수 있는 리스트 컴포넌트입니다.
+> 2.5.0+에서, `slot-scope` 는 더이상 `<template>` 뿐 아니라 컴포넌트나 엘리먼트에서도 사용할 수 있습니다.
+
+범위가 지정된 슬롯의 보다 일반적인 사용 사례는 컴포넌트 사용자가 리스트의 각 항목을 렌더링하는 방법을 사용자 정의할 수 있는 리스트 컴포넌트입니다.
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- 범위를 가지는 슬롯도 이름을 가질 수 있습니다. -->
-  <template slot="item" scope="props">
-    <li class="my-fancy-item">{{ props.text }}</li>
-  </template>
+  <!-- scoped slot 역시 이름을 가질 수 있습니다 -->
+  <li
+    slot="item"
+    slot-scope="props"
+    class="my-fancy-item">
+    {{ props.text }}
+  </li>
 </my-awesome-list>
 ```
 
@@ -1016,9 +1021,20 @@ prop을 컴포넌트에게 전달하는 것처럼, 하위 컴포넌트에서 단
 </ul>
 ```
 
+#### 디스트럭처링
+
+`slot-scope` 값은 실제로 함수 서명의 인수 위치에 나타날 수 있는 유효한 JavaScript 표현식입니다. 이는 지원되는 환경 (싱글 파일 컴포넌트 또는 최신 브라우저)에서 ES2015 디스트럭처를 사용할 수 있다는 것을 의미합니다.
+
+
+``` html
+<child>
+  <span slot-scope="{ text }">{{ text }}</span>
+</child>
+```
+
 ## 동적 컴포넌트
 
-같은 마운트 포인트를 사용하고 예약된 `<component>` 엘리먼트를 사용하여 여러 컴포넌트 간에 동적으로 전환하고 `is` 속성에 동적으로 바인드 할 수 있습니다.
+같은 마운트 포인트를 사용하고 예약된 `<component>` 엘리먼트를 사용하여 여러 컴포넌트 간에 동적으로 트랜지션하고 `is` 속성에 동적으로 바인드 할 수 있습니다.
 
 ``` js
 var vm = new Vue({
@@ -1057,7 +1073,7 @@ var vm = new Vue({
 
 ### `keep-alive`
 
-전환된 컴포넌트를 메모리에 유지하여 상태를 보존하거나 다시 렌더링하지 않도록하려면 동적 컴포넌트를 `<keep-alive>` 엘리먼트에 래핑 할 수 있습니다.
+트랜지션된 컴포넌트를 메모리에 유지하여 상태를 보존하거나 다시 렌더링하지 않도록하려면 동적 컴포넌트를 `<keep-alive>` 엘리먼트에 래핑 할 수 있습니다.
 
 ``` html
 <keep-alive>
@@ -1148,6 +1164,7 @@ factory 함수에서 `Promise`를 반환할 수도 있습니다. 그래서 Webpa
 ``` js
 Vue.component(
   'async-webpack-example',
+  // `import` 함수는 `Promise`를 반환합니다.
   () => import('./my-async-component')
 )
 ```

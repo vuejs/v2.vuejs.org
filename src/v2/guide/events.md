@@ -245,9 +245,24 @@ methods: {
 Vue.config.keyCodes.f1 = 112
 ```
 
-## 수식어 키 목록
+### 오토매틱 키 수식어
 
-> 2.1.0에 새로 추가되었습니다.
+> 2.5.0+에서 추가됨
+
+[`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values)를 통해 노출된 유효 키 이름을 수식어로 직접 사용할 수 있습니다.
+
+
+``` html
+<input @keyup.page-down="onPageDown">
+```
+
+위의 예제에서 핸들러는 `$event.key === 'PageDown'` 만 호출됩니다.
+
+<p class="tip">일부 키(`.esc`와 모든 화살표 키)는 IE9에서 일관성 없는 `key` 값을 가지고 있습니다. IE9를 지원해야하는 경우 내장 알리아스가 선호됩니다.</p>
+
+## 시스템 수식어 키 목록
+
+> 2.1.0+에서 추가됨
 
 다음 수식어를 사용해 해당 수식어 키가 눌러진 경우에만 마우스 또는 키보드 이벤트 리스너를 트리거 할 수 있습니다.
 
@@ -271,6 +286,20 @@ Vue.config.keyCodes.f1 = 112
 <p class="tip">
 수식어 키는 일반 키와 다르며 `keyup` 이벤트와 함께 사용되면 이벤트가 발생할 때 수식어 키가 눌려있어야 합니다. 즉,`keyup.ctrl`는 `ctrl`을 누른 상태에서 키를 놓으면 트리거됩니다. `ctrl` 키만 놓으면 트리거되지 않습니다.
 </p>
+
+### `.exact` 수식어
+
+> 2.5.0+에서 추가됨
+
+`.exact` 수식어는 다른 시스템 수식어와 조합해 그 핸들러가 실행되기 위해 정확한 조합이 눌러야하는 것을 보여줍니다.
+
+``` html
+<!-- Alt 또는 Shift와 함께 눌린 경우에도 실행됩니다. -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- Ctrl 키만 눌려있을 때만 실행됩니다. -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+```
 
 ### 마우스 버튼 수식어
 

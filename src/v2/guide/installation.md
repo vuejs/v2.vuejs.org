@@ -2,11 +2,11 @@
 title: 설치방법
 type: guide
 order: 1
-vue_version: 2.4.4
-dev_size: "262.63"
-min_size: "80.86"
-gz_size: "29.40"
-ro_gz_size: "20.70"
+vue_version: 2.5.1
+dev_size: "271.12"
+min_size: "83.13"
+gz_size: "30.33"
+ro_gz_size: "21.04"
 ---
 
 ### 호환성 정보
@@ -41,7 +41,7 @@ Vue를 사용할 때, 브라우저에 [Vue Devtools](https://github.com/vuejs/vu
 
 ## NPM
 
-Vue로 대규모 응용 프로그램을 빌드할 때 NPM을 권장합니다. [Webpack](https://webpack.js.org/) 또는 [Browserify](http://browserify.org/)와 같은 모듈 번들러와 잘 작동합니다. Vue는 [단일 파일 컴포넌트](single-file-components.html)를 만들기 위한 도구도 제공합니다.
+Vue로 대규모 응용 프로그램을 빌드할 때 NPM을 권장합니다. [Webpack](https://webpack.js.org/) 또는 [Browserify](http://browserify.org/)와 같은 모듈 번들러와 잘 작동합니다. Vue는 [싱글 파일 컴포넌트](single-file-components.html)를 만들기 위한 도구도 제공합니다.
 
 ``` bash
 # 최신 안정화 버전

@@ -939,7 +939,7 @@ OR
 
 ### JS/JSX에서 컴포넌트 이름 규칙 지정(casing) <sup data-p="b">매우 추천함</sup>
 
-**Component names in JS/[JSX](../guide/render-function.html#JSX) should always be PascalCase, though may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
+**Component names in JS/[JSX](../guide/render-function.html#JSX) should always be PascalCase, though they may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
 
 {% raw %}
 <details>
@@ -1377,34 +1377,34 @@ This is the default order we recommend for component options. They're split into
 2. **List Rendering** (creates multiple variations of the same element)
   - `v-for`
 
-2. **Conditionals** (whether the element is rendered/shown)
+3. **Conditionals** (whether the element is rendered/shown)
   - `v-if`
   - `v-else-if`
   - `v-else`
   - `v-show`
   - `v-cloak`
 
-3. **Render Modifiers** (changes the way the element renders)
+4. **Render Modifiers** (changes the way the element renders)
   - `v-pre`
   - `v-once`
 
-4. **Global Awareness** (requires knowledge beyond the component)
+5. **Global Awareness** (requires knowledge beyond the component)
   - `id`
 
-5. **Unique Attributes** (attributes that require unique values)
+6. **Unique Attributes** (attributes that require unique values)
   - `ref`
   - `key`
   - `slot`
 
-6. **Two-Way Binding** (combining binding and events)
+7. **Two-Way Binding** (combining binding and events)
   - `v-model`
 
-7. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **Other Attributes** (all unspecified bound & unbound attributes)
 
-8. **Events** (component event listeners)
+9. **Events** (component event listeners)
   - `v-on`
 
-9. **Content** (overrides the content of the element)
+10. **Content** (overrides the content of the element)
   - `v-html`
   - `v-text`
 
@@ -1476,7 +1476,7 @@ computed: {
 
 ### 싱글 파일 컴포넌트 최상위 엘리먼트 순서 <sup data-p="c">추천함</sup>
 
-**[Single-file components](../guide/single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[Single-file components](../guide/single-file-components.html) should always order `<template>`, `<script>`, and `<style>` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 나쁨

@@ -460,7 +460,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `transitionOnLoad` <sup>제거됨</sup>
 
-Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.html#Transitions-on-Initial-Render)가 추가되었으므로이 옵션은 더 이상 필요하지 않습니다.
+Vue의 트랜지션 시스템에 명시적인 [`appear` 트랜지션 제어](transitions.html#Transitions-on-Initial-Render)가 추가되었으므로이 옵션은 더 이상 필요하지 않습니다.
 
 {% raw %}
 <div class="upgrade-path">
@@ -471,7 +471,7 @@ Vue의 전환 시스템에 명시적인 [`appear` 전환 제어](transitions.htm
 
 ### `suppressTransitionError` <sup>제거됨</sup>
 
-훅 단순화로 인해 제거되었습니다. 정말로 전환 오류를 억제해야한다면 [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)를 사용할 수 있습니다. 대신.
+훅 단순화로 인해 제거되었습니다. 정말로 트랜지션 오류를 억제해야한다면 [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)를 사용할 수 있습니다. 대신.
 
 {% raw %}
 <div class="upgrade-path">

@@ -105,7 +105,7 @@ type: api
 
 ### ignoredElements
 
-- **타입:** `Array<string>`
+- **타입:** `Array<string | RegExp>`
 
 - **기본값:** `[]`
 
@@ -113,7 +113,11 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'my-custom-web-component',
+    'another-web-component',
+    // `RegExp`를 이용해 "ion-" 으로 시작하는 모든 엘리먼트를 무시함
+    // 2.5+ only
+    /^ion-/
   ]
   ```
 
@@ -602,7 +606,8 @@ if (version === 2) {
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (val, oldVal) {
@@ -614,6 +619,11 @@ if (version === 2) {
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
+      },
+      // 콜백은 관찰이 시작된 직후 호출됩니다.
+      d: {
+        handler: function (val, oldVal) { /* ... */ },
+        immediate: true
       }
     }
   })
@@ -859,6 +869,28 @@ if (version === 2) {
 
 - **참고:** [라이프사이클 다이어그램](../guide/instance.html#Lifecycle-Diagram)
 
+### errorCaptured
+
+> 2.5.0+에서 추가됨
+
+- **타입:** `(err: Error, vm: Component, info: string) => ?boolean`
+
+- **상세:**
+
+  자손 컴퍼넌트로부터의 에러가 캡처되었을 때에 불립니다. 오류를 트리거 한 컴포넌트 인스턴스 및 오류가 캡처된 위치에 대한 정보가 들어있는 문자열의 세 가지 전달인자를 받습니다. 훅은 `false`를 반환하여 오류가 더 전파되지 않도록 할 수 있습니다.
+
+  <p class="tip">이 훅에서 컴포넌트 상태를 수정할 수 있습니다. 그러나 오류가 캡처되었을 때 다른 내용을 더이상 실행시키지 않는 조건부 템플릿을 사용하거나 렌더링 기능을 사용하는 것이 중요합니다. 그렇지 않으면 컴포넌트가 무한 렌더링 루프에 던져 질 것입니다.</p>
+
+  **에러 전파 규칙**
+  
+  - 기본적으로 모든 오류는 정의 된 경우 전역 `config.errorHandler`로 보내지므로 분석 서비스에 한 곳에 계속 보고할 수 있습니다.
+
+  - 여러 개의 'errorCaptured` 훅이 컴포넌트의 상속 체인이나 부모 체인에 존재하면, 모두 동일한 에러로 호출됩니다.
+
+  - `errorCaptured` 훅에서 에러를 throw 하면, 이 에러와 원래 캡쳐 된 에러 모두가 글로벌 `config.errorHandler`로 보내집니다.
+
+  - `errorCaptured` 훅은 오류가 더 전파되지 않도록 `false`를 반환 할 수 있습니다. 이것은 본질적으로 "이 오류가 처리되었으므로 무시해야합니다."를 의미합니다. 추가로 `errorCaptured` 훅이나 글로벌 `config.errorHandler`가 이 에러를 위해 호출되지 않도록합니다.
+
 ## 옵션 / 에셋
 
 ### directives
@@ -936,7 +968,7 @@ if (version === 2) {
 
 - **상세:**
 
-  `Vue.extend`를 사용하지 않고 선언적으로 다른 컴포넌트를 확장할 수 있습니다. (일반 옵션 객체 또는 생성자 일 수 있습니다.) 이것은 주로 단일 파일 컴포넌트 사이를 쉽게 확장할 수 있도록 하기 위함입니다.
+  `Vue.extend`를 사용하지 않고 선언적으로 다른 컴포넌트를 확장할 수 있습니다. (일반 옵션 객체 또는 생성자 일 수 있습니다.) 이것은 주로 싱글 파일 컴포넌트 사이를 쉽게 확장할 수 있도록 하기 위함입니다.
 
   이것은 `mixins`와 유사합니다. 차이점은 컴포넌트의 자체 옵션이 확장되는 원본 컴포넌트보다 우선순위가 높다는 것 입니다.
 
@@ -958,7 +990,7 @@ if (version === 2) {
 
 - **타입:**
   - **provide:** `Object | () => Object`
-  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
 - **상세:**
 
@@ -1034,6 +1066,42 @@ if (version === 2) {
     data () {
       return {
         bar: this.foo
+      }
+    }
+  }
+  ```
+
+  > 2.5.0+에서 주입은 기본 값을 옵션으로 제공할 수 있습니다.
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: { default: 'foo' }
+    }
+  }
+  ```
+
+  다른 이름의 속성에서 주입해야 하는 경우 `from`을 사용하여 소스 속성을 나타냅니다.
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: 'foo'
+      }
+    }
+  }
+  ```
+
+  prop의 기본값과 마찬가지로 원시형이 아닌 값에 대해서는 팩토리 함수를 사용해야합니다.
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: () => [1, 2, 3]
       }
     }
   }
@@ -1645,7 +1713,7 @@ if (version === 2) {
 
   토글은 표현식 값의 참에 기반을 둔 `display` CSS 속성입니다.
 
-  이 디렉티브는 조건이 바뀌면 전환이 호출 됩니다.
+  이 디렉티브는 조건이 바뀌면 트랜지션이 호출 됩니다.
 
 - **참고:** [조건부 렌더링 - v-show](../guide/conditional.html#v-show)
 
@@ -1657,7 +1725,7 @@ if (version === 2) {
 
   표현식 값의 참 거짓을 기반으로 엘리먼트를 조건부 렌더링 합니다. 엘리먼트 및 포함된 디렉티브 / 컴포넌트는 토글하는 동안 삭제되고 다시 작성됩니다. 엘리먼트가 `<template>`엘리먼트인 경우 그 내용은 조건부 블록이 됩니다.
 
-  조건이 변경될 때 전환이 호출 됩니다.
+  조건이 변경될 때 트랜지션이 호출 됩니다.
 
 <p class="tip">v-if와 함께 사용하는 경우, v-for는  v-if보다 높은 우선순위를 갖습니다. 자세한 내용은 <a href="../guide/list.html#v-for-with-v-if">리스트 렌더링 가이드</a>를 확인하십시오.</p>
 
@@ -2021,7 +2089,7 @@ if (version === 2) {
   엘리먼트 / 컴포넌트를 재사용하지 않고 강제로 대체하는데에도 사용할 수 있습니다. 이것은 다음과 같은 경우 유용할 수 있습니다.
 
   - 컴포넌트의 라이프사이클 훅을 올바르게 트리거합니다.
-  - 전환효과 호출
+  - 트랜지션효과 호출
 
 예제:
 
@@ -2062,6 +2130,19 @@ if (version === 2) {
   자세한 사용법은 아래 링크 된 가이드 섹션을 참조하십시오.
 
 - **참고:** [명명된 슬롯](../guide/components.html#Named-Slots)
+
+### slot-scope
+
+- **예상됨:** `함수 전달인자 표현식`
+
+- **사용법:**
+
+  엘리먼트 또는 컴포넌트가 지정된 슬롯으로 표시하는데 사용됩니다. 속성 값은 함수 서명의 전달인자 위치에 나타날 수 있는 유효한 JavaScript 표현식이어야합니다. 즉, 지원되는 환경에서 ES2015 디스트럭처링을 사용할 수 있습니다.
+
+  This attribute does not support dynamic binding.
+  이 속성은 동적 바인딩을 지원하지 않습니다.
+
+- **함께 보기:** [범위를 가지는 슬롯](../guide/components.html#Scoped-Slots)
 
 ### is
 
@@ -2117,10 +2198,10 @@ if (version === 2) {
 ### transition
 
 - **Props:**
-  - `name` - string, 전환 CSS 클래스 이름을 자동으로 생성하는데 사용됩니다. 예: `name: 'fade'`는 자동으로 `.fade-enter`, `.fade-enter-active`로 확장됩니다. 기본값은 `"v"`입니다.
-  - `appear` - boolean, 초기 렌더링에서 전환 적용 여부를 정합니다. 기본값은 `false` 입니다.
-  - `css` - boolean, CSS 전환 클래스를 적용할 여부입니다. 기본 값은 `true`입니다. `false`로 설정하면 컴포넌트 이벤트를 통해 등록된 자바스크립트 훅만 호출됩니다.
-  - `type` - string, 전환 종료 타이밍을 결정하기 위해 대기할 전환 이벤트의 유형을 지정합니다. 사용 가능한 값은 `"transition"`과 `"animation"`입니다. 기본적으로 더 긴 지속시간을 갖는 유형을 자동으로 감지합니다.
+  - `name` - string, 트랜지션 CSS 클래스 이름을 자동으로 생성하는데 사용됩니다. 예: `name: 'fade'`는 자동으로 `.fade-enter`, `.fade-enter-active`로 확장됩니다. 기본값은 `"v"`입니다.
+  - `appear` - boolean, 초기 렌더링에서 트랜지션 적용 여부를 정합니다. 기본값은 `false` 입니다.
+  - `css` - boolean, CSS 트랜지션 클래스를 적용할 여부입니다. 기본 값은 `true`입니다. `false`로 설정하면 컴포넌트 이벤트를 통해 등록된 자바스크립트 훅만 호출됩니다.
+  - `type` - string, 트랜지션 종료 타이밍을 결정하기 위해 대기할 트랜지션 이벤트의 유형을 지정합니다. 사용 가능한 값은 `"transition"`과 `"animation"`입니다. 기본적으로 더 긴 지속시간을 갖는 유형을 자동으로 감지합니다.
   - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
   - `mode` - string, 트랜지션을 나가거나 들어가는 타이밍 순서를 제어합니다. 사용 가능한 모드는 `"out-in"`과 `"in-out"`입니다. 기본값은 동시에 발생합니다.
   - `enter-class` - string
@@ -2149,7 +2230,7 @@ if (version === 2) {
 
 - **사용방법:**
 
-  `<transition>`은 **단일** 엘리먼트 / 컴포넌트에 대한 전환 효과로 사용됩니다. `<transition>`은 추가 DOM 엘리먼트를 렌더링 하지 않으며 컴포넌트 계층에도 나타나지 않습니다. 내부의 래핑된 컨텐츠에 단순히 전환 효과를 적용합니다.
+  `<transition>`은 **단일** 엘리먼트 / 컴포넌트에 대한 트랜지션 효과로 사용됩니다. `<transition>`은 추가 DOM 엘리먼트를 렌더링 하지 않으며 컴포넌트 계층에도 나타나지 않습니다. 내부의 래핑된 컨텐츠에 단순히 트랜지션 효과를 적용합니다.
 
   ```html
   <!-- 단일 엘리먼트 -->
@@ -2188,7 +2269,7 @@ if (version === 2) {
 
 - **Props:**
   - `tag` - string, 기본값은 `span` 입니다.
-  - `move-class` - 이동 전환 중에 적용된 CSS클래스를 덮어 씁니다.
+  - `move-class` - 이동 트랜지션 중에 적용된 CSS클래스를 덮어 씁니다.
   - `mode`를 제외한 `<transition>`과 동일한 prop를 노출합니다.
 
 - **이벤트:**
@@ -2196,10 +2277,10 @@ if (version === 2) {
 
 - **사용방법:**
 
-  `<transition-group>`은 **여러** 엘리먼트 / 컴포넌트에 대한 전환 효과로 사용합니다. `<transition-group>`은 실제 DOM 엘리먼트를 렌더링 합니다. 기본값으로 `<span>`을 렌더링하고 `tag` 속성을 통해 렌더링 해야하는 엘리먼트를 설정할 수 있습니다.
+  `<transition-group>`은 **여러** 엘리먼트 / 컴포넌트에 대한 트랜지션 효과로 사용합니다. `<transition-group>`은 실제 DOM 엘리먼트를 렌더링 합니다. 기본값으로 `<span>`을 렌더링하고 `tag` 속성을 통해 렌더링 해야하는 엘리먼트를 설정할 수 있습니다.
   애니메이션이 제대로 작동되게 하려면 `<transition-group>`에 있는 모든 자식이 **유일 키** 가 되어야 합니다.
 
-  `<transition-group>`은 CSS transform을 통해 장면 전환을 지원합니다. 스크린에서 자식의 위치가 변경된 후 움직이는 CSS클래스 (`name` 속성에서 자동 생성되거나 `move-class` 속성으로 설정됨)가 적용됩니다. 움직이는 클래스가 적용될 때 CSS `transform` 속성이 "전환가능"하면, 엘리먼트는 [FLIP technique](https://aerotwist.com/blog/flip-your-animations/)을 사용하여 목적지로 부드럽게 움직입니다.
+  `<transition-group>`은 CSS transform을 통해 장면 트랜지션을 지원합니다. 스크린에서 자식의 위치가 변경된 후 움직이는 CSS클래스 (`name` 속성에서 자동 생성되거나 `move-class` 속성으로 설정됨)가 적용됩니다. 움직이는 클래스가 적용될 때 CSS `transform` 속성이 "트랜지션가능"하면, 엘리먼트는 [FLIP technique](https://aerotwist.com/blog/flip-your-animations/)을 사용하여 목적지로 부드럽게 움직입니다.
 
   ```html
   <transition-group tag="ul" name="slide">
