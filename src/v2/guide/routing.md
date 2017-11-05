@@ -4,18 +4,20 @@ type: guide
 order: 501
 ---
 
-## Official Router
+<p class="tip">Một số tài liệu kĩ thuật dịch "routing" thành "định tuyến" và "router" thành "bộ định tuyến." Chúng tôi cho rằng cách dịch này nghe khá lạ tai và khiên cưỡng, nên sẽ giữ nguyên bản tiếng Anh của hai từ này.</p>
 
-For most Single Page Applications, it's recommended to use the officially-supported [vue-router library](https://github.com/vuejs/vue-router). For more details, see vue-router's [documentation](https://router.vuejs.org/).
+## Thư viện router chính thức
 
-## Simple Routing From Scratch
+Đối với đa số các ứng dụng một trang (SPA - Single Page Application), chúng tôi khuyến khích sử dụng thư viện chính thức [vue-router](https://github.com/vuejs/vue-router). Để biết thêm chi tiết, hãy xem [tài liệu về vue-router](https://router.vuejs.org/).
 
-If you only need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
+## Routing đơn giản
+
+Nếu chỉ cần routing đơn giản và không muốn sử dụng một thư viện đầy đủ tính năng, bạn có thể render động một component ở cấp toàn trang (page-level) như sau:
 
 ``` js
-const NotFound = { template: '<p>Page not found</p>' }
-const Home = { template: '<p>home page</p>' }
-const About = { template: '<p>about page</p>' }
+const NotFound = { template: '<p>Không tìm thấy</p>' }
+const Home = { template: '<p>Trang chủ</p>' }
+const About = { template: '<p>Giới thiệu</p>' }
 
 const routes = {
   '/': Home,
@@ -36,8 +38,8 @@ new Vue({
 })
 ```
 
-Combined with the HTML5 History API, you can build a very basic but fully-functional client-side router. To see that in practice, check out [this example app](https://github.com/chrisvfritz/vue-2.0-simple-routing-example).
+Bằng việc kết hợp với HTML5 History API, bạn có thể xây dựng cho mình một router phía client hoàn toàn có thể dùng được mặc dù còn rất cơ bản. Đây là [một ví dụ](https://github.com/chrisvfritz/vue-2.0-simple-routing-example) của router dạng này.
 
-## Integrating 3rd-Party Routers
+## Sử dụng router bên thứ 3
 
-If there's a 3rd-party router you prefer to use, such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director), integration is [similarly easy](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Here's a [complete example](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) using Page.js.
+Nếu bạn muốn sử dụng một thư viện router bên thứ 3 như [Page.js](https://github.com/visionmedia/page.js) hoặc [Director](https://github.com/flatiron/director), việc tích hợp [cũng dễ dàng như thế](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs). Đây là một [ví dụ hoàn chỉnh](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) sử dụng Page.js.
