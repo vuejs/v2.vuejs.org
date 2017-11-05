@@ -1,12 +1,12 @@
 ---
-title: Custom Directives
+title: Directive tùy biến
 type: guide
 order: 302
 ---
 
-## Intro
+## Giới thiệu
 
-In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
+Bên cạnh những directive được cung cấp mặc định (`v-model` và `v-show`), Vue cũng cho phép bạn đăng kí các directive tùy biến của riêng mình. Lưu ý là trong phiên bản Vue 2.0, cách tốt nhất để sử dụng lại và trừu tượng hóa code là dùng [component](components.html), tuy nhiên có thể có những lúc bạn cần một số truy xuất cấp thấp đến các phần tử web, và trong những trường hợp này thì directive tùy biến sẽ trở nên hữu ích. Ví dụ, đây là một phần tử input được focus tự động:
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -24,25 +24,25 @@ new Vue({
 </script>
 {% endraw %}
 
-When the page loads, that element gains focus (note: autofocus doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
+Khi trang này được tải, phần tử trên đây sẽ được focus (lưu ý: tính năng focus tự động không được hỗ trợ trên mobile Safari). Nếu bạn chưa hề bấm vào bất kì đâu khác trên trang, ngay lúc này phần tử input sẽ có focus. Giờ chúng ta hãy viết directive hỗ trợ cho tính năng này:
 
 ``` js
-// Register a global custom directive called v-focus
+// Đăng kí một directive tùy biến cấp toàn cục với tên là `v-focus`
 Vue.directive('focus', {
-  // When the bound element is inserted into the DOM...
+  // Khi phần tử liên quan được thêm vào DOM...
   inserted: function (el) {
-    // Focus the element
+    // Ta gán focus vào phần tử đó
     el.focus()
   }
 })
 ```
 
-If you want to register a directive locally instead, components also accept a `directives` option:
+Nếu muốn đăng kí directive ở cấp cục bộ thay vì toàn cục, bạn có thể dùng tùy chọn `directives` khi khai báo component:
 
 ``` js
 directives: {
   focus: {
-    // directive definition
+    // định nghĩa cho directive
     inserted: function (el) {
       el.focus()
     }
@@ -50,46 +50,46 @@ directives: {
 }
 ```
 
-Then in a template, you can use the new `v-focus` attribute on any element, like this:
+Sau đó trong template, bạn có thể dùng thuộc tính `v-focus` trên bất kì phần tử nào, như sau:
 
 ``` html
 <input v-focus>
 ```
 
-## Hook Functions
+## Các hàm hook
 
-A directive definition object can provide several hook functions (all optional):
+Một object khai báo directive có thể cung cấp một số hàm hook (tất cả các hàm này đều không bắt buộc):
 
-- `bind`: called only once, when the directive is first bound to the element. This is where you can do one-time setup work.
+- `bind`: chỉ được gọi một lần, khi directive được bind (ràng buộc) vào phần tử. Đây là nơi bạn có thể thực hiện các thao tác cài đặt một lần.
 
-- `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not necessarily in-document).
+- `inserted`: được gọi khi element đã được chèn (insert) vào phần tử cha (điều này chỉ bảo đảm là phần tử cha đã được tạo ra chứ không chắc là nó đã tồn tại trong DOM).
 
-- `update`: called after the containing component's VNode has updated, __but possibly before its children have updated__. The directive's value may or may not have changed, but you can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
+- `update`: được gọi sau khi VNode của phần tử chứa đã cập nhật, __nhưng có thể là trước khi các phần tử con được cập nhật__. Giá trị của directive lúc này có thể đã thay đổi hoặc chưa, nhưng bạn có thể bỏ qua các thay đổi không cần thiết bằng cách so sánh hai giá trị cũ và mới (xem thông tin về tham số của hàm hook ở bên dưới).
 
-- `componentUpdated`: called after the containing component's VNode __and the VNodes of its children__ have updated.
+- `componentUpdated`: được gọi sau khi VNode của phần tử chứa __và VNode của toàn bộ các phần tử con__ đã cập nhật.
 
-- `unbind`: called only once, when the directive is unbound from the element.
+- `unbind`: chỉ được gọi một lần, khi directive được unbind khỏi phần tử.
 
-We'll explore the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `oldVnode`) in the next section.
+Chúng ta sẽ tìm hiểu về các tham số được truyền vào các hàm hook này trong phần tiếp theo.
 
-## Directive Hook Arguments
+## Tham số của các hàm hook
 
-Directive hooks are passed these arguments:
+Các hàm hook cho directive được truyền vào các tham số sau đây:
 
-- **el**: The element the directive is bound to. This can be used to directly manipulate the DOM.
-- **binding**: An object containing the following properties.
-  - **name**: The name of the directive, without the `v-` prefix.
-  - **value**: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be `2`.
-  - **oldValue**: The previous value, only available in `update` and `componentUpdated`. It is available whether or not the value has changed.
-  - **expression**: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be `"1 + 1"`.
-  - **arg**: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
-  - **modifiers**: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-- **vnode**: The virtual node produced by Vue's compiler. See the [VNode API](../api/#VNode-Interface) for full details.
-- **oldVnode**: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
+- **el**: Phần tử được directive bind vào. Tham số này có thể được dùng để thay đổi DOM một cách trực tiếp.
+- **binding**: Một object chứa những thuộc tính sau:
+  - **name**: Tên của directive, không có tiếp đầu ngữ `v-`.
+  - **value**: Gái trị được truyền vào directive. Ví dụ với `v-my-directive="1 + 1"` thì `value` sẽ là `2`.
+  - **oldValue**: Giá trị trước đây, chỉ tồn tại trong các hook `update` và `componentUpdated`. `oldValue` sẽ luôn có cho dù giá trị có được thay đổi hay không.
+  - **expression**: Biểu thức của binding dưới dạng chuỗi. Ví dụ với `v-my-directive="1 + 1"`, thì `expression` sẽ là `"1 + 1"`.
+  - **arg**: Tham số được truyền vào directive, nếu có. Ví dụ với `v-my-directive:foo` thì `arg` sẽ là `"foo"`.
+  - **modifiers**: Một object chứa các modifier, nếu có. Ví dụ với `v-my-directive.foo.bar`, thì `modifiers` sẽ là `{ foo: true, bar: true }`.
+- **vnode**: Vnode được trình biên dịch của Vue tạo ra. Xem thêm chi tiết tại [VNode API](../api/#Giao-dien-cua-VNode).
+- **oldVnode**: VNode trước đây, chỉ tồn tại trong các hook `update` và `componentUpdated`.
 
-<p class="tip">Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
+<p class="tip">Ngoài `el`, bạn nên coi là read-only (chỉ đọc) và đừng bao giờ chỉnh sửa các tham số này. Nếu muốn chia sẻ thông tin giữa các hook với nhau, bạn nên dùng [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
 
-An example of a custom directive using some of these properties:
+Sau đây là ví dụ về một directive tùy biến với các thuộc tính này:
 
 ``` html
 <div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
@@ -112,7 +112,7 @@ Vue.directive('demo', {
 new Vue({
   el: '#hook-arguments-example',
   data: {
-    message: 'hello!'
+    message: 'Cà rốt'
   }
 })
 ```
@@ -135,15 +135,15 @@ Vue.directive('demo', {
 new Vue({
   el: '#hook-arguments-example',
   data: {
-    message: 'hello!'
+    message: 'Cà rốt'
   }
 })
 </script>
 {% endraw %}
 
-## Function Shorthand
+## Cách khai báo rút gọn
 
-In many cases, you may want the same behavior on `bind` and `update`, but don't care about the other hooks. For example:
+Trong nhiều trường hợp, có thể bạn muốn `bind` và `update` có chung một hành vi và không quan tâm đến các hook khác. Những lúc này bạn có thể dùng cách khai báo directive rút gọn, ví dụ:
 
 ``` js
 Vue.directive('color-swatch', function (el, binding) {
@@ -151,17 +151,17 @@ Vue.directive('color-swatch', function (el, binding) {
 })
 ```
 
-## Object Literals
+## Truyền object trực tiếp
 
-If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression.
+Nếu directive của bạn cần nhiều giá trị cùng một lúc, bạn có thể trực tiếp truyền vào một object. Nhớ là directive trong Vue có thể nhận bất kì biểu thức JavaScript hợp lệ nào.
 
 ``` html
-<div v-demo="{ color: 'white', text: 'hello!' }"></div>
+<div v-demo="{ color: 'white', text: 'Su hào' }"></div>
 ```
 
 ``` js
 Vue.directive('demo', function (el, binding) {
   console.log(binding.value.color) // => "white"
-  console.log(binding.value.text)  // => "hello!"
+  console.log(binding.value.text)  // => "Su hào"
 })
 ```
