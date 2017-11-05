@@ -279,7 +279,7 @@ Vue.component('anchored-heading', {
 
 #### Les VNodes doivent être uniques
 
-Tous les VNodes dans l'arbre des composants doivent être uniques. Cela signifie que les fonctions suivantes sont invalides :
+Tous les VNodes dans l'arbre des composants doivent être uniques. Cela signifie que la fonction de rendu suivante est invalide :
 
 ``` js
 render: function (createElement) {
