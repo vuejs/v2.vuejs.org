@@ -79,7 +79,7 @@ Các hàm hook cho directive được truyền vào các tham số sau đây:
 - **el**: Phần tử được directive bind vào. Tham số này có thể được dùng để thay đổi DOM một cách trực tiếp.
 - **binding**: Một object chứa những thuộc tính sau:
   - **name**: Tên của directive, không có tiếp đầu ngữ `v-`.
-  - **value**: Gái trị được truyền vào directive. Ví dụ với `v-my-directive="1 + 1"` thì `value` sẽ là `2`.
+  - **value**: Giá trị được truyền vào directive. Ví dụ với `v-my-directive="1 + 1"` thì `value` sẽ là `2`.
   - **oldValue**: Giá trị trước đây, chỉ tồn tại trong các hook `update` và `componentUpdated`. `oldValue` sẽ luôn có cho dù giá trị có được thay đổi hay không.
   - **expression**: Biểu thức của binding dưới dạng chuỗi. Ví dụ với `v-my-directive="1 + 1"`, thì `expression` sẽ là `"1 + 1"`.
   - **arg**: Tham số được truyền vào directive, nếu có. Ví dụ với `v-my-directive:foo` thì `arg` sẽ là `"foo"`.
