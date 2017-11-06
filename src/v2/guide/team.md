@@ -23,7 +23,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
-                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -33,7 +33,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -427,7 +427,10 @@ order: 803
       github: 'phanan',
       twitter: 'notphanan',
       reposOfficial: [
-        'vuejs.org'
+        'vuejs.org', {
+          name: 'vi.vuejs.org',
+          url: 'https://github.com/vuejs-vn/vuejs.org'
+        }
       ],
       reposPersonal: [
         'vuequery', 'vue-google-signin-button'
@@ -903,6 +906,9 @@ order: 803
        * Generate a GitHub URL using a repo and a handle.
        */
       githubUrl: function (handle, repo) {
+        if (repo && repo.url) {
+          return repo.url
+        }
         if (repo && repo.indexOf('/') !== -1) {
           // If the repo name has a slash, it must be an organization repo.
           // In such a case, we discard the (personal) handle.
