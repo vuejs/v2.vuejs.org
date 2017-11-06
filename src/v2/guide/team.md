@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: Đội ngũ
 type: guide
 order: 803
 ---
@@ -19,7 +19,7 @@ order: 803
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Core focus</dt>
+          <dt>Chuyên trách</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
@@ -29,7 +29,7 @@ order: 803
           </dd>
         </template>
         <template v-if="profile.github && profile.reposPersonal">
-          <dt>Ecosystem</dt>
+          <dt>Hệ sinh thái</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
@@ -41,30 +41,29 @@ order: 803
         <template v-if="profile.work">
           <dt>
             <i class="fa fa-briefcase"></i>
-            <span class="sr-only">Work</span>
+            <span class="sr-only">Công việc</span>
           </dt>
           <dd v-html="workHtml"></dd>
         </template>
         <span v-if="profile.distanceInKm" class="distance">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">Distance</span>
+            <span class="sr-only">Khoảng cách</span>
           </dt>
           <dd>
-            About
+            Cách chừng
             <span
               v-if="profile.distanceInKm <= 150"
-              :title="profile.name + ' is close enough to commute to your location.'"
               class="user-match"
-            >{{ textDistance }} away</span>
-            <template v-else>{{ textDistance }} away</template>
-            in {{ profile.city }}
+            >{{ textDistance }}</span>
+            <template v-else>{{ textDistance }}</template>
+            ({{ profile.city }})
           </dd>
         </span>
         <template v-else-if="profile.city">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">City</span>
+            <span class="sr-only">Thành phố</span>
           </dt>
           <dd>
             {{ profile.city }}
@@ -73,14 +72,14 @@ order: 803
         <template v-if="profile.languages">
           <dt>
             <i class="fa fa-globe"></i>
-            <span class="sr-only">Languages</span>
+            <span class="sr-only">Ngôn ngữ</span>
           </dt>
           <dd v-html="languageListHtml" class="language-list"></dd>
         </template>
         <template v-if="profile.links">
           <dt>
             <i class="fa fa-link"></i>
-            <span class="sr-only">Links</span>
+            <span class="sr-only">Các đường dẫn</span>
           </dt>
           <dd>
             <ul>
@@ -93,7 +92,7 @@ order: 803
         <footer v-if="profile.github || profile.twitter" class="social">
           <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
             <i class="fa fa-github"></i>
-            <span class="sr-only">Github</span>
+            <span class="sr-only">GitHub</span>
           </a>
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
             <i class="fa fa-twitter"></i>
@@ -109,7 +108,7 @@ order: 803
   <div class="team">
 
     <h2 id="the-core-team">
-      The Core Team
+      Các thành viên chính
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -122,21 +121,21 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>sắp xếp theo khoảng cách</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Có lỗi xảy ra trong quá trình lấy thông tin địa điểm.
     </p>
 
     <p>
-      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+      Vue và hệ sinh thái của Vue được xây dựng bởi một đội ngũ gồm các thành viên đến từ nhiều nước trên thế giới. Dưới đây là các thành viên đã đồng ý được liệt kê trong danh sách này.
     </p>
 
     <p v-if="userPosition" class="success">
-      The core team has been sorted by their distance from you.
+      Các thành viên chính đã được sắp xếp theo khoảng cách.
     </p>
 
     <vuer-profile
@@ -149,7 +148,7 @@ order: 803
 
   <div class="team">
     <h2 id="community-partners">
-      Community Partners
+      Các cộng sự cộng đồng
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -162,21 +161,21 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>sắp xếp theo khoảng cách</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Có lỗi xảy ra trong quá trình lấy thông tin địa điểm.
     </p>
 
     <p>
-      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+      Một số thành viên cộng đồng đã có những đóng góp rất quan trọng cho Vue và xứng đáng được nhắc đến một cách đặc biệt ở đây. Chúng tôi xây dựng một mối quan hệ gần gũi với những cộng sự này và thường xuyên cộng tác với họ về những tính năng và tin tức mới.
     </p>
 
     <p v-if="userPosition" class="success">
-      The community partners have been sorted by their distance from you.
+      Các cộng sự đã được sắp xếp theo khoảng cách.
     </p>
 
     <vuer-profile
@@ -191,35 +190,36 @@ order: 803
 <script>
 (function () {
   var cityCoordsFor = {
-    'Annecy, France': [45.899247, 6.129384],
-    'Alicante, Spain' : [38.346543, -0.483838],
-    'Bangalore, India': [12.971599, 77.594563],
-    'Bordeaux, France': [44.837789, -0.579180],
+    'Annecy, Pháp': [45.899247, 6.129384],
+    'Alicante, Tây Ban Nha' : [38.346543, -0.483838],
+    'Bangalore, Ấn Độ': [12.971599, 77.594563],
+    'Bordeaux, Pháp': [44.837789, -0.579180],
     'Bucharest, Romania': [44.426767, 26.102538],
-    'Chengdu, China': [30.572815, 104.066801],
-    'Chongqing, China': [29.431586, 106.912251],
-    'Denver, CO, USA': [39.739236, -104.990251],
-    'Dubna, Russia': [56.732020, 37.166897],
-    'East Lansing, MI, USA': [42.736979, -84.483865],
-    'Hangzhou, China': [30.274084, 120.155070],
-    'Jersey City, NJ, USA': [40.728157, -74.558716],
+    'Chengdu, Trung Quốc': [30.572815, 104.066801],
+    'Chongqing, Trung Quốc': [29.431586, 106.912251],
+    'Denver, CO, Hoa Kỳ': [39.739236, -104.990251],
+    'Dubna, Nga': [56.732020, 37.166897],
+    'East Lansing, MI, Hoa Kỳ': [42.736979, -84.483865],
+    'Hangzhou, Trung Quốc': [30.274084, 120.155070],
+    'Jersey City, NJ, Hoa Kỳ': [40.728157, -74.558716],
     'Kingston, Jamaica': [18.017874, -76.809904],
-    'Krasnodar, Russia': [45.039267, 38.987221],
-    'Lansing, MI, USA': [42.732535, -84.555535],
-    'London, UK': [51.507351, -0.127758],
-    'Lyon, France': [45.764043, 4.835659],
-    'Mannheim, Germany': [49.487459, 8.466039],
-    'Moscow, Russia': [55.755826, 37.617300],
-    'Orlando, FL, USA': [28.538335, -81.379236],
-    'Paris, France': [48.856614, 2.352222],
-    'Seoul, South Korea': [37.566535, 126.977969],
-    'Shanghai, China': [31.230390, 121.473702],
+    'Krasnodar, Nga': [45.039267, 38.987221],
+    'Lansing, MI, Hoa Kỳ': [42.732535, -84.555535],
+    'London, Anh': [51.507351, -0.127758],
+    'Lyon, Pháp': [45.764043, 4.835659],
+    'Mannheim, Đức': [49.487459, 8.466039],
+    'Moscow, Nga': [55.755826, 37.617300],
+    'Munich, Đức': [48.137154, 11.576124],
+    'Orlando, FL, Hoa Kỳ': [28.538335, -81.379236],
+    'Paris, Pháp': [48.856614, 2.352222],
+    'Seoul, Hàn Quốc': [37.566535, 126.977969],
+    'Shanghai, Trung Quốc': [31.230390, 121.473702],
     'Taquaritinga, Brazil': [-21.430094, -48.515285],
     'Tehran, Iran': [35.689197, 51.388974],
-    'Thessaloniki, Greece': [40.640063, 22.944419],
-    'Tokyo, Japan': [35.689487, 139.691706],
+    'Thessaloniki, Hy Lạp': [40.640063, 22.944419],
+    'Tokyo, Nhật Bản': [35.689487, 139.691706],
     'Toronto, Canada': [43.653226, -79.383184],
-    'Wrocław, Poland': [51.107885, 17.038538]
+    'Wrocław, Ba Lan': [51.107885, 17.038538]
   }
   var languageNameFor = {
     en: 'English',
@@ -242,7 +242,7 @@ order: 803
   var team = [{
     name: 'Evan You',
     title: 'Benevolent Dictator For Life',
-    city: 'Jersey City, NJ, USA',
+    city: 'Jersey City, NJ, Hoa Kỳ',
     languages: ['zh', 'en'],
     github: 'yyx990803',
     twitter: 'youyuxi',
@@ -262,7 +262,7 @@ order: 803
     {
       name: 'Chris Fritz',
       title: 'Good Word Putter-Togetherer',
-      city: 'Lansing, MI, USA',
+      city: 'Lansing, MI, Hoa Kỳ',
       languages: ['en', 'de'],
       github: 'chrisvfritz',
       twitter: 'chrisvfritz',
@@ -279,7 +279,7 @@ order: 803
     {
       name: 'Eduardo',
       title: 'Real-Time Rerouter',
-      city: 'Paris, France',
+      city: 'Paris, Pháp',
       languages: ['es', 'fr', 'en'],
       github: 'posva',
       twitter: 'posva',
@@ -301,7 +301,7 @@ order: 803
     {
       name: 'Jinjiang',
       title: 'Mobile Extrapolator',
-      city: 'Hangzhou, China',
+      city: 'Hangzhou, Trung Quốc',
       languages: ['zh', 'en'],
       github: 'jinjiang',
       twitter: 'zhaojinjiang',
@@ -319,7 +319,7 @@ order: 803
     {
       name: 'EGOIST',
       title: 'Build Tool Simplificator',
-      city: 'Chengdu, China',
+      city: 'Chengdu, Trung Quốc',
       languages: ['zh', 'en'],
       github: 'egoist',
       twitter: '_egoistlily',
@@ -333,7 +333,7 @@ order: 803
     {
       name: 'Katashin',
       title: 'One of a Type State Manager',
-      city: 'Tokyo, Japan',
+      city: 'Tokyo, Nhật Bản',
       languages: ['jp', 'en'],
       work: {
         org: 'oRo Co., Ltd.',
@@ -348,7 +348,7 @@ order: 803
     {
       name: 'Kazupon',
       title: 'Validated Internationalizing Missionary',
-      city: 'Tokyo, Japan',
+      city: 'Tokyo, Nhật Bản',
       languages: ['jp', 'en'],
       github: 'kazupon',
       twitter: 'kazu_pon',
@@ -368,7 +368,7 @@ order: 803
     {
       name: 'Rahul Kadyan',
       title: 'Ecosystem Glue Chemist',
-      city: 'Bangalore, India',
+      city: 'Bangalore, Ấn Độ',
       languages: ['hi', 'en'],
       work: {
         role: 'Software Engineer',
@@ -390,7 +390,7 @@ order: 803
     {
       name: 'Alan Song',
       title: 'Regent of Routing',
-      city: 'Hangzhou, China',
+      city: 'Hangzhou, Trung Quốc',
       languages: ['zh', 'en'],
       work: {
         role: 'Cofounder',
@@ -405,7 +405,7 @@ order: 803
     {
       name: 'Blake Newman',
       title: 'Performance Specializer & Code Deleter',
-      city: 'London, UK',
+      city: 'London, Anh',
       languages: ['en'],
       work: {
         role: 'Software Engineer',
@@ -421,7 +421,7 @@ order: 803
     {
       name: 'Phan An',
       title: 'Backend Designer & Process Poet',
-      city: 'London, UK',
+      city: 'Munich, Đức',
       languages: ['vi', 'en'],
       github: 'phanan',
       twitter: 'notphanan',
@@ -438,7 +438,7 @@ order: 803
     {
       name: 'Linusborg',
       title: 'Hive-Mind Community Wrangler (Probably a Bot)',
-      city: 'Mannheim, Germany',
+      city: 'Mannheim, Đức',
       languages: ['de', 'en'],
       github: 'LinusBorg',
       twitter: 'Linus_Borg',
@@ -455,7 +455,7 @@ order: 803
     {
       name: 'Denis Karabaza',
       title: 'Director of Directives (Emoji-Human Hybrid)',
-      city: 'Dubna, Russia',
+      city: 'Dubna, Nga',
       languages: ['ru', 'en'],
       github: 'simplesmiler',
       twitter: 'simplesmiler',
@@ -474,7 +474,7 @@ order: 803
     {
       name: 'Guillaume Chau',
       title: 'Client-Server Astronaut',
-      city: 'Lyon, France',
+      city: 'Lyon, Pháp',
       languages: ['fr', 'en'],
       github: 'Akryum',
       twitter: 'Akryum',
@@ -488,7 +488,7 @@ order: 803
     {
       name: 'Edd Yerburgh',
       title: 'Testatron Alpha 9000',
-      city: 'London, UK',
+      city: 'London, Anh',
       languages: ['en'],
       github: 'eddyerburgh',
       twitter: 'EddYerburgh',
@@ -508,7 +508,7 @@ order: 803
     {
       name: 'defcc',
       title: 'Details Deity & Bug Surgeon',
-      city: 'Chongqing, China',
+      city: 'Chongqing, Trung Quốc',
       languages: ['zh', 'en'],
       github: 'defcc',
       work: {
@@ -525,7 +525,7 @@ order: 803
     {
       name: 'gebilaoxiong',
       title: 'Issue Annihilator',
-      city: 'Chongqing, China',
+      city: 'Chongqing, Trung Quốc',
       languages: ['zh', 'en'],
       github: 'gebilaoxiong',
       work: {
@@ -539,7 +539,7 @@ order: 803
     {
       name: 'Andrew Tomaka',
       title: 'The Server Server',
-      city: 'East Lansing, MI, USA',
+      city: 'East Lansing, MI, Hoa Kỳ',
       languages: ['en'],
       github: 'atomaka',
       twitter: 'atomaka',
@@ -560,7 +560,7 @@ order: 803
     {
       name: 'Sebastien Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Paris, France',
+      city: 'Paris, Pháp',
       languages: ['fr', 'en'],
       github: 'Atinux',
       twitter: 'Atinux',
@@ -575,7 +575,7 @@ order: 803
     {
       name: 'Alexandre Chopin',
       title: '#1 Nuxt Brother',
-      city: 'Bordeaux, France',
+      city: 'Bordeaux, Pháp',
       languages: ['fr', 'en'],
       github: 'alexchopin',
       twitter: 'ChopinAlexandre',
@@ -602,7 +602,7 @@ order: 803
     {
       name: 'Damian Dulisz',
       title: 'Dark Mage of Plugins, News, and Confs',
-      city: 'Wrocław, Poland',
+      city: 'Wrocław, Ba Lan',
       languages: ['pl', 'en'],
       github: 'shentao',
       twitter: 'DamianDulisz',
@@ -617,7 +617,7 @@ order: 803
     }, {
       name: 'Alex Kyriakidis',
       title: 'Vueducator Extraordinaire',
-      city: 'Thessaloniki, Greece',
+      city: 'Thessaloniki, Hy Lạp',
       languages: ['el', 'en'],
       github: 'hootlex',
       twitter: 'hootlex',
@@ -649,7 +649,7 @@ order: 803
     },
     {
       name: 'Yi Yang',
-      city: 'Shanghai, China',
+      city: 'Shanghai, Trung Quốc',
       title: 'Interface Elementologist',
       languages: ['zh', 'en'],
       github: 'Leopoldthecoder',
@@ -664,7 +664,7 @@ order: 803
     {
       name: 'Bruno Lesieur',
       title: 'French Community Directeur',
-      city: 'Annecy, France',
+      city: 'Annecy, Pháp',
       languages: ['fr', 'en'],
       github: 'Haeresis',
       twitter: 'MachinisteWeb',
@@ -683,7 +683,7 @@ order: 803
     {
       name: 'ChangJoo Park',
       title: 'Vuenthusiastic Korean Community Organizer',
-      city: 'Seoul, South Korea',
+      city: 'Seoul, Hàn Quốc',
       languages: ['ko', 'en'],
       github: 'changjoo-park',
       twitter: 'pcjpcj2',
@@ -746,7 +746,7 @@ order: 803
     {
       name: 'Israel Ortuño',
       title: 'VueJobs Buccaneer',
-      city: 'Alicante, Spain',
+      city: 'Alicante, Tây Ban Nha',
       languages: ['es', 'en'],
       github: 'IsraelOrtuno',
       twitter: 'IsraelOrtuno',
@@ -761,7 +761,7 @@ order: 803
     {
       name: 'John Leider',
       title: 'Vuetiful Framework Sculptor',
-      city: 'Orlando, FL, USA',
+      city: 'Orlando, FL, Hoa Kỳ',
       languages: ['en'],
       github: 'vuetifyjs',
       twitter: 'vuetifyjs',
@@ -777,7 +777,7 @@ order: 803
     {
       name: 'Grigoriy Beziuk',
       title: 'Translation Gang Leader',
-      city: 'Moscow, Russia',
+      city: 'Moscow, Nga',
       languages: ['ru', 'de', 'en'],
       github: 'gbezyuk',
       work: {
@@ -792,7 +792,7 @@ order: 803
     {
       name: 'Alexander Sokolov',
       title: 'Russian Translation Sharp Eye',
-      city: 'Krasnodar, Russia',
+      city: 'Krasnodar, Nga',
       languages: ['ru', 'en'],
       github: 'Alex-Sokolov',
       reposPersonal: [
@@ -801,7 +801,7 @@ order: 803
     },
     {
       name: 'Sarah Drasner',
-      city: 'Denver, CO, USA',
+      city: 'Denver, CO, Hoa Kỳ',
       languages: ['en'],
       work: {
         role: 'Consultant'
