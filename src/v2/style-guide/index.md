@@ -2,54 +2,54 @@
 type: style-guide
 ---
 
-# Style Guide <sup class="beta">beta</sup>
+# Conventions <sup class="beta">beta</sup>
 
-This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
+Ceci est le guide des conventions officielles pour du code spécifique à Vue. Si vous utilisez Vue dans vos projets, c'est la référence pour éviter les erreurs, les discussions futiles ou les mauvais usages de code. Nous ne pensons cependant pas qu'un guide de conventions soit pertinent pour toutes les équipes ou tous les projets. Ce que nous encourageons ici est basé sur nos expériences passées, les technologies que nous côtoyons ainsi que nos valeurs personnelles.
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+Nous allons en grande partie éviter les conventions à propos du JavaScript ou du HTML en eux-mêmes. Nous ne nous soucions pas de votre utilisation des points-virgules ou de la place de la virgule en début de ligne. Nous ne nous soucierons pas non plus de savoir si votre HTML utilise des apostrophes ou des guillemets pour les valeurs des attributs. Quelques exceptions seront faites cependant, quand nous trouvons qu'une utilisation de code spécifique est utile dans le contexte de Vue.
 
-> **Soon, we'll also provide tips for enforcement.** Sometimes you'll simply have to be disciplined, but wherever possible, we'll try to show you how to use ESLint and other automated processes to make enforcement simpler.
+> **Bientôt, nous fournirons des astuces pour la mise en application.** Même si certains points sont une simple question de discipline, nous essayerons de vous montrer comment utiliser ESLint et d'autres processus automatisés pour mettre simplement en place ces conventions.
 
-Finally, we've split rules into four categories:
-
-
-
-## Rule Categories
-
-### Priority A: Essential
-
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
-
-### Priority B: Strongly Recommended
-
-These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
-
-### Priority C: Recommended
-
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
-
-1. train your brain to more easily parse most of the community code you encounter
-2. be able to copy and paste most community code examples without modification
-3. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
-
-### Priority D: Use with Caution
-
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+Nous avons donc divisé les règles en quatre catégories :
 
 
 
-## Priority A Rules: Essential (Error Prevention)
+## Catégories de règle
+
+### Priorité A : essentiel
+
+Ces règles aident à éviter les erreurs, donc apprenez-les et respectez-les à tout prix. Des exceptions peuvent exister, mais elles devraient être rares et seulement faites par ceux qui ont une connaissance experte à la fois de JavaScript et de Vue.
+
+### Priorité B : fortement recommandé
+
+Ces règles ont été établies pour améliorer la lisibilité et / ou l'expérience des développeurs dans la majorité des projets. Votre code fonctionnera toujours si vous ne les suivez pas, mais ces écarts doivent être rares et justifiés.
+
+### Priorité C : recommandé
+
+Là où de multiples et équivalentes options existent, un choix arbitraire a été fait pour assurer la consistance. Dans ces règles, nous décrivons chaque option acceptable et suggérons un choix par défaut. Cela signifie que vous pouvez faire des choix différents sur votre propre base de code, aussi longtemps que vous êtes cohérent et avez de bonnes raisons. Mais gardez toujours les bonnes raisons à l'esprit ! En vous alignant sur les standards de la communauté vous :
+
+1. pourrez améliorer votre cerveau à analyser plus facilement la plupart des codes communautaires rencontrés,
+2. serez capable de copier et coller la plupart des exemples de code sans modifications,
+3. trouverez de nouvelles recrues déjà habituées à votre style de codage préféré, au moins en ce qui concerne Vue.
+
+### Priorité D : faire attention
+
+Certaines fonctionnalités de Vue existent pour régler des cas exceptionnels ou rendre la migration d'une vieille version de code plus simple. Mais utiliser avec excès, elles rendront votre code difficile à maintenir et même deviendront une source de bogues. Ces règles mettent en lumière des fonctionnalités potentiellement risquées, décrivant quand et pourquoi elles doivent être évitées.
 
 
 
-### Multi-word component names <sup data-p="a">essential</sup>
+## Règles de priorité A : essentiel (prévenir les erreurs)
 
-**Component names should always be multi-word, except for root `App` components.**
 
-This [prevents conflicts](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
+
+### Nom de composant à mots multiples <sup data-p="a">essentiel</sup>
+
+**Les noms de composant devraient toujours être des mots multiples, à l'exception du composant racine `App`.**
+
+Ceci afin de [prévenir les conflits](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) avec des éléments HTML futurs ou existant car toutes les balises HTML n'ont qu'un seul mot.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 Vue.component('todo', {
@@ -66,7 +66,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 Vue.component('todo-item', {
@@ -84,20 +84,20 @@ export default {
 
 
 
-### Component data <sup data-p="a">essential</sup>
+### Données du composant <sup data-p="a">essentiel</sup>
 
-**Component `data` must be a function.**
+**La propriété `data` doit être une fonction.**
 
-When using the `data` property on a component (i.e. anywhere except on `new Vue`), the value must be a function that returns an object.
+Quand vous utilisez la propriété `data` dans un composant (par ex. partout sauf sur `new Vue`), la valeur doit être une fonction qui retourne un objet.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-When the value of `data` is an object, it's shared across all instances of a component. Imagine, for example, a `TodoList` component with this data:
+Quand la valeur de la propriété `data` est un objet, elle est partagée à travers toutes les instances du composant. Imaginez, par exemple, un composant `TodoList` avec ces données :
 
 ``` js
 data: {
@@ -106,9 +106,9 @@ data: {
 }
 ```
 
-We might want to reuse this component, allowing users to maintain multiple lists (e.g. for shopping, wishlists, daily chores, etc). There's a problem though. Since every instance of the component references the same data object, changing the title of one list will also change the title of every other list. The same is true for adding/editing/deleting a todo.
+Nous pourrions vouloir réutiliser ce composant pour permettre aux utilisateurs de maintenir plusieurs listes (par ex. une liste de course, une liste de souhait, une liste de tâche, etc.). Il y a cependant un problème. Comme toutes les instances du composant font référence au même objet de donnée, changer le titre de l'une des listes va aussi changer le titre de toutes les autres. Et c'est également vrai pour l'ajout, l'édition ou la suppression dans la liste.
 
-Instead, we want each component instance to only manage its own data. For that to happen, each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
+À la place, nous voulons que chaque composant instancie ses données pour soi. Pour que cela soit possible, chaque instance doit générer un objet de données unique. En JavaScript, ceci peut être accompli en retournant l'objet depuis une fonction :
 
 ``` js
 data: function () {
@@ -121,7 +121,7 @@ data: function () {
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 Vue.component('some-comp', {
@@ -141,7 +141,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 ``` js
 Vue.component('some-comp', {
   data: function () {
@@ -153,7 +153,7 @@ Vue.component('some-comp', {
 ```
 
 ``` js
-// In a .vue file
+// Dans un fichier `.vue`
 export default {
   data () {
     return {
@@ -164,9 +164,9 @@ export default {
 ```
 
 ``` js
-// It's OK to use an object directly in a root
-// Vue instance, since only a single instance
-// will ever exist.
+// Par contre l'utilisation directe d'un objet est possible dans
+// l'instance racine de Vue, car il n'y a qu'une
+// instance racine qui existe
 new Vue({
   data: {
     foo: 'bar'
@@ -177,37 +177,37 @@ new Vue({
 
 
 
-### Prop definitions <sup data-p="a">essential</sup>
+### Définitions de prop <sup data-p="a">essentiel</sup>
 
-**Prop definitions should be as detailed as possible.**
+**Les définitions de prop devraient être aussi détaillées que possible.**
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+Dans du code acté, les définitions de prop devraient être toujours aussi détaillées que possible, en spécifiant au moins le(s) type(s).
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+Les [définitions de prop](https://vuejs.org/v2/guide/components.html#Prop-Validation) détaillées ont deux avantages :
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- Elles documentent l'API du composant, il est ainsi possible de voir comment le composant est prévu d'être utilisé.
+- En développement, Vue vous avertira si le composant fournit un type de prop incorrectement formaté, vous aidant ainsi à trouver des sources potentielles d'erreur.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
-// This is only OK when prototyping
+// Ceci est uniquement bon pour le prototypage
 props: ['status']
 ```
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 props: {
@@ -216,7 +216,7 @@ props: {
 ```
 
 ``` js
-// Even better!
+// Même mieux !
 props: {
   status: {
     type: String,
@@ -236,20 +236,20 @@ props: {
 
 
 
-### Keyed `v-for` <sup data-p="a">essential</sup>
+### Des clés pour `v-for` <sup data-p="a">essentiel</sup>
 
-**Always use `key` with `v-for`.**
+**Toujours utiliser `key` avec `v-for`.**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+`key` avec `v-for` est _toujours_ requis sur les composants afin de maintenir l'état des composants internes aligné aux sous-arbres. Même pour les éléments, c'est une bonne pratique pour garder un comportement prédictible pour de la [stabilité d'objet](https://bost.ocks.org/mike/constancy/) dans les animations.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
+Imaginons que nous ayons une liste de tâches :
 
 ``` js
 data: function () {
@@ -257,27 +257,27 @@ data: function () {
     todos: [
       {
         id: 1,
-        text: 'Learn to use v-for'
+        text: 'Apprendre à utiliser `v-for`'
       },
       {
         id: 2,
-        text: 'Learn to use key'
+        text: 'Apprendre à utiliser `key`'
       }
     ]
   }
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+Puis nous les trions par ordre alphabétique. Quand le DOM est mis à jour, Vue optimisera le rendu en exécutant les mutations les moins couteuses possibles dans le DOM. Cela signifie de supprimer le premier élément de la liste, puis de l'ajouter de nouveau à la fin de la liste.
 
-The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
+Le problème est qu'il y a des cas où il est important de ne pas supprimer les éléments qui resteront dans le DOM. Par exemple, vous pourriez utiliser `<transition-group>` pour animer un tri de liste, ou garder le focus si l'élément rendu était un `<input>`. Dans ces cas, ajouter une clé unique pour chaque élément (par ex. `:key="todo.id"`) va dire à Vue comment être plus prédictif.
 
-In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
+De notre expérience, il est toujours mieux de _toujours_ ajouter une clé unique. De cette manière vous et votre équipe n'aurez jamais à vous soucier des effets de bord. Ensuite, dans les rares scénarios critiques de performances où la stabilité des objets n'est pas nécessaire, vous pourrez faire une exception en connaissance de cause.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <ul>
@@ -289,7 +289,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <ul>
@@ -305,31 +305,31 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### Component style scoping <sup data-p="a">essential</sup>
+### Style des composants à portée limitée <sup data-p="a">essentiel</sup>
 
-**For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
+**Pour les applications, le style du niveau `App` au sommet et des composants de mises en page doivent être globaux, mais tous les autres styles des composants devraient être avec une portée limitée au composant.**
 
-This is only relevant for [single-file components](../guide/single-file-components.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+Ceci n'est pertinent que pour les [composants monofichiers](../guide/single-file-components.html). Cela _ne_ nécessite _pas_ l'ajout de [l'attribut `scoped`](https://vue-loader.vuejs.org/en/features/scoped-css.html). La portée limitée peut être faite avec les [modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html), une stratégie basée sur les classes comme [BEM](http://getbem.com/) ou d'autres bibliothèques / conventions du même genre.
 
-**Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.**
+**Les composants de bibliothèques, cependant, devraient utiliser une stratégie basée sur les classes plutôt que d'utiliser l'attribut `scoped`.**
 
-This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
+Cela permet de surcharger les styles internes facilement, avec des noms de classes lisibles par les humains avec un niveau de spécificité peu élevé qui entre en conflit vraiment très rarement.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
+Si vous développez un grand projet, et travaillez avec d'autres développeurs, ou que parfois vous incluez du HTML / CSS tiers (par ex. de Auth0), une portée limitée consistante assurera une application de vos styles uniquement aux composants souhaités.
 
-Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
+Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure que les CSS des bibliothèques tierces ne soient pas appliquées à votre propre HTML. Par exemple, beaucoup de projets utilisent les classes de nom `button`, `btn` ou `icon` donc même si vous n'utilisez pas de stratégie comme BEM, ajouter un préfixe dédié à l'application ou au composant (par ex. `ButtonClose-icon`) peut vous apporter une certaine protection.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <template>
@@ -345,14 +345,14 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <template>
   <button class="button button-close">X</button>
 </template>
 
-<!-- Using the `scoped` attribute -->
+<!-- Utilisez l'attribut `scoped` -->
 <style scoped>
 .button {
   border: none;
@@ -370,7 +370,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button :class="[$style.button, $style.buttonClose]">X</button>
 </template>
 
-<!-- Using CSS modules -->
+<!-- Utilisez les modules CSS -->
 <style module>
 .button {
   border: none;
@@ -388,7 +388,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button class="c-Button c-Button--close">X</button>
 </template>
 
-<!-- Using the BEM convention -->
+<!-- Utilisez des conventions BEM -->
 <style>
 .c-Button {
   border: none;
@@ -404,27 +404,27 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 
-### Private property names <sup data-p="a">essential</sup>
+### Noms de propriété privé <sup data-p="a">essentiel</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**Utilisez toujours le préfixe `$_` pour les propriétés privées personnalisées dans un plugin, mixin, etc. Cela permet d'éviter les conflits avec le code d'autres développeurs. Il est également possible d’inclure un nom de portée (par ex. `$_yourPluginName_`).**
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
+Vue utilise le préfixe `_` pour définir ses propres propriétés privées. Aussi utiliser le même préfixe comme (par ex. `_update`) risque d'écraser les propriétés d'instance. Même si vous vérifiez que Vue n'utilise pas actuellement un nom de propriété particulier, il n'y a aucune garantie que le conflit n'apparaisse pas dans des versions futures.
 
-As for the `$` prefix, it's purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+Concernant le préfixe `$`, il est réservé dans l'écosystème Vue à des propriétés spéciales d'instance exposées à l'utilisateur. L'utiliser pour des propriétés _privées_ ne serait pas un bon choix non plus.
 
-Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
+À la place, nous recommandons de combiner les deux préfixes en un `$_`, comme une convention pour définir des propriétés personnelles privées et garantir qu'il n'y ait aucun conflit avec Vue.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 var myGreatMixin = {
@@ -473,7 +473,7 @@ var myGreatMixin = {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 var myGreatMixin = {
@@ -489,18 +489,18 @@ var myGreatMixin = {
 
 
 
-## Priority B Rules: Strongly Recommended (Improving Readability)
+## Règles de priorité B : fortement recommandé (améliorer la lisibilité)
 
 
 
-### Component files <sup data-p="b">strongly recommended</sup>
+### Fichier composants <sup data-p="b">fortement recommandé</sup>
 
-**Whenever a build system is available to concatenate files, each component should be in its own file.**
+**Chaque fois qu'un système de build est disponible pour concaténer les fichiers, chaque composant devrait être dans son propre fichier.**
 
-This helps you to more quickly find a component when you need to edit it or review how to use it.
+Ceci aide à trouver plus rapidement un composant quand vous avez besoin de l'éditer ou de vérifier comment il fonctionne.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 Vue.component('TodoList', {
@@ -514,7 +514,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ```
 components/
@@ -531,14 +531,14 @@ components/
 
 
 
-### Single-file component filename casing <sup data-p="b">strongly recommended</sup>
+### Casse des noms de fichier des composants monofichiers <sup data-p="b">fortement recommandé</sup>
 
-**Filenames of [single-file components](../guide/single-file-components.html) should either be always PascalCase or always kebab-case.**
+**Les noms de fichier des [composants monofichiers](../guide/single-file-components.html) devraient toujours être écrits en PascalCase ou en kebab-case.**
 
-PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive filesystems, which is why kebab-case is also perfectly acceptable.
+La PascalCase fonctionne mieux avec l'autocomplétion dans des éditeurs de code. Comme ils sont consistants avec la manière dont nous référençons les composants avec du JS(X) et des templates, utilisez-le si possible. Cependant, les casses de noms mixtes (majuscules et minuscules) peuvent parfois créer des problèmes sur des systèmes de fichier non sensibles à la casse. C'est pourquoi la kebab-case est aussi parfaitement acceptable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ```
 components/
@@ -552,7 +552,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ```
 components/
@@ -567,34 +567,34 @@ components/
 
 
 
-### Base component names <sup data-p="b">strongly recommended</sup>
+### Base de nom de composant <sup data-p="b">fortement recommandé</sup>
 
-**Base components (a.k.a. presentational, dumb, or pure components) that apply app-specific styling and conventions should all begin with a specific prefix, such as `Base`, `App`, or `V`.**
+**Les composants de base (c.-à-d. les composants de présentation, de support ou purement fonctionnels) qui appliquent un style et des conventions spécifiques à l'application devraient tous commencer avec un même préfixe, comme par exemple `Base`, `App`, ou `V`.**
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
+Ces composants sont les fondations d'un système de style et de comportement consistant pour votre application. Ils doivent **seulement** contenir :
 
-- HTML elements,
-- other `Base`-prefixed components, and
-- 3rd-party UI components.
+- des éléments HTML,
+- d'autres composants préfixés par une base de nom et
+- des composants d'interface utilisateur tiers
 
-But they'll **never** contain global state (e.g. from a Vuex store).
+Mais ils ne doivent **jamais** contenir un état global (par ex. depuis un store Vuex).
 
-Their names often include the name of an element they wrap (e.g. `BaseButton`, `BaseTable`), unless no element exists for their specific purpose (e.g. `BaseIcon`). If you build similar components for a more specific context, they will almost always consume these components (e.g. `BaseButton` may be used in `ButtonSubmit`).
+Leurs noms incluent souvent le nom d'un des éléments qu'ils englobent (par ex. `BaseButton`, `BaseTable`), sauf quand aucun élément n'existe pour la tâche qu'ils accomplissent (par ex. `BaseIcon`). Si vous construisez des composants similaires pour un contexte plus spécifique, ils devront toujours utiliser ces composants (par ex. `BaseButton` pourrait être utilisé dans `ButtonSubmit`).
 
-Some advantages of this convention:
+Plusieurs avantages à ces conventions :
 
-- When organized alphabetically in editors, your app's base components are all listed together, making them easier to identify.
+- Quand ils sont listés alphabétiquement dans des éditeurs, vos composants de base sont tous listés ensemble, les rendant plus simples à identifier.
 
-- Since component names should always be multi-word, this convention prevents you from having to choose an arbitrary prefix for simple component wrappers (e.g. `MyButton`, `VueButton`).
+- Comme un nom de composant devrait toujours être un nom multiple, cette convention vous aide à ne pas choisir un préfixe arbitraire comme nom de composant encapsulant (par ex. `MyButton`, `VueButton`).
 
-- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. A prefix makes this possible with Webpack:
+- Et parce que ces composants sont très fréquemment utilisés, vous pourriez vouloir simplement tous les importer pour y avoir accès partout. Un préfixe rend cela possible avec webpack :
 
   ``` js
   var requireComponent = require.context("./src", true, /^Base[A-Z]/)
@@ -613,7 +613,7 @@ Some advantages of this convention:
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ```
 components/
@@ -624,7 +624,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ```
 components/
@@ -650,14 +650,14 @@ components/
 
 
 
-### Single-instance component names <sup data-p="b">strongly recommended</sup>
+### Nom des composants à une seule instance <sup data-p="b">fortement recommandé</sup>
 
-**Components that should only ever have a single active instance should begin with the `The` prefix, to denote that there can be only one.**
+**Les composants qui devraient uniquement avoir une seule instance active devraient commencer par le préfixe `The` pour démontrer qu'il ne peut y en avoir qu'un.**
 
-This does not mean the component is only used in a single page, but it will only be used once _per page_. These components never accept any props, since they are specific to your app, not their context within your app. If you find the need to add props, it's a good indication that this is actually a reusable component that is only used once per page _for now_.
+Cela ne signifie pas que le composant doit être utilisé uniquement sur une seule page, mais qu'il ne peut y en avoir qu'_un par page_. Ces composants n'acceptent jamais de props car ils sont spécifiques à votre application et n'ont pas leur propre contexte dans l'application. Si vous ressentez le besoin d'ajouter des props, c'est une bonne indication. Cela reste une bonne indication pour informer que c'est un composant réutilisable n'est utilisé qu'une fois par page _pour le moment_.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ```
 components/
@@ -667,7 +667,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ```
 components/
@@ -678,20 +678,20 @@ components/
 
 
 
-### Tightly coupled component names <sup data-p="b">strongly recommended</sup>
+### Noms de composants fortement couplés <sup data-p="b">fortement recommandé</sup>
 
-**Child components that are tightly coupled with their parent should include the parent component name as a prefix.**
+**Les composants qui sont fortement liés à leur parent devraient inclure le nom du parent en tant que préfixe.**
 
-If a component only makes sense in the context of a single parent component, that relationship should be evident in its name. Since editors typically organize files alphabetically, this also keeps these related files next to each other.
+Si un composant n'a de sens que dans le contexte d'un composant parent, cette relation devrait être évidente dans son nom. Puisque les éditeurs organisent les fichiers par ordre alphabétique, cela permet de garder ses fichiers proches les uns des autres.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-You might be tempted to solve this problem by nesting child components in directories named after their parent. For example:
+Vous pourriez être tenté de résoudre ce problème en rangeant les composants dans des sous-dossiers nommés d'après leur parent. Par exemple :
 
 ```
 components/
@@ -702,7 +702,7 @@ components/
    |- index.vue
 ```
 
-or:
+ou :
 
 ```
 components/
@@ -713,15 +713,15 @@ components/
 |- TodoList.vue
 ```
 
-This isn't recommended, as it results in:
+Cela n'est pas recommandé car :
 
-- Many files with similar names, making rapid file switching in code editors more difficult.
-- Many nested sub-directories, which increases the time it takes to browse components in an editor's sidebar.
+- Plusieurs fichiers pourraient avoir des noms similaires, rendant la navigation entre fichiers au sein de l'éditeur de code plus difficile.
+- Plusieurs sous dossiers imbriqués augmentent le temps de navigation pour trouver un composant dans la barre de navigation.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ```
 components/
@@ -738,7 +738,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ```
 components/
@@ -756,30 +756,30 @@ components/
 
 
 
-### Order of words in component names <sup data-p="b">strongly recommended</sup>
+### Ordre des mots dans un nom de composant <sup data-p="b">fortement recommandé</sup>
 
-**Component names should start with the highest-level (often most general) words and end with descriptive modifying words.**
+**Les noms de composant devraient commencer avec le mot le plus important en premier et se décliner avec des mots descriptifs.**
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-You may be wondering:
+Vous pourriez vous demander :
 
-> "Why would we force component names to use less natural language?"
+> « Pourquoi ne pas utiliser l'ordre des mots dans un langage naturel ? »
 
-In natural English, adjectives and other descriptors do typically appear before the nouns, while exceptions require connector words. For example:
+En anglais natif, les adjectifs et les autres descripteurs apparaissent généralement avant les noms à l'exception des mots de connexion. Par exemple :
 
 - Coffee _with_ milk
 - Soup _of the_ day
 - Visitor _to the_ museum
 
-You can definitely include these connector words in component names if you'd like, but the order is still important.
+Vous pouvez inclure ces connecteurs dans le nom de vos composants si vous le souhaitez, mais l'ordre reste important.
 
-Also note that **what's considered "highest-level" will be contextual to your app**. For example, imagine an app with a search form. It may include components like this one:
+Notez également que **ce qui va être considéré comme le mot le plus important est relatif à votre application**. Par exemple, imaginez une application avec un formulaire de recherche. Elle pourrait inclure les composants comme suit :
 
 ```
 components/
@@ -791,7 +791,7 @@ components/
 |- TermsCheckbox.vue
 ```
 
-As you might notice, it's quite difficult to see which components are specific to the search. Now let's rename the components according to the rule:
+Comme vous pouvez le remarquer, il est difficile de voir quels composants sont spécifiques à la recherche. Maintenant, renommons les composants en suivant notre règle :
 
 ```
 components/
@@ -803,18 +803,18 @@ components/
 |- SettingsCheckboxTerms.vue
 ```
 
-Since editors typically organize files alphabetically, all the important relationships between components are now evident at a glance.
+Puisque les éditeurs organisent généralement les fichiers par ordre alphabétique, toutes les relations importantes entre les composants sont maintenant évidentes.
 
-You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We only recommend considering this approach in very large apps (e.g. 100+ components), for these reasons:
+Vous pourriez être tenté de résoudre le problème différemment, en imbriquant tous les composants de recherche sous le dossier « search » et tous les composants de paramétrage sous le sous-dossier « settings ». Nous recommandons cette approche seulement pour les applications vraiment très grandes (par ex. avec plus de 100 composants) pour les raisons suivantes :
 
-- It generally takes more time to navigate through nested sub-directories, than scrolling through a single `components` directory.
-- Name conflicts (e.g. multiple `ButtonDelete.vue` components) make it more difficult to quickly navigate to a specific component in a code editor.
-- Refactoring becomes more difficult, because find-and-replace often isn't sufficient to update relative references to a moved component.
+- Cela prend généralement plus de temps de naviguer à travers des sous-répertoires imbriqués que de défiler à travers un seul répertoire de composants.
+- Les conflits de nom (par ex. de multiple composant `ButtonDelete.vue`) rendent la navigation plus difficile pour un composant spécifique dans un éditeur de texte.
+- La refactorisation devient plus difficile car le remplacement par recherche n'est pas la seule action requise pour mettre à jour les références vers des composants qui auraient bougé.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ```
 components/
@@ -828,7 +828,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ```
 components/
@@ -843,122 +843,122 @@ components/
 
 
 
-### Self-closing components <sup data-p="b">strongly recommended</sup>
+### Les composants autofermants <sup data-p="b">fortement recommandé</sup>
 
-**Components with no content should be self-closing in [single-file components](../guide/single-file-components.html), string templates, and [JSX](../guide/render-function.html#JSX) - but never in DOM templates.**
+**Les composants sans contenu devraient être autofermants dans les [composants monofichiers](../guide/single-file-components.html), les templates de chaine de caractères, et le [JSX](../guide/render-function.html#JSX) : mais jamais dans les templates du DOM.**
 
-Components that self-close communicate that they not only have no content, but are **meant** to have no content. It's the difference between a blank page in a book and one labeled "This page intentionally left blank." Your code is also cleaner without the unnecessary closing tag.
+Les composants qui sont autofermants n'indiquent pas seulement qu'ils n'ont pas de contenu, mais qu'ils sont **faits** pour ne pas en avoir. C'est la différence entre une page blanche dans un livre et une qui indiquerait « Cette page est intentionnellement vide ». Votre code est aussi plus clair sans balises fermantes inutiles.
 
-Unfortunately, HTML doesn't allow custom elements to be self-closing - only [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). That's why the strategy is only possible when Vue's template compiler can reach the template before the DOM, then serve the DOM spec-compliant HTML.
+Malheureusement, le HTML ne permet pas aux éléments personnalisés d'être autofermant. Seuls les [éléments vides officiels](https://www.w3.org/TR/html/syntax.html#void-elements) peuvent l'être. C'est pourquoi il est possible d'utiliser cette stratégie seulement quand les templates Vue sont compilés avant qu'ils soient injectés dans le DOM. Ensuite du code HTML valide aux spécifications est fourni au DOM.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
-<!-- In single-file components, string templates, and JSX -->
+<!-- Dans les composants monofichiers, les templates avec chaine de caractères et en JSX -->
 <MyComponent></MyComponent>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- Dans les templates du DOM -->
 <my-component/>
 ```
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
-<!-- In single-file components, string templates, and JSX -->
+<!-- Dans les composants monofichiers, les templates avec chaine de caractères et en JSX -->
 <MyComponent/>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- Dans les templates du DOM -->
 <my-component></my-component>
 ```
 {% raw %}</div>{% endraw %}
 
 
 
-### Component name casing in templates <sup data-p="b">strongly recommended</sup>
+### Casse des noms de composant dans les templates <sup data-p="b">fortement recommandé</sup>
 
-**In most projects, component names should always be PascalCase in [single-file components](../guide/single-file-components.html) and string templates - but kebab-case in DOM templates.**
+**Dans la plupart des projets, les noms de composant devraient toujours être écrits en PascalCase dans les [composants monofichiers](../guide/single-file-components.html) mais en kebab-case pour les templates dans le DOM.**
 
-PascalCase has a few advantages over kebab-case:
+La PascalCase a plusieurs avantages comparés à la kebab-case :
 
-- Editors can autocomplete component names in templates, because PascalCase is also used in JavaScript.
-- `<MyComponent>` is more visually distinct from a single-word HTML element than `<my-component>`, because there are two character differences (the two capitals), rather than just one (a hyphen).
-- If you use any non-Vue custom elements in your templates, such as a web component, PascalCase ensures that your Vue components remain distinctly visible.
+- Les éditeurs peuvent autocompléter un nom de composant dans les templates car la PascalCase est également utilisée en JavaScript.
+- `<MyComponent>` est visuellement plus distinct qu'un élément HTML d'un seul mot comme `<my-component>` car il y a deux caractères de différenciation (les deux capitales) plutôt que juste un (le trait d'union).
+- Si vous utilisez des composants personnalisés qui ne sont pas des éléments Vue dans vos templates, comme les Web Composants, la PascalCase vous assure que les composants Vue restent bien différentiables.
 
-Unfortunately, due to HTML's case insensitivity, DOM templates must still use kebab-case.
+Malheureusement, du fait de l'insensibilité à la casse du HTML, les templates du DOM doivent rester en kebab-case.
 
-Also note that if you've already invested heavily in kebab-case, consistency with HTML conventions and being able to use the same casing across all your projects may be more important than the advantages listed above. In those cases, **using kebab-case everywhere is also acceptable.**
+Notez également que si vous avez déjà largement utilisé la kebab-case de manière consistante avec vos conventions HTML à travers tous vos projets, cela peut être plus important que les avantages listés plus haut. Dans de tels cas, **utiliser la kebab-case partout est également acceptable.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- Dans les composants monofichiers, les templates avec chaine de caractères -->
 <mycomponent/>
 ```
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- Dans les composants monofichiers, les templates avec chaine de caractères -->
 <myComponent/>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- Dans les templates du DOM -->
 <MyComponent></MyComponent>
 ```
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- Dans les composants monofichiers, les templates avec chaine de caractères -->
 <MyComponent/>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- Dans les templates du DOM -->
 <my-component></my-component>
 ```
 
-OR
+OU
 
 ``` html
-<!-- Everywhere -->
+<!-- Partout -->
 <my-component></my-component>
 ```
 {% raw %}</div>{% endraw %}
 
 
 
-### Component name casing in JS/JSX <sup data-p="b">strongly recommended</sup>
+### Casse des noms de composant en JS / JSX <sup data-p="b">fortement recommandé</sup>
 
-**Component names in JS/[JSX](../guide/render-function.html#JSX) should always be PascalCase, though they may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
+**Les noms de composant en JS / [JSX](../guide/render-function.html#JSX) devraient toujours être en PascalCase, cependant ils peuvent être en kebab-case à l'intérieur des chaines de caractères pour de simples applications qui utilisent seulement des composants globaux avec `Vue.component`.**
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-In JavaScript, PascalCase is the convention for classes and prototype constructors - essentially, anything that can have distinct instances. Vue components also have instances, so it makes sense to also use PascalCase. As an added benefit, using PascalCase within JSX (and templates) allows readers of the code to more easily distinguish between components and HTML elements.
+En JavaScript, la PascalCase est la convention pour les classes et les prototypes, c.-à-d. tout ce qui peut avoir des instances distinctes. Les composants Vue ont également des instances, donc cela est logique d'utiliser également la PascalCase. De plus, utiliser la PascalCase dans le JSX (et les templates) permet une lecture de code plus simple pour la distinction avec des éléments HTML.
 
-However, for applications that use **only** global component definitions via `Vue.component`, we recommend kebab-case instead. The reasons are:
+Cependant, pour les applications qui n'utilisent **que** des composants globaux via `Vue.component`, nous recommandons la kebab-case à la place. Les raisons sont :
 
-- It's rare that global components are ever referenced in JavaScript, so following a convention for JavaScript makes less sense.
-- These applications always include many in-DOM templates, where [kebab-case **must** be used](#Component-name-casing-in-templates-strongly-recommended).
+- Il est rare que les composants globaux soient référencés en JavaScript, donc suivre les conventions du JavaScript a moins de sens.
+- Ces applications incluent beaucoup de templates depuis le DOM, où la [kebab-case **doit** être utilisée](#Casse-des-noms-de-composant-dans-les-templates-fortement-recommande).
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 Vue.component('myComponent', {
@@ -986,7 +986,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 Vue.component('MyComponent', {
@@ -1014,14 +1014,14 @@ export default {
 
 
 
-### Full-word component names <sup data-p="b">strongly recommended</sup>
+### Nom de composant avec mot complet <sup data-p="b">fortement recommandé</sup>
 
-**Component names should prefer full words over abbreviations.**
+**Les noms de composant devraient préférer des mots complets à des abréviations.**
 
-The autocompletion in editors make the cost of writing longer names very low, while the clarity they provide is invaluable. Uncommon abbreviations, in particular, should always be avoided.
+L'autocomplétion dans les éditeurs rend le cout d'un long nom de composant insignifiant alors que la clarté qu'il amène est sans valeur. Les abréviations non communes, en particulier, sont à éviter.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ```
 components/
@@ -1031,7 +1031,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ```
 components/
@@ -1042,14 +1042,14 @@ components/
 
 
 
-### Prop name casing <sup data-p="b">strongly recommended</sup>
+### Casse des noms de prop <sup data-p="b">fortement recommandé</sup>
 
-**Prop names should always use camelCase during declaration, but kebab-case in templates and [JSX](../guide/render-function.html#JSX).**
+**Les noms de prop devraient toujours utiliser la camelCase lors de leur déclaration, mais la kebab-case dans les templates et les [JSX](../guide/render-function.html#JSX).**
 
-We're simply following the conventions of each language. Within JavaScript, camelCase is more natural. Within HTML, kebab-case is.
+Nous suivons simplement les conventions de chaque langage. Dans le JavaScript, la camelCase est plus naturelle. Dans le HTML, c'est la kebab-case.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 props: {
@@ -1063,7 +1063,7 @@ props: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 props: {
@@ -1078,14 +1078,14 @@ props: {
 
 
 
-### Multi-attribute elements <sup data-p="b">strongly recommended</sup>
+### Éléments avec attributs multiples <sup data-p="b">fortement recommandé</sup>
 
-**Elements with multiple attributes should span multiple lines, with one attribute per line.**
+**Des éléments avec de multiples attributs devraient occuper plusieurs lignes, avec un attribut par ligne.**
 
-In JavaScript, splitting objects with multiple properties over multiple lines is widely considered a good convention, because it's much easier to read. Our templates and [JSX](../guide/render-function.html#JSX) deserve the same consideration.
+En JavaScript, scinder les objets avec de multiples propriétés sur plusieurs lignes est largement considéré comme une bonne convention, car cela rend le code plus facile à lire. Nos templates et [JSX](../guide/render-function.html#JSX) suivent les mêmes règles.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
@@ -1097,7 +1097,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <img
@@ -1117,14 +1117,14 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 
 
-### Simple expressions in templates <sup data-p="b">strongly recommended</sup>
+### Expressions simples dans les templates <sup data-p="b">fortement recommandé</sup>
 
-**Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
+**Les templates de composant devraient seulement inclure de simples expressions, avec les expressions les plus complexes refactorisées dans des propriétés calculées ou des méthodes.**
 
-Complex expressions in your templates make them less declarative. We should strive to describe _what_ should appear, not _how_ we're computing that value. Computed properties and methods also allow the code to be reused.
+Les expressions complexes dans vos templates les rendent moins déclaratifs. Nous devrions voir _ce qui_ devrait apparaitre, et non _comment_ cette valeur est calculée. Les propriétés calculées et les méthodes permettent également de rendre le code réutilisable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 {{
@@ -1136,7 +1136,7 @@ Complex expressions in your templates make them less declarative. We should stri
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <!-- In a template -->
@@ -1144,7 +1144,7 @@ Complex expressions in your templates make them less declarative. We should stri
 ```
 
 ``` js
-// The complex expression has been moved to a computed property
+// L'expression complexe a été bougée dans une propriété calculée
 computed: {
   normalizedFullName: function () {
     return this.fullName.split(' ').map(function (word) {
@@ -1157,37 +1157,37 @@ computed: {
 
 
 
-### Simple computed properties <sup data-p="b">strongly recommended</sup>
+### Propriétés calculées simples <sup data-p="b">fortement recommandé</sup>
 
-**Complex computed properties should be split into as many simpler properties as possible.**
+**Les propriétés calculées complexes devraient être scindées en plusieurs propriétés plus simples autant que possible.**
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-Simpler, well-named computed properties are:
+Les propriétés calculées simples et bien nommées sont :
 
-- __Easier to test__
+- __Plus facile à tester__
 
-  When each computed property contains only a very simple expression, with very few dependencies, it's much easier to write tests confirming that it works correctly.
+  Quand chaque propriété calculée contient seulement une expression simple, avec peu de dépendances, il est plus facile d'écrire des tests pour confirmer qu'elles fonctionnent correctement.
 
-- __Easier to read__
+- __Plus facile à lire__
 
-  Simplifying computed properties forces you to give each value a descriptive name, even if it's not reused. This makes it much easier for other developers (and future you) to focus in on the code they care about and figure out what's going on.
+  Simplifier les propriétés calculées vous force à donner à chaque valeur un nom descriptif, même si elle ne sera pas réutilisée. Cela permet aux autres développeurs (et vous dans le futur) de plus facilement vous concentrer sur le code qui vous intéresse et de ne pas vous soucier du reste.
 
-- __More adaptable to changing requirements__
+- __Plus adaptable aux changements__
 
-  Any value that can be named might be useful to the view. For example, we might decide to display a message telling the user how much money they saved. We might also decide to calculate sales tax, but perhaps display it separately, rather than as part of the final price.
+  N'importe quelle valeur qui peut être nommée pourra être utile pour la vue. Par exemple, nous pourrions décider d'afficher un message expliquant à l'utilisateur combien d'argent ils ont économisé. Nous pourrions décider de calculer les taxes de vente associées, mais peut-être de les afficher indépendamment au lieu qu'elle soit une partie du prix final.
 
-  Small, focused computed properties make fewer assumptions about how information will be used, so require less refactoring as requirements change.
+  Des propriétés calculées courtes et spécifiques permettent plus de liberté sur la manière dont les informations seront utilisées ce qui nécessite moins de refactorisation en cas de changements.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 computed: {
@@ -1203,7 +1203,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 computed: {
@@ -1222,14 +1222,14 @@ computed: {
 
 
 
-### Quoted attribute values <sup data-p="b">strongly recommended</sup>
+### Valeur d'attribut entre guillemets <sup data-p="b">fortement recommandé</sup>
 
-**Non-empty HTML attribute values should always be inside quotes (single or double, whichever is not used in JS).**
+**Les attributs HTML non vides devraient toujours être entre guillemets (ou apostrophe, celui qui n'est pas utilisé dans le JS).**
 
-While attribute values without any spaces are not required to have quotes in HTML, this practice often leads to _avoiding_ spaces, making attribute values less readable.
+Alors que les valeurs d'attributs sans espaces ne sont pas requises en HTML, cela les mène à ne _jamais_ mettre d'espace, laissant place à des valeurs moins lisibles.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <input type=text>
@@ -1241,7 +1241,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <input type="text">
@@ -1254,12 +1254,12 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-### Directive shorthands <sup data-p="b">strongly recommended</sup>
+### Abréviations de directive <sup data-p="b">fortement recommandé</sup>
 
-**Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
+**Les abréviations de directive (`:` pour `v-bind:` et `@` pour `v-on:`) devraient toujours être utilisées ou jamais.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <input
@@ -1277,7 +1277,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <input
@@ -1310,114 +1310,114 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
+## Règles de priorité C : recommandé (minimiser les choix arbitraires et la surcharge cognitive)
 
 
 
-### Component/instance options order <sup data-p="c">recommended</sup>
+### Ordre des options de composants / instances <sup data-p="c">recommandé</sup>
 
-**Component/instance options should be ordered consistently.**
+**Les options des instances / composants devraient être ordonnées avec consistance.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
+Voici l'ordre par défaut que nous recommandons pour les options de composant. Elles sont séparées en catégories ainsi vous saurez où ajouter vos nouvelles propriétés pour vos plugins.
 
-1. **Side Effects** (triggers effects outside the component)
+1. **Effets de bord** (créer des effets en dehors du composant)
   - `el`
 
-2. **Global Awareness** (requires knowledge beyond the component)
+2. **Informations globales** (nécessite des connaissances au-delà du composant)
   - `name`
   - `parent`
 
-3. **Component Type** (changes the type of the component)
+3. **Type de composant** (change le type du composant)
   - `functional`
 
-4. **Template Modifiers** (changes the way templates are compiled)
+4. **Modificateurs de template** (change la manière dont les templates sont compilés)
   - `delimiters`
   - `comments`
 
-5. **Template Dependencies** (assets used in the template)
+5. **Dépendances des templates** (les ressources utilisées dans le template)
   - `components`
   - `directives`
   - `filters`
 
-6. **Composition** (merges properties into the options)
+6. **Composition** (fusionner des propriétés dans les options)
   - `extends`
   - `mixins`
 
-7. **Interface** (the interface to the component)
+7. **Interface** (interface du composant)
   - `inheritAttrs`
   - `model`
-  - `props`/`propsData`
+  - `props` / `propsData`
 
-8. **Local State** (local reactive properties)
+8. **État local** (propriétés réactives locales)
   - `data`
   - `computed`
 
-9. **Events** (callbacks triggered by reactive events)
+9. **Évènements** (fonctions de rappel déclenchées par des évènements réactifs)
   - `watch`
-  - Lifecycle Events (in the order they are called)
+  - Évènements du cycle de vie (dans leur ordre d'appel)
 
-10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+10. **Propriétés non réactives** (propriétés d'instance indépendantes du système de réactivité)
   - `methods`
 
-11. **Rendering** (the declarative description of the component output)
-  - `template`/`render`
+11. **Rendu** (description déclarative de la sortie du composant)
+  - `template` / `render`
   - `renderError`
 
 
 
-### Element attribute order <sup data-p="c">recommended</sup>
+### Ordre des attributs des éléments <sup data-p="c">recommandé</sup>
 
-**The attributes of elements (including components) should be ordered consistently.**
+**Les attributs d'éléments (incluant les composants) devraient être ordonnés avec consistance.**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+Voici l'ordre par défaut que nous recommandons pour les options de composant. Elles sons séparées en catégories, ainsi vous saurez où ajouter vos attributs et directives personnalisées.
 
-1. **Definition** (provides the component options)
+1. **Définition** (fournit les options du composant)
   - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
+2. **Rendu de liste** (crée des variations multiples du même élément)
   - `v-for`
 
-2. **Conditionals** (whether the element is rendered/shown)
+3. **Conditions** (comment l'élément est rendu / affiché)
   - `v-if`
   - `v-else-if`
   - `v-else`
   - `v-show`
   - `v-cloak`
 
-3. **Render Modifiers** (changes the way the element renders)
+4. **Modificateurs de rendu** (change la manière de faire le rendu de l'élément)
   - `v-pre`
   - `v-once`
 
-4. **Global Awareness** (requires knowledge beyond the component)
+5. **Attention globale** (nécessite des connaissances au-delà du composant)
   - `id`
 
-5. **Unique Attributes** (attributes that require unique values)
+6. **Attributs uniques** (attributs nécessitant une valeur unique)
   - `ref`
   - `key`
   - `slot`
 
-6. **Two-Way Binding** (combining binding and events)
+7. **Liaison bidirectionnelle** (combiner les liaisons descendantes et les évènements montants)
   - `v-model`
 
-7. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **Autres attributs** (tous les attributs qui sont liés ou non liés)
 
-8. **Events** (component event listeners)
+9. **Évènements** (gestionnaire d'évènement de composant)
   - `v-on`
 
-9. **Content** (overrides the content of the element)
+10. **Contenu** (écrase le contenu d'un élément)
   - `v-html`
   - `v-text`
 
 
 
-### Empty lines in component/instance options <sup data-p="c">recommended</sup>
+### Ligne vide dans les options d'instance / de composant <sup data-p="c">recommandé</sup>
 
-**You may want to add one empty line between multi-line properties, particularly if the options can no longer fit on your screen without scrolling.**
+**Vous pourriez ajouter une ligne vide entre de multiples propriétés, en particulier si la longueur de votre option dépasse la taille de l'écran.**
 
-When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
+Quand les composants commencent à devenir difficile à lire, ajouter des espaces entre des propriétés sur plusieurs lignes peut les rendre de nouveau simples à lire. Dans divers éditeurs, comme Vim, formater les options ainsi peut rendre la navigation plus simple avec le clavier.
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 props: {
@@ -1447,8 +1447,8 @@ computed: {
 ```
 
 ``` js
-// No spaces are also fine, as long as the component
-// is still easy to read and navigate.
+// Sans espaces, c'est bien aussi, du moment que le composant
+// reste simple à lire et à parcourir.
 props: {
   value: {
     type: String,
@@ -1474,12 +1474,12 @@ computed: {
 
 
 
-### Single-file component top-level element order <sup data-p="c">recommended</sup>
+### Ordre des balises principales des composants monofichiers <sup data-p="c">recommandé</sup>
 
-**[Single-file components](../guide/single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[Les composants monofichiers](../guide/single-file-components.html) devraient toujours ordonner de manière consistante les balises `<template>`, `<script>`, et `<style>`, avec `<style>` en dernier, car au moins l'un des deux autres est toujours nécessaire.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <style>/* ... */</style>
@@ -1501,7 +1501,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <!-- ComponentA.vue -->
@@ -1530,18 +1530,18 @@ computed: {
 
 
 
-## Priority D Rules: Use with Caution (Potentially Dangerous Patterns)
+## Règles de priorité D : faire attention (potentiellement dangereux)
 
 
 
-### `v-if`/`v-if-else`/`v-else` without `key` <sup data-p="d">use with caution</sup>
+### `v-if` / `v-if-else` / `v-else` sans `key` <sup data-p="d">faire attention</sup>
 
-**It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
+**Il est généralement préférable d'utiliser `key` avec `v-if` + `v-else`, si les éléments sont de même type (c.-à-d. avec deux éléments `<div>` par ex.).**
 
-By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
+Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signifie que quand il commute entre deux éléments de même type, il va simplement modifier l'élément existant, plutôt que de l'enlever et d'en ajouter un nouveau à la place. Cela peut avoir des [effets non souhaités](https://jsfiddle.net/chrisvfritz/bh8fLeds/) si ces éléments ne doivent pas être considérés comme les mêmes.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <div v-if="error">
@@ -1554,7 +1554,7 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <div v-if="error" key="search-status">
@@ -1577,27 +1577,27 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 
 
-### Element selectors with `scoped` <sup data-p="d">use with caution</sup>
+### Sélecteurs par nom de balise avec `scoped` <sup data-p="d">faire attention</sup>
 
-**Element selectors should be avoided with `scoped`.**
+**Les sélecteurs par nom de balise devraient être évités avec `scoped`.**
 
-Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors are slow.
+Préférez les sélecteurs de classes plutôt que les sélecteurs de nom dans des styles `scoped` car utiliser un nombre important de sélecteurs par nom de balise est lent.
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>Explication détaillée</h4>
 </summary>
 {% endraw %}
 
-To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
+Dans les styles avec portée, Vue ajoute un attribut unique à l'élément du composant, comme `data-v-f3f3eg9`. Les sélecteurs sont ainsi modifiés afin qu'ils ne concordent qu'avec les éléments dont l'attribut est sélectionné (par ex. `button[data-v-f3f3eg9]`).
 
-The problem is that large numbers of [element-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than [class-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
+Le problème est qu'utiliser un grand nombre de [sélecteur par nom]((http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (par ex. `button[data-v-f3f3eg9]`) va être considérablement plus lent que [par attribut classe](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (par ex. `.btn-close[data-v-f3f3eg9]`) et donc les sélecteurs par classes devraient être préférés autant que possible.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` html
 <template>
@@ -1613,7 +1613,7 @@ button {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` html
 <template>
@@ -1630,16 +1630,16 @@ button {
 
 
 
-### Implicit parent-child communication <sup data-p="d">use with caution</sup>
+### Communication parent-enfant implicite <sup data-p="d">faire attention</sup>
 
-**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
+**Les évènements et props devraient être préférés pour la communication entre composants parent-enfant, au lieu de l'utilisation de `this.$parent` ou la mutation des props.**
 
-An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
+Une application Vue idéale est une application où les props descendent et où les évènements remontent. Rester dans cette convention rend vos composants plus simples à à comprendre. Cependant, il y a quelques cas où la mutation des props ou `this.$parent` peut simplifier l'utilisation de deux composants qui sont fortement couplés.
 
-The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
+Le problème est qu'il y a beaucoup de _cas simples_ où leur utilisation offre de la facilité. Attention : ne vous laissez pas séduire par une apparente simplicité (être capable de comprendre le flux de votre état) pour une vision court-termiste (écrire moins de code).
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 Vue.component('TodoItem', {
@@ -1682,7 +1682,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 Vue.component('TodoItem', {
@@ -1723,16 +1723,16 @@ Vue.component('TodoItem', {
 
 
 
-### Non-flux state management <sup data-p="d">use with caution</sup>
+### Non-gestion de l'état par flux <sup data-p="d">faire attention</sup>
 
-**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**[Vuex](https://github.com/vuejs/vuex) devrait être préféré pour une gestion globale d'état à la place de `this.$root` ou d'un canal global d'évènement.**
 
-Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+Gérer l'état avec `this.$root` et / ou utiliser un [canal d'évènement global](https://fr.vuejs.org/v2/guide/migration.html#dispatch-et-broadcast-remplaces) peut faciliter la tâche dans des cas vraiment simples. Cependant cela n'est pas approprié pour la plupart des applications. Vuex n'offre pas seulement une place centrale pour gérer l'état mais également des outils pour organiser, tracer et déboguer les changements d'états.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### Mauvais
 
 ``` js
 // main.js
@@ -1756,7 +1756,7 @@ new Vue({
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### Bon
 
 ``` js
 // store/modules/todos.js
@@ -1810,14 +1810,14 @@ export default {
 <script>
 (function () {
   var enforcementTypes = {
-    none: '<span title="There is unfortunately no way to automatically enforce this rule.">self-discipline</span>',
+    none: '<span title="Il n\'y a malheureusement aucun moyen de forcer ces règles.">auto discipline</span>',
     runtime: 'runtime error',
     linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank">plugin:vue/recommended</a>'
   }
   Vue.component('sg-enforcement', {
     template: '\
       <span>\
-        <strong>Enforcement</strong>:\
+        <strong>Forçage</strong>:\
         <span class="style-rule-tag" v-html="humanType"/>\
       </span>\
     ',
