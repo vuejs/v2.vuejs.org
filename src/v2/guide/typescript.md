@@ -41,6 +41,8 @@ For developing Vue applications with TypeScript, we strongly recommend using [Vi
 
 If you are using [single-file components](./single-file-components.html) (SFCs), get the awesome [Vetur extension](https://github.com/vuejs/vetur), which provides TypeScript inference inside SFCs and many other great features.
 
+[WebStorm](https://www.jetbrains.com/webstorm/) also provides out-of-the-box support for both TypeScript and Vue.js.
+
 ## Basic Usage
 
 To let TypeScript properly infer types inside Vue component options, you need to define components with `Vue.component` or `Vue.extend`:
