@@ -14,20 +14,29 @@ Vue.js permet de définir des filtres qui peuvent être utilisés pour appliquer
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-La fonction de filtre reçoit toujours la valeur de l'expression (le résultat de la chaine) comme premier argument. Dans cet exemple, la fonction de filtre `capitalize` va recevoir la valeur de `message` dans son argument.
+Vous pouvez définir les filtres locaux dans les options d'un composant :
 
 ``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
+filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
   }
+}
+```
+
+or define a filter globally:
+
+``` js
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
 })
 ```
+
+La fonction de filtre reçoit toujours la valeur de l'expression (le résultat de la chaine) comme premier argument. Dans cet exemple, la fonction de filtre `capitalize` va recevoir la valeur de `message` dans son argument.
 
 Les filtres peuvent être chainés :
 
