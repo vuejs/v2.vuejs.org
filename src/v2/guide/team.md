@@ -557,6 +557,22 @@ order: 803
       links: [
         'https://atomaka.com/'
       ]
+    },
+    {
+      name: 'Sarah Drasner',
+      city: 'Denver, CO, USA',
+      languages: ['en'],
+      work: {
+        role: 'Senior Cloud Developer Advocate',
+        org: 'Microsoft',
+        orgUrl: 'https://www.microsoft.com/'
+      },
+      github: 'sdras',
+      twitter: 'sarah_edo',
+      codepen: 'sdras',
+      reposPersonal: [
+        'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
+      ]
     }
   ]))
 
@@ -801,20 +817,6 @@ order: 803
       github: 'Alex-Sokolov',
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
-      ]
-    },
-    {
-      name: 'Sarah Drasner',
-      city: 'Denver, CO, USA',
-      languages: ['en'],
-      work: {
-        role: 'Consultant'
-      },
-      github: 'sdras',
-      twitter: 'sarah_edo',
-      codepen: 'sdras',
-      reposPersonal: [
-        'intro-to-vue', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'vue-wine-label', 'vue-weather-notifier'
       ]
     }
   ]
