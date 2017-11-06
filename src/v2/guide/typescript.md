@@ -41,6 +41,8 @@ For developing Vue applications with TypeScript, we strongly recommend using [Vi
 
 If you are using [single-file components](./single-file-components.html) (SFCs), get the awesome [Vetur extension](https://github.com/vuejs/vetur), which provides TypeScript inference inside SFCs and many other great features.
 
+[WebStorm](https://www.jetbrains.com/webstorm/) also provides out-of-the-box support for both TypeScript and Vue.js.
+
 ## Basic Usage
 
 To let TypeScript properly infer types inside Vue component options, you need to define components with `Vue.component` or `Vue.extend`:
@@ -141,3 +143,37 @@ var vm = new Vue({
   myOption: 'Hello'
 })
 ```
+
+## Annotating Return Types
+
+Because of the circular nature of Vue's declaration files, TypeScript may have difficulties inferring the types of certain methods. For this reason, you may need to annotate the return type on methods like `render` and those in `computed`.
+
+```ts
+import Vue, { VNode } from 'vue'
+
+const Component = Vue.extend({
+  data() {
+    return {
+      msg: 'Hello'
+    }
+  },
+  methods: {
+    // need annotation due to `this` in return type
+    greet(): string {
+      return this.msg + ' world'
+    }
+  },
+  computed: {
+    // need annotation
+    greeting(): string {
+      return this.greet() + '!'
+    }
+  },
+  // `createElement` is inferred, but `render` needs return type
+  render(createElement): VNode {
+    return createElement('div', this.greeting)
+  }
+})
+```
+
+If you find type inference or member completion isn't working, annotating certain methods may help address these problems. Using the `--noImplicitAny` option will help find many of these unannotated methods.

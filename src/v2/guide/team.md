@@ -23,7 +23,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
-                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -33,7 +33,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -426,7 +426,10 @@ order: 803
       github: 'phanan',
       twitter: 'notphanan',
       reposOfficial: [
-        'vuejs.org'
+        'vuejs.org', {
+          name: 'vi.vuejs.org',
+          url: 'https://github.com/vuejs-vn/vuejs.org'
+        }
       ],
       reposPersonal: [
         'vuequery', 'vue-google-signin-button'
@@ -552,6 +555,22 @@ order: 803
       },
       links: [
         'https://atomaka.com/'
+      ]
+    },
+    {
+      name: 'Sarah Drasner',
+      city: 'Denver, CO, USA',
+      languages: ['en'],
+      work: {
+        role: 'Senior Cloud Developer Advocate',
+        org: 'Microsoft',
+        orgUrl: 'https://www.microsoft.com/'
+      },
+      github: 'sdras',
+      twitter: 'sarah_edo',
+      codepen: 'sdras',
+      reposPersonal: [
+        'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
       ]
     }
   ]))
@@ -798,20 +817,6 @@ order: 803
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
       ]
-    },
-    {
-      name: 'Sarah Drasner',
-      city: 'Denver, CO, Hoa Kỳ',
-      languages: ['en'],
-      work: {
-        role: 'Consultant'
-      },
-      github: 'sdras',
-      twitter: 'sarah_edo',
-      codepen: 'sdras',
-      reposPersonal: [
-        'intro-to-vue', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'vue-wine-label', 'vue-weather-notifier'
-      ]
     }
   ]
 
@@ -902,6 +907,9 @@ order: 803
        * Generate a GitHub URL using a repo and a handle.
        */
       githubUrl: function (handle, repo) {
+        if (repo && repo.url) {
+          return repo.url
+        }
         if (repo && repo.indexOf('/') !== -1) {
           // If the repo name has a slash, it must be an organization repo.
           // In such a case, we discard the (personal) handle.
