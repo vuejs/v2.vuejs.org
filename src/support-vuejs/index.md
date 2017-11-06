@@ -1,7 +1,7 @@
 # Support Vue.js Development
 
-Vue.js is an MIT licensed open source project and completely free to use.
-However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development via the following methods:
+Vue.js is a MIT licensed, open source project, completely free to use.
+However, the amount of effort needed to maintain and develop new features for this project is not sustainable without proper financial backing. You can support Vue.js development via the following methods:
 
 - [Become a backer or sponsor via Patreon](https://www.patreon.com/evanyou) (goes directly to support Evan You's full-time work on Vue)
 
