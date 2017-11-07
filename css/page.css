@@ -1218,8 +1218,8 @@ ul.demo li {
 .content h3:before {
   content: "";
   display: block;
-  margin-top: -91px;
-  height: 91px;
+  margin-top: -30px;
+  height: 30px;
   visibility: hidden;
 }
 .content h2 {
@@ -1426,8 +1426,8 @@ ul.demo li {
   .content h3:before {
     content: "";
     display: block;
-    margin-top: -70px;
-    height: 70px;
+    margin-top: -30px;
+    height: 30px;
     visibility: hidden;
   }
   .footer {
