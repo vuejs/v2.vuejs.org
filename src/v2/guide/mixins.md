@@ -1,59 +1,59 @@
 ---
-title: Mixins
+title: Mixin
 type: guide
 order: 301
 ---
 
-## Basics
+## Cơ bản
 
-Mixins are a flexible way to distribute reusable functionalities for Vue components. A mixin object can contain any component options. When a component uses a mixin, all options in the mixin will be "mixed" into the component's own options.
+Mixin là một cách linh hoạt để phân phối những tính năng tái sử dụng được cho component. Một object mixin có thể chứa bất kì những tùy chọn nào của component. Khi một component sử dụng một mixin, tất cả những tùy chọn trong mixin sẽ được "hòa trộn" (mixed) vào trong tùy chọn của component đó.
 
-Example:
+Ví dụ:
 
 ``` js
-// define a mixin object
+// định nghĩa một object mixin
 var myMixin = {
   created: function () {
     this.hello()
   },
   methods: {
     hello: function () {
-      console.log('hello from mixin!')
+      console.log('Mixin xin chào!')
     }
   }
 }
 
-// define a component that uses this mixin
+// định nghĩa một component sử dụng mixin này
 var Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // => "hello from mixin!"
+var component = new Component() // => "Mixin xin chào!"
 ```
 
-## Option Merging
+## Hợp nhất các tùy chọn
 
-When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies. For example, hook functions with the same name are merged into an array so that all of them will be called. In addition, mixin hooks will be called **before** the component's own hooks:
+Khi một mixin và component chứa những tùy chọn trùng nhau, những tùy chọn này sẽ được merge (hợp nhất) bằng cách sử dụng các chiến lược thích hợp. Ví dụ, những hàm hook trùng tên với nhau được merge vào trong một mảng để tất cả những hàm hook đó đều được gọi. Thêm vào đó, những hook trong mixin sẽ được gọi **trước** những hook trong component:
 
 ``` js
 var mixin = {
   created: function () {
-    console.log('mixin hook called')
+    console.log('hook trong mixin sẽ được gọi trước')
   }
 }
 
 new Vue({
   mixins: [mixin],
   created: function () {
-    console.log('component hook called')
+    console.log('sau đó đến hook của component')
   }
 })
 
-// => "mixin hook called"
-// => "component hook called"
+// => "hook trong mixin sẽ được gọi trước"
+// => "sau đó đến hook của component"
 ```
 
-Options that expect object values, for example `methods`, `components` and `directives`, will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
+Những tùy chọn có giá trị là object như `methods`, `components` và `directives` sẽ được merge vào chung một object. Nếu khóa (key) của các tùy chọn trùng nhau thì tùy chọn của component sẽ được ưu tiên:
 
 ``` js
 var mixin = {
@@ -61,8 +61,8 @@ var mixin = {
     foo: function () {
       console.log('foo')
     },
-    conflicting: function () {
-      console.log('from mixin')
+    hàmTrùngTên: function () {
+      console.log('từ mixin')
     }
   }
 }
@@ -73,25 +73,25 @@ var vm = new Vue({
     bar: function () {
       console.log('bar')
     },
-    conflicting: function () {
-      console.log('from self')
+    hàmTrùngTên: function () {
+      console.log('từ component')
     }
   }
 })
 
 vm.foo() // => "foo"
 vm.bar() // => "bar"
-vm.conflicting() // => "from self"
+vm.hàmTrùngTên() // => "từ component"
 ```
 
-Note that the same merge strategies are used in `Vue.extend()`.
+Chú ý rằng chiến lược merge này cũng được dùng trong `Vue.extend()`.
 
-## Global Mixin
+## Mixin toàn cục
 
-You can also apply a mixin globally. Use with caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
+Bạn cũng có thể áp dụng một mixin ở cấp toàn cục. Nhưng cần cẩn trọng khi sử dụng cách này, vì một mixin toàn cục sẽ tác động tới **tất cả** đối tượng Vue được khởi tạo sau đó. Khi được dùng một cách thích hợp, mixin có thể được sử dụng để chèn những xử lí logic cho các tùy chọn tùy biến:
 
 ``` js
-// inject a handler for `myOption` custom option
+// chèn một handler cho option tùy biến `myOption`
 Vue.mixin({
   created: function () {
     var myOption = this.$options.myOption
@@ -107,11 +107,11 @@ new Vue({
 // => "hello!"
 ```
 
-<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](plugins.html) to avoid duplicate application.</p>
+<p class="tip">Nên hạn chế và cẩn trọng khi sử dụng mixin toàn cục, bởi vì nó sẽ tác động tới tất cả đối tượng Vue được khởi tạo, kể cả những component của bên thứ ba. Trong hầu hết các trường hợp, bạn chỉ nên sử mixin toàn cục cho việc xử lí tùy chọn tùy biến như ví dụ trên. Một ý tưởng hay nữa là chuyển chúng thành [Plugins](plugins.html) để tránh bị trùng lặp.</p>
 
-## Custom Option Merge Strategies
+## Chiến lược merge tùy chọn tùy biến
 
-When custom options are merged, they use the default strategy which overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `Vue.config.optionMergeStrategies`:
+Khi những tùy chọn tùy biến được merge, chúng sử dụng chiến lược merge mặc định là ghi đè những giá trị đang tồn tại. Nếu muốn một tùy chọn tùy biến được merge bằng cách sử dụng một logic nào khác (không sử dụng chiến lược mặc định), bạn cần đính kèm một hàm vào `Vue.config.optionMergeStrategies`:
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -119,14 +119,14 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 }
 ```
 
-For most object-based options, you can use the same strategy used by `methods`:
+Đối với hầu hết các tùy chọn dạng object, bạn có thể sử dụng cùng một chiến lược được dùng bởi `methods`:
 
 ``` js
 var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-A more advanced example can be found on [Vuex](https://github.com/vuejs/vuex)'s 1.x merging strategy:
+Bạn có thể tìm thấy một ví dụ nâng cao hơn qua chiến lược merge của [Vuex](https://github.com/vuejs/vuex) 1.x:
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed
