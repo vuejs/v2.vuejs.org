@@ -152,14 +152,14 @@ Because of the circular nature of Vue's declaration files, TypeScript may have d
 import Vue, { VNode } from 'vue'
 
 const Component = Vue.extend({
-  data() {
+  data () {
     return {
       msg: 'Hello'
     }
   },
   methods: {
     // need annotation due to `this` in return type
-    greet(): string {
+    greet (): string {
       return this.msg + ' world'
     }
   },
@@ -170,7 +170,7 @@ const Component = Vue.extend({
     }
   },
   // `createElement` is inferred, but `render` needs return type
-  render(createElement): VNode {
+  render (createElement): VNode {
     return createElement('div', this.greeting)
   }
 })
