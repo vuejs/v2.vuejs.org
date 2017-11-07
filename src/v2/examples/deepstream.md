@@ -1,5 +1,5 @@
 ---
-title: ứng dụng thời gian thực với deepstreamHub
+title: Ứng dụng thời gian thực với deepstreamHub
 type: examples
 order: 9
 ---
