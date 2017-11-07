@@ -1686,6 +1686,8 @@ type: api
 
   <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
 
+  <p class="tip">Using `scoped` styles will not work with this directive because the content isn't created by Vue's rendering system, it simply uses `innerHTML`. Instead, if you are using Vue template files, you can define multiple `<style>` tags. Most of your `(S)CSS` (or whatever flavour you are using) would go in `<style lang="scss" scoped>` and then only styles specific to `v-html` related content that cannot be scoped can go in `<style lang="scss">`.</p>
+
 - **Example:**
 
   ```html
