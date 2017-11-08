@@ -90,7 +90,7 @@ order: 803
             </ul>
           </dd>
         </template>
-        <footer v-if="profile.github || profile.twitter" class="social">
+        <footer v-if="hasSocialLinks" class="social">
           <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
             <i class="fa fa-github"></i>
             <span class="sr-only">Github</span>
@@ -98,6 +98,10 @@ order: 803
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
             <i class="fa fa-twitter"></i>
             <span class="sr-only">Twitter</span>
+          </a>
+          <a class=codepen v-if="profile.codepen" :href="'https://codepen.io/' + profile.codepen">
+            <i class="fa fa-codepen"></i>
+            <span class="sr-only">CodePen</span>
           </a>
         </footer>
       </dl>
@@ -895,6 +899,9 @@ order: 803
           }).join('</li><li>') +
           '</li></ul>'
         )
+      },
+      hasSocialLinks: function () {
+        return this.profile.github || this.profile.twitter || this.profile.codepen
       }
     },
     methods: {
