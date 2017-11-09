@@ -2121,15 +2121,25 @@ type: api
 
 ### slot-scope
 
+> New in 2.5.0+
+
 - **Expects:** `function argument expression`
 
 - **Usage:**
 
-  Use to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression.
+  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
 
   This attribute does not support dynamic binding.
 
 - **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
+
+### scope <sup>replaced</sup>
+
+Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
 
 ### is
 
