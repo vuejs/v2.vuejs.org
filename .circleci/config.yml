@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    working_directory: /usr/src/app
+    docker:
+      - image: banian/node
+    steps:
+      # Checkout repository
+      - checkout
+
+      # Restore cache
+      - restore_cache:
+          key: yarn-{{ checksum "package-lock.json" }}
+
+      # Install dependencies
+      - run:
+          name: Install Dependencies
+          command: NODE_ENV=dev npm install
+
+      # Keep cache
+      - save_cache:
+          key: yarn-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+   
+      # Generate docs
+      - run:
+          name: Generate
+          command: |
+            npm run generate
+
+      # Deploy
+      - deploy:
+          name: Surge
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npm run deploy
+            fi
