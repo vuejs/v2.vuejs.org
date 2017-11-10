@@ -42,19 +42,19 @@ The contents of this `div` will be replaced with the value of the `rawHtml` prop
 
 ### Attributes
 
-Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](../api/#v-bind):
+Mustaches cannot be used inside HTML attributes. Instead, use a [v-bind directive](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
+In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example: 
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
-This will be removed if the value is `null`, `undefined`, or `false`. `0` and `NaN` will still be displayed.
+If `isButtonDisabled` has the value of `null`, `undefined`, or `false`, the `disabled` attribute will not even be included in the rendered `<button>` element.
 
 ### Using JavaScript Expressions
 
