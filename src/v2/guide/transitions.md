@@ -229,9 +229,9 @@ new Vue({
 
 {% raw %}
 <div id="example-2" class="demo">
-  <button @click="show = !show">Toggle show</button>
+  <button @click="show = !show">Toggle show</button><br />
   <transition name="bounce">
-    <p v-show="show">Look at me!</p>
+    <span v-show="show">Look at me!</span>
   </transition>
 </div>
 
