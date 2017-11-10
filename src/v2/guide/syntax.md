@@ -54,6 +54,8 @@ It also works for boolean attributes - the attribute will be removed if the cond
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
+This will be removed if the value is `null`, `undefined`, or `false`. `0` and `NaN` will still be displayed.
+
 ### Using JavaScript Expressions
 
 So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
