@@ -210,11 +210,11 @@ Unlike the other modifiers, which are exclusive to native DOM events, the `.once
 When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for `v-on` when listening for key events:
 
 ``` html
-<!-- only call vm.submit() when the keyCode is 13 -->
+<!-- only call `vm.submit()` when the `keyCode` is 13 -->
 <input v-on:keyup.13="submit">
 ```
 
-Remembering all the keyCodes is a hassle, so Vue provides aliases for the most commonly used keys:
+Remembering all the `keyCode`s is a hassle, so Vue provides aliases for the most commonly used keys:
 
 ``` html
 <!-- same as above -->
@@ -239,7 +239,7 @@ Here's the full list of key modifier aliases:
 You can also [define custom key modifier aliases](../api/#keyCodes) via the global `config.keyCodes` object:
 
 ``` js
-// enable v-on:keyup.f1
+// enable `v-on:keyup.f1`
 Vue.config.keyCodes.f1 = 112
 ```
 

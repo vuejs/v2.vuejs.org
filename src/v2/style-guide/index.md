@@ -1377,34 +1377,34 @@ This is the default order we recommend for component options. They're split into
 2. **List Rendering** (creates multiple variations of the same element)
   - `v-for`
 
-2. **Conditionals** (whether the element is rendered/shown)
+3. **Conditionals** (whether the element is rendered/shown)
   - `v-if`
   - `v-else-if`
   - `v-else`
   - `v-show`
   - `v-cloak`
 
-3. **Render Modifiers** (changes the way the element renders)
+4. **Render Modifiers** (changes the way the element renders)
   - `v-pre`
   - `v-once`
 
-4. **Global Awareness** (requires knowledge beyond the component)
+5. **Global Awareness** (requires knowledge beyond the component)
   - `id`
 
-5. **Unique Attributes** (attributes that require unique values)
+6. **Unique Attributes** (attributes that require unique values)
   - `ref`
   - `key`
   - `slot`
 
-6. **Two-Way Binding** (combining binding and events)
+7. **Two-Way Binding** (combining binding and events)
   - `v-model`
 
-7. **Other Attributes** (all unspecified bound & unbound attributes)
+8. **Other Attributes** (all unspecified bound & unbound attributes)
 
-8. **Events** (component event listeners)
+9. **Events** (component event listeners)
   - `v-on`
 
-9. **Content** (overrides the content of the element)
+10. **Content** (overrides the content of the element)
   - `v-html`
   - `v-text`
 

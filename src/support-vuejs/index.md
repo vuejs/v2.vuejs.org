@@ -11,7 +11,7 @@ However, the amount of effort needed to maintain and develop new features for th
 
 ## Current Premium Sponsors:
 
-### Platinum ($2000/mo)
+### Platinum
 
 <p style="text-align: center;">
   <a href="https://stdlib.com">
@@ -22,13 +22,13 @@ However, the amount of effort needed to maintain and develop new features for th
   </a>
 </p>
 
-### OpenCollective Platinum ($2000/mo)
+### OpenCollective Platinum
 
 <p class="open-collective-sponsors sponsor-section">
   <a href="https://opencollective.com/vuejs/tiers/platinumsponsors/0/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/1/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/2/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/3/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/4/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/platinumsponsors/5/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/platinumsponsors/5/avatar.svg"></a>
 </p>
 
-### Patreon Gold ($500/mo)
+### Patreon Gold
 
 <p class="patreon-sponsors sponsor-section">
   <a href="https://deepstreamhub.com" target="_blank" style="width: 140px; top: 1px;">
@@ -59,12 +59,12 @@ However, the amount of effort needed to maintain and develop new features for th
     <img src="/images/frontend-meetups.png" style="width: 120px;">
   </a><a href="https://onsen.io/vue/" target="_blank" style="width: 125px;">
     <img src="/images/onsen-ui.png" style="width: 125px;">
-  </a><a href="https://themeforest.net/item/clear-bootstrap-vuejs-admin-template/19339739?ref=jyostna&utm_source=vuejs&utm_campaign=vuejs_patreon&clickthrough_id=1113830525&redirect_back=true" target="_blank" style="width: 120px;">
+  </a><a href="https://themeforest.net/item/clear-bootstrap-vuejs-admin-template/19339739?ref=jyostna&utm_source=vuejs.org&utm_campaign=vuejs_patreon" target="_blank" style="width: 120px;">
     <img src="/images/vuejsadmin.png" style="width: 120px;">
   </a>
 </p>
 
-### OpenCollective Gold ($500/mo)
+### OpenCollective Gold
 
 <p class="open-collective-sponsors sponsor-section">
   <a href="https://opencollective.com/vuejs/tiers/goldsponsors/0/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/1/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/2/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/3/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/4/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/5/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/5/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/6/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/6/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/7/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/7/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/8/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/8/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/9/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/9/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/10/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/10/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/11/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/11/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/12/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/12/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/13/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/13/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/14/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/14/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/15/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/15/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/16/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/16/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/17/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/17/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/18/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/18/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/19/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/19/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/20/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/20/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/21/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/21/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/22/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/22/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/23/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/23/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/24/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/24/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/25/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/25/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/26/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/26/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/27/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/27/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/28/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/28/avatar.svg"></a><a href="https://opencollective.com/vuejs/tiers/goldsponsors/29/website" target="_blank"><img src="https://opencollective.com/vuejs/tiers/goldsponsors/29/avatar.svg"></a>
