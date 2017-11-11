@@ -1474,62 +1474,6 @@ computed: {
 
 
 
-### Single-file component top-level element order <sup data-p="c">recommended</sup>
-
-**[Single-file components](../guide/single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
-
-``` html
-<style>/* ... */</style>
-<template>...</template>
-<script>/* ... */</script>
-```
-
-``` html
-<!-- ComponentA.vue -->
-<script>/* ... */</script>
-<template>...</template>
-<style>/* ... */</style>
-
-<!-- ComponentB.vue -->
-<template>...</template>
-<script>/* ... */</script>
-<style>/* ... */</style>
-```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
-
-``` html
-<!-- ComponentA.vue -->
-<template>...</template>
-<script>/* ... */</script>
-<style>/* ... */</style>
-
-<!-- ComponentB.vue -->
-<template>...</template>
-<script>/* ... */</script>
-<style>/* ... */</style>
-```
-
-``` html
-<!-- ComponentA.vue -->
-<script>/* ... */</script>
-<template>...</template>
-<style>/* ... */</style>
-
-<!-- ComponentB.vue -->
-<script>/* ... */</script>
-<template>...</template>
-<style>/* ... */</style>
-```
-{% raw %}</div>{% endraw %}
-
-
-
 ## Priority D Rules: Use with Caution (Potentially Dangerous Patterns)
 
 
