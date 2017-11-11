@@ -282,6 +282,7 @@ var closeMixin = {
   // Simulate a v-if on the root element
   beforeCreate: function () {
     // Save the original, compiled render function
+    // (https://vuejs.org/v2/guide/render-function.html)
     var origRender = this._render
     // Replace the original render function
     this._render = function _render () {
