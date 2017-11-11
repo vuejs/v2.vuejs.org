@@ -417,7 +417,7 @@ Above, a developer has hijacked the component for a new kind of note that is not
 
 ## Factory Functions
 
-**Factory functions** are functions that return component options, like this:
+[**Factory functions**](https://medium.com/javascript-scene/javascript-factory-functions-with-es6-4d224591a8b1) are functions that return an object - in our case, component options:
 
 ``` js
 function createComponent (options) {
