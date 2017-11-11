@@ -313,6 +313,16 @@ You can also apply a mixin globally, but do this with caution!
 
 <p class="tip">Global mixins affect <strong>every</strong> Vue instance and component, including third-party components.</p>
 
+For example, the code below defines a mixin that will log the creation of _every_ component instance in our app.
+
+``` js
+Vue.mixin({
+  created: function () {
+    console.log('A component was just created!')
+  }
+})
+```
+
 One appropriate use case, however, is to inject processing logic for custom options, such as in the [VueFire plugin](https://github.com/vuejs/vuefire#usage):
 
 ``` js
