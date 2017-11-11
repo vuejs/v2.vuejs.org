@@ -427,6 +427,8 @@ function createComponent (options) {
 }
 ```
 
+> If you're familiar with React, their [higher-order components](https://reactjs.org/docs/higher-order-components.html) are one kind of factory function.
+
 Factory functions allow you to better control and simplify how component variations are created. For example, it could be argued that the `ErrorNote` we [created earlier with extension](#An-Example-Use-Case) would be conceptually simpler as a factory function:
 
 ``` js
