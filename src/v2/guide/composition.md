@@ -85,10 +85,10 @@ var AppNote = {
 You might use it to display an error like this:
 
 ``` html
-<info-note type="danger">
+<app-note type="danger">
   <span slot="bold">Error!</span>
   Something went wrong.
-</info-note>
+</app-note>
 ```
 
 But there's a problem. Every time you display an error, you'll have to remember to add `type="danger"` and `Error!` in the `bold` slot. It's easy to make a mistake, resulting in inconsistent error messages.
