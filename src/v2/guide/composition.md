@@ -4,7 +4,7 @@ type: guide
 order: 301
 ---
 
-Vue offers many strategies for building components and sharing functionality between them. Below, we'll provide a description of each strategy, followed by more in-depth explanations of when and how to apply them.
+Vue offers many advanced strategies for building components and sharing functionality between them. Below, we'll provide a description of some common strategies, followed by more in-depth explanations of when and how to apply them.
 
 <p class="tip">Examples on this page include <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">template literals</a>, which are not supported in Internet Explorer, but make string templates much more readable.</p>
 
