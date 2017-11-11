@@ -120,7 +120,7 @@ var ErrorNote = {
 }
 ```
 
-This is the simplest option and sometimes it's appropriate, when two components only _incidentally_ share a lot in common. In this case, however, we probably want all the notes in our application to work mostly the same. For example, if we later added a close button to `AppNote`, we'd now have to add the exact same code to `ErrorNote` and any other variations we created.
+This is the simplest option and sometimes it's appropriate, when two components only _incidentally_ share a lot in common. In this case, however, we probably want all the notes in our application to work mostly the same. For example, if we later added a button to expand/hide details to `AppNote`, we'd now have to add the exact same code to `ErrorNote` and any other variations we created.
 
 Fortunately, there's a better way.
 
@@ -245,53 +245,21 @@ So why have both then? Technically, you _could_ get everything done just with th
 
 ### An Example Use Case
 
-Remember the `AppNote` and `ErrorNote` components [from earlier](#An-Example-Use-Case)? In another application, we might actually want two mostly different components for these use cases:
+Imagine we want to add a close button to multiple components. Upon click, this button would hide the component it's included in. We could create a mixin that provides a `<CloseButton/>` component wherever we want it to appear, like in this `AppNotification` component:
 
 ``` js
-var AppNote = {
+var AppNotification = {
+  mixins: [closeMixin],
   template: `
-    <blockquote>
+    <div class="notification">
       <slot/>
-    </blockquote>
-  `
-}
-
-var ErrorNotification = {
-  template: `
-    <p class="error">
-      <strong>Error!</strong>
-      <slot/>
-    </p>
+      <CloseButton/>
+    </div>
   `
 }
 ```
 
-However, there might be some specific behavior we want to be shared, such as the ability to add a close button, which upon click, would hide the component. Then across any relevant components, we could include the mixin and add a `<CloseButton/>` wherever we want it to appear, like this:
-
-``` js
-var AppNote = {
-  mixins: [closeMixin],
-  template: `
-    <blockquote>
-      <slot/>
-      <CloseButton/>
-    </blockquote>
-  `
-}
-
-var ErrorNotification = {
-  mixins: [closeMixin],
-  template: `
-    <p class="error">
-      <strong>Error!</strong>
-      <slot/>
-      <CloseButton/>
-    </p>
-  `
-}
-```
-
-And here's mixin definition that actually makes that work:
+And here's the mixin definition to make this work:
 
 ``` js
 var closeMixin = {
