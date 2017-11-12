@@ -33,14 +33,14 @@ You can also perform one-time interpolations that do not update on data change b
 The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
 
 ``` html
-<div>Using mustaches: {{ rawHtml }}</div>
-<div>Using v-html directive: <span v-html="rawHtml"></span></div>
+<p>Using mustaches: {{ rawHtml }}</p>
+<p>Using v-html directive: <span v-html="rawHtml"></span></p>
 ```
 
 {% raw %}
 <div id="example1" class="demo">
-  <div>Using mustaches: {{ rawHtml }}</div>
-  <div>Using v-html directive: <span v-html="rawHtml"></span></div>
+  <p>Using mustaches: {{ rawHtml }}</p>
+  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 </div>
 <script>
 new Vue({
