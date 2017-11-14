@@ -119,8 +119,6 @@ Vue.component('example', {
 })
 ```
 
-<p class="tip">`$nextTick` relies on native Promises, which means that heavy operations in a `$nextTick` callback can be render blocking. This is because the callback is pushed into the browsers microtask queue rather then the event loops normal queue. 
-
-For this reason, when you have heavy synchronized tasks, it’s wise to avoid using `$nextTick`, or rather, combine it with a `setTimeout()`. A `setTimeout()` will have UI updates run before the callback is picked up by the event loop.
+<p class="tip">`$nextTick` relies on native Promises, so heavy operations in a `$nextTick` callback can be render blocking. This is because the callback is pushed into the browsers microtask queue rather then the event loops normal queue. For this reason, when you have heavy synchronized tasks it’s wise to avoid using `$nextTick`, or rather, combine it with a `setTimeout()`. A `setTimeout()` will run UI updates before the callback is picked up by the event loop.
 
 `$nextTick` is better suited for when you have to do some lightweight or async operation _after_ the DOM has been updated.</p>
