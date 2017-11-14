@@ -33,26 +33,48 @@ Vous pouvez également réaliser des interpolations à usage unique (qui ne se m
 Les doubles moustaches interprètent la donnée en tant que texte brut, pas en tant que HTML. Pour afficher réellement du HTML, vous aurez besoin d'utiliser la directive `v-html`
 
 ``` html
-<div v-html="rawHtml"></div>
+<p>Using mustaches: {{ rawHtml }}</p>
+<p>Using v-html directive: <span v-html="rawHtml"></span></p>
 ```
 
-Le contenu de cette `div` sera alors remplacée par la valeur de la propriété `rawHtml` en tant que HTML classique. Les liaisons de données sont ignorées. À noter que vous ne pouvez pas utiliser `v-html` pour composer des fragments de templates, parce que Vue n'est pas un moteur de template basé sur les chaines de caractères. À la place, les composants sont préférés en tant qu'unité fondamentale pour la réutilisabilité et la composition de l'interface utilisateur.
+{% raw %}
+<div id="example1" class="demo">
+  <p>En utilisant les moustaches : {{ rawHtml }}</p>
+  <p>En utilisant la directive v-html : <span v-html="rawHtml"></span></p>
+</div>
+<script>
+new Vue({
+  el: '#example1',
+  data: function () {
+  	return {
+  	  rawHtml: '<span style="color: red">Ceci devrait être rouge.</span>'
+  	}
+  }
+})
+</script>
+{% endraw %}
+
+Le contenu de cette `span` sera alors remplacée par la valeur de la propriété `rawHtml` en tant que HTML classique. Les liaisons de données sont ignorées. À noter que vous ne pouvez pas utiliser `v-html` pour composer des fragments de templates, parce que Vue n'est pas un moteur de template basé sur les chaines de caractères. À la place, les composants sont préférés en tant qu'unité fondamentale pour la réutilisabilité et la composition de l'interface utilisateur.
 
 <p class="tip">Générer dynamiquement du HTML arbitraire sur votre site peut être très dangereux car cela peut mener facilement à des [vulnérabilités XSS](https://fr.wikipedia.org/wiki/Cross-site_scripting). Utilisez l'interpolation HTML uniquement sur du contenu de confiance et **jamais** sur du contenu fourni par l'utilisateur</p>
 
 ### Attributs
 
-Les moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTML, à la place utilisez une [directive v-bind](../api/#v-bind):
+Les moustaches ne peuvent pas être utilisées à l'intérieur des attributs HTML, à la place utilisez une [directive `v-bind`](../api/#v-bind) :
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-Cela fonctionne également pour les attributs booléens - l'attribut sera retiré si la condition est évaluée fausse :
+Dans le cas des attributs booléens qui impliquent la présence d'une valeur évaluée à `true`, `v-bind` fonctionne un peu différemment. Dans cet exemple :
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
+
+Si `isButtonDisabled`
+
+If `isButtonDisabled` has the value of `null`, `undefined`, or `false`, the `disabled` attribute will not even be included in the rendered `<button>` element.
 
 ### Utilisation des expressions JavaScript
 

@@ -210,7 +210,7 @@ Au contraire des autres modificateurs, qui sont exclusifs aux évènements natif
 Lorsque nous écoutons les évènements du clavier, nous avons régulièrement besoin de nous assurer du code des touches. Vue permet également d'ajouter un modificateur de touches pour `v-on`:
 
 ``` html
-<!-- faire appel à « vm.submit() » uniquement quand le code de la touche est `13` -->
+<!-- faire appel à +vm.submit()+ uniquement quand le code de la touche est `13` -->
 <input v-on:keyup.13="submit">
 ```
 
@@ -239,7 +239,7 @@ Voici la liste complète des raccourcis de modificateurs pour les touches :
 Vous pouvez également [définir des raccourcis personnalisés pour vos modificateurs](../api/#keyCodes) grâce à l'objet global `config.keyCodes` :
 
 ``` js
-// active v-on:keyup.f1
+// active `v-on:keyup.f1`
 Vue.config.keyCodes.f1 = 112
 ```
 

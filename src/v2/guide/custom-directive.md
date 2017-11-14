@@ -24,10 +24,10 @@ new Vue({
 </script>
 {% endraw %}
 
-Quand la page se charge, cet élément prend le focus (notez que l'autofocus ne fonctionne pas sur Safari mobile). En fait, si vous n'avez cliqué sur rien du tout depuis votre arrivée sur la page, le champ ci-dessous devrait avoir le focus. À présent, jetons un œil à la directive qui pourrait accomplir cela :
+Quand la page se charge, cet élément prend le focus (notez que `autofocus` ne fonctionne pas sur Safari mobile). En fait, si vous n'avez cliqué sur rien du tout depuis votre arrivée sur la page, le champ ci-dessous devrait avoir le focus. À présent, jetons un œil à la directive qui pourrait accomplir cela :
 
 ``` js
-// Enregistrer une directive globale appelée focus
+// Enregistrer une directive globale appelée `v-focus`
 Vue.directive('focus', {
   // Quand l'élément lié est inséré dans le DOM...
   inserted: function (el) {
@@ -76,16 +76,16 @@ Nous allons explorer les arguments passés à ces hooks (c.-à-d. `el`, `binding
 
 Les hooks d'une directive ont accès à ces arguments :
 
-- **el**: l'élément sur lequel la directive est liée. Cela peut être utilisé pour directement manipuler le DOM.
-- **binding**: un objet contenant les propriétés suivantes.
-  - **name**: le nom de la directive, sans le préfixe `v-`.
-  - **value**: la valeur passée à la directive. Par exemple dans `v-my-directive="1 + 1"`, la valeur serait `2`.
-  - **oldValue**: la valeur précédente, seulement disponible dans `update` et `componentUpdated`. Elle est disponible, que la valeur ait changé ou non.
-  - **expression**: l'expression liée en tant que chaine de caractères. Par exemple dans `v-my-directive="1 + 1"`, l'expression serait `"1 + 1"`.
-  - **arg**: l'argument passé à la directive, s'il y en a une. Par exemple dans `v-my-directive:foo`, l'argument serait `"foo"`.
-  - **modifiers**: un objet contenant les modificateurs, s'il y en a. Par exemple dans `v-my-directive.foo.bar`, l'objet des modificateurs serait `{ foo: true, bar: true }`.
-- **vnode**: le nœud virtuel produit par le compilateur Vue. Voir l'[API VNode](../api/#Interface-VNode) pour tous les détails.
-- **oldVnode**: le nœud virtuel précédent, seulement disponible dans les hooks `update` et `componentUpdated`.
+- `el` : l'élément sur lequel la directive est liée. Cela peut être utilisé pour directement manipuler le DOM.
+- `binding` : un objet contenant les propriétés suivantes.
+  - `name` : le nom de la directive, sans le préfixe `v-`.
+  - `value` : la valeur passée à la directive. Par exemple dans `v-my-directive="1 + 1"`, la valeur serait `2`.
+  - `oldValue` : la valeur précédente, seulement disponible dans `update` et `componentUpdated`. Elle est disponible, que la valeur ait changé ou non.
+  - `expression` : l'expression liée en tant que chaine de caractères. Par exemple dans `v-my-directive="1 + 1"`, l'expression serait `"1 + 1"`.
+  - `arg` : l'argument passé à la directive, s'il y en a une. Par exemple dans `v-my-directive:foo`, l'argument serait `"foo"`.
+  - `modifiers` : un objet contenant les modificateurs, s'il y en a. Par exemple dans `v-my-directive.foo.bar`, l'objet des modificateurs serait `{ foo: true, bar: true }`.
+- `vnode` : le nœud virtuel produit par le compilateur Vue. Voir l'[API VNode](../api/#Interface-VNode) pour tous les détails.
+- `oldVnode` : le nœud virtuel précédent, seulement disponible dans les hooks `update` et `componentUpdated`.
 
 <p class="tip">À l'exception de `el`, vous devez traiter ces arguments comme étant en lecture seule (« read-only ») et ne jamais les modifier. Si vous souhaitez partager des informations entre les hooks, il est recommandé de le faire à travers les attributs de données sur mesure de ses éléments (voir [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset)).</p>
 

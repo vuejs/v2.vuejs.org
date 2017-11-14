@@ -1686,7 +1686,9 @@ type : api
 
   <p class="tip">Faire le rendu dynamique de code HTML arbitraire sur votre site web peut être très dangereux car cela peut mener facilement à des [attaques XSS](https://fr.wikipedia.org/wiki/Cross-site_scripting). Utilisez `v-html` uniquement avec du contenu de confiance et **jamais** avec du contenu fourni par les utilisateurs.</p>
 
-- **Exemple:**
+  <p class="tip">Dans les [composants monofichiers](../guide/single-file-components.html), les styles `scoped` ne seront pas appliqués aux contenus à l'intérieur de `v-html`, car ce HTML n'est pas gérer par le compilateur de template de Vue. Si vous voulez cibler le contenu `v-html` dans une CSS avec portée, vous devez utiliser à la place les [modules CSS](https://vue-loader.vuejs.org/en/features/css-modules.html) ou un élément `<style>` global supplémentaire avec une stratégie de portée manuelle comme avec BEM.</p>
+
+- **Exemple :**
 
   ```html
   <div v-html="html"></div>
@@ -2119,15 +2121,25 @@ type : api
 
 ### slot-scope
 
+> Nouveau dans la 2.5.0+
+
 - **Attend comme valeur :** `function argument expression`
 
 - **Utilisation :**
 
-  Utilisé pour indiquer qu'un élément ou un composant a un slot avec portée. La valeur de l'attribut doit être une expression JavaScript valide qui apparaît à la position d'un argument dans la déclaration d'une fonction. Cela signifie que dans les environnements qui la supportent, vous pouvez utiliser une expression de destructuration dans l'expression.
+  Utilisé pour indiquer qu'un élément ou un composant a un slot avec portée. La valeur de l'attribut doit être une expression JavaScript valide qui apparaît à la position d'un argument dans la déclaration d'une fonction. Cela signifie que dans les environnements qui la supportent, vous pouvez utiliser une expression de destructuration dans l'expression. Remplace [`scope`](#scope-replaced) dans la 2.5.0+.
 
   Cet attribut ne supporte pas les liaisons dynamiques.
 
 - **Voir aussi :** [Slots avec portée](../guide/components.html#Slots-avec-portee)
+
+### scope <sup>replaced</sup>
+
+Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
 
 ### is
 

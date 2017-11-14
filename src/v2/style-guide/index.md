@@ -1476,15 +1476,15 @@ computed: {
 
 ### Ordre des balises principales des composants monofichiers <sup data-p="c">recommandé</sup>
 
-**[Les composants monofichiers](../guide/single-file-components.html) devraient toujours ordonner de manière consistante les balises `<template>`, `<script>`, et `<style>`, avec `<style>` en dernier, car au moins l'un des deux autres est toujours nécessaire.**
+**[Les composants monofichiers](../guide/single-file-components.html) devraient toujours ordonner de manière consistante les balises `<script>`, `<template>`, et `<style>`, avec `<style>` en dernier, car au moins l'un des deux autres est toujours nécessaire.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Mauvais
 
 ``` html
 <style>/* ... */</style>
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 ```
 
 ``` html
@@ -1505,25 +1505,25 @@ computed: {
 
 ``` html
 <!-- ComponentA.vue -->
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 <style>/* ... */</style>
 
 <!-- ComponentB.vue -->
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 <style>/* ... */</style>
 ```
 
 ``` html
 <!-- ComponentA.vue -->
-<script>/* ... */</script>
 <template>...</template>
+<script>/* ... */</script>
 <style>/* ... */</style>
 
 <!-- ComponentB.vue -->
-<script>/* ... */</script>
 <template>...</template>
+<script>/* ... */</script>
 <style>/* ... */</style>
 ```
 {% raw %}</div>{% endraw %}

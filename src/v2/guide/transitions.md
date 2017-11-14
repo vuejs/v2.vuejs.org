@@ -193,7 +193,7 @@ Voici un exemple, en supprimant les règles CSS préfixées pour des raisons de 
 <div id="example-2">
   <button @click="show = !show">Permuter l'affichage</button>
   <transition name="bounce">
-    <p v-if="show">Regarde-moi !</p>
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 ```
@@ -231,7 +231,7 @@ new Vue({
 <div id="example-2" class="demo">
   <button @click="show = !show">Permuter l'affichage</button>
   <transition name="bounce">
-    <p v-show="show">Regarde-moi !</p>
+    <p v-show="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 

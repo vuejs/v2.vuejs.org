@@ -41,6 +41,8 @@ Pour développer des applications Vue avec TypeScript, nous recommandons forteme
 
 Si vous utilisez des [composants monofichiers](./single-file-components.html), utilisez la super [extension Vetur](https://github.com/vuejs/vetur) qui fournit des déductions TypeScript à l'intérieur de vos composants monofichiers et bien d'autres fonctionnalités extras.
 
+[WebStorm](https://www.jetbrains.com/webstorm/) fournit également un support de base pour TypeScript et Vue.js.
+
 ## Utilisation de base
 
 Pour laisser TypeScript déduire proprement les types dans les options des composants Vue, vous devez définir vos composants avec `Vue.component` ou `Vue.extend` :
@@ -164,14 +166,14 @@ Du fait de la nature circulaire de la déclaration des fichiers Vue, TypeScript 
 import Vue, { VNode } from 'vue'
 
 const Component = Vue.extend({
-  data() {
+  data () {
     return {
       msg: 'Bonjour'
     }
   },
   methods: {
     // besoin d'une annotation car `this` fait parti du type de retour
-    greet(): string {
+    greet (): string {
       return this.msg + ' world'
     }
   },
@@ -182,7 +184,7 @@ const Component = Vue.extend({
     }
   },
   // `createElement` est deviné, mais `render` à besoin d'une annotation de type de retour
-  render(createElement): VNode {
+  render (createElement): VNode {
     return createElement('div', this.greeting)
   }
 })
