@@ -1,4 +1,5 @@
 (function () {
+
   initMobileMenu()
   if (PAGE_TYPE) {
     initVersionSelect()
@@ -25,7 +26,7 @@
       })
     }
 
-    function createSourceSearchPath (query) {
+    function createSourceSearchPath(query) {
       query = query
         .replace(/\([^\)]*?\)/g, '')
         .replace(/(Vue\.)(\w+)/g, '$1$2" OR "$2')
@@ -250,7 +251,7 @@
         }
       }
       if (last)
-        setActive(last.id, !hoveredOverSidebar)
+      setActive(last.id, !hoveredOverSidebar)
     }
 
     function makeLink (h) {
@@ -336,17 +337,8 @@
     function makeHeaderClickable (link) {
       var wrapper = link.querySelector('a')
       wrapper.setAttribute('data-scroll', '')
-
-      // transform DOM structure from
-      // `<h2><a></a>Header</a>` to <h2><a>Header</a></h2>`
-      // to make the link clickable
-      var nodes = link.childNodes
-      for (var i = 0; i < nodes.length; i++) {
-        var node = nodes[i]
-        if (node !== wrapper) {
-          wrapper.appendChild(node)
-        }
-      }
+      link.parentNode.insertBefore(wrapper, link)
+      wrapper.appendChild(link)
     }
   }
 })()
