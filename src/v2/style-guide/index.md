@@ -1310,6 +1310,132 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
+### Avoid `v-if` on same element as `v-for` <sup data-p="b">strongly recommended</sup>
+
+**Prefer a computed property instead of usage of `v-if` as filter in a `v-for` loop that displays only one case when the list of item is big.**
+
+Usage of `v-if` on the same element as `v-for` should be avoid. `v-if` should be on a wrapper if you want conditionally display or not the full list. If you conditionally want to select a specific HTML part **amongs** several possibilities, you should be use `v-if` into several child elements case. If you use `v-if` for allows only one case to be displayed, it is a usage of `v-if` as a filter, and this case should be doing with a computed property.
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+If you want to decide to display or not a list, you should not place the `v-if` on the same item of `v-for` because in this case the test will be done for « each » item in the loop. So prefer do this:
+
+``html
+<ul v-if="listIsDisplayed">
+  <li v-for="item in items" :key="item.id">
+    {{ item.content }}
+  </li>
+</ul>
+``
+
+If you want conditionally select what you will display for each item, the usage of `v-if` is better in a child elements. See below:
+
+``html
+<div v-for="item in items" :key="item.id">
+  <h1 v-if="item.type === 'title'">{{ item.content }}</h1>
+  <h2 v-else-if="item.type === 'subtitle'">{{ item.content }}</h2>
+  <p v-else-if="item.type === 'paragraph'">{{ item.content }}</p>
+  <div v-else>{{ item.content }}</div>
+</div>
+``
+
+And if you want only select some items from a list, use a computed property as below.
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``js
+{
+  data: function () {
+    return {
+      items: [
+        {
+          id: 0,
+          content: 'White Player 1'
+        },
+        {
+          id: 1,
+          content: 'Black Player 1'
+        },
+        {
+          id: 2,
+          content: 'White Player 2'
+        },
+        {
+          id: 3,
+          content: 'Black Player 2'
+        }
+        // A very long list ...
+      ]
+    }
+  }
+}
+``
+
+``html
+<ul class="black-player">
+  <li v-for="(item, index) in oddItems" v-if="index % 2" :key="item.id">
+    {{ item.content }}
+  </li>
+</ul>
+``
+
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``js
+{
+  data: function () {
+    return {
+      items: [
+        {
+          id: 0,
+          content: 'White Player 1'
+        },
+        {
+          id: 1,
+          content: 'Black Player 1'
+        },
+        {
+          id: 2,
+          content: 'White Player 2'
+        },
+        {
+          id: 3,
+          content: 'Black Player 2'
+        }
+        // A very long list ...
+      ]
+    }
+  },
+  computed: {
+    oddItems: function () {
+      return items.filter(function (item, index) {
+        return index % 2
+      });
+    }
+  }
+}
+``
+
+``html
+<ul class="black-player">
+  <li v-for="item in oddItems" :key="item.id">
+    {{ item.content }}
+  </li>
+</ul>
+``
+{% raw %}</div>{% endraw %}
+
+
+
 ## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
 
