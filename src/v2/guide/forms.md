@@ -4,9 +4,10 @@ type: guide
 order: 10
 ---
 
-## Basic Usage
+## Cách sử dụng cơ bản
 
 You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+Bạn có thể sử dụng directive `v-model` để tạo ràng buộc dữ liệu 2 chiều lên form input và các phần tử textarea. Nó sẽ tự động chọn cách phù hợp để cập nhật phần tử(element) dựa trên kiểu của input. Có một chút ma thuật ở đây, `v-model` là cú pháp ngọt ngào(syntax sugar) để cập nhật dữ liệu dựa trên các sự kiện input và cộng thêm 
 
 <p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
 
