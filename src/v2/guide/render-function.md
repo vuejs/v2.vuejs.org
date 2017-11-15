@@ -1,14 +1,14 @@
 ---
-title: Render Functions & JSX
+title: Các hàm render & JSX
 type: guide
 order: 303
 ---
 
-## Basics
+## Cơ bản
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+Trong đại đa số các trường hợp, Vue khuyến khích sử dụng template để xây dựng HTML. Tuy nhiêu có một số trường hợp bạn cần dùng đến sức mạnh của JavaScript. Những lúc này bạn có thể dùng **hàm render** (render function), một giải pháp gần hơn với trình biên dịch, để thay thế cho template.
 
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
+Chúng ta hãy xem một ví dụ đơn giản trong đó một hàm `render` trở nên hữu ích. Chẳng hạn, bạn muốn tạo các tiêu đề `h1`, `h2`, `h3`… chứa liên kết, như sau:
 
 ``` html
 <h1>
@@ -18,13 +18,13 @@ Let's dive into a simple example where a `render` function would be practical. S
 </h1>
 ```
 
-For the HTML above, you decide you want this component interface:
+Từ đoạn HTML trên, bạn quyết định tạo một giao diện component như sau:
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-When you get started with a component that only generates a heading based on the `level` prop, you quickly arrive at this:
+Khi bắt đầu với một component chỉ tạo thẻ tiêu đề dựa trên prop `level` được truyền vào, bạn sẽ nhanh chóng đi đến một kết quả trông như thế này:
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -61,16 +61,14 @@ Vue.component('anchored-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element.
-
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+Rõ ràng đây không phải là một template tốt. Chẳng những nó quá rườm rà, mà ở đây chúng ta còn lặp lại `<slot></slot>` cho mỗi level, và lại phải thực hiện một quá trình tương tự khi thêm phần tử `<a>`. Vì thế, hay thử viết lại với một hàm `render`:
 
 ``` js
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // tên thẻ
+      this.$slots.default // mảng các phần tử con
     )
   },
   props: {
@@ -82,35 +80,35 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
+Đơn giản hơn nhiều! Đại để thế. Code trở nên ngắn hơn, nhưng cũng đòi hỏi bạn phải quen thuộc hơn với các thuộc tính của đối tượng Vue. Trong trường hợp này, bạn phải biết rằng khi truyền các phần tử con không có thuộc tính `slot` vào trong một component, ví dụ `Hello world!` trong `anchored-heading`, các phần tử con này được chứa trong đối tượng component tại `$slots.default`. Chúng tôi khuyên bạn **nên đọc về [các API của các thuộc tính của đối tượng Vue](../api/#Thuoc-tinh-cua-doi-tuong) trước khi đi sâu nghiên cứu về các hàm render**.
 
-## Nodes, Trees, and the Virtual DOM
+## Node, tree, và virtual DOM
 
-Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+Trước khi đi sâu vào các hàm render, ít nhiều kiến thức về cách hoạt động của trình duyệt là rất quan trọng. Ví dụ chúng ta có đoạn HTML sau:
 
 ```html
 <div>
-  <h1>My title</h1>
-  Some text content
-  <!-- TODO: Add tagline  -->
+  <h1>Bài đồng dao</h1>
+  Năm mới năm me
+  <!-- TODO: Hoàn thành bài đồng dao -->
 </div>
 ```
 
-When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything, just as you might build a family tree to keep track of your extended family.
+Khi đọc đoạn code này, trình duyệt sẽ xây dựng cấu trúc dạng cây (DOM tree) bao gồm các ["DOM node"](https://javascript.info/dom-nodes) để giúp quản lí mọi thứ, tương tự như việc bạn xây dựng một cây gia phả để giữ thông tin về mọi người trong dòng họ vậy.
 
-The tree of DOM nodes for the HTML above looks like this:
+Cấu trúc cây của đoạn HTML trên sẽ giống như sau:
 
-![DOM Tree Visualization](/images/dom-tree.png)
+![Sơ đồ DOM tree](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+Mỗi phần tử trên DOM tree là một node. Mỗi text là một node. Ngay cả comment cũng là node! Một node đơn giản chỉ là một "mảnh" trên trang web. Và cũng tương tự như trong một cây gia phả, mỗi node có thể có các node con (nghĩa là một mảnh có thể chứa các mảnh khác).
 
-Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. Instead, you tell Vue what HTML you want on the page, in a template:
+Cập nhật tất cả các node này một cách hiệu quả có thể là một việc khó khăn, nhưng may thay, bạn không bao giờ phải làm việc này một cách thủ công. Thay vào đó, chỉ cần báo cho Vue biết bạn muốn có HTML gì trên trang, trong một template:
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Or a render function:
+hoặc trong một hàm render:
 
 ``` js
 render: function (createElement) {
@@ -118,43 +116,43 @@ render: function (createElement) {
 }
 ```
 
-And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+Và trong cả hai trường hợp, Vue sẽ tự động giữ cho trang web được cập nhật, ngay cả khi `blogTitle` thay đổi.
 
-### The Virtual DOM
+### Virtual DOM
 
-Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+Vue làm được điều này nhờ vào việc xây dựng một **virtual DOM** (DOM ảo) để theo dõi tất cả những thay đổi cần thực hiện đối với DOM thật. Bạn hãy nhìn kĩ dòng này:
 
 ``` js
 return createElement('h1', this.blogTitle)
 ```
 
-What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+Lệnh `createElement` ở đây thực chất là đang trả về cái gì? _Không hẳn_ là một element (phần tử) DOM thật sự. Nếu nói cho đúng, chúng ta có thể đặt lại tên cho hàm này một cách chính xác hơn là `tạoMôTảChoNode`, vì nó chứa những thông tin mô tả node mà Vue cần biết để render, bao gồm cả mô tả cho các node con. Chúng ta gọi mô tả này là một "virtual node" (node ảo), thường viết tắt là **VNode**. "Virtual DOM" là tên của toàn bộ một cây các VNode, được xây dựng từ một cây các component Vue.
 
-## `createElement` Arguments
+## Các tham số của `createElement`
 
-The next thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+Điều tiếp theo mà bạn cần thông thạo là cách dùng các tính năng của template trong hàm `createElement`. Đây là danh sách các tham số mà `createElement` nhận:
 
 ``` js
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // Một tên thẻ HTML, các tùy chọn cho component, hoặc một hàm
+  // trả về một trong những thứ này. Bắt buộc.
   'div',
 
   // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // Một "data object" chứa dữ liệu tương ứng với các thuộc tính
+  // mà bạn muốn dùng trong một template. Không bắt buộc.
   {
-    // (see details in the next section below)
+    // (Xem chi tiết ở phần tiếp theo bên dưới)
   },
 
   // {String | Array}
-  // Children VNodes, built using `createElement()`,
-  // or using strings to get 'text VNodes'. Optional.
+  // Các VNode con, được tạo ra bằng cách dùng `createElement()`,
+  // hoặc dùng chuỗi để tạo các 'text VNode'. Không bắt buộc.
   [
-    'Some text comes first.',
-    createElement('h1', 'A headline'),
+    'Một ít text trước.',
+    createElement('h1', 'Một tiêu đề'),
     createElement(MyComponent, {
       props: {
         someProp: 'foobar'
@@ -164,50 +162,49 @@ createElement(
 )
 ```
 
-### The Data Object In-Depth
+### Chi tiết về data object
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects. This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
+Một điểm cần lưu ý: tương tự với việc được [đối xử đặc biệt](class-and-style.html) trong template, `v-bind:class` và `v-bind:style` cũng có các field (trường) riêng ở top-level (cấp cao nhất) trong data object của VNode. Object này cũng cho phép bạn bind (ràng buộc) các thuộc tính HTML thông thường cũng như các thuộc tính DOM như `innerHTML` (thay thế cho directive `v-html`):
 
 ``` js
 {
-  // Same API as `v-bind:class`
+  // Có cùng API với `v-bind:class`
   'class': {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`
+  // Có cùng API với `v-bind:style`
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // Normal HTML attributes
+  // Các thuộc tính HTML thông thường
   attrs: {
     id: 'foo'
   },
-  // Component props
+  // Các prop cho component
   props: {
     myProp: 'bar'
   },
-  // DOM properties
+  // Các thuộc tính DOM
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under `on`, though
-  // modifiers such as in `v-on:keyup.enter` are not
-  // supported. You'll have to manually check the
-  // keyCode in the handler instead.
+  // Các hàm xử lí sự kiện được lồng vào bên trong `on`,
+  // tuy rằng modifier (như trong `v-on:keyup.enter`) không được
+  // hỗ trợ. Thay vào đó, bạn sẽ phải tự kiểm tra keyCode bên
+  // trong hàm.
   on: {
     click: this.clickHandler
   },
-  // For components only. Allows you to listen to
-  // native events, rather than events emitted from
-  // the component using `vm.$emit`.
+  // Chỉ dành riêng cho component. Cho phép bạn lắng nghe các
+  // sự kiện native, thay vì các sự kiện được phát ra từ component
+  // bằng cách sử dụng `vm.$emit`.
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the binding's
-  // oldValue cannot be set, as Vue keeps track
-  // of it for you.
+  // Các directive tùy biến. Lưu ý là bạn không thể gán giá trị
+  // `oldValue`, vì Vue sẽ tự động quản lí giá trị này thay bạn.
   directives: [
     {
       name: 'my-custom-directive',
@@ -219,23 +216,23 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
-  // Scoped slots in the form of
+  // Các scoped slot dưới dạng
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of the slot, if this component is the
+  // Tên của slot, nếu component này là con của một component khác
   // child of another component
   slot: 'name-of-slot',
-  // Other special top-level properties
+  // Các thuộc tính top-level khác
   key: 'myKey',
   ref: 'myRef'
 }
 ```
 
-### Complete Example
+### Ví dụ hoàn chỉnh
 
-With this knowledge, we can now finish the component we started:
+Với kiến thức đã học, bây giờ chúng ta đã có thể viết nốt component trên đây:
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -248,7 +245,7 @@ var getChildrenTextContent = function (children) {
 
 Vue.component('anchored-heading', {
   render: function (createElement) {
-    // create kebabCase id
+    // tạo id với kebabCase
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
@@ -275,48 +272,48 @@ Vue.component('anchored-heading', {
 })
 ```
 
-### Constraints
+### Một số hạn chế
 
-#### VNodes Must Be Unique
+#### VNode phải là duy nhất
 
-All VNodes in the component tree must be unique. That means the following render function is invalid:
+Tất cả các VNode trong cây component phải là duy nhất. Điều này có nghĩa là hàm render sau đây không hợp lệ:
 
 ``` js
 render: function (createElement) {
   var myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
-    // Yikes - duplicate VNodes!
+    // Hai VNode này trùng nhau!
     myParagraphVNode, myParagraphVNode
   ])
 }
 ```
 
-If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
+Nếu thật sự muốn dùng cùng một phần tử hoặc component nhiều lần, bạn có thể dùng một hàm factory. Ví dụ, hàm render sau đây là một cách hoàn toàn hợp lệ để render 18 phần tử `<p>` giống nhau:
 
 ``` js
 render: function (createElement) {
   return createElement('div',
-    Array.apply(null, { length: 20 }).map(function () {
-      return createElement('p', 'hi')
+    Array.apply(null, { length: 18 }).map(function () {
+      return createElement('p', 'Hùng Vương')
     })
   )
 }
 ```
 
-## Replacing Template Features with Plain JavaScript
+## Thay thế các tính năng của template bằng JavaScript đơn thuần
 
-### `v-if` and `v-for`
+### `v-if` và `v-for`
 
-Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
+Bất cứ khi nào một việc gì đó có thể làm được dễ dàng bằng JavaScript đơn thuần, các hàm render của Vue đều _không_ cung cấp một giải pháp thay thế chuyên biệt. Ví dụ, trong một template có sử dụng `v-if` và `v-for`:
 
 ``` html
 <ul v-if="items.length">
   <li v-for="item in items">{{ item.name }}</li>
 </ul>
-<p v-else>No items found.</p>
+<p v-else>Không tìm thấy kết quả nào.</p>
 ```
 
-This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
+Ví dụ này có thể được viết lại với `if`/`else` và `map` của JavaScript trong một hàm render:
 
 ``` js
 render: function (createElement) {
@@ -325,14 +322,14 @@ render: function (createElement) {
       return createElement('li', item.name)
     }))
   } else {
-    return createElement('p', 'No items found.')
+    return createElement('p', 'Không tìm thấy kết quả nào.')
   }
 }
 ```
 
 ### `v-model`
 
-There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+Vue không cung cấp tính năng thay thế cho `v-model` trong các hàm render - bạn sẽ phải tự phát triển logic này:
 
 ``` js
 render: function (createElement) {
@@ -351,20 +348,20 @@ render: function (createElement) {
 }
 ```
 
-This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+Đây là cái giá cho việc viết code ở cấp thấp – tuy nhiên bù vào đó thì bạn có gần như toàn quyền điều khiển các tương tác nếu so sánh với `v-model`.
 
-### Event & Key Modifiers
+### Event và key modifier
 
-For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+Đối với các [event modifier](events.html#Event-modifier) `.passive`, `.capture` và `.once`, Vue cung cấp các prefix (tiền tố) có thể sử dụng với `on`:
 
-| Modifier(s) | Prefix |
+| Modifier | Prefix |
 | ------ | ------ |
 | `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
-| `.capture.once` or<br>`.once.capture` | `~!` |
+| `.capture.once` hoặc<br>`.once.capture` | `~!` |
 
-For example:
+Ví dụ:
 
 ```javascript
 on: {
@@ -374,40 +371,39 @@ on: {
 }
 ```
 
-For all other event and key modifiers, no proprietary prefix is necessary, because you can use event methods in the handler:
+Đối với tất cả các event và key modifier khác, một prefix chuyên biệt là không cần thiết vì bạn có thể dùng các phương thức sự kiện bên trong hàm xử lí:
 
-| Modifier(s) | Equivalent in Handler |
+| Modifier | Giải pháp tương đương trong hàm xử lí |
 | ------ | ------ |
 | `.stop` | `event.stopPropagation()` |
 | `.prevent` | `event.preventDefault()` |
 | `.self` | `if (event.target !== event.currentTarget) return` |
-| Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
-| Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
+| Phím:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (thay `13` bằng [một mã phím khác](http://keycode.info/) đối với các modifier khác) |
+| Modifier cho phím:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (thay `ctrlKey` bằng `altKey`, `shiftKey`, hoặc `metaKey` tương ứng) |
 
-Here's an example with all of these modifiers used together:
+Đây là một ví dụ dùng tất cả các modifier trên cùng một lúc:
 
 ```javascript
 on: {
   keyup: function (event) {
-    // Abort if the element emitting the event is not
-    // the element the event is bound to
+    // Dừng thực thi nếu phần tử đang phát ra sự kiện
+    // không phải là phần tử được bind sự kiện
     if (event.target !== event.currentTarget) return
-    // Abort if the key that went up is not the enter
-    // key (13) and the shift key was not held down
-    // at the same time
+    // Dừng thực thi nếu phím đang được thả không phải là
+    // enter (13) và người dùng không đồng thời nhấn shift
     if (!event.shiftKey || event.keyCode !== 13) return
-    // Stop event propagation
+    // Ngừng lan truyền sự kiện
     event.stopPropagation()
-    // Prevent the default keyup handler for this element
+    // Chặn hàm xử lí keyup mặc định dành cho phần tử hiện hành
     event.preventDefault()
     // ...
   }
 }
 ```
 
-### Slots
+### Slot
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](../api/#vm-slots):
+Bạn có thể truy xuất đến các nội dung tĩnh của [slot](components.html#Phan-bo-noi-dung-voi-slot) dưới dạng các mảng VNode thông qua [`this.$slots`](../api/#vm-slots):
 
 ``` js
 render: function (createElement) {
@@ -416,7 +412,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
+và truy xuất đến các [scoped slot](components.html#Scoped-slot) dưới dạng các hàm trả về VNode thông qua [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
 ``` js
 render: function (createElement) {
@@ -429,14 +425,14 @@ render: function (createElement) {
 }
 ```
 
-To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+Để truyền các scoped slot vào một component con bằng hàm render, dùng trường `scopeSlots` trong dữ liệu của VNode:
 
 ``` js
 render (createElement) {
   return createElement('div', [
     createElement('child', {
-      // pass `scopedSlots` in the data object
-      // in the form of { name: props => VNode | Array<VNode> }
+      // truyền `scopedSlots` trong object dữ liệu dưới dạng
+      // { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
           return createElement('span', props.text)
@@ -449,7 +445,7 @@ render (createElement) {
 
 ## JSX
 
-If you're writing a lot of `render` functions, it might feel painful to write something like this:
+Nếu dùng nhiều hàm `render`, có lẽ bạn sẽ cảm thấy khá cực nhọc khi phải viết những đi viết lại những dòng code như thế này:
 
 ``` js
 createElement(
@@ -464,7 +460,7 @@ createElement(
 )
 ```
 
-Especially when the template version is so simple in comparison:
+Nhất là khi nếu dùng template thì đơn giản hơn nhiều:
 
 ``` html
 <anchored-heading :level="1">
@@ -472,7 +468,7 @@ Especially when the template version is so simple in comparison:
 </anchored-heading>
 ```
 
-That's why there's a [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
+Đó là lí do Vue cung cấp một [plugin dành cho Babel](https://github.com/vuejs/babel-plugin-transform-vue-jsx) để dùng JSX với Vue, giúp chúng ta quay lại sử dụng một cú pháp gần gũi hơn với template:
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -489,53 +485,53 @@ new Vue({
 })
 ```
 
-<p class="tip">Aliasing `createElement` to `h` is a common convention you'll see in the Vue ecosystem and is actually required for JSX. If `h` is not available in the scope, your app will throw an error.</p>
+<p class="tip">Dùng `h` thay cho `createElement` là một quy ước thông dụng trong hệ sinh thái của Vue, đồng thời là bắt buộc đối với JSX. Nếu `h` không tồn tại trong scope, ứng dụng của bạn sẽ xảy ra lỗi.</p>
 
-For more on how JSX maps to JavaScript, see the [usage docs](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
+Để biết thêm chi tiết về cách thức đối chiếu từ JSX sang JavaScript, hãy [đọc kĩ hướng dẫn sử dụng trước khi dùng](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage).
 
-## Functional Components
+## Functional component
 
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
+Component mà ta vừa viết còn khá đơn giản - nó không quản lí trạng thái, không theo dõi trạng thái được truyền vào, và không có bất kì phương thức vòng đời (life-cycle method) nào. Thật sự nó chỉ là một hàm với vài thuộc tính (prop).
 
-In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
+Trong những trường hợp như thế, ta có thể đánh dấu component là `functional`. Một function component (component thuần chức năng) không có trạng thái (stateless – không có `data`), không có đối tượng (instanceless – không có ngữ cảnh `this`), và trông như thế này:
 
 ``` js
 Vue.component('my-component', {
   functional: true,
-  // To compensate for the lack of an instance,
-  // we are now provided a 2nd context argument.
+  // Để bù cho việc thiếu một đối tượng, một tham số `context`
+  // được truyền vào, tham chiếu đến ngữ cảnh hiện tại.
   render: function (createElement, context) {
     // ...
   },
-  // Props are optional
+  // Props là không bắt buộc
   props: {
     // ...
   }
 })
 ```
 
-> Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+> Trong các phiên bản trước 2.3.0, tùy chọn `props` là bắt buộc nếu bạn muốn nhận props trong một functional component. Từ phiên bản 2.3.0 trở về sau, bạn có thể bỏ qua tùy chọn `props`, và khi đó tất cả các thuộc tính tìm thấy trên component node sẽ được trích xuất ngầm thành props.
 
-Everything the component needs is passed through `context`, which is an object containing:
+Mọi thứ mà component cần được truyền vào thông qua `context`, một object chứa:
 
-- `props`: An object of the provided props
-- `children`: An array of the VNode children
-- `slots`: A function returning a slots object
-- `data`: The entire data object passed to the component
-- `parent`: A reference to the parent component
-- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
-- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
+- `props`: Một object chứa các prop được cung cấp
+- `children`: Một mảng các VNode con
+- `slots`: Một hàm trả về một object chứa các slot
+- `data`: Toàn bộ object data truyền vào component
+- `parent`: Trỏ đến component cha
+- `listeners`: (2.3.0+) Một object chứa các hàm lắng nghe sự kiện được đăng kí ở component cha. Đây là một tên khác của `data.on`.
+- `injections`: (2.3.0+) Chứa các injection đã được resolve (phân giải), nếu sử dụng tùy chọn [`inject`](../api/#provide-inject)
 
-After adding `functional: true`, updating the render function of our anchored heading component would require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
+Sau khi thêm `functional: true` vào component `AnchorHeading`, chúng ta cần thêm những thay đổi sau đây vào hàm render của component này: thêm tham số  `context`, thay `this.$slots.default` bằng `context.children`, và thay `this.level` bằng `context.props.level`.
 
-Since functional components are just functions, they're much cheaper to render. However, the lack of a persistent instance means they won't show up in the [Vue devtools](https://github.com/vuejs/vue-devtools) component tree.
+Vì chỉ là hàm đơn thuần, việc render các functional component ít tốn kém nhiều so với component thông thường. Tuy nhiên, việc thiếu một đối tượng bền vững (persistent instance) nghĩa là bạn sẽ không thấy được functional component trong cây component của [Vue devtools](https://github.com/vuejs/vue-devtools).
 
-They're also very useful as wrapper components. For example, when you need to:
+Functional component cũng rất hữu dụng trong vai trò wrapper component. Ví dụ, khi bạn cần:
 
-- Programmatically choose one of several other components to delegate to
-- Manipulate children, props, or data before passing them on to a child component
+- Chọn một trong số vài component khác thông qua code để delegate (ủy nhiệm)
+- Chỉnh sửa các phần tử con, props, hoặc data trước khi truyền vào một component con
 
-Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
+Sau đây là một ví dụ về một component `smart-list`, component này đóng vai trò "delegate" cho các component cụ thể hơn dựa trên các prop được truyền vào:
 
 ``` js
 var EmptyList = { /* ... */ }
@@ -572,37 +568,37 @@ Vue.component('smart-list', {
 })
 ```
 
-### `slots()` vs `children`
+### So sánh giữa `slots()` và `children`
 
-You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
+Bạn có thể tự hỏi tại sao chúng ta lại cần cả hai `slots()` và `children`. Chẳng phải `slots().default` và `children` là như nhau hay sao? Trong một số trường hợp thì điều này là đúng, tuy nhiên hãy xem một functional component với các phần tử con như sau:
 
 ``` html
 <my-functional-component>
   <p slot="foo">
-    first
+    thứ nhất
   </p>
-  <p>second</p>
+  <p>thứ hai</p>
 </my-functional-component>
 ```
 
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
+Trong component này, `children` sẽ chứa cả hai phần tử `<p>`, `slots().default` chỉ chứa phần tử thứ hai, và`slots().foo` chỉ chứa phần tử thứ nhất. Việc có cả hai `children` và `slots()` vì vậy sẽ cho phép bạn quyết định component này có biết về hệ thống slot hay không, hoặc có thể giao phó trách nhiệm này cho một component khác bằng cách truyền `children`.
 
-## Template Compilation
+## Biên dịch template
 
-You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
+Có thể bạn muốn biết là các template của Vue thật ra là được biên dịch thành các hàm render. Đây là một chi tiết kĩ thuật nâng cao mà thông thường có lẽ bạn không cần phải quan tâm đến, tuy nhiên nếu muốn xem các tính năng template cụ thể được biên dịch như thế nào thì bạn có thể thấy việc đó khá thú vị. Bên dưới là một ví dụ nhỏ sử dụng `Vue.compile` để biên dịch một chuỗi template thành hàm render tại chỗ:
 
 {% raw %}
 <div id="vue-compile-demo" class="demo">
   <textarea v-model="templateText" rows="10"></textarea>
   <div v-if="typeof result === 'object'">
-    <label>render:</label>
+    <label>render thành:</label>
     <pre><code>{{ result.render }}</code></pre>
     <label>staticRenderFns:</label>
     <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
     <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
-    <label>Compilation Error:</label>
+    <label>Lỗi biên dịch:</label>
     <pre><code>{{ result }}</code></pre>
   </div>
 </div>
@@ -613,13 +609,13 @@ new Vue({
     templateText: '\
 <div>\n\
   <header>\n\
-    <h1>I\'m a template!</h1>\n\
+    <h1>Đây là hộp thư thoại</h1>\n\
   </header>\n\
   <p v-if="message">\n\
-    {{ message }}\n\
+    Bạn có tin nhắn: {{ message }}\n\
   </p>\n\
   <p v-else>\n\
-    No message.\n\
+    Không ai nhắn nhủ gì cả.\n\
   </p>\n\
 </div>\
     ',
@@ -627,7 +623,7 @@ new Vue({
   computed: {
     result: function () {
       if (!this.templateText) {
-        return 'Enter a valid template above'
+        return 'Nhập vào một template hợp lệ bên trên.'
       }
       try {
         var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
