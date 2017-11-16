@@ -577,6 +577,22 @@ order: 803
       reposPersonal: [
         'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
       ]
+    },
+    {
+      name: 'Damian Dulisz',
+      title: 'Dark Mage of Plugins, News, and Confs',
+      city: 'Wrocław, Poland',
+      languages: ['pl', 'en'],
+      github: 'shentao',
+      twitter: 'DamianDulisz',
+      work: {
+        role: 'Senior Frontend Developer',
+        org: 'Monterail',
+        orgUrl: 'https://www.monterail.com/'
+      },
+      reposPersonal: [
+        'monterail/vue-multiselect', 'monterail/vue-newsletter'
+      ]
     }
   ]))
 
@@ -624,21 +640,6 @@ order: 803
       ]
     },
     {
-      name: 'Damian Dulisz',
-      title: 'Dark Mage of Plugins, News, and Confs',
-      city: 'Wrocław, Poland',
-      languages: ['pl', 'en'],
-      github: 'shentao',
-      twitter: 'DamianDulisz',
-      work: {
-        role: 'Senior Frontend Developer',
-        org: 'Monterail',
-        orgUrl: 'https://www.monterail.com/'
-      },
-      reposPersonal: [
-        'monterail/vue-multiselect', 'monterail/vue-newsletter', 'monterail/vuelidate'
-      ]
-    }, {
       name: 'Alex Kyriakidis',
       title: 'Vueducator Extraordinaire',
       city: 'Thessaloniki, Greece',
