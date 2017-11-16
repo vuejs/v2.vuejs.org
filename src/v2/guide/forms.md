@@ -10,7 +10,7 @@ Bạn có thể sử dụng directive `v-model` để tạo ràng buộc dữ li
 
 <p class="tip">`v-model` sẽ bỏ qua giá trị khởi tạo của các thuộc tính `value`, `checked` hoặc `selected` trong mọi phần tử form. Nó luôn luôn xem data trong đối tượng Vue là nguồn đáng tin cậy duy nhất. Bạn nên khai báo các giá trị khởi tạo trong JavaScript, bên trong option `data` của component.</p>
 
-<p class="tip" id="vmodel-ime-tip">Đối với các ngôn ngữ đòi hỏi [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean vv...), bạn sẽ nhận thấy rằng `v-model` không lấy được thay đổi trong quá trình IME compose (quá trình ghép các nét thành một chữ đầy đủ). Nếu bạn muốn thì phải sử dụng sự kiện `input`.</p>
+<p class="tip" id="vmodel-ime-tip">Đối với các ngôn ngữ đòi hỏi bộ gõ [IME](https://en.wikipedia.org/wiki/Input_method) (tiếng Trung, tiếng Nhật, Tiến Hàn v.v.), bạn sẽ nhận thấy rằng `v-model` không thay đổi trong quá trình bộ gõ IME biên soạn. Nếu bạn muốn thì phải sử dụng sự kiện `input`.</p>
 
 ### Văn bản
 
@@ -347,7 +347,7 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-Mặc định, `v-model` đồng bộ giá trị của input với dữ liệu sau sự kiện `input` (có ngoại lệ đối với trường hợp IME như [đã nói ở trên](#vmodel-ime-tip)). Bạn có thể thêm modifier `lazy` để đồng bộ sau sự kiện `change`:
+Mặc định, `v-model` đồng bộ giá trị của input với dữ liệu sau sự kiện `input` (có ngoại lệ đối với trường hợp bộ gõ IME như [đã nói ở trên](#vmodel-ime-tip)). Bạn có thể thêm modifier `lazy` để đồng bộ sau sự kiện `change`:
 
 ``` html
 <!-- được đồng bộ sau sự kiện "change" thay vì "input" -->
