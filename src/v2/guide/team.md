@@ -486,6 +486,11 @@ order: 803
       languages: ['fr', 'en'],
       github: 'Akryum',
       twitter: 'Akryum',
+      work: {
+        role: 'Frontend Developer',
+        org: 'Livestorm',
+        orgUrl: 'https://livestorm.co/'
+      },
       reposOfficial: [
         'vue-curated'
       ],
