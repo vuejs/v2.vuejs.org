@@ -6,11 +6,11 @@ order: 10
 
 ## Cách sử dụng cơ bản
 
-Bạn có thể sử dụng directive `v-model` để tạo ràng buộc dữ liệu 2 chiều lên các phần tử form input và textarea. Vue sẽ tự động chọn cách phù hợp để cập nhật phần tử này dựa trên kiểu của input. Có một chút ma thuật, `v-model` là cú pháp ngọt ngào(syntax sugar) để cập nhật dữ liệu dựa trên các sự kiện input từ người dùng kèm theo một số trường hợp đặc biệt khác.
+Bạn có thể sử dụng directive `v-model` để tạo ràng buộc dữ liệu 2 chiều lên các phần tử form input và textarea. Vue sẽ tự động chọn cách phù hợp để cập nhật phần tử này dựa trên kiểu của input. Có một chút ma thuật, `v-model` là syntax sugar trong việc cập nhật dữ liệu dựa trên các sự kiện input từ người dùng kèm theo một số trường hợp đặc biệt khác.
 
 <p class="tip">`v-model` sẽ bỏ qua giá trị khởi tạo của các thuộc tính `value`, `checked` hoặc `selected` trong mọi phần tử form. Nó luôn luôn xem data trong đối tượng Vue là nguồn đáng tin cậy duy nhất. Bạn nên khai báo các giá trị khởi tạo trong JavaScript, bên trong option `data` của component.</p>
 
-<p class="tip" id="vmodel-ime-tip">Đối với các ngôn ngữ đòi hỏi [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean vv...), bạn sẽ nhận thấy rằng `v-model` không lấy được thay đổi trong quá trình IME compose(quá trình ghép các nét thành một chữ đầy đủ). Nếu bạn muốn thì phải sử dụng sự kiện `input`.</p>
+<p class="tip" id="vmodel-ime-tip">Đối với các ngôn ngữ đòi hỏi [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean vv...), bạn sẽ nhận thấy rằng `v-model` không lấy được thay đổi trong quá trình IME compose (quá trình ghép các nét thành một chữ đầy đủ). Nếu bạn muốn thì phải sử dụng sự kiện `input`.</p>
 
 ### Văn bản
 
