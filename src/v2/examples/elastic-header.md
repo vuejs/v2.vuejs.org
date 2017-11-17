@@ -1,5 +1,5 @@
 ---
-title: Elastic Header
+title: Tiêu đề đàn hồi được
 type: examples
 order: 7
 ---
