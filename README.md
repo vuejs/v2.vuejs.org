@@ -24,7 +24,7 @@ Vì phiên bản này mới chỉ được bắt đầu, chúng tôi sẽ tập 
 
 ## Lưu ý khi dịch
 
-Do có sự khác biệt về ngôn ngữ và những đặc thù của tiếng Việt, sẽ có những khó khăn nhất định khi dịch. Vì vậy, có một số lưu ý như sau:
+Do sự khác biệt về ngôn ngữ và những đặc thù của tiếng Việt, sẽ có những khó khăn nhất định khi dịch. Vì vậy, có một số lưu ý như sau:
 
 * Không nhất thiết phải dịch toàn bộ từ hoặc cụm từ sang tiếng Việt, nhất là những từ chuyên ngành (framework, file, component…)
 * Đối với những từ dịch được nhưng nghe lạ tai trong tiếng Việt, hãy dùng quy ước `tiếng Anh (nghĩa tiếng Việt)` cho lần đầu tiên, và dùng tiếng Anh từ đó về sau. Ví dụ:
