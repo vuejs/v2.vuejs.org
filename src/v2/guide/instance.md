@@ -79,6 +79,10 @@ data: {
 
 In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
 
+``` html
+  <div id="example"> </div>
+```
+
 ``` js
 var data = { a: 1 }
 var vm = new Vue({
