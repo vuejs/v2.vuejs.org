@@ -42,4 +42,5 @@ Phiên bản tiếng Việt được phụ trách phát triển bởi:
 * [Nguyễn Văn Được](https://github.com/nguyenvanduocit)
 * [Nguyễn Tất Thiện](https://github.com/tatthien)
 * [Bùi Thanh Tùng](https://github.com/tungbt94)
+* [Đậu Quang Nam](https://github.com/namdau)
 * và [các thành viên khác](https://github.com/vuejs-vn/vuejs.org/graphs/contributors?from=2017-09-03)
