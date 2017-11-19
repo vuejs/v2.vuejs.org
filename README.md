@@ -1,6 +1,6 @@
 # vuejs-es/es.vuejs.org
 
-Este sitio está construido con [hexo](http://hexo.io/). El contenido del sitio está escrito en formato Markdown ubicado en `src`. ¡Las aportaciones son bienvenidas!
+Este sitio está construido con [hexo](https://hexo.io/). El contenido del sitio está escrito en formato Markdown ubicado en `src`. ¡Las aportaciones son bienvenidas!
 
 ## Desarrollo
 
@@ -14,7 +14,7 @@ $ hexo server
 
 ## Sobre las traducciones
 
-Las traducciones para esta documentación son mantenidas en repositorios separados del original([vuejs.org](https://github.com/vuejs/vuejs.org)).
+Las traducciones para esta documentación son mantenidas en repositorios separados del original ([vuejs.org](https://github.com/vuejs/vuejs.org)).
 
 ### Francés
 
@@ -46,13 +46,13 @@ La traducción en coreano es mantenida por [Vue.js Korean User group](https://gi
 
 ### Português-Br
 
-La traducción en Português-Br es mantenida por [Vuejs-Br](https://github.com/vuejs-br).
+La traducción en português-Br es mantenida por [Vuejs-Br](https://github.com/vuejs-br).
 
 * Repositorio de la traducción - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
 
 ### Ruso
 
-La traducción en Ruso es mantenida por Translation Gang.
+La traducción en ruso es mantenida por Translation Gang.
 
 * Repositorio de la traducción - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Colaborador principal - [Grigoriy Beziuk](https://gbezyuk.github.io)
