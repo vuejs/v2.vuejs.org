@@ -1369,7 +1369,7 @@ Voici l'ordre par défaut que nous recommandons pour les options de composant. E
 
 **Les attributs d'éléments (incluant les composants) devraient être ordonnés avec consistance.**
 
-Voici l'ordre par défaut que nous recommandons pour les options de composant. Elles sons séparées en catégories, ainsi vous saurez où ajouter vos attributs et directives personnalisées.
+Voici l'ordre par défaut que nous recommandons pour les options de composant. Elles sont séparées en catégories, ainsi vous saurez où ajouter vos attributs et directives personnalisées.
 
 1. **Définition** (fournit les options du composant)
   - `is`
