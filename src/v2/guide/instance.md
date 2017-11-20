@@ -22,13 +22,13 @@ Une application Vue consiste en une **instance racine de Vue** créée avec `new
 
 ```
 Instance racine
-|- TodoList
-   |- TodoItem
-      |- DeleteTodoButton
-      |- EditTodoButton
-   |- TodoListFooter
-      |- ClearTodosButton
-      |- TodoListStatistics
+└─ TodoList
+   ├─ TodoItem
+   │  ├─ DeleteTodoButton
+   │  └─ EditTodoButton
+   └─ TodoListFooter
+      ├─ ClearTodosButton
+      └─ TodoListStatistics
 ```
 
 Nous parlerons du [système de composant](components.html) en détail plus loin. Pour le moment, sachez simplement que tous les composants de Vue sont également des instances de Vue et qu'ils acceptent donc le même objet d'option (à l'exception de quelques options spécifiques à l'instance racine).

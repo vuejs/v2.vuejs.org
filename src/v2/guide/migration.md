@@ -796,9 +796,9 @@ Par exemple, imaginons que nous avons une application de liste de tâches comme 
 
 ```
 Todos
-|-- NewTodoInput
-|-- Todo
-    |-- DeleteTodoButton
+├─ NewTodoInput
+└─ Todo
+   └─ DeleteTodoButton
 ```
 
 Nous pourrions gérer la communication entre ces composants avec ce simple canal d'évènement :
