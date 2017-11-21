@@ -320,6 +320,7 @@ vm.toggle === vm.a
 // when unchecked:
 vm.toggle === vm.b
 ```
+<p class="tip">Note that `true-value` and `false-value` only affect the Vue instance property (not the input's `value` attribute), so they don't get sent when the form is submitted to the server. As per the HTML spec, the browser only sends the value of the `value` attribute (or "on" if the `value` attribute was omitted) when the box is checked.</p>
 
 ### Radio
 
