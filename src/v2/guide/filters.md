@@ -1,23 +1,24 @@
 ---
-title: Filters
+title: Filter
 type: guide
 order: 305
 ---
 
-Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions** (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+Vue cho phép bạn định nghĩa các filter (bộ lọc) dùng để áp dụng các định dạng văn bản thường gặp. Bạn có thể sử dụng filter ở hai chỗ: **trong thẻ mustache** và **trong các biểu thức `v-bind`** (trường hợp sau này được hỗ trợ từ phiên bản 2.1.0 trở đi). Filter được đặt ở cuối một biểu thức JavaScript,  should be appended to the end of the JavaScript expression, biểu thị bằng kí hiệu `|`:
 
 ``` html
-<!-- in mustaches -->
+<!-- trong thẻ mustache -->
 {{ message | capitalize }}
 
-<!-- in v-bind -->
+<!-- trong v-bind -->
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-You can define local filters in a component's options:
+Bạn có thể định nghĩa filter ở cấp cục bộ trong tùy chọn của một component:
 
 ``` js
 filters: {
+  /** Viết hoa chữ đầu tiên */
   capitalize: function (value) {
     if (!value) return ''
     value = value.toString()
@@ -26,9 +27,10 @@ filters: {
 }
 ```
 
-or define a filter globally:
+hoặc định nghĩa ở cấp toàn cục:
 
 ``` js
+/** Viết hoa chữ đầu tiên */
 Vue.filter('capitalize', function (value) {
   if (!value) return ''
   value = value.toString()
@@ -36,20 +38,50 @@ Vue.filter('capitalize', function (value) {
 })
 ```
 
-The filter's function always receives the expression's value (the result of the former chain) as its first argument. In the above example, the `capitalize` filter function will receive the value of `message` as its argument.
+Sau đây là một ví dụ sử dụng filter `capitalize` trên:
 
-Filters can be chained:
+{% raw %}
+<div id="example_1" class="demo">
+  <input type="text" v-model="message" placeholder="Nhập vào một câu">
+  <p>{{ message | capitalize }}</p>
+</div>
+<script>
+  new Vue({
+    el: '#example_1',
+    data: function () {
+      return {
+        message: 'đầu câu thì viết hoa'
+      }
+    },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+  })
+</script>
+{% endraw %}
+
+Hàm filter luôn nhận giá trị của biểu thức làm tham số đầu tiên. Trong ví dụ trên, hàm `capitalize` sẽ nhận tham số đầu tiên là giá trị của `message`.
+
+Ta cũng có thể nối các filter với nhau:
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-In this case, `filterA`, defined with a single argument, will receive the value of `message`, and then the `filterB` function will be called with the result of `filterA` passed into `filterB`'s single argument.
+Trong ví dụ này, hàm `filterA` sẽ nhận giá trị của `message` làm tham số, sau đó hàm `filterB` sẽ được gọi với tham số là giá trị trả về của `filterA`.
 
-Filters are JavaScript functions, therefore they can take arguments:
+Vì đơn giản chỉ là hàm JavaScript nên filter có thể nhận tham số:
 
 ``` html
-{{ message | filterA('arg1', arg2) }}
+{{ message | filterA('value 1', arg2) }}
 ```
 
-Here `filterA` is defined as a function taking three arguments. The value of `message` will be passed into the first argument. The plain string `'arg1'` will be passed into the `filterA` as its second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+Ở đây `filterA` được định nghĩa dưới dạng một hàm nhận vào ba tham số theo thứ tự sau:
+
+1. Giá trị của `message`
+2. Chuỗi `'value 1'`
+3. Giá trị của biểu thức `arg2`
