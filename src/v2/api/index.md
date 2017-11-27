@@ -231,6 +231,12 @@ type: api
   Vue.nextTick(function () {
     // DOM updated
   })
+  
+  // usage as a promise (2.1.0+, see note below)
+  Vue.nextTick()
+    .then(function () {
+      // DOM updated
+    })
   ```
 
   > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
