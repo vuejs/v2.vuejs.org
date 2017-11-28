@@ -64,7 +64,7 @@ Também existem algumas limitações quanto ao rastreamento de alterações em A
 ## Declarando Propriedades Reativas
 
 <<<<<<< HEAD
-Como Vue não conseguir adicionar dinamicamente propriedades reativas em nível raiz, você deve inicializar instâncias Vue declarando todas as propriedades com valores iniciais, mesmo que usando valores vazios:
+Como Vue não consegue adicionar dinamicamente propriedades reativas em nível raiz, você deve inicializar instâncias Vue declarando todas as propriedades com valores iniciais, mesmo que usando valores vazios:
 =======
 Since Vue doesn't allow dynamically adding root-level reactive properties, you have to initialize Vue instances by declaring all root-level reactive data properties upfront, even with an empty value:
 >>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
