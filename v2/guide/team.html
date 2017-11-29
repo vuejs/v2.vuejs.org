@@ -71,7 +71,8 @@
       ga('send', 'pageview');
     </script>
   </head>
-  <body class="docs">    <div id="mobile-bar" >
+  <body class="docs">
+    <div id="mobile-bar" >
       <a class="menu-button"></a>
       <a class="logo" href="/"></a>
     </div>
@@ -926,7 +927,7 @@
             </ul>
           </dd>
         </template>
-        <footer v-if="profile.github || profile.twitter" class="social">
+        <footer v-if="hasSocialLinks" class="social">
           <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
             <i class="fa fa-github"></i>
             <span class="sr-only">Github</span>
@@ -934,6 +935,10 @@
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
             <i class="fa fa-twitter"></i>
             <span class="sr-only">Twitter</span>
+          </a>
+          <a class=codepen v-if="profile.codepen" :href="'https://codepen.io/' + profile.codepen">
+            <i class="fa fa-codepen"></i>
+            <span class="sr-only">CodePen</span>
           </a>
         </footer>
       </dl>
@@ -1292,6 +1297,11 @@
       languages: ['fr', 'en'],
       github: 'Akryum',
       twitter: 'Akryum',
+      work: {
+        role: 'Frontend Developer',
+        org: 'Livestorm',
+        orgUrl: 'https://livestorm.co/'
+      },
       reposOfficial: [
         'vue-curated'
       ],
@@ -1383,6 +1393,22 @@
       reposPersonal: [
         'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
       ]
+    },
+    {
+      name: 'Damian Dulisz',
+      title: 'Dark Mage of Plugins, News, and Confs',
+      city: 'Wrocław, Poland',
+      languages: ['pl', 'en'],
+      github: 'shentao',
+      twitter: 'DamianDulisz',
+      work: {
+        role: 'Senior Frontend Developer',
+        org: 'Monterail',
+        orgUrl: 'https://www.monterail.com/'
+      },
+      reposPersonal: [
+        'monterail/vue-multiselect', 'monterail/vue-newsletter'
+      ]
     }
   ]))
 
@@ -1430,21 +1456,6 @@
       ]
     },
     {
-      name: 'Damian Dulisz',
-      title: 'Dark Mage of Plugins, News, and Confs',
-      city: 'Wrocław, Poland',
-      languages: ['pl', 'en'],
-      github: 'shentao',
-      twitter: 'DamianDulisz',
-      work: {
-        role: 'Senior Frontend Developer',
-        org: 'Monterail',
-        orgUrl: 'https://www.monterail.com/'
-      },
-      reposPersonal: [
-        'monterail/vue-multiselect', 'monterail/vue-newsletter', 'monterail/vuelidate'
-      ]
-    }, {
       name: 'Alex Kyriakidis',
       title: 'Vueducator Extraordinaire',
       city: 'Thessaloniki, Greece',
@@ -1705,6 +1716,9 @@
           }).join('</li><li>') +
           '</li></ul>'
         )
+      },
+      hasSocialLinks: function () {
+        return this.profile.github || this.profile.twitter || this.profile.codepen
       }
     },
     methods: {
