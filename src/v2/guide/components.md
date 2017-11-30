@@ -8,6 +8,8 @@ order: 11
 
 Les composants sont l'une des plus puissantes fonctionnalités de Vue. Ils vous permettent d'étendre les éléments de base du HTML pour encapsuler du code réutilisable. À un haut niveau, les composants sont des éléments personnalisables auxquels le compilateur de Vue attache un comportement. Dans certains cas, ils peuvent aussi apparaitre comme des éléments HTML natifs étendus avec l'attribut spécial `is`.
 
+Tous les composants Vue sont également des instances de Vue. Ils acceptent le même objet d'options (à l'exception de quelques options spécifiques à l'instance racine) et fournissent les mêmes hooks de cycle de vie.
+
 ## Utilisation des composants
 
 ### Inscription globale

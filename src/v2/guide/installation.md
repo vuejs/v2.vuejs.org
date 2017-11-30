@@ -2,11 +2,8 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 2.5.1
-dev_size: "271.12"
-min_size: "83.13"
-gz_size: "30.33"
-ro_gz_size: "21.04"
+vue_version: 2.5.9
+gz_size: "30.95"
 ---
 
 ### Compatibilité
@@ -14,6 +11,8 @@ ro_gz_size: "21.04"
 Vue **ne** supporte **pas** IE8 et les versions antérieures, car il utilise des fonctionnalités ECMAScript 5 qui ne peuvent pas être émulées sur IE8. Cela dit, Vue supporte tous les [navigateurs compatibles ECMAScript 5](http://caniuse.com/#feat=es5).
 
 ### Notes de version
+
+Dernière version stable : {{vue_version}}
 
 Les notes de version détaillées pour chaque version sont disponibles sur [GitHub](https://github.com/vuejs/vue/releases).
 

@@ -24,9 +24,9 @@ Ceci étant dit, il est inévitable que la comparaison puisse paraitre biaisée 
 
 La communauté React [a été sollicitée](https://github.com/vuejs/vuejs.org/issues/364) pour nous aider à atteindre cette neutralité, avec des remerciements en particulier à Dan Abramov de l'équipe React. Il a été extrêmement généreux en accordant son temps et son expertise pour nous aider à remanier ce document jusqu'à ce que le résultat final [convienne](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740) aux deux parties.
 
-### Performance
+### Performance à l'exécution
 
-Vue comme React offrent des performances comparables dans la plupart des cas d'usage, avec Vue légèrement en tête en général grâce à son implémentation très légère du DOM virtuel. Si vous êtes intéressé par les chiffres, vous pouvez regarder ce [benchmark tier](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) se focalisant sur les performances brutes de rendu et de mise à jour. Notez que cela ne prend pas en compte les structures de composants complexes, aussi envisagez-le comme une indication plutôt qu'un verdict.
+Vue comme React offrent des performances similaires et incroyables. La rapidité est un facteur de décision entre les deux assez minime. Pour le détail exacte des chiffres, vous pouvez regarder ce [benchmark tier](http://www.stefankrause.net/js-frameworks-benchmark7/table.html) se focalisant sur les performances brutes de rendu et de mise à jour avec de simples arbres de composant.
 
 #### Efforts d'optimisation
 
@@ -152,7 +152,7 @@ AngularJS utilise la liaison de données bidirectionnelle entre les *scopes*, ta
 
 Vue fait une distinction plus claire entre directives et composants. Les directives sont conçues pour encapsuler uniquement des manipulations du DOM, tandis que les composants sont des unités indépendantes ayant leur propre vue et logique de données. Avec AngularJS, il y a beaucoup de confusion entre les deux.
 
-### Performance
+### Runtime Performance
 
 Vue a de meilleures performances et il est bien plus optimisé car il n'utilise pas de *dirty checking*. AngularJS devient lent quand il y a un grand nombre d'observateurs, car chaque fois que quelque chose change dans le *scope*, tous les observateurs ont besoin d'être réévalués. De plus, le *digest cycle* peut avoir besoin de s'exécuter plusieurs fois pour se « stabiliser » si un observateur déclenche une autre mutation. Les utilisateurs d'AngularJS ont parfois recours à des techniques ésotériques pour contourner le *digest cycle*, et dans certaines situations, il n'y a simplement aucun moyen pour optimiser un *scope* avec beaucoup d'observateurs.
 
@@ -172,9 +172,11 @@ Cependant, tout le monde ne souhaite pas utiliser TypeScript. Dans beaucoup de c
 
 Pour finir, sans être profondément intégré à TypeScript comme peut l'être Angular, Vue offre également un [typage officiel](https://github.com/vuejs/vue/tree/dev/types) et des [décorateurs officiels](https://github.com/vuejs/vue-class-component) à ceux qui souhaiteraient utiliser TypeScript avec Vue. Nous collaborons également activement avec les équipes de TypeScript et de VSCode chez Microsoft pour améliorer l'expérience de TS/IDE pour les utilisateurs de TS et de Vue.
 
-### Taille et performance
+### Performance à l'exécution
 
-En termes de performance, les deux frameworks sont exceptionnellement rapides et il n'y a pas assez de données de cas réels pour se faire une idée tranchée. Cependant, si vous êtes déterminés à comparer des valeurs, Vue 2.0 semble devant Angular selon le [benchmark d'une tierce partie](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
+Les deux frameworks sont exceptionnellement rapides avec des métriques similaires au benchmark. Utilisez les métriques spécifiques du [benchmark tier](http://www.stefankrause.net/js-frameworks-benchmark7/table.html) pour une comparaison plus granulaire, mais la rapidité n'est pas un facteur de décision.
+
+### Taille
 
 Les versions récentes d'Angular, avec une [compilation anticipée](https://fr.wikipedia.org/wiki/Compilation_anticip%C3%A9e) et du [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking) sont capables de diminuer leurs tailles considérablement. Cependant, un projet complet Vue 2, avec Vuex et Vue Router inclus (~30ko gzippé), est toujours significativement plus léger qu'une application avec compilation anticipée et générée par `angular-cli` (~130ko gzippée).
 
@@ -198,7 +200,7 @@ Cela dit, il serait probablement plus judicieux de faire une comparaison entre l
 
 - La syntaxe des templates de Vue exploite toute la puissance des expressions JavaScript alors que les expressions Handlebars et les aides à la syntaxe sont intentionnellement limitées en comparaison.
 
-- Côté performance, Vue surpasse Ember [avec une bonne avance](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html), même après la dernière mise à jour du moteur Glimmer dans Ember 2.x. Vue regroupe automatiquement les rafraichissements des vues par lot, alors que dans Ember, vous devez gérer manuellement les boucles d'exécution dans les situations où la performance est critique.
+- Côté performance, Vue surpasse Ember [avec une bonne avance](http://www.stefankrause.net/js-frameworks-benchmark7/table.html), même après la dernière mise à jour du moteur Glimmer dans Ember 2.x. Vue regroupe automatiquement les rafraichissements des vues par lot, alors que dans Ember, vous devez gérer manuellement les boucles d'exécution dans les situations où la performance est critique.
 
 ## Knockout
 

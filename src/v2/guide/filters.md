@@ -36,6 +36,32 @@ Vue.filter('capitalize', function (value) {
 })
 ```
 
+Ci-dessous un exemple du filtre `capitalize` en action :
+
+{% raw %}
+<div id="example_1" class="demo">
+  <input type="text" v-model="message">
+  <p>{{ message | capitalize }}</p>
+</div>
+<script>
+  new Vue({
+    el: '#example_1',
+    data: function () {
+      return {
+        message: 'john'
+      }
+    },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+  })
+</script>
+{% endraw %}
+
 La fonction de filtre reçoit toujours la valeur de l'expression (le résultat de la chaine) comme premier argument. Dans cet exemple, la fonction de filtre `capitalize` va recevoir la valeur de `message` dans son argument.
 
 Les filtres peuvent être chainés :

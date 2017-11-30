@@ -231,6 +231,12 @@ type : api
   Vue.nextTick(function () {
     // le DOM est à jour
   })
+
+  // utilisation en tant que promesse (2.1.0+, voir la note ci-dessous)
+  Vue.nextTick()
+    .then(function () {
+      // le DOM est à jour
+    })
   ```
 
   > Nouveauté de la 2.1.0+ : retourne une promesse si aucune fonction de rappel n'est fournie et si les promesses sont supportées par l'environnement d'exécution. Notez que Vue ne fournit pas de polyfill aux promesses. Aussi, si vous ciblez des navigateurs qui ne supportent pas les promesses nativement (on parle de toi, IE), vous pouvez fournir un polyfill vous-même.
