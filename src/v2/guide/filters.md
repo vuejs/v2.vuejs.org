@@ -14,20 +14,29 @@ Vue permite que você defina filtros que podem ser utilizados para aplicação d
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-A função `filter` sempre recebe o valor da expressão (o resultado da cadeia de execução antes da chamada do filtro) como seu primeiro argumento. Neste exemplo, a função de filtro `capitalize` irá receber o valor de `message` como argumento.
+Você pode definir filtros locais nas opções dos componentes:
 
 ``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
+filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
   }
+}
+```
+
+Ou definir um filtro globalmente:
+
+``` js
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
 })
 ```
+
+A função de filtro sempre recebe o valor da expressão (o resultado da cadeia de execução até aquele momento) como seu primeiro argumento. No exemplo acima, a função de filtro `capitalize` irá receber o valor de `message` como seu argumento. 
 
 Filtros podem ser encadeados:
 

@@ -6,48 +6,44 @@ order: 303
 
 ## Introdução
 
-Vue recomenda que _templates_ sejam utilizados para construir seu HTML na grande maioria dos casos. Haverá situações, no entanto, em que você irá realmente precisar de todo o poder de programação do JavaScript. É quando você pode usar a **função `render`**, uma alternativa aos _templates_ que é mais diretamente vinculada ao compilador.
+Vue recomenda que _templates_ sejam utilizados para construir seu HTML na grande maioria dos casos. Haverá situações, no entanto, em que você irá realmente precisar de todo o poder de programação do JavaScript. É quando você pode usar a **função `render`**, uma alternativa aos _templates_ mais próxima do compilador.
 
-Vamos mergulhar em um simples exemplo onde a função `render` seria prática. Digamos que você quer gerar links em cabeçalhos (_headings_):
+Vamos mergulhar em um exemplo simples onde a função `render` seria prática. Digamos que você quer gerar cabeçalhos (_headings_) com âncoras:
 
 ``` html
 <h1>
-  <a name="alo-mundo" href="#alo-mundo">
+  <a name="hello-world" href="#hello-world">
     Olá Mundo!
   </a>
 </h1>
 ```
 
-Para o código HTML acima, você decide que quer esta interface para o seu componente:
+Para o código HTML acima, você decide que quer esta interface para o componente:
 
 ``` html
-<anchored-heading :nivel="1">Olá Mundo!</anchored-heading>
+<anchored-heading :level="1">Olá Mundo!</anchored-heading>
 ```
 
-<<<<<<< HEAD
-Quando você começar a criar o componente de modo que gere os cabeçalhos de acordo com a propriedade `nivel`, rapidamente chegará a algo assim:
-=======
-When you get started with a component that only generates a heading based on the `level` prop, you quickly arrive at this:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Quando você começar a criar o componente que gera um cabeçalho de acordo com a propriedade `level`, rapidamente chegará a algo assim:
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
-  <h1 v-if="nivel === 1">
+  <h1 v-if="level === 1">
     <slot></slot>
   </h1>
-  <h2 v-else-if="nivel === 2">
+  <h2 v-else-if="level === 2">
     <slot></slot>
   </h2>
-  <h3 v-else-if="nivel === 3">
+  <h3 v-else-if="level === 3">
     <slot></slot>
   </h3>
-  <h4 v-else-if="nivel === 4">
+  <h4 v-else-if="level === 4">
     <slot></slot>
   </h4>
-  <h5 v-else-if="nivel === 5">
+  <h5 v-else-if="level === 5">
     <slot></slot>
   </h5>
-  <h6 v-else-if="nivel === 6">
+  <h6 v-else-if="level === 6">
     <slot></slot>
   </h6>
 </script>
@@ -57,7 +53,7 @@ When you get started with a component that only generates a heading based on the
 Vue.component('anchored-heading', {
   template: '#anchored-heading-template',
   props: {
-    nivel: {
+    level: {
       type: Number,
       required: true
     }
@@ -73,12 +69,12 @@ Enquanto _templates_ funcionam muito bem para a maioria dos componentes, está c
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.nivel,   // nome do elemento (tag)
-      this.$slots.default // array de elementos-filho (children)
+      'h' + this.level,   // nome do elemento (tag)
+      this.$slots.default // vetor de elementos filhos
     )
   },
   props: {
-    nivel: {
+    level: {
       type: Number,
       required: true
     }
@@ -86,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filho em seu componente, sem especificar um atributo `slot`, como o `Olá Mundo!` dentro de `anchored-heading`, esses elementos estão acessíveis na instância do componente através de `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção da API de [propriedades da instância](../api/#Instance-Properties) antes de se aprofundar em funções `render`**.
+Muito mais simples! Mais ou menos. O código é menor, mas requer maior familiaridade com as propriedades de uma instância Vue. Neste caso, você precisa saber que quando você inclui elementos filho em seu componente, sem especificar um atributo `slot`, como o `Olá Mundo!` dentro de `anchored-heading`, esses elementos estão acessíveis na instância através de `$slots.default`. Se você ainda não leu, **é altamente recomendado que leia a seção da API de [propriedades da instância](../api/#Propriedades-de-Instancia) antes de se aprofundar em funções `render`**.
 
 ## Nós, Árvores e DOM Virtual
 
@@ -106,15 +102,9 @@ A árvore de nós DOM para o HTML acima aparentaria isso:
 
 ![Visualização da Árvore DOM](/images/dom-tree.png)
 
-<<<<<<< HEAD
-Cada elemento é um nó. Cada pedaço de texto é um nó. Até mesmo comentários são nós! Um nó é simplesmente um pedaço da página. E assim como na árvore genealógica, cada nó tem filhos (ou seja, cada pedaço pode conter outros pedaços dentro).
+Cada elemento é um nó. Cada pedaço de texto é um nó. Até mesmo comentários são nós! Um nó é apenas um pedaço da página. E assim como na árvore genealógica, cada nó tem filhos (ou seja, cada pedaço pode conter outros pedaços dentro).
 
-Atualizar todos esses nós eficientemente pode ser difícil, mas por sorte você nunca precisará fazer isso manualmente. Você apenas avisa o Vue qual HTML você quer em uma página, através de um _template_:
-=======
-Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children (i.e. each piece can contain other pieces).
-
-Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. Instead, you tell Vue what HTML you want on the page, in a template:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Atualizar todos esses nós eficientemente pode ser difícil, mas por sorte você nunca precisará fazer isso manualmente. Ao invés disso, você diz ao Vue qual HTML quer na página, através de um _template_:
 
 ```html
 <h1>{{ blogTitle }}</h1>
@@ -160,13 +150,8 @@ createElement(
   },
 
   // {String | Array}
-<<<<<<< HEAD
-  // VNodes filhos, mas usando `createElement()`,
+  // VNodes filhos, construídos com `createElement()`,
   // ou apenas Strings para 'VNodes textuais'. Opcional.
-=======
-  // Children VNodes, built using `createElement()`,
-  // or using strings to get 'text VNodes'. Optional.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
   [
     'Algum texto vem primeiro.',
     createElement('h1', 'Um título')
@@ -220,7 +205,7 @@ Importante observar: assim como `v-bind:class` e `v-bind:style` têm tratamento 
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Diretivas customizadas. Veja que como o bind de
+  // Diretivas personalizadas. Veja que como o bind de
   // oldValue não pode ser setado, o Vue continua mantendo
   // o valor dele para você
   directives: [
@@ -389,11 +374,7 @@ on: {
 }
 ```
 
-<<<<<<< HEAD
-Para todos os outros eventos e modificadores de teclado, nenhum prefixo proprietário é necessário, pois você pode simplesmente usar métodos do objeto `event` no código.
-=======
-For all other event and key modifiers, no proprietary prefix is necessary, because you can use event methods in the handler:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Para todos os outros eventos e modificadores de teclado, nenhum prefixo proprietário é necessário, pois você pode usar métodos do objeto `event` no manipulador:
 
 | Modificador | Equivalente no Código |
 | ------ | ------ |
@@ -513,11 +494,7 @@ Para mais informações sobre como JSX é mapeado para JavaScript, veja a [docum
 
 ## Componentes Funcionais
 
-<<<<<<< HEAD
-O componente de cabeçalho com _link_ que criamos anteriormente é relativamente simples. Ele não gerencia nenhum estado próprio, não observa nenhum estado passado para si, e não tem nenhum método ligado ao ciclo de vida da instância. Realmente, é apenas uma função com algumas propriedades.
-=======
-The anchored heading component we created earlier is relatively simple. It doesn't manage any state, watch any state passed to it, and it has no lifecycle methods. Really, it's only a function with some props.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+O componente de cabeçalho com âncoras que criamos anteriormente é relativamente simples. Ele não gerencia nenhum estado próprio, não observa nenhum estado passado para si, e não tem nenhum método ligado ao ciclo de vida da instância. Realmente, é apenas uma função com algumas propriedades.
 
 Em casos como este, nós podemos marcar componentes como `functional`, o que significa que eles são _stateless_ (sem estado, ou seja, sem `data`) e são _instanceless_ (sem instância, ou seja, sem o contexto `this`). Um **componente funcional** tem este formato:
 
@@ -544,24 +521,12 @@ Tudo que um componente funcional necessitar é passado através de `context`, o 
 - `slots`: Uma função retornando um objeto _slots_
 - `data`: Todo o objeto `data` passado ao componente
 - `parent`: Uma referência ao componente pai
-- `listeners`: (2.3.0+) Um objeto contendo escutas a eventos registradas pelo pai. É simplesmente um atalho para `data.on`
+- `listeners`: (2.3.0+) Um objeto contendo escutas a eventos registradas pelo pai. É um atalho para `data.on`
 - `injections`: (2.3.0+) Se estiver usando a opção [`inject`](../api/#provide-inject), aqui estarão as injeções resolvidas
 
-<<<<<<< HEAD
-Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com _link_ iria requerer somente acrescentar o parâmetro `context`, e atualizar `this.$slots.default` para `context.children`, e por fim atualizar `this.level` para `context.props.level`.
+Após acrescentar `functional: true`, adaptar a função `render` do nosso componente de cabeçalho com âncoras iria requerer acrescentar o parâmetro `context`, atualizar `this.$slots.default` para `context.children` e então atualizar `this.level` para `context.props.level`.
 
 Como componentes funcionais são apenas funções, eles são muito mais leves para renderizar. Entretanto, por carecer de uma instância persistente, eles não são exibidos na árvore de componentes do [Vue devtools](https://github.com/vuejs/vue-devtools).
-=======
-- `props`: An object of the provided props
-- `children`: An array of the VNode children
-- `slots`: A function returning a slots object
-- `data`: The entire data object passed to the component
-- `parent`: A reference to the parent component
-- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
-- `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
-
-After adding `functional: true`, updating the render function of our anchored heading component would require adding the `context` argument, updating `this.$slots.default` to `context.children`, then updating `this.level` to `context.props.level`.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 Eles também são muito úteis como componentes encapsuladores. Por exemplo, quando você precisa:
 
@@ -616,11 +581,7 @@ Você pode ser perguntar por que nós precisamos de ambos - `slots()` e `childre
 </meu-componente-funcional>
 ```
 
-<<<<<<< HEAD
-Para este componente, `children` lhe fornecerá ambos os parágrafos, enquanto `slots().default` lhe fornecerá apenas o segundo, e `slots().foo` lhe fornecerá apenas o primeiro. Tendo tanto `children` quanto `slots()` lhe permite escolher se este componente precisa saber sobre os _slots_ ou talvez apenas delegar tal responsabilidade para outro componente simplesmente passando adiante `children`.
-=======
-For this component, `children` will give you both paragraphs, `slots().default` will give you only the second, and `slots().foo` will give you only the first. Having both `children` and `slots()` therefore allows you to choose whether this component knows about a slot system or perhaps delegates that responsibility to another component by passing along `children`.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Para este componente, `children` lhe fornecerá ambos os parágrafos, enquanto `slots().default` lhe fornecerá apenas o segundo, e `slots().foo` lhe fornecerá apenas o primeiro. Tendo tanto `children` quanto `slots()` lhe permite escolher se este componente precisa saber sobre os _slots_ ou talvez delegar tal responsabilidade para outro componente passando adiante `children`.
 
 ## Compilação de Templates
 

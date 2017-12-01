@@ -4,11 +4,7 @@ type: examples
 order: 12
 ---
 
-<<<<<<< HEAD
-> Esse é um clone do Hackernews construído utilizando a API Firebase oficial do HackerNews, Vue 2.0 + vue-router + vuex e server-side rendering.
-=======
-> This is a HackerNews clone built upon HN's official Firebase API, Vue 2.0 + Vue Router + Vuex, with server-side rendering.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+> Esse é um clone do HackerNews construído utilizando a API Firebase oficial do HackerNews, Vue 2.0 + Vue Router + vuex, incluindo renderização no lado do servidor.
 
 {% raw %}
 <div style="max-width: 600px;">
@@ -26,19 +22,14 @@ order: 12
 ## Funcionalidades
 
 - Server Side Rendering
-<<<<<<< HEAD
-  - Vue + vue-router + vuex trabalhando juntos
-  - Pré carregamento de dados Server-side
-=======
-  - Vue + Vue Router + Vuex working together
-  - Server-side data pre-fetching
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
-  - Client-side state & DOM hydration
-- Single-file Vue Components
-  - Hot-reload em desenvolvimento
-  - CSS extraction para produção
-- Atualizações Real-time da lista com animações FLIP
+  - Vue + Vue Router + Vuex trabalhando juntos
+  - Pré-carregamento de dados do servidor
+  - Estado _client-side_ & hidratação do DOM
+- Componentes Single-File
+  - _Hot-reload_ em desenvolvimento
+  - Extração de CSS para produção
+- Atualizações em tempo real da lista, com animações FLIP
 
 ## Visão Geral da Arquitetura
 
-<img width="973" alt="Hackernew clone architecture overview" src="/images/hn-architecture.png">
+<img width="973" alt="Visão geral da arquitetura do clone do HackerNews em Vue" src="/images/hn-architecture.png">

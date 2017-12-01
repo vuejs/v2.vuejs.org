@@ -10,11 +10,7 @@ Para a maioria das _Single Page Applications_, é recomendado usar a biblioteca 
 
 ## Roteamento Simples do Zero
 
-<<<<<<< HEAD
-Se você precisa apenas de rotas muito simples e não deseja adicionar uma biblioteca completa de rotas, você pode renderizar componentes/páginas dinamicamente deste modo:
-=======
-If you only need very simple routing and do not wish to involve a full-featured router library, you can do so by dynamically rendering a page-level component like this:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Se você precisar apenas de rotas muito simples e não deseja adicionar uma biblioteca completa de rotas, você pode renderizar dinamicamente componentes a nível de páginas, deste modo:
 
 ``` js
 const NotFound = { template: '<p>Página não encontrada</p>' }

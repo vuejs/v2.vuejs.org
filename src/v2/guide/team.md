@@ -23,7 +23,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
-                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -33,7 +33,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -90,7 +90,7 @@ order: 803
             </ul>
           </dd>
         </template>
-        <footer v-if="profile.github || profile.twitter" class="social">
+        <footer v-if="hasSocialLinks" class="social">
           <a class=github v-if="profile.github" :href="githubUrl(profile.github)">
             <i class="fa fa-github"></i>
             <span class="sr-only">Github</span>
@@ -98,6 +98,10 @@ order: 803
           <a class=twitter v-if="profile.twitter" :href="'https://twitter.com/' + profile.twitter">
             <i class="fa fa-twitter"></i>
             <span class="sr-only">Twitter</span>
+          </a>
+          <a class=codepen v-if="profile.codepen" :href="'https://codepen.io/' + profile.codepen">
+            <i class="fa fa-codepen"></i>
+            <span class="sr-only">CodePen</span>
           </a>
         </footer>
       </dl>
@@ -209,6 +213,7 @@ order: 803
     'Lyon, França': [45.764043, 4.835659],
     'Mannheim, Alemanha': [49.487459, 8.466039],
     'Moscou, Rússia': [55.755826, 37.617300],
+    'Munique, Alemanha': [48.137154, 11.576124],
     'Orlando, Estados Unidos': [28.538335, -81.379236],
     'Paris, França': [48.856614, 2.352222],
     'Seul, Coreia do Sul': [37.566535, 126.977969],
@@ -421,12 +426,15 @@ order: 803
     {
       name: 'Phan An',
       title: 'Designer de Backend & Poeta de Processos',
-      city: 'Londres, Reino Unido',
+      city: 'Munique, Alemanha',
       languages: ['vi', 'en'],
       github: 'phanan',
       twitter: 'notphanan',
       reposOfficial: [
-        'vuejs.org'
+        'vuejs.org', {
+          name: 'vi.vuejs.org',
+          url: 'https://github.com/vuejs-vn/vuejs.org'
+        }
       ],
       reposPersonal: [
         'vuequery', 'vue-google-signin-button'
@@ -552,6 +560,22 @@ order: 803
       },
       links: [
         'https://atomaka.com/'
+      ]
+    },
+    {
+      name: 'Sarah Drasner',
+      city: 'Denver, Estados Unidos',
+      languages: ['en'],
+      work: {
+        role: 'Desenvolvedora Evangelista Sênior',
+        org: 'Microsoft',
+        orgUrl: 'https://www.microsoft.com/'
+      },
+      github: 'sdras',
+      twitter: 'sarah_edo',
+      codepen: 'sdras',
+      reposPersonal: [
+        'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
       ]
     }
   ]))
@@ -798,20 +822,6 @@ order: 803
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
       ]
-    },
-    {
-      name: 'Sarah Drasner',
-      city: 'Denver, Estados Unidos',
-      languages: ['en'],
-      work: {
-        role: 'Consultora'
-      },
-      github: 'sdras',
-      twitter: 'sarah_edo',
-      codepen: 'sdras',
-      reposPersonal: [
-        'intro-to-vue', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'vue-wine-label', 'vue-weather-notifier'
-      ]
     }
   ]
 
@@ -889,6 +899,9 @@ order: 803
           }).join('</li><li>') +
           '</li></ul>'
         )
+      },
+      hasSocialLinks: function () {
+        return this.profile.github || this.profile.twitter || this.profile.codepen
       }
     },
     methods: {
@@ -902,6 +915,9 @@ order: 803
        * Generate a GitHub URL using a repo and a handle.
        */
       githubUrl: function (handle, repo) {
+        if (repo && repo.url) {
+          return repo.url
+        }
         if (repo && repo.indexOf('/') !== -1) {
           // If the repo name has a slash, it must be an organization repo.
           // In such a case, we discard the (personal) handle.

@@ -10,19 +10,11 @@ Aplicações grandes podem também crescer em complexidade, principalmente devid
 
 ### Informação para Desenvolvedores React
 
-<<<<<<< HEAD
-Se você vem do React, é possível que esteja se perguntando como vuex se compara ao [redux](https://github.com/reactjs/redux), a mais popular implementação Flux naquele ecossistema. Redux é agnóstico em relação à camada *view*, podendo ser facilmente utilizado com Vue através de alguns [bindings simples](https://github.com/egoist/revue). Vuex é diferente, uma vez que ele **sabe** que está em uma aplicação Vue. Isto permite melhor integração com o Vue, oferecendo uma API mais intuitiva e uma experiência de desenvolvimento otimizada.
-=======
-If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://github.com/egoist/revue). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Se você vem do React, é possível que esteja se perguntando como vuex se compara ao [redux](https://github.com/reactjs/redux), a mais popular implementação Flux daquele ecossistema. Redux é agnóstico em relação à camada _view_, podendo ser facilmente utilizado com Vue através de alguns [bindings simples](https://github.com/egoist/revue). Vuex é diferente, uma vez que ele **sabe** que está em uma aplicação Vue. Isto permite melhor integração com o Vue, oferecendo uma API mais intuitiva e uma experiência de desenvolvimento otimizada.
 
 ## Gerenciamento de Estado do Zero
 
-<<<<<<< HEAD
-Muitas vezes as pessoas se esquecem que a "fonte da verdade" em aplicações Vue são os próprios objetos `data` - uma instância Vue simplesmente faz uma referência a eles. Sendo assim, se você tiver um trecho de estado que deve ser compartilhado entre múltiplas instâncias, pode simplesmente compartilhar o mesmo objeto de dados:
-=======
-It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can share it by identity:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Muitas vezes as pessoas se esquecem que a "fonte da verdade" em aplicações Vue são os próprios objetos `data` - uma instância Vue apenas direciona o acesso a eles. Sendo assim, se você tiver um trecho de estado que deve ser compartilhado entre múltiplas instâncias, pode simplesmente compartilhar o mesmo objeto de dados:
 
 ``` js
 const sourceOfTruth = {}
@@ -38,11 +30,7 @@ const vmB = new Vue({
 
 Agora, a qualquer momento que `sourceOfTruth` for modificado, tanto `vmA` quanto `vmB` atualizarão suas interfaces automaticamente. Subcomponentes dentro de cada uma destas instâncias também poderão acessar estes dados através de `this.$root.$data`. Temos, portanto, uma fonte da verdade única, mas depurar seria um pesadelo. Qualquer parte dos dados poderia ser modificada por qualquer parte da aplicação a qualquer momento, sem deixar nenhum rastro.
 
-<<<<<<< HEAD
-Para ajudar a resolver, podemos adotar um **store pattern** simples:
-=======
-To help solve this problem, we can adopt a **store pattern**:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Para ajudar a resolver, podemos adotar um **store pattern**:
 
 ``` js
 var store = {
@@ -61,9 +49,7 @@ var store = {
 }
 ```
 
-
-Observe que todas as ações que modificam o estado do *store* são colocadas dentro do próprio. Este tipo de gerenciamento de estado centralizado torna mais fácil compreender quais tipos de mutação poderiam acontecer e como poderiam ser disparadas. Se algo der errado, teremos registros no console sobre cada passo realizado para rastrearmos o *bug*.
-
+Observe que todas as ações que modificam o estado do _store_ são colocadas dentro do próprio. Este tipo de gerenciamento de estado centralizado torna mais fácil compreender quais tipos de mutação poderiam acontecer e como poderiam ser disparadas. Se algo der errado, teremos registros no console sobre cada passo realizado para rastrearmos o *bug*.
 
 Adicionalmente, cada instância/componente ainda pode gerenciar e manter seus próprios dados privados:
 
@@ -85,8 +71,8 @@ var vmB = new Vue({
 
 ![State Management](/images/state.png)
 
-<p class="tip">É importante observar que você nunca deveria substituir o objeto de estado original em suas ações - os componentes e o *store* precisam compartilhar a referência ao mesmo objeto para que as mutações possam ser observadas.</p>
+<p class="tip">É importante observar que você nunca deveria substituir o objeto de estado original em suas ações - os componentes e o _store_ precisam compartilhar a referência ao mesmo objeto para que as mutações possam ser observadas.</p>
 
-Conforme continuamos desenvolvendo esta convenção onde componentes nunca são autorizados a diretamente modificar o estado que percente ao *store*, ao invés disso devendo despachar eventos que notificam o *store* sobre ações que este deve realizar, eventualmente chegamos à arquitetura [Flux](https://facebook.github.io/flux/). O benefício desta convenção é que podemos gravar todas as mutações de estado que acontecem ao *store* e implementar depuração avançada, como *logs* das mutações, *snapshots*, e até mesmo reversões no histórico / viagens no tempo.
+Conforme continuamos desenvolvendo esta convenção onde componentes nunca são autorizados a diretamente modificar o estado que percente ao _store_, ao invés disso devendo despachar eventos que notificam o _store_ sobre ações que este deve realizar, eventualmente chegamos à arquitetura [Flux](https://facebook.github.io/flux/). O benefício desta convenção é que podemos gravar todas as mutações de estado que acontecem ao _store_ e implementar depuração avançada, como *logs* das mutações, *snapshots*, e até mesmo reversões no histórico / viagens no tempo.
 
 Isto nos leva em círculo de volta ao [vuex](https://github.com/vuejs/vuex). Então, se você leu tudo até aqui, provavelmente é hora de colocar as mãos na massa e testá-lo!

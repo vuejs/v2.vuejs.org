@@ -914,7 +914,7 @@ Instead of:
 <p v-for="item in items | limitBy 10">{{ item }}</p>
 ```
 
-Use JavaScript's built-in [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples) in a computed property:
+Use JavaScript's built-in [`.slice` method](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples) in a computed property:
 
 ``` html
 <p v-for="item in filteredItems">{{ item }}</p>
@@ -936,7 +936,7 @@ Instead of:
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
 ```
 
-Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples) in a computed property:
+Use JavaScript's built-in [`.filter` method](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples) in a computed property:
 
 ``` html
 <p v-for="user in filteredUsers">{{ user.name }}</p>

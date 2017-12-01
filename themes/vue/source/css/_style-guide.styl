@@ -16,56 +16,62 @@ $style-guide-priority-d-color = white
   .style-example, details, .style-enforcement
     border-radius $radius
     margin: 1.6em 0
-    padding 1.6em
+    padding: 1.6em
     h4
       margin-top: 0
     figure, p
       &:last-child
-        margin-bottom 0
-        padding-bottom 0
+        margin-bottom: 0
+        padding-bottom: 0
   .style-example
     &.example-bad
-      background $style-guide-bad-bg
+      background: $style-guide-bad-bg
       h4
-        color $style-guide-bad-text
+        color: $style-guide-bad-text
     &.example-good
-      background $style-guide-good-bg
+      background: $style-guide-good-bg
       h4
-        color $style-guide-good-text
+        color: $style-guide-good-text
   details, .style-enforcement
-    background-color #eee
+    background-color: #eee
   details
-    position relative
+    display: block // Add the correct display in IE and Edge.
+    position: relative
+    &:not([open]) summary
+      &::after
+        content: "..."
+      &:hover
+        background: rgba(255, 255, 255, .3)
   summary
-    cursor pointer
-    padding 1.6em
-    margin -1.6em
-    outline none
+    cursor: pointer
+    padding: 1.6em
+    margin: -1.6em
+    outline: none
     > h4
-      display inline-block
-      margin 0
+      display: inline-block
+      margin: 0
   .style-enforcement
     table
-      width 100%
-      background-color $codebg
-      border-radius $radius
+      width: 100%
+      background-color: $codebg
+      border-radius: $radius
     th, td
-      padding .4em
-      text-align center
+      padding: .4em
+      text-align: center
     th
-      padding-bottom .2em
+      padding-bottom: .2em
     td
-      padding-top .2em
+      padding-top: .2em
   .style-rule-tag
-    background-color $codebg
-    border-radius $radius
-    font-size .9em
-    color $style-guide-good-text
-    font-weight 600
-    text-transform uppercase
+    background-color: $codebg
+    border-radius: $radius
+    font-size: .9em
+    color: $style-guide-good-text
+    font-weight: 600
+    text-transform: uppercase
     padding: .1em .4em
   a > .style-rule-tag
-    color $green
+    color: $green
   sup
     text-transform: uppercase
     font-size: .7em

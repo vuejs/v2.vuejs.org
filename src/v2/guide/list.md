@@ -217,11 +217,7 @@ new Vue({
 
 ## `key`
 
-<<<<<<< HEAD
-Quando Vue está atualizando uma lista de elementos renderizados com `v-for`, por padrão se utiliza de uma estratégia de "remendo local". Se a ordem dos itens de dados tiver mudado, ao invés de mover os elementos DOM para combinar com a nova ordem, Vue simplesmente remendará o conteúdo de cada elemento em seu local atual, garantindo que o resultado reflita o que precisa ser renderizado em cada índice em particular. Isto é similar ao comportamento oferecido por `track-by="$index"` no Vue 1.x.
-=======
-When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Quando Vue está atualizando uma lista de elementos renderizados com `v-for`, por padrão se utiliza de uma estratégia de "remendo local". Se a ordem dos itens de dados tiver mudado, ao invés de mover os elementos DOM para combinar com a nova ordem, Vue remendará o conteúdo de cada elemento em seu local atual, garantindo que o resultado reflita o que precisa ser renderizado em cada índice em particular. Isto é similar ao comportamento oferecido por `track-by="$index"` no Vue 1.x.
 
 Este modo padrão é eficiente, mas adequado apenas **quando seu resultado de renderização não se apoiar em estado de componentes filhos ou estado de DOM temporário (como valores de campos de formulário)**.
 
@@ -255,11 +251,7 @@ Você pode abrir o _console_ e brincar com os `items` dos exemplos anteriores, c
 
 ### Substituindo um Array
 
-<<<<<<< HEAD
-Métodos de mutação, como o nome sugere, modificam o Array original no qual são chamados. Em comparação, também há métodos sem mutação, como `filter()`, `concat()` e `slice()`, que não modificam o Array original, mas sim **retornam um novo Array**. Ao trabalhar com métodos sem mutação, simplesmente substitua o Array antigo pelo novo:
-=======
-Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can replace the old array with the new one:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Métodos de mutação, como o nome sugere, mudam o Array original no qual são chamados. Em comparação, também há métodos sem mutação, como `filter()`, `concat()` e `slice()`, que não modificam o Array original, mas sim **retornam um novo Array**. Ao trabalhar com métodos sem mutação, você pode substituir o Array antigo pelo novo:
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -267,7 +259,7 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-Você pode pensar que isto fará o Vue jogar fora todo o DOM existente e re-renderizar a lista toda - por sorte, não é o caso. Vue implementa algumas heurísticas inteligentes para maximizar a reutilização dos elementos DOM, portanto sobrescrever um Array com outro contendo elementos subjacentes é uma operação muito oficiente.
+Você pode pensar que isto fará o Vue jogar fora todo o DOM existente e "re-renderizar" a lista toda - por sorte, não é o caso. Vue implementa algumas heurísticas inteligentes para maximizar a reutilização dos elementos DOM, assim sobrescrever um Array com outro, contendo elementos subjacentes, é uma operação muito eficiente.
 
 ### Limitações
 
@@ -327,11 +319,7 @@ Você poderia adicionar uma nova propriedade `age` ao objeto interno `userProfil
 Vue.set(vm.userProfile, 'age', 30)
 ```
 
-<<<<<<< HEAD
-Também há o método de instância `vm.$set`, apenas um atalho para o global `Vue.set`:
-=======
-You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Também é possível usar o método de instância `vm.$set`, um atalho para o global `Vue.set`:
 
 ``` js
 this.$set(this.userProfile, 'age', 30)
@@ -378,11 +366,7 @@ computed: {
 }
 ```
 
-<<<<<<< HEAD
-Em situações onde dados computados não são factíveis (por exemplo, em repetições `v-for` aninhadas), você pode simplesmente utilizar um método:
-=======
-In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Em situações onde dados computados não são factíveis (por exemplo, em repetições `v-for` aninhadas), você pode usar um método:
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>

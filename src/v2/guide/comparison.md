@@ -54,11 +54,7 @@ A utilização de _render functions_ com JSX oferece algumas vantagens:
 
 No Vue, também temos [funções de renderização](render-function.html) e até mesmo [suporte a JSX](render-function.html#JSX), afinal às vezes você precisa deste poder. Entretanto, oferecemos para a experiência padrão o uso de _templates_ como uma alternativa mais simples. Qualquer HTML válido é um _template_ Vue válido, o que leva a algumas vantagens próprias:
 
-<<<<<<< HEAD
-- Para muitos desenvolvedores habituados a trabalhar com HTML, _templates_ parecem naturalmente mais fáceis de ler e escrever. A preferência pode ser algo subjetivo, mas se isto torna o desenvolvedor mais produtivo, então o benefício é objetivo.
-=======
-- For many developers who have been working with HTML, templates feel more natural to read and write. The preference itself can be somewhat subjective, but if it makes the developer more productive then the benefit is objective.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+- Para muitos desenvolvedores habituados a trabalhar com HTML, _templates_ parecem mais naturais para ler e escrever. A preferência pode ser algo subjetivo, mas se isto torna o desenvolvedor mais produtivo, então o benefício é objetivo.
 
 - Utilizar _templates_ baseados em HTML torna mais fácil migrar progressivamente aplicações existentes para tirar vantagens dos recursos de reatividade do Vue.
 
@@ -66,27 +62,17 @@ No Vue, também temos [funções de renderização](render-function.html) e até
 
 - Pode-se inclusive utilizar pré-processadores como Pug (anteriormente denominado Jade) para a autoria de seus _templates_ Vue.
 
-<<<<<<< HEAD
-Alguns argumentam que é preciso aprender uma nova sintaxe específica de um único domínio para ser capaz de escrever _templates_ - nós acreditamos que este argumento é superficial. Primeiramente, usar JSX não significa que o desenvolvedor não precisa aprender algo - sendo uma sintaxe adicional por cima do JavaScript puro, pode ser fácil de aprender para aqueles familiarizados com JavaScript, mas ainda assim há uma curva de aprendizado. Similarmente, usar _templates_ também é apenas uma sintaxe adicional por cima do HTML puro, inclusive com uma curva de aprendizado bem menor para aqueles familiarizados com HTML. E com este novo conhecimento "específico", ajudamos os desenvolvedores a fazer mais com menos código (por exemplo, modificadores `v-on`). A mesma tarefa pode envolver muito mais código quando usamos JSX ou funções de renderização.
-=======
-Some argue that you'd need to learn an extra DSL (Domain-Specific Language) to be able to write templates - we believe this difference is superficial at best. First, JSX doesn't mean the user doesn't need to learn anything - it's additional syntax on top of plain JavaScript, so it can be easy for someone familiar with JavaScript to learn, but saying it's essentially free is misleading. Similarly, a template is just additional syntax on top of plain HTML and thus has very low learning cost for those who are already familiar with HTML. With the DSL we are also able to help the user get more done with less code (e.g. `v-on` modifiers). The same task can involve a lot more code when using plain JSX or render functions.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Alguns argumentam que você precisaria aprender uma nova sintaxe específica de um único domínio para ser capaz de escrever _templates_ - nós acreditamos que este argumento é superficial, na melhor das hipóteses. Primeiramente, usar JSX não significa que o desenvolvedor não precisa aprender algo - sendo uma sintaxe adicional por cima do JavaScript puro, pode ser fácil de aprender para aqueles familiarizados com JavaScript, mas ainda assim há uma curva de aprendizado. Similarmente, usar _templates_ também é apenas uma sintaxe adicional por cima do HTML puro, inclusive com uma curva de aprendizado bem menor para aqueles familiarizados com HTML. E com este novo conhecimento "específico", ajudamos os desenvolvedores a fazer mais com menos código (por exemplo, modificadores `v-on`). A mesma tarefa pode envolver muito mais código quando usamos JSX ou funções de renderização.
 
 Em um nível mais alto, podemos dividir componentes em duas categorias: de apresentação ou de lógica. Recomendamos utilizar _templates_ para componentes de apresentação e funções de renderização ou JSX para componentes de lógica. O percentual destes componentes depende do tipo de aplicação que você está construindo, mas normalmente observamos que componentes de apresentação são muito mais comuns.
 
 #### CSS com Escopo por Componente
 
-<<<<<<< HEAD
-A menos que distribua componentes entre vários arquivos (por exemplo, com [CSS Modules](https://github.com/gajus/react-css-modules)), usar CSS com escopo no React frequentemente se baseia em soluções CSS-no-JS. Há muitas soluções por aí, cada qual com seus contratempos. Um problema comum é que recursos como estados `:hover`, _media queries_ e pseudo-seletores exigem dependências pesadas para reinventar o que o CSS já faz - ou por vezes nem são suportados. Se não otimizado com cautela, CSS-no-JS também pode introduzir problemas de desempenho não triviais. E o mais importante, isto desvia da experiência normal de autoria de CSS.
+A menos que você distribua componentes entre vários arquivos (por exemplo, com [CSS Modules](https://github.com/gajus/react-css-modules)), usar CSS com escopo no React frequentemente se baseia em soluções CSS-no-JS (por exemplo, com [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous) e [emotion](https://github.com/emotion-js/emotion)). Isto introduz um novo paradigma de estilização orientada a componente, diferente do processo de autoria de CSS normal. Adicionalmente, ainda que haja suporte para extrair CSS em um arquivo único durante o _build_, ainda é comum que um _runtime_ precise ser incluído no pacote para que a estilização ocorra corretamente. Embora você ganhe acesso ao dinamismo do JavaScript enquanto constrói seus estilos, por outro lado você obtém um tamanho de pacote e um custo de execução maiores.
 
-Vue, por outro lado, proporciona acesso completo ao CSS com [componentes single-file](single-file-components.html):
-=======
-Unless you spread components out over multiple files (for example with [CSS Modules](https://github.com/gajus/react-css-modules)), scoping CSS in React is often done via CSS-in-JS solutions (e.g. [styled-components](https://github.com/styled-components/styled-components), [glamorous](https://github.com/paypal/glamorous), and [emotion](https://github.com/emotion-js/emotion)). This introduces a new component-oriented styling paradigm that is different from the normal CSS authoring process. Additionally, although there is support for extracting CSS into a single stylesheet at build time, it is still common that a runtime will need to be included in the bundle for styling to work properly. While you gain access to the dynamism of JavaScript while constructing your styles, the tradeoff is often increased bundle size and runtime cost.
+Se você é um fã de CSS-no-JS, muitas bibliotecas populares deste tipo suportam Vue (por exemplo, com [styled-components-vue](https://github.com/styled-components/vue-styled-components) e [vue-emotion](https://github.com/egoist/vue-emotion)). A principal diferença entre React e Vue neste âmbito é que o método padrão de estilização no Vue é através das familiares _tags_ `style` em [Componentes Single-File](single-file-components.html).
 
-If you are a fan of CSS-in-JS, many of the popular CSS-in-JS libraries support Vue (e.g. [styled-components-vue](https://github.com/styled-components/vue-styled-components) and [vue-emotion](https://github.com/egoist/vue-emotion)). The main difference between React and Vue here is that the default method of styling in Vue is through more familiar `style` tags in [single-file components](single-file-components.html).
-
-[Single-file components](single-file-components.html) give you full access to CSS in the same file as the rest of your component code.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+[Componentes Single-File](single-file-components.html) lhe oferecem acesso completo ao CSS no mesmo arquivo que o restante do código de seu componente.
 
 ```html
 <style scoped>
@@ -100,13 +86,7 @@ If you are a fan of CSS-in-JS, many of the popular CSS-in-JS libraries support V
 
 O atributo opcional `scoped` automaticamente cria escopo ao CSS de seu componente adicionando um atributo único (por exemplo, `data-v-21e5b78`) aos elementos e compilando `.list-container:hover` para algo como `.list-container[data-v-21e5b78]:hover`.
 
-<<<<<<< HEAD
-Se você já está familiarizado com CSS Modules, os componentes _single-file_ do Vue também possuem [suporte de primeira classe para isso](https://vue-loader.vuejs.org/en/features/css-modules.html).
-
-Finalmente, assim como no HTML, você também tem a opção de escrever seu CSS utilizando qualquer pré-processador (ou pós-processador) de sua preferência, permitindo-o se apoiar em bibliotecas existentes neste ecossistema. Você pode realizar operações centradas no _design_, como manipulação de cores durante o processo de _build_, ao invés de precisar importar bibliotecas JavaScript especializadas que aumentariam o tamanho de seu pacote compilado e a complexidade de sua aplicação.
-=======
-Lastly, the styling in Vue's single-file component's is very flexible. Through [vue-loader](https://github.com/vuejs/vue-loader), you can use any preprocessor, post-processor, and even deep integration with [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html) -- all within the `<style>` element.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Por fim, a estilização em Componentes Single-File no Vue é muito flexível. Através do [vue-loader](https://github.com/vuejs/vue-loader), você pode utilizar qualquer pré-processador, pós-processador ou mesmo integração profunda com [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html) - tudo sem abrir mão de seu elemento `<style>`.
 
 ### Escalabilidade
 
@@ -160,11 +140,7 @@ Vue é muito mais simples que o AngularJS, tanto em termos de API quanto de _des
 
 ### Flexibilidade e Modularidade
 
-<<<<<<< HEAD
 AngularJS tem fortes opiniões sobre como as aplicações devem ser estruturadas, enquanto Vue é uma solução mais flexível e modular. Ainda que isto torne Vue mais adaptável a uma ampla variedade de projetos, reconhecemos que às vezes é útil ter algumas decisões já tomadas para você, para que possa simplesmente sair codificando.
-=======
-AngularJS has strong opinions about how your applications should be structured, while Vue is a more flexible, modular solution. While this makes Vue more adaptable to a wide variety of projects, we also recognize that sometimes it's useful to have some decisions made for you, so that you can just start coding.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 É por isso que oferecemos o [modelo de projeto com webpack](https://github.com/vuejs-templates/webpack) que você pode configurar dentro de poucos minutos, ainda assim concedendo-lhe acesso a recursos avançados como _hot module reloading_, _linting_, extração de CSS, e muito mais.
 
@@ -178,11 +154,7 @@ Vue possui clara separação entre diretivas e componentes. Diretivas são feita
 
 ### Desempenho
 
-<<<<<<< HEAD
 Vue tem melhor desempenho e é muito, muito mais fácil de otimizar, por não utilizar verificação suja de alterações de dados no escopo (_dirty checking_). AngularJS torna-se lento quando há um grande número de observadores (_watchers_), pois a cada vez que qualquer coisa muda no escopo, todos esses observadores precisam ser reavaliados. Além disso, este laço de verificação suja (chamado _digest cycle_), pode ter que executar várias vezes para "estabilizar" se algum observador aciona outra atualização. Usuários do AngularJS por vezes têm de recorrer a técnicas esotéricas para contornar este ciclo e, em algumas situações, não há simplesmente nenhuma maneira de otimizar um escopo com muitos observadores.
-=======
-Vue has better performance and is much, much easier to optimize because it doesn't use dirty checking. AngularJS becomes slow when there are a lot of watchers, because every time anything in the scope changes, all these watchers need to be re-evaluated again. Also, the digest cycle may have to run multiple times to "stabilize" if some watcher triggers another update. AngularJS users often have to resort to esoteric techniques to get around the digest cycle, and in some situations, there's no way to optimize a scope with many watchers.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
 O Vue definitivamente não sofre com isso, pois usa um sistema de observação por rastreamento de dependências transparente, com enfileiramento assíncrono - todas as alterações disparam de forma independente, a menos que tenham dependências explícitas.
 
@@ -194,11 +166,7 @@ Temos uma seção separada para Angular por ser, de fato, um _framework_ complet
 
 ### TypeScript
 
-<<<<<<< HEAD
-Angular essencialmente requer a utilização de TypeScript, dado que quase toda sua documentação e recursos de aprendizado são baseados nesta linguagem. TypeScript tem seus benefícios óbvios - checagem estática de tipos pode ser muito útil para aplicações de larga escala, e pode ser um grande bônus de produtividade para desenvolvedores acostumados com Java e C#.
-=======
-Angular essentially requires using TypeScript, given that almost all its documentation and learning resources are TypeScript-based. TypeScript has its benefits - static type checking can be very useful for large-scale applications, and can be a big productivity boost for developers with backgrounds in Java and C#.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Angular essencialmente requer a utilização de TypeScript, dado que quase toda sua documentação e recursos de aprendizado são baseados nesta linguagem. TypeScript tem seus benefícios - checagem estática de tipos pode ser muito útil para aplicações de larga escala, e pode ser um grande bônus de produtividade para desenvolvedores acostumados com Java e C#.
 
 Entretanto, nem todo mundo quer TypeScript. Em muitos casos de menor escala, introduzir um sistema de tipagem pode resultar em mais sobrecarga do que ganho de produtividade. Nestes casos você estaria melhor seguindo com Vue, afinal utilizar Angular sem TypeScript pode ser desafiador.
 
@@ -208,15 +176,7 @@ Por fim, ainda que não tão profundamente integrado com TypeScript quanto Angul
 
 Em termos de desempenho, ambos os _frameworks_ são excepcionalmente rápidos e não há dados suficientes a partir de casos do mundo real para oferecer um veredito. No entanto, se você está determinado a ver alguns números, Vue 2.0 parece estar à frente do Angular de acordo com este [comparativo independente](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-Versões recentes do Angular, com compilação AOT (_Ahead-Of-Time_) e _tree-shaking_, tem sido capazes de derrubar o tamanho do pacote consideravelmente. No entanto, um projeto Vue 2 cheio de recursos com Vuex + vue-router incluídos (~30kb gzip) ainda é significativamente mais leve do que uma aplicação padrão com AOT gerada pelo `angular-cli` (~130kb gzip).
-=======
-Recent versions of Angular, with AOT compilation and tree-shaking, have been able to get its size down considerably. However, a full-featured Vue 2 project with Vuex + Vue Router included (~30KB gzipped) is still significantly lighter than an out-of-the-box, AOT-compiled application generated by `angular-cli` (~130KB gzipped).
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
-=======
-Recent versions of Angular, with [AOT compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) and [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking), have been able to get its size down considerably. However, a full-featured Vue 2 project with Vuex + Vue Router included (~30KB gzipped) is still significantly lighter than an out-of-the-box, AOT-compiled application generated by `angular-cli` (~130KB gzipped).
->>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
+Versões recentes do Angular, com [compilação AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) (_Ahead-Of-Time_) e [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking), tem sido capazes de derrubar o tamanho do pacote consideravelmente. Todavia, um projeto Vue 2 cheio de recursos com Vuex + Vue Router incluídos (~30KB gzipped) ainda é significativamente mais leve do que uma aplicação padrão, compilada AOT, gerada pelo `angular-cli` (~130KB gzipped).
 
 ### Flexibilidade
 
@@ -226,11 +186,7 @@ Vue é muito menos opinativo que Angular, oferecendo suporte oficial a vários s
 
 Para começar com Vue, tudo que você precisa é familiaridade com HTML e JavaScript versão ES5 (ou seja, JavaScript puro). Com estas habilidades básicas, você pode começar a construir aplicações não triviais com menos de um dia de leitura [do guia](/guide).
 
-<<<<<<< HEAD
-A curva de aprendizado do Angular é muito mais acentuada. A superfície da API do _framework_ é simplesmente enorme e o usuário precisará se familiarizar com muito mais antes de se tornar produtivo. Obviamente, a complexidade do Angular deve-se em grande parte ao seu objetivo de projetar somente aplicações grandes e complexas - mas isso torna o _framework_ muito mais difícil para desenvolvedores menos experientes começarem.
-=======
-Angular's learning curve is much steeper. The API surface of the framework is huge and as a user you will need to familiarize yourself with a lot more concepts before getting productive. The complexity of Angular is largely due to its design goal of targeting only large, complex applications - but that does make the framework a lot more difficult for less-experienced developers to pick up.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+A curva de aprendizado do Angular é muito mais acentuada. A superfície da API do _framework_ é enorme e o usuário precisará se familiarizar com muito mais conceitos antes de se tornar produtivo. A complexidade do Angular deve-se em grande parte ao seu objetivo de projetar somente aplicações grandes e complexas - mas isso torna o _framework_ muito mais difícil para desenvolvedores menos experientes começarem.
 
 ## Ember
 
@@ -266,9 +222,7 @@ Também é totalmente viável oferecermos integração mais profunda entre o Vue
 
 ## Riot
 
-Riot 2.0 fornece um modelo de desenvolvimento baseado em componentes muito similar (os quais são chamados de _tag_ no Riot), com uma API mínima e bem concebida. Riot e Vue provavelmente compartilham muitas filosofias de _design_. No entanto, apesar de ser um pouco mais pesado que Riot, Vue oferece algumas vantagens significativas:
+Riot 3.0 fornece um modelo de desenvolvimento baseado em componentes similar (os quais são chamados de _tag_ no Riot), com uma API mínima e belamente concebida. Riot e Vue provavelmente compartilham muitas filosofias de _design_. No entanto, apesar de ser um pouco mais pesado que Riot, Vue oferece algumas vantagens significativas:
 
-- [Sistema de efeitos de transição](transitions.html). Riot não tem nenhum.
-- Um roteador muito mais poderoso. No Riot, a API de rotas é extremamente mínima.
 - Melhor desempenho. Riot [atravessa a árvore DOM](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) ao invés de utilizar DOM virtual, portanto sofre dos mesmos problemas de desempenho do AngularJS.
 - Mais maturidade no suporte a ferramentas de _build_. Vue oferece suporte oficial a [webpack](https://github.com/vuejs/vue-loader) e [Browserify](https://github.com/vuejs/vueify), enquanto Riot deixa para a comunidade a integração com sistemas de _build_.

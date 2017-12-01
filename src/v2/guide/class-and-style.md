@@ -4,11 +4,7 @@ type: guide
 order: 6
 ---
 
-<<<<<<< HEAD
-Uma necessidade comum de interligação de dados com _templates_ é manipular as classes dos elementos e/ou seus estilos _inline_. Uma vez que ambos são atributos, podemos usar `v-bind` para lidar com eles, mas precisaríamos montar uma String final com nossas expressões. No entanto, mexer com concatenação é irritante e propenso a erros. Por esta razão, Vue fornece aprimoramentos especiais quando `v-bind` é usado com `class` e `style`. Além de Strings, as expressões também podem avaliar Objetos ou Arrays.
-=======
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Uma necessidade comum de interligação de dados é manipular as classes dos elementos e seus estilos _inline_. Uma vez que ambos são atributos, podemos usar `v-bind` para lidar com eles: apenas precisamos calcular uma String final com nossas expressões. No entanto, mexer com concatenação é irritante e propenso a erros. Por esta razão, Vue fornece aprimoramentos especiais quando `v-bind` é usado com `class` e `style`. Além de Strings, as expressões também podem avaliar Objetos ou Arrays.
 
 ## Vinculando em Classes HTML
 
@@ -20,7 +16,7 @@ Podemos passar um objeto para `v-bind:class` para alternar classes dinamicamente
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-A sintaxe acima significa que a presença da classe `active` será determinada pela [veracidade](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) do valor do dado `isActive`.
+A sintaxe acima significa que a presença da classe `active` será determinada pela [veracidade](https://developer.mozilla.org/pt-BR/docs/Glossary/Truthy) do valor do dado `isActive`.
 
 Você pode ter múltiplas classes alternadas por ter mais campos no objeto. Além disso, a diretiva `v-bind:class` também pode coexistir com um atributo de classe "normal". Veja o exemplo:
 
@@ -107,7 +103,7 @@ Se você preferir também alternar entre uma classe na lista condicionalmente, u
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-Isso semple aplicará `errorClass`, mas somente aplicará `activeClass` quando `isActive` for `true`.
+Isso semple aplicará `errorClass`, mas somente aplicará `activeClass` quando `isActive` for equivalente a verdadeiro.
 
 No entanto, isso pode ser um tanto prolixo se você tiver várias classes condicionais. Por isso também é possível usar a sintaxe de objeto dentro da sintaxe de Array:
 
@@ -195,7 +191,7 @@ A sintaxe Array para `v-bind:style` permite que você aplique múltiplos objetos
 
 ### Auto-Prefixação
 
-Quando você usa uma propriedade CSS que requer [prefixos de fabricantes](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix) em `v-bind:style`, por exemplo `transform`, Vue irá automaticamente detectar e adicionar os prefixos apropriados para os estilos aplicados.
+Quando você usa uma propriedade CSS que requer [prefixos de fabricantes](https://developer.mozilla.org/pt-BR/docs/Glossary/Vendor_Prefix) em `v-bind:style`, por exemplo `transform`, Vue irá automaticamente detectar e adicionar os prefixos apropriados para os estilos aplicados.
 
 ### Valores Múltiplos
 

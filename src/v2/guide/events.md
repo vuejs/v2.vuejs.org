@@ -44,11 +44,7 @@ var example1 = new Vue({
 
 ## Métodos em Manipuladores
 
-<<<<<<< HEAD
-A lógica para muitos manipuladores de evento será mais complexa, sendo assim manter diretamente código JavaScript no valor do atributo `v-on` simplesmente não é viável. É por isso que `v-on` também pode aceitar o nome de um método que você gostaria de chamar.
-=======
-The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the `v-on` attribute isn't feasible. That's why `v-on` can also accept the name of a method you'd like to call.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+A lógica para muitos manipuladores de evento será mais complexa, sendo assim manter diretamente código JavaScript no valor do atributo `v-on` não é viável. É por isso que `v-on` também pode aceitar o nome de um método que você gostaria de chamar.
 
 Por exemplo:
 
@@ -214,11 +210,11 @@ Diferente dos outros modificadores, exclusivos para eventos nativos, o `.once` t
 Quando escutamos eventos do teclado, precisamos muitas vezes verificar a ocorrência de códigos de teclas comuns. O Vue também permite a adição de modificadores `v-on` ao escutar eventos de teclado:
 
 ``` html
-<!-- só chama vm.submit() quando o keyCode é 13 -->
+<!-- só chama `vm.submit()` quando o `keyCode` é 13 -->
 <input v-on:keyup.13="submit">
 ```
 
-Se lembrar do código de todas as teclas é uma chatice, então o Vue fornece apelidos para as teclas mais usadas:
+Se lembrar de todos os `keyCode` é uma chatice, então o Vue fornece apelidos para as teclas mais usadas:
 
 ``` html
 <!-- igual o acima -->
@@ -243,13 +239,27 @@ Lista completa dos apelidos de modificadores de tecla:
 Se necessário, defina [apelidos personalizados](../api/#keyCodes) através do objeto global `config.keyCodes`:
 
 ``` js
-// habilita v-on:keyup.f1
+// habilita `v-on:keyup.f1`
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Teclas Modificadoras
+### Modificadores de Tecla Automáticos
 
-> Novo em 2.1.0
+> Novo em 2.5.0+
+
+Você também pode diretamente utilizar qualquer nome de chave válido exposto via [`KeyboardEvent.key`](https://developer.mozilla.org/pt-BR/docs/Web/API/KeyboardEvent/key/Key_Values) como modificador convertendo-o para _kebab-case_:
+
+``` html
+<input @keyup.page-down="onPageDown">
+```
+
+No exemplo acima, o gatilho será chamado se `$event.key === 'PageDown'`.
+
+<p class="tip">Algumas teclas (`.esc` e teclas de setas) tem valores `key` inconsistentes no IE9, os apelidos pré-definidos do Vue devem ser preferidos se você precisar suportar IE9.</p>
+
+## Teclas Modificadoras de Sistema
+
+> Novo em 2.1.0+
 
 Você pode utilizar os modificadores a seguir para acionar eventos de _mouse_ ou teclado apenas quando o modificador correspondente estiver acionado:
 
@@ -272,6 +282,20 @@ Por exemplo:
 
 <p class="tip">Teclas modificadoras são diferentes de teclas comuns, e quando utilizadas com eventos `keyup`, precisam estar pressionadas quando o evento é emitido. Em outras palavras, `keyup.ctrl` só vai disparar se você soltar alguma tecla enquanto ainda estiver segurando `ctrl`. E não irá disparar se você soltar a tecla `ctrl` sozinha.</p>
 
+### Modificar `.exact`
+
+> Novo em 2.5.0+
+
+O modificador `.exact` mdeve ser utilizado combinado com outros modificadores de sistema para indicar que aquela combinação exata de modificadores deve ser pressionada para que o gatilho dispare.
+
+``` html
+<!-- irá disparar mesmo se Alt ou Shift também estiverem pressionados -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- irá disparar somente quando Ctrl estiver pressionado -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+```
+
 ### Modificadores de Mouse
 
 > Novo em 2.2.0+
@@ -286,11 +310,7 @@ Estes modificadores restrigem o manipulador a eventos disparados por um botão e
 
 Você pode estar pensando que esta abordagem de escutas de evento viola as boas e velhas práticas sobre "separação de responsabilidades". Fique tranquilo - como todas as funções de manipuladores e expressões Vue são estritamente ligadas ao _ViewModel_ que está manipulando o modo de exibição atual, essa abordagem não causará qualquer dificuldade de manutenção. Na verdade, há vários benefícios em usar `v-on` no _template_:
 
-<<<<<<< HEAD
-1. É mais fácil de localizar as implementações de função de manipulador dentro de seu código JS simplesmente deslizando o dedo sobre o _template_ HTML.
-=======
-1. It's easier to locate the handler function implementations within your JS code by skimming the HTML template.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+1. É mais fácil localizar as implementações de função de manipulador dentro de seu código JS deslizando sobre o _template_ HTML.
 
 2. Como você não tem que manualmente anexar escutas a eventos em JS, seu código de _ViewModel_ pode conter apenas a lógica pura e está livre de manipulação DOM. Isto torna mais fácil de testar.
 

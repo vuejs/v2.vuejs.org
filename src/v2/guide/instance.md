@@ -6,7 +6,7 @@ order: 3
 
 ## Criando a Instância Vue
 
-Toda aplicação Vue é inicializada através da criação de uma nova **instância Vue** com a função `Vue`:
+Toda aplicação Vue é iniciada com a criação de uma nova **instância Vue** com a função `Vue`:
 
 ``` js
 var vm = new Vue({
@@ -59,17 +59,13 @@ data.a = 3
 vm.a // => 3
 ```
 
-Quando este dado for modificado, a camada visual irá re-renderizar. Deve-se observar que propriedades em `data` são **reativas** somente se já existem desde quando a instância foi criada. Significa que se você adicionar uma nova propriedade, como:
+Quando este dado for modificado, a camada visual irá "re-renderizar". Deve-se observar que propriedades em `data` são **reativas** somente se já existem desde quando a instância foi criada. Significa que se você adicionar uma nova propriedade, como:
 
 ``` js
 vm.b = 'hi'
 ```
 
-<<<<<<< HEAD
-Então as mudanças em `b` não irão disparar qualquer atualização na interface. Se você sabe que precisará de uma propriedade no futuro, mas ela inicia vazia ou não existente, apenas especifique algum valor inicial para ela. Por exemplo:
-=======
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Então as mudanças em `b` não irão disparar qualquer atualização na interface. Se você sabe que precisará de uma propriedade no futuro, mas ela inicia vazia ou não existente, precisará especificar algum valor inicial. Por exemplo:
 
 ``` js
 data: {
@@ -123,7 +119,7 @@ new Vue({
 Existem outros gatilhos (em inglês, _hooks_) chamados em diferentes etapas do ciclo de vida da instância, como [`mounted`](../api/#mounted), [`updated`](../api/#updated) e [`destroyed`](../api/#destroyed). Qualquer gatilho de ciclo de vida é executado com seu contexto `this` apontando para a instância Vue que o invocou.
 
 <p class="tip">
-Não utilize [arrow functions](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions) em propriedades de opções ou _callback_, como em `created: () => console.log(this.a)` ou `vm.$watch('a', newValue => this.myMethod())`. Como as _arrow functions_ são vinculadas ao contexto pai, `this` não representará a instância Vue como você pode esperar, ou seja, `this.a` ou `this.myMethod` estarão indefinidos.
+Não utilize [arrow functions](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions) em propriedades de opções ou _callback_, como em `created: () => console.log(this.a)` ou `vm.$watch('a', newValue => this.myMethod())`. Como as _arrow functions_ são vinculadas ao contexto pai, `this` não representará a instância Vue como você pode esperar, frequentemente resultando em erros como `Uncaught TypeError: Cannot read property of undefined` ou `Uncaught TypeError: this.myMethod is not a function`.
 </p>
 
 ## Diagrama do Ciclo de Vida

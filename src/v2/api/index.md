@@ -44,7 +44,7 @@ type: api
 
   A estratégia de mesclagem recebe o valor da opção definida no pai e nas instâncias filhas como o primeiro e segundo argumento, repectivamente. O contexto da instância Vue é passado como o terceiro argumento.
 
-- **Ver também:** [Estratégias de Mesclagem de Opções Customizadas](../guide/mixins.html#Estrategias-de-Mesclagem-de-Opcoes-Customizadas)
+- **Ver também:** [Estratégias de Mesclagem de Opções Personalizadas](../guide/mixins.html#Estrategias-de-Mesclagem-de-Opcoes-Personalizadas)
 
 ### devtools
 
@@ -105,7 +105,7 @@ type: api
 
 ### ignoredElements
 
-- **Tipo:** `Array<string>`
+- **Tipo:** `Array<string | RegExp>`
 
 - **Padrão:** `[]`
 
@@ -113,7 +113,11 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'my-custom-web-component',
+    'another-web-component',
+    // Use a `RegExp` to ignore all elements that start with "ion-"
+    // 2.5+ only
+    /^ion-/
   ]
   ```
 
@@ -155,7 +159,7 @@ type: api
 
 - **Uso:**
 
-  Defina `true` para habilitar o rastreamento de desempenho do _init_, _compile_, _render_ e _patch_ do componente na linha-do-tempo de inspeção do navegador. Só funciona no modo de desenvolvimento e em navegadores que suportam a API do [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark).
+  Defina `true` para habilitar o rastreamento de desempenho do _init_, _compile_, _render_ e _patch_ do componente na linha-do-tempo de inspeção do navegador. Só funciona no modo de desenvolvimento e em navegadores que suportam a API do [performance.mark](https://developer.mozilla.org/pt-BR/docs/Web/API/Performance/mark).
 
 ### productionTip
 
@@ -229,11 +233,7 @@ type: api
   })
   ```
 
-<<<<<<< HEAD
-  > Novo em 2.1.0+: retorna uma Promise se nenhum callback é fornecido e Promise for suportada no ambiente de execução.
-=======
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
->>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
+  > Novo em 2.1.0+: retorna uma Promise se nenhum _callback_ é fornecido e Promise tiver suporte no ambiente de execução. Observe que Vue não vem com um _polyfill_ para Promise, portanto, se seu navegador alvo não oferece suporte a Promises (estamos olhando para você, IE), você precisará escolher um _polyfill_ por sua conta.
 
 - **Ver também:** [Fila de Atualização Assíncrona](../guide/reactivity.html#Async-Update-Queue)
 
@@ -260,11 +260,7 @@ type: api
   - `{Object | Array} target`
   - `{string | number} key/index`
 
-<<<<<<< HEAD
-  > Somente funciona com Array + index em 2.2.0+.
-=======
-  > Only in 2.2.0+: Also works with Array + index.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  > Somente em 2.2.0+: Também funciona com Array + index.
 
 - **Uso:**
 
@@ -294,11 +290,7 @@ type: api
     unbind: function () {}
   })
 
-<<<<<<< HEAD
-  // registra (diretiva de função simples)
-=======
-  // register (function directive)
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  // registra (diretiva de função)
   Vue.directive('my-directive', function () {
     // isto será chamado como `bind` e `update`
   })
@@ -413,11 +405,7 @@ type: api
   } else if (version === 1) {
     // Vue v1.x.x
   } else {
-<<<<<<< HEAD
     // Versões não suportadas do Vue
-=======
-    // Unsupported versions of Vue
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
   }
   ```
 
@@ -431,11 +419,7 @@ type: api
 
 - **Detalhes:**
 
-<<<<<<< HEAD
-  O objeto `data` para a instância do Vue. Vue, recursivamente, converterá esta propriedade em getter/setters para tornar isto "reativo". **O objeto deve ser simples**: objetos nativos como API do navegador e propriedades _prototype_ são ignoradas. A regra geral é: data deverá ser somente dados - não é recomendável observar objetos com seu proprio comportamento stateful.
-=======
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with their own stateful behavior.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  O objeto `data` para a instância do Vue. Vue irá recursivamente converter esta propriedade em _getter_/_setters_ para tornar "reativo". **O objeto deve ser simples**: objetos nativos como API do navegador e propriedades _prototype_ são ignoradas. A regra geral é: `data` deverá ser somente dados - não é recomendável observar objetos que têm seu próprio comportamento _stateful_.
 
   Como observado, você não pode adicionar propriedades reativas ao objeto data raiz. É recomendado declarar todas as propriedades 'nível raiz' reativas com antecedencia, antes da criação da instância.
 
@@ -443,11 +427,7 @@ type: api
 
   Propriedades que comecem com `_` ou `$` **não** será feito proxy na instância do Vue porque eles podem conflitar com métodos de API ou propriedades internas do Vue. Você terá de acessar elas com `vm.$data._property`.
 
-<<<<<<< HEAD
-  Quando definindo um **componente**, `data` deve ser declarado como uma função que retorna o estado inicial do objeto data, porque haverá muitas instâncias criadas usando a mesma definição. Se ainda estivermos usando um objeto simples para `data`, este mesmo objeto será **compartilhado por referência** por todas as instâncias criadas! Providenciando uma função `data`, toda vez que uma nova instância é criada, podemos simplesmente chamar isto para retornar uma nova cópia do dado inicial.
-=======
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  Quando definindo um **componente**, `data` deve ser declarado como uma função que retorna o objeto de dados inicial, pois haverá muitas instâncias criadas usando a mesma definição. Se usarmos um objeto simples para `data`, este mesmo objeto será **compartilhado por referência** entre todas as instâncias criadas! Provendo uma função `data`, toda vez que uma nova instância é criada, podemos chamá-la para retornar uma nova cópia do dado inicial.
 
   Se necessário, uma cópia profunda do objeto original pode ser obtida passando `vm.$data` através de `JSON.parse(JSON.stringify(...))`.
 
@@ -481,11 +461,7 @@ type: api
 
 - **Detalhes:**
 
-<<<<<<< HEAD
-  Uma lista/hash de atributos que são expostos para aceitar dados do componente pai. Tem tanto uma sintaxe baseada em Array como, alternativamente, uma sintaxe baseada em Objeto que permite configurações avançadas como checagem de tipos, validações personalizadas e valores padrões.
-=======
-  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  Uma lista/_hash_ de atributos que são expostos para aceitar dados do componente pai. Possui tanto uma sintaxe baseada em Array como, alternativamente, uma sintaxe baseada em Object, que permite configurações avançadas como checagem de tipos, validações personalizadas e valores padrão.
 
 - **Exemplo:**
 
@@ -498,11 +474,7 @@ type: api
   // sintaxe de objeto com validação  
   Vue.component('props-demo-advanced', {
     props: {
-<<<<<<< HEAD
-      // somente checagem de tipos 
-=======
-      // type check
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+      // checagem de tipos 
       height: Number,
       // checagem de tipos com validações
       age: {
@@ -562,11 +534,7 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-<<<<<<< HEAD
-      // somente get, somente precisa de uma função
-=======
-      // get only
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+      // somente get
       aDouble: function () {
         return this.a * 2
       },
@@ -631,7 +599,8 @@ type: api
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (val, oldVal) {
@@ -643,6 +612,11 @@ type: api
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
+      },
+      // the callback will be called immediately after the start of the observation
+      d: {
+        handler: function (val, oldVal) { /* ... */ },
+        immediate: true
       }
     }
   })
@@ -746,11 +720,7 @@ type: api
 
 - **Detalhes:**
 
-<<<<<<< HEAD
-  Invocado sincronicamente logo após a instância ser inicializada, antes da observação de dados e configuração event/watcher.
-=======
-  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  Invocado sincronicamente logo após a instância ser inicializada, antes da observação de dados e configuração de eventos e observadores.
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
 
@@ -782,11 +752,7 @@ type: api
 
 - **Detalhes:**
 
-<<<<<<< HEAD
   Invocado logo após a instância ter sido montada, onde `el` é substituído pelo recém criado `vm.$el`. Se a instância raiz é montada em um elemento já presente no documento, `vm.$el` também estará presente no documento quando `mounted` for invocada.
-=======
-  Called after the instance has been mounted, where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 
   Observe que o `mounted` **não** garante que todos os componentes filhos também já tenham sido montados. Se você quiser esperar até que toda a camada _view_ do componente em questão tiver sido renderizada, você pode utilizar [vm.$nextTick](#vm-nextTick) dentro do `mounted`:
 
@@ -896,6 +862,28 @@ type: api
 
 - **Ver também:** [Diagrama do Ciclo de Vida](../guide/instance.html#Diagrama-do-Ciclo-de-Vida)
 
+### errorCaptured
+
+> Novo em 2.5.0+
+
+- **Tipo:** `(err: Error, vm: Component, info: string) => ?boolean`
+
+- **Detalhes:**
+
+  Invocado quando um erro emitido por qualquer componente descendente é capturado. O gatilho recebe três argumentos: o erro, a instância do componente que disparou o erro, e uma String contendo informações sobre onde o erro foi caputado. O gatilho pode retornar `false` para impedir o erro de continuar se propagando.
+
+  <p class="tip">Você pode modificar o estado do componente neste gatilho. Entretanto, é importante possuir condicionais em seu _template_ ou função de renderização que alterne para outro conteúdo quando um erro tiver sido caputarado; caso contrário, o componente cairá em um _loop_ infinito de renderização.</p>
+
+  **Regras de Propagação de Erros**
+
+  - Por padrão, todos os erros ainda são enviados para o global `config.errorHandler` se estiver definido, desta forma estes erros ainda podem ser reportados a algum serviço de análise em um local único.
+
+  - Se múltiplos gatilhos `errorCaptured` exitirem em uma cadeia de heranças ou em uma cadeia de componentes pai, todos serão invocados pelo mesmo erro.
+
+  - Se o próprio gatilho `errorCaptured` dispara um erro, tanto este erro quanto o original são capturados e enviados ao gatilho global `config.errorHandler`.
+
+  - Um gatilho `errorCaptured` pode retornar `false` para previnir o erro de continuar se propagando. Isto essencialmente diria "este erro já foi interceptado e deve ser ignorado." Irá previnir quaisquer gatilhos `errorCaptured` adicionais e o global `config.errorHandler` de serem invocados por este erro.
+
 ## Opções / Recursos
 
 ### directives
@@ -946,11 +934,7 @@ type: api
 
 - **Detalhes:**
 
-<<<<<<< HEAD
-  A opção `mixins` aceita um vetor de objetos mixin. Esses objetos _mixin_ podem conter options da instância assim com as instâncias de objetos normais, e ele serão combinados com as eventuais opções usando a mesma lógica de combinação no `Vue.extend()`. Por exemplo, Se seu _mixin_ contém um gatilho _created_ e o componente por si só também contém um, as duas funções serão chamadas.
-=======
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  A opção `mixins` aceita um Array de objetos _mixin_. Esses objetos _mixin_ podem conter `options` da instância assim como as instâncias de objetos normais, e eles serão combinados com as eventuais opções usando a mesma lógica de combinação no `Vue.extend()`. Por exemplo, se o seu _mixin_ contém um gatilho _created_ e o componente por si só também contém um, as duas funções serão chamadas.
 
   Os gatilhos de _mixin_ são chamados na ordem em que são fornecidos, e chamados antes dos hooks do próprio componente.
 
@@ -998,7 +982,7 @@ type: api
 
 - **Tipo:**
   - **provide:** `Object | () => Object`
-  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
 - **Detalhes:**
 
@@ -1077,6 +1061,42 @@ type: api
   }
   ```
 
+  > Em 2.5.0+ injeções podem ser opcionais com um valor padrão:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: { default: 'foo' }
+    }
+  }
+  ```
+
+  Se precisar ser injetado a partir de uma propriedade com um nome diferente, use `from` para identificar a propriedade de origem:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: 'foo'
+      }
+    }
+  }
+  ```
+
+  Similar aos valores padrão em `props`, você precisa usar uma função de fábrica para valores não primitivos:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: () => [1, 2, 3]
+      }
+    }
+  }
+  ```
+
 ## Opções / Diversos
 
 ### name
@@ -1119,11 +1139,7 @@ type: api
 
 - **Detalhes:**
 
-<<<<<<< HEAD
-  Faz com que um componente seja *stateless* (ou seja, não possui `data`) and *instanceless* (ou seja, não possui o contexto `this`). Componentes com esta opção habilitada serão apenas uma função `render` que retorna nós virtuais, fazendo com que sejam muito menos custosos para renderizar.
-=======
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  Faz com que um componente seja _stateless_ (ou seja, não possui `data`) e _instanceless_ (ou seja, não possui o contexto `this`). Componentes com esta opção habilitada serão apenas uma função `render` que retorna nós virtuais, fazendo com que sejam muito menos custosos para renderizar.
 
 - **Ver também:** [Componentes funcionais](../guide/render-function.html#Functional-Components)
 
@@ -1412,13 +1428,9 @@ type: api
 
 - **Uso:**
 
-<<<<<<< HEAD
-  Observa (em busca de mudanças) uma expressão ou uma função computada na instância do Vue. A função de *callback* é chamada com o novo e o antigo valor. A expressão somente aceita caminhos delimitados por pontos. Para expressões mais complexas, utilize uma função.
-=======
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  Observa por mudanças uma expressão ou uma função computada na instância do Vue. A função _callback_ é chamada com o novo valor e o antigo. A expressão somente aceita caminhos delimitados por pontos. Para expressões mais complexas, utilize uma função.
 
-  <p class="tip">Nota: quando se está alterando (ao invés de substituindo) um objeto ou um *Array*, o valor antigo será igual ao novo valor, pois eles referenciam o mesmo objeto/*Array*. O Vue não mantém uma cópia dos valores antes de serem mutados.</p>
+  <p class="tip">Nota: quando se está alterando (ao invés de substituindo) um objeto ou um Array, o valor antigo será igual ao novo valor, pois eles referenciam o mesmo objeto/Array. O Vue não mantém uma cópia dos valores antes de serem mutados.</p>
 
 - **Exemplo:**
 
@@ -1439,7 +1451,7 @@ type: api
   )
   ```
 
-  `vm.$watch` retorna uma função *unwatch*, que para de lançar o *callback*:
+  `vm.$watch` retorna uma função *unwatch*, que para de lançar o _callback_:
 
   ``` js
   var unwatch = vm.$watch('a', cb)
@@ -1449,7 +1461,7 @@ type: api
 
 - **Opção: deep**
 
-  Para também detectar valores aninhados dentro de objetos, você deve passar `deep: true` nas opções. Note que você não precisa fazer isso para mutações em *Array*.
+  Para também detectar valores aninhados dentro de objetos, você deve passar `deep: true` nas opções. Note que você não precisa fazer isso para mutações em Array.
 
   ``` js
   vm.$watch('someObject', callback, {
@@ -1461,7 +1473,7 @@ type: api
 
 - **Opção: immediate**
 
-  Passar `immediate: true` nas opções irá acionar a função de *callback* imediatamente com o novo valor da expressão:
+  Passar `immediate: true` nas opções irá acionar a função de _callback_ imediatamente com o novo valor da expressão:
 
   ``` js
   vm.$watch('a', callback, {
@@ -1507,7 +1519,7 @@ type: api
 
 - **Uso:**
 
-  Escuta um evento customizado na *vm* atual. Eventos podem ser lançados utilizando `vm.$emit`. A função de *callback* irá receber todos os argumentos adicionais passados nos métodos que lançam eventos.
+  Escuta um evento personalizado na *vm* atual. Eventos podem ser lançados utilizando `vm.$emit`. A função de _callback_ irá receber todos os argumentos adicionais passados nos métodos que lançam eventos.
 
 - **Exemplo:**
 
@@ -1527,7 +1539,7 @@ type: api
 
 - **Uso:**
 
-  Escuta um evento customizado, porém somente uma vez. O *listener* será removido assim que for acionado pela primeira vez.
+  Escuta um evento personalizado, porém somente uma vez. A escuta será removida assim que for acionada pela primeira vez.
 
 <h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
@@ -1537,13 +1549,13 @@ type: api
 
 - **Uso:**
 
-  Remove *listener(s)* de eventos customizados.
+  Remove escutas de eventos personalizados.
 
-  - Se nenhum argumento é passado, esta função irá remover todos os *listeners*;
+  - Se nenhum argumento é passado, esta função irá remover todas as escutas;
 
-  - Se apenas o evento é passado, esta função irá remover todos os *listeners* para este evento;
+  - Se apenas o evento é passado, esta função irá remover todas as escutas para este evento;
 
-  - Se tanto o evento quanto o *callback* forem passados, esta função somente irá remover o *listener* para este *callback* específico.
+  - Se tanto o evento quanto o _callback_ forem passados, esta função somente irá remover a escuta para este _callback_ específico.
 
 <h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
@@ -1551,7 +1563,7 @@ type: api
   - `{string} event`
   - `[...args]`
 
-  Lança um evento na instância atual. Qualquer argumento adicional será passado para a função de *callback* do *listener*.
+  Lança um evento na instância atual. Qualquer argumento adicional será passado para a função de _callback_ da escuta.
 
 ## Métodos da Instância / Ciclo-de-Vida
 
@@ -1606,13 +1618,9 @@ type: api
 
 - **Uso:**
 
-  Adia a execução do *callback* para o próximo ciclo de atualização. Use esta função imediatamente após você alterar algum dado para esperar pela atualização do DOM. Este método é o mesmo que a função global `Vue.nextTick`, exceto que o contexto do `this` no *callback* é automaticamente vinculado (*bound*) à instância que chama este método.
+  Adia a execução do _callback_ para o próximo ciclo de atualização. Use esta função imediatamente após você alterar algum dado para esperar pela atualização do DOM. Este método é o mesmo que a função global `Vue.nextTick`, exceto que o contexto do `this` no _callback_ é automaticamente vinculado (*bound*) à instância que chama este método.
 
-<<<<<<< HEAD
-  > Novo em 2.1.0+: retorna uma Promise se nenhum *callback* é provido, e Promise é suportada no ambiente de execução.
-=======
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
->>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
+  > Novo em 2.1.0+: retorna uma Promise se nenhum _callback_ é fornecido e Promise tiver suporte no ambiente de execução. Observe que Vue não vem com um _polyfill_ para Promise, portanto, se seu navegador alvo não oferece suporte a Promises (estamos olhando para você, IE), você precisará escolher um _polyfill_ por sua conta.
 
 - **Exemplo:**
 
@@ -1643,7 +1651,7 @@ type: api
 
 - **Uso:**
 
-  Destrói completamente a *vm*. Limpa todas as suas conexões com outras *vms*, desvincula (*unbind*) todas as suas diretivas e desliga todos os *listeners* de eventos.
+  Destrói completamente a *vm*. Limpa todas as suas conexões com outras *vms*, desvincula (*unbind*) todas as suas diretivas e desliga todas as escutas de eventos.
 
   Aciona os *hooks* `beforeDestroy` e `destroyed`.
 
@@ -1680,6 +1688,8 @@ type: api
   Atualiza o `innerHTML` do elemento. **Perceba que os conteúdos são inseridos como HTML puro - eles não serão compilados como templates Vue**. Se você se pegar tentando compor templates usando `v-html`, ao invés disso tente repensar a solução usando componentes.
 
   <p class="tip">Renderizar dinamicamente HTML arbitrário em seu website pode ser muito perigoso porque isso pode facilmente levar a [ataques XSS](https://pt.wikipedia.org/wiki/Cross-site_scripting). Use `v-html` somente em conteúdo confiável e **nunca** em conteúdo fornecido por usuário.</p>
+
+  <p class="tip">Em [Componentes Single-File](../guide/single-file-components.html), estilos `scoped` não serão aplicados a conteúdos `v-html`, pois tal HTML não é processado pelo compilador de _templates_ do Vue. Se você quer atingir conteúdo `v-html` com CSS com escopo, é possível utilizar [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html) ou um elemento global adicional `<style>`, com uma estratégia manual de scopo como BEM.</p>
 
 - **Exemplo:**
 
@@ -1826,11 +1836,7 @@ type: api
 
 - **Uso:**
 
-<<<<<<< HEAD
-  Atribui um escutador de evento ao elemento. O tipo de evento é denotado pelo argumento. A expressão pode ser um nome de método, uma declaração em linha ou simplesmente omitida quando há modificadores presentes.
-=======
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  Atribui uma escuta de evento ao elemento. O tipo de evento é denotado pelo argumento. A expressão pode ser um nome de método, uma declaração em linha, ou omitida quando há modificadores presentes.
 
   Começando na 2.4.0+, `v-on` também suporta interligação a um objeto de pares evento/escutador sem argumentos. Note que, quando se usa a sintaxe de objeto, não há suporte para quaisquer modificadores.
 
@@ -1899,17 +1905,10 @@ type: api
 
 - **Argumento:** `attrOrProp (opcional)`
 
-<<<<<<< HEAD
 - **Modificadores:**
-  - `.prop` - Interliga como uma propriedade DOM ao invés de um atributo ([qual a diferença?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Se a _tag_ é um componente, então `.prop` irá definir a propriedade no `$el` do componente.
+  - `.prop` - Interliga como uma propriedade DOM ao invés de um atributo ([qual a diferença?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). Se a _tag_ é um componente, então `.prop` irá definir a propriedade no `$el` do componente.
   - `.camel` - (2.1.0+) transforma o nome do atributo de kebab-case para camelCase.
-  - `.sync` - (2.3.0+) um açúcar sintático que se expande em um `v-on` para atualizar o valor vinculado.
-=======
-- **Modifiers:**
-  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
-  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
-  - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+  - `.sync` - (2.3.0+) um "açúcar sintático" que se expande em um `v-on` para atualizar o valor vinculado.
 
 - **Uso:**
 
@@ -2122,6 +2121,28 @@ type: api
   Para maiores detalhes de uso, veja a sessão no guia linkado abaixo:
 
 - **Ver também:** [Named Slots](../guide/components.html#Named-Slots)
+
+### slot-scope
+
+> New in 2.5.0+
+
+- **Expects:** `function argument expression`
+
+- **Usage:**
+
+  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+
+  This attribute does not support dynamic binding.
+
+- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
+
+### scope <sup>replaced</sup>
+
+Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
 
 ### is
 

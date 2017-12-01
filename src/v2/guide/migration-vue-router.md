@@ -4,11 +4,7 @@ type: guide
 order: 702
 ---
 
-<<<<<<< HEAD
-> Somente Vue Router 2 é compatível com Vue 2, então se você estiver atualizando o Vue, terá de atualizar também o Vue Router. Esta é a razão pela qual incluímos detalhes de migração aqui na documentação principal. Para um guia completo em como usar o novo Vue Router, veja a [documentação do Vue Router](http://router.vuejs.org/en/).
-=======
-> Only Vue Router 2 is compatible with Vue 2, so if you're updating Vue, you'll have to update Vue Router as well. That's why we've included details on the migration path here in the main docs. For a complete guide on using the new Vue Router, see the [Vue Router docs](https://router.vuejs.org/en/).
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+> Somente Vue Router 2 é compatível com Vue 2, então se você estiver atualizando o Vue, terá de atualizar também o Vue Router. Esta é a razão pela qual incluímos detalhes de migração aqui na documentação principal. Para um guia completo em como usar o novo Vue Router, veja a [documentação do Vue Router](https://router.vuejs.org/en/).
 
 ## Inicialização do Roteador
 
@@ -22,11 +18,7 @@ router.start({
 }, '#app')
 ```
 
-<<<<<<< HEAD
-Apenas passe uma propriedade router para a instância Vue:
-=======
-You pass a router property to a Vue instance:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Passe uma propriedade `router` para a instância Vue:
 
 ``` js
 new Vue({
@@ -55,14 +47,9 @@ new Vue({
 
 ## Definição de Rotas
 
-
-<<<<<<< HEAD
 ### `router.map` <sup>alterado</sup>
 
-Rotas são agora definidas como um Array em uma [opção `routes`](http://router.vuejs.org/en/essentials/getting-started.html#javascript) na inicialização do roteador. Então estas rotas, por exemplo:
-=======
-Routes are now defined as an array on a [`routes` option](https://router.vuejs.org/en/essentials/getting-started.html#javascript) at router instantiation. So these routes for example:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Rotas são agora definidas como um Array em uma [opção `routes`](https://router.vuejs.org/en/essentials/getting-started.html#javascript) na inicialização do roteador. Então estas rotas, por exemplo:
 
 ``` js
 router.map({
@@ -167,11 +154,7 @@ router.beforeEach(function (to, from, next) {
 
 ### `subRoutes` <sup>renomeado</sup>
 
-<<<<<<< HEAD
-[Renomeado para `children`](http://router.vuejs.org/en/essentials/nested-routes.html) para consistência com Vue e com outras bibliotecas de rotas.
-=======
-[Renamed to `children`](https://router.vuejs.org/en/essentials/nested-routes.html) for consistency within Vue and with other routing libraries.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+[Renomeado para `children`](https://router.vuejs.org/en/essentials/nested-routes.html) para consistência com Vue e com outras bibliotecas de rotas.
 
 {% raw %}
 <div class="upgrade-path">
@@ -180,14 +163,9 @@ router.beforeEach(function (to, from, next) {
 </div>
 {% endraw %}
 
-
-<<<<<<< HEAD
 ### `router.redirect` <sup>alterado</sup>
 
-Isto agora é uma [opção da definição de uma rota](http://router.vuejs.org/en/essentials/redirect-and-alias.html). Então, por exemplo, você atualizará:
-=======
-This is now an [option on route definitions](https://router.vuejs.org/en/essentials/redirect-and-alias.html). So for example, you will update:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Isto agora é uma [opção da definição de uma rota](https://router.vuejs.org/en/essentials/redirect-and-alias.html). Então, por exemplo, você atualizará:
 
 ``` js
 router.redirect({
@@ -211,14 +189,9 @@ Para uma definição conforme exibido abaixo, na configuração de suas `routes`
 </div>
 {% endraw %}
 
-
-<<<<<<< HEAD
 ### `router.alias` <sup>alterado</sup>
 
-Isto agora é uma [opção da definição da rota](http://router.vuejs.org/en/essentials/redirect-and-alias.html) de destino. Então, por exemplo, você atualizará:
-=======
-This is now an [option on the definition for the route](https://router.vuejs.org/en/essentials/redirect-and-alias.html) you'd like to alias to. So for example, you will update:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Isto agora é uma [opção da definição da rota](https://router.vuejs.org/en/essentials/redirect-and-alias.html) de destino. Então, por exemplo, você atualizará:
 
 ``` js
 router.alias({
@@ -248,7 +221,6 @@ alias: ['/manage', '/administer', '/administrate']
   <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos de <code>router.alias</code>.</p>
 </div>
 {% endraw %}
-
 
 ### Propriedades Arbitrárias em Rotas <sup>substituído</sup>
 
@@ -288,16 +260,15 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
-<!-- TODO -->
-### [] Syntax for Arrays in Queries <sup>removed</sup>
+### Sintaxe para Arrays em Queries <sup>removed</sup>
 
-When passing arrays to query parameters the QueryString syntax is no longer `/foo?users[]=Tom&users[]=Jerry`, instead, the new syntax is `/foo?users=Tom&users=Jerry`. Internally, `$route.query.users` will still be an Array, but if there's only one parameter in the query: `/foo?users=Tom`, when directly accessing this route, there's no way for the router to know if we were expecting `users` to be an Array. Because of this, consider adding a computed property and replacing every reference of `$route.query.users` with it:
+Ao passar Arrays como parâmetros de queries, a sintaxe da _query string_ não é mais `/foo?users[]=Tom&users[]=Jerry`. Ao invés disto, a nova sintaxe é `/foo?users=Tom&users=Jerry`. Internamente, `$route.query.users` ainda será um Array, mas se houver somente um parâmetro na _query_: `/foo?users=Tom`, ao acessar diretamente esta rota, não haverá uma maneira do roteador saber se estamos esperando que `users` seja um Array. Por este motivo, considere adicionar um dado computado, substituindo qualquer acesso a `$route.query.users` por ele:
 
 ```javascript
 export default {
   // ...
   computed: {
-    // users will always be an array
+    // assim, `users` serão serão um Array
     users () {
       const users = this.$route.query.users
       return Array.isArray(users) ? users : [users]
@@ -310,14 +281,12 @@ export default {
 
 Agora a identificação das rotas utiliza [path-to-regexp](https://github.com/pillarjs/path-to-regexp) em seu interior, tornando-a muito mais flexível do que anteriormente.
 
-
 ### Um ou Mais Parâmetros Nomeados <sup>alterado</sup>
 
 A sintaxe mudou levemente, assim `/category/*tags`, por exemplo, deveria ser atualizado para `/category/:tags+`.
 
 {% raw %}
 <div class="upgrade-path">
-
   <h4>Caminho para Atualização</h4>
   <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos de sintaxe de rotas com regras obsoletas.</p>
 </div>
@@ -325,14 +294,9 @@ A sintaxe mudou levemente, assim `/category/*tags`, por exemplo, deveria ser atu
 
 ## Links
 
-
-<<<<<<< HEAD
 ### `v-link` <sup>substituído</sup>
 
-A diretiva `v-link` foi substituída por um novo [componente `<router-link>`](http://router.vuejs.org/en/api/router-link.html), visto que este tipo de tarefa é exclusivamente responsabilidade de componentes no Vue 2. Isso significa que em qualquer lugar que você tiver um *link* como este:
-=======
-The `v-link` directive has been replaced with a new [`<router-link>` component](https://router.vuejs.org/en/api/router-link.html), as this sort of job is now solely the responsibility of components in Vue 2. That means whenever wherever you have a link like this:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+A diretiva `v-link` foi substituída por um novo [componente `<router-link>`](https://router.vuejs.org/en/api/router-link.html), visto que este tipo de tarefa é exclusivamente responsabilidade de componentes no Vue 2. Isso significa que em qualquer lugar que você tiver um _link_ como este:
 
 ``` html
 <a v-link="'/about'">Sobre</a>
@@ -344,7 +308,7 @@ Você precisará atualizá-lo desta forma:
 <router-link to="/about">Sobre</router-link>
 ```
 
-Note that `target="_blank"` is not supported on `<router-link>`, so if you need to open a link in a new tab, you have to use `<a>` instead.
+Observe que `target="_blank"` não é suportado no `<router-link>`, então se precisar forçar um _link_ a abrir em uma nova aba, terá de utilizar `<a>` em seu lugar.
 
 {% raw %}
 <div class="upgrade-path">
@@ -355,11 +319,7 @@ Note that `target="_blank"` is not supported on `<router-link>`, so if you need 
 
 ### `v-link-active` <sup>substituído</sup>
 
-<<<<<<< HEAD
-A diretiva `v-link-active` também foi removida em favor de se especificar uma *tag* separada [no componente `<router-link>`](http://router.vuejs.org/en/api/router-link.html). Então, por exemplo, você irá atualizar isto:
-=======
-The `v-link-active` directive has also been replaced by the `tag` attribute on [the `<router-link>` component](https://router.vuejs.org/en/api/router-link.html). So for example, you'll update this:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+A diretiva `v-link-active` também foi removida em favor de se especificar uma _tag_ separada no [componente `<router-link>`](https://router.vuejs.org/en/api/router-link.html). Então, por exemplo, você irá atualizar isto:
 
 ``` html
 <li v-link-active>
@@ -375,7 +335,7 @@ Para isto:
 </router-link>
 ```
 
-O elemento `<a>` será efetivamente o *link* (e obterá corretamente o `href`), mas a classe de estado ativo será aplicada ao elemento externo `<li>`.
+O elemento `<a>` será efetivamente o _link_ (e obterá corretamente o `href`), mas a classe de estado ativo será aplicada ao elemento externo `<li>`.
 
 {% raw %}
 <div class="upgrade-path">
@@ -388,11 +348,7 @@ O elemento `<a>` será efetivamente o *link* (e obterá corretamente o `href`), 
 
 ### `router.go` <sup>changed</sup>
 
-<<<<<<< HEAD
-Para consistência com a [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` agora é usado somente para [navegação de voltar/avançar](https://router.vuejs.org/en/essentials/navigation.html#routergon), enquanto [`router.push`](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) para navegação a páginas específicas.
-=======
-For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API), `router.go` is now only used for [back/forward navigation](https://router.vuejs.org/en/essentials/navigation.html#routergon), while [`router.push`](https://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) is used to navigate to a specific page.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Para consistência com a [HTML5 History API](https://developer.mozilla.org/pt-BR/docs/Web/API/History_API), `router.go` agora é usado somente para [navegação de voltar/avançar](https://router.vuejs.org/en/essentials/navigation.html#routergon), enquanto [`router.push`](https://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) é usado para navegação para uma página específica.
 
 {% raw %}
 <div class="upgrade-path">
@@ -405,7 +361,7 @@ For consistency with the [HTML5 History API](https://developer.mozilla.org/en-US
 
 ### `hashbang: false` <sup>removido</sup>
 
-Hashbangs não são mais exigidos pelo Google para indexar uma URL, assim não são mais uma opção padrão (ou mesmo uma opção existente) para a estratégia de hash.
+Hashbangs não são mais exigidos pelo Google para indexar uma URL, assim não são mais uma opção padrão (ou mesmo uma opção existente) para a estratégia de _hash_.
 
 {% raw %}
 <div class="upgrade-path">
@@ -414,14 +370,9 @@ Hashbangs não são mais exigidos pelo Google para indexar uma URL, assim não s
 </div>
 {% endraw %}
 
-
-<<<<<<< HEAD
 ### `history: true` <sup>substituído</sup>
 
-Todos os modos de roteamento foram condensados em uma simples [opção `mode`](http://router.vuejs.org/en/api/options.html#mode). Atualize:
-=======
-All routing mode options have been condensed into a single [`mode` option](https://router.vuejs.org/en/api/options.html#mode). Update:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Todos os modos de roteamento foram condensados em uma simples [opção `mode`](https://router.vuejs.org/en/api/options.html#mode). Atualize:
 
 ``` js
 var router = new VueRouter({
@@ -444,14 +395,9 @@ var router = new VueRouter({
 </div>
 {% endraw %}
 
-
-<<<<<<< HEAD
 ### `abstract: true` <sup>subsituído</sup>
 
-Todos os modos de roteamento foram condensados em uma simples [opção `mode`](http://router.vuejs.org/en/api/options.html#mode). Atualize:
-=======
-All routing mode options have been condensed into a single [`mode` option](https://router.vuejs.org/en/api/options.html#mode). Update:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Todos os modos de roteamento foram condensados em uma simples [opção `mode`](https://router.vuejs.org/en/api/options.html#mode). Atualize:
 
 ``` js
 var router = new VueRouter({
@@ -476,15 +422,9 @@ var router = new VueRouter({
 
 ## Opções do Roteador: Diversos
 
-
 ### `saveScrollPosition` <sup>subsituído</sup>
 
-
-<<<<<<< HEAD
-Foi substituído com uma [opção `scrollBehavior`](http://router.vuejs.org/en/advanced/scroll-behavior.html) que aceita uma função, de forma que o comportamento de rolagem pode ser completamente personalizado - inclusive por rota. Abre-se muitas novas possibilidades, mas para simplesmente replicar o antigo comportamento de:
-=======
-This has been replaced with a [`scrollBehavior` option](https://router.vuejs.org/en/advanced/scroll-behavior.html) that accepts a function, so that the scroll behavior is completely customizable - even per route. This opens many new possibilities, but to replicate the old behavior of:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Foi substituído com uma [opção `scrollBehavior`](https://router.vuejs.org/en/advanced/scroll-behavior.html) que aceita uma função, de forma que o comportamento de rolagem possa ser completamente personalizado - inclusive para cada rota. Abre-se muitas novas possibilidades, mas para simplesmente replicar o antigo comportamento de:
 
 ``` js
 saveScrollPosition: true
@@ -505,10 +445,9 @@ scrollBehavior: function (to, from, savedPosition) {
 </div>
 {% endraw %}
 
-
 ### `root` <sup>renomeado</sup>
 
-Renomeado para `base` para consistência com [o elemento HTML `<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).
+Renomeado para `base` para consistência com [o elemento HTML `<base>`](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/base).
 
 {% raw %}
 <div class="upgrade-path">
@@ -516,7 +455,6 @@ Renomeado para `base` para consistência com [o elemento HTML `<base>`](https://
   <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos de <code>root</code>.</p>
 </div>
 {% endraw %}
-
 
 ### `transitionOnLoad` <sup>removido</sup>
 
@@ -529,10 +467,9 @@ Esta opção não é mais necessária agora que o sistema de transições do Vue
 </div>
 {% endraw %}
 
-
 ### `suppressTransitionError` <sup>removido</sup>
 
-Removido para simplificação de ganchos. Se você realmente precisar suprimir erros de transição, você pode usar [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) para isto.
+Removido para simplificação de gatilhos. Se você realmente precisar suprimir erros de transição, você pode usar [`try`...`catch`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/try...catch) para isto.
 
 {% raw %}
 <div class="upgrade-path">
@@ -541,16 +478,11 @@ Removido para simplificação de ganchos. Se você realmente precisar suprimir e
 </div>
 {% endraw %}
 
-## Ganchos do Roteador
+## Gatilhos do Roteador
 
-
-<<<<<<< HEAD
 ### `activate` <sup>substituído</sup>
 
-Em seu lugar, use [`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) no componente.
-=======
-Use [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Em seu lugar, use [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) no componente.
 
 {% raw %}
 <div class="upgrade-path">
@@ -559,14 +491,9 @@ Use [`beforeRouteEnter`](https://router.vuejs.org/en/advanced/navigation-guards.
 </div>
 {% endraw %}
 
-
-<<<<<<< HEAD
 ### `canActivate` <sup>subsituído</sup>
 
-Em seu lugar, use [`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) no roteador.
-=======
-Use [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) in the route instead.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Em seu lugar, use [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) no roteador.
 
 {% raw %}
 <div class="upgrade-path">
@@ -575,10 +502,9 @@ Use [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#
 </div>
 {% endraw %}
 
-
 ### `deactivate` <sup>removido</sup>
 
-Em seu lugar, use os ganchos de componentes [`beforeDestroy`](../api/#beforeDestroy) ou [`destroyed`](../api/#destroyed).
+Em seu lugar, use os gatilhos em componentes [`beforeDestroy`](../api/#beforeDestroy) ou [`destroyed`](../api/#destroyed).
 
 {% raw %}
 <div class="upgrade-path">
@@ -589,11 +515,7 @@ Em seu lugar, use os ganchos de componentes [`beforeDestroy`](../api/#beforeDest
 
 ### `canDeactivate` <sup>subsituído</sup>
 
-<<<<<<< HEAD
-Em seu lugar, use [`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) no componente.
-=======
-Use [`beforeRouteLeave`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) in the component instead.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Em seu lugar, use [`beforeRouteLeave`](https://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) no componente.
 
 {% raw %}
 <div class="upgrade-path">
@@ -601,7 +523,6 @@ Use [`beforeRouteLeave`](https://router.vuejs.org/en/advanced/navigation-guards.
   <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos de <code>canDeactivate</code>.</p>
 </div>
 {% endraw %}
-
 
 ### `canReuse: false` <sup>removido</sup>
 
@@ -614,14 +535,9 @@ Não existem mais casos de uso para isso no novo Vue Router.
 </div>
 {% endraw %}
 
-
-<<<<<<< HEAD
 ### `data` <sup>subsituído</sup>
 
-A propriedade `$route` é reativa, desta forma simplesmente utilize um observador para reagir a mudanças de rota, como neste exemplo:
-=======
-The `$route` property is now reactive, so you can use a watcher to react to route changes, like this:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+A propriedade `$route` agora é reativa, desta forma utilize um observador para reagir a mudanças de rota, como neste exemplo:
 
 ``` js
 watch: {
@@ -640,7 +556,6 @@ methods: {
   <p>Execute a <a href="https://github.com/vuejs/vue-migration-helper">ferramenta de migração</a> para encontrar casos de <code>data</code>.</p>
 </div>
 {% endraw %}
-
 
 ### `$loadingRouteData` <sup>removido</sup>
 

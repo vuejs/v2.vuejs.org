@@ -6,7 +6,7 @@ order: 4
 
 O Vue.js utiliza uma sintaxe de _templates_ baseada em HTML, permitindo que você vincule declarativamente o DOM renderizado aos dados da instância Vue. Todos os _templates_ do Vue.js são compostos por HTML válido que pode ser compilado por navegadores compatíveis com as especificações e também por compiladores HTML.
 
-Internamente, o Vue compila os _templates_ dentro de funções de renderização do DOM. Combinado com o sistema de reatividade, o Vue é capaz de identificar a menor quantidade possível de componentes para serem "re-renderizados" e aplica o mínimo possível de manipulações do DOM ao perceber uma mudança no estado da aplicação.
+Internamente, Vue compila os _templates_ dentro de funções de renderização de Virtual DOM. Combinado com o sistema de reatividade, Vue é capaz de identificar de forma inteligente a menor quantidade possível de componentes a serem "re-renderizados" e aplica o mínimo possível de manipulações DOM quando o estado da aplicação muda.
 
 Se você é familiarizado com os conceitos de Virtual DOM e prefere o poder do JavaScript puro, também é possível [escrever diretamente funções de renderização](/guide/render-function.html) ao invés de utilizar _templates_, inclusive podendo contar com o suporte opcional para JSX nestas funções.
 
@@ -95,7 +95,7 @@ Aqui, a diretiva `v-if` irá remover/inserir o elemento `<p>` baseado na veracid
 Algumas diretivas podem aceitar um "parâmetro", denotado pelo símbolo de dois pontos após a diretiva. Por exemplo, a diretiva `v-bind` é utilizada para atualizar um atributo HTML reativamente:
 
 ``` html
-<a v-bind:href="url"></a>
+<a v-bind:href="url"> ... </a>
 ```
 
 Aqui `href` é o parâmetro, que informará à diretiva `v-bind` para interligar o atributo `href` do elemento ao valor da expressão `url` de forma reativa.
@@ -103,7 +103,7 @@ Aqui `href` é o parâmetro, que informará à diretiva `v-bind` para interligar
 Outro simples exemplo é a diretiva `v-on`, que observa eventos do DOM:
 
 ``` html
-<a v-on:click="doSomething">
+<a v-on:click="doSomething"> ... </a>
 ```
 
 Aqui o valor é o nome do evento DOM que ela está escutando. Falaremos sobre gerenciamento de eventos com mais detalhes em breve.
@@ -113,14 +113,10 @@ Aqui o valor é o nome do evento DOM que ela está escutando. Falaremos sobre ge
 Modificadores são sufixos especiais denotados por um ponto, que indicam que aquela diretiva deve ser vinculada de alguma maneira especial. Por exemplo, o modificador `.prevent` indica que o `v-on` chamará a função `event.preventDefault()` quando o evento for disparado:
 
 ``` html
-<form v-on:submit.prevent="onSubmit"></form>
+<form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
-<<<<<<< HEAD
-Veremos mais casos de uso de modificadores quando explorarmos mais `v-on` e `v-model`.
-=======
-You'll see other examples of modifiers later, [for `v-on`](events.html#Event-Modifiers) and [for `v-model`](forms.html#Modifiers), when we explore those features.
->>>>>>> 68515d282f73b52ed8c51ba775eba227cd7cfd49
+Você verá outros exemplos de modificadores futuramente, [modificadores para `v-on`](events.html#Modificadores-de-Eventos) e [modificadores para `v-model`](forms.html#Modificadores), quando estivermos explorando tais funcionalidades.
 
 ## Abreviações
 
@@ -130,20 +126,20 @@ O prefixo `v-` serve como dica visual para identificar atributos específicos do
 
 ``` html
 <!-- sintaxe completa -->
-<a v-bind:href="url"></a>
+<a v-bind:href="url"> ... </a>
 
 <!-- abreviação -->
-<a :href="url"></a>
+<a :href="url"> ... </a>
 ```
 
 ### Abreviação para `v-on`
 
 ``` html
 <!-- sintaxe completa -->
-<a v-on:click="doSomething"></a>
+<a v-on:click="doSomething"> ... </a>
 
 <!-- abreviação -->
-<a @click="doSomething"></a>
+<a @click="doSomething"> ... </a>
 ```
 
 Essas abreviações podem parecer um pouco diferentes do HTML normalmente utilizado, mas os caracteres `:` e `@` são válidos para nomes de atributos em todos os navegadores que o Vue.js suporta. Além disso, não aparecerão no código renderizado. Essa sintaxe é totalmente opcional, mas você provavelmente vai apreciar quando utilizar diretivas frequentemente.

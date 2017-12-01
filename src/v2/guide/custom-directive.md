@@ -6,11 +6,7 @@ order: 302
 
 ## Introdução
 
-<<<<<<< HEAD
-Adicionalmente ao conjunto de diretivas incluídas em seu núcleo, Vue permite registrar suas próprias diretivas personalizadas. Note que no Vue 2.0+, a forma primária de abstração e reuso de código são componentes, no entanto, pode haver casos em que você só precisa de um acesso de baixo nível ao DOM em elementos simples, e aí diretivas personalizadas seriam úteis. Um exemplo seria colocar o foco a um elemento _input_ como este:
-=======
-In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Adicionalmente ao conjunto de diretivas incluídas em seu núcleo (`v-model` e `v-show`), Vue permite registrar suas próprias diretivas personalizadas. Note que no Vue 2.0, a forma primária de abstração e reuso de código são componentes - no entanto, pode haver casos em que você só precisa de um acesso de baixo nível ao DOM em elementos simples, e aí diretivas personalizadas seriam úteis. Um exemplo seria colocar o foco a um elemento _input_ como este:
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -28,10 +24,10 @@ new Vue({
 </script>
 {% endraw %}
 
-Quando a página carrega, o elemento ganha o foco. Na verdade, se você ainda não clicou em nada desde que visitou esta página do guia, o _input_ acima deverá estar com o foco. Agora vamos construir esta diretiva:
+Quando a página carrega, o elemento ganha o foco (nota: o atributo nativo `autofocus` não funciona no Safari para dispositivos móveis). Na verdade, se você ainda não clicou em nada desde que visitou esta página do guia, o _input_ acima deverá estar com o foco. Agora vamos construir a diretiva que realiza isto:
 
 ``` js
-// Registra a diretiva personalizada global chamada v-focus
+// Registra a diretiva personalizada global chamada `v-focus`
 Vue.directive('focus', {
   // Quando o elemento vinculado é inserido no DOM...
   inserted: function (el) {
@@ -46,7 +42,10 @@ Se você deseja registrar uma diretiva localmente em vez disso, os componentes t
 ``` js
 directives: {
   focus: {
-    // Definição da diretiva
+    // definição da diretiva
+    inserted: function (el) {
+      el.focus()
+    }
   }
 }
 ```
@@ -77,18 +76,18 @@ Iremos a seguir explorar os argumentos que podem ser passados nessas funções d
 
 Os seguintes argumentos são esperados nas funções de gatilho das diretivas:
 
-- **el**: O elemento a que a diretiva está vinculada. Isso pode ser usado para manipular o DOM diretamente.
-- **binding**: Um objeto contendo as seguintes propriedades:
-  - **name**: O nome da diretiva, sem o prefixo `v-`.
-  - **value**: O valor passado para a diretiva. Por exemplo em `v-my-directive="1 + 1"`, o valor passado é `2`.
-  - **oldValue**: O valor anterior, somente disponível em `update` e `componentUpdated`. Está presente tanto se o valor foi alterado quanto não alterado.
-  - **expression**: A expressão de vinculação como uma string. Por exemplo em `v-my-directive="1 + 1"`, a expressão seria `"1 + 1"`.
-  - **arg**: O argumento passado para a diretiva, se houver algum. Por exemplo em `v-my-directive:foo`, o argumento seria `"foo"`.
-  - **modifiers**: Um objeto contendo modificadores, se houver algum. Por exemplo em `v-my-directive.foo.bar`, o objeto seria `{ foo: true, bar: true }`.
-- **vnode**: O nó virtual produzido pelo compilador do Vue. Veja [VNode API](/api/#VNode-Interface) para mais detalhes.
-- **oldVnode**: O nó virtual anterior, somente disponível em `update` e `componentUpdated`.
+- `el`: O elemento a que a diretiva está vinculada. Isso pode ser usado para manipular o DOM diretamente.
+- `binding`: Um objeto contendo as seguintes propriedades:
+  - `name`: O nome da diretiva, sem o prefixo `v-`.
+  - `value`: O valor passado para a diretiva. Por exemplo em `v-my-directive="1 + 1"`, o valor passado seria `2`.
+  - `oldValue`: O valor anterior, somente disponível em `update` e `componentUpdated`. Está presente tanto se o valor foi alterado quanto não alterado.
+  - `expression`: A expressão de vinculação como uma String. Por exemplo em `v-my-directive="1 + 1"`, a expressão seria `"1 + 1"`.
+  - `arg`: O argumento passado para a diretiva, se houver algum. Por exemplo em `v-my-directive:foo`, o argumento seria `"foo"`.
+  - `modifiers`: Um objeto contendo modificadores, se houver algum. Por exemplo em `v-my-directive.foo.bar`, o objeto seria `{ foo: true, bar: true }`.
+- `vnode`: O nó virtual produzido pelo compilador do Vue. Veja [VNode API](/api/#VNode-Interface) para mais detalhes.
+- `oldVnode`: O nó virtual anterior, somente disponível em `update` e `componentUpdated`.
 
-<p class="tip">Exceto `el`, você deve tratar os outros argumentos como **somente leitura** e nunca modificá-los. Se você precisar compartilhar informações entre gatilhos, é aconselhável utilizar um atributo [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
+<p class="tip">Exceto `el`, você deve tratar os outros argumentos como **somente leitura** e nunca modificá-los. Se você precisar compartilhar informações entre gatilhos, é aconselhável utilizar um atributo [dataset](https://developer.mozilla.org/pt-BR/docs/Web/API/HTMLElement/dataset).</p>
 
 Eis um exemplo de diretiva personalizada utilizando algumas dessas propriedades:
 

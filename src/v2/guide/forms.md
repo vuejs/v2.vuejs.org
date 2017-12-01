@@ -37,26 +37,16 @@ new Vue({
 ### Textarea
 
 ``` html
-<<<<<<< HEAD
 <span>Mensagem com múltiplas linhas:</span>
-<p style="white-space: pre-line">{{ message }}</p>
-=======
-<span>Multiline message is:</span>
 <p style="white-space: pre-line;">{{ message }}</p>
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 <br>
 <textarea v-model="message" placeholder="Escreva bastante"></textarea>
 ```
 
 {% raw %}
 <div id="example-textarea" class="demo">
-<<<<<<< HEAD
   <span>Mensagem com múltiplas linhas:</span>
-  <p style="white-space: pre-line">{{ message }}</p>
-=======
-  <span>Multiline message is:</span>
   <p style="white-space: pre-line;">{{ message }}</p>
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
   <br>
   <textarea v-model="message" placeholder="Escreva bastante"></textarea>
 </div>
@@ -108,11 +98,7 @@ Múltiplos _checkboxes_, associados a um mesmo Array:
   <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
   <label for="mike">Mike</label>
   <br>
-<<<<<<< HEAD
   <span>Nomes assinalados: {{ checkedNames }}</span>
-=======
-  <span>Checked names: {{ checkedNames }}</span>
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
 </div>
 ```
 
@@ -396,10 +382,6 @@ Se você quiser que a entrada do usuário seja automaticamente isenta de espaço
 
 ## `v-model` com Componentes
 
-<<<<<<< HEAD
-> Se você não está familiarizado com componentes Vue, apenas pule isto por enquanto.
-=======
-> If you're not yet familiar with Vue's components, you can skip this for now.
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+> Se você não está familiarizado com componentes Vue, pode pular isto por enquanto.
 
 Os tipo de _input_ nativos do HTML nem sempre atendem todas as necessidades. Por sorte, componentes Vue permitem construir _inputs_ reutilizáveis com comportamento completamente personalizado. Estes componentes também funcionam com `v-model`! Para saber mais, leia sobre [componentes de formulário personalizados](components.html#Componentes-de-Formularios-usando-Eventos-Personalizados) no guia de Componentes.

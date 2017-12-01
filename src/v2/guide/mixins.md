@@ -86,12 +86,12 @@ vm.conflicting() // => "escrito pelo componente"
 
 Observe que são as mesmas estratégias utilizadas em `Vue.extend()`.
 
-## Mixin Global
+## Registrando Mixin Global
 
-Você também pode aplicar um _mixin_ globalmente. Use com cautela! Assim que aplicar um _mixin_ globalmente, isto irá afetar **todas** as instâncias Vue criadas depois. Quando utilizado apropriadamente, permite injetar lógica de processamento para opções customizadas:
+Você também pode aplicar um _mixin_ globalmente. Use com cautela! Assim que aplicar um _mixin_ globalmente, isto irá afetar **todas** as instâncias Vue criadas depois. Quando utilizado apropriadamente, permite injetar lógica de processamento para opções personalizadas:
 
 ``` js
-// injeta um manipulador para a opção customizada `myOption`
+// injeta um manipulador para a opção personalizada `myOption`
 Vue.mixin({
   created: function () {
     var myOption = this.$options.myOption
@@ -108,15 +108,11 @@ new Vue({
 // => "beleza!"
 ```
 
-<p class="tip">Utilize _mixins_ globais raramente e cuidadosamente, porque eles afetam cada uma das instâncias Vue criadas, incluindo os componentes de terceiros. Na maioria dos casos, você deveria utilizá-los somente para tratar opções customizadas, como demonstrado no exemplo acima. É também uma boa ideia disponibilizá-los como [Plugins](plugins.html), para evitar uso duplicado.</p>
+<p class="tip">Utilize _mixins_ globais raramente e cuidadosamente, porque eles afetam cada uma das instâncias Vue criadas, incluindo os componentes de terceiros. Na maioria dos casos, você deveria utilizá-los somente para tratar opções personalizadas, como demonstrado no exemplo acima. É também uma boa ideia disponibilizá-los como [Plugins](plugins.html), para evitar uso duplicado.</p>
 
-## Estratégias de Mesclagem de Opções Customizadas
+## Mesclagem de Opções Personalizada
 
-<<<<<<< HEAD
-Quando opções customizadas são mescladas, elas usam a estratégia padrão, que simplesmente sobrepõe o valor existente. Se você quiser que uma opção seja mesclada usando uma lógica customizada, você precisa vincular uma função em `Vue.config.optionMergeStrategies`:
-=======
-When custom options are merged, they use the default strategy which overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `Vue.config.optionMergeStrategies`:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Quando opções personalizadas são mescladas, elas usam a estratégia padrão que sobrescreve o valor existente. Se você quiser que uma opção seja mesclada usando uma lógica personalizada, você precisa vincular uma função em `Vue.config.optionMergeStrategies`:
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -124,11 +120,7 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 }
 ```
 
-<<<<<<< HEAD
-Para a maioria das opções baseadas em objetos, você pode simplesmente utilizar a mesma estratégia usada por `methods`:
-=======
-For most object-based options, you can use the same strategy used by `methods`:
->>>>>>> 87f1d8e395539750f2861c497796e7e011aef454
+Para a maioria das opções baseadas em objetos, pode usar a estratégia igual a `methods`:
 
 ``` js
 var strategies = Vue.config.optionMergeStrategies
