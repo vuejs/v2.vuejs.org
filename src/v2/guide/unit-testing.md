@@ -50,20 +50,20 @@ describe('MyComponent', () => {
   // the raw component options
   it('sets the correct default data', () => {
     expect(typeof MyComponent.data).toBe('function')
-    const defaultData = MyComponent.data()
+    var defaultData = MyComponent.data()
     expect(defaultData.message).toBe('hello!')
   })
 
   // Inspect the component instance on mount
   it('correctly sets the message when created', () => {
-    const vm = new Vue(MyComponent).$mount()
+    var vm = new Vue(MyComponent).$mount()
     expect(vm.message).toBe('bye!')
   })
 
   // Mount an instance and inspect the render output
   it('renders the correct message', () => {
-    const Constructor = Vue.extend(MyComponent)
-    const vm = new Constructor().$mount()
+    var Constructor = Vue.extend(MyComponent)
+    var vm = new Constructor().$mount()
     expect(vm.$el.textContent).toBe('bye!')
   })
 })
@@ -93,8 +93,8 @@ import MyComponent from './MyComponent.vue'
 
 // helper function that mounts and returns the rendered text
 function getRenderedText (Component, propsData) {
-  const Constructor = Vue.extend(Component)
-  const vm = new Constructor({ propsData: propsData }).$mount()
+  var Constructor = Vue.extend(Component)
+  var vm = new Constructor({ propsData: propsData }).$mount()
   return vm.$el.textContent
 }
 
@@ -118,7 +118,7 @@ Since Vue [performs DOM updates asynchronously](reactivity.html#Async-Update-Que
 ``` js
 // Inspect the generated HTML after a state update
 it('updates the rendered message when vm.message updates', done => {
-  const vm = new Vue(MyComponent).$mount()
+  var vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
 
   // wait a "tick" after state change before asserting DOM updates
