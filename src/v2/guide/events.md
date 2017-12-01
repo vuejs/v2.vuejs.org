@@ -286,7 +286,7 @@ For example:
 
 > New in 2.5.0+
 
-The `.exact` modifier should be used in combination with other system modifiers to indicate that the exact combination of modifiers must be pressed for the handler to fire.
+The `.exact` modifier should be used in combination with other system modifiers to indicate that the exact combination of modifiers must be pressed for the handler to fire. If used with no system modifiers it will not fire the handler if any system modifiers are pressed.
 
 ``` html
 <!-- this will fire even if Alt or Shift is also pressed -->
@@ -294,6 +294,9 @@ The `.exact` modifier should be used in combination with other system modifiers 
 
 <!-- this will only fire when only Ctrl is pressed -->
 <button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- this will only fire when no system modifiers are pressed -->
+<button @click.exact="onClick">A</button>
 ```
 
 ### Mouse Button Modifiers
