@@ -62,8 +62,8 @@ describe('MyComponent', () => {
 
   // Mount an instance and inspect the render output
   it('renders the correct message', () => {
-    const Ctor = Vue.extend(MyComponent)
-    const vm = new Ctor().$mount()
+    const Constructor = Vue.extend(MyComponent)
+    const vm = new Constructor().$mount()
     expect(vm.$el.textContent).toBe('bye!')
   })
 })
@@ -93,8 +93,8 @@ import MyComponent from './MyComponent.vue'
 
 // helper function that mounts and returns the rendered text
 function getRenderedText (Component, propsData) {
-  const Ctor = Vue.extend(Component)
-  const vm = new Ctor({ propsData: propsData }).$mount()
+  const Constructor = Vue.extend(Component)
+  const vm = new Constructor({ propsData: propsData }).$mount()
   return vm.$el.textContent
 }
 
