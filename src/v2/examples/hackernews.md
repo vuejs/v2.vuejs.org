@@ -4,7 +4,7 @@ type: examples
 order: 12
 ---
 
-> Esse é um clone do HackerNews construído utilizando a API Firebase oficial do HackerNews, Vue 2.0 + Vue Router + vuex, incluindo renderização no lado do servidor.
+> Esse é um clone do HackerNews construído utilizando a API Firebase oficial do HackerNews, Vue 2.0 + Vue Router + Vuex, incluindo renderização no lado do servidor.
 
 {% raw %}
 <div style="max-width: 600px;">
@@ -14,14 +14,14 @@ order: 12
 </div>
 {% endraw %}
 
-> [Live Demo](https://vue-hn.now.sh/)
-> Note: essa demonstração pode precisar de algum carregamento se ninguém tiver acessado-o por um certo período de tempo.
+> [Demonstração ao Vivo](https://vue-hn.now.sh/)
+> Observação: essa demonstração pode precisar de algum tempo de carregamento se ninguém tiver a acessado por um certo período de tempo.
 >
-> [[Source](https://github.com/vuejs/vue-hackernews-2.0)]
+> [[Código-fonte](https://github.com/vuejs/vue-hackernews-2.0)]
 
 ## Funcionalidades
 
-- Server Side Rendering
+- Renderização no Lado do Servidor
   - Vue + Vue Router + Vuex trabalhando juntos
   - Pré-carregamento de dados do servidor
   - Estado _client-side_ & hidratação do DOM

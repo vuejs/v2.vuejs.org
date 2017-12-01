@@ -1993,7 +1993,7 @@ type: api
 
 - **Uso:**
 
-  Cria uma interligação de mão-dupla (_two-way binding_) em um elemento de entrada (_input_) de formulário ou componente. Para uso detalhado e outras observações, veja o link abaixo para a seção do Guia.
+  Cria uma interligação de mão dupla (_two-way binding_) em um elemento de entrada (_input_) de formulário ou componente. Para uso detalhado e outras observações, veja o link abaixo para a seção do Guia.
 
 - **Ver também:**
   - [Interligações em Formulários](../guide/forms.html)

@@ -25,7 +25,11 @@
             ? 'API'
             : type === 'style-guide'
               ? 'Guia de Estilo<sup class="beta">beta</sup>'
-              : (type.charAt(0).toUpperCase() + type.slice(1))
+              : type === 'examples'
+                ? 'Exemplos'
+                : type === 'guide'
+                  ? 'Guia'
+                  : (type.charAt(0).toUpperCase() + type.slice(1))
         %>
         <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
           <select class="version-select">

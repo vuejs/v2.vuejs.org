@@ -1,9 +1,9 @@
 ---
-title: Realtime with deepstreamHub
+title: Tempo Real com DeepstreamHub
 type: examples
 order: 9
 ---
 
-> This example uses [deepstreamHub](https://deepstreamhub.com/) to synchronize realtime data, send events and make remote procedure calls between clients (you can try opening it in multiple browser windows).
+> Este exemplo utiliza [deepstreamHub](https://deepstreamhub.com/) para sincronizar dados em tempo real, enviar eventos e fazer chamadas remotas a procedimentos entre clientes (teste abrindo múltiplas janelas de navegadores).
 
 <iframe width="100%" height="500" src="https://jsfiddle.net/yyx990803/ff0sp9hw/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
