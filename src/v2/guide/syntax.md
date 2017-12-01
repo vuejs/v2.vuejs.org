@@ -34,7 +34,7 @@ The double mustaches interprets the data as plain text, not HTML. In order to ou
 
 ``` html
 <p>Using mustaches: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+<p>Using v-html directive: <span v-html="rawHtml">{{ rawHtml }}</span></p>
 ```
 
 {% raw %}
