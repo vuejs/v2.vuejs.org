@@ -26,7 +26,7 @@ A comunidade React [tem sido fundamental](https://github.com/vuejs/vuejs.org/iss
 
 ### Desempenho
 
-Tanto React quanto Vue oferecem desempenho equivalente na maioria dos casos que encontramos, eventualmente com Vue um pouco à frente por causa de sua implementação Virtual DOM mais leve. Se você está interessado em números, pode dar uma olhada neste [comparativo independente](https://rawgit.com/krausest/js-_framework_-benchmark/master/webdriver-ts/table.html) que foca no desempenho bruto de renderização/atualização. Observe que não se leva em conta estruturas complexas de componentes, portanto encare-o apenas como uma referência e não um veredito.
+Tanto React quanto Vue oferecem desempenho equivalente na maioria dos casos que encontramos, eventualmente com Vue um pouco à frente por causa de sua implementação Virtual DOM mais leve. Se você está interessado em números, pode dar uma olhada neste [comparativo independente](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) que foca no desempenho bruto de renderização/atualização. Observe que não se leva em conta estruturas complexas de componentes, portanto encare-o apenas como uma referência e não um veredito.
 
 #### Esforços de Otimização
 
