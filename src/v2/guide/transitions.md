@@ -193,7 +193,7 @@ Aqui segue um exemplo, omitindo as regras de prefixo CSS, por uma questão de br
 <div id="exemplo-2">
   <button @click="show = !show">Alternar visualização</button>
   <transition name="bounce">
-    <p v-if="show">Look at me!</p>
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 ```
@@ -231,7 +231,7 @@ new Vue({
 <div id="exemplo-2" class="demo">
   <button @click="show = !show">Alternar visualização</button>
   <transition name="bounce">
-    <p v-show="show">Olhe para mim!</p>
+    <p v-show="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 

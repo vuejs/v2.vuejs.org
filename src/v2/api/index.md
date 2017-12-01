@@ -79,7 +79,7 @@ type: api
 
   Atribui um manipulador para erros não detectados durante a renderização do componente e dos observadores. O manipulador é chamado com o erro e a instância Vue.
 
-  > No 2.2.0+, esse gatilho também captura erros em gatilhos de ciclo-de-vida do componente. Além disso, quando esse gatilho é `undefined`, os erros capturados são registrados com `console.error` em vez de quebrar o aplicativo.
+  > No 2.2.0+, esse gatilho também captura erros em gatilhos de ciclo de vida do componente. Além disso, quando esse gatilho é `undefined`, os erros capturados são registrados com `console.error` em vez de quebrar o aplicativo.
 
   > No 2.4.0+, esse gatilho também captura erros disparados dentro de manipuladores de eventos personalizados.
 
@@ -231,6 +231,12 @@ type: api
   Vue.nextTick(function () {
     // DOM atualizado
   })
+  
+  // usage as a promise (2.1.0+, see note below)
+  Vue.nextTick()
+    .then(function () {
+      // DOM updated
+    })
   ```
 
   > Novo em 2.1.0+: retorna uma Promise se nenhum _callback_ é fornecido e Promise tiver suporte no ambiente de execução. Observe que Vue não vem com um _polyfill_ para Promise, portanto, se seu navegador alvo não oferece suporte a Promises (estamos olhando para você, IE), você precisará escolher um _polyfill_ por sua conta.
@@ -712,7 +718,7 @@ type: api
 
 ## Opções / Ciclo-de-Vida
 
-<p class="tip">Todos os gatilhos de ciclo-de-vida automaticamente possuem seus contextos `this` vinculados à instância, assim você pode acessar dados, propriedades computadas e métodos. Isso significa que __você não deve usar Arrow Function para definir este tipo de método__ (por exemplo, `created: () => this.fetchTodos()`). Isto porque _arrow functions_ vinculam o contexto pai, assim `this` não será a instância Vue como você espera e `this.fetchTodos` será `undefined`.</p>
+<p class="tip">Todos os gatilhos de ciclo de vida automaticamente possuem seus contextos `this` vinculados à instância, assim você pode acessar dados, propriedades computadas e métodos. Isso significa que __você não deve usar Arrow Function para definir este tipo de método__ (por exemplo, `created: () => this.fetchTodos()`). Isto porque _arrow functions_ vinculam o contexto pai, assim `this` não será a instância Vue como você espera e `this.fetchTodos` será `undefined`.</p>
 
 ### beforeCreate
 

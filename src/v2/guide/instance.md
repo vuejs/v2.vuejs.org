@@ -22,13 +22,13 @@ Uma aplicação Vue consiste em uma **instância Vue raiz** criada com `new Vue`
 
 ```
 Instância Raiz
-|- TodoList
-   |- TodoItem
-      |- DeleteTodoButton
-      |- EditTodoButton
-   |- TodoListFooter
-      |- ClearTodosButton
-      |- TodoListStatistics
+└─ TodoList
+   ├─ TodoItem
+   │  ├─ DeleteTodoButton
+   │  └─ EditTodoButton
+   └─ TodoListFooter
+      ├─ ClearTodosButton
+      └─ TodoListStatistics
 ```
 
 Falaremos sobre o [sistema de componentes](components.html) em detalhes futuramente. Por enquanto, saiba apenas que todos os componentes Vue também são instâncias, e aceitam o mesmo esquema de opções (exceto por algumas poucas opções específicas da raiz).

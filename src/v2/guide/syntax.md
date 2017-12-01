@@ -14,7 +14,7 @@ Se você é familiarizado com os conceitos de Virtual DOM e prefere o poder do J
 
 ### Texto
 
-O mais básico _data binding_, interpolando texto com a sintaxe "Mustache" (chaves duplas):
+O mais básico _data binding_, interpolando texto com a sintaxe _Mustache_ (chaves duplas):
 
 ``` html
 <span>Mensagem: {{ msg }}</span>
@@ -33,26 +33,46 @@ Você também pode realizar interpolações únicas (não são atualizadas se o 
 As chaves duplas interpretam os dados como texto simples, e não HTML. Para que você exiba HTML, utilize a diretiva `v-html`:
 
 ``` html
-<div v-html="rawHtml"></div>
+<p>Interpolação textual: {{ rawHtml }}</p>
+<p>Diretiva v-html: <span v-html="rawHtml"></span></p>
 ```
 
-Os conteúdos deste `div` serão substituídos com o valor da propriedade `rawHtml`, interpretada como HTML puro - _data bindings_ são ignorados. Note que você não pode utilizar a diretiva `v-html` para compor _templates_ parciais, porque o Vue não é uma _engine_ baseada em _templates_ através de String. Ao invés disso, componentes são a maneira indicada para a composição e reutilização de elementos de UI.
+{% raw %}
+<div id="example1" class="demo">
+  <p>Interpolação textual: {{ rawHtml }}</p>
+  <p>Diretiva v-html: <span v-html="rawHtml"></span></p>
+</div>
+<script>
+new Vue({
+  el: '#example1',
+  data: function () {
+  	return {
+  	  rawHtml: '<span style="color: red">Sou vermelho</span>'
+  	}
+  }
+})
+</script>
+{% endraw %}
+
+Os conteúdos do `span` serão substituídos com o valor da propriedade `rawHtml`, interpretada como HTML puro - _data bindings_ são ignorados. Note que você não pode utilizar a diretiva `v-html` para compor _templates_ parciais, porque o Vue não é uma _engine_ baseada em _templates_ através de String. Ao invés disso, componentes são a maneira indicada como peça fundamental de composição e reutilização de elementos de interface.
 
 <p class="tip">Dinamicamente renderizar HTML sem precauções pode ser muito perigoso, pois pode levar a [ataques XSS](https://pt.wikipedia.org/wiki/Cross-site_scripting). Utilize a interpolação de HTML apenas em conteúdos que você confia e **nunca** em conteúdos enviados por seus usuários.</p>
 
 ### Atributos
 
-Chaves duplas não podem ser usadas em atributos HTML. Para isso, utilize a [diretiva v-bind](/api/#v-bind):
+Chaves duplas não podem ser usadas em atributos HTML. Para isso, utilize a [diretiva v-bind](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-Isso também funciona com atributos Boolean - neste caso, o atributo só é renderizado se a condição gerar um valor verdadeiro:
+No caso de atributos booleanos, onde sua mera existência implica em `true`, `v-bind` funciona um pouco diferente. Neste exemplo:
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Botão</button>
 ```
+
+Se `isButtonDisabled` possui um valor `null`, `undefined` ou `false`, o atributo `disabled` nem mesmo será incluído no elemento `<button>` renderizado.
 
 ### Expressões JavaScript
 

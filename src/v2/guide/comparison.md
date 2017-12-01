@@ -24,9 +24,9 @@ Com isso dito, é inevitável que a comparação pareça tendenciosa ao Vue para
 
 A comunidade React [tem sido fundamental](https://github.com/vuejs/vuejs.org/issues/364) para nos ajudar a alcançar esse equilíbrio, com agradecimentos especiais a Dan Abramov da equipe React. Ele foi extremamente generoso com seu tempo e considerável experiência para nos ajudar a refinar este documento até que [ambos ficassem felizes](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740) com o resultado final.
 
-### Desempenho
+### Desempenho em Execução
 
-Tanto React quanto Vue oferecem desempenho equivalente na maioria dos casos que encontramos, eventualmente com Vue um pouco à frente por causa de sua implementação Virtual DOM mais leve. Se você está interessado em números, pode dar uma olhada neste [comparativo independente](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html) que foca no desempenho bruto de renderização/atualização. Observe que não se leva em conta estruturas complexas de componentes, portanto encare-o apenas como uma referência e não um veredito.
+Tanto React quanto Vue são excepcionalmente e similarmente rápidos, então desempenho não deve ser um fator decisivo para uma escolha entre eles. Para métricas específicas, pode dar uma olhada neste [comparativo independente](http://www.stefankrause.net/js-frameworks-benchmark7/table.html), que foca no desempenho bruto de renderização/atualização com árvores de componentes bem simples.
 
 #### Esforços de Otimização
 
@@ -152,7 +152,7 @@ AngularJS adota a abordagem de _two-way binding_ entre escopos, enquanto Vue for
 
 Vue possui clara separação entre diretivas e componentes. Diretivas são feitas exclusivamente para encapsular lógica de manipulação do DOM, enquanto componentes são unidades auto-contidas que possuem sua própria lógica de dados e de apresentação. Com AngularJS, existe uma confusão considerável entre os dois.
 
-### Desempenho
+### Desempenho em Execução
 
 Vue tem melhor desempenho e é muito, muito mais fácil de otimizar, por não utilizar verificação suja de alterações de dados no escopo (_dirty checking_). AngularJS torna-se lento quando há um grande número de observadores (_watchers_), pois a cada vez que qualquer coisa muda no escopo, todos esses observadores precisam ser reavaliados. Além disso, este laço de verificação suja (chamado _digest cycle_), pode ter que executar várias vezes para "estabilizar" se algum observador aciona outra atualização. Usuários do AngularJS por vezes têm de recorrer a técnicas esotéricas para contornar este ciclo e, em algumas situações, não há simplesmente nenhuma maneira de otimizar um escopo com muitos observadores.
 
@@ -172,9 +172,11 @@ Entretanto, nem todo mundo quer TypeScript. Em muitos casos de menor escala, int
 
 Por fim, ainda que não tão profundamente integrado com TypeScript quanto Angular, Vue também oferece [tipagem oficial](https://github.com/vuejs/vue/tree/dev/types) e [decorador oficial](https://github.com/vuejs/vue-class-component) para aqueles que desejarem utilizar TypeScript com Vue. Também estamos ativamente colaborando com os times do TypeScript e do VSCode da Microsoft para melhorar a experiência TS/IDE para os usuários Vue + TS.
 
-### Tamanho e Desempenho
+### Desempenho em Execução
 
-Em termos de desempenho, ambos os _frameworks_ são excepcionalmente rápidos e não há dados suficientes a partir de casos do mundo real para oferecer um veredito. No entanto, se você está determinado a ver alguns números, Vue 2.0 parece estar à frente do Angular de acordo com este [comparativo independente](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html).
+Ambos os _frameworks_ são excepcionalmente rápidos, com métricas muito similares nos _benchmarks_. Você pode [navegar por métricas específicas](http://www.stefankrause.net/js-frameworks-benchmark7/table.html) para uma comparação mais granular, mas desempenho provavelmente não é um fator decisivo entre ambos.
+
+### Tamanho
 
 Versões recentes do Angular, com [compilação AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) (_Ahead-Of-Time_) e [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking), tem sido capazes de derrubar o tamanho do pacote consideravelmente. Todavia, um projeto Vue 2 cheio de recursos com Vuex + Vue Router incluídos (~30KB gzipped) ainda é significativamente mais leve do que uma aplicação padrão, compilada AOT, gerada pelo `angular-cli` (~130KB gzipped).
 
@@ -198,7 +200,7 @@ Com isto dito, seria provavelmente mais adequado uma comparação entre o núcle
 
 - A sintaxe de _templates_ do Vue se arma com o poder total de expressões JavaScript, enquanto a sintaxe de expressões e _helpers_ do Handlebars é bastante limitada.
 
-- Em termos de performance, Vue supera Ember [por uma margem justa](https://rawgit.com/krausest/js-_framework_-benchmark/master/webdriver-ts/table.html), mesmo após a atualização mais recente do motor Glimmer no Ember 2. Vue realiza atualizações em lote automaticamente, enquanto no Ember você precisa lidar manualmente com laços de execução em situações de desempenho crítico.
+- Em termos de performance, Vue supera Ember [por uma margem justa](http://www.stefankrause.net/js-frameworks-benchmark7/table.html), mesmo após a atualização mais recente do motor Glimmer no Ember 2.x. Vue realiza atualizações em lote automaticamente, enquanto no Ember você precisa lidar manualmente com laços de execução em situações de desempenho crítico.
 
 ## Knockout
 

@@ -1,34 +1,40 @@
 # br.vuejs.org
 
-Este é o repositório oficial da tradução em português brasileiro do _site_ [vuejs.org](http://www.vuejs.org/). O _site_ foi construído com [hexo](http://hexo.io/) e seu conteúdo é escrito em formato _Markdown_, localizado na pasta `src`. _Pull requests_ são bem-vindos!
+Este é o repositório oficial da tradução em português brasileiro do _site_ [vuejs.org](http://www.vuejs.org/). O _site_ foi construído com [hexo](http://hexo.io/) e o conteúdo escrito em formato _Markdown_ na pasta `src`. _Pull requests_ são bem-vindos!
 
-## Situação da tradução
+## Desenvolvendo
 
-A tradução ainda é um trabalho em progresso. Grande parte do Guia foi traduzido e revizado, mas alguns conteúdos carecem de revisão após as atualizações mais recentes do Vue. O conteúdo da API ainda possui partes em inglês, carecendo de colaboração para tradução.
+```
+$ npm install
+$ npm start # servidor executando em http://localhost:4000
+```
+
+## Publicando
+
+O site é publicado usando GitHub Pages, então é preciso ter acesso a _push_ no repositório _vuejs.org_ para executar o _script_ de publicação:
+
+``` bash
+$ npm run deploy
+```
+
+Se estiver trabalhando em um _fork_ e quiser publicar em uma URL diferente, precisa atualizar adequadamente o seguinte:
+
+- `url` e `deploy` no arquivo `_config.yml`
+- arquivo `src/CNAME`
 
 ## Como colaborar?
 
 Problemas pontuais nas traduções já realizadas, como erros de grafia ou frases confusas, podem ser reportados apenas enviando _issues_ neste repositório. Deixe claro sobre qual página se refere o problema e, preferencialmente, ofereça uma sugestão para a correção desejada.
 
-Se você se sente à vontade para traduzir/revisar conteúdos por conta, siga os passos:
+Se você se sente à vontade para traduzir/revisar conteúdos por conta, os passos são:
 
 - Faça um _fork_ deste _repo_ para sua própria conta;
-- Crie um _issue_ neste _repo_, do tipo `work-in-progress`, para informar o que você está fazendo;
+- Crie um _issue_ neste _repo_, do tipo `work-in-progress`, para informar o que está fazendo;
 - Faça as traduções/revisões nos arquivos que se propôs, usando o editor que quiser;
-- Ao finalizar, faça um _pull request_ com os arquivos modificados, **com a descrição do _commit_ em inglês**;
+- Ao finalizar, faça um _pull request_ **com a descrição do _commit_ em inglês**;
 - Não se esqueça de obter as alterações mais recentes antes de recomeçar o processo.
 
 Caso não consiga terminar por completo algum arquivo, mas queira enviar o trabalho parcial, deixe isso claro na _issue_ de seu trabalho após a submissão, para informar quais problemas persistem no arquivo enviado.
-
-## Ambiente de desenvolvimento
-
-Após clonar seu repositório, inicie um servidor de desenvolvimento em `localhost:4000`:
-
-```
-$ npm install -g hexo-cli
-$ npm install
-$ hexo server
-```
 
 ## Considerações para padronização
 

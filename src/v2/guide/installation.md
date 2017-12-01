@@ -2,11 +2,8 @@
 title: Instalação
 type: guide
 order: 1
-vue_version: 2.5.1
-dev_size: "271.12"
-min_size: "83.13"
-gz_size: "30.33"
-ro_gz_size: "21.04"
+vue_version: 2.5.9
+gz_size: "30.95"
 ---
 
 ### Sobre a Compatibilidade
@@ -15,7 +12,9 @@ Vue **não** suporta IE8 e versões anteriores, porque são usadas funcionalidad
 
 ### Notas de Lançamento
 
-Notas detalhadas para cada versão lançada estão disponíveis no [GitHub](https://github.com/vuejs/vue/releases).
+Última versão estável: {{vue_version}}
+
+Notas detalhadas para cada versão estão disponíveis no [GitHub](https://github.com/vuejs/vue/releases).
 
 ## Vue Devtools
 

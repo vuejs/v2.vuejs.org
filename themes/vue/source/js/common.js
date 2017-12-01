@@ -340,7 +340,7 @@
       // transform DOM structure from
       // `<h2><a></a>Header</a>` to <h2><a>Header</a></h2>`
       // to make the link clickable
-      var nodes = link.childNodes
+      var nodes = Array.prototype.slice.call(link.childNodes)
       for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i]
         if (node !== wrapper) {

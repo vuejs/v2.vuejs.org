@@ -8,6 +8,8 @@ order: 11
 
 Os componentes são um dos recursos mais poderosos do Vue. Eles ajudam a estender os elementos HTML para encapsular código de forma reusável. Em um alto nível, componentes são elementos personalizados que o Vue compila e anexa à sua instância. Em alguns casos, eles podem aparecer como um HTML nativo estendido com o atributo especial `is`.
 
+Todos os componentes Vue também são instância Vue, e portanto aceitam o mesmo objeto de opções (exceto para algumas poucas opções específicas de nível raiz) e oferecem os mesmos gatilhos de ciclo de vida.
+
 ## Usando Componentes
 
 ### Registrando Globalmente

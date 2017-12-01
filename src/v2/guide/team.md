@@ -486,6 +486,11 @@ order: 803
       languages: ['fr', 'en'],
       github: 'Akryum',
       twitter: 'Akryum',
+      work: {
+        role: 'Frontend Developer',
+        org: 'Livestorm',
+        orgUrl: 'https://livestorm.co/'
+      },
       reposOfficial: [
         'vue-curated'
       ],
@@ -577,6 +582,22 @@ order: 803
       reposPersonal: [
         'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
       ]
+    },
+    {
+      name: 'Damian Dulisz',
+      title: 'Mago Negro dos Plugins, Notícias e Conferências',
+      city: 'Wroclaw, Polônia',
+      languages: ['pl', 'en'],
+      github: 'shentao',
+      twitter: 'DamianDulisz',
+      work: {
+        role: 'Desenvolvedor Frontend Sênior',
+        org: 'Monterail',
+        orgUrl: 'https://www.monterail.com/'
+      },
+      reposPersonal: [
+        'monterail/vue-multiselect', 'monterail/vue-newsletter'
+      ]
     }
   ]))
 
@@ -624,21 +645,6 @@ order: 803
       ]
     },
     {
-      name: 'Damian Dulisz',
-      title: 'Mago Negro dos Plugins, Notícias e Conferências',
-      city: 'Wroclaw, Polônia',
-      languages: ['pl', 'en'],
-      github: 'shentao',
-      twitter: 'DamianDulisz',
-      work: {
-        role: 'Desenvolvedor Frontend Sênior',
-        org: 'Monterail',
-        orgUrl: 'https://www.monterail.com/'
-      },
-      reposPersonal: [
-        'monterail/vue-multiselect', 'monterail/vue-newsletter', 'monterail/vuelidate'
-      ]
-    }, {
       name: 'Alex Kyriakidis',
       title: 'Vueducador Extraordinário',
       city: 'Tessalônica, Grécia',

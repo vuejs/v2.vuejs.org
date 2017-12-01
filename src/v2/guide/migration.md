@@ -796,9 +796,9 @@ For example, let's say we have a todo app structured like this:
 
 ```
 Todos
-|-- NewTodoInput
-|-- Todo
-    |-- DeleteTodoButton
+├─ NewTodoInput
+└─ Todo
+   └─ DeleteTodoButton
 ```
 
 We could manage communication between components with this single event hub:
