@@ -582,14 +582,13 @@ body.docs #nav {
 }
 .sidebar .main-sponsor .logo {
   color: #7f8c8d;
-  margin-top: 20px;
+  margin-top: 15px;
   text-align: center;
   font-weight: bold;
   display: block;
 }
 .sidebar .main-sponsor .logo:last-child {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .sidebar .main-sponsor img,
 .sidebar .main-sponsor a {
@@ -744,7 +743,7 @@ body {
   display: none;
 }
 #hero {
-  padding: 50px 40px 30px;
+  padding: 40px 40px 30px;
   background-color: #fff;
 }
 #hero .inner {
@@ -846,9 +845,16 @@ body {
   color: #7f8c8d;
 }
 #footer {
-  padding: 50px 0;
+  padding: 40px 0;
   color: #fff;
   text-align: center;
+}
+#footer .social-icon {
+  margin: 0 5px;
+}
+#footer .social-icon svg {
+  width: 18px;
+  height: 18px;
 }
 #footer a {
   font-weight: 700;
@@ -869,7 +875,7 @@ body {
     display: block;
   }
   #hero {
-    padding: 50px 40px 30px;
+    padding: 40px 40px 30px;
   }
   #hero .hero-logo {
     float: none;
