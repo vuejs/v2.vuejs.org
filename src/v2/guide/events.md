@@ -286,14 +286,17 @@ Por exemplo:
 
 > Novo em 2.5.0+
 
-O modificador `.exact` mdeve ser utilizado combinado com outros modificadores de sistema para indicar que aquela combinação exata de modificadores deve ser pressionada para que o gatilho dispare.
+O modificador `.exact` permite controlar a exata combinação de modificadores de sistema que deve ser pressionada para que o gatilho dispare.
 
 ``` html
-<!-- irá disparar mesmo se Alt ou Shift também estiverem pressionados -->
+<!-- dispara mesmo se Alt ou Shift também estiverem pressionados -->
 <button @click.ctrl="onClick">A</button>
 
-<!-- irá disparar somente quando Ctrl estiver pressionado -->
+<!-- dispara quando somente Ctrl estiver pressionado -->
 <button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- dispara somente se não houverem teclas de sistema pressionadas -->
+<button @click.exact="onClick">A</button>
 ```
 
 ### Modificadores de Mouse
