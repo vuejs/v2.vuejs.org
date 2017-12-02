@@ -286,14 +286,17 @@ For example:
 
 > New in 2.5.0+
 
-The `.exact` modifier should be used in combination with other system modifiers to indicate that the exact combination of modifiers must be pressed for the handler to fire.
+The `.exact` modifier allows control of the exact combination of system modifiers needed to trigger an event.
 
 ``` html
 <!-- this will fire even if Alt or Shift is also pressed -->
 <button @click.ctrl="onClick">A</button>
 
-<!-- this will only fire when only Ctrl is pressed -->
+<!-- this will only fire when Ctrl and no other keys are pressed -->
 <button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- this will only fire when no system modifiers are pressed -->
+<button @click.exact="onClick">A</button>
 ```
 
 ### Mouse Button Modifiers
