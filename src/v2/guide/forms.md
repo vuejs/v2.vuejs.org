@@ -316,9 +316,9 @@ But sometimes we may want to bind the value to a dynamic property on the Vue ins
 
 ``` js
 // when checked:
-vm.toggle === vm.a
+vm.toggle = vm.a
 // when unchecked:
-vm.toggle === vm.b
+vm.toggle = vm.b
 ```
 
 ### Radio
