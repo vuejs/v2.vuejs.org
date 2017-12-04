@@ -322,7 +322,7 @@ Vue.set(vm.userProfile, 'age', 27)
 You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
 
 ``` js
-this.$set(this.userProfile, 'age', 27)
+vm.$set(this.userProfile, 'age', 27)
 ```
 
 Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:
