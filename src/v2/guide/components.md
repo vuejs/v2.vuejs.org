@@ -997,7 +997,7 @@ If we render the above, the output will be:
 </div>
 ```
 
-> In 2.5.0+, `slot-scope` is no longer limited to `<template>` and can be used on any element or component.
+> In 2.5.0+, `slot-scope` is no longer limited to `<template>` and can be used on any child element or component.
 
 A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
 
