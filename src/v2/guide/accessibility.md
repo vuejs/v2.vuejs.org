@@ -153,6 +153,17 @@ The first possible way to solve this problem is to build the component by starti
 
 For example, with the previous demo, we could have a hidden checkbox input bound to the same variable, like this:
 
+```html
+<input v-model="checked" class="sr-only" type="checkbox">
+<div
+  aria-hidden="true"
+  tabindex="0"
+  :class="['toggle-button', { 'toggle-button--checked': checked }]"
+  @click="checked = !checked">
+  <div class="toggle-button__handle"></div>
+</div>
+```
+
 {% raw %}
 <div id="example-2" class="demo">
   <input v-model="checked" class="sr-only" type="checkbox">
@@ -186,6 +197,17 @@ Check out MDN for a longer read on ARIA: [An overview of accessible web applicat
 
 To make first example accessible using ARIA, we have to set the role to "checkbox" and use the `aria-checked` attribute:
 
+```html
+<div
+  role="checkbox"
+  tabindex="0"
+  :aria-checked="checked"
+  :class="['toggle-button', { 'toggle-button--checked': checked }]"
+  @click="checked = !checked">
+  <div class="toggle-button__handle"></div>
+</div>
+```
+
 {% raw %}
 <div id="example-3" class="demo">
   <div
@@ -212,6 +234,8 @@ var example1 = new Vue({
 Either method of making the custom input element accessible works fine and isn't too difficult to implement.
 
 ### Dynamic content
+
+
 
 ### Page navigation with client-side routing
 
