@@ -83,7 +83,7 @@ type: api
 
   > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
 
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
 
 ### warnHandler
 
@@ -231,7 +231,7 @@ type: api
   Vue.nextTick(function () {
     // DOM updated
   })
-  
+
   // usage as a promise (2.1.0+, see note below)
   Vue.nextTick()
     .then(function () {
