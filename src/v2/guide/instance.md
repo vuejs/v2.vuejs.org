@@ -47,7 +47,7 @@ var vm = new Vue({
 })
 
 // These reference the same object!
-vm.a === data.a // => true
+vm === data // => true
 
 // Setting the property on the instance
 // also affects the original data
