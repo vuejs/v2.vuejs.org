@@ -305,6 +305,164 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
+### Avoid `v-if` with `v-for` <sup data-p="a">essential</sup>
+
+**Never use `v-if` on the same element as `v-for`.**
+
+There are two common cases where this can be tempting:
+
+- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+
+- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+When Vue processes directives, `v-for` has a higher priority than `v-if`, so that this template:
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+Will be evaluated similar to:
+
+``` js
+this.users.map(function (user) {
+  if (user.isActive) {
+    return user.name
+  }
+})
+```
+
+So even if we only render elements for a small fraction of users, we have to iterate over the entire list every time we re-render, whether or not the set of active users has changed.
+
+By iterating over a computed property instead, like this:
+
+``` js
+computed: {
+  activeUsers: function () {
+    return this.users.filter(function (user) {
+      return user.isActive
+    })
+  }
+}
+```
+
+``` html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+We get the following benefits:
+
+- The filtered list will _only_ be re-evaluated if there are relevant changes to the `users` array, making filtering much more efficient.
+- Using `v-for="user in activeUsers"`, we _only_ iterate over active users during render, making rendering much more efficient.
+
+We get similar benefits from updating:
+
+``` html
+<ul>
+  <li
+    v-if="shouldShowUsers"
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+to:
+
+``` html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+By moving the `v-if` to a container element, we're no longer checking `shouldShowUsers` for _every_ user in the list. Instead, we check it once and don't even evaluate the `v-for` if `shouldShowUsers` is false.
+
+{% raw %}</details>{% endraw %}
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+``` html
+<ul>
+  <li
+    v-if="shouldShowUsers"
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+``` html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+
+
 ### Component style scoping <sup data-p="a">essential</sup>
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
@@ -1308,131 +1466,6 @@ While attribute values without any spaces are not required to have quotes in HTM
 ```
 {% raw %}</div>{% endraw %}
 
-
-
-### Avoid `v-if` on same element as `v-for` <sup data-p="b">strongly recommended</sup>
-
-**Prefer a computed property instead of usage of `v-if` as filter in a `v-for` loop that displays only one case when the list of item is big.**
-
-Usage of `v-if` on the same element as `v-for` should be avoid. `v-if` should be on a wrapper if you want conditionally display or not the full list. If you conditionally want to select a specific HTML part **amongs** several possibilities, you should be use `v-if` into several child elements case. If you use `v-if` for allows only one case to be displayed, it is a usage of `v-if` as a filter, and this case should be doing with a computed property.
-
-{% raw %}
-<details>
-<summary>
-  <h4>Detailed Explanation</h4>
-</summary>
-{% endraw %}
-
-If you want to decide to display or not a list, you should not place the `v-if` on the same item of `v-for` because in this case the test will be done for « each » item in the loop. So prefer do this:
-
-``html
-<ul v-if="listIsDisplayed">
-  <li v-for="item in items" :key="item.id">
-    {{ item.content }}
-  </li>
-</ul>
-``
-
-If you want conditionally select what you will display for each item, the usage of `v-if` is better in a child elements. See below:
-
-``html
-<div v-for="item in items" :key="item.id">
-  <h1 v-if="item.type === 'title'">{{ item.content }}</h1>
-  <h2 v-else-if="item.type === 'subtitle'">{{ item.content }}</h2>
-  <p v-else-if="item.type === 'paragraph'">{{ item.content }}</p>
-  <div v-else>{{ item.content }}</div>
-</div>
-``
-
-And if you want only select some items from a list, use a computed property as below.
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
-
-``js
-{
-  data: function () {
-    return {
-      items: [
-        {
-          id: 0,
-          content: 'White Player 1'
-        },
-        {
-          id: 1,
-          content: 'Black Player 1'
-        },
-        {
-          id: 2,
-          content: 'White Player 2'
-        },
-        {
-          id: 3,
-          content: 'Black Player 2'
-        }
-        // A very long list ...
-      ]
-    }
-  }
-}
-``
-
-``html
-<ul class="black-player">
-  <li v-for="(item, index) in oddItems" v-if="index % 2" :key="item.id">
-    {{ item.content }}
-  </li>
-</ul>
-``
-
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
-
-``js
-{
-  data: function () {
-    return {
-      items: [
-        {
-          id: 0,
-          content: 'White Player 1'
-        },
-        {
-          id: 1,
-          content: 'Black Player 1'
-        },
-        {
-          id: 2,
-          content: 'White Player 2'
-        },
-        {
-          id: 3,
-          content: 'Black Player 2'
-        }
-        // A very long list ...
-      ]
-    }
-  },
-  computed: {
-    oddItems: function () {
-      return items.filter(function (item, index) {
-        return index % 2
-      });
-    }
-  }
-}
-``
-
-``html
-<ul class="black-player">
-  <li v-for="item in oddItems" :key="item.id">
-    {{ item.content }}
-  </li>
-</ul>
-``
-{% raw %}</div>{% endraw %}
 
 
 
