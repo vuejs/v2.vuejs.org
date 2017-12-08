@@ -516,6 +516,13 @@ Vue.component('my-component', {
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
 
+As of version 2.5.0, if you are using single-file components, functional component can be declared like this:
+
+``` js
+<template functional>
+</template>
+```
+
 Everything the component needs is passed through `context`, which is an object containing:
 
 - `props`: An object of the provided props
