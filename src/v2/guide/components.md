@@ -963,67 +963,56 @@ The content distribution API is a very useful mechanism when designing component
 
 > New in 2.1.0+
 
-A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
-
-In a child component, pass data into a slot as if you are passing props to a component:
-
-``` html
-<div class="child">
-  <slot text="hello from child"></slot>
-</div>
-```
-
-In the parent, a `<template>` element with a special attribute `slot-scope` must exist, indicating that it is a template for a scoped slot. The value of `slot-scope` will be used as the name of a temporary variable that holds the props object passed from the child:
-
-``` html
-<div class="parent">
-  <child>
-    <template slot-scope="props">
-      <span>hello from parent</span>
-      <span>{{ props.text }}</span>
-    </template>
-  </child>
-</div>
-```
-
-If we render the above, the output will be:
-
-``` html
-<div class="parent">
-  <div class="child">
-    <span>hello from parent</span>
-    <span>hello from child</span>
-  </div>
-</div>
-```
-
-> In 2.5.0+, `slot-scope` is no longer limited to `<template>` and can be used on any element or component.
-
-A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
-
-``` html
-<my-awesome-list :items="items">
-  <!-- scoped slot can be named too -->
-  <li
-    slot="item"
-    slot-scope="props"
-    class="my-fancy-item">
-    {{ props.text }}
-  </li>
-</my-awesome-list>
-```
-
-And the template for the list component:
+Scoped slots allow the definition of dynamic slot templates, using data passed from a child component. For example, in this hypothetical `<review-list>` component:
 
 ``` html
 <ul>
-  <slot name="item"
-    v-for="item in items"
-    :text="item.text">
-    <!-- fallback content here -->
-  </slot>
+  <li v-for="review in reviews">
+    <slot :review="review"></slot>
+  </li>
 </ul>
 ```
+
+We're passing `review` to the slot, just like props to a component.
+
+Now when we use this component, we can use a `slot-scope` attribute to access these props, binding them to an object called `slotProps` in the example below:
+
+``` html
+<h1>Popular reviews for our restaurant</h1>
+<review-list :reviews="restaurantReviews">
+  <template slot-scope="slotProps">
+    <h3>{{ slotProps.review.title }}</h3>
+    <p class="byline">
+      {{ slotProps.review.author }}
+    </p>
+    <p>{{ slotProps.review.content }}</p>
+  </template>
+</review-list>
+```
+
+The rendered output for this example might be:
+
+``` html
+<h1>Popular reviews for our restaurant</h1>
+<ul>
+  <li>
+    <h3>Very good food</h3>
+    <p class="byline">
+      Gregor Clegane
+    </p>
+    <p>Try the sushi. It's my favorite.</p>
+  </li>
+  <li>
+    <h3>So many choices!</h3>
+    <p class="byline">
+      Samwise Gamgee
+    </p>
+    <p>Normally, only one or two things look good to me, but here, everything is delicious!</p>
+  </li>
+</ul>
+```
+
+> Before 2.5.0, the `slot-scope` attribute was limited to `<template>` elements, but can now be used with any element or component, on or inside a slot.
 
 #### Destructuring
 
