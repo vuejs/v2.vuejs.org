@@ -313,17 +313,19 @@ Mas, às vezes, podemos querer vincular o valor de uma propriedade dinâmica dis
 <input
   type="checkbox"
   v-model="toggle"
-  v-bind:true-value="a"
-  v-bind:false-value="b"
+  true-value="sim"
+  false-value="não"
 >
 ```
 
 ``` js
 // quando está assinalado:
-vm.toggle === vm.a
+vm.toggle === 'sim'
 // quando não está assinalado:
-vm.toggle === vm.b
+vm.toggle === 'não'
 ```
+
+<p class="tip">Os atributos `true-value` e `false-value` não afetam o atributo `value` do _input_, pois os navegadores não incluem caixas não assinaladas na submissão de formulários. Para garantir que um dos dois valores seja submetido em um formulário (por exemplo, "sim" ou "não"), utilize _inputs_ do tipo `radio` no lugar.</p>
 
 ### Radio
 

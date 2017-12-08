@@ -83,7 +83,7 @@ type: api
 
   > No 2.4.0+, esse gatilho também captura erros disparados dentro de manipuladores de eventos personalizados.
 
-  > [Sentry](https://sentry.io), um serviço de rastreamento de erro, fornece [integração oficial](https://sentry.io/for/vue/) usando essa opção.
+  > Serviços de rastreamento de erros [Sentry](https://sentry.io/for/vue/) e [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) fornecem integrações oficiais usando esta opção.
 
 ### warnHandler
 
@@ -231,7 +231,7 @@ type: api
   Vue.nextTick(function () {
     // DOM atualizado
   })
-  
+
   // usage as a promise (2.1.0+, see note below)
   Vue.nextTick()
     .then(function () {
