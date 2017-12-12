@@ -375,6 +375,7 @@ We get the following benefits:
 
 - The filtered list will _only_ be re-evaluated if there are relevant changes to the `users` array, making filtering much more efficient.
 - Using `v-for="user in activeUsers"`, we _only_ iterate over active users during render, making rendering much more efficient.
+- Logic is now decoupled from the presentation layer, making maintenance (change/extension of logic) much easier.
 
 We get similar benefits from updating:
 
