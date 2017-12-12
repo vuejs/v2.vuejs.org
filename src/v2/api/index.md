@@ -83,7 +83,7 @@ type : api
 
   > En 2.4.0+ ce hook capture également les erreurs lancées depuis un gestionnaire d'évènement Vue personnalisé.
 
-  > [Sentry](https://sentry.io), un service de traçage d'erreur, fournit une [intégration officielle](https://sentry.io/for/vue/) utilisant cette option.
+  > [Sentry](https://sentry.io) et [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) fournissent une intégration officielle utilisant cette option.
 
 ### warnHandler
 

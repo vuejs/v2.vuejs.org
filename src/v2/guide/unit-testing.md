@@ -62,8 +62,8 @@ describe('MyComponent', () => {
 
   // Monter une instance et inspecter le résultat en sortie
   it('rend le message correct', () => {
-    const Ctor = Vue.extend(MyComponent)
-    const vm = new Ctor().$mount()
+    const Constructor = Vue.extend(MyComponent)
+    const vm = new Constructor().$mount()
     expect(vm.$el.textContent).toBe('au revoir !')
   })
 })
@@ -93,8 +93,8 @@ import MyComponent from './MyComponent.vue'
 
 // Fonction utilitaire qui monte et retourne le texte rendu
 function getRenderedText (Component, propsData) {
-  const Ctor = Vue.extend(Component)
-  const vm = new Ctor({ propsData: propsData }).$mount()
+  const Constructor = Vue.extend(Component)
+  const vm = new Constructor({ propsData: propsData }).$mount()
   return vm.$el.textContent
 }
 

@@ -305,6 +305,165 @@ De notre expérience, il est toujours mieux de _toujours_ ajouter une clé uniqu
 
 
 
+### Éviter `v-if` avec `v-for` <sup data-p="a">essentiel</sup>
+
+**N'utiliser jamais `v-if` sur le même élément que `v-for`.**
+
+Il y a deux utilisations courantes qui seraient tentantes :
+
+- Pour filtrer des éléments dans une liste (par ex. `v-for="user in users" v-if="user.isActive"`) Dans ce cas, remplacez `users` pas ure nouvelle propriété calculée qui retourne votre liste filtrée (par ex. `activeUsers`).
+
+- Pour ne pas rendre une liste si elle ne doit pas être affichée (par ex. `v-for="user in users" v-if="shouldShowUsers"`). Dans ce cas, déplacez `v-if` dans un élément englobant (par ex. `ul` ou `ol`).
+
+{% raw %}
+<details>
+<summary>
+  <h4>Explication détaillée</h4>
+</summary>
+{% endraw %}
+
+Quand vu transforme les directives, `v-for` a une priorité plus élevée que `v-if`, donc ce template :
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+Est évalué de manière similaire à :
+
+``` js
+this.users.map(function (user) {
+  if (user.isActive) {
+    return user.name
+  }
+})
+```
+
+Donc même si nous faisont le rendu pour une petite portion d'utilisateur, nous allons devoir itérer sur la liste à chaque nouveau rendu, que l'état actif ou non de l'utilisateur ai changé.
+
+En itérant sur une propriété calculée à la place, comme ici :
+
+``` js
+computed: {
+  activeUsers: function () {
+    return this.users.filter(function (user) {
+      return user.isActive
+    })
+  }
+}
+```
+
+``` html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+Nous obtenons les béféfices suivants :
+
+- La liste filtré sera _seulement_ réévaluée si il y a un changement dans le tableau `users`, rendant le filtrage plus performant.
+- En utilisant `v-for="user in activeUsers"`, nous itérons _seulemente_ sur les utilisateur pendant le rendu, le rendant plus performant.
+- La partie logique est maintenant découplée de la couche présentation rendant la maintenance (changement, ajout de logique) plus facile.
+
+Nous obtenons des bénéfices similaires en changeant :
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+par :
+
+``` html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+En délpaçant le `v-if` sur un élément englobant, nous ne vérifions plus `shouldShowUsers` pour _chaque_ utilisateur dans la liste. À la place, nous le vérifions une fois et n'évaluons pas  `v-for` si `shouldShowUsers` est `false`.
+
+{% raw %}</details>{% endraw %}
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Mauvais
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Bon
+
+``` html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+
+``` html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  <li>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+
+
 ### Style des composants à portée limitée <sup data-p="a">essentiel</sup>
 
 **Pour les applications, le style du niveau `App` au sommet et des composants de mises en page doivent être globaux, mais tous les autres styles des composants devraient être avec une portée limitée au composant.**
@@ -1307,6 +1466,7 @@ Alors que les valeurs d'attributs sans espaces ne sont pas requises en HTML, cel
 >
 ```
 {% raw %}</div>{% endraw %}
+
 
 
 
