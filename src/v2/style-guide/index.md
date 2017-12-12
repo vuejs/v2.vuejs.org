@@ -382,8 +382,8 @@ We get similar benefits from updating:
 ``` html
 <ul>
   <li
-    v-if="shouldShowUsers"
     v-for="user in users"
+    v-if="shouldShowUsers"
     :key="user.id"
   >
     {{ user.name }}
@@ -426,8 +426,8 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 ``` html
 <ul>
   <li
-    v-if="shouldShowUsers"
     v-for="user in users"
+    v-if="shouldShowUsers"
     :key="user.id"
   >
     {{ user.name }}
