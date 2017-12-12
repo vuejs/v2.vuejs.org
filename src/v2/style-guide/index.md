@@ -313,7 +313,7 @@ There are two common cases where this can be tempting:
 
 - To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
 
 {% raw %}
 <details>
