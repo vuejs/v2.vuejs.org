@@ -2,11 +2,8 @@
 title: Installation
 type: guide
 order: 1
-vue_version: 2.5.1
-dev_size: "271.12"
-min_size: "83.13"
-gz_size: "30.33"
-ro_gz_size: "21.04"
+vue_version: 2.5.9
+gz_size: "30.95"
 ---
 
 ### Compatibility Note
@@ -14,6 +11,8 @@ ro_gz_size: "21.04"
 Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](http://caniuse.com/#feat=es5).
 
 ### Release Notes
+
+Latest stable version: {{vue_version}}
 
 Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
 

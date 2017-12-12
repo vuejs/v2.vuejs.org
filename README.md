@@ -4,13 +4,23 @@ This site is built with [hexo](http://hexo.io/). Site content is written in Mark
 
 ## Developing
 
-Start a dev server at `localhost:4000`:
-
-```
-$ npm install -g hexo-cli
+``` bash
 $ npm install
-$ hexo server
+$ npm start # dev server at http://localhost:4000
 ```
+
+## Deploying
+
+The site is deployed using GitHub pages, therefore you need push access to the vuejs.org repo to run the deploy script:
+
+``` bash
+$ npm run deploy
+```
+
+If you are working on a fork and deploying to a different URL, you need to update the following accordingly:
+
+- `url` and `deploy` sections in `_config.yml`
+- `src/CNAME`
 
 ## On Translations
 

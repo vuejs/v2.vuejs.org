@@ -19,11 +19,14 @@ $info = #1C90F3
 
 $radius = 2px
 $content-padding-top = 30px
+
+// header settings
 $header-inner-height = 41px
 $heading-padding-vertical = 10px
 $header-height = $header-inner-height + $heading-padding-vertical * 2
 $mobile-header-height = 40px
-$heading-link-padding-top = $content-padding-top
-$mobile-heading-link-padding-top = $content-padding-top
+// prevent headers from being covered by the top nav upon navigation
+$heading-link-padding-top = $header-height + $content-padding-top
+$mobile-heading-link-padding-top = $mobile-header-height + $content-padding-top
 $h2-margin-top = 45px
 $h3-margin-top = 52px

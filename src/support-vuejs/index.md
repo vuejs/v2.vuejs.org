@@ -20,6 +20,9 @@ However, the amount of effort needed to maintain and develop new features for th
   <a href="http://tooltwist.com/" target="_blank">
     <img src="/images/tooltwist.png" style="width: 300px;">
   </a>
+  <a href="https://www.infinitynewtab.com/donate/index.html" target="_blank">
+    <img src="/images/infinitynewtab.png" style="width: 300px">
+  </a>
 </p>
 
 ### OpenCollective Platinum
