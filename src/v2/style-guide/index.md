@@ -1272,6 +1272,17 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
   baz="c"
 />
 ```
+
+``` html
+<MyComponent
+  v-if="isMyComponentVisible"
+  @event="doSomething"
+
+  foo="a"
+  bar="b"
+  baz="c"
+/>
+```
 {% raw %}</div>{% endraw %}
 
 
