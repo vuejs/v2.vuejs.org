@@ -618,7 +618,7 @@ The following
 is expanded into:
 
 ``` html
-<comp :foo="bar" @update:foo="val => bar = val"></comp>
+<comp :foo="bar" @update:foo="val => { bar = val }"></comp>
 ```
 
 For the child component to update `foo`'s value, it needs to explicitly emit an event instead of mutating the prop:
