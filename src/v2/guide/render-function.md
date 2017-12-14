@@ -495,29 +495,29 @@ new Vue({
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
 
 
-## 函数化组件
+## 函数式组件(functional components)
 
-之前创建的锚点标题组件是比较简单，没有管理或者监听任何传递给他的状态，也没有生命周期方法。它只是一个接收参数的函数。
+前面我们创建的锚点标题组件比较简单，没有管理维护状态，或者 watch 任何传递给它的状态，也没有生命周期方法。它只是一个接收 props 的函数。
 
-在这个例子中，我们标记组件为 `functional`， 这意味它是无状态（没有 `data`），无实例（没有 `this` 上下文）。
-一个 **函数化组件** 就像这样：
+在这个例子中，我们将组件记为 `functional`，这意味它无状态（没有 `data`），无实例（没有 `this` 上下文）。
+一个**函数式组件**就像这样：
 
 ``` js
 Vue.component('my-component', {
   functional: true,
   // 为了弥补缺少的实例
-  // 提供第二个参数作为上下文
+  // 我们提供了第二个参数 context 作为上下文
   render: function (createElement, context) {
     // ...
   },
-  // Props 可选
+  // props 是可选项
   props: {
     // ...
   }
 })
 ```
 
-> Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
+> 注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 props，则 props 选项是必选项。而在 2.3.0+ 版本中，你可以省略 `props` 选项，所有组件节点上的发现的属性，都会被隐式地提取为 props。
 
 组件需要的一切都是通过 `context` 传递，包括：
 
