@@ -1,5 +1,5 @@
 <% if (page.type) { %>
-    <%- partial('partials/sidebar', { type: page.type === 'menu' ? 'guide' : page.type, index: page.index }) %>
+  <%- partial('partials/sidebar', { type: page.type === 'menu' ? 'guide' : page.type, index: page.index }) %>
 <% } else { %>
   <div class="sidebar">
     <ul class="main-menu">
@@ -8,27 +8,27 @@
   </div>
 <% } %>
 <div class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type === 'guide' ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>">
-    <% if (page.type) { %>
-      <% if (page.type === 'menu') { %>
-        <form id="search-form">
-          <input type="text" id="search-query-menu" class="search-query st-default-search-input">
-        </form>
-        <%- partial('partials/toc', { type: 'guide' }) %>
-      <% } else { %>
-        <%- partial('partials/ad') %>
-      <% } %>
+  <% if (page.type) { %>
+    <% if (page.type === 'menu') { %>
+      <form id="search-form">
+        <input type="text" id="search-query-menu" class="search-query st-default-search-input">
+      </form>
+      <%- partial('partials/toc', { type: 'guide' }) %>
+    <% } else { %>
+      <%- partial('partials/ad') %>
     <% } %>
-    <% if (page.title.trim()) { %>
-      <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
-    <% } %>
-    <% if (page.type === 'about' && page.order === 0) { %>
-    <%- partial('partials/contributors') %>
-    <% } %>
-    <%- page.content %>
-    <div class="footer">
-      发现错误？想参与编辑？
-      <a href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
-        在 Github 上编辑此页！
-      </a>
-    </div>
+  <% } %>
+  <% if (page.title.trim()) { %>
+    <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
+  <% } %>
+  <% if (page.type === 'about' && page.order === 0) { %>
+  <%- partial('partials/contributors') %>
+  <% } %>
+  <%- page.content %>
+  <div class="footer">
+    发现错误？想参与编辑？
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
+      在 Github 上编辑此页！
+    </a>
+  </div>
 </div>
