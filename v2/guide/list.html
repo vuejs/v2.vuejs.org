@@ -1005,7 +1005,7 @@ new Vue({
 <p>You could add a new <code>age</code> property to the nested <code>userProfile</code> object with:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.set(vm.userProfile, <span class="string">'age'</span>, <span class="number">27</span>)</span><br></pre></td></tr></table></figure>
 <p>You can also use the <code>vm.$set</code> instance method, which is an alias for the global <code>Vue.set</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.$set(<span class="keyword">this</span>.userProfile, <span class="string">'age'</span>, <span class="number">27</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vm.$set(<span class="keyword">this</span>.userProfile, <span class="string">'age'</span>, <span class="number">27</span>)</span><br></pre></td></tr></table></figure>
 <p>Sometimes you may want to assign a number of new properties to an existing object, for example using <code>Object.assign()</code> or <code>_.extend()</code>. In such cases, you should create a fresh object with properties from both objects. So instead of:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(<span class="keyword">this</span>.userProfile, &#123;</span><br><span class="line">  age: <span class="number">27</span>,</span><br><span class="line">  favoriteColor: <span class="string">'Vue Green'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>You would add new, reactive properties with:</p>

@@ -970,6 +970,8 @@
 <blockquote>
 <p>Note: in versions before 2.3.0, the <code>props</code> option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the <code>props</code> option and all attributes found on the component node will be implicitly extracted as props.</p>
 </blockquote>
+<p>In 2.5.0+, if you are using <a href="single-file-components.html">single-file components</a>, template-based functional components can be declared with:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template functional&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Everything the component needs is passed through <code>context</code>, which is an object containing:</p>
 <ul>
 <li><code>props</code>: An object of the provided props</li>
