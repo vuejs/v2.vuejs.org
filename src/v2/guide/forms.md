@@ -309,17 +309,19 @@ Mais parfois nous pouvons souhaiter lier la valeur à une propriété dynamique 
 <input
   type="checkbox"
   v-model="toggle"
-  v-bind:true-value="a"
-  v-bind:false-value="b"
+  true-value="oui"
+  false-value="non"
 >
 ```
 
 ``` js
 // lorsque c'est coché :
-vm.toggle === vm.a
+vm.toggle === 'oui'
 // lorsque que c'est décoché :
-vm.toggle === vm.b
+vm.toggle === 'non'
 ```
+
+<p class="tip">Les attributs `true-value` et `false-value` n'affectent pas la valeur de l'attribut `value`, car les navigateurs n'incluent pas les cases non cochées dans les soumissions de formulaire. Pour garantir que l'une des deux valeurs soit soumise par le formulaire (par ex. `'oui'"` ou `"'non'"`), utilisez les boutons radio à la place.</p>
 
 ### Radio
 

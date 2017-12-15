@@ -322,7 +322,7 @@ Vue.set(vm.userProfile, 'age', 27)
 Vous pouvez également utiliser la méthode d'instance `vm.$set`, qui est juste un alias de la méthode globale `Vue.set` :
 
 ``` js
-this.$set(this.userProfile, 'age', 27)
+vm.$set(this.userProfile, 'age', 27)
 ```
 
 Parfois vous voudrez affecter plusieurs nouvelles propriétés à un objet existant, par exemple en utilisant `Object.assign()` ou `_.extend()`. Dans ce cas, vous devrez créer un nouvel objet avec les propriétés des deux objets. Donc au lieu de :

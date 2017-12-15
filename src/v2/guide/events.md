@@ -286,14 +286,17 @@ Par exemple :
 
 > Nouveau dans la 2.5.0+
 
-Le modificateur `.exact` devrait être utilisé en complément des autres modificateurs de touches système pour indiquer que la combinaison exacte de touches doit être pressée pour que le gestionnaire se déclenche.
+Le modificateur `.exact` permet le contrôle de la combinaison de touches système exacte requise pour déclencher le gestionnaire d'évènements.
 
 ``` html
 <!-- ceci va aussi émettre un évènement si les touches Alt et Shift sont pressées -->
 <button @click.ctrl="onClick">A</button>
 
-<!-- ceci va émettre un évènement seulement si la touche Ctrl est pressée -->
+<!-- ceci va émettre un évènement seulement si la touche Ctrl est pressée sans aucune autre touche -->
 <button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- ceci va émettre un évènement si aucune touche n'est pressée -->
+<button @click.exact="onClick">A</button>
 ```
 
 ### Modificateurs de boutons de la souris

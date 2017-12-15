@@ -17,7 +17,7 @@ Si vous êtes un développeur *frontend* confirmé et que vous souhaitez compare
 La manière la plus simple d'essayer Vue.js est d'utiliser [l'exemple Hello World sur JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Si vous le souhaitez, ouvrez-le dans un nouvel onglet afin de suivre pendant que nous parcourons des exemples de base. Vous pouvez aussi simplement <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">créer un fichier <code>index.html</code></a> et ajouter Vue avec :
 
 ``` html
-<script src="https://unpkg.com/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
 La page d'[installation](installation.html) vous offre d'autres manières d'installer Vue. Notez que nous **ne** recommandons **pas** aux débutants de commencer avec `vue-cli`, surtout si vous n'êtes pas encore familier avec les outils de *build* basés sur Node.js.
