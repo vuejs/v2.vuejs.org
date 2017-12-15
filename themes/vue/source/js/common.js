@@ -138,13 +138,17 @@
   function initVideoModal () {
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
+    var iframe = document.querySelector('iframe');
+    var player = new Vimeo.Player(iframe);
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
+
 
     modalButton.addEventListener('click', function() {
       videoModal.classList.toggle('open')
       document.body.classList.toggle('stop-scroll')
       document.body.appendChild(overlay)
+      player.play()
     })
 
     document.body.addEventListener('click', function(e) {
@@ -152,6 +156,7 @@
         videoModal.classList.remove('open')
         document.body.classList.remove('stop-scroll')
         document.body.removeChild(overlay)
+        player.unload()
       }
     })
   }
