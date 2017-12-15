@@ -49,7 +49,7 @@ Certaines fonctionnalités de Vue existent pour régler des cas exceptionnels ou
 Ceci afin de [prévenir les conflits](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) avec des éléments HTML futurs ou existant car toutes les balises HTML n'ont qu'un seul mot.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 Vue.component('todo', {
@@ -66,7 +66,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 Vue.component('todo-item', {
@@ -121,7 +121,7 @@ data: function () {
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 Vue.component('some-comp', {
@@ -141,7 +141,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 ``` js
 Vue.component('some-comp', {
   data: function () {
@@ -198,7 +198,7 @@ Les [définitions de prop](https://vuejs.org/v2/guide/components.html#Prop-Valid
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 // Ceci est uniquement bon pour le prototypage
@@ -207,7 +207,7 @@ props: ['status']
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 props: {
@@ -277,7 +277,7 @@ De notre expérience, il est toujours mieux de _toujours_ ajouter une clé uniqu
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <ul>
@@ -289,7 +289,7 @@ De notre expérience, il est toujours mieux de _toujours_ ajouter une clé uniqu
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <ul>
@@ -346,9 +346,9 @@ this.users.map(function (user) {
 })
 ```
 
-Donc même si nous faisons le rendu pour une petite portion d'utilisateur, nous allons devoir itérer sur la liste à chaque nouveau rendu, que l'état actif de l'utilisateur ait changé ou non.
+Donc même si nous faisons le rendu pour une petite portion d'utilisateurs, nous allons devoir itérer sur la liste à chaque nouveau rendu, que l'état actif de l'utilisateur ait changé ou non.
 
-En itérant sur une propriété calculée à la place, comme ici :
+Ou alors, en itérant sur une propriété calculée, comme ici :
 
 ``` js
 computed: {
@@ -373,8 +373,8 @@ computed: {
 
 nous obtenons les bénéfices suivants :
 
-- La liste filtrée sera _seulement_ réévaluée si il y a un changement dans le tableau `users`, rendant le filtrage plus performant.
-- En utilisant `v-for="user in activeUsers"`, nous itérons _seulement_ sur les utilisateurs pendant le rendu, le rendant plus performant.
+- La liste filtrée sera _seulement_ réévaluée s'il y a un changement dans le tableau `users`, rendant le filtrage plus performant.
+- En utilisant `v-for="user in activeUsers"`, nous itérons sur les utilisateurs _seulement_ pendant le rendu, le rendant plus performant.
 - La partie logique est maintenant découplée de la couche présentation, rendant la maintenance (changement, ajout de logique) plus facile.
 
 Nous obtenons des bénéfices similaires en changeant :
@@ -409,7 +409,7 @@ En déplaçant le `v-if` sur un élément englobant, nous ne vérifions plus `sh
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <ul>
@@ -437,7 +437,7 @@ En déplaçant le `v-if` sur un élément englobant, nous ne vérifions plus `sh
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <ul>
@@ -488,7 +488,7 @@ Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <template>
@@ -504,7 +504,7 @@ Au-delà de l'attribut `scoped`, utiliser des noms de classe uniques vous assure
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <template>
@@ -583,7 +583,7 @@ Concernant le préfixe `$`, il est réservé dans l'écosystème Vue à des prop
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 var myGreatMixin = {
@@ -632,7 +632,7 @@ var myGreatMixin = {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 var myGreatMixin = {
@@ -659,7 +659,7 @@ var myGreatMixin = {
 Ceci aide à trouver plus rapidement un composant quand vous avez besoin de l'éditer ou de vérifier comment il fonctionne.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 Vue.component('TodoList', {
@@ -673,7 +673,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ```
 components/
@@ -697,7 +697,7 @@ components/
 La PascalCase fonctionne mieux avec l'autocomplétion dans des éditeurs de code. Comme ils sont consistants avec la manière dont nous référençons les composants avec du JS(X) et des templates, utilisez-le si possible. Cependant, les casses de noms mixtes (majuscules et minuscules) peuvent parfois créer des problèmes sur des systèmes de fichier non sensibles à la casse. C'est pourquoi la kebab-case est aussi parfaitement acceptable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ```
 components/
@@ -711,7 +711,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ```
 components/
@@ -772,7 +772,7 @@ Plusieurs avantages à ces conventions :
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ```
 components/
@@ -783,7 +783,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ```
 components/
@@ -816,7 +816,7 @@ components/
 Cela ne signifie pas que le composant doit être utilisé uniquement sur une seule page, mais qu'il ne peut y en avoir qu'_un par page_. Ces composants n'acceptent jamais de props car ils sont spécifiques à votre application et n'ont pas leur propre contexte dans l'application. Si vous ressentez le besoin d'ajouter des props, c'est une bonne indication. Cela reste une bonne indication pour informer que c'est un composant réutilisable n'est utilisé qu'une fois par page _pour le moment_.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ```
 components/
@@ -826,7 +826,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ```
 components/
@@ -880,7 +880,7 @@ Cela n'est pas recommandé car :
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ```
 components/
@@ -897,7 +897,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ```
 components/
@@ -973,7 +973,7 @@ Vous pourriez être tenté de résoudre le problème différemment, en imbriquan
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ```
 components/
@@ -987,7 +987,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ```
 components/
@@ -1011,7 +1011,7 @@ Les composants qui sont autofermants n'indiquent pas seulement qu'ils n'ont pas 
 Malheureusement, le HTML ne permet pas aux éléments personnalisés d'être autofermant. Seuls les [éléments vides officiels](https://www.w3.org/TR/html/syntax.html#void-elements) peuvent l'être. C'est pourquoi il est possible d'utiliser cette stratégie seulement quand les templates Vue sont compilés avant qu'ils soient injectés dans le DOM. Ensuite du code HTML valide aux spécifications est fourni au DOM.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <!-- Dans les composants monofichiers, les templates avec chaine de caractères et en JSX -->
@@ -1025,7 +1025,7 @@ Malheureusement, le HTML ne permet pas aux éléments personnalisés d'être aut
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <!-- Dans les composants monofichiers, les templates avec chaine de caractères et en JSX -->
@@ -1055,7 +1055,7 @@ Malheureusement, du fait de l'insensibilité à la casse du HTML, les templates 
 Notez également que si vous avez déjà largement utilisé la kebab-case de manière consistante avec vos conventions HTML à travers tous vos projets, cela peut être plus important que les avantages listés plus haut. Dans de tels cas, **utiliser la kebab-case partout est également acceptable.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <!-- Dans les composants monofichiers, les templates avec chaine de caractères -->
@@ -1074,7 +1074,7 @@ Notez également que si vous avez déjà largement utilisé la kebab-case de man
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <!-- Dans les composants monofichiers, les templates avec chaine de caractères -->
@@ -1117,7 +1117,7 @@ Cependant, pour les applications qui n'utilisent **que** des composants globaux 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 Vue.component('myComponent', {
@@ -1145,7 +1145,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 Vue.component('MyComponent', {
@@ -1180,7 +1180,7 @@ export default {
 L'autocomplétion dans les éditeurs rend le cout d'un long nom de composant insignifiant alors que la clarté qu'il amène est sans valeur. Les abréviations non communes, en particulier, sont à éviter.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ```
 components/
@@ -1190,7 +1190,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ```
 components/
@@ -1208,7 +1208,7 @@ components/
 Nous suivons simplement les conventions de chaque langage. Dans le JavaScript, la camelCase est plus naturelle. Dans le HTML, c'est la kebab-case.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 props: {
@@ -1222,7 +1222,7 @@ props: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 props: {
@@ -1244,7 +1244,7 @@ props: {
 En JavaScript, scinder les objets avec de multiples propriétés sur plusieurs lignes est largement considéré comme une bonne convention, car cela rend le code plus facile à lire. Nos templates et [JSX](../guide/render-function.html#JSX) suivent les mêmes règles.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
@@ -1256,7 +1256,7 @@ En JavaScript, scinder les objets avec de multiples propriétés sur plusieurs l
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <img
@@ -1283,7 +1283,7 @@ En JavaScript, scinder les objets avec de multiples propriétés sur plusieurs l
 Les expressions complexes dans vos templates les rendent moins déclaratifs. Nous devrions voir _ce qui_ devrait apparaitre, et non _comment_ cette valeur est calculée. Les propriétés calculées et les méthodes permettent également de rendre le code réutilisable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 {{
@@ -1295,7 +1295,7 @@ Les expressions complexes dans vos templates les rendent moins déclaratifs. Nou
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <!-- In a template -->
@@ -1346,7 +1346,7 @@ Les propriétés calculées simples et bien nommées sont :
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 computed: {
@@ -1362,7 +1362,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 computed: {
@@ -1388,7 +1388,7 @@ computed: {
 Alors que les valeurs d'attributs sans espaces ne sont pas requises en HTML, cela les mène à ne _jamais_ mettre d'espace, laissant place à des valeurs moins lisibles.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <input type=text>
@@ -1400,7 +1400,7 @@ Alors que les valeurs d'attributs sans espaces ne sont pas requises en HTML, cel
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <input type="text">
@@ -1418,7 +1418,7 @@ Alors que les valeurs d'attributs sans espaces ne sont pas requises en HTML, cel
 **Les abréviations de directive (`:` pour `v-bind:` et `@` pour `v-on:`) devraient toujours être utilisées ou jamais.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <input
@@ -1436,7 +1436,7 @@ Alors que les valeurs d'attributs sans espaces ne sont pas requises en HTML, cel
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <input
@@ -1577,7 +1577,7 @@ Voici l'ordre par défaut que nous recommandons pour les options de composant. E
 Quand les composants commencent à devenir difficile à lire, ajouter des espaces entre des propriétés sur plusieurs lignes peut les rendre de nouveau simples à lire. Dans divers éditeurs, comme Vim, formater les options ainsi peut rendre la navigation plus simple avec le clavier.
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 props: {
@@ -1639,7 +1639,7 @@ computed: {
 **[Les composants monofichiers](../guide/single-file-components.html) devraient toujours ordonner de manière consistante les balises `<script>`, `<template>`, et `<style>`, avec `<style>` en dernier, car au moins l'un des deux autres est toujours nécessaire.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <style>/* ... */</style>
@@ -1661,7 +1661,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <!-- ComponentA.vue -->
@@ -1701,7 +1701,7 @@ computed: {
 Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signifie que quand il commute entre deux éléments de même type, il va simplement modifier l'élément existant, plutôt que de l'enlever et d'en ajouter un nouveau à la place. Cela peut avoir des [effets non souhaités](https://jsfiddle.net/chrisvfritz/bh8fLeds/) si ces éléments ne doivent pas être considérés comme les mêmes.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <div v-if="error">
@@ -1714,7 +1714,7 @@ Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signif
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <div v-if="error" key="search-status">
@@ -1757,7 +1757,7 @@ Le problème est qu'utiliser un grand nombre de [sélecteur par nom]((http://ste
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` html
 <template>
@@ -1773,7 +1773,7 @@ button {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` html
 <template>
@@ -1799,7 +1799,7 @@ Une application Vue idéale est une application où les props descendent et où 
 Le problème est qu'il y a beaucoup de _cas simples_ où leur utilisation offre de la facilité. Attention : ne vous laissez pas séduire par une apparente simplicité (être capable de comprendre le flux de votre état) pour une vision court-termiste (écrire moins de code).
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 Vue.component('TodoItem', {
@@ -1842,7 +1842,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 Vue.component('TodoItem', {
@@ -1892,7 +1892,7 @@ Gérer l'état avec `this.$root` et / ou utiliser un [canal d'évènement global
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Mauvais
+#### À éviter
 
 ``` js
 // main.js
@@ -1916,7 +1916,7 @@ new Vue({
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Bon
+#### Recommandé
 
 ``` js
 // store/modules/todos.js
