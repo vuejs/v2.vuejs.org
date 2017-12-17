@@ -26,7 +26,7 @@ filters: {
 }
 ```
 
-or define a filter globally:
+또는 다음과 같이 전역 필터를 정의할 수 있습니다.
 
 ``` js
 Vue.filter('capitalize', function (value) {
