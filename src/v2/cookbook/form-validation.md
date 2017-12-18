@@ -8,7 +8,7 @@ order: 1.2
 
 Form validation is natively supported by the browser, but sometimes different browsers will handle things in a manner which makes relying on it a bit tricky. Even when validation is supported perfectly, there may be times when custom validations are needed and a more manual, Vue-based solution may be more appropriate. Let's begin with a simple example.
 
-For my first example, let's create something as simple as possible. Given a form of three fields, make two required. Let's look at the HTML first:
+Given a form of three fields, make two required. Let's look at the HTML first:
 
 ``` html
 <form id="app" @submit="checkForm" action="/something" method="post">
@@ -21,26 +21,26 @@ For my first example, let's create something as simple as possible. Given a form
   </p>
   
   <p>
-  <label for="name">Name<label>
-  <input type="text" name="name" id="name" v-model="name">
+    <label for="name">Name<label>
+    <input type="text" name="name" id="name" v-model="name">
   </p>
 
   <p>
-  <label for="age">Age<label>
-  <input type="number" name="age" id="age" v-model="age">
+    <label for="age">Age<label>
+    <input type="number" name="age" id="age" v-model="age">
   </p>
 
   <p>
-  <label for="movie">Favorite Movie<label>
-  <select name="movie" id="movie" v-model="movie">
-    <option>Star Wars</option>
-    <option>Vanilla Sky</option>
-    <option>Atomic Blonde</option>
-  </select>
+    <label for="movie">Favorite Movie<label>
+    <select name="movie" id="movie" v-model="movie">
+      <option>Star Wars</option>
+      <option>Vanilla Sky</option>
+      <option>Atomic Blonde</option>
+    </select>
   </p>
 
   <p>
-  <input type="submit" value="Submit">  
+    <input type="submit" value="Submit">  
   </p>
 
 </form>
@@ -48,7 +48,7 @@ For my first example, let's create something as simple as possible. Given a form
 
 Let's cover it from the top. The form tag has an ID that we'll be using for the Vue component. There's a submit handler that you'll see in a bit, and the action is a fake URL that would point to something real on a server someplace (where you have backup server-side validation of course).
 
-Beneath that there isa paragraph that shows or hides itself based on an error state. This is a personal preference of mine when building forms. I like a nice simple list of errors on top of the form. You may like error handling by the fields themselves. Use what works. Also note I'm going to fire my validation on submit rather than as every field is modified. Again, this is a personal preference.
+Beneath that there is a paragraph that shows or hides itself based on an error state. This will render a simple list of errors on top of the form. Also note we fire the validation on submit rather than as every field is modified. 
 
 The final thing to note is that each of the three fields has a corresponding v-model to connect them to values we will work with in the JavaScript. Now let's look at that.
 
@@ -93,26 +93,26 @@ For the second example, the second text field (age) was switched to email which 
   </p>
   
   <p>
-  <label for="name">Name<label>
-  <input type="text" name="name" id="name" v-model="name">
+    <label for="name">Name<label>
+    <input type="text" name="name" id="name" v-model="name">
   </p>
 
   <p>
-  <label for="email">Email<label>
-  <input type="email" name="email" id="email" v-model="email">
+    <label for="email">Email<label>
+    <input type="email" name="email" id="email" v-model="email">
   </p>
 
   <p>
-  <label for="movie">Favorite Movie<label>
-  <select name="movie" id="movie" v-model="movie">
-    <option>Star Wars</option>
-    <option>Vanilla Sky</option>
-    <option>Atomic Blonde</option>
-  </select>
+    <label for="movie">Favorite Movie<label>
+    <select name="movie" id="movie" v-model="movie">
+      <option>Star Wars</option>
+      <option>Vanilla Sky</option>
+      <option>Atomic Blonde</option>
+    </select>
   </p>
 
   <p>
-  <input type="submit" value="Submit">  
+    <input type="submit" value="Submit">  
   </p>
 
 </form>
@@ -149,7 +149,7 @@ const app = new Vue({
 })
 ```
 
-As you can see, we've added `validEmail` as a new method and it is simply called from `checkForm`. Nothing too crazy, but a good example I think. You can play with this example here:
+As you can see, we've added `validEmail` as a new method and it is simply called from `checkForm`. You can play with this example here:
 
 <p data-height="265" data-theme-id="0" data-slug-hash="vWqNXZ" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 2" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/vWqNXZ/">form validation 2</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
@@ -187,15 +187,15 @@ For the third example, we've built something you've probably seen in survey apps
   </p>
 
   <p>
-  <input type="submit" value="Submit">  
+    <input type="submit" value="Submit">  
   </p>
 
 </form>
 ```
 
-Note the set of inputs covering the five different features. Note the addition of .number to the v-model attibute. This tells Vue to cast the value to a number when you use it. However, there is a bug with this feature such that when the value is blank, it turns back into a string. You'll see the workaround below. To make it a bit easier for the user, we also added a current total right below so they can see, in real time, what their total is. Now let's look at the JavaScript.
+Note the set of inputs covering the five different features. Note the addition of .number to the v-model attribute. This tells Vue to cast the value to a number when you use it. However, there is a bug with this feature such that when the value is blank, it turns back into a string. You'll see the workaround below. To make it a bit easier for the user, we also added a current total right below so they can see, in real time, what their total is. Now let's look at the JavaScript.
 
-```
+``` js
 const app = new Vue({
   el:'#app',
   data:{
@@ -233,7 +233,7 @@ We set up the total value as a computed value, and outside of that bug I ran int
 
 ## Server-side Validation
 
-In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick OpenWhisk serverless action to do the validation. While it isn't terribly important, here is the logic:
+In my final example, we built something that makes use of Ajax to validate at the server. The form will ask you to name a new product and will then check to ensure that the name is unique. We wrote a quick [OpenWhisk](http://openwhisk.apache.org/) serverless action to do the validation. While it isn't terribly important, here is the logic:
 
 ``` js
 function main(args) {
@@ -263,12 +263,12 @@ Basically any name but "vista", "empire", and "mbp" are acceptable. Ok, so let's
   </p>
 
   <p>
-  <label for="name">New Product Name: </label>
-  <input type="text" name="name" id="name" v-model="name">
+    <label for="name">New Product Name: </label>
+    <input type="text" name="name" id="name" v-model="name">
   </p>
 
   <p>
-  <input type="submit" value="Submit">  
+    <input type="submit" value="Submit">  
   </p>
 
 </form>
@@ -313,9 +313,9 @@ We start off with a variable representing the URL of the API that is running on 
 <p data-height="265" data-theme-id="0" data-slug-hash="BmgzeM" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 4" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/BmgzeM/">form validation 4</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-## Vue Form Validation Libraries
+## Alternative Patterns
 
-While this cookbook entry focused on doing form validation "by hand", there are, of course, some great Vue libraries that will handle a lot of this for you. They include:
+While this cookbook entry focused on doing form validation "by hand", there are, of course, some great Vue libraries that will handle a lot of this for you. Switching to a prepackage library may impact the final size of your application, but the benefits could be tremendous. You have code that is (most likely) heavily tested and also updated on a regular basis. Some examples of form validation libraries for Vue  include:
 
 * [vuelidate](https://github.com/monterail/vuelidate)
 * [VeeValidate](http://vee-validate.logaretm.com/)
