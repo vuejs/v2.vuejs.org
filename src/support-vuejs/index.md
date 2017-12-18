@@ -60,8 +60,6 @@ However, the amount of effort needed to maintain and develop new features for th
     <img src="/images/frontend-love.png" style="width: 150px;">
   </a><a href="https://onsen.io/vue/" target="_blank" style="width: 125px;">
     <img src="/images/onsen-ui.png" style="width: 125px;">
-  </a><a href="https://themeforest.net/item/clear-bootstrap-vuejs-admin-template/19339739?ref=jyostna&utm_source=vuejs.org&utm_campaign=vuejs_patreon" target="_blank" style="width: 120px;">
-    <img src="/images/vuejsadmin.png" style="width: 120px;">
   </a><a href="https://vuetifyjs.com" target="_blank">
     <img src="/images/vuetify.png">
   </a>
