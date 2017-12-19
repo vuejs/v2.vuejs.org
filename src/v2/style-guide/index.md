@@ -295,8 +295,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 <ul>
   <li
     v-for="todo in todos"
-    :key="todo.id"
-  >
+    :key="todo.id">
     {{ todo.text }}
   </li>
 </ul>
@@ -329,8 +328,7 @@ When Vue processes directives, `v-for` has a higher priority than `v-if`, so tha
   <li
     v-for="user in users"
     v-if="user.isActive"
-    :key="user.id"
-  >
+    :key="user.id">
     {{ user.name }}
   <li>
 </ul>
@@ -364,8 +362,7 @@ computed: {
 <ul>
   <li
     v-for="user in activeUsers"
-    :key="user.id"
-  >
+    :key="user.id">
     {{ user.name }}
   <li>
 </ul>
@@ -384,8 +381,7 @@ We get similar benefits from updating:
   <li
     v-for="user in users"
     v-if="shouldShowUsers"
-    :key="user.id"
-  >
+    :key="user.id">
     {{ user.name }}
   <li>
 </ul>
@@ -397,8 +393,7 @@ to:
 <ul v-if="shouldShowUsers">
   <li
     v-for="user in users"
-    :key="user.id"
-  >
+    :key="user.id">
     {{ user.name }}
   <li>
 </ul>
@@ -443,8 +438,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 <ul>
   <li
     v-for="user in activeUsers"
-    :key="user.id"
-  >
+    :key="user.id">
     {{ user.name }}
   <li>
 </ul>
@@ -454,8 +448,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 <ul v-if="shouldShowUsers">
   <li
     v-for="user in users"
-    :key="user.id"
-  >
+    :key="user.id">
     {{ user.name }}
   <li>
 </ul>
@@ -1261,16 +1254,14 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 ``` html
 <img
   src="https://vuejs.org/images/logo.png"
-  alt="Vue Logo"
->
+  alt="Vue Logo">
 ```
 
 ``` html
 <MyComponent
   foo="a"
   bar="b"
-  baz="c"
-/>
+  baz="c" />
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1441,29 +1432,25 @@ While attribute values without any spaces are not required to have quotes in HTM
 ``` html
 <input
   :value="newTodoText"
-  :placeholder="newTodoInstructions"
->
+  :placeholder="newTodoInstructions">
 ```
 
 ``` html
 <input
   v-bind:value="newTodoText"
-  v-bind:placeholder="newTodoInstructions"
->
+  v-bind:placeholder="newTodoInstructions">
 ```
 
 ``` html
 <input
   @input="onInput"
-  @focus="onFocus"
->
+  @focus="onFocus">
 ```
 
 ``` html
 <input
   v-on:input="onInput"
-  v-on:focus="onFocus"
->
+  v-on:focus="onFocus">
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1717,10 +1704,14 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 #### Good
 
 ``` html
-<div v-if="error" key="search-status">
+<div
+  v-if="error"
+  key="search-status">
   Error: {{ error }}
 </div>
-<div v-else key="search-results">
+<div
+  v-else
+  key="search-results">
   {{ results }}
 </div>
 ```
@@ -1855,8 +1846,7 @@ Vue.component('TodoItem', {
   template: `
     <input
       :value="todo.text"
-      @input="$emit('input', $event.target.value)"
-    >
+      @input="$emit('input', $event.target.value)">
   `
 })
 ```
