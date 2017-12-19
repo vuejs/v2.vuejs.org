@@ -77,7 +77,7 @@ data: {
 }
 ```
 
-The only exception to this being the use of `Object.freeze()`, which impedes existing properties from being changed, and prevents the reactivity system from tracking changes.
+The only exception to this being the use of `Object.freeze()`, which prevents existing properties from being changed, which also means the reactivity system can't _track_ changes.
 
 ```js
 var obj = {
@@ -100,7 +100,7 @@ new Vue({
 <div id="app">
   <p>{{ obj.foo }}</p>
   <!-- this will no longer update obj.foo! -->
-  <button @click="obj.foo = `baz`">Change it</button>
+  <button @click="obj.foo = 'baz'">Change it</button>
 </div>
 ```
 
