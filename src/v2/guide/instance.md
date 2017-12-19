@@ -88,7 +88,7 @@ Object.freeze(obj)
 
 new Vue({
   el: '#app',
-  data() {
+  data () {
     return {
       obj
     }
@@ -117,7 +117,7 @@ vm.$data === data // => true
 vm.$el === document.getElementById('example') // => true
 
 // $watch is an instance method
-vm.$watch('a', function(newValue, oldValue) {
+vm.$watch('a', function (newValue, oldValue) {
   // This callback will be called when `vm.a` changes
 })
 ```
@@ -135,7 +135,7 @@ new Vue({
   data: {
     a: 1
   },
-  created: function() {
+  created: function () {
     // `this` points to the vm instance
     console.log('a is: ' + this.a)
   }
