@@ -136,6 +136,8 @@
   * Modal Video Player
   */
   function initVideoModal () {
+    if (typeof Vimeo === 'undefined') return
+
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
     var iframe = document.querySelector('iframe');
