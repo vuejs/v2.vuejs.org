@@ -1717,7 +1717,10 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 #### Good
 
 ``` html
-<div v-if="error" key="search-status">
+<div
+  v-if="error"
+  key="search-status"
+>
   Error: {{ error }}
 </div>
 <div v-else key="search-results">
