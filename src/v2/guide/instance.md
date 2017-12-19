@@ -8,7 +8,7 @@ order: 3
 
 Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
 
-``` js
+```js
 var vm = new Vue({
   // options
 })
@@ -37,7 +37,7 @@ We'll talk about [the component system](components.html) in detail later. For no
 
 When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
 
-``` js
+```js
 // Our data object
 var data = { a: 1 }
 
@@ -61,13 +61,13 @@ vm.a // => 3
 
 When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
 
-``` js
+```js
 vm.b = 'hi'
 ```
 
 Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
 
-``` js
+```js
 data: {
   newTodoText: '',
   visitCount: 0,
@@ -77,9 +77,36 @@ data: {
 }
 ```
 
+The only exception to this being the use of `Object.freeze()`, which prevents existing properties from being changed, which also means the reactivity system can't _track_ changes.
+
+```js
+var obj = {
+  foo: 'bar'
+}
+
+Object.freeze(obj)
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      obj
+    }
+  }
+})
+```
+
+```html
+<div id="app">
+  <p>{{ obj.foo }}</p>
+  <!-- this will no longer update obj.foo! -->
+  <button @click="obj.foo = 'baz'">Change it</button>
+</div>
+```
+
 In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
 
-``` js
+```js
 var data = { a: 1 }
 var vm = new Vue({
   el: '#example',
@@ -103,7 +130,7 @@ Each Vue instance goes through a series of initialization steps when it's create
 
 For example, the [`created`](../api/#created) hook can be used to run code after an instance is created:
 
-``` js
+```js
 new Vue({
   data: {
     a: 1
@@ -119,7 +146,6 @@ new Vue({
 There are also other hooks which will be called at different stages of the instance's lifecycle, such as [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
 
 <p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect, often resulting in errors such as `Uncaught TypeError: Cannot read property of undefined` or `Uncaught TypeError: this.myMethod is not a function`.</p>
-
 
 ## Lifecycle Diagram
 
