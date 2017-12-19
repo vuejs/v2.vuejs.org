@@ -1,5 +1,6 @@
 (function () {
   initMobileMenu()
+  initVideoModal()
   if (PAGE_TYPE) {
     initVersionSelect()
     initSubHeaders()
@@ -127,6 +128,35 @@
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
         if (xDiff > 0 && start.x <= 80) sidebar.classList.add('open')
         else sidebar.classList.remove('open')
+      }
+    })
+  }
+
+  /**
+  * Modal Video Player
+  */
+  function initVideoModal () {
+    var modalButton = document.getElementById('modal-player')
+    var videoModal = document.getElementById('video-modal')
+    var iframe = document.querySelector('iframe');
+    var player = new Vimeo.Player(iframe);
+    var overlay = document.createElement('div')
+        overlay.className = 'overlay'
+
+
+    modalButton.addEventListener('click', function() {
+      videoModal.classList.toggle('open')
+      document.body.classList.toggle('stop-scroll')
+      document.body.appendChild(overlay)
+      player.play()
+    })
+
+    document.body.addEventListener('click', function(e) {
+      if (e.target !== modalButton && !videoModal.contains(e.target)) {
+        videoModal.classList.remove('open')
+        document.body.classList.remove('stop-scroll')
+        document.body.removeChild(overlay)
+        player.unload()
       }
     })
   }
