@@ -591,12 +591,10 @@ order: 803
       github: 'shentao',
       twitter: 'DamianDulisz',
       work: {
-        role: 'Senior Frontend Developer',
-        org: 'Monterail',
-        orgUrl: 'https://www.monterail.com/'
+        role: 'Consultant'
       },
       reposPersonal: [
-        'monterail/vue-multiselect', 'monterail/vue-newsletter'
+        'shentao/vue-multiselect'
       ]
     },
     {
