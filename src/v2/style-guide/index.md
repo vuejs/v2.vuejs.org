@@ -1276,6 +1276,64 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 
 
+### HTML and Vue attributes/directives in tag <sup data-p="b">strongly recommended</sup>
+
+**HTML and Vue attributes/directives in tag must be ordered.**
+
+Mixed describing attributes in your templates make them less readable. Writing Vue attributes/directives in tag or component need to be after native HTML attributes.
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<img
+  @click="toggle"
+  src="https://vuejs.org/images/logo.png"
+  alt="Vue Logo"
+>
+```
+
+``` html
+<CustomComponent
+  v-if="true"
+  class="custom-class"
+/>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<img
+  class="vue-logo"
+  src="https://vuejs.org/images/logo.png"
+  alt="Vue Logo"
+  @click="toggle"
+>
+```
+
+``` html
+<CustomComponent
+  class="custom-class"
+  v-if="true"
+/>
+```
+
+``` html
+<button
+  type="button"
+  class="btn"
+  v-if="true"
+  @click="clear">
+</button>
+```
+
+{% raw %}</div>{% endraw %}
+--------------------------------------------
+
+
+
 ### Simple expressions in templates <sup data-p="b">strongly recommended</sup>
 
 **Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
