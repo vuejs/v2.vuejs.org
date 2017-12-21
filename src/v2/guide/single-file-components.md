@@ -21,6 +21,15 @@ Here's an example of a file we'll call `Hello.vue`:
 
 <img src="/images/vue-component.png" style="display: block; margin: 30px auto;">
 
+To take use of this component, import and register it like this:
+
+```js
+import Vue from 'vue';
+import Hello from './Hello.vue';
+
+Vue.component('hello', Hello);
+```
+
 Now we get:
 
 - [Complete syntax highlighting](https://github.com/vuejs/awesome-vue#source-code-editing)
