@@ -2,14 +2,14 @@
   "name": "vuejs.org",
   "private": true,
   "hexo": {
-    "version": "3.2.2"
+    "version": "3.4.4"
   },
   "scripts": {
     "start": "hexo server",
     "deploy": "node pre-deploy.js && hexo clean && hexo generate && hexo deploy"
   },
   "dependencies": {
-    "hexo": "^3.4.2",
+    "hexo": "^3.4.4",
     "hexo-deployer-git": "0.3.1",
     "hexo-generator-alias": "git+https://github.com/chrisvfritz/vuejs.org-hexo-generator-alias.git",
     "hexo-generator-archive": "^0.1.5",
