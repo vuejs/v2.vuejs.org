@@ -70,6 +70,9 @@
       ga('create', 'UA-46852172-1', 'vuejs.org');
       ga('send', 'pageview');
     </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
   <body class="docs">
     <div id="mobile-bar" >
@@ -144,9 +147,9 @@
   <a class="nav-link">Support Vue</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
-      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
-      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
-      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+      <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+      <li><a href="/support-vuejs/#Recurring-Pledges" target="_blank" class="nav-link">Recurring Pledges</a></li>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">T-Shirt Shop</a></li>
     </ul></li>
   </ul>
 </li>
@@ -237,9 +240,9 @@
   <a class="nav-link">Support Vue</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
-      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
-      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
-      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+      <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+      <li><a href="/support-vuejs/#Recurring-Pledges" target="_blank" class="nav-link">Recurring Pledges</a></li>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">T-Shirt Shop</a></li>
     </ul></li>
   </ul>
 </li>
@@ -893,7 +896,7 @@
 <h4 id="Bad-24"><a href="#Bad-24" class="headerlink" title="Bad"></a>Bad</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"error"</span>&gt;</span></span><br><span class="line">  Error: &#123;&#123; error &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  &#123;&#123; results &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </div>
 <div class="style-example example-good">
-<h4 id="Good-25"><a href="#Good-25" class="headerlink" title="Good"></a>Good</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"error"</span> <span class="attr">key</span>=<span class="string">"search-status"</span>&gt;</span></span><br><span class="line">  Error: &#123;&#123; error &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span> <span class="attr">key</span>=<span class="string">"search-results"</span>&gt;</span></span><br><span class="line">  &#123;&#123; results &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Good-25"><a href="#Good-25" class="headerlink" title="Good"></a>Good</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-if</span>=<span class="string">"error"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">key</span>=<span class="string">"search-status"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  Error: &#123;&#123; error &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">v-else</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">key</span>=<span class="string">"search-results"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  &#123;&#123; results &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"error"</span>&gt;</span></span><br><span class="line">  Error: &#123;&#123; error &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  &#123;&#123; results &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </div>
 <h3 id="Element-selectors-with-scoped-use-with-caution"><a href="#Element-selectors-with-scoped-use-with-caution" class="headerlink" title="Element selectors with scoped use with caution"></a>Element selectors with <code>scoped</code> <sup data-p="d">use with caution</sup></h3><p><strong>Element selectors should be avoided with <code>scoped</code>.</strong></p>

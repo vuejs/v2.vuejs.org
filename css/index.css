@@ -226,9 +226,24 @@ a.button {
   box-sizing: border-box;
   border: 1px solid #4fc08d;
 }
+a.button.has-icon {
+  position: relative;
+  text-indent: 1.4em;
+}
+a.button.has-icon > svg {
+  position: absolute;
+  left: 0.4em;
+  top: 0.4em;
+  width: 2em;
+}
 a.button.white {
   background-color: #fff;
   color: #42b983;
+}
+a.button.gray {
+  background-color: #f6f6f6;
+  color: #7f8c8d;
+  border-color: #f6f6f6;
 }
 .highlight {
   overflow-x: auto;
@@ -421,6 +436,7 @@ body.docs #nav {
 }
 .nav-link {
   padding-bottom: 3px;
+  white-space: nowrap;
 }
 .nav-link:hover,
 .nav-link.current {
@@ -723,6 +739,66 @@ body.docs #nav {
   max-height: 80px;
   margin-right: 20px;
 }
+#one-time-donations a,
+#one-time-donations svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+#one-time-donations a {
+  margin: 20px;
+  color: #34495e;
+}
+#one-time-donations svg {
+  margin-right: 5px;
+}
+#coin-details {
+  text-align: center;
+  border-radius: 4px;
+  padding: 30px;
+  font-weight: bold;
+}
+#coin-details img {
+  width: 200px;
+}
+#coin-details p {
+  padding: 0;
+  margin: 0 0 20px;
+}
+.modal {
+  box-sizing: border-box;
+  display: none;
+  position: fixed;
+  width: 80%;
+  height: auto;
+  padding: 0.5em;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 11;
+}
+.modal.open {
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.stop-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+@media screen and (max-width: 400px) {
+  .modal {
+    width: 98%;
+  }
+}
 body {
   background-color: #727f80;
 }
@@ -747,7 +823,7 @@ body {
   background-color: #fff;
 }
 #hero .inner {
-  max-width: 900px;
+  max-width: 1260px;
   margin: 0 auto;
 }
 #hero .left,
@@ -787,8 +863,8 @@ body {
   min-width: 8em;
   text-align: center;
 }
-#hero .button:first-child {
-  margin-right: 1em;
+#hero .button:not(:last-child) {
+  margin-right: 1%;
 }
 #hero .social-buttons {
   list-style-type: none;

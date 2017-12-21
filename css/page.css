@@ -226,9 +226,24 @@ a.button {
   box-sizing: border-box;
   border: 1px solid #4fc08d;
 }
+a.button.has-icon {
+  position: relative;
+  text-indent: 1.4em;
+}
+a.button.has-icon > svg {
+  position: absolute;
+  left: 0.4em;
+  top: 0.4em;
+  width: 2em;
+}
 a.button.white {
   background-color: #fff;
   color: #42b983;
+}
+a.button.gray {
+  background-color: #f6f6f6;
+  color: #7f8c8d;
+  border-color: #f6f6f6;
 }
 .highlight {
   overflow-x: auto;
@@ -465,6 +480,7 @@ body.docs #nav {
 }
 .nav-link {
   padding-bottom: 3px;
+  white-space: nowrap;
 }
 .nav-link:hover,
 .nav-link.current {
@@ -731,6 +747,31 @@ ul.demo li {
 .content .open-collective-sponsors img {
   max-height: 80px;
   margin-right: 20px;
+}
+#one-time-donations a,
+#one-time-donations svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+#one-time-donations a {
+  margin: 20px;
+  color: #34495e;
+}
+#one-time-donations svg {
+  margin-right: 5px;
+}
+#coin-details {
+  text-align: center;
+  border-radius: 4px;
+  padding: 30px;
+  font-weight: bold;
+}
+#coin-details img {
+  width: 200px;
+}
+#coin-details p {
+  padding: 0;
+  margin: 0 0 20px;
 }
 .content.guide[class*="migration"] h2 > sup,
 .content.guide[class*="migration"] h3 > sup {

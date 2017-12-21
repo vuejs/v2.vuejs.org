@@ -70,6 +70,9 @@
       ga('create', 'UA-46852172-1', 'vuejs.org');
       ga('send', 'pageview');
     </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
   <body class="docs">
     <div id="mobile-bar" >
@@ -144,9 +147,9 @@
   <a class="nav-link">Support Vue</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
-      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
-      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
-      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+      <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+      <li><a href="/support-vuejs/#Recurring-Pledges" target="_blank" class="nav-link">Recurring Pledges</a></li>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">T-Shirt Shop</a></li>
     </ul></li>
   </ul>
 </li>
@@ -237,9 +240,9 @@
   <a class="nav-link">Support Vue</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
-      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
-      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
-      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+      <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+      <li><a href="/support-vuejs/#Recurring-Pledges" target="_blank" class="nav-link">Recurring Pledges</a></li>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">T-Shirt Shop</a></li>
     </ul></li>
   </ul>
 </li>
@@ -421,9 +424,7 @@
 <p>Set this to <code>false</code> to prevent the production tip on Vue startup.</p>
 </li>
 </ul>
-<h2 id="Global-API"><a href="#Global-API" class="headerlink" title="Global API"></a>Global API</h2><h3 id="Vue-extend">Vue.extend( options )</h3>
-
-<ul>
+<h2 id="Global-API"><a href="#Global-API" class="headerlink" title="Global API"></a>Global API</h2><h3 id="Vue-extend-options"><a href="#Vue-extend-options" class="headerlink" title="Vue.extend( options )"></a>Vue.extend( options )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Object} options</code></li>
@@ -440,9 +441,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/components.html">Components</a></p>
 </li>
 </ul>
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
-
-<ul>
+<h3 id="Vue-nextTick-callback-context"><a href="#Vue-nextTick-callback-context" class="headerlink" title="Vue.nextTick( [callback, context] )"></a>Vue.nextTick( [callback, context] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Function} [callback]</code></li>
@@ -459,9 +458,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/reactivity.html#Async-Update-Queue">Async Update Queue</a></p>
 </li>
 </ul>
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
-
-<ul>
+<h3 id="Vue-set-target-key-value"><a href="#Vue-set-target-key-value" class="headerlink" title="Vue.set( target, key, value )"></a>Vue.set( target, key, value )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Object | Array} target</code></li>
@@ -478,9 +475,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/reactivity.html">Reactivity in Depth</a></p>
 </li>
 </ul>
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
-
-<ul>
+<h3 id="Vue-delete-target-key"><a href="#Vue-delete-target-key" class="headerlink" title="Vue.delete( target, key )"></a>Vue.delete( target, key )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Object | Array} target</code></li>
@@ -497,9 +492,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/reactivity.html">Reactivity in Depth</a></p>
 </li>
 </ul>
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
-
-<ul>
+<h3 id="Vue-directive-id-definition"><a href="#Vue-directive-id-definition" class="headerlink" title="Vue.directive( id, [definition] )"></a>Vue.directive( id, [definition] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string} id</code></li>
@@ -513,9 +506,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/custom-directive.html">Custom Directives</a></p>
 </li>
 </ul>
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
-
-<ul>
+<h3 id="Vue-filter-id-definition"><a href="#Vue-filter-id-definition" class="headerlink" title="Vue.filter( id, [definition] )"></a>Vue.filter( id, [definition] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string} id</code></li>
@@ -527,9 +518,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// register</span></span><br><span class="line">Vue.filter(<span class="string">'my-filter'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// return processed value</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// getter, return the filter if registered</span></span><br><span class="line"><span class="keyword">var</span> myFilter = Vue.filter(<span class="string">'my-filter'</span>)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
-
-<ul>
+<h3 id="Vue-component-id-definition"><a href="#Vue-component-id-definition" class="headerlink" title="Vue.component( id, [definition] )"></a>Vue.component( id, [definition] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string} id</code></li>
@@ -543,9 +532,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/components.html">Components</a></p>
 </li>
 </ul>
-<h3 id="Vue-use">Vue.use( plugin )</h3>
-
-<ul>
+<h3 id="Vue-use-plugin"><a href="#Vue-use-plugin" class="headerlink" title="Vue.use( plugin )"></a>Vue.use( plugin )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Object | Function} plugin</code></li>
@@ -558,9 +545,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/plugins.html">Plugins</a></p>
 </li>
 </ul>
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
-
-<ul>
+<h3 id="Vue-mixin-mixin"><a href="#Vue-mixin-mixin" class="headerlink" title="Vue.mixin( mixin )"></a>Vue.mixin( mixin )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Object} mixin</code></li>
@@ -572,9 +557,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/mixins.html#Global-Mixin">Global Mixin</a></p>
 </li>
 </ul>
-<h3 id="Vue-compile">Vue.compile( template )</h3>
-
-<ul>
+<h3 id="Vue-compile-template"><a href="#Vue-compile-template" class="headerlink" title="Vue.compile( template )"></a>Vue.compile( template )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string} template</code></li>
@@ -587,9 +570,7 @@
 <li><p><strong>See also:</strong> <a href="../guide/render-function.html">Render Functions</a></p>
 </li>
 </ul>
-<h3 id="Vue-version">Vue.version</h3>
-
-<ul>
+<h3 id="Vue-version"><a href="#Vue-version" class="headerlink" title="Vue.version"></a>Vue.version</h3><ul>
 <li><p><strong>Details</strong>: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.</p>
 </li>
 <li><p><strong>Usage</strong>:</p>
@@ -1209,9 +1190,7 @@
 <p>Contains parent-scope <code>v-on</code> event listeners (without <code>.native</code> modifiers). This can be passed down to an inner component via <code>v-on=&quot;$listeners&quot;</code> - useful when creating higher-order components.</p>
 </li>
 </ul>
-<h2 id="Instance-Methods-Data"><a href="#Instance-Methods-Data" class="headerlink" title="Instance Methods / Data"></a>Instance Methods / Data</h2><h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
-
-<ul>
+<h2 id="Instance-Methods-Data"><a href="#Instance-Methods-Data" class="headerlink" title="Instance Methods / Data"></a>Instance Methods / Data</h2><h3 id="vm-watch-expOrFn-callback-options"><a href="#vm-watch-expOrFn-callback-options" class="headerlink" title="vm.$watch( expOrFn, callback, [options] )"></a>vm.$watch( expOrFn, callback, [options] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string | Function} expOrFn</code></li>
@@ -1246,9 +1225,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vm.$watch(<span class="string">'a'</span>, callback, &#123;</span><br><span class="line">  immediate: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// `callback` is fired immediately with current value of `a`</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
-
-<ul>
+<h3 id="vm-set-target-key-value"><a href="#vm-set-target-key-value" class="headerlink" title="vm.$set( target, key, value )"></a>vm.$set( target, key, value )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Object | Array} target</code></li>
@@ -1264,9 +1241,7 @@
 <li><p><strong>See also:</strong> <a href="#Vue-set">Vue.set</a></p>
 </li>
 </ul>
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
-
-<ul>
+<h3 id="vm-delete-target-key"><a href="#vm-delete-target-key" class="headerlink" title="vm.$delete( target, key )"></a>vm.$delete( target, key )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Object | Array} target</code></li>
@@ -1279,9 +1254,7 @@
 <li><p><strong>See also:</strong> <a href="#Vue-delete">Vue.delete</a></p>
 </li>
 </ul>
-<h2 id="Instance-Methods-Events"><a href="#Instance-Methods-Events" class="headerlink" title="Instance Methods / Events"></a>Instance Methods / Events</h2><h3 id="vm-on">vm.$on( event, callback )</h3>
-
-<ul>
+<h2 id="Instance-Methods-Events"><a href="#Instance-Methods-Events" class="headerlink" title="Instance Methods / Events"></a>Instance Methods / Events</h2><h3 id="vm-on-event-callback"><a href="#vm-on-event-callback" class="headerlink" title="vm.$on( event, callback )"></a>vm.$on( event, callback )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string | Array&lt;string&gt;} event</code> (array only supported in 2.2.0+)</li>
@@ -1295,9 +1268,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vm.$on(<span class="string">'test'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(msg)</span><br><span class="line">&#125;)</span><br><span class="line">vm.$emit(<span class="string">'test'</span>, <span class="string">'hi'</span>)</span><br><span class="line"><span class="comment">// =&gt; "hi"</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="vm-once">vm.$once( event, callback )</h3>
-
-<ul>
+<h3 id="vm-once-event-callback"><a href="#vm-once-event-callback" class="headerlink" title="vm.$once( event, callback )"></a>vm.$once( event, callback )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string} event</code></li>
@@ -1308,9 +1279,7 @@
 <p>Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.</p>
 </li>
 </ul>
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
-
-<ul>
+<h3 id="vm-off-event-callback"><a href="#vm-off-event-callback" class="headerlink" title="vm.$off( [event, callback] )"></a>vm.$off( [event, callback] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string | Array&lt;string&gt;} event</code> (array only supported in 2.2.2+)</li>
@@ -1329,9 +1298,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="vm-emit">vm.$emit( event, […args] )</h3>
-
-<ul>
+<h3 id="vm-emit-event-…args"><a href="#vm-emit-event-…args" class="headerlink" title="vm.$emit( event, […args] )"></a>vm.$emit( event, […args] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{string} event</code></li>
@@ -1340,9 +1307,7 @@
 <p>Trigger an event on the current instance. Any additional arguments will be passed into the listener’s callback function.</p>
 </li>
 </ul>
-<h2 id="Instance-Methods-Lifecycle"><a href="#Instance-Methods-Lifecycle" class="headerlink" title="Instance Methods / Lifecycle"></a>Instance Methods / Lifecycle</h2><h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
-
-<ul>
+<h2 id="Instance-Methods-Lifecycle"><a href="#Instance-Methods-Lifecycle" class="headerlink" title="Instance Methods / Lifecycle"></a>Instance Methods / Lifecycle</h2><h3 id="vm-mount-elementOrSelector"><a href="#vm-mount-elementOrSelector" class="headerlink" title="vm.$mount( [elementOrSelector] )"></a>vm.$mount( [elementOrSelector] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Element | string} [elementOrSelector]</code></li>
@@ -1366,16 +1331,12 @@
 </ul>
 </li>
 </ul>
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
-
-<ul>
+<h3 id="vm-forceUpdate"><a href="#vm-forceUpdate" class="headerlink" title="vm.$forceUpdate()"></a>vm.$forceUpdate()</h3><ul>
 <li><p><strong>Usage:</strong></p>
 <p>Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.</p>
 </li>
 </ul>
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
-
-<ul>
+<h3 id="vm-nextTick-callback"><a href="#vm-nextTick-callback" class="headerlink" title="vm.$nextTick( [callback] )"></a>vm.$nextTick( [callback] )</h3><ul>
 <li><p><strong>Arguments:</strong></p>
 <ul>
 <li><code>{Function} [callback]</code></li>
@@ -1397,9 +1358,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="vm-destroy">vm.$destroy()</h3>
-
-<ul>
+<h3 id="vm-destroy"><a href="#vm-destroy" class="headerlink" title="vm.$destroy()"></a>vm.$destroy()</h3><ul>
 <li><p><strong>Usage:</strong></p>
 <p>Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives, turn off all event listeners.</p>
 <p>Triggers the <code>beforeDestroy</code> and <code>destroyed</code> hooks.</p>

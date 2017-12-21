@@ -70,6 +70,9 @@
       ga('create', 'UA-46852172-1', 'vuejs.org');
       ga('send', 'pageview');
     </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
   </head>
   <body class="docs">
     <div id="mobile-bar" >
@@ -144,9 +147,9 @@
   <a class="nav-link">Support Vue</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
-      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
-      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
-      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+      <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+      <li><a href="/support-vuejs/#Recurring-Pledges" target="_blank" class="nav-link">Recurring Pledges</a></li>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">T-Shirt Shop</a></li>
     </ul></li>
   </ul>
 </li>
@@ -237,9 +240,9 @@
   <a class="nav-link">Support Vue</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
-      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">Shop</a></li>
-      <li><a href="https://opencollective.com/vuejs" target="_blank" class="nav-link">Support Us on OpenCollective</a></li>
-      <li><a href="https://www.patreon.com/evanyou" target="_blank" class="nav-link">Support Evan on Patreon</a></li>
+      <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+      <li><a href="/support-vuejs/#Recurring-Pledges" target="_blank" class="nav-link">Recurring Pledges</a></li>
+      <li><a href="https://vue.threadless.com" target="_blank" class="nav-link">T-Shirt Shop</a></li>
     </ul></li>
   </ul>
 </li>
@@ -857,6 +860,9 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vm.b = <span class="string">'hi'</span></span><br></pre></td></tr></table></figure>
 <p>Then changes to <code>b</code> will not trigger any view updates. If you know you’ll need a property later, but it starts out empty or non-existent, you’ll need to set some initial value. For example:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  newTodoText: <span class="string">''</span>,</span><br><span class="line">  visitCount: <span class="number">0</span>,</span><br><span class="line">  hideCompletedTodos: <span class="literal">false</span>,</span><br><span class="line">  todos: [],</span><br><span class="line">  error: <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The only exception to this being the use of <code>Object.freeze()</code>, which prevents existing properties from being changed, which also means the reactivity system can’t <em>track</em> changes.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  foo: <span class="string">'bar'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.freeze(obj)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      obj</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; obj.foo &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- this will no longer update obj.foo! --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"obj.foo = 'baz'"</span>&gt;</span>Change it<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with <code>$</code> to differentiate them from user-defined properties. For example:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example'</span>,</span><br><span class="line">  data: data</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.$data === data <span class="comment">// =&gt; true</span></span><br><span class="line">vm.$el === <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>) <span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $watch is an instance method</span></span><br><span class="line">vm.$watch(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">newValue, oldValue</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// This callback will be called when `vm.a` changes</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>In the future, you can consult the <a href="../api/#Instance-Properties">API reference</a> for a full list of instance properties and methods.</p>
@@ -865,7 +871,6 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  created: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// `this` points to the vm instance</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a is: '</span> + <span class="keyword">this</span>.a)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// =&gt; "a is: 1"</span></span><br></pre></td></tr></table></figure>
 <p>There are also other hooks which will be called at different stages of the instance’s lifecycle, such as <a href="../api/#mounted"><code>mounted</code></a>, <a href="../api/#updated"><code>updated</code></a>, and <a href="../api/#destroyed"><code>destroyed</code></a>. All lifecycle hooks are called with their <code>this</code> context pointing to the Vue instance invoking it.</p>
 <p class="tip">Don’t use <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">arrow functions</a> on an options property or callback, such as <code>created: () =&gt; console.log(this.a)</code> or <code>vm.$watch(&#39;a&#39;, newValue =&gt; this.myMethod())</code>. Since arrow functions are bound to the parent context, <code>this</code> will not be the Vue instance as you’d expect, often resulting in errors such as <code>Uncaught TypeError: Cannot read property of undefined</code> or <code>Uncaught TypeError: this.myMethod is not a function</code>.</p>
-
 
 <h2 id="Lifecycle-Diagram"><a href="#Lifecycle-Diagram" class="headerlink" title="Lifecycle Diagram"></a>Lifecycle Diagram</h2><p>Below is a diagram for the instance lifecycle. You don’t need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.</p>
 <p><img src="/images/lifecycle.png" alt="The Vue Instance Lifecycle"></p>
