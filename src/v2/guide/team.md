@@ -591,12 +591,25 @@ order: 803
       github: 'shentao',
       twitter: 'DamianDulisz',
       work: {
-        role: 'Senior Frontend Developer',
-        org: 'Monterail',
-        orgUrl: 'https://www.monterail.com/'
+        role: 'Consultant'
       },
       reposPersonal: [
-        'monterail/vue-multiselect', 'monterail/vue-newsletter'
+        'shentao/vue-multiselect'
+      ]
+    },
+    {
+      name: 'kingwl',
+      title: 'New Bee',
+      city: 'Beijin, China',
+      languages: ['zh'],
+      work: {
+        role: 'Software Development Engineer',
+        org: 'Chaitin',
+        orgUrl: 'https://chaitin.cn/'
+      },
+      github: 'kingwl',
+      reposOfficial: [
+        'vue'
       ]
     }
   ]))

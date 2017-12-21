@@ -175,7 +175,7 @@ type : api
 
 ## API globale
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **Arguments :**
   - `{Object} options`
@@ -214,7 +214,7 @@ type : api
 
 - **Voir aussi :** [Composants](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, contexte] )</h3>
+### Vue.nextTick( [callback, contexte] )
 
 - **Arguments :**
   - `{Function} [callback]`
@@ -243,7 +243,7 @@ type : api
 
 - **Voir aussi :** [File d’attente de mise à jour asynchrone](../guide/reactivity.html#File-d’attente-de-mise-a-jour-asynchrone)
 
-<h3 id="Vue-set">Vue.set( cible, clé, valeur )</h3>
+### Vue.set( cible, clé, valeur )
 
 - **Arguments :**
   - `{Object | Array} cible`
@@ -260,7 +260,7 @@ type : api
 
 - **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( cible, clé )</h3>
+### Vue.delete( cible, clé )
 
 - **Arguments :**
   - `{Object | Array} cible`
@@ -276,7 +276,7 @@ type : api
 
 - **Voir aussi :** [Réactivité dans le détail](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [définition] )</h3>
+### Vue.directive( id, [définition] )
 
 - **Arguments :**
   - `{string} id`
@@ -307,7 +307,7 @@ type : api
 
 - **Voir aussi :** [Directives personnalisées](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [définition] )</h3>
+### Vue.filter( id, [définition] )
 
 - **Arguments :**
   - `{string} id`
@@ -327,7 +327,7 @@ type : api
   var monFiltre = Vue.filter('mon-filtre')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [définition] )</h3>
+### Vue.component( id, [définition] )
 
 - **Arguments :**
   - `{string} id`
@@ -350,7 +350,7 @@ type : api
 
 - **Voir aussi :** [Composants](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **Arguments :**
   - `{Object | Function} plugin`
@@ -363,7 +363,7 @@ type : api
 
 - **Voir aussi :** [Plugins](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **Arguments :**
   - `{Object} mixin`
@@ -374,7 +374,7 @@ type : api
 
 - **Voir aussi :** [Mixin global](../guide/mixins.html#Mixin-global)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **Arguments :**
   - `{string} template`
@@ -397,7 +397,7 @@ type : api
 
 - **Voir aussi :** [Fonctions de rendu](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
 - **Détails :** donne la version de Vue installée sous forme de `String`. C'est particulièrement utile pour les plugins et les composants de la communauté, où vous pouvez être amenés à utiliser différentes stratégies pour différentes versions.
 
@@ -1418,7 +1418,7 @@ type : api
 
 ## Méthodes et données d'instance
 
-<h3 id="vm-watch">vm.$watch( expOuFn, callback, [options] )</h3>
+### vm.$watch( expOuFn, callback, [options] )
 
 - **Arguments :**
   - `{string | Function} expOrFn`
@@ -1485,7 +1485,7 @@ type : api
   // la fonction `callback` est immédiatement déclenchée avec la valeur actuelle de `a`
   ```
 
-<h3 id="vm-set">vm.$set( cible, clé, valeur )</h3>
+### vm.$set( cible, clé, valeur )
 
 - **Arguments :**
   - `{Object | Array} cible`
@@ -1500,7 +1500,7 @@ type : api
 
 - **Voir aussi :** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( cible, clé )</h3>
+### vm.$delete( cible, clé )
 
 - **Arguments :**
   - `{Object | Array} cible`
@@ -1514,7 +1514,7 @@ type : api
 
 ## Méthodes et Évènements d'Instance
 
-<h3 id="vm-on">vm.$on( évènement, callback )</h3>
+vm.$on( évènement, callback )
 
 - **Arguments :**
   - `{string | Array<string>} évènement` (`Array` supportée unique depuis la 2.2.0)
@@ -1534,7 +1534,7 @@ type : api
   // => "salut"
   ```
 
-<h3 id="vm-once">vm.$once( évènement, callback )</h3>
+### vm.$once( évènement, callback )
 
 - **Arguments :**
   - `{string} évènement`
@@ -1544,7 +1544,7 @@ type : api
 
   Écoute un évènement personnalisé, mais qu'une seule fois. L'écouteur sera supprimé une fois déclenché pour la première fois.
 
-<h3 id="vm-off">vm.$off( [évènement, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **Arguments :**
   - `{string | Array<string>} évènement` (les tableaux sont seulement supportés dans la 2.2.2+)
@@ -1560,7 +1560,7 @@ type : api
 
   - Si l'évènement et la fonction de rappel sont fournis, supprime l'écouteur uniquement pour cet événément et cette fonction de rappel spécifique.
 
-<h3 id="vm-emit">vm.$emit( évènement, [...arguments] )</h3>
+### vm.$emit( event, [...args] )
 
 - **Arguments :**
   - `{string} évènement`
@@ -1570,7 +1570,7 @@ type : api
 
 ## Méthodes d'Instance / Cycle de Vie
 
-<h3 id="vm-mount">vm.$mount( [élémentOuSelecteur] )</h3>
+### vm.$mount( [élémentOuSelecteur] )
 
 - **Arguments :**
   - `{Element | string} [élémentOuSelecteur]`
@@ -1608,13 +1608,13 @@ type : api
   - [Diagramme du cycle de vie](../guide/instance.html#Diagramme-du-cycle-de-vie)
   - [Rendu côté serveur](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **Utilisation :**
 
   Force l'Instance de Vue à refaire son rendu. Notez que cela n'affecte pas tous les composants enfants, seulement l'instance elle-même et les composants enfants avec un contenu de slot inséré.
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **Arguments :**
   - `{Function} [callback]`
@@ -1650,7 +1650,7 @@ type : api
   - [Vue.nextTick](#Vue-nextTick)
   - [File d’attente de mise à jour asynchrone](../guide/reactivity.html#File-d’attente-de-mise-a-jour-asynchrone)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **Utilisation :**
 

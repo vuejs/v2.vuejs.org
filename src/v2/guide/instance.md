@@ -8,7 +8,7 @@ order: 3
 
 Chaque application Vue est initialisée en créant une nouvelle **instance de Vue** avec la fonction `Vue` :
 
-``` js
+```js
 var vm = new Vue({
   // options
 })
@@ -67,7 +67,7 @@ vm.b = 'salut'
 
 Les changements de `b` ne déclencheront aucune mise à jour. Si vous savez que vous aller avoir besoin d'une propriété plus tard qui n'a pas de valeur dès le début, vous avez juste besoin de la créer avec n'importe quelle valeur initiale. Par exemple :
 
-``` js
+```js
 data: {
   newTodoText: '',
   visitCount: 0,
@@ -77,9 +77,36 @@ data: {
 }
 ```
 
+La seule exception à cela est l'utilisation de `Object.freeze()`, qui prévient les propriétés existantes d'être changée, ce qui implique que le système de réactivité ne peut pas traquer les changements.
+
+```js
+var obj = {
+  foo: 'bar'
+}
+
+Object.freeze(obj)
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      obj
+    }
+  }
+})
+```
+
+```html
+<div id="app">
+  <p>{{ obj.foo }}</p>
+  <!-- cela ne va plus mettre à jour `obj.foo` ! -->
+  <button @click="obj.foo = 'baz'">Change le</button>
+</div>
+```
+
 En plus des propriétés de données, les instances de Vue exposent de nombreuses méthodes et propriétés utiles. Ces propriétés et méthodes sont préfixées par `$` pour les différencier des propriétés proxifiées de data. Par exemple :
 
-``` js
+```js
 var data = { a: 1 }
 var vm = new Vue({
   el: '#example',
@@ -103,7 +130,7 @@ Chaque instance de vue traverse une série d'étapes d'initialisation au moment 
 
 Par exemple, le hook [`created`](../api/#created) est appelé une fois l'instance créée :
 
-``` js
+```js
 new Vue({
   data: {
     a: 1
@@ -121,7 +148,5 @@ Il y a aussi d'autres hooks qui seront appelés à différentes étapes du cycle
 <p class="tip">N'utilisez pas les [fonctions fléchées](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/Fonctions_fl%C3%A9ch%C3%A9es) sur une propriété ou fonction de rappel d'une instance (par exemple `created: () => console.log(this.a)` ou `vm.$watch('a', newVal => this.myMethod())`). Comme les fonctions fléchées sont liées au contexte parent, `this` ne sera pas l'instance de Vue comme vous pourriez vous y attendre, et vous rencontrerez alors des erreurs comme `Uncaught TypeError: Cannot read property of undefined` ou `Uncaught TypeError: this.myMethod is not a function`.</p>
 
 ## Diagramme du cycle de vie
-
-Ci-dessous se trouve le diagramme d'un cycle de vie d'une instance. Vous n'avez pas besoin de tout comprendre de A à Z à ce stade, mais ce diagramme pourra vous être utile dans le futur.
 
 ![Le cycle de vie d'une instance de Vue](/images/lifecycle.png)
