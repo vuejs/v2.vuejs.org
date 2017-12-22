@@ -206,6 +206,17 @@ props: ['status']
 ```
 {% raw %}</div>{% endraw %}
 
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` js
+props: {
+   value: { type: String, required: true },
+   isVisible: { type: Boolean, default: false }
+}
+```
+{% raw %}</div>{% endraw %}
+
 {% raw %}<div class="style-example example-good">{% endraw %}
 #### Good
 
