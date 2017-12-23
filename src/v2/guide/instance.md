@@ -99,8 +99,8 @@ new Vue({
 ```html
 <div id="app">
   <p>{{ obj.foo }}</p>
-  <!-- this will no longer update obj.foo! -->
-  <button @click="obj.foo = 'baz'">Change it</button>
+  <!-- 这将不再更新 obj.foo! -->
+  <button @click="obj.foo = 'baz'">点我修改</button>
 </div>
 ```
 
