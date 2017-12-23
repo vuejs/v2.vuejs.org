@@ -188,7 +188,7 @@ methods: {
 <form v-on:submit.prevent></form>
 
 <!-- 添加事件侦听器时使用事件捕获模式 -->
-<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+<!-- 即内部元素触发的事件先在此处处理，然后才交给内部元素进行处理 -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->

@@ -243,7 +243,7 @@ type: api
 
 - **参考：** [异步更新队列](../guide/reactivity.html#异步更新队列)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, key, value )
 
 - **参数：**
   - `{Object | Array} target`
@@ -260,7 +260,7 @@ type: api
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, key )
 
 - **参数：**
   - `{Object | Array} target`
@@ -276,7 +276,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **参数：**
   - `{string} id`
@@ -363,7 +363,7 @@ type: api
 
 - **参考：** [插件](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **参数：**
   - `{Object} mixin`
@@ -374,7 +374,7 @@ type: api
 
 - **参考：** [全局混合](../guide/mixins.html#全局混合)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **参数：**
   - `{string} template`
@@ -397,7 +397,7 @@ type: api
 
 - **参考：** [Render 函数](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
 - **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 

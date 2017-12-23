@@ -2,8 +2,8 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.5.9
-gz_size: "30.95"
+vue_version: 2.5.13
+gz_size: "30.67"
 ---
 
 ### 兼容性

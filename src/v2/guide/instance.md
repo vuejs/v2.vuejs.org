@@ -8,7 +8,7 @@ order: 3
 
 每个 Vue 应用程序都是通过 `Vue` 函数创建出一个新的 **Vue 实例**开始的：
 
-``` js
+```js
 var vm = new Vue({
   // 选项
 })
@@ -37,7 +37,7 @@ Vue 应用程序由「一个使用 `new Vue` 创建的 **Vue 根实例**」、�
 
 在创建 Vue 实例时，会将所有在 `data` 对象中找到的属性，都添加到 Vue 的**响应式系统**中。每当这些属性的值发生变化时，视图都会“及时响应”，并更新相应的新值。
 
-``` js
+```js
 // data 对象
 var data = { a: 1 }
 
@@ -61,13 +61,13 @@ vm.a // => 3
 
 每当 data 对象发生变化，都会触发视图重新渲染。值得注意的是，如果实例已经创建，那么只有那些 `data` 中的原本就已经存在的属性，才是**响应式**的。也就是说，如果在实例创建之后，添加一个新的属性，例如：
 
-``` js
+```js
 vm.b = 'hi'
 ```
 
 然后，修改 `b` 不会触发任何视图更新。如果你已经提前知道，之后将会用到一个开始是空的或不存在的属性，你需要预先设置一些初始值。例如：
 
-``` js
+```js
 data: {
   newTodoText: '',
   visitCount: 0,
@@ -77,9 +77,36 @@ data: {
 }
 ```
 
+这里唯一的例外是，使用 `Object.freeze()` 来防止已有属性被修改，这也意味着响应式系统无法_追踪_变化。
+
+```js
+var obj = {
+  foo: 'bar'
+}
+
+Object.freeze(obj)
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      obj
+    }
+  }
+})
+```
+
+```html
+<div id="app">
+  <p>{{ obj.foo }}</p>
+  <!-- this will no longer update obj.foo! -->
+  <button @click="obj.foo = 'baz'">Change it</button>
+</div>
+```
+
 除了 data 属性， Vue 实例还暴露了一些有用的实例属性和方法。这些属性与方法都具有前缀 `$`，以便与用户定义(user-defined)的属性有所区分。例如：
 
-``` js
+```js
 var data = { a: 1 }
 var vm = new Vue({
   el: '#example',
@@ -103,7 +130,7 @@ vm.$watch('a', function (newValue, oldValue) {
 
 例如，在实例创建后将调用 [`created`](../api/#created) 钩子函数：
 
-``` js
+```js
 new Vue({
   data: {
     a: 1
