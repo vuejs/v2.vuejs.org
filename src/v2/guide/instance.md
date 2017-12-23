@@ -22,13 +22,13 @@ Vue 应用程序由「一个使用 `new Vue` 创建的 **Vue 根实例**」、�
 
 ```
 根实例(Root Instance)
-|- TodoList
-   |- TodoItem
-      |- DeleteTodoButton
-      |- EditTodoButton
-   |- TodoListFooter
-      |- ClearTodosButton
-      |- TodoListStatistics
+└─ TodoList
+   ├─ TodoItem
+   │  ├─ DeleteTodoButton
+   │  └─ EditTodoButton
+   └─ TodoListFooter
+      ├─ ClearTodosButton
+      └─ TodoListStatistics
 ```
 
 稍后，我们将详细介绍[组件系统](components.html)。现在，只需要知道，所有 Vue 组件，都是 Vue 实例，并且组件都接收相同的选项对象（除了一些根实例特有(root-specific)的选项）。
@@ -65,7 +65,7 @@ vm.a // => 3
 vm.b = 'hi'
 ```
 
-然后，修改 `b` 不会触发任何视图更新。如果你已经提前知道，之后将会用到一个开始是空的或不存在的属性，你就需要预先设置一些初始值。例如：
+然后，修改 `b` 不会触发任何视图更新。如果你已经提前知道，之后将会用到一个开始是空的或不存在的属性，你需要预先设置一些初始值。例如：
 
 ``` js
 data: {
@@ -118,7 +118,7 @@ new Vue({
 
 也有一些其它的钩子，会在实例生命周期的不同阶段调用，如 [`mounted`](../api/#mounted)、[`updated`](../api/#updated) 和 [`destroyed`](../api/#destroyed)。所有的钩子函数在调用时，其 `this` 上下文都会指向调用它的 Vue 实例。
 
-<p class="tip">不要在选项属性或者回调函数中使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)（例如，`created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`）。因为箭头函数会绑定父级上下文，所以 `this` 不会按照预期指向 Vue 实例，然后 `this.a` 或 `this.myMethod` 将是 undefined。</p>
+<p class="tip">不要在选项属性或者回调函数中使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)（例如，`created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`）。因为箭头函数会绑定父级上下文，所以 `this` 不会按照预期指向 Vue 实例，经常会产生一些错误，例如 `Uncaught TypeError: Cannot read property of undefined` 或者 `Uncaught TypeError: this.myMethod is not a function`。</p>
 
 ## 生命周期示意图
 

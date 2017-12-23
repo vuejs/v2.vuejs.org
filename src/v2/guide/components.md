@@ -8,9 +8,11 @@ order: 11
 
 组件(component)是 Vue 最强大的功能之一。组件可以帮助你扩展基本的 HTML 元素，以封装可重用代码。在较高层面上，组件是 Vue 编译器附加行为后的自定义元素。在某些情况下，组件也可以是原生 HTML 元素的形式，以特定的 `is` 特性扩展。
 
+所有的 Vue 组件都是 Vue 的实例，所以接收相同的选项对象（除了一些特定于根的选项）并提供相同的生命周期钩子。
+
 ## 使用组件
 
-### 注册
+### 全局注册
 
 在之前的章节我们了解到，通过以下方式可以创建一个新的 Vue 实例：
 
@@ -235,7 +237,7 @@ new Vue({
 Vue.component('child', {
   // 声明 props
   props: ['message'],
-  // 就像 data 一样，prop 可以在组件模板内部使用，
+  // 像 data 一样，prop 可以在组件模板内部使用，
   // 并且，还可以在 vm 实例中通过 this.message 访问
   template: '<span>{{ message }}</span>'
 })
@@ -297,7 +299,7 @@ Vue.component('child', {
 </div>
 ```
 
-使用 `v-bind` 简写语法，通常看起来更简洁：
+还可以使用 `v-bind` 简写语法，通常看起来更简洁：
 
 ``` html
 <child :my-message="parentMsg"></child>
@@ -369,13 +371,13 @@ todo: {
 
 ### 单向数据流(One-Way Data Flow)
 
-所有的 props 都是在子组件属性和父组件属性之间绑定的，按照**自上而下单向流动**方式构成：当父组件属性更新，数据就会向下流动到子组件，但是反过来却并非如此。这种机制可以防止子组件意外地修改了父组件的状态，会造成应用程序的数据流动变得难于推断。
+所有的 props 都是在子组件属性和父组件属性之间绑定的，按照**自上而下单向流动**方式构成：当父组件属性更新，数据就会向下流动到子组件，但是反过来却并非如此。这种机制可以防止子组件意外地修改了父组件的状态，会造成应用程序的数据流动变得难于理解。
 
 此外，每次父组件更新时，子组件中所有的 props 都会更新为最新值。也就是说，你**不应该**试图在子组件内部修改 prop。如果你这么做，Vue 就会在控制台给出警告。
 
 诱使我们修改 prop 的原因，通常有两种：
 
-1. prop 只是用于传递初始值，之后子组件想要直接将 prop 作为一个局部数据的属性；
+1. prop 用于传递初始值；之后子组件需要将 prop 作为一个局部数据的属性。
 
 2. prop 作为一个需要转换的原始值传入。
 
@@ -655,7 +657,7 @@ this.$emit('update:foo', newValue)
 - 接收一个 `value` prop
 - 触发 `input` 事件，并传入新值
 
-让我们通过一个非常简单的货币输入框，看看带有 v-model 的组件的表现：
+让我们通过一个简单的货币输入框，看看带有 v-model 的组件的表现：
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -963,7 +965,7 @@ Vue.component('child-component', {
 
 作用域插槽是一种特殊类型的插槽，用于将要渲染的元素(already-rendered-elements)，替换为一个（能够传递数据的）可重用模板。
 
-在子组件中，只需将数据传递到插槽，就像你将 props 传递给组件一样：
+在子组件中，将数据传递到插槽，就像你将 props 传递给组件一样：
 
 ``` html
 <div class="child">
@@ -971,12 +973,12 @@ Vue.component('child-component', {
 </div>
 ```
 
-在父级中，必须存在具有特殊属性 `scope` 的 `<template>` 元素，表示它是作用域插槽的模板。`scope` 的值对应一个临时变量名，此变量接收从子组件中传递的 props 对象：
+在父级中，必须存在具有特殊属性 `slot-scope` 的 `<template>` 元素，表示它是作用域插槽的模板。`slot-scope` 的值对应一个临时变量名，此变量接收从子组件中传递的 props 对象：
 
 ``` html
 <div class="parent">
   <child>
-    <template scope="props">
+    <template slot-scope="props">
       <span>hello from parent</span>
       <span>{{ props.text }}</span>
     </template>
@@ -995,14 +997,19 @@ Vue.component('child-component', {
 </div>
 ```
 
+> 在 2.5.0+ 中，`slot-scope` 不再局限于 `<template>`，可以在任何元素或组件上使用。
+
 作用域插槽更具代表性的用例是列表组件，允许组件自定义应该如何渲染列表每一项：
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- 作用域插槽也可以是具名的 -->
-  <template slot="item" scope="props">
-    <li class="my-fancy-item">{{ props.text }}</li>
-  </template>
+  <!-- 作用域插槽也可以是具名的 -->
+  <li
+    slot="item"
+    slot-scope="props"
+    class="my-fancy-item">
+    {{ props.text }}
+  </li>
 </my-awesome-list>
 ```
 
@@ -1016,6 +1023,16 @@ Vue.component('child-component', {
     <!-- 这里是备用内容 -->
   </slot>
 </ul>
+```
+
+#### 解构
+
+`slot-scope` 的值实际上是一个有效的 JavaScript 表达式，可以出现在函数签名中的参数所在位置。这意味着在支持的环境中（在单个文件组件或在现代浏览器），表达式中也可以使用 ES2015 解构：
+
+``` html
+<child>
+  <span slot-scope="{ text }">{{ text }}</span>
+</child>
 ```
 
 ## 动态组件
@@ -1134,7 +1151,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-工厂函数接收一个 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 只是为了用于演示；如何异步获取组件定义完全取决于你的实现。要使用异步组件，一个比较推荐的方式是配合 [webpack 代码分离功能](https://doc.webpack-china.org/guides/code-splitting/)：
+工厂函数接收一个 `resolve` 回调函数，在从服务器接收到组件定义时调用。也可以调用 `reject(reason)` 表明加载失败。这里的 `setTimeout` 是为了用于演示；如何异步获取组件定义完全取决于你的实现。要使用异步组件，一个比较推荐的方式是配合 [webpack 代码分离功能](https://doc.webpack-china.org/guides/code-splitting/)：
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1150,6 +1167,7 @@ Vue.component('async-webpack-example', function (resolve) {
 ``` js
 Vue.component(
   'async-webpack-example',
+  // `import` 函数返回一个 `Promise`.
   () => import('./my-async-component')
 )
 ```
@@ -1165,7 +1183,7 @@ new Vue({
 })
 ```
 
-<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到[一些解决方案](https://github.com/vuejs/vuejs.org/issues/620)，这可能有助于现有的复杂应用程序实现异步加载。对于所有其他场景，我们推荐直接使用 webpack 所内置的一流异步支持。</p>
+<p class="tip">如果你是需要使用异步组件的 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)很不幸 Browserify 是不支持异步加载的。Browserify 社区找到[一些解决方案](https://github.com/vuejs/vuejs.org/issues/620)，这可能有助于现有的复杂应用程序实现异步加载。对于所有其他场景，我们推荐使用 webpack 所内置的表现优异异步支持。</p>
 
 ### 高级异步组件
 
@@ -1313,7 +1331,7 @@ Failed to mount component: template or render function not defined.（译注：�
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
 }
 ```
 

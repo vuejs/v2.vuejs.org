@@ -1,8 +1,8 @@
-# vue.js 2.0 中文文档 https://vuefe.cn
+# Vue.js 2 中文文档 - https://vuefe.cn
 
-> 欢迎大家一起参与校对工作
+> 翻译贡献者：https://vuefe.cn/about
 
-> 贡献者： https://vuefe.cn/about
+> 并感谢所有参与翻译的朋友们！
 
 ## QQ群
 
@@ -15,10 +15,11 @@
 - vue技术栈7群 `479672448`
 - vue技术栈8群 `302093657`
 
-### 感谢所有参与翻译的朋友们！
+本网站使用 [hexo](http://hexo.io/) 构建。网站内容是由 `src` 中的 Markdown 格式编写的。欢迎各位 pull request！
 
-```
-$ npm install -g hexo-cli
+## Developing
+
+``` bash
 $ npm install
-$ hexo server
+$ npm start # dev server at http://localhost:4000
 ```

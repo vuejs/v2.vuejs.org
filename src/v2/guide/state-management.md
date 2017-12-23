@@ -30,7 +30,7 @@ const vmB = new Vue({
 
 现在当 `sourceOfTruth` 发生变化，`vmA` 和 `vmB` 都将自动的更新引用它们的视图。子组件们的每个实例也会通过 `this.$root.$data` 去访问。现在我们有了唯一的实际来源，但是，调试将会变为噩梦。任何时间，我们应用中的任何部分，在任何数据改变后，都不会留下变更过的记录。
 
-为了解决这个问题，我们采用一个简单的 **store 模式**：
+为了解决这个问题，我们采用一个 **store 模式**：
 
 ``` js
 var store = {
@@ -79,6 +79,6 @@ var vmB = new Vue({
 
 ***
 
-> 原文： http://vuejs.org/guide/state-management.html
+> 原文：https://vuejs.org/v2/guide/state-management.html
 
 ***

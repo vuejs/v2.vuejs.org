@@ -75,7 +75,7 @@ console.log(vm.reversedMessage) // => 'eybdooG'
 
 你可以打开浏览器的控制台，然后如示例中操作 vm。会发现 `vm.reversedMessage` 的值总是依赖于 `vm.message` 的值。
 
-你可以像绑定普通属性一样，将 computed 属性的数据，绑定(data-bind)到模板中的表达式上。Vue 能够意识到 `vm.reversedMessage` 依赖于 `vm.message`，也会在 `vm.message` 修改后，更新所有依赖于 `vm.reversedMessage` 的数据绑定。最恰到好处的部分是，我们是通过声明式来创建这种依赖关系：computed 属性的 getter 函数并无副作用(side effect)，因此也更加易于测试和易于推断。
+你可以像绑定普通属性一样，将 computed 属性的数据，绑定(data-bind)到模板中的表达式上。Vue 能够意识到 `vm.reversedMessage` 依赖于 `vm.message`，也会在 `vm.message` 修改后，更新所有依赖于 `vm.reversedMessage` 的数据绑定。最恰到好处的部分是，我们是通过声明式来创建这种依赖关系：computed 属性的 getter 函数并无副作用(side effect)，因此也更加易于测试和理解。
 
 ### computed 缓存 vs method 方法
 

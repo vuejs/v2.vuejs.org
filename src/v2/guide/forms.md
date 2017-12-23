@@ -99,7 +99,7 @@ new Vue({
   <label for="mike">Mike</label>
   <br>
   <span>Checked names: {{ checkedNames }}</span>
-<div>
+</div>
 ```
 
 ``` js
@@ -309,17 +309,19 @@ new Vue({
 <input
   type="checkbox"
   v-model="toggle"
-  v-bind:true-value="a"
-  v-bind:false-value="b"
+  true-value="yes"
+  false-value="no"
 >
 ```
 
 ``` js
-// 当选中时
-vm.toggle === vm.a
-// 当没有选中时
-vm.toggle === vm.b
+// 当选中时：
+vm.toggle === 'yes'
+// 当没有选中时：
+vm.toggle === 'no'
 ```
+
+<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
 
 ### 单选按钮
 
@@ -384,6 +386,6 @@ HTML 内置的输入框类型并不能满足需求。幸运的是，Vue 组件�
 
 ***
 
-> 原文：http://vuejs.org/guide/forms.html
+> 原文：https://vuejs.org/v2/guide/forms.html
 
 ***

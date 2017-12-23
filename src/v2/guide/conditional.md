@@ -21,7 +21,7 @@ order: 7
 <h1 v-if="ok">Yes</h1>
 ```
 
-也可以用 `v-else` 添加一个 "else" 块：
+也可以用 `v-else` 添加一个 "else 块"：
 
 ``` html
 <h1 v-if="ok">Yes</h1>
@@ -180,9 +180,9 @@ new Vue({
 <h1 v-show="ok">Hello!</h1>
 ```
 
-不同的是有 `v-show` 的元素会始终渲染并保持在 DOM 中。`v-show` 是简单的切换元素的 CSS 属性 `display` 。
+不同的是有 `v-show` 的元素会始终渲染并保持在 DOM 中。`v-show` 只会切换元素的 CSS 属性 `display` 。
 
-<p class="tip">注意 `v-show` 不支持 `<template>` 语法。</p>
+<p class="tip">注意 `v-show` 不支持 `<template>` 元素。</p>
 
 ## `v-if` vs `v-show`
 
@@ -190,7 +190,7 @@ new Vue({
 
 `v-if` 也是**惰性的**：如果在初始渲染时条件为假，则什么也不做——在条件第一次变为真时才开始局部编译（编译会被缓存起来）。
 
-相比之下， `v-show` 简单得多——元素始终被编译并保留，只是简单地基于 CSS 切换。
+相比之下，`v-show` 简单得多 - 元素始终被编译并保留，只基于 CSS 切换。
 
 一般来说， `v-if` 有更高的切换消耗而 `v-show` 有更高的初始渲染消耗。因此，如果需要频繁切换使用 `v-show` 较好，如果在运行时条件不大可能改变则使用 `v-if` 较好。
 

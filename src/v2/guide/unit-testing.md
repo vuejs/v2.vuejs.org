@@ -6,11 +6,11 @@ order: 403
 
 ## 配置和工具
 
-任何兼容基于模块的构建系统都可以正常使用，但如果你需要一个具体的建议，可以使用 [Karma](http://karma-runner.github.io) 进行自动化测试。它有很多社区版的插件，包括对 [webpack](https://github.com/webpack/karma-webpack) 和 [Browserify](https://github.com/Nikku/karma-browserify) 的支持。更多详细的安装步骤，请参考各项目的安装文档，通过这些 Karma 配置的例子可以快速帮助你上手（[webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) 配置，[Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) 配置）。
+任何兼容基于模块的构建系统都可以正常使用，但如果你需要一个具体的建议，可以使用 [Karma](http://karma-runner.github.io) 进行自动化测试。它有很多社区版的插件，包括对 [webpack](https://github.com/webpack/karma-webpack) 和 [Browserify](https://github.com/Nikku/karma-browserify) 的支持。更多详细的安装步骤，请参考各项目的安装文档。通过这些 Karma 配置的例子可以快速帮助你上手（[webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) 和 [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) 的配置）。
 
 ## 简单的断言
 
-在测试的代码结构方面，你不必为了可测试在你的组件中做任何特殊的操作。只要导出原始设置就可以了：
+你不需要在组件中做任何特殊的事情来使它们成为可测试的。只需要导出原始选项：
 
 ``` html
 <template>
@@ -31,7 +31,7 @@ order: 403
 </script>
 ```
 
-当测试的组件时，所要做的就是导入对象和 Vue 然后使用许多常见的断言：
+然后，将组件选项与 Vue 一起导入，并且可以进行许多常见的断言：
 
 ``` js
 // 导入 Vue.js 和组件，进行测试
@@ -46,7 +46,8 @@ describe('MyComponent', () => {
     expect(typeof MyComponent.created).toBe('function')
   })
 
-  // 评估原始组件选项中的函数的结果
+  // 评估原始组件选项中的
+  // 函数的结果
   it('sets the correct default data', () => {
     expect(typeof MyComponent.data).toBe('function')
     const defaultData = MyComponent.data()
@@ -61,8 +62,8 @@ describe('MyComponent', () => {
 
   // 创建一个实例并检查渲染输出
   it('renders the correct message', () => {
-    const Ctor = Vue.extend(MyComponent)
-    const vm = new Ctor().$mount()
+    const Constructor = Vue.extend(MyComponent)
+    const vm = new Constructor().$mount()
     expect(vm.$el.textContent).toBe('bye!')
   })
 })
@@ -70,7 +71,7 @@ describe('MyComponent', () => {
 
 ## 编写可被测试的组件
 
-很多组件的渲染输出由它的 props 决定。事实上，如果一个组件的渲染输出完全取决于它的 props，那么它会让测试变得简单，就好像断言不同参数的纯函数的返回值。看下面这个例子:
+组件的渲染输出，主要由它们收到的 props 决定。如果一个组件的渲染输出完全依赖于它的 props，那么测试会变得很直观，类似于向一个纯函数传参，断言其返回值。举一个简单的例子：
 
 ``` html
 <template>
@@ -92,8 +93,8 @@ import MyComponent from './MyComponent.vue'
 
 // 挂载元素并返回已渲染的文本的工具函数
 function getRenderedText (Component, propsData) {
-  const Ctor = Vue.extend(Component)
-  const vm = new Ctor({ propsData: propsData }).$mount()
+  const Constructor = Vue.extend(Component)
+  const vm = new Constructor({ propsData: propsData }).$mount()
   return vm.$el.textContent
 }
 

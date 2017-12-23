@@ -47,7 +47,7 @@ order: 701
 <p>bar</p>
 ```
 
-最好把整个内容都简单包裹到一个新的元素里，如下所示：
+最好把整个内容都包裹到一个新的元素里，如下所示：
 
 ``` html
 <div>
@@ -466,7 +466,8 @@ new Vue({
 <!--
 通过使用lodash或者其它库的debounce函数，
 我们相信 debounce 实现是一流的，
-并且可以随处使用它，不仅仅是在模板中。
+并且可以随处使用它，
+不仅仅是在模板中。
 -->
 <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
 <div id="debounce-search-demo">
@@ -702,15 +703,15 @@ strings.map(function (str) {
 
 ### 指令 `.literal` 修饰符 <sup>移除</sup>
 
-`.literal` 修饰符已经被移除，为了获取一样的功能，可以简单地提供字符串修饰符作为值。
+`.literal` 修饰符已经被移除，为了获取一样的功能，可以提供字符串修饰符作为值。
 
-示例，如下更改：
+以下示例：
 
 ``` js
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
-只是：
+修改为：
 
 ``` html
 <p v-my-directive="'foo bar baz'"></p>
@@ -795,9 +796,9 @@ Vue.config.keyCodes.f1 = 112
 
 ```
 Todos
-|-- NewTodoInput
-|-- Todo
-    |-- DeleteTodoButton
+├─ NewTodoInput
+└─ Todo
+   └─ DeleteTodoButton
 ```
 
 可以通过单独的事件中心管理组件间的通信：
@@ -1067,7 +1068,7 @@ function pluralizeKnife (count) {
 
 #### Replacing the `currency` Filter
 
-对于简单的问题,可以这样做：
+对于简单的问题，可以这样做：
 
 ``` js
 '$' + price.toFixed(2)
@@ -1264,7 +1265,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经移除，取代�
 
 ### `vm.$set` <sup>变更</sup>
 
- `vm.$set` 只是 [`Vue.set`](../api/#Vue-set) 的别名。
+`vm.$set` 现在是： [`Vue.set`](../api/#Vue-set) 的别名。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1275,7 +1276,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经移除，取代�
 
 ### `vm.$delete` <sup>变更</sup>
 
-`vm.$delete` 现在只是： [`Vue.delete`](../api/#Vue-delete) 别名。
+`vm.$delete` 现在是： [`Vue.delete`](../api/#Vue-delete) 别名。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1308,7 +1309,7 @@ methods: {
 }
 ```
 
-或者更好的方法，直接给除去的方法一个index参数：
+或者更好的方式是，向移除方法传递一个 index 参数：
 
 ``` js
 methods: {
@@ -1327,7 +1328,7 @@ methods: {
 
 ### Vue实例上的`Vue.set` 和 `Vue.delete`<sup>移除</sup>
 
-`Vue.set` 和 `Vue.delete` 在实例上将不再起作用。现在都强制在实例的data选项中声明所有顶级响应值。如果删除实例属性或实例`$data`上的某个值，直接将它设置为null即可。
+`Vue.set` 和 `Vue.delete` 在实例上将不再起作用。现在都强制在实例的data选项中声明所有顶级响应值。如果删除实例属性或实例 `$data` 上的某个值，将它设置为 null。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1568,13 +1569,11 @@ el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
 ### `Vue.partial` <sup>移除</sup>
 
-Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议只使用一个[normal component](components.html)来代替。如果你是动态绑定部分的`name`,您可以使用[dynamic component](components.html#Dynamic-Components)。
-
+Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议使用一个[普通组件](components.html)来代替。如果你是动态绑定部分的`name`，您可以使用[动态组件](components.html#Dynamic-Components)。
 
 如果你碰巧在你的应用程序的性能关键部分使用`partials`，那么你应该升级到[functional components](render-function.html#Functional-Components)。它们必须在纯JS / JSX文件中（而不是在`.vue`文件中），并且是无状态的和无实例的，就像`partials`。这使得渲染极快。
 
 `functional components`相对于`partials`一个好处是它们可以更具动态性，因为它们允许您访问JavaScript的全部功能。然而，这是有成本的。如果你从来没有使用过渲染式的组件框架，你可能需要花费更长的时间来学习它们。
-
 
 {% raw %}
 <div class="upgrade-path">

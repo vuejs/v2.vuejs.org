@@ -71,19 +71,19 @@ type: api
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子
+    // 处理错误
+    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子。
     // 只在 2.2.0+ 可用
   }
   ```
 
-  指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
+  指定一个处理函数，用于在组件渲染函数调用和 watcher 期间捕获错误。这个处理函数被调用时，传入 error 对象和 Vue 实例。
 
-  > 从 2.2.0+ 起，这个钩子也会捕获组件生命周期钩子里的错误。同样的，当这个钩子是 `undefined` 时，被捕获的错误会通过 `console.error` 输出而避免应用崩溃。
+  > 从 2.2.0+ 开始，这个钩子会捕获组件生命周期钩子中的错误。此外，如果这个钩子是 `undefined`，捕获的错误会被记录到 `console.error`，而不是让整个应用程序崩溃。
 
-  > 从 2.4.0+ 起这个钩子也会捕获 Vue 自定义事件句柄内部的错误了。
+  > 从 2.4.0+ 开始，这个钩子会捕获 Vue 自定义事件处理函数中抛出的错误。
 
-  > [Sentry](https://sentry.io), 一个错误追踪服务, 通过此选项提供[官方集成](https://sentry.io/for/vue/)。
+  > 错误追踪服务 [Sentry](https://sentry.io/for/vue/) 和 [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) 提供的官方集成，会用到此选项。
 
 ### warnHandler
 
@@ -105,7 +105,7 @@ type: api
 
 ### ignoredElements
 
-- **类型：** `Array<string>`
+- **类型：** `Array<string | RegExp>`
 
 - **默认值：** `[]`
 
@@ -113,7 +113,11 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'my-custom-web-component',
+    'another-web-component',
+    // 使用`正则表达式`忽略所有以 "ion-" 开头的元素
+    // 2.5+ only
+    /^ion-/
   ]
   ```
 
@@ -223,13 +227,19 @@ type: api
   ``` js
   // 修改数据
   vm.msg = 'Hello'
-  // DOM 还没有更新
+  // DOM 还未更新
   Vue.nextTick(function () {
-    // DOM 更新了
+    // DOM 更新
   })
+
+  // 作为一个 promise 对象使用（2.1.0+，查看下面用法）
+  Vue.nextTick()
+    .then(function () {
+      // DOM 更新
+    })
   ```
 
-  > 2.1.0+ 新增：如果没有提供回调且支持 promise 的环境中返回 promise。
+  > 2.1.0+ 新增：如果没有提供回调且支持 promise 的执行环境中会返回 Promise。然而注意，Vue 没有集成 Promise polyfill，所以如果浏览器本身不支持 Promise（说的就是你，IE），就必须提前准备好 polyfill。
 
 - **参考：** [异步更新队列](../guide/reactivity.html#异步更新队列)
 
@@ -286,7 +296,7 @@ type: api
     unbind: function () {}
   })
 
-  // 注册（传入一个简单的指令函数）
+  // 注册（一个指令函数）
   Vue.directive('my-directive', function () {
     // 这里将会被 `bind` 和 `update` 调用
   })
@@ -423,7 +433,7 @@ type: api
 
   以 `_` 或 `$` 开头的属性 **不会** 被 Vue 实例代理，因为它们可能和 Vue 内置的属性、 API 方法冲突。你可以使用例如 `vm.$data._property` 的方式访问这些属性。
 
-  当一个**组件**被定义， `data` 必须声明为返回一个初始数据对象的函数，因为组件可能被用来创建多个实例。如果 `data` 仍然是一个纯粹的对象，则所有的实例将**共享引用**同一个数据对象！通过提供 `data` 函数，每次创建一个新实例后，我们能够调用 `data` 函数，从而返回初始数据的一个全新副本数据对象。
+  在定义一个**组件**时，`data` 必须声明为一个返回初始数据对象的函数，因为可能会使用此函数创建多个实例。如果 `data` 是一个普通对象，则所有创建出来的实例将**共享引用**同一个数据对象！通过提供 `data` 函数，每次创建一个新实例后，我们能够调用 `data` 函数，从而返回初始数据的一个全新的 data 对象副本。
 
  如果需要，可以通过将 `vm.$data` 传入 `JSON.parse(JSON.stringify(...))` 得到深拷贝的原始数据对象。
 
@@ -457,7 +467,7 @@ type: api
 
 - **详细：**
 
-  props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
+  props 可以是数组或对象，用于接收来自父组件的数据。props 有一个简单数组语法，和一个基于对象的语法，对象语法能够配置一些高级选项，例如类型检测、自定义校验和设置默认值。
 
 - **示例：**
 
@@ -470,7 +480,7 @@ type: api
   // 对象语法，提供校验
   Vue.component('props-demo-advanced', {
     props: {
-      // 只检测类型
+      // 检测类型
       height: Number,
       // 检测类型 + 其他验证
       age: {
@@ -530,11 +540,11 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // 仅读取，值只须为函数
+      // 只获取
       aDouble: function () {
         return this.a * 2
       },
-      // 读取和设置
+      // 获取和设置
       aPlus: {
         get: function () {
           return this.a + 1
@@ -595,18 +605,24 @@ type: api
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
-      // 方法名
+      // 字符串方法名
       b: 'someMethod',
       // 深度 watcher
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
+      },
+      // 回调函数会将在观察(data observer)开始后立即被调用
+      d: {
+        handler: function (val, oldVal) { /* ... */ },
+        immediate: true
       }
     }
   })
@@ -710,7 +726,7 @@ type: api
 
 - **详细：**
 
-  在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用。
+  在实例初始化之后，立即同步调用，在数据观察(data observer)和 event/watcher 配置之前被调用。
 
 - **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
@@ -742,7 +758,7 @@ type: api
 
 - **详细：**
 
-  `el` 被新创建的 `vm.$el` 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，当 `mounted` 被调用时 `vm.$el` 也在文档内。
+  在实例挂载之后调用，其中 `el` 被新创建的 `vm.$el` 替代。如果 root 实例挂载了一个文档内元素，当 `mounted` 被调用时 `vm.$el` 也在文档内。
 
   Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `mounted`:
 
@@ -850,6 +866,28 @@ type: api
 
 - **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
+### errorCaptured
+
+> New in 2.5.0+
+
+- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+
+- **Details:**
+
+  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+
+  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+
+  **Error Propagation Rules**
+
+  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+
+  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+
+  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+
+  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+
 ## 选项 / 资源
 
 ### directives
@@ -948,7 +986,7 @@ type: api
 
 - **类型：**
   - **provide:** `Object | () => Object`
-  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
 - **详细：**
 
@@ -1027,6 +1065,42 @@ type: api
   }
   ```
 
+  > In 2.5.0+ injections can be optional with default value:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: { default: 'foo' }
+    }
+  }
+  ```
+
+  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: 'foo'
+      }
+    }
+  }
+  ```
+
+  Similar to prop defaults, you need to use a factory function for non primitive values:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: () => [1, 2, 3]
+      }
+    }
+  }
+  ```
+
 ## 选项 / 其它
 
 ### name
@@ -1069,9 +1143,9 @@ type: api
 
 - **详细：**
 
-  使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
+  使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。这只是一个返回 virtual node 的 `render` 函数，使得渲染成本更低。
 
-- **参考：** [函数式组件](../guide/render-function.html#函数化组件)
+- **参考：** [函数式组件](../guide/render-function.html#函数式组件)
 
 ### model
 
@@ -1549,7 +1623,7 @@ type: api
 
   将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 `Vue.nextTick` 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
 
- > 2.1.0+ 新增：如果没有提供回调且支持 Promise 的环境中返回 Promise。
+ > 2.1.0+ 新增：如果没有提供回调且支持 Promise 的环境中返回 Promise。然而注意，Vue 没有集成 Promise polyfill，所以如果浏览器本身不支持 Promise（说的就是你，IE），就必须提前准备好 polyfill。
 
 - **示例：**
 
@@ -1617,6 +1691,8 @@ type: api
   更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板，可以重新考虑是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
+
+  <p class="tip">In [single-file components](../guide/single-file-components.html), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html) or an additional, global `<style>` element with a manual scoping strategy such as BEM.</p>
 
 - **示例：**
 
@@ -1763,7 +1839,7 @@ type: api
 
 - **用法：**
 
-  绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
+  绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字、一个内联语句，或者如果没有修饰符也可以省略。
 
   从 `2.4.0` 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
 
@@ -2049,6 +2125,28 @@ type: api
 
 - **参考：** [具名 Slots](../guide/components.html#具名-Slot)
 
+### slot-scope
+
+> New in 2.5.0+
+
+- **Expects:** `function argument expression`
+
+- **Usage:**
+
+  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+
+  This attribute does not support dynamic binding.
+
+- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
+
+### scope <sup>replaced</sup>
+
+Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
+
 ### is
 
 - **期望类型：** `string`
@@ -2131,7 +2229,7 @@ type: api
 
 - **用法：**
 
-  `<transition>` 元素作为单个元素/组件的过渡效果。`<transition>` 不会渲染额外的 DOM 元素，也不会出现在检测过的组件层级中。它只是将内容包裹在其中，简单的运用过渡行为。
+  `<transition>` 元素作为单个元素/组件的过渡效果。`<transition>` 只会把过渡效果应用到其包裹的内容上，而不会额外渲染 DOM 元素，也不会出现在检测过的组件层级中。
 
   ```html
   <!-- 简单元素 -->

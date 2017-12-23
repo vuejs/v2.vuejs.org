@@ -217,7 +217,7 @@ new Vue({
 
 ## `key`
 
-当 Vue 更新已使用 `v-for` 渲染的元素列表时，默认会采用“就地填充”策略。如果数据项的顺序发生了变化，不是移动 DOM 元素来匹配列表项的顺序，Vue 会直接将每个元素填充到恰当的位置，并且确保最终反映为，在该特定索引处放置应该呈现的内容。这与 Vue 1.x 中的 `track-by="$index"` 的行为类似。
+当 Vue 更新已使用 `v-for` 渲染的元素列表时，默认会采用“就地填充”策略。如果数据项的顺序发生了变化，不是移动 DOM 元素来匹配列表项的顺序，Vue 会将每个元素填充到恰当的位置，并且确保最终反映为，在该特定索引处放置应该呈现的内容。这与 Vue 1.x 中的 `track-by="$index"` 的行为类似。
 
 这个默认模式是高效率的，但是只适用于**当你的列表渲染输出，不依赖于子组件状态或临时 DOM 状态（例如，表单输入值）时**。
 
@@ -251,7 +251,7 @@ Vue 将观察数组(observed array)的变化数组方法(mutation method)包裹�
 
 ### 替换一个数组(Replacing an Array)
 
-变化数组方法(mutation method)，顾名思义，在调用后会改变原始数组。相比之下，还有非变化数组方法(non-mutating method)，例如 `filter()`, `concat()` 和 `slice()`，这些方法都不会直接修改操作原始数组，而是**返回一个新数组**。当使用非变化数组方法时，可以直接将旧数组替换为新数组：
+变化数组方法(mutation method)，顾名思义，在调用后会改变原始数组。相比之下，还有非变化数组方法(non-mutating method)，例如 `filter()`, `concat()` 和 `slice()`，这些方法都不会直接修改操作原始数组，而是**返回一个新数组**。当使用非变化数组方法时，可以将旧数组替换为新数组：
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -322,7 +322,7 @@ Vue.set(vm.userProfile, 'age', 27)
 还可以使用 `vm.$set` 实例方法，这也是全局 `Vue.set` 方法的别名：
 
 ``` js
-this.$set(this.userProfile, 'age', 27)
+vm.$set(this.userProfile, 'age', 27)
 ```
 
 有时，你想要向已经存在的对象上添加一些新的属性，例如使用  `Object.assign()`  或 `_.extend()` 方法。在这种情况下，应该创建一个新的对象，这个对象同时具有两个对象的所有属性，因此，改为：

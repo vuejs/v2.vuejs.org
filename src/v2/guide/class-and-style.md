@@ -103,7 +103,7 @@ data: {
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-这里会直接添加 `errorClass`，但是只有在 `isActive` 值是 `true` 时，才会添加 `activeClass`。
+这里会直接添加 `errorClass`，但是只有在 `isActive` 值是 truthy 时，才会添加 `activeClass`。
 
 然而，如果有多个条件  class 时，就会显得有些繁琐。这也就是为什么还可以在数组语法中使用对象语法：
 

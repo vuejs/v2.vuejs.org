@@ -24,7 +24,7 @@ order: 303
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-当你开始创建一个组件，并且根据 `level` prop 生成标题时，你会很快想到这样实现：
+当你开始创建一个只根据 `level` prop 生成标题的组件时，你会很快想到这样实现：
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -104,7 +104,7 @@ Vue.component('anchored-heading', {
 
 每个元素都是一个节点。每一段文字都是一个节点。甚至注释也都是节点！节点只是页面的一部分。正如在一棵家谱树中一样，每个节点都可以有子节点（也就是说，每个节点都可以包含多个子节点）。
 
-有效地更新所有这些节点可能是很困难的，但幸运的是，你无需手动执行。只需在 Vue 模板中，添加在页面中你需要用到的 HTML：
+有效地更新所有这些节点可能是很困难的，但幸运的是，你无需手动执行。相反，只需在 Vue 模板中，在页面中添加你需要用到的 HTML：
 
 ```html
 <h1>{{ blogTitle }}</h1>
@@ -151,7 +151,7 @@ createElement(
 
   // {String | Array}
   // 子虚拟 DOM 节点(children VNode)组成，或使用 `createElement()` 生成，
-  // 或直接使用字符串的'文本虚拟 DOM 节点(text VNode)'。可选参数。
+  // 或使用字符串的“文本虚拟 DOM 节点(text VNode)”。可选参数。
   [
     'Some text comes first.',
     createElement('h1', 'A headline'),
@@ -494,13 +494,11 @@ new Vue({
 
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
 
-
-## 函数化组件
+## 函数式组件
 
 之前创建的锚点标题组件是比较简单，没有管理或者监听任何传递给他的状态，也没有生命周期方法。它只是一个接收参数的函数。
 
-在这个例子中，我们标记组件为 `functional`， 这意味它是无状态（没有 `data`），无实例（没有 `this` 上下文）。
-一个 **函数化组件** 就像这样：
+在这个例子中，我们标记组件为 `functional`， 这意味它是无状态（没有 `data`），无实例（没有 `this` 上下文）。一个**函数式组件**就像这样：
 
 ``` js
 Vue.component('my-component', {
@@ -519,14 +517,21 @@ Vue.component('my-component', {
 
 > Note: in versions before 2.3.0, the `props` option is required if you wish to accept props in a functional component. In 2.3.0+ you can omit the `props` option and all attributes found on the component node will be implicitly extracted as props.
 
+In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
+
+``` js
+<template functional>
+</template>
+```
+
 组件需要的一切都是通过 `context` 传递，包括：
 
-- `props`: 提供props 的对象
+- `props`: 提供 props 的对象
 - `children`: VNode 子节点的数组
 - `slots`: slots 对象
 - `data`: 传递给组件的 data 对象
 - `parent`: 对父组件的引用
-- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is simply an alias to `data.on`
+- `listeners`: (2.3.0+) An object containing parent-registered event listeners. This is an alias to `data.on`
 - `injections`: (2.3.0+) if using the [`inject`](../api/#provide-inject) option, this will contain resolved injections.
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
@@ -589,7 +594,7 @@ Vue.component('smart-list', {
 </my-functional-component>
 ```
 
-对于这个组件，`children` 会给你两个段落标签，而 `slots().default` 只会传递第二个匿名段落标签，`slots().foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots()` ，因此你可以选择让组件通过 `slot()` 系统分发或者简单的通过 `children` 接收，让其他组件去处理。
+对于这个组件，`children` 会给你两个段落标签，而 `slots().default` 只会传递第二个匿名段落标签，`slots().foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots()` ，因此你可以选择让组件通过 `slot()` 系统分发或者通过 `children` 接收，让其他组件去处理。
 
 ## 模板编译
 

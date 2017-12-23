@@ -55,9 +55,7 @@
     if (!hashTarget) {
       var normalizedHash = normalizeHash(hash)
       var possibleHashes = [].slice.call(document.querySelectorAll('[id]'))
-        .map(function (el) {
-          return el.id
-        })
+        .map(function (el) { return el.id })
       possibleHashes.sort(function (hashA, hashB) {
         var distanceA = levenshteinDistance(normalizedHash, normalizeHash(hashA))
         var distanceB = levenshteinDistance(normalizedHash, normalizeHash(hashB))
@@ -147,7 +145,7 @@
       window.location.assign(
         'https://' +
         version +
-        (version && '-') +
+        (version && '.') +
         'cn.vuejs.org/' + section + '/'
       )
     })
@@ -166,11 +164,15 @@
 
     // build sidebar
     var currentPageAnchor = sidebar.querySelector('.sidebar-link.current')
-    var isAPI = document.querySelector('.content').classList.contains('api')
-    if (currentPageAnchor || isAPI) {
+    var contentClasses = document.querySelector('.content').classList
+    var isAPIOrStyleGuide = (
+      contentClasses.contains('api') ||
+      contentClasses.contains('style-guide')
+    )
+    if (currentPageAnchor || isAPIOrStyleGuide) {
       var allHeaders = []
       var sectionContainer
-      if (isAPI) {
+      if (isAPIOrStyleGuide) {
         sectionContainer = document.querySelector('.menu-root')
       } else {
         sectionContainer = document.createElement('ul')
@@ -185,7 +187,7 @@
           allHeaders.push(h)
           allHeaders.push.apply(allHeaders, h3s)
           if (h3s.length) {
-            sectionContainer.appendChild(makeSubLinks(h3s, isAPI))
+            sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
           }
         })
       } else {
@@ -198,6 +200,10 @@
 
       var animating = false
       sectionContainer.addEventListener('click', function (e) {
+
+        // Not prevent hashchange for smooth-scroll
+        // e.preventDefault()
+
         if (e.target.classList.contains('section-link')) {
           sidebar.classList.remove('open')
           setActive(e.target)
@@ -243,9 +249,8 @@
           last = link
         }
       }
-      if (last) {
+      if (last)
         setActive(last.id, !hoveredOverSidebar)
-      }
     }
 
     function makeLink (h) {
@@ -301,16 +306,16 @@
 
     function setActive (id, shouldScrollIntoView) {
       var previousActive = sidebar.querySelector('.section-link.active')
-      var currentActive = typeof id === 'string' ?
-        sidebar.querySelector('.section-link[href="#' + id + '"]') :
-        id
+      var currentActive = typeof id === 'string'
+        ? sidebar.querySelector('.section-link[href="#' + id + '"]')
+        : id
       if (currentActive !== previousActive) {
         if (previousActive) previousActive.classList.remove('active')
         currentActive.classList.add('active')
         if (shouldScrollIntoView) {
-          var currentPageOffset = currentPageAnchor ?
-            currentPageAnchor.offsetTop - 8 :
-            0
+          var currentPageOffset = currentPageAnchor
+            ? currentPageAnchor.offsetTop - 8
+            : 0
           var currentActiveOffset = currentActive.offsetTop + currentActive.parentNode.clientHeight
           var sidebarHeight = sidebar.clientHeight
           var currentActiveIsInView = (
@@ -318,22 +323,30 @@
             currentActiveOffset <= sidebar.scrollTop + sidebarHeight
           )
           var linkNotFurtherThanSidebarHeight = currentActiveOffset - currentPageOffset < sidebarHeight
-          var newScrollTop = currentActiveIsInView ?
-            sidebar.scrollTop :
-            linkNotFurtherThanSidebarHeight ?
-            currentPageOffset :
-            currentActiveOffset - sidebarHeight
+          var newScrollTop = currentActiveIsInView
+            ? sidebar.scrollTop
+            : linkNotFurtherThanSidebarHeight
+              ? currentPageOffset
+              : currentActiveOffset - sidebarHeight
           sidebar.scrollTop = newScrollTop
         }
       }
     }
 
     function makeHeaderClickable (link) {
-      var wrapper = document.createElement('a')
-      wrapper.href = '#' + link.id
+      var wrapper = link.querySelector('a')
       wrapper.setAttribute('data-scroll', '')
-      link.parentNode.insertBefore(wrapper, link)
-      wrapper.appendChild(link)
+
+      // transform DOM structure from
+      // `<h2><a></a>Header</a>` to <h2><a>Header</a></h2>`
+      // to make the link clickable
+      var nodes = Array.prototype.slice.call(link.childNodes)
+      for (var i = 0; i < nodes.length; i++) {
+        var node = nodes[i]
+        if (node !== wrapper) {
+          wrapper.appendChild(node)
+        }
+      }
     }
   }
 })()

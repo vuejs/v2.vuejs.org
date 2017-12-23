@@ -63,11 +63,11 @@ a.button
 
 .highlight
   overflow-x: auto
-  padding: 0
   background-color: $codebg
-  padding: .8em .8em .4em
+  padding: .4em 0 0
   line-height: 1.1em
   border-radius: $radius
+  position: relative
   table, tr, td
     width: 100%
     border-collapse: collapse
@@ -86,7 +86,7 @@ a.button
   &.html, &.js, &.bash, &.css
     .code:before
       position: absolute
-      margin-top: -1em
+      top: 0
       right: 0
       color: #ccc
       text-align: right
@@ -115,12 +115,12 @@ a.button
     cursor: pointer
   .nav-dropdown-container
     .nav-link
-      &:hover
+      &:hover:not(.current)
         border-bottom: none
     &:hover
       .nav-dropdown
         display: block
-    &.language
+    &.language, &.ecosystem
       margin-left: 20px
     .arrow
       pointer-events: none
@@ -174,3 +174,9 @@ a.button
     border-left: 4px solid transparent
     border-right: 4px solid transparent
     border-top: 5px solid #ccc
+
+sup.beta.beta
+  font-size: .6em
+  margin-left: .7em
+  text-transform: uppercase
+  opacity: .6

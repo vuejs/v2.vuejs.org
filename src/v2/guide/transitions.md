@@ -114,7 +114,7 @@ new Vue({
 
 ### CSS 过渡(CSS Transitions)
 
-最常用到的过渡类型是使用 CSS 过渡。下面是一个简单示例：
+最常用到的过渡类型是使用 CSS 过渡。下面是一个示例：
 
 ``` html
 <div id="example-1">
@@ -193,7 +193,7 @@ CSS 动画用法和 CSS 过渡相同，区别是在动画中 `v-enter` 类名在
 <div id="example-2">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
-    <p v-if="show">Look at me!</p>
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 ```
@@ -231,7 +231,7 @@ new Vue({
 <div id="example-2" class="demo">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
-    <p v-show="show">Look at me!</p>
+    <p v-show="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 
@@ -444,7 +444,7 @@ methods: {
 
 <p class="tip">推荐对于仅使用 JavaScript 的过渡显式添加 `v-bind:css="false"`，以便 Vue 可以跳过 CSS 侦测。这也可以防止 CSS 规则意外干涉到过渡。</p>
 
-现在我们深入来看一个示例。这里是一个简单的使用 Velocity.js 的 JavaScript 式过渡：
+现在我们深入来看一个示例。这里是一个使用 Velocity.js 的 JavaScript 式过渡：
 
 ``` html
 <!--
@@ -560,7 +560,6 @@ new Vue({
 <transition
   appear
   appear-class="custom-appear-class"
-  appear-to-class="custom-appear-to-class" (2.1.8+)
   appear-to-class="custom-appear-to-class"（仅 >= 2.1.8 支持）
   appear-active-class="custom-appear-active-class"
 >
@@ -877,7 +876,7 @@ new Vue({
 
 ## 多个组件之间过渡
 
-多个组件之间的过渡甚至更简单 - 我们不需要使用 `key` 属性。相反，我们只需要使用[动态组件](components.html#动态组件):
+多个组件之间的过渡甚至更简单 - 我们不需要使用 `key` 属性。相反，我们需要使用[动态组件](components.html#动态组件):
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -960,7 +959,7 @@ new Vue({
 
 ### 进入式/离开式列表过渡
 
-现在让我们来深入一个简单的示例，进入式过渡和离开式过渡都使用与之前相同的 CSS 类名：
+现在让我们来深入一个示例，进入式过渡和离开式过渡都使用与之前相同的 CSS 类名：
 
 ``` html
 <div id="list-demo">
@@ -1241,7 +1240,7 @@ new Vue({
 
 <p class="tip">需要注意的是，使用 FLIP 过渡的元素，在设置为 `display: inline` 时，无法正常运行。作为替代方案，可以将元素设置为 `display: inline-block`，或者将元素放置于 flex 上下文(flex context)中。</p>
 
-FLIP 动画不局限于单个轴线方向(single axis)，多个维度网格(multidimensional grid)的过渡也同样[简单](https://jsfiddle.net/chrisvfritz/sLrhk1bc/)：
+FLIP 动画不局限于单个轴线方向(single axis)，多个维度网格(multidimensional grid)也[同样可以过渡](https://jsfiddle.net/chrisvfritz/sLrhk1bc/)：
 
 {% raw %}
 <div id="sudoku-demo" class="demo">

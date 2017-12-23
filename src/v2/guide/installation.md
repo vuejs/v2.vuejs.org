@@ -2,11 +2,8 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.4.0
-dev_size: "257.91"
-min_size: "79.71"
-gz_size: "28.96"
-ro_gz_size: "20.18"
+vue_version: 2.5.9
+gz_size: "30.95"
 ---
 
 ### 兼容性
@@ -14,6 +11,8 @@ ro_gz_size: "20.18"
 Vue.js **不支持** IE8 及其以下版本，因为 Vue.js 使用的 ECMAScript 5 特性在 IE8 无法模拟。Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
 
 ### 更新日志
+
+最新稳定版本：{{vue_version}}
 
 每个版本的详细更新日志见 [GitHub](https://github.com/vuejs/vue/releases)。
 
@@ -30,14 +29,14 @@ Vue.js **不支持** IE8 及其以下版本，因为 Vue.js 使用的 ECMAScript
 <div id="downloads">
 <a class="button" href="http://vuejs.org/js/vue.js" download>开发环境版本</a><span class="light info">包含完整的警告和调试模式</span>
 
-<a class="button" href="http://vuejs.org/js/vue.min.js" download>生产环境版本</a><span class="light info">删除警告，{{gz_size}}kb min+gzip</span>
+<a class="button" href="http://vuejs.org/js/vue.min.js" download>生产环境版本</a><span class="light info">删除警告，{{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
 
-推荐使用：[https://unpkg.com/vue](https://unpkg.com/vue)，在 npm 发布后，立刻就能够展现最新版本。你还可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包的源码。
+推荐使用：[https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue)，在 npm 发布后，立刻就能够展现最新版本。你还可以在 [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/) 浏览 npm 包的源码。
 
-还可以使用 [jsDelivr](https://cdn.jsdelivr.net/npm/vue/dist/vue.js) 或 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)，但是这两个服务需要一段时间才能同步，所以可能会无法获取最新版本。
+还可以使用 [unpkg](https://unpkg.com/vue) 或 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js)（但是 cdnjs 需要一段时间才能同步，所以可能会无法获取最新版本）。
 
 ## NPM
 
@@ -67,7 +66,7 @@ $ npm run dev
 
 ## 不同构建版本的解释说明
 
-在 [NPM 包的 `dist/` 目录下](https://unpkg.com/vue@latest/dist/)，你会找到许多不同构建版本的 Vue.js。以下是它们之间差异的概述：
+在 [NPM 包的 `dist/` 目录下](https://cdn.jsdelivr.net/npm/vue/dist/)，你会找到许多不同构建版本的 Vue.js。以下是它们之间差异的概述：
 
 | | UMD | CommonJS | ES Module |
 | --- | --- | --- | --- |
@@ -84,7 +83,7 @@ $ npm run dev
 
 - **运行时(Runtime)**：负责创建 Vue 实例(creating Vue instances)、渲染(rendering)和修补虚拟 DOM(patching virtual DOM) 等的代码。基本上，等同于完整版本减去编译器。
 
-- **[UMD](https://github.com/umdjs/umd)**：UMD 构建版本能够直接在浏览器中通过 `<script>` 标签使用。Unpkg CDN 提供的默认文件 [https://unpkg.com/vue](https://unpkg.com/vue)，是运行时+编译器(Runtime + Compiler)的 UMD 构建版本。
+- **[UMD](https://github.com/umdjs/umd)**：UMD 构建版本能够直接在浏览器中通过 `<script>` 标签使用。jsDelivr CDN 提供的默认文件 [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue)，是运行时+编译器(Runtime + Compiler)的 UMD 构建版本（`vue.js`）。
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**：CommonJS 版本用于较早期的打包器(bundler)（例如 [browserify](http://browserify.org/) 或 [webpack 1](https://webpack.github.io) 等）中。用于这些打包器的默认文件(`pkg.main`)，是只含有运行时(Runtime only)的 CommonJS 构建版本(`vue.runtime.common.js`)。
 

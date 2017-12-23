@@ -6,7 +6,7 @@ order: 402
 
 ## 介绍
 
-在很多Vue项目中，我们使用 `Vue.component` 来定义全局组件，紧接着用 `new Vue({ el: '#container '})` 在每个页面内指定一个容器元素。
+在很多 Vue 项目中，我们使用 `Vue.component` 来定义全局组件，紧接着用 `new Vue({ el: '#container '})` 在每个页面内指定一个容器元素。
 
 这种方式在很多中小规模的项目中运作的很好，在这些项目里 JavaScript 只被用来加强特定的视图。但当在更复杂的项目中，或者你的前端完全由 JavaScript 驱动的时候，下面这些缺点将变得非常明显：
 
@@ -17,7 +17,7 @@ order: 402
 
 文件扩展名为 `.vue` 的 **single-file components(单文件组件)** 为以上所有问题提供了解决方法，并且还可以使用 webpack 或 Browserify 等构建工具。
 
-这是一个文件名为 `Hello.vue` 的简单实例：
+这是一个文件名为 `Hello.vue` 的简单示例：
 
 <img src="/images/vue-component.png" style="display: block; margin: 30px auto;">
 
@@ -25,7 +25,7 @@ order: 402
 
 - [完整语法高亮](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [CommonJS 模块](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
-- [组件化的 CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+- [组件作用域 CSS](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
 正如我们说过的，我们可以使用预处理器来构建简洁和功能更丰富的组件，比如 Pug，Babel (with ES2015 modules)，和 Stylus。
 
@@ -50,19 +50,21 @@ order: 402
 
 ## 起步
 
+### Example Sandbox
+
+If you want to dive right in and start playing with single-file components, check out [this simple todo app](https://codesandbox.io/s/o29j95wx9) on CodeSandbox.
+
 ### 针对刚接触 JavaScript 模块开发系统的用户
 
-有了 `.vue` 组件，我们就进入了高级 JavaScript 应用领域。如果你没有准备好的话，意味着还需要学会使用一些附加的工具：
+通过 `.vue` 组件，我们就进入了 JavaScript 应用程序高级领域。如果你没有准备好的话，意味着还需要学会使用一些附加的工具：
 
-- **Node Package Manager (NPM)**: 阅读 [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) 直到 _10: Uninstalling global packages_章节.
+- **Node Package Manager (NPM)**: 阅读 [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) 直到 _10: Uninstalling global packages_章节。
 
 - **Modern JavaScript with ES2015/16**: 阅读 Babel 的 [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). 你不需要立刻记住每一个方法，但是你可以保留这个页面以便后期参考。
 
-在你花一些时日了解这些资源之后，我们建议你参考 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 。只要遵循指示，你就能很快地运行一个用到 `.vue` 组件，ES2015 和  热重载( hot-reloading ) 的 Vue 项目!
+在你花一些时日了解这些资源之后，我们建议你参考 [webpack](https://vuejs-templates.github.io/webpack)。只要按照说明，你就能无需耗费大量时间，运行一个用到 `.vue` 组件、ES2015 和热重载(hot-reloading)的 Vue 项目!
 
-这个模板使用 [webpack](https://webpack.github.io/)，一个能将多个模块打包成最终应用的模块打包工具。 想要了解 webpack 的相关信息，请查看 [官方文档](https://doc.webpack-china.org/configuration/) 和 [webpack 学院](https://webpack.academy/p/the-core-concepts)。
-
-在 webpack中，每个模块被打包到 bundle 之前都由一个相应的 "loader" 来转换，Vue 也提供 [vue-loader](https://github.com/vuejs/vue-loader) 插件来执行 `.vue` 单文件组件 的转换. 这个 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 模板已经为你准备好了所有的东西，但是如果你想了解更多关于 `.vue` 组件和 webpack 如何一起运转的信息，你可以阅读 [vue-loader 的文档](https://vue-loader.vuejs.org)。
+想要了解 webpack 的相关信息，请查看[官方文档](https://webpack.js.org/configuration/) 和 [webpack 学院](https://webpack.academy/p/the-core-concepts)。在 webpack 中，每个模块在打包成 bundle 之前，都会通过一个 "loader" 进行转换，Vue 提供 [vue-loader](https://github.com/vuejs/vue-loader) 插件，来负责执行 `.vue` 单文件组件 的转换.
 
 ### 针对高级用户
 

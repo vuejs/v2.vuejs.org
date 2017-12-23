@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-你只需要传一个路由属性给 Vue 实例：
+你需要向 Vue 实例传递一个 router 属性：
 
 ``` js
 new Vue({
@@ -424,7 +424,7 @@ var router = new VueRouter({
 
 ### `saveScrollPosition` <sup>替换</sup>
 
-它已经被替换为可以接受一个函数的 [`scrollBehavior` 选项](https://router.vuejs.org/en/advanced/scroll-behavior.html)，所以滑动行为可以完全的被定制化处理 - 甚至为每次路由进行定制也可以满足。这将会开启很多新的可能，但是简单的复制旧的行为:
+它已经被替换为可以接受一个函数的 [`scrollBehavior` 选项](https://router.vuejs.org/en/advanced/scroll-behavior.html)，所以滑动行为可以完全的被定制化处理 - 甚至为每次路由进行定制也可以满足。这将会开启很多新的可能，但是会复制旧的行为：
 
 ``` js
 saveScrollPosition: true
@@ -537,7 +537,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `data` <sup>替换</sup>
 
-`$route`属性是响应式的，所有你可以就使用一个 watcher 去响应路由的改变，就像这样：
+`$route` 属性是响应式的，所有你可以使用一个 watcher 去响应路由的改变，就像这样：
 
 ``` js
 watch: {

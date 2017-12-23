@@ -38,7 +38,7 @@
     <div class="point">
       <h2>性能高效</h2>
       <p>
-        20kb min+gzip 运行时大小<br>
+        20KB min+gzip 运行时大小<br>
         超快虚拟 DOM<br>
         最省心的优化
       </p>
@@ -47,9 +47,17 @@
 </div>
 
 <div id="footer">
-  <a href="https://www.shuttleworthfoundation.org/fellows/flash-grants/" target="_blank">
-    <img src="/images/shuttleworth.png" style="width: 200px;">
-  </a>
+  <p>
+    <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank">
+      <%- partial('icons/github') %>
+    </a>
+    <a class="social-icon" href="https://twitter.com/vuejs" target="_blank">
+      <%- partial('icons/twitter') %>
+    </a>
+    <a class="social-icon" href="https://medium.com/the-vue-point" target="_blank">
+      <%- partial('icons/medium') %>
+    </a>
+  </p>
   <p>遵循 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT 开源协议</a><br>
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
@@ -86,5 +94,4 @@
     }
   })
 })()
-window.location.href = '/v2/guide' // 直接从首页跳转入教程首页
 </script>

@@ -14,20 +14,55 @@ order: 305
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-过滤器函数总是接收表达式的值（值的结果是，过滤器链中的上一个过滤器返回的值），作为第一个参数。在这个例子中 `capitalize` 过滤器函数，将 `message` 的值作为参数接收。
+你可以在组件的选项中定义局部过滤器：
 
 ``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
+filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
   }
+}
+```
+
+或者定义一个全局的过滤器：
+
+``` js
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
 })
 ```
+
+以下这个示例，我们将使用 `capitalize` 过滤器：
+
+{% raw %}
+<div id="example_1" class="demo">
+  <input type="text" v-model="message">
+  <p>{{ message | capitalize }}</p>
+</div>
+<script>
+  new Vue({
+    el: '#example_1',
+    data: function () {
+      return {
+        message: 'john'
+      }
+    },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+  })
+</script>
+{% endraw %}
+
+过滤器函数总是接收表达式的值（值的结果是，过滤器链中的上一个过滤器返回的值），作为第一个参数。在上面这个例子中 `capitalize` 过滤器函数，将 `message` 的值作为参数接收。
 
 可以如下链式调用过滤器：
 
