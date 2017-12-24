@@ -515,7 +515,7 @@ Vue.component('my-component', {
 })
 ```
 
-> 注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 props，则 props 选项是必选项。而在 2.3.0+ 版本中，你可以省略 `props` 选项，所有组件节点上的发现的属性，都会被隐式地提取为 props。
+> 注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 props，则 `props` 选项是必选项。而在 2.3.0+ 版本中，你可以省略 `props` 选项，所有组件节点上的发现的属性，都会被隐式地提取为 props。
 
 In 2.5.0+, if you are using [single-file components](single-file-components.html), template-based functional components can be declared with:
 

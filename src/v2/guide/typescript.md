@@ -145,9 +145,9 @@ var vm = new Vue({
 })
 ```
 
-## Annotating Return Types
+## 标注返回类型
 
-Because of the circular nature of Vue's declaration files, TypeScript may have difficulties inferring the types of certain methods. For this reason, you may need to annotate the return type on methods like `render` and those in `computed`.
+由于 Vue 声明文件的循环特性，TypeScript 可能很难推断某些方法的类型。因此，你可能需要为 `render` 方法和 `computed` 对象上的方法标注返回类型。
 
 ```ts
 import Vue, { VNode } from 'vue'
@@ -159,25 +159,25 @@ const Component = Vue.extend({
     }
   },
   methods: {
-    // need annotation due to `this` in return type
+    // 由于返回对象中有 `this`，所以需要标注返回类型
     greet (): string {
       return this.msg + ' world'
     }
   },
   computed: {
-    // need annotation
+    // 需要标注
     greeting(): string {
       return this.greet() + '!'
     }
   },
-  // `createElement` is inferred, but `render` needs return type
+  // `createElement` 是可推断的，但是 `render` 需要标注返回值类型
   render (createElement): VNode {
     return createElement('div', this.greeting)
   }
 })
 ```
 
-If you find type inference or member completion isn't working, annotating certain methods may help address these problems. Using the `--noImplicitAny` option will help find many of these unannotated methods.
+如果你发现类型推断或成员补齐无法正常使用，标注某些方法可能有助于解决这些问题。使用 `--noImplicitAny` 选项，会有助于找出这些未标注的方法。
 
 ***
 
