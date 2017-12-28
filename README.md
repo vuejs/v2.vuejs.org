@@ -1,5 +1,8 @@
 # Vue.js 2 中文文档 - https://vuefe.cn
 
+[![Travis CI](https://travis-ci.org/docschina/vuejs.org.svg?branch=cn)](https://travis-ci.org/docschina/vuejs.org/)
+
+
 > 翻译贡献者：https://vuefe.cn/about
 
 > 并感谢所有参与翻译的朋友们！
