@@ -7,3 +7,4 @@ public/
 .deploy*/
 src/_drafts
 .avoscloud/
+package-lock.json

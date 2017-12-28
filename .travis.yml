@@ -1,0 +1,11 @@
+branches:
+  only:
+    - cn
+language: node_js
+node_js:
+  - "8"
+script:
+  - bash ./.ci/deploy.sh  
+sudo: required
+install:
+  - npm install      

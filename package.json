@@ -6,10 +6,8 @@
   },
   "scripts": {
     "start": "hexo server",
-    "deploy": "node pre-deploy.js && hexo clean && hexo generate && hexo deploy"
-  },
-  "scripts": {
-    "server": "hexo server"
+    "build": "node pre-deploy.js && hexo clean && hexo generate",
+    "deploy": "hexo deploy"
   },
   "dependencies": {
     "hexo": "^3.4.2",

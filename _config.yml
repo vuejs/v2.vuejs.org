@@ -136,9 +136,10 @@ markdown:
 
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deployment.html
-# deploy:
-#   type: git
-#   repository: git@github.com:vuejs/vuejs.org.git
+deploy:
+  type: git
+  repository: git@github.com:docschina/vuejs.org.git
+  branch: gh-pages
 
 feed:
   type: atom
