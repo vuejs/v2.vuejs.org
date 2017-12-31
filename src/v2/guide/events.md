@@ -190,7 +190,7 @@ methods: {
 <div v-on:click.capture="doThis">...</div>
 
 <!-- 只有在 event.target 是元素自身时，才触发处理函数。 -->
-<!-- 即，event.target 是子元素时，不触发处理函数 -->
+<!-- 也就是说，event.target 是子元素时，不触发处理函数 -->
 <div v-on:click.self="doThat">...</div>
 ```
 
