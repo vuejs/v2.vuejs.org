@@ -637,7 +637,7 @@ type: api
         console.log('new: %s, old: %s', val, oldVal)
         }
       ],
-      // watch vm.e.f's value: `{g: 5}`
+      // watch vm.e.f's value: {g: 5}
       'e.f': function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       }
