@@ -1,0 +1,66 @@
+// main ad placement (bottom right)
+#ad
+  width: 125px
+  // text-align: center
+  position: fixed
+  z-index: 99
+  bottom: 10px
+  right: 10px
+  padding: 10px
+  background-color: #fff
+  border-radius: 3px
+  font-size: 13px
+  a
+    display: inline-block
+    color: $light
+    font-weight: normal
+  span
+    color: $light
+    display: inline-block
+    margin-bottom: 5px
+  img
+    width: 125px
+  .carbon-img, .carbon-text
+    display: block
+    margin-bottom: 6px
+    font-weight: normal
+    color: $medium
+  .carbon-poweredby
+    color: #aaa
+    font-weight: normal
+
+// text ad (below page title)
+.bsa-cpc
+  font-size 1em
+  background-color #f8f8f8
+  a._default_
+    text-align left
+    display block
+    padding 10px 15px 12px
+    margin-bottom 20px
+    color #666
+    font-weight 400
+    line-height 18px
+    .default-image, .default-title, .default-description
+      display inline
+      vertical-align middle
+      margin-right 6px
+    .default-image
+      img
+        height 20px
+        border-radius 3px
+        vertical-align middle
+        position relative
+        top -1px
+    .default-title
+      font-weight 600
+    .default-description:after
+      font-size .85em
+      content "Sponsored"
+      color $info
+      border 1px solid $info
+      border-radius 3px
+      padding 0 4px 1px
+      margin-left 6px
+  .default-ad
+    display none

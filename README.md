@@ -4,13 +4,23 @@ This site is built with [hexo](http://hexo.io/). Site content is written in Mark
 
 ## Developing
 
-Start a dev server at `localhost:4000`:
-
-```
-$ npm install -g hexo-cli
+``` bash
 $ npm install
-$ hexo server
+$ npm start # dev server at http://localhost:4000
 ```
+
+## Deploying
+
+The site is deployed using GitHub pages, therefore you need push access to the vuejs.org repo to run the deploy script:
+
+``` bash
+$ npm run deploy
+```
+
+If you are working on a fork and deploying to a different URL, you need to update the following accordingly:
+
+- `url` and `deploy` sections in `_config.yml`
+- `src/CNAME`
 
 ## On Translations
 
@@ -57,10 +67,23 @@ Russian translation is maintained by Translation Gang.
 * Translation Repo — [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Primary maintainer - [Grigoriy Beziuk](https://gbezyuk.github.io)
 
+### Spanish
+
+Spanish translation is maintained by VueJS-ES.
+
+* Translation Repo - [/vuejs-es/vuejs.org](https://github.com/vuejs-es/vuejs.org)
+
+### Persian (Farsi)
+
+Persian translation is maintained by VueJS-fa.
+
+* Translation Repo - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
+* Primary maintainer - [Pooya Parsa](https://github.com/pi0)
+
 ### Want to help with the translation?
 
-If you feel okay with translating sorta alone, just fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and just go on.
+If you feel okay with translating sorta alone, you can fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and go for it.
 
-If you are more of a team player, maybe Translation Gang is for you? Then just let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
+If you are more of a team player, Translation Gang might be for you. Let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
 
 And thank you in advance ;)

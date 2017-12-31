@@ -6,7 +6,7 @@ order: 4
 
 Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance's data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
 
-Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
 
 If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](render-function.html) instead of templates, with optional JSX support.
 
@@ -33,26 +33,46 @@ You can also perform one-time interpolations that do not update on data change b
 The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
 
 ``` html
-<div v-html="rawHtml"></div>
+<p>Using mustaches: {{ rawHtml }}</p>
+<p>Using v-html directive: <span v-html="rawHtml"></span></p>
 ```
 
-The contents of this `div` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+{% raw %}
+<div id="example1" class="demo">
+  <p>Using mustaches: {{ rawHtml }}</p>
+  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+</div>
+<script>
+new Vue({
+  el: '#example1',
+  data: function () {
+  	return {
+  	  rawHtml: '<span style="color: red">This should be red.</span>'
+  	}
+  }
+})
+</script>
+{% endraw %}
+
+The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
 
 <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
 
 ### Attributes
 
-Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](../api/#v-bind):
+Mustaches cannot be used inside HTML attributes. Instead, use a [v-bind directive](../api/#v-bind):
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
+In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example: 
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
+
+If `isButtonDisabled` has the value of `null`, `undefined`, or `false`, the `disabled` attribute will not even be included in the rendered `<button>` element.
 
 ### Using JavaScript Expressions
 
@@ -95,7 +115,7 @@ Here, the `v-if` directive would remove/insert the `<p>` element based on the tr
 Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
 
 ``` html
-<a v-bind:href="url"></a>
+<a v-bind:href="url"> ... </a>
 ```
 
 Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`.
@@ -103,7 +123,7 @@ Here `href` is the argument, which tells the `v-bind` directive to bind the elem
 Another example is the `v-on` directive, which listens to DOM events:
 
 ``` html
-<a v-on:click="doSomething">
+<a v-on:click="doSomething"> ... </a>
 ```
 
 Here the argument is the event name to listen to. We will talk about event handling in more detail too.
@@ -113,33 +133,33 @@ Here the argument is the event name to listen to. We will talk about event handl
 Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the `.prevent` modifier tells the `v-on` directive to call `event.preventDefault()` on the triggered event:
 
 ``` html
-<form v-on:submit.prevent="onSubmit"></form>
+<form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
-We will see more use of modifiers later when we take a more thorough look at `v-on` and `v-model`.
+You'll see other examples of modifiers later, [for `v-on`](events.html#Event-Modifiers) and [for `v-model`](forms.html#Modifiers), when we explore those features.
 
 ## Shorthands
 
-The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building an [SPA](https://en.wikipedia.org/wiki/Single-page_application) where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
+The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building a [SPA](https://en.wikipedia.org/wiki/Single-page_application) where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
 
 ### `v-bind` Shorthand
 
 ``` html
 <!-- full syntax -->
-<a v-bind:href="url"></a>
+<a v-bind:href="url"> ... </a>
 
 <!-- shorthand -->
-<a :href="url"></a>
+<a :href="url"> ... </a>
 ```
 
 ### `v-on` Shorthand
 
 ``` html
 <!-- full syntax -->
-<a v-on:click="doSomething"></a>
+<a v-on:click="doSomething"> ... </a>
 
 <!-- shorthand -->
-<a @click="doSomething"></a>
+<a @click="doSomething"> ... </a>
 ```
 
 They may look a bit different from normal HTML, but `:` and `@` are valid chars for attribute names and all Vue.js supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.

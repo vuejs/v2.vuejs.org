@@ -8,9 +8,11 @@ order: 11
 
 Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code. At a high level, components are custom elements that Vue's compiler attaches behavior to. In some cases, they may also appear as a native HTML element extended with the special `is` attribute.
 
+All Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options) and provide the same lifecycle hooks.
+
 ## Using Components
 
-### Registration
+### Global Registration
 
 We've learned in the previous sections that we can create a new Vue instance with:
 
@@ -29,7 +31,7 @@ Vue.component('my-component', {
 })
 ```
 
-<p class="tip">Note that Vue does not enforce the [W3C rules](http://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
+<p class="tip">Note that Vue does not enforce the [W3C rules](https://www.w3.org/TR/custom-elements/#concepts) for custom tag names (all-lowercase, must contain a hyphen) though following this convention is considered good practice.</p>
 
 Once registered, a component can be used in an instance's template as a custom element, `<my-component></my-component>`. Make sure the component is registered **before** you instantiate the root Vue instance. Here's the full example:
 
@@ -219,8 +221,8 @@ Components are meant to be used together, most commonly in parent-child relation
 
 In Vue, the parent-child component relationship can be summarized as **props down, events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**. Let's see how they work next.
 
-<p style="text-align: center">
-  <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
+<p style="text-align: center;">
+  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
 </p>
 
 ## Props
@@ -235,8 +237,8 @@ A prop is a custom attribute for passing information from parent components. A c
 Vue.component('child', {
   // declare the props
   props: ['message'],
-  // just like data, the prop can be used inside templates
-  // and is also made available in the vm as this.message
+  // like data, the prop can be used inside templates and
+  // is also made available in the vm as this.message
   template: '<span>{{ message }}</span>'
 })
 ```
@@ -297,7 +299,7 @@ Similar to binding a normal attribute to an expression, we can also use `v-bind`
 </div>
 ```
 
-It's often simpler to use the shorthand syntax for `v-bind`:
+You can also use the shorthand syntax for `v-bind`:
 
 ``` html
 <child :my-message="parentMsg"></child>
@@ -369,13 +371,13 @@ However, since this is a literal prop, its value is passed down as a plain strin
 
 ### One-Way Data Flow
 
-All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to reason about.
+All props form a **one-way-down** binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.
 
 In addition, every time the parent component is updated, all props in the child component will be refreshed with the latest value. This means you should **not** attempt to mutate a prop inside a child component. If you do, Vue will warn you in the console.
 
 There are usually two cases where it's tempting to mutate a prop:
 
-1. The prop is used to only pass in an initial value, the child component simply wants to use it as a local data property afterwards;
+1. The prop is used to pass in an initial value; the child component wants to use it as a local data property afterwards.
 
 2. The prop is passed in as a raw value that needs to be transformed.
 
@@ -605,7 +607,7 @@ In some cases we may need "two-way binding" for a prop - in fact, in Vue 1.x thi
 
 This is why we removed the `.sync` modifier when 2.0 was released. However, we've found that there are indeed cases where it could be useful, especially when shipping reusable components. What we need to change is **making the code in the child that affects parent state more consistent and explicit.**
 
-In 2.3.0+ we re-introduced the `.sync` modifier for props, but this time it is just syntax sugar that automatically expands into an additional `v-on` listener:
+In 2.3.0+ we re-introduced the `.sync` modifier for props, but this time it is only syntax sugar that automatically expands into an additional `v-on` listener:
 
 The following
 
@@ -633,7 +635,7 @@ Custom events can also be used to create custom inputs that work with `v-model`.
 <input v-model="something">
 ```
 
-is just syntactic sugar for:
+is syntactic sugar for:
 
 ``` html
 <input
@@ -655,7 +657,7 @@ So for a component to work with `v-model`, it should (these can be configured in
 - accept a `value` prop
 - emit an `input` event with the new value
 
-Let's see it in action with a very simple currency input:
+Let's see it in action with a simple currency input:
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -963,7 +965,7 @@ The content distribution API is a very useful mechanism when designing component
 
 A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
 
-In a child component, simply pass data into a slot as if you are passing props to a component:
+In a child component, pass data into a slot as if you are passing props to a component:
 
 ``` html
 <div class="child">
@@ -971,12 +973,12 @@ In a child component, simply pass data into a slot as if you are passing props t
 </div>
 ```
 
-In the parent, a `<template>` element with a special attribute `scope` must exist, indicating that it is a template for a scoped slot. The value of `scope` is the name of a temporary variable that holds the props object passed from the child:
+In the parent, a `<template>` element with a special attribute `slot-scope` must exist, indicating that it is a template for a scoped slot. The value of `slot-scope` will be used as the name of a temporary variable that holds the props object passed from the child:
 
 ``` html
 <div class="parent">
   <child>
-    <template scope="props">
+    <template slot-scope="props">
       <span>hello from parent</span>
       <span>{{ props.text }}</span>
     </template>
@@ -995,14 +997,19 @@ If we render the above, the output will be:
 </div>
 ```
 
+> In 2.5.0+, `slot-scope` is no longer limited to `<template>` and can be used on any element or component.
+
 A more typical use case for scoped slots would be a list component that allows the component consumer to customize how each item in the list should be rendered:
 
 ``` html
 <my-awesome-list :items="items">
   <!-- scoped slot can be named too -->
-  <template slot="item" scope="props">
-    <li class="my-fancy-item">{{ props.text }}</li>
-  </template>
+  <li
+    slot="item"
+    slot-scope="props"
+    class="my-fancy-item">
+    {{ props.text }}
+  </li>
 </my-awesome-list>
 ```
 
@@ -1016,6 +1023,16 @@ And the template for the list component:
     <!-- fallback content here -->
   </slot>
 </ul>
+```
+
+#### Destructuring
+
+`slot-scope`'s value is in fact a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments (in single-file components or in modern browsers) you can also use ES2015 destructuring in the expression:
+
+``` html
+<child>
+  <span slot-scope="{ text }">{{ text }}</span>
+</child>
 ```
 
 ## Dynamic Components
@@ -1134,7 +1151,7 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is simply for demonstration; How to retrieve the component is entirely up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
+The factory function receives a `resolve` callback, which should be called when you have retrieved your component definition from the server. You can also call `reject(reason)` to indicate the load has failed. The `setTimeout` here is for demonstration; how to retrieve the component is up to you. One recommended approach is to use async components together with [Webpack's code-splitting feature](https://webpack.js.org/guides/code-splitting/):
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
@@ -1150,6 +1167,7 @@ You can also return a `Promise` in the factory function, so with Webpack 2 + ES2
 ``` js
 Vue.component(
   'async-webpack-example',
+  // The `import` function returns a `Promise`.
   () => import('./my-async-component')
 )
 ```
@@ -1165,7 +1183,7 @@ new Vue({
 })
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
+<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend using Webpack for built-in, first-class async support.</p>
 
 ### Advanced Async Components
 
@@ -1312,7 +1330,7 @@ In our case, let's make that point the `tree-folder` component. We know the chil
 
 ``` js
 beforeCreate: function () {
-  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
+  this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
 }
 ```
 

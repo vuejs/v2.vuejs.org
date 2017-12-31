@@ -6,7 +6,7 @@ order: 302
 
 ## Intro
 
-In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you just need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
+In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -24,10 +24,10 @@ new Vue({
 </script>
 {% endraw %}
 
-When the page loads, that element gains focus (note: autofocus doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
+When the page loads, that element gains focus (note: `autofocus` doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
 
 ``` js
-// Register a global custom directive called v-focus
+// Register a global custom directive called `v-focus`
 Vue.directive('focus', {
   // When the bound element is inserted into the DOM...
   inserted: function (el) {
@@ -43,6 +43,9 @@ If you want to register a directive locally instead, components also accept a `d
 directives: {
   focus: {
     // directive definition
+    inserted: function (el) {
+      el.focus()
+    }
   }
 }
 ```
@@ -73,16 +76,16 @@ We'll explore the arguments passed into these hooks (i.e. `el`, `binding`, `vnod
 
 Directive hooks are passed these arguments:
 
-- **el**: The element the directive is bound to. This can be used to directly manipulate the DOM.
-- **binding**: An object containing the following properties.
-  - **name**: The name of the directive, without the `v-` prefix.
-  - **value**: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be `2`.
-  - **oldValue**: The previous value, only available in `update` and `componentUpdated`. It is available whether or not the value has changed.
-  - **expression**: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be `"1 + 1"`.
-  - **arg**: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
-  - **modifiers**: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-- **vnode**: The virtual node produced by Vue's compiler. See the [VNode API](../api/#VNode-Interface) for full details.
-- **oldVnode**: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
+- `el`: The element the directive is bound to. This can be used to directly manipulate the DOM.
+- `binding`: An object containing the following properties.
+  - `name`: The name of the directive, without the `v-` prefix.
+  - `value`: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be `2`.
+  - `oldValue`: The previous value, only available in `update` and `componentUpdated`. It is available whether or not the value has changed.
+  - `expression`: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be `"1 + 1"`.
+  - `arg`: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
+  - `modifiers`: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
+- `vnode`: The virtual node produced by Vue's compiler. See the [VNode API](../api/#VNode-Interface) for full details.
+- `oldVnode`: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
 
 <p class="tip">Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
 

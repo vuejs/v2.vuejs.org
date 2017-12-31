@@ -83,7 +83,7 @@ type: api
 
   > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
 
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
 
 ### warnHandler
 
@@ -105,7 +105,7 @@ type: api
 
 ### ignoredElements
 
-- **Type:** `Array<string>`
+- **Type:** `Array<string | RegExp>`
 
 - **Default:** `[]`
 
@@ -113,7 +113,11 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'my-custom-web-component',
+    'another-web-component',
+    // Use a `RegExp` to ignore all elements that start with "ion-"
+    // 2.5+ only
+    /^ion-/
   ]
   ```
 
@@ -171,7 +175,7 @@ type: api
 
 ## Global API
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **Arguments:**
   - `{Object} options`
@@ -210,7 +214,7 @@ type: api
 
 - **See also:** [Components](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+### Vue.nextTick( [callback, context] )
 
 - **Arguments:**
   - `{Function} [callback]`
@@ -227,13 +231,19 @@ type: api
   Vue.nextTick(function () {
     // DOM updated
   })
+
+  // usage as a promise (2.1.0+, see note below)
+  Vue.nextTick()
+    .then(function () {
+      // DOM updated
+    })
   ```
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, key, value )
 
 - **Arguments:**
   - `{Object | Array} target`
@@ -250,7 +260,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, key )
 
 - **Arguments:**
   - `{Object | Array} target`
@@ -266,7 +276,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -286,7 +296,7 @@ type: api
     unbind: function () {}
   })
 
-  // register (simple function directive)
+  // register (function directive)
   Vue.directive('my-directive', function () {
     // this will be called as `bind` and `update`
   })
@@ -297,7 +307,7 @@ type: api
 
 - **See also:** [Custom Directives](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+### Vue.filter( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -317,7 +327,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+### Vue.component( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -340,7 +350,7 @@ type: api
 
 - **See also:** [Components](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **Arguments:**
   - `{Object | Function} plugin`
@@ -353,7 +363,7 @@ type: api
 
 - **See also:** [Plugins](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **Arguments:**
   - `{Object} mixin`
@@ -364,7 +374,7 @@ type: api
 
 - **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **Arguments:**
   - `{string} template`
@@ -387,23 +397,23 @@ type: api
 
 - **See also:** [Render Functions](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
 - **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
 
 - **Usage**:
 
-```js
-var version = Number(Vue.version.split('.')[0])
+  ```js
+  var version = Number(Vue.version.split('.')[0])
 
-if (version === 2) {
-  // Vue v2.x.x
-} else if (version === 1) {
-  // Vue v1.x.x
-} else {
-  // Unsupported versions of Vue
-}
-```
+  if (version === 2) {
+    // Vue v2.x.x
+  } else if (version === 1) {
+    // Vue v1.x.x
+  } else {
+    // Unsupported versions of Vue
+  }
+  ```
 
 ## Options / Data
 
@@ -415,7 +425,7 @@ if (version === 2) {
 
 - **Details:**
 
-  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with its own stateful behavior.
+  The data object for the Vue instance. Vue will recursively convert its properties into getter/setters to make it "reactive". **The object must be plain**: native objects such as browser API objects and prototype properties are ignored. A rule of thumb is that data should just be data - it is not recommended to observe objects with their own stateful behavior.
 
   Once observed, you can no longer add reactive properties to the root data object. It is therefore recommended to declare all root-level reactive properties upfront, before creating the instance.
 
@@ -423,7 +433,7 @@ if (version === 2) {
 
   Properties that start with `_` or `$` will **not** be proxied on the Vue instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
 
-  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we still use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created, we can simply call it to return a fresh copy of the initial data.
+  When defining a **component**, `data` must be declared as a function that returns the initial data object, because there will be many instances created using the same definition. If we use a plain object for `data`, that same object will be **shared by reference** across all instances created! By providing a `data` function, every time a new instance is created we can call it to return a fresh copy of the initial data.
 
   If required, a deep clone of the original object can be obtained by passing `vm.$data` through `JSON.parse(JSON.stringify(...))`.
 
@@ -457,7 +467,7 @@ if (version === 2) {
 
 - **Details:**
 
-  A list/hash of attributes that are exposed to accept data from the parent component. It has a simple Array-based syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+  A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
 - **Example:**
 
@@ -470,7 +480,7 @@ if (version === 2) {
   // object syntax with validation
   Vue.component('props-demo-advanced', {
     props: {
-      // just type check
+      // type check
       height: Number,
       // type check plus other validations
       age: {
@@ -530,7 +540,7 @@ if (version === 2) {
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // get only, just need a function
+      // get only
       aDouble: function () {
         return this.a * 2
       },
@@ -595,7 +605,8 @@ if (version === 2) {
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (val, oldVal) {
@@ -607,6 +618,11 @@ if (version === 2) {
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
+      },
+      // the callback will be called immediately after the start of the observation
+      d: {
+        handler: function (val, oldVal) { /* ... */ },
+        immediate: true
       }
     }
   })
@@ -710,7 +726,7 @@ if (version === 2) {
 
 - **Details:**
 
-  Called synchronously after the instance has just been initialized, before data observation and event/watcher setup.
+  Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
@@ -742,7 +758,7 @@ if (version === 2) {
 
 - **Details:**
 
-  Called after the instance has just been mounted where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
+  Called after the instance has been mounted, where `el` is replaced by the newly created `vm.$el`. If the root instance is mounted to an in-document element, `vm.$el` will also be in-document when `mounted` is called.
 
   Note that `mounted` does **not** guarantee that all child components have also been mounted. If you want to wait until the entire view has been rendered, you can use [vm.$nextTick](#vm-nextTick) inside of `mounted`:
 
@@ -850,6 +866,28 @@ if (version === 2) {
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
+### errorCaptured
+
+> New in 2.5.0+
+
+- **Type:** `(err: Error, vm: Component, info: string) => ?boolean`
+
+- **Details:**
+
+  Called when an error from any descendent component is captured. The hook receives three arguments: the error, the component instance that triggered the error, and a string containing information on where the error was captured. The hook can return `false` to stop the error from propagating further.
+
+  <p class="tip">You can modify component state in this hook. However, it is important to have conditionals in your template or render function that short circuits other content when an error has been captured; otherwise the component will be thrown into an infinite render loop.</p>
+
+  **Error Propagation Rules**
+
+  - By default, all errors are still sent to the global `config.errorHandler` if it is defined, so that these errors can still be reported to an analytics service in a single place.
+
+  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error.
+
+  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to the global `config.errorHandler`.
+
+  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or the global `config.errorHandler` from being invoked for this error.
+
 ## Options / Assets
 
 ### directives
@@ -900,7 +938,7 @@ if (version === 2) {
 
 - **Details:**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
 
   Mixin hooks are called in the order they are provided, and called before the component's own hooks.
 
@@ -948,7 +986,7 @@ if (version === 2) {
 
 - **Type:**
   - **provide:** `Object | () => Object`
-  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
 - **Details:**
 
@@ -1027,6 +1065,42 @@ if (version === 2) {
   }
   ```
 
+  > In 2.5.0+ injections can be optional with default value:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: { default: 'foo' }
+    }
+  }
+  ```
+
+  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: 'foo'
+      }
+    }
+  }
+  ```
+
+  Similar to prop defaults, you need to use a factory function for non primitive values:
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: () => [1, 2, 3]
+      }
+    }
+  }
+  ```
+
 ## Options / Misc
 
 ### name
@@ -1069,7 +1143,7 @@ if (version === 2) {
 
 - **Details:**
 
-  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are simply a `render` function that returns virtual nodes making them much cheaper to render.
+  Causes a component to be stateless (no `data`) and instanceless (no `this` context). They are only a `render` function that returns virtual nodes making them much cheaper to render.
 
 - **See also:** [Functional Components](../guide/render-function.html#Functional-Components)
 
@@ -1344,7 +1418,7 @@ if (version === 2) {
 
 ## Instance Methods / Data
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+### vm.$watch( expOrFn, callback, [options] )
 
 - **Arguments:**
   - `{string | Function} expOrFn`
@@ -1357,7 +1431,7 @@ if (version === 2) {
 
 - **Usage:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
+  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts dot-delimited paths. For more complex expressions, use a function instead.
 
 <p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
 
@@ -1411,7 +1485,7 @@ if (version === 2) {
   // `callback` is fired immediately with current value of `a`
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+### vm.$set( target, key, value )
 
 - **Arguments:**
   - `{Object | Array} target`
@@ -1426,7 +1500,7 @@ if (version === 2) {
 
 - **See also:** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+### vm.$delete( target, key )
 
 - **Arguments:**
   - `{Object | Array} target`
@@ -1440,7 +1514,7 @@ if (version === 2) {
 
 ## Instance Methods / Events
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+### vm.$on( event, callback )
 
 - **Arguments:**
   - `{string | Array<string>} event` (array only supported in 2.2.0+)
@@ -1460,7 +1534,7 @@ if (version === 2) {
   // => "hi"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+### vm.$once( event, callback )
 
 - **Arguments:**
   - `{string} event`
@@ -1470,7 +1544,7 @@ if (version === 2) {
 
   Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **Arguments:**
   - `{string | Array<string>} event` (array only supported in 2.2.2+)
@@ -1486,7 +1560,7 @@ if (version === 2) {
 
   - If both event and callback are given, remove the listener for that specific callback only.
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+### vm.$emit( event, [...args] )
 
 - **Arguments:**
   - `{string} event`
@@ -1496,7 +1570,7 @@ if (version === 2) {
 
 ## Instance Methods / Lifecycle
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+### vm.$mount( [elementOrSelector] )
 
 - **Arguments:**
   - `{Element | string} [elementOrSelector]`
@@ -1534,13 +1608,13 @@ if (version === 2) {
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Server-Side Rendering](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **Usage:**
 
   Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **Arguments:**
   - `{Function} [callback]`
@@ -1549,7 +1623,7 @@ if (version === 2) {
 
   Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update. This is the same as the global `Vue.nextTick`, except that the callback's `this` context is automatically bound to the instance calling this method.
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment.
+  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
 
 - **Example:**
 
@@ -1576,7 +1650,7 @@ if (version === 2) {
   - [Vue.nextTick](#Vue-nextTick)
   - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **Usage:**
 
@@ -1617,6 +1691,8 @@ if (version === 2) {
   Updates the element's `innerHTML`. **Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates**. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
 
   <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.</p>
+
+  <p class="tip">In [single-file components](../guide/single-file-components.html), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html) or an additional, global `<style>` element with a manual scoping strategy such as BEM.</p>
 
 - **Example:**
 
@@ -1763,7 +1839,7 @@ if (version === 2) {
 
 - **Usage:**
 
-  Attaches an event listener to the element. The event type is denoted by the argument. The expression can either be a method name or an inline statement, or simply omitted when there are modifiers present.
+  Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
 
   Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
@@ -1833,7 +1909,7 @@ if (version === 2) {
 - **Argument:** `attrOrProp (optional)`
 
 - **Modifiers:**
-  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
+  - `.prop` - Bind as a DOM property instead of an attribute ([what's the difference?](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028)). If the tag is a component then `.prop` will set the property on the component's `$el`.
   - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase.
   - `.sync` - (2.3.0+) a syntax sugar that expands into a `v-on` handler for updating the bound value.
 
@@ -2049,6 +2125,28 @@ if (version === 2) {
 
 - **See also:** [Named Slots](../guide/components.html#Named-Slots)
 
+### slot-scope
+
+> New in 2.5.0+
+
+- **Expects:** `function argument expression`
+
+- **Usage:**
+
+  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+
+  This attribute does not support dynamic binding.
+
+- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
+
+### scope <sup>replaced</sup>
+
+Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
+
 ### is
 
 - **Expects:** `string`
@@ -2131,7 +2229,7 @@ if (version === 2) {
 
 - **Usage:**
 
-  `<transition>` serve as transition effects for **single** element/component. The `<transition>` does not render an extra DOM element, nor does it show up in the inspected component hierarchy. It simply applies the transition behavior to the wrapped content inside.
+  `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
 
   ```html
   <!-- simple element -->

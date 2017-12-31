@@ -24,7 +24,7 @@ Vue provides a `transition` wrapper component, allowing you to add entering/leav
 - Dynamic components
 - Component root nodes
 
-This is what a very simple example looks like in action:
+This is what an example looks like in action:
 
 ``` html
 <div id="demo">
@@ -114,7 +114,7 @@ Each of these classes will be prefixed with the name of the transition. Here the
 
 ### CSS Transitions
 
-One of the most common transition types uses CSS transitions. Here's a simple example:
+One of the most common transition types uses CSS transitions. Here's an example:
 
 ``` html
 <div id="example-1">
@@ -193,7 +193,7 @@ Here's an example, omitting prefixed CSS rules for the sake of brevity:
 <div id="example-2">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
-    <p v-if="show">Look at me!</p>
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 ```
@@ -231,7 +231,7 @@ new Vue({
 <div id="example-2" class="demo">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
-    <p v-show="show">Look at me!</p>
+    <p v-show="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 
@@ -440,11 +440,11 @@ methods: {
 
 These hooks can be used in combination with CSS transitions/animations or on their own.
 
-<p class="tip">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, they will be called synchronously and the transition will finish immediately.</p>
+<p class="tip">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, the hooks will be called synchronously and the transition will finish immediately.</p>
 
 <p class="tip">It's also a good idea to explicitly add `v-bind:css="false"` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.</p>
 
-Now let's dive into an example. Here's a simple JavaScript transition using Velocity.js:
+Now let's dive into an example. Here's a JavaScript transition using Velocity.js:
 
 ``` html
 <!--
@@ -824,7 +824,7 @@ new Vue({
 </style>
 {% endraw %}
 
-With one simple attribute addition, we've fixed that original transition without having to add any special styling.
+With one attribute addition, we've fixed that original transition without having to add any special styling.
 
 The `in-out` mode isn't used as often, but can sometimes be useful for a slightly different transition effect. Let's try combining it with the slide-fade transition we worked on earlier:
 
@@ -876,7 +876,7 @@ Pretty cool, right?
 
 ## Transitioning Between Components
 
-Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we just wrap a [dynamic component](components.html#Dynamic-Components):
+Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we wrap a [dynamic component](components.html#Dynamic-Components):
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -959,7 +959,7 @@ So what about for when we have a whole list of items we want to render simultane
 
 ### List Entering/Leaving Transitions
 
-Now let's dive into a simple example, transitioning entering and leaving using the same CSS classes we've used previously:
+Now let's dive into an example, transitioning entering and leaving using the same CSS classes we've used previously:
 
 ``` html
 <div id="list-demo">
@@ -1124,7 +1124,7 @@ new Vue({
 </style>
 {% endraw %}
 
-This might seem like magic, but under the hood, Vue is using a simple animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
+This might seem like magic, but under the hood, Vue is using an animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
 
 We can combine this technique with our previous implementation to animate every possible change to our list!
 
@@ -1240,7 +1240,7 @@ new Vue({
 
 <p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
 
-These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can transitioned [just as easily](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can be [transitioned too](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
@@ -1513,9 +1513,9 @@ Yes, even transitions in Vue are data-driven! The most basic example of a dynami
 </transition>
 ```
 
-This can be useful when you've defined CSS transitions/animations using Vue's transition class conventions and simply want to switch between them.
+This can be useful when you've defined CSS transitions/animations using Vue's transition class conventions and want to switch between them.
 
-Really though, any transition attribute can be dynamically bound. And it's not just attributes. Since event hooks are just methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
+Really though, any transition attribute can be dynamically bound. And it's not only attributes. Since event hooks are methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>

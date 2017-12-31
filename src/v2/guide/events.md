@@ -44,7 +44,7 @@ var example1 = new Vue({
 
 ## Method Event Handlers
 
-The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the `v-on` attribute simply isn't feasible. That's why `v-on` can also accept the name of a method you'd like to call.
+The logic for many event handlers will be more complex though, so keeping your JavaScript in the value of the `v-on` attribute isn't feasible. That's why `v-on` can also accept the name of a method you'd like to call.
 
 For example:
 
@@ -186,7 +186,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 <form v-on:submit.prevent></form>
 
 <!-- use capture mode when adding the event listener -->
-<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+<!-- i.e. an event targeting an inner element is handled here after being handled by that element -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- only trigger handler if event.target is the element itself -->
@@ -210,11 +210,11 @@ Unlike the other modifiers, which are exclusive to native DOM events, the `.once
 When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for `v-on` when listening for key events:
 
 ``` html
-<!-- only call vm.submit() when the keyCode is 13 -->
+<!-- only call `vm.submit()` when the `keyCode` is 13 -->
 <input v-on:keyup.13="submit">
 ```
 
-Remembering all the keyCodes is a hassle, so Vue provides aliases for the most commonly used keys:
+Remembering all the `keyCode`s is a hassle, so Vue provides aliases for the most commonly used keys:
 
 ``` html
 <!-- same as above -->
@@ -239,13 +239,27 @@ Here's the full list of key modifier aliases:
 You can also [define custom key modifier aliases](../api/#keyCodes) via the global `config.keyCodes` object:
 
 ``` js
-// enable v-on:keyup.f1
+// enable `v-on:keyup.f1`
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Modifier Keys
+### Automatic Key Modifers
 
-> New in 2.1.0
+> New in 2.5.0+
+
+You can also directly use any valid key names exposed via [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) as modifiers by converting them to kebab-case:
+
+``` html
+<input @keyup.page-down="onPageDown">
+```
+
+In the above example, the handler will only be called if `$event.key === 'PageDown'`.
+
+<p class="tip">A few keys (`.esc` and all arrow keys) have inconsistent `key` values in IE9, their built-in aliases should be preferred if you need to support IE9.</p>
+
+## System Modifier Keys
+
+> New in 2.1.0+
 
 You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:
 
@@ -268,6 +282,23 @@ For example:
 
 <p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone.</p>
 
+### `.exact` Modifier
+
+> New in 2.5.0+
+
+The `.exact` modifier allows control of the exact combination of system modifiers needed to trigger an event.
+
+``` html
+<!-- this will fire even if Alt or Shift is also pressed -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- this will only fire when Ctrl and no other keys are pressed -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- this will only fire when no system modifiers are pressed -->
+<button @click.exact="onClick">A</button>
+```
+
 ### Mouse Button Modifiers
 
 > New in 2.2.0+
@@ -282,7 +313,7 @@ These modifiers restrict the handler to events triggered by a specific mouse but
 
 You might be concerned that this whole event listening approach violates the good old rules about "separation of concerns". Rest assured - since all Vue handler functions and expressions are strictly bound to the ViewModel that's handling the current view, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
 
-1. It's easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
+1. It's easier to locate the handler function implementations within your JS code by skimming the HTML template.
 
 2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
 
