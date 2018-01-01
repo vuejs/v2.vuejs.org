@@ -12,13 +12,13 @@ order: 0
 
 How is the cookbook different from the guide? Why is this necessary?
 
-- __Greater Focus__: In the guide, we're essentially telling a story. Each section builds on and assumes knowledge from each previous section. In the cookbook, each recipe can and should stand on its own. This means recipes can focus on one specific aspect of Vue, rather than having to give a general overview.
+* **Greater Focus**: In the guide, we're essentially telling a story. Each section builds on and assumes knowledge from each previous section. In the cookbook, each recipe can and should stand on its own. This means recipes can focus on one specific aspect of Vue, rather than having to give a general overview.
 
-- __Greater Depth__: To avoid making the guide too long, we try to include only the simplest possible examples to help you understand each feature. Then we move on. In the cookbook, we can include more complex examples, combining features in interesting ways. Each recipe can also be as long and detailed as it needs to be, in order to fully explore its niche.
+* **Greater Depth**: To avoid making the guide too long, we try to include only the simplest possible examples to help you understand each feature. Then we move on. In the cookbook, we can include more complex examples, combining features in interesting ways. Each recipe can also be as long and detailed as it needs to be, in order to fully explore its niche.
 
-- __Teaching JavaScript__: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won't explain how `Array.prototype.filter` works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.
+* **Teaching JavaScript**: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won't explain how `Array.prototype.filter` works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.
 
-- __Exploring the Ecosystem__: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
+* **Exploring the Ecosystem**: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
 
 ## Guidelines for Recipes
 
@@ -39,4 +39,3 @@ Recipes should generally:
 > 7. Explain the pros and cons of your strategy, including when it is and isn't appropriate
 
 > 8. Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
-
