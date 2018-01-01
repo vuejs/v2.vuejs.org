@@ -8,6 +8,7 @@ order: 1.2
 
 _required_
 
+Unit testing is a fundamental part of software developmenet. The underlying idea is tests the smallest units of code, in isolation from others. This makes it easy to refactor, add new features, or track down bugs. Vue's [single-file components](./single-file-components.html), it is straight forward to write unit tests for components in isolation.
 1. Articulate the problem in a sentence or two.
 2. Explain the simplest possible solution in a sentence or two.
 3. Show a small code sample.
