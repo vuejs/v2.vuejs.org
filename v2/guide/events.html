@@ -264,16 +264,21 @@
     </ul>
     <div class="list">
       <div class="main-sponsor">
-        <span>Platinum Sponsors</span><br>
+        <span>Platinum Sponsors</span>
+        <div>
         <a href="https://stdlib.com" target="_blank" class="logo">
           <img src="/images/stdlib.png">
         </a>
         <a href="http://tooltwist.com/" target="_blank" class="logo">
-          <img src="/images/tooltwist.png" style="margin-top:-5px">
+          <img src="/images/tooltwist.png">
         </a>
         <a href="https://www.infinitynewtab.com/donate/index.html" target="_blank" class="logo">
           <img src="/images/infinitynewtab.png">
         </a>
+        <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
+          <img src="/images/vueschool.png">
+        </a>
+        </div>
       </div>
       <a class="become-backer" href="/support-vuejs">
         Become a Sponsor
@@ -931,6 +936,13 @@ new Vue({
 </blockquote>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- the click event will be triggered at most once --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Unlike the other modifiers, which are exclusive to native DOM events, the <code>.once</code> modifier can also be used on <a href="components.html#Using-v-on-with-Custom-Events">component events</a>. If you haven’t read about components yet, don’t worry about this for now.</p>
+<blockquote>
+<p>New in 2.3.0+</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- the scroll event will not cancel the default scroll behavior --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:scroll.passive</span>=<span class="string">"onScroll"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>In addition to these modifiers, Vue provides <code>.passive</code> modifier to improve the performance on mobile especially.<br>For example, when performing a scroll, the browser will scroll after the process has completed because the browser doesn’t know if the event is going to call <code>event.preventDefault()</code> within its handler.<br><code>.passive</code> modifier can be used to tell the browser that this event will not cancel the default event behavior in advance.</p>
+<p class="tip">Don’t use <code>.passive</code> and <code>.prevent</code> together. Passive handler can’t prevent default event.</p>
+
 <h2 id="Key-Modifiers"><a href="#Key-Modifiers" class="headerlink" title="Key Modifiers"></a>Key Modifiers</h2><p>When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for <code>v-on</code> when listening for key events:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- only call `vm.submit()` when the `keyCode` is 13 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.13</span>=<span class="string">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Remembering all the <code>keyCode</code>s is a hassle, so Vue provides aliases for the most commonly used keys:</p>

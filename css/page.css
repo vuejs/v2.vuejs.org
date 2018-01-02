@@ -868,13 +868,16 @@ ul.demo li {
 }
 .sidebar .main-sponsor .logo {
   color: #7f8c8d;
-  margin-top: 15px;
+  margin-top: 6px;
   text-align: center;
   font-weight: bold;
   display: block;
 }
+.sidebar .main-sponsor .logo:first-child {
+  margin-top: 12px;
+}
 .sidebar .main-sponsor .logo:last-child {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 .sidebar .main-sponsor img,
 .sidebar .main-sponsor a {
