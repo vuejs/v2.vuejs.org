@@ -611,6 +611,23 @@ order: 803
       reposOfficial: [
         'vue'
       ]
+    },
+    {
+      name: 'Alex Kyriakidis',
+      title: 'Vueducator Extraordinaire',
+      city: 'Thessaloniki, Greece',
+      languages: ['el', 'en'],
+      github: 'hootlex',
+      twitter: 'hootlex',
+      work: {
+        role: 'Consultant / Author'
+      },
+      reposPersonal: [
+        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
+      ],
+      links: [
+        'https://vuejsfeed.com/', 'https://vueschool.io/'
+      ]
     }
   ]))
 
@@ -655,23 +672,6 @@ order: 803
       links: [
         'https://twitter.com/VueJsNews',
         'http://www.kharysharpe.com/'
-      ]
-    },
-    {
-      name: 'Alex Kyriakidis',
-      title: 'Vueducator Extraordinaire',
-      city: 'Thessaloniki, Greece',
-      languages: ['el', 'en'],
-      github: 'hootlex',
-      twitter: 'hootlex',
-      work: {
-        role: 'Consultant / Author'
-      },
-      reposPersonal: [
-        'vuejs-paginator', 'vuedo/vuedo', 'the-majesty-of-vuejs-2'
-      ],
-      links: [
-        'https://vuejsfeed.com/', 'https://vueschool.io/'
       ]
     },
     {
