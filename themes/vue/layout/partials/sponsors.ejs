@@ -1,11 +1,10 @@
 <h3>Patreon Sponsors</h3>
 
-<a href="http://tooltwist.com/" target="_blank" style="width: 160px;">
-  <img src="<%- url_for("/images/tooltwist.png") %>" style="width: 160px;">
+<%_ for (const sponsor of theme.platinum_sponsors.slice(1)) {_%>
+<a href="<%- sponsor.url %>" target="_blank" style="width: 160px;">
+  <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width: 160px;">
 </a>
-<a href="https://www.infinitynewtab.com/donate/index.html" target="_blank" style="width: 160px; position:relative; top: 2px">
-  <img src="/images/infinitynewtab.png" style="width: 160px;">
-</a>
+<%_ } _%>
 <br>
 <br>
 <a href="https://jsfiddle.net/" target="_blank">

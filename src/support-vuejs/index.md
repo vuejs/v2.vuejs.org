@@ -66,13 +66,16 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 
 <p style="text-align: center;">
   <a href="https://stdlib.com">
-    <img src="/images/stdlib.png" style="width: 300px;">
+    <img src="/images/stdlib.png" style="width: 250px;">
   </a>
   <a href="http://tooltwist.com/" target="_blank">
-    <img src="/images/tooltwist.png" style="width: 300px;">
+    <img src="/images/tooltwist.png" style="width: 250px;">
   </a>
   <a href="https://www.infinitynewtab.com/donate/index.html" target="_blank">
-    <img src="/images/infinitynewtab.png" style="width: 300px">
+    <img src="/images/infinitynewtab.png" style="width: 250px">
+  </a>
+  <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank">
+    <img src="/images/vueschool.png" style="width: 250px">
   </a>
 </p>
 
