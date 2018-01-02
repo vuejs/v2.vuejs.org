@@ -27,7 +27,7 @@ Given a form of three fields, make two required. Let's look at the HTML first:
 
   <p>
     <label for="age">Age<label>
-    <input type="number" name="age" id="age" v-model="age">
+    <input type="number" name="age" id="age" v-model="age" min="0">
   </p>
 
   <p>
@@ -171,7 +171,7 @@ For the third example, we've built something you've probably seen in survey apps
   <p>
     Given a budget of 100 dollars, indicate how much
     you would spend on the following features for the
-    next generation Star Destroyer:
+    next generation Star Destroyer. Your total must sum up to 100.
   </p>
 
   <p>
@@ -308,7 +308,7 @@ const app = new Vue({
 })
 ```
 
-We start off with a variable representing the URL of the API that is running on OpenWhisk. Now look at `checkForm`. In this version, we always prevent the form from submitting (which, by the way, could be done in the HTML with Vue as well). You can see a basic check on this.name being empty, and then we hit the API. If it's bad, we add an error as before. If it's good, right now we do nothing (just an alert), but you could navigate the user to a new page with the product name in the URL, or do other actions as well. You can run this demo below:
+We start off with a variable representing the URL of the API that is running on OpenWhisk. Now look at `checkForm`. In this version, we always prevent the form from submitting (which, by the way, could be done in the HTML with Vue as well). You can see a basic check on `this.name` being empty, and then we hit the API. If it's bad, we add an error as before. If it's good, right now we do nothing (just an alert), but you could navigate the user to a new page with the product name in the URL, or do other actions as well. You can run this demo below:
 
 <p data-height="265" data-theme-id="0" data-slug-hash="BmgzeM" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 4" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/BmgzeM/">form validation 4</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
