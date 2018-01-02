@@ -213,7 +213,9 @@ Unlike the other modifiers, which are exclusive to native DOM events, the `.once
 ```
 
 In addition to these modifiers, Vue provides `.passive` modifier to improve the performance on mobile especially.
+
 For example, when performing a scroll, the browser will scroll after the process has completed because the browser doesn’t know if the event is going to call `event.preventDefault()` within its handler.
+
 `.passive` modifier can be used to tell the browser that this event will not cancel the default event behavior in advance.
 
 <p class="tip">Don't use `.passive` and `.prevent` together. Passive handler can't prevent default event.</p>
