@@ -1723,7 +1723,10 @@ Par défaut, Vue met à jour le DOM aussi efficacement que possible. Cela signif
 >
   Error: {{ error }}
 </div>
-<div v-else key="search-results">
+<div 
+  v-else 
+  key="search-results"
+>
   {{ results }}
 </div>
 ```

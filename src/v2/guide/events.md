@@ -205,6 +205,21 @@ Pour résoudre ce problème, Vue propose des modificateurs d'évènements pour `
 
 Au contraire des autres modificateurs, qui sont exclusifs aux évènements natifs du DOM, le modificateur `.once` peut également être utilisé pour les [évènements des composants](components.html#Using-v-on-with-Custom-Events). Si vous n'avez pas encore lu la section concernant les composants, ne vous en inquiétez pas pour le moment.
 
+> Nouveau en 2.3.0+
+
+``` html
+<!-- l'évènement de défilement n'annule pas le comportement par défaut du défilement -->
+<div v-on:scroll.passive="onScroll">...</div>
+```
+
+En plus de ces modificateurs, Vue fournit le modificateur `.passive` qui améliore en particulier les performances sur mobile.
+
+Par exemple, quand on défile dans la page, celle-ci va défiler dans le navigateur après que le processus soit complété car il ne sait pas si l'évènement `event.preventDefault()` est en cours d'appel dans le gestionnaire.
+
+Le modificateur `.passive` peut être utilisé pour dire au navigateur que le navigateur ne doit pas désactiver le comportement de l'évènement à l'avance.
+
+<p class="tip">N'utilisez pas `.passive` et `.prevent` ensemble. `.passive` ne peut pas annuler l'évènement par défaut.</p>
+
 ## Modificateurs de code des touches
 
 Lorsque nous écoutons les évènements du clavier, nous avons régulièrement besoin de nous assurer du code des touches. Vue permet également d'ajouter un modificateur de touches pour `v-on`:

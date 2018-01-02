@@ -74,7 +74,7 @@
       hash = hash.substr(1)
     }
 
-    // Escape characthers
+    // Escape characters
     try {
       hash = decodeURIComponent(hash)
     } catch (e) {}
@@ -180,7 +180,8 @@
         overlay.className = 'overlay'
 
 
-    modalButton.addEventListener('click', function() {
+    modalButton.addEventListener('click', function(event) {
+      event.stopPropagation()
       videoModal.classList.toggle('open')
       document.body.classList.toggle('stop-scroll')
       document.body.appendChild(overlay)
