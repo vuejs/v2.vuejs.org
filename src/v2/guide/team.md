@@ -364,7 +364,7 @@ order: 803
         'vuejs.org', 'jp.vuejs.org'
       ],
       reposPersonal: [
-        'vue-i18n', 'vue-i18n-loader', 'vue-validator'
+        'vue-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
       ],
       links: [
         'https://cuusoo.com', 'http://frapwings.jp'
@@ -591,12 +591,25 @@ order: 803
       github: 'shentao',
       twitter: 'DamianDulisz',
       work: {
-        role: 'Senior Frontend Developer',
-        org: 'Monterail',
-        orgUrl: 'https://www.monterail.com/'
+        role: 'Consultant'
       },
       reposPersonal: [
-        'monterail/vue-multiselect', 'monterail/vue-newsletter'
+        'shentao/vue-multiselect'
+      ]
+    },
+    {
+      name: 'kingwl',
+      title: 'New Bee',
+      city: 'Beijin, China',
+      languages: ['zh'],
+      work: {
+        role: 'Software Development Engineer',
+        org: 'Chaitin',
+        orgUrl: 'https://chaitin.cn/'
+      },
+      github: 'kingwl',
+      reposOfficial: [
+        'vue'
       ]
     }
   ]))

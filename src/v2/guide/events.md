@@ -186,7 +186,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 <form v-on:submit.prevent></form>
 
 <!-- use capture mode when adding the event listener -->
-<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+<!-- i.e. an event targeting an inner element is handled here after being handled by that element -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- only trigger handler if event.target is the element itself -->
@@ -204,6 +204,19 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 ```
 
 Unlike the other modifiers, which are exclusive to native DOM events, the `.once` modifier can also be used on [component events](components.html#Using-v-on-with-Custom-Events). If you haven't read about components yet, don't worry about this for now.
+
+> New in 2.3.0+
+
+``` html
+<!-- the scroll event will not cancel the default scroll behavior -->
+<div v-on:scroll.passive="onScroll">...</div>
+```
+
+In addition to these modifiers, Vue provides `.passive` modifier to improve the performance on mobile especially.
+For example, when performing a scroll, the browser will scroll after the process has completed because the browser doesn’t know if the event is going to call `event.preventDefault()` within its handler.
+`.passive` modifier can be used to tell the browser that this event will not cancel the default event behavior in advance.
+
+<p class="tip">Don't use `.passive` and `.prevent` together. Passive handler can't prevent default event.</p>
 
 ## Key Modifiers
 
