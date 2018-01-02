@@ -36,16 +36,14 @@ We'll create a base icon (`iconBase.vue`) that will be a component that's uses a
     role="presentation"
   >
     <title :id="iconName" lang="en">{{iconName}} icon</title>
-    <g fill="currentColor">
+    <g :fill="iconColor">
       <slot />
     </g>
   </svg>
 </template>
 ```
 
-You can use this base icon as is- the only thing you might need to update is the viewBox depending on the viewBox of your icons. In the base, we're making the width, height and name of the icon props so that it can be dynamically updated with props. The name will be used for both the title id for accessibility, and the title.
-
-The currentColor property on the fill will make the icon inherit the color of whatever text surrounds it. This could also be used as a bound property, if you'd like to change it up.
+You can use this base icon as is- the only thing you might need to update is the viewBox depending on the viewBox of your icons. In the base, we're making the width, height, color, and name of the icon props so that it can be dynamically updated with props. The name will be used for both the title id for accessibility, and the title.
 
 Our script will look like this, we'll have some defaults so that our icon will be rendered consistently unless we state otherwise:
 
@@ -63,12 +61,18 @@ export default {
     height: {
       type: [Number, String],
       default: 18
+    },
+    iconColor: {
+      type: String,
+      default: 'currentColor'
     }
   }
 }
 ```
 
-Then we can use it like so, with the only contents of IconWrite.vue containing the paths inside the icon:
+The currentColor property that's the default on the fill will make the icon inherit the color of whatever text surrounds it. We could also pass in a different color as a prop if we wish.
+
+We can use it like so, with the only contents of IconWrite.vue containing the paths inside the icon:
 
 ```html
 <icon-base icon-name="write"><icon-write /></icon-base>
@@ -87,25 +91,64 @@ Now, if we'd like to make many sizes for the icon, we can do so very easily:
 </p>
 ```
 
-## Details about the Value
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/Screen%20Shot%202018-01-01%20at%204.51.40%20PM.png" width="450" />
 
-_required_
+## Animatable Icons
 
-1. Address common questions that one might have while looking at the example. (Blockquotes are great for this)
-2. Show examples of common missteps and how they can be avoided.
-3. Show very simple code samples of good and bad patterns.
-4. Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
+Keeping icons in components comes in very handy when you'd like to animate them, especially on an interaction. Inline SVGs have the highest support for interaction of any method. Here's a very basic example of an icon that's animated on click:
 
-## Real-World Example
+```html
+<template>
+  <svg @click="startScissors"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 100"
+    width="100"
+    height="100"
+    aria-labelledby="scissors"
+    role="presentation"
+    >
+    <title id="scissors" lang="en">Scissors Animated Icon</title>
+    <path id="bk" fill="#fff" d="M0 0h100v100H0z"/>
+    <g ref="leftscissor">
+      <path d="M..."/>
+      ...
+    </g>
+    <g ref="rightscissor">
+      <path d="M..."/>
+      ...
+    </g>
+  </svg>
+</template>
+```
 
-_required_
+```js
+import { TweenMax, Sine } from 'gsap'
 
-Demonstrate the code that would power a common or interesting use case, either by:
+export default {
+  methods: {
+    startScissors() {
+      this.scissorAnim(this.$refs.rightscissor, 30)
+      this.scissorAnim(this.$refs.leftscissor, -30)
+    },
+    scissorAnim(el, rot) {
+      TweenMax.to(el, 0.25, {
+        rotation: rot,
+        repeat: 3,
+        yoyo: true,
+        svgOrigin: '50 45',
+        ease: Sine.easeInOut
+      })
+    }
+  }
+}
+```
 
-1. Walking through a few terse examples of setup, or
-2. Embedding a codepen/jsfiddle example
+We're applying `refs` to the groups of paths we need to move, and as both sides of the scissors have to move in tandem, we'll create a funciton we can reuse where we'll pass in the `refs`. The use of GreenSock helps resolve animation support and transform-origin issues across browser.
 
-If you choose to do the latter, you should still talk through what it is and does.
+<p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Editable SVG Icon System: Animated icon</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+Pretty easily accomplished! And easy to update on the fly.
 
 ## Additional Context
 
@@ -115,16 +158,8 @@ It's extremely helpful to write a bit about this pattern, where else it would ap
 
 ## When To Avoid This Pattern
 
-_optional_
-
-This section is not required, but heavily recommended. It won't make sense to write it for something very simple such as toggling classes based on state change, but for more advanced patterns like mixins it's vital. The answer to most questions about development is ["It depends!"](https://codepen.io/rachsmith/pen/YweZbG), this section embraces that. Here, we'll take an honest look at when the pattern is useful and when it should be avoided, or when something else makes more sense.
+This type of SVG icon system is really useful when you have a number of icons that are used in different ways throughout your site. If you run into a time where you're repeating the same icon again and again a hundred times or more on one page (for instance, a giant table with a great number of delete icons, one per row), it might make more sense to have all of the sprites compiled into a sprite sheet and use `use` tags to load them.
 
 ## Alternative Patterns
 
-_optional, except when the section above is provided_
-
-This section is required when you've provided the section above about avoidance. It's important to explore other methods so that people told that something is an antipattern in certain situations are not left wondering. In doing so, consider that the web is a big tent and that many people have different codebase structures and are solving different goals. Is the app large or small? Are they integrating Vue into an existing project, or are they building from scratch? Are their users only trying to achieve one goal or many? Is there a lot of asynchronous data? All of these concerns will impact alternative implementations. A good cookbook recipe gives developers this context.
-
-## Thank you
-
-It takes time to contribute to documentation, and if you spend the time to submit a PR this section of our docs, you do so with our gratitude.
+If you find yourself implementing the use case above, there are a number of good tools to help you with this. A couple worth mentioning are [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) and [svgo-loader](https://github.com/rpominov/svgo-loader). This pattern tends to be a little harder to manipulate on the fly because `use` tags can have strange cross-browser issues when doing anything more complex, and you're also dealing with two `viewBox`s and thus two coordinate systems, which can make implementation and on-the-fly edits more challenging.
