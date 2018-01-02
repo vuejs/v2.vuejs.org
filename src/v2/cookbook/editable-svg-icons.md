@@ -150,11 +150,11 @@ We're applying `refs` to the groups of paths we need to move, and as both sides 
 
 Pretty easily accomplished! And easy to update on the fly.
 
-## Additional Context
+You can see more animated examples in the repo [here](https://github.com/sdras/vue-sample-svg-icons/)
 
-_optional_
+## Additional Notes
 
-It's extremely helpful to write a bit about this pattern, where else it would apply, why it works well, and run through a bit of code as you do so or give people further reading materials here.
+Designers may change their minds or product requirements change. By keeping the logic for the entire icon system in one base component with a slot, you can quickly update all of your icons and have it propogate through your entire system, which can save a lot of time that, even with an icon loader, would mean recreating or editing every SVG.
 
 ## When To Avoid This Pattern
 
@@ -162,4 +162,4 @@ This type of SVG icon system is really useful when you have a number of icons th
 
 ## Alternative Patterns
 
-If you find yourself implementing the use case above, there are a number of good tools to help you with this. A couple worth mentioning are [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) and [svgo-loader](https://github.com/rpominov/svgo-loader). This pattern tends to be a little harder to manipulate on the fly because `use` tags can have strange cross-browser issues when doing anything more complex, and you're also dealing with two `viewBox`s and thus two coordinate systems, which can make implementation and on-the-fly edits more challenging.
+If you find yourself implementing the use case above, there are a number of good tools to help you with this. A couple worth mentioning are [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) and [svgo-loader](https://github.com/rpominov/svgo-loader). This pattern tends to be a little harder to manipulate on the fly because `use` tags can have strange cross-browser issues when doing anything more complex, and you're also dealing with two nested `viewBox` properties and thus two coordinate systems, which can make implementation and on-the-fly edits more challenging.
