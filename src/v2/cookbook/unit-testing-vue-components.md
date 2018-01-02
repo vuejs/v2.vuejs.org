@@ -8,11 +8,35 @@ order: 1.2
 
 _required_
 
-Unit testing is a fundamental part of software developmenet. The underlying idea is tests the smallest units of code, in isolation from others. This makes it easy to refactor, add new features, or track down bugs. Vue's [single-file components](./single-file-components.html), it is straight forward to write unit tests for components in isolation.
-1. Articulate the problem in a sentence or two.
-2. Explain the simplest possible solution in a sentence or two.
-3. Show a small code sample.
-4. Explain what this accomplishes in a sentence.
+Unit testing is a fundamental part of software developmenet. The underlying idea is tests the smallest units of code, in isolation from others. This makes it easy to refactor, add new features, or track down bugs. Vue's [single-file components](./single-file-components.html), it is straight forward to write unit tests for components in isolation. This lets you develop new features with confidence you are not breaking existing ones, and helps other people to understand what your component does.
+
+This simple example tests whether some text is rendered:
+
+```html
+<template>
+  <div>{{ message }}</div>
+</template>
+
+<script>
+export default {
+  name: 'Hello',
+  data () {
+    return {
+      message: 'Hello World!'
+    }
+  }
+}
+</script>
+```
+
+```js
+// render the component
+const wrapper = shallow(Hello)
+// assert the text is rendered
+expect(wrapper.text()).toEqual('Hello World!')
+```
+
+This contrived example isn't very useful, but it demonstrates the general idea of unit testing Vue components: render the component, and make assertions to check if the markup matches the state of the component.
 
 ## Details about the Value
 
