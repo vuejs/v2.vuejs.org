@@ -281,7 +281,7 @@ Vue.config.keyCodes.f1 = 112
 - `.shift`
 - `.meta`
 
-> 注意：在 Macintosh 键盘中，meta 修饰符对应是 command 键(⌘)。在 Windows 键盘中，meta 修饰符对应是 windows 键(⊞)。在 Sun Microsystems 键盘中，meta 对应是实心宝石键(◆)。在一些键盘中，特别是 MIT 和 Lisp 机键盘和后续键盘（例如 Knight 键盘、space-cadet 键盘）中，meta 对应是 “META” 键。在 Symbolics 键盘中，meta 对应是 “META” 或 “Meta” 键。
+> 注意：在 Macintosh 键盘中，meta 对应是 command 键(⌘)。在 Windows 键盘中，meta 对应是 windows 键(⊞)。在 Sun Microsystems 键盘中，meta 对应是实心宝石键(◆)。在一些键盘中，特别是 MIT 和 Lisp 机键盘和后续键盘（例如 Knight 键盘、space-cadet 键盘）中，meta 对应是 “META” 键。在 Symbolics 键盘中，meta 对应是 “META” 或 “Meta” 键。
 
 例如：
 
@@ -324,7 +324,7 @@ Vue.config.keyCodes.f1 = 112
 
 ## 为什么监听器会放在 HTML 中？(Why Listeners in HTML?)
 
-你可能会担心，所有这些事件监听方式违背了原先的“关注点分离(separation of concern)”规定。还请放心 - 因为所有 Vue 处理函数和表达式，都严格绑定 在处理当前视图(view)的 ViewModel 上，所以不会造成任何维护上的困难。实际上，使用 `v-on` 有几个好处：
+你可能会担心，所有这些事件监听方式违背了原先的“关注点分离(separation of concern)”原则。还请放心 - 因为所有 Vue 事件处理器函数和表达式，都严格绑定在处理当前视图(view)的 ViewModel 上，所以不会造成任何维护上的困难。实际上，使用 `v-on` 有几个好处：
 
 1. 通过浏览 HTML 模板，就能很方便地找到在 JavaScript 代码里对应的处理函数。
 
