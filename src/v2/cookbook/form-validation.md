@@ -11,7 +11,7 @@ Form validation is natively supported by the browser, but sometimes different br
 Given a form of three fields, make two required. Let's look at the HTML first:
 
 ``` html
-<form id="app" @submit="checkForm" action="/something" method="post">
+<form id="app" @submit="checkForm" action="https://vuejs.org/" method="post">
   
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
@@ -46,7 +46,7 @@ Given a form of three fields, make two required. Let's look at the HTML first:
 </form>
 ```
 
-Let's cover it from the top. The form tag has an ID that we'll be using for the Vue component. There's a submit handler that you'll see in a bit, and the action is a fake URL that would point to something real on a server someplace (where you have backup server-side validation of course).
+Let's cover it from the top. The form tag has an ID that we'll be using for the Vue component. There's a submit handler that you'll see in a bit, and the action is a temporary URL that would point to something real on a server someplace (where you have backup server-side validation of course).
 
 Beneath that there is a paragraph that shows or hides itself based on an error state. This will render a simple list of errors on top of the form. Also note we fire the validation on submit rather than as every field is modified. 
 
@@ -73,7 +73,7 @@ const app = new Vue({
 })
 ```
 
-Fairly short and simple. We default an array to hold errors and set null values for the three form fields. The checkForm logic (which is run on submit remember) checks for name and age only as movie is optional. If they are empty we check each and set a specific error for each. And that's really it. You can run the demo below. Don't forget that on a successful submission it's going to POST to a non-existent URL.
+Fairly short and simple. We default an array to hold errors and set null values for the three form fields. The checkForm logic (which is run on submit remember) checks for name and age only as movie is optional. If they are empty we check each and set a specific error for each. And that's really it. You can run the demo below. Don't forget that on a successful submission it's going to POST to a temporary URL.
 
 <p data-height="265" data-theme-id="0" data-slug-hash="GObpZM" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 1" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/GObpZM/">form validation 1</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
@@ -83,7 +83,7 @@ Fairly short and simple. We default an array to hold errors and set null values 
 For the second example, the second text field (age) was switched to email which will be validated with a bit of custom logic. The code is taken from the StackOverflow question, [How to validate email address in JavaScript?](https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript). This is an awesome question because it makes your most intense Facebook political/religious argument look like a slight disagreement over who makes the best beer. Seriously - it's insane. Here is the HTML, even though it's really close to the first example.
 
 ``` html
-<form id="app" @submit="checkForm" action="/something" method="post" novalidate="true">
+<form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
   
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
@@ -159,7 +159,7 @@ As you can see, we've added `validEmail` as a new method and it is simply called
 For the third example, we've built something you've probably seen in survey apps. The user is asked to spend a "budget" for a set of features for a new Star Destroyer model. The total must equal 100. First, the HTML.
 
 ``` html
-<form id="app" @submit="checkForm" action="/something" method="post" novalidate="true">
+<form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
   
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
