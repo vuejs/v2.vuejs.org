@@ -95,10 +95,26 @@
     <script src="<%- url_for("/js/common.js") %>"></script>
 
     <!-- search -->
-    <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <%- css('css/search') %>
-    <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script>		
+      [		
+        '#search-query-nav',		
+        '#search-query-sidebar',		
+        '#search-query-menu'		
+      ].forEach(function (selector) {		
+        if (!document.querySelector(selector)) return		
+        // search index defaults to v2	
+        docsearch({				
+          apiKey: '528a52bb98fa94e699a32180b5e72cac',		
+          indexName: 'vuefe',		
+          inputSelector: selector,		
+          debug: false		
+        })		
+      })		
+     </script>
+    
     <!-- fastclick -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
     <script>
