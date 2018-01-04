@@ -3,8 +3,8 @@
   initVideoModal()
   if (PAGE_TYPE) {
     initVersionSelect()
-    initSubHeaders()
     initApiSpecLinks()
+    initSubHeaders()
     initLocationHashFuzzyMatching()
   }
 
