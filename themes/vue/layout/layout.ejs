@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><%- page.title ? page.title + ' - ' : '' %>Vue.js 2.x 中文文档 - vuefe.cn</title>
+    <title><%- page.title ? page.title + ' - ' : '' %>Vue.js 中文文档 - vuefe.cn</title>
     <meta charset="utf-8">
     <meta name="description" content="<%- theme.site_description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -48,7 +48,7 @@
     <meta name="msapplication-config" content="browserconfig.xml">
     <link rel="manifest" href="/manifest.json">
 
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- main page styles -->
     <%- css(isIndex ? 'css/index' : 'css/page') %>
@@ -56,7 +56,6 @@
     <!-- this needs to be loaded before guide's inline scripts -->
     <script src="<%- url_for("/js/vue.js") %>"></script>
     <script>window.PAGE_TYPE = "<%- page.type %>"</script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <!-- baidu -->
     <script>
@@ -96,29 +95,26 @@
     <script src="<%- url_for("/js/common.js") %>"></script>
 
     <!-- search -->
-    <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <%- css('css/search') %>
-    <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-    <script>
-    [
-      '#search-query-nav',
-      '#search-query-sidebar',
-      '#search-query-menu'
-    ].forEach(function (selector) {
-      if (!document.querySelector(selector)) return
-      // search index defaults to v2
-      var match = window.location.pathname.match(/^\/(v\d+)/)
-      var version = match ? match[1] : 'v2'
-      docsearch({
-        appId: 'BH4D9OD16A',
-        apiKey: '5638280abff9d207417bb03be05f0b25',
-        indexName: 'vuejs_cn2',
-        inputSelector: selector,
-        algoliaOptions: { facetFilters: ["version:" + version] }
-      })
-    })
-    </script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script>		
+      [		
+        '#search-query-nav',		
+        '#search-query-sidebar',		
+        '#search-query-menu'		
+      ].forEach(function (selector) {		
+        if (!document.querySelector(selector)) return		
+        // search index defaults to v2	
+        docsearch({				
+          apiKey: '528a52bb98fa94e699a32180b5e72cac',		
+          indexName: 'vuefe',		
+          inputSelector: selector,		
+          debug: false		
+        })		
+      })		
+     </script>
+    
     <!-- fastclick -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
     <script>
@@ -126,7 +122,5 @@
       FastClick.attach(document.body)
     }, false)
     </script>
-
-    <script src="/js/vuefe-min.fe7c4b3c46a9ec32c769.js"></script>
-    </body>
+  </body>
 </html>

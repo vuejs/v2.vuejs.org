@@ -3,9 +3,9 @@
 ## Source: https://github.com/tommy351/hexo/
 
 # Site
-title: Vue.js v2.x 中文文档
-subtitle: Vue.js v2.x 中文文档 vuefe.cn
-description: "Vue.js v2.x 中文文档,vuefe.cn,vuefe.com"
+title: Vue.js 中文文档
+subtitle: https://vuefe.cn
+description: "Vue.js 中文文档,vuefe.cn"
 author: Evan You
 email:
 language: zh-CN
