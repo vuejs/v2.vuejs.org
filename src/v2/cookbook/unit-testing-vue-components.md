@@ -12,7 +12,15 @@ This simple example tests whether some text is rendered:
 
 ```html
 <template>
-  <div>{{ message }}</div>
+  <div>
+    <input v-model="username">
+    <div 
+      v-if="error"
+      class="error"
+    >
+      {{ error }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -20,7 +28,15 @@ export default {
   name: 'Hello',
   data () {
     return {
-      message: 'Hello World!'
+      username: ''
+    }
+  },
+
+  computed: {
+    error () {
+      return this.username.length < 7
+        ? 'Please enter a longer username'
+        : ''
     }
   }
 }
@@ -41,6 +57,11 @@ This contrived example isn't very useful, but it demonstrates the general idea o
 
 _required_
 
+1. Why test?
+Component unit tests have lots of great points:
+- Provide documentation on how the component should behave
+- Save time over testing manually
+- Catch bugs before they impact users
 
 1. Address common questions that one might have while looking at the example. (Blockquotes are great for this)
 2. Show examples of common missteps and how they can be avoided.
