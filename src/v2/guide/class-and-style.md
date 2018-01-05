@@ -1,12 +1,12 @@
 ---
-title: Interligações em Classes e Estilos
+title: Interligações de Classe e Estilo
 type: guide
 order: 6
 ---
 
 Uma necessidade comum de interligação de dados é manipular as classes dos elementos e seus estilos _inline_. Uma vez que ambos são atributos, podemos usar `v-bind` para lidar com eles: apenas precisamos calcular uma String final com nossas expressões. No entanto, mexer com concatenação é irritante e propenso a erros. Por esta razão, Vue fornece aprimoramentos especiais quando `v-bind` é usado com `class` e `style`. Além de Strings, as expressões também podem avaliar Objetos ou Arrays.
 
-## Vinculando em Classes HTML
+## Interligando Classes HTML
 
 ### Sintaxe do Objeto
 
@@ -149,7 +149,7 @@ Quando `isActive` for verdadeiro, o HTML resultante será:
 <p class="foo bar active">Oi</p>
 ```
 
-## Vinculando em Estilos Inline
+## Interligando Estilos Inline
 
 ### Sintaxe de Objeto
 
